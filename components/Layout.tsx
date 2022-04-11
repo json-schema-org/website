@@ -6,10 +6,11 @@ import classnames from 'classnames'
 type Props = {
   children: React.ReactNode
   mainClassName?: string
+  mainClassNameWidth?: string
   metaTitle?: string
 }
 
-export default function Layout ({ children, mainClassName, metaTitle }: Props) {
+export default function Layout ({ children, mainClassName, mainClassNameWidth, metaTitle }: Props) {
   return (
     <div className='bg-slate-100 min-h-screen h-auto overflow-scroll flex flex-col justify-between'>
       <Head>
@@ -43,7 +44,11 @@ export default function Layout ({ children, mainClassName, metaTitle }: Props) {
             </Link>
           </div>
         </header>
-        <main className={classnames(mainClassName, 'bg-white rounded-xl p-4 w-[1200px] mx-auto mt-4')}>
+        <main className={
+          classnames(mainClassName, mainClassNameWidth, 'bg-white rounded-xl p-4  mx-auto', {
+            'w-[1200px]': !mainClassNameWidth
+          })
+        }>
           {children}
         </main>
       </div>
@@ -62,6 +67,46 @@ export default function Layout ({ children, mainClassName, metaTitle }: Props) {
           </Link>
         </div>
       </footer>
+    </div>
+  )
+}
+
+type LayoutDocsProps = {
+  children: React.ReactNode
+  metaTitle?: string
+}
+
+export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps)  => {
+  return (
+    <Layout mainClassNameWidth='w-full' metaTitle={metaTitle}>
+      <div className='w-[1200px] mx-auto flex flex-row'>
+        <DocsNav />
+        <div className='flex-1'>
+          {children}
+        </div>
+
+      </div>
+    </Layout>
+  )
+}
+
+const DocsNav = () => {
+  return (
+    <div className='w-[200px]'>
+      <Link href="/docs">
+        <a className='block'>Overview</a>
+      </Link>
+      <Link href="/docs/about">
+        <a className='block'>What is a schema?</a>
+      </Link>
+      <Link href="/docs/basics">
+        <a className='block'>The basics</a>
+      </Link>
+      <div></div>
+      <div>Getting started</div>
+      <div>Getting started</div>
+      <div>Getting started</div>
+
     </div>
   )
 }
