@@ -40,7 +40,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
   console.log('content', content)
   const headlines = content
     .split('\n')
-    .filter((line: string) => line.indexOf('## ') === 0)
+    .filter((line: string) => line.indexOf('## ') === 0 || line.indexOf('# ') === 0)
   console.log('headlines', headlines)
 
   return (
@@ -58,40 +58,42 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
       </div>
 
       <div className='flex flex-row'>
-        <div className='w-[260px] px-5'>
-          <Link href='/blog'>
-            <a className='font-semibold text-sm pb-5 inline-block'>{'<'} Go back to blog</a>
-          </Link>
-          <div className='pt-6 border-t'>
-            {(frontmatter.authors || []).map((author: any, index: number) => {
-              return (
-                <div key={index} className='flex flex-row items-center'>
-                  <div
-                    className='bg-slate-50 h-[44px] w-[44px] rounded-full mr-3 bg-cover bg-center'
-                    style={{ backgroundImage: `url(${author.photo})` }}
-                  />
-                  <div>
-                    <div className='text-sm font-semibold'>{author.name}</div>
-                    {author.twitter && (
-                      <a className='text-sm text-blue-500 font-medium' href={`https://twitter.com/${author.twitter}`}>
-                        @{author.twitter}
-                      </a>
-                    )}
+        <div className='flex self-auto w-[260px] pl-4 pr-8'>
+          <div>
+            <Link href='/blog'>
+              <a className='font-semibold text-sm pb-5 inline-block'>{'<'} Go back to blog</a>
+            </Link>
+            <div className='pt-6 border-t'>
+              {(frontmatter.authors || []).map((author: any, index: number) => {
+                return (
+                  <div key={index} className='flex flex-row items-center mb-6'>
+                    <div
+                      className='bg-slate-50 h-[44px] w-[44px] rounded-full mr-3 bg-cover bg-center'
+                      style={{ backgroundImage: `url(${author.photo})` }}
+                    />
+                    <div>
+                      <div className='text-sm font-semibold'>{author.name}</div>
+                      {author.twitter && (
+                        <a className='block text-sm text-blue-500 font-medium' href={`https://twitter.com/${author.twitter}`}>
+                          @{author.twitter}
+                        </a>
+                      )}
+                    </div>
+
+
                   </div>
-
-
-                </div>
-              )
-            })}
-          </div>
-          <div className='pt-20'>
-            {headlines.map((headline: any, index: number) => {
-              return (
-                <div key={index}>
-                  <TableOfContentMarkdown markdown={headline} />
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
+            <div className='pt-8'>
+              {headlines.map((headline: any, index: number) => {
+                return (
+                  <div key={index}>
+                    <TableOfContentMarkdown markdown={headline} />
+                  </div>
+                )
+              })}
+            </div>
           </div>
         </div>
         <div className='flex-1'>

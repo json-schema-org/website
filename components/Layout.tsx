@@ -13,7 +13,7 @@ type Props = {
 
 export default function Layout ({ children, mainClassName, mainClassNameWidth, metaTitle }: Props) {
   return (
-    <div className='bg-slate-100 min-h-screen h-auto overflow-scroll flex flex-col justify-between'>
+    <div className='bg-slate-100 min-h-screen relative flex flex-col justify-between'>
       <Head>
         <title>JSON Schema {metaTitle ? ` - ${metaTitle}` : ''}</title>
         <meta name='description' content='JSON Schema' />
@@ -60,16 +60,16 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
 
       <footer className='w-[1200px] mx-auto p-4 py-16 flex flex-row'>
         <div className='w-1/4 flex flex-col items-stert'>
-          <div className='font-semibold text-sm text-slate-800'>Specification</div>
+          <div className='font-semibold text-sm text-slate-800 mb-1'>Specification</div>
           <Link href='/specification'>
-            <a className='text-sm text-slate-400 hover:text-slate-500 py-4'>Overview</a>
+            <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Overview</a>
           </Link>
         </div>
         <div className='w-1/4 flex flex-col items-stert'>
-          <div className='font-semibold text-sm text-slate-800'>Community</div>
-          <Link href='/blog'>
-            <a className='text-sm text-slate-400 hover:text-slate-500 py-4'>Slack</a>
-          </Link>
+          <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
+          <a href='https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
+          <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
+          <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
         </div>
       </footer>
     </div>
