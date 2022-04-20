@@ -57,11 +57,11 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
             <a className='font-semibold text-sm pb-5 inline-block'>{'<'} Go back to blog</a>
           </Link>
           <div className='pt-6 border-t'>
-            {(frontmatter.authors || []).map((author, index) => {
+            {(frontmatter.authors || []).map((author: any, index: number) => {
               return (
                 <div key={index} className='flex flex-row items-center'>
                   <div
-                    className='bg-slate-50 h-[44px] w-[44px] rounded-full mr-3 bg-cover'
+                    className='bg-slate-50 h-[44px] w-[44px] rounded-full mr-3 bg-cover bg-center'
                     style={{ backgroundImage: `url(${author.photo})`}}
                   />
                   <div>
@@ -80,6 +80,10 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
           </div>
         </div>
         <div className='flex-1'>
+          <div
+            className='bg-slate-50 h-[400px] w-full rounded-lg mr-3 bg-cover mb-10 bg-center'
+            style={{ backgroundImage: `url(${frontmatter.cover})`}}
+          />
           <StyledMarkdown markdown={content} />
         </div>
       </div>

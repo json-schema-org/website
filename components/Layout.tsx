@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
+import { useRouter } from 'next/router'
 
 type Props = {
   children: React.ReactNode
@@ -21,7 +22,7 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
 
       <div>
         <header className='flex flex-row justify-between p-4 w-[1200px] mx-auto'>
-          <Link href="/">
+          <Link href='/'>
             <a>
               <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
                 <img src='/logo-blue.svg' className='h-12 mr-2' />
@@ -33,15 +34,19 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
             </a>
           </Link>
           <div className='py-2'>
-            <Link href="/docs">
-              <a className='font-semibold text-slate-600 hover:text-slate-800 p-4'>Docs</a>
-            </Link>
-            <Link href="/blog">
-              <a className='font-semibold text-slate-600 hover:text-slate-800 p-4'>Blog</a>
-            </Link>
-            <Link href="/community">
-              <a className='font-semibold text-slate-600 hover:text-slate-800 p-4'>Community</a>
-            </Link>
+            <MainNavLink
+              uri='/docs'
+              label='Docs'
+            />
+            <MainNavLink
+              uri='/blog'
+              label='Blog'
+              activeRoutes={['/blog', '/blog/posts/[slug]']}
+            />
+            <MainNavLink
+              uri='/community'
+              label='Community'
+            />
           </div>
         </header>
         <main className={
@@ -56,13 +61,13 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
       <footer className='w-[1200px] mx-auto p-4 py-16 flex flex-row'>
         <div className='w-1/4 flex flex-col items-stert'>
           <div className='font-semibold text-sm text-slate-800'>Specification</div>
-          <Link href="/specification">
+          <Link href='/specification'>
             <a className='text-sm text-slate-400 hover:text-slate-500 py-4'>Overview</a>
           </Link>
         </div>
         <div className='w-1/4 flex flex-col items-stert'>
           <div className='font-semibold text-sm text-slate-800'>Community</div>
-          <Link href="/blog">
+          <Link href='/blog'>
             <a className='text-sm text-slate-400 hover:text-slate-500 py-4'>Slack</a>
           </Link>
         </div>
@@ -71,12 +76,27 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
   )
 }
 
+const MainNavLink = ({ uri, label, activeRoutes }: { uri: string, label: string, activeRoutes?: string[] }) => {
+  const router = useRouter()
+  const isActive = (activeRoutes || []).includes(router.route)
+  return (
+    <Link href={uri}>
+      <a
+        className={classnames('font-semibold  p-4', {
+          'text-blue-500 hover:text-blue-600': isActive,
+          'text-slate-600 hover:text-slate-800': !isActive
+        })}
+      >{label}</a>
+    </Link>
+  )
+}
+
 type LayoutDocsProps = {
   children: React.ReactNode
   metaTitle?: string
 }
 
-export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps)  => {
+export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps) => {
   return (
     <Layout mainClassNameWidth='w-full' metaTitle={metaTitle}>
       <div className='w-[1200px] mx-auto flex flex-row'>
@@ -97,13 +117,13 @@ const DocsNav = () => {
         Getting started
       </div>
       <DocLink uri='/docs' label='Overview' />
-      <Link href="/docs">
+      <Link href='/docs'>
         <a className='block text-slate-600 pl-4 border-l py-1'>Overview</a>
       </Link>
-      <Link href="/docs/about">
+      <Link href='/docs/about'>
         <a className='block'>What is a schema?</a>
       </Link>
-      <Link href="/docs/basics">
+      <Link href='/docs/basics'>
         <a className='block'>The basics</a>
       </Link>
       <div></div>

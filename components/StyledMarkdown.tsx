@@ -8,13 +8,13 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
       options={{
         overrides: {
           h1: {
-            component: ({ children }) => <h1 className='text-3xl font-bold mt-10 mb-4'>{ children }</h1>
+            component: ({ children }) => <h1 className='text-3xl font-bold mt-10 mb-4'>{children}</h1>
           },
           h2: {
-            component: ({ children }) => <h1 className='text-2xl font-semibold mt-10 mb-4'>{ children }</h1>
+            component: ({ children }) => <h1 className='text-2xl font-semibold mt-10 mb-4'>{children}</h1>
           },
           h3: {
-            component: ({ children }) => <h1 className='text-xl font-semibold mt-6 mb-2'>{ children }</h1>
+            component: ({ children }) => <h1 className='text-xl font-semibold mt-6 mb-2'>{children}</h1>
           },
           strong: {
             component: ({ children }) => <strong className='font-semibold text-slate-800'>{children}</strong>

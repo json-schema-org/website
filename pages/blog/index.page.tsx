@@ -25,7 +25,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function StaticMarkdownPage ({ blogPosts }) {
+export default function StaticMarkdownPage ({ blogPosts }: { blogPosts: any[] }) {
   console.log('blogPosts', blogPosts)
   return (
     <Layout>
@@ -34,7 +34,7 @@ export default function StaticMarkdownPage ({ blogPosts }) {
       </Head>
       <h1 className='text-2xl font-bold'>Blog</h1>
       <div>
-        {blogPosts.map((blogPost) => {
+        {blogPosts.map((blogPost: any) => {
           return (
             <div key={blogPost.slug}>
               <Link href={`/blog/posts/${blogPost.slug}`}>
