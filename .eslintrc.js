@@ -29,20 +29,20 @@ module.exports = {
     '@typescript-eslint'
   ],
   rules: {
-    'array-bracket-spacing': [ 'error', 'always' ],
-    'object-curly-spacing': [ 'error', 'always' ],
-    'react/jsx-curly-spacing': [ 'error', { 'when': 'never', 'children': true } ],
-    'indent': [ 'error', 2, { 'SwitchCase': 1 } ],
-    'linebreak-style': [ 'error', 'unix' ],
-    'quotes': [ 'error', 'single' ],
-    'jsx-quotes': [ 'error', 'prefer-single' ],
-    'semi': [ 'error', 'never' ],
+    'array-bracket-spacing': ['error', 'never'],
+    'object-curly-spacing': ['error', 'always'],
+    'react/jsx-curly-spacing': ['error', { 'when': 'never', 'children': true }],
+    'indent': ['error', 2, { 'SwitchCase': 1 }],
+    'linebreak-style': ['error', 'unix'],
+    'quotes': ['error', 'single'],
+    'jsx-quotes': ['error', 'prefer-single'],
+    'semi': ['error', 'never'],
     'no-eval': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/no-unused-vars': [ 'error', { 'ignoreRestSiblings': true } ],
-    '@typescript-eslint/member-delimiter-style': [ 'error', {
+    '@typescript-eslint/no-unused-vars': ['error', { 'ignoreRestSiblings': true }],
+    '@typescript-eslint/member-delimiter-style': ['error', {
       'singleline': {
         'delimiter': 'comma',
         'requireLast': false
@@ -52,13 +52,13 @@ module.exports = {
         requireLast: false
       }
     }],
-    '@typescript-eslint/type-annotation-spacing': [ 'error' ],
+    '@typescript-eslint/type-annotation-spacing': ['error'],
     'react/no-unescaped-entities': 'off',
     'react/jsx-tag-spacing': 'error',
     'react-hooks/exhaustive-deps': 'off',
-    'keyword-spacing': [ 'error', { 'before': true, 'after': true } ],
-    'comma-spacing': [ 'error', { 'before': false, 'after': true } ],
-    'key-spacing': [ 'error', { 'beforeColon': false, 'afterColon': true } ],
+    'keyword-spacing': ['error', { 'before': true, 'after': true }],
+    'comma-spacing': ['error', { 'before': false, 'after': true }],
+    'key-spacing': ['error', { 'beforeColon': false, 'afterColon': true }],
     '@next/next/no-img-element': 'off',
     'no-multi-spaces': 'error',
     'space-infix-ops': 'error',

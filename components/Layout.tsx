@@ -93,8 +93,12 @@ export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps)  => {
 const DocsNav = () => {
   return (
     <div className='w-[200px]'>
+      <div className='text-slate-900 mb-2 font-semibold'>
+        Getting started
+      </div>
+      <DocLink uri='/docs' label='Overview' />
       <Link href="/docs">
-        <a className='block'>Overview</a>
+        <a className='block text-slate-600 pl-4 border-l py-1'>Overview</a>
       </Link>
       <Link href="/docs/about">
         <a className='block'>What is a schema?</a>
@@ -108,5 +112,13 @@ const DocsNav = () => {
       <div>Getting started</div>
 
     </div>
+  )
+}
+
+const DocLink = ({ uri, label }: { uri: string, label: string }) => {
+  return (
+    <Link href={uri}>
+      <a className='block text-slate-600 pl-4 border-l py-1'>{label}</a>
+    </Link>
   )
 }

@@ -17,3 +17,8 @@ You can start editing the pages. The page auto-updates as you edit the file.
 yarn build
 ```
 output in `/out`
+
+## preview
+
+The current production version of this app is deployed on vercel:  
+https://json-schema-three.vercel.app/
