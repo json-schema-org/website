@@ -1,7 +1,5 @@
 import Layout from '~/components/Layout'
 import fs from 'fs'
-import matter from 'gray-matter'
-import StyledMarkdown from '~/components/StyledMarkdown'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'

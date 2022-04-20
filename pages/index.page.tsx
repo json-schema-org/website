@@ -1,3 +1,4 @@
+import React from 'react'
 import Layout from '~/components/Layout'
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -8,7 +9,7 @@ export async function getStaticProps() {
   const { content: block1Content } = matter(block1)
   return {
     props: {
-      blocks: [ block1Content ]
+      blocks: [block1Content]
     }
   }
 }
@@ -64,7 +65,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
         <a
           className='button border button-center'
           href='https://github.com/json-schema-org/community/discussions'
-           target='_blank' rel='noreferrer'>💬 Community Discussions</a>
+          target='_blank' rel='noreferrer'>💬 Community Discussions</a>
       </div>
 
       We hold weekly Office Hours and twice monthly Open Community Working Meetings.

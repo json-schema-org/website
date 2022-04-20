@@ -48,8 +48,8 @@ module.exports = {
         'requireLast': false
       },
       'multiline': {
-        delimiter: 'none',
-        requireLast: false
+        'delimiter': 'none',
+        'requireLast': false
       }
     }],
     '@typescript-eslint/type-annotation-spacing': ['error'],

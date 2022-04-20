@@ -1,4 +1,5 @@
-import Layout, { LayoutDocs } from '~/components/Layout'
+import React from 'react'
+import { LayoutDocs } from '~/components/Layout'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
@@ -8,7 +9,7 @@ export async function getStaticProps() {
   const { content: block1Content } = matter(block1)
   return {
     props: {
-      blocks: [ block1Content ]
+      blocks: [block1Content]
     }
   }
 }

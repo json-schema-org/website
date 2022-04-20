@@ -58,14 +58,34 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
             }
           },
           th: {
-            component: ({ children }) => ( <th className='border border-slate-300 p-4 font-semibold'>{ children }</th>)
+            component: ({ children }) => ( <th className='border border-slate-300 p-4 font-semibold'>{children}</th>)
           },
           td: {
-            component: ({ children }) => ( <td className='border border-slate-200 p-4'>{ children }</td>)
+            component: ({ children }) => ( <td className='border border-slate-200 p-4'>{children}</td>)
           },
           tr: {
-            component: ({ children }) => ( <tr className='even:bg-blue-50 even:bg-opacity-40'>{ children }</tr>)
+            component: ({ children }) => ( <tr className='even:bg-blue-50 even:bg-opacity-40'>{children}</tr>)
           },
+        }
+
+      }}
+    >
+      {markdown}
+    </Markdown>
+  )
+}
+
+export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
+  return (
+    <Markdown
+      options={{
+        overrides: {
+          h1: {
+            component: ({ children }) => <h1 className='text-xl font-bold mt-10 mb-4'>{children}</h1>
+          },
+          h2: {
+            component: ({ children }) => <h1 className='font-medium mb-6 text-sm leading-4'>{children}</h1>
+          }
         }
 
       }}
