@@ -1,3 +1,0 @@
-# Heading of Route 4
-
-content ...

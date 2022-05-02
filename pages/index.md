@@ -49,13 +49,15 @@ The JSON document being validated or described we call the *instance*, and the d
 The most basic schema is a blank JSON object, which constrains nothing, allows anything, and describes nothing:
 
 ```json
-{}
+{"$schema": "https://hide-me/example"}
 ```
 
 You can apply constraints on an instance by adding validation keywords to the schema. For example, the "type" keyword can be used to restrict an instance to an object, array, string, number, boolean, or null:
 
 ```json
-{ "type": "string" }
+{"$schema": "https://hide-me/example2",
+  "type": "string"
+}
 ```
 
 JSON Schema is hypermedia ready, and ideal for annotating your existing JSON-based HTTP API. JSON Schema documents are identified by URIs, which can be used in HTTP Link headers, and inside JSON Schema documents to allow recursive definitions.
@@ -74,7 +76,7 @@ Interested? Check out:
 
 * [Understanding JSON Schema](/understanding-json-schema/)
 * The [specification](./specification.md)
-* [Learning resources](./learn/index.md)
+* [Learning resources](./learn/_index.md)
 * the growing list of [JSON Schema software](./implementations.md)
 
 We encourage updating to the latest specification where possible, which is 2020-12.

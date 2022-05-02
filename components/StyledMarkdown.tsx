@@ -2,6 +2,17 @@ import React from 'react'
 import Markdown from 'markdown-to-jsx'
 import Link from 'next/link'
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
+import JsonEditor from '~/components/JsonEditor'
+import {
+  Headline1
+} from '~/components/Content'
+
+const filterFragment = (children: any[]) => {
+  return children.map(child => {
+    if (typeof child !== 'string') return child
+    return child.replace(/\[#(\w|-|_)*\]/g, '')
+  })
+}
 
 export default function StyledMarkdown ({ markdown }: { markdown: string }) {
   return (
@@ -11,19 +22,29 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
           h1: {
             component: ({ children }) => {
               const slug = slugifyMarkdownHeadline(children)
-              return <h1 className='text-3xl font-bold mt-10 mb-4' id={slug}>{children}</h1>
+              return <Headline1 slug={slug}>{filterFragment(children)}</Headline1>
             }
           },
           h2: {
             component: ({ children }) => {
               const slug = slugifyMarkdownHeadline(children)
+              console.log('slug', slug)
               return (
-                <h2 className='text-2xl font-semibold mt-10 mb-4' id={slug}>{children}</h2>
+                <h2 className='text-2xl font-semibold mt-10 mb-4' id={slug}>
+                  {filterFragment(children)}
+                </h2>
               )
             }
           },
           h3: {
-            component: ({ children }) => <h3 className='text-xl font-semibold mt-6 mb-2'>{children}</h3>
+            component: ({ children }) => {
+              const slug = slugifyMarkdownHeadline(children)
+              return (
+                <h3 className='text-xl font-semibold mt-6 mb-2' id={slug}>
+                  {filterFragment(children)}
+                </h3>
+              )
+            }
           },
           strong: {
             component: ({ children }) => <strong className='font-semibold text-slate-800'>{children}</strong>
@@ -36,11 +57,14 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
             )
           },
           a: {
-            component: ({ children, href, title }) => (
-              <Link href={href}>
-                <a title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
-              </Link>
-            )
+            component: ({ children, href, title }) => {
+              if (!href) return children
+              return (
+                <Link href={href}>
+                  <a title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
+                </Link>
+              )
+            }
           },
           ul: {
             component: ({ children }) => (
@@ -51,7 +75,7 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
           },
           li: {
             component: ({ children }) => (
-              <li className=''>
+              <li className='mt-1'>
                 {children}
               </li>
             )
@@ -75,8 +99,36 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
           tr: {
             component: ({ children }) => ( <tr className='even:bg-blue-50 even:bg-opacity-40'>{children}</tr>)
           },
-        }
+          code: {
+            component: ({ children }) => (
+              <code className='font-mono bg-slate-100 rounded px-1.5 py-0.5 '>
+                {children}
+              </code>
+            )
+          },
+          pre: ({ children }) => {
+            const isJsonCode = children?.props?.className === 'lang-json'
+            const code = children?.props?.children
+            if (isJsonCode) {
+              return (
+                <JsonEditor initialCode={code} />
+              )
+            }
 
+            return (
+              <pre>
+                {children}
+              </pre>
+            )
+          },
+          blockquote: {
+            component: ({ children }) => (
+              <div className='bg-slate-50/50 px-4 pt-4 mt-2 mb-4 border-l-2 border-slate-300'>
+                {children}
+              </div>
+            )
+          },
+        }
       }}
     >
       {markdown}
@@ -112,7 +164,6 @@ export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
             }
           }
         }
-
       }}
     >
       {markdown}

@@ -21,7 +21,7 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
       </Head>
 
       <div>
-        <header className='flex flex-row justify-between p-4 w-[1200px] mx-auto'>
+        <header className='flex flex-row justify-between py-4 p-4 w-[1200px] mx-auto'>
           <Link href='/'>
             <a>
               <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
@@ -35,8 +35,20 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
           </Link>
           <div className='py-2'>
             <MainNavLink
-              uri='/docs'
+              uri='/learn'
+              label='Learn'
+              activeRoutes={[
+                '/learn',
+                '/learn/[slug]',
+              ]}
+            />
+            <MainNavLink
+              uri='/understanding-json-schema'
               label='Docs'
+              activeRoutes={[
+                '/understanding-json-schema',
+                '/understanding-json-schema/[slug]',
+              ]}
             />
             <MainNavLink
               uri='/blog'
@@ -50,7 +62,7 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
           </div>
         </header>
         <main className={
-          classnames(mainClassName, mainClassNameWidth, 'bg-white rounded-xl p-4  mx-auto', {
+          classnames(mainClassName, mainClassNameWidth, 'bg-white rounded-xl py-4 px-8 mx-auto', {
             'w-[1200px]': !mainClassNameWidth
           })
         }>
@@ -70,6 +82,7 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
           <a href='https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
           <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
           <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
+          <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>
         </div>
       </footer>
     </div>
@@ -116,14 +129,14 @@ const DocsNav = () => {
       <div className='text-slate-900 mb-2 font-semibold'>
         Getting started
       </div>
-      <DocLink uri='/docs' label='Overview' />
-      <Link href='/docs'>
+      <DocLink uri='/understanding-json-schema' label='Overview' />
+      <Link href='/understanding-json-schema'>
         <a className='block text-slate-600 pl-4 border-l py-1'>Overview</a>
       </Link>
-      <Link href='/docs/about'>
+      <Link href='/understanding-json-schema/about'>
         <a className='block'>What is a schema?</a>
       </Link>
-      <Link href='/docs/basics'>
+      <Link href='/understanding-json-schema/basics'>
         <a className='block'>The basics</a>
       </Link>
       <div></div>

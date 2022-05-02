@@ -7,7 +7,7 @@ module.exports = {
     fontFamily: {
       'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
       'serif': ['ui-serif', 'Georgia'],
-      'mono': ['ui-monospace', 'SFMono-Regular'],
+      'mono': ['JetBrains Mono', 'monospace']
     },
   },
   plugins: [],
@@ -22,5 +22,4 @@ module.exports = {
   font-semibold 600
   font-bold 700
   font-black 900
-
 */

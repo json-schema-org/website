@@ -1,38 +1,13 @@
 import Layout from '~/components/Layout'
-import fs from 'fs'
-import matter from 'gray-matter'
 import StyledMarkdown, { TableOfContentMarkdown } from '~/components/StyledMarkdown'
 import Head from 'next/head'
 import Link from 'next/link'
 import React from 'react'
+import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
+import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 
-const path = 'pages/blog/posts'
-
-export async function getStaticPaths() {
-  const files = fs.readdirSync(path)
-  const paths = files
-    .filter(file => file.substr(-3) === '.md')
-    .map((fileName) => ({
-      params: {
-        slug: fileName.replace('.md', ''),
-      }
-    }))
-  return {
-    paths,
-    fallback: false
-  }
-}
-
-export async function getStaticProps({ params: { slug } }: { params: { slug: string }}) {
-  const fileName = fs.readFileSync(`${path}/${slug}.md`, 'utf-8')
-  const { data: frontmatter, content } = matter(fileName)
-  return {
-    props: {
-      frontmatter,
-      content,
-    }
-  }
-}
+export async function getStaticPaths() { return getStaticMarkdownPaths() }
+export async function getStaticProps(args: any) { return getStaticMarkdownProps(args) }
 
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
   const date = new Date(frontmatter.date)
