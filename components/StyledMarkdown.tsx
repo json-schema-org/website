@@ -46,6 +46,16 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
               )
             }
           },
+          h4: {
+            component: ({ children }) => {
+              const slug = slugifyMarkdownHeadline(children)
+              return (
+                <h4 className='font-semibold mt-4 mb-2' id={slug}>
+                  {filterFragment(children)}
+                </h4>
+              )
+            }
+          },
           strong: {
             component: ({ children }) => <strong className='font-semibold text-slate-800'>{children}</strong>
           },
@@ -68,14 +78,14 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
           },
           ul: {
             component: ({ children }) => (
-              <ul className='mt-2 mb-4 list-disc list-inside ml-3'>
+              <ul className='mt-2 mb-4 list-disc list-outside ml-5'>
                 {children}
               </ul>
             )
           },
           li: {
             component: ({ children }) => (
-              <li className='mt-1'>
+              <li className='mt-1 leading-7'>
                 {children}
               </li>
             )
@@ -100,13 +110,19 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
             component: ({ children }) => ( <tr className='even:bg-blue-50 even:bg-opacity-40'>{children}</tr>)
           },
           code: {
-            component: ({ children }) => (
-              <code className='font-mono bg-slate-100 rounded px-1.5 py-0.5 '>
-                {children}
-              </code>
-            )
+            component: ({ children }) => {
+              return (
+                <code className='font-mono bg-slate-100 rounded px-1.5 py-0.5 '>
+                  {children}
+                </code>
+              )
+            }
           },
           pre: ({ children }) => {
+            if (children?.props?.className !== 'lang-json') {
+              console.log('children?.props', children?.props)
+            }
+
             const isJsonCode = children?.props?.className === 'lang-json'
             const code = children?.props?.children
             if (isJsonCode) {
@@ -147,7 +163,7 @@ export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 text-sm leading-5 hover:text-blue-500'
+                  className='block cursor-pointer mb-3 text-sm leading-4 text-slate-700 hover:text-blue-500'
                 >{children}</a>
               )
             }
@@ -158,7 +174,7 @@ export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 text-sm leading-6 ml-3 hover:text-blue-500'
+                  className='block cursor-pointer mb-3 text-sm leading-4 ml-3 hover:text-blue-500'
                 >{children}</a>
               )
             }

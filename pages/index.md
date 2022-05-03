@@ -49,13 +49,15 @@ The JSON document being validated or described we call the *instance*, and the d
 The most basic schema is a blank JSON object, which constrains nothing, allows anything, and describes nothing:
 
 ```json
-{"$schema": "https://hide-me/example"}
+// props { "isSchema": true }
+{}
 ```
 
 You can apply constraints on an instance by adding validation keywords to the schema. For example, the "type" keyword can be used to restrict an instance to an object, array, string, number, boolean, or null:
 
 ```json
-{"$schema": "https://hide-me/example2",
+// props { "isSchema": true }
+{
   "type": "string"
 }
 ```

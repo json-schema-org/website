@@ -13,7 +13,7 @@ title: Getting Started Step-By-Step
 
 ## Introduction[#intro]
 
-The following example is by no means definitive of all the value JSON Schema can provide. For this you will need to go deep into the specification itself -- learn more at [https://json-schema.org/specification.html](https://json-schema.org/specification.html).
+The following example is by no means definitive of all the value JSON Schema can provide. For this you will need to go deep into the specification itself -- learn more at [https://json-schema.org/specification](/specification).
 
 Let's pretend we're interacting with a JSON based product catalog. This catalog has a product which has:
 

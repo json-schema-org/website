@@ -118,7 +118,6 @@ The simplest assertion keyword is `const`. The value can be any valid JSON. To p
 Another assertion keyword is `type`. Its value is an array of strings that are the allowed types. The types are the six primitive types defined by JSON, plus "integer". Let's look at an example.
 
 ```json
-// Our JSON Schema
 { "type": ["object", "boolean", "null"] }`
 
 { "ok": "yes" } // valid - An Object is allowed.
@@ -155,7 +154,8 @@ Validation begins by applying the root Schema to the complete instance document.
 ### The "properties" keyword
 The most commonly used applicator keyword is `properties`, which has an object value, where the values are subschemas. Let's see it in action.
 
-```json caption="Our JSON Schema"
+```json
+// props { "caption": "Our JSON Schema", "isSchema": true }
 {
   "properties": {
     "name": {
@@ -166,15 +166,23 @@ The most commonly used applicator keyword is `properties`, which has an object v
 ```
 
 ```json
-{ "name": "Alice" }
-// valid - instance has name, which is a string.
+// props { "caption": "instance has name, which is a string", "valid": true }
+{
+  "name": "Alice"
+}
+```
 
-{ "fullName": "Alice" }
-// valid - instance object has no `name` property.
+```json
+// props { "caption": "instance object has no `name` property", "valid": true }
+{
+  "fullName": "Alice"
+}
+```
 
+```json
+// props { "caption": "instance is not an object, therefore `properties` isn't applicable", "valid": true }
 [ "name", 123 ]
-// valid - instance is not an object,
-// therefore `properties` isn't applicable.
+```
 
 { }
 // valid - instance data has no applicable properties.

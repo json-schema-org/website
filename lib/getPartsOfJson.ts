@@ -17,6 +17,12 @@ export type SyntaxPart = {
   match: string
   address?: string
 }
+type StringWithPayload = {
+  index: number
+  string: string
+  payload: string
+  match: string
+}
 
 export default function getPartsOfJson (serializedJson: string, offset = 0): SyntaxPart[] {
   const objectMatch = getFindResultsByGlobalRegExp(serializedJson, regexObject)[0]
@@ -119,7 +125,7 @@ export default function getPartsOfJson (serializedJson: string, offset = 0): Syn
 const getPartsOfJsonObjectContent = (serializedJson: string, offset = 0): SyntaxPart[] => {
   const doubleQuoteMatches = getFindResultsByGlobalRegExp(serializedJson, regexDoubleQuote)
   let keywordStartIndex = 0
-  let stringsWithPayload = []
+  let stringsWithPayload: StringWithPayload[] = []
   doubleQuoteMatches.forEach((doubleQuoteMatch, index) => {
     const isStart = index % 2 === 0
     if (isStart) {
@@ -131,7 +137,7 @@ const getPartsOfJsonObjectContent = (serializedJson: string, offset = 0): Syntax
     const nextStartIndex = doubleQuoteMatches[index + 1]?.index || Infinity
     const payload = serializedJson.substr(doubleQuoteMatch.index + 1, nextStartIndex - doubleQuoteMatch.index - 1 )
     const match = serializedJson.substr(keywordStartIndex - 1, nextStartIndex - (keywordStartIndex - 1) )
-    const stringWithPayload = {
+    const stringWithPayload: StringWithPayload = {
       index: keywordStartIndex,
       string,
       payload,
@@ -145,7 +151,12 @@ const getPartsOfJsonObjectContent = (serializedJson: string, offset = 0): Syntax
   let openCurlyBrackets = 0
   let openSquareBrackets = 0
   let completedWithComma = true
-  let keywordAndValue = {}
+  let keywordAndValue: {
+    index?: number
+    keyword?: string
+    payload?: string
+    payloadStartIndex?: number
+  } = {}
 
   stringsWithPayload.forEach((stringWithPayload, index) => {
     if (completedWithComma && openCurlyBrackets === 0 && openSquareBrackets === 0) {
@@ -172,7 +183,7 @@ const getPartsOfJsonObjectContent = (serializedJson: string, offset = 0): Syntax
       (index === stringsWithPayload.length - 1) || hasComma
     )) {
       completedWithComma = true
-      const payloadStartIndex = keywordAndValue.index + keywordAndValue.keyword.length + 2
+      const payloadStartIndex = (keywordAndValue?.index || 0) + (keywordAndValue?.keyword?.length || 0) + 2
       const payloadEndIndex = stringWithPayload.index + (hasComma ? (indexOfComma + stringWithPayload.match.length - stringWithPayload.payload.length) : stringWithPayload.match.length)
       const payload = serializedJson.substr(payloadStartIndex, payloadEndIndex - payloadStartIndex - 1)
       keywordAndValue = {

@@ -55,10 +55,6 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
               label='Blog'
               activeRoutes={['/blog', '/blog/posts/[slug]']}
             />
-            <MainNavLink
-              uri='/community'
-              label='Community'
-            />
           </div>
         </header>
         <main className={
@@ -78,11 +74,16 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
           </Link>
         </div>
         <div className='w-1/4 flex flex-col items-stert'>
+          <div className='font-semibold text-sm text-slate-800 mb-1'>Learn</div>
+          <a href='/learn/getting-started-step-by-step' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Getting Started Step-By-Step</a>
+        </div>
+        <div className='w-1/4 flex flex-col items-stert'>
           <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
           <a href='https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
           <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
           <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
           <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>
+          <a href='https://groups.google.com/g/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Google Groups</a>
         </div>
       </footer>
     </div>

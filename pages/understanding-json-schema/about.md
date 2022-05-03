@@ -134,7 +134,8 @@ structured. Don\'t worry too much about the details for now. They are
 explained in subsequent chapters.
 
 ```json
-{"$schema": "https://hide-me/example",
+// props { "isSchema": true }
+{
   "type": "object",
   "properties": {
     "first_name": { "type": "string" },
@@ -156,7 +157,8 @@ explained in subsequent chapters.
 By "validating" the first example against this schema, you can see that it fails:
 
 ```json
-{"$validation": "invalid",
+// props { "valid": false }
+{
   "name": "George Washington",
   "birthday": "February 22, 1732",
   "address": "Mount Vernon, Virginia, United States"
@@ -166,7 +168,8 @@ By "validating" the first example against this schema, you can see that it fails
 However, the second example passes:
 
 ```json
-{"$validation": "valid",
+// props { "valid": true }
+{
   "first_name": "George",
   "last_name": "Washington",
   "birthday": "1732-02-22",

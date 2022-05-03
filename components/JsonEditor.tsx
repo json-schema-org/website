@@ -1,38 +1,69 @@
 import React from 'react'
-import { BaseEditor, Text, createEditor } from 'slate'
+import { BaseEditor, Text, createEditor, Descendant } from 'slate'
 import { ReactEditor, Slate, Editable, withReact } from 'slate-react'
 import classnames from 'classnames'
 import getPartsOfJson, { SyntaxPart } from '~/lib/getPartsOfJson'
 
-type CustomElement = { type: 'paragraph', children: CustomText[] }
+type CustomElement = CustomNode | CustomText
+type CustomNode = { type: 'paragraph', children: CustomText[] }
 type CustomText = { text: string }
 
 declare module 'slate' {
   interface CustomTypes {
     Editor: BaseEditor & ReactEditor
-    Element: CustomElement
+    Element: CustomNode
     Text: CustomText
   }
 }
 
-
-
-function getTextPathIndexesFromNodes (nodes, path: number [] = [], acc = []) {
-  return nodes.reduce((acc, node, index) => serializeNode(node, [...path, index], acc), acc)
+type Meta = {
+  caption?: string
+  valid?: boolean
+  isSchema?: boolean
 }
 
-const serializeNode = (node, path: number[], acc: any[]): any[] => {
-  if (node.type === 'html-entity') {
-    const entry = [1, path]
-    return [...acc, entry]
-  }
-  if (typeof node.text === 'string') {
-    const entry = [node.text.length, path]
-    return [...acc, entry]
-  }
-  return getTextPathIndexesFromNodes(node?.children || [], path, acc)
+type Path = number[]
+type TextPathIndex = [number, Path]
+
+type Address = {
+  path: Path
+  offset: number
+}
+type RangeWithSyntaxPart = {
+  anchor: Address
+  focus: Address
+  syntaxPart: SyntaxPart
+}
+type NodeRange = {
+  path: Path
+  anchor: number
+  focus: number
+}
+type MultipathDecoration = {
+  nodes: NodeRange[]
+  syntaxPart: SyntaxPart
 }
 
+const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/g
+
+function getTextPathIndexesFromNodes (elements: CustomElement[], path: number [] = [], acc: TextPathIndex[] = []): TextPathIndex[] {
+  const textPathIndexes = elements
+    .reduce((acc, node, index) => (
+      getTextPathIndexesFromNode(node, [...path, index], acc)
+    ), acc)
+  return textPathIndexes
+}
+
+const getTextPathIndexesFromNode = (customElement: CustomElement, path: number[], acc: TextPathIndex[]): TextPathIndex[] => {
+  if (typeof (customElement as CustomText).text === 'string') {
+    const customText = customElement as CustomText
+    const entry: TextPathIndex = [customText.text.length, path]
+    return [...acc, entry]
+  }
+  const customNode = customElement as CustomNode
+  const textPathIndexesFromNodes = getTextPathIndexesFromNodes(customNode?.children || [], path, acc)
+  return textPathIndexesFromNodes
+}
 
 const calculateNewDecorationsMap = (
   value: any[]
@@ -41,8 +72,8 @@ const calculateNewDecorationsMap = (
   const textPathIndexes = getTextPathIndexesFromNodes(value)
   const partsOfJson: SyntaxPart[] = getPartsOfJson(serializedText)
   const multipathDecorations = getMultipathDecorationsByMatchesAndTextPathIndexes(partsOfJson, textPathIndexes)
-  const highlightingDecorations = multipathDecorations.reduce((acc, multipathDecoration: any) => {
-    const decorationsOfNodes = multipathDecoration.nodes.reduce((acc, node) => {
+  const highlightingDecorations = multipathDecorations.reduce((acc, multipathDecoration: MultipathDecoration) => {
+    const decorationsOfNodes = multipathDecoration.nodes.reduce((acc: RangeWithSyntaxPart[], node: NodeRange) => {
       const decorationOfNode = {
         anchor: {
           offset: node.anchor,
@@ -63,10 +94,11 @@ const calculateNewDecorationsMap = (
   return decorationMap
 }
 
-const serializeNodes = (nodes, acc = '') => {
+const serializeNodes = (nodes: CustomElement[], acc = ''): string => {
   return nodes.reduce((acc, node) => {
-    if (node.children) return serializeNodes(node.children, acc)
-    return `${acc}${node.text}`
+    if ((node as CustomNode).children) return serializeNodes((node as CustomNode).children, acc)
+    const customText = node as CustomText
+    return `${acc}${customText.text}`
   }, acc)
 }
 
@@ -84,12 +116,27 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
 
   const cleanUpCode = React.useMemo(() => {
     return initialCode
-      .replace(/"\$schema": "https:\/\/hide-me\/\w*",?/g, '')
-      .replace(/"\$validation": "(?<validation>valid|invalid)",?/g, '')
+      .replace(META_REGEX, '')
   }, [initialCode])
 
-  const isJsonSchema = parsedCode?.['$schema']
-  const validation = parsedCode?.['$validation'] || null
+  const meta: null | Meta = (() => {
+    const metaRegexFinding = META_REGEX.exec(initialCode)
+    if (!metaRegexFinding) return null
+    try {
+      const metaString: undefined | string = metaRegexFinding?.groups?.meta
+      if (!metaString) return null
+      const meta = JSON.parse(metaString)
+      return meta || null
+    } catch (e) {
+      return null
+    }
+  })()
+
+  const isJsonSchema = parsedCode?.['$schema'] || meta?.isSchema
+  const validation: null | 'valid' | 'invalid' = typeof meta?.valid === 'boolean' ? (
+    meta.valid ? 'valid' : 'invalid'
+  ) : null
+  const caption: null | string = meta?.caption || null
 
   const value = React.useMemo(() => {
     const paragraphs = cleanUpCode.split('\n')
@@ -108,9 +155,9 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
   return (
     <Slate
       editor={editor}
-      value={value}
+      value={value as Descendant[]}
     >
-      <div className='relative font-mono bg-slate-800 w-full border rounded-xl mt-4 mb-10 overflow-hidden shadow-lg'>
+      <div className='relative font-mono bg-slate-800 w-full border rounded-xl mt-4 overflow-hidden shadow-lg'>
         <div className='flex flex-row items-center absolute right-0 text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
           {isJsonSchema
             ? <><img src='/logo-white.svg' className='h-4 mr-1.5' /> schema</>
@@ -161,15 +208,24 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
                 </span>
               )
             }
-            return null
+            throw new Error(`unknown element.type [${element.type}] in render function`)
           }}
         />
+        {validation === 'invalid' && (
+          <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'>
+            <img src='/icons/x-mark.svg' className='h-4 w-4 mr-2' />
+            not compliant to schema
+          </div>
+        )}
         {validation === 'valid' && (
           <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-emerald-500/30 text-sm'>
             <img src='/icons/checkmark.svg' className='h-5 w-5 mr-2' />
             compliant to schema
           </div>
         )}
+      </div>
+      <div className='mb-10 text-center text-xs pt-2 text-slate-400'>
+        {caption}
       </div>
     </Slate>
   )
