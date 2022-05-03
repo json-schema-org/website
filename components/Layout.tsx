@@ -48,6 +48,7 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
               activeRoutes={[
                 '/understanding-json-schema',
                 '/understanding-json-schema/[slug]',
+                '/understanding-json-schema/reference/[slug]',
               ]}
             />
             <MainNavLink
@@ -126,33 +127,53 @@ export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps) => {
 
 const DocsNav = () => {
   return (
-    <div className='w-[200px]'>
-      <div className='text-slate-900 mb-2 font-semibold'>
-        Getting started
-      </div>
-      <DocLink uri='/understanding-json-schema' label='Overview' />
-      <Link href='/understanding-json-schema'>
-        <a className='block text-slate-600 pl-4 border-l py-1'>Overview</a>
-      </Link>
-      <Link href='/understanding-json-schema/about'>
-        <a className='block'>What is a schema?</a>
-      </Link>
-      <Link href='/understanding-json-schema/basics'>
-        <a className='block'>The basics</a>
-      </Link>
-      <div></div>
-      <div>Getting started</div>
-      <div>Getting started</div>
-      <div>Getting started</div>
+    <div className='w-[200px] pt-2'>
 
+      <SegmentHeadline label='Getting started' />
+      <DocLink uri='/understanding-json-schema' label='Overview' />
+      <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
+      <DocLink uri='/understanding-json-schema/basics' label='The basics' />
+      <DocLink uri='/understanding-json-schema/conventions' label='Conventions' />
+      <DocLink uri='/understanding-json-schema/reference/generic' label='Generic keywords' />
+
+      <SegmentHeadline label='Basic types' />
+      <DocLink uri='/understanding-json-schema/reference/type' label={<><span className='font-semibold'>type</span> keyword</>} />
+      <DocLink uri='/understanding-json-schema/reference/string' label='string' />
+      <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric' />
+      <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
+      <DocLink uri='/understanding-json-schema/reference/object' label='object' />
+      <DocLink uri='/understanding-json-schema/reference/array' label='array' />
+      <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
+      <DocLink uri='/understanding-json-schema/reference/null' label='null' />
+
+      <SegmentHeadline label='Advanced Concepts' />
+      <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
+      <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
+      <DocLink uri='/understanding-json-schema/reference/conditionals' label='Condition Subschemas' />
+      <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Non-JSON data' />
+      <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
     </div>
   )
 }
 
-const DocLink = ({ uri, label }: { uri: string, label: string }) => {
+const SegmentHeadline = ({ label }: { label: string }) => {
+  return (
+    <div className='text-slate-900 mb-2 mt-8 font-semibold'>
+      {label}
+    </div>
+  )
+}
+
+const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode }) => {
+  const router = useRouter()
+  console.log('router', router)
+  const isActive = uri === router.asPath
   return (
     <Link href={uri}>
-      <a className='block text-slate-600 pl-4 border-l py-1'>{label}</a>
+      <a className={classnames('block pl-4 border-l py-1', {
+        'text-slate-600': !isActive,
+        'text-blue-500 font-semibold': isActive,
+      })}>{label}</a>
     </Link>
   )
 }

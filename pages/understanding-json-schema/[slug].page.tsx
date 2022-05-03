@@ -1,4 +1,4 @@
-import Layout from '~/components/Layout'
+import { LayoutDocs } from '~/components/Layout'
 import StyledMarkdown from '~/components/StyledMarkdown'
 import Head from 'next/head'
 import React from 'react'
@@ -10,12 +10,12 @@ export async function getStaticProps(args: any) { return getStaticMarkdownProps(
 
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
   return (
-    <Layout>
+    <LayoutDocs>
       <Head>
         <title>JSON Schema - {frontmatter.title}</title>
       </Head>
       <h1>{frontmatter.title}</h1>
       <StyledMarkdown markdown={content} />
-    </Layout>
+    </LayoutDocs>
   )
 }
