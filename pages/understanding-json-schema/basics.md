@@ -1,23 +1,38 @@
-The basics {#basics}
-==========
+# The basics [#basics]
 
-::: {.contents}
-
-local
-
-:   
-:::
-
-In `about`{.interpreted-text role="ref"}, we described what a schema is,
+In [What is a schema?](/understanding-json-schema/about), we described what a schema is,
 and hopefully justified the need for schema languages. Here, we proceed
 to write a simple JSON Schema.
 
-Hello, World!
--------------
+## Hello, World!
 
 When learning any new language, it\'s often helpful to start with the
 simplest thing possible. In JSON Schema, an empty object is a completely
 valid schema that will accept any valid JSON.
+
+```json
+// props { "isSchema": true }
+{}
+```
+
+This accepts anything, as long as it's valid JSON
+
+```json
+// props { "valid": true }
+42
+```
+
+```json
+// props { "valid": true }
+"I'm a string"
+```
+
+```json
+// props { "valid": true }
+{ "an": [ "arbitrarily", "nested" ], "data": "structure" }
+```
+
+<Star label="New in draft 6" />
 
 You can also use `true` in place of the empty object to represent a
 schema that matches anything, or `false` for a schema that matches

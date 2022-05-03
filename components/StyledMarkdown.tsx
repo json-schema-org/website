@@ -139,6 +139,16 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
               </div>
             )
           },
+          Star: {
+            component: ({ label }) => {
+              return (
+                <div className='flex flex-row items-center text-blue-500 text-lg font-semibold mb-6'>
+                  <img src='/icons/star.svg' className='h-5 w-5 mr-2 mb-1' />
+                  {label}
+                </div>
+              )
+            }
+          }
         }
       }}
     >
