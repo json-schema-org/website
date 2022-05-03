@@ -7,8 +7,8 @@ import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import readingTime from 'reading-time'
 
-export async function getStaticPaths() { return getStaticMarkdownPaths() }
-export async function getStaticProps(args: any) { return getStaticMarkdownProps(args) }
+export async function getStaticPaths() { return getStaticMarkdownPaths('pages/blog/posts') }
+export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/blog/posts') }
 
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
   const date = new Date(frontmatter.date)

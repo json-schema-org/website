@@ -28,7 +28,6 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
           h2: {
             component: ({ children }) => {
               const slug = slugifyMarkdownHeadline(children)
-              console.log('slug', slug)
               return (
                 <h2 className='text-2xl font-semibold mt-10 mb-4' id={slug}>
                   {filterFragment(children)}
@@ -119,10 +118,6 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
             }
           },
           pre: ({ children }) => {
-            if (children?.props?.className !== 'lang-json') {
-              console.log('children?.props', children?.props)
-            }
-
             const isJsonCode = children?.props?.className === 'lang-json'
             const code = children?.props?.children
             if (isJsonCode) {

@@ -109,7 +109,6 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
     try {
       return JSON.parse(initialCode)
     } catch (e) {
-      console.log('error on JSON.parse', e)
       return null
     }
   }, [initialCode])

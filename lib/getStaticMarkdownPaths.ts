@@ -1,8 +1,6 @@
 import fs from 'fs'
 
-export default async function getStaticMarkdownPaths() {
-  const path = __dirname.replace(`${process.cwd()}/.next/server/`, '')
-
+export default async function getStaticMarkdownPaths(path: string) {
   const files = fs.readdirSync(path)
   const paths = files
     .filter(file => {

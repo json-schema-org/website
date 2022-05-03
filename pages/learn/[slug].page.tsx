@@ -6,8 +6,8 @@ import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import { Headline1 } from '~/components/Content'
 
-export async function getStaticPaths() { return getStaticMarkdownPaths() }
-export async function getStaticProps(args: any) { return getStaticMarkdownProps(args) }
+export async function getStaticPaths() { return getStaticMarkdownPaths('pages/learn') }
+export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/learn') }
 
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
   return (
