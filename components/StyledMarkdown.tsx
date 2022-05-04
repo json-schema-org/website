@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Markdown from 'markdown-to-jsx'
 import Link from 'next/link'
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
@@ -6,6 +6,7 @@ import JsonEditor from '~/components/JsonEditor'
 import {
   Headline1
 } from '~/components/Content'
+import classnames from 'classnames'
 
 const filterFragment = (children: any[]) => {
   return children.map(child => {
@@ -13,6 +14,12 @@ const filterFragment = (children: any[]) => {
     return child.replace(/\[#(\w|-|_)*\]/g, '')
   })
 }
+
+enum BlockContextValue {
+  Infobox
+}
+
+const BlockContext = React.createContext<BlockContextValue | null>(null)
 
 export default function StyledMarkdown ({ markdown }: { markdown: string }) {
   return (
@@ -110,8 +117,15 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
           },
           code: {
             component: ({ children }) => {
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              const blockContext = useContext(BlockContext)
               return (
-                <code className='font-mono bg-slate-100 rounded px-1.5 py-0.5 '>
+                <code
+                  className={classnames('font-mono rounded px-1.5 py-0.5', {
+                    'bg-slate-100': blockContext === null,
+                    'bg-amber-200': blockContext === BlockContextValue.Infobox
+                  })}
+                >
                   {children}
                 </code>
               )
@@ -146,6 +160,24 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
                   <img src='/icons/star.svg' className='h-5 w-5 mr-2 mb-1' />
                   {label}
                 </div>
+              )
+            }
+          },
+          Infobox: {
+            component: ({ children, label }) => {
+              return (
+                <BlockContext.Provider value={BlockContextValue.Infobox}>
+                  <div className='my-2'>
+                    <div className='bg-amber-100 inline-block text-sm rounded-t-lg px-6 py-1 text-amber-600'>
+                      {label}
+                    </div>
+                    <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
+                      <div className='font'>
+                        {children}
+                      </div>
+                    </div>
+                  </div>
+                </BlockContext.Provider>
               )
             }
           }

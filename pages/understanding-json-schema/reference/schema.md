@@ -2,8 +2,7 @@
 single: \$schema
 :::
 
-Declaring a Dialect
-===================
+# Declaring a Dialect
 
 ::: {.contents}
 
@@ -22,8 +21,7 @@ provides ways to describe your own custom dialects.
 single: \$schema single: schema; keyword
 :::
 
-\$schema
---------
+## $schema[#schema]
 
 The `$schema` keyword is used to declare which dialect of JSON Schema
 the schema was written for. The value of the `$schema` keyword is also

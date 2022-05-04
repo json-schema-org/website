@@ -18,17 +18,17 @@ valid schema that will accept any valid JSON.
 This accepts anything, as long as it's valid JSON
 
 ```json
-// props { "valid": true }
+// props { "valid": true, "indent": true }
 42
 ```
 
 ```json
-// props { "valid": true }
+// props { "valid": true, "indent": true }
 "I'm a string"
 ```
 
 ```json
-// props { "valid": true }
+// props { "valid": true, "indent": true }
 { "an": [ "arbitrarily", "nested" ], "data": "structure" }
 ```
 
@@ -38,54 +38,106 @@ You can also use `true` in place of the empty object to represent a
 schema that matches anything, or `false` for a schema that matches
 nothing.
 
-The type keyword
-----------------
+This accepts anything, as long as it's valid JSON:
+
+```json
+// props { "isSchema": true }
+true
+```
+
+```json
+// props { "valid": true, "indent": true }
+42
+```
+```json
+// props { "valid": true, "indent": true }
+"I'm a string"
+```
+```json
+// props { "valid": true, "indent": true }
+{ "an": [ "arbitrarily", "nested" ], "data": "structure" }
+```
+
+Documents for this schema will always be invalid: 
+
+```json
+// props { "isSchema": true }
+false
+```
+
+
+```json
+// props { "valid": false, "indent": true }
+"Resistance is futile...  This will always fail!!!"
+```
+
+## The type keyword
 
 Of course, we wouldn\'t be using JSON Schema if we wanted to just accept
 any JSON document. The most common thing to do in a JSON Schema is to
 restrict to a specific type. The `type` keyword is used for that.
 
-::: {.note}
-::: {.title}
-Note
-:::
+> When this book refers to JSON Schema "keywords", it means the
+"key" part of the key/value pair in an object.  Most of the work
+of writing a JSON Schema involves mapping a special "keyword" to a
+value within an object.
 
-When this book refers to JSON Schema \"keywords\", it means the \"key\"
-part of the key/value pair in an object. Most of the work of writing a
-JSON Schema involves mapping a special \"keyword\" to a value within an
-object.
-:::
+For example, in the following, only strings are
+accepted:
 
-For example, in the following, only strings are accepted:
+```json
+// props { "isSchema": true }
+{ "type": "string" }
+```
+```json
+// props { "valid": true, "indent": true }
+"I'm a string"
+```
+```json
+// props { "valid": false, "indent": true }
+42
+```
 
-The `type` keyword is described in more detail in [type]{.title-ref}.
+The `type` keyword is described in more detail in [here](/understanding-json-schema/reference/type).
 
-Declaring a JSON Schema
------------------------
+## Declaring a JSON Schema
 
 It\'s not always easy to tell which draft a JSON Schema is using. You
 can use the `$schema` keyword to declare which version of the JSON
-Schema specification the schema is written to. See [schema]{.title-ref}
+Schema specification the schema is written to. See [$schema](/understanding-json-schema/reference/schema#schema)
 for more information. It\'s generally good practice to include it,
 though it is not required.
 
-::: {.note}
-::: {.title}
-Note
-:::
-
-For brevity, the `$schema` keyword isn\'t included in most of the
+> For brevity, the `$schema` keyword isn\'t included in most of the
 examples in this book, but it should always be used in the real world.
-:::
 
-Declaring a unique identifier
------------------------------
+```json
+// props { "isSchema": true }
+{ "$schema": "https://json-schema.org/draft/2020-12/schema" }
+```
+
+<Infobox label="Draft-specific info">
+In Draft 4, a `$schema` value of
+`http://json-schema.org/schema#` referred to the latest version
+of JSON Schema. This usage has since been deprecated and the use
+of specific version URIs is required.
+</Infobox>
+
+## Declaring a unique identifier
+
+<Star label="New in draft 6" />
 
 It is also best practice to include an `$id` property as a unique
 identifier for each schema. For now, just set it to a URL at a domain
 you control, for example:
 
-    { "$id": "http://yourdomain.com/schemas/myschema.json" }
+```json
+// props { "isSchema": true }
+{ "$id": "http://yourdomain.com/schemas/myschema.json" }
+```
 
-The details of [id]{.title-ref} become more apparent when you start
-[structuring]{.title-ref}.
+The details of `$id` become more apparent when you start [structuring](/understanding-json-schema/structuring#id).
+
+<Infobox label="Draft-specific info">
+In Draft 4, `$id` is just `id` (without the dollar-sign).
+</Infobox>

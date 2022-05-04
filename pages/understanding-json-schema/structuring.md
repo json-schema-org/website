@@ -127,7 +127,7 @@ The base URI for this schema is the same as the retrieval URI,
 single: \$id single: structuring; base URI; \$id
 :::
 
-### \$id
+## $id[#id]
 
 You can set the base URI by using the `$id` keyword at the root of the
 schema. The value of `$id` is a URI-reference without a fragment that

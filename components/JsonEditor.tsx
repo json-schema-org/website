@@ -20,6 +20,7 @@ type Meta = {
   caption?: string
   valid?: boolean
   isSchema?: boolean
+  indent?: boolean
 }
 
 type Path = number[]
@@ -156,7 +157,9 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
       editor={editor}
       value={value as Descendant[]}
     >
-      <div className='relative font-mono bg-slate-800 w-full border rounded-xl mt-4 overflow-hidden shadow-lg'>
+      <div className={classnames('relative font-mono bg-slate-800 border rounded-xl mt-4 overflow-hidden shadow-lg', {
+        'ml-10': meta?.indent
+      })}>
         <div className='flex flex-row items-center absolute right-0 text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
           {isJsonSchema
             ? <><img src='/logo-white.svg' className='h-4 mr-1.5' /> schema</>
