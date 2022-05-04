@@ -277,6 +277,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               )
             }
           },
+          StarInline: {
+            component: ({ label }) => {
+              return (
+                <div className='inline-flex flex-row items-center text-blue-500 font-semibold'>
+                  <img src='/icons/star.svg' className='h-3 w-3 mr-1' />
+                  {label}
+                </div>
+              )
+            }
+          },
           Infobox: {
             component: ({ children, label }) => {
               return (
