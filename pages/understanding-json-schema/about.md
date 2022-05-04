@@ -51,7 +51,10 @@ At its heart, JSON is built on the following data structures:
 These types have analogs in most programming languages, though they may
 go by different names.
 
---Python
+[tabs-start "Language-specific info"]
+
+[tab "Python"]
+
 The following table maps from the names of JSON types to their
 analogous types in Python:
 
@@ -65,20 +68,19 @@ analogous types in Python:
 | boolean | bool |
 | null | None |
 
-
 #### Footnotes
 
 [#1] Since JSON strings always support unicode, they are
-        analogous to `unicode` on Python 2.x and `str` on
-        Python 3.x.
+analogous to `unicode` on Python 2.x and `str` on
+Python 3.x.
 
 [#2] JSON does not have separate types for integer and
-        floating-point.
+floating-point.
 
---Ruby
+[tab "Ruby"]
+
 The following table maps from the names of JSON types to their
 analogous types in Ruby:
-
 
 | JSON    | Ruby                             |
 |:----|:---------------------------------|
@@ -92,7 +94,9 @@ analogous types in Ruby:
 #### Footnotes
 
 [#3] JSON does not have separate types for integer and
-        floating-point.
+floating-point.
+
+[tabs-end]
 
 With these simple data types, all kinds of structured data can be
 represented. With that great flexibility comes great responsibility,
@@ -181,9 +185,6 @@ However, the second example passes:
   }
 }
 ```
-
-
-
 
 You may have noticed that the JSON Schema itself is written in JSON. It
 is data itself, not a computer program. It\'s just a declarative format

@@ -3,6 +3,8 @@ import Markdown from 'markdown-to-jsx'
 import Link from 'next/link'
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
 import JsonEditor from '~/components/JsonEditor'
+import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
+
 import {
   Headline1
 } from '~/components/Content'
@@ -15,13 +17,125 @@ const filterFragment = (children: any[]) => {
   })
 }
 
+const REGEX_TAB_GROUPS = /\[tabs-start\s*"(?<label>.*)"\]((?!\[tabs-start).|\n)*\[tabs-end\]/gm
+
 enum BlockContextValue {
   Infobox
+}
+
+type Element = {
+  type: 'markdown' | 'tabs-group'
+  markdown: string
 }
 
 const BlockContext = React.createContext<BlockContextValue | null>(null)
 
 export default function StyledMarkdown ({ markdown }: { markdown: string }) {
+  console.log('markdown', markdown, typeof markdown)
+
+
+  const sortedTabGroups = (getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS) || [])
+    .sort((a, b) => a.index < b.index ? -1 : 1)
+  let textCuts = sortedTabGroups.map(tabGroup => ({
+    index: tabGroup.index,
+    length: tabGroup.match.length
+  }))
+
+  let elements: Element[] = []
+  let startIndex = 0
+  let sliceMore = true
+
+  do {
+    const endIndex = textCuts[0]?.index || Infinity
+    const length = endIndex - startIndex
+    const slicedMarkdown = markdown.substr(startIndex, length)
+    if (slicedMarkdown.length > 0) {
+      const markdownElement: Element = {
+        type: 'markdown',
+        markdown: slicedMarkdown
+      }
+      elements = [...elements, markdownElement]
+    }
+
+    if (textCuts[0]) {
+      const tabsGroupElement: Element = {
+        type: 'tabs-group',
+        markdown: markdown.substr(textCuts[0].index, textCuts[0].length)
+      }
+      elements = [...elements, tabsGroupElement]
+      startIndex = textCuts[0].index + textCuts[0].length
+      textCuts = textCuts.slice(1)
+    } else {
+      sliceMore = false
+    }
+  } while (sliceMore)
+
+  return (
+    <div>
+      {elements.map((tabOrMarkup, index) => {
+        if (tabOrMarkup.type === 'markdown') {
+          return <StyledMarkdownBlock key={index} markdown={tabOrMarkup.markdown} />
+        }
+        return (
+          <TabsGroup key={index} markdown={tabOrMarkup.markdown} />
+        )
+      })}
+    </div>
+  )
+
+}
+
+const TAB_REGEX = /(?<=\[tab )\s*"(?<label>.*)"\](?<markdown>(.|\n)*?)\[tab/gm
+
+const TabsGroup = ({ markdown }: { markdown: string }) => {
+  const groupLabel: string | null = getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS)
+    ?.[0]?.groups?.find(g => g.name === 'label')?.match || null
+
+  const tabs = getFindResultsByGlobalRegExp(markdown, TAB_REGEX)
+    .map(tab => {
+      const label = tab.groups?.find(g => g.name === 'label')?.match || ''
+      const markdown = (tab.groups?.find(g => g.name === 'markdown')?.match || '').trim()
+      return { label, markdown }
+    })
+
+  const [activeTabIndex, setActiveTabIndex] = React.useState(0)
+  const activeTab = tabs[activeTabIndex]
+
+
+  return (
+    <div>
+      <div about='tabs-group-header' className='flex flex-row items-end mt-4'>
+        {groupLabel && (
+          <div className='p-4 text-slate-400 mr-4 text-sm'>
+            {groupLabel}:
+          </div>
+        )}
+        <div className='flex flex-row'>
+          {tabs.map((tab, index) => {
+            const isActive = index === activeTabIndex
+            return (
+              <div
+                key={index}
+                onClick={() => setActiveTabIndex(index)}
+                className={classnames('p-4 px-6 text-slate-700 font-medium border-b-2 rounded-t-lg', {
+                  'border-blue-400 text-blue-500 bg-blue-50': isActive,
+                  'border-white/0 cursor-pointer text-slate-700 hover:border-blue-50 hover:bg-blue-50/20': !isActive
+                })}
+              >
+                {tab.label}
+              </div>
+            )
+          })}
+        </div>
+      </div>
+      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b'>
+        <StyledMarkdownBlock markdown={activeTab.markdown} />
+      </div>
+    </div>
+  )
+}
+
+const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
   return (
     <Markdown
       options={{
