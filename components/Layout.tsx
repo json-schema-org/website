@@ -35,20 +35,13 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
           </Link>
           <div className='py-2'>
             <MainNavLink
-              uri='/learn'
-              label='Learn'
-              activeRoutes={[
-                '/learn',
-                '/learn/[slug]',
-              ]}
-            />
-            <MainNavLink
               uri='/understanding-json-schema'
               label='Docs'
               activeRoutes={[
                 '/understanding-json-schema',
                 '/understanding-json-schema/[slug]',
                 '/understanding-json-schema/reference/[slug]',
+                '/learn/[slug]',
               ]}
             />
             <MainNavLink
@@ -128,13 +121,18 @@ export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps) => {
 const DocsNav = () => {
   return (
     <div className='w-[200px] pt-2'>
-
       <SegmentHeadline label='Getting started' />
       <DocLink uri='/understanding-json-schema' label='Overview' />
       <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
       <DocLink uri='/understanding-json-schema/basics' label='The basics' />
-      <DocLink uri='/understanding-json-schema/conventions' label='Conventions' />
       <DocLink uri='/understanding-json-schema/reference/generic' label='Generic keywords' />
+      <DocLink uri='/understanding-json-schema/conventions' label='Conventions' />
+
+      <SegmentHeadline label='Examples & studies' />
+      <DocLink uri='/learn/getting-started-step-by-step' label='Creating a schema' />
+      <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous Examples' />
+      <DocLink uri='/learn/file-system' label={'Example \'File system\''} />
+      <DocLink uri='/learn/json-schema-examples' label='More examples' />
 
       <SegmentHeadline label='Basic types' />
       <DocLink uri='/understanding-json-schema/reference/type' label={<><span className='font-semibold'>type</span> keyword</>} />

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Getting Started Step-By-Step
+title: Creating a schema
 ---
 
 * [Introduction](#intro)
