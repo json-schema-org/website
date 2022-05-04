@@ -1,15 +1,6 @@
-Conventions used in this book {#conventions}
-=============================
+# Conventions used in this documentation[#conventions]
 
-::: {.contents}
-
-local
-
-:   
-:::
-
-Language-specific notes
------------------------
+## Language-specific notes
 
 The names of the basic types in JavaScript and JSON can be confusing
 when coming from another dynamic language. I\'m a Python programmer by
@@ -28,8 +19,17 @@ on from page to page.
 For example, here\'s a language-specific section with advice on using
 JSON in a few different languages:
 
-Draft-specific notes
---------------------
+[tabs-start "Language-specific info"]
+
+[tab "Python"]
+In Python, JSON can be read using the json module in the standard library.
+[tab "Ruby"]
+In Ruby, JSON can be read using the json gem.
+[tab "C"]
+For C, you may want to consider using [Jansson](http://www.digip.org/jansson/) to read and write JSON.
+[tabs-end]
+
+## Draft-specific notes
 
 The JSON Schema standard has been through a number of revisions or
 \"drafts\". The current version is Draft 2020-12, but some older drafts
@@ -41,8 +41,15 @@ from earlier drafts, those differences are highlighted in special
 call-outs. If you only wish to target Draft 2020-12, you can safely
 ignore those sections.
 
-Examples
---------
+<Star label="New in draft 2020-12" />
+
+[tabs-start "Language-specific info"]
+
+[tab "Draft 2019-09"]
+This is where anything pertaining to an old draft would be mentioned.
+[tabs-end]
+
+## Examples
 
 There are many examples throughout this book, and they all follow the
 same format. At the beginning of each example is a short JSON schema,
@@ -52,14 +59,41 @@ in green, with a checkmark. Invalid examples are in red, with a cross.
 Often there are comments in between to explain why something is or
 isn\'t valid.
 
-::: {.note}
-::: {.title}
-Note
-:::
+> These examples are tested automatically whenever the book is
+built, so hopefully they are not just helpful, but also correct!
 
 These examples are tested automatically whenever the book is built, so
 hopefully they are not just helpful, but also correct!
-:::
 
-For example, here\'s a snippet illustrating how to use the `number`
-type:
+For example, here\'s a snippet illustrating how to use the `number` type:
+
+```json
+// props { "isSchema": true }
+{ "type": "number" }
+```
+```json
+// props { "indent": true, "valid": true }
+42
+```
+```json
+// props { "indent": true, "valid": true }
+-1
+```
+Simple floating point number:
+
+```json
+// props { "indent": true, "valid": true }
+5.0
+```
+Exponential notation also works:
+
+```json
+// props { "indent": true, "valid": true }
+2.99792458e8
+```
+Numbers as strings are rejected:
+
+```json
+// props { "indent": true, "valid": false }
+"42"
+```

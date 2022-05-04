@@ -48,55 +48,9 @@ At its heart, JSON is built on the following data structures:
   null
 ```
 
-These types have analogs in most programming languages, though they may
-go by different names.
-
-[tabs-start "Language-specific info"]
-
-[tab "Python"]
-
-The following table maps from the names of JSON types to their
-analogous types in Python:
+These types have [analogs in most programming languages](/understanding-json-schema/reference/type).
 
 
-| JSON    | Python                                                |
-|:----|:------------------------------------------------------|
-| string | string *1                                             |
-| number | int/float *2                                          |
-| object | dict |
-| array | list |
-| boolean | bool |
-| null | None |
-
-#### Footnotes
-
-[#1] Since JSON strings always support unicode, they are
-analogous to `unicode` on Python 2.x and `str` on
-Python 3.x.
-
-[#2] JSON does not have separate types for integer and
-floating-point.
-
-[tab "Ruby"]
-
-The following table maps from the names of JSON types to their
-analogous types in Ruby:
-
-| JSON    | Ruby                             |
-|:----|:---------------------------------|
-| string | String                           |
-| number | Integer/Float *3                 |
-| object | Hash                             |
-| array | Array                            |
-| boolean | TrueClass/FalseClass             |
-| null | NilClass                             |
-
-#### Footnotes
-
-[#3] JSON does not have separate types for integer and
-floating-point.
-
-[tabs-end]
 
 With these simple data types, all kinds of structured data can be
 represented. With that great flexibility comes great responsibility,
@@ -161,7 +115,7 @@ explained in subsequent chapters.
 By "validating" the first example against this schema, you can see that it fails:
 
 ```json
-// props { "valid": false }
+// props { "valid": false, "indent": true }
 {
   "name": "George Washington",
   "birthday": "February 22, 1732",
@@ -172,7 +126,7 @@ By "validating" the first example against this schema, you can see that it fails
 However, the second example passes:
 
 ```json
-// props { "valid": true }
+// props { "valid": true, "indent": true }
 {
   "first_name": "George",
   "last_name": "Washington",

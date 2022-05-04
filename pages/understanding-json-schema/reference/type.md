@@ -1,25 +1,66 @@
-::: {.index}
-single: type single: types; basic
-:::
-
-Type-specific keywords {#type}
-======================
+#Type-specific keywords[#type]
 
 The `type` keyword is fundamental to JSON Schema. It specifies the data
 type for a schema.
 
 At its core, JSON Schema defines the following basic types:
 
-> -   [string]{.title-ref}
-> -   [number \<number\>]{.title-ref}
-> -   [integer \<integer\>]{.title-ref}
-> -   [object]{.title-ref}
-> -   [array]{.title-ref}
-> -   [boolean]{.title-ref}
-> -   [null]{.title-ref}
+- [string](/understanding-json-schema/reference/string)
+- [number](/understanding-json-schema/reference/numeric#number)
+- [integer](/understanding-json-schema/reference/numeric#integer)
+- [object](/understanding-json-schema/reference/object)
+- [array](/understanding-json-schema/reference/array)
+- [boolean](/understanding-json-schema/reference/boolean)
+- [null](/understanding-json-schema/reference/null)
 
 These types have analogs in most programming languages, though they may
 go by different names.
+
+[tabs-start "Language-specific info"]
+
+[tab "Python"]
+
+The following table maps from the names of JSON types to their
+analogous types in Python:
+
+| JSON    | Python                                                |
+|:----|:------------------------------------------------------|
+| string | string *1                                             |
+| number | int/float *2                                          |
+| object | dict |
+| array | list |
+| boolean | bool |
+| null | None |
+
+#### Footnotes
+
+[#1] Since JSON strings always support unicode, they are
+analogous to `unicode` on Python 2.x and `str` on
+Python 3.x.
+
+[#2] JSON does not have separate types for integer and
+floating-point.
+
+[tab "Ruby"]
+
+The following table maps from the names of JSON types to their
+analogous types in Ruby:
+
+| JSON    | Ruby                             |
+|:----|:---------------------------------|
+| string | String                           |
+| number | Integer/Float *3                 |
+| object | Hash                             |
+| array | Array                            |
+| boolean | TrueClass/FalseClass             |
+| null | NilClass                             |
+
+#### Footnotes
+
+[#3] JSON does not have separate types for integer and
+floating-point.
+
+[tabs-end]
 
 The `type` keyword may either be a string or an array:
 
@@ -31,8 +72,44 @@ The `type` keyword may either be a string or an array:
 
 Here is a simple example of using the `type` keyword:
 
+```json
+// props { "isSchema": true }
+{ "type": "number" }
+```
+```json
+// props { "indent": true, "valid": true }
+42
+```
+```json
+// props { "indent": true, "valid": true }
+42.0
+```
+This is not a number, it is a string containing a number.
+
+```json
+// props { "indent": true, "valid": false }
+"42"
+```
+
 In the following example, we accept strings and numbers, but not
 structured data types:
+
+```json
+// props { "isSchema": true }
+{ "type": ["number", "string"] }
+```
+```json
+// props { "indent": true, "valid": true }
+42
+```
+```json
+// props { "indent": true, "valid": true }
+"Life, the universe, and everything"
+```
+```json
+// props { "indent": true, "valid": false }
+["Life", "the universe", "and everything"]
+```
 
 For each of these types, there are keywords that only apply to those
 types. For example, numeric types have a way of specifying a numeric

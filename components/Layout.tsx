@@ -70,6 +70,7 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
         <div className='w-1/4 flex flex-col items-stert'>
           <div className='font-semibold text-sm text-slate-800 mb-1'>Learn</div>
           <a href='/learn/getting-started-step-by-step' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Getting Started Step-By-Step</a>
+          <a href='/understanding-json-schema/conventions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Conventions on json-schema.org</a>
         </div>
         <div className='w-1/4 flex flex-col items-stert'>
           <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
@@ -126,7 +127,6 @@ const DocsNav = () => {
       <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
       <DocLink uri='/understanding-json-schema/basics' label='The basics' />
       <DocLink uri='/understanding-json-schema/reference/generic' label='Generic keywords' />
-      <DocLink uri='/understanding-json-schema/conventions' label='Conventions' />
 
       <SegmentHeadline label='Examples & studies' />
       <DocLink uri='/learn/getting-started-step-by-step' label='Creating a schema' />
