@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
 import { useRouter } from 'next/router'
+import { DocSearch } from '@docsearch/react'
 
 type Props = {
   children: React.ReactNode
@@ -12,6 +13,7 @@ type Props = {
 }
 
 export default function Layout ({ children, mainClassName, mainClassNameWidth, metaTitle }: Props) {
+
   return (
     <div className='bg-slate-100 min-h-screen relative flex flex-col justify-between'>
       <Head>
@@ -19,21 +21,23 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
         <meta name='description' content='JSON Schema' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-
       <div>
         <header className='flex flex-row justify-between py-4 p-4 w-[1200px] mx-auto'>
-          <Link href='/'>
-            <a>
-              <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
-                <img src='/logo-blue.svg' className='h-12 mr-2' />
-                <div className='inline-block'>
-                  JSON<br />
-                  Schema
+          <div className='flex flex-row items-center'>
+            <Link href='/'>
+              <a>
+                <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
+                  <img src='/logo-blue.svg' className='h-12 mr-2' />
+                  <div className='inline-block'>
+                    JSON<br />
+                    Schema
+                  </div>
                 </div>
-              </div>
-            </a>
-          </Link>
-          <div className='py-2'>
+              </a>
+            </Link>
+          </div>
+
+          <div className='py-2 flex flex-row items-center'>
             <MainNavLink
               uri='/understanding-json-schema'
               label='Docs'
@@ -49,6 +53,7 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
               label='Blog'
               activeRoutes={['/blog', '/blog/posts/[slug]']}
             />
+            <Search />
           </div>
         </header>
         <main className={
@@ -82,6 +87,16 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
         </div>
       </footer>
     </div>
+  )
+}
+
+const Search = () => {
+  return (
+    <DocSearch
+      appId='6ZT4KX2OUI'
+      apiKey='69f76fba13585144f6686622e9c8f2a8'
+      indexName='json-schema'
+    />
   )
 }
 
