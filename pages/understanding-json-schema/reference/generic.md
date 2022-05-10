@@ -76,8 +76,7 @@ may even strip them at any time. Therefore, they are useful for leaving
 notes to future editors of a JSON schema, but should not be used to
 communicate to users of the schema.
 
-### Enumerated values [#enum]
------------------
+### Enumerated values[#enum]
 
 The `enum` keyword is used to restrict a value to a fixed set of values.
 It must be an array with at least one element, where each element is

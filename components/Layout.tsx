@@ -183,9 +183,9 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   const isActive = uri === router.asPath
   return (
     <Link href={uri}>
-      <a className={classnames('block pl-4 border-l py-1', {
-        'text-slate-600': !isActive,
-        'text-blue-500 font-semibold': isActive,
+      <a className={classnames('block pl-4 border-l-2 py-1', {
+        'text-slate-600 border-l-slate-100': !isActive,
+        'text-blue-500 border-l-blue-300 font-semibold': isActive,
       })}>{label}</a>
     </Link>
   )
