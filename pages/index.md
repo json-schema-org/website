@@ -76,17 +76,9 @@ We may revisit JSON Hyper-Schema at a later date.
 
 Interested? Check out:
 
-* [Understanding JSON Schema](/understanding-json-schema/)
 * The [specification](./specification.md)
-* [Learning resources](./learn/_index.md)
+
 * the growing list of [JSON Schema software](./implementations.md)
 
 We encourage updating to the latest specification where possible, which is 2020-12.
 
-Questions? Feeling helpful? Get involved on:
-
-* [GitHub](https://github.com/json-schema-org/json-schema-spec)
-* [GitHub Discussions](https://github.com/json-schema-org/community/discussions)
-* [Google Groups](https://groups.google.com/forum/#!forum/json-schema)
-* [Slack](/slack)
-* [Open Collective](https://opencollective.com/json-schema)

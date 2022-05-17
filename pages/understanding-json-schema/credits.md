@@ -1,5 +1,6 @@
-Acknowledgments
-===============
+---
+title: "Acknowledgments"
+---
 
 Michael Droettboom wishes to thank the following contributors:
 

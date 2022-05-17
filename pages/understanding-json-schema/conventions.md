@@ -1,4 +1,6 @@
-# Conventions used in this documentation[#conventions]
+---
+title: "Conventions used in this documentation"
+---
 
 ## Language-specific notes
 

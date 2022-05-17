@@ -13,6 +13,19 @@ type Props = {
   metaTitle?: string
 }
 
+const Logo = () => (
+  <Link href='/'>
+    <a>
+      <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
+        <img src='/logo-blue.svg' className='h-12 mr-2' />
+        <div className='inline-block'>
+          JSON<br />
+          Schema
+        </div>
+      </div>
+    </a>
+  </Link>
+)
 export default function Layout ({ children, mainClassName, mainClassNameWidth, metaTitle }: Props) {
 
   return (
@@ -25,17 +38,7 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
       <div>
         <header className='flex flex-row justify-between py-4 p-4 w-[1200px] mx-auto'>
           <div className='flex flex-row items-center'>
-            <Link href='/'>
-              <a>
-                <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
-                  <img src='/logo-blue.svg' className='h-12 mr-2' />
-                  <div className='inline-block'>
-                    JSON<br />
-                    Schema
-                  </div>
-                </div>
-              </a>
-            </Link>
+            <Logo />
           </div>
 
           <div className='py-2 flex flex-row items-center'>
@@ -67,24 +70,29 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
       </div>
 
       <footer className='w-[1200px] mx-auto p-4 py-16 flex flex-row'>
-        <div className='w-1/4 flex flex-col items-stert'>
+        <div className='w-1/4 flex flex-col items-start'>
           <div className='font-semibold text-sm text-slate-800 mb-1'>Specification</div>
           <Link href='/specification'>
             <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Overview</a>
           </Link>
         </div>
-        <div className='w-1/4 flex flex-col items-stert'>
+        <div className='w-1/4 flex flex-col items-start'>
           <div className='font-semibold text-sm text-slate-800 mb-1'>Learn</div>
           <a href='/learn/getting-started-step-by-step' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Getting Started Step-By-Step</a>
           <a href='/understanding-json-schema/conventions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Conventions on json-schema.org</a>
         </div>
-        <div className='w-1/4 flex flex-col items-stert'>
+        <div className='w-1/4 flex flex-col items-start'>
           <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
           <a href='https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
           <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
           <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
           <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>
           <a href='https://groups.google.com/g/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Google Groups</a>
+        </div>
+        <div className='w-1/4 flex flex-col items-start'>
+          <Logo />
+          <a href='https://opencollective.com/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3 mt-2'>Open Collective</a>
+          <a href='/understanding-json-schema/credits' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Acknowledgments</a>
         </div>
       </footer>
     </div>
@@ -124,9 +132,9 @@ type LayoutDocsProps = {
 export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps) => {
   return (
     <Layout mainClassNameWidth='w-full' metaTitle={metaTitle}>
-      <div className='w-[1200px] mx-auto flex flex-row'>
+      <div className='w-[1200px] mx-auto flex flex-row grid grid-cols-4'>
         <DocsNav />
-        <div className='flex-1'>
+        <div className='col-span-3'>
           {children}
         </div>
 
@@ -137,7 +145,7 @@ export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps) => {
 
 const DocsNav = () => {
   return (
-    <div className='w-[200px] pt-2'>
+    <div className='pt-2'>
       <SegmentHeadline label='Getting started' />
       <DocLink uri='/understanding-json-schema' label='Overview' />
       <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
