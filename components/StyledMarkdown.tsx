@@ -6,16 +6,12 @@ import JsonEditor from '~/components/JsonEditor'
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
 
 import {
-  Headline1
-} from '~/components/Content'
+  Headline1,
+  Headline2,
+  Headline3,
+  Headline4
+} from '~/components/Headlines'
 import classnames from 'classnames'
-
-const filterFragment = (children: any[]) => {
-  return children.map(child => {
-    if (typeof child !== 'string') return child
-    return child.replace(/\[#(\w|-|_)*\]/g, '')
-  })
-}
 
 const REGEX_TAB_GROUPS = /\[tabs-start\s*"(?<label>.*)"\]((?!\[tabs-start).|\n)*\[tabs-end\]/gm
 
@@ -31,9 +27,6 @@ type Element = {
 const BlockContext = React.createContext<BlockContextValue | null>(null)
 
 export default function StyledMarkdown ({ markdown }: { markdown: string }) {
-  console.log('markdown', markdown, typeof markdown)
-
-
   const sortedTabGroups = (getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS) || [])
     .sort((a, b) => a.index < b.index ? -1 : 1)
   let textCuts = sortedTabGroups.map(tabGroup => ({
@@ -140,48 +133,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
     <Markdown
       options={{
         overrides: {
-          h1: {
-            component: ({ children }) => {
-              const slug = slugifyMarkdownHeadline(children)
-              return <Headline1 slug={slug}>{filterFragment(children)}</Headline1>
-            }
-          },
-          h2: {
-            component: ({ children }) => {
-              const slug = slugifyMarkdownHeadline(children)
-              return (
-                <h2 className='text-2xl font-semibold mt-10 mb-4' id={slug}>
-                  {filterFragment(children)}
-                </h2>
-              )
-            }
-          },
-          h3: {
-            component: ({ children }) => {
-              const slug = slugifyMarkdownHeadline(children)
-              return (
-                <h3 className='text-xl font-semibold mt-6 mb-2' id={slug}>
-                  {filterFragment(children)}
-                </h3>
-              )
-            }
-          },
-          h4: {
-            component: ({ children }) => {
-              const slug = slugifyMarkdownHeadline(children)
-              return (
-                <h4 className='font-semibold mt-4 mb-2' id={slug}>
-                  {filterFragment(children)}
-                </h4>
-              )
-            }
-          },
+          h1: { component: Headline1 },
+          h2: { component: Headline2 },
+          h3: { component: Headline3 },
+          h4: { component: Headline4 },
           strong: {
             component: ({ children }) => <strong className='font-semibold text-slate-800'>{children}</strong>
           },
           p: {
             component: ({ children }) => (
-              <p className='text-slate-600 leading-7 pb-4'>
+              <p className='text-slate-600 block leading-7 pb-4'>
                 {children}
               </p>
             )
@@ -190,7 +151,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             component: ({ children, href, title }) => {
               if (!href) return children
               return (
-                <Link href={href}>
+                <Link href={href} scroll={false} prefetch={false}>
                   <a title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
                 </Link>
               )
@@ -304,6 +265,9 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </BlockContext.Provider>
               )
             }
+          },
+          Keywords: {
+            component: () => null
           }
         }
       }}

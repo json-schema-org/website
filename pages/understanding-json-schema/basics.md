@@ -1,4 +1,6 @@
-# The basics [#basics]
+---
+title: "The basics"
+---
 
 In [What is a schema?](/understanding-json-schema/about), we described what a schema is,
 and hopefully justified the need for schema languages. Here, we proceed

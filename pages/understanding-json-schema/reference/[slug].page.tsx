@@ -1,4 +1,5 @@
 import { LayoutDocs } from '~/components/Layout'
+import { Headline1 } from '~/components/Headlines'
 import StyledMarkdown from '~/components/StyledMarkdown'
 import Head from 'next/head'
 import React from 'react'
@@ -14,7 +15,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
       <Head>
         <title>JSON Schema - {frontmatter.title}</title>
       </Head>
-      <h1>{frontmatter.title}</h1>
+      <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
       <StyledMarkdown markdown={content} />
     </LayoutDocs>
   )

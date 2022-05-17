@@ -1,5 +1,6 @@
-What is a schema?
-=================
+---
+title: "What is a schema?"
+---
 
 If you\'ve ever used XML Schema, RelaxNG or ASN.1 you probably already
 know what a schema is and you can happily skip along to the next

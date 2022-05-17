@@ -1,5 +1,5 @@
 import Layout from '~/components/Layout'
-import { Headline1 } from '~/components/Content'
+import { Headline1 } from '~/components/Headlines'
 import fs from 'fs'
 import Head from 'next/head'
 import Link from 'next/link'

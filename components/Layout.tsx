@@ -4,6 +4,7 @@ import Link from 'next/link'
 import classnames from 'classnames'
 import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
+import { HOST } from '~/lib/config'
 
 type Props = {
   children: React.ReactNode
@@ -179,8 +180,11 @@ const SegmentHeadline = ({ label }: { label: string }) => {
 
 const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode }) => {
   const router = useRouter()
-  console.log('router', router)
-  const isActive = uri === router.asPath
+  const url = new URL(`${router.asPath}`, HOST)
+  url.search = ''
+  url.hash = ''
+  const stringUrl = url.toString().substr(HOST.length, Infinity)
+  const isActive = uri === stringUrl
   return (
     <Link href={uri}>
       <a className={classnames('block pl-4 border-l-2 py-1', {

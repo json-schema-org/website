@@ -1,6 +1,8 @@
-<Keywords label="single: integer single: number single: types; numeric" />
+---
+title: "Numeric types"
+---
 
-# Numeric types[#numeric]
+<Keywords label="single: integer single: number single: types; numeric" />
 
 There are two numeric types in JSON Schema: [integer](#integer) and [number](#number).
 They share the same validation keywords.
@@ -248,4 +250,3 @@ Greater than `maximum`:
 ```
 
 [tabs-end]
-

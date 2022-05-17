@@ -1,0 +1,1 @@
+export const HOST = 'https://www.json-schema.org'

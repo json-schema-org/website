@@ -1,22 +1,13 @@
-::: {.index}
-single: regular expressions
-:::
+---
+title: "Regular Expressions"
+---
 
-Regular Expressions
-===================
+<Keywords label="regular expressions" />
 
-::: {.contents}
-
-local
-
-:   
-:::
-
-The `pattern <pattern>`{.interpreted-text role="ref"} and
-[patternProperties]{.title-ref} keywords use regular expressions to
+The [pattern](/understanding-json-schema/reference/string#regexp) and
+[patternProperties](/understanding-json-schema/reference/object#regexp) keywords use regular expressions to
 express constraints. The regular expression syntax used is from
-JavaScript ([ECMA
-262](http://www.ecma-international.org/publications/standards/Ecma-262.htm),
+JavaScript ([ECMA 262](http://www.ecma-international.org/publications/standards/Ecma-262.htm),
 specifically). However, that complete syntax is not widely supported,
 therefore it is recommended that you stick to the subset of that syntax
 described below.
@@ -60,3 +51,27 @@ Example
 
 The following example matches a simple North American telephone number
 with an optional area code:
+
+```json
+// props { "isSchema": true }
+{
+  "type": "string",
+  "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
+}
+```
+```json
+// props { "indent": true, "valid": true }
+"555-1212"
+```
+```json
+// props { "indent": true, "valid": true }
+"(888)555-1212"
+```
+```json
+// props { "indent": true, "valid": false }
+"(888)555-1212 ext. 532"
+```
+```json
+// props { "indent": true, "valid": false }
+"(800)FLOWERS"
+```

@@ -6,6 +6,7 @@ import React from 'react'
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import readingTime from 'reading-time'
+import { Headline1 } from '~/components/Headlines'
 
 export async function getStaticPaths() { return getStaticMarkdownPaths('pages/blog/posts') }
 export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/blog/posts') }
@@ -29,7 +30,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
             {date.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} &middot; {timeToRead} min read
           </div>
         )}
-        <h1 className='font-bold text-4xl text-center mt-3 px-10'>{frontmatter.title}</h1>
+        <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
       </div>
 
       <div className='relative flex flex-row'>

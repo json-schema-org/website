@@ -42,8 +42,7 @@ In addition, there is:
 single: allOf single: schema composition; allOf
 :::
 
-allOf {#allOf}
------
+## allOf[#allOf]
 
 To validate against `allOf`, the given data must be valid against all of
 the given subschemas.

@@ -1,5 +1,6 @@
-Generic keywords
-================
+---
+title: "Generic keywords"
+---
 
 This chapter lists some miscellaneous properties that are available for
 all JSON types.

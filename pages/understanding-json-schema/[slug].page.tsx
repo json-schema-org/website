@@ -4,6 +4,7 @@ import Head from 'next/head'
 import React from 'react'
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
+import { Headline1 } from '~/components/Headlines'
 
 export async function getStaticPaths() { return getStaticMarkdownPaths('pages/understanding-json-schema') }
 export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/understanding-json-schema') }
@@ -14,7 +15,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
       <Head>
         <title>JSON Schema - {frontmatter.title}</title>
       </Head>
-      <h1>{frontmatter.title}</h1>
+      <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
       <StyledMarkdown markdown={content} />
     </LayoutDocs>
   )
