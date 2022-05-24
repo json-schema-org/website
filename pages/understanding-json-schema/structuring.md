@@ -203,15 +203,14 @@ identifies the highlighted subschema in the following schema.
 // props { "isSchema": true }
 {
   "$id": "https://example.com/schemas/address",
-
   "type": "object",
   "properties": {
     "street_address":
-    *    { "type": "string" },
-"city": { "type": "string" },
-"state": { "type": "string" }
-},
-"required": ["street_address", "city", "state"]
+       { "type": "string" },
+       "city": { "type": "string" },
+       "state": { "type": "string" }
+    },
+  "required": ["street_address", "city", "state"]
 }
 ```
 
