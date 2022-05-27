@@ -20,4 +20,3 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
     </LayoutDocs>
   )
 }
-s

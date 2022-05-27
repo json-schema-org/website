@@ -6,11 +6,12 @@ import Link from 'next/link'
 import React from 'react'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
-const path = 'pages/blog/posts'
+const PATH = 'pages/blog/posts'
 import TextTruncate from 'react-text-truncate'
+import generateRssFeed from './generateRssFeed'
 
 export async function getStaticProps() {
-  const files = fs.readdirSync(path)
+  const files = fs.readdirSync(PATH)
   const blogPosts = files
     .filter(file => file.substr(-3) === '.md')
     .map((fileName) => {
@@ -23,6 +24,8 @@ export async function getStaticProps() {
         content
       })
     })
+
+  await generateRssFeed(blogPosts)
 
   return {
     props: {
@@ -37,7 +40,17 @@ export default function StaticMarkdownPage ({ blogPosts }: { blogPosts: any[] })
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <Headline1>Blog</Headline1>
+      <div className='flex flex-row justify-between items-center'>
+        <Headline1>Blog</Headline1>
+        <a
+          href='/rss/feed.xml'
+          className='flex flex-row items-center text-blue-500 hover:text-blue-600 cursor-pointer mt-3'
+        >
+          <img src='/icons/rss.svg' className='rounded h-5 w-5 mr-2' />
+          RSS Feed
+        </a>
+      </div>
+
       <div className='grid grid-cols-3 gap-4 grid-flow-row mb-20'>
         {blogPosts
           .sort((a, b) => {
@@ -109,8 +122,8 @@ export default function StaticMarkdownPage ({ blogPosts }: { blogPosts: any[] })
                 </Link>
               </div>
             )
-          }
-          )}
+          })
+        }
       </div>
     </Layout>
   )

@@ -32,7 +32,6 @@ const Headline = ({ children, Tag }: {
       window.location.href = urlString
     }
   }
-  console.log('attributes.id', attributes.id)
   const childredWithoutFragment = filterFragment(children)
   return (
     <Tag attributes={attributes}>
