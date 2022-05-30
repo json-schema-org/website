@@ -55,19 +55,23 @@ It may seem odd to allow Boolean values for a Schema, but we will explore why th
 
 ## Introduction to constraints
 
-```json caption="An empty Object"
+```json
+// props { "caption": "An empty Object"}
 {}
 ```
 
-```json caption="A "true" Boolean value"
+```json
+// props { "caption": "A \"true\" Boolean value"}
 true
 ```
 
-```json caption="A "false" Boolean value"
+```json
+// props { "caption": "A \"false\" Boolean value"}
 false
 ```
 
-```json caption="Not, empty Object"
+```json
+// props { "caption": "Not, empty Object"}
 { "not": { } }
 ```
 
@@ -103,14 +107,18 @@ Remembering that JSON Schema provides constraints based validation, JSON Schema 
 The simplest assertion keyword is `const`. The value can be any valid JSON. To pass validation data must be the same as the value of `const`. Here's an example:
 
 ```json
-// Our JSON Schema
+// props { "isSchema": true}
 { "const": 1234 }
+```
 
-// JSON instances for validation
+```json
+// props { "valid": true, "caption": "valid - It is exactly the same" }
+1234
+```
 
-1234 // valid - It is exactly the same.
-
-"foobar" // invalid - It is not the same.
+```json
+// props { "valid": false, "caption": "invalid - It is not the same" }
+"foobar"
 ```
 
 ### The "type" keyword
@@ -118,17 +126,30 @@ The simplest assertion keyword is `const`. The value can be any valid JSON. To p
 Another assertion keyword is `type`. Its value is an array of strings that are the allowed types. The types are the six primitive types defined by JSON, plus "integer". Let's look at an example.
 
 ```json
-{ "type": ["object", "boolean", "null"] }`
+// props { "isSchema": true}
+{ "type": ["object", "boolean", "null"] }
+```
 
-{ "ok": "yes" } // valid - An Object is allowed.
+```json
+// props { "valid": true, "caption": "valid - An Object is allowed." }
+{ "ok": "yes" }
+```
+```json
+// props { "valid": true, "caption": "valid - A Boolean is allowed." }
+true
+```
+```json
+// props { "valid": true, "caption": "valid - Null is allowed." }
+null
+```
 
-true // valid - A Boolean is allowed.
-
-null // valid - Null is allowed.
-
-123 // invalid - A Number is not allowed.
-
-"foobar" // invalid - A string is not allowed.
+```json
+// props { "valid": false, "caption": "invalid - A Number is not allowed." }
+123
+```
+```json
+// props { "valid": false, "caption": "invalid - A string is not allowed." }
+"foobar"
 ```
 
 These two assertion keywords are applicable to ANY type of data in JSON, but some assertion keywords are only applicable to specific types. If a keyword is NOT applicable to the instance data, it is ignored and performs no validation.
@@ -184,12 +205,6 @@ The most commonly used applicator keyword is `properties`, which has an object v
 [ "name", 123 ]
 ```
 
-{ }
-// valid - instance data has no applicable properties.
-
-{ "name": 123 }
-// invalid - The `name` property value must be a string.
-```
 
 The subschemas are only applied to the instance location where the key matches a key in the instance locations object.
 
@@ -221,7 +236,5 @@ Here are some places you may find helpful moving forward:
 - [JSON Schema live playground (ajv) for draft-07 with shareable links](https://jsonschema.dev)
 - [JSON Schema live playground (hyperjump validator) for all drafts (from draft-04)](https://json-schema.hyperjump.io)
 - [Links to RFC specification documents](/specification)
-
-
 
 Photo by <a href="https://unsplash.com/@saadx?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Saad Salim</a> on <a href="https://unsplash.com/s/photos/construction?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>

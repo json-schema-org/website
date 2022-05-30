@@ -66,7 +66,9 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
             'w-[1200px]': !mainClassNameWidth
           })
         }>
-          <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />
+          <div>
+            <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />
+          </div>
           {children}
         </main>
       </div>

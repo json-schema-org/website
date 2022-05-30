@@ -13,10 +13,6 @@ export async function getStaticProps(args: any) { return getStaticMarkdownProps(
 
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
   const date = new Date(frontmatter.date)
-  const headlines = content
-    .split('\n')
-    .filter((line: string) => line.indexOf('## ') === 0 || line.indexOf('# ') === 0)
-
   const timeToRead = Math.ceil(readingTime(content).minutes)
 
   return (
@@ -30,7 +26,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
             {date.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} &middot; {timeToRead} min read
           </div>
         )}
-        <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
+        <Headline1 attributes={{ className: 'text-center' }}>{frontmatter.title || 'NO TITLE!'}</Headline1>
       </div>
 
       <div className='relative flex flex-row'>
@@ -63,13 +59,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
               </div>
               <div className='pt-12 pr-4 border-r border-slate-100'>
                 <div className='uppercase text-xs text-slate-400 mb-4'>on this page</div>
-                {headlines.map((headline: any, index: number) => {
-                  return (
-                    <div key={index}>
-                      <TableOfContentMarkdown markdown={headline} />
-                    </div>
-                  )
-                })}
+                <TableOfContentMarkdown markdown={content} />
               </div>
             </div>
           </div>

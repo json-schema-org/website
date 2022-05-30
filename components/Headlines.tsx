@@ -4,24 +4,26 @@ import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
 import { useRouter } from 'next/router'
 import { HOST } from '~/lib/config'
 
-type HeadlineProps = { children: string | React.ReactNode[] }
+type HeadlineProps = { children: string | React.ReactNode[], attributes?: Record<string, any> }
 
-export const Headline1 = ({ children }: HeadlineProps) => <Headline Tag={Headline1Tag}>{children}</Headline>
-export const Headline2 = ({ children }: HeadlineProps) => <Headline Tag={Headline2Tag}>{children}</Headline>
-export const Headline3 = ({ children }: HeadlineProps) => <Headline Tag={Headline3Tag}>{children}</Headline>
-export const Headline4 = ({ children }: HeadlineProps) => <Headline Tag={Headline4Tag}>{children}</Headline>
+export const Headline1 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline1Tag} attributes={attributes}>{children}</Headline>
+export const Headline2 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline2Tag} {...attributes}>{children}</Headline>
+export const Headline3 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline3Tag} {...attributes}>{children}</Headline>
+export const Headline4 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline4Tag} {...attributes}>{children}</Headline>
 
-const Headline = ({ children, Tag }: {
+const Headline = ({ children, Tag, attributes: propAttributes }: {
   children: string | React.ReactNode[]
   Tag: React.FunctionComponent<TagProps>
+  attributes?: Record<string, any>
 }) => {
   const router = useRouter()
   const asPath = router.asPath
   const slug = slugifyMarkdownHeadline(children as any[])
 
   const attributes = {
+    ...propAttributes,
     id: slug,
-    className: 'group cursor-pointer hover:underline',
+    className: classnames('group cursor-pointer hover:underline', propAttributes?.className),
     onClick: () => {
       const url = new URL(asPath, HOST)
       // recalculation necessary because of scope issue

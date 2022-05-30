@@ -4,6 +4,8 @@ import Link from 'next/link'
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
 import JsonEditor from '~/components/JsonEditor'
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
+import Highlight from 'react-syntax-highlighter'
+import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 
 import {
   Headline1,
@@ -16,7 +18,8 @@ import classnames from 'classnames'
 const REGEX_TAB_GROUPS = /\[tabs-start\s*"(?<label>.*)"\]((?!\[tabs-start).|\n)*\[tabs-end\]/gm
 
 enum BlockContextValue {
-  Infobox
+  Infobox,
+  CodeBlock
 }
 
 type Element = {
@@ -198,7 +201,8 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 <code
                   className={classnames('font-mono rounded px-1.5 py-0.5', {
                     'bg-slate-100': blockContext === null,
-                    'bg-amber-200': blockContext === BlockContextValue.Infobox
+                    'bg-amber-200': blockContext === BlockContextValue.Infobox,
+                    'text-white': blockContext === BlockContextValue.CodeBlock
                   })}
                 >
                   {children}
@@ -207,7 +211,8 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             }
           },
           pre: ({ children }) => {
-            const isJsonCode = children?.props?.className === 'lang-json'
+            const language = children?.props?.className
+            const isJsonCode = language === 'lang-json'
             const code = children?.props?.children
             if (isJsonCode) {
               return (
@@ -215,10 +220,45 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               )
             }
 
+            const showLineNumbers = true
+
             return (
-              <pre>
-                {children}
-              </pre>
+              <Highlight
+                className='rounded-xl pt-px pb-0 font-medium font-ligatures-contextual mt-3'
+                language={language}
+                customStyle={{
+                  borderRadius: 10,
+                  paddingTop: 15,
+                  paddingBottom: 10,
+                  paddingLeft: 10,
+                  marginBottom: 20
+                }}
+                lineNumberStyle={{
+                  marginRight: 10
+                }}
+                style={atomOneLight}
+                showLineNumbers={showLineNumbers}
+                startingLineNumber={1}
+                lineProps={() => {
+                  const isHighlighted = false
+                  return {
+                    className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
+                  }
+                }}
+                codeTagProps={{
+                  className: 'mr-8'
+                }}
+              >
+                {code}
+              </Highlight>
+            )
+
+            return (
+              <BlockContext.Provider value={BlockContextValue.CodeBlock}>
+                <pre className='bg-slate-800 font-mono rounded-xl shadow-lg px-6 py-6 my-2 mb-6'>
+                  {children}
+                </pre>
+              </BlockContext.Provider>
             )
           },
           blockquote: {
@@ -268,6 +308,15 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
           },
           Keywords: {
             component: () => null
+          },
+          Bigquote: {
+            component: ({ children }) => {
+              return (
+                <div className='text-2xl text-center p-10 py-16 font-semibold text-slate-500 bg-slate-50 mb-4 rounded-xl'>
+                  "{children}"
+                </div>
+              )
+            }
           }
         }
       }}
@@ -278,6 +327,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
 }
 
 export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
+  console.log('table of content', markdown)
   return (
     <Markdown
       options={{
@@ -303,7 +353,20 @@ export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
                 >{children}</a>
               )
             }
-          }
+          },
+          h3: { component: () => null },
+          h4: { component: () => null },
+          strong: { component: () => null },
+          p: { component: () => null },
+          a: { component: () => null },
+          ul: { component: () => null },
+          table: { component: () => null },
+          code: { component: () => null },
+          pre: { component: () => null },
+          blockquote: { component: () => null },
+          span: { component: () => null },
+          div: { component: () => null },
+          figure: { component: () => null },
         }
       }}
     >

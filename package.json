@@ -14,6 +14,7 @@
   "dependencies": {
     "@docsearch/react": "3",
     "@types/js-yaml": "^4.0.5",
+    "@types/react-syntax-highlighter": "^15.5.1",
     "classnames": "^2.3.1",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
@@ -22,6 +23,7 @@
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-syntax-highlighter": "^15.5.0",
     "react-text-truncate": "^0.18.0",
     "reading-time": "^1.5.0",
     "slate": "^0.78.0",
