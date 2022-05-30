@@ -60,11 +60,13 @@ export default function Layout ({ children, mainClassName, mainClassNameWidth, m
             <Search />
           </div>
         </header>
+
         <main className={
           classnames(mainClassName, mainClassNameWidth, 'bg-white rounded-xl py-4 px-8 mx-auto', {
             'w-[1200px]': !mainClassNameWidth
           })
         }>
+          <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />
           {children}
         </main>
       </div>

@@ -19,7 +19,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
     <Layout
       mainClassName='flex flex-col items-center'
     >
-      <h1 className='text-5xl mt-20 font-black text-center'>
+      <h1 className='text-5xl mt-[100px] font-black text-center'>
         Describe and validate JSON documents
       </h1>
       <h2 className='text-center text-lg text-slate-600 mt-6 max-w-4xl'>
