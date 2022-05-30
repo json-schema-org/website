@@ -5,10 +5,9 @@ layout: page
 
 <!-- Links on this page should be immutable - none of them should go to `/latest`, etc. -->
 
-You can find the latest released draft on the [Specification](/specification.html) page.  Older drafts are expired, but may be of historical interest.  The complex numbering and naming system for drafts and meta-schemas is fully explained here as well.
+You can find the latest released draft on the [Specification](/specification) page.  Older drafts are expired, but may be of historical interest.  The complex numbering and naming system for drafts and meta-schemas is fully explained here as well.
 
-* TOC
-{:toc}
+<TableOfContent />
 
 ## Understanding draft names and numbers
 
