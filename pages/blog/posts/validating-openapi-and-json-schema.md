@@ -147,6 +147,7 @@ the abstract schema to create a schema that validates Schema Objects using the
 default dialect meta-schema.
 
 The first step is to include the abstract schema.
+
 ```yaml
 $schema: 'https://json-schema.org/draft/2020-12/schema'
 

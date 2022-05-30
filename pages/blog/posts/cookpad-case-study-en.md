@@ -37,7 +37,9 @@ Using JSON Schema has reduced the burden of changing requirements. "Even if new 
 
 ## Key Impact Results
 
-<span className="text-3xl">From 10% of submissions being deficient, to zero.</span>
+<Bigquote>
+  From 10% of submissions being deficient, to zero.
+</Bigquote>
 
 "Previously, about 10% of newly registered products had incomplete input of quality assurance items, but with the introduction of JSON Schema, there are no deficiencies in the quality assurance items," says Kenshi.
 
@@ -47,13 +49,13 @@ Using JSON Schema has reduced the burden of changing requirements. "Even if new 
 
 <div className="container flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 place-content-between">
   <figure className="group m-auto">
-    <img className="flex-1 " src="/blog/img/posts/2021/cookpad-case-study/fridge.webp" />
+    <img className="flex-1" src="/img/posts/2021/cookpad-case-study/fridge.webp" />
     <figcaption className="absolute text-2xl -mt-9 px-4 bg-gray-600 bg-opacity-50">
         <span className="text-white">Cookpad Mart Fridges</span>
     </figcaption>
   </figure>
   <figure className="group m-auto">
-    <img className="flex-1" src="/blog/img/posts/2021/cookpad-case-study/office.webp" />
+    <img className="flex-1" src="/img/posts/2021/cookpad-case-study/office.webp" />
     <figcaption className="absolute text-2xl -mt-9 px-4 bg-gray-600 bg-opacity-50">
         <span className="text-white">Cookpad Offices</span>
     </figcaption>
@@ -70,7 +72,9 @@ High quality ingredients that come from small producers tend to be difficult to 
 
 "We thought that we should use the same logic for backend and frontend applications. At first we thought about creating our own custom JSON Structure, but we had to write many `if` statements, and I do not want to imagine!"
 
-<p className="text-2xl my-10">"JSON Schema helps us to implement backend validation and frontend form generation easily. It was quite an excellent experience!" explains Kenshi, estimating that time spent building validation has been cut in half as a result of using JSON Schema.</p>
+<Bigquote>
+"JSON Schema helps us to implement backend validation and frontend form generation easily. It was quite an excellent experience!" explains Kenshi, estimating that time spent building validation has been cut in half as a result of using JSON Schema.
+</Bigquote>
 
 One mantra developers often hear is DRY: 'don't repeat yourself'. "We could focus ONLY on JSON Schema definitions and everything has been automatically generated and applied," says Kenshi, "That was an excellent moment." Reducing duplication of logic reduces the likelihood of a mismatch in expectations between the client and server side.
 

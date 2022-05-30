@@ -67,7 +67,7 @@ export default function StyledMarkdown ({ markdown }: { markdown: string }) {
   } while (sliceMore)
 
   return (
-    <div>
+    <div className='flex-1'>
       {elements.map((tabOrMarkup, index) => {
         if (tabOrMarkup.type === 'markdown') {
           return <StyledMarkdownBlock key={index} markdown={tabOrMarkup.markdown} />
@@ -220,45 +220,37 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               )
             }
 
-            const showLineNumbers = true
-
             return (
-              <Highlight
-                className='rounded-xl pt-px pb-0 font-medium font-ligatures-contextual mt-3'
-                language={language}
-                customStyle={{
-                  borderRadius: 10,
-                  paddingTop: 15,
-                  paddingBottom: 10,
-                  paddingLeft: 10,
-                  marginBottom: 20
-                }}
-                lineNumberStyle={{
-                  marginRight: 10
-                }}
-                style={atomOneLight}
-                showLineNumbers={showLineNumbers}
-                startingLineNumber={1}
-                lineProps={() => {
-                  const isHighlighted = false
-                  return {
-                    className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
-                  }
-                }}
-                codeTagProps={{
-                  className: 'mr-8'
-                }}
-              >
-                {code}
-              </Highlight>
-            )
-
-            return (
-              <BlockContext.Provider value={BlockContextValue.CodeBlock}>
-                <pre className='bg-slate-800 font-mono rounded-xl shadow-lg px-6 py-6 my-2 mb-6'>
-                  {children}
-                </pre>
-              </BlockContext.Provider>
+              <div className='overflow-x-auto flex-basis-0 max-full-w'>
+                <Highlight
+                  language={language}
+                  customStyle={{
+                    borderRadius: 10,
+                    paddingTop: 15,
+                    paddingBottom: 10,
+                    paddingLeft: 10,
+                    marginBottom: 20,
+                    maxWidth: '100%a'
+                  }}
+                  lineNumberStyle={{
+                    marginRight: 10
+                  }}
+                  style={atomOneLight}
+                  showLineNumbers
+                  startingLineNumber={1}
+                  lineProps={() => {
+                    const isHighlighted = false
+                    return {
+                      className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
+                    }
+                  }}
+                  codeTagProps={{
+                    className: 'mr-8'
+                  }}
+                >
+                  {code}
+                </Highlight>
+              </div>
             )
           },
           blockquote: {
@@ -327,7 +319,6 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
 }
 
 export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
-  console.log('table of content', markdown)
   return (
     <Markdown
       options={{
@@ -367,6 +358,7 @@ export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
           span: { component: () => null },
           div: { component: () => null },
           figure: { component: () => null },
+          Bigquote: { component: () => null },
         }
       }}
     >

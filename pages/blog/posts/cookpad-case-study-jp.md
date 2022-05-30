@@ -39,7 +39,10 @@ JSON Schemaにより、商品登録時の正確性や体験が改善され、商
 
 ## 主な成果
 
-<span className="text-3xl">品質保証に関する入力不備が10％から0％に</span>
+<Bigquote>
+品質保証に関する入力不備が10％から0％に
+</Bigquote>
+
 
 主な成果として「以前は、新規登録商品の約10％で品質保証の項目の入力不備がありましたが、JSON Schemaの導入により、品質保証の項目の入力不備はほぼゼロになりました。」と塩出さんは言います。
 
@@ -47,15 +50,15 @@ JSON Schemaにより、商品登録時の正確性や体験が改善され、商
 
 <p className="text-2xl my-10">クックパッドは、クックパッド株式会社がグローバルに展開している料理レシピ投稿・検索サービスです。世界の76か国で毎月平均1億人のユーザー数を誇り、34の言語をサポートし、日本では550万件以上のレシピが共有されている国内最大のレシピサービスです。</p>
 
-<div className="container flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 place-content-between">
+<div className="container flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0 place-content-between mb-6">
   <figure className="group m-auto">
-    <img className="flex-1 " src="/blog/img/posts/2021/cookpad-case-study/fridge.webp" />
+    <img className="flex-1 " src="/img/posts/2021/cookpad-case-study/fridge.webp" />
     <figcaption className="absolute text-l -mt-6 px-4 bg-gray-600 bg-opacity-50">
         <span className="text-white">クックパッドマートの冷蔵庫</span>
     </figcaption>
   </figure>
   <figure className="group m-auto">
-    <img className="flex-1" src="/blog/img/posts/2021/cookpad-case-study/office.webp" />
+    <img className="flex-1" src="/img/posts/2021/cookpad-case-study/office.webp" />
     <figcaption className="absolute text-l -mt-6 px-4 bg-gray-600 bg-opacity-50">
         <span className="text-white">クックパッド株式会社のオフィス</span>
     </figcaption>
@@ -73,7 +76,9 @@ JSON Schemaにより、商品登録時の正確性や体験が改善され、商
 
 「バックエンドとフロントエンドのアプリケーションに同じロジックを使用する必要がありました。最初は独自のJSONフォーマットの作成を考えましたが、多数の`if`文を自分たちで作成する必要が出てくるため、避けたいと思っていました。」
 
-<p className="text-2xl my-10">"「JSON Schemaのおかげで、バックエンド側でのバリデーションとフロントエンド側のフォーム生成をとても簡単に実装することができました。とても素晴らしい体験でした！」と塩出さん。JSON Schemaを使用した結果、バリデーションおよびフォームの実装にかかる時間が半分以下で済んだ、と見積もっています。</p>
+<Bigquote>
+"「JSON Schemaのおかげで、バックエンド側でのバリデーションとフロントエンド側のフォーム生成をとても簡単に実装することができました。とても素晴らしい体験でした！」と塩出さん。JSON Schemaを使用した結果、バリデーションおよびフォームの実装にかかる時間が半分以下で済んだ、と見積もっています
+</Bigquote>
 
 開発者はDRY「Don't repeat yourself」という言葉をよく耳にします。「JSON Schemaの定義の構築のみに集中できました。その後は、JSON Schemaをサポートするライブラリによって、ほぼ全てが自動生成されました。最高の瞬間でしたね！」と塩出さんは語ります。ロジックの重複を減らすことで、フロントエンドとバックエンドの間で実装の不一致が起こりにくくなります。
 
