@@ -29,7 +29,8 @@ type Element = {
 
 const BlockContext = React.createContext<BlockContextValue | null>(null)
 
-export default function StyledMarkdown ({ markdown }: { markdown: string }) {
+export default function StyledMarkdown ({ markdown }: { markdown?: string }) {
+  if (!markdown) return null
   const sortedTabGroups = (getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS) || [])
     .sort((a, b) => a.index < b.index ? -1 : 1)
   let textCuts = sortedTabGroups.map(tabGroup => ({

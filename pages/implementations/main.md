@@ -1,5 +1,5 @@
 
-#### Benchmarks
+### Benchmarks
 
 Benchmarks that compare at least two implementations supporting draft-06+ may be listed here.
 
@@ -12,7 +12,7 @@ Benchmarks that compare at least two implementations supporting draft-06+ may be
 -   PHP
   -   [php-json-schema-bench](https://github.com/swaggest/php-json-schema-bench) - comparative benchmark for JSON-schema PHP validators using JSON-Schema Test Suite and z-schema/JSCK (MIT)
 
-#### API documentation
+### API documentation
 
 -   JavaScript
   -   [@cloudflare/doca](https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/doca) ([JSON Schema Tools](https://github.com/cloudflare/json-schema-tools)), _draft-04, -06, -07, and Doca extensions_ (UI forthcoming)
@@ -21,14 +21,13 @@ Benchmarks that compare at least two implementations supporting draft-06+ may be
 -   Python
   -   [FastAPI](https://github.com/tiangolo/fastapi) (MIT) is an API framework based on Python 3.6+ types that generates **OpenAPI 3** schemas, including **JSON Schemas** for all the models declared.
 
-#### Link Description Object utilities
+### Link Description Object utilities
 
 -   JavaScript
   -   [@cloudflare/json-hyper-schema](https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-hyper-schema) _draft-07, -06, -04_ (BSD-3-Clause)
 
 
-Schema generators
------------------
+## Schema generators
 
 Schema generators need not support generating every schema keyword.
 For schema generators, compatibility with a draft means that either:
@@ -38,7 +37,7 @@ For schema generators, compatibility with a draft means that either:
 
 For example, the only incompatibilities between draft-04 and draft-06 involve `exclusiveMinimum`, `exclusiveMaximum`, and `id` vs `$id`.  If a generator does not set `$schema` and does not ever emit those keywords, then it is compatible with draft-06 even if it was written with draft-04 in mind.
 
-#### From code
+### From code
 
 -   .NET
   -   [Json.NET](https://www.newtonsoft.com/jsonschema) (AGPL-3.0) - generates schemas from .NET types
@@ -57,7 +56,7 @@ For example, the only incompatibilities between draft-04 and draft-06 involve `e
 -   Scala
   -   [scala-jsonschema](https://github.com/andyglow/scala-jsonschema) (Apache 2.0) - generates schemad out of Scala case classes
 
-#### From data
+### From data
 
 -   Java
   -   [saasquatch/json-schema-inferrer](https://github.com/saasquatch/json-schema-inferrer) _draft-07, -06, -04_ (Apache 2.0) - Java library for inferring JSON Schemas from one or multiple JSON samples.
@@ -70,8 +69,7 @@ For example, the only incompatibilities between draft-04 and draft-06 involve `e
   -   [Liquid Online Tools](https://www.liquid-technologies.com/online-json-to-schema-converter) - infer JSON Schema from sample JSON data
   -   [quicktype.io](https://app.quicktype.io/#l=schema) - infer JSON Schema from samples, and generate TypeScript, C++, go, Java, C#, Swift, etc. types from JSON Schema
 
-Generators from schemas
------------------------
+## Generators from schemas
 
 Tools that generate artifacts from schemas need not support every keyword,
 as not all keywords work well for generative use cases.
@@ -85,7 +83,7 @@ support `id`, `exclusiveMinimum`, or `exclusiveMaxium`, then as long as it does
 not require a draft-04 `$schema`, it is compatible with draft-06 since those
 are the only keywords that changed.
 
-#### Code generation
+### Code generation
 
 -   Elm
   -  [json-schema-to-elm](https://github.com/dragonwasrobot/json-schema-to-elm) - generates Elm types, JSON decoders+encoders, and fuzz tests from one or more JSON Schema files, using [dragonwasrobot/json_schema](https://github.com/dragonwasrobot/json_schema) *supports Draft 7*
@@ -108,7 +106,7 @@ are the only keywords that changed.
 -   TypeScript
   - [jsongenerator](https://github.com/jimblackler/jsonschematypes/tree/master/codegen) *JSON Schema 2019-09, draft-07, -06, -04, -03* (Apache-2.0)
 
-#### Web UI generation
+### Web UI generation
 
 _TODO: Sort by draft support._
 
@@ -132,7 +130,7 @@ Various levels of support for UI generation primarily from the validation vocabu
   -   [uniforms (Vazco)](https://github.com/vazco/uniforms) (MIT)
   -   [UI Schema for React](https://github.com/ui-schema/ui-schema) (MIT) *2019-09 / draft-08, -07, -06, -04 (incompatible `type=integer`)*
 
-#### Data from schemas
+### Data from schemas
 
 -   .Net
   -   [JsonSchema.Net.DataGeneration](https://github.com/gregsdennis/json-everything) (MIT) Data generation from JSON schemas, powered by the Bogus testing data generation library.
@@ -141,13 +139,12 @@ Various levels of support for UI generation primarily from the validation vocabu
 -   Java
   -   [jsongenerator](https://github.com/jimblackler/jsongenerator) *JSON Schema 2019-09, draft-07, -06, -04, -03* (Apache-2.0)
 
-Utilities
----------
+## Utilities
 
 Draft compatibility for utilities is generally specific to the purpose of
 the utility, and decided on a case-by-case basis.
 
-#### General processing
+### General processing
 
 -   JavaScript
   -   [json-schema-ref-parser](https://github.com/BigstickCarpet/json-schema-ref-parser) (MIT) Tools for dereferencing non-cyclic schemas, bundling referenced schemas into a single file, and other `$ref` processing.
@@ -157,7 +154,7 @@ the utility, and decided on a case-by-case basis.
       (MIT) Tools for working with schemas that handle identifiers and
       references. Build vocabularies and other JSON Schema based tools.
 
-#### Schema to Schema
+### Schema to Schema
 
 -   JavaScript
   -   [@cloudflare/json-schema-transform](https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-schema-transform) ([JSON Schema Tools](https://github.com/cloudflare/json-schema-tools)), (BSD-3-Clause) Utilities using @cloudflare/json-schema-walker for transformations including `allOf` merging and example roll-up.
@@ -166,11 +163,11 @@ the utility, and decided on a case-by-case basis.
   -   [loganvolkers/json-schema-resolve-allof](https://github.com/loganvolkers/json-schema-resolve-allof) (_license not stated_)
   -   [JSON-Schema-Instantiator](https://github.com/tomarad/JSON-Schema-Instantiator) (MIT)
 
-#### Schema draft migration
+### Schema draft migration
 
 _None currently support draft-06 or later._
 
-#### Format converters
+### Format converters
 
 -   OpenAPI
   -   [JSON Schema to OpenAPI Schema](https://github.com/wework/json-schema-to-openapi-schema) _draft-04_ Draft-06 and -07 planned per README (MIT)
@@ -182,12 +179,12 @@ _None currently support draft-06 or later._
   -   [@cloudflare/json-schema-ref-loader](https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-schema-ref-loader) ([JSON Schema Tools](https://github.com/cloudflare/json-schema-tools)), (BSD-3-Clause) Webpack loader for dereference-able schemas in JSON, JSON5, YAML, or JavaScript
   -   [@cloudflare/json-schema-apidoc-loader](https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-schema-apidoc-loader) ([JSON Schema Tools](https://github.com/cloudflare/json-schema-tools)), Back-end for [@cloudflare/doca](https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/doca), _draft-04, -06, -07, and Doca extensions_
 
-#### Testing
+### Testing
 
 -   Python
   -   [hypothesis-jsonschema](https://github.com/Zac-HD/hypothesis-jsonschema) (MPL) *draft-07, -06, -04*;  takes any schema, even with complex and interacting constraints, and returns a [Hypothesis](https://hypothesis.works/) strategy which can generate valid documents for testing.
 
-#### Editors
+### Editors
 
 -   [Altova XMLSpy 2019r3](https://www.altova.com/xmlspy-xml-editor#json_schema) - *Graphical JSON Schema editor for draft-06 and draft-7, as well as validation of JSON files based on JSON Schema*
 -   [Dashjoin JSON Schema editor](https://dashjoin.github.io/#/schema) - *Graphical online JSON Schema editor for draft-06 (minus oneOf, anyOf, allOf, not). The generated schema can be tested immediately via a form that is driven by it.*
@@ -201,36 +198,21 @@ _None currently support draft-06 or later._
 -   [WebStorm](https://www.jetbrains.com/webstorm/), [IntelliJ IDEA](https://www.jetbrains.com/idea/), and other [JetBrains IDEs](https://www.jetbrains.com/products.html?fromMenu#type=ide) - *Code completion, documentation, and validation for JSON and YAML files using JSON Schema. Support for draft-4, draft-6, and draft-7.*
 -   [Eclipse IDE](https://www.eclipse.org/downloads/eclipse-packages) - *Rich JSON edition supporting schema for instantaneous validation and error reporting, completion, documentation.*
 
-#### Documentation generators
+### Documentation generators
 
 - [jsonschematic](https://github.com/yanick/jsonschematic/) - Svelte-based schema viewer. Runs as a local web app. Supports draft-7.
 - [docson](https://github.com/lbovet/docson) - Javascript-based schema viewer.  Runs as a local web app. Supports draft-4.
 - [json-schema-for-humans](https://pypi.org/project/json-schema-for-humans/) - Generate HTML representation of a schema. Python-based. Supports draft-7.
 - [wetzel](https://github.com/CesiumGS/wetzel) - Generates Markdown and AsciiDoc. With some limitations, supports draft-3, draft-4, draft-7, and 2020-12.
 
-Schema Repositories
--------------------
+## Schema Repositories
 
 -   [SchemaStore.org](https://schemastore.org/json/) - validate against common JSON Schemas
 
 
-Schema Linter
--------------
+## Schema Linter
 
 -   [json-schema-linter](https://www.json-schema-linter.com/) - Lint/validate/parse json-schema itself, and find typos, missing properties, missing required keys, etc. Supports draft 4, 6, and 7.
 -   [Stoplight Spectral](https://stoplight.io/open-source/spectral) - A flexible JSON/YAML linter for creating automated style guides, with baked in support for OpenAPI v2/v3 and JSON Schema. Supports draft 4, 6, and 7.
 
-Hyper-Schema
----------------------
-
-<nav class="intra" markdown="1">
-
-{% assign hyper-schema-libraries = site.data.hyper-libraries-modern | sort:"name" %}
-
-{% for language in hyper-schema-libraries %}
--   [{{ language.name }}](#hyper-schema-{% if language.anchor-name %}{{ language.anchor-name }}{% else %}{{ language.name | downcase }}{% endif %})
-    {% endfor %}
-
-</nav>
-
-<!-- To add a hyper-schema library, add it in data/hyper-schema-libraries.yml -->
+## Hyper-Schema

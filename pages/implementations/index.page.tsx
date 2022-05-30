@@ -7,8 +7,8 @@ import yaml from 'js-yaml'
 import { Headline1, Headline2, Headline3 } from 'components/Headlines'
 import slugify from 'slugify'
 import { useRouter } from 'next/router'
-import useSetUrlParam from '~/lib/useSetUrlParam'
 import classnames from 'classnames'
+// @ts-ignore
 import zeroFill from 'zero-fill'
 
 const DRAFT_ORDER = [
@@ -43,32 +43,41 @@ export async function getStaticProps() {
   }
 }
 
-export default function ContentExample ({ blocks, validators }: { blocks: any, validators: { name: string }[] }) {
-  const router = useRouter()
-  const setUrlParam = useSetUrlParam()
+type ImplementationByLanguage = { name: string }
+
+export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
     <Layout>
       <Headline1>Implementations</Headline1>
       <StyledMarkdown markdown={blocks.intro} />
 
       <Headline2>Validators</Headline2>
+      <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
+      <StyledMarkdown markdown={blocks.main} />
+      <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+    </Layout>
+  )
+}
+
+function ImplementationTable ({ implementationsByLanguage, prefix }: { implementationsByLanguage: any, prefix: string }) {
+  const router = useRouter()
+  return (
+    <>
       <div className='flex flex-row flex-wrap grid-cols-7 grid'>
-        {validators.map((validator, index) => {
-          const slug = slugify(validator.name, { lower: true, trim: true })
+        {implementationsByLanguage.map((implementationByLanguage: any, index: number) => {
+          const slug = prefix + slugify(implementationByLanguage.name, { lower: true, trim: true })
           const isActive = router.query.language === slug
           return (
-            <div
+            <a
               key={index}
-              onClick={() => {
-                setUrlParam('language', isActive ? null : slug)
-              }}
+              href={`#${slug}`}
               className={classnames('block text-center text-white rounded p-2 cursor-pointer flex-1 m-1', {
                 'bg-blue-800': isActive,
                 'bg-blue-500 hover:bg-blue-600': !isActive
               })}
             >
-              {validator.name}
-            </div>
+              {implementationByLanguage.name}
+            </a>
           )
         })}
       </div>
@@ -89,8 +98,8 @@ export default function ContentExample ({ blocks, validators }: { blocks: any, v
             </tr>
           </thead>
           <tbody>
-            {validators.map((validator, index) => {
-              const slug = slugify(validator.name, { lower: true, trim: true })
+            {implementationsByLanguage.map((implementationByLanguage: any, index: number) => {
+              const slug = prefix + slugify(implementationByLanguage.name, { lower: true, trim: true })
               const isActive = router.query.language === slug
               if (router.query.language && !isActive) return null
 
@@ -100,10 +109,10 @@ export default function ContentExample ({ blocks, validators }: { blocks: any, v
                 >
                   <tr>
                     <td colSpan={3}>
-                      <Headline3>{validator.name}</Headline3>
+                      <Headline3 attributes={{ slug }} >{implementationByLanguage.name}</Headline3>
                     </td>
                   </tr>
-                  {validator.implementations.map((implementation, index) => {
+                  {implementationByLanguage.implementations.map((implementation: any, index: number) => {
                     const allDrafts = [
                       ...(implementation['date-draft'] || []),
                       ...(implementation['draft'] || [])
@@ -116,7 +125,7 @@ export default function ContentExample ({ blocks, validators }: { blocks: any, v
                           <a className='text-blue-500' href={implementation.url}>{implementation.name}</a>
                         </td>
                         <td className='pl-6'>
-                          {implementation.notes}
+                          <StyledMarkdown markdown={implementation.notes} />
                         </td>
                         <td className='pl-6 pb-2'>
                           {allDrafts
@@ -140,9 +149,6 @@ export default function ContentExample ({ blocks, validators }: { blocks: any, v
           </tbody>
         </table>
       </div>
-
-
-      <StyledMarkdown markdown={blocks.main} />
-    </Layout>
+    </>
   )
 }

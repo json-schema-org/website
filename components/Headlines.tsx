@@ -7,9 +7,9 @@ import { HOST } from '~/lib/config'
 type HeadlineProps = { children: string | React.ReactNode[], attributes?: Record<string, any> }
 
 export const Headline1 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline1Tag} attributes={attributes}>{children}</Headline>
-export const Headline2 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline2Tag} {...attributes}>{children}</Headline>
-export const Headline3 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline3Tag} {...attributes}>{children}</Headline>
-export const Headline4 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline4Tag} {...attributes}>{children}</Headline>
+export const Headline2 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline2Tag} attributes={attributes}>{children}</Headline>
+export const Headline3 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline3Tag} attributes={attributes}>{children}</Headline>
+export const Headline4 = ({ children, attributes }: HeadlineProps) => <Headline Tag={Headline4Tag} attributes={attributes}>{children}</Headline>
 
 const Headline = ({ children, Tag, attributes: propAttributes }: {
   children: string | React.ReactNode[]
@@ -22,7 +22,7 @@ const Headline = ({ children, Tag, attributes: propAttributes }: {
 
   const attributes = {
     ...propAttributes,
-    id: slug,
+    id: propAttributes?.slug || slug,
     className: classnames('group cursor-pointer hover:underline', propAttributes?.className),
     onClick: () => {
       const url = new URL(asPath, HOST)
