@@ -2,7 +2,8 @@ import slugify from 'slugify'
 
 const FRAGMENT_REGEX = /\[#(?<slug>(\w|-|_)*)\]/g
 
-export default function slugifyMarkdownHeadline (markdownChildren: string | any[]) {
+export default function slugifyMarkdownHeadline (markdownChildren: string | any[]): string {
+  if (!markdownChildren) return ''
   if (typeof markdownChildren === 'string') return slugify(markdownChildren, { lower: true, trim: true })
   const metaSlug = markdownChildren.reduce((acc, child) => {
     if (acc) return acc

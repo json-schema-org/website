@@ -7,7 +7,7 @@ layout: page
 
 You can find the latest released draft on the [Specification](/specification) page.  Older drafts are expired, but may be of historical interest.  The complex numbering and naming system for drafts and meta-schemas is fully explained here as well.
 
-<TableOfContent depth={3} />
+<TableOfContent depth={4} />
 
 ## Understanding draft names and numbers
 
