@@ -1,9 +1,8 @@
 ---
-layout: page
-redirect_from: "/documentation.html"
-permalink: /specification.html
 title: Specification
 ---
+
+# Specification
 
 The current version is *2020-12*!
 The previous version was 2019-09.
