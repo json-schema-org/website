@@ -191,7 +191,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ children }) => ( <th className='border border-slate-300 p-4 font-semibold'>{children}</th>)
             },
             td: {
-              component: ({ children }) => ( <td className='border border-slate-200 p-4'>{children}</td>)
+              component: ({ children, rowSpan }) => ( <td className='border border-slate-200 p-4' rowSpan={rowSpan}>{children}</td>)
             },
             tr: {
               component: ({ children }) => ( <tr className='even:bg-blue-50 even:bg-opacity-40'>{children}</tr>)
@@ -314,13 +314,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
             },
             TableOfContent: {
-              component: () => {
+              component: ({ depth }) => {
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const fullMarkdown = useContext(FullMarkdownContext)
                 if (!fullMarkdown) return null
                 return (
                   <div className='text-blue-500 mt-3 bg-slate-50 pt-6 pb-3 px-3 rounded-l border-l-blue-400 border-l-[3px]'>
-                    <TableOfContentMarkdown markdown={fullMarkdown} />
+                    <TableOfContentMarkdown markdown={fullMarkdown} depth={depth} />
                   </div>
                 )
               }
@@ -334,7 +334,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
   )
 }
 
-export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
+export function TableOfContentMarkdown ({ markdown, depth = 2 }: { markdown: string, depth?: number }) {
   return (
     <Markdown
       options={{
@@ -361,26 +361,44 @@ export function TableOfContentMarkdown ({ markdown }: { markdown: string }) {
               )
             }
           },
-          h3: { component: () => null },
-          h4: { component: () => null },
-          strong: { component: () => null },
-          p: { component: () => null },
-          a: { component: () => null },
-          ul: { component: () => null },
-          table: { component: () => null },
-          code: { component: () => null },
-          pre: { component: () => null },
-          blockquote: { component: () => null },
-          span: { component: () => null },
-          div: { component: () => null },
-          figure: { component: () => null },
-          Bigquote: { component: () => null },
+          h3: depth >= 3 ? {
+            component: ({ children }) => {
+              const slug = slugifyMarkdownHeadline(children)
+              return (
+                <a
+                  href={`#${slug}`}
+                  className='block cursor-pointer mb-3 text-sm leading-4 ml-7 hover:text-blue-500'
+                >{children}</a>
+              )
+            }
+          } : { component: () => null },
+          h4: depth >= 4 ? {
+            component: ({ children }) => {
+              const slug = slugifyMarkdownHeadline(children)
+              return (
+                <a
+                  href={`#${slug}`}
+                  className='block cursor-pointer mb-3 text-sm leading-4 ml-10 hover:text-blue-500'
+                >{children}</a>
+              )
+            }
+          } : { component: () => null },
+          ...hiddenElements('strong', 'p', 'a', 'ul', 'table', 'code', 'pre', 'blockquote', 'span', 'div', 'figure', 'Bigquote'),
         }
       }}
     >
       {markdown}
     </Markdown>
   )
+}
+
+const hiddenElements = (...elements: string[]) => {
+  return elements.reduce((acc, element) => {
+    return {
+      ...acc,
+      [element]: { component: () => null }
+    }
+  }, {})
 }
 
 const checkHasContent = (reactNode: React.ReactChild) => {
