@@ -174,11 +174,10 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
             return allPathDecorationsMap[stringPath] || []
           }}
           renderLeaf={(props: any) => {
-            const { leaf, children } = props
+            const { leaf, children, attributes } = props
             return (
               <span
                 onClick={() => {
-
                   console.log('sdfsdf')
                 }}
                 className={classnames('p-b-2', {
@@ -187,26 +186,21 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
                   'text-slate-400': ['objectStartBracket', 'objectEndBracket', 'arrayComma', 'arrayStartBracket', 'arrayEndBracket'].includes(leaf.syntaxPart?.type),
                   'text-lime-200': ['numberValue', 'stringValue', 'booleanValue', 'nullValue'].includes(leaf.syntaxPart?.type),
                 })}
-              >
-                {children}
-              </span>
+                {...attributes}
+              >{children}</span>
             )
           }}
           renderElement={(props: any) => {
             // This will be the path to the image element.
 
-            const { element, children } = props
+            const { element, children, attributes } = props
             const path = ReactEditor.findPath(editor, element)
             const line = path[0] + 1
             if (element.type === 'paragraph') {
               return (
-                <span className='relative flex flex-row first:pt-4 last:pb-4 ' {...props}>
-                  <div className='absolute px-4 w-16 text-slate-500 select-none' contentEditable={false}>
-                    {line}
-                  </div>
-                  <span className='ml-12 text-white pl-4'>
-                    {children}
-                  </span>
+                <span className='relative flex flex-row first:pt-4 last:pb-4 ' {...attributes}>
+                  <div className='absolute px-4 w-16 text-slate-500 select-none' contentEditable={false}>{line}</div>
+                  <span className='ml-12 text-white pl-4'>{children}</span>
                 </span>
               )
             }

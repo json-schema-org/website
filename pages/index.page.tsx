@@ -68,7 +68,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
           target='_blank' rel='noreferrer'>💬 Community Discussions</a>
       </div>
 
-      We hold weekly Office Hours and twice monthly Open Community Working Meetings.
+      Office Hours are every first Tuesday of the month at 15:00 UTC, and by appointment.
 
       <div className='wrapper text-center buttons'>
         <a className='button border button-center' href='https://github.com/json-schema-org/community/discussions/34' target='_blank' rel='noreferrer'>🧑‍💻 Office Hours</a>
