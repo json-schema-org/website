@@ -14,7 +14,7 @@ type Props = {
   whiteBg?: boolean
 }
 
-const responsiveClasses = 'w-full xl:w-[1200px] px-2 sm:px-4'
+const responsiveClasses = 'w-full xl:w-[1200px] px-2 sm:px-4 lg:px-8'
 
 export default function Layout ({ children, mainClassName, metaTitle, whiteBg }: Props) {
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
@@ -36,7 +36,7 @@ export default function Layout ({ children, mainClassName, metaTitle, whiteBg }:
 
         <div className={classnames({ 'bg-white': whiteBg })}>
           <main className={
-            classnames(mainClassName, responsiveClasses, 'bg-white rounded-xl py-4 mx-auto')
+            classnames(mainClassName, responsiveClasses, 'bg-white xl:rounded-xl py-4 mx-auto')
           }>
             <div>
               <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />

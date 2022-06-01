@@ -29,15 +29,16 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
         <Headline1 attributes={{ className: 'text-center' }}>{frontmatter.title || 'NO TITLE!'}</Headline1>
       </div>
 
-      <div className='relative flex flex-row'>
-        <div className='flex w-[320px] px-4 pr-8'>
+      <div className='relative flex flex-col lg:flex-row'>
+        <div className='flex lg:w-1/4 pr-4 pr-8'>
           <div className='block -mt-4 w-full'>
-            <div className='sticky top-0 overflow-y-auto h-auto pt-4 w-full'>
+            <div className='sticky top-0 overflow-y-auto h-auto pt-4 w-full w-full items-center lg:items-start flex justify-between flex-row lg:flex-col'>
               <Link href='/blog'>
-                <a className='font-semibold text-sm pb-5 text-slate-700 hover:text-slate-800 inline-flex flex-row items-center'>
-                  <img src='/icons/left-arrow.svg' className='h-4 w-4 mr-2' /> Go back to blog</a>
+                <a className='font-semibold text-sm pb-0 lg:pb-5 text-slate-700 hover:text-slate-800 inline-flex flex-row items-center'>
+                  <img src='/icons/left-arrow.svg' className='h-4 w-4 mr-2' /> Go back to blog
+                </a>
               </Link>
-              <div className='pt-6 border-t border-slate-100 pr-4 border-r border-slate-100'>
+              <div className='pt-6 lg:border-t border-slate-100 pr-4 border-none lg:border-r border-slate-100'>
                 {(frontmatter.authors || []).map((author: any, index: number) => {
                   return (
                     <div key={index} className='flex flex-row items-center mb-3'>
@@ -57,7 +58,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
                   )
                 })}
               </div>
-              <div className='pt-12 pr-4 border-r border-slate-100'>
+              <div className='pt-12 pr-4 border-r border-slate-100 hidden lg:block'>
                 <div className='uppercase text-xs text-slate-400 mb-4'>on this page</div>
                 <TableOfContentMarkdown markdown={content} />
               </div>
@@ -65,8 +66,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
           </div>
 
         </div>
-        <div className='flex-1 max-w-[840px]
-        '>
+        <div className='flex-1'>
           <div
             className='bg-slate-50 h-[400px] w-full rounded-lg mr-3 bg-cover mb-10 bg-center'
             style={{ backgroundImage: `url(${frontmatter.cover})` }}

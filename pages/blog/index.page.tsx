@@ -76,7 +76,7 @@ export default function StaticMarkdownPage ({ blogPosts }: { blogPosts: any[] })
         </div>
       )}
 
-      <div className='grid grid-cols-3 gap-4 grid-flow-row mb-20'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 grid-flow-row mb-20'>
         {blogPosts
           .filter(post => {
             if (!typeFilter) return true
