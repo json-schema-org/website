@@ -5,100 +5,90 @@ import classnames from 'classnames'
 import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
 import { HOST } from '~/lib/config'
+import useStore from '~/store'
 
 type Props = {
   children: React.ReactNode
   mainClassName?: string
-  mainClassNameWidth?: string
   metaTitle?: string
+  whiteBg?: boolean
 }
 
-const Logo = () => (
-  <Link href='/'>
-    <a>
-      <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
-        <img src='/logo-blue.svg' className='h-12 mr-2' />
-        <div className='inline-block'>
-          JSON<br />
-          Schema
-        </div>
-      </div>
-    </a>
-  </Link>
-)
-export default function Layout ({ children, mainClassName, mainClassNameWidth, metaTitle }: Props) {
+const responsiveClasses = 'w-full xl:w-[1200px] px-2 sm:px-4'
 
+export default function Layout ({ children, mainClassName, metaTitle, whiteBg }: Props) {
+  const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
     <div className='bg-slate-100 min-h-screen relative flex flex-col justify-between'>
+      <FaviconHead />
       <Head>
         <title>JSON Schema {metaTitle ? ` - ${metaTitle}` : ''}</title>
         <meta name='description' content='JSON Schema' />
-        <link rel='icon' href='/favicon.ico' />
       </Head>
+
       <div>
-        <header className='flex flex-row justify-between py-4 p-4 w-[1200px] mx-auto'>
+        <header className={classnames(responsiveClasses, 'py-4 flex flex-row justify-between mx-auto')}>
           <div className='flex flex-row items-center'>
             <Logo />
           </div>
-
-          <div className='py-2 flex flex-row items-center'>
-            <MainNavLink
-              uri='/understanding-json-schema'
-              label='Docs'
-              activeRoutes={[
-                '/understanding-json-schema',
-                '/understanding-json-schema/[slug]',
-                '/understanding-json-schema/reference/[slug]',
-                '/learn/[slug]',
-              ]}
-            />
-            <MainNavLink
-              uri='/blog'
-              label='Blog'
-              activeRoutes={['/blog', '/blog/posts/[slug]']}
-            />
-            <Search />
-          </div>
+          <MainNavigation />
         </header>
 
-        <main className={
-          classnames(mainClassName, mainClassNameWidth, 'bg-white rounded-xl py-4 px-8 mx-auto', {
-            'w-[1200px]': !mainClassNameWidth
-          })
-        }>
-          <div>
-            <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />
-          </div>
-          {children}
-        </main>
+        <div className={classnames({ 'bg-white': whiteBg })}>
+          <main className={
+            classnames(mainClassName, responsiveClasses, 'bg-white rounded-xl py-4 mx-auto')
+          }>
+            <div>
+              <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />
+            </div>
+            {showMobileNav ? (
+              <MobileDocsNav />
+            ) : children}
+          </main>
+        </div>
       </div>
 
-      <footer className='w-[1200px] mx-auto p-4 py-16 flex flex-row'>
-        <div className='w-1/4 flex flex-col items-start'>
-          <div className='font-semibold text-sm text-slate-800 mb-1'>Specification</div>
-          <Link href='/specification'>
-            <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Overview</a>
-          </Link>
-        </div>
-        <div className='w-1/4 flex flex-col items-start'>
-          <div className='font-semibold text-sm text-slate-800 mb-1'>Learn</div>
-          <a href='/learn/getting-started-step-by-step' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Getting Started Step-By-Step</a>
-          <a href='/understanding-json-schema/conventions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Conventions on json-schema.org</a>
-        </div>
-        <div className='w-1/4 flex flex-col items-start'>
-          <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
-          <a href='https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
-          <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
-          <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
-          <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>
-          <a href='https://groups.google.com/g/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Google Groups</a>
-        </div>
-        <div className='w-1/4 flex flex-col items-start'>
-          <Logo />
-          <a href='https://opencollective.com/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3 mt-2'>Open Collective</a>
-          <a href='/understanding-json-schema/credits' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Acknowledgments</a>
-        </div>
-      </footer>
+      <Footer />
+    </div>
+  )
+}
+
+const ACTIVE_DOCS_ROUTES = [
+  '/understanding-json-schema',
+  '/understanding-json-schema/[slug]',
+  '/understanding-json-schema/reference/[slug]',
+  '/learn/[slug]',
+]
+
+const MainNavigation = () => {
+  const router = useRouter()
+  const docsAreActive = (ACTIVE_DOCS_ROUTES ).includes(router.route)
+
+  return (
+    <div className='py-2 flex flex-row items-center'>
+
+      <MainNavLink
+        className='hidden md:block'
+        uri='/understanding-json-schema'
+        label='Docs'
+        activeRoutes={ACTIVE_DOCS_ROUTES}
+      />
+      <div
+        className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4', {
+          'text-blue-500 hover:text-blue-600': docsAreActive,
+          'text-slate-600 hover:text-slate-800': !docsAreActive
+        })}
+        onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
+      >
+        <img src='/icons/menu.svg' className='h-4 w-4 mr-2' />
+        Docs
+      </div>
+      <MainNavLink
+        uri='/blog'
+        label='Blog'
+        activeRoutes={['/blog', '/blog/posts/[slug]']}
+      />
+      <Search />
     </div>
   )
 }
@@ -113,16 +103,15 @@ const Search = () => {
   )
 }
 
-const MainNavLink = ({ uri, label, activeRoutes }: { uri: string, label: string, activeRoutes?: string[] }) => {
+const MainNavLink = ({ uri, label, activeRoutes, className }: { uri: string, label: string, activeRoutes?: string[], className?: string }) => {
   const router = useRouter()
   const isActive = (activeRoutes || []).includes(router.route)
   return (
     <Link href={uri}>
-      <a
-        className={classnames('font-semibold  p-4', {
-          'text-blue-500 hover:text-blue-600': isActive,
-          'text-slate-600 hover:text-slate-800': !isActive
-        })}
+      <a className={classnames(className, 'font-semibold p-2 md:p-4', {
+        'text-blue-500 hover:text-blue-600': isActive,
+        'text-slate-600 hover:text-slate-800': !isActive
+      })}
       >{label}</a>
     </Link>
   )
@@ -135,21 +124,42 @@ type LayoutDocsProps = {
 
 export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps) => {
   return (
-    <Layout mainClassNameWidth='w-full' metaTitle={metaTitle}>
-      <div className='w-[1200px] mx-auto flex flex-row grid grid-cols-4'>
-        <DocsNav />
-        <div className='col-span-3'>
+    <Layout whiteBg metaTitle={metaTitle}>
+      <div className='mx-auto flex flex-row grid grid-cols-4'>
+        <div className='hidden md:block'>
+          <DocsNav />
+        </div>
+        <div className='col-span-4 md:col-span-3'>
           {children}
         </div>
-
       </div>
     </Layout>
   )
 }
 
+const MobileDocsNav = () => {
+  return (
+    <div className='flex flex-col fixed bg-white w-full h-full z-[100] top-0 left-0'>
+      <div className='flex flex-row justify-between p-8 pb-0'>
+        <div className='text-blue-500 text-2xl font-bold'>
+          Docs
+        </div>
+        <div
+          style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
+          className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat -mr-4 -mt-4 cursor-pointer'
+          onClick={() => useStore.setState({ overlayNavigation: null })}
+        />
+      </div>
+      <div className='flex-1 overflow-y-scroll px-8 pt-0 pb-16'>
+        <DocsNav />
+      </div>
+    </div>
+  )
+}
+
 const DocsNav = () => {
   return (
-    <div className='pt-2'>
+    <div className='pt-2 pr-2'>
       <SegmentHeadline label='Getting started' />
       <DocLink uri='/understanding-json-schema' label='Overview' />
       <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
@@ -206,3 +216,74 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
     </Link>
   )
 }
+
+const Footer = () => (
+  <footer className={classnames(responsiveClasses, 'mx-auto p-4 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ')}>
+    <div className='flex flex-col items-start'>
+      <div className='font-semibold text-sm text-slate-800 mb-1'>Specification</div>
+      <Link href='/specification'>
+        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Overview</a>
+      </Link>
+    </div>
+    <div className='flex flex-col items-start mt-8 sm:mt-0'>
+      <div className='font-semibold text-sm text-slate-800 mb-1'>Learn</div>
+      <a href='/learn/getting-started-step-by-step' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Getting Started Step-By-Step</a>
+      <a href='/understanding-json-schema/conventions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Conventions on json-schema.org</a>
+    </div>
+    <div className='flex flex-col items-start mt-8 sm:mt-0'>
+      <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
+      <a href='https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
+      <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
+      <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
+      <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>
+      <a href='https://groups.google.com/g/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Google Groups</a>
+    </div>
+    <div className='flex flex-col items-start mt-8 sm:mt-16 lg:mt-0'>
+      <Logo />
+      <a href='https://opencollective.com/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3 mt-2'>Open Collective</a>
+      <a href='/understanding-json-schema/credits' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Acknowledgments</a>
+    </div>
+  </footer>
+)
+
+const Logo = () => (
+  <Link href='/'>
+    <a>
+      <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
+        <img src='/logo-blue.svg' className='h-12 mr-2' />
+        <div className='inline-block'>
+          JSON<br />
+          Schema
+        </div>
+      </div>
+    </a>
+  </Link>
+)
+
+const FaviconHead = () => {
+  const [isDarkMode, setIsDarkMode] = React.useState(false)
+  const onUpdate = React.useCallback((matcher: MediaQueryList) => {
+    setIsDarkMode(matcher.matches)
+  }, [])
+
+  React.useEffect(() => {
+    const matcher: MediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
+    matcher.addEventListener('change', () => onUpdate(matcher))
+    onUpdate(matcher)
+  }, [])
+
+  if (isDarkMode) {
+    return (
+      <Head>
+        <link rel='icon' type='image/svg' href='/logo-blue.svg' id='dark-scheme-icon' />
+      </Head>
+
+    )
+  }
+  return (
+    <Head>
+      <link rel='icon' type='image/svg+xml' href='/favicon/favicon.ico' id='light-scheme-icon' />
+    </Head>
+  )
+}
+

@@ -29,7 +29,8 @@
     "slate": "^0.78.0",
     "slate-react": "^0.77.4",
     "slugify": "^1.6.5",
-    "zero-fill": "^2.2.4"
+    "zero-fill": "^2.2.4",
+    "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "@next/eslint-plugin-next": "^12.1.4",
