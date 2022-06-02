@@ -18,6 +18,9 @@ const responsiveClasses = 'w-full xl:w-[1200px] px-2 sm:px-4 lg:px-8'
 
 export default function Layout ({ children, mainClassName, metaTitle, whiteBg }: Props) {
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
+  const router = useRouter()
+  React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
+
   return (
     <div className='bg-slate-100 min-h-screen relative flex flex-col justify-between'>
       <FaviconHead />
@@ -209,10 +212,12 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   const isActive = uri === stringUrl
   return (
     <Link href={uri}>
-      <a className={classnames('block pl-4 border-l-2 py-1', {
-        'text-slate-600 border-l-slate-100': !isActive,
-        'text-blue-500 border-l-blue-300 font-semibold': isActive,
-      })}>{label}</a>
+      <a
+        className={classnames('block pl-4 border-l-2 py-1', {
+          'text-slate-600 border-l-slate-100': !isActive,
+          'text-blue-500 border-l-blue-300 font-semibold': isActive,
+        })}
+      >{label}</a>
     </Link>
   )
 }
