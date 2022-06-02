@@ -19,7 +19,8 @@ const REGEX_TAB_GROUPS = /\[tabs-start\s*"(?<label>.*)"\]((?!\[tabs-start).|\n)*
 
 enum BlockContextValue {
   Infobox,
-  CodeBlock
+  CodeBlock,
+  Details
 }
 
 type Element = {
@@ -263,6 +264,29 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </div>
               )
             },
+            summary: {
+              component: (props) => {
+                const { children } = props
+                console.log('propssummary', props)
+                return (
+                  <summary className='bg-slate-100 -mx-4 p-4 rounded-xl my-3 cursor-pointer hover:bg-slate-200'>
+                    {children}
+                  </summary>
+                )
+              }
+            },
+            details: {
+              component: (props) => {
+                const {children} = props
+                return (
+                  <BlockContext.Provider value={BlockContextValue.Details}>
+                    <details className='bg-slate-50 p-0 rounded-xl my-3 px-4'>
+                      {children}
+                    </details>
+                  </BlockContext.Provider>
+                )
+              }
+            },
             Star: {
               component: ({ label }) => {
                 return (
@@ -288,9 +312,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 return (
                   <BlockContext.Provider value={BlockContextValue.Infobox}>
                     <div className='my-2'>
-                      <div className='bg-amber-100 inline-block text-sm rounded-t-lg px-6 py-1 text-amber-600'>
-                        {label}
-                      </div>
+                      {label && (
+                        <div className='bg-amber-100 inline-block text-sm rounded-t-lg px-6 py-1 text-amber-600'>
+                          {label}
+                        </div>
+                      )}
                       <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
                         <div className='font'>
                           {children}

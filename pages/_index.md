@@ -1,3 +1,11 @@
+## About the community
+We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
+We want to keep our community welcoming and inclusive, so please read our [JSON Schema Organizational Code of Conduct](https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md). (This is a combination of the Contributor Covenant and IETF BCP 54.)
+The JSON Schema team and community are here to help!
+At any point, feel free to join our [Slack server](/slack).
+Our Slack server has limited history, so we also use [GitHub Discussions](https://github.com/json-schema-org/community/discussions).
+We monitor the `jsonschema` tag on StackOverflow.
+
 ## Project Status
 
 2021-02-01: Draft 2020-12 has been published!
@@ -7,7 +15,7 @@ The IETF document IDs are of the form `draft-bhutton-*-00`.
 We are using dates for meta-schemas, which are what implementations should use to determine behavior,
 so we will usually refer to `2020-12` (without the word "draft") on this web site.
 
-See the [Specification page](specification.html) for details about naming and numbering.
+See the [Specification page](/specification) for details about naming and numbering.
 
 ### The Path to Standardization
 
@@ -29,8 +37,9 @@ Internet-Drafts expire after six months, so our goal is to publish often enough 
 </details>
 
 ### Use of the _draft_ designation
-Releases of the JSON schema specification and meta schemas use the _draft_ designation primarily for historical reasons stemming from the relationship of this specification to IETF ([explained here](https://json-schema.org/specification-links.html#understanding-draft-names-and-numbers)).
+Releases of the JSON schema specification and meta schemas use the _draft_ designation primarily for historical reasons stemming from the relationship of this specification to IETF ([explained here](https://json-schema.org/specification-links#understanding-draft-names-and-numbers)).
 The use of this designation is under review but will continue until this review process completes to avoid changing the designation style multiple times.
+
 <details markdown="1">
 <summary>Read more</summary>
 
@@ -42,6 +51,7 @@ Similarly to most specifications, the JSON schema specification will continue to
 
 When the _draft_ designation is dropped this may indicate that the frequency of releases and amount of changes in each release will decrease, but it won't indicate that no new releases will be made, or that all future releases will be backwards compatible.
 </details>
+
 ## Quickstart
 
 The JSON document being validated or described we call the *instance*, and the document containing the description is called the *schema*.
@@ -61,7 +71,7 @@ You can apply constraints on an instance by adding validation keywords to the sc
   "type": "string"
 }
 ```
-
+ 
 JSON Schema is hypermedia ready, and ideal for annotating your existing JSON-based HTTP API. JSON Schema documents are identified by URIs, which can be used in HTTP Link headers, and inside JSON Schema documents to allow recursive definitions.
 
 ## JSON Hyper-Schema
@@ -76,9 +86,11 @@ We may revisit JSON Hyper-Schema at a later date.
 
 Interested? Check out:
 
-* The [specification](./specification.md)
+* The [specification](/specification)
+* the growing list of [JSON Schema software](/implementations)
 
-* the growing list of [JSON Schema software](./implementations.md)
 
-We encourage updating to the latest specification where possible, which is 2020-12.
-
+## Latest version of JSON Schema
+<Infobox>
+We encourage updating to the latest specification where possible, which is `2020-12`.
+</Infobox>

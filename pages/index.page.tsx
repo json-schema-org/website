@@ -3,6 +3,8 @@ import Layout from '~/components/Layout'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
+import Link from 'next/link'
+import {Headline2} from '~/components/Headlines'
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/_index.md', 'utf-8')
@@ -17,73 +19,76 @@ export async function getStaticProps() {
 const Home = ({ blocks }: { blocks: any[] }) => {
   return (
     <Layout
-      mainClassName='flex flex-col items-center'
+      mainClassName='flex flex-col'
+      hideAds
     >
-      <h1 className='text-5xl mt-[100px] font-black text-center'>
-        Describe and validate JSON documents
-      </h1>
-      <h2 className='text-center text-lg text-slate-600 mt-6 max-w-4xl'>
-        JSON schema is the standard vocabulary for describing JSON data.<br />It validates documents and provides a clear human- and machine- readable documentation.
-      </h2>
+      <div className='flex flex-col items-center'>
+        <div
+          className='py-[220px] bg-no-repeat bg-center bg-cover -mt-4 -mx-1 sm:-mx-4'
+          style={{ backgroundImage: 'url("/img/stage-bg.svg")' }}
+        >
+          <h1 className='text-5xl font-black text-center'>
+            Describe and validate JSON documents
+          </h1>
+          <h2 className='text-center text-lg text-slate-600 mt-6 max-w-4xl'>
+            JSON schema is the standard vocabulary for describing JSON data.<br />It validates documents and provides a clear human- and machine- readable documentation.
+          </h2>
+        </div>
 
-      <br /><br />
-      <h2 className='mt-10 text-2xl font-bold'>
-        Application areas
-      </h2>
-      automated testing
-      quality assurance of client submitted data
+        <div className='grid grid-cols-1 sm:grid-cols-3 w-full gap-4'>
+          <Link href='/learn/getting-started-step-by-step'>
+            <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
+              <div className='text-5xl mb-2'>
+                👋
+              </div>
+              Getting started
+            </a>
+          </Link>
+          <Link href='/learn/getting-started-step-by-step'>
+            <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
+              <div className='text-5xl mb-2'>
+                <img src='/img/logos/slack.svg' className='h-12 w-12' />
+              </div>
+              Open JSON Schema Slack
+            </a>
+          </Link>
+          <a
+            href='https://github.com/json-schema-org/community/discussions'
+            className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'
+          >
+            <div className='text-5xl mb-2'>
+              💬
+            </div>
+            GitHub Community Discussions
+          </a>
+        </div>
+      </div>
 
-      <h2 className='mt-10 text-2xl font-bold'>
-        getting started
-      </h2>
-      We have our other [learning resources](/learn), including the [Understanding JSON Schema documentation](/understanding-json-schema).
 
-
-      <h2 className='mt-10 text-2xl font-bold'>
-        community
-      </h2>
-      We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
-
-      We want to keep our community welcoming and inclusive, so please read our [JSON Schema Organizational Code of Conduct](https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md). (This is a combination of the Contributor Covenant and IETF BCP 54.)
-
-      The JSON Schema team and community are here to help!
-
-      At any point, feel free to join our [Slack server](/slack).
-
-      Our Slack server has limited history, so we also use [GitHub Discussions](https://github.com/json-schema-org/community/discussions).
-
-      We monitor the `jsonschema` tag on StackOverflow.
-
-      Learn, Get help, Shape the Community, Chat, with the JSON Schema team and Community!
-      <div className='wrapper text-center buttons'>
-        <a className='button border button-center' href='/learn/getting-started-step-by-step'>👋 Getting Started</a>
-        <a className='button border button-center' href='/slack' target='_blank'>
-          <img className='small-svg-logo'
-            src='/assets/logo-slack.svg'
-            height='1.3em' width='1.3em' /> Open
-          JSON Schema Slack</a>
+      <Headline2>
+        Regular activities
+      </Headline2>
+      <p className='text-slate-600 block leading-7 pb-4'>
+        We hold weekly Office Hours and twice monthly Open Community Working Meetings.
+      </p>
+      <div className='flex flex-col sm:flex-row py-4'>
         <a
-          className='button border button-center'
           href='https://github.com/json-schema-org/community/discussions'
-          target='_blank' rel='noreferrer'>💬 Community Discussions</a>
+          className='border inline-flex flex-col items-center justify-center h-14 rounded-2xl hover:shadow-sm transition-shadow text-lg font-semibold px-10 text-lg md:text-xl lg:text-2xl sm:mr-4'
+        >🧑‍💻 Office Hours</a>
+        <a
+          href='https://github.com/json-schema-org/community/discussions/35'
+          className='border inline-flex flex-col items-center justify-center h-14 rounded-2xl hover:shadow-sm transition-shadow text-lg font-semibold px-10 text-lg md:text-xl lg:text-2xl mt-4 sm:mt-0'
+        >👷 Open Community Working Meetings</a>
       </div>
-
-      Office Hours are every first Tuesday of the month at 15:00 UTC, and by appointment.
-
-      <div className='wrapper text-center buttons'>
-        <a className='button border button-center' href='https://github.com/json-schema-org/community/discussions/34' target='_blank' rel='noreferrer'>🧑‍💻 Office Hours</a>
-        <a className='button border button-center' href='https://github.com/json-schema-org/community/discussions/35' target='_blank' rel='noreferrer'>👷 Open Community Working Meetings</a>
-      </div>
-      Office Hours are every Tuesday at 15:00 UTC.
-
-      Open Community Working Meetings are every First and Third Friday of the month at 12:00 PT.
-
+      <p className='text-slate-600 block leading-7 pb-4'>
+        Office Hours are every first Tuesday of the month at 15:00 UTC, and by appointment.
+      </p>
+      <p className='text-slate-600 block leading-7 pb-4'>
+        Open Community Working Meetings are every First and Third Friday of the month at 12:00 PT.
+      </p>
 
       <StyledMarkdown markdown={blocks[0]} />
-
-
-
-
     </Layout>
   )
 }

@@ -12,11 +12,12 @@ type Props = {
   mainClassName?: string
   metaTitle?: string
   whiteBg?: boolean
+  hideAds?: boolean
 }
 
 const responsiveClasses = 'w-full xl:w-[1200px] px-2 sm:px-4 lg:px-8'
 
-export default function Layout ({ children, mainClassName, metaTitle, whiteBg }: Props) {
+export default function Layout ({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   const router = useRouter()
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
@@ -41,9 +42,11 @@ export default function Layout ({ children, mainClassName, metaTitle, whiteBg }:
           <main className={
             classnames(mainClassName, responsiveClasses, 'bg-white xl:rounded-xl py-4 mx-auto')
           }>
-            <div>
-              <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />
-            </div>
+            {!hideAds && (
+              <div>
+                <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />
+              </div>
+            )}
             {showMobileNav ? (
               <MobileDocsNav />
             ) : children}
