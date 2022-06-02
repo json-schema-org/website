@@ -4,7 +4,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
 import Link from 'next/link'
-import {Headline2} from '~/components/Headlines'
+import { Headline2 } from '~/components/Headlines'
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/_index.md', 'utf-8')

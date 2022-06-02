@@ -265,25 +265,18 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               )
             },
             summary: {
-              component: (props) => {
-                const { children } = props
-                console.log('propssummary', props)
-                return (
-                  <summary className='bg-slate-100 -mx-4 p-4 rounded-xl my-3 cursor-pointer hover:bg-slate-200'>
-                    {children}
-                  </summary>
-                )
-              }
+              component: ({ children }) => (
+                <summary className='bg-slate-100 -mx-4 p-4 rounded-xl my-3 cursor-pointer hover:bg-slate-200'>
+                  {children}
+                </summary>
+              )
             },
             details: {
-              component: (props) => {
-                const {children} = props
+              component: ({ children }) => {
                 return (
-                  <BlockContext.Provider value={BlockContextValue.Details}>
-                    <details className='bg-slate-50 p-0 rounded-xl my-3 px-4'>
-                      {children}
-                    </details>
-                  </BlockContext.Provider>
+                  <details className='bg-slate-50 p-0 rounded-xl my-3 px-4'>
+                    {children}
+                  </details>
                 )
               }
             },
