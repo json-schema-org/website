@@ -5,6 +5,7 @@ import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
 import Link from 'next/link'
 import { Headline2 } from '~/components/Headlines'
+import Code from '~/components/Code'
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/_index.md', 'utf-8')
@@ -44,49 +45,71 @@ const Home = ({ blocks }: { blocks: any[] }) => {
               Getting started
             </a>
           </Link>
-          <Link href='/learn/getting-started-step-by-step'>
+          <Link href='/understanding-json-schema/reference/type'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
               <div className='text-5xl mb-2'>
-                <img src='/img/logos/slack.svg' className='h-12 w-12' />
+                📖
               </div>
-              Open JSON Schema Slack
+              Docs
             </a>
           </Link>
-          <a
-            href='https://github.com/json-schema-org/community/discussions'
-            className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'
-          >
-            <div className='text-5xl mb-2'>
-              💬
-            </div>
-            GitHub Community Discussions
-          </a>
+          <Link href='/implementations'>
+            <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
+              <div className='text-5xl mb-2'>
+                🔌
+              </div>
+              Implementations
+            </a>
+          </Link>
         </div>
       </div>
 
 
       <Headline2>
-        Regular activities
+        Community
       </Headline2>
       <p className='text-slate-600 block leading-7 pb-4'>
-        We hold weekly Office Hours and twice monthly Open Community Working Meetings.
+        We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
+        We want to keep our community welcoming and inclusive, so please read our <a className='text-blue-500' href='https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md'>JSON Schema Organizational Code of Conduct</a>. (This is a combination of the Contributor Covenant and IETF BCP 54.)
+        The JSON Schema team and community are here to help!
+        At any point, feel free to join our <a className='text-blue-500' href='/slack'>Slack server</a>.
+        Our Slack server has limited history, so we also use <a className='text-blue-500' href='https://github.com/json-schema-org/community/discussions'>GitHub Discussions</a>.
+        We monitor the <Code>jsonschema</Code> tag on StackOverflow.
       </p>
-      <div className='flex flex-col sm:flex-row py-4'>
+      <div className='flex flex-col sm:flex-row py-4 grid grid-cols-4 gap-2'>
         <a
           href='https://github.com/json-schema-org/community/discussions'
-          className='border inline-flex flex-col items-center justify-center h-14 rounded-2xl hover:shadow-sm transition-shadow text-lg font-semibold px-10 text-lg md:text-xl lg:text-2xl sm:mr-4'
-        >🧑‍💻 Office Hours</a>
+          className='border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
+        >
+          <div className='text-4xl mb-2'>👩‍💻</div>
+          <span className='text-md md:text-lg font-semibold text-center'>Office Hours</span>
+          <span className='text-center text-slate-500 text-sm mt-6'>Open zoom meeting<br />every first Tuesday of the month at 15:00 UTC<br />and by appointment.</span>
+        </a>
         <a
           href='https://github.com/json-schema-org/community/discussions/35'
-          className='border inline-flex flex-col items-center justify-center h-14 rounded-2xl hover:shadow-sm transition-shadow text-lg font-semibold px-10 text-lg md:text-xl lg:text-2xl mt-4 sm:mt-0'
-        >👷 Open Community Working Meetings</a>
+          className='self-stretch border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
+        >
+          <div className='text-4xl mb-2'>👷</div>
+          <span className='text-md md:text-lg font-semibold text-center'>Open Community Working Meetings</span>
+          <span className='text-center text-slate-500 text-sm mt-6'>Open zoom meeting<br />every First and Third Friday of the month at 12:00 PT.</span>
+        </a>
+        <a
+          href='https://github.com/json-schema-org/community/discussions/35'
+          className='self-stretch border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
+        >
+          <div className='text-4xl mb-4'><img src='/img/logos/slack.svg' className='h-8 w-8' /></div>
+          <span className='text-md md:text-lg font-semibold text-center'>Open Slack Workspace</span>
+          <span className='text-center text-slate-500 text-sm mt-6'>Discuss and ask questions about all JSON Schema related things.</span>
+        </a>
+        <a
+          href='https://github.com/json-schema-org/community/discussions'
+          className='self-stretch border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
+        >
+          <div className='text-4xl mb-2'>💬</div>
+          <span className='text-md md:text-lg font-semibold text-center'>GitHub Community Discussions</span>
+          <span className='text-center text-slate-500 text-sm mt-6'>Persistent organization level JSON Schema related discussions.</span>
+        </a>
       </div>
-      <p className='text-slate-600 block leading-7 pb-4'>
-        Office Hours are every first Tuesday of the month at 15:00 UTC, and by appointment.
-      </p>
-      <p className='text-slate-600 block leading-7 pb-4'>
-        Open Community Working Meetings are every First and Third Friday of the month at 12:00 PT.
-      </p>
 
       <StyledMarkdown markdown={blocks[0]} />
     </Layout>

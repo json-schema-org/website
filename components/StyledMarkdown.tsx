@@ -6,6 +6,8 @@ import JsonEditor from '~/components/JsonEditor'
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
 import Highlight from 'react-syntax-highlighter'
 import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import { BlockContext, BlockContextValue } from '~/context'
+import Code from '~/components/Code'
 
 import {
   Headline1,
@@ -17,18 +19,13 @@ import classnames from 'classnames'
 
 const REGEX_TAB_GROUPS = /\[tabs-start\s*"(?<label>.*)"\]((?!\[tabs-start).|\n)*\[tabs-end\]/gm
 
-enum BlockContextValue {
-  Infobox,
-  CodeBlock,
-  Details
-}
+
 
 type Element = {
   type: 'markdown' | 'tabs-group'
   markdown: string
 }
 
-const BlockContext = React.createContext<BlockContextValue | null>(null)
 const FullMarkdownContext = React.createContext<string | null>(null)
 
 export default function StyledMarkdown ({ markdown }: { markdown?: string }) {
@@ -197,23 +194,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             tr: {
               component: ({ children }) => ( <tr className='even:bg-blue-50 even:bg-opacity-40'>{children}</tr>)
             },
-            code: {
-              component: ({ children }) => {
-                // eslint-disable-next-line react-hooks/rules-of-hooks
-                const blockContext = useContext(BlockContext)
-                return (
-                  <code
-                    className={classnames('font-mono rounded px-1.5 py-0.5', {
-                      'bg-slate-100': blockContext === null,
-                      'bg-amber-200': blockContext === BlockContextValue.Infobox,
-                      'text-white': blockContext === BlockContextValue.CodeBlock
-                    })}
-                  >
-                    {children}
-                  </code>
-                )
-              }
-            },
+            code: { component: Code },
             pre: ({ children }) => {
               const language = children?.props?.className
               const isJsonCode = language === 'lang-json'

@@ -1,11 +1,3 @@
-## About the community
-We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
-We want to keep our community welcoming and inclusive, so please read our [JSON Schema Organizational Code of Conduct](https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md). (This is a combination of the Contributor Covenant and IETF BCP 54.)
-The JSON Schema team and community are here to help!
-At any point, feel free to join our [Slack server](/slack).
-Our Slack server has limited history, so we also use [GitHub Discussions](https://github.com/json-schema-org/community/discussions).
-We monitor the `jsonschema` tag on StackOverflow.
-
 ## Project Status
 
 2021-02-01: Draft 2020-12 has been published!

@@ -233,9 +233,18 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 const Footer = () => (
   <footer className={classnames(responsiveClasses, 'mx-auto p-4 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ')}>
     <div className='flex flex-col items-start'>
-      <div className='font-semibold text-sm text-slate-800 mb-1'>Specification</div>
+      <div className='font-semibold text-sm text-slate-800 mb-1'>JSON Schema</div>
+      <Link href='/understanding-json-schema'>
+        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Docs</a>
+      </Link>
+      <Link href='/blog'>
+        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Blog</a>
+      </Link>
+      <Link href='/implementations'>
+        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Implementations</a>
+      </Link>
       <Link href='/specification'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Overview</a>
+        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Specification</a>
       </Link>
     </div>
     <div className='flex flex-col items-start mt-8 sm:mt-0'>
