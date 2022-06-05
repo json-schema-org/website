@@ -35,7 +35,6 @@ const Home = ({ blocks }: { blocks: any[] }) => {
             JSON schema is the standard vocabulary for describing JSON data.<br />It validates documents and provides a clear human- and machine- readable documentation.
           </h2>
         </div>
-
         <div className='grid grid-cols-1 sm:grid-cols-3 w-full gap-4 max-w-xl'>
           <Link href='/learn/getting-started-step-by-step'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>

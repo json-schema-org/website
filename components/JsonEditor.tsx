@@ -201,6 +201,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
                   'text-slate-400': ['objectStartBracket', 'objectEndBracket', 'arrayComma', 'arrayStartBracket', 'arrayEndBracket'].includes(leaf.syntaxPart?.type),
                   'text-lime-200': ['numberValue', 'stringValue', 'booleanValue', 'nullValue'].includes(leaf.syntaxPart?.type),
                 })}
+                title={leaf.syntaxPart?.jsonPath}
                 {...attributes}
               >{children}</span>
             )
