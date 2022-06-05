@@ -67,9 +67,9 @@ const getTextPathIndexesFromNode = (customElement: CustomElement, path: number[]
 }
 
 const calculateNewDecorationsMap = (
-  value: any[]
+  value: CustomElement[]
 ) => {
-  const serializedText = serializeNodes(value)
+  const serializedText = serializeNodesWithoutLineBreaks(value)
   const textPathIndexes = getTextPathIndexesFromNodes(value)
   const partsOfJson: SyntaxPart[] = getPartsOfJson(serializedText)
   const multipathDecorations = getMultipathDecorationsByMatchesAndTextPathIndexes(partsOfJson, textPathIndexes)
@@ -95,29 +95,44 @@ const calculateNewDecorationsMap = (
   return decorationMap
 }
 
-const serializeNodes = (nodes: CustomElement[], acc = ''): string => {
+const serializeNodesWithoutLineBreaks = (nodes: CustomElement[], acc = ''): string => {
   return nodes.reduce((acc, node) => {
-    if ((node as CustomNode).children) return serializeNodes((node as CustomNode).children, acc)
+    if ((node as CustomNode).children) return serializeNodesWithoutLineBreaks((node as CustomNode).children, acc)
     const customText = node as CustomText
     return `${acc}${customText.text}`
   }, acc)
 }
 
-export default function JsonEditor ({ initialCode }: { initialCode: string }) {
-  const [editor] = React.useState(() => withReact(createEditor()))
-
-  const parsedCode: null | any = React.useMemo(() => {
-    try {
-      return JSON.parse(initialCode)
-    } catch (e) {
-      return null
+const serializeNodesWithLineBreaks = (nodes: CustomElement[], acc = ''): string => {
+  return nodes.reduce((acc, node, index) => {
+    if ((node as CustomNode).children) {
+      const serializedChildren = serializeNodesWithLineBreaks((node as CustomNode).children, '')
+      return `${acc}${index > 0 ? '\n' : ''}${serializedChildren}`
     }
-  }, [initialCode])
+    const customText = node as CustomText
+    return `${acc}${customText.text}`
+  }, acc)
+}
 
-  const cleanUpCode = React.useMemo(() => {
+const deserializeCode = (code: string): CustomElement[] => {
+  const paragraphs = code.split('\n')
+    .map((text): CustomElement => ({
+      type: 'paragraph',
+      children: [{ text }],
+    }))
+  return paragraphs
+}
+
+export default function JsonEditor ({ initialCode }: { initialCode: string }) {
+  const cleanedUpCode = React.useMemo(() => {
     return initialCode
       .replace(META_REGEX, '')
   }, [initialCode])
+
+  const [value, setValue] = React.useState<CustomElement[]>(deserializeCode(cleanedUpCode))
+  const serializedCode = React.useMemo(() => serializeNodesWithLineBreaks(value), [value])
+
+  const [editor] = React.useState(() => withReact(createEditor()))
 
   const meta: null | Meta = (() => {
     const metaRegexFinding = META_REGEX.exec(initialCode)
@@ -132,20 +147,19 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
     }
   })()
 
+  const parsedCode: null | any = React.useMemo(() => {
+    try {
+      return JSON.parse(initialCode)
+    } catch (e) {
+      return null
+    }
+  }, [serializedCode])
+
   const isJsonSchema = parsedCode?.['$schema'] || meta?.isSchema
   const validation: null | 'valid' | 'invalid' = typeof meta?.valid === 'boolean' ? (
     meta.valid ? 'valid' : 'invalid'
   ) : null
   const caption: null | string = meta?.caption || null
-
-  const value = React.useMemo(() => {
-    const paragraphs = cleanUpCode.split('\n')
-      .map(text => ({
-        type: 'paragraph',
-        children: [{ text }],
-      }))
-    return paragraphs
-  }, [cleanUpCode])
 
   const allPathDecorationsMap: Record<string, any> = React.useMemo(
     () => calculateNewDecorationsMap(value),
@@ -156,6 +170,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
     <Slate
       editor={editor}
       value={value as Descendant[]}
+      onChange={e => setValue(e)}
     >
       <div className={classnames('relative font-mono bg-slate-800 border rounded-xl mt-4 overflow-hidden shadow-lg', {
         'ml-10': meta?.indent

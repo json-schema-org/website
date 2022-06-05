@@ -44,7 +44,12 @@ export default function Layout ({ children, mainClassName, metaTitle, whiteBg, h
           }>
             {!hideAds && (
               <div>
-                <script async type='text/javascript' src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg' id='_carbonads_js' />
+                <script
+                  async
+                  type='text/javascript'
+                  src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
+                  id='_carbonads_js'
+                />
               </div>
             )}
             {showMobileNav ? (
@@ -294,4 +299,3 @@ const FaviconHead = () => {
     </Head>
   )
 }
-

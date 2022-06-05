@@ -19,7 +19,8 @@ html {
   line-height: 1.45;
   background-color: #f9f9f9;
   border: 1px dashed;
-  border-color: #cacaca
+  border-color: #cacaca;
+  z-index: 100;
 }
 
 @media (max-width: 1420px) {
