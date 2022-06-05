@@ -36,10 +36,10 @@ const Home = ({ blocks }: { blocks: any[] }) => {
           </h2>
         </div>
 
-        <div className='grid grid-cols-1 sm:grid-cols-3 w-full gap-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-3 w-full gap-4 max-w-xl'>
           <Link href='/learn/getting-started-step-by-step'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='text-5xl mb-2'>
+              <div className='text-6xl mb-2'>
                 👋
               </div>
               Getting started
@@ -47,7 +47,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
           </Link>
           <Link href='/understanding-json-schema/reference/type'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='text-5xl mb-2'>
+              <div className='text-6xl mb-2'>
                 📖
               </div>
               Docs
@@ -55,7 +55,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
           </Link>
           <Link href='/implementations'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='text-5xl mb-2'>
+              <div className='text-6xl mb-2'>
                 🔌
               </div>
               Implementations
@@ -76,7 +76,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
         Our Slack server has limited history, so we also use <a className='text-blue-500' href='https://github.com/json-schema-org/community/discussions'>GitHub Discussions</a>.
         We monitor the <Code>jsonschema</Code> tag on StackOverflow.
       </p>
-      <div className='flex flex-col sm:flex-row py-4 grid grid-cols-4 gap-2'>
+      <div className='flex flex-col sm:flex-row py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2'>
         <a
           href='https://github.com/json-schema-org/community/discussions'
           className='border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
