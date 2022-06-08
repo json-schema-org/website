@@ -1,5 +1,6 @@
 ---
 title: "Numeric types"
+section: docs
 ---
 
 <Keywords label="single: integer single: number single: types; numeric" />
@@ -128,12 +129,29 @@ Numbers can be restricted to a multiple of a given number, using the
 // props { "indent": true, "valid": true }
 20
 ```
-Not a multiple of 10:
-
 ```json
 // props { "indent": true, "valid": false }
 23
 ```
+
+The multiple can be a floating point number:
+
+```json
+// props { "isSchema": true }
+{
+  "type": "number",
+  "multipleOf" : 0.01
+}
+```
+```json
+// props { "indent": true, "valid": true }
+4.02
+```
+```json
+// props { "indent": true, "valid": false }
+4.021
+```
+
 
 <Keywords label="single: number; range single: maximum single: exclusiveMaximum single: minimum single: exclusiveMinimum" />
 

@@ -8,6 +8,7 @@ import Highlight from 'react-syntax-highlighter'
 import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import { BlockContext, BlockContextValue } from '~/context'
 import Code from '~/components/Code'
+import { FullMarkdownContext } from '~/context'
 
 import {
   Headline1,
@@ -19,14 +20,10 @@ import classnames from 'classnames'
 
 const REGEX_TAB_GROUPS = /\[tabs-start\s*"(?<label>.*)"\]((?!\[tabs-start).|\n)*\[tabs-end\]/gm
 
-
-
 type Element = {
   type: 'markdown' | 'tabs-group'
   markdown: string
 }
-
-const FullMarkdownContext = React.createContext<string | null>(null)
 
 export default function StyledMarkdown ({ markdown }: { markdown?: string }) {
   if (!markdown) return null

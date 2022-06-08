@@ -1,5 +1,5 @@
 ---
-layout: page
+section: learn
 title: Miscellaneous Examples
 ---
 

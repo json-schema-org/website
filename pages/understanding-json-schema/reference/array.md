@@ -1,5 +1,6 @@
 ---
 title: "array"
+section: docs
 ---
 
 <Keywords label="single: array" />
@@ -31,7 +32,7 @@ In Ruby, "array" is analogous to a `Array` type.
 ```
 ```json
 // props { "indent": true, "valid": true }
-[3, "different", { "types" : "of values" }]
+[3, "different", { "types": "of values" }]
 ```
 ```json
 // props { "indent": true, "valid": false }

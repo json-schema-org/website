@@ -1,8 +1,9 @@
 import React from 'react'
-import { LayoutDocs } from '~/components/Layout'
+import Layout from '~/components/Layout'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
+import { SectionContext } from '~/context'
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/understanding-json-schema/reference/_index.md', 'utf-8')
@@ -16,8 +17,10 @@ export async function getStaticProps() {
 
 export default function ContentExample ({ blocks }: { blocks: any[] }) {
   return (
-    <LayoutDocs>
-      <StyledMarkdown markdown={blocks[0]} />
-    </LayoutDocs>
+    <SectionContext.Provider value='docs'>
+      <Layout>
+        <StyledMarkdown markdown={blocks[0]} />
+      </Layout>
+    </SectionContext.Provider>
   )
 }

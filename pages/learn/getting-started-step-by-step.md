@@ -1,6 +1,6 @@
 ---
-layout: page
 title: Creating a schema
+section: learn
 ---
 
 * [Introduction](#intro)

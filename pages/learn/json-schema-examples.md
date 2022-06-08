@@ -1,4 +1,5 @@
 ---
+section: learn
 title: JSON Schema examples
 ---
 

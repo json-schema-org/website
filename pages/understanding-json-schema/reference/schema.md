@@ -1,5 +1,6 @@
 ---
 title: "Declaring a Dialect"
+section: docs
 ---
 
 A version of JSON Schema is called a dialect. A dialect represents the

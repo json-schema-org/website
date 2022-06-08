@@ -1,5 +1,6 @@
 ---
 title: "What is a schema?"
+section: "learn"
 ---
 
 If you\'ve ever used XML Schema, RelaxNG or ASN.1 you probably already

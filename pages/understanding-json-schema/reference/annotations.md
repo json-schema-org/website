@@ -1,11 +1,7 @@
 ---
-title: "Generic keywords"
+title: "Annotations"
+section: docs
 ---
-
-This chapter lists some miscellaneous properties that are available for
-all JSON types.
-
-## Annotations[#annotation]
 
 JSON Schema includes a few keywords, that aren\'t strictly used for
 validation, but are used to describe parts of a schema. None of these
@@ -63,94 +59,4 @@ the future.
   "readOnly": true,
   "writeOnly": false
 }
-```
-
-## Comments
-
-<Star label="New in draft 7" />
-
-The `$comment` keyword is strictly intended for adding comments to a
-schema. Its value must always be a string. Unlike the annotations
-`title`, `description`, and `examples`, JSON schema implementations
-aren\'t allowed to attach any meaning or behavior to it whatsoever, and
-may even strip them at any time. Therefore, they are useful for leaving
-notes to future editors of a JSON schema, but should not be used to
-communicate to users of the schema.
-
-### Enumerated values[#enum]
-
-The `enum` keyword is used to restrict a value to a fixed set of values.
-It must be an array with at least one element, where each element is
-unique.
-
-The following is an example for validating street light colors:
-
-```json
-// props { "isSchema": true }
-{
-  "enum": ["red", "amber", "green"]
-}
-```
-```json
-// props { "indent": true, "valid": true }
-"red"
-```
-```json
-// props { "indent": true, "valid": false }
-"blue"
-```
-
-You can use `enum` even without a type, to accept values of different
-types. Let\'s extend the example to use `null` to indicate \"off\", and
-also add 42, just for fun.
-
-```json
-// props { "isSchema": true }
-{
-  "enum": ["red", "amber", "green", null, 42]
-}
-```
-```json
-// props { "indent": true, "valid": true }
-"red"
-```
-```json
-// props { "indent": true, "valid": true }
-null
-```
-```json
-// props { "indent": true, "valid": true }
-42
-```
-```json
-// props { "indent": true, "valid": false }
-0
-```
-
-## Constant values[#const]
-
-<Star label="New in draft 6" />
-
-The `const` keyword is used to restrict a value to a single value.
-
-For example, if you only support shipping to the United States for
-export reasons:
-
-```json
-// props { "isSchema": true }
-{
-  "properties": {
-    "country": {
-      "const": "United States of America"
-    }
-  }
-}
-```
-```json
-// props { "indent": true, "valid": true }
-{ "country": "United States of America" }
-```
-```json
-// props { "indent": true, "valid": false }
-{ "country": "Canada" }
 ```

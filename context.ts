@@ -6,4 +6,6 @@ export enum BlockContextValue {
   Details
 }
 
+export const SectionContext = React.createContext<null | 'learn' | 'docs' | 'implementations' | 'blog'>(null)
 export const BlockContext = React.createContext<BlockContextValue | null>(null)
+export const FullMarkdownContext = React.createContext<string | null>(null)

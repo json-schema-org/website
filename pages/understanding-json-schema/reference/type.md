@@ -1,5 +1,6 @@
 ---
 title: "Type-specific keywords"
+section: docs
 ---
 
 The `type` keyword is fundamental to JSON Schema. It specifies the data
@@ -78,6 +79,7 @@ Here is a simple example of using the `type` keyword:
 // props { "isSchema": true }
 { "type": "number" }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 42
@@ -86,7 +88,6 @@ Here is a simple example of using the `type` keyword:
 // props { "indent": true, "valid": true }
 42.0
 ```
-This is not a number, it is a string containing a number.
 
 ```json
 // props { "indent": true, "valid": false }

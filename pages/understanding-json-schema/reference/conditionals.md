@@ -1,5 +1,6 @@
 ---
 title: "Applying Subschemas Conditionally"
+section: docs
 ---
 
 <Keywords label="single: conditionals; dependentRequired single: property dependentRequired" />

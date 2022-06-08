@@ -3,7 +3,7 @@ import { RegExpResult, RegExpGroupResult } from '~/components/JsonEditor'
 
 const regexObject = /^\s*(?<objectStartBracket>{)(?<objectContent>.*)(?<objectEndBracket>})\s*$/g
 const regexArray = /^\s*(?<arrayStartBracket>\[)(?<arrayContent>.*)(?<arrayEndBracket>\])\s*$/g
-const regexNumber = /^\s*(?<number>-?\d+(\.\d+)?(E\+\d+)?)\s*$/g
+const regexNumber = /^\s*(?<number>-?\d+(\.\d+)?([Ee][+-]?\d+)?)\s*$/g
 const regexString = /^\s*(?<string>"(\\"|[^"])*")\s*$/g
 const regexBoolean = /^\s*(?<boolean>true|false)\s*$/g
 const regexNull = /^\s*(?<null>null)\s*$/g
@@ -12,11 +12,12 @@ const regexCommaOrEndOfLine = /,/g
 
 export type SyntaxPart = {
   type: string
+  address?: string
   index: number
   length: number
   match: string
-  address?: string
   jsonPath: string
+  parentJsonPath?: string
 }
 type StringWithPayload = {
   index: number
@@ -124,10 +125,7 @@ export default function getPartsOfJson (serializedJson: string, offset = 0, json
     return [part]
   }
   return []
-
 }
-
-// "p9-oductId" : 1,    "productName": "An ice sculpture",    "price": 12.50,    "tags": [ "cold", "ice" ],    "dimensions": {      "length": 7.0,      "width": 12.0,      "height": 9.5    },    "warehouseLocation": {      "latitude": -78.75,      "longitude": 20.4    }, "asdasd": 2
 
 const getPartsOfJsonObjectContent = (serializedJson: string, offset = 0, jsonPath: string): SyntaxPart[] => {
   const doubleQuoteMatches = getFindResultsByGlobalRegExp(serializedJson, regexDoubleQuote)
@@ -211,21 +209,24 @@ const getPartsOfJsonObjectContent = (serializedJson: string, offset = 0, jsonPat
       index: offset + keywordAndValue.index - 1,
       match: '"',
       length: 1,
-      jsonPath: propertyJsonPath
+      jsonPath: propertyJsonPath,
+      parentJsonPath: jsonPath
     }
     const objectProperty: SyntaxPart = {
       type: 'objectProperty',
       index: offset + keywordAndValue.index,
       match: keywordAndValue.keyword,
       length: keywordAndValue.keyword.length,
-      jsonPath: propertyJsonPath
+      jsonPath: propertyJsonPath,
+      parentJsonPath: jsonPath
     }
     const objectPropertyEndQuotes: SyntaxPart = {
       type: 'objectPropertyEndQuotes',
       index: offset + keywordAndValue.index + keywordAndValue.keyword.length,
       match: '"',
       length: 1,
-      jsonPath: propertyJsonPath
+      jsonPath: propertyJsonPath,
+      parentJsonPath: jsonPath
     }
     const partsFromPayload = getPartsOfJson(
       keywordAndValue.payload,

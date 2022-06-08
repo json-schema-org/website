@@ -1,5 +1,6 @@
 ---
 title: "Regular Expressions"
+section: docs
 ---
 
 <Keywords label="regular expressions" />

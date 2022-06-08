@@ -1,5 +1,6 @@
 ---
 title: "boolean"
+section: docs
 ---
 
 <Keywords label="single: boolean" />

@@ -8,20 +8,11 @@ import { Headline1, Headline2, Headline3 } from 'components/Headlines'
 import slugify from 'slugify'
 import { useRouter } from 'next/router'
 import classnames from 'classnames'
+import { SectionContext } from '~/context'
+import { DRAFT_ORDER } from '~/lib/config'
+
 // @ts-ignore
 import zeroFill from 'zero-fill'
-
-const DRAFT_ORDER = [
-  '2020-12',
-  '2019-09',
-  7,
-  6,
-  5,
-  4,
-  3,
-  2,
-  1
-]
 
 export async function getStaticProps() {
   const validators = yaml.load(fs.readFileSync('data/validator-libraries-obsolete.yml', 'utf-8'))
@@ -50,16 +41,18 @@ type ImplementationByLanguage = { name: string }
 
 export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
-    <Layout>
-      <Headline1>Obsolete Implementations</Headline1>
-      <StyledMarkdown markdown={blocks.intro} />
+    <SectionContext.Provider value='implementations'>
+      <Layout>
+        <Headline1>Obsolete Implementations</Headline1>
+        <StyledMarkdown markdown={blocks.intro} />
 
-      <Headline2>Validators</Headline2>
-      <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
-      <StyledMarkdown markdown={blocks.main} />
-      <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
-      <StyledMarkdown markdown={blocks.main2} />
-    </Layout>
+        <Headline2>Validators</Headline2>
+        <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
+        <StyledMarkdown markdown={blocks.main} />
+        <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+        <StyledMarkdown markdown={blocks.main2} />
+      </Layout>
+    </SectionContext.Provider>
   )
 }
 

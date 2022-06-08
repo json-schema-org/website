@@ -1,5 +1,5 @@
 ---
-layout: page
+section: learn
 title: Modeling a file system with JSON Schema
 ---
 

@@ -1,5 +1,6 @@
 ---
 title: "object"
+section: docs
 ---
 
 <Keywords label="single: object" />
@@ -80,7 +81,7 @@ Using non-strings as keys is invalid JSON:
 // props { "indent": true, "valid": false }
 ["An", "array", "not", "an", "object"]
 ```
-s
+
 ## Properties
 
 The properties (key-value pairs) on an object are defined using the

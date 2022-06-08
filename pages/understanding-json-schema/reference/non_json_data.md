@@ -1,5 +1,6 @@
 ---
 title: "Media: string-encoding non-JSON data"
+section: docs
 ---
 
 <Keywords label="single: non-JSON data single: media" />

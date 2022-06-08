@@ -1,8 +1,12 @@
-import React from 'react'
-import { BaseEditor, Text, createEditor, Descendant } from 'slate'
-import { ReactEditor, Slate, Editable, withReact } from 'slate-react'
+import React, { useContext } from 'react'
+import { BaseEditor, createEditor, Descendant, Text } from 'slate'
+import { Editable, ReactEditor, Slate, withReact } from 'slate-react'
 import classnames from 'classnames'
 import getPartsOfJson, { SyntaxPart } from '~/lib/getPartsOfJson'
+import jsonSchemaReferences from './jsonSchemaLinks'
+import { useRouter } from 'next/router'
+import { FullMarkdownContext } from '~/context'
+import getScopesOfParsedJsonSchema, { JsonSchemaPathWithScope, JsonSchemaScope } from '~/lib/getScopesOfParsedJsonSchema'
 
 type CustomElement = CustomNode | CustomText
 type CustomNode = { type: 'paragraph', children: CustomText[] }
@@ -123,7 +127,19 @@ const deserializeCode = (code: string): CustomElement[] => {
   return paragraphs
 }
 
+
 export default function JsonEditor ({ initialCode }: { initialCode: string }) {
+  const fullMarkdown = useContext(FullMarkdownContext)
+  const hasCodeblockAsDescendant: boolean | undefined = (() => {
+    const positionOfCodeInFullMarkdown = fullMarkdown?.indexOf(initialCode)
+    if (!positionOfCodeInFullMarkdown) return
+    const endPositionOfCode = positionOfCodeInFullMarkdown + initialCode.length
+    const startPositionOfNextBlock = endPositionOfCode + '\n```\n'.length
+    const markdownAfterCodeBlock = fullMarkdown?.substr(startPositionOfNextBlock)
+    return markdownAfterCodeBlock?.startsWith('```')
+  })()
+
+  const router = useRouter()
   const cleanedUpCode = React.useMemo(() => {
     return initialCode
       .replace(META_REGEX, '')
@@ -133,6 +149,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
   const serializedCode = React.useMemo(() => serializeNodesWithLineBreaks(value), [value])
 
   const [editor] = React.useState(() => withReact(createEditor()))
+  //const [] React.useState()
 
   const meta: null | Meta = (() => {
     const metaRegexFinding = META_REGEX.exec(initialCode)
@@ -149,13 +166,19 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
 
   const parsedCode: null | any = React.useMemo(() => {
     try {
-      return JSON.parse(initialCode)
+      return JSON.parse(serializedCode)
     } catch (e) {
       return null
     }
   }, [serializedCode])
 
   const isJsonSchema = parsedCode?.['$schema'] || meta?.isSchema
+
+  const jsonPathsWithJsonScope: JsonSchemaPathWithScope[] = React.useMemo(() => {
+    if (!isJsonSchema) return []
+    return getScopesOfParsedJsonSchema(parsedCode)
+  }, [parsedCode, isJsonSchema])
+
   const validation: null | 'valid' | 'invalid' = typeof meta?.valid === 'boolean' ? (
     meta.valid ? 'valid' : 'invalid'
   ) : null
@@ -172,7 +195,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
       value={value as Descendant[]}
       onChange={e => setValue(e)}
     >
-      <div className={classnames('relative font-mono bg-slate-800 border rounded-xl mt-4 overflow-hidden shadow-lg', {
+      <div className={classnames('relative font-mono bg-slate-800 border rounded-xl mt-1 overflow-hidden shadow-lg', {
         'ml-10': meta?.indent
       })}>
         <div className='flex flex-row items-center absolute right-0 text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
@@ -190,18 +213,41 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
           }}
           renderLeaf={(props: any) => {
             const { leaf, children, attributes } = props
+            const textStyles: undefined | string = (() => {
+
+
+              if (['objectPropertyStartQuotes', 'objectPropertyEndQuotes'].includes(leaf.syntaxPart?.type)) return 'text-blue-200'
+              if (['objectProperty'].includes(leaf.syntaxPart?.type)) {
+                const isJsonScope = jsonPathsWithJsonScope
+                  .filter(jsonPathWithScope => jsonPathWithScope.scope === JsonSchemaScope.TypeDefinition)
+                  .map(jsonPathsWithJsonScope => jsonPathsWithJsonScope.jsonPath)
+                  .includes(leaf.syntaxPart?.parentJsonPath)
+                console.log('jsonPathsWithJsonScope', jsonPathsWithJsonScope, leaf, leaf.syntaxPart?.parentJsonPath)
+                if (isJsonScope && jsonSchemaReferences.objectProperty[leaf.text]) {
+                  return 'cursor-pointer text-blue-400 hover:text-blue-300 decoration-blue-500/30 hover:decoration-blue-500/50 underline underline-offset-4'
+                }
+                return 'text-cyan-500'
+              }
+              if (leaf.syntaxPart?.type === 'stringValue') {
+                if (jsonSchemaReferences.stringValue[leaf.text]) {
+                  return 'cursor-pointer text-amber-300 hover:text-amber-300 decoration-amber-500/30 hover:decoration-amber-500/50 underline underline-offset-4'
+                }
+                return 'text-lime-200'
+              }
+              if (['objectStartBracket', 'objectEndBracket', 'arrayComma', 'arrayStartBracket', 'arrayEndBracket'].includes(leaf.syntaxPart?.type)) return 'text-slate-400'
+              if (['numberValue', 'stringValue', 'booleanValue', 'nullValue'].includes(leaf.syntaxPart?.type)) return 'text-lime-200'
+            })()
+
+            const link: null | string = (() => jsonSchemaReferences?.[leaf.syntaxPart?.type]?.[leaf.text] || null)()
+
             return (
               <span
                 onClick={() => {
-                  console.log('sdfsdf')
+                  if (!link) return
+                  router.push(link)
                 }}
-                className={classnames('p-b-2', {
-                  'text-blue-200': ['objectPropertyStartQuotes', 'objectPropertyEndQuotes'].includes(leaf.syntaxPart?.type),
-                  'text-blue-400': ['objectProperty'].includes(leaf.syntaxPart?.type),
-                  'text-slate-400': ['objectStartBracket', 'objectEndBracket', 'arrayComma', 'arrayStartBracket', 'arrayEndBracket'].includes(leaf.syntaxPart?.type),
-                  'text-lime-200': ['numberValue', 'stringValue', 'booleanValue', 'nullValue'].includes(leaf.syntaxPart?.type),
-                })}
-                title={leaf.syntaxPart?.jsonPath}
+                className={classnames('p-b-2', textStyles)}
+                title={leaf.syntaxPart?.type}
                 {...attributes}
               >{children}</span>
             )
@@ -230,13 +276,15 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
           </div>
         )}
         {validation === 'valid' && (
-          <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-emerald-500/30 text-sm'>
+          <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-slate-500/30 text-sm'>
             <img src='/icons/checkmark.svg' className='h-5 w-5 mr-2' />
             compliant to schema
           </div>
         )}
       </div>
-      <div className='mb-10 text-center text-xs pt-2 text-slate-400'>
+      <div className={classnames('text-center text-xs pt-2 text-slate-400', {
+        'mb-10': !hasCodeblockAsDescendant
+      })}>
         {caption}
       </div>
     </Slate>

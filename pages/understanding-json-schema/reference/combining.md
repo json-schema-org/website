@@ -1,5 +1,6 @@
 ---
 title: "Schema Composition"
+section: docs
 ---
 
 <Keywords label="schema composition" />

@@ -1,5 +1,6 @@
 ---
-title: "The basics"
+title: The basics
+section: learn
 ---
 
 In [What is a schema?](/understanding-json-schema/about), we described what a schema is,

@@ -38,7 +38,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
         <div className='grid grid-cols-1 sm:grid-cols-3 w-full gap-4 max-w-xl'>
           <Link href='/learn/getting-started-step-by-step'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='text-6xl mb-2'>
+              <div className='h-14 text-6xl mb-2'>
                 👋
               </div>
               Getting started
@@ -46,7 +46,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
           </Link>
           <Link href='/understanding-json-schema/reference/type'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='text-6xl mb-2'>
+              <div className='h-14 text-6xl mb-2'>
                 📖
               </div>
               Docs
@@ -54,8 +54,8 @@ const Home = ({ blocks }: { blocks: any[] }) => {
           </Link>
           <Link href='/implementations'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='text-6xl mb-2'>
-                🔌
+              <div className='h-14 text-5xl mb-2'>
+                💾
               </div>
               Implementations
             </a>

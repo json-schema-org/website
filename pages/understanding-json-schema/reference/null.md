@@ -1,5 +1,6 @@
 ---
 title: "null"
+section: docs
 ---
 
 When a schema specifies a `type` of `null`, it has only one acceptable value: `null`.

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
 import { HOST } from '~/lib/config'
 import useStore from '~/store'
+import { SectionContext } from '~/context'
 
 type Props = {
   children: React.ReactNode
@@ -54,7 +55,11 @@ export default function Layout ({ children, mainClassName, metaTitle, whiteBg, h
             )}
             {showMobileNav ? (
               <MobileDocsNav />
-            ) : children}
+            ) : (
+              <ContentLayout>
+                {children}
+              </ContentLayout>
+            )}
           </main>
         </div>
       </div>
@@ -64,25 +69,49 @@ export default function Layout ({ children, mainClassName, metaTitle, whiteBg, h
   )
 }
 
-const ACTIVE_DOCS_ROUTES = [
-  '/understanding-json-schema',
-  '/understanding-json-schema/[slug]',
-  '/understanding-json-schema/reference/[slug]',
-  '/learn/[slug]',
-]
+const ContentLayout = ({ children }: { children: any }) => {
+  const section = useContext(SectionContext)
+
+  if (section === 'learn') return (
+    <div className='mx-auto flex flex-row grid grid-cols-4'>
+      <div className='hidden md:block'>
+        <LearnNav />
+      </div>
+      <div className='col-span-4 md:col-span-3'>
+        {children}
+      </div>
+    </div>
+  )
+  if (section === 'docs') return (
+    <div className='mx-auto flex flex-row grid grid-cols-4'>
+      <div className='hidden md:block'>
+        <DocsNav />
+      </div>
+      <div className='col-span-4 md:col-span-3'>
+        {children}
+      </div>
+    </div>
+  )
+  return children
+}
 
 const MainNavigation = () => {
-  const router = useRouter()
-  const docsAreActive = (ACTIVE_DOCS_ROUTES ).includes(router.route)
+  const section = useContext(SectionContext)
+  const docsAreActive = section === 'docs'
 
   return (
     <div className='py-2 flex flex-row items-center'>
 
       <MainNavLink
         className='hidden md:block'
-        uri='/understanding-json-schema'
+        uri='/understanding-json-schema/reference/type'
         label='Docs'
-        activeRoutes={ACTIVE_DOCS_ROUTES}
+        isActive={section === 'docs'}
+      />
+      <MainNavLink
+        uri='/understanding-json-schema'
+        label='Learn'
+        isActive={section === 'learn'}
       />
       <div
         className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4', {
@@ -95,9 +124,14 @@ const MainNavigation = () => {
         Docs
       </div>
       <MainNavLink
+        uri='/implementations'
+        label='Implementations'
+        isActive={section === 'implementations'}
+      />
+      <MainNavLink
         uri='/blog'
         label='Blog'
-        activeRoutes={['/blog', '/blog/posts/[slug]']}
+        isActive={section === 'blog'}
       />
       <Search />
     </div>
@@ -114,9 +148,7 @@ const Search = () => {
   )
 }
 
-const MainNavLink = ({ uri, label, activeRoutes, className }: { uri: string, label: string, activeRoutes?: string[], className?: string }) => {
-  const router = useRouter()
-  const isActive = (activeRoutes || []).includes(router.route)
+const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   return (
     <Link href={uri}>
       <a className={classnames(className, 'font-semibold p-2 md:p-4', {
@@ -125,26 +157,6 @@ const MainNavLink = ({ uri, label, activeRoutes, className }: { uri: string, lab
       })}
       >{label}</a>
     </Link>
-  )
-}
-
-type LayoutDocsProps = {
-  children: React.ReactNode
-  metaTitle?: string
-}
-
-export const LayoutDocs = ({ children, metaTitle }: LayoutDocsProps) => {
-  return (
-    <Layout whiteBg metaTitle={metaTitle}>
-      <div className='mx-auto flex flex-row grid grid-cols-4'>
-        <div className='hidden md:block'>
-          <DocsNav />
-        </div>
-        <div className='col-span-4 md:col-span-3'>
-          {children}
-        </div>
-      </div>
-    </Layout>
   )
 }
 
@@ -168,30 +180,44 @@ const MobileDocsNav = () => {
   )
 }
 
-const DocsNav = () => {
+const LearnNav = () => {
   return (
     <div className='pt-2 pr-2'>
       <SegmentHeadline label='Getting started' />
       <DocLink uri='/understanding-json-schema' label='Overview' />
       <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
       <DocLink uri='/understanding-json-schema/basics' label='The basics' />
-      <DocLink uri='/understanding-json-schema/reference/generic' label='Generic keywords' />
 
       <SegmentHeadline label='Examples & studies' />
       <DocLink uri='/learn/getting-started-step-by-step' label='Creating a schema' />
       <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous Examples' />
       <DocLink uri='/learn/file-system' label={'Example \'File system\''} />
       <DocLink uri='/learn/json-schema-examples' label='More examples' />
+    </div>
+  )
+}
 
-      <SegmentHeadline label='Basic types' />
+const DocsNav = () => {
+  return (
+    <div className='pt-2 pr-2'>
+
+      <SegmentHeadline label='Basic concepts' />
       <DocLink uri='/understanding-json-schema/reference/type' label={<><span className='font-semibold'>type</span> keyword</>} />
-      <DocLink uri='/understanding-json-schema/reference/string' label='string' />
-      <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric' />
+      <div className='pl-4 pb-1 pt-1'>
+        <DocLink uri='/understanding-json-schema/reference/string' label='string' />
+        <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
+        <DocLink uri='/understanding-json-schema/reference/object' label='object' />
+        <DocLink uri='/understanding-json-schema/reference/array' label='array' />
+        <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
+        <DocLink uri='/understanding-json-schema/reference/null' label='null' />
+
+      </div>
+      <DocLink uri='/understanding-json-schema/reference/enum' label='enumerated values' />
+      <DocLink uri='/understanding-json-schema/reference/annotations' label='annotations' />
       <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
-      <DocLink uri='/understanding-json-schema/reference/object' label='object' />
-      <DocLink uri='/understanding-json-schema/reference/array' label='array' />
-      <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
-      <DocLink uri='/understanding-json-schema/reference/null' label='null' />
+      <DocLink uri='/understanding-json-schema/reference/const' label='constant values' />
+      <DocLink uri='/understanding-json-schema/reference/comments' label='comments' />
+
 
       <SegmentHeadline label='Advanced Concepts' />
       <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
