@@ -260,14 +260,17 @@ const Footer = () => (
   <footer className={classnames(responsiveClasses, 'mx-auto p-4 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ')}>
     <div className='flex flex-col items-start'>
       <div className='font-semibold text-sm text-slate-800 mb-1'>JSON Schema</div>
-      <Link href='/understanding-json-schema'>
+      <Link href='/understanding-json-schema/reference/type'>
         <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Docs</a>
       </Link>
-      <Link href='/blog'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Blog</a>
+      <Link href='/understanding-json-schema'>
+        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Learn</a>
       </Link>
       <Link href='/implementations'>
         <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Implementations</a>
+      </Link>
+      <Link href='/blog'>
+        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Blog</a>
       </Link>
       <Link href='/specification'>
         <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Specification</a>
@@ -280,7 +283,7 @@ const Footer = () => (
     </div>
     <div className='flex flex-col items-start mt-8 sm:mt-0'>
       <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
-      <a href='https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
+      <a href='/slack' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
       <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
       <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
       <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>

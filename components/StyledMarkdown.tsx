@@ -64,7 +64,7 @@ export default function StyledMarkdown ({ markdown }: { markdown?: string }) {
   } while (sliceMore)
 
   return (
-    <div className='flex-1'>
+    <div className='flex-1 min-w-0'>
       {elements.map((tabOrMarkup, index) => {
         if (tabOrMarkup.type === 'markdown') {
           return <StyledMarkdownBlock key={index} markdown={tabOrMarkup.markdown} />
@@ -152,7 +152,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ children, href, title }) => {
                 if (!href) return children
                 return (
-                  <Link href={href} scroll={false} prefetch={false}>
+                  <Link href={href} prefetch scroll={href.indexOf('#') === -1}>
                     <a title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
                   </Link>
                 )
@@ -203,7 +203,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div className='overflow-x-auto flex-basis-0 max-full-w'>
+                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] lg:max-w-[800px] xl:max-w-[900px]'>{/* definitely not the best way to prevent overflowing. found no better way that worked */}
                   <Highlight
                     language={language}
                     customStyle={{
@@ -212,7 +212,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       paddingBottom: 10,
                       paddingLeft: 10,
                       marginBottom: 20,
-                      maxWidth: '100%a'
+                      maxWidth: '100%'
                     }}
                     lineNumberStyle={{
                       marginRight: 10

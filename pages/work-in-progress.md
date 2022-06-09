@@ -39,7 +39,7 @@ Please make use of the two week feedback window for RC-0 by either:
 
 The previous `draft 2020-12` specification documents will become obsolete, as did draft-07 specification documents when they were patched.
 
-If you have suggestions for changes to the specification in general, we invite you to open a [Discussion on our GitHub organization](https://github.com/orgs/json-schema-org/discussions) and/or chat with us in the #general or #specificaiton channels on our [Slack server](https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email).
+If you have suggestions for changes to the specification in general, we invite you to open a [Discussion on our GitHub organization](https://github.com/orgs/json-schema-org/discussions) and/or chat with us in the #general or #specificaiton channels on our [Slack server](/slack).
 
 
 See the [GitHub repository](https://github.com/json-schema-org/json-schema-spec) for ongoing spec work.

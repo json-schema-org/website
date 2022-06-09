@@ -77,7 +77,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
       </p>
       <div className='flex flex-col sm:flex-row py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2'>
         <a
-          href='https://github.com/json-schema-org/community/discussions'
+          href='https://github.com/json-schema-org/community/discussions/34'
           className='border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
         >
           <div className='text-4xl mb-2'>👩‍💻</div>
