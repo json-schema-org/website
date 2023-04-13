@@ -258,7 +258,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'mx-auto p-4 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ')}>
+  <footer className={classnames(responsiveClasses, 'mx-auto p-4 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ')}>
     <div className='flex flex-col items-start'>
       <div className='font-semibold text-sm text-slate-800 mb-1'>JSON Schema</div>
       <Link href='/understanding-json-schema/reference/type'>
@@ -274,7 +274,7 @@ const Footer = () => (
         <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Blog</a>
       </Link>
       <Link href='/specification'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Specification</a>
+        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3 sm:mb-4'>Specification</a>
       </Link>
     </div>
     <div className='flex flex-col items-start mt-8 sm:mt-0'>
@@ -290,7 +290,7 @@ const Footer = () => (
       <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>
       <a href='https://groups.google.com/g/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Google Groups</a>
     </div>
-    <div className='flex flex-col items-start mt-8 sm:mt-8 lg:mt-0'>
+    <div className='flex flex-col items-start mt-8 sm:mt-0'>
       <Logo />
       <a href='https://opencollective.com/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3 mt-2'>Open Collective</a>
       <a href='/understanding-json-schema/credits' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Acknowledgments</a>
