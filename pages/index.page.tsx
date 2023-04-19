@@ -67,7 +67,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
       <Headline2>
         Community
       </Headline2>
-      <p className='text-slate-600 block leading-7 pb-4'>
+      <p id='community' className='text-slate-600 block leading-7 pb-4'>
         We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
         We want to keep our community welcoming and inclusive, so please read our <a className='text-blue-500' href='https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md'>JSON Schema Organizational Code of Conduct</a>. (This is a combination of the Contributor Covenant and IETF BCP 54.)
         The JSON Schema team and community are here to help!
