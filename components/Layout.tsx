@@ -336,14 +336,14 @@ const FaviconHead = () => {
   if (isDarkMode) {
     return (
       <Head>
-        <link rel='icon' type='image/svg' href='/logo-blue.svg' id='dark-scheme-icon' />
+        <link rel='icon' type='image/svg' href='/favicon-lightblue.ico' id='dark-scheme-icon' />
       </Head>
 
     )
   }
   return (
     <Head>
-      <link rel='icon' type='image/svg+xml' href='/favicon/favicon.ico' id='light-scheme-icon' />
+      <link rel='icon' type='image/svg+xml' href='/favicon.ico' id='light-scheme-icon' />
     </Head>
   )
 }
