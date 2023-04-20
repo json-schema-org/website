@@ -8,7 +8,7 @@ cover: /img/posts/2022/fundamentals-part-1/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    twitter: relequestual
+    link: https://twitter.com/relequestual
     byline: JSON Schema Specification Lead @Postman
 excerpt: "We explore the fundamental JSON Schema concepts: Applicability, Subschemas, and Assertion Boolean Logic - Everyone needs good fundamentals."
 ---
@@ -30,20 +30,15 @@ The validation process for JSON Schema begins with applying the whole JSON Schem
 
 A JSON Schema may be a Boolean or an Object. In the introductory article mentioned above, we noted how a Boolean Schema of `true` or `false` resulted in the same assertion result (true and false respectivly) regardless of the instance data. We also noted how the equivalent Object Schemas were `{ }` and `{ "not": { } }` respectively. (The `not` keyword inverts the assertion result.)
 
-<div className='my-4 bg-blue-200 border-l-4 border-blue-500 p-4 relative'>
-  <div className='flex flex-row font-bold'>
-    <svg className='w-6 h-6 mr-2 float-left mt-0' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='currentColor'>
-        <path fillRule='evenodd' d='M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z' clipRule='evenodd' />
-    </svg>
-    <span>Vocabulary check</span>
-  </div> 
-  <div className='mt-4'>An 'assertion' is a statement of fact. This is used in reference to the result of testing in Computing. The test might be called 'X is 1'. If the test passes, the assertion is true!</div>
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+  <p className="font-bold"><svg className="w-6 h-6 mr-2 float-left mt-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" /></svg>Vocabulary check</p>
+  <p>An "assertion" is a statement of fact. This is used in reference to the result of testing in Computing. The test might be called "X is 1". If the test passes, the assertion is true!</p>
 </div>
 
 When we talk about the whole Schema in terms of application, we usually refer to it as the "root Schema". This is because the other Schemas which are applied to specific instance locations are different, and we call them "subschemas". Differentiating between the root Schema and subschemas allows us to communicate with clarity which JSON Schema we're talking about, and when to use the Schema as part of the validation process.
 
-<div className="bg-blue-200 border-l-4 border-blue-500 p-4 relative">
-  The following examples assume to be using JSON Schema 2020-12. Where there are things you should know about previous versions (or drafts) of JSON Schema, it will be highlighted.
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+  <p>The following examples assume to be using JSON Schema 2020-12. Where there are things you should know about previous versions (or drafts) of JSON Schema, it will be highlighted.</p>
 </div>
 
 
@@ -56,8 +51,7 @@ If your JSON instance is an Object or an Array, you'll likely want to validate t
 
 Let's jump into an example. Here's our instance data.
 
-```json
-// props { "caption": "properties/instance/validBase.json" }
+```json caption="properties/instance/validBase.json"
 {
   "id": 1234,
   "name": "Bob",
@@ -68,8 +62,7 @@ Let's jump into an example. Here's our instance data.
 
 To create the basics of our Schema, we duplicate the structure and place it under the `properties` keyword, change the values to empty objects, then define the type.
 
-```json
-// props { "caption": "properties/schema/example1.schema.json" }
+```json caption="properties/schema/example1.schema.json"
 {
   "properties": {
     "id": { "type": "number" },
@@ -84,22 +77,20 @@ The value of `properties` must be an Object, and the values of that Object must 
 
 OK, let's check our Schema does all we need it to. What happens when our instance is missing, for example, the `email` field? Validation still passes. This is because subschemas in `properties` are applied to the instance values ONLY when the keys match.
 
-```json
-// props { "caption": "properties/instance/invalid1.jsonc", "valid": false }
+```json caption="properties/instance/invalid1.jsonc"
 {
   "id": 1234,
   "name": "Bob",
   "email": "bob@example.com",
   "isEmailConfirmed": "true"
 }
+// isEmailConfirmed should be a Boolean, not a string.
+// Will cause validation error.
 ```
- 
-`isEmailConfirmed` will cause validation error because it should be a Boolean, not a string.
 
 We need to make sure we define the appropriate constraint if we want any keys to be required in our object. We can do this by adding the `required` keyword to our Schema.
 
-```json
-// props { "caption": "properties/schema/example2.schema.json", "isSchema": true }
+```json caption="properties/schema/example2.schema.json"
 {
   "properties": {
     "id": { "type": "number" },
@@ -113,23 +104,22 @@ We need to make sure we define the appropriate constraint if we want any keys to
 
 We can now be confident that if our required fields are missing, validation will fail. But what if someone makes an error with optional fields?
 
-```json
-// props { "caption": "properties/instance/invalid3.jsonc" }
+```json caption="properties/instance/invalid3.jsonc"
 {
   "id": 1234,
   "name": "Bob",
   "email": "bob@example.com",
   "isEmaleConfirmed": "true"
 }
+// Typo for key "isEmaleConfirmed".
+// Validates because of applicability.
 ```
-There is a type for key `isEmaleConfirmed`. It validates because of applicability.
 
 Our field `isEmailConfirmed` has a STRING value rather than a Boolean, but validation is still passing. If you look closely, you can see the key is spelt incorrectly "isEmaleConfirmed". Who knows why, but here we are.
 
 Luckily, picking this up with our Schema is simple. The `additionalProperties` keyword allows you to prevent properties (or keys) from being used in an object beyond those defined in `properties`.
 
-```json
-// props { "caption": "properties/schema/example3.schema.json" }
+```json caption="properties/schema/example3.schema.json"
 {
   "properties": {
     "id": { "type": "number" },
@@ -144,14 +134,13 @@ Luckily, picking this up with our Schema is simple. The `additionalProperties` k
 
 The value of `additionalProperties` is not just a Boolean, but a Schema. This subschema value is applied to all values of the instance object that are not defined in the `properties` object in our example. You could use `additionalProperties` to allow additional properties, but constrain their values to be a String.
 
-<div className="bg-blue-200 border-l-4 border-blue-500 p-4 my-4 relative text-blue-700">
-There is a little simplification here to help us understand the concept we're looking to learn. If you want to dig a little deeper, check out our <a href="https://json-schema.org/understanding-json-schema/reference/object.html#additional-properties" target="_blank">learning resources on `additionalProperties`</a>.
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+  <p>There is a little simplification here to help us understand the concept we're looking to learn. If you want to dig a little deeper, check out our <a href="https://json-schema.org/understanding-json-schema/reference/object.html#additional-properties" target="_blank">learning resources on `additionalProperties`</a>.</p>
 </div>
 
 Finally, what if we expect an Object, but are given an Array or another non-object type?
 
-```json
-// props { "caption": "properties/instance/invalid4.jsonc" }
+```json caption="properties/instance/invalid4.jsonc"
 [
   {
     "id": 1234,
@@ -160,13 +149,14 @@ Finally, what if we expect an Object, but are given an Array or another non-obje
     "isEmaleConfirmed": "true"
   }
 ]
+// An array is not an object...
 ```
-An array is not an object. You may find it surprising that this would pass validation! But WHY!?
+
+You may find it surprising that this would pass validation! But WHY!?
 
 The three keywords we've explored so far, `properties`, `required`, and `additionalProperties` only define constraints on Objects, and are ignored when encountering other types. If we want to make sure the type is as we expect (an Object), we need to specify this constraint too!
 
-```json
-// props { "caption": "properties/schema/example4.schema.json" }
+```json caption="properties/schema/example4.schema.json"
 {
   "type": ["object"],
   "properties": {
@@ -187,16 +177,15 @@ Note, `type` takes an Array of types. It may be that your instance is allowed to
 
 ## Validating Arrays
 
-<div className="bg-blue-200 border-l-4 border-blue-500 p-4 my-4 relative">
-  In this introduction, we're only going to be covering how things work for JSON Schema 2020-12. If you're using a previous version, including "draft-7" or prior, you will likely benefit from digging a little deeper into the <a href="https://json-schema.org/understanding-json-schema/reference/array.html" target="_blank">learning resources for Array validation.</a>
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+  <p>In this introduction, we're only going to be covering how things work for JSON Schema 2020-12. If you're using a previous version, including "draft-7" or prior, you will likely benefit from digging a little deeper into the <a href="https://json-schema.org/understanding-json-schema/reference/array.html" target="_blank">learning resources for Array validation.</a></p>
 </div>
 
 Let's step back to our previous example data, where we were provided with an Array as opposed to an Object. Let's say our data is now only allowed to be an Array.
 
 To validate every item in the array, we need to use the `items` keyword. The `items` keyword takes a Schema for its value. The Schema is applied to all of the items in the array.
 
-```json
-// props { "caption": "items/schema/example1.schema.json" }
+```json caption="items/schema/example1.schema.json"
 {
   "items": {
     "type": ["object"],
@@ -231,21 +220,19 @@ After applying each schema item from an `allOf` array, the validation (assertion
 
 This sounds simple, but let's look at some examples.
 
-```json
-// props { "caption": "allOf/example1.schema.json", "isSchema": true }
+```json caption="allOf/example1.schema.json"
 {
   "allOf": [ true, true, true]
 }
 ```
 
-```json
-// props { "caption": "allOf/example2.schema.json", "isSchema": true }
+```json caption="allOf/example2.schema.json"
 {
   "allOf": [ true, false, true]
 }
 ```
-<div className="bg-blue-200 border-l-4 border-blue-500 p-4 my-4 relative">
-  <span className="font-bold">Remember:</span> A Boolean is a valid schema that always produces the assertion result of its value, regardless of the instance data.
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+  <p><span className="font-bold">Remember:</span> A Boolean is a valid schema that always produces the assertion result of its value, regardless of the instance data.</p>
 </div>
 
 Our first "allOf" example shows the array having three subschemas, which are all `true`. The results are combined using the boolean logic AND operator. The resulting assertion from the `allOf` keyword is `true`.
@@ -256,15 +243,14 @@ The `true` and `false` Boolean Schemas in this example could be any subschemas t
 
 Let's take the two examples again, but use `anyOf` rather than `allOf`.
 
-```json
-// props { "caption": "anyOf/example1.schema.json", "isSchema": true }
+
+```json caption="anyOf/example1.schema.json"
 {
   "anyOf": [ true, true, true]
 }
 ```
 
-```json
-// props { "caption": "anyOf/example2.schema.json", "isSchema": true }
+```json caption="anyOf/example2.schema.json"
 {
   "anyOf": [ true, false, true]
 }
@@ -274,13 +260,13 @@ The assertion results of each Schema are combined using the boolean logic OR ope
 
 Regardless of if this feels intuitive or not, let's look at how these two keywords behave in the form of a truth table. It's going to get a little mathsy, but not much, I promise! (This may seem like overkill or a deep dive, but it's fundamental. Stay with me.)
 
-<div className="flex flex-wrap justify-center gap-4 my-6">
+<div className="flex flex-wrap justify-center gap-4">
   <figure>
-    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/allOf.webp" />
+    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/allOf.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for "allOf"</figcaption>
   </figure>
   <figure>
-    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/anyOf.webp" />
+    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/anyOf.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for "anyOf"</figcaption>
   </figure>
 </div>
@@ -303,27 +289,27 @@ But what about `oneOf`? The boolean logic used for that keyword is an exclusive 
 
 Here is our truth table for two inputs (If the array value of `oneOf` only contained two subschema values).
 
-<div className="flex flex-wrap justify-center gap-4 my-6">
+<div className="flex flex-wrap justify-center gap-4">
   <figure>
-    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/XOR1.webp" />
+    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/XOR1.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for XOR</figcaption>
   </figure>
 </div>
 
 Looks fine, right? But what if we add another "input", making it an odd number.
 
-<div className="flex flex-wrap justify-center gap-4 my-6">
+<div className="flex flex-wrap justify-center gap-4">
   <figure>
-    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/XOR2.webp" />
+    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/XOR2.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for XOR with three inputs</figcaption>
   </figure>
 </div>
 
 It looks MOSTLY correct, but notice, if all the assertions are `true`, the resulting assertion is also `true'! That's not what we want, but that is the mathematically correct result. So, we have to extend the logic definition to include "... AND NOT(A && B && C)". Our resulting truth table looks like this.
 
-<div className="flex flex-wrap justify-center gap-4 my-6">
+<div className="flex flex-wrap justify-center gap-4">
   <figure>
-    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/oneOf.webp" />
+    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/oneOf.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for "oneOf" - <a href="https://www.wolframalpha.com/input?i=%28a+xor+b+xor+c%29+%26+%21+%28a+%26%26+b+%26%26+c%29" target="_blank">(a xor b xor c) & ! (a && b && c)</a></figcaption>
   </figure>
 </div>
@@ -336,8 +322,7 @@ Well, now we have the vehicle to understand a pretty common problem, and all the
 
 Let's go back to our array of people data, modify it, and say it represents an array of teachers and students.
 
-```json
-// props { "caption": "oneOf/instance.json" }
+```json caption="oneOf/instance.json"
 [
   {
     "name": "Bob",
@@ -355,8 +340,7 @@ Let's go back to our array of people data, modify it, and say it represents an a
 
 To start, let's do the same as we did when creating our first schema. Copy the instance, nest under `properties`. We also need to nest those Object Schemas under `oneOf`, the same as how we see `allof` being used. And nest all that under `items` to apply schema to every item in the array... Yeah, let's just take a look...
 
-```json
-// props { "caption": "oneOf/example1.schema.json", "isSchema": true }
+```json caption="oneOf/example1.schema.json"
 {
   "items": {
     "oneOf":[
@@ -400,11 +384,11 @@ The instance location being evaluated is the first item in the array.
 
 The error tells us that the first item in the array doesn't match exactly one of the subschemas found in our `oneOf`. This means it validates successfully for BOTH.
 
-The first item in our instance array is identifying as a student, so should only pass for the first subschema in `allOf`. So why is it valid when applying the second subschema?
+The first item in our instance array is identifying as a student, so should only pass for the first subschema in `oneOf`. So why is it valid when applying the second subschema?
 
 Let's recap. The `properties` keyword applies its schemas (which are the values) based on matching keys in the instance Object. The implication we explored earlier is that just having a key in the `properties` object doesn't make it required in the instance.
 
-When you apply the second subschema in `allOf` to the instance, there are no constraints that cause it to fail validation, so it passes validation. If all subschemas consider the instance location to be valid, `oneOf` fails validation, because it's not "one and only one", as in "true exclusive OR`.
+When you apply the second subschema in `oneOf` to the instance, there are no constraints that cause it to fail validation, so it passes validation. If all subschemas consider the instance location to be valid, `oneOf` fails validation, because it's not "one and only one", as in "true exclusive OR`.
 
 # Now you try
 
