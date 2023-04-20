@@ -72,17 +72,6 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
-
-  if (section === 'learn') return (
-    <div className='mx-auto flex flex-row grid grid-cols-4'>
-      <div className='hidden md:block'>
-        <LearnNav />
-      </div>
-      <div className='col-span-4 md:col-span-3'>
-        {children}
-      </div>
-    </div>
-  )
   if (section === 'docs') return (
     <div className='mx-auto flex flex-row grid grid-cols-4'>
       <div className='hidden md:block'>
@@ -102,17 +91,17 @@ const MainNavigation = () => {
 
   return (
     <div className='py-2 flex flex-row items-center'>
-
+      <MainNavLink
+        className='hidden md:block'
+        uri='/specification'
+        label='Specification'
+        isActive={section === 'specification'}
+      />
       <MainNavLink
         className='hidden md:block'
         uri='/understanding-json-schema/reference/type'
         label='Docs'
         isActive={section === 'docs'}
-      />
-      <MainNavLink
-        uri='/understanding-json-schema'
-        label='Learn'
-        isActive={section === 'learn'}
       />
       <div
         className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4', {
@@ -133,6 +122,11 @@ const MainNavigation = () => {
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
+      />
+      <MainNavLink
+        uri='/#community'
+        label='Community'
+        isActive={section === 'community'}
       />
       <Search />
     </div>
@@ -181,26 +175,26 @@ const MobileDocsNav = () => {
   )
 }
 
-const LearnNav = () => {
-  return (
-    <div className='pt-2 pr-2'>
-      <SegmentHeadline label='Getting started' />
-      <DocLink uri='/understanding-json-schema' label='Overview' />
-      <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
-      <DocLink uri='/understanding-json-schema/basics' label='The basics' />
+// const LearnNav = () => {
+//   return (
+//     <div className='pt-2 pr-2'>
+//       <SegmentHeadline label='Getting started' />
+//       <DocLink uri='/understanding-json-schema' label='Overview' />
+//       <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
+//       <DocLink uri='/understanding-json-schema/basics' label='The basics' />
 
-      <SegmentHeadline label='Examples & studies' />
-      <DocLink uri='/learn/getting-started-step-by-step' label='Creating a schema' />
-      <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous Examples' />
-      <DocLink uri='/learn/file-system' label={'Example \'File system\''} />
-      <DocLink uri='/learn/json-schema-examples' label='More examples' />
-    </div>
-  )
-}
+//       <SegmentHeadline label='Examples & studies' />
+//       <DocLink uri='/learn/getting-started-step-by-step' label='Creating a schema' />
+//       <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous Examples' />
+//       <DocLink uri='/learn/file-system' label={'Example \'File system\''} />
+//       <DocLink uri='/learn/json-schema-examples' label='More examples' />
+//     </div>
+//   )
+// }
 
 const DocsNav = () => {
   return (
-    <div className='pt-2 pr-2'>
+    <div suppressHydrationWarning={true} className='pt-2 pr-2'>
 
       <SegmentHeadline label='Basic concepts' />
       <DocLink uri='/understanding-json-schema/reference/type' label={<><span className='font-semibold'>type</span> keyword</>} />
