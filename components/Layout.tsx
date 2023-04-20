@@ -123,7 +123,7 @@ const MainNavigation = () => {
         isActive={section === 'blog'}
       />
       <MainNavLink
-        uri='#community'
+        uri='/#community'
         label='Community'
         isActive={section === 'community'}
       />
