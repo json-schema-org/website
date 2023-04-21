@@ -152,7 +152,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ children, href, title }) => {
                 if (!href) return children
                 return (
-                  <Link href={href} prefetch scroll={href.indexOf('#') === -1}>
+                  <Link href={href} scroll={href.indexOf('#') === -1}>
                     <a title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
                   </Link>
                 )

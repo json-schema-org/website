@@ -222,7 +222,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
                   .filter(jsonPathWithScope => jsonPathWithScope.scope === JsonSchemaScope.TypeDefinition)
                   .map(jsonPathsWithJsonScope => jsonPathsWithJsonScope.jsonPath)
                   .includes(leaf.syntaxPart?.parentJsonPath)
-                console.log('jsonPathsWithJsonScope', jsonPathsWithJsonScope, leaf, leaf.syntaxPart?.parentJsonPath)
+                // console.log('jsonPathsWithJsonScope', jsonPathsWithJsonScope, leaf, leaf.syntaxPart?.parentJsonPath)
                 if (isJsonScope && jsonSchemaReferences.objectProperty[leaf.text]) {
                   return 'cursor-pointer text-blue-400 hover:text-blue-300 decoration-blue-500/30 hover:decoration-blue-500/50 underline underline-offset-4'
                 }
