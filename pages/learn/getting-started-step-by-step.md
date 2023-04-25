@@ -3,13 +3,13 @@ title: Creating a schema
 section: learn
 ---
 
-* [Introduction](#introduction)
-* [Starting the schema](#starting-the-schema)
-* [Defining the properties](#defining-the-properties)
-* [Going deeper with properties](#going-deeper-with-properties)
-* [Nesting data structures](#nesting-data-structures)
-* [References outside the schema](#references-outside-the-schema)
-* [Taking a look at data for our defined JSON Schema](#taking-a-look-at-data-for-our-defined-json-schema)
+* [Introduction](#intro)
+* [Starting the schema](#starting)
+* [Defining the properties](#properties)
+* [Going deeper with properties](#properties-deeper)
+* [Nesting data structures](#nesting)
+* [References outside the schema](#references)
+* [Taking a look at data for our defined JSON Schema](#data)
 
 ## Introduction[#introduction]
 
@@ -42,7 +42,7 @@ While generally straightforward, the example leaves some open questions. Here ar
 
 When you're talking about a data format, you want to have metadata about what keys mean, including the valid inputs for those keys. **JSON Schema** is a proposed IETF standard how to answer those questions for data.
 
-## Starting the schema[#starting-the-schema]
+## Starting the schema[#starting]
 
 To start a schema definition, let's begin with a basic JSON schema.
 
@@ -71,7 +71,7 @@ We introduce the following pieces of terminology when we start the schema:
 * [Schema Annotations](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.9.1): `title` and `description`.
 * [Validation Keyword](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.1.1): `type`.
 
-## Defining the properties[#defining-the-properties]
+## Defining the properties[#properties]
 
 `productId` is a numeric value that uniquely identifies a product. Since this is the canonical identifier for a product, it doesn't make sense to have a product without one, so it is required.
 
@@ -124,7 +124,7 @@ In JSON Schema terms, we update our schema to add:
 }
 ```
 
-## Going deeper with properties[#going-deeper-with-properties]
+## Going deeper with properties[#properties-deeper]
 
 According to the store owner there are no free products. ;)
 
@@ -211,7 +211,7 @@ Therefore:
 }
 ```
 
-## Nesting data structures[#nesting-data-structures]
+## Nesting data structures[#nesting]
 
 Up until this point we've been dealing with a very flat schema -- only one level. This section demonstrates nested data structures.
 
@@ -269,7 +269,7 @@ Up until this point we've been dealing with a very flat schema -- only one level
 }
 ```
 
-## References outside the schema[#references-outside-the-schema]
+## References outside the schema[#references]
 
 So far our JSON schema has been wholly self contained. It is very common to share JSON schema across many data structures for reuse, readability and maintainability among other reasons.
 
@@ -357,7 +357,7 @@ Next we add a reference to this new schema so it can be incorporated.
 }
 ```
 
-## Taking a look at data for our defined JSON Schema[#taking-a-look-at-data-for-our-defined-json-schema]
+## Taking a look at data for our defined JSON Schema[#data]
 
 We've certainly expanded on the concept of a product since our earliest sample data (scroll up to the top). Let's take a look at data which matches the JSON Schema we have defined.
 
