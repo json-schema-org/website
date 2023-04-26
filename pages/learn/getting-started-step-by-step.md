@@ -1,6 +1,6 @@
 ---
 title: Creating a schema
-section: learn
+section: docs
 ---
 
 * [Introduction](#intro)
