@@ -11,7 +11,9 @@ section: learn
 * [References outside the schema](#references)
 * [Taking a look at data for our defined JSON Schema](#data)
 
-## Introduction[#introduction]
+<span id="intro"></span>
+
+## Introduction[#intro]
 
 The following example is by no means definitive of all the value JSON Schema can provide. For this you will need to go deep into the specification itself -- learn more at [https://json-schema.org/specification](/specification).
 
@@ -70,6 +72,8 @@ We introduce the following pieces of terminology when we start the schema:
 * [Schema Keyword](https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.1.1): `$schema` and `$id`.
 * [Schema Annotations](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.9.1): `title` and `description`.
 * [Validation Keyword](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.1.1): `type`.
+
+<span id="properties"></span>
 
 ## Defining the properties[#properties]
 
@@ -210,6 +214,8 @@ Therefore:
   "required": [ "productId", "productName", "price" ]
 }
 ```
+
+<span id="nesting"></span>
 
 ## Nesting data structures[#nesting]
 
