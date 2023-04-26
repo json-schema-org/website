@@ -199,7 +199,9 @@ const DocsNav = () => {
       <DocLink uri='/understanding-json-schema/what-is-json-schema' label='What is JSON Schema?' />
       <SegmentHeadline label='Getting Started' />
       <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
-      <SegmentHeadline label='Example' />
+      
+      <div className='pl-4 pb-1 pt-1'>
+      <SegmentSubtitle label='Examples' />
       
       <DocLink uri='/learn/getting-started-step-by-step' label='Miscellaneous examples' />
       <DocLink uri='/learn/getting-started-step-by-step' label='Modelling a file system' />
@@ -252,6 +254,10 @@ const DocsNav = () => {
           <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Bundling' />
         </div>
       </div>
+    </div>
+     <SegmentHeadline label='Specification' />
+          <DocLink uri='/specification' label='Overview' />
+          <DocLink uri='/understanding-json-schema/reference/annotations' label='Specification' />
     </div>
   )
 }
