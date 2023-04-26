@@ -1,11 +1,8 @@
 ---
-layout: page
 title: Work In Progress Feedback
-permalink: /work-in-progress
 ---
 
-* TOC
-{:toc}
+## Right now
 
 We're working towards JSON Schema 2022-NN.
 
