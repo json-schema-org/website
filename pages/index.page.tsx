@@ -93,7 +93,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
           <span className='text-center text-slate-500 text-sm mt-6'>Open zoom meeting<br />every Monday at 14:00 PT.</span>
         </a>
         <a
-          href='https://github.com/json-schema-org/community/discussions/35'
+          href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email'
           className='self-stretch border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
         >
           <div className='text-4xl mb-4'><img src='/img/logos/slack.svg' className='h-8 w-8' /></div>
