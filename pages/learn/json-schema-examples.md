@@ -1,5 +1,5 @@
 ---
-section: learn
+section: docs
 title: JSON Schema examples
 ---
 
