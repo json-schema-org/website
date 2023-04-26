@@ -5,7 +5,7 @@ const nextConfig = {
   async redirects () {
     return [{
       source: '/slack',
-      destination: 'https://json-schema.slack.com/join/shared_invite/zt-15ylccbuu-3T2bRia8uzhE157TSW6nXg#/shared-invite/email',
+      destination: 'https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email',
       permanent: true
     }]
   }
