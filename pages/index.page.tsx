@@ -90,7 +90,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
         >
           <div className='text-4xl mb-2'>👷</div>
           <span className='text-md md:text-lg font-semibold text-center'>Open Community Working Meetings</span>
-          <span className='text-center text-slate-500 text-sm mt-6'>Open zoom meeting<br />every First and Third Friday of the month at 12:00 PT.</span>
+          <span className='text-center text-slate-500 text-sm mt-6'>Open zoom meeting<br />every Monday at 14:00 PT.</span>
         </a>
         <a
           href='https://github.com/json-schema-org/community/discussions/35'
