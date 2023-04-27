@@ -1,6 +1,6 @@
 ---
 title: Specification Links
-layout: page
+section: docs
 ---
 
 <!-- Links on this page should be immutable - none of them should go to `/latest`, etc. -->

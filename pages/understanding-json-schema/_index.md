@@ -1,3 +1,8 @@
+---
+title: "Understanding JSON Schema"
+section: docs
+---
+
 Understanding JSON Schema
 =========================
 
