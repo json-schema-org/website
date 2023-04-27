@@ -199,60 +199,52 @@ const DocsNav = () => {
       <DocLink uri='/understanding-json-schema/what-is-json-schema' label='What is JSON Schema?' />
       <SegmentHeadline label='Getting Started' />
       <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
-      
       <div className='pl-4 pb-1 pt-1'>
         <SegmentSubtitle label='Examples' />
-      
         <DocLink uri='/learn/getting-started-step-by-step' label='Miscellaneous examples' />
         <DocLink uri='/learn/getting-started-step-by-step' label='Modelling a file system' />
         <DocLink uri='/learn/getting-started-step-by-step' label='Other examples' />
-
-        <SegmentHeadline label='Reference' />
-        <DocLink uri='/learn/getting-started-step-by-step' label='JSON Schema Glossary' />
-        <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
-        <DocLink uri='/learn/getting-started-step-by-step' label='Understanding JSON Schema' />
+      </div>
+      <SegmentHeadline label='Reference' />
+      <DocLink uri='/learn/getting-started-step-by-step' label='JSON Schema Glossary' />
+      <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
+      <DocLink uri='/learn/getting-started-step-by-step' label='Understanding JSON Schema' />
+      <div className='pl-4 pb-1 pt-1'>
+        <DocLink uri='/learn/getting-started-step-by-step' label='Conventions used in this book' />
+        <DocLink uri='https://www.learnjsonschema.com/' label='What is a schema?' />
         <div className='pl-4 pb-1 pt-1'>
-          <DocLink uri='/learn/getting-started-step-by-step' label='Conventions used in this book' />
-          <DocLink uri='https://www.learnjsonschema.com/' label='What is a schema?' />
-      
-          <div className='pl-4 pb-1 pt-1'>
-            <SegmentSubtitle label='The basics' />
-            <DocLink uri='/understanding-json-schema/reference/string' label='Hello, World!' />
-            <DocLink uri='/understanding-json-schema/reference/numeric' label='The type keyword' />
-            <DocLink uri='/understanding-json-schema/reference/object' label='Declaring a JSON Schema' />
-            <DocLink uri='/understanding-json-schema/reference/array' label='Declaring a unique identifier' />
-
-
-     
-            <SegmentSubtitle label='JSON Schema Reference' />
-            <DocLink uri='/understanding-json-schema/reference/array' label='Type-specific keywords' />
-            <DocLink uri='/understanding-json-schema/reference/string' label='string' />
-            <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
-            <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
-            <DocLink uri='/understanding-json-schema/reference/object' label='object' />
-            <DocLink uri='/understanding-json-schema/reference/array' label='array' />
-            <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
-            <DocLink uri='/understanding-json-schema/reference/null' label='null' />
-            <DocLink uri='/understanding-json-schema/reference/enum' label='Generic keywords' />
-            <DocLink uri='/understanding-json-schema/reference/annotations' label='Media: string-encoding non-JSON data' />
-            <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
-            <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
-            <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
-            <SegmentSubtitle label='JSON Schema Reference' />
-            <DocLink uri='/understanding-json-schema/reference/enum' label='enumerated values' />
-            <DocLink uri='/understanding-json-schema/reference/annotations' label='annotations' />
-            <DocLink uri='/understanding-json-schema/reference/const' label='constant values' />
-            <DocLink uri='/understanding-json-schema/reference/comments' label='comments' />
-        
-            <SegmentSubtitle label='Structuring a complex schema' />
-            <DocLink uri='/understanding-json-schema/reference/enum' label='Schema Identification' />
-            <DocLink uri='/understanding-json-schema/reference/annotations' label='Base URI' />
-            <DocLink uri='/understanding-json-schema/reference/const' label='$ref' />
-            <DocLink uri='/understanding-json-schema/reference/comments' label='$defs' />
-            <DocLink uri='/understanding-json-schema/structuring' label='Recursion' />
-            <DocLink uri='/understanding-json-schema/reference/conditionals' label='Extending Recursive Schemas' />
-            <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Bundling' />
-          </div>
+          <SegmentSubtitle label='The basics' />
+          <DocLink uri='/understanding-json-schema/reference/string' label='Hello, World!' />
+          <DocLink uri='/understanding-json-schema/reference/numeric' label='The type keyword' />
+          <DocLink uri='/understanding-json-schema/reference/object' label='Declaring a JSON Schema' />
+          <DocLink uri='/understanding-json-schema/reference/array' label='Declaring a unique identifier' />
+          <SegmentSubtitle label='JSON Schema Reference' />
+          <DocLink uri='/understanding-json-schema/reference/array' label='Type-specific keywords' />
+          <DocLink uri='/understanding-json-schema/reference/string' label='string' />
+          <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
+          <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
+          <DocLink uri='/understanding-json-schema/reference/object' label='object' />
+          <DocLink uri='/understanding-json-schema/reference/array' label='array' />
+          <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
+          <DocLink uri='/understanding-json-schema/reference/null' label='null' />
+          <DocLink uri='/understanding-json-schema/reference/enum' label='Generic keywords' />
+          <DocLink uri='/understanding-json-schema/reference/annotations' label='Media: string-encoding non-JSON data' />
+          <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
+          <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
+          <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
+          <SegmentSubtitle label='JSON Schema Reference' />
+          <DocLink uri='/understanding-json-schema/reference/enum' label='enumerated values' />
+          <DocLink uri='/understanding-json-schema/reference/annotations' label='annotations' />
+          <DocLink uri='/understanding-json-schema/reference/const' label='constant values' />
+          <DocLink uri='/understanding-json-schema/reference/comments' label='comments' />
+          <SegmentSubtitle label='Structuring a complex schema' />
+          <DocLink uri='/understanding-json-schema/reference/enum' label='Schema Identification' />
+          <DocLink uri='/understanding-json-schema/reference/annotations' label='Base URI' />
+          <DocLink uri='/understanding-json-schema/reference/const' label='$ref' />
+          <DocLink uri='/understanding-json-schema/reference/comments' label='$defs' />
+          <DocLink uri='/understanding-json-schema/structuring' label='Recursion' />
+          <DocLink uri='/understanding-json-schema/reference/conditionals' label='Extending Recursive Schemas' />
+          <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Bundling' />
         </div>
       </div>
       <SegmentHeadline label='Specification' />
