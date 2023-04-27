@@ -17,7 +17,7 @@ export async function getStaticProps() {
 
 export default function ContentExample ({ blocks }: { blocks: any[] }) {
   return (
-    <SectionContext.Provider value='learn'>
+    <SectionContext.Provider value='docs'>
       <Layout>
         <StyledMarkdown markdown={blocks[0]} />
       </Layout>

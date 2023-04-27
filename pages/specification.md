@@ -1,6 +1,6 @@
 ---
 title: Specification
-section: specification
+section: docs
 ---
 
 The current version is *2020-12*!
