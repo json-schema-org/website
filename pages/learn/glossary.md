@@ -14,6 +14,18 @@ If you encounter a term you wish were defined here, please feel free to [file an
 
 The entries on this page can be linked to via anchor links (e.g. `https://json-schema.org/learn/glossary.html#vocabulary`) when sharing a definition with others.
 
+### dialect
+
+A cohesive collection of [keywords](#keyword) available for use within a schema, often representing a use-case specific single release of the JSON Schema specification.
+
+Dialects, particularly the 2019-09 and 2020-12 dialects, are often defined via a collection of [vocabularies](#vocabulary).
+
+Each dialect is identified by a URI, its *dialect identifier*, which [schemas](#schema) may then reference in their `$schema` [keyword](#keyword).
+Doing so identifies the schema as being written in the dialect, and thereby indicates which keywords are usable within it, along with their intended meaning.
+
+The JSON Schema specification defines a number of dialects, each of which enable vocabularies suitable for the dialect's specific use case.
+These vocabularies are [described](../specification#general-purpose-meta-schema) in meta-schemas.
+
 ### draft
 
 An individual release of the JSON Schema specification.
@@ -70,3 +82,37 @@ The rules constituting which schemas are conformant, as well as the rules govern
 Strictly speaking, according to the specification, schemas are themselves JSON documents, though it is somewhat common for them to be authored or maintained in other languages which are easily translated to JSON, such as YAML.
 
 In recent [drafts](#draft) of the specification, a schema is either a JSON object or a JSON boolean value.
+
+### subschema
+
+A [schema](#schema) which is itself contained within a surrounding parent schema.
+Like schemas themselves, in recent [drafts](#draft) of JSON Schema, subschemas are either JSON objects or JSON boolean values.
+
+Within the JSON Schema specification and its [dialects](#dialect), a number of [keywords](#keyword) take subschemas as part of their values.
+For example, the `not` keyword takes a subschema value and inverts its result, succeeding whenever the subschema does not succeed, such that the [instance](#instance) `12` is invalid under `{"type": "string"}` but valid under `{"not": {"type": "string"}}`, where `{"type": "string"}` is a subschema contained in the full schema.
+
+Some subschemas may appear in more complex nested locations within a parent schema.
+The `allOf` keyword, for instance, takes an array of multiple subschemas and succeeds whenever all of the subschemas do individually.
+
+Whether something that otherwise *appears* to be a schema (based on its contents) actually *is* a subschema can be misleading at first glance without context or knowlege about its location within the parent schema.
+Specifically, in our above example, `{"type": "string"}` was a subschema of a larger schema, but in the schema `{"const": {"type": "string"}}`, it is *not* a subschema.
+Even though as a value it looks the same, the `const` keyword, which compares instances against a specific expected value, does *not* take a subschema as its value, its value is an opaque value with no particular meaning (such that in this schema, the number 12 would be invalid, but the precise instance `{"type": "string"}` is valid).
+Said more plainly, whether a particular value is a subschema or not depends on its precise location within a parent schema, as interpretation of the value depends on the defined behavior of the keyword(s) it lives under.
+
+Subschemas may themselves contain sub-subschemas, though colloquially one generally uses the term "subschema" regardless of the level of nesting, further clarifying which larger schema is the parent schema whenever needed.
+
+### vocabulary
+
+A tightly related collection of [keywords](keyword), grouped to facilitate re-use.
+
+A vocabulary is specified by a prose document or specification which explains the semantics of its keywords in a way suitable for implementers and users of the vocabulary.
+It often also includes a [meta-schema](#meta-schema) (or multiple metaschemas) which define the syntax of its keywords.
+
+Anyone can create and publish a vocabulary, and implementations generally will include facilities for extending themselves with support for additional vocabularies and their keywords.
+The JSON Schema specification includes a number of vocabularies which cover each of the keywords it defines.
+
+In some [dialects](#dialect) of JSON Schema, the `$vocabulary` keyword can be used to include the keywords defined by a vocabulary into the dialect, as well as to indicate whether implementations must specifically recognize the vocabulary in order to be able to process schemas written in the dialect or not.
+
+#### See also
+
+* [`json-schema-vocabularies`](https://github.com/json-schema-org/json-schema-vocabularies), a repository which collects known third-party JSON Schema vocabularies
