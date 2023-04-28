@@ -29,6 +29,7 @@
     "slate": "^0.78.0",
     "slate-react": "^0.77.4",
     "slugify": "^1.6.5",
+    "yarn": "1.22.19",
     "zero-fill": "^2.2.4",
     "zustand": "^4.0.0-rc.1"
   },
