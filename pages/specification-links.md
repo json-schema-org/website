@@ -240,17 +240,17 @@ For links to the somewhat more readably formatted versions on this web site, and
   <tr>
     <td>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00">
-        draft&#8209;bhutton&#8209;json&#8209;schema&#8209;00
+        draft-bhutton-json-schema-00
       </a></small></tt><br>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00">
-        draft&#8209;bhutton&#8209;json&#8209;schema&#8209;validation&#8209;00
+        draft-bhutton-json-schema-validation-00
       </a></small></tt><br>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00">
-        draft&#8209;bhutton&#8209;relative&#8209;json&#8209;pointer&#8209;00
+        draft-bhutton-relative-json-pointer-00
       </a></small></tt><br>
     </td>
     <td rowspan="3">
-      <tt><small>2020&#8209;12</small></tt>
+      <tt><small>2020-12</small></tt>
     </td>
     <td rowspan="3">
       Draft 2020-12
@@ -268,10 +268,10 @@ For links to the somewhat more readably formatted versions on this web site, and
   <tr>
     <td>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-01">
-        draft&#8209;bhutton&#8209;json&#8209;schema&#8209;01
+        draft-bhutton-json-schema-01
       </a></small></tt><br>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01">
-        draft&#8209;bhutton&#8209;json&#8209;schema&#8209;validation&#8209;01
+        draft-bhutton-json-schema-validation-01
       </a></small></tt><br>
       <br/>
     </td>
