@@ -248,12 +248,12 @@ const DocsNav = () => {
       </div>
       <DocLink uri='/specification' label='Specification' />
       <div className='pl-4 pb-1 pt-1'>
-        <DocLink uri='/draft/2020-12/release-notes' label='2020-12' />
-        <DocLink uri='/draft/2019-09/release-notes' label='2019-09' />
-        <DocLink uri='/draft-07/readme' label='draft-07' />
-        <DocLink uri='/draft-06/readme' label='draft-06' />
-        <DocLink uri='/draft-05/readme' label='draft-05' />
-        <DocLink uri='/specification-links' label='Links' />
+        <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
+        <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
+        <DocLink uri='/draft-07/readme' label='draft-07 notes' />
+        <DocLink uri='/draft-06/readme' label='draft-06 notes' />
+        <DocLink uri='/draft-05/readme' label='draft-05 notes' />
+        <DocLink uri='/specification-links' label='Specification Links' />
       </div>
     </div>
   )
