@@ -1,6 +1,6 @@
 ---
 title: JSON Hyper-Schema Draft-07 Release Notes
-layout: page
+section: docs
 ---
 
 JSON Hyper-Schema [draft-07](json-schema-hypermedia.html) completes the

@@ -1,6 +1,6 @@
 ---
 title: JSON Schema Draft-07 Release Notes
-layout: page
+section: docs
 ---
 
 For the Core and Validation specifications, draft-07 is a relatively

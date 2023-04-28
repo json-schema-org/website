@@ -1,5 +1,6 @@
 ---
 title: Draft-07 Release Notes
+section: docs
 ---
 
 - [JSON Schema Release Notes](/draft-07/json-schema-release-notes)

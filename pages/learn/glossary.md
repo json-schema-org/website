@@ -1,6 +1,6 @@
 ---
-section: docs
 title: JSON Schema Glossary
+section: docs
 ---
 
 This document collects short explanations of terminology one may encounter within the JSON Schema community.

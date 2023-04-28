@@ -1,5 +1,6 @@
 ---
 title: JSON Schema Draft-06 Release Notes
+section: docs
 ---
 
 Release notes for migrating from zyp-04 and fge-00 (draft-04) to wright-01 (draft-06).

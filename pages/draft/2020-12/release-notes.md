@@ -1,6 +1,6 @@
 ---
 title: JSON Schema 2020-12 Release Notes
-layout: page
+section: docs
 ---
 The previous draft (2019-09) introduced a lot of new concepts including
 `$recursiveRef`/`$recursiveAnchor`, `unevaluatedProperties`/`unevaluatedItems`,

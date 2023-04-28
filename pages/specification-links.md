@@ -88,13 +88,13 @@ For links to the somewhat more readably formatted versions on this web site, and
     <td>
       <small><a href="https://tools.ietf.org/html/draft-zyp-json-schema-04">
         draft-zyp-json-schema-04
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00">
         draft-fge-json-schema-validation-00
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-luff-json-hyper-schema-00">
         draft-luff-json-hyper-schema-00
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03">
         draft-pbryan-zyp-json-ref-03
       </a></small><br>
@@ -118,10 +118,10 @@ For links to the somewhat more readably formatted versions on this web site, and
     <td>
       <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-00">
         draft-wright-json-schema-00
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-validation-00">
         draft-wright-json-schema-validation-00
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-00">
         draft-wright-json-schema-hyperschema-00
       </a></small><br>
@@ -141,10 +141,10 @@ For links to the somewhat more readably formatted versions on this web site, and
     <td>
       <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-01">
         draft-wright-json-schema-01
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-validation-01">
         draft-wright-json-schema-validation-01
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-01">
         draft-wright-json-schema-hyperschema-01
       </a></small><br>
@@ -166,13 +166,13 @@ For links to the somewhat more readably formatted versions on this web site, and
     <td>
       <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-00">
         draft-handrews-json-schema-00
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-validation-00">
         draft-handrews-json-schema-validation-00
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-00">
         draft-handrews-json-schema-hyperschema-00
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00">
         draft-handrews-relative-json-pointer-00
       </a></small><br>
@@ -198,13 +198,13 @@ For links to the somewhat more readably formatted versions on this web site, and
     <td>
       <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-01">
               draft-handrews-json-schema-01
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-validation-01">
               draft-handrews-json-schema-validation-01
-      </a></small><br>
-      <<small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-01">
+      </a></small><br><br>
+      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-01">
           draft-handrews-json-schema-hyperschema-01
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01">
           draft-handrews-relative-json-pointer-01
       </a></small><br>
@@ -214,13 +214,13 @@ For links to the somewhat more readably formatted versions on this web site, and
     <td>
       <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-02">
         draft-handrews-json-schema-02
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-validation-02">
         draft-handrews-json-schema-validation-02
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-02">
         draft-handrews-json-schema-hyperschema-02
-      </a></small><br>
+      </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-relative-json-pointer-02">
         draft-handrews-relative-json-pointer-02
       </a></small><br>
@@ -241,10 +241,10 @@ For links to the somewhat more readably formatted versions on this web site, and
     <td>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00">
         draft-bhutton-json-schema-00
-      </a></small></tt><br>
+      </a></small></tt><br><br>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00">
         draft-bhutton-json-schema-validation-00
-      </a></small></tt><br>
+      </a></small></tt><br><br>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00">
         draft-bhutton-relative-json-pointer-00
       </a></small></tt><br>
@@ -269,7 +269,7 @@ For links to the somewhat more readably formatted versions on this web site, and
     <td>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-01">
         draft-bhutton-json-schema-01
-      </a></small></tt><br>
+      </a></small></tt><br><br>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01">
         draft-bhutton-json-schema-validation-01
       </a></small></tt><br>

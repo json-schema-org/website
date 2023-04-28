@@ -1,5 +1,6 @@
 ---
 title: Explanation for lack of draft-05 meta-schemas
+section: docs
 ---
 
 “Draft-05” in the sequential meta-schema numbering would have referred to the draft-wright-jsonschema*-00 specifications.
