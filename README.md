@@ -1,3 +1,10 @@
+### Cloning the repository
+This project uses git submodules, so you will need to run the following commands to fully clone the repo.
+```
+git submodule init
+git submodule update
+```
+
 ### Install dependencies
 ```
 yarn

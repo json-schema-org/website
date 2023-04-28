@@ -99,7 +99,7 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden md:block'
-        uri='/understanding-json-schema/reference/type'
+        uri='/overview/what-is-jsonschema'
         label='Docs'
         isActive={section === 'docs'}
       />
@@ -290,7 +290,7 @@ const Footer = () => (
   <footer className={classnames(responsiveClasses, 'mx-auto p-4 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ')}>
     <div className='flex flex-col items-start'>
       <div className='font-semibold text-sm text-slate-800 mb-1'>JSON Schema</div>
-      <Link href='/understanding-json-schema/reference/type'>
+      <Link href='/overview/what-is-jsonschema'>
         <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Docs</a>
       </Link>
       <Link href='/understanding-json-schema'>
