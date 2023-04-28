@@ -1,5 +1,6 @@
 ---
 title: JSON Hyper-Schema Draft-06 Release Notes
+section: docs
 ---
 
 Release notes for migrating from draft-luff-json-hyper-schema-00 (draft-04) to draft-wright-json-schema-hyperschema-01 (draft-06).

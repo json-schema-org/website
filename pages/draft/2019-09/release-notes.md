@@ -1,6 +1,6 @@
 ---
 title: JSON Schema 2019-09 Release Notes
-layout: page
+section: docs
 ---
 
 For the vast majority of schema authors, we hope that these changes are minimally disruptive.

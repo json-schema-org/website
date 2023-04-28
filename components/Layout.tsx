@@ -211,7 +211,7 @@ const DocsNav = () => {
       <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
       <div className='pl-4 pb-1 pt-1'>
         <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
-        <DocLink uri='/understanding-json-schema/what-is-json-schema' label='What is a schema?' />
+        <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
         <div className='pl-4 pb-1 pt-1'>
           <DocLink uri='/understanding-json-schema/basics' label='The basics' />
           <div className='pl-4 pb-1 pt-1'>
@@ -246,9 +246,15 @@ const DocsNav = () => {
           </div>
         </div>
       </div>
-      <SegmentHeadline label='Specification' />
-      <DocLink uri='/specification' label='Overview' />
-      <DocLink uri='/specification-links' label='Links' />
+      <DocLink uri='/specification' label='Specification' />
+      <div className='pl-4 pb-1 pt-1'>
+        <DocLink uri='/draft/2020-12/release-notes' label='2020-12' />
+        <DocLink uri='/draft/2019-09/release-notes' label='2019-09' />
+        <DocLink uri='/draft-07/readme' label='draft-07' />
+        <DocLink uri='/draft-06/readme' label='draft-06' />
+        <DocLink uri='/draft-05/readme' label='draft-05' />
+        <DocLink uri='/specification-links' label='Links' />
+      </div>
     </div>
   )
 }
