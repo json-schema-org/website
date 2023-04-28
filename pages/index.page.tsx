@@ -44,7 +44,7 @@ const Home = ({ blocks }: { blocks: any[] }) => {
               Getting started
             </a>
           </Link>
-          <Link href='/understanding-json-schema/reference/type'>
+          <Link href='/overview/what-is-jsonschema'>
             <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
               <div className='h-14 text-6xl mb-2'>
                 📖
