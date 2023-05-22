@@ -1,11 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .clip-your-needful-style {
+    clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 80%, 100% 0);
+    /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 6vw)); */
+
+}
+}
 
 html {
   font-family: 'Inter', sans-serif;
 }
-
+.DocSearch-Button-Keys {
+  display: none;
+}
+.DocSearch-Button-Container {
+  background-color: white;
+ padding: 8px 48px;
+}
 /* CARBON ADS */
 
 #carbonads {

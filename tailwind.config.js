@@ -9,6 +9,21 @@ module.exports = {
       'serif': ['ui-serif', 'Georgia'],
       'mono': ['JetBrains Mono', 'monospace']
     },
+    fontSize: {
+      sm: '0.8rem',
+      base: '16px',
+      xl: '20px',
+      '2xl': '24px',
+      '3xl': '32px',
+      '4xl': '2.441rem',
+      '5xl': '65px',
+    },
+    extend: {
+      lineHeight: {
+        'base': '24px',
+        'header': '74px',
+      }
+    }
   },
   plugins: [],
 }

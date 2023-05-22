@@ -16,7 +16,7 @@ type Props = {
   hideAds?: boolean
 }
 
-const responsiveClasses = 'w-full xl:w-[1200px] px-2 sm:px-4 lg:px-8'
+const responsiveClasses = 'w-100  '
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
@@ -32,7 +32,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       </Head>
 
       <div>
-        <header className={classnames(responsiveClasses, 'py-4 flex flex-row justify-between mx-auto')}>
+        <header className={classnames(responsiveClasses, 'bg-white sticky top-0 left-0 right-0 bg-white z-100 py-4 flex flex-row justify-between mx-auto w-[820px]')}>
           <div className='flex flex-row items-center'>
             <Logo />
           </div>
@@ -93,15 +93,15 @@ const MainNavigation = () => {
     <div className='py-2 flex flex-row items-center'>
       <MainNavLink
         className='hidden md:block'
-        uri='/specification'
-        label='Specification'
-        isActive={section === 'specification'}
+        uri='/overview'
+        label='Overview'
+        isActive={section === 'overview'}
       />
       <MainNavLink
         className='hidden md:block'
-        uri='/overview/what-is-jsonschema'
-        label='Docs'
-        isActive={section === 'docs'}
+        uri='/learn/getting-started-step-by-step'
+        label='Getting Started'
+        isActive={section === 'getting-started'}
       />
       <div
         className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4', {
@@ -114,26 +114,21 @@ const MainNavigation = () => {
         Docs
       </div>
       <MainNavLink
-        uri='/implementations'
-        label='Implementations'
-        isActive={section === 'implementations'}
+        uri='/reference'
+        label='Reference'
+        isActive={section === 'reference'}
       />
       <MainNavLink
-        uri='/blog'
-        label='Blog'
-        isActive={section === 'blog'}
-      />
-      <MainNavLink
-        uri='/#community'
-        label='Community'
-        isActive={section === 'community'}
+        uri='/specification'
+        label='Specification'
+        isActive={section === 'specification'}
       />
       <Search />
     </div>
   )
 }
 
-const Search = () => {
+export const Search = () => {
   return (
     <DocSearch
       appId='6ZT4KX2OUI'
@@ -293,70 +288,61 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'mx-auto p-4 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ')}>
-    <div className='flex flex-col items-start'>
-      <div className='font-semibold text-sm text-slate-800 mb-1'>JSON Schema</div>
-      <Link href='/overview/what-is-jsonschema'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Docs</a>
-      </Link>
-      <Link href='/understanding-json-schema'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Learn</a>
-      </Link>
-      <Link href='/implementations'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Implementations</a>
-      </Link>
-      <Link href='/blog'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Blog</a>
-      </Link>
-      <Link href='/specification'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3 sm:mb-4'>Specification</a>
-      </Link>
-    </div>
-    <div className='flex flex-col items-start mt-8 sm:mt-0'>
-      <div className='font-semibold text-sm text-slate-800 mb-1'>Learn</div>
-      <a href='/learn/getting-started-step-by-step' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Getting Started Step-By-Step</a>
-      <a href='/understanding-json-schema/conventions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Conventions on json-schema.org</a>
-    </div>
-    <div className='flex flex-col items-start mt-8 sm:mt-0'>
-      <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
-      <a href='/slack' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
-      <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
-      <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
-      <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>
-      <a href='https://groups.google.com/g/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Google Groups</a>
-    </div>
-    <div className='flex flex-col items-start mt-8 sm:mt-0'>
-      <Logo />
-      <a href='https://opencollective.com/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3 mt-2'>Open Collective</a>
-      <a href='/understanding-json-schema/credits' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Acknowledgments</a>
-    </div>
+  <footer className={classnames(responsiveClasses, 'h-[433px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-your-needful-style mb-12')}> 
+        <div className='mt-28 grid grid-cols-2 w-5/6'>
+          <img src='/img/logos/logo-white.svg' className='mx-auto' />
+          <div className='flex gap-4'>
+            <div className='flex items-center'>
+              <img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
+              <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='text-white'>Slack</a>
+            </div>
+            <div className='flex items-center'>
+              <img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
+              <a href='https://twitter.com/jsonschema' className='text-white'>Twitter</a>
+            </div>
+            <div className='flex items-center'>
+              <img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
+              <a href='https://linkedin.com/company/jsonschema/' className='text-white'>LinkedIn</a>
+            </div>
+            <div className='flex items-center'>
+              <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
+              <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='text-white'>Youtube</a>
+            </div>
+            <div className='flex items-center'>
+              <img src='/img/logos/github_logo-white.svg' className='w-4 h-4 mr-2' />
+              <a href='https://github.com/json-schema-org' className='text-white'>GitHub</a>
+            </div>
+            <div className='flex items-center'>
+              <img src='/img/logos/globe-white.svg' className='w-4 h-4 mr-2' />
+              <a href='https://groups.google.com/g/json-schema' className='text-white'>Google Groups</a>
+            </div>
+          </div>
+          <div className='flex flex-col ml-64 mt-12'>
+            <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
+            <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
+          </div>
+        </div>
   </footer>
 )
 
 const OpenJS = () => (
-  <div className={classnames(responsiveClasses, 'mx-auto flex flex-flow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2')}>
-    <div className='flex flex-col items-start col-start-1 sm:inline md:inline lg:inline'>
-      <img className='h-16 mb-3.5' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
+  <div className={classnames(responsiveClasses, '')}>
+   <div className=' grid grid-cols-2 w-5/6'>
+      <img className='h-24 mx-auto' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
+  <div className='absolute  bottom-0 left-64'>© Copyright JSON Schema Organisation {new Date().getFullYear()}</div>
+    <div className='w-[810px] '>
+      <p className='mb-4'>Copyright <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
+      <p className='mb-4 sm:mb-8'><a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>The OpenJS Foundation</a> | <a className='text-blue-500 hover:text-blue-600' href='https://terms-of-use.openjsf.org'>Terms of Use</a> | <a className='text-blue-500 hover:text-blue-600' href='https://privacy-policy.openjsf.org'>Privacy Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://bylaws.openjsf.org'>Bylaws</a> | <a className='text-blue-500 hover:text-blue-600' href='https://code-of-conduct.openjsf.org'>Code of Conduct</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a> | <a className='text-blue-500 hover:text-blue-600' href='https://www.linuxfoundation.org/cookies'>Cookie Policy</a></p>
     </div>
-    <div className='flex flex-col items-start col-start-1 md:col-span-3 sm:col-start-1 sm:col-span-2'>
-      <p className='text-sm mb-4'>Copyright <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
-      <p className='text-sm mb-4 sm:mb-8'><a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>The OpenJS Foundation</a> | <a className='text-blue-500 hover:text-blue-600' href='https://terms-of-use.openjsf.org'>Terms of Use</a> | <a className='text-blue-500 hover:text-blue-600' href='https://privacy-policy.openjsf.org'>Privacy Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://bylaws.openjsf.org'>Bylaws</a> | <a className='text-blue-500 hover:text-blue-600' href='https://code-of-conduct.openjsf.org'>Code of Conduct</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a> | <a className='text-blue-500 hover:text-blue-600' href='https://www.linuxfoundation.org/cookies'>Cookie Policy</a></p>
-    </div>
-    <div className='relative mt-8 flex flex-col items-start col-start-1 col-span-2 sm:col-start-1 sm:col-span-2'>
-      <div className='absolute text-sm bottom-8'>© Copyright JSON Schema Organisation 2023</div>
-    </div>
+</div>
   </div>
 )
 
 const Logo = () => (
   <Link href='/'>
     <a>
-      <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
-        <img src='/logo-blue.svg' className='h-12 mr-2' />
-        <div className='inline-block'>
-          JSON<br />
-          Schema
-        </div>
+      <div className='ml-8 inline-block '>
+        <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
       </div>
     </a>
   </Link>
