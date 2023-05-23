@@ -35,17 +35,27 @@ const Home = () => {
         <Hero />
         {/* Feature */}
         <FeatureSection />
-        <button className='rounded border-2 bg-[#002CC4] text-white px-12 py-2'>Read the Docs</button>
+        <div className='w-full h-[367px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-both'>
+          <div className='w-2/3 mx-auto text-center mt-28'>
+            <h2 className='text-3xl lg:text-4xl text-white mb-6'>Learn more about our documentation</h2>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-[#002CC4] text-white '>Read the Docs</button>
+          </div>
+        </div>
         {/* SidebySide section*/}
 
         <SideBySide />
-        <button className='rounded border-2 bg-[#002CC4] text-white px-12 py-2  mb-24 '>Read the Docs</button>
+        
 
         {/* Join community */}
         <FeatureCommunity />
         {/* News & Blogs */}
-        <FeatureNews />
-        <button className='rounded border-2 bg-[#002CC4] text-white px-12 py-2  mb-24 '>Read the Docs</button>
+        {/* <FeatureNews /> */}
+        <div className='w-full h-[447px] lg:h-[367px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-both'>
+          <div className='w-2/3 mx-auto text-center mt-28'>
+            <h2 className='text-3xl lg:text-4xl text-white mb-6'>Contribute to the JSON Schema ecosystem</h2>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-[#002CC4] text-white '>Contribute</button>
+          </div>
+        </div>
 
         {/* Sponsors */}
         <SponsorSection />

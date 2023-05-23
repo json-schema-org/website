@@ -272,10 +272,10 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'z-10 h-[433px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-your-needful-style mb-12')}>
+  <footer className={classnames(responsiveClasses, 'z-10 h-[433px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-bottom mb-12')}>
     <div className='ml-6 lg:ml-0 my-6 lg:mt-28 grid grid-cols-1 md:grid-cols-2 w-5/6'>
       <div className='flex flex-col my-4 ml-6 lg:ml-64 lg:mt-12'>
-        <img src='/img/logos/logo-white.svg' className='-ml-40 md:mx-auto mb-4 h-[58px]' />
+        <img src='/img/logos/logo-white.svg' className='-ml-24 md:mx-auto mb-4 h-[58px]' />
         <div className='grid md:ml-20 lg:ml-16'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
           <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
