@@ -16,7 +16,7 @@ type Props = {
   hideAds?: boolean
 }
 
-const responsiveClasses = 'w-100  '
+const responsiveClasses = 'w-screen  '
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
@@ -32,7 +32,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       </Head>
 
       <div>
-        <header className={classnames(responsiveClasses, 'bg-white sticky top-0 left-0 right-0 bg-white z-100 py-4 flex flex-row justify-between mx-auto w-[820px]')}>
+        <header className={classnames(responsiveClasses, 'z-50 bg-white sticky top-0 left-0 right-0 bg-white z-100 py-4 flex flex-row justify-between mx-auto w-screen')}>
           <div className='flex flex-row items-center'>
             <Logo />
           </div>
@@ -41,7 +41,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 
         <div className={classnames({ 'bg-white': whiteBg })}>
           <main className={
-            classnames(mainClassName, responsiveClasses, 'bg-white xl:rounded-xl py-4 mx-auto')
+            classnames(mainClassName, responsiveClasses, 'z-10 w-screen bg-white xl:rounded-xl py-4 mx-auto')
           }>
             {!hideAds && (
               <div>
@@ -152,7 +152,7 @@ const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: 
 
 const MobileDocsNav = () => {
   return (
-    <div className='flex flex-col fixed bg-white w-full h-full z-[100] top-0 left-0'>
+    <div className='flex flex-col fixed bg-white w-screen h-full z-[100] top-0 left-0'>
       <div className='flex flex-row justify-between p-8 pb-0'>
         <div className='text-blue-500 text-2xl font-bold'>
           Docs
@@ -170,22 +170,6 @@ const MobileDocsNav = () => {
   )
 }
 
-// const LearnNav = () => {
-//   return (
-//     <div className='pt-2 pr-2'>
-//       <SegmentHeadline label='Getting started' />
-//       <DocLink uri='/understanding-json-schema' label='Overview' />
-//       <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
-//       <DocLink uri='/understanding-json-schema/basics' label='The basics' />
-
-//       <SegmentHeadline label='Examples & studies' />
-//       <DocLink uri='/learn/getting-started-step-by-step' label='Creating a schema' />
-//       <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous Examples' />
-//       <DocLink uri='/learn/file-system' label={'Example \'File system\''} />
-//       <DocLink uri='/learn/json-schema-examples' label='More examples' />
-//     </div>
-//   )
-// }
 
 const DocsNav = () => {
   return (
@@ -288,53 +272,56 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'h-[433px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-your-needful-style mb-12')}> 
-        <div className='mt-28 grid grid-cols-2 w-5/6'>
-          <img src='/img/logos/logo-white.svg' className='mx-auto' />
-          <div className='flex gap-4'>
-            <div className='flex items-center'>
-              <img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
-              <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='text-white'>Slack</a>
-            </div>
-            <div className='flex items-center'>
-              <img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
-              <a href='https://twitter.com/jsonschema' className='text-white'>Twitter</a>
-            </div>
-            <div className='flex items-center'>
-              <img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
-              <a href='https://linkedin.com/company/jsonschema/' className='text-white'>LinkedIn</a>
-            </div>
-            <div className='flex items-center'>
-              <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
-              <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='text-white'>Youtube</a>
-            </div>
-            <div className='flex items-center'>
-              <img src='/img/logos/github_logo-white.svg' className='w-4 h-4 mr-2' />
-              <a href='https://github.com/json-schema-org' className='text-white'>GitHub</a>
-            </div>
-            <div className='flex items-center'>
-              <img src='/img/logos/globe-white.svg' className='w-4 h-4 mr-2' />
-              <a href='https://groups.google.com/g/json-schema' className='text-white'>Google Groups</a>
-            </div>
-          </div>
-          <div className='flex flex-col ml-64 mt-12'>
-            <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
-            <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
-          </div>
+  <footer className={classnames(responsiveClasses, 'z-10 h-[433px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-your-needful-style mb-12')}>
+    <div className='ml-6 lg:ml-0 my-6 lg:mt-28 grid grid-cols-1 md:grid-cols-2 w-5/6'>
+      <div className='flex flex-col my-4 ml-6 lg:ml-64 lg:mt-12'>
+        <img src='/img/logos/logo-white.svg' className='-ml-40 md:mx-auto mb-4 h-[58px]' />
+        <div className='grid md:ml-20 lg:ml-16'>
+          <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
+          <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
         </div>
+      </div>
+      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 ml-6'>
+        <div className='flex items-center'>
+          <img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
+          <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='text-white'>Slack</a>
+        </div>
+        <div className='flex items-center'>
+          <img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
+          <a href='https://twitter.com/jsonschema' className='text-white'>Twitter</a>
+        </div>
+        <div className='flex items-center'>
+          <img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
+          <a href='https://linkedin.com/company/jsonschema/' className='text-white'>LinkedIn</a>
+        </div>
+        <div className='flex items-center'>
+          <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
+          <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='text-white'>Youtube</a>
+        </div>
+        <div className='flex items-center'>
+          <img src='/img/logos/github_logo-white.svg' className='w-4 h-4 mr-2' />
+          <a href='https://github.com/json-schema-org' className='text-white'>GitHub</a>
+        </div>
+        <div className='flex items-center w-[140px]'>
+          <img src='/img/logos/globe-white.svg' className='w-4 h-4 mr-2' />
+          <a href='https://groups.google.com/g/json-schema' className='text-white'>Google Groups</a>
+        </div>
+      </div>
+
+    </div>
   </footer>
 )
 
 const OpenJS = () => (
   <div className={classnames(responsiveClasses, '')}>
-   <div className=' grid grid-cols-2 w-5/6'>
-      <img className='h-24 mx-auto' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
-  <div className='absolute  bottom-0 left-64'>© Copyright JSON Schema Organisation {new Date().getFullYear()}</div>
-    <div className='w-[810px] '>
-      <p className='mb-4'>Copyright <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
-      <p className='mb-4 sm:mb-8'><a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>The OpenJS Foundation</a> | <a className='text-blue-500 hover:text-blue-600' href='https://terms-of-use.openjsf.org'>Terms of Use</a> | <a className='text-blue-500 hover:text-blue-600' href='https://privacy-policy.openjsf.org'>Privacy Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://bylaws.openjsf.org'>Bylaws</a> | <a className='text-blue-500 hover:text-blue-600' href='https://code-of-conduct.openjsf.org'>Code of Conduct</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a> | <a className='text-blue-500 hover:text-blue-600' href='https://www.linuxfoundation.org/cookies'>Cookie Policy</a></p>
+    <div className=' grid grid-cols-1 lg:grid-cols-2 lg:w-5/6'>
+      <img className='h-24 ml-12 mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
+      <div className='absolute bottom-0 left-2 ml-8 md:ml-20 lg:ml-0 lg:left-12'>© Copyright JSON Schema Organisation {new Date().getFullYear()}</div>
+      <div className='w-5/6 lg:w-[810px] mx-auto mb-4'>
+        <p className='mb-4'>Copyright <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
+        <p className='mb-4 sm:mb-8'><a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>The OpenJS Foundation</a> | <a className='text-blue-500 hover:text-blue-600' href='https://terms-of-use.openjsf.org'>Terms of Use</a> | <a className='text-blue-500 hover:text-blue-600' href='https://privacy-policy.openjsf.org'>Privacy Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://bylaws.openjsf.org'>Bylaws</a> | <a className='text-blue-500 hover:text-blue-600' href='https://code-of-conduct.openjsf.org'>Code of Conduct</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a> | <a className='text-blue-500 hover:text-blue-600' href='https://www.linuxfoundation.org/cookies'>Cookie Policy</a></p>
+      </div>
     </div>
-</div>
   </div>
 )
 
