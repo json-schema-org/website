@@ -24,7 +24,8 @@ module.exports = {
       btnOrange: '#F47A08',
       btnGold: '#AB9700',
       startBlue: '#052FC7',
-      endBlue: '#5468FF'
+      endBlue: '#5468FF',
+      linkBlue: '#3B82F6'
     },
     extend: {
       lineHeight: {
