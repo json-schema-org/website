@@ -87,43 +87,43 @@ const ContentLayout = ({ children }: { children: any }) => {
 
 const MainNavigation = () => {
   const section = useContext(SectionContext)
-  const docsAreActive = section === 'docs'
+  // const docsAreActive = section === 'docs'
 
   return (
     <div className='py-2 flex flex-row items-center'>
       <MainNavLink
-        className='hidden md:block'
+        className='hidden md:block hover:underline'
         uri='/overview'
         label='Overview'
         isActive={section === 'overview'}
       />
       <MainNavLink
-        className='hidden md:block'
+        className='hidden md:block  hover:underline'
         uri='/learn/getting-started-step-by-step'
         label='Getting Started'
         isActive={section === 'getting-started'}
       />
-      <div
-        className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4', {
-          'text-blue-500 hover:text-blue-600': docsAreActive,
-          'text-slate-600 hover:text-slate-800': !docsAreActive
-        })}
-        onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
-      >
-        <img src='/icons/menu.svg' className='h-4 w-4 mr-2' />
-        Docs
-      </div>
+     
       <MainNavLink
+       className='hidden md:block  hover:underline'
         uri='/reference'
         label='Reference'
         isActive={section === 'reference'}
       />
       <MainNavLink
+       className='hidden md:block  hover:underline'
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
       />
       <Search />
+      <div
+        className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4')}
+        onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
+      >
+        <img src='/icons/menu.svg' className='h-4 w-4 mr-2' />
+        
+      </div>
     </div>
   )
 }
@@ -151,21 +151,34 @@ const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: 
 }
 
 const MobileDocsNav = () => {
+  const section = useContext(SectionContext)
   return (
-    <div className='flex flex-col fixed bg-white w-screen h-full z-[100] top-0 left-0'>
-      <div className='flex flex-row justify-between p-8 pb-0'>
-        <div className='text-blue-500 text-2xl font-bold'>
-          Docs
-        </div>
-        <div
+    <div className='flex flex-col fixed bg-white w-screen h-1/4 z-[100] top-20 left-0'>
+     <div
           style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-          className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat -mr-4 -mt-4 cursor-pointer'
+          className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat mx-0  -mt-4 cursor-pointer'
           onClick={() => useStore.setState({ overlayNavigation: null })}
         />
-      </div>
-      <div className='flex-1 overflow-y-scroll px-8 pt-0 pb-16'>
-        <DocsNav />
-      </div>
+      <MainNavLink       
+        uri='/overview'
+        label='Overview'
+        isActive={section === 'overview'}
+      />
+      <MainNavLink      
+        uri='/learn/getting-started-step-by-step'
+        label='Getting Started'
+        isActive={section === 'getting-started'}
+      />    
+      <MainNavLink      
+        uri='/reference'
+        label='Reference'
+        isActive={section === 'reference'}
+      />
+      <MainNavLink
+        uri='/specification'
+        label='Specification'
+        isActive={section === 'specification'}
+      />
     </div>
   )
 }
@@ -272,11 +285,11 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'z-10 h-[433px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-bottom mb-12')}>
+  <footer className={classnames(responsiveClasses, 'z-10 h-[433px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
     <div className='ml-6 lg:ml-0 my-6 lg:mt-28 grid grid-cols-1 md:grid-cols-2 w-5/6'>
       <div className='flex flex-col my-4 ml-6 lg:ml-64 lg:mt-12'>
-        <img src='/img/logos/logo-white.svg' className='-ml-24 md:mx-auto mb-4 h-[58px]' />
-        <div className='grid md:ml-20 lg:ml-16'>
+        <img src='/img/logos/logo-white.svg' className='ml-0 md:mx-auto mb-4 h-[58px] lg:h-full' />
+        <div className='grid md:ml-20 lg:ml-0'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
           <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
         </div>
@@ -314,11 +327,11 @@ const Footer = () => (
 
 const OpenJS = () => (
   <div className={classnames(responsiveClasses, '')}>
-    <div className=' grid grid-cols-1 lg:grid-cols-2 lg:w-5/6'>
-      <img className='h-24 ml-12 mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
-      <div className='absolute bottom-0 left-2 ml-8 md:ml-20 lg:ml-0 lg:left-12'>© Copyright JSON Schema Organisation {new Date().getFullYear()}</div>
-      <div className='w-5/6 lg:w-[810px] mx-auto mb-4'>
-        <p className='mb-4'>Copyright <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
+    <div className=' ml-6 lg:ml-0 my-6 lg:mt-28 grid grid-cols-1 md:grid-cols-2 w-5/6'>
+      <img className='h-24 mx-auto mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
+      <div className='absolute bottom-0 left-12 lg:left-64  lg:ml-0 lg:left-12 mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div>
+      <div className='w-5/6 lg:w-[810px] mx-auto mb-16'>
+        <p className='mb-6'>Copyright <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
         <p className='mb-4 sm:mb-8'><a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>The OpenJS Foundation</a> | <a className='text-blue-500 hover:text-blue-600' href='https://terms-of-use.openjsf.org'>Terms of Use</a> | <a className='text-blue-500 hover:text-blue-600' href='https://privacy-policy.openjsf.org'>Privacy Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://bylaws.openjsf.org'>Bylaws</a> | <a className='text-blue-500 hover:text-blue-600' href='https://code-of-conduct.openjsf.org'>Code of Conduct</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a> | <a className='text-blue-500 hover:text-blue-600' href='https://www.linuxfoundation.org/cookies'>Cookie Policy</a></p>
       </div>
     </div>

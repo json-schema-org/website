@@ -18,6 +18,14 @@ module.exports = {
       '4xl': '50px',
       '5xl': '65px',
     },
+    colors: {
+      white: '#ffffff',
+      primary: '#002CC4',
+      btnOrange: '#F47A08',
+      btnGold: '#AB9700',
+      startBlue: '#052FC7',
+      endBlue: '#5468FF'
+    },
     extend: {
       lineHeight: {
         'base': '24px',

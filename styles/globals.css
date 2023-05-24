@@ -3,10 +3,10 @@
 @tailwind utilities;
 @layer utilities {
   .clip-bottom {
-    clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 90%, 100% 0);
+    clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 85%, 100% 0);
   }
   .clip-both {
-    clip-path: polygon(0 20%, 0 100%, 0% 100%, 100% 80%, 100% 0);
+    clip-path: polygon(0 15%, 0 100%, 0% 100%, 100% 85%, 100% 0);
   }
   /* clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 6vw)); */
 }
