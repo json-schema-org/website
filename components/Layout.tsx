@@ -103,15 +103,15 @@ const MainNavigation = () => {
         label='Getting Started'
         isActive={section === 'getting-started'}
       />
-     
+
       <MainNavLink
-       className='hidden md:block  hover:underline'
+        className='hidden md:block  hover:underline'
         uri='/reference'
         label='Reference'
         isActive={section === 'reference'}
       />
       <MainNavLink
-       className='hidden md:block  hover:underline'
+        className='hidden md:block  hover:underline'
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
@@ -122,7 +122,7 @@ const MainNavigation = () => {
         onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
       >
         <img src='/icons/menu.svg' className='h-4 w-4 mr-2' />
-        
+
       </div>
     </div>
   )
@@ -154,22 +154,22 @@ const MobileDocsNav = () => {
   const section = useContext(SectionContext)
   return (
     <div className='flex flex-col fixed bg-white w-screen h-1/4 z-[100] top-20 left-0'>
-     <div
-          style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-          className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat mx-0  -mt-4 cursor-pointer'
-          onClick={() => useStore.setState({ overlayNavigation: null })}
-        />
-      <MainNavLink       
+      <div
+        style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
+        className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat mx-0  -mt-4 cursor-pointer'
+        onClick={() => useStore.setState({ overlayNavigation: null })}
+      />
+      <MainNavLink
         uri='/overview'
         label='Overview'
         isActive={section === 'overview'}
       />
-      <MainNavLink      
+      <MainNavLink
         uri='/learn/getting-started-step-by-step'
         label='Getting Started'
         isActive={section === 'getting-started'}
-      />    
-      <MainNavLink      
+      />
+      <MainNavLink
         uri='/reference'
         label='Reference'
         isActive={section === 'reference'}
