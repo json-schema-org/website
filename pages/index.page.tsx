@@ -11,7 +11,6 @@ import Hero from '~/components/Hero'
 import FeatureSection from '~/components/FeatureSection'
 import SideBySide from '~/components/SideBySide'
 import FeatureCommunity from '~/components/FeatureCommunity'
-import FeatureNews from '~/components/FeatureNews'
 import SponsorSection from '~/components/SponsorSection'
 import SupportedSection from '~/components/SupportedSection'
 
