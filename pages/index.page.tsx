@@ -34,10 +34,10 @@ const Home = () => {
         <Hero />
         {/* Feature */}
         <FeatureSection />
-        <div className='w-full h-[367px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-both'>
+        <div className='w-full h-[367px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-both'>
           <div className='w-2/3 mx-auto text-center mt-28'>
             <h2 className='text-3xl lg:text-4xl text-white mb-6'>Learn more about our documentation</h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-[#002CC4] text-white '>Read the Docs</button>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '>Read the Docs</button>
           </div>
         </div>
         {/* SidebySide section*/}
@@ -49,10 +49,10 @@ const Home = () => {
         <FeatureCommunity />
         {/* News & Blogs */}
         {/* <FeatureNews /> */}
-        <div className='w-full h-[447px] lg:h-[367px] bg-gradient-to-r from-[#052FC7] from-1.95% to-[#5468FF] clip-both'>
-          <div className='w-2/3 mx-auto text-center mt-28'>
+        <div className='w-full h-[447px] lg:h-[367px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-both'>
+          <div className='w-full mx-auto text-center mt-28 '>
             <h2 className='text-3xl lg:text-4xl text-white mb-6'>Contribute to the JSON Schema ecosystem</h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-[#002CC4] text-white '>Contribute</button>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '>Contribute</button>
           </div>
         </div>
 
