@@ -9,20 +9,20 @@ export default function FeatureSection() {
         <p className='mb-6 leading-5 text-xl'>Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. </p>
       </div>
       {/* Feature 4 section*/}
-      <div className='w-3/4 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-12  my-[85px] mx-auto'>
-        <div className='w-full lg:w-4/5'>
+      <div className='w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
+        <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
           <h3 className='text-xl font-semibold mb-6'>Simplify testing and validation</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend.</p>
         </div>
-        <div className='w-full lg:w-4/5'>
+        <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
           <h3 className='text-xl font-semibold mb-6'>Easy and reliable data exchange</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend.</p>
         </div>
-        <div className='w-full lg:w-4/5'>
+        <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
           <h3 className='text-xl font-semibold mb-6'>Simplify testing and validation</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend.</p>
         </div>
-        <div className='w-full lg:w-4/5'>
+        <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
           <h3 className='text-xl font-semibold'>Easy and reliable data exchange</h3>
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend.</p>
         </div>
