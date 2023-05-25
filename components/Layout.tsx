@@ -84,11 +84,31 @@ const ContentLayout = ({ children }: { children: any }) => {
   )
   return children
 }
+export const Search = () => {
+  return (
+    <DocSearch
+      appId='6ZT4KX2OUI'
+      apiKey='69f76fba13585144f6686622e9c8f2a8'
+      indexName='json-schema'
+    />
+  )
+}
 
+const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
+  return (
+    <Link href={uri}>
+      <a className={classnames(className, 'font-semibold p-2 md:p-4', {
+        'text-blue-500 hover:text-blue-600': isActive,
+        'text-slate-600 hover:text-slate-800': !isActive
+      })}
+      >{label}</a>
+    </Link>
+  )
+}
 const MainNavigation = () => {
   const section = useContext(SectionContext)
   // const docsAreActive = section === 'docs'
-
+  const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
     <div className='py-2 flex flex-row items-center'>
       <MainNavLink
@@ -117,48 +137,28 @@ const MainNavigation = () => {
         isActive={section === 'specification'}
       />
       <Search />
-      <div
+     
+      {showMobileNav === false ? ( <div
         className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4')}
         onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
       >
         <img src='/icons/menu.svg' className='h-4 w-4 mr-2' />
 
-      </div>
+      </div>) : <div
+        style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
+        className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat mx-0  -mt-4 cursor-pointer'
+        onClick={() => useStore.setState({ overlayNavigation: null })}
+      />}
     </div>
-  )
-}
-
-export const Search = () => {
-  return (
-    <DocSearch
-      appId='6ZT4KX2OUI'
-      apiKey='69f76fba13585144f6686622e9c8f2a8'
-      indexName='json-schema'
-    />
-  )
-}
-
-const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
-  return (
-    <Link href={uri}>
-      <a className={classnames(className, 'font-semibold p-2 md:p-4', {
-        'text-blue-500 hover:text-blue-600': isActive,
-        'text-slate-600 hover:text-slate-800': !isActive
-      })}
-      >{label}</a>
-    </Link>
   )
 }
 
 const MobileDocsNav = () => {
   const section = useContext(SectionContext)
+  
   return (
     <div className='flex flex-col fixed bg-white w-screen h-1/4 z-[100] top-20 left-0'>
-      <div
-        style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-        className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat mx-0  -mt-4 cursor-pointer'
-        onClick={() => useStore.setState({ overlayNavigation: null })}
-      />
+      
       <MainNavLink
         uri='/overview'
         label='Overview'
