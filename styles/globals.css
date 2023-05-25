@@ -20,6 +20,10 @@ html {
 .DocSearch-Button-Container {
   background-color: white;
  padding: 8px 48px;
+ @media (max-width: 730px) {
+  /* width: 80px; */
+  padding: 0px 24px 0px 0px; 
+ }
 }
 /* CARBON ADS */
 

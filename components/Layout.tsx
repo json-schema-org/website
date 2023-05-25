@@ -137,28 +137,34 @@ const MainNavigation = () => {
         isActive={section === 'specification'}
       />
       <Search />
-     
-      {showMobileNav === false ? ( <div
-        className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4')}
+
+      {showMobileNav === false ? (<div
+        className={classnames('mr-8')}
         onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
       >
-        <img src='/icons/menu.svg' className='h-4 w-4 mr-2' />
+        <div className='block lg:hidden space-y-2 mr-2'>
+          <div className='w-6 h-1 bg-black'></div>
+          <div className='w-6 h-1 bg-black'></div>
+          <div className='w-6 h-1 bg-black'></div>
+        </div>
 
-      </div>) : <div
+      </div>
+      ) : <div
         style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-        className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat mx-0  -mt-4 cursor-pointer'
+        className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat mr-10 transition-all cursor-pointer'
         onClick={() => useStore.setState({ overlayNavigation: null })}
-      />}
+      />
+      }
     </div>
   )
 }
 
 const MobileDocsNav = () => {
   const section = useContext(SectionContext)
-  
+
   return (
-    <div className='flex flex-col fixed bg-white w-screen h-1/4 z-[100] top-20 left-0'>
-      
+    <div className='flex flex-col fixed bg-white w-screen h-1/4 z-[100] top-24 left-0 pl-8 transition-all'>
+
       <MainNavLink
         uri='/overview'
         label='Overview'

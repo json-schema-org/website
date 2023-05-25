@@ -20,6 +20,7 @@ module.exports = {
     },
     colors: {
       white: '#ffffff',
+      black: '#000000',
       primary: '#002CC4',
       btnOrange: '#F47A08',
       btnGold: '#AB9700',
