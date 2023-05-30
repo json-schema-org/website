@@ -114,32 +114,32 @@ const MainNavigation = () => {
   return (
     <div className='py-2 flex flex-row items-center'>
       <MainNavLink
-        className='hidden md:block hover:underline'
+        className='hidden lg:block hover:underline'
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
       />
       <MainNavLink
-        className='hidden md:block  hover:underline'
+        className='hidden lg:block  hover:underline'
         uri='/overview/what-is-jsonschema'
         label='Docs'
         isActive={section === 'docs'}
       />
 
       <MainNavLink
-        className='hidden md:block  hover:underline'
+        className='hidden lg:block  hover:underline'
         uri='/implementations'
         label='Implementations'
         isActive={section === 'implementations'}
       />
       <MainNavLink
-        className='hidden md:block  hover:underline'
+        className='hidden lg:block  hover:underline'
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
       />
       <MainNavLink
-        className='hidden md:block  hover:underline'
+        className='hidden lg:block  hover:underline'
         uri='/#community'
         label='Community'
         isActive={section === 'community'}
@@ -172,26 +172,31 @@ const MobileDocsNav = () => {
 
   return (
     <div className='flex flex-col fixed bg-white w-screen h-1/4 z-[100] top-24 left-0 pl-8 transition-all'>
-
-      <MainNavLink
-        uri='/overview'
-        label='Overview'
-        isActive={section === 'overview'}
-      />
-      <MainNavLink
-        uri='/learn/getting-started-step-by-step'
-        label='Getting Started'
-        isActive={section === 'getting-started'}
-      />
-      <MainNavLink
-        uri='/reference'
-        label='Reference'
-        isActive={section === 'reference'}
-      />
       <MainNavLink
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
+      />
+      <MainNavLink
+        uri='/overview/what-is-jsonschema'
+        label='Docs'
+        isActive={section === 'docs'}
+      />
+
+      <MainNavLink
+        uri='/implementations'
+        label='Implementations'
+        isActive={section === 'implementations'}
+      />
+      <MainNavLink
+        uri='/blog'
+        label='Blog'
+        isActive={section === 'blog'}
+      />
+      <MainNavLink
+        uri='/#community'
+        label='Community'
+        isActive={section === 'community'}
       />
     </div>
   )

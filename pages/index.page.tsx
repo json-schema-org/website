@@ -40,7 +40,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
     const dateB = new Date(b.frontmatter.date).getTime()
     return dateA < dateB ? 1 : -1
   })
-  console.log('recent', recentBlog)
+
   return (
     <Layout
       mainClassName='flex flex-col'
@@ -63,10 +63,10 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
         {/* Join community */}
         {/* <FeatureCommunity /> */}
-        {console.log(blogPosts)}
+
         <div className=' mb-12'>
-          <div className='mb-6 w-3/4  mx-auto text-center'>
-            <h2 className='text-5xl font-semibold mb-2'>Join our great community</h2>
+          <div className='mb-12 w-3/4  mx-auto text-center'>
+            <h2 className='text-4xl font-semibold mb-2'>Join our great community</h2>
             <p className='w-3/4 mx-auto text-xl'>We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
             </p>
           </div>
