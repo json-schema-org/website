@@ -95,7 +95,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             </div>
             <div className=' '>
               <div className=' mb-6 mr-4'>
-                <h3 className='mb-4 font-semibold' >Join our public meetings</h3>
+                <h3 className='mb-2 font-semibold' >Join our public meetings</h3>
                 <p className='mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis.  Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend. </p>
                 <div className='lg:flex'>
                   <button className='w-full  rounded border-2 bg-primary text-white lg:w-[211px] h-[40px] '>Community Discussions</button>

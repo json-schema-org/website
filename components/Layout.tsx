@@ -32,7 +32,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       </Head>
 
       <div>
-        <header className={classnames(responsiveClasses, 'z-50 bg-white sticky top-0 left-0 right-0 bg-white z-100 py-4 flex flex-row justify-between mx-auto w-screen')}>
+        <header className={classnames(responsiveClasses, 'sticky top-0  z-[100] bg-white bg-white z-100 py-4 flex flex-row justify-between mx-auto w-screen')}>
           <div className='flex flex-row items-center'>
             <Logo />
           </div>
@@ -171,7 +171,7 @@ const MobileDocsNav = () => {
   const section = useContext(SectionContext)
 
   return (
-    <div className='flex flex-col fixed bg-white w-screen h-1/4 z-[100] top-24 left-0 pl-8 transition-all'>
+    <div className='flex flex-col fixed bg-white w-screen h-2/5 z-[90] left-0 pl-8'>
       <MainNavLink
         uri='/specification'
         label='Specification'
