@@ -73,12 +73,14 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
   if (section === 'docs') return (
-    <div className='mx-auto flex flex-row grid grid-cols-4'>
-      <div className='hidden md:block'>
-        <DocsNav />
-      </div>
-      <div className='col-span-4 md:col-span-3'>
-        {children}
+    <div className='bg-slate-100'>
+      <div className='bg-white xl:w-[1200px] mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
+        <div className='hidden md:block'>
+          <DocsNav />
+        </div>
+        <div className='col-span-4 md:col-span-3'>
+          {children}
+        </div>
       </div>
     </div>
   )
@@ -113,28 +115,34 @@ const MainNavigation = () => {
     <div className='py-2 flex flex-row items-center'>
       <MainNavLink
         className='hidden md:block hover:underline'
-        uri='/overview'
-        label='Overview'
-        isActive={section === 'overview'}
+        uri='/specification'
+        label='Specification'
+        isActive={section === 'specification'}
       />
       <MainNavLink
         className='hidden md:block  hover:underline'
-        uri='/learn/getting-started-step-by-step'
-        label='Getting Started'
-        isActive={section === 'getting-started'}
+        uri='/overview/what-is-jsonschema'
+        label='Docs'
+        isActive={section === 'docs'}
       />
 
       <MainNavLink
         className='hidden md:block  hover:underline'
-        uri='/reference'
-        label='Reference'
-        isActive={section === 'reference'}
+        uri='/implementations'
+        label='Implementations'
+        isActive={section === 'implementations'}
       />
       <MainNavLink
         className='hidden md:block  hover:underline'
-        uri='/specification'
-        label='Specification'
-        isActive={section === 'specification'}
+        uri='/blog'
+        label='Blog'
+        isActive={section === 'blog'}
+      />
+      <MainNavLink
+        className='hidden md:block  hover:underline'
+        uri='/#community'
+        label='Community'
+        isActive={section === 'community'}
       />
       <Search />
 
@@ -143,9 +151,9 @@ const MainNavigation = () => {
         onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
       >
         <div className='block lg:hidden space-y-2 mr-2'>
-          <div className='w-6 h-1 bg-black'></div>
-          <div className='w-6 h-1 bg-black'></div>
-          <div className='w-6 h-1 bg-black'></div>
+          <div className='w-6 h-1 bg-black rounded'></div>
+          <div className='w-6 h-1 bg-black rounded'></div>
+          <div className='w-6 h-1 bg-black rounded'></div>
         </div>
 
       </div>
@@ -192,7 +200,7 @@ const MobileDocsNav = () => {
 
 const DocsNav = () => {
   return (
-    <div suppressHydrationWarning={true} className='pt-2 pr-2'>
+    <div suppressHydrationWarning={true} className='pt-2 pr-2 '>
       <SegmentHeadline label='Overview' />
       <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
       <SegmentHeadline label='Getting Started' />

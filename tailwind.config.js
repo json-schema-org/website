@@ -1,3 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+const colors = require('tailwindcss/colors')
+
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,md}',
@@ -19,6 +22,7 @@ module.exports = {
       '5xl': '65px',
     },
     colors: {
+      ...colors,
       white: '#ffffff',
       black: '#000000',
       primary: '#002CC4',
@@ -29,6 +33,9 @@ module.exports = {
       linkBlue: '#3B82F6'
     },
     extend: {
+      gradientColorStopPositions: {
+        33: '145.47%',
+      },
       lineHeight: {
         'base': '24px',
         'header': '74px',
