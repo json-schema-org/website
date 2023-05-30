@@ -16,7 +16,7 @@ type Props = {
   hideAds?: boolean
 }
 
-const responsiveClasses = 'w-screen  '
+const responsiveClasses = 'w-screen'
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
@@ -32,7 +32,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       </Head>
 
       <div>
-        <header className={classnames(responsiveClasses, 'sticky top-0  z-[100] bg-white bg-white z-100 py-4 flex flex-row justify-between mx-auto w-screen')}>
+        <header className={classnames(responsiveClasses, 'fixed top-0  z-[100] bg-white bg-white z-100 py-4 flex flex-row justify-between mx-auto w-screen')}>
           <div className='flex flex-row items-center'>
             <Logo />
           </div>
