@@ -147,7 +147,7 @@ const MainNavigation = () => {
       <Search />
 
       {showMobileNav === false ? (<div
-        className={classnames('mr-8')}
+        className={classnames('mr-12 ml-4')}
         onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
       >
         <div className='block lg:hidden space-y-2 mr-2'>
@@ -159,7 +159,7 @@ const MainNavigation = () => {
       </div>
       ) : <div
         style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-        className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat mr-10 transition-all cursor-pointer'
+        className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat ml-6 mr-10 pl-2 transition-all cursor-pointer'
         onClick={() => useStore.setState({ overlayNavigation: null })}
       />
       }
