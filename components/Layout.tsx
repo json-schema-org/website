@@ -30,42 +30,44 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
         <title>JSON Schema {metaTitle ? ` - ${metaTitle}` : ''}</title>
         <meta name='description' content='JSON Schema' />
       </Head>
+      <div className={classnames({ 'bg-white': whiteBg })}>
+        <main className={
+          classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
+        }>
+          <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white py-4 flex justify-between mx-auto')}>
+            <div className=''>
+              <Logo />
+            </div>
+            <MainNavigation />
+          </header>
 
-      <div>
-        <header className={classnames(responsiveClasses, 'fixed top-0  z-[100] bg-white bg-white z-100 py-4 flex flex-row justify-between mx-auto w-screen')}>
-          <div className='flex flex-row items-center'>
-            <Logo />
-          </div>
-          <MainNavigation />
-        </header>
-
-        <div className={classnames({ 'bg-white': whiteBg })}>
-          <main className={
-            classnames(mainClassName, responsiveClasses, 'z-10 w-screen bg-white xl:rounded-xl py-4 mx-auto')
-          }>
-            {!hideAds && (
-              <div>
-                <script
-                  async
-                  type='text/javascript'
-                  src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
-                  id='_carbonads_js'
-                />
-              </div>
-            )}
-            {showMobileNav ? (
-              <MobileDocsNav />
-            ) : (
+       
+          
+          {!hideAds && (
+            <div>
+              <script
+                async
+                type='text/javascript'
+                src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
+                id='_carbonads_js'
+              />
+            </div>
+          )}
+          {showMobileNav ? (
+            <><MobileDocsNav />
               <ContentLayout>
                 {children}
               </ContentLayout>
-            )}
-          </main>
-        </div>
+            </>
+          ) : (
+            <ContentLayout>
+              {children}
+            </ContentLayout>
+          )}
+          <Footer />
+          <OpenJS />
+        </main>
       </div>
-
-      <Footer />
-      <OpenJS />
     </div>
   )
 }
@@ -112,7 +114,7 @@ const MainNavigation = () => {
   // const docsAreActive = section === 'docs'
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
-    <div className='md:py-2 flex flex-row items-center'>
+    <div className='md:py-2 flex items-center '>
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -144,25 +146,27 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <Search />
+      <div className='flex  items-center'>
+        <Search />
 
-      {showMobileNav === false ? (<div
-        className={classnames('mr-8 ')}
-        onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
-      >
-        <div className='block lg:hidden space-y-2 mr-2'>
-          <div className='w-6 h-1 bg-black rounded'></div>
-          <div className='w-6 h-1 bg-black rounded'></div>
-          <div className='w-6 h-1 bg-black rounded'></div>
+        {showMobileNav === false ? (<div
+          className={classnames('mr-8 ')}
+          onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
+        >
+          <div className='block lg:hidden space-y-2 mr-2 items-center'>
+            <div className='w-6 h-1 bg-black rounded'></div>
+            <div className='w-6 h-1 bg-black rounded'></div>
+            <div className='w-6 h-1 bg-black rounded'></div>
+          </div>
+
         </div>
-
+        ) : <div
+          style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
+          className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  mr-10  transition-all cursor-pointer'
+          onClick={() => useStore.setState({ overlayNavigation: null })}
+        />
+        }
       </div>
-      ) : <div
-        style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-        className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  mr-10  transition-all cursor-pointer'
-        onClick={() => useStore.setState({ overlayNavigation: null })}
-      />
-      }
     </div>
   )
 }
@@ -171,7 +175,7 @@ const MobileDocsNav = () => {
   const section = useContext(SectionContext)
 
   return (
-    <div className='flex flex-col fixed bg-white w-screen h-1/4 md:h-1/4 z-[90] mt-16 left-0 pl-8 overflow-hidden'>
+    <div className='flex flex-col fixed bg-white w-full  z-[90] mt-16 left-0 pl-8 overflow-hidden'>
       <MainNavLink
         uri='/specification'
         label='Specification'
