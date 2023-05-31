@@ -3,6 +3,7 @@ import Layout from '~/components/Layout'
 import fs from 'fs'
 import matter from 'gray-matter'
 const PATH = 'pages/blog/posts'
+import readingTime from 'reading-time'
 import Link from 'next/link'
 import TextTruncate from 'react-text-truncate'
 import Hero from '~/components/Hero'
@@ -19,10 +20,11 @@ export async function getStaticProps() {
     .map((fileName) => {
       const slug = fileName.replace('.md', '')
       const fullFileName = fs.readFileSync(`pages/blog/posts/${slug}.md`, 'utf-8')
-      const { data: frontmatter } = matter(fullFileName)
+      const { data: frontmatter, content } = matter(fullFileName)
       return ({
         slug: slug,
         frontmatter,
+        content
       })
     })
 
@@ -40,6 +42,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
     const dateB = new Date(b.frontmatter.date).getTime()
     return dateA < dateB ? 1 : -1
   })
+  const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes)
 
   return (
     <Layout
@@ -51,7 +54,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         {/* Feature */}
         <FeatureSection />
         <div className='w-full h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
-          <div className='w-2/3 mx-auto text-center mt-16 md:mt-28'>
+          <div className='lg:w-2/3 mx-auto text-center mt-20 md:mt-28'>
             <h2 className='text-3xl lg:text-4xl text-white mb-6'>Learn more about our documentation</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '>Read the Docs</button>
           </div>
@@ -65,9 +68,9 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         {/* <FeatureCommunity /> */}
 
         <div className=' mb-12'>
-          <div className='mb-12 w-3/4  mx-auto text-center'>
+          <div className='mb-12 md:w-3/4  mx-auto text-center'>
             <h2 className='text-4xl font-semibold mb-2'>Join our great community</h2>
-            <p className='w-3/4 mx-auto text-xl'>We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
+            <p className='mx-4 md:w-3/4 md:mx-auto text-xl'>We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
             </p>
           </div>
 
@@ -82,11 +85,25 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '>Join us</button>
             </div>
             {/* BlogPost Data */}
+           
             <div className='w-full '>
               <h3 className='mb-4 font-semibold' >Latest news and blogs</h3>
               <img src={recentBlog[0].frontmatter.cover} className='w-full  mb-4' />
               <h3 className='mb-4 font-semibold' > {recentBlog[0].frontmatter.title}</h3>
-              <div className='mb-12'><TextTruncate element='span' line={4} text={recentBlog[0].frontmatter.excerpt} /></div>
+              <div className='mb-4'><TextTruncate element='span' line={4} text={recentBlog[0].frontmatter.excerpt} /></div>
+              <div className='flex ml-2 mb-2 '>
+                <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                  style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
+                />
+                <div className='flex flex-col ml-2'>
+                  <p className='text-sm font-semibold'>{recentBlog[0].frontmatter.authors[0].name}</p>
+                  <div className='text-slate-500 text-sm'>
+                    <span>
+                      {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
+                    </span>
+                  </div>
+                </div>
+              </div>
               <div >
                 <Link href={`/blog/posts/${recentBlog[0].slug}`}>
                   <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 '>Read more </a>
@@ -120,8 +137,8 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
         {/* News & Blogs */}
         {/* <FeatureNews /> */}
-        <div className='w-full h-[447px] lg:h-[367px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-both'>
-          <div className='w-full mx-auto text-center mt-28 '>
+        <div className='w-full h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
+          <div className='lg:w-full mx-auto text-center mt-28 '>
             <h2 className='text-3xl lg:text-4xl text-white mb-6'>Contribute to the JSON Schema ecosystem</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '>Contribute</button>
           </div>

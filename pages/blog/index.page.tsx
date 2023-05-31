@@ -50,7 +50,7 @@ export default function StaticMarkdownPage ({ blogPosts }: { blogPosts: any[] })
         <Head>
           <title>JSON Schema Blog</title>
         </Head>
-        <div className='bg-slate-100'>
+        <div className='bg-slate-100 mt-12'>
           <div className='flex flex-row justify-between items-center bg-white xl:w-[1200px] mx-auto px-2 sm:px-4 lg:px-8'>
             <Headline1>Blog</Headline1>
             <a
@@ -136,7 +136,7 @@ export default function StaticMarkdownPage ({ blogPosts }: { blogPosts: any[] })
                                   <div
                                     key={index}
                                     className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                                    style={{ backgroundImage: `url(${author.photo})`, zIndex: 100 - index }}
+                                    style={{ backgroundImage: `url(${author.photo})`, zIndex: 10 - index }}
                                   />
                                 )
                               })}

@@ -40,13 +40,17 @@ export default function ImplementationsPages ({ blocks, validators, hyperLibarie
   return (
     <SectionContext.Provider value='implementations'>
       <Layout>
-        <Headline1>Implementations</Headline1>
-        <StyledMarkdown markdown={blocks.intro} />
+        <div className='bg-slate-100 mt-12'>
+          <div className=' bg-white xl:w-[1200px] mx-auto px-2 sm:px-4 lg:px-8'>
+            <Headline1>Implementations</Headline1>
+            <StyledMarkdown markdown={blocks.intro} />
 
-        <Headline2>Validators</Headline2>
-        <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
-        <StyledMarkdown markdown={blocks.main} />
-        <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+            <Headline2>Validators</Headline2>
+            <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
+            <StyledMarkdown markdown={blocks.main} />
+            <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+          </div>
+        </div>
       </Layout>
     </SectionContext.Provider>
   )

@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function FeatureSection() {
   return (
-    <section className=' lg:mt-[80px]'>
+    <section className='mt-12 lg:mt-[80px]'>
       <div className='w-5/6 md:w-1/2 text-center  mb-6  mx-auto'>
         <h2 className='text-3xl font-bold mb-6'>Why JSON Schema?</h2>
         <p className='mb-6 leading-5 text-xl'>Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. </p>

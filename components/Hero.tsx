@@ -8,21 +8,20 @@ export default function Hero() {
     <div
       className=' bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom '
     >
-      <div className='w-3/4 text-center mx-auto mt-4 lg:mt-[83px]'>
+      <div className='w-3/4 text-center mx-auto mt-24 lg:mt-40'>
         <h1 className='lg:leading-header text-3xl lg:text-5xl font-semibold text-white text-center'>
           JSON Schema is a declarative language that allows you to annotate and validate JSON documents.
         </h1>
         <h2 className='lg:leading-6 text-center text-xl text-white mt-4 '>
           JSON Schema enables the confident and reliable use of the JSON data format.
         </h2>
-        <div className='w-2/5  mx-auto my-10 grid grid-cols-1 lg:grid-cols-2 gap-4 '>
+        <div className='w-2/5  mx-auto my-10 grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center'>
           <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] text-white'>Get Started</a></Link>
-          <button className='rounded border-2 border-white text-white h-[40px] w-[194px]'>Community</button>
-          {/* <button className="rounded border-2 border-white bg-white p-2">Quick Search</button> */}
+          <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] text-white'>Community</a></Link>
           {/* <Search /> */}
 
         </div>
-        <div className='mb-16 md:mb-36 lg:mb-24 mx-auto'>
+        <div className='mb-16 md:mb-36 lg:mb-28 mx-auto'>
           <h3 className='text-white mb-4'>Trusted by</h3>
           <div className='flex gap-6 justify-center w-100 text-white text-center mx-auto'>
 
