@@ -34,7 +34,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
         <main className={
           classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white py-4 flex justify-between mx-auto')}>
+          <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white py-4 flex md:gap-52')}>
             <div className=''>
               <Logo />
             </div>
@@ -114,7 +114,7 @@ const MainNavigation = () => {
   // const docsAreActive = section === 'docs'
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
-    <div className='md:py-2 flex items-center '>
+    <div className='md:py-2 flex items-center w-28'>
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -146,14 +146,14 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <div className='flex  items-center'>
+      <div className='flex items-center gap-4'>
         <Search />
 
         {showMobileNav === false ? (<div
           className={classnames('mr-8 ')}
           onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
         >
-          <div className='block lg:hidden space-y-2 mr-2 items-center'>
+          <div className='block lg:hidden space-y-2 mr-8 items-center'>
             <div className='w-6 h-1 bg-black rounded'></div>
             <div className='w-6 h-1 bg-black rounded'></div>
             <div className='w-6 h-1 bg-black rounded'></div>
@@ -162,7 +162,7 @@ const MainNavigation = () => {
         </div>
         ) : <div
           style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-          className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  mr-10  transition-all cursor-pointer'
+          className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat mr-16 transition-all cursor-pointer'
           onClick={() => useStore.setState({ overlayNavigation: null })}
         />
         }
@@ -175,7 +175,7 @@ const MobileDocsNav = () => {
   const section = useContext(SectionContext)
 
   return (
-    <div className='flex flex-col fixed bg-white w-full  z-[90] mt-16 left-0 pl-8 overflow-hidden'>
+    <div className='flex flex-col fixed bg-white w-full  z-[90] mt-16 left-0 pl-8'>
       <MainNavLink
         uri='/specification'
         label='Specification'
