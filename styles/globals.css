@@ -22,10 +22,10 @@ html {
   font-family: 'Inter', sans-serif;
 }
 .DocSearch-Button-Keys {
-  display: none;
+  display: none !important;
 }
 .DocSearch-Button-Container {
-  /* background-color: white; */
+  background-color: transparent !important;
   width: 168px;
   height: 38px;
  padding: 8px 8px;
@@ -120,3 +120,80 @@ html {
     font-size: 14px
   }
 }
+
+/** Style Algolia */
+
+.search-input {
+	flex-grow: 1;
+	box-sizing: border-box;
+	width: 194px;
+	margin: 0;
+	padding: 5px;
+	overflow: visible;
+	font-weight: 500;
+	font-size: 1rem;
+	font-family: inherit;
+	line-height: inherit;
+	display: flex;
+	border-color: white !important;
+	color: white !important;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 0.25rem;
+	outline: 0;
+	cursor: pointer;
+	transition-timing-function: ease-out;
+	transition-duration: 0.2s;
+	transition-property: border-color, color;
+	-webkit-font-smoothing: antialiased;
+  
+}
+.search-input span {
+  margin-left: 15px;
+}
+.search-input:hover,
+.search-input:focus {
+	color: white;
+	border-color: white;
+}
+.search-input:hover::placeholder,
+.search-input:focus::placeholder {
+	color: white;
+}
+.search-input::placeholder {
+	color: white;
+}
+.search-hint {
+	position: absolute;
+	top: 7px;
+	right: 19px;
+	padding: 3px 5px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	letter-spacing: 0.125em;
+	font-size: 13px;
+	font-family: inherit;
+	pointer-events: none;
+	border-color: white;
+	color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 0.25rem;
+	line-height: 14px;
+}
+
+@media (min-width: 50em) {
+	.search-hint {
+		display: flex;
+	}
+}
+
+/* ------------------------------------------------------------ *\
+	DocSearch (Algolia)
+\* ------------------------------------------------------------ */
+
+/* .DocSearch-Modal .DocSearch-Hit a {
+	box-shadow: none;
+	border: 1px solid var(--theme-accent);
+} */

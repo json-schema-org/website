@@ -34,11 +34,11 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
         <main className={
           classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white py-4 flex md:gap-52')}>
-            <div className=''>
+          <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white ')}>
+            <div className='flex md:justify-between items-center py-4 md:pl-4 md:w-1/2'>
               <Logo />
+              <MainNavigation />
             </div>
-            <MainNavigation />
           </header>
 
        
@@ -146,7 +146,7 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <div className='flex items-center gap-4'>
+      <div className='flex items-center gap-4 ml-12 md:ml-52 lg:ml-0'>
         <Search />
 
         {showMobileNav === false ? (<div

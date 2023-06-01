@@ -1,5 +1,6 @@
 import React from 'react'
 import Layout from '~/components/Layout'
+import HeroSearch from '~/components/heroSearch'
 import fs from 'fs'
 import matter from 'gray-matter'
 const PATH = 'pages/blog/posts'
@@ -55,10 +56,10 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <h2 className='lg:leading-6 text-center text-xl text-white mt-4 '>
               JSON Schema enables the confident and reliable use of the JSON data format.
             </h2>
-            <div className='w-2/5  mx-auto my-10 grid grid-cols-1 lg:grid-cols-2 gap-8 justify-items-center'>
+            <div className='w-3/5  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] text-white'>Get Started</a></Link>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] text-white'>Community</a></Link>
-              {/* <Search /> */}
+              <HeroSearch />
 
             </div>
             <div className='mb-16 md:mb-36 lg:mb-28 mx-auto'>
@@ -172,7 +173,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
                 <div className='flex mb-4'><p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
                 <div className='flex mb-4'><p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
                 <div className='flex mb-4'><p className='bg-btnGold rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
-                <button className='w-[190px] h-[40px] rounded border-2 bg-primary text-white  '>View Calendar</button>
+                <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 '>View Calendar</a>
               </div>
             </div>
           </div>
