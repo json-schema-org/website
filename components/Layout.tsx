@@ -100,7 +100,7 @@ export const Search = () => {
 
 const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   return (
-    <Link href={uri}>
+    <Link scroll={false} href={uri}>
       <a className={classnames(className, 'font-semibold p-2 md:p-4', {
         'text-blue-500 hover:text-blue-600': isActive,
         'text-slate-600 hover:text-slate-800': !isActive
@@ -116,8 +116,8 @@ const MainNavigation = () => {
   return (
     <div className='md:py-2 flex items-center w-28'>
       <MainNavLink
-        className='hidden lg:block hover:underline'
-        uri='/specification'
+        className='hidden lg:block  hover:underline'
+        uri='/specification/specification'
         label='Specification'
         isActive={section === 'specification'}
       />
@@ -207,7 +207,7 @@ const MobileDocsNav = () => {
 }
 
 
-const DocsNav = () => {
+export const DocsNav = () => {
   return (
     <div suppressHydrationWarning={true} className='pt-2 pr-2 '>
       <SegmentHeadline label='Overview' />

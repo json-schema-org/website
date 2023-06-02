@@ -111,16 +111,17 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         {/* SidebySide section*/}
         <section className='lg:flex gap-24 mt-12 md:my-24'>
           <img src='/img/home-page/community-illustration.svg' className='lg:w-[830px]' />
-          <div className='w-5/6 mx-auto lg:w-full'>
+          <div className='w-5/6 mx-auto lg:w-full' >
             <h3 className='text-3xl lg:text-4xl font-semibold md:w-2/3 my-4'>Learn more about the JSON Schema Ecosystem</h3>
             <p className='hidden lg:block lg:w-4/5 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. Nullam mollis tortor vestibulum est pharetra elementum. Integer lectus mauris, tempus eu odio non, tristique ullamcorper arcu.</p>
             <button className='hidden md:block rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '>Contribute</button>
-            <button className='md:hidden rounded border-2 bg-primary text-white w-full h-[40px]   mb-24 '>Read the docs</button>
+            <button className='md:hidden rounded border-2 bg-primary text-white w-full h-[40px] mb-24' >Read the docs</button>
           </div>
         </section>
 
         {/* Join community */}
-        <section className=' mb-12'>
+        <h2 className='anchor'><span id='community'></span></h2>
+        <section className='my-12'>
           <div className='mb-12 md:w-3/4  mx-auto text-center'>
             <h2 className='text-4xl font-semibold mb-2'>Join our great community</h2>
             <p className='mx-4 md:w-3/4 md:mx-auto text-xl'>We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
@@ -173,7 +174,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
                 <div className='flex mb-4'><p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
                 <div className='flex mb-4'><p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
                 <div className='flex mb-4'><p className='bg-btnGold rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
-                <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 '>View Calendar</a>
+                <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1' target='_blank' rel='noopener noreferrer'>View Calendar</a>
               </div>
             </div>
           </div>

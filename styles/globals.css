@@ -189,11 +189,14 @@ html {
 	}
 }
 
-/* ------------------------------------------------------------ *\
-	DocSearch (Algolia)
-\* ------------------------------------------------------------ */
 
-/* .DocSearch-Modal .DocSearch-Hit a {
-	box-shadow: none;
-	border: 1px solid var(--theme-accent);
-} */
+.anchor {
+  position: relative;
+  margin-bottom: 20px;
+}
+.anchor #community {
+  position: absolute;
+  left: 0;
+  top: -80px; /* change this value to match the height of the header */
+ 
+}
