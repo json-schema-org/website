@@ -1,30 +1,25 @@
 ---
-title: Creating a schema
+title: Creating your first schema
 section: docs
 ---
 
-* [Introduction](#intro)
-* [Starting the schema](#starting)
-* [Defining the properties](#properties)
-* [Going deeper with properties](#properties-deeper)
-* [Nesting data structures](#nesting)
-* [References outside the schema](#references)
-* [Taking a look at data for our defined JSON Schema](#data)
+JSON Schema is a vocabulary that you can use to annotate and validate JSON documents. This tutorial guides you through the process of creating a JSON Schema document, including:
 
-<span id="intro"></span>
+* [Creating a schema definition](#create)
+* [Defining properties](#define)
+* [Nesting data structures](#nest-data)
+* [Adding outside references](#external)
+* [Validating JSON data against the schema](#validate)
 
-## Introduction[#intro]
+After you create the JSON Schema document, you can validate the example data against your schema using a validator in a language of your choice. See [Implementations](https://json-schema.org/implementations) for a current list of supported validators.
 
-The following example is by no means definitive of all the value JSON Schema can provide. For this you will need to go deep into the specification itself -- learn more at [https://json-schema.org/specification](/specification).
+For more information about the value JSON Schema can provide, see the full [JSON Schema Specification](https://json-schema.org/specification.html).
 
-Let's pretend we're interacting with a JSON based product catalog. This catalog has a product which has:
+<span id="overview"></span>
 
-* An identifier: `productId`
-* A product name: `productName`
-* A selling cost for the consumer: `price`
-* An optional set of tags: `tags`.
+## Overview
 
-For example:
+The example we use in this guide is a product catalog that stores its data using JSON objects, like the following:
 
 ```json
 {
@@ -35,27 +30,47 @@ For example:
 }
 ```
 
-While generally straightforward, the example leaves some open questions. Here are just a few of them:
+Each product in the catalog has:
 
-* What is `productId`?
-* Is `productName` required?
-* Can the `price` be zero (0)?
-* Are all of the `tags` string values?
+* `productId`: an identifier for the product
+* `productName`: the product name
+* `price`: the cost to the consumer
+* `tags`: an optional array of identifying tags
 
-When you're talking about a data format, you want to have metadata about what keys mean, including the valid inputs for those keys. **JSON Schema** is a proposed IETF standard how to answer those questions for data.
+The JSON object is human-readable, but it doesn’t include any context or metadata. There’s no way to tell from looking at the object what the keys mean or what the possible inputs are. JSON Schema is a proposed IETF standard for providing answers to these questions. In this guide, you will create a JSON Schema document that describes the structure, constraints, and data types for a set of JSON data.
 
-## Starting the schema[#starting]
+<span id="intro"></span>
 
-To start a schema definition, let's begin with a basic JSON schema.
+## Introduction to JSON Schema[#intro]
 
-We start with four properties called **keywords** which are expressed as [JSON](https://www.json.org/) keys.
+The _instance_ is the JSON document that is being validated or described, and the _schema_ is the document that contains the description.
 
-> Yes. the standard uses a JSON data document to describe data documents, most often that are also JSON data documents but could be in any number of other content types like `text/xml`.
+The most basic schema is a blank JSON object, which constrains nothing, allows anything, and describes nothing:
 
-* The [`$schema`](https://json-schema.org/draft/2020-12/json-schema-core.html#section.8.1.1) keyword states that this schema is written according to a specific draft of the standard and used for a variety of reasons, primarily version control.
-* The [`$id`](https://json-schema.org/draft/2020-12/json-schema-core.html#section.8.2.1) keyword defines a URI for the schema, and the base URI that other URI references within the schema are resolved against.
-* The [`title`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.9.1) and [`description`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.9.1) annotation keywords are descriptive only. They do not add constraints to the data being validated. The intent of the schema is stated with these two keywords.
-* The [`type`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.6.1.1) validation keyword defines the first constraint on our JSON data and in this case it has to be a JSON Object.
+```json
+{}
+```
+
+By adding validation keywords to the schema, you can apply constraints to an instance. For example, you can use the `type` keyword to constrain an instance to an object, array, string, number, boolean, or null:
+
+```json
+{ "type": "string" }
+```
+
+JSON Schema is hypermedia-ready and ideal for annotating your existing JSON-based HTTP API. JSON Schema documents are identified by URIs, which can be used in HTTP link headers and within JSON Schema documents to allow for recursive definitions.
+
+<span id="create"></span>
+
+## Create a schema definition[#create]
+
+To create a basic schema definition, define the following keywords:
+
+* `$schema`: specifies which draft of the JSON Schema standard the schema adheres to.
+* `$id`: sets a URI for the schema. You can use this unique URI to refer to elements of the schema from inside the same document or from external JSON documents.
+* `title` and `description`: state the intent of the schema. These keywords don’t add any constraints to the data being validated.
+* `type`: defines the first constraint on the JSON data. In the product catalog example below, this keyword specifies that the data must be a JSON object.
+
+For example:
 
 ```json
 {
@@ -67,24 +82,50 @@ We start with four properties called **keywords** which are expressed as [JSON](
 }
 ```
 
-We introduce the following pieces of terminology when we start the schema:
+The keywords are defined using JSON keys. Typically, the data being validated is contained in a JSON data document, but JSON Schema can also validate JSON data contained in other content types, such as text or XML files.
 
-* [Schema Keyword](https://json-schema.org/draft/2020-12/json-schema-core.html#section.8.1.1): `$schema` and `$id`.
-* [Schema Annotations](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.9.1): `title` and `description`.
-* [Validation Keyword](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.6.1.1): `type`.
+In JSON Schema terminology, `$schema` and `$id` are [schema keywords](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.1.1), `title` and `description` are [schema annotations](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1), and `type` is a [validation keyword](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.1.1).
 
-<span id="properties"></span>
+<span id="define"></span>
 
-## Defining the properties[#properties]
+## Define properties[#define]
 
-`productId` is a numeric value that uniquely identifies a product. Since this is the canonical identifier for a product, it doesn't make sense to have a product without one, so it is required.
+This section adds the `properties` keyword. In JSON Schema terms, `properties` is a [validation keyword](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1). When you define `properties`, you create an object where each property represents a key in the JSON data that’s being validated. You can also specify which properties defined in the object are required.
 
-In JSON Schema terms, we update our schema to add:
+### Add the properties object[#properties]
 
-* The [`properties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section.10.3.2.1) validation keyword.
-* The `productId` key.
-  * `description` schema annotation and `type` validation keyword is noted -- we covered both of these in the previous section.
-* The [`required`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.6.5.3) validation keyword listing `productId`.
+Using the product catalog example, `productId` is a numeric value that uniquely identifies a product. Since this is the canonical identifier for the product, it’s required.
+
+To add the `properties` object to the schema:
+
+1. Add the `properties` validation keyword to the end of the schema:
+
+```json
+...
+"title": "Product",
+"description": "A product from Acme's catalog",
+"type": "object",
+"properties": {
+  "productId": {
+  }
+}
+```
+
+2. Add the `productId` keyword, along with the following schema annotations:
+    * `description`: describes what `productId` is. In this case, it’s the product’s unique identifier.
+    * `type`: defines what kind of data is expected. For this example, since the product identifier is a numeric value, use `integer`.
+
+```json
+...
+"properties": {
+  "productId": {
+    "description": "The unique identifier for a product",
+    "type": "integer"
+  }
+}
+```
+
+With the new `properties` validation keyword, the overall schema looks like this:
 
 ```json
 {
@@ -98,14 +139,11 @@ In JSON Schema terms, we update our schema to add:
       "description": "The unique identifier for a product",
       "type": "integer"
     }
-  },
-  "required": [ "productId" ]
+  }
 }
 ```
 
-* `productName` is a string value that describes a product. Since there isn't much to a product without a name it also is required.
-* Since the `required` validation keyword is an array of strings we can note multiple keys as required; We now include `productName`.
-* There isn't really any difference between `productId` and `productName` -- we include both for completeness since computers typically pay attention to identifiers and humans typically pay attention to names.
+The following example adds another required key, `productName`. This value is a string:
 
 ```json
 {
@@ -123,18 +161,52 @@ In JSON Schema terms, we update our schema to add:
       "description": "Name of the product",
       "type": "string"
     }
-  },
-  "required": [ "productId", "productName" ]
+  }
 }
 ```
 
-## Going deeper with properties[#properties-deeper]
+The `properties` object now includes two keys, `productId` and `productName`. When JSON data is validated against this schema, validation fails for any documents that contain invalid data in either of these fields.
 
-According to the store owner there are no free products. ;)
+### Define required properties[#required]
 
-* The `price` key is added with the usual `description` schema annotation and `type` validation keywords covered previously. It is also included in the array of keys defined by the `required` validation keyword.
-* We specify the value of `price` must be something other than zero using the [`exclusiveMinimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.6.2.5) validation keyword.
-  * If we wanted to include zero as a valid price we would have specified the [`minimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.6.2.4) validation keyword.
+This section describes how to specify that certain properties are required. This example makes the two existing keys required and adds another required key named `price`. The `price` key has a `description` and `type` just like the other keys, but it also specifies a minimum value. Because nothing in the store is free, each product requires a price value that’s above zero. Define this using the `exclusiveMinimum` validation keyword.
+
+To define a required property:
+
+1. Inside the `properties` object, add the `price` key. Include the usual schema annotations `description` and `type`, where `type` is a number:
+
+```json
+"properties": {
+...
+  "price": {
+    "description": "The price of the product",
+    "type": "number"
+  }
+```
+
+2. Add the `exclusiveMinimum` validation keyword and set the value to zero:
+
+```json
+"price": {
+  "description": "The price of the product",
+  "type": "number",
+  "exclusiveMinimum": 0
+}
+```
+
+3. Add the `required` validation keyword to the end of the schema, after the `properties` object. Add `productID`, `productName`, and the new `price` key to the array:
+
+```json
+"price": {
+  "description": "The price of the product",
+    "type": "number",
+    "exclusiveMinimum": 0
+  }
+},
+"required": [ "productId", "productName", "price" ]
+```
+
+With the new `required` keyword and `price` key, the overall schema looks like this:
 
 ```json
 {
@@ -162,23 +234,71 @@ According to the store owner there are no free products. ;)
 }
 ```
 
-Next, we come to the `tags` key.
+The `exclusiveMinimum` validation keyword is set to zero, which means that only values above zero are considered valid. To include zero as a valid option, you could use the `minimum` validation keyword instead.
 
-The store owner has said this:
+### Define optional properties[#optional]
 
-* If there are tags there must be at least one tag,
-* All tags must be unique; no duplication within a single product.
+This section describes how to define an optional property. For this example, define a keyword named `tags` using the following criteria:
+
+* The `tags` keyword is optional.
+* If `tags` is included, it must contain at least one item.
+* All tags must be unique.
 * All tags must be text.
-* Tags are nice but they aren't required to be present.
 
-Therefore:
+To define an optional property:
 
-* The `tags` key is added with the usual annotations and keywords.
-* This time the `type` validation keyword is `array`.
-* We introduce the [`items`](https://json-schema.org/draft/2020-12/json-schema-core.html#section.10.3.1.2) validation keyword so we can define what appears in the array. In this case: `string` values via the `type` validation keyword.
-* The [`minItems`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.6.4.2) validation keyword is used to make sure there is at least one item in the array.
-* The [`uniqueItems`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.6.4.3) validation keyword notes all of the items in the array must be unique relative to one another.
-* We did not add this key to the `required` validation keyword array because it is optional.
+1. Inside the `properties` object, add the `tags` keyword. Include the usual schema annotations `description` and `type`, and define `type` as an array:
+
+```json
+"properties": {
+...
+  "tags": {
+    "description": "Tags for the product",
+    "type": "array"
+  }
+}
+```
+
+2. Add a new validation keyword for `items` to define what appears in the array. For example, `string`:
+
+```json
+"tags": {
+  "description": "Tags for the product",
+  "type": "array",
+  "items": {
+    "type": "string"
+  }
+}
+```
+
+3. To make sure there is at least one item in the array, use the `minItems` validation keyword:
+
+```json
+"tags": {
+  "description": "Tags for the product",
+  "type": "array",
+  "items": {
+    "type": "string"
+  },
+  "minItems": 1
+}
+```
+
+4. To make sure that every item in the array is unique, use the `uniqueItems` validation keyword and set it to `true`:
+
+```json
+"tags": {
+  "description": "Tags for the product",
+  "type": "array",
+  "items": {
+    "type": "string"
+  },
+  "minItems": 1,
+  "uniqueItems": true
+}
+```
+
+With the new `tags` keyword, the overall schema looks like this:
 
 ```json
 {
@@ -215,15 +335,74 @@ Therefore:
 }
 ```
 
-<span id="nesting"></span>
+Because the new keyword is not required, there are no changes to the `required` section.
 
-## Nesting data structures[#nesting]
+<span id="nest-data"></span>
 
-Up until this point we've been dealing with a very flat schema -- only one level. This section demonstrates nested data structures.
+## Create a nested data structure[#nest-data]
 
-* The `dimensions` key is added using the concepts we've previously discovered. Since the `type` validation keyword is `object` we can use the `properties` validation keyword to define a nested data structure.
-  * We omitted the `description` annotation keyword for brevity in the example. While it's usually preferable to annotate thoroughly in this case the structure and key names are fairly familiar to most developers.
-* You will note the scope of the `required` validation keyword is applicable to the dimensions key and not beyond.
+The earlier examples describe a flat schema with only one level. This section describes how to use nested data structures in JSON Schema.
+
+To create a nested data structure:
+
+1. Inside the `properties` object, create a new key called `dimensions`:
+
+```json
+"properties": {
+...
+  "dimensions": {
+  }
+}
+```
+
+2. Define the `type` validation keyword as `object`:
+
+```json
+"dimensions": {
+  "type": "object",
+}
+```
+
+3. Add the `properties` validation keyword to contain the nested data structure. Inside the new `properties` keyword, add keywords for `length`, `width`, and `height` that all use the `number` type:
+
+```json
+"dimensions": {
+  "type": "object",
+  "properties": {
+    "length": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number"
+    }
+  }
+}
+```
+
+4. To make each of these properties required, add a `required` validation keyword inside the `dimensions` object:
+
+```json
+"dimensions": {
+  "type": "object",
+  "properties": {
+    "length": {
+      "type": "number"
+    },
+    "width": {
+      "type": "number"
+    },
+    "height": {
+      "type": "number"
+    }
+  },
+  "required": [ "length", "width", "height" ]
+}
+```
+
+Using the new nested data structures, the overall schema looks like this:
 
 ```json
 {
@@ -275,14 +454,15 @@ Up until this point we've been dealing with a very flat schema -- only one level
 }
 ```
 
-## References outside the schema[#references]
+The new `required` validation keyword only applies within the scope of the `dimensions` key.
 
-So far our JSON schema has been wholly self contained. It is very common to share JSON schema across many data structures for reuse, readability and maintainability among other reasons.
+<span id="external"></span>
 
-For this example we introduce a new JSON Schema resource and for both properties therein:
-* We use the `minimum` validation keyword noted earlier.
-* We add the [`maximum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section.6.2.2) validation keyword.
-* Combined, these give us a range to use in validation.
+## Add an external reference[#external]
+
+This section describes how to reference resources outside of the schema. Sharing schemas across many data structures is a common way to make them easier to use, read, and keep up-to-date. So far, the product catalog schema is self-contained. This section creates a new schema and then references it in the product catalog schema.
+
+The following schema validates a geographical location:
 
 ```json
 {
@@ -307,7 +487,28 @@ For this example we introduce a new JSON Schema resource and for both properties
 }
 ```
 
-Next we add a reference to this new schema so it can be incorporated.
+To reference this schema in the product catalog schema:
+
+1. Inside the `properties` object, add a key named `warehouseLocation`:
+
+```json
+"properties": {
+...
+  "warehouseLocation": {
+  }
+}
+```
+
+2. To link to the external geographical location schema, add the `$ref` schema keyword and the schema URL:
+
+```json
+"warehouseLocation": {
+  "description": "Coordinates of the warehouse where the product is located.",
+  "$ref": "https://example.com/geographical-location.schema.json"
+}
+```
+
+With the external schema reference, the overall schema looks like this:
 
 ```json
 {
@@ -363,25 +564,32 @@ Next we add a reference to this new schema so it can be incorporated.
 }
 ```
 
-## Taking a look at data for our defined JSON Schema[#data]
+<span id="valiate"></span>
 
-We've certainly expanded on the concept of a product since our earliest sample data (scroll up to the top). Let's take a look at data which matches the JSON Schema we have defined.
+## Validate JSON data against the schema[#validate]
+
+This section describes how to validate JSON data against the product catalog schema.
+
+This example JSON data matches the product catalog schema:
 
 ```json
-
-  {
-    "productId": 1,
-    "productName": "An ice sculpture",
-    "price": 12.50,
-    "tags": [ "cold", "ice" ],
-    "dimensions": {
-      "length": 7.0,
-      "width": 12.0,
-      "height": 9.5
-    },
-    "warehouseLocation": {
-      "latitude": -78.75,
-      "longitude": 20.4
-    }
+{
+  "productId": 1,
+  "productName": "An ice sculpture",
+  "price": 12.50,
+  "tags": [ "cold", "ice" ],
+  "dimensions": {
+    "length": 7.0,
+    "width": 12.0,
+    "height": 9.5
+  },
+  "warehouseLocation": {
+    "latitude": -78.75,
+    "longitude": 20.4
   }
+}
 ```
+
+To validate this JSON data against the product catalog JSON Schema, you can use any validator of your choice. In addition to command-line and browser tools, validation tools are available in a wide range of languages, including Java, Python, .NET, and many others. To find a validator that’s right for your project, see [Implementations](https://json-schema.org/implementations).
+
+Use the example JSON data as the input data and the product catalog JSON Schema as the schema. Your validation tool compares the data against the schema, and if the data meets all the requirements defined in the schema, validation is successful.
