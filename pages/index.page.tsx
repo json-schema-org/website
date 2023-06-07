@@ -7,6 +7,8 @@ const PATH = 'pages/blog/posts'
 import readingTime from 'reading-time'
 import Link from 'next/link'
 import TextTruncate from 'react-text-truncate'
+import { Headline3 } from '~/components/Headlines'
+import Calendar from '~/components/Calendar'
 
 
 
@@ -62,6 +64,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               <HeroSearch />
 
             </div>
+        
             <div className='mb-16 md:mb-36 lg:mb-28 mx-auto'>
               <h3 className='text-white mb-4'>Trusted by</h3>
               <div className='flex gap-6 justify-center w-100 text-white text-center mx-auto'>
@@ -103,7 +106,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
         <div className='w-full h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-2/3 mx-auto text-center mt-20 md:mt-28'>
-            <h2 className='text-3xl lg:text-4xl text-white mb-6'>Learn more about our documentation</h2>
+            <h2 className='text-3xl lg:text-4xl text-white mb-6 text-center'>Learn more about our documentation</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '>Read the Docs</button>
           </div>
         </div>
@@ -112,8 +115,8 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='lg:flex gap-24 mt-12 md:my-24'>
           <img src='/img/home-page/community-illustration.svg' className='lg:w-[830px]' />
           <div className='w-5/6 mx-auto lg:w-full' >
-            <h3 className='text-3xl lg:text-4xl font-semibold md:w-2/3 my-4'>Learn more about the JSON Schema Ecosystem</h3>
-            <p className='hidden lg:block lg:w-4/5 mb-4'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. Nullam mollis tortor vestibulum est pharetra elementum. Integer lectus mauris, tempus eu odio non, tristique ullamcorper arcu.</p>
+            <h3 className='md:text-center text-3xl lg:text-4xl font-semibold md:w-2/3 my-4'>Learn more about the JSON Schema Ecosystem</h3>
+            <p className='hidden lg:block lg:w-4/5 mb-4 text-left md:text-center'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. Nullam mollis tortor vestibulum est pharetra elementum. Integer lectus mauris, tempus eu odio non, tristique ullamcorper arcu.</p>
             <button className='hidden md:block rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '>Contribute</button>
             <button className='md:hidden rounded border-2 bg-primary text-white w-full h-[40px] mb-24' >Read the docs</button>
           </div>
@@ -170,10 +173,16 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
                 </div>
               </div>
               <div className=''>
-                <h3 className='mb-4 font-semibold'>Upcoming events</h3>
-                <div className='flex mb-4'><p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
-                <div className='flex mb-4'><p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
-                <div className='flex mb-4'><p className='bg-btnGold rounded-full w-10 h-10 p-2 text-center text-white mr-2'>26</p><p className=''>Event / Meeting / Conference Title Day, Date, Location, time</p></div>
+                {/* <Calendar /> */}
+                <div>
+                  <Headline3 >
+                Upcoming events
+                  </Headline3>
+                  <ul>
+                    <Calendar />
+                    
+                  </ul>
+                </div>
                 <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1' target='_blank' rel='noopener noreferrer'>View Calendar</a>
               </div>
             </div>
