@@ -13,13 +13,22 @@ module.exports = {
       sm: '0.8rem',
       base: '16px',
       xl: '20px',
-      '2xl': '24px',
-      '3xl': '32px',
-      '4xl': '50px',
-      '5xl': '65px',
+      'h5': '20px',
+      'h4': '25px',
+      'h3': '35px',
+      'h2': '45px',
+      'h1': '60px',
+      'h1mobile': '35px',
+      'h2mobile': '28px',
+      'h3mobile': '25px',
+      'h4mobile': '22px',
+      'h5mobile': '20px'
     },
    
     extend: {
+      backgroundImage: {
+        'gradient-radial': 'linear-gradient(72.68deg, #002CC4 28.97%, #5468FF 145.47%)',
+      },
       colors: {
      
         white: '#ffffff',
@@ -27,7 +36,7 @@ module.exports = {
         primary: '#002CC4',
         btnOrange: '#F47A08',
         btnGold: '#AB9700',
-        startBlue: '#052FC7',
+        startBlue: '#002CC4',
         endBlue: '#5468FF',
         linkBlue: '#3B82F6'
       },
@@ -43,7 +52,8 @@ module.exports = {
         '4xl': [
           '0 35px 35px rgba(0, 0, 0, 0.25)',
           '0 45px 65px rgba(0, 0, 0, 0.15)'
-        ]
+        ],
+        'xl': ' 0px 6px 10px -4px rgba(0, 0, 0, 0.25);'
       }
     }
   },

@@ -50,17 +50,17 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
     >
       <div className='flex flex-col items-center'>
         {/* Hero  */}
-        <section className=' bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom'>
+        <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom'>
           <div className='w-3/4 text-center mx-auto mt-24 lg:mt-40'>
-            <h1 className='lg:leading-header text-3xl lg:text-5xl font-semibold text-white text-center'>
+            <h1 className='lg:leading-header text-h1mobile lg:text-h1 font-semibold text-white text-center'>
               JSON Schema is a declarative language that allows you to annotate and validate JSON documents.
             </h1>
-            <h2 className='lg:leading-6 text-center text-xl text-white mt-4 '>
+            <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 '>
               JSON Schema enables the confident and reliable use of the JSON data format.
             </h2>
             <div className='w-3/5  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
-              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] text-white'>Get Started</a></Link>
-              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] text-white'>Community</a></Link>
+              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Get Started</a></Link>
+              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Community</a></Link>
               <HeroSearch />
 
             </div>
@@ -80,34 +80,34 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         {/* Feature */}
         <section className='mt-12 lg:mt-[80px]'>
           <div className='w-5/6 md:w-1/2 text-center  mb-6  mx-auto'>
-            <h2 className='text-3xl font-bold mb-6'>Why JSON Schema?</h2>
-            <p className='mb-6 leading-5 text-xl'>Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. </p>
+            <h2 className='text-h3mobile md:text-h3 font-bold mb-6'>Why JSON Schema?</h2>
+            <p className='mb-6 leading-5 text-h5mobile md:text-h5'>Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. </p>
           </div>
           {/* Feature 4 section*/}
           <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-xl font-semibold mb-6'>Simplify testing and validation</h3>
+              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Simplify testing and validation</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend.</p>
             </div>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-xl font-semibold mb-6'>Easy and reliable data exchange</h3>
+              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Easy and reliable data exchange</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend.</p>
             </div>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-xl font-semibold mb-6'>Simplify testing and validation</h3>
+              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Simplify testing and validation</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend.</p>
             </div>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-xl font-semibold'>Easy and reliable data exchange</h3>
+              <h3 className='text-h5mobile md:text-h5 font-semibold'>Easy and reliable data exchange</h3>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend.</p>
             </div>
           </div>
         </section>
 
         <div className='w-full h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
-          <div className='lg:w-2/3 mx-auto text-center mt-20 md:mt-28'>
-            <h2 className='text-3xl lg:text-4xl text-white mb-6 text-center'>Learn more about our documentation</h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '>Read the Docs</button>
+          <div className='lg:w-2/3 mx-auto text-center mt-20 md:mt-28 text-white'>
+            <h2 className='text-h2mobile lg:text-h2  mb-6 text-center'>Learn more about our documentation</h2>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary '>Read the Docs</button>
           </div>
         </div>
 
@@ -115,8 +115,8 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='lg:flex gap-24 mt-12 md:my-24'>
           <img src='/img/home-page/community-illustration.svg' className='lg:w-[830px]' />
           <div className='w-5/6 mx-auto lg:w-full' >
-            <h3 className='md:text-center text-3xl lg:text-4xl font-semibold md:w-2/3 my-4'>Learn more about the JSON Schema Ecosystem</h3>
-            <p className='hidden lg:block lg:w-4/5 mb-4 text-left md:text-center'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. Nullam mollis tortor vestibulum est pharetra elementum. Integer lectus mauris, tempus eu odio non, tristique ullamcorper arcu.</p>
+            <h3 className='md:text-center text-h3mobile md:text-h3 font-semibold md:w-2/3 my-4'>Learn more about the JSON Schema Ecosystem</h3>
+            <p className='hidden lg:block lg:w-4/5 mb-4 text-left '>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis. Aliquam efficitur euismod ultricies. Nulla pulvinar sagittis eleifend. Maecenas convallis gravida convallis. Aliquam facilisis augue purus, id mattis lectus luctus non. Nullam mollis tortor vestibulum est pharetra elementum. Integer lectus mauris, tempus eu odio non, tristique ullamcorper arcu.</p>
             <button className='hidden md:block rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '>Contribute</button>
             <button className='md:hidden rounded border-2 bg-primary text-white w-full h-[40px] mb-24' >Read the docs</button>
           </div>
@@ -126,8 +126,8 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <h2 className='anchor'><span id='community'></span></h2>
         <section className='my-12'>
           <div className='mb-12 md:w-3/4  mx-auto text-center'>
-            <h2 className='text-4xl font-semibold mb-2'>Join our great community</h2>
-            <p className='mx-4 md:w-3/4 md:mx-auto text-xl'>We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
+            <h2 className='text-h3mobile lg:text-h3 font-semibold mb-2'>Join our great community</h2>
+            <p className='mx-4 md:w-3/4 md:mx-auto text-h5mobile md:text-h5'>We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
             </p>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-3  gap-6 mb-12 mx-auto w-5/6'>
@@ -192,7 +192,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         {/* News & Blogs */}
         <section className='w-full h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-full mx-auto text-center mt-28 '>
-            <h2 className='text-3xl lg:text-4xl text-white mb-6'>Contribute to the JSON Schema ecosystem</h2>
+            <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Contribute to the JSON Schema ecosystem</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '>Contribute</button>
           </div>
         </section>
@@ -201,7 +201,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
         <section className='my-20'>
           <div className='text-center mb-12'>
-            <h2 className='text-3xl font-semibold mb-4'>Sponsors</h2>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis.</p>
           </div>
           <div className='grid grid-cols-2 lg:grid-cols-5 gap-8 mx-4 md:mx-0'>
@@ -217,7 +217,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
         <section className='mb-12 md:my-28'>
           <div className='text-center mb-12'>
-            <h2 className='text-3xl font-semibold mb-4'>Supported by</h2>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel tempus eros, vitae molestie quam. Integer id tincidunt felis.</p>
           </div>
           <div className='grid grid-cols-2 lg:grid-cols-4 gap-12 mx-auto mx-4 md:mx-0'>

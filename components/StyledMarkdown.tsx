@@ -304,7 +304,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             Bigquote: {
               component: ({ children }) => {
                 return (
-                  <div className='text-2xl text-center p-10 py-16 font-semibold text-slate-500 bg-slate-50 mb-4 rounded-xl'>
+                  <div className='text-h2mobile md:text-h2 text-center p-10 py-16 font-semibold text-slate-500 bg-slate-50 mb-4 rounded-xl'>
                     "{children}"
                   </div>
                 )

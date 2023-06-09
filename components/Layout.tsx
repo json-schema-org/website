@@ -34,8 +34,8 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
         <main className={
           classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white ')}>
-            <div className='flex md:justify-between items-center py-4 md:pl-4 md:w-1/2'>
+          <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white shadow-xl')}>
+            <div className='flex md:justify-between items-center py-4 md:pl-4 md:w-1/2 '>
               <Logo />
               <MainNavigation />
             </div>
@@ -75,16 +75,16 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
   if (section === 'docs') return (
-    <div className='bg-slate-100 '>
-      <div className='bg-white xl:w-[1200px] mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
-        <div className='hidden md:block mt-24'>
-          <DocsNav />
-        </div>
-        <div className='col-span-4 md:col-span-3 mt-20'>
-          {children}
-        </div>
+   
+    <div className='bg-white mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
+      <div className='hidden md:block mt-24'>
+        <DocsNav />
+      </div>
+      <div className='col-span-4 md:col-span-3 mt-20'>
+        {children}
       </div>
     </div>
+   
   )
   return children
 }
@@ -114,7 +114,7 @@ const MainNavigation = () => {
   // const docsAreActive = section === 'docs'
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
-    <div className='md:py-2 flex items-center w-28'>
+    <div className='md:py-2 flex items-center w-28 '>
       <MainNavLink
         className='hidden lg:block  hover:underline'
         uri='/specification/specification'
