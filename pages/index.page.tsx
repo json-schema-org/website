@@ -50,16 +50,16 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
     >
       <div className='flex flex-col items-center'>
         {/* Hero  */}
-        <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom'>
-          <div className='w-3/4 text-center mx-auto mt-24 lg:mt-40'>
+        <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom w-full'>
+          <div className=' text-center mx-auto mt-24 lg:mt-40'>
             <h1 className='lg:leading-header text-h1mobile lg:text-h1 font-semibold text-white text-center'>
-              JSON Schema is a declarative language that allows you to annotate and validate JSON documents.
+              Build more, break less, empower others
             </h1>
             <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 '>
               JSON Schema enables the confident and reliable use of the JSON data format.
             </h2>
             <div className='w-3/5  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
-              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Get Started</a></Link>
+              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Getting started</a></Link>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Community</a></Link>
               <HeroSearch />
 

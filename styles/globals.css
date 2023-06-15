@@ -124,10 +124,11 @@ html {
 /** Style Algolia */
 
 .search-input {
+
 	flex-grow: 1;
 	box-sizing: border-box;
 	width: 194px;
-	margin: 0;
+	margin: 0 auto;
 	padding: 5px;
 	overflow: visible;
 	font-weight: 500;
@@ -147,6 +148,9 @@ html {
 	transition-property: border-color, color;
 	-webkit-font-smoothing: antialiased;
   
+}
+.search-input svg {
+margin-left: 40px;
 }
 .search-input span {
   margin-left: 15px;

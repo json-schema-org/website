@@ -55,7 +55,7 @@ export default function HeroSearch() {
           />
         </svg>
 
-        <span>Quick Search</span>
+        <span className='text-center'>Search</span>
 
       </button>
 
