@@ -338,10 +338,6 @@ const Footer = () => (
           <img src='/img/logos/github_logo-white.svg' className='w-4 h-4 mr-2' />
           <a href='https://github.com/json-schema-org' className='text-white'>GitHub</a>
         </div>
-        <div className='flex items-center w-[140px]'>
-          <img src='/img/logos/globe-white.svg' className='w-4 h-4 mr-2' />
-          <a href='https://groups.google.com/g/json-schema' className='text-white'>Google Groups</a>
-        </div>
       </div>
 
     </div>
