@@ -18,13 +18,19 @@ This documentation describes JSON Schema and the many ways you can use it to ens
 
 JSON Schema can:
 
-* Describe your existing data formats
-* Provide clear documentation that’s both human and machine readable
-* Validate your data, which helps you:
-    * Automate testing
-    * Ensure the quality of client-submitted data
-
-JSON Schema is highly extensible and can be tailored to fit your needs. You can create custom keywords, formats, and validation rules to suit your own requirements. The JSON Schema community has a wealth of tools and resources available across many programming languages to help you create, validate, and integrate your schemas.
+* **Describe existing data formats**: JSON Schema allows you to describe the structure, constraints, and data types of your existing JSON data formats. 
+* **Define rules and constraints**: When your JSON documents adhere to these constraints, it becomes easier to exchange structured data between applications because the data follows a consistent pattern.
+* **Clear and readable documentation**: JSON Schema supports the creation of documentation that is easily understandable by both humans and machines.
+* **Highly extensible** and can be tailored to fit your needs.
+    * You can create *custom keywords*, *formats*, and *validation rules* to suit your own requirements.
+* **Simplify testing and validation**: JSON Schema helps to reduce the code's complexity and the development time by simplifying your validation logic.
+* **Validate your data**, which helps you:
+    * **Automate testing**: JSON Schema validation enables automated testing, ensuring that data consistently adheres to the specified rules and constraints.
+    * **Enhance data quality**: By enforcing validation rules, JSON Schema helps ensure the quality of client-submitted data, preventing inconsistencies, errors, and malicious inputs.
+* **Easy and reliable data exchange**: JSON Schema enables reliable, eventually consistent data exchange at scale.
+* **Interoperability and Extensibility**: JSON Schema provides an extensible interoperability layer to your solution in multiple languages and platforms.
+* **Huge tooling ecosystem**: JSON Schema is a vibrant and growing ecosystem of production ready Open Source tools implemented by the Community
+* **Wide range of tools availability**: The JSON Schema community has a wealth of tools and resources available across many programming languages to help you create, validate, and integrate your schemas.
 
 
 ## How it works
