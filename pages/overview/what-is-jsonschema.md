@@ -14,6 +14,13 @@ This documentation describes JSON Schema and the many ways you can use it to ens
 * **Reference**: This section provides a [glossary]((/learn/glossary), [specification release notes](/specification), and [in-depth reference](/understanding-json-schema) to JSON Schema that you can use to write and understand more complex schemas.
 
 
+## JSON Schema History
+
+JSON Schema has a rich history that dates back to the [first JSON Schema proposal](https://web.archive.org/web/20071026185150/http://json.com/json-schema-proposal/) submitted by **Kris Zyp** to json.com on October 2nd, 2007. The *pre-historic* era, from 2009 to 2012, marked the early stages of development when JSON Schema was still evolving without standardized versions. The *classical era*, from 2013 to 2018, provided a more stable foundation but had limitations in terms of functionality and extensibility.
+
+However, the *modern era*, starting in 2019 and continuing to the present, has brought significant advancements to JSON Schema. They have expanded its capabilities and introduced standardized features. As of now, the current version of JSON Schema is `2020-12`, which represents the latest advancements and refinements in this specification.
+
+
 ## How it works
 
 1. **Define the rules**: You begin by defining the rules in a JSON Schema document using various [keywords](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-validation-keywords-for-any).
@@ -53,7 +60,7 @@ This documentation describes JSON Schema and the many ways you can use it to ens
 
 4. **Validate the documents**: Use the selected validator to validate your JSON documents against the created JSON Schema.
 
-    Here's an example using the `jsonschema` Python library:
+    Here's an example using the [jsonschema](https://github.com/python-jsonschema/jsonschema) Python library:
     ```
     from jsonschema import validate
 
