@@ -17,13 +17,10 @@ This documentation describes JSON Schema and the many ways you can use it to ens
 ## JSON Schema History
 
 JSON Schema has a rich history that dates back to the [first JSON Schema proposal](https://web.archive.org/web/20071026185150/http://json.com/json-schema-proposal/) submitted by **Kris Zyp** to json.com on October 2nd, 2007. 
-* The *pre-historic* era, from 2009 to 2012, marked the early stages of development when JSON Schema was still evolving without standardized versions. 
-* The *classical era*, from 2013 to 2018, provided a more stable foundation but had limitations in terms of functionality and extensibility.
 
-* However, the *modern era*, starting in 2019 and continuing to the present, has brought significant advancements to JSON Schema. They have expanded its capabilities and introduced standardized features. 
+The current version of JSON Schema is [2020-12](../draft/2020-12/release-notes.md), which represents the latest advancements and have expended capabilities as compared with the previous version `draft-04`, `draft-06`, `draft-07`. We encourage everyone to adopt the latest version whenever possible to take advantage of all the advancements and benefits of JSON Schema.
 
-As of now, the current version of JSON Schema is [2020-12](../draft/2020-12/release-notes.md), which represents the latest advancements and refinements in this specification.
-
+For more information regarding JSON Schema history, you can refer to [this article](https://modern-json-schema.com/what-is-modern-json-schema) by **Henry Andrews**.
 
 ## How it works
 
@@ -31,10 +28,10 @@ Using JSON Schema, you can define rules and constraints that JSON data should ad
 
 ### What is a JSON Document
 
-Before we get into JSON Schema and how it helps us, let us first understand what exactly is a JSON document.
+Before we get into JSON Schema and how it can help us, let's first understand what exactly is a JSON document.
 
 * A JSON document represents a piece of data that follows the syntax and structure defined by the JSON format. It is a collection of key-value pairs, arrays, and nested objects. 
-* JSON documents are used to store and transmit data between systems and applications.
+* JSON documents are used to store and transfer data between systems and applications.
 
 Taking an example of a JSON document representing a customer order,
 ```
@@ -67,7 +64,7 @@ Taking an example of a JSON document representing a customer order,
 
 ### Without JSON Schema
 
-When working with JSON data, it can quickly become complex and difficult to manage, especially when dealing with nested structures. Without a standardized schema, it becomes challenging to validate and enforce constraints on the data. Applications can only determine if a JSON object is properly formatted but lack insight into the object's content.
+When working with JSON data, it can quickly become complex and difficult to manage, especially when dealing with nested structures. Without a standardized schema, it becomes challenging to validate and enforce constraints on the data. 
 
 For example, 
 
@@ -86,10 +83,59 @@ if "product" in data and isinstance(data["product"], dict) and "name" in data["p
     print("Valid JSON object.")
 else:
     print("Invalid JSON object.")
-
 ```
 
-In the above code snippet, we are performing basic validation to check if the JSON object has the required fields. However, this approach becomes cumbersome as the complexity of the JSON structure increases. It is difficult to manage nested structures and enforce constraints effectively.
+In the above code snippet, we are performing basic validation to check if the JSON object has the required fields. Since this is a relatively simpler data, this way of checking works for now. 
+
+To show the challenges of performing data validation without using JSON Schema, we can take this exmaple:
+```
+# Without JSON Schema
+data = {
+    "order": {
+        "order_id": "123456",
+        "customer_name": "John Doe",
+        "items": [
+            {
+                "product_id": "P001",
+                "name": "T-shirt",
+                "quantity": 2,
+                "price": 19.99
+            },
+            {
+                "product_id": "P002",
+                "name": "Jeans",
+                "quantity": 1,
+                "price": 49.99
+            }
+        ],
+        "shipping_address": {
+            "street": "123 Main St",
+            "city": "New York",
+            "state": "NY",
+            "postal_code": "10001"
+        },
+        "total_amount": 89.97,
+        "status": "pending"
+    }
+}
+
+# Performing basic validation
+if (
+    "order" in data
+    and isinstance(data["order"], dict)
+    and "order_id" in data["order"]
+    and "customer_name" in data["order"]
+    and "items" in data["order"] and isinstance(data["order"]["items"], list)
+    and "shipping_address" in data["order"] and isinstance(data["order"]["shipping_address"], dict)
+    and "total_amount" in data["order"]
+    and "status" in data["order"]
+):
+    print("Valid JSON object.")
+else:
+    print("Invalid JSON object.")
+
+```
+Now we are dealing with a complex JSON structure that represents an order. The basic validation logic checks whether the required fields exist in the JSON object. However, as the structure becomes more complex, the validation code becomes more complicated and prone to errors. Moreover, this approach lacks support for checking data types, handling nested structures, and enforcing specific constraints.
 
 
 ### Harness the power of JSON Schema 
