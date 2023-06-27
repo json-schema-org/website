@@ -27,13 +27,140 @@ As of now, the current version of JSON Schema is [2020-12](../draft/2020-12/rele
 
 ## How it works
 
-1. **Define the rules**: You begin by defining the rules in a JSON Schema document using various [keywords](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-validation-keywords-for-any).
+Using JSON Schema, you can define rules and constraints that JSON data should adhere to. When your JSON documents adhere to these constraints, it becomes easier to exchange structured data between applications because the data follows a consistent pattern.
+
+### What is a JSON Document
+
+Before we get into JSON Schema and how it helps us, let us first understand what exactly is a JSON document.
+
+* A JSON document represents a piece of data that follows the syntax and structure defined by the JSON format. It is a collection of key-value pairs, arrays, and nested objects. 
+* JSON documents are used to store and transmit data between systems and applications.
+
+Taking an example of a JSON document representing a customer order,
+```
+{
+  "order_id": "123456",
+  "customer_name": "John Doe",
+  "items": [
+    {
+      "product_id": "P001",
+      "name": "T-shirt",
+      "quantity": 2,
+      "price": 19.99
+    },
+    {
+      "product_id": "P002",
+      "name": "Jeans",
+      "quantity": 1,
+      "price": 49.99
+    }
+  ],
+  "total_amount": 89.97,
+  "status": "pending"
+}
+```
+
+* The above code snippet includes attributes such as the *order ID*, *customer name*, *items ordered* (an array of objects with product details), *shipping address*, *total amount*, and *status* of the order.
+
+* This JSON document provides a structured representation of an order, making it easy to exchange, store, or process the order information in various applications or systems.
+
+
+### Without JSON Schema
+
+When working with JSON data, it can quickly become complex and difficult to manage, especially when dealing with nested structures. Without a standardized schema, it becomes challenging to validate and enforce constraints on the data. Applications can only determine if a JSON object is properly formatted but lack insight into the object's content.
+
+For example, 
+
+```
+# Without JSON Schema
+data = {
+    "product": {
+        "name": "Widget",
+        "price": 10.99,
+        "quantity": 5
+    }
+}
+
+# Performing basic validation
+if "product" in data and isinstance(data["product"], dict) and "name" in data["product"] and "price" in data["product"]:
+    print("Valid JSON object.")
+else:
+    print("Invalid JSON object.")
+
+```
+
+In the above code snippet, we are performing basic validation to check if the JSON object has the required fields. However, this approach becomes cumbersome as the complexity of the JSON structure increases. It is difficult to manage nested structures and enforce constraints effectively.
+
+
+### Harness the power of JSON Schema 
+
+JSON Schema provides a solution to this problem. It is a specification language for JSON that allows you to describe the structure, content, and semantics of a JSON instance. With JSON Schema, you can define metadata about an object's properties, specify whether fields are optional or required, and define expected data formats.
+
+By using JSON Schema, people can better understand the structure and constraints of the JSON data they receive. It enables applications to validate data, ensuring it meets the defined criteria. With JSON Schema, you can make your JSON more readable, enforce data validation, and improve interoperability across different programming languages.
+
+Using the same example:
+```
+from jsonschema import validate
+
+# Using JSON Schema
+data = {
+    "product": {
+        "name": "Widget",
+        "price": 10.99,
+        "quantity": 5
+    }
+}
+
+schema = {
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Product",
+    "type": "object",
+    "properties": {
+        "product": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                    },
+                "price": {
+                    "type": "number", 
+                    "minimum": 0
+                    },
+                "quantity": {
+                    "type": "integer", 
+                    "minimum": 1
+                    }
+            },
+            "required": ["name", "price", "quantity"]
+        }
+    },
+    "required": ["product"]
+}
+
+try:
+    validate(data, schema)
+    print("Valid JSON object.")
+except Exception as e:
+    print("Invalid JSON object:", e)
+
+```
+
+In the above code snippet, we defined a JSON Schema that describes the expected structure and constraints of the JSON data. We use the `jsonschema` library to validate the `data` against the `schema`. If the data doesn't conform to the schema, an exception is raised, providing detailed information about the failure.
+
+By using JSON Schema, we can easily define and enforce constraints, making the validation process more robust and manageable. It improves the readability of the code and reduces the chances of data-related issues.
+
+
+### Steps to Validate JSON Data Using JSON Schema
+
+1. **Create the schema**
+
+    You begin by defining the rules in a JSON Schema document using [keywords](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-validation-keywords-for-any).
 
     * You can use `type` to specify what types of data are valid for a given key. You can specify either a single type, like `string`, or an array of possible types, like `string`, `number`, or `integer`.
     * You can also enforce formats using regular expressions with the `pattern` keyword.
     * There are countless ways to describe specific data types and formats that your data must follow.
 
-2. **Create the schema**: Use the defined rules to create a JSON Schema that represents the expected structure and format of your JSON data.
+    Now that the rules have been created, you can use these rules to create a JSON Schema that represents the expected structure and format of your JSON data.
 
     For example, let the following file be `schema.json`:
 
@@ -60,9 +187,13 @@ As of now, the current version of JSON Schema is [2020-12](../draft/2020-12/rele
     * Here, `name` can only contain alphabetical characters. 
     * You can make some properties mandatory to enter by using the `required` keyword. Here, `name`, `age`, and `email`, all are required to create an instance of the schema.
 
-3. **Choose a validator**: Select a JSON Schema [validator](https://json-schema.org/implementations.html#validators) that is supported in your chosen programming language or context. There are JSON Schema validation tools for nearly every modern programming language, as well as language-agnostic command-line and browser tools.
+2. **Choose a validator**
 
-4. **Validate the documents**: Use the selected validator to validate your JSON documents against the created JSON Schema.
+    Select a JSON Schema [validator](https://json-schema.org/implementations.html#validators) that is supported in your chosen programming language or context. There are JSON Schema validation tools for nearly every modern programming language, as well as language-agnostic command-line and browser tools.
+
+3. **Validate the instance**
+    
+    Use the selected validator to validate your instance against the created JSON Schema.
 
     Here's an example using the [jsonschema](https://github.com/python-jsonschema/jsonschema) Python library:
     ```
@@ -84,7 +215,9 @@ As of now, the current version of JSON Schema is [2020-12](../draft/2020-12/rele
     * We have created an `instance` of the `schema` we defined as an example in step 2.
     * Since the data is valid, we will not get any output. In case of invalid data, we will get a `jsonschema.exceptions.ValidationError` exception.
 
-5. **Utilize the validated data**: When you have a defined schema and valid JSON data, the possibilities are endless. You can do additional data processing, set up error handling, and integrate your validated data with APIs, other applications, and business logic.
+4. **Apply to your use case**
+
+    When you have a defined schema and valid JSON data, the possibilities are endless. You can do additional data processing, set up error handling, and integrate your validated data with APIs, other applications, and business logic.
 
 
 ## Why developers use JSON Schema
