@@ -8,8 +8,8 @@ import { Headline1 } from '~/components/Headlines'
 import { SectionContext } from '~/context'
 import { DocsNav } from '~/components/Layout'
 
-export async function getStaticPaths() { return getStaticMarkdownPaths('pages/specification') }
-export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/specification') }
+export async function getStaticPaths() { return getStaticMarkdownPaths('pages') }
+export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages') }
 
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
   return (

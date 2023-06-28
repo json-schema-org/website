@@ -16,7 +16,7 @@ type Props = {
   hideAds?: boolean
 }
 
-const responsiveClasses = 'w-screen'
+const responsiveClasses = 'w-screen '
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
@@ -117,7 +117,7 @@ const MainNavigation = () => {
     <div className='md:py-2 flex items-center w-28 '>
       <MainNavLink
         className='hidden lg:block  hover:underline'
-        uri='/specification/specification'
+        uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
       />
@@ -309,7 +309,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 
 const Footer = () => (
   <footer className={classnames(responsiveClasses, 'z-10 h-[480px] md:h-[433px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
-    <div className='ml-6 lg:ml-0  lg:mt-16 grid grid-cols-1 md:grid-cols-2 w-5/6'>
+    <div className='max-w-[1400px] mx-auto lg:mt-16 grid grid-cols-1 md:grid-cols-2 w-5/6'>
       <div className='w-3/5  my-4 ml-6 lg:ml-36 lg:mt-12'>
         <img src='/img/logos/logo-white.svg' className='mb-6  h-24' />
         <div className='flex flex-col w-3/5 '>
@@ -346,10 +346,10 @@ const Footer = () => (
 
 const OpenJS = () => (
   <div className={classnames(responsiveClasses, '')}>
-    <div className=' ml-6 my-6 lg:mt-28 grid grid-cols-1 lg:grid-cols-2 w-5/6'>
-      <div className='md:w-1/2 mx-auto mb-12'>
+    <div className='max-w-[1400px] mx-auto my-6 lg:mt-28 grid grid-cols-1 lg:grid-cols-2 w-5/6'>
+      <div className='md:w-1/2 mb-12'>
         <img className='h-24 mx-auto mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
-        <div className='absolute bottom-0    mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div>
+        <div className='absolute bottom-0 ml-6  mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div>
       </div>
       <div className='md:w-5/6 lg:w-[810px] mx-auto  mb-16'>
         <p className='mb-6'>Copyright <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-linkBlue hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-linkBlue hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-linkBlue hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>

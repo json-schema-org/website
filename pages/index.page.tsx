@@ -7,7 +7,7 @@ const PATH = 'pages/blog/posts'
 import readingTime from 'reading-time'
 import Link from 'next/link'
 import TextTruncate from 'react-text-truncate'
-import { Headline3 } from '~/components/Headlines'
+
 import Calendar from '~/components/Calendar'
 
 
@@ -51,14 +51,14 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
       <div className='flex flex-col items-center'>
         {/* Hero  */}
         <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom w-full'>
-          <div className=' text-center mx-auto mt-24 lg:mt-40'>
+          <div className='max-w-[1400px] text-center mx-auto mt-24 lg:mt-40'>
             <h1 className='lg:leading-header text-h1mobile lg:text-h1 font-semibold text-white text-center'>
               Build More, Break Less, Empower Others
             </h1>
             <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 '>
               JSON Schema enables the confident and reliable use of the JSON data format.
             </h2>
-            <div className='w-3/5  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
+            <div className='w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Getting started</a></Link>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Community</a></Link>
               <HeroSearch />
@@ -69,16 +69,16 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               <h3 className='text-white mb-4'>Used by</h3>
               <div className='flex gap-6 justify-center w-100 text-white text-center mx-auto'>
 
-                <img src='/img/logos/zapier-logo_white.png' className='w-36' />
-                <img src='/img/logos/microsoft-logo-white.png' className='w-24' />
-                <img src='/img/logos/postman_logo-white.svg' className='w-36' />
-                <img src='/img/logos/github-logo-white.png' className=' w-24' />
+                <img src='/img/logos/zapier-logo_white.png' className='h-12 mr-4' />
+                <img src='/img/logos/microsoft-white.png' className='h-12 mr-4' />
+                <img src='/img/logos/postman-white.png' className='h-12 mr-4' />
+                <img src='/img/logos/github-white.png' className='h-12' />
               </div>
             </div>
           </div>
         </section>
         {/* Feature */}
-        <section className='mt-12 lg:mt-[80px]'>
+        <section className='max-w-[1400px] mt-12 lg:mt-[80px]'>
           <div className='w-5/6 md:w-1/2 text-center  mb-6  mx-auto'>
             <h2 className='text-h3mobile md:text-h3 font-bold mb-6'>Why JSON Schema?</h2>
             <p className='mb-6 leading-5 text-h5mobile md:text-h5'>While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that allows JSON data consistency, validity, and interoperability at scale.</p>
@@ -86,20 +86,20 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
           {/* Feature 4 section*/}
           <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Simplify testing and validation</h3>
-              <p>JSON Schema helps to reduce the code's complexity and the development time by simplifying your validation logic.</p>
+              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Streamline testing and validation</h3>
+              <p>Simplify your validation logic to reduce your code’s complexity and save time on development. Define constraints for your data structures to catch and prevent errors, inconsistencies, and invalid data.</p>
             </div>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Easy and reliable data exchange</h3>
-              <p>JSON Schema enables reliable, eventually consistent data exchange at scale.</p>
+              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Exchange data seamlessly</h3>
+              <p>Establish a common language for data exchange, no matter the scale or complexity of your project. Define precise validation rules for your data structures to create shared understanding and increase interoperability across different systems and platforms.</p>
             </div>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Interoperability and Extensibility:</h3>
-              <p>JSON Schema provides an extensible interoperability layer to your solution.</p>
+              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Document your data</h3>
+              <p>Create a clear, standardized representation of your data to improve understanding and collaboration among developers, stakeholders, and collaborators.</p>
             </div>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold'>Huge tooling ecosystem:</h3>
-              <p>JSON Schema is a vibrant and growing ecosystem of production ready Open Source tools implemented by the Community.</p>
+              <h3 className='text-h5mobile md:text-h5 font-semibold'>Vibrant tooling ecosystem</h3>
+              <p>Adopt JSON Schema with an expansive range of community-driven tools, libraries, and frameworks across many programming languages.</p>
             </div>
           </div>
         </section>
@@ -112,10 +112,10 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         </div>
 
         {/* SidebySide section*/}
-        <section className='lg:flex gap-24 mt-12 md:my-24'>
+        <section className='max-w-[1400px] lg:flex gap-24 mt-12 md:my-24'>
           <img src='/img/home-page/community-illustration.svg' className='lg:w-[830px]' />
           <div className='w-5/6 mx-auto lg:w-full' >
-            <h3 className='text-center text-h3mobile md:text-h3 font-semibold md:w-2/3 my-4'>Explore the JSON Schema Ecosystem</h3>
+            <h3 className='text-h3mobile md:text-h3 font-semibold md:w-2/3 my-4'>Explore the JSON Schema Ecosystem</h3>
             <p className='hidden lg:block lg:w-4/5 mb-4 text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
             <button className='hidden md:block rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '>Explore</button>
             <button className='md:hidden rounded border-2 bg-primary text-white w-full h-[40px] mb-24' >Read the docs</button>
@@ -124,16 +124,16 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
         {/* Join community */}
         <h2 className='anchor'><span id='community'></span></h2>
-        <section className='my-12'>
+        <section className='lg:my-12 max-w-[1400px]'>
           <div className='mb-12 md:w-3/4  mx-auto text-center'>
             <h2 className='text-h3mobile lg:text-h3 font-semibold mb-2'>Welcome to the JSON Schema Community</h2>
             <p className='mx-4 md:w-3/4 md:mx-auto text-h5mobile md:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
             </p>
           </div>
-          <div className='grid grid-cols-1 md:grid-cols-3  gap-6 mb-12 mx-auto w-5/6'>
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6'>
             <div className='w-full  mb-6'>
               <h3 className='mb-4 font-semibold' >Join the JSON Schema Community Slack!</h3>
-              <img src='/img/home-page/cover-1.jpeg' className='w-full mb-4' />
+              <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
               {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
               <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
               <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '>Join us</button>
@@ -164,23 +164,22 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               </div>
             </div>
             <div className=' '>
-              <div className=' mb-6 mr-4'>
+              <div className='md:w-full mb-6 mr-4'>
                 <h3 className='mb-2 font-semibold' >JSON Schema Community Meetings & Events</h3>
-                <p className='mb-4'>We hold monthly Office Hours and weekly Open Community Working Meetings. Office Hours are every first Tuesday of the month at 15:00 BST, and by appointment.
-                Open Community Working Meetings are every Monday at 14:00 PT.
+                <p className='mb-4'>We hold monthly Office Hours and weekly Open Community Working Meetings. Office Hours are every first Tuesday of the month at 15:00 BST, and by appointment. Open Community Working Meetings are every Monday at 14:00 PT.
                 </p>
                 <div className=''>
-                  <button className='w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
-                  <button className='w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/34/'
+                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
+                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/34/'
                   >Office Hours</a></button>
                 </div>
               </div>
               <div className=''>
                 {/* <Calendar /> */}
                 <div>
-                  <Headline3 >
+                  <h3 className='mb-2 font-semibold'>
                     Upcoming events
-                  </Headline3>
+                  </h3>
                   <ul>
                     <Calendar />
 
