@@ -60,7 +60,7 @@ Taking an example of a JSON document representing a customer order:
 * This JSON document provides a structured representation of an order, making it easy to exchange, store, or process the order information in various applications or systems.
 
 
-### The challenge of validating JSON data
+### The challenge
 
 When working with JSON data, it can quickly become complex and difficult to manage, especially when dealing with nested structures. Without a standardized schema, it becomes challenging to validate and enforce constraints on the data. 
 
