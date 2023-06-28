@@ -11,7 +11,7 @@ JSON Schema is a declarative language that you can use to annotate and validate 
 This documentation describes JSON Schema and the many ways you can use it to ensure the consistency of your JSON data. Here’s what you’ll find in the documentation:
 
 * **Getting Started**: If you’re new to JSON Schema, [start here](/learn/getting-started-step-by-step). You’ll find a step-by-step guide that walks you through creating your first JSON Schema, along with some real-world examples.
-* **Reference**: This section provides a [glossary]((/learn/glossary), [specification release notes](/specification), and [in-depth reference](/understanding-json-schema) to JSON Schema that you can use to write and understand more complex schemas.
+* **Reference**: This section provides a [glossary](/learn/glossary), [specification release notes](/specification), and [in-depth reference](/understanding-json-schema) to JSON Schema that you can use to write and understand more complex schemas.
 
 
 ## JSON Schema History
@@ -26,14 +26,12 @@ For more information regarding JSON Schema history, you can refer to [this artic
 
 Using JSON Schema, you can define rules and constraints that JSON data should adhere to. When your JSON documents adhere to these constraints, it becomes easier to exchange structured data between applications because the data follows a consistent pattern.
 
-### What is a JSON Document
-
 Before we get into JSON Schema and how it can help us, let's first understand what exactly is a JSON document.
 
 * A JSON document represents a piece of data that follows the syntax and structure defined by the JSON format. It is a collection of key-value pairs, arrays, and nested objects. 
 * JSON documents are used to store and transfer data between systems and applications.
 
-Taking an example of a JSON document representing a customer order,
+Taking an example of a JSON document representing a customer order:
 ```
 {
   "order_id": "123456",
@@ -62,7 +60,7 @@ Taking an example of a JSON document representing a customer order,
 * This JSON document provides a structured representation of an order, making it easy to exchange, store, or process the order information in various applications or systems.
 
 
-### Without JSON Schema
+### The challenge of validating JSON data
 
 When working with JSON data, it can quickly become complex and difficult to manage, especially when dealing with nested structures. Without a standardized schema, it becomes challenging to validate and enforce constraints on the data. 
 
@@ -138,7 +136,7 @@ else:
 Now we are dealing with a complex JSON structure that represents an order. The basic validation logic checks whether the required fields exist in the JSON object. However, as the structure becomes more complex, the validation code becomes more complicated and prone to errors. Moreover, this approach lacks support for checking data types, handling nested structures, and enforcing specific constraints.
 
 
-### Harness the power of JSON Schema 
+### JSON Schema to the rescue
 
 JSON Schema provides a solution to this problem. It is a specification language for JSON that allows you to describe the structure, content, and semantics of a JSON instance. With JSON Schema, you can define metadata about an object's properties, specify whether fields are optional or required, and define expected data formats.
 
@@ -283,10 +281,10 @@ With JSON Schema you can:
 
 ## Why organizations adopt JSON Schema
 
-* **Simplify testing and validation**: JSON Schema helps to reduce the code's complexity and the development time by simplifying your validation logic.
-* **Easy and reliable data exchange**: JSON Schema enables reliable, eventually consistent data exchange at scale.
-* **Interoperability and Extensibility**: JSON Schema provides an extensible interoperability layer to your solution in multiple languages and platforms.
-* **Huge tooling ecosystem**: JSON Schema is a vibrant and growing ecosystem of production ready Open Source tools implemented by the Community
+* **Streamline testing and validation**: Simplify your validation logic to reduce your code’s complexity and save time on development. Define constraints for your data structures to catch and prevent errors, inconsistencies, and invalid data.
+* **Exchange data seamlessly**: Establish a common language for data exchange, no matter the scale or complexity of your project. Define precise validation rules for your data structures to create shared understanding and increase interoperability across different systems and platforms.
+* **Document your data**: Create a clear, standardized representation of your data to improve understanding and collaboration among developers, stakeholders, and collaborators.
+* **Vibrant tooling ecosystem**: Adopt JSON Schema with an expansive range of community-driven tools, libraries, and frameworks across many programming languages.
 
 
 ## Next steps
