@@ -9,6 +9,7 @@ import Link from 'next/link'
 import TextTruncate from 'react-text-truncate'
 
 import Calendar from '~/components/Calendar'
+import { Headline4 } from '~/components/Headlines'
 
 
 
@@ -176,9 +177,9 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               <div className=''>
                 {/* <Calendar /> */}
                 <div>
-                  <h3 className='mb-2 font-semibold'>
+                  <Headline4 >
                     Upcoming events
-                  </h3>
+                  </Headline4>
                   <ul>
                     <Calendar />
 
