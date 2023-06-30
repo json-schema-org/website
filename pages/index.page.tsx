@@ -52,23 +52,22 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         {/* Hero  */}
         <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom w-full'>
           <div className='max-w-[1400px] text-center mx-auto mt-24 lg:mt-40'>
-            <h1 className='lg:leading-header text-h1mobile lg:text-h1 font-semibold text-white text-center'>
-              Build More, Break Less, Empower Others
+            <h1 className='lg:leading-header text-h1mobile lg:text-h1 font-semibold text-white text-center px-1 md:px-0'>
+              Build more. Break less. Empower others.
             </h1>
             <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 '>
               JSON Schema enables the confident and reliable use of the JSON data format.
             </h2>
-            <div className='w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
+            <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Getting started</a></Link>
-              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Community</a></Link>
+              <Link href='#community' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Community</a></Link>
               <HeroSearch />
 
             </div>
 
             <div className='mb-16 md:mb-36 lg:mb-28 mx-auto'>
               <h3 className='text-white mb-4'>Used by</h3>
-              <div className='flex gap-6 justify-center w-100 text-white text-center mx-auto'>
-
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto md:w-3/5 w-1/2 md:w-100'>
                 <img src='/img/logos/zapier-logo_white.png' className='h-12 mr-4' />
                 <img src='/img/logos/microsoft-white.png' className='h-12 mr-4' />
                 <img src='/img/logos/postman-white.png' className='h-12 mr-4' />
@@ -98,7 +97,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               <p>Create a clear, standardized representation of your data to improve understanding and collaboration among developers, stakeholders, and collaborators.</p>
             </div>
             <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold'>Vibrant tooling ecosystem</h3>
+              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Vibrant tooling ecosystem</h3>
               <p>Adopt JSON Schema with an expansive range of community-driven tools, libraries, and frameworks across many programming languages.</p>
             </div>
           </div>
@@ -107,7 +106,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <div className='w-full h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-2/3 mx-auto text-center mt-20 md:mt-28 text-white'>
             <h2 className='text-h2mobile lg:text-h2  mb-6 text-center'>Start learning JSON Schema</h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary '>Read the docs</button>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '><a href='/overview/what-is-jsonschema'>Read the docs</a></button>
           </div>
         </div>
 
@@ -117,8 +116,8 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
           <div className='w-5/6 mx-auto lg:w-full' >
             <h3 className='text-h3mobile md:text-h3 font-semibold md:w-2/3 my-4'>Explore the JSON Schema Ecosystem</h3>
             <p className='hidden lg:block lg:w-4/5 mb-4 text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
-            <button className='hidden md:block rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '>Explore</button>
-            <button className='md:hidden rounded border-2 bg-primary text-white w-full h-[40px] mb-24' >Read the docs</button>
+            <button className='hidden md:block rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '><a href='/implementations/'>Explore</a></button>
+            <button className='md:hidden rounded border-2 bg-primary text-white w-full h-[40px] mb-24' ><a href='/overview/what-is-jsonschema'>Read the docs</a></button>
           </div>
         </section>
 
@@ -136,7 +135,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
               {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
               <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '>Join us</button>
+              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email'>Join us</a></button>
             </div>
             {/* BlogPost Data */}
             <div className='w-full '>
@@ -205,7 +204,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
-            <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/asyncapi'>Support us!</a></p>
+            <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/asyncapi' className='border-b border-black'>Support us!</a></p>
           </div>
           <div className='grid grid-cols-2 lg:grid-cols-5 gap-8 mx-4 md:mx-0'>
             <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />

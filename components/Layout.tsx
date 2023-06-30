@@ -16,7 +16,7 @@ type Props = {
   hideAds?: boolean
 }
 
-const responsiveClasses = 'w-screen '
+const responsiveClasses = 'w-screen'
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
@@ -29,6 +29,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       <Head>
         <title>JSON Schema {metaTitle ? ` - ${metaTitle}` : ''}</title>
         <meta name='description' content='JSON Schema' />
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'></meta>
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
         <main className={
@@ -146,7 +147,7 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <div className='flex items-center gap-4 ml-12 md:ml-52 lg:ml-0'>
+      <div className='flex items-center gap-4  md:ml-52 lg:ml-0'>
         <Search />
 
         {showMobileNav === false ? (<div
@@ -349,7 +350,7 @@ const OpenJS = () => (
     <div className='max-w-[1400px] mx-auto my-6 lg:mt-28 grid grid-cols-1 lg:grid-cols-2 w-5/6'>
       <div className='md:w-1/2 mb-12'>
         <img className='h-24 mx-auto mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
-        <div className='absolute bottom-0 ml-6  mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div>
+        {/* <div className='absolute bottom-0 ml-6  mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div> */}
       </div>
       <div className='md:w-5/6 lg:w-[810px] mx-auto  mb-16'>
         <p className='mb-6'>Copyright <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-linkBlue hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-linkBlue hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-linkBlue hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
