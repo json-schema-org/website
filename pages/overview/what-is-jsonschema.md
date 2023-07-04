@@ -140,7 +140,7 @@ Now we are dealing with a complex JSON structure that represents an order. The b
 
 JSON Schema provides a solution to this problem. It is a specification language for JSON that allows you to describe the structure, content, and semantics of a JSON instance. With JSON Schema, you can define metadata about an object's properties, specify whether fields are optional or required, and define expected data formats.
 
-By using JSON Schema, people can better understand the structure and constraints of the JSON data they receive. It enables applications to validate data, ensuring it meets the defined criteria. With JSON Schema, you can make your JSON more readable, enforce data validation, and improve interoperability across different programming languages.
+By using JSON Schema, people can better understand the structure and constraints of the JSON data they are using. It enables applications to validate data, ensuring it meets the defined criteria. With JSON Schema, you can make your JSON more readable, enforce data validation, and improve interoperability across different programming languages.
 
 Using the same example:
 ```
@@ -261,7 +261,7 @@ By using JSON Schema, we can easily define and enforce constraints, making the v
 
 4. **Apply to your use case**
 
-    When you have a defined schema and valid JSON data, the possibilities are endless. You can do additional data processing, set up error handling, and integrate your validated data with APIs, other applications, and business logic.
+    When you have a defined schema and valid JSON data, the possibilities are vast. You can do additional data processing, set up error handling, and integrate your validated data with APIs, other applications, and business logic.
 
 
 ## Why developers use JSON Schema
