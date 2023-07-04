@@ -198,7 +198,7 @@ By using JSON Schema, we can easily define and enforce constraints, making the v
 
 1. **Create the schema**
 
-    You begin by defining the rules in a JSON Schema document using [keywords](https://json-schema.org/draft/2020-12/json-schema-validation.html#name-validation-keywords-for-any).
+    You begin by defining the rules in a JSON Schema document using [keywords](../learn/glossary.md/#keyword).
 
     * You can use `type` to specify what types of data are valid for a given key. You can specify either a single type, like `string`, or an array of possible types, like `string`, `number`, or `integer`.
     * You can also enforce formats using regular expressions with the `pattern` keyword.
