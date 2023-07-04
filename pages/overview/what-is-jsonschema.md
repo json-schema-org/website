@@ -24,6 +24,8 @@ For more information regarding JSON Schema history, you can refer to [this artic
 
 ## How it works
 
+![How JSON Schema works](../../public/img/what-is-json-schema.png)
+
 Using JSON Schema, you can define rules and constraints that JSON data should adhere to. When your JSON documents adhere to these constraints, it becomes easier to exchange structured data between applications because the data follows a consistent pattern.
 
 Before we get into JSON Schema and how it can help us, let's first understand what exactly is a JSON document.
