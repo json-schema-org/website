@@ -11,14 +11,14 @@ export default function Calendar() {
   dayjs.extend(localizedFormat)
 
   const sortedEvents = [...eventsData].sort()
-  console.log('sorted', sortedEvents)
+  // console.log('sorted', sortedEvents)
 
   const currentMonth = dayjs().month() + 1
   const monthString = currentMonth.toString()
 
 
   const currentEvents = sortedEvents.filter((item) => dayjs(item.date).format('MM') >= monthString)
-  console.log('new', currentEvents)
+  // console.log('new', currentEvents)
 
   return (
     <div>

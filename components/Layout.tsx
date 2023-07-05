@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
@@ -42,16 +42,16 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
             </div>
           </header>
 
-       
-          
+
+
           {!hideAds && (
             <div>
-              <script
+              {/* <script
                 async
                 type='text/javascript'
                 src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
                 id='_carbonads_js'
-              />
+              /> */}
             </div>
           )}
           {showMobileNav ? (
@@ -76,7 +76,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
   if (section === 'docs') return (
-   
+
     <div className='bg-white mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
       <div className='hidden md:block mt-24'>
         <DocsNav />
@@ -85,7 +85,7 @@ const ContentLayout = ({ children }: { children: any }) => {
         {children}
       </div>
     </div>
-   
+
   )
   return children
 }
@@ -209,67 +209,193 @@ const MobileDocsNav = () => {
 
 
 export const DocsNav = () => {
+  function dropdown() {
+    if (typeof window !== 'undefined') {
+      const submenu = document.getElementById('submenu') as HTMLElement
+      submenu.classList.toggle('hidden')
+      const arrow = document.querySelector('#arrow') as HTMLElement
+      arrow.classList.toggle('rotate-0')
+    }
+  }
+  dropdown()
+
+  function dropGetStarted() {
+    if (typeof window !== 'undefined') {
+      const getStarted = document.getElementById('getStarted') as HTMLElement
+      getStarted.classList.toggle('hidden')
+      const arrow = document.querySelector('#arrow') as HTMLElement
+      arrow.classList.toggle('rotate-0')
+    }
+  }
+  dropGetStarted()
+
+  function dropReference() {
+    if (typeof window !== 'undefined') {
+      const reference = document.getElementById('reference') as HTMLElement
+      reference.classList.toggle('hidden')
+      const arrow = document.querySelector('#arrow') as HTMLElement
+      arrow.classList.toggle('rotate-0')
+    }
+  }
+  dropReference()
+  function dropSpecification() {
+    if (typeof window !== 'undefined') {
+      const specification = document.getElementById('specification') as HTMLElement
+      specification.classList.toggle('hidden')
+      // const arrow = document.getElementById("arrow") as HTMLElement;
+      // arrow.classList.toggle("rotate-180");
+    }
+  }
+  dropSpecification()
+
+  // function openSidebar(): void {
+  //   if (typeof window !== "undefined") {
+  //     document.querySelector("sidebar")!.classList.toggle("hidden");
+  //   }
+  // }
+  const [rotateChevron, setRotateChevron] = useState(false)
+  const [rotateSChevron, setRotateSChevron] = useState(false)
+  const [rotateGChevron, setRotateGChevron] = useState(false)
+  const [rotateRChevron, setRotateRChevron] = useState(false)
+  const handleRotate = () => setRotateChevron(!rotateChevron)
+  const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const handleGetStarted = () => setRotateGChevron(!rotateGChevron)
+  const rotateG = rotateGChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const handleReference = () => setRotateRChevron(!rotateRChevron)
+  const rotateR = rotateRChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const handleSpecification = () => setRotateSChevron(!rotateSChevron)
+  const rotateS = rotateSChevron ? 'rotate(180deg)' : 'rotate(0)'
   return (
-    <div suppressHydrationWarning={true} className='pt-2 pr-2 '>
-      <SegmentHeadline label='Overview' />
-      <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
-      <SegmentHeadline label='Getting Started' />
-      <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
-      <div className='pl-4 pb-1 pt-1'>
-        <SegmentSubtitle label='Examples' />
-        <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
-        <DocLink uri='/learn/file-system' label='Modelling a file system' />
-        <DocLink uri='/learn/json-schema-examples' label='Other examples' />
-      </div>
-      <SegmentHeadline label='Reference' />
-      <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
-      <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
-      <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
-      <div className='pl-4 pb-1 pt-1'>
-        <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
-        <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
-        <div className='pl-4 pb-1 pt-1'>
-          <DocLink uri='/understanding-json-schema/basics' label='The basics' />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/understanding-json-schema/basics#hello-world!' label='Hello, World!' />
-            <DocLink uri='/understanding-json-schema/basics#the-type-keyword' label='The type keyword' />
-            <DocLink uri='/understanding-json-schema/basics#declaring-a-json-schema' label='Declaring a JSON Schema' />
-            <DocLink uri='/understanding-json-schema/basics#declaring-a-unique-identifier' label='Declaring a unique identifier' />
+    <div className='mt-24 '>
+      {/* <div
+        className="absolute text-white text-4xl top-5 left-4 cursor-pointer"  onClick={openSidebar()}>
+         <div className='block lg:hidden space-y-2 mr-8 items-center'>
+          <div className='w-6 h-1 bg-black rounded'></div>
+          <div className='w-6 h-1 bg-black rounded'></div>
+          <div className='w-6 h-1 bg-black rounded'></div>
+        </div>
+
+      </div> */}
+      <div id="sidebar"
+        className='mt-32  sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[277px] ml-4 overflow-y-auto text-center '
+      >
+        <div className='mb-4 bg-slate-200'>
+          <div className='flex justify-between w-full items-center' onClick={dropdown}>
+            <div className='flex  items-center align-middle'>
+              <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
+              <SegmentHeadline label='Overview' />
+            </div>
+            <svg onClick={handleRotate} style={{ transform: rotate, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+
           </div>
-          <SegmentSubtitle label='JSON Schema Reference' />
-          <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
-          <DocLink uri='/understanding-json-schema/reference/string' label='string' />
-          <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
-          <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
-          <DocLink uri='/understanding-json-schema/reference/object' label='object' />
-          <DocLink uri='/understanding-json-schema/reference/array' label='array' />
-          <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
-          <DocLink uri='/understanding-json-schema/reference/null' label='null' />
-          <DocLink uri='/understanding-json-schema/reference/annotations' label='Generic keywords' />
-          <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
-          <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
-          <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
-          <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
-          <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
-            <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
-            <DocLink uri='/understanding-json-schema/structuring#ref' label='$ref' />
-            <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
-            <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
-            <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
-            <DocLink uri='/understanding-json-schema/structuring#bundling' label='Bundling' />
+
+          <div
+            className='text-left text-sm mt-2 w-4/5 mx-auto font-bold'
+            id='submenu'
+          >
+            <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
+
           </div>
         </div>
-      </div>
-      <DocLink uri='/specification' label='Specification' />
-      <div className='pl-4 pb-1 pt-1'>
-        <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
-        <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
-        <DocLink uri='/draft-07/readme' label='draft-07 notes' />
-        <DocLink uri='/draft-06/readme' label='draft-06 notes' />
-        <DocLink uri='/draft-05/readme' label='draft-05 notes' />
-        <DocLink uri='/specification-links' label='Specification Links' />
+        {/* Get Started */}
+        <div className='mb-4'>
+          <div className='flex justify-between w-full items-center' onClick={dropGetStarted}>
+            <div className='flex  items-center align-middle'>
+              <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
+              <SegmentHeadline label='Getting Started' />
+            </div>
+            <svg onClick={handleGetStarted} style={{ transform: rotateG, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+
+          </div>
+          <div
+            className='text-left text-sm mt-2 w-4/5 mx-auto font-bold'
+            id='getStarted'
+          >
+            <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
+            <SegmentSubtitle label='Examples' />
+            <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
+            <DocLink uri='/learn/file-system' label='Modelling a file system' />
+            <DocLink uri='/learn/json-schema-examples' label='Other examples' />
+          </div>
+        </div>
+        {/* Reference */}
+        <div className='mb-4'>
+          <div className='flex justify-between w-full items-center' onClick={dropReference}>
+            <div className='flex  items-center align-middle'>
+              <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
+              <SegmentHeadline label='Reference' />
+            </div>
+            <svg onClick={handleReference} style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+
+          </div>
+          <div
+            className='text-left text-sm mt-2 w-4/5 mx-auto font-bold'
+            id='reference'
+          >
+            <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
+            <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
+            <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
+              <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
+              <div className='pl-4 pb-1 pt-1'>
+                <DocLink uri='/understanding-json-schema/basics' label='The basics' />
+                <div className='pl-4 pb-1 pt-1'>
+                  <DocLink uri='/understanding-json-schema/basics#hello-world!' label='Hello, World!' />
+                  <DocLink uri='/understanding-json-schema/basics#the-type-keyword' label='The type keyword' />
+                  <DocLink uri='/understanding-json-schema/basics#declaring-a-json-schema' label='Declaring a JSON Schema' />
+                  <DocLink uri='/understanding-json-schema/basics#declaring-a-unique-identifier' label='Declaring a unique identifier' />
+                </div>
+                <SegmentSubtitle label='JSON Schema Reference' />
+                <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
+                <DocLink uri='/understanding-json-schema/reference/string' label='string' />
+                <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
+                <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
+                <DocLink uri='/understanding-json-schema/reference/object' label='object' />
+                <DocLink uri='/understanding-json-schema/reference/array' label='array' />
+                <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
+                <DocLink uri='/understanding-json-schema/reference/null' label='null' />
+                <DocLink uri='/understanding-json-schema/reference/annotations' label='Generic keywords' />
+                <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
+                <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
+                <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
+                <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
+                <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
+                <div className='pl-4 pb-1 pt-1'>
+                  <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
+                  <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
+                  <DocLink uri='/understanding-json-schema/structuring#ref' label='$ref' />
+                  <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
+                  <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
+                  <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
+                  <DocLink uri='/understanding-json-schema/structuring#bundling' label='Bundling' />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* Specification */}
+        <div className='mb-4'>
+          <div className='flex justify-between w-full items-center' onClick={dropSpecification}>
+            <div className='flex  items-center align-middle'>
+              <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
+              <SegmentHeadline label='Specification' />
+            </div>
+            <svg id='arrow' className='arrow'style={{ transform: rotateS, transition: 'all 0.2s linear' }} onClick={handleSpecification} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+
+          </div>
+          <div
+            className='text-left text-sm mt-2 w-4/5 mx-auto font-bold'
+            id='specification'
+          >
+            <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
+            <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
+            <DocLink uri='/draft-07/readme' label='draft-07 notes' />
+            <DocLink uri='/draft-06/readme' label='draft-06 notes' />
+            <DocLink uri='/draft-05/readme' label='draft-05 notes' />
+            <DocLink uri='/specification-links' label='Specification Links' />
+          </div>
+        </div>
       </div>
     </div>
   )
@@ -277,7 +403,7 @@ export const DocsNav = () => {
 
 const SegmentHeadline = ({ label }: { label: string }) => {
   return (
-    <div className='text-slate-900 mb-2 mt-8 font-semibold'>
+    <div className='text-slate-900 font-bold'>
       {label}
     </div>
   )
@@ -299,9 +425,9 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   return (
     <Link href={uri}>
       <a
-        className={classnames('block pl-4 border-l-2 py-1', {
-          'text-slate-600 border-l-slate-100': !isActive,
-          'text-blue-500 border-l-blue-300 font-semibold': isActive,
+        className={classnames('text-base block border-l-2 py-1 pl-2', {
+          '  font-medium': !isActive,
+          'text-primary border-l-primary ': isActive,
         })}
       >{label}</a>
     </Link>
@@ -309,8 +435,8 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'z-10 h-[480px] md:h-[433px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
-    <div className='max-w-[1400px] mx-auto lg:mt-16 grid grid-cols-1 md:grid-cols-2 w-5/6'>
+  <footer className={classnames(responsiveClasses, 'z-10 h-[480px] md:h-[400px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
+    <div className='max-w-[1400px] mx-auto lg:mt-16 grid grid-cols-1 md:grid-cols-2 w-5/6 pt-12'>
       <div className='w-3/5  my-4 ml-6 lg:ml-36 lg:mt-12'>
         <img src='/img/logos/logo-white.svg' className='mb-6  h-24' />
         <div className='flex flex-col w-3/5 '>
@@ -396,3 +522,4 @@ const FaviconHead = () => {
     </Head>
   )
 }
+
