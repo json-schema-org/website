@@ -276,7 +276,7 @@ export const DocsNav = () => {
         </div>
 
       </div> */}
-      <div id="sidebar"
+      <div id='sidebar'
         className='mt-32  sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[277px] ml-4 overflow-y-auto text-center '
       >
         <div className='mb-4 bg-slate-200'>
