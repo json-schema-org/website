@@ -22,9 +22,9 @@ The current version of JSON Schema is [2020-12](../draft/2020-12/release-notes.m
 
 For more information regarding JSON Schema history, you can refer to [this article](https://modern-json-schema.com/what-is-modern-json-schema) by **Henry Andrews**.
 
-## How it works
-
 ![How JSON Schema works](../../public/img/what-is-json-schema.png)
+
+## How it works
 
 Using JSON Schema, you can define rules and constraints that JSON data should adhere to. When your JSON documents adhere to these constraints, it becomes easier to exchange structured data between applications because the data follows a consistent pattern.
 
