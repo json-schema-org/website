@@ -41,7 +41,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const router = useRouter()
   const typeFilter: null | string = Array.isArray(router.query?.type)
     ? router.query?.type?.[0] : router.query?.type || null
-  console.log('start', typeFilter)
+  // console.log('start', typeFilter)
   const setParam = useSetUrlParam()
 
 

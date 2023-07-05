@@ -66,7 +66,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
             </div>
 
-            <div className='mb-16 md:mb-36 lg:mb-28 mx-auto'>
+            <div className='mb-16 md:mb-36 lg:mb-28 mx-auto w-1/2 lg:w-full'>
               <h3 className='text-white mb-4'>Used by</h3>
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto md:w-3/5 w-1/2 md:w-100'>
                 <img src='/img/logos/zapier-logo_white.png' className='h-12 mr-4' />
@@ -104,21 +104,21 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
           </div>
         </section>
 
-        <div className='w-full h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
-          <div className='lg:w-2/3 mx-auto text-center mt-20 md:mt-28 text-white'>
-            <h2 className='text-h2mobile lg:text-h2  mb-6 text-center'>Start learning JSON Schema</h2>
+        <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
+          <div className='lg:w-full mx-auto text-center mt-28 '>
+            <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Start learning JSON Schema</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '><a href='/overview/what-is-jsonschema'>Read the docs</a></button>
           </div>
-        </div>
+        </section>
 
         {/* SidebySide section*/}
         <section className='max-w-[1400px] lg:flex gap-24 mt-12 md:my-24'>
           <img src='/img/home-page/community-illustration.svg' className='lg:w-[830px]' />
           <div className='w-5/6 mx-auto lg:w-full' >
-            <h3 className='text-h3mobile md:text-h3 font-semibold md:w-2/3 my-4'>Explore the JSON Schema Ecosystem</h3>
+            <h3 className='text-center lg:text-left text-h3mobile md:text-h3 font-semibold md:w-2/3 my-4'>Explore the JSON Schema Ecosystem</h3>
             <p className='hidden lg:block lg:w-4/5 mb-4 text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
-            <button className='hidden md:block rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '><a href='/implementations/'>Explore</a></button>
-            <button className='md:hidden rounded border-2 bg-primary text-white w-full h-[40px] mb-24' ><a href='/overview/what-is-jsonschema'>Read the docs</a></button>
+            <button className='rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '><a href='/implementations/'>Explore</a></button>
+ 
           </div>
         </section>
 
@@ -141,7 +141,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             {/* BlogPost Data */}
             <div className='w-full '>
               <h3 className='mb-4 font-semibold' >Welcome to our blog!</h3>
-              <img src={recentBlog[0].frontmatter.cover} className='w-full  mb-4' />
+              <img src={recentBlog[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
               <h3 className='mb-4 font-semibold' > {recentBlog[0].frontmatter.title}</h3>
               <div className='mb-4'><TextTruncate element='span' line={4} text={recentBlog[0].frontmatter.excerpt} /></div>
               <div className='flex ml-2 mb-2 '>
@@ -192,7 +192,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         </section>
 
         {/* News & Blogs */}
-        <section className='w-full h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
+        <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-full mx-auto text-center mt-28 '>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Contribute to the JSON Schema</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '><a href='https://github.com/json-schema-org#-contributing-to-json-schema

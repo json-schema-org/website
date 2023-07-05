@@ -8,8 +8,18 @@ export default function Calendar() {
   // const CALENDAR_URL =
   //     'https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com';
 
-  const sortedEvents = eventsData.sort((a, b) => (a.date.toLowerCase() < b.date.toLowerCase()) ? -1 : ((b.date.toLowerCase() > a.date.toLowerCase()) ? 1 : 0))
   dayjs.extend(localizedFormat)
+
+  const sortedEvents = [...eventsData].sort()
+  console.log('sorted', sortedEvents)
+
+  const currentMonth = dayjs().month() + 1
+  const monthString = currentMonth.toString()
+
+
+  const currentEvents = sortedEvents.filter((item) => dayjs(item.date).format('MM') >= monthString)
+  console.log('new', currentEvents)
+
   return (
     <div>
       <ul>

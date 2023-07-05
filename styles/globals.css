@@ -20,7 +20,6 @@
 
 html {
   font-family: 'Inter', sans-serif;
-  width: 100%;
 }
 .DocSearch-Button-Keys {
   display: none !important;
@@ -31,8 +30,7 @@ html {
   height: 38px;
  padding: 8px 8px;
  margin-right: 10px;
- border: 1px solid #E3E8EE;
- border-radius: 4px;
+
 }
  @media (max-width: 730px) {
   .DocSearch-Button-Container {
