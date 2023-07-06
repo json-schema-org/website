@@ -1,10 +1,12 @@
 import React from 'react'
 import Layout from '~/components/Layout'
 import fs from 'fs'
+import Head from 'next/head'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
 import yaml from 'js-yaml'
 import { Headline1, Headline2, Headline3 } from 'components/Headlines'
+import { DocsNav } from '~/components/Layout'
 import slugify from 'slugify'
 import { useRouter } from 'next/router'
 import classnames from 'classnames'
@@ -36,27 +38,32 @@ export async function getStaticProps() {
 
 type ImplementationByLanguage = { name: string }
 
-export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
+export default function ImplementationsPages({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
     <SectionContext.Provider value='implementations'>
       <Layout>
-        <div className='bg-slate-100 mt-12'>
-          <div className=' bg-white xl:w-[1200px] mx-auto px-2 sm:px-4 lg:px-8'>
+        <Head>
+          <title>JSON Schema - Implementations</title>
+        </Head>
+
+        <div className='lg:flex lg:flex-row justify-between gap-12 mt-12 bg-white w-full  mx-auto px-2 sm:px-4 lg:px-8'>
+          <div className='mt-6'><DocsNav /></div>
+          <div className='mt-6'>
             <Headline1>Implementations</Headline1>
             <StyledMarkdown markdown={blocks.intro} />
-
             <Headline2>Validators</Headline2>
             <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
             <StyledMarkdown markdown={blocks.main} />
             <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
           </div>
         </div>
+
       </Layout>
     </SectionContext.Provider>
   )
 }
 
-function ImplementationTable ({ implementationsByLanguage, prefix }: { implementationsByLanguage: any, prefix: string }) {
+function ImplementationTable({ implementationsByLanguage, prefix }: { implementationsByLanguage: any, prefix: string }) {
   const router = useRouter()
   return (
     <>

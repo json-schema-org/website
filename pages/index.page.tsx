@@ -66,13 +66,13 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
             </div>
 
-            <div className='mb-16 md:mb-36 lg:mb-28 mx-auto w-1/2 lg:w-full'>
+            <div className='mb-16 md:mb-36 lg:mb-28 mx-auto w-1/2 md:w-5/6 lg:w-full'>
               <h3 className='text-white mb-4'>Used by</h3>
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto md:w-3/5 w-1/2 md:w-100'>
-                <img src='/img/logos/zapier-logo_white.png' className='h-12 mr-4' />
-                <img src='/img/logos/microsoft-white.png' className='h-12 mr-4' />
-                <img src='/img/logos/postman-white.png' className='h-12 mr-4' />
-                <img src='/img/logos/github-white.png' className='h-12' />
+                <img src='/img/logos/usedby/zapier-logo_white.png' className='h-12 mr-4' />
+                <img src='/img/logos/usedby/microsoft-white.png' className='h-12 mr-4' />
+                <img src='/img/logos/usedby/postman-white.png' className='h-12 mr-4' />
+                <img src='/img/logos/usedby/github-white.png' className='h-12' />
               </div>
             </div>
           </div>

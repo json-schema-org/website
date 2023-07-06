@@ -18,7 +18,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
         <Head>
           <title>JSON Schema - {frontmatter.title}</title>
         </Head>
-        <div className='bg-slate-100 mt-12'>
+        <div className='mt-12'>
           <div className='flex flex-row justify-between gap-12 bg-white xl:w-[1200px] mx-auto px-2 sm:px-4 lg:px-8'>
             <div className='mt-6'><DocsNav /></div>
             <div>

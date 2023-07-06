@@ -46,12 +46,12 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 
           {!hideAds && (
             <div>
-              {/* <script
+              <script
                 async
                 type='text/javascript'
                 src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
                 id='_carbonads_js'
-              /> */}
+              />
             </div>
           )}
           {showMobileNav ? (
@@ -213,8 +213,6 @@ export const DocsNav = () => {
     if (typeof window !== 'undefined') {
       const submenu = document.getElementById('submenu') as HTMLElement
       submenu.classList.toggle('hidden')
-      const arrow = document.querySelector('#arrow') as HTMLElement
-      arrow.classList.toggle('rotate-0')
     }
   }
   dropdown()
@@ -223,8 +221,6 @@ export const DocsNav = () => {
     if (typeof window !== 'undefined') {
       const getStarted = document.getElementById('getStarted') as HTMLElement
       getStarted.classList.toggle('hidden')
-      const arrow = document.querySelector('#arrow') as HTMLElement
-      arrow.classList.toggle('rotate-0')
     }
   }
   dropGetStarted()
@@ -233,8 +229,6 @@ export const DocsNav = () => {
     if (typeof window !== 'undefined') {
       const reference = document.getElementById('reference') as HTMLElement
       reference.classList.toggle('hidden')
-      const arrow = document.querySelector('#arrow') as HTMLElement
-      arrow.classList.toggle('rotate-0')
     }
   }
   dropReference()
@@ -242,27 +236,24 @@ export const DocsNav = () => {
     if (typeof window !== 'undefined') {
       const specification = document.getElementById('specification') as HTMLElement
       specification.classList.toggle('hidden')
-      // const arrow = document.getElementById("arrow") as HTMLElement;
-      // arrow.classList.toggle("rotate-180");
     }
   }
   dropSpecification()
 
-  // function openSidebar(): void {
-  //   if (typeof window !== "undefined") {
-  //     document.querySelector("sidebar")!.classList.toggle("hidden");
-  //   }
-  // }
+
   const [rotateChevron, setRotateChevron] = useState(false)
-  const [rotateSChevron, setRotateSChevron] = useState(false)
   const [rotateGChevron, setRotateGChevron] = useState(false)
   const [rotateRChevron, setRotateRChevron] = useState(false)
+  const [rotateSChevron, setRotateSChevron] = useState(false)
   const handleRotate = () => setRotateChevron(!rotateChevron)
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
+
   const handleGetStarted = () => setRotateGChevron(!rotateGChevron)
   const rotateG = rotateGChevron ? 'rotate(180deg)' : 'rotate(0)'
+
   const handleReference = () => setRotateRChevron(!rotateRChevron)
   const rotateR = rotateRChevron ? 'rotate(180deg)' : 'rotate(0)'
+
   const handleSpecification = () => setRotateSChevron(!rotateSChevron)
   const rotateS = rotateSChevron ? 'rotate(180deg)' : 'rotate(0)'
   return (
@@ -277,15 +268,15 @@ export const DocsNav = () => {
 
       </div> */}
       <div id='sidebar'
-        className='mt-32  sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[277px] ml-4 overflow-y-auto text-center '
+        className='mt-32 sidebar -mt-14 p-2 w-[277px] ml-4  '
       >
-        <div className='mb-4 bg-slate-200'>
-          <div className='flex justify-between w-full items-center' onClick={dropdown}>
+        <div className='mb-2 bg-slate-200 p-2 rounded'>
+          <div className='flex justify-between w-full items-center' onClick={() => {dropdown(); handleRotate()}}>
             <div className='flex  items-center align-middle'>
               <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
               <SegmentHeadline label='Overview' />
             </div>
-            <svg onClick={handleRotate} style={{ transform: rotate, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+            <svg style={{ transform: rotate, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
           </div>
 
@@ -298,13 +289,13 @@ export const DocsNav = () => {
           </div>
         </div>
         {/* Get Started */}
-        <div className='mb-4'>
-          <div className='flex justify-between w-full items-center' onClick={dropGetStarted}>
+        <div className='mb-2 bg-slate-200 p-2 rounded'>
+          <div className='flex justify-between w-full items-center' onClick={() => {dropGetStarted(); handleGetStarted()}}>
             <div className='flex  items-center align-middle'>
               <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
               <SegmentHeadline label='Getting Started' />
             </div>
-            <svg onClick={handleGetStarted} style={{ transform: rotateG, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+            <svg style={{ transform: rotateG, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
           </div>
           <div
@@ -319,13 +310,13 @@ export const DocsNav = () => {
           </div>
         </div>
         {/* Reference */}
-        <div className='mb-4'>
-          <div className='flex justify-between w-full items-center' onClick={dropReference}>
+        <div className='mb-2 bg-slate-200 p-2 rounded'>
+          <div className='flex justify-between w-full items-center' onClick={() => {dropReference(); handleReference()}}>
             <div className='flex  items-center align-middle'>
               <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
               <SegmentHeadline label='Reference' />
             </div>
-            <svg onClick={handleReference} style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+            <svg style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
           </div>
           <div
@@ -375,13 +366,13 @@ export const DocsNav = () => {
           </div>
         </div>
         {/* Specification */}
-        <div className='mb-4'>
-          <div className='flex justify-between w-full items-center' onClick={dropSpecification}>
+        <div className='mb-2 bg-slate-200 p-2 rounded'>
+          <div className='flex justify-between w-full items-center' onClick={() => {dropSpecification(); handleSpecification()}}>
             <div className='flex  items-center align-middle'>
               <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
               <SegmentHeadline label='Specification' />
             </div>
-            <svg id='arrow' className='arrow'style={{ transform: rotateS, transition: 'all 0.2s linear' }} onClick={handleSpecification} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+            <svg id='arrow' className='arrow'style={{ transform: rotateS, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
           </div>
           <div
