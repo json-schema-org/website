@@ -112,12 +112,12 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         </section>
 
         {/* SidebySide section*/}
-        <section className='max-w-[1400px] lg:flex gap-24 mt-12 md:my-24'>
-          <img src='/img/home-page/community-illustration.svg' className='lg:w-[830px]' />
-          <div className='w-5/6 mx-auto lg:w-full' >
-            <h3 className='text-center lg:text-left text-h3mobile md:text-h3 font-semibold md:w-2/3 my-4'>Explore the JSON Schema Ecosystem</h3>
-            <p className='hidden lg:block lg:w-4/5 mb-4 text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
-            <button className='rounded border-2 bg-primary text-white w-full h-[40px] lg:w-[170px]  mb-24 '><a href='/implementations/'>Explore</a></button>
+        <section className='max-w-[1400px] w-full lg:flex lg:gap-24 my-16 '>
+          <img src='/img/home-page/community-illustration.svg' className='w-5/6 mx-auto lg:w-[830px]' />
+          <div className='w-5/6 md:w-3/5 mx-auto mt-12' >
+            <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4'>Explore the JSON Schema Ecosystem</h3>
+            <p className='  mb-4 text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
+            <button className='w-full md:w-[170px] h-[45px] rounded border-2 bg-primary text-white  '><a href='/implementations/'>Explore</a></button>
  
           </div>
         </section>
@@ -126,8 +126,8 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <h2 className='anchor'><span id='community'></span></h2>
         <section className='lg:my-12 max-w-[1400px]'>
           <div className='mb-12 md:w-3/4  mx-auto text-center'>
-            <h2 className='text-h3mobile lg:text-h3 font-semibold mb-2'>Welcome to the JSON Schema Community</h2>
-            <p className='mx-4 md:w-3/4 md:mx-auto text-h5mobile md:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Welcome to the JSON Schema Community</h2>
+            <p className='mx-4 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
             </p>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6'>
@@ -169,7 +169,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
                 <p className='mb-4'>We hold monthly Office Hours and weekly Open Community Working Meetings. Office Hours are every first Tuesday of the month at 15:00 BST, and by appointment. Open Community Working Meetings are every Monday at 14:00 PT.
                 </p>
                 <div className=''>
-                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
+                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] mb-4'><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
                   <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/34/'
                   >Office Hours</a></button>
                 </div>

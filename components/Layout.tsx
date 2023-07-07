@@ -427,7 +427,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 
 const Footer = () => (
   <footer className={classnames(responsiveClasses, 'z-10 h-[480px] md:h-[400px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
-    <div className='max-w-[1400px] mx-auto lg:mt-16 grid grid-cols-1 md:grid-cols-2 w-5/6 pt-12'>
+    <div className='max-w-[1400px] mx-auto lg:mt-16 grid grid-cols-1 md:grid-cols-2 w-5/6 md:pt-12 lg:pt-0'>
       <div className='w-3/5  my-4 ml-6 lg:ml-36 lg:mt-12'>
         <img src='/img/logos/logo-white.svg' className='mb-6  h-24' />
         <div className='flex flex-col w-3/5 '>
