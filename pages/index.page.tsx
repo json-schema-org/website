@@ -211,7 +211,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />
             <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />
             <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />
-            <img src='/img/logos/Postman_logo-orange.svg' className='mx-auto' />
+            <img src='/img/logos/sponsors/Postman_logo-orange.svg' className='mx-auto' />
             <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />
           </div>
         </section>
@@ -221,13 +221,15 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='mb-12 md:my-28'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='w-5/6 lg:w-3/5 mx-auto'>The following companies support us by letting us use their products for free.</p>
+            <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/asyncapi'>Support us</a>!</p>
           </div>
-          <div className='grid grid-cols-2 lg:grid-cols-4 gap-12 mx-auto mx-4 md:mx-0'>
-            <img src='/img/logos/orbit-logo-white.png' className='mx-auto w-[190px]' />
-            <img src='/img/logos/slack_technologies_logo.svg' className='mx-auto' />
-            <img src='/img/logos/algolia-logo-white.png' className='mx-auto w-[190px]' />
-            <img src='/img/logos/netlify-white-logo.png' className='mx-auto' />
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto mx-4 md:mx-0'>
+            <img src='/img/logos/supported/asyncapi-logo.svg' className=' w-44' />
+            <img src='/img/logos/supported/airbnb-logo.svg' className=' w-44' />
+            <img src='/img/logos/supported/stoplight-logo.svg' className=' w-44' />
+            <img src='/img/logos/supported/Postman_logo-orange.svg' className='w-44' />
+            <img src='/img/logos/supported/retool-logo.svg' className=' w-44' />
+            <img src='/img/logos/supported/apideck-logo.png' className=' w-44' />
           </div>
         </section>
       </div>
