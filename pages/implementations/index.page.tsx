@@ -46,7 +46,7 @@ export default function ImplementationsPages({ blocks, validators, hyperLibaries
           <title>JSON Schema - Implementations</title>
         </Head>
 
-        <div className='lg:flex lg:flex-row justify-between gap-12 mt-12 bg-white w-full  mx-auto px-2 sm:px-4 lg:px-8'>
+        <div className='lg:flex lg:flex-row justify-between gap-12 mt-12 w-full  mx-auto px-2 sm:px-4 lg:px-8'>
           <div className='mt-6'><DocsNav /></div>
           <div className='mt-6'>
             <Headline1>Implementations</Headline1>

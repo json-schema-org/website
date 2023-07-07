@@ -68,11 +68,11 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
             <div className='mb-16 md:mb-36 lg:mb-28 mx-auto w-1/2 md:w-5/6 lg:w-full'>
               <h3 className='text-white mb-4'>Used by</h3>
-              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto md:w-3/5 w-1/2 md:w-100'>
-                <img src='/img/logos/usedby/zapier-logo_white.png' className='h-12 mr-4' />
-                <img src='/img/logos/usedby/microsoft-white.png' className='h-12 mr-4' />
-                <img src='/img/logos/usedby/postman-white.png' className='h-12 mr-4' />
-                <img src='/img/logos/usedby/github-white.png' className='h-12' />
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
+                <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
+                <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
+                <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
+                <img src='/img/logos/usedby/github-white.png' className='w-40' />
               </div>
             </div>
           </div>
@@ -207,13 +207,15 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/asyncapi' className='border-b border-black'>Support us!</a></p>
           </div>
-          <div className='grid grid-cols-2 lg:grid-cols-5 gap-8 mx-4 md:mx-0'>
-            <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />
-            <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />
-            <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />
-            <img src='/img/logos/sponsors/Postman_logo-orange.svg' className='mx-auto' />
-            <img src='/img/logos/Postman_logo-grey.svg' className='mx-auto' />
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto mx-4 md:mx-0'>
+            <a href=' https://www.asyncapi.com/'><img src='/img/logos/sponsors/asyncapi-logo-dark.svg' className=' w-44' /></a>
+            <a href='https://www.airbnb.com/'><img src='/img/logos/sponsors/airbnb-logo.svg' className=' w-44' /></a>
+            <a href='https://stoplight.io/'><img src='/img/logos/sponsors/stoplight-logo.svg' className=' w-44' /></a>
+            <a href='https://www.postman.com/'><img src='/img/logos/sponsors/Postman_logo-orange.svg' className='w-44' /></a>
+            <a href='https://retool.com/'><img src='/img/logos/sponsors/retool-logo.svg' className=' w-44' /></a>
+            <a href='https://www.apideck.com/'><img src='/img/logos/sponsors/apideck-logo.png' className=' w-44' /></a>
           </div>
+        
         </section>
 
         {/* Supported */}
@@ -223,13 +225,10 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/asyncapi'>Support us</a>!</p>
           </div>
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto mx-4 md:mx-0'>
-            <img src='/img/logos/supported/asyncapi-logo.svg' className=' w-44' />
-            <img src='/img/logos/supported/airbnb-logo.svg' className=' w-44' />
-            <img src='/img/logos/supported/stoplight-logo.svg' className=' w-44' />
-            <img src='/img/logos/supported/Postman_logo-orange.svg' className='w-44' />
-            <img src='/img/logos/supported/retool-logo.svg' className=' w-44' />
-            <img src='/img/logos/supported/apideck-logo.png' className=' w-44' />
+          <div className='grid grid-cols-3 items-center gap-12 mx-auto'>
+            <a href='https://orbit.love/'><img src='/img/logos/supported/orbit-logo-color.png' className='w-36' /></a>
+            <a href='https://slack.com/'><img src='/img/logos/supported/slack-logo.svg' className='w-36' /></a>
+            <a href='https://www.netlify.com/'><img src='/img/logos/supported/netlify-logo.png' className='w-36' /></a>
           </div>
         </section>
       </div>

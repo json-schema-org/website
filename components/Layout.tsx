@@ -36,7 +36,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
           classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
         }>
           <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white shadow-xl')}>
-            <div className='flex md:justify-between items-center py-4 md:pl-4 md:w-1/2 '>
+            <div className='flex justify-between items-center py-4 w-5/6 md:pl-4 md:w-1/2 pr-4 '>
               <Logo />
               <MainNavigation />
             </div>
