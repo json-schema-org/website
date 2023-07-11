@@ -180,7 +180,7 @@ The data example shows the usage of arrays. The `fruits` property contains an ar
 
 ## Enumerated values
 
-This example introduces the [enum]() validation keyword and defines an object with a property called "status" that only allows specific enumerated values: "active", "inactive", and "pending".
+This example introduces the `enum` validation keyword and defines an object with a property called "status" that only allows specific enumerated values: "active", "inactive", and "pending".
 
 ```json
 {
@@ -210,7 +210,7 @@ The provided data adheres to the schema by using the value "active" for the `sta
 
 ## Regular expression pattern
 
-This example introduces the [pattern]() keyword and defines an object with a property called `code` that must match a specific regular expression pattern: `^[A-Z]{3}-\d{3}$`. The pattern here requires three uppercase letters followed by a hyphen and three digits.
+This example introduces the [pattern](https://json-schema.org/draft/2020-12/json-schema-core.html#name-regular-expressions) keyword and defines an object with a property called `code` that must match a specific regular expression pattern: `^[A-Z]{3}-\d{3}$`. The pattern here requires three uppercase letters followed by a hyphen and three digits.
 
 ```json
 {
@@ -345,7 +345,9 @@ The `dependencies` keyword is used to enforce the presence of the `membershipNum
 
 ## Conditional validation with if-else
 
-In this schema, we have two properties: `isMember` and `membershipNumber`. The conditional validation is based on the value of the `isMember` property. Here's how the validation works:
+In this schema, we have two properties: `isMember` and `membershipNumber`. The conditional validation is based on the value of the `isMember` property. The validation keywords [if](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.2.2.1), [then](https://json-schema.org/draft/2020-12/json-schema-core.html#name-then), and [else](https://json-schema.org/draft/2020-12/json-schema-core.html#name-else).
+
+Here's how the validation works in this example:
 
 If the value of `isMember` is true:
 * The then block is applied, which specifies that the `membershipNumber` property should be a string with a minimum length of 10 and a maximum length of 10.
