@@ -32,7 +32,7 @@ html {
  margin-right: 10px;
 
 }
- @media (max-width: 730px) {
+ @media (max-width: 930px) {
   .DocSearch-Button-Container {
   width: 40px;
   height: 40px;

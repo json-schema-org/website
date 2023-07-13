@@ -19,6 +19,7 @@ type Props = {
 const responsiveClasses = 'w-screen'
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
+ 
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   const router = useRouter()
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
@@ -36,14 +37,11 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
           classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
         }>
           <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white shadow-xl')}>
-            <div className='flex justify-between items-center py-4 w-5/6 md:pl-4 md:w-1/2 pr-4 '>
+            <div className='flex justify-between items-center py-4 w-5/6 mx-auto lg:mx-0 md:w-1/2 pr-4 '>
               <Logo />
               <MainNavigation />
             </div>
           </header>
-
-
-
           {!hideAds && (
             <div>
               <script
@@ -55,7 +53,8 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
             </div>
           )}
           {showMobileNav ? (
-            <><MobileDocsNav />
+            <>
+              <MobileNav />
               <ContentLayout>
                 {children}
               </ContentLayout>
@@ -78,10 +77,16 @@ const ContentLayout = ({ children }: { children: any }) => {
   if (section === 'docs') return (
 
     <div className='bg-white mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
-      <div className='hidden md:block mt-24'>
+      
+      
+      <div className='desktop hidden lg:block mt-24'>
         <DocsNav />
       </div>
-      <div className='col-span-4 md:col-span-3 mt-20'>
+      {/* <div className='mobile lg:hidden block mt-24 z-[500]'>
+          <MobileDocNav/>
+          </div>
+           */}
+      <div className='col-span-4 md:col-span-3 mt-20 w-5/6'>
         {children}
       </div>
     </div>
@@ -172,7 +177,7 @@ const MainNavigation = () => {
   )
 }
 
-const MobileDocsNav = () => {
+const MobileNav = () => {
   const section = useContext(SectionContext)
 
   return (
@@ -208,70 +213,83 @@ const MobileDocsNav = () => {
 }
 
 
+// const MobileDocNav = () => {
+//   const section = useContext(SectionContext)
+
+//   return (
+//     <div
+//     className='w-full lg:inline-flex lg:flex-grow lg:w-auto'
+//   >
+//     <div className='lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto'>
+//       <MainNavLink
+//         uri='/overview/what-is-jsonschema'
+//         label='Overview'
+//         isActive={section === 'docs'}
+//       />
+
+//       <MainNavLink
+//         uri='/implementations'
+//         label='Getting Started'
+//         isActive={section === 'implementations'}
+//       />
+//       <MainNavLink
+//         uri='/reference'
+//         label='Reference'
+//         isActive={section === 'reference'}
+//       />
+//       <MainNavLink
+//         uri='/specification'
+//         label='Specification'
+//         isActive={section === 'specification'}
+//       />
+     
+//     </div>
+//     </div>
+//   )
+// }
+
 export const DocsNav = () => {
-  function dropdown() {
-    if (typeof window !== 'undefined') {
-      const submenu = document.getElementById('submenu') as HTMLElement
-      submenu.classList.toggle('hidden')
-    }
-  }
-  dropdown()
 
-  function dropGetStarted() {
-    if (typeof window !== 'undefined') {
-      const getStarted = document.getElementById('getStarted') as HTMLElement
-      getStarted.classList.toggle('hidden')
-    }
+  const [active, setActive] = useState(false)
+  const handleClick = () => {
+    setActive(!active)
   }
-  dropGetStarted()
-
-  function dropReference() {
-    if (typeof window !== 'undefined') {
-      const reference = document.getElementById('reference') as HTMLElement
-      reference.classList.toggle('hidden')
-    }
+  const [activeGet, setActiveGet] = useState(false)
+  const handleClickGet = () => {
+    setActiveGet(!activeGet)
   }
-  dropReference()
-  function dropSpecification() {
-    if (typeof window !== 'undefined') {
-      const specification = document.getElementById('specification') as HTMLElement
-      specification.classList.toggle('hidden')
-    }
+  const [activeReference, setActiveReference] = useState(false)
+  const handleClickReference = () => {
+    setActiveReference(!activeReference)
   }
-  dropSpecification()
-
+  const [activeSpec, setActiveSpec] = useState(false)
+  const handleClickSpec = () => {
+    setActiveSpec(!activeSpec)
+  }
 
   const [rotateChevron, setRotateChevron] = useState(false)
-  const [rotateGChevron, setRotateGChevron] = useState(false)
-  const [rotateRChevron, setRotateRChevron] = useState(false)
-  const [rotateSChevron, setRotateSChevron] = useState(false)
   const handleRotate = () => setRotateChevron(!rotateChevron)
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
-
+  
+  const [rotateGChevron, setRotateGChevron] = useState(false)
   const handleGetStarted = () => setRotateGChevron(!rotateGChevron)
   const rotateG = rotateGChevron ? 'rotate(180deg)' : 'rotate(0)'
 
-  const handleReference = () => setRotateRChevron(!rotateRChevron)
-  const rotateR = rotateRChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const [rotateReferenceChevron, setRotateReferenceChevron] = useState(false)
+  const handleRotateReference = () => setRotateReferenceChevron(!rotateReferenceChevron)
+  const rotateR = rotateReferenceChevron ? 'rotate(180deg)' : 'rotate(0)'
 
-  const handleSpecification = () => setRotateSChevron(!rotateSChevron)
-  const rotateS = rotateSChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const [rotateSpecChevron, setRotateSChevron] = useState(false)
+  const handleRotateSpec = () => setRotateSChevron(!rotateSpecChevron)
+  const rotateSpec = rotateSpecChevron ? 'rotate(180deg)' : 'rotate(0)'
+
   return (
     <div className='mt-24 '>
-      {/* <div
-        className="absolute text-white text-4xl top-5 left-4 cursor-pointer"  onClick={openSidebar()}>
-         <div className='block lg:hidden space-y-2 mr-8 items-center'>
-          <div className='w-6 h-1 bg-black rounded'></div>
-          <div className='w-6 h-1 bg-black rounded'></div>
-          <div className='w-6 h-1 bg-black rounded'></div>
-        </div>
-
-      </div> */}
       <div id='sidebar'
-        className='mt-32 sidebar -mt-14 p-2 w-[277px] ml-4  '
+        className='mt-32  p-2 w-4/5 ml-4  '
       >
         <div className='mb-2 bg-slate-200 p-2 rounded'>
-          <div className='flex justify-between w-full items-center' onClick={() => {dropdown(); handleRotate()}}>
+          <div className='flex justify-between w-full items-center' onClick={() => {handleClick(); handleRotate()}} >
             <div className='flex  items-center align-middle'>
               <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
               <SegmentHeadline label='Overview' />
@@ -281,8 +299,10 @@ export const DocsNav = () => {
           </div>
 
           <div
-            className='text-left text-sm mt-2 w-4/5 mx-auto font-bold'
-            id='submenu'
+            className={`${
+              active ? '' : 'hidden'
+            }   text-left text-sm mt-2 w-4/5 mx-auto `}
+            id='overview'
           >
             <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
 
@@ -290,8 +310,8 @@ export const DocsNav = () => {
         </div>
         {/* Get Started */}
         <div className='mb-2 bg-slate-200 p-2 rounded'>
-          <div className='flex justify-between w-full items-center' onClick={() => {dropGetStarted(); handleGetStarted()}}>
-            <div className='flex  items-center align-middle'>
+          <div className='flex justify-between w-full items-center' onClick={() => {handleClickGet(); handleGetStarted()}} >
+            <div className='flex  items-center align-middle' >
               <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
               <SegmentHeadline label='Getting Started' />
             </div>
@@ -299,7 +319,9 @@ export const DocsNav = () => {
 
           </div>
           <div
-            className='text-left text-sm mt-2 w-4/5 mx-auto font-bold'
+            className={`${
+              activeGet ? '' : 'hidden'
+            }   text-left text-sm mt-2 w-4/5 mx-auto `}
             id='getStarted'
           >
             <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
@@ -311,17 +333,18 @@ export const DocsNav = () => {
         </div>
         {/* Reference */}
         <div className='mb-2 bg-slate-200 p-2 rounded'>
-          <div className='flex justify-between w-full items-center' onClick={() => {dropReference(); handleReference()}}>
-            <div className='flex  items-center align-middle'>
+          <div className='flex justify-between w-full items-center' onClick={() => {handleClickReference(); handleRotateReference()}}>
+            <div className='flex  items-center align-middle' >
               <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
               <SegmentHeadline label='Reference' />
             </div>
             <svg style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
           </div>
-          <div
-            className='text-left text-sm mt-2 w-4/5 mx-auto font-bold'
-            id='reference'
+          <div className={`${
+            activeReference ? '' : 'hidden'
+          }   text-left text-sm mt-2 w-4/5 mx-auto font-bold`}
+          id='reference'
           >
             <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
             <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
@@ -367,16 +390,18 @@ export const DocsNav = () => {
         </div>
         {/* Specification */}
         <div className='mb-2 bg-slate-200 p-2 rounded'>
-          <div className='flex justify-between w-full items-center' onClick={() => {dropSpecification(); handleSpecification()}}>
+          <div className='flex justify-between w-full items-center' onClick={() => {handleClickSpec(); handleRotateSpec()}}>
             <div className='flex  items-center align-middle'>
               <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
               <SegmentHeadline label='Specification' />
             </div>
-            <svg id='arrow' className='arrow'style={{ transform: rotateS, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+            <svg id='arrow' className='arrow'style={{ transform: rotateSpec, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
           </div>
           <div
-            className='text-left text-sm mt-2 w-4/5 mx-auto font-bold'
+            className={`${
+              activeSpec ? '' : 'hidden'
+            }   text-left text-sm mt-2 w-4/5 mx-auto `}
             id='specification'
           >
             <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
@@ -387,6 +412,7 @@ export const DocsNav = () => {
             <DocLink uri='/specification-links' label='Specification Links' />
           </div>
         </div>
+  
       </div>
     </div>
   )
@@ -401,7 +427,7 @@ const SegmentHeadline = ({ label }: { label: string }) => {
 }
 const SegmentSubtitle = ({ label }: { label: string }) => {
   return (
-    <div className='text-slate-900 mt-2 mb-2'>
+    <div className='text-base italic text-slate-900 mt-2 mb-2'>
       {label}
     </div>
   )
@@ -418,7 +444,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
       <a
         className={classnames('text-base block border-l-2 py-1 pl-2', {
           '  font-medium': !isActive,
-          'text-primary border-l-primary ': isActive,
+          'text-primary text-bold border-l-primary font-semibold': isActive,
         })}
       >{label}</a>
     </Link>
@@ -480,7 +506,7 @@ const OpenJS = () => (
 const Logo = () => (
   <Link href='/'>
     <a>
-      <div className='ml-8 inline-block '>
+      <div className='lg:ml-8 inline-block '>
         <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
       </div>
     </a>

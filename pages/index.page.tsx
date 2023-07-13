@@ -116,7 +116,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
           <img src='/img/home-page/community-illustration.svg' className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]' />
           <div className='w-5/6 md:w-3/5 mx-auto mt-12' >
             <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4'>Explore the JSON Schema Ecosystem</h3>
-            <p className='pr-8 mb-4 text-center lg:text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
+            <p className='lg:pr-8 mb-4 text-center lg:text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
             <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto  h-[45px] rounded border-2 bg-primary text-white'><a href='/implementations/'>Explore</a></button>
  
           </div>
@@ -223,11 +223,11 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='mb-12 md:my-28'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='w-5/6 lg:w-3/5 mx-auto'>The following companies support us by letting us use their products." Instead of "Want to become a sponsor?<a href='https://opencollective.com/json-schema'>Support us</a>!</p>
+            <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='https://opencollective.com/json-schema' className='border-b border-black'>Support us</a>!</p>
           </div>
-          <div className='w-1/2 grid grid-cols-2 items-center gap-12 mx-auto'>
-            <a href='https://orbit.love/'><img src='/img/logos/supported/orbit-logo-color.png' className='w-36' /></a>
-            <a href='https://slack.com/' ><img src='/img/logos/supported/slack-logo.svg' className='w-36' /></a>
+          <div className='w-5/6 lg:w-1/3 grid grid-cols-2 gap-8 lg:gap-4 items-center mx-auto'>
+            <a href='https://orbit.love/'><img src='/img/logos/supported/orbit-logo-color.png' className='w-full ' /></a>
+            <a href='https://slack.com/' ><img src='/img/logos/supported/slack-logo.svg' className='w-full ' /></a>
             
           </div>
         </section>

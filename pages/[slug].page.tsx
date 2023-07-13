@@ -19,9 +19,9 @@ export default function StaticMarkdownPage({ frontmatter, content }: { frontmatt
           <title>JSON Schema - {frontmatter.title}</title>
         </Head>
         <div className='mt-12'>
-          <div className='lg:flex lg:flex-row justify-between gap-12 mt-12 w-full  mx-auto px-2 sm:px-4 lg:px-8'>
+          <div className='mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
             <div className='mt-6'><DocsNav /></div>
-            <div>
+            <div className='col-span-4 md:col-span-3 mt-20 w-5/6'>
               <Headline1>{frontmatter.title}</Headline1>
               <StyledMarkdown markdown={content} />
             </div>
