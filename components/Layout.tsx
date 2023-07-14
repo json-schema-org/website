@@ -97,7 +97,7 @@ const ContentLayout = ({ children }: { children: any }) => {
       </div>
 
       <div className='bg-white mx-auto grid grid-cols-1 lg:grid-cols-4 mx-12'>
-        <div className='hidden lg:block'><DocsNav /></div>
+        <div className='hidden lg:block mt-24 '><DocsNav /></div>
         <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6'>
           {children}
         </div>
@@ -262,8 +262,8 @@ export const DocsNav = () => {
 
   return (
 
-    <div id='sidebar'
-      className='mt-8  p-2 w-4/5 ml-4  '
+    <div id='sidebar '
+      className='mt-8 p-2 w-4/5 ml-4  '
     >
 
       <div className='mb-2 bg-slate-200 p-2 rounded'>
