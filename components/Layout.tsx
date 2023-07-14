@@ -75,7 +75,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
   const router = useRouter()
-  console.log(router.pathname)
+
   const [open, setOpen] = useState(false)
   const [rotateChevron, setRotateChevron] = useState(false)
   const handleRotate = () => setRotateChevron(!rotateChevron)
@@ -90,7 +90,7 @@ const ContentLayout = ({ children }: { children: any }) => {
 
           {router.pathname === '/overview/[slug]' && <h3 className='text-white ml-12'>Overview</h3>}
           {router.pathname === '/learn/[slug]' && <h3 className='text-white ml-12'>Getting Started</h3>}
-          
+
           {router.pathname === '/understanding-json-schema' || router.pathname === '/understanding-json-schema/reference/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
           {router.pathname === '/understanding-json-schema/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
 
@@ -134,7 +134,7 @@ const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: 
   return (
     <Link scroll={false} href={uri}>
       <a className={classnames(className, 'font-semibold p-2 md:p-4', {
-        'text-blue-500 hover:text-blue-600': isActive,
+        'text-blue-500 hover:text-primary': isActive,
         'text-slate-600 hover:text-slate-800': !isActive
       })}
       >{label}</a>
@@ -207,7 +207,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext)
 
   return (
-    <div className='flex flex-col fixed bg-white w-full  z-[90] mt-16 left-0 pl-8'>
+    <div className='flex flex-col fixed bg-white w-full  z-[190] mt-16 left-0 pl-8'>
       <MainNavLink
         uri='/specification'
         label='Specification'
