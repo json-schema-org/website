@@ -18,11 +18,11 @@ This documentation describes JSON Schema and the many ways you can use it to ens
 
 JSON Schema has a rich history that dates back to the [first JSON Schema proposal](https://web.archive.org/web/20071026185150/http://json.com/json-schema-proposal/) submitted by **Kris Zyp** to json.com on October 2nd, 2007. 
 
-The current version of JSON Schema is [2020-12](../draft/2020-12/release-notes.md), which represents the latest advancements and have expended capabilities as compared with the previous version `draft-04`, `draft-06`, `draft-07`. We encourage everyone to adopt the latest version whenever possible to take advantage of all the advancements and benefits of JSON Schema.
+The current version of JSON Schema is [2020-12](/draft/2020-12/release-notes), which represents the latest advancements and have expended capabilities as compared with the previous version `draft-04`, `draft-06`, `draft-07`. We encourage everyone to adopt the latest version whenever possible to take advantage of all the advancements and benefits of JSON Schema.
 
 For more information regarding JSON Schema history, you can refer to [this article](https://modern-json-schema.com/what-is-modern-json-schema) by **Henry Andrews**.
 
-![How JSON Schema works](../../public/img/what-is-json-schema.png)
+![How JSON Schema works](/img/what-is-json-schema.png)
 
 ## How it works
 
