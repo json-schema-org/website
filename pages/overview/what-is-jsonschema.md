@@ -34,6 +34,7 @@ Before we get into JSON Schema and how it can help us, let's first understand wh
 * JSON documents are used to store and transfer data between systems and applications.
 
 Taking an example of a JSON document representing a customer order:
+
 ```json
 {
   "order_id": "123456",
@@ -88,6 +89,7 @@ else:
 In the above code snippet, we are performing basic validation to check if the JSON object has the required fields. Since this is a relatively simpler data, this way of checking works for now. 
 
 To show the challenges of performing data validation without using JSON Schema, we can take this exmaple in Python:
+
 ```python
 # Without JSON Schema
 data = {
@@ -133,8 +135,8 @@ if (
     print("Valid JSON object.")
 else:
     print("Invalid JSON object.")
-
 ```
+
 Now we are dealing with a complex JSON structure that represents an order. The basic validation logic checks whether the required fields exist in the JSON object. However, as the structure becomes more complex, the validation code becomes more complicated and prone to errors. Moreover, this approach lacks support for checking data types, handling nested structures, and enforcing specific constraints.
 
 
@@ -145,6 +147,7 @@ JSON Schema provides a solution to this problem. It is a specification language 
 By using JSON Schema, people can better understand the structure and constraints of the JSON data they are using. It enables applications to validate data, ensuring it meets the defined criteria. With JSON Schema, you can make your JSON more readable, enforce data validation, and improve interoperability across different programming languages.
 
 Using the same example, we can validate the data by making use of the [jsonschema](https://github.com/python-jsonschema/jsonschema) Python library:
+
 ```python
 from jsonschema import validate
 
@@ -242,6 +245,7 @@ By using JSON Schema, we can easily define and enforce constraints, making the v
     Use the selected validator to validate your instance against the created JSON Schema.
 
     Here's an example using the [jsonschema](https://github.com/python-jsonschema/jsonschema) Python library:
+    
     ```python
     from jsonschema import validate
 
