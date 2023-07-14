@@ -74,23 +74,37 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
+  const router = useRouter()
+  console.log(router.pathname)
   const [open, setOpen] = useState(false)
   const [rotateChevron, setRotateChevron] = useState(false)
   const handleRotate = () => setRotateChevron(!rotateChevron)
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
+
   if (section === 'docs') return (
     <>
-      <div className='bg-primary w-full h-12 mt-[4.4rem] z-50 flex relative flex-col justify-between items-center lg:hidden' onClick={() => {
+      <div className='bg-primary w-full h-12 mt-[4.4rem] z-150 flex relative flex-col justify-between items-center lg:hidden' onClick={() => {
         setOpen(!open)
       }}>
-        <div className='flex w-full bg-primary justify-between items-center mt-2' onClick={handleRotate}>
-          <h3 className='text-white ml-12'>Docs Nav</h3>
+        <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onClick={handleRotate}>
 
+          {router.pathname === '/overview/[slug]' && <h3 className='text-white ml-12'>Overview</h3>}
+          {router.pathname === '/learn/[slug]' && <h3 className='text-white ml-12'>Getting Started</h3>}
+          
+          {router.pathname === '/understanding-json-schema' || router.pathname === '/understanding-json-schema/reference/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
+          {router.pathname === '/understanding-json-schema/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
+
+          {router.pathname === '/draft/2020-12/[slug]' || router.pathname === '/draft-06/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
+          {router.pathname === '/draft-07/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
+          {router.pathname === '/draft-05/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
+          {router.pathname === '/draft/2019-09/[slug]' || router.pathname === '/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
+
+          {router.pathname === null && <h3 className='text-white ml-12'>Docs</h3>}
           <svg style={{ marginRight: '50px', color: 'white', transform: rotate, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 256 512'><path d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z' id='mainIconPathAttribute' fill='#ffffff'></path></svg>
         </div>
       </div>
 
-      <div className={`absolute top-10 mt-24 left-0 h-screen w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
+      <div className={`z-[150] absolute top-10 mt-24 left-0 h-screen w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
         <div className='flex flex-col' onClick={() => setTimeout(() => { setOpen(!open) }, 100)}>
           <DocsNav />
         </div>
@@ -263,7 +277,7 @@ export const DocsNav = () => {
   return (
 
     <div id='sidebar '
-      className='mt-8 p-2 w-4/5 ml-4  '
+      className='lg:mt-8 p-2 w-4/5 ml-4  '
     >
 
       <div className='mb-2 bg-slate-200 p-2 rounded'>
@@ -426,7 +440,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 
 const Footer = () => (
   <footer className={classnames(responsiveClasses, 'z-10 h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
-    <div className='max-w-[1400px] mx-auto pt-12 mt-4 grid grid-cols-1 md:grid-cols-2 w-5/6 '>
+    <div className='max-w-[1400px] mx-auto lg:pt-12 mt-4 grid grid-cols-1 md:grid-cols-2 w-5/6 '>
       <div className='w-3/5  my-4 ml-6 lg:ml-36 lg:mt-12'>
         <img src='/img/logos/logo-white.svg' className='mb-6  h-12' />
         <div className='flex flex-col w-3/5 '>
@@ -434,7 +448,7 @@ const Footer = () => (
           <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
         </div>
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-4 ml-6'>
+      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 ml-6'>
         <div className='flex items-center'>
           <img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
           <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='text-white'>Slack</a>
