@@ -66,8 +66,9 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
             </div>
 
-            <div className='mb-16 md:mb-36 lg:mb-28 mx-auto w-1/2 md:w-5/6 lg:w-full'>
-              <h3 className='text-white mb-4'>Used by</h3>
+            <div className='mb-16 md:mb-36  mx-auto w-1/2 md:w-5/6 lg:w-full'>
+              <h3 className='text-white text-xl'>Used by</h3>
+              <p className='text-white mb-8'>More than X implementations generating over 100 million weekly downloads</p>
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
                 <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
@@ -223,7 +224,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='mb-12 md:my-28'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='https://opencollective.com/json-schema' className='border-b border-black'>Support us</a>!</p>
+            <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:en@jsonschema.dev' className='text-primary hover:underline'>Email us</a> for more info.</p>
           </div>
           <div className='w-5/6 lg:w-1/3 grid grid-cols-2 gap-8 lg:gap-4 items-center mx-auto'>
             <a href='https://orbit.love/'><img src='/img/logos/supported/orbit-logo-color.png' className='w-full ' /></a>

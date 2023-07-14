@@ -6,7 +6,6 @@ import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
 import yaml from 'js-yaml'
 import { Headline1, Headline2, Headline3 } from 'components/Headlines'
-import { DocsNav } from '~/components/Layout'
 import slugify from 'slugify'
 import { useRouter } from 'next/router'
 import classnames from 'classnames'
@@ -46,8 +45,8 @@ export default function ImplementationsPages({ blocks, validators, hyperLibaries
           <title>JSON Schema - Implementations</title>
         </Head>
 
-        <div className='lg:flex lg:flex-row justify-between gap-12 mt-12 w-full  mx-auto px-2 sm:px-4 lg:px-8'>
-          <div className='mt-6'><DocsNav /></div>
+        <div className=' lg:flex lg:flex-row justify-between gap-12 mt-12 w-full  mx-auto px-2 sm:px-4 lg:px-12'>
+          
           <div className='mt-6'>
             <Headline1>Implementations</Headline1>
             <StyledMarkdown markdown={blocks.intro} />

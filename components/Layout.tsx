@@ -452,10 +452,10 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'z-10 h-[480px] md:h-[400px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
-    <div className='max-w-[1400px] mx-auto lg:mt-16 grid grid-cols-1 md:grid-cols-2 w-5/6 md:pt-12 lg:pt-0'>
+  <footer className={classnames(responsiveClasses, 'z-10 h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
+    <div className='max-w-[1400px] mx-auto lg:mt-4 grid grid-cols-1 md:grid-cols-2 w-5/6 '>
       <div className='w-3/5  my-4 ml-6 lg:ml-36 lg:mt-12'>
-        <img src='/img/logos/logo-white.svg' className='mb-6  h-24' />
+        <img src='/img/logos/logo-white.svg' className='mb-6  h-12' />
         <div className='flex flex-col w-3/5 '>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
           <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
@@ -490,7 +490,7 @@ const Footer = () => (
 
 const OpenJS = () => (
   <div className={classnames(responsiveClasses, '')}>
-    <div className='max-w-[1400px] mx-auto my-6 lg:mt-28 grid grid-cols-1 lg:grid-cols-2 w-4/5'>
+    <div className='max-w-[1400px] mx-auto my-6 lg:mt-24 grid grid-cols-1 lg:grid-cols-2 w-4/5'>
       <div className='md:w-1/2 mb-12 lg:ml-28'>
         <img className='h-24 mx-auto mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
         {/* <div className='absolute bottom-0 ml-6  mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div> */}
