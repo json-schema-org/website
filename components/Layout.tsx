@@ -19,7 +19,7 @@ type Props = {
 const responsiveClasses = 'w-screen'
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
- 
+
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   const router = useRouter()
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
@@ -37,7 +37,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
           classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
         }>
           <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white shadow-xl')}>
-            <div className='flex justify-between items-center py-4 w-5/6 mx-auto lg:mx-0 md:w-1/2 pr-4 '>
+            <div className='flex justify-between items-center py-4 lg:w-3/5 w-5/6 mx-auto lg:mx-0  pr-4 '>
               <Logo />
               <MainNavigation />
             </div>
@@ -74,23 +74,35 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
+  const [open, setOpen] = useState(false)
+  const [rotateChevron, setRotateChevron] = useState(false)
+  const handleRotate = () => setRotateChevron(!rotateChevron)
+  const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
   if (section === 'docs') return (
+    <>
+      <div className='bg-primary w-full h-12 mt-[4.4rem] z-50 flex relative flex-col justify-between items-center lg:hidden' onClick={() => {
+        setOpen(!open)
+      }}>
+        <div className='flex w-full bg-primary justify-between items-center mt-2' onClick={handleRotate}>
+          <h3 className='text-white ml-12'>Docs Nav</h3>
 
-    <div className='bg-white mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
-      
-      
-      <div className='desktop hidden lg:block mt-24'>
-        <DocsNav />
+          <svg style={{ marginRight: '50px', color: 'white', transform: rotate, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 256 512'><path d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z' id='mainIconPathAttribute' fill='#ffffff'></path></svg>
+        </div>
       </div>
-      {/* <div className='mobile lg:hidden block mt-24 z-[500]'>
-          <MobileDocNav/>
-          </div>
-           */}
-      <div className='col-span-4 md:col-span-3 mt-20 w-5/6'>
-        {children}
-      </div>
-    </div>
 
+      <div className={`absolute top-10 mt-24 left-0 h-screen w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
+        <div className='flex flex-col' onClick={() => setTimeout(() => { setOpen(!open) }, 100)}>
+          <DocsNav />
+        </div>
+      </div>
+
+      <div className='bg-white mx-auto grid grid-cols-1 lg:grid-cols-4 mx-12'>
+        <div className='hidden lg:block'><DocsNav /></div>
+        <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6'>
+          {children}
+        </div>
+      </div>
+    </>
   )
   return children
 }
@@ -152,7 +164,7 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <div className='flex items-center gap-4  md:ml-52 lg:ml-0'>
+      <div className='flex items-center gap-4   lg:ml-0'>
         <Search />
 
         {showMobileNav === false ? (<div
@@ -212,43 +224,8 @@ const MobileNav = () => {
   )
 }
 
-
-// const MobileDocNav = () => {
-//   const section = useContext(SectionContext)
-
-//   return (
-//     <div
-//     className='w-full lg:inline-flex lg:flex-grow lg:w-auto'
-//   >
-//     <div className='lg:inline-flex lg:flex-row lg:ml-auto lg:w-auto w-full lg:items-center items-start  flex flex-col lg:h-auto'>
-//       <MainNavLink
-//         uri='/overview/what-is-jsonschema'
-//         label='Overview'
-//         isActive={section === 'docs'}
-//       />
-
-//       <MainNavLink
-//         uri='/implementations'
-//         label='Getting Started'
-//         isActive={section === 'implementations'}
-//       />
-//       <MainNavLink
-//         uri='/reference'
-//         label='Reference'
-//         isActive={section === 'reference'}
-//       />
-//       <MainNavLink
-//         uri='/specification'
-//         label='Specification'
-//         isActive={section === 'specification'}
-//       />
-     
-//     </div>
-//     </div>
-//   )
-// }
-
 export const DocsNav = () => {
+
 
   const [active, setActive] = useState(false)
   const handleClick = () => {
@@ -270,7 +247,7 @@ export const DocsNav = () => {
   const [rotateChevron, setRotateChevron] = useState(false)
   const handleRotate = () => setRotateChevron(!rotateChevron)
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
-  
+
   const [rotateGChevron, setRotateGChevron] = useState(false)
   const handleGetStarted = () => setRotateGChevron(!rotateGChevron)
   const rotateG = rotateGChevron ? 'rotate(180deg)' : 'rotate(0)'
@@ -284,137 +261,133 @@ export const DocsNav = () => {
   const rotateSpec = rotateSpecChevron ? 'rotate(180deg)' : 'rotate(0)'
 
   return (
-    <div className='mt-24 '>
-      <div id='sidebar'
-        className='mt-32  p-2 w-4/5 ml-4  '
-      >
-        <div className='mb-2 bg-slate-200 p-2 rounded'>
-          <div className='flex justify-between w-full items-center' onClick={() => {handleClick(); handleRotate()}} >
-            <div className='flex  items-center align-middle'>
-              <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
-              <SegmentHeadline label='Overview' />
-            </div>
-            <svg style={{ transform: rotate, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
+    <div id='sidebar'
+      className='mt-8  p-2 w-4/5 ml-4  '
+    >
+
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onClick={() => { handleClick(); handleRotate() }} >
+          <div className='flex  items-center align-middle'>
+            <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Overview' />
           </div>
+          <svg style={{ transform: rotate, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
-          <div
-            className={`${
-              active ? '' : 'hidden'
-            }   text-left text-sm mt-2 w-4/5 mx-auto `}
-            id='overview'
-          >
-            <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
-
-          </div>
         </div>
-        {/* Get Started */}
-        <div className='mb-2 bg-slate-200 p-2 rounded'>
-          <div className='flex justify-between w-full items-center' onClick={() => {handleClickGet(); handleGetStarted()}} >
-            <div className='flex  items-center align-middle' >
-              <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
-              <SegmentHeadline label='Getting Started' />
-            </div>
-            <svg style={{ transform: rotateG, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
-          </div>
-          <div
-            className={`${
-              activeGet ? '' : 'hidden'
-            }   text-left text-sm mt-2 w-4/5 mx-auto `}
-            id='getStarted'
-          >
-            <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
-            <SegmentSubtitle label='Examples' />
-            <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
-            <DocLink uri='/learn/file-system' label='Modelling a file system' />
-            <DocLink uri='/learn/json-schema-examples' label='Other examples' />
-          </div>
+        <div
+          className={`${active ? '' : 'hidden'
+          }   text-left text-sm mt-2 w-4/5 mx-auto `}
+          id='overview'
+        >
+          <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
+
         </div>
-        {/* Reference */}
-        <div className='mb-2 bg-slate-200 p-2 rounded'>
-          <div className='flex justify-between w-full items-center' onClick={() => {handleClickReference(); handleRotateReference()}}>
-            <div className='flex  items-center align-middle' >
-              <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
-              <SegmentHeadline label='Reference' />
-            </div>
-            <svg style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
-
+      </div>
+      {/* Get Started */}
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onClick={() => { handleClickGet(); handleGetStarted() }} >
+          <div className='flex  items-center align-middle' >
+            <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Getting Started' />
           </div>
-          <div className={`${
-            activeReference ? '' : 'hidden'
-          }   text-left text-sm mt-2 w-4/5 mx-auto font-bold`}
-          id='reference'
-          >
-            <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
-            <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
-            <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
+          <svg style={{ transform: rotateG, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+
+        </div>
+        <div
+          className={`${activeGet ? '' : 'hidden'
+          }   text-left text-sm mt-2 w-4/5 mx-auto `}
+          id='getStarted'
+        >
+          <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
+          <SegmentSubtitle label='Examples' />
+          <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
+          <DocLink uri='/learn/file-system' label='Modelling a file system' />
+          <DocLink uri='/learn/json-schema-examples' label='Other examples' />
+        </div>
+      </div>
+      {/* Reference */}
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onClick={() => { handleClickReference(); handleRotateReference() }}>
+          <div className='flex  items-center align-middle' >
+            <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Reference' />
+          </div>
+          <svg style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+
+        </div>
+        <div className={`${activeReference ? '' : 'hidden'
+        }   text-left text-sm mt-2 w-4/5 mx-auto font-bold`}
+        id='reference'
+        >
+          <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
+          <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
+          <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
+            <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
             <div className='pl-4 pb-1 pt-1'>
-              <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
-              <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
+              <DocLink uri='/understanding-json-schema/basics' label='The basics' />
               <div className='pl-4 pb-1 pt-1'>
-                <DocLink uri='/understanding-json-schema/basics' label='The basics' />
-                <div className='pl-4 pb-1 pt-1'>
-                  <DocLink uri='/understanding-json-schema/basics#hello-world!' label='Hello, World!' />
-                  <DocLink uri='/understanding-json-schema/basics#the-type-keyword' label='The type keyword' />
-                  <DocLink uri='/understanding-json-schema/basics#declaring-a-json-schema' label='Declaring a JSON Schema' />
-                  <DocLink uri='/understanding-json-schema/basics#declaring-a-unique-identifier' label='Declaring a unique identifier' />
-                </div>
-                <SegmentSubtitle label='JSON Schema Reference' />
-                <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
-                <DocLink uri='/understanding-json-schema/reference/string' label='string' />
-                <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
-                <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
-                <DocLink uri='/understanding-json-schema/reference/object' label='object' />
-                <DocLink uri='/understanding-json-schema/reference/array' label='array' />
-                <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
-                <DocLink uri='/understanding-json-schema/reference/null' label='null' />
-                <DocLink uri='/understanding-json-schema/reference/annotations' label='Generic keywords' />
-                <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
-                <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
-                <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
-                <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
-                <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
-                <div className='pl-4 pb-1 pt-1'>
-                  <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
-                  <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
-                  <DocLink uri='/understanding-json-schema/structuring#ref' label='$ref' />
-                  <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
-                  <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
-                  <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
-                  <DocLink uri='/understanding-json-schema/structuring#bundling' label='Bundling' />
-                </div>
+                <DocLink uri='/understanding-json-schema/basics#hello-world!' label='Hello, World!' />
+                <DocLink uri='/understanding-json-schema/basics#the-type-keyword' label='The type keyword' />
+                <DocLink uri='/understanding-json-schema/basics#declaring-a-json-schema' label='Declaring a JSON Schema' />
+                <DocLink uri='/understanding-json-schema/basics#declaring-a-unique-identifier' label='Declaring a unique identifier' />
+              </div>
+              <SegmentSubtitle label='JSON Schema Reference' />
+              <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
+              <DocLink uri='/understanding-json-schema/reference/string' label='string' />
+              <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
+              <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
+              <DocLink uri='/understanding-json-schema/reference/object' label='object' />
+              <DocLink uri='/understanding-json-schema/reference/array' label='array' />
+              <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
+              <DocLink uri='/understanding-json-schema/reference/null' label='null' />
+              <DocLink uri='/understanding-json-schema/reference/annotations' label='Generic keywords' />
+              <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
+              <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
+              <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
+              <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
+              <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
+              <div className='pl-4 pb-1 pt-1'>
+                <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
+                <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
+                <DocLink uri='/understanding-json-schema/structuring#ref' label='$ref' />
+                <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
+                <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
+                <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
+                <DocLink uri='/understanding-json-schema/structuring#bundling' label='Bundling' />
               </div>
             </div>
           </div>
         </div>
-        {/* Specification */}
-        <div className='mb-2 bg-slate-200 p-2 rounded'>
-          <div className='flex justify-between w-full items-center' onClick={() => {handleClickSpec(); handleRotateSpec()}}>
-            <div className='flex  items-center align-middle'>
-              <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
-              <SegmentHeadline label='Specification' />
-            </div>
-            <svg id='arrow' className='arrow'style={{ transform: rotateSpec, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+      </div>
+      {/* Specification */}
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onClick={() => { handleClickSpec(); handleRotateSpec() }}>
+          <div className='flex  items-center align-middle'>
+            <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Specification' />
+          </div>
+          <svg id='arrow' className='arrow' style={{ transform: rotateSpec, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
 
-          </div>
-          <div
-            className={`${
-              activeSpec ? '' : 'hidden'
-            }   text-left text-sm mt-2 w-4/5 mx-auto `}
-            id='specification'
-          >
-            <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
-            <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
-            <DocLink uri='/draft-07/readme' label='draft-07 notes' />
-            <DocLink uri='/draft-06/readme' label='draft-06 notes' />
-            <DocLink uri='/draft-05/readme' label='draft-05 notes' />
-            <DocLink uri='/specification-links' label='Specification Links' />
-          </div>
         </div>
-  
+        <div
+          className={`${activeSpec ? '' : 'hidden'
+          }   text-left text-sm mt-2 w-4/5 mx-auto `}
+          id='specification'
+        >
+          <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
+          <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
+          <DocLink uri='/draft-07/readme' label='draft-07 notes' />
+          <DocLink uri='/draft-06/readme' label='draft-06 notes' />
+          <DocLink uri='/draft-05/readme' label='draft-05 notes' />
+          <DocLink uri='/specification-links' label='Specification Links' />
+        </div>
       </div>
     </div>
+
   )
 }
 
@@ -453,7 +426,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 
 const Footer = () => (
   <footer className={classnames(responsiveClasses, 'z-10 h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
-    <div className='max-w-[1400px] mx-auto lg:mt-4 grid grid-cols-1 md:grid-cols-2 w-5/6 '>
+    <div className='max-w-[1400px] mx-auto pt-12 mt-4 grid grid-cols-1 md:grid-cols-2 w-5/6 '>
       <div className='w-3/5  my-4 ml-6 lg:ml-36 lg:mt-12'>
         <img src='/img/logos/logo-white.svg' className='mb-6  h-12' />
         <div className='flex flex-col w-3/5 '>
