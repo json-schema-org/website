@@ -119,7 +119,6 @@ For the `vegetables` property:
 * `type` is also set to "array" to indicate it's an array.
 * `items` references the `$defs/veggie` definition, indicating that the items in the array should conform to the "veggie" schema defined in the `$defs` section.
 
-
 ```json
 {
   "$id": "https://example.com/arrays.schema.json",
@@ -180,7 +179,7 @@ The data example shows the usage of arrays. The `fruits` property contains an ar
 
 ## Enumerated values
 
-This example introduces the `enum` validation keyword and defines an object with a property called "status" that only allows specific enumerated values: "active", "inactive", and "pending".
+This example introduces the `enum` validation keyword which is used with an array of values that includes an integer (`42`), a boolean (`true`), a string (`"hello"`), `null`, and an array (`[1, 2, 3]`). This demonstrates how `enum` can be used to specify a set of allowed values of different types.
 
 ```json
 {
@@ -189,9 +188,8 @@ This example introduces the `enum` validation keyword and defines an object with
   "title": "Enumerated Values",
   "type": "object",
   "properties": {
-    "status": {
-      "type": "string",
-      "enum": ["active", "inactive", "pending"]
+    "data": {
+      "enum": [42, true, "hello", null, [1, 2, 3]]
     }
   }
 }
@@ -201,11 +199,11 @@ This example introduces the `enum` validation keyword and defines an object with
 
 ```json
 {
-  "status": "active"
+  "data": [1, 2, 3]
 }
 ```
 
-The provided data adheres to the schema by using the value "active" for the `status` property.
+The provided data adheres to the schema by using the exact values specified in the enum array: `[1, 2, 3]`.
 
 
 ## Regular expression pattern
@@ -305,26 +303,72 @@ The schema below represents a complex object with various properties including `
 The provided data conforms to the schema by including values for the required properties and ensuring the `age` is an integer greater than or equal to zero. The `address` object contains all the necessary properties, and the `hobbies` property is an array of strings.
 
 
-## Conditional validation with dependencies
+## Conditional validation with dependentRequired
 
-The schema below defines an object with two properties: `isMember` and `membershipNumber`. The `membershipNumber` property is required and must have a length of 10 characters only when the `isMember` property is set to true.
+In this example, the `dependentRequired` keyword is used to specify that the property `bar` is required when the property `foo` is present. The schema enforces the condition that if `foo` exists, then `bar` must also be present.
 
 ```json
 {
-  "$id": "https://example.com/conditional-validation.schema.json",
+  "$id": "https://example.com/conditional-validation-dependentRequired.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Conditional Validation",
+  "title": "Conditional Validation with dependentRequired",
   "type": "object",
   "properties": {
-    "isMember": {
+    "foo": {
       "type": "boolean"
     },
-    "membershipNumber": {
-      "type": "string",
-      "maxLength": 10,
-      "minLength": 10,
-      "dependencies": {
-        "isMember": true
+    "bar": {
+      "type": "string"
+    }
+  },
+  "dependentRequired": {
+    "foo": ["bar"]
+  }
+}
+```
+
+**Data**
+
+```json
+{
+  "foo": true,
+  "bar": "Hello World"
+}
+```
+
+As per the schema, when the `foo` property is present (`true`), the `bar` property becomes required. The `bar` property is provided with the value "Hello World", satisfying the requirement of being a string and ensuring compliance with the `dependentRequired` condition.
+
+
+## Conditional validation with dependentSchemas
+
+The given schema showcases the use of the `dependentSchemas` keyword. It allows defining a subschema that must be satisfied if a certain property is present. 
+
+* In this example, the schema defines an object with two properties: `foo` and `propertiesCount`. The `foo` property is of boolean type, while the `propertiesCount` property is of integer type with a minimum value of 0.
+* According to the subschema, when the `foo` property is present, the `propertiesCount` property becomes required, and must be an integer with a minimum value of 7.
+
+```json
+{
+  "$id": "https://example.com/conditional-validation-dependentSchemas.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Conditional Validation with dependentSchemas",
+  "type": "object",
+  "properties": {
+    "foo": {
+      "type": "boolean"
+    },
+    "propertiesCount": {
+      "type": "integer",
+      "minimum": 0
+    }
+  },
+  "dependentSchemas": {
+    "foo": {
+      "required": ["propertiesCount"],
+      "properties": {
+        "propertiesCount": {
+          "type": "integer",
+          "minimum": 7
+        }
       }
     }
   }
@@ -335,12 +379,12 @@ The schema below defines an object with two properties: `isMember` and `membersh
 
 ```json
 {
-  "isMember": true,
-  "membershipNumber": "1234567890"
+  "foo": true,
+  "propertiesCount": 10
 }
 ```
 
-The `dependencies` keyword is used to enforce the presence of the `membershipNumber` property when `isMember` is set to true. The provided data satisfies these conditions.
+Here, the `foo` property is set to true, indicating its presence. As per the schema, when `foo` is present, the `propertiesCount` property becomes required. In this case, the `propertiesCount` property is provided with a value of 10, which satisfies the requirement of being an integer and having a minimum value of 7.
 
 
 ## Conditional validation with if-else
@@ -369,6 +413,7 @@ If the value of `isMember` is anything other than true:
       "type": "string"
     }
   },
+  "required": ["isMember"],
   "if": {
     "properties": {
       "isMember": {
@@ -388,11 +433,13 @@ If the value of `isMember` is anything other than true:
   "else": {
     "properties": {
       "membershipNumber": {
-        "type": "string"
+        "type": "string",
+        "minLength": 15
       }
     }
   }
 }
+
 ```
 
 **Data**
@@ -409,8 +456,8 @@ In this case, the `isMember` property is set to true, so the then block is appli
 ```json
 {
   "isMember": false,
-  "membershipNumber": "ABC123"
+  "membershipNumber": "GUEST1234567890"
 }
 ```
 
-In this case, the `isMember` property is false, so the else block is applied. The `membershipNumber` property can be any string, so it satisfies the validation.
+In this case, the `isMember` property is false, so the else block is applied. The `membershipNumber` property can be any string with minimum length greater than or equal to 15, so it satisfies the validation.
