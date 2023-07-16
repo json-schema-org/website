@@ -314,6 +314,9 @@ In this example, the `dependentRequired` keyword is used to specify that the pro
   "title": "Conditional Validation with dependentRequired",
   "type": "object",
   "properties": {
+    "validity": {
+      "type": "string"
+    },
     "foo": {
       "type": "boolean"
     },
@@ -331,12 +334,30 @@ In this example, the `dependentRequired` keyword is used to specify that the pro
 
 ```json
 {
+  "validity": "valid",
   "foo": true,
   "bar": "Hello World"
 }
 ```
 
 As per the schema, when the `foo` property is present (`true`), the `bar` property becomes required. The `bar` property is provided with the value "Hello World", satisfying the requirement of being a string and ensuring compliance with the `dependentRequired` condition.
+
+```json
+{
+  "validity": "valid"
+}
+```
+
+Since both `foo` and `bar` are missing, the instance is still valid and in compliance with the `dependentRequired` condition as well.
+
+```json
+{
+  "validity": "invalid",
+  "foo": true
+}
+```
+
+The above schema is invalid, since the `foo` property is present, but `bar` is not, which invalidates the condition of the `dependentRequired` keyword. 
 
 
 ## Conditional validation with dependentSchemas
@@ -366,7 +387,6 @@ The given schema showcases the use of the `dependentSchemas` keyword. It allows 
       "required": ["propertiesCount"],
       "properties": {
         "propertiesCount": {
-          "type": "integer",
           "minimum": 7
         }
       }
@@ -386,6 +406,23 @@ The given schema showcases the use of the `dependentSchemas` keyword. It allows 
 
 Here, the `foo` property is set to true, indicating its presence. As per the schema, when `foo` is present, the `propertiesCount` property becomes required. In this case, the `propertiesCount` property is provided with a value of 10, which satisfies the requirement of being an integer and having a minimum value of 7.
 
+```json
+{
+  "propertiesCount": 5
+}
+```
+
+In the above data, `propertiesCount` is 5 but since `foo` is missing, `propertiesCount` does not need to be 7 or more than 7, it only needs to be greater than or equal to 0. Hence, this instance is valid.
+
+```json
+{
+  "foo": true,
+  "propertiesCount": 5
+}
+```
+
+In this, we have `foo` as true, but `propertiesCount` is 5, and in the schema, `propertiesCount` is set to have minimum 7 as the input according to the `dependentSchemas`. Hence, this is an invalid instance. 
+
 
 ## Conditional validation with if-else
 
@@ -394,10 +431,10 @@ In this schema, we have two properties: `isMember` and `membershipNumber`. The c
 Here's how the validation works in this example:
 
 If the value of `isMember` is true:
-* The then block is applied, which specifies that the `membershipNumber` property should be a string with a minimum length of 10 and a maximum length of 10.
+* The `then` block is applied, which specifies that the `membershipNumber` property should be a string with a minimum length of 10 and a maximum length of 10.
 
 If the value of `isMember` is anything other than true:
-* The else block is applied, which specifies that the `membershipNumber` property can be any string.
+* The `else` block is applied, which specifies that the `membershipNumber` property can be any string.
 
 ```json
 {
