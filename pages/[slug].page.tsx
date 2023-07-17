@@ -24,8 +24,7 @@ export default function StaticMarkdownPage({ frontmatter, content }: { frontmatt
         <Head>
           <title>JSON Schema - {frontmatter.title}</title>
         </Head>
-
-        <div className='bg-primary w-full h-12 mt-[4.4rem] z-150 flex relative flex-col justify-between items-center lg:hidden' onClick={() => {
+        <div className=' bg-primary w-full h-12 mt-[4.4rem] z-150 flex relative flex-col justify-between items-center lg:hidden' onClick={() => {
           setOpen(!open)
         }}>
           <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onClick={handleRotate}>
@@ -51,9 +50,9 @@ export default function StaticMarkdownPage({ frontmatter, content }: { frontmatt
             <DocsNav />
           </div>
         </div>
-        <div className='hidden lg:block mt-24 '><DocsNav /></div>
 
         <div className='mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
+          <div className='desktop hidden lg:block mt-24 '><DocsNav /></div>
           <div className='col-span-4 px-4 md:col-span-3 lg:mt-20 lg:w-5/6'>
             <Headline1>{frontmatter.title}</Headline1>
             <StyledMarkdown markdown={content} />

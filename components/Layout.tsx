@@ -43,12 +43,13 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
             </div>
           </header>
           {!hideAds && (
-            <div>
+            <div className=''>
               <script
                 async
                 type='text/javascript'
                 src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
                 id='_carbonads_js'
+                className='z-10'
               />
             </div>
           )}
@@ -83,10 +84,8 @@ const ContentLayout = ({ children }: { children: any }) => {
 
   if (section === 'docs') return (
     <>
-      <div className='bg-primary w-full h-12 mt-[4.4rem] z-150 flex relative flex-col justify-between items-center lg:hidden' onClick={() => {
-        setOpen(!open)
-      }}>
-        <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onClick={handleRotate}>
+      <div className='bg-primary w-full h-12 mt-[4.4rem] z-150 flex relative flex-col justify-between items-center lg:hidden' >
+        <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onClick={(e) => { e.stopPropagation(); handleRotate(); setOpen(!open) }}>
 
           {router.pathname === '/overview/[slug]' && <h3 className='text-white ml-12'>Overview</h3>}
           {router.pathname === '/learn/[slug]' && <h3 className='text-white ml-12'>Getting Started</h3>}
@@ -281,7 +280,7 @@ export const DocsNav = () => {
     >
 
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onClick={() => { handleClick(); handleRotate() }} >
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClick(); handleRotate() }} >
           <div className='flex  items-center align-middle'>
             <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Overview' />
@@ -301,7 +300,7 @@ export const DocsNav = () => {
       </div>
       {/* Get Started */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onClick={() => { handleClickGet(); handleGetStarted() }} >
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickGet(); handleGetStarted() }} >
           <div className='flex  items-center align-middle' >
             <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Getting Started' />
@@ -323,7 +322,7 @@ export const DocsNav = () => {
       </div>
       {/* Reference */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onClick={() => { handleClickReference(); handleRotateReference() }}>
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickReference(); handleRotateReference() }}>
           <div className='flex  items-center align-middle' >
             <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Reference' />
@@ -379,7 +378,7 @@ export const DocsNav = () => {
       </div>
       {/* Specification */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onClick={() => { handleClickSpec(); handleRotateSpec() }}>
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickSpec(); handleRotateSpec() }}>
           <div className='flex  items-center align-middle'>
             <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Specification' />
