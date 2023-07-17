@@ -36,23 +36,13 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
         <main className={
           classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames(responsiveClasses, 'fixed top-0 z-[100] bg-white shadow-xl')}>
+          <header className={classnames(responsiveClasses, 'fixed top-0 z-[170] bg-white shadow-xl drop-shadow-lg')}>
             <div className='flex justify-between items-center py-4 lg:w-3/5 w-5/6 mx-auto lg:mx-0  pr-4 '>
               <Logo />
               <MainNavigation />
             </div>
           </header>
-          {!hideAds && (
-            <div className=''>
-              <script
-                async
-                type='text/javascript'
-                src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
-                id='_carbonads_js'
-                className='z-10'
-              />
-            </div>
-          )}
+          
           {showMobileNav ? (
             <>
               <MobileNav />
@@ -61,10 +51,24 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
               </ContentLayout>
             </>
           ) : (
-            <ContentLayout>
-              {children}
-            </ContentLayout>
+            <div>
+              {!hideAds && (
+                <div>
+                  <script
+                    async
+                    type='text/javascript'
+                    src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
+                    id='_carbonads_js'
+                    className='z-10'
+                  />
+                </div>
+              )}
+              <ContentLayout>
+                {children}
+              </ContentLayout>
+            </div>
           )}
+          
           <Footer />
           <OpenJS />
         </main>
@@ -76,7 +80,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
   const router = useRouter()
-
+  // console.log(router)
   const [open, setOpen] = useState(false)
   const [rotateChevron, setRotateChevron] = useState(false)
   const handleRotate = () => setRotateChevron(!rotateChevron)
@@ -84,19 +88,22 @@ const ContentLayout = ({ children }: { children: any }) => {
 
   if (section === 'docs') return (
     <>
-      <div className='bg-primary w-full h-12 mt-[4.4rem] z-150 flex relative flex-col justify-between items-center lg:hidden' >
+      <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden' >
         <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onClick={(e) => { e.stopPropagation(); handleRotate(); setOpen(!open) }}>
 
           {router.pathname === '/overview/[slug]' && <h3 className='text-white ml-12'>Overview</h3>}
-          {router.pathname === '/learn/[slug]' && <h3 className='text-white ml-12'>Getting Started</h3>}
+          {router.pathname === '/learn/[slug]' && router.asPath !== '/learn/glossary' && <h3 className='text-white ml-12'>Getting Started</h3>}
+          {router.asPath === '/learn/glossary' && <h3 className='text-white ml-12'>Reference</h3>}
 
-          {router.pathname === '/understanding-json-schema' || router.pathname === '/understanding-json-schema/reference/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
+          {router.pathname === '/understanding-json-schema' && <h3 className='text-white ml-12'>Reference</h3>}
+          {router.pathname === '/understanding-json-schema/reference/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
           {router.pathname === '/understanding-json-schema/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
 
           {router.pathname === '/draft/2020-12/[slug]' || router.pathname === '/draft-06/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
           {router.pathname === '/draft-07/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
           {router.pathname === '/draft-05/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
-          {router.pathname === '/draft/2019-09/[slug]' || router.pathname === '/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
+          {router.pathname === '/draft/2019-09/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
+          {router.pathname === '/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
 
           {router.pathname === null && <h3 className='text-white ml-12'>Docs</h3>}
           <svg style={{ marginRight: '50px', color: 'white', transform: rotate, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 256 512'><path d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z' id='mainIconPathAttribute' fill='#ffffff'></path></svg>
