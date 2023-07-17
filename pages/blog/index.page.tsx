@@ -41,7 +41,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const router = useRouter()
   const typeFilter: null | string = Array.isArray(router.query?.type)
     ? router.query?.type?.[0] : router.query?.type || null
-  // console.log('start', typeFilter)
+  console.log('start', typeFilter)
   const setParam = useSetUrlParam()
 
 
@@ -63,7 +63,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         <Head>
           <title>JSON Schema Blog</title>
         </Head>
-        <div className='flex flex-col items-center mt-24'>
+        <div className='flex flex-col items-center mt-16'>
 
 
           {recentBlog[0] && (
@@ -118,6 +118,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
           <div className='flex justify-start lg:-ml-[1000px]'>{allTags.map((tag) => (
             <p key={tag} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>{tag}</p>
           ))}</div>
+          
 
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 lg:px-8'>
             {blogPosts
@@ -138,10 +139,9 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                 const timeToRead = Math.ceil(readingTime(content).minutes)
 
                 return (
-                  <>
-
+                  <section key={blogPost.slug}>
                     <div
-                      key={blogPost.slug}
+                      
                       className='flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden'
                     >
                       <Link href={`/blog/posts/${blogPost.slug}`}>
@@ -203,7 +203,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                         </a>
                       </Link>
                     </div>
-                  </>
+                  </section>
                 )
               })
             }

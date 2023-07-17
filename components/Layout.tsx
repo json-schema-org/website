@@ -80,14 +80,14 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
 const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
   const router = useRouter()
-  // console.log(router)
+
   const [open, setOpen] = useState(false)
   const [rotateChevron, setRotateChevron] = useState(false)
   const handleRotate = () => setRotateChevron(!rotateChevron)
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
 
   if (section === 'docs') return (
-    <>
+    <section>
       <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden' >
         <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onClick={(e) => { e.stopPropagation(); handleRotate(); setOpen(!open) }}>
 
@@ -99,7 +99,8 @@ const ContentLayout = ({ children }: { children: any }) => {
           {router.pathname === '/understanding-json-schema/reference/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
           {router.pathname === '/understanding-json-schema/[slug]' && <h3 className='text-white ml-12'>Reference</h3>}
 
-          {router.pathname === '/draft/2020-12/[slug]' || router.pathname === '/draft-06/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
+          {router.pathname === '/draft/2020-12/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
+          {router.pathname === '/draft-06/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
           {router.pathname === '/draft-07/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
           {router.pathname === '/draft-05/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
           {router.pathname === '/draft/2019-09/[slug]' && <h3 className='text-white ml-12'>Specification</h3>}
@@ -110,7 +111,7 @@ const ContentLayout = ({ children }: { children: any }) => {
         </div>
       </div>
 
-      <div className={`z-[150] absolute top-10 mt-24 left-0 h-screen w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
+      <div className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
         <div className='flex flex-col' onClick={() => setTimeout(() => { setOpen(!open) }, 100)}>
           <DocsNav />
         </div>
@@ -122,7 +123,7 @@ const ContentLayout = ({ children }: { children: any }) => {
           {children}
         </div>
       </div>
-    </>
+    </section>
   )
   return children
 }
