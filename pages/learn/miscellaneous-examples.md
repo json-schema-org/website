@@ -314,9 +314,6 @@ In this example, the `dependentRequired` keyword is used to specify that the pro
   "title": "Conditional Validation with dependentRequired",
   "type": "object",
   "properties": {
-    "validity": {
-      "type": "string"
-    },
     "foo": {
       "type": "boolean"
     },
@@ -334,7 +331,6 @@ In this example, the `dependentRequired` keyword is used to specify that the pro
 
 ```json
 {
-  "validity": "valid",
   "foo": true,
   "bar": "Hello World"
 }
@@ -344,7 +340,6 @@ As per the schema, when the `foo` property is present (`true`), the `bar` proper
 
 ```json
 {
-  "validity": "valid"
 }
 ```
 
@@ -352,7 +347,6 @@ Since both `foo` and `bar` are missing, the instance is still valid and in compl
 
 ```json
 {
-  "validity": "invalid",
   "foo": true
 }
 ```
