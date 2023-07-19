@@ -5,15 +5,15 @@ title: Miscellaneous Examples
 
 In this page, you will find examples illustrating different uses cases to help you get the most out of your JSON Schemas, including:
 
-- [A typical minimum schema](/learn/miscellaneous-examples/#basic)
-- [Describing geographical coordinates](/learn/miscellaneous-examples/#describing-geographical-coordinates)
-- [Arrays of things](/learn/miscellaneous-examples/#arrays-of-things)
-- [Enumerated values](/learn/miscellaneous-examples/#enumerated-values)
-- [Regular expression pattern](/learn/miscellaneous-examples/#regular-expression-pattern)
-- [Complex object with nested properties](/learn/miscellaneous-examples/#complex-object-with-nested-properties)
-- [Conditional validation with dependentRequired](/learn/miscellaneous-examples/#conditional-validation-with-dependentrequired)
-- [Conditional validation with dependentSchemas](/learn/miscellaneous-examples/#conditional-validation-with-dependentschemas)
-- [Conditional validation with if-else](/learn/miscellaneous-examples/#conditional-validation-with-if-else)
+- [A typical minimum schema](#basic)
+- [Describing geographical coordinates](#describing-geographical-coordinates)
+- [Arrays of things](#arrays-of-things)
+- [Enumerated values](#enumerated-values)
+- [Regular expression pattern](#regular-expression-pattern)
+- [Complex object with nested properties](#complex-object-with-nested-properties)
+- [Conditional validation with dependentRequired](#conditional-validation-with-dependentrequired)
+- [Conditional validation with dependentSchemas](#conditional-validation-with-dependentschemas)
+- [Conditional validation with if-else](#conditional-validation-with-if-else)
 
 ## Basic
 
