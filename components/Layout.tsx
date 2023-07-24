@@ -37,7 +37,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
           classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
         }>
           <header className={classnames(responsiveClasses, 'fixed top-0 z-[170] bg-white shadow-xl drop-shadow-lg')}>
-            <div className='flex justify-between items-center py-4 lg:w-3/5 w-5/6 mx-auto lg:mx-0  pr-4 '>
+            <div className='grid grid-cols-2  lg:grid-cols-3 py-4 justify-between items-center'>
               <Logo />
               <MainNavigation />
             </div>
@@ -89,7 +89,7 @@ const ContentLayout = ({ children }: { children: any }) => {
   if (section === 'docs') return (
     <section>
       <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden' >
-        <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onClick={(e) => { e.stopPropagation(); handleRotate(); setOpen(!open) }}>
+        <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleRotate(); setOpen(!open) }}>
 
           {router.pathname === '/overview/[slug]' && <h3 className='text-white ml-12'>Overview</h3>}
           {router.pathname === '/learn/[slug]' && router.asPath !== '/learn/glossary' && <h3 className='text-white ml-12'>Getting Started</h3>}
@@ -117,7 +117,7 @@ const ContentLayout = ({ children }: { children: any }) => {
         </div>
       </div>
 
-      <div className='bg-white mx-auto grid grid-cols-1 lg:grid-cols-4 mx-12'>
+      <div className='max-w-[1400px] bg-white mx-auto grid grid-cols-1 lg:grid-cols-4 mx-12'>
         <div className='hidden lg:block mt-24 '><DocsNav /></div>
         <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6'>
           {children}
@@ -153,7 +153,7 @@ const MainNavigation = () => {
   // const docsAreActive = section === 'docs'
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
-    <div className='md:py-2 flex items-center w-28 '>
+    <div className='lg:col-span-2  md:py-2 flex items-center'>
       <MainNavLink
         className='hidden lg:block  hover:underline'
         uri='/specification'
@@ -247,7 +247,6 @@ const MobileNav = () => {
 
 export const DocsNav = () => {
 
-
   const [active, setActive] = useState(false)
   const handleClick = () => {
     setActive(!active)
@@ -284,9 +283,7 @@ export const DocsNav = () => {
   return (
 
     <div id='sidebar '
-      className='lg:mt-8 p-2 w-4/5 mx-auto lg:ml-4'
-    >
-
+      className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       <div className='mb-2 bg-slate-200 p-2 rounded'>
         <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClick(); handleRotate() }} >
           <div className='flex  items-center align-middle'>
@@ -299,7 +296,7 @@ export const DocsNav = () => {
 
         <div
           className={`${active ? '' : 'hidden'
-          }   text-left text-sm mt-2 w-4/5 mx-auto `}
+          } text-left text-sm mt-2 w-4/5 mx-auto `}
           id='overview'
         >
           <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
@@ -318,7 +315,7 @@ export const DocsNav = () => {
         </div>
         <div
           className={`${activeGet ? '' : 'hidden'
-          }   text-left text-sm mt-2 w-4/5 mx-auto `}
+          } text-left text-sm mt-2 w-4/5 mx-auto `}
           id='getStarted'
         >
           <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
@@ -447,28 +444,28 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 
 const Footer = () => (
   <footer className={classnames(responsiveClasses, 'z-10 h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
-    <div className='max-w-[1400px] mx-auto lg:pt-12 mt-4 grid grid-cols-1 md:grid-cols-2 w-5/6 '>
-      <div className='w-3/5  my-4 ml-6 lg:ml-36 lg:mt-12'>
-        <img src='/img/logos/logo-white.svg' className='mb-6  h-12' />
-        <div className='flex flex-col w-3/5 '>
+    <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 w-1/3 justify-center '>
+      <div className='w-3/5 my-6  lg:mt-16'>
+        <img src='/img/logos/logo-white.svg' className='mb-6' />
+        <div className='flex flex-col'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
           <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
         </div>
       </div>
-      <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 ml-6'>
-        <div className='flex items-center'>
+      <div className='mt-8 ml-12'>
+        <div className='flex items-center mb-4'>
           <img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
           <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='text-white'>Slack</a>
         </div>
-        <div className='flex items-center'>
+        <div className='flex items-center mb-4'>
           <img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
           <a href='https://twitter.com/jsonschema' className='text-white'>Twitter</a>
         </div>
-        <div className='flex items-center'>
+        <div className='flex items-center mb-4'>
           <img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
           <a href='https://linkedin.com/company/jsonschema/' className='text-white'>LinkedIn</a>
         </div>
-        <div className='flex items-center'>
+        <div className='flex items-center mb-4'>
           <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
           <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='text-white'>Youtube</a>
         </div>
@@ -498,9 +495,9 @@ const OpenJS = () => (
 )
 
 const Logo = () => (
-  <Link href='/'>
-    <a>
-      <div className='lg:ml-8 inline-block '>
+  <Link href='/' >
+    <a className='ml-12 lg:ml-0'>
+      <div className='lg:ml-20 inline-block '>
         <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
       </div>
     </a>

@@ -82,7 +82,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='max-w-[1400px] mt-12 lg:mt-[80px]'>
           <div className='w-5/6 md:w-1/2 text-center  mb-6  mx-auto'>
             <h2 className='text-h3mobile md:text-h3 font-bold mb-6'>Why JSON Schema?</h2>
-            <p className='mb-6 leading-5 text-h5mobile md:text-h5'>While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that allows JSON data consistency, validity, and interoperability at scale.</p>
+            <p className='mb-6 leading-5 text-h5mobile md:text-h5 leading-7'>While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that allows JSON data consistency, validity, and interoperability at scale.</p>
           </div>
           {/* Feature 4 section*/}
           <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
@@ -108,7 +108,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-full mx-auto text-center mt-28 '>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Start learning JSON Schema</h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '><a href='/overview/what-is-jsonschema'>Read the docs</a></button>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white semi-bold'><a href='/overview/what-is-jsonschema'>Read the docs</a></button>
           </div>
         </section>
 
@@ -160,7 +160,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               </div>
               <div >
                 <Link href={`/blog/posts/${recentBlog[0].slug}`}>
-                  <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 '>Read more </a>
+                  <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold'>Read more </a>
                 </Link>
               </div>
             </div>
@@ -227,8 +227,8 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:en@jsonschema.dev' className='text-primary hover:underline'>Email us</a> for more info.</p>
           </div>
           <div className='w-5/6 lg:w-1/3 grid grid-cols-2 gap-8 lg:gap-4 items-center mx-auto'>
-            <a href='https://orbit.love/'><img src='/img/logos/supported/orbit-logo-color.png' className='w-full ' /></a>
-            <a href='https://slack.com/' ><img src='/img/logos/supported/slack-logo.svg' className='w-full ' /></a>
+            <a href='https://orbit.love/'><img src='/img/logos/supported/orbit-logo-color.png' className='w-4/5' /></a>
+            <a href='https://slack.com/' ><img src='/img/logos/supported/slack-logo.svg' className='' /></a>
             
           </div>
         </section>
