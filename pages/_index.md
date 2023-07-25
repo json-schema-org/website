@@ -2,35 +2,36 @@
 
 2021-02-01: Draft 2020-12 has been published!
 
-The IETF document IDs are of the form `draft-bhutton-*-00`.
+The document IDs are of the form `draft-bhutton-*-00`.
 
 We are using dates for meta-schemas, which are what implementations should use to determine behavior,
 so we will usually refer to `2020-12` (without the word "draft") on this web site.
 
-See the [Specification page](/specification) for details about naming and numbering.
+See the [Specification Links](/specification-links) page for details about naming and numbering.
 
 ### The Path to Standardization
 
-The JSON Schema project intends to shepherd all three draft series to either: RFC status, the equivalent within another standards body, and/or join a foundation and establish self publication rules.
+The JSON Schema project intends to self-publish the two JSON Schema specifications with the OpenJS Foundation. For the Relative JSON Pointer specification, we will likely pursue an RFC with IETF.
 
 <details markdown="1">
 <summary>Read more</summary>
 
-Currently, we are continuing to improve our self-published Internet-Drafts. We are not actively pursuing joining a standards organisation.
+We are currently working toward moving away from self-published Internet-Drafts.
 
-We have a few contacts related to each potential path, but if you have experience with such things and would like to help, please still contact us!
+In the meantime, you can find the latest release of specification as Internet-Drafts on the [Specification](/specification) page.
 
-In the meantime, publication of Internet-Draft documents can be tracked through the IETF:
-* [JSON Schema (core)](https://datatracker.ietf.org/doc/draft-bhutton-json-schema/)
-* [JSON Schema Validation](https://datatracker.ietf.org/doc/draft-bhutton-json-schema-validation/)
-* [Relative JSON Pointers](https://datatracker.ietf.org/doc/draft-bhutton-relative-json-pointer/)
+Note that normal Internet-Drafts expire after six months and are replaced by
+subsequent drafts. Neither of those properties apply to JSON Schema. JSON Schema
+uses Internet-Drafts as production release documents, not as drafts, and each
+release is a distinct version of JSON Schema. That means that our releases
+remain relevant as long as they continue to be used in production despite what
+the document declares as its expiration.
 
-Internet-Drafts expire after six months, so our goal is to publish often enough to always have a set of unexpired drafts available.  There may be brief gaps as we wrap up each draft and finalize the text.
 </details>
 
 ### Use of the _draft_ designation
 Releases of the JSON schema specification and meta schemas use the _draft_ designation primarily for historical reasons stemming from the relationship of this specification to IETF ([explained here](https://json-schema.org/specification-links#understanding-draft-names-and-numbers)).
-The use of this designation is under review but will continue until this review process completes to avoid changing the designation style multiple times.
+The use of this designation is under review and will not continue in future releases.
 
 <details markdown="1">
 <summary>Read more</summary>
@@ -40,8 +41,6 @@ The JSON schema project recognizes, condones, and advocates for the use of the J
 Each release of the JSON schema specification is treated as a production release by the JSON schema project. All changes in each new release are made judiciously, with great care, thorough review and careful consideration of how the changes will impact existing users and implementations of the JSON schema specification.
 
 Similarly to most specifications, the JSON schema specification will continue to evolve, and not all releases will be backwards compatible. The intention, particularly for vocabularies such as validation which have been widely implemented, is to remain as compatible as possible from release to release. However, major changes can still occur given a clear enough need validated with the user community.
-
-When the _draft_ designation is dropped this may indicate that the frequency of releases and amount of changes in each release will decrease, but it won't indicate that no new releases will be made, or that all future releases will be backwards compatible.
 </details>
 
 ## Quickstart

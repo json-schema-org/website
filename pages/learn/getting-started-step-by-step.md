@@ -37,7 +37,7 @@ Each product in the catalog has:
 * `price`: the cost to the consumer
 * `tags`: an optional array of identifying tags
 
-The JSON object is human-readable, but it doesn’t include any context or metadata. There’s no way to tell from looking at the object what the keys mean or what the possible inputs are. JSON Schema is a proposed IETF standard for providing answers to these questions. In this guide, you will create a JSON Schema document that describes the structure, constraints, and data types for a set of JSON data.
+The JSON object is human-readable, but it doesn’t include any context or metadata. There’s no way to tell from looking at the object what the keys mean or what the possible inputs are. JSON Schema is a standard for providing answers to these questions. In this guide, you will create a JSON Schema document that describes the structure, constraints, and data types for a set of JSON data.
 
 <span id="intro"></span>
 
