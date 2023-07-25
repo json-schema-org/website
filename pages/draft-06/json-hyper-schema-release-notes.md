@@ -27,7 +27,7 @@ keyword | change | consequence
 `"rel"` | "root" relation removed | use a fragment in your `"href"` URI Template
 `"fragmentResolution"` | *removed* | media type determines how fragments are interpreted
 `"pathStart"` | *removed* | *[no replacement]*
-`"method"` | [changed back to HTML form semantics](https://tools.ietf.org/html/draft-zyp-json-schema-03#section-6.1.1.4.1) of "get" and "post" rather than all HTTP methods | *[changed again in draft-06 due to feedback that this was confusing]*
+`"method"` | [changed back to HTML form semantics](/draft-03/draft-zyp-json-schema-03.html#section-6.1.1.4.1) of "get" and "post" rather than all HTTP methods | *[changed again in draft-06 due to feedback that this was confusing]*
 
 #### Changes from draft-05 to draft-06
 

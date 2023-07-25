@@ -19,13 +19,7 @@ Validation in any significant way.
 |:----|:----|
 | [JSON Schema Core](/draft/2020-12/json-schema-core.html)   | defines the basic foundation of JSON Schema   |
 | [JSON Schema Validation](/draft/2020-12/json-schema-validation.html)   | defines the validation keywords of JSON Schema    |
-| [Relative JSON Pointers](/draft/2020-12/relative-json-pointer.html)   | extends the JSON Pointer syntax for relative pointers   |
-
-
-They are also available on the IETF main site:
-* [draft-bhutton-json-schema-01 (core)](https://tools.ietf.org/html/draft-bhutton-json-schema-01)
-* [draft-bhutton-json-schema-validation-01](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01)
-* [draft-bhutton-relative-json-pointer-00](https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00)
+| [Relative JSON Pointers](https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00)   | extends the JSON Pointer syntax for relative pointers   |
 
 Meta-schemas
 ------------
