@@ -51,9 +51,9 @@ export default function StaticMarkdownPage({ frontmatter, content }: { frontmatt
           </div>
         </div>
 
-        <div className='mx-auto grid grid-cols-4 px-2 sm:px-4 lg:px-8'>
-          <div className='desktop hidden lg:block mt-24 '><DocsNav /></div>
-          <div className='col-span-4 px-4 md:col-span-3 lg:mt-20 lg:w-5/6'>
+        <div className='flex lg:px-0 px-4 ml-12'>
+          <div className='flex-none desktop hidden lg:block mt-24  w-[350px]'><DocsNav /></div>
+          <div className='flex-initial lg:mt-20 lg:w-5/6'>
             <Headline1>{frontmatter.title}</Headline1>
             <StyledMarkdown markdown={content} />
           </div>

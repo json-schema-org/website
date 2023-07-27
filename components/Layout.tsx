@@ -398,6 +398,7 @@ export const DocsNav = () => {
           }   text-left text-sm mt-2 w-4/5 mx-auto `}
           id='specification'
         >
+          <DocLink uri='/specification' label='Overview' />
           <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
           <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
           <DocLink uri='/draft-07/readme' label='draft-07 notes' />
