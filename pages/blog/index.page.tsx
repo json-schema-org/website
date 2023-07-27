@@ -52,9 +52,9 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   })
 
   const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes)
-  const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type)
-  const spreadTags: any[] = [...setOfTags]
-  const allTags: any[] = [...new Set(spreadTags)]
+  // const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type)
+  // const spreadTags: any[] = [...setOfTags]
+  // const allTags: any[] = [...new Set(spreadTags)]
 
   return (
     <SectionContext.Provider value='blog'>
@@ -62,9 +62,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         <Head>
           <title>JSON Schema Blog</title>
         </Head>
-        <div className='flex flex-col items-center mt-16'>
-
-
+        <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16'>
           {recentBlog[0] && (
             <section className=' w-full  clip-bottom'>
               <Link href={`/blog/posts/${recentBlog[0].slug}`} passHref>
@@ -87,7 +85,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                       <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                         style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
                       />
-                      <div className='flex flex-col ml-2'>
+                      <div className='max-w-[1400px] mx-autoflex flex-col ml-2'>
                         <p className='text-sm font-semibold'>{recentBlog[0].frontmatter.authors[0].name}</p>
                         <div className=' text-sm'>
                           <span>
@@ -114,12 +112,12 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               </a>
             </div>
           </div>
-          <div className='flex justify-start lg:-ml-[1000px]'>{allTags.map((tag) => (
-            <p key={tag} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>{tag}</p>
-          ))}</div>
+          {/* <div className='flex justify-start lg:-ml-[830px]'>{allTags.map((tag) => (
+            <p key={tag} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</p>
+          ))}</div> */}
           
 
-          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 lg:px-8'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 lg:px-8'>
             {blogPosts
               .filter(post => {
                 if (!typeFilter) return true

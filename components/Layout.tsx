@@ -118,7 +118,9 @@ const ContentLayout = ({ children }: { children: any }) => {
       </div>
 
       <div className='max-w-[1400px] bg-white mx-auto grid grid-cols-1 lg:grid-cols-4 mx-12'>
-        <div className='hidden lg:block mt-24 '><DocsNav /></div>
+        <div className='hidden lg:block mt-24 '>
+          <DocsNav />
+        </div>
         <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6'>
           {children}
         </div>
@@ -141,8 +143,8 @@ const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: 
   return (
     <Link scroll={false} href={uri}>
       <a className={classnames(className, 'font-semibold p-2 md:p-4', {
-        'text-blue-500 hover:text-primary': isActive,
-        'text-slate-600 hover:text-slate-800': !isActive
+        'text-primary hover:text-primary': isActive,
+        'text-slate-600 hover:text-primary': !isActive
       })}
       >{label}</a>
     </Link>
@@ -443,35 +445,35 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'z-10 h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
-    <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 w-1/3 justify-center '>
-      <div className='w-3/5 my-6  lg:mt-16'>
-        <img src='/img/logos/logo-white.svg' className='mb-6' />
+  <footer className={classnames(responsiveClasses, 'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
+    <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+      <div className=' my-6 m-auto md:mt-16'>
+        <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
           <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
         </div>
       </div>
-      <div className='mt-8 ml-12'>
-        <div className='flex items-center mb-4'>
-          <img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
-          <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='text-white'>Slack</a>
+      <div className='grid grid-cols-5 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
+        <div className='mr-4 mb-4'>
+          <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='flex items-center text-white'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
+        Slack</a>
         </div>
-        <div className='flex items-center mb-4'>
-          <img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
-          <a href='https://twitter.com/jsonschema' className='text-white'>Twitter</a>
+        <div className='mb-4 mr-4'>
+          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
+         Twitter</a>
         </div>
-        <div className='flex items-center mb-4'>
-          <img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
-          <a href='https://linkedin.com/company/jsonschema/' className='text-white'>LinkedIn</a>
+        <div className='mr-4 mb-4'>
+          <a href='https://linkedin.com/company/jsonschema/' className='flex items-center text-white'><img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
+          LinkedIn</a>
         </div>
-        <div className='flex items-center mb-4'>
-          <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
-          <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='text-white'>Youtube</a>
+        <div className='mr-4 mb-4'>
+          <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='flex items-center text-white'><img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
+          Youtube</a>
         </div>
-        <div className='flex items-center'>
-          <img src='/img/logos/github_logo-white.svg' className='w-4 h-4 mr-2' />
-          <a href='https://github.com/json-schema-org' className='text-white'>GitHub</a>
+        <div className=''>
+          <a href='https://github.com/json-schema-org' className='flex items-center text-white'><img src='/img/logos/github_logo-white.svg' className='w-4 h-4 mr-2' />
+         GitHub</a>
         </div>
       </div>
 
@@ -481,7 +483,7 @@ const Footer = () => (
 
 const OpenJS = () => (
   <div className={classnames(responsiveClasses, '')}>
-    <div className='max-w-[1400px] mx-auto my-6 lg:mt-24 grid grid-cols-1 lg:grid-cols-2 w-4/5'>
+    <div className='max-w-[1400px] mx-auto my-6 lg:mt-20 grid grid-cols-1 lg:grid-cols-2 w-4/5'>
       <div className='md:w-1/2 mb-12 lg:ml-28'>
         <img className='h-24 mx-auto mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
         {/* <div className='absolute bottom-0 ml-6  mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div> */}

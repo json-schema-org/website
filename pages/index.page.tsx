@@ -60,21 +60,22 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               JSON Schema enables the confident and reliable use of the JSON data format.
             </h2>
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
-              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Getting started</a></Link>
-              <Link href='#community' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px]'>Community</a></Link>
+              <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</a></Link>
+              <Link href='#community' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Community</a></Link>
               <HeroSearch />
 
             </div>
 
             <div className='mb-16 md:mb-36  mx-auto w-1/2 md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl'>Used by</h3>
-              <p className='text-white mb-8'>More than X implementations generating over 100 million weekly downloads</p>
+             
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
                 <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/github-white.png' className='w-40' />
               </div>
+              <p className='text-white my-8'>More than 200 implementations generating over 100 million weekly downloads</p>
             </div>
           </div>
         </section>
@@ -108,7 +109,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-full mx-auto text-center mt-28 '>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Start learning JSON Schema</h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white semi-bold'><a href='/overview/what-is-jsonschema'>Read the docs</a></button>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='/overview/what-is-jsonschema '>Read the docs</a></button>
           </div>
         </section>
 
@@ -137,7 +138,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
               <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
               {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
               <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email'>Join us</a></button>
+              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.org/slack'>Join us</a></button>
             </div>
             {/* BlogPost Data */}
             <div className='w-full '>
@@ -196,19 +197,19 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
         <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-full mx-auto text-center mt-28 '>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Contribute to the JSON Schema</h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white '><a href='https://github.com/json-schema-org#-contributing-to-json-schema
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='https://github.com/json-schema-org#-contributing-to-json-schema
 '>Contribute</a></button>
           </div>
         </section>
 
         {/* Sponsors */}
 
-        <section className='my-20'>
+        <section className='my-16'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/json-schema' className='border-b border-black'>Support us!</a></p>
           </div>
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto mx-4 md:mx-0'>
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4'>
             <a href=' https://www.asyncapi.com/'><img src='/img/logos/sponsors/asyncapi-logo-dark.svg' className=' w-44' /></a>
             <a href='https://www.airbnb.com/'><img src='/img/logos/sponsors/airbnb-logo.svg' className=' w-44' /></a>
             <a href='https://stoplight.io/'><img src='/img/logos/sponsors/stoplight-logo.svg' className=' w-44' /></a>
@@ -221,14 +222,14 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
 
         {/* Supported */}
 
-        <section className='mb-12 md:my-28'>
+        <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:en@jsonschema.dev' className='text-primary hover:underline'>Email us</a> for more info.</p>
+            <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
           </div>
-          <div className='w-5/6 lg:w-1/3 grid grid-cols-2 gap-8 lg:gap-4 items-center mx-auto'>
-            <a href='https://orbit.love/'><img src='/img/logos/supported/orbit-logo-color.png' className='w-4/5' /></a>
-            <a href='https://slack.com/' ><img src='/img/logos/supported/slack-logo.svg' className='' /></a>
+          <div className='grid grid-cols-2 gap-24 items-center mx-auto w-1/2'>
+            <a href='https://orbit.love/' className='w-44'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
+            <a href='https://json-schema.org/slack' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
             
           </div>
         </section>
