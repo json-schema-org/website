@@ -26,6 +26,7 @@
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-icons": "4.10.1",
     "react-syntax-highlighter": "^15.5.0",
     "react-text-truncate": "^0.18.0",
     "reading-time": "^1.5.0",

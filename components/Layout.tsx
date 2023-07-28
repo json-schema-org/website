@@ -7,6 +7,8 @@ import { DocSearch } from '@docsearch/react'
 import { HOST } from '~/lib/config'
 import useStore from '~/store'
 import { SectionContext } from '~/context'
+// import { SidebarData } from './SidebarData'
+
 
 type Props = {
   children: React.ReactNode
@@ -42,7 +44,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
               <MainNavigation />
             </div>
           </header>
-          
+
           {showMobileNav ? (
             <>
               <MobileNav />
@@ -68,7 +70,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
               </ContentLayout>
             </div>
           )}
-          
+
           <Footer />
           <OpenJS />
         </main>
@@ -120,6 +122,10 @@ const ContentLayout = ({ children }: { children: any }) => {
       <div className='max-w-[1400px] bg-white mx-auto grid grid-cols-1 lg:grid-cols-4 mx-12'>
         <div className='hidden lg:block mt-24 '>
           <DocsNav />
+          {/* {SidebarData.map((item, index) => {
+            { console.log(SidebarData) }
+            return <Sidebar item={item} key={index} />;
+          })} */}
         </div>
         <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6'>
           {children}
@@ -246,6 +252,40 @@ const MobileNav = () => {
     </div>
   )
 }
+// export const Sidebar = ({ item }: { item: any }) => {
+//   const [subnav, setSubnav] = useState<boolean>(false);
+
+//   const showSubnav = (): void => setSubnav(!subnav);
+//   return (
+//     <>
+//       <div className='mb-2 bg-slate-200 p-2 rounded'>
+//         <div className='flex justify-between w-full items-center'  >
+//           <div className='flex  items-center align-middle' onClick={item.subNav && showSubnav}>
+//             <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
+//             {item.title}
+//             <div>
+//               {item.subNav && subnav
+//                 ? item.iconOpened
+//                 : item.subNav
+//                   ? item.iconClosed
+//                   : null}
+//             </div>
+//           </div>
+
+//         </div>
+//         {subnav &&
+//           item.subNav.map((item: any, index: number) => {
+//             return (
+//               <div className='flex'>
+//                <DocLink uri={item.path} label={item.title} />
+//               </div>
+//             );
+//           })}
+//       </div>
+//     </>
+//   )
+
+// }
 
 export const DocsNav = () => {
 
@@ -253,6 +293,7 @@ export const DocsNav = () => {
   const handleClick = () => {
     setActive(!active)
   }
+
   const [activeGet, setActiveGet] = useState(false)
   const handleClickGet = () => {
     setActiveGet(!activeGet)
@@ -266,54 +307,42 @@ export const DocsNav = () => {
     setActiveSpec(!activeSpec)
   }
 
-  const [rotateChevron, setRotateChevron] = useState(false)
-  const handleRotate = () => setRotateChevron(!rotateChevron)
-  const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const rotate = active ? 'rotate(180deg)' : 'rotate(0)'
 
-  const [rotateGChevron, setRotateGChevron] = useState(false)
-  const handleGetStarted = () => setRotateGChevron(!rotateGChevron)
-  const rotateG = rotateGChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const rotateG = activeGet ? 'rotate(180deg)' : 'rotate(0)'
 
-  const [rotateReferenceChevron, setRotateReferenceChevron] = useState(false)
-  const handleRotateReference = () => setRotateReferenceChevron(!rotateReferenceChevron)
-  const rotateR = rotateReferenceChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const rotateR = activeReference ? 'rotate(180deg)' : 'rotate(0)'
 
-  const [rotateSpecChevron, setRotateSChevron] = useState(false)
-  const handleRotateSpec = () => setRotateSChevron(!rotateSpecChevron)
-  const rotateSpec = rotateSpecChevron ? 'rotate(180deg)' : 'rotate(0)'
+  const rotateSpec = activeSpec ? 'rotate(180deg)' : 'rotate(0)'
 
   return (
 
     <div id='sidebar '
       className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClick(); handleRotate() }} >
+        <div className='flex justify-between w-full items-center' onClick={(e) => { e.preventDefault(); handleClick() }} >
           <div className='flex  items-center align-middle'>
             <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Overview' />
           </div>
           <svg style={{ transform: rotate, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
-
         </div>
-
         <div
           className={`${active ? '' : 'hidden'
           } text-left text-sm mt-2 w-4/5 mx-auto `}
           id='overview'
         >
           <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
-
         </div>
       </div>
       {/* Get Started */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickGet(); handleGetStarted() }} >
+        <div className='flex justify-between w-full items-center' onClick={(e) => { e.preventDefault(); handleClickGet() }} >
           <div className='flex  items-center align-middle' >
             <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Getting Started' />
           </div>
           <svg style={{ transform: rotateG, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
-
         </div>
         <div
           className={`${activeGet ? '' : 'hidden'
@@ -329,13 +358,12 @@ export const DocsNav = () => {
       </div>
       {/* Reference */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickReference(); handleRotateReference() }}>
+        <div className='flex justify-between w-full items-center' onClick={() => { handleClickReference() }}>
           <div className='flex  items-center align-middle' >
             <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Reference' />
           </div>
           <svg style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
-
         </div>
         <div className={`${activeReference ? '' : 'hidden'
         }   text-left text-sm mt-2 w-4/5 mx-auto font-bold`}
@@ -385,7 +413,7 @@ export const DocsNav = () => {
       </div>
       {/* Specification */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickSpec(); handleRotateSpec() }}>
+        <div className='flex justify-between w-full items-center' onClick={(e) => { e.preventDefault(); handleClickSpec() }}>
           <div className='flex  items-center align-middle'>
             <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Specification' />
@@ -412,7 +440,7 @@ export const DocsNav = () => {
   )
 }
 
-const SegmentHeadline = ({ label }: { label: string }) => {
+export const SegmentHeadline = ({ label }: { label: string }) => {
   return (
     <div className='text-slate-900 font-bold'>
       {label}
@@ -458,23 +486,23 @@ const Footer = () => (
       <div className='grid grid-cols-5 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
         <div className='mr-4 mb-4'>
           <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='flex items-center text-white'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
-        Slack</a>
+            Slack</a>
         </div>
         <div className='mb-4 mr-4'>
           <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
-         Twitter</a>
+            Twitter</a>
         </div>
         <div className='mr-4 mb-4'>
           <a href='https://linkedin.com/company/jsonschema/' className='flex items-center text-white'><img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
-          LinkedIn</a>
+            LinkedIn</a>
         </div>
         <div className='mr-4 mb-4'>
           <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='flex items-center text-white'><img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
-          Youtube</a>
+            Youtube</a>
         </div>
         <div className=''>
           <a href='https://github.com/json-schema-org' className='flex items-center text-white'><img src='/img/logos/github_logo-white.svg' className='w-4 h-4 mr-2' />
-         GitHub</a>
+            GitHub</a>
         </div>
       </div>
 
