@@ -1,4 +1,4 @@
-import Layout from '~/components/Layout'
+import Layout, { ContentLayout } from '~/components/Layout'
 import StyledMarkdown from '~/components/StyledMarkdown'
 import Head from 'next/head'
 import React from 'react'
@@ -14,11 +14,13 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
       <Layout>
-        <Head>
-          <title>JSON Schema - {frontmatter.title}</title>
-        </Head>
-        <Headline1>{frontmatter.title}</Headline1>
-        <StyledMarkdown markdown={content} />
+        <ContentLayout>
+          <Head>
+            <title>JSON Schema - {frontmatter.title}</title>
+          </Head>
+          <Headline1>{frontmatter.title}</Headline1>
+          <StyledMarkdown markdown={content} />
+        </ContentLayout>
       </Layout>
     </SectionContext.Provider>
   )

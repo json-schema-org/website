@@ -48,9 +48,9 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
           {showMobileNav ? (
             <>
               <MobileNav />
-              <ContentLayout>
-                {children}
-              </ContentLayout>
+            
+              {children}
+             
             </>
           ) : (
             <div>
@@ -65,9 +65,9 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
                   />
                 </div>
               )}
-              <ContentLayout>
-                {children}
-              </ContentLayout>
+             
+              {children}
+             
             </div>
           )}
 
@@ -79,7 +79,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   )
 }
 
-const ContentLayout = ({ children }: { children: any }) => {
+export const ContentLayout = ({ children }: { children: any }) => {
   const section = useContext(SectionContext)
   const router = useRouter()
 
@@ -122,10 +122,6 @@ const ContentLayout = ({ children }: { children: any }) => {
       <div className='max-w-[1400px] bg-white mx-auto grid grid-cols-1 lg:grid-cols-4 mx-12'>
         <div className='hidden lg:block mt-24 '>
           <DocsNav />
-          {/* {SidebarData.map((item, index) => {
-            { console.log(SidebarData) }
-            return <Sidebar item={item} key={index} />;
-          })} */}
         </div>
         <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6'>
           {children}
@@ -483,7 +479,7 @@ const Footer = () => (
           <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
         </div>
       </div>
-      <div className='grid grid-cols-5 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
+      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
         <div className='mr-4 mb-4'>
           <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='flex items-center text-white'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
             Slack</a>
