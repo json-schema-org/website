@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout, { ContentLayout } from '~/components/Layout'
+import { getLayout } from '../../components/Sidebar'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
@@ -18,14 +18,13 @@ export async function getStaticProps() {
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
   return (
-    <Layout>
-      <ContentLayout>
-        <StyledMarkdown markdown={blocks[0]} />
-        <div className='bg-red-500'>
+    <div>
+      <StyledMarkdown markdown={blocks[0]} />
+      <div className='bg-red-500'>
           any custom component here
-        </div>
-        <StyledMarkdown markdown={blocks[1]} />
-      </ContentLayout>
-    </Layout>
+      </div>
+      <StyledMarkdown markdown={blocks[1]} />
+    </div>
   )
 }
+ContentExample.getLayout = getLayout

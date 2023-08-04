@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '~/components/Layout'
+import { getLayout } from '../../components/SiteLayout'
 import fs from 'fs'
 import Head from 'next/head'
 import matter from 'gray-matter'
@@ -9,7 +9,7 @@ import { Headline1, Headline2, Headline3 } from 'components/Headlines'
 import slugify from 'slugify'
 import { useRouter } from 'next/router'
 import classnames from 'classnames'
-import { SectionContext } from '~/context'
+
 import { DRAFT_ORDER } from '~/lib/config'
 
 // @ts-ignore
@@ -39,29 +39,26 @@ type ImplementationByLanguage = { name: string }
 
 export default function ImplementationsPages({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
-    <SectionContext.Provider value='implementations'>
-      <Layout>
-        <Head>
-          <title>JSON Schema - Implementations</title>
-        </Head>
+    <div>
+      <Head>
+        <title>JSON Schema - Implementations</title>
+      </Head>
 
-        <div className=' lg:flex lg:flex-row justify-between gap-12 mt-12 w-full  mx-auto px-2 sm:px-4 lg:px-12'>
+      <div className=' lg:flex lg:flex-row justify-between gap-12 mt-12 w-full  mx-auto px-2 sm:px-4 lg:px-12'>
           
-          <div className='mt-6'>
-            <Headline1>Implementations</Headline1>
-            <StyledMarkdown markdown={blocks.intro} />
-            <Headline2>Validators</Headline2>
-            <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
-            <StyledMarkdown markdown={blocks.main} />
-            <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
-          </div>
+        <div className='mt-6'>
+          <Headline1>Implementations</Headline1>
+          <StyledMarkdown markdown={blocks.intro} />
+          <Headline2>Validators</Headline2>
+          <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
+          <StyledMarkdown markdown={blocks.main} />
+          <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
         </div>
-
-      </Layout>
-    </SectionContext.Provider>
+      </div>
+    </div>
   )
 }
-
+ImplementationsPages.getLayout = getLayout
 function ImplementationTable({ implementationsByLanguage, prefix }: { implementationsByLanguage: any, prefix: string }) {
   const router = useRouter()
   return (
@@ -107,7 +104,7 @@ function ImplementationTable({ implementationsByLanguage, prefix }: { implementa
               if (router.query.language && !isActive) return null
 
               return (
-                <React.Fragment
+                <div
                   key={index}
                 >
                   <tr>
@@ -146,7 +143,7 @@ function ImplementationTable({ implementationsByLanguage, prefix }: { implementa
                       </tr>
                     )
                   })}
-                </React.Fragment>
+                </div>
               )
             })}
           </tbody>

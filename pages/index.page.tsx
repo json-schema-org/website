@@ -1,5 +1,6 @@
 import React from 'react'
-import Layout from '~/components/Layout'
+
+import { getLayout } from '../components/SiteLayout'
 import HeroSearch from '~/components/heroSearch'
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -45,10 +46,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
   const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes)
 
   return (
-    <Layout
-      mainClassName='flex flex-col'
-      hideAds
-    >
+    <div>
       <div className='flex flex-col items-center'>
         {/* Hero  */}
         <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom w-full'>
@@ -234,8 +232,9 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
           </div>
         </section>
       </div>
-    </Layout>
+    </div>
   )
 }
 
 export default Home
+Home.getLayout = getLayout

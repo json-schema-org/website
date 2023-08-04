@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout, { ContentLayout } from '~/components/Layout'
+import { getLayout } from '~/components/Sidebar'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
@@ -8,7 +8,6 @@ import { Headline1, Headline2, Headline3 } from 'components/Headlines'
 import slugify from 'slugify'
 import { useRouter } from 'next/router'
 import classnames from 'classnames'
-import { SectionContext } from '~/context'
 import { DRAFT_ORDER } from '~/lib/config'
 
 // @ts-ignore
@@ -41,22 +40,21 @@ type ImplementationByLanguage = { name: string }
 
 export default function ImplementationsPages({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
-    <SectionContext.Provider value='implementations'>
-      <Layout>
-        <ContentLayout>
-          <Headline1>Obsolete Implementations</Headline1>
-          <StyledMarkdown markdown={blocks.intro} />
+    <div>
+      <Headline1>Obsolete Implementations</Headline1>
+      <StyledMarkdown markdown={blocks.intro} />
 
-          <Headline2>Validators</Headline2>
-          <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
-          <StyledMarkdown markdown={blocks.main} />
-          <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
-          <StyledMarkdown markdown={blocks.main2} />
-        </ContentLayout>
-      </Layout>
-    </SectionContext.Provider>
+      <Headline2>Validators</Headline2>
+      <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
+      <StyledMarkdown markdown={blocks.main} />
+      <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+      <StyledMarkdown markdown={blocks.main2} />
+        
+    </div>
   )
 }
+
+ImplementationsPages.getLayout = getLayout
 
 function ImplementationTable({ implementationsByLanguage, prefix }: { implementationsByLanguage: any, prefix: string }) {
   const router = useRouter()
@@ -103,7 +101,7 @@ function ImplementationTable({ implementationsByLanguage, prefix }: { implementa
               if (router.query.language && !isActive) return null
 
               return (
-                <React.Fragment
+                <div
                   key={index}
                 >
                   <tr>
@@ -142,7 +140,7 @@ function ImplementationTable({ implementationsByLanguage, prefix }: { implementa
                       </tr>
                     )
                   })}
-                </React.Fragment>
+                </div>
               )
             })}
           </tbody>
