@@ -3,7 +3,7 @@ import { Headline1 } from '~/components/Headlines'
 import fs from 'fs'
 import Head from 'next/head'
 import Link from 'next/link'
-import React from 'react'
+import React, { useState } from 'react'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
 const PATH = 'pages/blog/posts'
@@ -51,9 +51,16 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   })
 
   const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes)
-  // const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type)
-  // const spreadTags: any[] = [...setOfTags]
-  // const allTags: any[] = [...new Set(spreadTags)]
+  const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type)
+  const spreadTags: any[] = [...setOfTags]
+  const allTags: any[] = [...new Set(spreadTags)]
+
+  const [filterTag, setFilterTag] = useState('')
+  const handleClick = ( event: { currentTarget: { value: any } }) => {
+    const clickedTag = event.currentTarget.value
+    setFilterTag(clickedTag)
+  }
+
 
   return (
     <div>
@@ -110,19 +117,25 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
             </a>
           </div>
         </div>
-        {/* <div className='flex justify-start lg:-ml-[830px]'>{allTags.map((tag) => (
-            <p key={tag} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</p>
-          ))}</div> */}
+        {/* Filter Buttons */}
+        <div className='flex justify-start lg:-ml-[830px]'>{allTags.map((tag) => (
+          <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</button>
+        ))}</div>
           
-
+        {/* filterTag === frontmatter.type &&  */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 lg:px-8'>
+
           {blogPosts
             .filter(post => {
               if (!typeFilter) return true
               const blogType = post.frontmatter.type as string | undefined
               if (!blogType) return false
               return blogType.toLowerCase() === typeFilter.toLowerCase()
-            })
+            }).filter(
+              post => {
+                if (post.frontmatter.type === filterTag) return true
+              }
+            )
             .sort((a, b) => {
               const dateA = new Date(a.frontmatter.date).getTime()
               const dateB = new Date(b.frontmatter.date).getTime()
