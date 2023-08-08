@@ -1,7 +1,8 @@
 import React from 'react'
 
 import { getLayout } from '../components/SiteLayout'
-import HeroSearch from '~/components/heroSearch'
+// import HeroSearch from '~/components/heroSearch'
+import { DocSearch } from '@docsearch/react'
 import fs from 'fs'
 import matter from 'gray-matter'
 const PATH = 'pages/blog/posts'
@@ -60,13 +61,19 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</a></Link>
               <Link href='#community' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Community</a></Link>
-              <HeroSearch />
-
+             
+              <div className='herobtn rounded border-2 border-white text-white mx-auto'>
+                <DocSearch
+                  appId='6ZT4KX2OUI'
+                  apiKey='69f76fba13585144f6686622e9c8f2a8'
+                  indexName='json-schema'
+                />
+              </div>
             </div>
 
             <div className='mb-16 md:mb-36  mx-auto w-1/2 md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl'>Used by</h3>
-             
+
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
                 <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
@@ -118,7 +125,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4'>Explore the JSON Schema Ecosystem</h3>
             <p className='lg:pr-8 mb-4 text-center lg:text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
             <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto  h-[45px] rounded border-2 bg-primary text-white'><a href='/implementations/'>Explore</a></button>
- 
+
           </div>
         </section>
 
@@ -215,7 +222,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <a href='https://retool.com/'><img src='/img/logos/sponsors/retool-logo.svg' className=' w-44' /></a>
             <a href='https://www.apideck.com/'><img src='/img/logos/sponsors/apideck-logo.png' className=' w-44' /></a>
           </div>
-        
+
         </section>
 
         {/* Supported */}
@@ -228,7 +235,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
           <div className='grid grid-cols-2 gap-24 items-center mx-auto w-1/2'>
             <a href='https://orbit.love/' className='w-44'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
             <a href='https://json-schema.org/slack' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
-            
+
           </div>
         </section>
       </div>

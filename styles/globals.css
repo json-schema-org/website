@@ -190,8 +190,18 @@ margin-left: 40px;
 		display: flex;
 	}
 }
-
-
+/* .herobtn {
+  border: white 2px solid !important;
+	color: white !important;
+	border-radius: 0.25rem;
+  width: 154px;
+} */
+.herobtn span {
+  margin: 0 auto;
+}
+.herobtn span, svg {
+	color: white !important;
+}
 .anchor {
   position: relative;
   margin-bottom: 20px;
