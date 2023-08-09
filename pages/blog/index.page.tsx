@@ -11,6 +11,7 @@ import TextTruncate from 'react-text-truncate'
 import generateRssFeed from './generateRssFeed'
 import { useRouter } from 'next/router'
 import useSetUrlParam from '~/lib/useSetUrlParam'
+import { SectionContext } from '~/context'
 
 export async function getStaticProps() {
   const files = fs.readdirSync(PATH)
@@ -53,8 +54,11 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes)
   const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type)
   const spreadTags: any[] = [...setOfTags]
-  const allTags: any[] = [...new Set(spreadTags)]
-
+  let allTags: any[] = ['All']
+  spreadTags?.forEach(tag => allTags.push(tag))
+  
+  allTags = [...new Set(allTags)]
+ 
   const [filterTag, setFilterTag] = useState('')
   const handleClick = ( event: { currentTarget: { value: any } }) => {
     const clickedTag = event.currentTarget.value
@@ -63,7 +67,8 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
 
 
   return (
-    <div>
+    // @ts-ignore
+    <SectionContext.Provider value='blog'>
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
@@ -217,7 +222,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
           }
         </div>
       </div>
-    </div>
+    </SectionContext.Provider>
   )
 }
 

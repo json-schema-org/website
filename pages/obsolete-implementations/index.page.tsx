@@ -9,6 +9,7 @@ import slugify from 'slugify'
 import { useRouter } from 'next/router'
 import classnames from 'classnames'
 import { DRAFT_ORDER } from '~/lib/config'
+import { SectionContext } from '~/context'
 
 // @ts-ignore
 import zeroFill from 'zero-fill'
@@ -40,7 +41,8 @@ type ImplementationByLanguage = { name: string }
 
 export default function ImplementationsPages({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
-    <div>
+    // @ts-ignore
+    <SectionContext.Provider value='implementations'>
       <Headline1>Obsolete Implementations</Headline1>
       <StyledMarkdown markdown={blocks.intro} />
 
@@ -50,7 +52,7 @@ export default function ImplementationsPages({ blocks, validators, hyperLibaries
       <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
       <StyledMarkdown markdown={blocks.main2} />
         
-    </div>
+    </SectionContext.Provider>
   )
 }
 

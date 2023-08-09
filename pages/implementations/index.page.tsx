@@ -9,7 +9,7 @@ import { Headline1, Headline2, Headline3 } from 'components/Headlines'
 import slugify from 'slugify'
 import { useRouter } from 'next/router'
 import classnames from 'classnames'
-
+import { SectionContext } from '~/context'
 import { DRAFT_ORDER } from '~/lib/config'
 
 // @ts-ignore
@@ -39,13 +39,14 @@ type ImplementationByLanguage = { name: string }
 
 export default function ImplementationsPages({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
-    <div>
+    // @ts-ignore
+    <SectionContext.Provider value='implementations'>
       <Head>
         <title>JSON Schema - Implementations</title>
       </Head>
 
       <div className=' lg:flex lg:flex-row justify-between gap-12 mt-12 w-full  mx-auto px-2 sm:px-4 lg:px-12'>
-          
+
         <div className='mt-6'>
           <Headline1>Implementations</Headline1>
           <StyledMarkdown markdown={blocks.intro} />
@@ -55,7 +56,7 @@ export default function ImplementationsPages({ blocks, validators, hyperLibaries
           <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
         </div>
       </div>
-    </div>
+    </SectionContext.Provider>
   )
 }
 ImplementationsPages.getLayout = getLayout

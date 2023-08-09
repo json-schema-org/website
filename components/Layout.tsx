@@ -138,7 +138,7 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <div className='flex items-center gap-4   lg:ml-0'>
+      <div className='flex items-center gap-4 rounded border-2 border-gray-100 lg:ml-0'>
         <Search />
 
         {showMobileNav === false ? (<div

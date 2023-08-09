@@ -6,6 +6,7 @@ import React from 'react'
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import { Headline1 } from '~/components/Headlines'
+import { SectionContext } from '~/context'
 
 export async function getStaticPaths() { return getStaticMarkdownPaths('pages') }
 export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages') }
@@ -13,7 +14,8 @@ export async function getStaticProps(args: any) { return getStaticMarkdownProps(
 export default function StaticMarkdownPage({ frontmatter, content }: { frontmatter: any, content: any }) {
 
   return (
-    <div>
+    // @ts-ignore
+    <SectionContext.Provider value={frontmatter.section || null}>
       <Head>
         <title>JSON Schema - {frontmatter.title}</title>
       </Head>
@@ -24,7 +26,7 @@ export default function StaticMarkdownPage({ frontmatter, content }: { frontmatt
           
       
 
-    </div>
+    </SectionContext.Provider>
   )
 }
 StaticMarkdownPage.getLayout = getLayout
