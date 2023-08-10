@@ -3,11 +3,9 @@ import React from 'react'
 
 export const SiteLayout = ({ children }: { children: React.ReactNode}): JSX.Element => {
   return (
-    <div>
-      <Layout>
-        {children}
-      </Layout>
-    </div>
+    <Layout>
+      {children}
+    </Layout>
   )
 }
   
