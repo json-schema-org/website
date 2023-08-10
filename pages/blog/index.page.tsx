@@ -41,7 +41,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const router = useRouter()
   const typeFilter: null | string = Array.isArray(router.query?.type)
     ? router.query?.type?.[0] : router.query?.type || null
-  
+
   const setParam = useSetUrlParam()
 
 
@@ -56,11 +56,11 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const spreadTags: any[] = [...setOfTags]
   let allTags: any[] = ['All']
   spreadTags?.forEach(tag => allTags.push(tag))
-  
+
   allTags = [...new Set(allTags)]
- 
+
   const [filterTag, setFilterTag] = useState('')
-  const handleClick = ( event: { currentTarget: { value: any } }) => {
+  const handleClick = (event: { currentTarget: { value: any } }) => {
     const clickedTag = event.currentTarget.value
     setFilterTag(clickedTag)
   }
@@ -74,42 +74,38 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
       </Head>
       <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16'>
         {recentBlog[0] && (
-          <section className=' w-full  clip-bottom'>
-            <Link href={`/blog/posts/${recentBlog[0].slug}`} passHref>
-              <div>
-                <div className='absolute z-20 left-10 text-white mt-72'>
-                  <div
-                    className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
-                    onClick={(e) => {
-                      e.preventDefault()
-                      e.stopPropagation()
-                      setParam('type', recentBlog[0].frontmatter.type)
-                    }}
-                  >
-                    {recentBlog[0].frontmatter.type}
-                  </div>
-                  <div className='text-h1mobile md:text-h1 font-semibold'>
-                    {recentBlog[0].frontmatter.title}
-                  </div>
-                  <div className='flex ml-2 mb-2 '>
-                    <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                      style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
-                    />
-                    <div className='max-w-[1400px] mx-autoflex flex-col ml-2'>
-                      <p className='text-sm font-semibold'>{recentBlog[0].frontmatter.authors[0].name}</p>
-                      <div className=' text-sm'>
-                        <span>
-                          {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
-                        </span>
-                      </div>
-                    </div>
+          <div className='relative w-full h-[50vh] mt-6 clip-bottom'>
+            <div className='-z-1'>
+              <img
+                src={recentBlog[0].frontmatter.cover}
+                className='object-cove center'
+                alt='hero image example'
+              />
+            </div>
+
+            <div className='absolute text-white left-8 bottom-8'>
+              <div className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
+                {recentBlog[0].frontmatter.type}
+              </div>
+              <div className='text-h1mobile md:text-h1 font-semibold'>
+                {recentBlog[0].frontmatter.title}
+              </div>
+              <div className='flex ml-2 mb-2 '>
+                <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                  style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
+                />
+                <div className='max-w-[1400px] mx-autoflex flex-col ml-2'>
+                  <p className='text-sm font-semibold'>{recentBlog[0].frontmatter.authors[0].name}</p>
+                  <div className=' text-sm'>
+                    <span>
+                      {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
+                    </span>
                   </div>
                 </div>
-
-                <img src={recentBlog[0].frontmatter.cover} className='relative z-10 bg-slate-50 w-full h-[595px] bg-cover bg-center' />
               </div>
-            </Link>
-          </section>)}
+            </div>
+          </div>
+        )}
         <div className='w-full flex justify-between items-center mx-auto px-2 sm:px-4 lg:px-8'>
           <div className='flex items-center'><Headline1>Blog</Headline1> <p className='mt-4'>Filter blog post by category...</p></div>
           <div className='col-span-1'>
@@ -118,15 +114,15 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               className='flex flex-row items-center text-blue-500 hover:text-blue-600 cursor-pointer mt-3'
             >
               <img src='/icons/rss.svg' className='rounded h-5 w-5 mr-2' />
-                RSS Feed
+              RSS Feed
             </a>
           </div>
         </div>
         {/* Filter Buttons */}
-        <div className='flex justify-start lg:-ml-[830px]'>{allTags.map((tag) => (
+        <div className='flex flex-wrap justify-start'>{allTags.map((tag) => (
           <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</button>
         ))}</div>
-          
+
         {/* filterTag === frontmatter.type &&  */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 lg:px-8'>
 
@@ -154,7 +150,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               return (
                 <section key={blogPost.slug}>
                   <div
-                      
+
                     className='flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden'
                   >
                     <Link href={`/blog/posts/${blogPost.slug}`}>
