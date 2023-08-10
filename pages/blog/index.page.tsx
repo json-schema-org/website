@@ -54,10 +54,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes)
   const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type)
   const spreadTags: any[] = [...setOfTags]
-  let allTags: any[] = ['All']
-  spreadTags?.forEach(tag => allTags.push(tag))
-
-  allTags = [...new Set(allTags)]
+  const allTags = [...new Set(spreadTags)]
 
   const [filterTag, setFilterTag] = useState('')
   const handleClick = (event: { currentTarget: { value: any } }) => {
@@ -74,7 +71,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
       </Head>
       <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16'>
         {recentBlog[0] && (
-          <div className='relative w-full h-[50vh] mt-6 clip-bottom'>
+          <div className='relative w-full lg:h-[50vh] lg:mt-6 clip-bottom'>
             <div className='-z-1'>
               <img
                 src={recentBlog[0].frontmatter.cover}
@@ -106,8 +103,8 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
             </div>
           </div>
         )}
-        <div className='w-full flex justify-between items-center mx-auto px-2 sm:px-4 lg:px-8'>
-          <div className='flex items-center'><Headline1>Blog</Headline1> <p className='mt-4'>Filter blog post by category...</p></div>
+        <div className='w-full flex justify-between items-center mx-auto px-2 sm:px-4 '>
+          <div className='flex items-center'><Headline1>Blog</Headline1> <p className='mt-8'>Filter blog post by category...</p></div>
           <div className='col-span-1'>
             <a
               href='/rss/feed.xml'
@@ -119,12 +116,12 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
           </div>
         </div>
         {/* Filter Buttons */}
-        <div className='flex flex-wrap justify-start'>{allTags.map((tag) => (
+        <div className='w-full lg:ml-8 flex flex-wrap justify-start'>{allTags.map((tag) => (
           <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</button>
         ))}</div>
 
         {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 lg:px-8'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 '>
 
           {blogPosts
             .filter(post => {
@@ -135,6 +132,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
             }).filter(
               post => {
                 if (post.frontmatter.type === filterTag) return true
+                else if (filterTag === '') return true
               }
             )
             .sort((a, b) => {
@@ -150,8 +148,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               return (
                 <section key={blogPost.slug}>
                   <div
-
-                    className='flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden'
+                    className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden'
                   >
                     <Link href={`/blog/posts/${blogPost.slug}`}>
                       <a className='inline-flex flex-col flex-1 w-full'>
@@ -159,7 +156,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                           className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
                           style={{ backgroundImage: `url(${frontmatter.cover})` }}
                         />
-                        <div className='p-4 flex flex-col flex-1 justify-between'>
+                        <div className=' p-4 flex flex-col flex-1 justify-between'>
                           <div>
                             <div>
                               <div
