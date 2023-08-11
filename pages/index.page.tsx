@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 import { getLayout } from '../components/SiteLayout'
 // import HeroSearch from '~/components/heroSearch'
@@ -10,12 +10,17 @@ import readingTime from 'reading-time'
 import Link from 'next/link'
 import TextTruncate from 'react-text-truncate'
 
-import Calendar from '~/components/Calendar'
+// import  NewCalendar  from '~/components/NewCalendar'
 import { Headline4 } from '~/components/Headlines'
 
+const axios = require('axios');
+const ical = require('node-ical');
+const moment = require('moment');
 
 
 export async function getStaticProps() {
+
+
   const files = fs.readdirSync(PATH)
   const blogPosts = files
     .filter(file => file.substr(-3) === '.md')
@@ -29,16 +34,101 @@ export async function getStaticProps() {
         content
       })
     })
+  let k;
+
+  // Function to fetch the remote iCal file
+  async function fetchRemoteICalFile(url: string) {
+    try {
+      const response = await axios.get(url, { method: 'no-cors' });
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching iCal file:', error);
+      return null;
+    }
+  }
+
+  // Example usage:
+  const remoteICalUrl = 'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics'; // Replace with the actual URL
+  k = await fetchRemoteICalFile(remoteICalUrl)
+    .then((icalData) => printEventsForNextFourWeeks(ical.parseICS(icalData)))
+    .catch((error) => console.error('Error:', error));
+
+  console.log('fetch', k)
 
   return {
     props: {
-      blogPosts
+      blogPosts,
+      dates: k
     }
   }
 }
+// Function to filter and print events for the next 4 weeks from today
+function printEventsForNextFourWeeks(icalData: { [x: string]: any; }) {
 
-const Home = ({ blogPosts }: { blogPosts: any[] }) => {
+  let listOfDates;
+  let arrayDates = [];
 
+  if (!icalData) {
+    console.error('iCal data is empty or invalid.');
+    return;
+  }
+
+  // Calculate the range of dates for the next 4 weeks from today
+  const today = moment().startOf('day');
+  const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day');
+
+  // Loop through the events in the iCal data
+  for (const k in icalData) {
+    const event = icalData[k];
+    if (event.type === 'VEVENT') {
+      const title = event.summary;
+      let startDate = moment(event.start);
+      let endDate = moment(event.end);
+      let description = event.description;
+
+      // Calculate the duration of the event for use with recurring events.
+      const duration = endDate.diff(startDate);
+
+      // Get the timezone of the event
+      const timezone = event.tz || 'UTC'; // Default to UTC if timezone information is not provided
+
+      // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
+      if (event.rrule !== undefined) {
+        // For recurring events, get the set of event start dates that fall within the range
+        // of dates we're looking for.
+        const dates = event.rrule.between(
+          today.toDate(),
+          nextFourWeeksEnd.toDate(),
+          true,
+          function (date: any, i: any) {
+            return true;
+          }
+        );
+
+        // Loop through the set of date entries to see which recurrences should be printed.
+        for (const date of dates) {
+          startDate = moment(date);
+          endDate = moment(date).add(duration);
+
+          // Check if the event falls within the next 4 weeks from today
+          if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
+
+            arrayDates.push({ title })
+
+          }
+        }
+
+      }
+
+    }
+
+  }
+  return arrayDates
+
+}
+const Home = ({ blogPosts }: { blogPosts: any[] }, dates: any) => {
+  console.log('anything', dates)
+  // const [calendarData, setCalendarData] = useState([])
   const recentBlog = blogPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime()
     const dateB = new Date(b.frontmatter.date).getTime()
@@ -61,7 +151,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</a></Link>
               <Link href='#community' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Community</a></Link>
-             
+
               <div className='herobtn rounded border-2 border-white text-white mx-auto'>
                 <DocSearch
                   appId='6ZT4KX2OUI'
@@ -188,7 +278,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
                     Upcoming events
                   </Headline4>
                   <ul>
-                    <Calendar />
+                    {/* <NewCalendar /> */}
 
                   </ul>
                 </div>
