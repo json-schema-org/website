@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { getLayout } from '../components/SiteLayout'
-// import HeroSearch from '~/components/heroSearch'
 import { DocSearch } from '@docsearch/react'
 import fs from 'fs'
 import matter from 'gray-matter'
@@ -12,10 +10,12 @@ import TextTruncate from 'react-text-truncate'
 
 import { Headline4 } from '~/components/Headlines'
 import { GetStaticProps } from 'next'
+
 /* eslint-disable */
-const axios = require('axios')
-const ical = require('node-ical')
-const moment = require('moment')
+import axios from 'axios'
+import ical from 'node-ical'
+import moment from 'moment'
+
 
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
@@ -24,7 +24,6 @@ export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH)
   const blogPosts = files
     .filter(file => file.substr(-3) === '.md')
-    
     .map((fileName) => {
       const slug = fileName.replace('.md', '')
       const fullFileName = fs.readFileSync(`pages/blog/posts/${slug}.md`, 'utf-8')
@@ -53,7 +52,7 @@ export const getStaticProps: GetStaticProps = async () => {
       return null
     }
   }
-  
+
   // Example usage:
   const remoteICalUrl = 'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics' // Replace with the actual URL
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
@@ -61,8 +60,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .catch((error) => console.error('Error:', error))
 
   // console.log('this is fetched data', datesInfo)
-  // const stringTitle = JSON.parse(datesInfo)
-  // console.log( stringTitle)
+
   return {
     props: {
       blogPosts,
@@ -93,14 +91,9 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
     if (event.type === 'VEVENT') {
       const title = event.summary
       let startDate = moment(event.start)
-      let endDate = moment(event.end)
-      // const description = event.description
-
-      // Calculate the duration of the event for use with recurring events.
-      const duration = endDate.diff(startDate)
 
       // Get the timezone of the event
-      // const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
+      const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
 
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
@@ -118,13 +111,14 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
         // Loop through the set of date entries to see which recurrences should be printed.
         for (const date of dates) {
           startDate = moment(date)
-          endDate = moment(date).add(duration)
 
           // Check if the event falls within the next 4 weeks from today
           if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-        
-            arrayDates.push({ title })
-            // console.log( arrayDates)
+            const time = startDate.format('MMMM Do YYYY, h:mm:ss a')
+            const day = startDate.format('D')
+            
+            arrayDates.push({ title, time, day, timezone })
+
           }
         }
 
@@ -136,8 +130,9 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   return arrayDates
 
 }
-const Home = ({ blogPosts }: { blogPosts: any[] }, datesInfo: any) => {
-  // console.log('anything', datesInfo)
+const Home = (props: any) => {
+  const blogPosts = props.blogPosts
+  // console.log('anything', props.datesInfo)
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes)
 
   return (
@@ -281,10 +276,25 @@ const Home = ({ blogPosts }: { blogPosts: any[] }, datesInfo: any) => {
                   <Headline4 >
                     Upcoming events
                   </Headline4>
-                  <ul>
-                    {/* {dates.map((date)=><p>{date}</p>)} */}
 
-                  </ul>
+                  <div>
+                    <ul>
+                      {props.datesInfo.slice(0, 3).map((event: any, index: any) => (
+                        <li key={index}>
+                          <div className='flex mb-4'>
+                            <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
+                              {event.day}
+                            </p>
+                            <div>
+                              <p className=''>{event.title}</p>
+                              {event.time}
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
                 </div>
                 <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1' target='_blank' rel='noopener noreferrer'>View Calendar</a>
               </div>
