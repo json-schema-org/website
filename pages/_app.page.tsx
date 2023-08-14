@@ -6,7 +6,8 @@ import type { AppProps } from 'next/app'
 function MyApp({ Component, pageProps }: AppProps) {
   // @ts-ignore
   const getLayout = Component.getLayout || ((page: JSX.Element) => page)
-  return getLayout(<Component {...pageProps} />, pageProps)
+  const AnyComponent = Component as any
+  return getLayout(<AnyComponent {...pageProps} />, pageProps)
 }
 
 export default MyApp
