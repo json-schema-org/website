@@ -1,8 +1,10 @@
-import Layout from '~/components/Layout'
-import StyledMarkdown, { TableOfContentMarkdown } from '~/components/StyledMarkdown'
+import React from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import React from 'react'
+import dynamic from 'next/dynamic'
+const Layout = dynamic(() => import('~/components/Layout'))
+const StyledMarkdown = dynamic(() => import('~/components/StyledMarkdown'))
+import { TableOfContentMarkdown } from '~/components/StyledMarkdown'
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import readingTime from 'reading-time'

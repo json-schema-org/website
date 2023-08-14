@@ -1,7 +1,5 @@
 import React from 'react'
-
 import { getLayout } from '../components/SiteLayout'
-// import HeroSearch from '~/components/heroSearch'
 import { DocSearch } from '@docsearch/react'
 import fs from 'fs'
 import matter from 'gray-matter'
