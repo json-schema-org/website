@@ -15,12 +15,12 @@ import { GetStaticProps } from 'next'
 import axios from 'axios'
 import ical from 'node-ical'
 import moment from 'moment'
-
+import dayjs from 'dayjs'
+// import localizedFormat from 'dayjs/plugin/localizedFormat'
+// import isBetween from 'dayjs/plugin/isBetween'
 
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
-
-
   const files = fs.readdirSync(PATH)
   const blogPosts = files
     .filter(file => file.substr(-3) === '.md')
@@ -41,7 +41,6 @@ export const getStaticProps: GetStaticProps = async () => {
     })
     .slice(0, 5)
 
-
   // Function to fetch the remote iCal file
   async function fetchRemoteICalFile(url: string) {
     try {
@@ -52,15 +51,12 @@ export const getStaticProps: GetStaticProps = async () => {
       return null
     }
   }
-
   // Example usage:
   const remoteICalUrl = 'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics' // Replace with the actual URL
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData) => printEventsForNextFourWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error))
-
   // console.log('this is fetched data', datesInfo)
-
   return {
     props: {
       blogPosts,
@@ -72,10 +68,9 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 // Function to filter and print events for the next 4 weeks from today
 function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
-
-  // let listOfDates
+  // dayjs.extend(localizedFormat)
+  // dayjs.extend(isBetween)
   const arrayDates = []
-
   if (!icalData) {
     console.error('iCal data is empty or invalid.')
     return
@@ -103,9 +98,6 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
           today.toDate(),
           nextFourWeeksEnd.toDate(),
           true,
-          // function (date: any, i: any) {
-          //   return true
-          // }
         )
 
         // Loop through the set of date entries to see which recurrences should be printed.
@@ -114,21 +106,17 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
           // Check if the event falls within the next 4 weeks from today
           if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-            const time = startDate.format('MMMM Do YYYY, h:mm:ss a')
+            const time = startDate.format('MMMM Do YYYY, h:mm a')
             const day = startDate.format('D')
-            
+
             arrayDates.push({ title, time, day, timezone })
 
           }
         }
-
       }
-
     }
-
   }
   return arrayDates
-
 }
 const Home = (props: any) => {
   const blogPosts = props.blogPosts
@@ -287,7 +275,7 @@ const Home = (props: any) => {
                             </p>
                             <div>
                               <p className=''>{event.title}</p>
-                              {event.time}
+                              <p>{event.time}</p>
                             </div>
                           </div>
                         </li>

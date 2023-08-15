@@ -13,20 +13,13 @@ export async function getStaticPaths() { return getStaticMarkdownPaths('pages') 
 export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages') }
 
 export default function StaticMarkdownPage({ frontmatter, content }: { frontmatter: any, content: any }) {
-
   return (
-    // @ts-ignore
     <SectionContext.Provider value={frontmatter.section || null}>
       <Head>
         <title>JSON Schema - {frontmatter.title}</title>
       </Head>
-
-   
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
-          
-      
-
     </SectionContext.Provider>
   )
 }
