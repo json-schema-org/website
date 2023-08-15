@@ -8,12 +8,19 @@ import readingTime from 'reading-time'
 import Link from 'next/link'
 import TextTruncate from 'react-text-truncate'
 
-import Calendar from '~/components/Calendar'
 import { Headline4 } from '~/components/Headlines'
+import { GetStaticProps } from 'next'
+
+/* eslint-disable */
+import axios from 'axios'
+import ical from 'node-ical'
+import moment from 'moment'
 
 
+/* eslint-enable */
+export const getStaticProps: GetStaticProps = async () => {
 
-export async function getStaticProps() {
+
   const files = fs.readdirSync(PATH)
   const blogPosts = files
     .filter(file => file.substr(-3) === '.md')
@@ -27,22 +34,106 @@ export async function getStaticProps() {
         content
       })
     })
+    .sort((a, b) => {
+      const dateA = new Date(a.frontmatter.date).getTime()
+      const dateB = new Date(b.frontmatter.date).getTime()
+      return dateA < dateB ? 1 : -1
+    })
+    .slice(0, 5)
+
+
+  // Function to fetch the remote iCal file
+  async function fetchRemoteICalFile(url: string) {
+    try {
+      const response = await axios.get(url, { method: 'no-cors' })
+      return response.data
+    } catch (error) {
+      console.error('Error fetching iCal file:', error)
+      return null
+    }
+  }
+
+  // Example usage:
+  const remoteICalUrl = 'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics' // Replace with the actual URL
+  const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
+    .then((icalData) => printEventsForNextFourWeeks(ical.parseICS(icalData)))
+    .catch((error) => console.error('Error:', error))
+
+  // console.log('this is fetched data', datesInfo)
 
   return {
     props: {
-      blogPosts
-    }
+      blogPosts,
+      datesInfo,
+      fallback: false,
+    },
+    revalidate: 10,
   }
 }
+// Function to filter and print events for the next 4 weeks from today
+function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
-const Home = ({ blogPosts }: { blogPosts: any[] }) => {
+  // let listOfDates
+  const arrayDates = []
 
-  const recentBlog = blogPosts.sort((a, b) => {
-    const dateA = new Date(a.frontmatter.date).getTime()
-    const dateB = new Date(b.frontmatter.date).getTime()
-    return dateA < dateB ? 1 : -1
-  })
-  const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes)
+  if (!icalData) {
+    console.error('iCal data is empty or invalid.')
+    return
+  }
+
+  // Calculate the range of dates for the next 4 weeks from today
+  const today = moment().startOf('day')
+  const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day')
+
+  // Loop through the events in the iCal data
+  for (const k in icalData) {
+    const event = icalData[k]
+    if (event.type === 'VEVENT') {
+      const title = event.summary
+      let startDate = moment(event.start)
+
+      // Get the timezone of the event
+      const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
+
+      // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
+      if (event.rrule !== undefined) {
+        // For recurring events, get the set of event start dates that fall within the range
+        // of dates we're looking for.
+        const dates = event.rrule.between(
+          today.toDate(),
+          nextFourWeeksEnd.toDate(),
+          true,
+          // function (date: any, i: any) {
+          //   return true
+          // }
+        )
+
+        // Loop through the set of date entries to see which recurrences should be printed.
+        for (const date of dates) {
+          startDate = moment(date)
+
+          // Check if the event falls within the next 4 weeks from today
+          if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
+            const time = startDate.format('MMMM Do YYYY, h:mm:ss a')
+            const day = startDate.format('D')
+            
+            arrayDates.push({ title, time, day, timezone })
+
+          }
+        }
+
+      }
+
+    }
+
+  }
+  return arrayDates
+
+}
+const Home = (props: any) => {
+  const blogPosts = props.blogPosts
+  // console.log('anything', props.datesInfo)
+  const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes)
 
   return (
     <div>
@@ -59,7 +150,7 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
               <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</a></Link>
               <Link href='#community' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Community</a></Link>
-             
+
               <div className='herobtn rounded border-2 border-white text-white mx-auto'>
                 <DocSearch
                   appId='6ZT4KX2OUI'
@@ -146,24 +237,24 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
             {/* BlogPost Data */}
             <div className='w-full '>
               <h3 className='mb-4 font-semibold' >Welcome to our blog!</h3>
-              <img src={recentBlog[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
-              <h3 className='mb-4 font-semibold' > {recentBlog[0].frontmatter.title}</h3>
-              <div className='mb-4'><TextTruncate element='span' line={4} text={recentBlog[0].frontmatter.excerpt} /></div>
+              <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
+              <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
+              <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
               <div className='flex ml-2 mb-2 '>
                 <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                  style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
+                  style={{ backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})` }}
                 />
                 <div className='flex flex-col ml-2'>
-                  <p className='text-sm font-semibold'>{recentBlog[0].frontmatter.authors[0].name}</p>
+                  <p className='text-sm font-semibold'>{blogPosts[0].frontmatter.authors[0].name}</p>
                   <div className='text-slate-500 text-sm'>
                     <span>
-                      {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
+                      {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
                     </span>
                   </div>
                 </div>
               </div>
               <div >
-                <Link href={`/blog/posts/${recentBlog[0].slug}`}>
+                <Link href={`/blog/posts/${blogPosts[0].slug}`}>
                   <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold'>Read more </a>
                 </Link>
               </div>
@@ -185,10 +276,25 @@ const Home = ({ blogPosts }: { blogPosts: any[] }) => {
                   <Headline4 >
                     Upcoming events
                   </Headline4>
-                  <ul>
-                    <Calendar />
 
-                  </ul>
+                  <div>
+                    <ul>
+                      {props.datesInfo.slice(0, 3).map((event: any, index: any) => (
+                        <li key={index}>
+                          <div className='flex mb-4'>
+                            <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
+                              {event.day}
+                            </p>
+                            <div>
+                              <p className=''>{event.title}</p>
+                              {event.time}
+                            </div>
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
                 </div>
                 <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1' target='_blank' rel='noopener noreferrer'>View Calendar</a>
               </div>
