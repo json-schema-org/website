@@ -15,7 +15,7 @@ import { GetStaticProps } from 'next'
 import axios from 'axios'
 import ical from 'node-ical'
 import moment from 'moment'
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 // import localizedFormat from 'dayjs/plugin/localizedFormat'
 // import isBetween from 'dayjs/plugin/isBetween'
 
@@ -258,13 +258,11 @@ const Home = (props: any) => {
                   >Office Hours</a></button>
                 </div>
               </div>
-              <div className=''>
-                {/* <Calendar /> */}
+              <div>
                 <div>
                   <Headline4 >
                     Upcoming events
                   </Headline4>
-
                   <div>
                     <ul>
                       {props.datesInfo.slice(0, 3).map((event: any, index: any) => (
