@@ -97,7 +97,7 @@ const TabsGroup = ({ markdown }: { markdown: string }) => {
 
   return (
     <div>
-      <div about='tabs-group-header' className='flex flex-row items-end mt-4'>
+      <div className='flex flex-row items-end mt-4'>
         {groupLabel && (
           <div className='p-4 text-slate-400 mr-4 text-sm'>
             {groupLabel}:
