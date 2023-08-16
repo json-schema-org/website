@@ -1,8 +1,9 @@
-import Layout from '~/components/Layout'
-import { Headline1 } from '~/components/Headlines'
-import StyledMarkdown from '~/components/StyledMarkdown'
-import Head from 'next/head'
 import React from 'react'
+import Head from 'next/head'
+import { getLayout } from '~/components/Sidebar'
+import { Headline1 } from '~/components/Headlines'
+import dynamic from 'next/dynamic'
+const StyledMarkdown = dynamic(() => import('~/components/StyledMarkdown'))
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import { SectionContext } from '~/context'
@@ -13,13 +14,12 @@ export async function getStaticProps(args: any) { return getStaticMarkdownProps(
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
-      <Layout>
-        <Head>
-          <title>JSON Schema - {frontmatter.title}</title>
-        </Head>
-        <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
-        <StyledMarkdown markdown={content} />
-      </Layout>
+      <Head>
+        <title>JSON Schema - {frontmatter.title}</title>
+      </Head>
+      <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
+      <StyledMarkdown markdown={content} />
     </SectionContext.Provider>
   )
 }
+StaticMarkdownPage.getLayout = getLayout
