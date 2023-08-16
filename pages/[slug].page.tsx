@@ -1,8 +1,7 @@
 import React from 'react'
 import { getLayout } from '~/components/Sidebar'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
-const StyledMarkdown = dynamic(() => import('~/components/StyledMarkdown'))
+import StyledMarkdown from '~/components/StyledMarkdown'
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import { Headline1 } from '~/components/Headlines'

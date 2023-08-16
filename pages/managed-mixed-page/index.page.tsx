@@ -2,9 +2,7 @@ import React from 'react'
 import { getLayout } from '~/components/Sidebar'
 import fs from 'fs'
 import matter from 'gray-matter'
-import dynamic from 'next/dynamic'
-const StyledMarkdown = dynamic(() => import('~/components/StyledMarkdown'))
-
+import StyledMarkdown from '~/components/StyledMarkdown'
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/managed-mixed-page/mdblock1.md', 'utf-8')
   const block2 = fs.readFileSync('pages/managed-mixed-page/mdblock2.md', 'utf-8')

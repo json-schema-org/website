@@ -2,8 +2,7 @@ import React from 'react'
 import { getLayout } from '~/components/Sidebar'
 import fs from 'fs'
 import matter from 'gray-matter'
-import dynamic from 'next/dynamic'
-const StyledMarkdown = dynamic(() => import('~/components/StyledMarkdown'))
+import StyledMarkdown from '~/components/StyledMarkdown'
 import { SectionContext } from '~/context'
 
 export async function getStaticProps() {
