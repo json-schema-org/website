@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
@@ -7,6 +7,8 @@ import { DocSearch } from '@docsearch/react'
 import { HOST } from '~/lib/config'
 import useStore from '~/store'
 import { SectionContext } from '~/context'
+// import { SidebarData } from './SidebarData'
+
 
 type Props = {
   children: React.ReactNode
@@ -16,9 +18,10 @@ type Props = {
   hideAds?: boolean
 }
 
-const responsiveClasses = 'w-full xl:w-[1200px] px-2 sm:px-4 lg:px-8'
+const responsiveClasses = 'w-screen'
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
+
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   const router = useRouter()
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
@@ -29,90 +32,153 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       <Head>
         <title>JSON Schema {metaTitle ? ` - ${metaTitle}` : ''}</title>
         <meta name='description' content='JSON Schema' />
+        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'></meta>
       </Head>
+      <div className={classnames({ 'bg-white': whiteBg })}>
+        <main className={
+          classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
+        }>
+          <header className={classnames(responsiveClasses, 'fixed top-0 z-[170] bg-white shadow-xl drop-shadow-lg')}>
+            <div className='grid grid-cols-2  lg:grid-cols-3 py-4 justify-between items-center'>
+              <Logo />
+              <MainNavigation />
+            </div>
+          </header>
 
-      <div>
-        <header className={classnames(responsiveClasses, 'py-4 flex flex-row justify-between mx-auto')}>
-          <div className='flex flex-row items-center'>
-            <Logo />
-          </div>
-          <MainNavigation />
-        </header>
+          {showMobileNav ? (
+            <>
+              <MobileNav />
+            
+              {children}
+             
+            </>
+          ) : (
+            <div>
+              {!hideAds && (
+                <div>
+                  <script
+                    async
+                    type='text/javascript'
+                    src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
+                    id='_carbonads_js'
+                    className='z-10'
+                  />
+                </div>
+              )}
+             
+              {children}
+             
+            </div>
+          )}
 
-        <div className={classnames({ 'bg-white': whiteBg })}>
-          <main className={
-            classnames(mainClassName, responsiveClasses, 'bg-white xl:rounded-xl py-4 mx-auto')
-          }>
-            {!hideAds && (
-              <div>
-                <script
-                  async
-                  type='text/javascript'
-                  src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
-                  id='_carbonads_js'
-                />
-              </div>
-            )}
-            {showMobileNav ? (
-              <MobileDocsNav />
-            ) : (
-              <ContentLayout>
-                {children}
-              </ContentLayout>
-            )}
-          </main>
-        </div>
+          <Footer />
+          <OpenJS />
+        </main>
       </div>
-
-      <Footer />
-      <OpenJS />
     </div>
   )
 }
 
-const ContentLayout = ({ children }: { children: any }) => {
-  const section = useContext(SectionContext)
-  if (section === 'docs') return (
-    <div className='mx-auto flex flex-row grid grid-cols-4'>
-      <div className='hidden md:block'>
-        <DocsNav />
-      </div>
-      <div className='col-span-4 md:col-span-3'>
-        {children}
-      </div>
-    </div>
+
+export const Search = () => {
+  return (
+    <DocSearch
+      appId='6ZT4KX2OUI'
+      apiKey='69f76fba13585144f6686622e9c8f2a8'
+      indexName='json-schema'
+    />
   )
-  return children
 }
 
+const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
+  return (
+    <Link scroll={false} href={uri}>
+      <a className={classnames(className, 'font-semibold p-2 md:p-4', {
+        'text-primary hover:text-primary': isActive,
+        'text-slate-600 hover:text-primary': !isActive
+      })}
+      >{label}</a>
+    </Link>
+  )
+}
 const MainNavigation = () => {
   const section = useContext(SectionContext)
-  const docsAreActive = section === 'docs'
-
+  // const docsAreActive = section === 'docs'
+  const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
-    <div className='py-2 flex flex-row items-center'>
+    <div className='lg:col-span-2  md:py-2 flex items-center'>
       <MainNavLink
-        className='hidden md:block'
+        className='hidden lg:block  hover:underline'
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
       />
       <MainNavLink
-        className='hidden md:block'
+        className='hidden lg:block  hover:underline'
         uri='/overview/what-is-jsonschema'
         label='Docs'
         isActive={section === 'docs'}
       />
-      <div
-        className={classnames('flex flex-row items-center cursor-pointer block md:hidden font-semibold p-4', {
-          'text-blue-500 hover:text-blue-600': docsAreActive,
-          'text-slate-600 hover:text-slate-800': !docsAreActive
-        })}
-        onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
-      >
-        <img src='/icons/menu.svg' className='h-4 w-4 mr-2' />
-        Docs
+
+      <MainNavLink
+        className='hidden lg:block  hover:underline'
+        uri='/implementations'
+        label='Implementations'
+        isActive={section === 'implementations'}
+      />
+      <MainNavLink
+        className='hidden lg:block  hover:underline'
+        uri='/blog'
+        label='Blog'
+        isActive={section === 'blog'}
+      />
+      <MainNavLink
+        className='hidden lg:block  hover:underline'
+        uri='/#community'
+        label='Community'
+        isActive={section === 'community'}
+      />
+      <div className='flex items-center gap-4 rounded border-2 border-gray-100 lg:ml-0'>
+        <Search />
+
+        {showMobileNav === false ? (<div
+          className={classnames('mr-8 ')}
+          onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
+        >
+          <div className='block lg:hidden space-y-2 mr-8 items-center'>
+            <div className='w-6 h-1 bg-black rounded'></div>
+            <div className='w-6 h-1 bg-black rounded'></div>
+            <div className='w-6 h-1 bg-black rounded'></div>
+          </div>
+
+        </div>
+        ) : <div
+          style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
+          className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat mr-16 transition-all cursor-pointer'
+          onClick={() => useStore.setState({ overlayNavigation: null })}
+        />
+        }
       </div>
+    </div>
+  )
+}
+
+const MobileNav = () => {
+  const section = useContext(SectionContext)
+
+  return (
+    <div className='flex flex-col fixed bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+      <MainNavLink
+        uri='/specification'
+        label='Specification'
+        isActive={section === 'specification'}
+      />
+      <MainNavLink
+        uri='/overview/what-is-jsonschema'
+        label='Docs'
+        isActive={section === 'docs'}
+      />
+
       <MainNavLink
         uri='/implementations'
         label='Implementations'
@@ -128,147 +194,173 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <Search />
     </div>
   )
 }
 
-const Search = () => {
-  return (
-    <DocSearch
-      appId='6ZT4KX2OUI'
-      apiKey='69f76fba13585144f6686622e9c8f2a8'
-      indexName='json-schema'
-    />
-  )
-}
+export const DocsNav = () => {
 
-const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
-  return (
-    <Link href={uri}>
-      <a className={classnames(className, 'font-semibold p-2 md:p-4', {
-        'text-blue-500 hover:text-blue-600': isActive,
-        'text-slate-600 hover:text-slate-800': !isActive
-      })}
-      >{label}</a>
-    </Link>
-  )
-}
+  const [active, setActive] = useState(false)
+  const handleClick = () => {
+    setActive(!active)
+  }
 
-const MobileDocsNav = () => {
+  const [activeGet, setActiveGet] = useState(false)
+  const handleClickGet = () => {
+    setActiveGet(!activeGet)
+  }
+  const [activeReference, setActiveReference] = useState(false)
+  const handleClickReference = () => {
+    setActiveReference(!activeReference)
+  }
+  const [activeSpec, setActiveSpec] = useState(false)
+  const handleClickSpec = () => {
+    setActiveSpec(!activeSpec)
+  }
+
+  const rotate = active ? 'rotate(180deg)' : 'rotate(0)'
+
+  const rotateG = activeGet ? 'rotate(180deg)' : 'rotate(0)'
+
+  const rotateR = activeReference ? 'rotate(180deg)' : 'rotate(0)'
+
+  const rotateSpec = activeSpec ? 'rotate(180deg)' : 'rotate(0)'
+
   return (
-    <div className='flex flex-col fixed bg-white w-full h-full z-[100] top-0 left-0'>
-      <div className='flex flex-row justify-between p-8 pb-0'>
-        <div className='text-blue-500 text-2xl font-bold'>
-          Docs
+
+    <div id='sidebar '
+      className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.stopPropagation(); handleClick() }} >
+          <div className='flex  items-center align-middle'>
+            <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Overview' />
+          </div>
+          <svg style={{ transform: rotate, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
         </div>
         <div
-          style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-          className='h-16 w-16 bg-center bg-[length:22px_22px] bg-no-repeat -mr-4 -mt-4 cursor-pointer'
-          onClick={() => useStore.setState({ overlayNavigation: null })}
-        />
+          className={`${active ? '' : 'hidden'
+          } text-left text-sm mt-2 w-4/5 mx-auto `}
+          id='overview'
+        >
+          <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
+        </div>
       </div>
-      <div className='flex-1 overflow-y-scroll px-8 pt-0 pb-16'>
-        <DocsNav />
-      </div>
-    </div>
-  )
-}
-
-// const LearnNav = () => {
-//   return (
-//     <div className='pt-2 pr-2'>
-//       <SegmentHeadline label='Getting started' />
-//       <DocLink uri='/understanding-json-schema' label='Overview' />
-//       <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
-//       <DocLink uri='/understanding-json-schema/basics' label='The basics' />
-
-//       <SegmentHeadline label='Examples & studies' />
-//       <DocLink uri='/learn/getting-started-step-by-step' label='Creating a schema' />
-//       <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous Examples' />
-//       <DocLink uri='/learn/file-system' label={'Example \'File system\''} />
-//       <DocLink uri='/learn/json-schema-examples' label='More examples' />
-//     </div>
-//   )
-// }
-
-const DocsNav = () => {
-  return (
-    <div suppressHydrationWarning={true} className='pt-2 pr-2'>
-      <SegmentHeadline label='Overview' />
-      <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
-      <SegmentHeadline label='Getting Started' />
-      <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
-      <div className='pl-4 pb-1 pt-1'>
-        <SegmentSubtitle label='Examples' />
-        <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
-        <DocLink uri='/learn/file-system' label='Modelling a file system' />
-        <DocLink uri='/learn/json-schema-examples' label='Other examples' />
-      </div>
-      <SegmentHeadline label='Reference' />
-      <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
-      <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
-      <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
-      <div className='pl-4 pb-1 pt-1'>
-        <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
-        <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
-        <div className='pl-4 pb-1 pt-1'>
-          <DocLink uri='/understanding-json-schema/basics' label='The basics' />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/understanding-json-schema/basics#hello-world!' label='Hello, World!' />
-            <DocLink uri='/understanding-json-schema/basics#the-type-keyword' label='The type keyword' />
-            <DocLink uri='/understanding-json-schema/basics#declaring-a-json-schema' label='Declaring a JSON Schema' />
-            <DocLink uri='/understanding-json-schema/basics#declaring-a-unique-identifier' label='Declaring a unique identifier' />
+      {/* Get Started */}
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickGet() }} >
+          <div className='flex  items-center align-middle' >
+            <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Getting Started' />
           </div>
-          <SegmentSubtitle label='JSON Schema Reference' />
-          <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
-          <DocLink uri='/understanding-json-schema/reference/string' label='string' />
-          <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
-          <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
-          <DocLink uri='/understanding-json-schema/reference/object' label='object' />
-          <DocLink uri='/understanding-json-schema/reference/array' label='array' />
-          <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
-          <DocLink uri='/understanding-json-schema/reference/null' label='null' />
-          <DocLink uri='/understanding-json-schema/reference/annotations' label='Generic keywords' />
-          <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
-          <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
-          <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
-          <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
-          <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
+          <svg style={{ transform: rotateG, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+        </div>
+        <div
+          className={`${activeGet ? '' : 'hidden'
+          } text-left text-sm mt-2 w-4/5 mx-auto `}
+          id='getStarted'
+        >
+          <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
+          <SegmentSubtitle label='Examples' />
+          <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
+          <DocLink uri='/learn/file-system' label='Modelling a file system' />
+          <DocLink uri='/learn/json-schema-examples' label='Other examples' />
+        </div>
+      </div>
+      {/* Reference */}
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.stopPropagation(); handleClickReference() }}>
+          <div className='flex  items-center align-middle' >
+            <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Reference' />
+          </div>
+          <svg style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+        </div>
+        <div className={`${activeReference ? '' : 'hidden'
+        }   text-left text-sm mt-2 w-4/5 mx-auto font-bold`}
+        id='reference'
+        >
+          <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
+          <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
+          <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
           <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
-            <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
-            <DocLink uri='/understanding-json-schema/structuring#ref' label='$ref' />
-            <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
-            <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
-            <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
-            <DocLink uri='/understanding-json-schema/structuring#bundling' label='Bundling' />
+            <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
+            <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink uri='/understanding-json-schema/basics' label='The basics' />
+              <div className='pl-4 pb-1 pt-1'>
+                <DocLink uri='/understanding-json-schema/basics#hello-world!' label='Hello, World!' />
+                <DocLink uri='/understanding-json-schema/basics#the-type-keyword' label='The type keyword' />
+                <DocLink uri='/understanding-json-schema/basics#declaring-a-json-schema' label='Declaring a JSON Schema' />
+                <DocLink uri='/understanding-json-schema/basics#declaring-a-unique-identifier' label='Declaring a unique identifier' />
+              </div>
+              <SegmentSubtitle label='JSON Schema Reference' />
+              <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
+              <DocLink uri='/understanding-json-schema/reference/string' label='string' />
+              <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
+              <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
+              <DocLink uri='/understanding-json-schema/reference/object' label='object' />
+              <DocLink uri='/understanding-json-schema/reference/array' label='array' />
+              <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
+              <DocLink uri='/understanding-json-schema/reference/null' label='null' />
+              <DocLink uri='/understanding-json-schema/reference/annotations' label='Generic keywords' />
+              <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
+              <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
+              <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
+              <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
+              <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
+              <div className='pl-4 pb-1 pt-1'>
+                <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
+                <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
+                <DocLink uri='/understanding-json-schema/structuring#ref' label='$ref' />
+                <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
+                <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
+                <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
+                <DocLink uri='/understanding-json-schema/structuring#bundling' label='Bundling' />
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <DocLink uri='/specification' label='Specification' />
-      <div className='pl-4 pb-1 pt-1'>
-        <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
-        <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
-        <DocLink uri='/draft-07/readme' label='draft-07 notes' />
-        <DocLink uri='/draft-06/readme' label='draft-06 notes' />
-        <DocLink uri='/draft-05/readme' label='draft-05 notes' />
-        <DocLink uri='/specification-links' label='Specification Links' />
+      {/* Specification */}
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickSpec() }}>
+          <div className='flex  items-center align-middle'>
+            <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Specification' />
+          </div>
+          <svg id='arrow' className='arrow' style={{ transform: rotateSpec, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+
+        </div>
+        <div
+          className={`${activeSpec ? '' : 'hidden'
+          }   text-left text-sm mt-2 w-4/5 mx-auto `}
+          id='specification'
+        >
+          <DocLink uri='/specification' label='Overview' />
+          <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
+          <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
+          <DocLink uri='/draft-07/readme' label='draft-07 notes' />
+          <DocLink uri='/draft-06/readme' label='draft-06 notes' />
+          <DocLink uri='/draft-05/readme' label='draft-05 notes' />
+          <DocLink uri='/specification-links' label='Specification Links' />
+        </div>
       </div>
     </div>
+
   )
 }
 
-const SegmentHeadline = ({ label }: { label: string }) => {
+export const SegmentHeadline = ({ label }: { label: string }) => {
   return (
-    <div className='text-slate-900 mb-2 mt-8 font-semibold'>
+    <div className='text-slate-900 font-bold'>
       {label}
     </div>
   )
 }
 const SegmentSubtitle = ({ label }: { label: string }) => {
   return (
-    <div className='text-slate-900 mt-2 mb-2'>
+    <div className='text-base italic text-slate-900 mt-2 mb-2'>
       {label}
     </div>
   )
@@ -283,9 +375,9 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   return (
     <Link href={uri}>
       <a
-        className={classnames('block pl-4 border-l-2 py-1', {
-          'text-slate-600 border-l-slate-100': !isActive,
-          'text-blue-500 border-l-blue-300 font-semibold': isActive,
+        className={classnames('text-base block border-l-2 py-1 pl-2', {
+          '  font-medium': !isActive,
+          'text-primary text-bold border-l-primary font-semibold': isActive,
         })}
       >{label}</a>
     </Link>
@@ -293,70 +385,62 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'mx-auto p-4 py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 ')}>
-    <div className='flex flex-col items-start'>
-      <div className='font-semibold text-sm text-slate-800 mb-1'>JSON Schema</div>
-      <Link href='/overview/what-is-jsonschema'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Docs</a>
-      </Link>
-      <Link href='/understanding-json-schema'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Learn</a>
-      </Link>
-      <Link href='/implementations'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Implementations</a>
-      </Link>
-      <Link href='/blog'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Blog</a>
-      </Link>
-      <Link href='/specification'>
-        <a className='text-sm text-slate-400 hover:text-slate-500 pt-3 sm:mb-4'>Specification</a>
-      </Link>
-    </div>
-    <div className='flex flex-col items-start mt-8 sm:mt-0'>
-      <div className='font-semibold text-sm text-slate-800 mb-1'>Learn</div>
-      <a href='/learn/getting-started-step-by-step' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Getting Started Step-By-Step</a>
-      <a href='/understanding-json-schema/conventions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Conventions on json-schema.org</a>
-    </div>
-    <div className='flex flex-col items-start mt-8 sm:mt-0'>
-      <div className='font-semibold text-sm text-slate-800 mb-1'>Community</div>
-      <a href='/slack' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Slack</a>
-      <a href='https://twitter.com/jsonschema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Twitter</a>
-      <a href='https://github.com/json-schema-org' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub</a>
-      <a href='https://github.com/json-schema-org/community/discussions' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>GitHub Community Discussions</a>
-      <a href='https://groups.google.com/g/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Google Groups</a>
-    </div>
-    <div className='flex flex-col items-start mt-8 sm:mt-0'>
-      <Logo />
-      <a href='https://opencollective.com/json-schema' className='text-sm text-slate-400 hover:text-slate-500 pt-3 mt-2'>Open Collective</a>
-      <a href='/understanding-json-schema/credits' className='text-sm text-slate-400 hover:text-slate-500 pt-3'>Acknowledgments</a>
+  <footer className={classnames(responsiveClasses, 'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
+    <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+      <div className=' my-6 m-auto md:mt-16'>
+        <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
+        <div className='flex flex-col'>
+          <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
+          <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
+        </div>
+      </div>
+      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
+        <div className='mr-4 mb-4'>
+          <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='flex items-center text-white'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
+            Slack</a>
+        </div>
+        <div className='mb-4 mr-4'>
+          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
+            Twitter</a>
+        </div>
+        <div className='mr-4 mb-4'>
+          <a href='https://linkedin.com/company/jsonschema/' className='flex items-center text-white'><img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
+            LinkedIn</a>
+        </div>
+        <div className='mr-4 mb-4'>
+          <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='flex items-center text-white'><img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
+            Youtube</a>
+        </div>
+        <div className=''>
+          <a href='https://github.com/json-schema-org' className='flex items-center text-white'><img src='/img/logos/github_logo-white.svg' className='w-4 h-4 mr-2' />
+            GitHub</a>
+        </div>
+      </div>
+
     </div>
   </footer>
 )
 
 const OpenJS = () => (
-  <div className={classnames(responsiveClasses, 'mx-auto flex flex-flow grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2')}>
-    <div className='flex flex-col items-start col-start-1 sm:inline md:inline lg:inline'>
-      <img className='h-16 mb-3.5' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
-    </div>
-    <div className='flex flex-col items-start col-start-1 md:col-span-3 sm:col-start-1 sm:col-span-2'>
-      <p className='text-sm mb-4'>Copyright <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
-      <p className='text-sm mb-4 sm:mb-8'><a className='text-blue-500 hover:text-blue-600' href='https://openjsf.org'>The OpenJS Foundation</a> | <a className='text-blue-500 hover:text-blue-600' href='https://terms-of-use.openjsf.org'>Terms of Use</a> | <a className='text-blue-500 hover:text-blue-600' href='https://privacy-policy.openjsf.org'>Privacy Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://bylaws.openjsf.org'>Bylaws</a> | <a className='text-blue-500 hover:text-blue-600' href='https://code-of-conduct.openjsf.org'>Code of Conduct</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> | <a className='text-blue-500 hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a> | <a className='text-blue-500 hover:text-blue-600' href='https://www.linuxfoundation.org/cookies'>Cookie Policy</a></p>
-    </div>
-    <div className='relative mt-8 flex flex-col items-start col-start-1 col-span-2 sm:col-start-1 sm:col-span-2'>
-      <div className='absolute text-sm bottom-8'>© Copyright JSON Schema Organisation 2023</div>
+  <div className={classnames(responsiveClasses, '')}>
+    <div className='max-w-[1400px] mx-auto my-6 lg:mt-20 grid grid-cols-1 lg:grid-cols-2 w-4/5'>
+      <div className='md:w-1/2 mb-12 lg:ml-28'>
+        <img className='h-24 mx-auto mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
+        {/* <div className='absolute bottom-0 ml-6  mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div> */}
+      </div>
+      <div className='md:w-5/6 lg:w-full mx-auto  mb-16'>
+        <p className='mb-6'>Copyright <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> and JSON Schema contributors. All rights reserved. The <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a> has registered trademarks and uses trademarks.  For a list of trademarks of the <a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>OpenJS Foundation</a>, please see our <a className='text-linkBlue hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> and <a className='text-linkBlue hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a>.  Trademarks and logos not indicated on the <a className='text-linkBlue hover:text-blue-600' href='https://trademark-list.openjsf.org'>list of OpenJS Foundation trademarks</a> are trademarks&trade; or registered&reg; trademarks of their respective holders. Use of them does not imply any affiliation with or endorsement by them.</p>
+        <p className='mb-4 sm:mb-8'><a className='text-linkBlue hover:text-blue-600' href='https://openjsf.org'>The OpenJS Foundation</a> | <a className='text-linkBlue hover:text-blue-600' href='https://terms-of-use.openjsf.org'>Terms of Use</a> | <a className='text-linkBlue hover:text-blue-600' href='https://privacy-policy.openjsf.org'>Privacy Policy</a> | <a className='text-linkBlue hover:text-blue-600' href='https://bylaws.openjsf.org'>Bylaws</a> | <a className='text-linkBlue hover:text-blue-600' href='https://code-of-conduct.openjsf.org'>Code of Conduct</a> | <a className='text-linkBlue hover:text-blue-600' href='https://trademark-policy.openjsf.org'>Trademark Policy</a> | <a className='text-linkBlue hover:text-blue-600' href='https://trademark-list.openjsf.org'>Trademark List</a> | <a className='text-linkBlue hover:text-blue-600' href='https://www.linuxfoundation.org/cookies'>Cookie Policy</a></p>
+      </div>
     </div>
   </div>
 )
 
 const Logo = () => (
-  <Link href='/'>
-    <a>
-      <div className='inline-block text-xl text-slate-900 leading-6 font-semibold flex flex-row items-center'>
-        <img src='/logo-blue.svg' className='h-12 mr-2' />
-        <div className='inline-block'>
-          JSON<br />
-          Schema
-        </div>
+  <Link href='/' >
+    <a className='ml-12 lg:ml-0'>
+      <div className='lg:ml-20 inline-block '>
+        <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
       </div>
     </a>
   </Link>

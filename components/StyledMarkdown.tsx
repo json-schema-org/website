@@ -97,7 +97,7 @@ const TabsGroup = ({ markdown }: { markdown: string }) => {
 
   return (
     <div>
-      <div about='tabs-group-header' className='flex flex-row items-end mt-4'>
+      <div className='flex flex-row items-end mt-4'>
         {groupLabel && (
           <div className='p-4 text-slate-400 mr-4 text-sm'>
             {groupLabel}:
@@ -151,11 +151,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             a: {
               component: ({ children, href, title }) => {
                 if (!href) return children
-                return (
-                  <Link href={href} scroll={href.indexOf('#') === -1}>
-                    <a title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
-                  </Link>
-                )
+                const link = href.charAt(0) === '/' ? <Link as={href} href='/'>
+                  <a title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
+                </Link> : <a href={href} title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
+
+                return <>
+                  {link}
+                </>
               }
             },
             ul: {
@@ -304,7 +306,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             Bigquote: {
               component: ({ children }) => {
                 return (
-                  <div className='text-2xl text-center p-10 py-16 font-semibold text-slate-500 bg-slate-50 mb-4 rounded-xl'>
+                  <div className='text-h2mobile md:text-h2 text-center p-10 py-16 font-semibold text-slate-500 bg-slate-50 mb-4 rounded-xl'>
                     "{children}"
                   </div>
                 )

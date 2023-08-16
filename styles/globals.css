@@ -1,20 +1,60 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@layer utilities {
+  .clip-bottom {
+    clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 85%, 100% 0);
+  }
+  .clip-both {
+    clip-path: polygon(0 15%, 0 100%, 0% 100%, 100% 85%, 100% 0);
+  }
+  @media (min-width: 320px) and (max-width: 759px) {
+    .clip-bottom {
+      clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 95%, 100% 0);
+    }
+    .clip-both {
+      clip-path: polygon(0 05%, 0 100%, 0% 100%, 100% 95%, 100% 0);
+    }
+  }
+}
 
 html {
   font-family: 'Inter', sans-serif;
 }
+.DocSearch-Button-Keys {
+  display: none !important;
+}
+.DocSearch-Button-Container {
+  background-color: transparent !important;
+  width: 168px;
+  height: 32px;
+ padding: 8px 8px;
+ margin-right: 10px;
+/* border: 1px solid #E3E8EE;
+border-radius: 4px; */
+}
+ @media (max-width: 730px) {
+  .DocSearch-Button-Container {
+  width: 40px;
+  height: 40px;
+ padding: 0px;
+ border: none;
+  }
+ }
 
+.DocSearch-Button-Container:hover {
+  border: none;
+ }
 /* CARBON ADS */
 
 #carbonads {
+  display: block;
   max-width: 300px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
   display: flex;
   position: fixed;
   right: 10px;
-  top: 90px;
+  top: 120px;
   font-size: 12px;
   line-height: 1.45;
   background-color: #f9f9f9;
@@ -22,19 +62,15 @@ html {
   border-color: #cacaca;
   z-index: 100;
 }
-
-@media (max-width: 1420px) {
+@media (min-width: 775px) and (max-device-width: 1068px) {
   #carbonads {
-    display: block;
-    position: relative;
-    right: unset;
-    top: unset;
-    margin: auto;
-    margin-bottom: 30px;
-    overflow: hidden;
-    max-width: 728px;
-    font-size: 24px;
-    box-sizing: content-box
+    top: 140px;
+  }
+}
+@media (max-width: 775px) {
+  #carbonads {
+    display: none;
+    
   }
 }
 
@@ -81,4 +117,99 @@ html {
   .carbon-text {
     font-size: 14px
   }
+}
+
+/** Style Algolia */
+
+.search-input {
+
+	flex-grow: 1;
+	box-sizing: border-box;
+	width: 194px;
+	margin: 0 auto;
+	padding: 5px;
+	overflow: visible;
+	font-weight: 500;
+	font-size: 1rem;
+	font-family: inherit;
+	line-height: inherit;
+	display: flex;
+	border-color: white !important;
+	color: white !important;
+	border-style: solid;
+	border-width: 2px;
+	border-radius: 0.25rem;
+	outline: 0;
+	cursor: pointer;
+	transition-timing-function: ease-out;
+	transition-duration: 0.2s;
+	transition-property: border-color, color;
+	-webkit-font-smoothing: antialiased;
+  
+}
+.search-input svg {
+margin-left: 40px;
+}
+.search-input span {
+  margin-left: 15px;
+}
+.search-input:hover,
+.search-input:focus {
+	color: white;
+	border-color: white;
+}
+.search-input:hover::placeholder,
+.search-input:focus::placeholder {
+	color: white;
+}
+.search-input::placeholder {
+	color: white;
+}
+.search-hint {
+	position: absolute;
+	top: 7px;
+	right: 19px;
+	padding: 3px 5px;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	letter-spacing: 0.125em;
+	font-size: 13px;
+	font-family: inherit;
+	pointer-events: none;
+	border-color: white;
+	color: white;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 0.25rem;
+	line-height: 14px;
+}
+
+@media (min-width: 50em) {
+	.search-hint {
+		display: flex;
+	}
+}
+.navSearch svg{
+  color: black;
+}
+.herobtn span {
+  margin: 0 auto;
+}
+.herobtn span{ 
+	color: white !important;
+}
+  .herobtn svg {
+    color: white !important;
+  }
+
+.anchor {
+  position: relative;
+  margin-bottom: 20px;
+}
+.anchor #community {
+  position: absolute;
+  left: 0;
+  top: -80px; /* change this value to match the height of the header */
+ 
 }

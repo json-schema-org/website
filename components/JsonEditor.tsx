@@ -246,7 +246,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
                   if (!link) return
                   router.push(link)
                 }}
-                className={classnames('p-b-2', textStyles)}
+                className={classnames('pb-2', textStyles)}
                 title={leaf.syntaxPart?.type}
                 {...attributes}
               >{children}</span>
