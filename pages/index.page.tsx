@@ -1,118 +1,340 @@
 import React from 'react'
+// import { getLayout } from '../components/SiteLayout'
 import Layout from '~/components/Layout'
+import { DocSearch } from '@docsearch/react'
 import fs from 'fs'
 import matter from 'gray-matter'
-import StyledMarkdown from '~/components/StyledMarkdown'
+const PATH = 'pages/blog/posts'
+import readingTime from 'reading-time'
 import Link from 'next/link'
-import { Headline2 } from '~/components/Headlines'
-import Code from '~/components/Code'
+import TextTruncate from 'react-text-truncate'
 
-export async function getStaticProps() {
-  const block1 = fs.readFileSync('pages/_index.md', 'utf-8')
-  const { content: block1Content } = matter(block1)
-  return {
-    props: {
-      blocks: [block1Content]
+import { Headline4 } from '~/components/Headlines'
+import { GetStaticProps } from 'next'
+
+/* eslint-disable */
+import axios from 'axios'
+import ical from 'node-ical'
+import moment from 'moment'
+// import dayjs from 'dayjs'
+// import localizedFormat from 'dayjs/plugin/localizedFormat'
+// import isBetween from 'dayjs/plugin/isBetween'
+
+/* eslint-enable */
+export const getStaticProps: GetStaticProps = async () => {
+  const files = fs.readdirSync(PATH)
+  const blogPosts = files
+    .filter(file => file.substr(-3) === '.md')
+    .map((fileName) => {
+      const slug = fileName.replace('.md', '')
+      const fullFileName = fs.readFileSync(`pages/blog/posts/${slug}.md`, 'utf-8')
+      const { data: frontmatter, content } = matter(fullFileName)
+      return ({
+        slug: slug,
+        frontmatter,
+        content
+      })
+    })
+    .sort((a, b) => {
+      const dateA = new Date(a.frontmatter.date).getTime()
+      const dateB = new Date(b.frontmatter.date).getTime()
+      return dateA < dateB ? 1 : -1
+    })
+    .slice(0, 5)
+
+  // Function to fetch the remote iCal file
+  async function fetchRemoteICalFile(url: string) {
+    try {
+      const response = await axios.get(url, { method: 'no-cors' })
+      return response.data
+    } catch (error) {
+      console.error('Error fetching iCal file:', error)
+      return null
     }
   }
+  // Example usage:
+  const remoteICalUrl = 'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics' // Replace with the actual URL
+  const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
+    .then((icalData) => printEventsForNextFourWeeks(ical.parseICS(icalData)))
+    .catch((error) => console.error('Error:', error))
+  // console.log('this is fetched data', datesInfo)
+  return {
+    props: {
+      blogPosts,
+      datesInfo,
+      fallback: false,
+    },
+    revalidate: 10,
+  }
 }
+// Function to filter and print events for the next 4 weeks from today
+function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
+  // dayjs.extend(localizedFormat)
+  // dayjs.extend(isBetween)
+  const arrayDates = []
+  if (!icalData) {
+    console.error('iCal data is empty or invalid.')
+    return
+  }
 
-const Home = ({ blocks }: { blocks: any[] }) => {
+  // Calculate the range of dates for the next 4 weeks from today
+  const today = moment().startOf('day')
+  const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day')
+
+  // Loop through the events in the iCal data
+  for (const k in icalData) {
+    const event = icalData[k]
+    if (event.type === 'VEVENT') {
+      const title = event.summary
+      let startDate = moment(event.start)
+
+      // Get the timezone of the event
+      const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
+
+      // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
+      if (event.rrule !== undefined) {
+        // For recurring events, get the set of event start dates that fall within the range
+        // of dates we're looking for.
+        const dates = event.rrule.between(
+          today.toDate(),
+          nextFourWeeksEnd.toDate(),
+          true,
+        )
+
+        // Loop through the set of date entries to see which recurrences should be printed.
+        for (const date of dates) {
+          startDate = moment(date)
+
+          // Check if the event falls within the next 4 weeks from today
+          if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
+            const time = startDate.format('MMMM Do YYYY, h:mm a')
+            const day = startDate.format('D')
+
+            arrayDates.push({ title, time, day, timezone })
+
+          }
+        }
+      }
+    }
+  }
+  return arrayDates
+}
+const Home = (props: any) => {
+  const blogPosts = props.blogPosts
+  // console.log('anything', props.datesInfo)
+  const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes)
+
   return (
-    <Layout
-      mainClassName='flex flex-col'
-      hideAds
-    >
-      <div className='flex flex-col items-center'>
-        <div
-          className='py-[220px] bg-no-repeat bg-center bg-cover -mt-4 -mx-1 sm:-mx-4'
-          style={{ backgroundImage: 'url("/img/stage-bg.svg")' }}
-        >
-          <h1 className='text-5xl font-black text-center'>
-            Describe and validate JSON documents
-          </h1>
-          <h2 className='text-center text-lg text-slate-600 mt-6 max-w-4xl'>
-            JSON schema is the standard vocabulary for describing JSON data.<br />It validates documents and provides a clear human- and machine- readable documentation.
-          </h2>
-        </div>
-        <div className='grid grid-cols-1 sm:grid-cols-3 w-full gap-4 max-w-xl'>
-          <Link href='/learn/getting-started-step-by-step'>
-            <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='h-14 text-6xl mb-2'>
-                👋
+    <Layout>
+      <div>
+        <div className='flex flex-col items-center'>
+          {/* Hero  */}
+          <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom w-full'>
+            <div className='max-w-[1400px] text-center mx-auto mt-24 lg:mt-40'>
+              <h1 className='lg:leading-header text-h1mobile lg:text-h1 font-semibold text-white text-center px-1 md:px-0'>
+              Build more. Break less. Empower others.
+              </h1>
+              <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 '>
+              JSON Schema enables the confident and reliable use of the JSON data format.
+              </h2>
+              <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
+                <Link href='/learn/getting-started-step-by-step' ><a className='pt-1 rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</a></Link>
+                <Link href='#community' ><a className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Community</a></Link>
+
+                <div className='herobtn rounded border-2 border-white text-white mx-auto'>
+                  <DocSearch
+                    appId='6ZT4KX2OUI'
+                    apiKey='69f76fba13585144f6686622e9c8f2a8'
+                    indexName='json-schema'
+                  />
+                </div>
               </div>
-              Getting started
-            </a>
-          </Link>
-          <Link href='/overview/what-is-jsonschema'>
-            <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='h-14 text-6xl mb-2'>
-                📖
+
+              <div className='mb-16 md:mb-36  mx-auto w-1/2 md:w-5/6 lg:w-full'>
+                <h3 className='text-white text-xl'>Used by</h3>
+
+                <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
+                  <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
+                  <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
+                  <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
+                  <img src='/img/logos/usedby/github-white.png' className='w-40' />
+                </div>
+                <p className='text-white my-8'>More than 200 implementations generating over 100 million weekly downloads</p>
               </div>
-              Docs
-            </a>
-          </Link>
-          <Link href='/implementations'>
-            <a className='p-4 text-center block border flex flex-col items-center justify-center h-40 rounded-2xl hover:shadow-md transition-shadow text-lg font-semibold'>
-              <div className='h-14 text-5xl mb-2'>
-                💾
+            </div>
+          </section>
+          {/* Feature */}
+          <section className='max-w-[1400px] mt-12 lg:mt-[80px]'>
+            <div className='w-5/6 md:w-1/2 text-center  mb-6  mx-auto'>
+              <h2 className='text-h3mobile md:text-h3 font-bold mb-6'>Why JSON Schema?</h2>
+              <p className='mb-6 leading-5 text-h5mobile md:text-h5 leading-7'>While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that allows JSON data consistency, validity, and interoperability at scale.</p>
+            </div>
+            {/* Feature 4 section*/}
+            <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
+              <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
+                <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Streamline testing and validation</h3>
+                <p>Simplify your validation logic to reduce your code’s complexity and save time on development. Define constraints for your data structures to catch and prevent errors, inconsistencies, and invalid data.</p>
               </div>
-              Implementations
-            </a>
-          </Link>
+              <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
+                <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Exchange data seamlessly</h3>
+                <p>Establish a common language for data exchange, no matter the scale or complexity of your project. Define precise validation rules for your data structures to create shared understanding and increase interoperability across different systems and platforms.</p>
+              </div>
+              <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
+                <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Document your data</h3>
+                <p>Create a clear, standardized representation of your data to improve understanding and collaboration among developers, stakeholders, and collaborators.</p>
+              </div>
+              <div className='w-full  shadow-3xl  rounded-[10px] p-[20px]'>
+                <h3 className='text-h5mobile md:text-h5 font-semibold mb-6'>Vibrant tooling ecosystem</h3>
+                <p>Adopt JSON Schema with an expansive range of community-driven tools, libraries, and frameworks across many programming languages.</p>
+              </div>
+            </div>
+          </section>
+
+          <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
+            <div className='lg:w-full mx-auto text-center mt-28 '>
+              <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Start learning JSON Schema</h2>
+              <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='/overview/what-is-jsonschema '>Read the docs</a></button>
+            </div>
+          </section>
+
+          {/* SidebySide section*/}
+          <section className='max-w-[1400px] w-full lg:flex lg:gap-20 my-16 '>
+            <img src='/img/home-page/community-illustration.svg' className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]' />
+            <div className='w-5/6 md:w-3/5 mx-auto mt-12' >
+              <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4'>Explore the JSON Schema Ecosystem</h3>
+              <p className='lg:pr-8 mb-4 text-center lg:text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
+              <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto  h-[45px] rounded border-2 bg-primary text-white'><a href='/implementations/'>Explore</a></button>
+
+            </div>
+          </section>
+
+          {/* Join community */}
+          <h2 className='anchor'><span id='community'></span></h2>
+          <section className='lg:my-12 max-w-[1400px]'>
+            <div className='mb-12 md:w-3/4  mx-auto text-center'>
+              <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Welcome to the JSON Schema Community</h2>
+              <p className='mx-4 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
+              </p>
+            </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6'>
+              <div className='w-full  mb-6'>
+                <h3 className='mb-4 font-semibold' >Join the JSON Schema Community Slack!</h3>
+                <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
+                {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
+                <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
+                <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.org/slack'>Join us</a></button>
+              </div>
+              {/* BlogPost Data */}
+              <div className='w-full '>
+                <h3 className='mb-4 font-semibold' >Welcome to our blog!</h3>
+                <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
+                <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
+                <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
+                <div className='flex ml-2 mb-2 '>
+                  <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                    style={{ backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})` }}
+                  />
+                  <div className='flex flex-col ml-2'>
+                    <p className='text-sm font-semibold'>{blogPosts[0].frontmatter.authors[0].name}</p>
+                    <div className='text-slate-500 text-sm'>
+                      <span>
+                        {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div >
+                  <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+                    <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold'>Read more </a>
+                  </Link>
+                </div>
+              </div>
+              <div className=' '>
+                <div className='md:w-full mb-6 mr-4'>
+                  <h3 className='mb-2 font-semibold' >JSON Schema Community Meetings & Events</h3>
+                  <p className='mb-4'>We hold monthly Office Hours and weekly Open Community Working Meetings. Office Hours are every first Tuesday of the month at 15:00 BST, and by appointment. Open Community Working Meetings are every Monday at 14:00 PT.
+                  </p>
+                  <div className=''>
+                    <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] mb-4'><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
+                    <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/34/'
+                    >Office Hours</a></button>
+                  </div>
+                </div>
+                <div>
+                  <div>
+                    <Headline4 >
+                    Upcoming events
+                    </Headline4>
+                    <div>
+                      <ul>
+                        {props.datesInfo.slice(0, 3).map((event: any, index: any) => (
+                          <li key={index}>
+                            <div className='flex mb-4'>
+                              <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
+                                {event.day}
+                              </p>
+                              <div>
+                                <p className=''>{event.title}</p>
+                                <p>{event.time}</p>
+                              </div>
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                  </div>
+                  <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1' target='_blank' rel='noopener noreferrer'>View Calendar</a>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* News & Blogs */}
+          <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
+            <div className='lg:w-full mx-auto text-center mt-28 '>
+              <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Contribute to the JSON Schema</h2>
+              <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='https://github.com/json-schema-org#-contributing-to-json-schema
+'>Contribute</a></button>
+            </div>
+          </section>
+
+          {/* Sponsors */}
+
+          <section className='my-16'>
+            <div className='text-center mb-12'>
+              <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
+              <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/json-schema' className='border-b border-black'>Support us!</a></p>
+            </div>
+            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4'>
+              <a href=' https://www.asyncapi.com/'><img src='/img/logos/sponsors/asyncapi-logo-dark.svg' className=' w-44' /></a>
+              <a href='https://www.airbnb.com/'><img src='/img/logos/sponsors/airbnb-logo.svg' className=' w-44' /></a>
+              <a href='https://stoplight.io/'><img src='/img/logos/sponsors/stoplight-logo.svg' className=' w-44' /></a>
+              <a href='https://www.postman.com/'><img src='/img/logos/sponsors/Postman_logo-orange.svg' className='w-44' /></a>
+              <a href='https://retool.com/'><img src='/img/logos/sponsors/retool-logo.svg' className=' w-44' /></a>
+              <a href='https://www.apideck.com/'><img src='/img/logos/sponsors/apideck-logo.png' className=' w-44' /></a>
+            </div>
+
+          </section>
+
+          {/* Supported */}
+
+          <section className='my-20'>
+            <div className='text-center mb-12'>
+              <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
+              <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
+            </div>
+            <div className='grid grid-cols-2 gap-24 items-center mx-auto w-1/2'>
+              <a href='https://orbit.love/' className='w-44'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
+              <a href='https://json-schema.org/slack' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
+
+            </div>
+          </section>
         </div>
       </div>
-
-
-      <Headline2>
-        Community
-      </Headline2>
-      <p id='community' className='text-slate-600 block leading-7 pb-4'>
-        We have an active and growing community. All are welcome to be part of our community, help shape it, or simply observe.
-        We want to keep our community welcoming and inclusive, so please read our <a className='text-blue-500' href='https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md'>JSON Schema Organizational Code of Conduct</a>. (This is a combination of the Contributor Covenant and IETF BCP 54.)
-        The JSON Schema team and community are here to help!
-        At any point, feel free to join our <a className='text-blue-500' href='/slack'>Slack server</a>.
-        Our Slack server has limited history, so we also use <a className='text-blue-500' href='https://github.com/json-schema-org/community/discussions'>GitHub Discussions</a>.
-        We monitor the <Code>jsonschema</Code> tag on StackOverflow.
-      </p>
-      <div className='flex flex-col sm:flex-row py-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2'>
-        <a
-          href='https://github.com/json-schema-org/community/discussions/34'
-          className='border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
-        >
-          <div className='text-4xl mb-2'>👩‍💻</div>
-          <span className='text-md md:text-lg font-semibold text-center'>Office Hours</span>
-          <span className='text-center text-slate-500 text-sm mt-6'>Open zoom meeting<br />every first Tuesday of the month at 15:00 UTC<br />and by appointment.</span>
-        </a>
-        <a
-          href='https://github.com/json-schema-org/community/discussions/35'
-          className='self-stretch border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
-        >
-          <div className='text-4xl mb-2'>👷</div>
-          <span className='text-md md:text-lg font-semibold text-center'>Open Community Working Meetings</span>
-          <span className='text-center text-slate-500 text-sm mt-6'>Open zoom meeting<br />every Monday at 14:00 PT.</span>
-        </a>
-        <a
-          href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email'
-          className='self-stretch border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
-        >
-          <div className='text-4xl mb-4'><img src='/img/logos/slack.svg' className='h-8 w-8' /></div>
-          <span className='text-md md:text-lg font-semibold text-center'>Open Slack Workspace</span>
-          <span className='text-center text-slate-500 text-sm mt-6'>Discuss and ask questions about all JSON Schema related things.</span>
-        </a>
-        <a
-          href='https://github.com/json-schema-org/community/discussions'
-          className='self-stretch border inline-flex flex-col items-center justify-start rounded-2xl hover:shadow-sm transition-shadow px-10 py-6 hover:shadow transition-shadow'
-        >
-          <div className='text-4xl mb-2'>💬</div>
-          <span className='text-md md:text-lg font-semibold text-center'>GitHub Community Discussions</span>
-          <span className='text-center text-slate-500 text-sm mt-6'>Persistent organization level JSON Schema related discussions.</span>
-        </a>
-      </div>
-
-      <StyledMarkdown markdown={blocks[0]} />
     </Layout>
   )
 }
 
 export default Home
+// Home.getLayout = getLayout
