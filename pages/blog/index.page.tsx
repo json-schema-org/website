@@ -116,7 +116,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
           </div>
         </div>
         {/* Filter Buttons */}
-        <div className='w-full lg:ml-8 flex flex-wrap justify-start'>{allTags.map((tag) => (
+        <div className='w-full ml-8 flex flex-wrap justify-start'>{allTags.map((tag) => (
           <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</button>
         ))}</div>
 

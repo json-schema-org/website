@@ -36,12 +36,12 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
   
       <div className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
-        <div className='flex flex-col' onClick={() => setTimeout(() => { setOpen(!open) }, 100)}>
+        <div className='flex flex-col mt-4' onClick={() => setTimeout(() => { setOpen(!open) }, 100)}>
           <DocsNav />
         </div>
       </div>
   
-      <div className='max-w-[1400px] bg-white mx-auto grid grid-cols-1 lg:grid-cols-4 mx-12'>
+      <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
         <div className='hidden lg:block mt-24 '>
           <DocsNav />
         </div>
