@@ -148,8 +148,8 @@ const Home = (props: any) => {
               </div>
             </div>
 
-            <div className='mb-16 md:mb-36  mx-auto w-1/2 md:w-5/6 lg:w-full'>
-              <h3 className='text-white text-xl'>Used by</h3>
+            <div className='mb-16 md:mb-36  mx-auto w-2/3 md:w-5/6 lg:w-full'>
+              <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
                 <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
@@ -314,7 +314,7 @@ const Home = (props: any) => {
           </div>
 
         </section>
-
+ 
         {/* Supported */}
 
         <section className='my-20'>
@@ -322,7 +322,7 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
             <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
           </div>
-          <div className='grid grid-cols-2 gap-24 items-center mx-auto w-1/2'>
+          <div className='grid grid-cols-2 md:gap-24 items-center mx-auto w-3/4 md:w-3/5 lg:w-1/2'>
             <a href='https://orbit.love/' className='w-44'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
             <a href='https://json-schema.org/slack' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
 

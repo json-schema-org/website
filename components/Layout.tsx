@@ -7,7 +7,6 @@ import { DocSearch } from '@docsearch/react'
 import { HOST } from '~/lib/config'
 import useStore from '~/store'
 import { SectionContext } from '~/context'
-// import { SidebarData } from './SidebarData'
 
 
 type Props = {
@@ -27,7 +26,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
   return (
-    <div className='bg-slate-100 min-h-screen relative flex flex-col justify-between'>
+    <div className='min-h-screen relative flex flex-col justify-between'>
       <FaviconHead />
       <Head>
         <title>JSON Schema {metaTitle ? ` - ${metaTitle}` : ''}</title>
@@ -36,21 +35,18 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
         <main className={
-          classnames(mainClassName, responsiveClasses, 'z-10  bg-white xl:rounded-xl py-4 mx-auto')
+          classnames(mainClassName, responsiveClasses, ' z-10 xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames(responsiveClasses, 'fixed top-0 z-[170] bg-white shadow-xl drop-shadow-lg')}>
-            <div className='grid grid-cols-2  lg:grid-cols-3 py-4 justify-between items-center'>
+          <header className={classnames(responsiveClasses, 'bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
+            <div className='flex justify-between ml-8 2xl:px-12 py-4 items-center bg-white'>
               <Logo />
               <MainNavigation />
             </div>
           </header>
-
           {showMobileNav ? (
             <>
               <MobileNav />
-            
               {children}
-             
             </>
           ) : (
             <div>
@@ -65,12 +61,9 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
                   />
                 </div>
               )}
-             
               {children}
-             
             </div>
           )}
-
           <Footer />
           <OpenJS />
         </main>
@@ -106,7 +99,7 @@ const MainNavigation = () => {
   // const docsAreActive = section === 'docs'
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
-    <div className='lg:col-span-2  md:py-2 flex items-center'>
+    <div className='flex items-center ml-12 md:w-full md:w-auto md:mr-12'>
       <MainNavLink
         className='hidden lg:block  hover:underline'
         uri='/specification'
@@ -138,14 +131,15 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <div className='flex items-center gap-4 rounded border-2 border-gray-100 lg:ml-0'>
-        <Search />
-
+      <div className='flex items-center gap-12 md:gap-4'>
+        <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
+          <Search />
+        </div>
         {showMobileNav === false ? (<div
-          className={classnames('mr-8 ')}
+       
           onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
         >
-          <div className='block lg:hidden space-y-2 mr-8 items-center'>
+          <div className='block lg:hidden space-y-2  items-center'>
             <div className='w-6 h-1 bg-black rounded'></div>
             <div className='w-6 h-1 bg-black rounded'></div>
             <div className='w-6 h-1 bg-black rounded'></div>
@@ -154,7 +148,7 @@ const MainNavigation = () => {
         </div>
         ) : <div
           style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-          className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat mr-16 transition-all cursor-pointer'
+          className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer'
           onClick={() => useStore.setState({ overlayNavigation: null })}
         />
         }
@@ -438,10 +432,10 @@ const OpenJS = () => (
 
 const Logo = () => (
   <Link href='/' >
-    <a className='ml-12 lg:ml-0'>
-      <div className='lg:ml-20 inline-block '>
-        <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
-      </div>
+    <a className=''>
+     
+      <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
+
     </a>
   </Link>
 )
