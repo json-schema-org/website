@@ -30,8 +30,7 @@ html {
   height: 32px;
  padding: 8px 8px;
  margin-right: 10px;
-/* border: 1px solid #E3E8EE;
-border-radius: 4px; */
+
 }
  @media (max-width: 730px) {
   .DocSearch-Button-Container {
@@ -42,8 +41,15 @@ border-radius: 4px; */
   }
  }
 
-.DocSearch-Button-Container:hover {
+.DocSearch-Button-Container:hover, .DocSearch-Button-Container:focus, .DocSearch-Button-Container:active {
+  outline: 0 none transparent;
   border: none;
+  background-color: transparent;
+ }
+ .DocSearch-Button:active, .DocSearch-Button:focus, .DocSearch-Button:hover {
+  border: none;
+  outline: 0 none transparent;
+  background-color: transparent;
  }
 /* CARBON ADS */
 
@@ -122,7 +128,6 @@ border-radius: 4px; */
 /** Style Algolia */
 
 .search-input {
-
 	flex-grow: 1;
 	box-sizing: border-box;
 	width: 194px;
@@ -193,16 +198,18 @@ margin-left: 40px;
 .navSearch svg{
   color: black;
 }
-.herobtn span {
-  margin: 0 auto;
-}
+
 .herobtn span{ 
+  margin: 0 auto;
 	color: white !important;
+  font-weight: 600;
 }
   .herobtn svg {
     color: white !important;
   }
-
+  .herobtn span:hover{
+    outline: 0 none transparent;
+  }
 .anchor {
   position: relative;
   margin-bottom: 20px;

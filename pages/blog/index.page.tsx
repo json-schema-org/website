@@ -55,7 +55,8 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type)
   const spreadTags: any[] = [...setOfTags]
   const allTags = [...new Set(spreadTags)]
-
+  //add tag for all
+  allTags.unshift('All')
   const [filterTag, setFilterTag] = useState('')
   const handleClick = (event: { currentTarget: { value: any } }) => {
     const clickedTag = event.currentTarget.value
@@ -103,6 +104,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
             </div>
           </div>
         )}
+
         <div className='w-full flex justify-between items-center mx-auto px-2 sm:px-4 '>
           <div className='flex items-center'><Headline1>Blog</Headline1> <p className='mt-8'>Filter blog post by category...</p></div>
           <div className='col-span-1'>
@@ -132,6 +134,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
             }).filter(
               post => {
                 if (post.frontmatter.type === filterTag) return true
+                else if (filterTag === 'All') return true
                 else if (filterTag === '') return true
               }
             )
