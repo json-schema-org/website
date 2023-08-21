@@ -15,9 +15,6 @@ import { GetStaticProps } from 'next'
 import axios from 'axios'
 import ical from 'node-ical'
 import moment from 'moment'
-// import dayjs from 'dayjs'
-// import localizedFormat from 'dayjs/plugin/localizedFormat'
-// import isBetween from 'dayjs/plugin/isBetween'
 
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
@@ -68,8 +65,6 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 // Function to filter and print events for the next 4 weeks from today
 function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
-  // dayjs.extend(localizedFormat)
-  // dayjs.extend(isBetween)
   const arrayDates = []
   if (!icalData) {
     console.error('iCal data is empty or invalid.')
@@ -79,6 +74,8 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   // Calculate the range of dates for the next 4 weeks from today
   const today = moment().startOf('day')
   const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day')
+ 
+ 
 
   // Loop through the events in the iCal data
   for (const k in icalData) {
@@ -89,7 +86,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
       // Get the timezone of the event
       const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
-
+    
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
         // For recurring events, get the set of event start dates that fall within the range
@@ -120,7 +117,6 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 }
 const Home = (props: any) => {
   const blogPosts = props.blogPosts
-  // console.log('anything', props.datesInfo)
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes)
 
   return (
@@ -148,7 +144,7 @@ const Home = (props: any) => {
               </div>
             </div>
 
-            <div className='mb-16 md:mb-36  mx-auto w-1/2 md:w-5/6 lg:w-full'>
+            <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
@@ -273,7 +269,7 @@ const Home = (props: any) => {
                             </p>
                             <div>
                               <p className=''>{event.title}</p>
-                              <p>{event.time}</p>
+                              <p>{event.time} {event.timezone}</p>
                             </div>
                           </div>
                         </li>

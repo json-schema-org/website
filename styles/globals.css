@@ -1,17 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer utilities {
   .clip-bottom {
     clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 85%, 100% 0);
   }
+
   .clip-both {
     clip-path: polygon(0 15%, 0 100%, 0% 100%, 100% 85%, 100% 0);
   }
+
   @media (min-width: 320px) and (max-width: 759px) {
     .clip-bottom {
       clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 95%, 100% 0);
     }
+
     .clip-both {
       clip-path: polygon(0 05%, 0 100%, 0% 100%, 100% 95%, 100% 0);
     }
@@ -21,36 +25,39 @@
 html {
   font-family: 'Inter', sans-serif;
 }
+
 .DocSearch-Button-Keys {
   display: none !important;
 }
+
 .DocSearch-Button-Container {
   background-color: transparent !important;
   width: 168px;
   height: 32px;
- padding: 8px 8px;
- margin-right: 10px;
+  padding: 8px 8px;
+  margin-right: 10px;
 
 }
- @media (max-width: 730px) {
-  .DocSearch-Button-Container {
-  width: 40px;
-  height: 40px;
- padding: 0px;
- border: none;
-  }
- }
 
-.DocSearch-Button-Container:hover, .DocSearch-Button-Container:focus, .DocSearch-Button-Container:active {
-  outline: 0 none transparent;
-  border: none;
+@media (max-width: 730px) {
+  .DocSearch-Button-Container {
+    width: 40px;
+    height: 40px;
+    padding: 0px;
+    border: none;
+  }
+}
+
+
+.DocSearch-Button:active,
+.DocSearch-Button:focus,
+.DocSearch-Button:hover {
+  outline: 0 none transparent !important;
+  border: transparent !important;
   background-color: transparent;
- }
- .DocSearch-Button:active, .DocSearch-Button:focus, .DocSearch-Button:hover {
-  border: none;
-  outline: 0 none transparent;
-  background-color: transparent;
- }
+  box-shadow: none;
+}
+
 /* CARBON ADS */
 
 #carbonads {
@@ -68,19 +75,21 @@ html {
   border-color: #cacaca;
   z-index: 100;
 }
+
 @media (min-width: 775px) and (max-device-width: 1068px) {
   #carbonads {
     top: 140px;
   }
 }
+
 @media (max-width: 775px) {
   #carbonads {
     display: none;
-    
+
   }
 }
 
-#carbonads > span {
+#carbonads>span {
   position: relative;
   display: block;
   padding: 10px;
@@ -128,95 +137,107 @@ html {
 /** Style Algolia */
 
 .search-input {
-	flex-grow: 1;
-	box-sizing: border-box;
-	width: 194px;
-	margin: 0 auto;
-	padding: 5px;
-	overflow: visible;
-	font-weight: 500;
-	font-size: 1rem;
-	font-family: inherit;
-	line-height: inherit;
-	display: flex;
-	border-color: white !important;
-	color: white !important;
-	border-style: solid;
-	border-width: 2px;
-	border-radius: 0.25rem;
-	outline: 0;
-	cursor: pointer;
-	transition-timing-function: ease-out;
-	transition-duration: 0.2s;
-	transition-property: border-color, color;
-	-webkit-font-smoothing: antialiased;
-  
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 194px;
+  margin: 0 auto;
+  padding: 5px;
+  overflow: visible;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: inherit;
+  display: flex;
+  border-color: white !important;
+  color: white !important;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 0.25rem;
+  outline: 0;
+  cursor: pointer;
+  transition-timing-function: ease-out;
+  transition-duration: 0.2s;
+  transition-property: border-color, color;
+  -webkit-font-smoothing: antialiased;
+
 }
+
 .search-input svg {
-margin-left: 40px;
+  margin-left: 40px;
 }
+
 .search-input span {
   margin-left: 15px;
 }
+
 .search-input:hover,
 .search-input:focus {
-	color: white;
-	border-color: white;
+  color: white;
+  border-color: white;
 }
+
 .search-input:hover::placeholder,
 .search-input:focus::placeholder {
-	color: white;
+  color: white;
 }
+
 .search-input::placeholder {
-	color: white;
+  color: white;
 }
+
 .search-hint {
-	position: absolute;
-	top: 7px;
-	right: 19px;
-	padding: 3px 5px;
-	display: none;
-	align-items: center;
-	justify-content: center;
-	letter-spacing: 0.125em;
-	font-size: 13px;
-	font-family: inherit;
-	pointer-events: none;
-	border-color: white;
-	color: white;
-	border-style: solid;
-	border-width: 1px;
-	border-radius: 0.25rem;
-	line-height: 14px;
+  position: absolute;
+  top: 7px;
+  right: 19px;
+  padding: 3px 5px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.125em;
+  font-size: 13px;
+  font-family: inherit;
+  pointer-events: none;
+  border-color: white;
+  color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  line-height: 14px;
 }
 
 @media (min-width: 50em) {
-	.search-hint {
-		display: flex;
-	}
+  .search-hint {
+    display: flex;
+  }
 }
-.navSearch svg{
+
+.navSearch svg {
   color: black;
 }
 
-.herobtn span{ 
+.herobtn span {
   margin: 0 auto;
-	color: white !important;
+  color: white !important;
   font-weight: 600;
 }
-  .herobtn svg {
-    color: white !important;
-  }
-  .herobtn span:hover{
-    outline: 0 none transparent;
-  }
+
+.herobtn svg {
+  color: white !important;
+}
+
+.herobtn span:hover {
+  outline: 0 none transparent;
+}
+
 .anchor {
   position: relative;
   margin-bottom: 20px;
 }
+
 .anchor #community {
   position: absolute;
   left: 0;
-  top: -80px; /* change this value to match the height of the header */
- 
+  top: -80px;
+  /* change this value to match the height of the header */
+
 }
