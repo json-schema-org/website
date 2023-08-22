@@ -1,5 +1,5 @@
 import React from 'react'
-import { getLayout } from '~/components/SiteLayout'
+import { getLayout } from '~/components/Sidebar'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
