@@ -216,7 +216,7 @@ const Home = (props: any) => {
               <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
               {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
               <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.org/slack'>Join us</a></button>
+              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>Join us</a></button>
             </div>
             {/* BlogPost Data */}
             <div className='w-full '>
@@ -320,7 +320,7 @@ const Home = (props: any) => {
           </div>
           <div className='grid grid-cols-2 md:gap-24 items-center mx-auto w-full md:w-3/5 lg:w-1/2'>
             <a href='https://orbit.love/' className='w-44'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
-            <a href='https://json-schema.org/slack' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
+            <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
 
           </div>
         </section>

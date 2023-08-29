@@ -214,8 +214,6 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
           renderLeaf={(props: any) => {
             const { leaf, children, attributes } = props
             const textStyles: undefined | string = (() => {
-
-
               if (['objectPropertyStartQuotes', 'objectPropertyEndQuotes'].includes(leaf.syntaxPart?.type)) return 'text-blue-200'
               if (['objectProperty'].includes(leaf.syntaxPart?.type)) {
                 const isJsonScope = jsonPathsWithJsonScope
@@ -299,8 +297,6 @@ export type RegExpGroupResult = {
 }
 
 export type PathIndex = [number, number[]]
-
-//
 
 const getMultipathDecorationsByMatchesAndTextPathIndexes = (
   syntaxParts: SyntaxPart[],
