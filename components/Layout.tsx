@@ -21,7 +21,7 @@ const responsiveClasses = 'w-screen'
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
 
-  const showMobileNav = useStore((s: { overlayNavigation: any }) => s.overlayNavigation === 'docs')
+  const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
   const router = useRouter()
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
@@ -97,8 +97,8 @@ const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: 
 }
 const MainNavigation = () => {
   const section = useContext(SectionContext)
-  // const docsAreActive = section === 'docs'
-  const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
+  const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
+  
   return (
     <div className='flex items-center ml-12   md:mr-12'>
       <MainNavLink
