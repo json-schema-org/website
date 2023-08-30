@@ -15,9 +15,6 @@ import { GetStaticProps } from 'next'
 import axios from 'axios'
 import ical from 'node-ical'
 import moment from 'moment'
-// import dayjs from 'dayjs'
-// import localizedFormat from 'dayjs/plugin/localizedFormat'
-// import isBetween from 'dayjs/plugin/isBetween'
 
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
@@ -68,8 +65,6 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 // Function to filter and print events for the next 4 weeks from today
 function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
-  // dayjs.extend(localizedFormat)
-  // dayjs.extend(isBetween)
   const arrayDates = []
   if (!icalData) {
     console.error('iCal data is empty or invalid.')
@@ -79,6 +74,8 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   // Calculate the range of dates for the next 4 weeks from today
   const today = moment().startOf('day')
   const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day')
+ 
+ 
 
   // Loop through the events in the iCal data
   for (const k in icalData) {
@@ -89,7 +86,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
       // Get the timezone of the event
       const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
-
+    
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
         // For recurring events, get the set of event start dates that fall within the range
@@ -120,7 +117,6 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 }
 const Home = (props: any) => {
   const blogPosts = props.blogPosts
-  // console.log('anything', props.datesInfo)
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes)
 
   return (
@@ -148,7 +144,7 @@ const Home = (props: any) => {
               </div>
             </div>
 
-            <div className='mb-16 md:mb-36  mx-auto w-2/3 md:w-5/6 lg:w-full'>
+            <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
@@ -220,7 +216,7 @@ const Home = (props: any) => {
               <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
               {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
               <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.org/slack'>Join us</a></button>
+              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>Join us</a></button>
             </div>
             {/* BlogPost Data */}
             <div className='w-full '>
@@ -273,7 +269,7 @@ const Home = (props: any) => {
                             </p>
                             <div>
                               <p className=''>{event.title}</p>
-                              <p>{event.time}</p>
+                              <p>{event.time} {event.timezone}</p>
                             </div>
                           </div>
                         </li>
@@ -322,9 +318,9 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
             <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
           </div>
-          <div className='grid grid-cols-2 md:gap-24 items-center mx-auto w-3/4 md:w-3/5 lg:w-1/2'>
+          <div className='grid grid-cols-2 md:gap-24 items-center mx-auto w-full md:w-3/5 lg:w-1/2'>
             <a href='https://orbit.love/' className='w-44'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
-            <a href='https://json-schema.org/slack' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
+            <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
 
           </div>
         </section>

@@ -38,7 +38,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
           classnames(mainClassName, responsiveClasses, ' z-10 xl:rounded-xl py-4 mx-auto')
         }>
           <header className={classnames(responsiveClasses, 'bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
-            <div className='flex justify-between ml-8 2xl:px-12 py-4 items-center bg-white'>
+            <div className='flex justify-between items-center ml-8 2xl:px-12 py-4'>
               <Logo />
               <MainNavigation />
             </div>
@@ -99,7 +99,7 @@ const MainNavigation = () => {
   // const docsAreActive = section === 'docs'
   const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
   return (
-    <div className='flex items-center ml-12 md:w-full md:w-auto md:mr-12'>
+    <div className='flex items-center ml-12   md:mr-12'>
       <MainNavLink
         className='hidden lg:block  hover:underline'
         uri='/specification'
@@ -432,11 +432,7 @@ const OpenJS = () => (
 
 const Logo = () => (
   <Link href='/' >
-    <a className=''>
-     
-      <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
-
-    </a>
+    <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
   </Link>
 )
 

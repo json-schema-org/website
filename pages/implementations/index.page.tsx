@@ -1,5 +1,5 @@
 import React from 'react'
-import { getLayout } from '~/components/Sidebar'
+import { getLayout } from '~/components/SiteLayout'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
@@ -39,12 +39,14 @@ type ImplementationByLanguage = { name: string }
 export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
     <SectionContext.Provider value='implementations'>
-      <Headline1>Implementations</Headline1>
-      <StyledMarkdown markdown={blocks.intro} />
-      <Headline2>Validators</Headline2>
-      <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
-      <StyledMarkdown markdown={blocks.main} />
-      <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+      <div className='w-5/6 mx-auto mt-12'>
+        <Headline1>Implementations</Headline1>
+        <StyledMarkdown markdown={blocks.intro} />
+        <Headline2>Validators</Headline2>
+        <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
+        <StyledMarkdown markdown={blocks.main} />
+        <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+      </div>
     </SectionContext.Provider>
   )
 }
