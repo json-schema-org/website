@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
 import { HOST } from '~/lib/config'
-import useStore from '~/store'
+import useStore, { State } from '~/store';
 import { SectionContext } from '~/context'
 
 
@@ -21,7 +21,7 @@ const responsiveClasses = 'w-screen'
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
 
-  const showMobileNav = useStore(s => s.overlayNavigation === 'docs')
+  const showMobileNav = useStore((s: State) => s.overlayNavigation === 'docs');
   const router = useRouter()
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
