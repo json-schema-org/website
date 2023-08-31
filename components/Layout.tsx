@@ -17,7 +17,7 @@ type Props = {
   hideAds?: boolean
 }
 
-const responsiveClasses = 'w-screen'
+// const responsiveClasses = 'w-screen'
 
 export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
 
@@ -36,10 +36,10 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
         <main className={
-          classnames(mainClassName, responsiveClasses, ' z-10 xl:rounded-xl py-4 mx-auto')
+          classnames(mainClassName, 'z-10 xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames(responsiveClasses, 'bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
-            <div className='flex justify-between items-center ml-8 2xl:px-12 py-4'>
+          <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
+            <div className='flex justify-between items-center md:ml-8 2xl:px-12 py-4'>
               <Logo />
               <MainNavigation />
             </div>
@@ -83,7 +83,7 @@ export const Search = () => {
     />
   )
 }
-
+ 
 const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   return (
     <Link scroll={false} href={uri}>
@@ -95,6 +95,8 @@ const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: 
     </Link>
   )
 }
+
+//clarify below code  - active link is not working properly   -  need to check  -  1st link is always active  -  need to check    -  2nd link is not active  -  need to check  
 const MainNavigation = () => {
   const section = useContext(SectionContext)
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
@@ -102,32 +104,32 @@ const MainNavigation = () => {
   return (
     <div className='flex items-center ml-12   md:mr-12'>
       <MainNavLink
-        className='hidden lg:block  hover:underline'
+        className='hidden lg:block hover:underline'
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
       />
       <MainNavLink
-        className='hidden lg:block  hover:underline'
+        className='hidden lg:block hover:underline'
         uri='/overview/what-is-jsonschema'
         label='Docs'
         isActive={section === 'docs'}
       />
 
       <MainNavLink
-        className='hidden lg:block  hover:underline'
+        className='hidden lg:block hover:underline'
         uri='/implementations'
         label='Implementations'
         isActive={section === 'implementations'}
       />
       <MainNavLink
-        className='hidden lg:block  hover:underline'
+        className='hidden lg:block hover:underline'
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
       />
       <MainNavLink
-        className='hidden lg:block  hover:underline'
+        className='hidden lg:block hover:underline'
         uri='/#community'
         label='Community'
         isActive={section === 'community'}
@@ -136,17 +138,17 @@ const MainNavigation = () => {
         <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
           <Search />
         </div>
-        {showMobileNav === false ? (<div
-       
-          onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
-        >
-          <div className='block lg:hidden space-y-2  items-center'>
-            <div className='w-6 h-1 bg-black rounded'></div>
-            <div className='w-6 h-1 bg-black rounded'></div>
-            <div className='w-6 h-1 bg-black rounded'></div>
-          </div>
+        {showMobileNav === false ? (
+          <div
+            onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
+          >
+            <div className='block lg:hidden space-y-2  items-center'>
+              <div className='w-6 h-1 bg-black rounded'></div>
+              <div className='w-6 h-1 bg-black rounded'></div>
+              <div className='w-6 h-1 bg-black rounded'></div>
+            </div>
 
-        </div>
+          </div>
         ) : <div
           style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
           className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer'
@@ -204,7 +206,7 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 }
 
 const Footer = () => (
-  <footer className={classnames(responsiveClasses, 'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
+  <footer className={classnames('z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
     <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
@@ -241,7 +243,7 @@ const Footer = () => (
 )
 
 const OpenJS = () => (
-  <div className={classnames(responsiveClasses, '')}>
+  <div className={classnames('')}>
     <div className='max-w-[1400px] mx-auto my-6 lg:mt-20 grid grid-cols-1 lg:grid-cols-2 w-4/5'>
       <div className='md:w-1/2 mb-12 lg:ml-28'>
         <img className='h-24 mx-auto mb-6 lg:mb-0' src='/img/logos/openjs_foundation-logo-horizontal-color.svg' alt='color openjs foundation logo'></img>
@@ -257,7 +259,9 @@ const OpenJS = () => (
 
 const Logo = () => (
   <Link href='/' >
-    <img src='/img/logos/logo-blue.svg' className='h-12 mr-2' />
+    <a href='/' className=''>
+      <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
+    </a>
   </Link>
 )
 

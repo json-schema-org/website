@@ -147,13 +147,13 @@ const Home = (props: any) => {
             <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
-              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/3 md:w-100'>
                 <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/github-white.png' className='w-40' />
               </div>
-              <p className='text-white my-8'>More than 200 implementations generating over 100 million weekly downloads</p>
+              <p className='text-white mx-4 my-8'>More than 200 implementations generating over 100 million weekly downloads</p>
             </div>
           </div>
         </section>
@@ -207,7 +207,7 @@ const Home = (props: any) => {
         <section className='lg:my-12 max-w-[1400px]'>
           <div className='mb-12 md:w-3/4  mx-auto text-center'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Welcome to the JSON Schema Community</h2>
-            <p className='mx-4 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
+            <p className='mx-6 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
             </p>
           </div>
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6'>
@@ -243,7 +243,7 @@ const Home = (props: any) => {
                 </Link>
               </div>
             </div>
-            <div className=' '>
+            <div>
               <div className='md:w-full mb-6 mr-4'>
                 <h3 className='mb-2 font-semibold' >JSON Schema Community Meetings & Events</h3>
                 <p className='mb-4'>We hold monthly Office Hours and weekly Open Community Working Meetings. Office Hours are every first Tuesday of the month at 15:00 BST, and by appointment. Open Community Working Meetings are every Monday at 14:00 PT.
@@ -254,7 +254,7 @@ const Home = (props: any) => {
                   >Office Hours</a></button>
                 </div>
               </div>
-              <div>
+              <div >
                 <div>
                   <Headline4 >
                     Upcoming events
@@ -316,9 +316,9 @@ const Home = (props: any) => {
         <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
+            <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
           </div>
-          <div className='grid grid-cols-2 md:gap-24 items-center mx-auto w-full md:w-3/5 lg:w-1/2'>
+          <div className='grid grid-cols-2 md:ml-32 md:w-3/4 items-center lg:w-3/5 lg:ml-32'>
             <a href='https://orbit.love/' className='w-44'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
             <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
 
