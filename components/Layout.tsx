@@ -256,7 +256,7 @@ export const DocsNav = () => {
         >
           <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
           <SegmentSubtitle label='Examples' />
-          <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
+          <DocLink uri='/learn/generic-examples' label='Generic examples' />
           <DocLink uri='/learn/file-system' label='Modelling a file system' />
           <DocLink uri='/learn/json-schema-examples' label='Other examples' />
         </div>
