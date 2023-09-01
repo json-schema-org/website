@@ -24,7 +24,7 @@ In this page, you will find examples illustrating different use cases to help yo
 
 ## Address
 
-A schema representing an address, with optional properties for different address components like `post-office-box`, `street-address`, `locality`, `region`, `postal-code`, and `country-name`.
+A schema representing an address, with optional properties for different address components like `post office box`, `street address`, `locality`, `region`, `postal code`, and `country name`.
 
 ```json
 {
@@ -79,7 +79,7 @@ A schema representing an address, with optional properties for different address
 
 ## Blog post
 
-A schema representing a blog post, including properties like `title`, `content`, `published-date`, `author-details`, and `tags`.
+A schema representing a blog post, including properties like `title`, `content`, `published date`, `author details`, and `tags`.
 
 ```json
 {
@@ -130,7 +130,7 @@ A schema representing a blog post, including properties like `title`, `content`,
 
 ## Book
 
-A schema representing a book, including various properties like `title`, `author`, `publication-date`, `genre`, `ISBN`, and `rating`.
+A schema representing a book, including various properties like `title`, `author`, `publication date`, `genre`, `ISBN`, and `rating`.
 
 ```json
 {
@@ -181,7 +181,7 @@ A schema representing a book, including various properties like `title`, `author
 
 ## Calendar
 
-A schema representing an event in a calendar, including properties like `start-date`, `end-date`, `summary`, `location`, and `recurrence` details.
+A schema representing an event in a calendar, including properties like `start date`, `end date`, `summary`, `location`, and `recurrence` details.
 
 ```json
 {
@@ -248,7 +248,7 @@ A schema representing an event in a calendar, including properties like `start-d
 
 ## Card
 
-A schema representing a person, company, organization, or place, with properties such as `name`, `contact-information`, and `organizational-details`.
+A schema representing a person, company, organization, or place, with properties such as `name`, `contact information`, and `organizational details`.
 
 ```json
 {
@@ -378,7 +378,7 @@ A schema representing a person, company, organization, or place, with properties
 
 ## Event registration
 
-A schema representing an event registration, including properties like `event-name`, `participant-details`, `registration-date`, `ticket-type`, and `ticket-price`.
+A schema representing an event registration, including properties like `event name`, `participant details`, `registration date`, `ticket type`, and `ticket price`.
 
 ```json
 {
@@ -464,7 +464,7 @@ A schema representing geographical coordinates with `latitude` and `longitude` v
 
 ## Health record
 
-A schema representing a health record, including `patient-information`, `allergies`, `medical-conditions`, `medications`, and `emergency-contact`.
+A schema representing a health record, including `patient information`, `allergies`, `medical conditions`, `medications`, and `emergency contact`.
 
 ```json
 {
