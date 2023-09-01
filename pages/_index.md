@@ -31,7 +31,7 @@ the document declares as its expiration.
 
 ### Use of the _draft_ designation
 Releases of the JSON schema specification and meta schemas use the _draft_ designation primarily for historical reasons stemming from the relationship of this specification to IETF ([explained here](https://json-schema.org/specification-links#understanding-draft-names-and-numbers)).
-The use of this designation is under review and will not continue in future releases.
+The use of this designation will not continue in future releases.
 
 <details markdown="1">
 <summary>Read more</summary>

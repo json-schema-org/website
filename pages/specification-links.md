@@ -334,12 +334,9 @@ _These were updated without changing functionality or meta-schemas due to a few 
 _**NOTE:** All meta-schema URIs now use `https://`.  While currently also available over plain HTTP due to the limitations of GitHub pages and the need to keep prior drafts available over HTTP, only the HTTPS URIs should be used._
 
 - Specifications
-    - Core:
-      [draft-handrews-json-schema-02](/draft/2019-09/draft-handrews-json-schema-02.html) ([changes](draft/2019-09/draft-handrews-json-schema-02.html#rfc.appendix.G))
-    - Validation:
-      [draft-handrews-json-schema-validation-02](/draft/2019-09/draft-handrews-json-schema-validation-02.html) ([changes](/draft/2019-09/draft-handrews-json-schema-validation-02.html#rfc.appendix.C))
-    - Hyper-Schema:
-      [draft-handrews-json-schema-hyperschema-02](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html) ([changes](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html#rfc.appendix.B))
+    - Core: [draft-handrews-json-schema-02](/draft/2019-09/draft-handrews-json-schema-02.html) ([changes](draft/2019-09/draft-handrews-json-schema-02.html#rfc.appendix.G))
+    - Validation: [draft-handrews-json-schema-validation-02](/draft/2019-09/draft-handrews-json-schema-validation-02.html) ([changes](/draft/2019-09/draft-handrews-json-schema-validation-02.html#rfc.appendix.C))
+    - Hyper-Schema: [draft-handrews-json-schema-hyperschema-02](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html) ([changes](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html#rfc.appendix.B))
     - Relative JSON Pointer: [draft-handrews-relative-json-pointer-02](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-02) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-02#appendix-A))
 - General use meta-schemas
     - [JSON Schema meta-schema](/draft/2019-09/schema)
@@ -361,12 +358,9 @@ _**NOTE:** All meta-schema URIs now use `https://`.  While currently also availa
 
 ### Draft 7
 
-- Core:
-  [draft-handrews-json-schema-01](/draft-07/draft-handrews-json-schema-01.html) ([changes](/draft-07/draft-handrews-json-schema-01.html#rfc.appendix.B))
-- Validation:
-  [draft-handrews-json-schema-validation-01](/draft-07/draft-handrews-json-schema-validation-01.html) ([changes](/draft-07/draft-handrews-json-schema-validation-01.html#rfc.appendix.B))
-- Hyper-Schema:
-  [draft-handrews-json-schema-hyperschema-01](/draft-07/draft-handrews-json-schema-hyperschema-01.html) ([changes](/draft-07/draft-handrews-json-schema-hyperschema-01.html#rfc.appendix.B))
+- Core: [draft-handrews-json-schema-01](/draft-07/draft-handrews-json-schema-01.html) ([changes](/draft-07/draft-handrews-json-schema-01.html#rfc.appendix.B))
+- Validation: [draft-handrews-json-schema-validation-01](/draft-07/draft-handrews-json-schema-validation-01.html) ([changes](/draft-07/draft-handrews-json-schema-validation-01.html#rfc.appendix.B))
+- Hyper-Schema: [draft-handrews-json-schema-hyperschema-01](/draft-07/draft-handrews-json-schema-hyperschema-01.html) ([changes](/draft-07/draft-handrews-json-schema-hyperschema-01.html#rfc.appendix.B))
 - [JSON Schema meta-schema](draft-07/schema)
 - [JSON Hyper-Schema meta-schema](draft-07/hyper-schema)
 - [JSON Hyper-Schema Link Description Object meta-schema](draft-07/links)
@@ -379,18 +373,14 @@ _These were updated without changing functionality or meta-schemas due to a few 
 
 - Core: [draft-handrews-json-schema-00](/draft-07/draft-handrews-json-schema-00.pdf) ([changes](/draft-07/draft-handrews-json-schema-00.pdf#appendix-B))
 - Validation: [draft-handrews-json-schema-validation-00](/draft-07/draft-handrews-json-schema-validation-00.pdf) ([changes](/draft-07/draft-handrews-json-schema-validation-00.pdf#appendix-B))
-- Hyper-Schema:
-  [draft-handrews-json-schema-hyperschema-00](/draft-07/draft-handrews-json-schema-hyperschema-00.html) ([changes](/draft-07/draft-handrews-json-schema-hyperschema-00.html#rfc.appendix.B))
+- Hyper-Schema: [draft-handrews-json-schema-hyperschema-00](/draft-07/draft-handrews-json-schema-hyperschema-00.html) ([changes](/draft-07/draft-handrews-json-schema-hyperschema-00.html#rfc.appendix.B))
 - Relative JSON Pointer: [draft-handrews-relative-json-pointer-00](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00#appendix-B))
 
 ### Draft 6
 
-- Core:
-  [draft-wright-json-schema-01](/draft-06/draft-wright-json-schema-01.html) ([changes](/draft-06/draft-wright-json-schema-01.html#rfc.appendix.B))
-- Validation:
-  [draft-wright-json-schema-validation-01](/draft-06/draft-wright-json-schema-validation-01.html) ([changes](/draft-06/draft-wright-json-schema-validation-01.html#rfc.appendix.B)) ([schema migration FAQ](draft-06/json-schema-migration-faq))
-- Hyper-Schema:
-  [draft-wright-json-schema-hyperschema-01](/draft-06/draft-wright-json-schema-hyperschema-01.html) ([changes](/draft-06/draft-wright-json-schema-hyperschema-01.html#rfc.appendix.B)) ([hyper-schema migration FAQ](draft-06/json-hyper-schema-migration-faq))
+- Core: [draft-wright-json-schema-01](/draft-06/draft-wright-json-schema-01.html) ([changes](/draft-06/draft-wright-json-schema-01.html#rfc.appendix.B))
+- Validation: [draft-wright-json-schema-validation-01](/draft-06/draft-wright-json-schema-validation-01.html) ([changes](/draft-06/draft-wright-json-schema-validation-01.html#rfc.appendix.B)) ([schema migration FAQ](draft-06/json-schema-migration-faq))
+- Hyper-Schema: [draft-wright-json-schema-hyperschema-01](/draft-06/draft-wright-json-schema-hyperschema-01.html) ([changes](/draft-06/draft-wright-json-schema-hyperschema-01.html#rfc.appendix.B)) ([hyper-schema migration FAQ](draft-06/json-hyper-schema-migration-faq))
 - [JSON Schema meta-schema](draft-06/schema)
 - [JSON Hyper-Schema meta-schema](draft-06/hyper-schema)
 
@@ -404,18 +394,15 @@ _These were updated without changing functionality or meta-schemas due to a few 
 ### Draft 4
 
  - Core: [draft-zyp-json-schema-04](/draft-04/draft-zyp-json-schema-04.html) ([changes](/draft-04/draft-zyp-json-schema-04.html#rfc.appendix.A))
- - Validation:
-   [draft-fge-json-schema-validation-00](/draft-04/draft-fge-json-schema-validation-00.html) ([changes](/draft-04/draft-fge-json-schema-validation-00.html#rfc.appendix.A))
- - Hyper-Schema:
-   [draft-luff-json-hyper-schema-00](/draft-04/draft-luff-json-hyper-schema-00.html) ([changes](/draft-04/draft-luff-json-hyper-schema-00.html#rfc.appendix.A))
+ - Validation: [draft-fge-json-schema-validation-00](/draft-04/draft-fge-json-schema-validation-00.html) ([changes](/draft-04/draft-fge-json-schema-validation-00.html#rfc.appendix.A))
+ - Hyper-Schema: [draft-luff-json-hyper-schema-00](/draft-04/draft-luff-json-hyper-schema-00.html) ([changes](/draft-04/draft-luff-json-hyper-schema-00.html#rfc.appendix.A))
  - JSON Reference: [draft-pbryan-zyp-json-ref-03](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) ([changes](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03#appendix-A))
  * [JSON Schema meta-schema](draft-04/schema)
  * [JSON Hyper-Schema meta-schema](draft-04/hyper-schema)
 
 ### Draft 3
 
- - Complete Specification:
-   [draft-zyp-json-schema-03](/draft-03/draft-zyp-json-schema-03.pdf) ([changes](/draft-03/draft-zyp-json-schema-03.pdf#anchor54))
+ - Complete Specification: [draft-zyp-json-schema-03](/draft-03/draft-zyp-json-schema-03.pdf) ([changes](/draft-03/draft-zyp-json-schema-03.pdf#anchor54))
 * [JSON Schema meta-schema](draft-03/schema)
 * [JSON Hyper-Schema meta-schema](draft-03/hyper-schema)
 
@@ -427,8 +414,7 @@ _These were updated without changing functionality or meta-schemas due to a few 
 
 ### Draft 1
 
- - Complete Specification:
-   [draft-zyp-json-schema-01](/draft-01/draft-zyp-json-schema-01.html) ([changes](/draft-01/draft-zyp-json-schema-01.html#anchor54))
+ - Complete Specification: [draft-zyp-json-schema-01](/draft-01/draft-zyp-json-schema-01.html) ([changes](/draft-01/draft-zyp-json-schema-01.html#anchor54))
 * [JSON Schema meta-schema](draft-01/schema)
 * [JSON Hyper-Schema meta-schema](draft-01/hyper-schema)
 
