@@ -1,6 +1,6 @@
 ---
 section: docs
-title: Miscellaneous Examples
+title: Generic Examples
 ---
 
 In this page, you will find examples illustrating different uses cases to help you get the most out of your JSON Schemas, including:
