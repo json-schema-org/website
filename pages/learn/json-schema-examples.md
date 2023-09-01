@@ -3,6 +3,25 @@ section: docs
 title: JSON Schema examples
 ---
 
+In this page, you will find examples illustrating different use cases to help you get the most out of your JSON Schemas. These examples cover a wide range of scenarios, and each example comes with accompanying JSON data and explanation, showcasing how JSON Schemas can be applied to various domains.
+
+- [Address](#address)
+- [Blog post](#blog-post)
+- [Book](#book)
+- [Calendar](#calendar)
+- [Card](#card)
+- [Event registration](#event-registration)
+- [Geographical location](#geographical-location)
+- [Health record](#health-record)
+- [Invoice](#invoice)
+- [Job posting](#job-posting)
+- [Movie](#movie)
+- [Order](#order)
+- [Product](#product)
+- [Recipe](#recipe)
+- [User profile](#user-profile)
+
+
 ## Address
 
 A schema representing an address, with optional properties for different address components like `post-office-box`, `street-address`, `locality`, `region`, `postal-code`, and `country-name`.
