@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '~/components/Layout'
+import { getLayout } from '~/components/Sidebar'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
@@ -42,20 +42,18 @@ type ImplementationByLanguage = { name: string }
 export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
     <SectionContext.Provider value='implementations'>
-      <Layout>
-        <Headline1>Obsolete Implementations</Headline1>
-        <StyledMarkdown markdown={blocks.intro} />
+      <Headline1>Obsolete Implementations</Headline1>
+      <StyledMarkdown markdown={blocks.intro} />
 
-        <Headline2>Validators</Headline2>
-        <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
-        <StyledMarkdown markdown={blocks.main} />
-        <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
-        <StyledMarkdown markdown={blocks.main2} />
-      </Layout>
+      <Headline2>Validators</Headline2>
+      <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
+      <StyledMarkdown markdown={blocks.main} />
+      <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+      <StyledMarkdown markdown={blocks.main2} />
     </SectionContext.Provider>
   )
 }
-
+ImplementationsPages.getLayout = getLayout
 function ImplementationTable ({ implementationsByLanguage, prefix }: { implementationsByLanguage: any, prefix: string }) {
   const router = useRouter()
   return (
