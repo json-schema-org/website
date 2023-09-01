@@ -3,6 +3,14 @@ section: docs
 title: Modeling a file system with JSON Schema
 ---
 
+This guide unfolds a step-by-step walkthrough to design a JSON Schema that mirrors the structure of an `/etc/fstab` file. This file maps out the connections of various storage parts in a computer. The journey starts by crafting a foundational arrangement for the `fstab` file. We apply various keywords like `$id`, `type`, and `patternProperties` to create rules for the entries.
+
+In the next phase, we introduce the idea of an `entry` schema. This schema functions as a plan for how each part of the file should look. We employ keywords like `description`, `oneOf`, and `$ref` to construct this plan, making it flexible for different kinds of entries.
+
+The guide goes further to detail rules customized for specific parts of each entry. For example, it clarifies how to precisely classify storage, defines acceptable options, and decides if something is merely readable. Our exploration widens to intricate plans for varied storage types, including regular disks, network storage, and temporary storage.
+
+To conclude, all these facets are interwoven to create a comprehensive design for the entire `fstab` file. The guide employs simple language and practical examples to make grasping the concepts behind JSON Schema and its role in explaining the setup of `fstab` files effortless.
+
 * [Introduction](#introduction)
 * [Creating the `fstab` schema](#fstab-schema)
 * [Starting the `entry` schema](#entry-schema)
