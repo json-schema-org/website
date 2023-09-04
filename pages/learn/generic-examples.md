@@ -3,7 +3,7 @@ section: docs
 title: Miscellaneous Examples
 ---
 
-In this page, you will find examples illustrating different uses cases to help you get the most out of your JSON Schemas, including:
+In this page, you will find generic examples illustrating different uses cases to help you get the most out of your JSON Schemas. Each example comes with accompanying JSON data and explanation.
 
 - [A typical minimum schema](#basic)
 - [Arrays of things](#arrays-of-things)
