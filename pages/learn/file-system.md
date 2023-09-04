@@ -7,12 +7,6 @@ In this step-by-step guide you will learn how to design a JSON Schema that mirro
 
 This guide is divided into the following sections:
 
-In the next phase, we introduce the idea of an `entry` schema. This schema functions as a plan for how each part of the file should look. We employ keywords like `description`, `oneOf`, and `$ref` to construct this plan, making it flexible for different kinds of entries.
-
-The guide goes further to detail rules customized for specific parts of each entry. For example, it clarifies how to precisely classify storage, defines acceptable options, and decides if something is merely readable. Our exploration widens to intricate plans for varied storage types, including regular disks, network storage, and temporary storage.
-
-To conclude, all these facets are interwoven to create a comprehensive design for the entire `fstab` file. The guide employs simple language and practical examples to make grasping the concepts behind JSON Schema and its role in explaining the setup of `fstab` files effortless.
-
 * [Introduction](#introduction)
 * [Creating the `fstab` schema](#fstab-schema)
 * [Starting the `entry` schema](#entry-schema)
