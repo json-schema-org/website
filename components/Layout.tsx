@@ -86,7 +86,7 @@ export const Search = () => {
  
 const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   return (
-    <Link scroll={false} href={uri}>
+    <Link href={uri}>
       <a className={classnames(className, 'font-semibold p-2 md:p-4', {
         'text-primary hover:text-primary': isActive,
         'text-slate-600 hover:text-primary': !isActive
