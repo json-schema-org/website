@@ -35,7 +35,9 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
     </div>
   )
 }
-
+const getDocsPath = [
+  '/overview/what-is-jsonschema'
+]
 const getStartedPath = [
   '/learn/json-schema-examples',
   '/learn/file-system',
@@ -105,11 +107,11 @@ export const getLayout = (page: React.ReactNode) =>
 export const DocsNav = () => {
   const router = useRouter()
   /* eslint-disable no-constant-condition */
-  const [active, setActive] = useState(true ? router.asPath === '/overview/what-is-jsonschema' : false)
+  const [active, setActive] = useState(true ? getDocsPath.includes(router.asPath) : false)
   const handleClick = () => {
     setActive(!active)
   }
-
+// console.log(router.asPath)
   const [activeGet, setActiveGet] = useState(true ? getStartedPath.includes(router.asPath) : false)
   const handleClickGet = () => {
     setActiveGet(!activeGet)
@@ -139,7 +141,7 @@ export const DocsNav = () => {
     <div id='sidebar '
       className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onClick={(e) => { e.preventDefault(); handleClick() }} >
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleClick() }} >
           <div className='flex  items-center align-middle'>
             <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Overview' />
@@ -156,7 +158,7 @@ export const DocsNav = () => {
       </div>
       {/* Get Started */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onClick={() => { handleClickGet() }} >
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleClickGet() }} >
           <div className='flex  items-center align-middle' >
             <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Getting Started' />
@@ -177,7 +179,7 @@ export const DocsNav = () => {
       </div>
       {/* Reference */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickReference() }}>
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleClickReference() }}>
           <div className='flex  items-center align-middle' >
             <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Reference' />
@@ -232,7 +234,7 @@ export const DocsNav = () => {
       </div>
       {/* Specification */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleClickSpec() }}>
+        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleClickSpec() }}>
           <div className='flex  items-center align-middle'>
             <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Specification' />

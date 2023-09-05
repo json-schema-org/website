@@ -85,12 +85,14 @@ export const Search = () => {
 }
  
 const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
+  const router = useRouter()
   return (
     <Link href={uri}>
-      <a className={classnames(className, 'font-semibold p-2 md:p-4', {
-        'text-primary hover:text-primary': isActive,
-        'text-slate-600 hover:text-primary': !isActive
-      })}
+      <a className={classnames(className, 'font-semibold p-2 md:p-4', `${
+        router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
+      }`
+        
+      )}
       >{label}</a>
     </Link>
   )
