@@ -88,7 +88,7 @@ const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: 
   const router = useRouter()
   // isActive is not being used
   //todo: remove variable
-  isActive = isActive
+  isActive = false
   return (
     <Link href={uri}>
       <a className={classnames(className, 'font-semibold p-2 md:p-4', `${
