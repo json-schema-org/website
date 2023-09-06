@@ -316,7 +316,7 @@ const Home = (props: any) => {
         <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
+            <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
           </div>
           <div className='grid grid-cols-2 md:gap-24 items-center mx-auto w-3/4 md:w-3/5 lg:w-1/2'>
             <a href='https://orbit.love/'><img src='/img/logos/supported/new-orbit-logo-color.svg' className=' w-44' /></a>
