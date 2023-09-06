@@ -300,7 +300,7 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/json-schema' className='border-b border-black'>Support us!</a></p>
           </div>
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 mx-auto md:mx-0 px-4'>
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto md:mx-0 px-4'>
             <a href=' https://www.asyncapi.com/'><img src='/img/logos/sponsors/asyncapi-logo-dark.svg' className=' w-44' /></a>
             <a href='https://www.airbnb.com/'><img src='/img/logos/sponsors/airbnb-logo.svg' className=' w-44' /></a>
             <a href='https://stoplight.io/'><img src='/img/logos/sponsors/stoplight-logo.svg' className=' w-44' /></a>
