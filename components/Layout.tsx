@@ -86,9 +86,7 @@ export const Search = () => {
  
 const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   const router = useRouter()
-  // isActive is not being used
-  //todo: remove variable
-  isActive = false
+  /* eslint-disable no-unused-vars */
   return (
     <Link href={uri}>
       <a className={classnames(className, 'font-semibold p-2 md:p-4', `${
