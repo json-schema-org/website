@@ -86,7 +86,9 @@ export const Search = () => {
  
 const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   const router = useRouter()
-  // isActive is not being used 
+  // isActive is not being used
+  //todo: remove variable
+  isActive = isActive
   return (
     <Link href={uri}>
       <a className={classnames(className, 'font-semibold p-2 md:p-4', `${
