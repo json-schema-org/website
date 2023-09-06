@@ -210,7 +210,7 @@ const Home = (props: any) => {
             <p className='mx-6 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
             </p>
           </div>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
             <div className='w-full  mb-6'>
               <h3 className='mb-4 font-semibold' >Join the JSON Schema Community Slack!</h3>
               <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
@@ -300,7 +300,7 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/json-schema' className='border-b border-black'>Support us!</a></p>
           </div>
-          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto md:mx-0 px-4'>
+          <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4'>
             <a href=' https://www.asyncapi.com/'><img src='/img/logos/sponsors/asyncapi-logo-dark.svg' className=' w-44' /></a>
             <a href='https://www.airbnb.com/'><img src='/img/logos/sponsors/airbnb-logo.svg' className=' w-44' /></a>
             <a href='https://stoplight.io/'><img src='/img/logos/sponsors/stoplight-logo.svg' className=' w-44' /></a>
@@ -316,11 +316,12 @@ const Home = (props: any) => {
         <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
+            <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
           </div>
-          <div className='grid grid-cols-2 md:gap-24 items-center mx-auto w-3/4 md:w-3/5 lg:w-1/2'>
-            <a href='https://orbit.love/'><img src='/img/logos/supported/new-orbit-logo-color.svg' className=' w-44' /></a>
-            <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'><img src='/img/logos/supported/slack-logo.svg' className=' w-44' /></a>
+          <div className='grid grid-cols-2 mx-auto items-center md:w-3/4 lg:w-3/5 '>
+            <a href='https://orbit.love/' className='w-44 ml-4'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
+            <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email' className='w-44 ml-8'><img src='/img/logos/supported/slack-logo.svg' /></a>
+
           </div>
         </section>
       </div>
