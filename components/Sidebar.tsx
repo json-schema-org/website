@@ -111,7 +111,8 @@ export const DocsNav = () => {
   const handleClick = () => {
     setActive(!active)
   }
-// console.log(router.asPath)
+  
+  // console.log(router.asPath)
   const [activeGet, setActiveGet] = useState(true ? getStartedPath.includes(router.asPath) : false)
   const handleClickGet = () => {
     setActiveGet(!activeGet)
