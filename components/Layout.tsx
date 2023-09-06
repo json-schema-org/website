@@ -84,7 +84,7 @@ export const Search = () => {
   )
 }
 
-// @ts-ignore
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   const router = useRouter()
   return (
