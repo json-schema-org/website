@@ -53,6 +53,10 @@ p.jsonschema-comment {
     list-style: none;
 }
 
+.separation-line {
+    border-bottom: 1px solid white; /* Adjust the border style as needed */
+  }
+
 .tab-content {
     padding: 9.5px;
     border-left: 1px solid #ddd;
