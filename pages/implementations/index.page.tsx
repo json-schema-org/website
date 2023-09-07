@@ -100,7 +100,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                 <React.Fragment
                   key={index}
                 >
-                  <tr className='separation-line'>
+                  <tr>
                     <td colSpan={3}>
                       <Headline3 attributes={{ slug }} >{implementationByLanguage.name}</Headline3>
                     </td>
@@ -112,7 +112,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                     ]
                     return (
                       <tr key={index}
-                        className='pl-4 list-disc list-inside pl-2'
+                        className='pl-4 list-disc list-inside pl-2 separation-line'
                       >
                         <td className=''>
                           <a className='text-blue-500' href={implementation.url}>{implementation.name}</a>
