@@ -122,8 +122,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
     }
   }
 
-  arrayDates.sort((x, y) => +new Date(x.time) - +new Date(y.time));
-
+  arrayDates.sort((x, y) => +new Date(x.time) - +new Date(y.time))
 
   return arrayDates
 }
