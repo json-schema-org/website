@@ -111,8 +111,20 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
           }
         }
       }
+      else {
+        // Simple case - no recurrences, just print out the calendar event.
+        if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
+          const time = startDate.format('MMMM Do YYYY, h:mm a')
+          const day = startDate.format('D')
+          arrayDates.push({ title, time, day, timezone })
+        }
+      }
     }
   }
+
+  arrayDates.sort((x, y) => +new Date(x.time) - +new Date(y.time));
+
+
   return arrayDates
 }
 const Home = (props: any) => {
@@ -319,7 +331,7 @@ const Home = (props: any) => {
             <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
           </div>
           <div className='grid grid-cols-2 mx-auto items-center md:w-3/4 lg:w-3/5 '>
-            <a href='https://orbit.love/' className='w-44 ml-4'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
+            <a href='https://.love/' className='w-44 ml-4'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
             <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email' className='w-44 ml-8'><img src='/img/logos/supported/slack-logo.svg' /></a>
 
           </div>
