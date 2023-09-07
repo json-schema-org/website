@@ -120,7 +120,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                         <td className='pl-6'>
                           <StyledMarkdown markdown={implementation.notes} />
                         </td>
-                        <td className='pl-6 pb-2'>
+                        <td className='pl-6 pb-2 pt-2'>
                           {allDrafts
                             ?.sort((a, b) => DRAFT_ORDER.indexOf(a) < DRAFT_ORDER.indexOf(b) ? -1 : 1)
                             ?.map((draft: string | number) => (
