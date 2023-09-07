@@ -89,6 +89,10 @@ border-radius: 4px; */
   }
 }
 
+.separation-line {
+  border-bottom: 1px solid white; /* Adjust the border style as needed */
+}
+
 #carbonads>span {
   position: relative;
   display: block;
