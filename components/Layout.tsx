@@ -4,7 +4,6 @@ import Link from 'next/link'
 import classnames from 'classnames'
 import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
-
 import useStore from '~/store'
 import { SectionContext } from '~/context'
 
@@ -85,25 +84,23 @@ export const Search = () => {
 }
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
-const MainNavLink = ({ uri, label, isActive, className }: { uri: string, label: string, isActive: boolean, className?: string }) => {
+const MainNavLink = ({ uri, label, className, isActive }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   const router = useRouter()
   return (
     <Link href={uri}>
-      <a className={classnames(className, 'font-semibold p-2 md:p-4', `${
-        router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
+      <a className={classnames(className, 'font-semibold p-2 md:p-4', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
       }`
-        
       )}
-      >{label}</a>
+      >{label}
+      </a>
     </Link>
   )
 }
 
-//clarify below code  - active link is not working properly   -  need to check  -  1st link is always active  -  need to check    -  2nd link is not active  -  need to check  
 const MainNavigation = () => {
   const section = useContext(SectionContext)
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
-
+  
   return (
     <div className='flex items-center ml-12   md:mr-12'>
       <MainNavLink
@@ -111,12 +108,14 @@ const MainNavigation = () => {
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
+        
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/overview/what-is-jsonschema'
         label='Docs'
         isActive={section === 'docs'}
+        
       />
 
       <MainNavLink
@@ -124,18 +123,21 @@ const MainNavigation = () => {
         uri='/implementations'
         label='Implementations'
         isActive={section === 'implementations'}
+        
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
+       
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/#community'
         label='Community'
         isActive={section === 'community'}
+        
       />
       <div className='flex items-center gap-12 md:gap-4'>
         <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
@@ -172,27 +174,32 @@ const MobileNav = () => {
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
+        
       />
       <MainNavLink
         uri='/overview/what-is-jsonschema'
         label='Docs'
         isActive={section === 'docs'}
+       
       />
 
       <MainNavLink
         uri='/implementations'
         label='Implementations'
         isActive={section === 'implementations'}
+        
       />
       <MainNavLink
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
+       
       />
       <MainNavLink
         uri='/#community'
         label='Community'
         isActive={section === 'community'}
+        
       />
     </div>
   )

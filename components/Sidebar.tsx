@@ -1,10 +1,9 @@
 import { getLayout as getSiteLayout } from './SiteLayout'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { HOST } from '~/lib/config'
 import classnames from 'classnames'
-// import { DocsNav } from './Layout'
 import { SegmentHeadline } from './Layout'
 
 
@@ -27,7 +26,6 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   )
 }
 
-
 const SegmentSubtitle = ({ label }: { label: string }) => {
   return (
     <div className='text-base italic text-slate-900 mt-2 mb-2'>
@@ -44,19 +42,20 @@ const getStartedPath = [
   '/learn/miscellaneous-examples',
   '/learn/getting-started-step-by-step'
 ]
-const referencePath = [
+const getReferencePath = [
   '/understanding-json-schema',
   '/understanding-json-schema/reference/[slug]',
   '/understanding-json-schema/[slug]',
   '/learn/glossary'
 ]
-const specificationPath = [
+const getSpecificationPath = [
   '/draft/2020-12/[slug]',
   '/draft-06/[slug]',
   '/draft-07/[slug]',
   '/draft-05/[slug]',
   '/draft/2019-09/[slug]',
   '/[slug]',
+  '/specification'
 ]
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
@@ -73,9 +72,9 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
           {router.asPath === '/overview/what-is-jsonschema' && <h3 className='text-white ml-12'>Overview</h3>}
           {getStartedPath.includes(router.asPath) && <h3 className='text-white ml-12'>Getting Started</h3>}
 
-          {referencePath.includes(router.asPath) && <h3 className='text-white ml-12'>Reference</h3>}
+          {getReferencePath.includes(router.asPath) && <h3 className='text-white ml-12'>Reference</h3>}
 
-          {specificationPath.includes(router.asPath) || router.asPath === '/specification' && <h3 className='text-white ml-12'>Specification</h3>}
+          {getSpecificationPath.includes(router.asPath) || router.asPath === '/specification' && <h3 className='text-white ml-12'>Specification</h3>}
 
           {router.pathname === null && <h3 className='text-white ml-12'>Docs</h3>}
           <svg style={{ marginRight: '50px', color: 'white', transform: rotate, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 256 512'><path d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z' id='mainIconPathAttribute' fill='#ffffff'></path></svg>
@@ -83,7 +82,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
       </div>
 
       <div className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
-        <div className='flex flex-col mt-4' onClick={() => setTimeout(() => { setOpen(!open) }, 100)}>
+        <div className='flex flex-col mt-4' >
           <DocsNav />
         </div>
       </div>
@@ -101,48 +100,55 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
 
 }
 
-export const getLayout = (page: React.ReactNode) =>
-  getSiteLayout(<SidebarLayout>{page}</SidebarLayout>)
 
 export const DocsNav = () => {
   const router = useRouter()
   /* eslint-disable no-constant-condition */
-  const [active, setActive] = useState(true ? getDocsPath.includes(router.asPath) : false)
-  const handleClick = () => {
-    setActive(!active)
+  const [active, setActive] = useState({
+    getDocs: false,
+    getStarted: false,
+    getReference: false,
+    getSpecification: false,
+  })
+  useEffect(() => {
+    if (getDocsPath.includes(router.asPath)) {
+      setActive({ ...active, getDocs: true })
+    } else if (getStartedPath.includes(router.asPath)) {
+      setActive({ ...active, getStarted: true })
+    } else if (getReferencePath.includes(router.asPath)) {
+      setActive({ ...active, getReference: true })
+    } else if (getSpecificationPath.includes(router.asPath)) {
+      setActive({ ...active, getSpecification: true })
+    }
+  }, [router.asPath])
+
+  const handleClickDoc = () => {
+    setActive({ ...active, getDocs: !active.getDocs })
   }
-  
-  // console.log(router.asPath)
-  const [activeGet, setActiveGet] = useState(true ? getStartedPath.includes(router.asPath) : false)
+
   const handleClickGet = () => {
-    setActiveGet(!activeGet)
+    setActive({ ...active, getStarted: !active.getStarted })
   }
 
-  const [activeReference, setActiveReference] = useState(true ? referencePath.includes(router.asPath) : false)
   const handleClickReference = () => {
-    setActiveReference(!activeReference)
+    setActive({ ...active, getReference: !active.getReference })
   }
-
-  const [activeSpec, setActiveSpec] = useState(true ? specificationPath.includes(router.pathname) : false)
 
   const handleClickSpec = () => {
-    setActiveSpec(!activeSpec)
+    setActive({ ...active, getSpecification: !active.getSpecification })
   }
 
-  const rotate = active ? 'rotate(180deg)' : 'rotate(0)'
-
-  const rotateG = activeGet ? 'rotate(180deg)' : 'rotate(0)'
-
-  const rotateR = activeReference ? 'rotate(180deg)' : 'rotate(0)'
-
-  const rotateSpec = activeSpec ? 'rotate(180deg)' : 'rotate(0)'
+  const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)'
+  const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)'
+  const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)'
+  const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)'
 
   return (
 
     <div id='sidebar '
       className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleClick() }} >
+        <div className='flex justify-between w-full items-center' onClick={handleClickDoc} >
           <div className='flex  items-center align-middle'>
             <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Overview' />
@@ -150,8 +156,7 @@ export const DocsNav = () => {
           <svg style={{ transform: rotate, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
         </div>
         <div
-          className={`${active ? '' : 'hidden'
-          } text-left text-sm mt-2 w-4/5 mx-auto `}
+          className={classnames( 'ml-6', { 'hidden': !active.getDocs })}
           id='overview'
         >
           <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
@@ -159,7 +164,7 @@ export const DocsNav = () => {
       </div>
       {/* Get Started */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleClickGet() }} >
+        <div className='flex justify-between w-full items-center' onClick={handleClickGet} >
           <div className='flex  items-center align-middle' >
             <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Getting Started' />
@@ -167,8 +172,7 @@ export const DocsNav = () => {
           <svg style={{ transform: rotateG, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
         </div>
         <div
-          className={`${activeGet ? '' : 'hidden'
-          } text-left text-sm mt-2 w-4/5 mx-auto `}
+          className={classnames( 'ml-6', { 'hidden': !active.getStarted })}
           id='getStarted'
         >
           <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
@@ -180,16 +184,15 @@ export const DocsNav = () => {
       </div>
       {/* Reference */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleClickReference() }}>
+        <div className='flex justify-between w-full items-center' onClick={handleClickReference}>
           <div className='flex  items-center align-middle' >
             <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Reference' />
           </div>
           <svg style={{ transform: rotateR, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
         </div>
-        <div className={`${activeReference ? '' : 'hidden'
-        }   text-left text-sm mt-2 w-4/5 mx-auto font-bold`}
-        id='reference'
+        <div className={classnames( 'ml-6', { 'hidden': !active.getReference })}
+          id='reference'
         >
           <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
           <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
@@ -235,7 +238,7 @@ export const DocsNav = () => {
       </div>
       {/* Specification */}
       <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div className='flex justify-between w-full items-center' onMouseDown={e => e.stopPropagation()} onClick={(e) => {e.preventDefault(); e.stopPropagation(); handleClickSpec() }}>
+        <div className='flex justify-between w-full items-center' onClick={handleClickSpec}>
           <div className='flex  items-center align-middle'>
             <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Specification' />
@@ -244,8 +247,7 @@ export const DocsNav = () => {
 
         </div>
         <div
-          className={`${activeSpec ? '' : 'hidden'
-          }   text-left text-sm mt-2 w-4/5 mx-auto `}
+          className={classnames( 'ml-6', { 'hidden': !active.getSpecification })}
           id='specification'
         >
           <DocLink uri='/specification' label='Overview' />
@@ -261,3 +263,6 @@ export const DocsNav = () => {
 
   )
 }
+
+export const getLayout = (page: React.ReactNode) =>
+  getSiteLayout(<SidebarLayout>{page}</SidebarLayout>)
