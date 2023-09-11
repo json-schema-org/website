@@ -382,7 +382,7 @@ export function TableOfContentMarkdown ({ markdown, depth = 2 }: { markdown: str
               )
             }
           } : { component: () => null },
-          ...hiddenElements('strong', 'p', 'a', 'ul', 'table', 'code', 'pre', 'blockquote', 'span', 'div', 'figure', 'Bigquote'),
+          ...hiddenElements('strong', 'p', 'a', 'ul', 'li', 'table', 'code', 'pre', 'blockquote', 'span', 'div', 'figure', 'Bigquote'),
         }
       }}
     >

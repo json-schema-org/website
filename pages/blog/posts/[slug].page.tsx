@@ -21,18 +21,17 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
       <Head>
         <title>{frontmatter.title}</title>
       </Head>
-      <div className='flex flex-col py-12'>
+      <div className='flex flex-col pt-6'>
         {frontmatter.date && (
-          <div className='text-center text-sm text-slate-500'>
+          <div className='text-center text-sm text-slate-500 mt-16'>
             {date.toLocaleDateString('en-us', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })} &middot; {timeToRead} min read
           </div>
         )}
         <Headline1 attributes={{ className: 'text-center' }}>{frontmatter.title || 'NO TITLE!'}</Headline1>
       </div>
-
       <div className='relative flex flex-col lg:flex-row'>
-        <div className='flex lg:w-1/4 pr-4 pr-8'>
-          <div className='block -mt-4 w-full'>
+        <div className='flex pr-4 ml-10 lg:w-1/4'>
+          <div className='block -mt-2 w-full'>
             <div className='sticky top-0 overflow-y-auto h-auto pt-4 w-full w-full items-center lg:items-start flex justify-between flex-row lg:flex-col'>
               <Link href='/blog'>
                 <a className='font-semibold text-sm pb-0 lg:pb-5 text-slate-700 hover:text-slate-800 inline-flex flex-row items-center'>
@@ -42,7 +41,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
               <div className='pt-6 lg:border-t border-slate-100 pr-4 border-none lg:border-r border-slate-100'>
                 {(frontmatter.authors || []).map((author: any, index: number) => {
                   return (
-                    <div key={index} className='flex flex-row items-center mb-3'>
+                    <div key={index} className='flex flex-row items-center mb-3 w-full'>
                       <div
                         className='bg-slate-50 h-[44px] w-[44px] rounded-full mr-3 bg-cover bg-center'
                         style={{ backgroundImage: `url(${author.photo})` }}
@@ -59,15 +58,15 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
                   )
                 })}
               </div>
-              <div className='pt-12 pr-4 border-r border-slate-100 hidden lg:block'>
+              <div className='pt-12 pr-4 border-r border-slate-100 hidden lg:block w-full'>
                 <div className='uppercase text-xs text-slate-400 mb-4'>on this page</div>
-                <TableOfContentMarkdown markdown={content} />
+                <TableOfContentMarkdown markdown={content} depth={0} />
               </div>
             </div>
           </div>
 
         </div>
-        <div className='flex-1'>
+        <div className='flex-1 mr-14 lg:w-3/4'>
           <div
             className='bg-slate-50 h-[400px] w-full rounded-lg mr-3 bg-cover mb-10 bg-center'
             style={{ backgroundImage: `url(${frontmatter.cover})` }}
