@@ -102,7 +102,7 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
   
   return (
-    <div className='flex justify-end mr-8 w-full'>
+    <div className='flex justify-end mr-8 w-full justify-end'>
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -169,7 +169,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext)
 
   return (
-    <div className='flex flex-col fixed bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8'>
       <MainNavLink
         uri='/specification'
         label='Specification'
