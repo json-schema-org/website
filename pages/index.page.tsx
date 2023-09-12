@@ -334,7 +334,7 @@ const Home = (props: any) => {
               <img src='/img/logos/supported/orbit-logo-color.png' className='w-44 mb-4 md:mb-0 md:mr-8 md:ml-2' />
             </a>
             <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>
-              <img src='/img/logos/supported/slack-logo.svg" className="w-44 mt-4 md:mt-0 md:ml-8 md:mr-2' />
+              <img src='/img/logos/supported/slack-logo.svg' className='w-44 mt-4 md:mt-0 md:ml-8 md:mr-2' />
             </a>
           </div>
         </section>
