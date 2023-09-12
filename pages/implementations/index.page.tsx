@@ -1,5 +1,5 @@
 import React from 'react'
-import { getLayout } from '~/components/Sidebar'
+import { getLayout } from '~/components/SiteLayout'
 import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
@@ -39,12 +39,14 @@ type ImplementationByLanguage = { name: string }
 export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
     <SectionContext.Provider value='implementations'>
-      <Headline1>Implementations</Headline1>
-      <StyledMarkdown markdown={blocks.intro} />
-      <Headline2>Validators</Headline2>
-      <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
-      <StyledMarkdown markdown={blocks.main} />
-      <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+      <div className='w-5/6 mx-auto mt-12'>
+        <Headline1>Implementations</Headline1>
+        <StyledMarkdown markdown={blocks.intro} />
+        <Headline2>Validators</Headline2>
+        <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
+        <StyledMarkdown markdown={blocks.main} />
+        <ImplementationTable implementationsByLanguage={hyperLibaries} prefix='hyper-libaries-' />
+      </div>
     </SectionContext.Provider>
   )
 }
@@ -110,7 +112,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                     ]
                     return (
                       <tr key={index}
-                        className='pl-4 list-disc list-inside pl-2'
+                        className='pl-4 list-disc list-inside pl-2 separation-line'
                       >
                         <td className=''>
                           <a className='text-blue-500' href={implementation.url}>{implementation.name}</a>
@@ -118,7 +120,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                         <td className='pl-6'>
                           <StyledMarkdown markdown={implementation.notes} />
                         </td>
-                        <td className='pl-6 pb-2'>
+                        <td className='pl-6 pb-2 pt-2'>
                           {allDrafts
                             ?.sort((a, b) => DRAFT_ORDER.indexOf(a) < DRAFT_ORDER.indexOf(b) ? -1 : 1)
                             ?.map((draft: string | number) => (

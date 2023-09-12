@@ -15,9 +15,6 @@ import { GetStaticProps } from 'next'
 import axios from 'axios'
 import ical from 'node-ical'
 import moment from 'moment'
-// import dayjs from 'dayjs'
-// import localizedFormat from 'dayjs/plugin/localizedFormat'
-// import isBetween from 'dayjs/plugin/isBetween'
 
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
@@ -68,8 +65,6 @@ export const getStaticProps: GetStaticProps = async () => {
 }
 // Function to filter and print events for the next 4 weeks from today
 function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
-  // dayjs.extend(localizedFormat)
-  // dayjs.extend(isBetween)
   const arrayDates = []
   if (!icalData) {
     console.error('iCal data is empty or invalid.')
@@ -79,6 +74,8 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   // Calculate the range of dates for the next 4 weeks from today
   const today = moment().startOf('day')
   const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day')
+ 
+ 
 
   // Loop through the events in the iCal data
   for (const k in icalData) {
@@ -89,7 +86,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
       // Get the timezone of the event
       const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
-
+    
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
         // For recurring events, get the set of event start dates that fall within the range
@@ -114,13 +111,23 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
           }
         }
       }
+      else {
+        // Simple case - no recurrences, just print out the calendar event.
+        if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
+          const time = startDate.format('MMMM Do YYYY, h:mm a')
+          const day = startDate.format('D')
+          arrayDates.push({ title, time, day, timezone })
+        }
+      }
     }
   }
+
+  arrayDates.sort((x, y) => +new Date(x.time) - +new Date(y.time))
+
   return arrayDates
 }
 const Home = (props: any) => {
   const blogPosts = props.blogPosts
-  // console.log('anything', props.datesInfo)
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes)
 
   return (
@@ -148,16 +155,16 @@ const Home = (props: any) => {
               </div>
             </div>
 
-            <div className='mb-16 md:mb-36  mx-auto w-2/3 md:w-5/6 lg:w-full'>
+            <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
-              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/2 md:w-100'>
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/3 md:w-100'>
                 <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/github-white.png' className='w-40' />
               </div>
-              <p className='text-white my-8'>More than 200 implementations generating over 100 million weekly downloads</p>
+              <p className='text-white mx-4 my-8'>More than 200 implementations generating over 100 million weekly downloads</p>
             </div>
           </div>
         </section>
@@ -211,16 +218,16 @@ const Home = (props: any) => {
         <section className='lg:my-12 max-w-[1400px]'>
           <div className='mb-12 md:w-3/4  mx-auto text-center'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Welcome to the JSON Schema Community</h2>
-            <p className='mx-4 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
+            <p className='mx-6 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
             </p>
           </div>
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
             <div className='w-full  mb-6'>
               <h3 className='mb-4 font-semibold' >Join the JSON Schema Community Slack!</h3>
               <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
               {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
               <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.org/slack'>Join us</a></button>
+              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>Join us</a></button>
             </div>
             {/* BlogPost Data */}
             <div className='w-full '>
@@ -247,7 +254,7 @@ const Home = (props: any) => {
                 </Link>
               </div>
             </div>
-            <div className=' '>
+            <div>
               <div className='md:w-full mb-6 mr-4'>
                 <h3 className='mb-2 font-semibold' >JSON Schema Community Meetings & Events</h3>
                 <p className='mb-4'>We hold monthly Office Hours and weekly Open Community Working Meetings. Office Hours are every first Tuesday of the month at 15:00 BST, and by appointment. Open Community Working Meetings are every Monday at 14:00 PT.
@@ -258,7 +265,7 @@ const Home = (props: any) => {
                   >Office Hours</a></button>
                 </div>
               </div>
-              <div>
+              <div >
                 <div>
                   <Headline4 >
                     Upcoming events
@@ -273,7 +280,7 @@ const Home = (props: any) => {
                             </p>
                             <div>
                               <p className=''>{event.title}</p>
-                              <p>{event.time}</p>
+                              <p>{event.time} {event.timezone}</p>
                             </div>
                           </div>
                         </li>
@@ -320,12 +327,11 @@ const Home = (props: any) => {
         <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='w-1/2 mx-auto'>The following companies support us by letting us use their products. <a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
+            <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
           </div>
-          <div className='grid grid-cols-2 md:gap-24 items-center mx-auto w-3/4 md:w-3/5 lg:w-1/2'>
-            <a href='https://orbit.love/' className='w-44'><img src='/img/logos/supported/orbit-logo-color.png' /></a>
-            <a href='https://json-schema.org/slack' className='w-44'><img src='/img/logos/supported/slack-logo.svg' /></a>
-
+          <div className='flex justify-center items-center'>
+            <a href='https://orbit.love/' ><img src='/img/logos/supported/orbit-logo-color.png' className='w-44 mr-8' /></a>
+            <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email' ><img src='/img/logos/supported/slack-logo.svg' className='w-44 ml-8' /></a>
           </div>
         </section>
       </div>

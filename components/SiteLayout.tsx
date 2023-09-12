@@ -1,9 +1,14 @@
 import Layout from '../components/Layout'
 import React from 'react'
 
-export const SiteLayout = ({ children }: { children: React.ReactNode}): JSX.Element => {
+type SiteLayoutProps = {
+  children: React.ReactNode
+  isDropdown?: boolean
+}
+
+export const SiteLayout: React.FC<SiteLayoutProps> = ({ children }): JSX.Element => {
   return (
-    <Layout>
+    <Layout >
       {children}
     </Layout>
   )
