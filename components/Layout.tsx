@@ -38,7 +38,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
           classnames(mainClassName, 'z-10 xl:rounded-xl py-4 mx-auto')
         }>
           <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
-            <div className='flex md:justify-between items-center md:ml-8 2xl:px-12 py-4'>
+            <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
               <Logo />
               <MainNavigation />
             </div>
@@ -102,7 +102,7 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
   
   return (
-    <div className='flex items-center ml-12   md:mr-12'>
+    <div className='flex justify-end mr-8 w-full'>
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'

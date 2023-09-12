@@ -66,7 +66,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
           </div>
 
         </div>
-        <div className='flex-1 mr-14 lg:w-3/4'>
+        <div className='flex-1 mr-4 ml-4 lg:w-3/4'>
           <div
             className='bg-slate-50 h-[400px] w-full rounded-lg mr-3 bg-cover mb-10 bg-center'
             style={{ backgroundImage: `url(${frontmatter.cover})` }}
