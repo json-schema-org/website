@@ -329,12 +329,12 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
             <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
           </div>
-          <div className="flex flex-col items-center md:flex-row justify-center text-center">
-            <a href="https://orbit.love/">
-              <img src="/img/logos/supported/orbit-logo-color.png" className="w-44 mb-4 md:mb-0 md:mr-8 md:ml-2" />
+          <div className='flex flex-col items-center md:flex-row justify-center text-center'>
+            <a href='https://orbit.love/'>
+              <img src='/img/logos/supported/orbit-logo-color.png' className='w-44 mb-4 md:mb-0 md:mr-8 md:ml-2' />
             </a>
-            <a href="https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email">
-              <img src="/img/logos/supported/slack-logo.svg" className="w-44 mt-4 md:mt-0 md:ml-8 md:mr-2" />
+            <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>
+              <img src='/img/logos/supported/slack-logo.svg' className='w-44 mt-4 md:mt-0 md:ml-8 md:mr-2' />
             </a>
           </div>
         </section>
