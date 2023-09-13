@@ -112,7 +112,7 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/overview/what-is-jsonschema'
+        uri='/learn/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
         

@@ -31,7 +31,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
           <Headline1 attributes={{ className: 'text-center' }}>{frontmatter.title || 'NO TITLE!'}</Headline1>
         </div>
         <div className='relative flex flex-col lg:flex-row'>
-          <div className='flex pr-4 ml-10 lg:w-1/4'>
+          <div className='flex ml-10 mr-10 lg:w-1/4'>
             <div className='block -mt-2 w-full'>
               <div className='sticky top-0 overflow-y-auto h-auto pt-4 w-full w-full items-center lg:items-start flex justify-between flex-row lg:flex-col'>
                 <Link href='/blog'>
@@ -39,12 +39,12 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
                     <img src='/icons/left-arrow.svg' className='h-4 w-4 mr-2' /> Go back to blog
                   </a>
                 </Link>
-                <div className='pt-6 lg:border-t border-slate-100 pr-4 border-none lg:border-r border-slate-100'>
+                <div className='pt-6 lg:border-t border-slate-100 border-none lg:border-r border-slate-100'>
                   {(frontmatter.authors || []).map((author: any, index: number) => {
                     return (
                       <div key={index} className='flex flex-row items-center mb-3 w-full'>
                         <div
-                          className='bg-slate-50 h-[44px] w-[44px] rounded-full mr-3 bg-cover bg-center'
+                          className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center'
                           style={{ backgroundImage: `url(${author.photo})` }}
                         />
                         <div>
@@ -67,7 +67,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
             </div>
 
           </div>
-          <div className='flex-1 ml-4 mr-10 lg:w-3/4'>
+          <div className='flex-1 ml-7 mr-10 lg:w-3/4'>
             <div
               className='bg-slate-50 h-[500px] w-full rounded-lg bg-cover mb-10 bg-center'
               style={{ backgroundImage: `url(${frontmatter.cover})` }}

@@ -80,6 +80,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   // Loop through the events in the iCal data
   for (const k in icalData) {
     const event = icalData[k]
+    
     if (event.type === 'VEVENT') {
       const title = event.summary
       let startDate = moment(event.start)
@@ -105,8 +106,8 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
           if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
             const time = startDate.format('MMMM Do YYYY, h:mm a')
             const day = startDate.format('D')
-
-            arrayDates.push({ title, time, day, timezone })
+            const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
+            arrayDates.push({ title, time, day, timezone, parsedStartDate })
 
           }
         }
@@ -116,13 +117,18 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
           const time = startDate.format('MMMM Do YYYY, h:mm a')
           const day = startDate.format('D')
-          arrayDates.push({ title, time, day, timezone })
+          const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
+          arrayDates.push({ title, time, day, timezone, parsedStartDate })
         }
       }
     }
   }
 
-  arrayDates.sort((x, y) => +new Date(x.time) - +new Date(y.time))
+  arrayDates.sort(
+    (x, y) =>
+      new Date(x.parsedStartDate).getTime() -
+      new Date(y.parsedStartDate).getTime()
+  )
 
   return arrayDates
 }
@@ -172,7 +178,7 @@ const Home = (props: any) => {
         <section className='max-w-[1400px] mt-12 lg:mt-[80px]'>
           <div className='w-5/6 md:w-1/2 text-center  mb-6  mx-auto'>
             <h2 className='text-h3mobile md:text-h3 font-bold mb-6'>Why JSON Schema?</h2>
-            <p className='mb-6 leading-5 text-h5mobile md:text-h5 leading-7'>While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that allows JSON data consistency, validity, and interoperability at scale.</p>
+            <p className='mb-6 leading-5 text-h5mobile md:text-h5 leading-7'>While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that enables JSON data consistency, validity, and interoperability at scale.</p>
           </div>
           {/* Feature 4 section*/}
           <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
@@ -198,7 +204,7 @@ const Home = (props: any) => {
         <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-full mx-auto text-center mt-28 '>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Start learning JSON Schema</h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='/overview/what-is-jsonschema '>Read the docs</a></button>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='/learn/getting-started-step-by-step '>Read the docs</a></button>
           </div>
         </section>
 
@@ -207,7 +213,7 @@ const Home = (props: any) => {
           <img src='/img/home-page/community-illustration.svg' className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]' />
           <div className='w-5/6 md:w-3/5 mx-auto mt-12' >
             <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4'>Explore the JSON Schema Ecosystem</h3>
-            <p className='lg:pr-8 mb-4 text-center lg:text-left '>Discover trusted JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
+            <p className='lg:pr-8 mb-4 text-center lg:text-left '>Discover JSON Schema tooling to help your organization leverage the benefits of JSON Schema. Because JSON Schema is much more than a Specification, it is a vibrant ecosystem of Validators, Generators, Linters, and other JSON Schema Utilities made by this amazing Community.</p>
             <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto  h-[45px] rounded border-2 bg-primary text-white'><a href='/implementations/'>Explore</a></button>
 
           </div>
@@ -218,7 +224,7 @@ const Home = (props: any) => {
         <section className='lg:my-12 max-w-[1400px]'>
           <div className='mb-12 md:w-3/4  mx-auto text-center'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Welcome to the JSON Schema Community</h2>
-            <p className='mx-6 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly installs, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
+            <p className='mx-6 md:w-3/4 md:mx-auto  lg:text-h5'>With over 60 million weekly downloads, JSON Schema has a large and active developer community across the world. Join the Community to learn, share ideas, ask questions, develop JSON Schema tooling and build new connections.
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
@@ -231,7 +237,7 @@ const Home = (props: any) => {
             </div>
             {/* BlogPost Data */}
             <div className='w-full '>
-              <h3 className='mb-4 font-semibold' >Welcome to our blog!</h3>
+              <h3 className='mb-4 font-semibold' >The JSON Schema Blog</h3>
               <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
               <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
               <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
@@ -272,15 +278,15 @@ const Home = (props: any) => {
                   </Headline4>
                   <div>
                     <ul>
-                      {props.datesInfo.slice(0, 3).map((event: any, index: any) => (
+                      {props.datesInfo.map((event: any, index: any) => (
                         <li key={index}>
                           <div className='flex mb-4'>
                             <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
                               {event.day}
                             </p>
-                            <div>
-                              <p className=''>{event.title}</p>
-                              <p>{event.time} {event.timezone}</p>
+                            <div className='text-sm'>
+                              <p>{event.title}</p>
+                              <p><b>{event.time} {event.timezone}</b></p>
                             </div>
                           </div>
                         </li>
@@ -327,11 +333,11 @@ const Home = (props: any) => {
         <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='px-4 md:w-1/2 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info.</p>
+            <p className='px-4 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center'>
             <a href='https://orbit.love/'>
-              <img src='/img/logos/supported/orbit-logo-color.png' className='w-44 mb-4 md:mb-0 md:mr-8 md:ml-2' />
+              <img src='/img/logos/supported/new-orbit-logo-color.svg' className='w-44 max-h-[58px] mb-4 md:mb-0 md:mr-8 md:ml-2' />
             </a>
             <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>
               <img src='/img/logos/supported/slack-logo.svg' className='w-44 mt-4 md:mt-0 md:ml-8 md:mr-2' />
