@@ -106,7 +106,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
           if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
             const time = startDate.format('MMMM Do YYYY, h:mm a')
             const day = startDate.format('D')
-            const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss');
+            const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
             arrayDates.push({ title, time, day, timezone, parsedStartDate })
 
           }
@@ -117,7 +117,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
           const time = startDate.format('MMMM Do YYYY, h:mm a')
           const day = startDate.format('D')
-          const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss');
+          const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
           arrayDates.push({ title, time, day, timezone, parsedStartDate })
         }
       }
@@ -128,7 +128,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
     (x, y) =>
       new Date(x.parsedStartDate).getTime() -
       new Date(y.parsedStartDate).getTime()
-  );
+  )
 
   return arrayDates
 }
