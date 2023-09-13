@@ -80,6 +80,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   // Loop through the events in the iCal data
   for (const k in icalData) {
     const event = icalData[k]
+    
     if (event.type === 'VEVENT') {
       const title = event.summary
       let startDate = moment(event.start)
@@ -105,8 +106,8 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
           if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
             const time = startDate.format('MMMM Do YYYY, h:mm a')
             const day = startDate.format('D')
-
-            arrayDates.push({ title, time, day, timezone })
+            const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss');
+            arrayDates.push({ title, time, day, timezone, parsedStartDate })
 
           }
         }
@@ -116,13 +117,18 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
           const time = startDate.format('MMMM Do YYYY, h:mm a')
           const day = startDate.format('D')
-          arrayDates.push({ title, time, day, timezone })
+          const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss');
+          arrayDates.push({ title, time, day, timezone, parsedStartDate })
         }
       }
     }
   }
 
-  arrayDates.sort((x, y) => +new Date(x.time) - +new Date(y.time))
+  arrayDates.sort(
+    (x, y) =>
+      new Date(x.parsedStartDate).getTime() -
+      new Date(y.parsedStartDate).getTime()
+  );
 
   return arrayDates
 }
@@ -272,15 +278,15 @@ const Home = (props: any) => {
                   </Headline4>
                   <div>
                     <ul>
-                      {props.datesInfo.slice(0, 3).map((event: any, index: any) => (
+                      {props.datesInfo.map((event: any, index: any) => (
                         <li key={index}>
                           <div className='flex mb-4'>
                             <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
                               {event.day}
                             </p>
-                            <div>
-                              <p className=''>{event.title}</p>
-                              <p>{event.time} {event.timezone}</p>
+                            <div className='text-sm'>
+                              <p>{event.title}</p>
+                              <p><b>{event.time} {event.timezone}</b></p>
                             </div>
                           </div>
                         </li>
