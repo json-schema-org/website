@@ -55,7 +55,8 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type)
   const spreadTags: any[] = [...setOfTags]
   const allTags = [...new Set(spreadTags)]
-
+  //add tag for all
+  allTags.unshift('All')
   const [filterTag, setFilterTag] = useState('')
   const handleClick = (event: { currentTarget: { value: any } }) => {
     const clickedTag = event.currentTarget.value
@@ -132,6 +133,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
             }).filter(
               post => {
                 if (post.frontmatter.type === filterTag) return true
+                else if (filterTag === 'All') return true
                 else if (filterTag === '') return true
               }
             )

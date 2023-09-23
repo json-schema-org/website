@@ -11,6 +11,9 @@
     "lint-fix": "eslint . --ext .tsx --ext .ts --fix --max-warnings 0",
     "ts": "tsc --noEmit"
   },
+  "engines": {
+    "node": "16.0.0"
+  },
   "dependencies": {
     "@docsearch/react": "3.3.3",
     "@types/js-yaml": "^4.0.5",

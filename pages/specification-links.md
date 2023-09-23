@@ -5,7 +5,7 @@ section: docs
 
 <!-- Links on this page should be immutable - none of them should go to `/latest`, etc. -->
 
-You can find the latest released draft on the [Specification](/specification) page.  Older drafts are expired, but may be of historical interest.  The complex numbering and naming system for drafts and meta-schemas is fully explained here as well.
+You can find the latest released draft on the [Specification](/specification) page.  The complex numbering and naming system for drafts and meta-schemas is fully explained here as well.
 
 <TableOfContent depth={4} />
 
@@ -16,8 +16,6 @@ IETF Internet-Drafts (I-Ds) are named with the editor's name and a sequential nu
 Starting with what had been called "Draft 8" while it was being written, meta-schemas are identified by the year and month of publication.  This allows for bug fixes to be published with new URIs (as long as it is not more than once a month).
 
 ### Table of All Versions of Everything
-
-The specification links here go to the IETF-hosted documents.
 
 For links to the somewhat more readably formatted versions on this web site, and for links to the various meta-schemas and other supplemental documents, see the the following sections.
 
@@ -30,7 +28,7 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-zyp-json-schema-00">
+      <small><a href="/draft-00/draft-zyp-json-schema-00.txt">
         draft-zyp-json-schema-00
       </a></small>
     </td>
@@ -46,7 +44,7 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-zyp-json-schema-01">
+      <small><a href="/draft-01/draft-zyp-json-schema-01.html">
         draft-zyp-json-schema-01
       </a></small></td>
     <td>
@@ -59,7 +57,7 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-zyp-json-schema-02">
+      <small><a href="/draft-02/draft-zyp-json-schema-02.txt">
         draft-zyp-json-schema-02
       </a></small></td>
     <td>
@@ -72,7 +70,7 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-zyp-json-schema-03">
+      <small><a href="/draft-03/draft-zyp-json-schema-03.pdf">
         draft-zyp-json-schema-03
       </a></small>
     </td>
@@ -86,13 +84,13 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-zyp-json-schema-04">
+      <small><a href="/draft-04/draft-zyp-json-schema-04.html">
         draft-zyp-json-schema-04
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-fge-json-schema-validation-00">
+      <small><a href="/draft-04/draft-fge-json-schema-validation-00.html">
         draft-fge-json-schema-validation-00
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-luff-json-hyper-schema-00">
+      <small><a href="/draft-04/draft-luff-json-hyper-schema-00.html">
         draft-luff-json-hyper-schema-00
       </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03">
@@ -116,13 +114,13 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-00">
+      <small><a href="/draft-05/draft-wright-json-schema-00.pdf">
         draft-wright-json-schema-00
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-validation-00">
+      <small><a href="/draft-05/draft-wright-json-schema-validation-00.pdf">
         draft-wright-json-schema-validation-00
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-00">
+      <small><a href="/draft-05/draft-wright-json-schema-hyperschema-00.pdf">
         draft-wright-json-schema-hyperschema-00
       </a></small><br>
     </td>
@@ -139,13 +137,13 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-01">
+      <small><a href="/draft-06/draft-wright-json-schema-01.html">
         draft-wright-json-schema-01
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-validation-01">
+      <small><a href="/draft-06/draft-wright-json-schema-validation-01.html">
         draft-wright-json-schema-validation-01
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-01">
+      <small><a href="/draft-06/draft-wright-json-schema-hyperschema-01.html">
         draft-wright-json-schema-hyperschema-01
       </a></small><br>
     </td>
@@ -164,13 +162,13 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-00">
+      <small><a href="/draft-07/draft-handrews-json-schema-00.pdf">
         draft-handrews-json-schema-00
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-validation-00">
+      <small><a href="/draft-07/draft-handrews-json-schema-validation-00.pdf">
         draft-handrews-json-schema-validation-00
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-00">
+      <small><a href="/draft-07/draft-handrews-json-schema-hyperschema-00.html">
         draft-handrews-json-schema-hyperschema-00
       </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00">
@@ -196,13 +194,13 @@ For links to the somewhat more readably formatted versions on this web site, and
   <tr><!-- This empty row keeps the row colors aligned properlty for the two "draft-07" versions --></tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-01">
+      <small><a href="/draft-07/draft-handrews-json-schema-01.html">
               draft-handrews-json-schema-01
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-validation-01">
+      <small><a href="/draft-07/draft-handrews-json-schema-validation-01.html">
               draft-handrews-json-schema-validation-01
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-01">
+      <small><a href="/draft-07/draft-handrews-json-schema-hyperschema-01.html">
           draft-handrews-json-schema-hyperschema-01
       </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01">
@@ -212,13 +210,13 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-02">
+      <small><a href="/draft/2019-09/draft-handrews-json-schema-02.html">
         draft-handrews-json-schema-02
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-validation-02">
+      <small><a href="/draft/2019-09/draft-handrews-json-schema-validation-02.html">
         draft-handrews-json-schema-validation-02
       </a></small><br><br>
-      <small><a href="https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-02">
+      <small><a href="/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html">
         draft-handrews-json-schema-hyperschema-02
       </a></small><br><br>
       <small><a href="https://tools.ietf.org/html/draft-handrews-relative-json-pointer-02">
@@ -239,10 +237,10 @@ For links to the somewhat more readably formatted versions on this web site, and
   </tr>
   <tr>
     <td>
-      <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-00">
+      <tt><small><a href="/draft/2020-12/draft-bhutton-json-schema-00.html">
         draft-bhutton-json-schema-00
       </a></small></tt><br><br>
-      <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00">
+      <tt><small><a href="/draft/2020-12/draft-bhutton-json-schema-validation-00.html">
         draft-bhutton-json-schema-validation-00
       </a></small></tt><br><br>
       <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00">
@@ -267,10 +265,10 @@ For links to the somewhat more readably formatted versions on this web site, and
   <tr><!-- This empty row keeps the row colors aligned properlty for the two "2020-12" versions --></tr>
   <tr>
     <td>
-      <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-01">
+      <tt><small><a href="/draft/2020-12/draft-bhutton-json-schema-01.html">
         draft-bhutton-json-schema-01
       </a></small></tt><br><br>
-      <tt><small><a href="https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01">
+      <tt><small><a href="/draft/2020-12/draft-bhutton-json-schema-validation-01.html">
         draft-bhutton-json-schema-validation-01
       </a></small></tt><br>
       <br/>
@@ -301,8 +299,8 @@ For links to the somewhat more readably formatted versions on this web site, and
 ### 2020-12
 
 - Specifications
-    - Core: [draft-bhutton-json-schema-01](https://tools.ietf.org/html/draft-bhutton-json-schema-01) ([changes](https://tools.ietf.org/html/draft-bhutton-json-schema-01#appendix-G))
-    - Validation: [draft-bhutton-json-schema-validation-01](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01) ([changes](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-01#appendix-C))
+    - Core: [draft-bhutton-json-schema-01](/draft/2020-12/draft-bhutton-json-schema-01.html) ([changes](/draft/2020-12/draft-bhutton-json-schema-01.html#appendix-G))
+    - Validation: [draft-bhutton-json-schema-validation-01](/draft/2020-12/draft-bhutton-json-schema-validation-01.html) ([changes](/draft/2020-12/draft-bhutton-json-schema-validation-01.html#appendix-C))
     - Relative JSON Pointer: [draft-bhutton-relative-json-pointer-00](https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00) ([changes](https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00#appendix-A))
 - General use meta-schemas
     - [JSON Schema meta-schema](draft/2020-12/schema)
@@ -326,17 +324,19 @@ For links to the somewhat more readably formatted versions on this web site, and
 
 _These were updated without changing functionality or meta-schemas due to a few errors and unclear sections._
 
-- Core: [draft-bhutton-json-schema-00](https://tools.ietf.org/html/draft-bhutton-json-schema-00) ([changes](https://tools.ietf.org/html/draft-bhutton-json-schema-00#appendix-G))
-- Validation: [draft-bhutton-json-schema-validation-00](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00) ([changes](https://tools.ietf.org/html/draft-bhutton-json-schema-validation-00#appendix-C))
+- Core:
+  [draft-bhutton-json-schema-00](/draft/2020-12/draft-bhutton-json-schema-00.html) ([changes](/draft/2020-12/draft-bhutton-json-schema-00.html#rfc.appendix.G))
+- Validation:
+  [draft-bhutton-json-schema-validation-00](/draft/2020-12/draft-bhutton-json-schema-validation-00.html) ([changes](/draft/2020-12/draft-bhutton-json-schema-validation-00.html#rfc.appendix.C))
 
 ### Draft 2019-09 (formerly known as Draft 8)
 
 _**NOTE:** All meta-schema URIs now use `https://`.  While currently also available over plain HTTP due to the limitations of GitHub pages and the need to keep prior drafts available over HTTP, only the HTTPS URIs should be used._
 
 - Specifications
-    - Core: [draft-handrews-json-schema-02](https://tools.ietf.org/html/draft-handrews-json-schema-02) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-02#appendix-G))
-    - Validation: [draft-handrews-json-schema-validation-02](https://tools.ietf.org/html/draft-handrews-json-schema-validation-02) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-validation-02#appendix-C))
-    - Hyper-Schema: [draft-handrews-json-schema-hyperschema-02](https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-02) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-02#appendix-B))
+    - Core: [draft-handrews-json-schema-02](/draft/2019-09/draft-handrews-json-schema-02.html) ([changes](draft/2019-09/draft-handrews-json-schema-02.html#rfc.appendix.G))
+    - Validation: [draft-handrews-json-schema-validation-02](/draft/2019-09/draft-handrews-json-schema-validation-02.html) ([changes](/draft/2019-09/draft-handrews-json-schema-validation-02.html#rfc.appendix.C))
+    - Hyper-Schema: [draft-handrews-json-schema-hyperschema-02](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html) ([changes](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html#rfc.appendix.B))
     - Relative JSON Pointer: [draft-handrews-relative-json-pointer-02](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-02) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-02#appendix-A))
 - General use meta-schemas
     - [JSON Schema meta-schema](/draft/2019-09/schema)
@@ -358,9 +358,9 @@ _**NOTE:** All meta-schema URIs now use `https://`.  While currently also availa
 
 ### Draft 7
 
-- Core: [draft-handrews-json-schema-01](https://tools.ietf.org/html/draft-handrews-json-schema-01) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-01#appendix-B))
-- Validation: [draft-handrews-json-schema-validation-01](https://tools.ietf.org/html/draft-handrews-json-schema-validation-01) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-validation-01#appendix-B))
-- Hyper-Schema: [draft-handrews-json-schema-hyperschema-01](https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-01) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-01#appendix-B))
+- Core: [draft-handrews-json-schema-01](/draft-07/draft-handrews-json-schema-01.html) ([changes](/draft-07/draft-handrews-json-schema-01.html#rfc.appendix.B))
+- Validation: [draft-handrews-json-schema-validation-01](/draft-07/draft-handrews-json-schema-validation-01.html) ([changes](/draft-07/draft-handrews-json-schema-validation-01.html#rfc.appendix.B))
+- Hyper-Schema: [draft-handrews-json-schema-hyperschema-01](/draft-07/draft-handrews-json-schema-hyperschema-01.html) ([changes](/draft-07/draft-handrews-json-schema-hyperschema-01.html#rfc.appendix.B))
 - [JSON Schema meta-schema](draft-07/schema)
 - [JSON Hyper-Schema meta-schema](draft-07/hyper-schema)
 - [JSON Hyper-Schema Link Description Object meta-schema](draft-07/links)
@@ -371,50 +371,50 @@ _**NOTE:** All meta-schema URIs now use `https://`.  While currently also availa
 
 _These were updated without changing functionality or meta-schemas due to a few errors and unclear sections._
 
-- Core: [draft-handrews-json-schema-00](https://tools.ietf.org/html/draft-handrews-json-schema-00) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-00#appendix-B))
-- Validation: [draft-handrews-json-schema-validation-00](https://tools.ietf.org/html/draft-handrews-json-schema-validation-00) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-validation-00#appendix-B))
-- Hyper-Schema: [draft-handrews-json-schema-hyperschema-00](https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-00) ([changes](https://tools.ietf.org/html/draft-handrews-json-schema-hyperschema-00#appendix-B))
+- Core: [draft-handrews-json-schema-00](/draft-07/draft-handrews-json-schema-00.pdf) ([changes](/draft-07/draft-handrews-json-schema-00.pdf#appendix-B))
+- Validation: [draft-handrews-json-schema-validation-00](/draft-07/draft-handrews-json-schema-validation-00.pdf) ([changes](/draft-07/draft-handrews-json-schema-validation-00.pdf#appendix-B))
+- Hyper-Schema: [draft-handrews-json-schema-hyperschema-00](/draft-07/draft-handrews-json-schema-hyperschema-00.html) ([changes](/draft-07/draft-handrews-json-schema-hyperschema-00.html#rfc.appendix.B))
 - Relative JSON Pointer: [draft-handrews-relative-json-pointer-00](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00#appendix-B))
 
 ### Draft 6
 
-- Core: [draft-wright-json-schema-01](https://tools.ietf.org/html/draft-wright-json-schema-01) ([changes](https://tools.ietf.org/html/draft-wright-json-schema-01#appendix-B))
-- Validation: [draft-wright-json-schema-validation-01](https://tools.ietf.org/html/draft-wright-json-schema-validation-01) ([changes](https://tools.ietf.org/html/draft-wright-json-schema-validation-01#appendix-B)) ([schema migration FAQ](draft-06/json-schema-migration-faq))
-- Hyper-Schema: [draft-wright-json-schema-hyperschema-01](https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-01) ([changes](https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-01#appendix-B)) ([hyper-schema migration FAQ](draft-06/json-hyper-schema-migration-faq))
+- Core: [draft-wright-json-schema-01](/draft-06/draft-wright-json-schema-01.html) ([changes](/draft-06/draft-wright-json-schema-01.html#rfc.appendix.B))
+- Validation: [draft-wright-json-schema-validation-01](/draft-06/draft-wright-json-schema-validation-01.html) ([changes](/draft-06/draft-wright-json-schema-validation-01.html#rfc.appendix.B)) ([schema migration FAQ](draft-06/json-schema-migration-faq))
+- Hyper-Schema: [draft-wright-json-schema-hyperschema-01](/draft-06/draft-wright-json-schema-hyperschema-01.html) ([changes](/draft-06/draft-wright-json-schema-hyperschema-01.html#rfc.appendix.B)) ([hyper-schema migration FAQ](draft-06/json-hyper-schema-migration-faq))
 - [JSON Schema meta-schema](draft-06/schema)
 - [JSON Hyper-Schema meta-schema](draft-06/hyper-schema)
 
 ### Draft 5
 
- - Core: [draft-wright-json-schema-00](https://tools.ietf.org/html/draft-wright-json-schema-00) ([changes](https://tools.ietf.org/html/draft-wright-json-schema-00#appendix-B))
- - Validation: [draft-wright-json-schema-validation-00](https://tools.ietf.org/html/draft-wright-json-schema-validation-00) ([changes](https://tools.ietf.org/html/draft-wright-json-schema-validation-00#appendix-B))
- - Hyper-Schema: [draft-wright-json-schema-hyperschema-00](https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-00) ([changes](https://tools.ietf.org/html/draft-wright-json-schema-hyperschema-00#appendix-B))
+ - Core: [draft-wright-json-schema-00](/draft-05/draft-wright-json-schema-00.pdf) ([changes](/draft-05/draft-wright-json-schema-00.pdf#appendix-B))
+ - Validation: [draft-wright-json-schema-validation-00](/draft-05/draft-wright-json-schema-validation-00.pdf) ([changes](/draft-05/draft-wright-json-schema-validation-00.pdf#appendix-B))
+ - Hyper-Schema: [draft-wright-json-schema-hyperschema-00](/draft-05/draft-wright-json-schema-hyperschema-00.pdf) ([changes](/draft-05/draft-wright-json-schema-hyperschema-00.pdf#appendix-B))
  - Draft 5 was primarily a cleanup of Draft 4 and continued to use the Draft 4 meta-schemas.
 
 ### Draft 4
 
- - Core: [draft-zyp-json-schema-04](https://tools.ietf.org/html/draft-zyp-json-schema-04) ([changes](https://tools.ietf.org/html/draft-zyp-json-schema-04#appendix-A))
- - Validation: [draft-fge-json-schema-validation-00](https://tools.ietf.org/html/draft-fge-json-schema-validation-00) ([changes](https://tools.ietf.org/html/draft-fge-json-schema-validation-00#appendix-A))
- - Hyper-Schema: [draft-luff-json-hyper-schema-00](https://tools.ietf.org/html/draft-luff-json-hyper-schema-00) ([changes](https://tools.ietf.org/html/draft-luff-json-hyper-schema-00#appendix-A))
+ - Core: [draft-zyp-json-schema-04](/draft-04/draft-zyp-json-schema-04.html) ([changes](/draft-04/draft-zyp-json-schema-04.html#rfc.appendix.A))
+ - Validation: [draft-fge-json-schema-validation-00](/draft-04/draft-fge-json-schema-validation-00.html) ([changes](/draft-04/draft-fge-json-schema-validation-00.html#rfc.appendix.A))
+ - Hyper-Schema: [draft-luff-json-hyper-schema-00](/draft-04/draft-luff-json-hyper-schema-00.html) ([changes](/draft-04/draft-luff-json-hyper-schema-00.html#rfc.appendix.A))
  - JSON Reference: [draft-pbryan-zyp-json-ref-03](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) ([changes](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03#appendix-A))
  * [JSON Schema meta-schema](draft-04/schema)
  * [JSON Hyper-Schema meta-schema](draft-04/hyper-schema)
 
 ### Draft 3
 
- - Complete Specification: [draft-zyp-json-schema-03](https://tools.ietf.org/html/draft-zyp-json-schema-03) ([changes](https://tools.ietf.org/html/draft-zyp-json-schema-03#appendix-A))
+ - Complete Specification: [draft-zyp-json-schema-03](/draft-03/draft-zyp-json-schema-03.pdf) ([changes](/draft-03/draft-zyp-json-schema-03.pdf#anchor54))
 * [JSON Schema meta-schema](draft-03/schema)
 * [JSON Hyper-Schema meta-schema](draft-03/hyper-schema)
 
 ### Draft 2
 
- - Complete Specification: [draft-zyp-json-schema-02](https://tools.ietf.org/html/draft-zyp-json-schema-02) ([changes](https://tools.ietf.org/html/draft-zyp-json-schema-02#appendix-A))
+ - Complete Specification: [draft-zyp-json-schema-02](/draft-02/draft-zyp-json-schema-02.txt) (changes: Appendix-A)
 * [JSON Schema meta-schema](draft-02/schema)
 * [JSON Hyper-Schema meta-schema](draft-02/hyper-schema)
 
 ### Draft 1
 
- - Complete Specification: [draft-zyp-json-schema-01](https://tools.ietf.org/html/draft-zyp-json-schema-01) ([changes](https://tools.ietf.org/html/draft-zyp-json-schema-01#appendix-A))
+ - Complete Specification: [draft-zyp-json-schema-01](/draft-01/draft-zyp-json-schema-01.html) ([changes](/draft-01/draft-zyp-json-schema-01.html#anchor54))
 * [JSON Schema meta-schema](draft-01/schema)
 * [JSON Hyper-Schema meta-schema](draft-01/hyper-schema)
 
@@ -422,7 +422,7 @@ _These were updated without changing functionality or meta-schemas due to a few 
 
 _Note that Draft 0 erroneously claimed to update another RFC, and was replaced the same day by Draft 1.  It is included here for completeness only._
 
- - Specification: [draft-zyp-json-schema-00](https://tools.ietf.org/html/draft-zyp-json-schema-00) ([changes](https://tools.ietf.org/html/draft-zyp-json-schema-00#appendix-A))
+ - Specification: [draft-zyp-json-schema-00](/draft-00/draft-zyp-json-schema-00.txt) (changes: Appendix-A))
 * [JSON Schema meta-schema](draft-00/schema)
 * [JSON Hyper-Schema meta-schema](draft-00/hyper-schema)
 
