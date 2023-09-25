@@ -177,7 +177,7 @@ const MobileNav = () => {
         
       />
       <MainNavLink
-        uri='/overview/what-is-jsonschema'
+        uri='/learn/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
        
