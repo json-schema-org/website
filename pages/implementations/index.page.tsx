@@ -79,7 +79,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
           <thead>
             <tr>
               <td />
-              <td className='pt-6 pl-5 text-sm text-slate-500'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 hidden sm:table-cell'>
                 About
               </td>
               <td className='pt-6 pl-5 text-sm text-slate-500'>
@@ -117,7 +117,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                         <td className=''>
                           <a className='text-blue-500' href={implementation.url}>{implementation.name}</a>
                         </td>
-                        <td className='pl-6'>
+                        <td className='pl-6 hidden sm:table-cell'>
                           <StyledMarkdown markdown={implementation.notes} />
                         </td>
                         <td className='pl-6 pb-2 pt-2'>
