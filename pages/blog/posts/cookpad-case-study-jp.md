@@ -1,6 +1,6 @@
 ---
 title: "クックパッド株式会社におけるJSON Schemaの活用事例"
-date: "2022-01-17T06:00:00+00:00"
+date: "2022-01-17"
 type: Case Study
 cover: /img/posts/2021/cookpad-case-study/cover.webp
 authors:

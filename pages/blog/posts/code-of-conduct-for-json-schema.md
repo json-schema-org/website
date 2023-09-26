@@ -1,6 +1,6 @@
 ---
 title: "Why JSON Schema needs a Code of Conduct"
-date: "2021-11-24T06:00:00+00:00"
+date: "2021-11-24"
 tags:
   - Community
 type: Community
