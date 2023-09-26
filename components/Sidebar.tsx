@@ -43,17 +43,37 @@ const getStartedPath = [
   '/learn/getting-started-step-by-step'
 ]
 const getReferencePath = [
-  '/understanding-json-schema',
-  '/understanding-json-schema/reference/[slug]',
-  '/understanding-json-schema/[slug]',
+  '/understanding-json-schema/',
+  '/understanding-json-schema/basics/',
+  '/understanding-json-schema/conventions',
+  '/understanding-json-schema/about',
+  '/understanding-json-schema/credits',
+  '/understanding-json-schema/structuring',
+  '/understanding-json-schema/reference/annotations',
+  '/understanding-json-schema/reference/array',
+  '/understanding-json-schema/reference/boolean',
+  '/understanding-json-schema/reference/combining',
+  '/understanding-json-schema/reference/comments',
+  '/understanding-json-schema/reference/conditionals',
+  '/understanding-json-schema/reference/const',
+  '/understanding-json-schema/reference/enums',
+  '/understanding-json-schema/reference/non_json_data',
+  '/understanding-json-schema/reference/null',
+  '/understanding-json-schema/reference/numeric',
+  '/understanding-json-schema/reference/object',
+  '/understanding-json-schema/reference/regular_expressions',
+  '/understanding-json-schema/reference/schema',
+  '/understanding-json-schema/reference/string',
+  '/understanding-json-schema/reference/type',
+  '/understanding-json-schema/reference',
   '/learn/glossary'
 ]
 const getSpecificationPath = [
-  '/draft/2020-12/[slug]',
-  '/draft-06/[slug]',
-  '/draft-07/[slug]',
-  '/draft-05/[slug]',
-  '/draft/2019-09/[slug]',
+  '/draft/2020-12/',
+  '/draft-06/',
+  '/draft-07/',
+  '/draft-05/',
+  '/draft/2019-09/',
   '/[slug]',
   '/specification'
 ]
@@ -103,6 +123,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
 
 export const DocsNav = () => {
   const router = useRouter()
+
   /* eslint-disable no-constant-condition */
   const [active, setActive] = useState({
     getDocs: false,
