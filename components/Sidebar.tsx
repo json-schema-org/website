@@ -239,7 +239,13 @@ export const DocsNav = () => {
                 <DocLink uri='/understanding-json-schema/reference/array' label='array' />
                 <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
                 <DocLink uri='/understanding-json-schema/reference/null' label='null' />
-                <DocLink uri='/understanding-json-schema/reference/annotations' label='Generic keywords' />
+                <SegmentSubtitle label='Generic keywords' />
+                <div className='pl-4 pb-1 pt-1'>
+                  <DocLink uri='/understanding-json-schema/reference/annotations' label='Annotations' />
+                  <DocLink uri='/understanding-json-schema/reference/comments' label='Comments' />
+                  <DocLink uri='/understanding-json-schema/reference/enum' label='Enumerated values' />
+                  <DocLink uri='/understanding-json-schema/reference/const' label='Constant values' />
+                </div>
                 <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
                 <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
                 <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
