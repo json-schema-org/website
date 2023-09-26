@@ -1,6 +1,6 @@
 ---
 title: "JSON Schema bundling finally formalised"
-date: "2021-08-04T06:00:00+00:00"
+date: "2021-08-04"
 type: Engineering
 tags:
   - OpenAPI

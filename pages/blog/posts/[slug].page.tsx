@@ -48,10 +48,10 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
                           style={{ backgroundImage: `url(${author.photo})` }}
                         />
                         <div>
-                          <div className='text-sm font-semibold'>{author.name}</div>
+                          <div className='text-sm font-semibold pl-2'>{author.name}</div>
                           {author.twitter && (
                             <a className='block text-sm text-blue-500 font-medium' href={`https://twitter.com/${author.twitter}`}>
-                                @{author.twitter}
+                              @{author.twitter}
                             </a>
                           )}
                         </div>

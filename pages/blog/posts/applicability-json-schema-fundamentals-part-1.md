@@ -262,11 +262,11 @@ Regardless of if this feels intuitive or not, let's look at how these two keywor
 
 <div className="flex flex-wrap justify-center gap-4">
   <figure>
-    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/allOf.webp" />
+    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/allOf.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for "allOf"</figcaption>
   </figure>
   <figure>
-    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/anyOf.webp" />
+    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/anyOf.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for "anyOf"</figcaption>
   </figure>
 </div>
@@ -291,7 +291,7 @@ Here is our truth table for two inputs (If the array value of `oneOf` only conta
 
 <div className="flex flex-wrap justify-center gap-4">
   <figure>
-    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/XOR1.webp" />
+    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/XOR1.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for XOR</figcaption>
   </figure>
 </div>
@@ -300,7 +300,7 @@ Looks fine, right? But what if we add another "input", making it an odd number.
 
 <div className="flex flex-wrap justify-center gap-4">
   <figure>
-    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/XOR2.webp" />
+    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/XOR2.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for XOR with three inputs</figcaption>
   </figure>
 </div>
@@ -309,7 +309,7 @@ It looks MOSTLY correct, but notice, if all the assertions are `true`, the resul
 
 <div className="flex flex-wrap justify-center gap-4">
   <figure>
-    <img className="max-w-xs" src="/blog/img/posts/2022/fundamentals-part-1/tt/oneOf.webp" />
+    <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/oneOf.webp" />
     <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for "oneOf" - <a href="https://www.wolframalpha.com/input?i=%28a+xor+b+xor+c%29+%26+%21+%28a+%26%26+b+%26%26+c%29" target="_blank">(a xor b xor c) & ! (a && b && c)</a></figcaption>
   </figure>
 </div>
