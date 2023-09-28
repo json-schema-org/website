@@ -3,28 +3,23 @@ section: docs
 title: JSON Schema examples
 ---
 
-In this page, you will find examples illustrating different use cases to help you get the most out of your JSON Schemas. These examples cover a wide range of scenarios, and each example comes with accompanying JSON data and explanation, showcasing how JSON Schemas can be applied to various domains.
+In this page, you will find examples illustrating different use cases to help you get the most out of your JSON Schemas. These examples cover a wide range of scenarios, and each example comes with accompanying JSON data and explanation, showcasing how JSON Schemas can be applied to various domains. You can modify these examples to suit your specific needs, as this is just one of the many ways you can utilize JSON Schemas.
 
 - [Address](#address)
 - [Blog post](#blog-post)
-- [Book](#book)
 - [Calendar](#calendar)
-- [Card](#card)
-- [Event registration](#event-registration)
+- [Device Type](#device-type)
+- [Ecommerce System](#ecommerce-system)
 - [Geographical location](#geographical-location)
 - [Health record](#health-record)
-- [Invoice](#invoice)
 - [Job posting](#job-posting)
 - [Movie](#movie)
-- [Order](#order)
-- [Product](#product)
-- [Recipe](#recipe)
 - [User profile](#user-profile)
 
 
 ## Address
 
-A schema representing an address, with optional properties for different address components like `post office box`, `street address`, `locality`, `region`, `postal code`, and `country name`.
+A schema representing an address, with optional properties for different address components which enforces that `locality`, `region`, and `countryName` are required, and if `postOfficeBox` or `extendedAddress` is provided, `streetAddress` must also be provided.
 
 ```json
 {
@@ -33,13 +28,13 @@ A schema representing an address, with optional properties for different address
   "description": "An address similar to http://microformats.org/wiki/h-card",
   "type": "object",
   "properties": {
-    "post-office-box": {
+    "postOfficeBox": {
       "type": "string"
     },
-    "extended-address": {
+    "extendedAddress": {
       "type": "string"
     },
-    "street-address": {
+    "streetAddress": {
       "type": "string"
     },
     "locality": {
@@ -48,17 +43,17 @@ A schema representing an address, with optional properties for different address
     "region": {
       "type": "string"
     },
-    "postal-code": {
+    "postalCode": {
       "type": "string"
     },
-    "country-name": {
+    "countryName": {
       "type": "string"
     }
   },
-  "required": [ "locality", "region", "country-name" ],
+  "required": [ "locality", "region", "countryName" ],
   "dependentRequired": {
-    "post-office-box": [ "street-address" ],
-    "extended-address": [ "street-address" ]
+    "postOfficeBox": [ "streetAddress" ],
+    "extendedAddress": [ "streetAddress" ]
   }
 }
 ```
@@ -67,19 +62,19 @@ A schema representing an address, with optional properties for different address
 
 ```json
 {
-  "post-office-box": "123",
-  "street-address": "456 Main St",
+  "postOfficeBox": "123",
+  "streetAddress": "456 Main St",
   "locality": "Cityville",
   "region": "State",
-  "postal-code": "12345",
-  "country-name": "Country"
+  "postalCode": "12345",
+  "countryName": "Country"
 }
 ```
 
 
 ## Blog post
 
-A schema representing a blog post, including properties like `title`, `content`, `published date`, `author details`, and `tags`.
+A schema representing a blog post, including properties like `title`, `content`, `publishedDate`, `author`, and `tags`.
 
 ```json
 {
@@ -128,60 +123,9 @@ A schema representing a blog post, including properties like `title`, `content`,
 ```
 
 
-## Book
-
-A schema representing a book, including various properties like `title`, `author`, `publication date`, `genre`, `ISBN`, and `rating`.
-
-```json
-{
-  "$id": "https://example.com/book.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "A representation of a book",
-  "type": "object",
-  "required": ["title", "author"],
-  "properties": {
-    "title": {
-      "type": "string"
-    },
-    "author": {
-      "type": "string"
-    },
-    "publicationDate": {
-      "type": "string",
-      "format": "date"
-    },
-    "genre": {
-      "type": "string"
-    },
-    "isbn": {
-      "type": "string"
-    },
-    "rating": {
-      "type": "number",
-      "minimum": 0,
-      "maximum": 5
-    }
-  }
-}
-```
-
-**Data**
-
-```json
-{
-  "title": "Sample Book",
-  "author": "Jane Smith",
-  "publicationDate": "2023-07-15",
-  "genre": "Fiction",
-  "isbn": "978-1234567890",
-  "rating": 4.5
-}
-```
-
-
 ## Calendar
 
-A schema representing an event in a calendar, including properties like `start date`, `end date`, `summary`, `location`, and `recurrence` details.
+A schema representing an event in a calendar, including properties like `startDate`, `endDate`, `summary`, `location`, and `recurrenceDate` details. The `geo` property is a reference (`$ref`) to another schema defined at a different location which represents a geographical location with latitude and longitude values.
 
 ```json
 {
@@ -191,11 +135,11 @@ A schema representing an event in a calendar, including properties like `start d
   "type": "object",
   "required": [ "dtstart", "summary" ],
   "properties": {
-    "dtstart": {
+    "startDate": {
       "type": "string",
       "description": "Event starting time"
     },
-    "dtend": {
+    "endDate": {
       "type": "string",
       "description": "Event ending time"
     },
@@ -212,11 +156,11 @@ A schema representing an event in a calendar, including properties like `start d
       "type": "string",
       "description": "Event duration"
     },
-    "rdate": {
+    "recurrenceDate": {
       "type": "string",
       "description": "Recurrence date"
     },
-    "rrule": {
+    "recurrenceDule": {
       "type": "string",
       "description": "Recurrence rule"
     },
@@ -237,114 +181,110 @@ A schema representing an event in a calendar, including properties like `start d
 
 ```json
 {
-  "dtstart": "2023-08-25T10:00:00Z",
-  "dtend": "2023-08-25T12:00:00Z",
+  "startDate": "2023-08-25T10:00:00Z",
+  "endDate": "2023-08-25T12:00:00Z",
   "summary": "Conference Presentation",
   "location": "Conference Center",
-  "rrule": "FREQ=DAILY;COUNT=5"
+  "recurrenceDule": "FREQ=DAILY;COUNT=5"
 }
 ```
 
 
-## Card
+## Device type
 
-A schema representing a person, company, organization, or place, with properties such as `name`, `contact information`, and `organizational details`.
+This schema represents electronic devices with a `deviceType` property that determines the device's category, such as `Smartphone` or `Laptop`.It employs the `$dynamicRef` keyword to dynamically reference schemas based on the `deviceType` property. This flexible schema structure allows data to conform to the appropriate device schema based on the `deviceType` specified, making it easy to describe different electronic devices with their unique characteristics
 
 ```json
 {
-  "$id": "https://example.com/card.schema.json",
+  "$id": "https://example.com/device.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "A representation of a person, company, organization, or place",
   "type": "object",
-  "required": [ "familyName", "givenName" ],
   "properties": {
-    "fn": {
-      "description": "Formatted Name",
+    "deviceType": {
+      "type": "string"
+    }
+  },
+  "required": ["deviceType"],
+  "$dynamicRef": "#/$defs/DeviceTypes"
+}
+
+{
+  "$id": "https://example.com/smartphone.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "brand": {
       "type": "string"
     },
-    "familyName": {
+    "model": {
       "type": "string"
     },
-    "givenName": {
+    "screenSize": {
+      "type": "number"
+    }
+  },
+  "required": ["brand", "model", "screenSize"]
+}
+
+{
+  "$id": "https://example.com/laptop.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "brand": {
       "type": "string"
     },
-    "additionalName": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "honorificPrefix": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "honorificSuffix": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "nickname": {
+    "model": {
       "type": "string"
     },
-    "url": {
+    "processor": {
       "type": "string"
     },
-    "email": {
+    "ramSize": {
+      "type": "number"
+    }
+  },
+  "required": ["brand", "model", "processor", "ramSize"]
+}
+```
+
+**Data**
+
+```json
+{
+  "deviceType": "Smartphone",
+  "brand": "Samsung",
+  "model": "Galaxy S21",
+  "screenSize": 6.2
+}
+```
+
+
+## Ecommerce system
+
+A schema representing an ecommerce system, where `$anchor` is used within the definitions of `product` and `order` schemas to define anchor points: `ProductSchema` and `OrderSchema`, respectively.
+
+```json
+{
+  "$id": "https://example.com/ecommerce.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$defs": {
+    "product": {
+      "$anchor": "ProductSchema",
       "type": "object",
       "properties": {
-        "type": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
+        "name": { "type": "string" },
+        "price": { "type": "number", "minimum": 0 }
       }
     },
-    "tel": {
+    "order": {
+      "$anchor": "OrderSchema",
       "type": "object",
       "properties": {
-        "type": {
-          "type": "string"
-        },
-        "value": {
-          "type": "string"
-        }
-      }
-    },
-    "adr": { "$ref": "https://example.com/address.schema.json" },
-    "geo": { "$ref": "https://example.com/geographical-location.schema.json" },
-    "tz": {
-      "type": "string"
-    },
-    "photo": {
-      "type": "string"
-    },
-    "logo": {
-      "type": "string"
-    },
-    "sound": {
-      "type": "string"
-    },
-    "bday": {
-      "type": "string"
-    },
-    "title": {
-      "type": "string"
-    },
-    "role": {
-      "type": "string"
-    },
-    "org": {
-      "type": "object",
-      "properties": {
-        "organizationName": {
-          "type": "string"
-        },
-        "organizationUnit": {
-          "type": "string"
+        "orderId": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/ProductSchema" }
         }
       }
     }
@@ -356,71 +296,19 @@ A schema representing a person, company, organization, or place, with properties
 
 ```json
 {
-  "fn": "John Doe",
-  "givenName": "John",
-  "familyName": "Doe",
-  "email": {
-    "type": "work",
-    "value": "john.doe@example.com"
-  },
-  "tel": {
-    "type": "home",
-    "value": "123-456-7890"
-  },
-  "adr": {
-    "locality": "Cityville",
-    "region": "State",
-    "country-name": "Country"
+  "order": {
+    "orderId": "ORD123",
+    "items": [
+      {
+        "name": "Product A",
+        "price": 50
+      },
+      {
+        "name": "Product B",
+        "price": 30
+      }
+    ]
   }
-}
-```
-
-
-## Event registration
-
-A schema representing an event registration, including properties like `event name`, `participant details`, `registration date`, `ticket type`, and `ticket price`.
-
-```json
-{
-  "$id": "https://example.com/event-registration.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "A representation of an event registration",
-  "type": "object",
-  "required": ["eventName", "participant", "registrationDate"],
-  "properties": {
-    "eventName": {
-      "type": "string"
-    },
-    "participant": {
-      "$ref": "https://example.com/user-profile.schema.json"
-    },
-    "registrationDate": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "ticketType": {
-      "type": "string"
-    },
-    "ticketPrice": {
-      "type": "number",
-      "minimum": 0
-    }
-  }
-}
-```
-
-**Data**
-
-```json
-{
-  "eventName": "Tech Conference",
-  "participant": {
-    "username": "participantuser",
-    "email": "participant@example.com"
-  },
-  "registrationDate": "2023-08-20T10:00:00Z",
-  "ticketType": "Standard",
-  "ticketPrice": 100
 }
 ```
 
@@ -464,13 +352,13 @@ A schema representing geographical coordinates with `latitude` and `longitude` v
 
 ## Health record
 
-A schema representing a health record, including `patient information`, `allergies`, `medical conditions`, `medications`, and `emergency contact`.
+A schema representing a health record, including `patientName`, `dateOfBirth`, `bloodType`, `allergies`, `conditions`, `medications`, and `emergencyContact`.
 
 ```json
 {
   "$id": "https://example.com/health-record.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "A representation of a health record",
+  "description": "Schema for representing a health record",
   "type": "object",
   "required": ["patientName", "dateOfBirth", "bloodType"],
   "properties": {
@@ -527,75 +415,9 @@ A schema representing a health record, including `patient information`, `allergi
 ```
 
 
-## Invoice
-
-A schema representing an invoice, including `invoice details`, `billing address`, `line items`, and `total amount`.
-
-```json
-{
-  "$id": "https://example.com/invoice.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "A representation of an invoice",
-  "type": "object",
-  "required": ["invoiceNumber", "billingAddress", "items", "totalAmount"],
-  "properties": {
-    "invoiceNumber": {
-      "type": "string"
-    },
-    "billingAddress": {
-      "$ref": "https://example.com/address.schema.json"
-    },
-    "items": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "description": {
-            "type": "string"
-          },
-          "quantity": {
-            "type": "integer",
-            "minimum": 1
-          },
-          "unitPrice": {
-            "type": "number",
-            "minimum": 0
-          }
-        }
-      }
-    },
-    "totalAmount": {
-      "type": "number",
-      "minimum": 0
-    }
-  }
-}
-```
-
-**Data**
-
-```json
-{
-  "invoiceNumber": "INV123",
-  "billingAddress": {
-    "street-address": "789 Billing St",
-    "locality": "Cityville",
-    "region": "State",
-    "postal-code": "54321",
-    "country-name": "Country"
-  },
-  "items": [
-    { "description": "Product A", "quantity": 2, "unitPrice": 50 },
-    { "description": "Product B", "quantity": 1, "unitPrice": 30 }
-  ],
-  "totalAmount": 130
-}
-```
-
-
 ## Job posting
 
-A schema representing a job posting, including properties like `job title`, `company name`, `location`, `job description`, `employment type`, `salary`, and `application deadline`.
+A schema representing a job posting, including properties like `title`, `company`, `location`, `description`, `employmentType`, `salary`, and `applicationDeadline`. It also uses the `$anchor` keyword for defining an anchor.
 
 ```json
 {
@@ -628,7 +450,8 @@ A schema representing a job posting, including properties like `job title`, `com
       "type": "string",
       "format": "date"
     }
-  }
+  },
+  "$anchor": "JobPosting"
 }
 ```
 
@@ -670,7 +493,8 @@ A schema representing a movie, including properties such as `title`, `director`,
       "format": "date"
     },
     "genre": {
-      "type": "string"
+      "type": "string",
+      "enum": ["Action", "Comedy", "Drama", "Science Fiction"]
     },
     "duration": {
       "type": "string"
@@ -679,9 +503,11 @@ A schema representing a movie, including properties such as `title`, `director`,
       "type": "array",
       "items": {
         "type": "string"
-      }
+      },
+      "additionalItems": false
     }
-  }
+  },
+  "$anchor": "MovieSchema"
 }
 ```
 
@@ -699,176 +525,9 @@ A schema representing a movie, including properties such as `title`, `director`,
 ```
 
 
-## Order
-
-A schema representing an order, including properties like `order ID`, `items`, `total price`, `customer details`, and `shipping address`.
-
-```json
-{
-  "$id": "https://example.com/order.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "A representation of an order",
-  "type": "object",
-  "required": ["orderId", "items", "totalPrice"],
-  "properties": {
-    "orderId": {
-      "type": "string"
-    },
-    "items": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "productId": {
-            "type": "string"
-          },
-          "quantity": {
-            "type": "integer",
-            "minimum": 1
-          }
-        }
-      }
-    },
-    "totalPrice": {
-      "type": "number",
-      "minimum": 0
-    },
-    "customer": {
-      "$ref": "https://example.com/user-profile.schema.json"
-    },
-    "shippingAddress": {
-      "$ref": "https://example.com/address.schema.json"
-    }
-  }
-}
-```
-
-**Data**
-
-```json
-{
-  "orderId": "ORD123",
-  "items": [
-    { "productId": "PROD1", "quantity": 2 },
-    { "productId": "PROD2", "quantity": 1 }
-  ],
-  "totalPrice": 150,
-  "customer": {
-    "username": "customeruser",
-    "email": "customer@example.com"
-  },
-  "shippingAddress": {
-    "street-address": "123 Shipping St",
-    "locality": "Cityville",
-    "region": "State",
-    "postal-code": "54321",
-    "country-name": "Country"
-  }
-}
-```
-
-
-## Product
-
-A schema representing a product, including properties such as `name`, `price`, `description`, `category`, and `inventory count`.
-
-```json
-{
-  "$id": "https://example.com/product.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "A representation of a product",
-  "type": "object",
-  "required": ["name", "price"],
-  "properties": {
-    "name": {
-      "type": "string"
-    },
-    "price": {
-      "type": "number",
-      "minimum": 0
-    },
-    "description": {
-      "type": "string"
-    },
-    "category": {
-      "type": "string"
-    },
-    "inventory": {
-      "type": "integer",
-      "minimum": 0
-    }
-  }
-}
-```
-
-**Data**
-
-```json
-{
-  "name": "Product A",
-  "price": 50,
-  "description": "A high-quality product",
-  "category": "Electronics",
-  "inventory": 100
-}
-```
-
-
-## Recipe
-
-A schema representing a recipe, including properties like `name`, `ingredients`, `cooking instructions`, `preparation time`, `cooking time`, and `servings`.
-
-```json
-{
-  "$id": "https://example.com/recipe.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "description": "A representation of a recipe",
-  "type": "object",
-  "required": ["name", "ingredients", "instructions"],
-  "properties": {
-    "name": {
-      "type": "string"
-    },
-    "ingredients": {
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    },
-    "instructions": {
-      "type": "string"
-    },
-    "prepTime": {
-      "type": "string"
-    },
-    "cookTime": {
-      "type": "string"
-    },
-    "servings": {
-      "type": "integer",
-      "minimum": 1
-    }
-  }
-}
-```
-
-**Data**
-
-```json
-{
-  "name": "Chocolate Chip Cookies",
-  "ingredients": ["Flour", "Sugar", "Chocolate Chips", "Butter"],
-  "instructions": "1. Preheat the oven...",
-  "prepTime": "15 minutes",
-  "cookTime": "12 minutes",
-  "servings": 24
-}
-```
-
-
 ## User profile
 
-A schema representing a user profile, including properties like `username`, `email`, `full name`, `age`, `location`, and `interests`.
+A schema representing a user profile, including properties like `username`, `email`, `fullName`, `age`, `location`, and `interests`.
 
 ```json
 {
