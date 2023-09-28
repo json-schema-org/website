@@ -1,8 +1,15 @@
-JSON Schema Reference {#reference}
+JSON Schema Reference 
 =====================
 
-::: {.toctree maxdepth="1"}
-type.rst string.rst regular\_expressions.rst numeric.rst object.rst
-array.rst boolean.rst null.rst generic.rst non\_json\_data.rst
-combining.rst conditionals.rst schema.rst
-:::
+* [Type-specific keywords](reference/type)
+* [string](reference/string)
+* [Regular Expressions](reference/regular_expressions)
+* [Numeric types](reference/numeric)
+* [object](reference/object)
+* [array](reference/array)
+* [boolean](reference/boolean)
+* [null](reference/null)
+* [Media: string-encoding non-JSON data](reference/non_json_data)
+* [Schema Composition](reference/combining)
+* [Applying Subschemas Conditionally](reference/conditionals)
+* [Declaring a Dialect](reference/schema)

@@ -76,7 +76,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
             <div className='-z-1'>
               <img
                 src={recentBlog[0].frontmatter.cover}
-                className='object-cove center'
+                className='object-cover w-full h-full'
                 alt='hero image example'
               />
             </div>
