@@ -1,5 +1,5 @@
 ---
-title: JSON Schema Draft-06 Release Notes
+title: Draft-06 Release Notes
 section: docs
 ---
 
@@ -8,7 +8,14 @@ Release notes for migrating from zyp-04 and fge-00 (draft-04) to wright-01 (draf
 <div className="text-red-500 text-2xl mb-1"><b>NOTE</b>: draft-07 has been released</div>
 
 Note that draft-07 core and validation are backwards-compatible with draft-06.
-For more information, see that draft's [migration notes](/draft-07/json-schema-release-notes).
+For more information, see that draft's [migration notes](../../draft-07/json-schema-release-notes).
+
+* [Q: What are the changes between draft-04 and draft-06?](#q:-what-are-the-changes-between-draft-04-and-draft-06)
+    * [Backwards-incompatible changes](#backwards-incompatible-changes)
+    * [Additions and backwards-compatible changes](#additions-and-backwards-compatible-changes)
+    * [Formats: "uri" vs "uri-reference"](#formats:-vs)
+* [Q: What happened to draft-05?](#q:-what-happened-to-draft-05)
+* [Q: What happened to all the discussions around re-using schemas with "additionalProperties"?](#q:-what-happened-to-all-the-discussions-around-re-using-schemas-with-additionalproperties)
 
 ### Q: What are the changes between draft-04 and draft-06?
 

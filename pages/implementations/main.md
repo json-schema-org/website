@@ -49,6 +49,7 @@ For example, the only incompatibilities between draft-04 and draft-06 involve `e
   -   [Pydantic](https://pydantic-docs.helpmanual.io/) (MIT) - generates schemas from Python models based on Python 3.6+ type hints.
   -   [msgspec](https://jcristharif.com/msgspec/) (BSD-3-Clause) - generates schemas from Python type annotations.
   -   [mashumaro](https://github.com/Fatal1ty/mashumaro) (Apache 2.0) - generates schemas from Python type annotations
+  -   [drf-jsonschema-serializer](https://github.com/maykinmedia/drf-jsonschema-serializer) (BSD-3-Clause) - generates schemas from Django Rest Framework serializers
 -   Java
   -   [jsonschema-generator](https://github.com/victools/jsonschema-generator) (Apache 2.0) - generates schemas from Java types *supports Draft 7 and Draft 2019-09*
 -   Scala
@@ -61,7 +62,7 @@ For example, the only incompatibilities between draft-04 and draft-06 involve `e
 ### From data
 
 -   Java
-  -   [saasquatch/json-schema-inferrer](https://github.com/saasquatch/json-schema-inferrer) _draft-07, -06, -04_ (Apache 2.0) - Java library for inferring JSON Schemas from one or multiple JSON samples.
+  -   [saasquatch/json-schema-inferrer](https://github.com/saasquatch/json-schema-inferrer) _2020-12, 2019-09, draft-07, draft-06, draft-04_ (Apache 2.0) - Java library for inferring JSON Schemas from one or multiple JSON samples.
 -   Scala
   -   [Schema Guru](https://github.com/snowplow/schema-guru) (Apache 2.0) - CLI util, Spark Job and Web UI for deriving JSON Schemas out of corpus of JSON instances; see issue [178](https://github.com/snowplow/schema-guru/issues/178) for progress towards draft-06+ support
   -   [JSONoid](https://github.com/michaelmior/jsonoid-discovery/) (MIT) - command line tool and Spark application for inferring schemas from JSON documents, supports draft 2019-09
@@ -98,6 +99,7 @@ are the only keywords that changed.
   -  [json-schema-to-elm](https://github.com/dragonwasrobot/json-schema-to-elm) - generates Elm types, JSON decoders+encoders, and fuzz tests from one or more JSON Schema files, using [dragonwasrobot/json_schema](https://github.com/dragonwasrobot/json_schema) *supports Draft 7*
 -   Go
   -  [go-jsonschema](https://git.sr.ht/~emersion/go-jsonschema) - generates Go types and helpers from JSON schema files *supports Draft 2020-12* 
+  -  [protoc-gen-jsonschema](https://github.com/chrusty/protoc-gen-jsonschema) - Generates JSON schemas from protobuf proto v2 and v3 files.
 -   Java
   -  [jsonCodeGen](https://github.com/schlothauer-wauer/jsoncodegen) (MIT) - Groovy based generation tasks from JSON schema. Already includes templates/generators for Java Beans, Swagger specification files and PlantUML diagrams.
   -  [jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) (Apache 2.0) - generates Java types from JSON Schema (or example JSON) and can annotate those types for data-binding with Jackson 2.x or Gson. *draft-07*
@@ -115,7 +117,7 @@ are the only keywords that changed.
 -   Rust
   -  [schemafy](https://github.com/Marwes/schemafy/) - generates Rust types and serialization code from a JSON schema. *supports Draft 4*
 -   Scala
-  -  [json-schema-to-case-class](https://github.com/cchandurkar/json-schema-to-case-class) (MIT) - NPM Package, [Web UI](https://cchandurkar.github.io/json-schema-to-case-class) and a CLI to generate Scala case classes from JSON Schema. *Supports JSON Schema 2019-09, draft-07, -06, -04, -03*
+  - [json-schema-to-case-class](https://github.com/cchandurkar/json-schema-to-case-class) (MIT) - NPM Package, [Web UI](https://cchandurkar.github.io/json-schema-to-case-class) and a CLI to generate Scala case classes from JSON Schema. *Supports JSON Schema 2019-09, draft-07, -06, -04, -03*
 -   TypeScript
   -  [jsongenerator](https://github.com/jimblackler/jsonschematypes/tree/master/codegen) *JSON Schema 2019-09, draft-07, -06, -04, -03* (Apache-2.0)
   -  [Shale](https://github.com/kgiszczak/shale) (MIT) - generates Ruby models from a JSON schema *supports Draft 2020-12*
@@ -174,7 +176,7 @@ the utility, and decided on a case-by-case basis.
   -   [@cloudflare/json-schema-transform](https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-schema-transform) ([JSON Schema Tools](https://github.com/cloudflare/json-schema-tools)), (BSD-3-Clause) Utilities using @cloudflare/json-schema-walker for transformations including `allOf` merging and example roll-up.
   -   [mokkabanna/json-schema-merge-allof](https://github.com/mokkabonna/json-schema-merge-allof) (MIT)
   -   [mokkabanna/json-schema-compare](https://github.com/mokkabonna/json-schema-compare) (MIT)
-  -   [loganvolkers/json-schema-resolve-allof](https://github.com/loganvolkers/json-schema-resolve-allof) (_license not stated_)
+  -   [loganvolkers/json-schema-resolve-allof](https://www.npmjs.com/package/json-schema-resolve-allof) (_license not stated_)
   -   [JSON-Schema-Instantiator](https://github.com/tomarad/JSON-Schema-Instantiator) (MIT)
 
 ### Schema draft migration
@@ -208,7 +210,7 @@ the utility, and decided on a case-by-case basis.
 -   [Altova XMLSpy 2019r3](https://www.altova.com/xmlspy-xml-editor#json_schema) - *Graphical JSON Schema editor for draft-06 and draft-7, as well as validation of JSON files based on JSON Schema*
 -   [Dashjoin JSON Schema editor](https://dashjoin.github.io/#/schema) - *Graphical online JSON Schema editor for draft-06 (minus oneOf, anyOf, allOf, not). The generated schema can be tested immediately via a form that is driven by it.*
 -   [Hackolade Studio](https://hackolade.com/help/JSONSchemaEditor.html) - *Visual JSON Schema editor for draft-04, draft-06, draft-07, 2019-09, 2020-12, as well as data modeling tool for NoSQL databases, storage formats, REST APIs, and JSON in RDBMS.  Also converts to and from: different draft specifications, DDL, XSD, Swagger, OpenAPI, YAML, Avro, Parquet, Protobuf, and most of the NoSQL script syntaxes.  Includes a GUI for Entity-Relationship Diagrams and a Command-Line Interface.*
--   [JSONBuddy](https://www.json-buddy.com/) - *Text and grid-style JSON editor and validator. Complete JSON Schema development environment with JSON Schema analyzer, context sensitive entry-helpers, sample data generation based on JSON Schema and JSON Schema validation debugger: Step through the validation process and set breakpoints. Support for draft-4, draft-6, draft-7, 2019-09 and 2020-12.*
+-   [JSONBuddy](https://www.json-buddy.com/) - *Text and grid-style JSON editor and validator. Complete JSON Schema development environment with JSON Schema analyzer, context sensitive entry-helpers, sample data generation based on JSON Schema and JSON Schema validation debugger: Step through the validation process and set breakpoints. JSON Schema testing tool including schema coverage. Support for draft-4, draft-6, draft-7, 2019-09 and 2020-12.*
 -   [JSONEditor Online](https://jsoneditoronline.org/) - *View, edit, format, and validate JSON online* Support draft-4, draft-6, and draft-7.
 -   [Liquid JSON Schema Editor](https://www.liquid-technologies.com/json-schema-editor) - *Graphical JSON Schema editor for draft-04, draft-06, draft-07 and 2019-09, with split source code and grphical editing. Includes validation of JSON files based on JSON Schema, JSON Sample Generator and JSON Schema Documentation Generator.*
 -   [Oxygen JSON Schema Editor](https://www.oxygenxml.com/xml_developer/json_schema_editor.html) - *JSON Schema editor with a variety of editing features and helper views (Design/Text/Author). Support for validation and editing JSON Schema draft-4, draft-6, and draft-7, 2019-09 (partial), 2020-12 (partial). Validation and editing of JSON files based on JSON Schema.*

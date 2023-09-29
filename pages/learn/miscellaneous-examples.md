@@ -19,15 +19,15 @@ In this page, you will find examples illustrating different uses cases to help y
 
 This example provides a typical minimum you are likely to see in JSON Schema. It contains:
 
-* [`$id`](https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.2.1) keyword
-* [`$schema`](https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.1.1) keyword
-* [`title`](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.9.1) annotation keyword
-* [`type`](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.1.1) instance data model
-* [`properties`](https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.10.3.2.1) validation keyword
+* [`$id`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.1) keyword
+* [`$schema`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.1.1) keyword
+* [`title`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1) annotation keyword
+* [`type`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.1.1) instance data model
+* [`properties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1) validation keyword
 * Three keys: `firstName`, `lastName` and `age` each with their own:
-  * [`description`](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.9.1) annotation keyword.
+  * [`description`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1) annotation keyword.
   * `type` instance data model (see above).
-* [`minimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.2.4) validation keyword on the `age` key.
+* [`minimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.2.4) validation keyword on the `age` key.
 
 ```json
 {

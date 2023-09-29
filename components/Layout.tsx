@@ -25,6 +25,8 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   const router = useRouter()
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
+  const renderAds = !hideAds; // Check if hideAds is false
+
   return (
     <div className='min-h-screen relative flex flex-col justify-between'>
       <FaviconHead />
@@ -50,7 +52,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
             </>
           ) : (
             <div>
-              {!hideAds && (
+              {renderAds && (
                 <div>
                   <script
                     async
@@ -65,7 +67,6 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
             </div>
           )}
           <Footer />
-          <OpenJS />
         </main>
       </div>
     </div>
@@ -222,7 +223,6 @@ const Footer = () => (
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
-          <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
         </div>
       </div>
       <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
