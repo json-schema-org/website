@@ -288,11 +288,11 @@ export const DocsNav = () => {
           <DocLink uri='/draft-06/json-schema-release-notes' label='draft-06 notes' />
           <DocLink uri='/draft-05/readme' label='draft-05 notes' />
           <SegmentSubtitle label='JSON Hyper-Schema' />
-            <div className='pl-4 pb-1 pt-1'>
+          <div className='pl-4 pb-1 pt-1'>
             <DocLink uri='/draft/2019-09/release-notes#hyper-schema-vocabulary' label='2019-09 notes' />
             <DocLink uri='/draft-07/json-hyper-schema-release-notes' label='draft-07 notes' />
             <DocLink uri='/draft-06/json-hyper-schema-release-notes' label='draft-06 notes' />
-            </div>
+          </div>
           <DocLink uri='/specification-links' label='Specification Links' />
         </div>
       </div>

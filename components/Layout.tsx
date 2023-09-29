@@ -25,7 +25,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   const router = useRouter()
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
-  const renderAds = !hideAds; // Check if hideAds is false
+  const renderAds = !hideAds // Check if hideAds is false
 
   return (
     <div className='min-h-screen relative flex flex-col justify-between'>
