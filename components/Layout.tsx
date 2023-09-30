@@ -28,6 +28,18 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
   useEffect(() => {
+
+    // Check if the URL contains "#community"
+    if (window.location.hash === '#community') {
+      // Find the anchor element by its ID
+      const target = document.getElementById('community');
+
+      // Scroll to the anchor element if it exists
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
     // Function to load Carbon Ads script
     const loadCarbonAdsScript = () => {     
       if (!hideAds) {
