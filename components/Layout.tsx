@@ -1,10 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
 import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
-import Script from 'next/script'; // Import next/script
+import Script from 'next/script'
 import useStore from '~/store'
 import { SectionContext } from '~/context'
 
@@ -47,11 +47,11 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
         const carbonAdsDivs = document.querySelectorAll('[id^="carbonads"]')
         carbonAdsDivs.forEach((div) => {
           div.remove()
-        });
+        })
       }
-    };
+    }
     loadCarbonAdsScript()
-  }, [hideAds]); 
+  }, [hideAds])
 
   return (
     <div className='min-h-screen relative flex flex-col justify-between'>
