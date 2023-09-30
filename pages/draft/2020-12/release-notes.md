@@ -1,5 +1,5 @@
 ---
-title: JSON Schema 2020-12 Release Notes
+title: 2020-12 Release Notes
 section: docs
 ---
 The previous draft (2019-09) introduced a lot of new concepts including
@@ -39,20 +39,24 @@ Here are some examples to illustrate the changes.
   </tr>
   <tr>
     <td>
-      <pre>{
+      ```json
+      {
         "items": [
           { "$ref": "#/$defs/foo" },
           { "$ref": "#/$defs/bar" }
         ]
-      }</pre>
+      }
+      ```
     </td>
     <td>
-      <pre>{
+      ```json
+      {
         "prefixItems": [
           { "$ref": "#/$defs/foo" },
           { "$ref": "#/$defs/bar" }
         ]
-      }</pre>
+      }
+      ```
     </td>
   </tr>
 </table>
@@ -65,22 +69,26 @@ Here are some examples to illustrate the changes.
   </tr>
   <tr>
     <td>
-      <pre>{
+      ```json
+      {
         "items": [
           { "$ref": "#/$defs/foo" },
           { "$ref": "#/$defs/bar" }
         ],
         "additionalItems": false
-      }</pre>
+      }
+      ```
     </td>
     <td>
-      <pre>{
+      ```json
+      {
         "prefixItems": [
           { "$ref": "#/$defs/foo" },
           { "$ref": "#/$defs/bar" }
         ],
         "items": false
-      }</pre>
+      }
+      ```
     </td>
   </tr>
 </table>
@@ -93,22 +101,26 @@ Here are some examples to illustrate the changes.
   </tr>
   <tr>
     <td>
-      <pre>{
+      ```json
+      {
         "items": [
           { "$ref": "#/$defs/foo" },
           { "$ref": "#/$defs/bar" }
         ],
         "additionalItems": { "$ref": "#/$defs/baz" }
-      }</pre>
+      }
+      ```
     </td>
     <td>
-      <pre>{
+      ```json
+      {
         "prefixItems": [
           { "$ref": "#/$defs/foo" },
           { "$ref": "#/$defs/bar" }
         ],
         "items": { "$ref": "#/$defs/baz" }
-      }</pre>
+      }
+      ```
     </td>
   </tr>
 </table>
@@ -143,7 +155,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
   </tr>
   <tr>
     <td>
-      <pre>
+      ```json
         // tree schema, extensible
         {
           "$schema": "https://json-schema.org/draft/2019-09/schema",
@@ -166,10 +178,10 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
           "$ref": "tree",
           "unevaluatedProperties": false
         }
-      </pre>
+      ```
     </td>
     <td>
-      <pre>
+      ```json
         // tree schema, extensible
         {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -192,7 +204,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
           "$ref": "tree",
           "unevaluatedProperties": false
         }
-      </pre>
+      ```
     </td>
   </tr>
 </table>
@@ -214,7 +226,7 @@ schema.
   </tr>
   <tr>
     <td>
-      <pre>
+      ```json
         {
           "type": "array",
           "contains": { "type": "string" },
@@ -225,16 +237,16 @@ schema.
             ]
           }
         }
-      </pre>
+      ```
     </td>
     <td>
-      <pre>
+      ```json
         {
           "type": "array",
           "contains": { "type": "string" },
           "unevaluatedItems": { "type": "number" }
         }
-      </pre>
+      ```
     </td>
   </tr>
 </table>

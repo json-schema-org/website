@@ -1,9 +1,10 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
 import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
+import Script from 'next/script'
 import useStore from '~/store'
 import { SectionContext } from '~/context'
 
@@ -23,7 +24,34 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
   const router = useRouter()
+
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
+
+  useEffect(() => {
+    // Function to load Carbon Ads script
+    const loadCarbonAdsScript = () => {     
+      if (!hideAds) {
+        const script = document.createElement('script')
+        script.src = `//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`
+        script.id = '_carbonads_js'
+        script.type = 'text/javascript'
+        script.async = true
+        document.body.appendChild(script)
+      } else {
+        // If hideAds is true, remove the script element after a delay
+        const script = document.getElementById('_carbonads_js')
+        if (script) {
+          document.body.removeChild(script)
+        }
+        // Remove all divs whose IDs start with "carbonads"
+        const carbonAdsDivs = document.querySelectorAll('[id^="carbonads"]')
+        carbonAdsDivs.forEach((div) => {
+          div.remove()
+        })
+      }
+    }
+    loadCarbonAdsScript()
+  }, [hideAds])
 
   return (
     <div className='min-h-screen relative flex flex-col justify-between'>
@@ -51,21 +79,17 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
           ) : (
             <div>
               {!hideAds && (
-                <div>
-                  <script
-                    async
-                    type='text/javascript'
-                    src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
-                    id='_carbonads_js'
-                    className='z-10'
-                  />
-                </div>
+                <Script
+                  src={`//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`}
+                  id='_carbonads_js'
+                  type='text/javascript'
+                  async
+                />
               )}
               {children}
             </div>
           )}
           <Footer />
-          <OpenJS />
         </main>
       </div>
     </div>
@@ -222,7 +246,6 @@ const Footer = () => (
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
-          <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
         </div>
       </div>
       <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>

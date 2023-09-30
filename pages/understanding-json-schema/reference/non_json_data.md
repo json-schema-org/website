@@ -74,7 +74,7 @@ encoded using the same encoding as the surrounding document:
 // props { "indent": true, "valid": true }
 "<!DOCTYPE html><html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head></html>"
 ```
-The following schema indicates that a string contains a [PNG](https://libpng.org) image, encoded using Base64:
+The following schema indicates that a string contains a PNG image, encoded using Base64:
 
 ```json
 // props { "isSchema": true }

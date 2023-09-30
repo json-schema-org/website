@@ -2,18 +2,20 @@ import Layout from '../components/Layout'
 import React from 'react'
 
 type SiteLayoutProps = {
-  children: React.ReactNode
+  children?: React.ReactNode 
+  hideAds?: boolean
   isDropdown?: boolean
-}
+};
 
-export const SiteLayout: React.FC<SiteLayoutProps> = ({ children }): JSX.Element => {
+export const SiteLayout: React.FC<SiteLayoutProps> = ({ children, hideAds = false }): JSX.Element => {
   return (
-    <Layout >
+    <Layout hideAds={hideAds}>
       {children}
     </Layout>
   )
 }
-  
-export const getLayout = (page: React.ReactNode): JSX.Element => {
-  return <SiteLayout >{page}</SiteLayout>
+
+export const getLayout = (page: React.ReactNode, props?: SiteLayoutProps): JSX.Element => {
+  return <SiteLayout {...props}>{page}</SiteLayout>
 }
+

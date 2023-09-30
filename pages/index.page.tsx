@@ -58,6 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       blogPosts,
       datesInfo,
+      hideAds: true, 
       fallback: false,
     },
     revalidate: 10,
@@ -170,7 +171,7 @@ const Home = (props: any) => {
                 <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/github-white.png' className='w-40' />
               </div>
-              <p className='text-white mx-4 my-8'>More than 200 implementations generating over 100 million weekly downloads</p>
+              <p className='text-white mx-4 my-2'>Please visit the official list of <a className='underline' href='https://github.com/json-schema-org/community/blob/main/ADOPTERS.md'>adopters</a> to discover more companies using JSON Schema.</p>
             </div>
           </div>
         </section>
@@ -350,4 +351,5 @@ const Home = (props: any) => {
 }
 
 export default Home
-Home.getLayout = getLayout
+Home.getLayout = (page: React.ReactNode) => getLayout(page, { hideAds: true })
+

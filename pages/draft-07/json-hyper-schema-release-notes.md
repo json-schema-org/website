@@ -3,14 +3,14 @@ title: JSON Hyper-Schema Draft-07 Release Notes
 section: docs
 ---
 
-JSON Hyper-Schema [draft-07](json-schema-hypermedia.html) completes the
+JSON Hyper-Schema [draft-07](../../draft-07/json-schema-hypermedia.html) completes the
 reworking of Hyper-Schema that was begun in draft-06.
 
 Hyper-Schema is now solely focused on adding hyperlinks to JSON documents,
 so keywords used for other purposes (`readOnly` and `media`) have been
-[moved to the Validation specification](json-schema-release-notes.html).
+[moved to the Validation specification](json-schema-release-notes).
 
-The [new draft](json-schema-hypermedia.html) has been completely rewritten
+The [new draft](../../draft-07/json-schema-hypermedia.html) has been completely rewritten
 for clarity and accessibility, so it is best to simply approach it as a new
 proposal.  We hope to add tutorial material at some point, but that is
 outside of the scope of release notes.
@@ -26,6 +26,15 @@ bugs.  The newer -01 draft is **still considered to be draft-07**.
 It now references the draft-07 meta-schema with the correct URI, among
 other typo fixes.  There are no funcitonal changes between -00 and -01.
 
+* [Migrating from draft-06](#migrating-from-draft-06)
+* [Migrating from draft-05](#migrating-from-draft-05)
+* [Migrating from draft-04](#migrating-from-draft-04)
+    * [GET](#get)
+    * [PUT](#put)
+    * [DELETE](#delete)
+    * [POST](#post)
+    * [PATCH](#patch)
+
 ### Migrating from draft-06
 
 No draft-06 features were changed, although two keywords were renamed
@@ -40,7 +49,7 @@ into the overall link resolution process.
 
 ### Migrating from draft-05
 
-See the [draft-06 release notes](../draft-06/json-hyper-schema-migration-faq.html)
+See the [draft-06 release notes](../../draft-06/json-hyper-schema-release-notes)
 for information related to draft-05.
 
 ### Migrating from draft-04
@@ -52,19 +61,19 @@ are not the same concept.  Using terminology borrowed from
 link (as described by a single LDO) can support multiple operations.
 
 Therefore, unlike draft-04, draft-07 hyper-schemas
-[do not have separate links for each operation](json-schema-hypermedia.html#rfc.section.8.1).  This makes the migration guidelines below approximate at best.
+[do not have separate links for each operation](../../draft-07/json-schema-hypermedia.html#rfc.section.8.1).  This makes the migration guidelines below approximate at best.
 
 For a more detailed explanation of how draft-04's `method` and `targetSchema`
 were typically used to create single-operation links, and how that poses
 a challenge for migrating to multi-operation links, see the
-[draft-06 release notes](../draft-06/json-hyper-schema-migration-faq.html).
+[draft-06 release notes](../../draft-06/json-hyper-schema-release-notes).
 Those release notes also explain what happened to the link relations defined
 in draft-04 and subsequently removed, and the changes in how the instance
 base URI is determined.
 
 Beyond those changes, a minimal migration would be something along the
 following lines, although the
-[intentional lack of explicit response descriptions](json-schema-hypermedia.html#rfc.appendix.A.2)
+[intentional lack of explicit response descriptions](../../draft-07/json-schema-hypermedia.html#rfc.appendix.A.2)
 (except when the response happens to be a representation of the target resource)
 means that some uses of draft-04 do not have direct analogues in draft-07.
 

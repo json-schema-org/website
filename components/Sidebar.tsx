@@ -43,8 +43,8 @@ const getStartedPath = [
   '/learn/getting-started-step-by-step'
 ]
 const getReferencePath = [
-  '/understanding-json-schema/',
-  '/understanding-json-schema/basics/',
+  '/understanding-json-schema',
+  '/understanding-json-schema/basics',
   '/understanding-json-schema/conventions',
   '/understanding-json-schema/about',
   '/understanding-json-schema/credits',
@@ -69,12 +69,14 @@ const getReferencePath = [
   '/learn/glossary'
 ]
 const getSpecificationPath = [
-  '/draft/2020-12/',
-  '/draft-06/',
-  '/draft-07/',
-  '/draft-05/',
-  '/draft/2019-09/',
-  '/[slug]',
+  '/draft/2020-12/release-notes',
+  '/draft/2019-09/release-notes',
+  '/draft-07/json-schema-release-notes',
+  '/draft-06/json-schema-release-notes',
+  '/draft-05/readme',
+  '/draft-07/json-hyper-schema-release-notes',
+  '/draft-06/json-hyper-schema-release-notes',
+  '/specification-links',
   '/specification'
 ]
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
@@ -282,9 +284,15 @@ export const DocsNav = () => {
           <DocLink uri='/specification' label='Overview' />
           <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
           <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
-          <DocLink uri='/draft-07/readme' label='draft-07 notes' />
-          <DocLink uri='/draft-06/readme' label='draft-06 notes' />
+          <DocLink uri='/draft-07/json-schema-release-notes' label='draft-07 notes' />
+          <DocLink uri='/draft-06/json-schema-release-notes' label='draft-06 notes' />
           <DocLink uri='/draft-05/readme' label='draft-05 notes' />
+          <SegmentSubtitle label='JSON Hyper-Schema' />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink uri='/draft/2019-09/release-notes#hyper-schema-vocabulary' label='2019-09 notes' />
+            <DocLink uri='/draft-07/json-hyper-schema-release-notes' label='draft-07 notes' />
+            <DocLink uri='/draft-06/json-hyper-schema-release-notes' label='draft-06 notes' />
+          </div>
           <DocLink uri='/specification-links' label='Specification Links' />
         </div>
       </div>
