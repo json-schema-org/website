@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect } from 'react';
 import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
@@ -31,28 +31,26 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
     // Function to load Carbon Ads script
     const loadCarbonAdsScript = () => {     
       if (!hideAds) {
-        const script = document.createElement('script');
-        script.src = `//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`;
-        script.id = '_carbonads_js';
-        script.type = 'text/javascript';
-        script.async = true;
-        document.body.appendChild(script);
+        const script = document.createElement('script')
+        script.src = `//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`
+        script.id = '_carbonads_js'
+        script.type = 'text/javascript'
+        script.async = true
+        document.body.appendChild(script)
       } else {
         // If hideAds is true, remove the script element after a delay
-        const script = document.getElementById('_carbonads_js');
+        const script = document.getElementById('_carbonads_js')
         if (script) {
-          document.body.removeChild(script);
+          document.body.removeChild(script)
         }
         // Remove all divs whose IDs start with "carbonads"
-        const carbonAdsDivs = document.querySelectorAll('[id^="carbonads"]');
+        const carbonAdsDivs = document.querySelectorAll('[id^="carbonads"]')
         carbonAdsDivs.forEach((div) => {
-          div.remove();
+          div.remove()
         });
       }
     };
-
-    console.log('loadCarbonAdsScript');
-    loadCarbonAdsScript();
+    loadCarbonAdsScript()
   }, [hideAds]); 
 
   return (
@@ -83,8 +81,8 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
               {!hideAds && (
                 <Script
                   src={`//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`}
-                  id="_carbonads_js"
-                  type="text/javascript"
+                  id='_carbonads_js'
+                  type='text/javascript'
                   async
                 />
               )}
