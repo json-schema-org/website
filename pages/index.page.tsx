@@ -85,9 +85,6 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
     if (event.type === 'VEVENT') {
       const title = event.summary
       let startDate = moment(event.start)
-
-      // Get the timezone of the event
-      const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
     
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
@@ -98,6 +95,10 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
           nextFourWeeksEnd.toDate(),
           true,
         )
+
+        // Get the timezone of the event
+        const timezone = event.rrule.options.tzid; // Default to UTC if timezone information is not provided
+
 
         // Loop through the set of date entries to see which recurrences should be printed.
         for (const date of dates) {
@@ -116,6 +117,10 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
       else {
         // Simple case - no recurrences, just print out the calendar event.
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
+
+          // Get the timezone of the event
+          const timezone = event.tzid; // Default to UTC if timezone information is not provided
+
           const time = startDate.format('MMMM Do YYYY, h:mm a')
           const day = startDate.format('D')
           const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
@@ -287,7 +292,7 @@ const Home = (props: any) => {
                             </p>
                             <div className='text-sm'>
                               <p>{event.title}</p>
-                              <p><b>{event.time} {event.timezone}</b></p>
+                              <p><b>{event.time}</b> ({event.timezone})</p>
                             </div>
                           </div>
                         </li>
