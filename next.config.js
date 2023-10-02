@@ -75,6 +75,11 @@ const nextConfig = {
         destination: '/draft/2020-12/json-schema-validation.html#section-6',
         permanent: true, // Set to true for a permanent (301) redirect
       },
+      {
+        source: '/slack',
+        destination: 'https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email',
+        permanent: true, // Set to true for a permanent (301) redirect
+      },
       // Add more redirects as needed
     ];
   },
