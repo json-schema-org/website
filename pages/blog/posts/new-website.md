@@ -29,7 +29,7 @@ The JSON Schema story started in 2007 when Chris Zyp proposed JSON Schema as a s
 
 Our new landing page is a modern, single destination with all the resources necessary for the different types of personas visiting the website: JSON Schema users, JSON Schema tooling implementers, and other organizations.
 
-The information architecture will make it easier for everyone to find the resources and make it easier for the Community to maintain and evolve our docs as the project grows. 
+The information architecture will make it easier for everyone to find the resources they need and make it easier for the Community to maintain and evolve our docs as the project grows. 
 
 ## Who made this possible?
 
