@@ -33,7 +33,7 @@ The information architecture will make it easier for everyone to find the resour
 
 ## Who made this possible?
 
-This has been a long journey led by the Community. We want to start by acknowledging all the people who contributed to the previous website versions because this couldn't have been possible without them. THANKS!
+This has been a long journey led by the Community. We want to start by acknowledging all the people who contributed to the previous website versions because this wouldn't have been possible without them. THANKS!
 
 We'd like to recognize and thank everybody who worked on the new site release: [Johannes Linowski](https://github.com/musemind), [Paul Waller](https://github.com/PaulWaller), [Akanksha Kushwaha](https://github.com/aku1310), [Roni Lookwood](https://github.com/mjgutermuth) and [Melinda Gutermuth](https://github.com/mjgutermuth). Thanks for making this happen!
 
