@@ -97,7 +97,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
         )
 
         // Get the timezone of the event
-        const timezone = event.rrule.options.tzid; // Default to UTC if timezone information is not provided
+        const timezone = event.rrule.options.tzid // Default to UTC if timezone information is not provided
 
 
         // Loop through the set of date entries to see which recurrences should be printed.
@@ -119,7 +119,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
 
           // Get the timezone of the event
-          const timezone = event.tzid; // Default to UTC if timezone information is not provided
+          const timezone = event.tzid // Default to UTC if timezone information is not provided
 
           const time = startDate.format('MMMM Do YYYY, h:mm a')
           const day = startDate.format('D')
