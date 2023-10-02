@@ -2,7 +2,7 @@
 title: "Announcing our new website"
 date: "2023-10-02"
 type: Community
-cover: /img/posts/2023/new-website/cover.jpg
+cover: /img/posts/2023/new-website/cover.webp
 authors:
   - name: Benjamin Granados
     photo: /img/avatars/benjagm.png
@@ -21,7 +21,7 @@ We have created a modern design with improved site navigation and new informatio
 The JSON Schema story started in 2007 when Chris Zyp proposed JSON Schema as a schema language to validate JSON documents. Today, JSON Schema is one of the most used standards in the industry. During all this time, there have been different leading groups, specification releases, site versions, and, most importantly, hundreds of contributions by the JSON Schema Community. However, we have been receiving feedback about different ways to improve and refresh the site experience, and this is why the Community has been working so hard to release a new version of the website to help JSON Schema continue this amazing growth!
 
 <figure className="mt-5">
-  <img class="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto" src="/img/posts/2023/new-website/site-2016.png"/>
+  <img class="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto" src="/img/posts/2023/new-website/site-2016.webp"/>
     <figcaption className="mt-2 mb-10 text-sm text-center text-gray-500">The JSON Schema website back in 2016</figcaption>
 </figure>
 
