@@ -12,13 +12,13 @@ excerpt: "We are so pleased to announce the launch of our new website!"
 
 ## We are so pleased to announce the launch of our new website!
 
-We are excited to announce the launch of our newly designed JSON Schema website! 
+We are excited to announce the launch of our newly designed JSON Schema website!
 
-We have created a modern design with improved site navigation and a new information architecture to help you find exactly what you are looking for and better explain the benefits of JSON Schema and it's amazing Ecosystem.
+We have created a modern design with improved site navigation and new information architecture to help you find exactly what you are looking for and better explain the benefits of JSON Schema and its incredible ecosystem.
 
 ## A little bit of history
 
-The JSON Schema story started back in 2007, when Chris Zyp proposed JSON Schema as a schema language to validate JSON documents. Today, JSON Schema is one of the most used standards in the industry, and during all this time, there has been different leading groups, different specification releases, different site versions, and most important, hundreds of contribution by the JSON Schema Community. However, we have been receiving feedback about different ways to improve and refresh the site experience, and this is why the Community have been working hard to release a new version of the website to help JSON Schema to continue this amazing growth!
+The JSON Schema story started in 2007 when Chris Zyp proposed JSON Schema as a schema language to validate JSON documents. Today, JSON Schema is one of the most used standards in the industry. During all this time, there have been different leading groups, specification releases, site versions, and, most importantly, hundreds of contributions by the JSON Schema Community. However, we have been receiving feedback about different ways to improve and refresh the site experience, and this is why the Community has been working so hard to release a new version of the website to help JSON Schema continue this amazing growth!
 
 <figure className="mt-5">
   <img class="max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl mx-auto" src="/img/posts/2023/new-website/site-2016.png"/>
@@ -27,25 +27,25 @@ The JSON Schema story started back in 2007, when Chris Zyp proposed JSON Schema 
 
 ## A new story
 
-Our new landing page is a modern, single destination with all the resources necessary for the different types of personas accesing the website: JSON Schema users, JSON Schema tooling implementers and other organizations.
+Our new landing page is a modern, single destination with all the resources necessary for the different types of personas visiting the website: JSON Schema users, JSON Schema tooling implementers, and other organizations.
 
-The information architecture will make it easier for everyone to find the resources but also it will make it easier for the Community to maintain and evolve our docs as the project grows. 
+The information architecture will make it easier for everyone to find the resources and make it easier for the Community to maintain and evolve our docs as the project grows. 
 
 ## Who made this possible?
 
-This has been a long journey, led by the Community. We'd like to start by aknowledging to all the people who contributed the previous website versions because this couldn't possible with them. THANKS!
+This has been a long journey led by the Community. We want to start by acknowledging all the people who contributed to the previous website versions because this couldn't have been possible without them. THANKS!
 
-We'd like to recognize and thank to everybody who worked on the new site release: [Johannes Linowski](https://github.com/musemind), [Paul Waller](https://github.com/PaulWaller), [Akanksha Kushwaha](https://github.com/aku1310), [Roni Lookwood](https://github.com/mjgutermuth) and [Melinda Gutermuth](https://github.com/mjgutermuth). Thanks for making this happen!
+We'd like to recognize and thank everybody who worked on the new site release: [Johannes Linowski](https://github.com/musemind), [Paul Waller](https://github.com/PaulWaller), [Akanksha Kushwaha](https://github.com/aku1310), [Roni Lookwood](https://github.com/mjgutermuth) and [Melinda Gutermuth](https://github.com/mjgutermuth). Thanks for making this happen!
 
 ## What is next?
 
-This journey it has just started, but now we still have a lot of work to and we are actively looking for contributors! 
+This journey has just started, but now we still have much work to do, and we are actively looking for contributors!
 
-The focus of our future work is:
+The short term focus of our future work is:
 - Continue refining our docs. See this [issue](https://github.com/json-schema-org/community/issues/421) for more details.
 - Build the JSON Schema landscape. See this [issue](https://github.com/json-schema-org/community/issues/354) to know more.
 
-Are you interested on getting involved?
+Are you interested in getting involved?
 Please join our [Slack workspace](https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email) and visit the #website channel.
 
 _Cover photo by [Ricardo Rocha](https://unsplash.com/@rcrazy) on [Unsplash](https://unsplash.com/photos/nj1bqRzClq8)_
