@@ -85,9 +85,6 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
     if (event.type === 'VEVENT') {
       const title = event.summary
       let startDate = moment(event.start)
-
-      // Get the timezone of the event
-      const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
     
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
@@ -98,6 +95,10 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
           nextFourWeeksEnd.toDate(),
           true,
         )
+
+        // Get the timezone of the event
+        const timezone = event.rrule.options.tzid // Default to UTC if timezone information is not provided
+
 
         // Loop through the set of date entries to see which recurrences should be printed.
         for (const date of dates) {
@@ -116,6 +117,10 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
       else {
         // Simple case - no recurrences, just print out the calendar event.
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
+
+          // Get the timezone of the event
+          const timezone = event.tzid // Default to UTC if timezone information is not provided
+
           const time = startDate.format('MMMM Do YYYY, h:mm a')
           const day = startDate.format('D')
           const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
@@ -171,7 +176,7 @@ const Home = (props: any) => {
                 <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/github-white.png' className='w-40' />
               </div>
-              <p className='text-white mx-4 my-2'>Please visit the official list of <a className='underline' href='https://github.com/json-schema-org/community/blob/main/ADOPTERS.md'>adopters</a> to discover more companies using JSON Schema.</p>
+              <p className='text-white mx-4 my-2'>Please visit the official list of <a className='underline' href='https://github.com/json-schema-org/community/blob/main/ADOPTERS.md'>adopters</a> and discover more companies using JSON Schema.</p>
             </div>
           </div>
         </section>
@@ -287,7 +292,7 @@ const Home = (props: any) => {
                             </p>
                             <div className='text-sm'>
                               <p>{event.title}</p>
-                              <p><b>{event.time} {event.timezone}</b></p>
+                              <p><b>{event.time}</b> ({event.timezone})</p>
                             </div>
                           </div>
                         </li>
@@ -325,6 +330,7 @@ const Home = (props: any) => {
             <a href='https://www.postman.com/'><img src='/img/logos/sponsors/Postman_logo-orange.svg' className='w-44' /></a>
             <a href='https://retool.com/'><img src='/img/logos/sponsors/retool-logo.svg' className=' w-44' /></a>
             <a href='https://www.apideck.com/'><img src='/img/logos/sponsors/apideck-logo.png' className=' w-44' /></a>
+            <a href='https://endjin.com/'><img src='/img/logos/sponsors/endjin-logo.svg' className=' w-44' /></a>
           </div>
 
         </section>
