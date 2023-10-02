@@ -176,7 +176,7 @@ const Home = (props: any) => {
                 <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
                 <img src='/img/logos/usedby/github-white.png' className='w-40' />
               </div>
-              <p className='text-white mx-4 my-2'>Please visit the official list of <a className='underline' href='https://github.com/json-schema-org/community/blob/main/ADOPTERS.md'>adopters</a> and discover more companies using JSON Schema.</p>
+              <p className='text-white mx-4 my-5'>Please visit the official list of <a className='underline' href='https://github.com/json-schema-org/community/blob/main/ADOPTERS.md'>adopters</a> and discover more companies using JSON Schema.</p>
             </div>
           </div>
         </section>
