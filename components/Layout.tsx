@@ -4,7 +4,6 @@ import Link from 'next/link'
 import classnames from 'classnames'
 import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
-import Script from 'next/script'
 import useStore from '~/store'
 import { SectionContext } from '~/context'
 
