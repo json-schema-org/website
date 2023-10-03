@@ -50,11 +50,6 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
         script.async = true
         document.body.appendChild(script)
       } else {
-        // If hideAds is true, remove the script element after a delay
-        const script = document.getElementById('_carbonads_js')
-        if (script) {
-          document.body.removeChild(script)
-        }
         // Remove all divs whose IDs start with "carbonads"
         const carbonAdsDivs = document.querySelectorAll('[id^="carbonads"]')
         carbonAdsDivs.forEach((div) => {
@@ -90,14 +85,6 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
             </>
           ) : (
             <div>
-              {!hideAds && (
-                <Script
-                  src={`//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`}
-                  id='_carbonads_js'
-                  type='text/javascript'
-                  async
-                />
-              )}
               {children}
             </div>
           )}
