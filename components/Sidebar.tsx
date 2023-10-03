@@ -255,6 +255,7 @@ export const DocsNav = () => {
             </div>
             <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
           </div>
+          <DocLink uri='/learn/interfaces' label='Common Interfaces Across Implementations' />
         </div>
       </div>
       {/* Specification */}
