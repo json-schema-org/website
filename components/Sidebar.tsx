@@ -257,7 +257,8 @@ export const DocsNav = () => {
               <div className='pl-4 pb-1 pt-1'>
                 <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
                 <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
-                <DocLink uri='/understanding-json-schema/structuring#ref' label='$ref' />
+                <DocLink uri='/understanding-json-schema/structuring#dollarref' label='$ref' />
+                <DocLink uri='/understanding-json-schema/structuring#dollarid' label='$id' />                
                 <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
                 <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
                 <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
