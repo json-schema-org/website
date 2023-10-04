@@ -361,6 +361,13 @@
         name: jsonschema-rs
       license: MIT
       last-updated: "2022-08-31"
+    - name: OpenAPI JSON Schema Generator
+      notes: Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. JSON schema validation run when validating schemas.
+      url: https://github.com/openapi-json-schema-tools/openapi-json-schema-generator
+      date-draft: [2020-12]
+      draft: [5]
+      license: Apache-2.0
+      last-updated: "2023-09-28"
 - name: Ruby
   implementations:
     - name: JSONSchemer
