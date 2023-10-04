@@ -67,8 +67,7 @@ const getReferencePath = [
   '/understanding-json-schema/reference/type',
   '/understanding-json-schema/reference/generic',  
   '/understanding-json-schema/reference',
-  '/learn/glossary',
-  '/learn/interfaces'
+  '/learn/glossary'
 ]
 const getSpecificationPath = [
   '/draft/2020-12/release-notes',
@@ -81,6 +80,11 @@ const getSpecificationPath = [
   '/specification-links',
   '/specification'
 ]
+
+const getImplementersPath = [
+  '/implementers/interfaces'
+]
+
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
@@ -135,6 +139,7 @@ export const DocsNav = () => {
     getDocs: false,
     getStarted: false,
     getReference: false,
+    getImplementers: false,
     getSpecification: false,
   })
   useEffect(() => {
@@ -146,6 +151,8 @@ export const DocsNav = () => {
       setActive({ ...active, getReference: true })
     } else if (getSpecificationPath.includes(router.asPath)) {
       setActive({ ...active, getSpecification: true })
+    } else if (getImplementersPath.includes(router.asPath)) {
+      setActive({ ...active, getImplementers: true })
     }
   }, [router.asPath])
 
@@ -161,6 +168,10 @@ export const DocsNav = () => {
     setActive({ ...active, getReference: !active.getReference })
   }
 
+  const handleClickImplementers = () => {
+    setActive({ ...active, getImplementers: !active.getImplementers })
+  }
+
   const handleClickSpec = () => {
     setActive({ ...active, getSpecification: !active.getSpecification })
   }
@@ -168,6 +179,7 @@ export const DocsNav = () => {
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)'
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)'
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)'
+  const rotateI = active.getImplementers ? 'rotate(180deg)' : 'rotate(0)'
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)'
 
   return (
@@ -256,10 +268,21 @@ export const DocsNav = () => {
             </div>
             <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
           </div>
-          <SegmentSubtitle label='Implementations' />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/learn/interfaces' label='Common Interfaces Across Implementations' />
+        </div>
+      </div>
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onClick={handleClickImplementers} >
+          <div className='flex  items-center align-middle'>
+            <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Implementers' />
           </div>
+          <svg style={{ transform: rotateI, transition: 'all 0.2s linear' }} id='arrow' xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+        </div>
+        <div
+          className={classnames( 'ml-6', { 'hidden': !active.getImplementers })}
+          id='implementers'
+        >
+          <DocLink uri='/implementers/interfaces' label='Common Interfaces Across Implementations' />
         </div>
       </div>
       {/* Specification */}

@@ -1,6 +1,6 @@
 ---
-title: Common Interfaces Across JSON Schema Implementations
-section: docs
+title: Common Interfaces across JSON Schema Implementations
+section: implementers
 ---
 
 JSON Schema is extremely widely used and nearly equally widely implemented.
