@@ -8,7 +8,7 @@ There are implementations of JSON Schema validation for [over 20 languages](http
 This prevalence is fantastic for user choice \-- as someone wishing to use JSON Schema you can be almost certain you\'ll find an implementation suitable for your target environment.
 
 But when it comes to community support, it can be challenging to know how to perform various JSON Schema operations in a particular library or implementation, as each may have slightly differing (or more than slightly differing) APIs.
-This can become particularly challenging when considering behavior not necessarily proscribed or required by the specification itself, but which is nonetheless common, useful or even required behavior *in practice* in order to use JSON Schema.
+This can become particularly challenging when considering behavior not necessarily prescribed or required by the specification itself, but which is nonetheless common, useful, or even required behavior *in practice* in order to use JSON Schema.
 This page serves to document a number of these *common operations*, documenting the interfaces offered by many such implementations and inspired in part by the interfaces required for Bowtie\'s own operation.
 
 For each, we first name and describe the operation using terminology from the specification where available, or otherwise using terminology that is aimed to be succinct but precise.
