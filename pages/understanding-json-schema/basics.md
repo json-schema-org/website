@@ -3,7 +3,7 @@ title: The basics
 section: docs
 ---
 
-In [What is a schema?](/understanding-json-schema/about), we described what a schema is,
+In [What is a schema?](../understanding-json-schema/about), we described what a schema is,
 and hopefully justified the need for schema languages. Here, we proceed
 to write a simple JSON Schema.
 
@@ -139,7 +139,7 @@ you control, for example:
 { "$id": "http://yourdomain.com/schemas/myschema.json" }
 ```
 
-The details of `$id` become more apparent when you start [structuring](/understanding-json-schema/structuring#id).
+The details of `$id` become more apparent when you start [structuring](../understanding-json-schema/structuring#dollarid).
 
 <Infobox label="Draft-specific info">
 In Draft 4, `$id` is just `id` (without the dollar-sign).
