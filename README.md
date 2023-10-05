@@ -78,10 +78,10 @@ This project exists thanks to all the people who contribute. [[Contribute](CONTR
 <!-- Copy-paste in your Readme.md file -->
 
 <a href = "https://github.com/json-schema-org/website/graphs/contributors">
-  <img src = "https://contrib.rocks/image?repo = json-schema-org/website"/>
+  <img src = "https://contrib.rocks/image?repo=json-schema-org/website"/>
 </a>
 
-Made with [contributors-img](https://contrib.rocks).
+<sub>Made with [contributors-img](https://contrib.rocks).</sub>
 
 ### Financial Contributors
 
