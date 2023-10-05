@@ -2,7 +2,7 @@
 
 First off, thanks for taking the time to contribute! 🫶
 
-All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents)for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it much easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
+All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it much easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions. 🎉
 
 If you don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation:
 - Star the project on Github
@@ -20,6 +20,7 @@ If you don't have time to contribute, that's fine. There are other easy ways to 
   - 📋 [Improving The Documentation](#-improving-the-documentation)
   - 🎨 [Improving The Design](#-improving-the-design)
 - ⌨️ [Pull requests](#%EF%B8%8F-pull-requests)
+- 🏛 [License](#-license)
 
 ## 🌱 Code of Conduct
 
@@ -64,6 +65,10 @@ If the pull request would solve a particular issue, reference the issue in the p
 Generally, pull requests should be made to the `main` branch.
 
 Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged more quickly once approved by a project member.
+
+## 🏛 License
+
+The contents of this repository are [licensed under](./LICENSE) either the BSD 3-clause license *or* the Academic Free License v3.0.
 
 ## References 
 This document was adapted from [https://contributing.md](https://contributing.md/)!
