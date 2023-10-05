@@ -1,9 +1,21 @@
 [![JSON Schema logo - Build more, break less, empower others.](https://raw.githubusercontent.com/json-schema-org/.github/main/assets/json-schema-banner.png)](https://json-schema.org)
 
-[![Slack](https://img.shields.io/static/v1?label=Slack&message=@json-schema&color=yellow)](https://json-schema.slack.com)
-[![Twitter](https://img.shields.io/static/v1?label=Twitter&message=@jsonschema&color=9cf)](https://twitter.com/jsonschema)
-[![LinkedIn](https://img.shields.io/static/v1?label=LinkedIn&message=@jsonschema&color=lightgray)](https://www.linkedin.com/company/jsonschema)
-[![YouTube](https://img.shields.io/static/v1?label=Youtube&message=@JSONSchemaOrgOfficial&color=red)](https://www.youtube.com/@JSONSchemaOrgOfficial)
+<br/>
+<p>
+    <a href="https://github.com/json-schema-org/website/graphs/contributors" alt="JSON Schema GitHub website contributors">
+      <img src="https://img.shields.io/github/contributors/json-schema-org/website?color=orange" />
+    </a>
+    <a href="https://github.com/json-schema-org/website/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" alt="Good First JSON Schema issue">
+      <img src="https://img.shields.io/github/issues/json-schema-org/website/good%20first%20issue.svg?color=%23DDDD00" />
+    </a>
+    <a href="https://json-schema.slack.com/" alt="JSON Schema Slack">
+      <img src="https://img.shields.io/badge/json-schema@website.svg?logo=slack&color=yellow" />
+    </a>
+    <a href="https://github.com/json-schema-org/website" alt="JSON Schema License">
+      <img src="https://img.shields.io/github/license/jsonschema/website.svg" />
+    </a>
+</p>
+
 
 # 👋 Welcome to the JSON Schema website
 This repository contains the sources of JSON Schema website:
