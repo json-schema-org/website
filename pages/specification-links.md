@@ -432,12 +432,12 @@ The next unreleased draft is a work in progress.  You can [give feedback and get
 
 The specification links here link to the XML and JSON sources.  We do not provide rendered [work-in-progress](work-in-progress) drafts except near the very end of a publication cycle, during the final review period.
 
- - Core: [jsonschema-core.xml](https://github.com/json-schema-org/json-schema-spec/blob/master/jsonschema-core.xml)
- - Validation: [jsonschema-validation.xml](https://github.com/json-schema-org/json-schema-spec/blob/master/jsonschema-validation.xml)
- - Hyper-Schema: [jsonschema-hyperschema.xml](https://github.com/json-schema-org/json-schema-spec/blob/master/jsonschema-hyperschema.xml)
+ - Core: [jsonschema-core.xml](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-core.md)
+ - Validation: [jsonschema-validation.xml](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-validation.md)
+ - Hyper-Schema: [jsonschema-hyperschema.xml](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/jsonschema-hyperschema.xml)
 - Relative JSON Pointer: [relative-json-pointer.xml](https://github.com/json-schema-org/json-schema-spec/blob/master/relative-json-pointer.xml)
 - [JSON Schema meta-schema](https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json)
-- [JSON Hyper-Schema meta-schema](https://github.com/json-schema-org/json-schema-spec/blob/master/hyper-schema.json)
+- [JSON Hyper-Schema meta-schema](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/hyper-schema.json)
 - [JSON Hyper-Schema Link Description Object meta-schema](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/links.json)
 - [JSON Schema Vocabulary meta-schemas](https://github.com/json-schema-org/json-hyperschema-spec/tree/main/meta/)
 - [JSON Schema Output schemas and examples](https://github.com/json-schema-org/json-hyperschema-spec/tree/main/output/)

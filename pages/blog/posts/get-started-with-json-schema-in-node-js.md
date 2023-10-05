@@ -163,7 +163,7 @@ Schema generation is down to your personal preference: some folks like to write 
 
 ## Wrapping up
 
-We can use Ajv as a standalone library or we can integrate it with the framework we're using to build our Node.js application. Some Node.js frameworks even provide JSON Schema based validation with Ajv [built in](https://www.fastify.io/docs/latest/Validation-and-Serialization/).
+We can use Ajv as a standalone library or we can integrate it with the framework we're using to build our Node.js application. Some Node.js frameworks even provide JSON Schema based validation with Ajv [built in](https://fastify.dev/docs/latest/Reference/Validation-and-Serialization/).
 
 When we combine JSON Schema and Ajv, we have a flexible solution for implementing validation in our Node.js applications:
 
@@ -177,7 +177,7 @@ When we combine JSON Schema and Ajv, we have a flexible solution for implementin
 If you'd like to learn more about JSON Schema, you might find these links helpful:
 
 - **[How to handle request validation in your Express API](https://simonplend.com/how-to-handle-request-validation-in-your-express-api/)**. If you're using the Express Node.js framework, I wrote this guide to help you integrate the Ajv library into your applications.
-- **[Fastify framework validation documentation](https://www.fastify.io/docs/latest/Validation-and-Serialization/)**. The Fastify Node.js framework integrates the Ajv library, making it straightforward to add validation with JSON Schema.
+- **[Fastify framework validation documentation](https://fastify.dev/docs/latest/Reference/Validation-and-Serialization/)**. The Fastify Node.js framework integrates the Ajv library, making it straightforward to add validation with JSON Schema.
 - **[Understanding JSON Schema](https://json-schema.org/understanding-json-schema/)**. A free online book which will teach you the fundamentals of JSON Schema. Also available in PDF format for offline reading.
 - **[JSON Schema Cheat Sheet](https://simonplend.com/wp-content/uploads/2020/12/JSON-Schema-Cheat-Sheet-v1.1.pdf)**. I created this cheat sheet PDF as a handy reference for JSON Schema validation keywords. Use it to give you a helping hand any time you're writing schemas.
 

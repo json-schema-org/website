@@ -71,7 +71,7 @@ non-negative number.
 
 The `pattern` keyword is used to restrict a string to a particular
 regular expression. The regular expression syntax is the one defined in
-JavaScript ([ECMA 262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
+JavaScript ([ECMA 262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
 specifically) with Unicode support. See
 [Regular Expressions](/understanding-json-schema/reference/regular_expressions) for more information.
 
@@ -230,7 +230,7 @@ must be absolute.
 #### Regular Expressions
 
 - `"regex"`: <StarInline label="New in draft 7" /> A regular expression, which should be valid according to
-    the [ECMA 262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf)
+    the [ECMA 262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
     dialect.
 
 Be careful, in practice, JSON schema validators are only required to
