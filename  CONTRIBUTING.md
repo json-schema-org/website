@@ -15,6 +15,7 @@ If you don't have time to contribute, that's fine. There are other easy ways to 
 - 🍻 [I Want To Contribute](#-i-want-to-contribute)
   - 🐞 [Reporting Bugs](#-reporting-bugs)
   - 💡 [Issues and feature requests](#-issues-and-feature-requests)
+  - 🛠️ [Add a new implementation](#-add-a-new-implementation)
   - ✍️ [Publish a blog post](#%EF%B8%8F-publish-a-blog-post)
   - 📈 [Publish a case study](#-publish-a-case-study)
   - 📋 [Improving The Documentation](#-improving-the-documentation)
@@ -39,6 +40,10 @@ Please use our issues templates that provide hints on what information we need t
 ### 💡 Issues and feature requests
 
 [Open an issue](https://github.com/json-schema-org/website/issues/new) **only**to report a bug or a feature. Don't open issues for questions or support, instead join our [Slack workspace](https://www.json-schema.org/slack) and ask there. Remember to follow our [Code of Conduct](https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md) while interacting with community members! It's more likely you'll get help, and much faster!
+
+### 🛠️ Add a new Implementation
+
+To add a new implementation, please open a PR, adding the details of your implementation to `\pages\implementations\main.md` file. We also invite you to join the discussion in `#implementers` channel in our  [Slack workspace](https://json-schema.org/slack).
 
 ### ✍️ Publish a blog post
 
