@@ -1,4 +1,4 @@
-[![JSON Schema logo - Build more, break less, empower others.](/assets/json-schema-banner.png)](https://json-schema.org)
+[![JSON Schema logo - Build more, break less, empower others.](https://raw.githubusercontent.com/json-schema-org/.github/main/assets/json-schema-banner.png)](https://json-schema.org)
 
 [![Slack](https://img.shields.io/static/v1?label=Slack&message=@json-schema&color=yellow)](https://json-schema.slack.com)
 [![Twitter](https://img.shields.io/static/v1?label=Twitter&message=@jsonschema&color=9cf)](https://twitter.com/jsonschema)
@@ -12,32 +12,38 @@ This repository contains the sources of AsyncAPI website:
 * It uses Tailwind CSS framework,
 * It's build and deployed with Netlify.
 
-## Requirements
+## Run locally
+
+#### Requirements
 Use the following tools to set up the project:
 
 Node.js v16.0.0+
 npm v7.10.0+
 
-## Run locally
-
-### Cloning the repository
+#### Cloning the repository
 This project uses git submodules, so you will need to run the following commands to fully clone the repo.
 ```
 git submodule init
 git submodule update
 ```
 
-### Install dependencies
+#### Install dependencies
+
+Install dependencies
 ```
 yarn
 ```
 
-### Run the development server on http://localhost:3000
+#### Run the development server
+
+Run the development server on http://localhost:3000
 ```
 yarn dev
 ```
 
-### Build static files on /out folder
+#### Build static files 
+
+Build static files on /out folder
 ```
 yarn build
 ```
@@ -64,34 +70,22 @@ This repository has the following structure:
 
 ```
 
-## Contributors
+## Contribute
 
 ### Code Contributors
 
 This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/json-schema-org/website/graphs/contributors"><img src="https://opencollective.com/json-schema/contributors.svg?width=890&button=false" /></a>
+<!-- Copy-paste in your Readme.md file -->
+
+<a href = "https://github.com/json-schema-org/website/graphs/contributors">
+  <img src = "https://contrib.rocks/image?repo = json-schema-org/website"/>
+</a>
+
+Made with [contributors-img](https://contrib.rocks).
 
 ### Financial Contributors
 
 Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/json-schema/contribute)]
-#### Sponsors
-
-Here are our top sponsors. You could be next! [[Become a sponsor](https://opencollective.com/json-schema#sponsor)]
-
-<a href="https://opencollective.com/json-schema/sponsor/0/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/0/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/1/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/1/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/2/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/2/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/3/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/3/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/4/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/4/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/5/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/5/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/6/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/6/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/7/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/7/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/8/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/8/avatar.svg"></a>
-<a href="https://opencollective.com/json-schema/sponsor/9/website" target="_blank"><img src="https://opencollective.com/json-schema/sponsor/9/avatar.svg"></a>
-
-#### Individuals
-
-<a href="https://opencollective.com/json-schema"><img src="https://opencollective.com/json-schema/individuals.svg?width=890"></a>
 
 ## Connect with JSON Schema Community
 
