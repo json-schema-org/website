@@ -111,7 +111,7 @@ Thanks goes to these wonderful people who contributed to this website:
 
 Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/json-schema/contribute)]
 
-## Connect with JSON Schema Community
+## Connect with the JSON Schema Community
 
 <p align="left">
     <a href="https://json-schema.slack.com/" target="blank">
