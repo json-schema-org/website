@@ -15,7 +15,7 @@ If you don't have time to contribute, that's fine. There are other easy ways to 
 - 🍻 [I Want To Contribute](#-i-want-to-contribute)
   - 🐞 [Reporting Bugs](#-reporting-bugs)
   - 💡 [Issues and feature requests](#-issues-and-feature-requests)
-  - 🛠️ [Add a new implementation](#-add-a-new-implementation)
+  - 🛠️ [Add a new implementation](#%EF%B8%8F-add-a-new-implementation)
   - ✍️ [Publish a blog post](#%EF%B8%8F-publish-a-blog-post)
   - 📈 [Publish a case study](#-publish-a-case-study)
   - 📋 [Improving The Documentation](#-improving-the-documentation)
