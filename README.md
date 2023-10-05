@@ -9,7 +9,7 @@
       <img src="https://img.shields.io/github/issues/json-schema-org/website/good%20first%20issue.svg?color=%23DDDD00" />
     </a>
     <a href="https://json-schema.slack.com/" alt="JSON Schema Slack">
-      <img src="https://img.shields.io/badge/json-schema@website.svg?logo=slack&color=yellow" />
+      <img src="https://img.shields.io/badge/json-schema-@website.svg?logo=slack&color=yellow" />
     </a>
     <a href="https://github.com/json-schema-org/website" alt="JSON Schema License">
       <img src="https://img.shields.io/github/license/jsonschema/website.svg" />
