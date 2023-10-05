@@ -5,8 +5,8 @@
 [![LinkedIn](https://img.shields.io/static/v1?label=LinkedIn&message=@jsonschema&color=lightgray)](https://www.linkedin.com/company/jsonschema)
 [![YouTube](https://img.shields.io/static/v1?label=Youtube&message=@JSONSchemaOrgOfficial&color=red)](https://www.youtube.com/@JSONSchemaOrgOfficial)
 
-# 👋 Welcome
-This repository contains the sources of AsyncAPI website:
+# 👋 Welcome to the JSON Schema website
+This repository contains the sources of JSON Schema website:
 
 * It's powered by Next.js,
 * It uses Tailwind CSS framework,
@@ -99,7 +99,7 @@ Become a financial contributor and help us sustain our community. [[Contribute](
     <a href="https://www.linkedin.com/company/jsonschema" target="blank">
       <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="JSON Schema LinkedIn" height="30" width="40" />
     </a>
-    <a href="https://www.youtube.com/c/asyncapi" target="blank">
+    <a href="https://www.youtube.com/@JSONSchemaOrgOfficial" target="blank">
       <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="JSON Schema YouTube" height="30" width="40" />
     </a>
 </p>
