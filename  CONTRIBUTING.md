@@ -6,8 +6,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
 - Star the project on Github
-- Post on Twitter or Linkedin about JSON Schema #jsonschema
-- Mention the project at other meetups and tell your friends/colleagues
+- Post on Twitter or Linkedin about JSON Schema `#jsonschema
 
 ## Table of Contents
 
@@ -21,8 +20,6 @@ And if you like the project, but just don't have time to contribute, that's fine
   - [Improving The Documentation](#improving-the-documentation)
   - [Improving The Design](#improving-the-design)
 - [Pull requests](#pull-requests)
-- [Your First Contribution](#your-first-code-contribution)
-- [Join The Project Team](#join-the-project-team)
 
 ## Code of Conduct
 
@@ -68,8 +65,8 @@ Generally, pull requests should be made to the `main` branch.
 
 Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged more quickly once approved by a project member.
 
-## Attribution 
-This guide is based on the **contributing.md**. [Make your own](https://contributing.md/)!
+## References 
+This document was adapted from [https://contributing.md](https://contributing.md/)!
 
 
 
