@@ -84,11 +84,23 @@ This repository has the following structure:
 
 ## Contribute
 
-### Code Contributors
+Here are some areas where you can contribute to the website:
+- Blogs posts
+- Case Studies
+- Design
+- Documentation
+- Website enhancements
+- JSON Schema Landscape
 
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<!-- Copy-paste in your Readme.md file -->
+To figure out a good first issue to work on, join our Slack workspace and visit the #contribute channel. This channel is specifically designed for onboarding and supporting new contributors.
 
+You should also check out our [Contributing guidelines](./CONTRIBUTING.md).
+
+
+
+### Contributors
+
+Thanks goes to these wonderful people who contributed to this website:
 <a href = "https://github.com/json-schema-org/website/graphs/contributors">
   <img src = "https://contrib.rocks/image?repo=json-schema-org/website"/>
 </a>
@@ -115,6 +127,9 @@ Become a financial contributor and help us sustain our community. [[Contribute](
       <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="JSON Schema YouTube" height="30" width="40" />
     </a>
 </p>
+
+## Inspired by
+This document has been inspired by [AsyncAPI website README.md](https://github.com/asyncapi/website/blob/master/README.md).
 
 ## License
 The contents of this repository are [licensed under](./LICENSE) either the BSD 3-clause license *or* the Academic Free License v3.0.
