@@ -10,16 +10,16 @@ And if you like the project, but just don't have time to contribute, that's fine
 
 ## Table of Contents
 
-- [🌱 Code of Conduct](#-code-of-conduct)
-- [💬 I Have a Question](#-i-have-a-question)
-- [🍻 I Want To Contribute](#-i-want-to-contribute)
-  - [🐞 Reporting Bugs](#-reporting-bugs)
-  - [💡 Issues and feature requests](#-suggesting-enhancements)
-  - [✍️ Publish a blog post](#-write-a-blog-post)
-  - [📈 Publish a case study](#-publish-a-case-study)
-  - [📋 Improving The Documentation](#-improving-the-documentation)
-  - [🎨 Improving The Design](#-improving-the-design)
-- [⌨️ Pull requests](#pull-requests)
+- 🌱 [Code of Conduct](#-code-of-conduct)
+- 💬 [I Have a Question](#-i-have-a-question)
+- 🍻 [I Want To Contribute](#-i-want-to-contribute)
+  - 🐞 [Reporting Bugs](#-reporting-bugs)
+  - 💡 [Issues and feature requests](#-suggesting-enhancements)
+  - ✍️ [Publish a blog post](#-write-a-blog-post)
+  - 📈 [Publish a case study](#-publish-a-case-study)
+  - 📋 [Improving The Documentation](#-improving-the-documentation)
+  - 🎨 [Improving The Design](#-improving-the-design)
+- ⌨️ [Pull requests](#pull-requests)
 
 ## 🌱 Code of Conduct
 
