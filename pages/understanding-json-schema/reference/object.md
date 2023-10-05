@@ -90,8 +90,8 @@ key is the name of a property and each value is a schema used to
 validate that property. Any property that doesn\'t match any of the
 property names in the `properties` keyword is ignored by this keyword.
 
-> See [Additional Properties](#additionalproperties) and
-[Unevaluated Properties](#unevaluatedproperties) for how to disallow properties that
+> See [Additional Properties](#additional-properties) and
+[Unevaluated Properties](#unevaluated-properties) for how to disallow properties that
 don\'t match any of the property names in `properties`.
 
 For example, let\'s say we want to define a simple schema for an address
@@ -312,7 +312,7 @@ It must be a string:
 It\'s important to note that `additionalProperties` only recognizes
 properties declared in the same subschema as itself. So,
 `additionalProperties` can restrict you from \"extending\" a schema
-using [combining](/understanding-json-schema/reference/combining) keywords such as [allOf](/understanding-json-schema/reference/combining#allOf). In
+using [combining](../../understanding-json-schema/reference/combining) keywords such as [allOf](../../understanding-json-schema/reference/combining#allof). In
 the following example, we can see how the `additionalProperties` can
 cause attempts to extend the address schema example to fail.
 
@@ -363,7 +363,7 @@ Fails `required`. "type" is required.
 Because `additionalProperties` only recognizes properties declared in
 the same subschema, it considers anything other than
 \"street\_address\", \"city\", and \"state\" to be additional. Combining
-the schemas with [allOf](/understanding-json-schema/reference/combining#allOf) doesn\'t change that. A workaround
+the schemas with [allOf](../../understanding-json-schema/reference/combining#allof) doesn\'t change that. A workaround
 you can use is to move `additionalProperties` to the extending schema
 and redeclare the properties from the extended schema.
 
@@ -427,7 +427,7 @@ single: object; properties; extending single: unevaluatedProperties
 
 In the previous section we saw the challenges with using
 `additionalProperties` when \"extending\" a schema using
-[combining](/understanding-json-schema/reference/combining). The `unevaluatedProperties` keyword is similar
+[combining](../../understanding-json-schema/reference/combining). The `unevaluatedProperties` keyword is similar
 to `additionalProperties` except that it can recognize properties
 declared in subschemas. So, the example from the previous section can be
 rewritten without the need to redeclare properties.

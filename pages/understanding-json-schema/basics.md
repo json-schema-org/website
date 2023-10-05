@@ -101,13 +101,13 @@ accepted:
 42
 ```
 
-The `type` keyword is described in more detail in [here](/understanding-json-schema/reference/type).
+The `type` keyword is described in more detail in [here](../understanding-json-schema/reference/type).
 
 ## Declaring a JSON Schema
 
 It\'s not always easy to tell which draft a JSON Schema is using. You
 can use the `$schema` keyword to declare which version of the JSON
-Schema specification the schema is written to. See [$schema](/understanding-json-schema/reference/schema#schema)
+Schema specification the schema is written to. See [$schema](../understanding-json-schema/reference/schema#schema)
 for more information. It\'s generally good practice to include it,
 though it is not required.
 

@@ -5,8 +5,8 @@ section: docs
 
 <Keywords label="regular expressions" />
 
-The [pattern](/understanding-json-schema/reference/string#regexp) and
-[patternProperties](/understanding-json-schema/reference/object#regexp) keywords use regular expressions to
+The [pattern](../../understanding-json-schema/reference/string#regexp) and
+[patternProperties](../../understanding-json-schema/reference/object#regexp) keywords use regular expressions to
 express constraints. The regular expression syntax used is from
 JavaScript ([ECMA 262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/),
 specifically). However, that complete syntax is not widely supported,
