@@ -51,7 +51,7 @@ To publish a blog post, please open a PR, adding your post in Markdown format in
 
 ### 📈 Publish a Case Study
 
-To publish a case study, we encourage you to join `#case-studies` channel in our [Slack workspace](https://json-schema.org/slack) and introduce your use case.
+To publish a case study, we encourage you to join `#adopters` channel in our [Slack workspace](https://json-schema.org/slack) and introduce your use case.
 
 ### 📋 Improving the Documentation
 
