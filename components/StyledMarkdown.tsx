@@ -160,6 +160,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </>
               }
             },
+            ol: {
+              component: ({ children }) => (
+                <ol className='list-decimal mt-2 mb-4 ml-5'>
+                  {children}
+                </ol>
+              )
+            },
             ul: {
               component: ({ children }) => (
                 <ul className='mt-2 mb-4 list-disc list-outside ml-5'>
