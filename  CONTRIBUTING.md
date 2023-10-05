@@ -27,7 +27,7 @@ Before making your first contribution, please ensure you are familiar with our [
 
 ## 💬 I have a question
 
-If you need clarification after reading this document, we encourage you to join the `#contribute` channel in our [Slack workspace](https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email).
+If you need clarification after reading this document, we encourage you to join the `#contribute` channel in our [Slack workspace](https://json-schema.org/slack).
 
 ## 🍻 I want to contribute
 
@@ -45,15 +45,15 @@ To publish a blog post, please open a PR, adding your post in Markdown format in
 
 ### 📈 Publish a Case Study
 
-To publish a case study, we encourage you to join `#case-studies` channel in our [Slack workspace](https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email) and introduce your use case.
+To publish a case study, we encourage you to join `#case-studies` channel in our [Slack workspace](https://json-schema.org/slack) and introduce your use case.
 
 ### 📋 Improving the Documentation
 
-If you would like to join the efforts to improve the JSON Schema Documentation, we encourage you to join the discussion on this [issue](https://github.com/json-schema-org/community/issues/421). We also invite you to join the discussion in `#documentation` channel in our  [Slack workspace](https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email).
+If you would like to join the efforts to improve the JSON Schema Documentation, we encourage you to join the discussion on this [issue](https://github.com/json-schema-org/community/issues/421). We also invite you to join the discussion in `#documentation` channel in our  [Slack workspace](https://json-schema.org/slack).
 
 ### 🎨 Improving the Design
 
-If you would like to contribute with designs, we encourage you to join `#design` channel in our [Slack workspace](https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email) and read the [contributing guidelines](https://github.com/json-schema-org/brand/blob/master/CONTRIBUTING.md) in the [Brand](https://github.com/json-schema-org/brand) repository.
+If you would like to contribute with designs, we encourage you to join `#design` channel in our [Slack workspace](https://json-schema.org/slack) and read the [contributing guidelines](https://github.com/json-schema-org/brand/blob/master/CONTRIBUTING.md) in the [Brand](https://github.com/json-schema-org/brand) repository.
 
 ## ⌨️ Pull requests
 
