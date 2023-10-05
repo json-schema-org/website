@@ -10,15 +10,15 @@ JSON Schema is a declarative language that you can use to annotate and validate 
 
 This documentation describes JSON Schema and the many ways you can use it to ensure the consistency of your JSON data. Here’s what you’ll find in the documentation:
 
-* **Getting Started**: If you’re new to JSON Schema, [start here](/learn/getting-started-step-by-step). You’ll find a step-by-step guide that walks you through creating your first JSON Schema, along with some real-world examples.
-* **Reference**: This section provides a [glossary](/learn/glossary), [specification release notes](/specification), and [in-depth reference](/understanding-json-schema) to JSON Schema that you can use to write and understand more complex schemas.
+* **Getting Started**: If you’re new to JSON Schema, [start here](../learn/getting-started-step-by-step). You’ll find a step-by-step guide that walks you through creating your first JSON Schema, along with some real-world examples.
+* **Reference**: This section provides a [glossary](../learn/glossary), [specification release notes](../specification), and [in-depth reference](../understanding-json-schema) to JSON Schema that you can use to write and understand more complex schemas.
 
 
 ## JSON Schema History
 
 JSON Schema has a rich history that dates back to the [first JSON Schema proposal](https://web.archive.org/web/20071026185150/http://json.com/json-schema-proposal/) submitted by **Kris Zyp** to json.com on October 2nd, 2007. 
 
-The current version of JSON Schema is [2020-12](/draft/2020-12/release-notes), which represents the latest advancements and have expended capabilities as compared with the previous version `draft-04`, `draft-06`, `draft-07`. We encourage everyone to adopt the latest version whenever possible to take advantage of all the advancements and benefits of JSON Schema.
+The current version of JSON Schema is [2020-12](../draft/2020-12/release-notes), which represents the latest advancements and have expended capabilities as compared with the previous version `draft-04`, `draft-06`, `draft-07`. We encourage everyone to adopt the latest version whenever possible to take advantage of all the advancements and benefits of JSON Schema.
 
 For more information regarding JSON Schema history, you can refer to [this article](https://modern-json-schema.com/what-is-modern-json-schema) by **Henry Andrews**.
 
@@ -203,7 +203,7 @@ By using JSON Schema, we can easily define and enforce constraints, making the v
 
 1. **Create the schema**
 
-    You begin by defining the rules in a JSON Schema document using [keywords](/learn/glossary/#keyword).
+    You begin by defining the rules in a JSON Schema document using [keywords](../learn/glossary/#keyword).
 
     * You can use `type` to specify what types of data are valid for a given key. You can specify either a single type, like `string`, or an array of possible types, like `string`, `number`, or `integer`.
     * You can also enforce formats using regular expressions with the `pattern` keyword.
@@ -295,14 +295,14 @@ With JSON Schema you can:
 
 ## Next steps
 
-To start using JSON Schema, see [Creating your first schema](/learn/getting-started-step-by-step).
+To start using JSON Schema, see [Creating your first schema](../learn/getting-started-step-by-step).
 
 
 ### Learn more
 
 Learn more about the specification:
 
-* [Understanding JSON Schema](/understanding-json-schema)
+* [Understanding JSON Schema](../understanding-json-schema)
 * [JSON Schema Specification 2020-12](https://json-schema.org/specification.html)
 
 
