@@ -47,6 +47,8 @@ To add a new implementation, please open a PR, adding the details of your implem
 
 ### ✍️ Publish a blog post
 
+Before publishing your first blog post, please ensure you are familiar with our [blog guidelines](https://github.com/json-schema-org/community/blob/main/docs/blog-guidelines.md).
+
 To publish a blog post, please open a PR, adding your post in Markdown format into the `\pages\blog\posts` folder using any existing posts as reference e.g.: [json-schema-in-5-minutes.md](https://github.com/json-schema-org/website/blob/main/pages/blog/posts/json-schema-in-5-minutes.md?plain=1). Remember to add all the images into the `\public\img` folder.
 
 ### 📈 Publish a Case Study
