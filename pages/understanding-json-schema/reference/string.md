@@ -73,7 +73,7 @@ The `pattern` keyword is used to restrict a string to a particular
 regular expression. The regular expression syntax is the one defined in
 JavaScript ([ECMA 262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
 specifically) with Unicode support. See
-[Regular Expressions](/understanding-json-schema/reference/regular_expressions) for more information.
+[Regular Expressions](../../understanding-json-schema/reference/regular_expressions) for more information.
 
 > When defining the regular expressions, it\'s important to note that the
 string is considered valid if the expression matches anywhere within the
@@ -124,7 +124,7 @@ to enable `format` to function as an assertion rather than just an
 annotation. That means that validation will fail if, for example, a
 value with a `date` format isn\'t in a form that can be parsed as a
 date. This can allow values to be constrained beyond what the other
-tools in JSON Schema, including [Regular Expressions](/understanding-json-schema/reference/regular_expressions) can
+tools in JSON Schema, including [Regular Expressions](../../understanding-json-schema/reference/regular_expressions) can
 do.
 
 > Implementations may provide validation for only a subset of the built-in

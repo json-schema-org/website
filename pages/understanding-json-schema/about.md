@@ -50,7 +50,7 @@ At its heart, JSON is built on the following data structures:
   null
 ```
 
-These types have [analogs in most programming languages](/understanding-json-schema/reference/type).
+These types have [analogs in most programming languages](../understanding-json-schema/reference/type).
 
 
 

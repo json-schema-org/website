@@ -129,7 +129,7 @@ Previously to Draft 2019-09, ``dependentRequired`` and
 
 The `dependentSchemas` keyword conditionally applies a subschema when a
 given property is present. This schema is applied in the same way
-[allOf](/understanding-json-schema/reference/combining#allof) applies schemas. Nothing is merged or extended. Both
+[allOf](../../understanding-json-schema/reference/combining#allof) applies schemas. Nothing is merged or extended. Both
 schemas apply independently.
 
 For example, here is another way to write the above:
@@ -417,7 +417,7 @@ to irrelevant errors.
 ## Implication
 
 Before Draft 7, you can express an \"if-then\" conditional using the
-[Schema composition](/understanding-json-schema/reference/combining) keywords and a boolean algebra concept called
+[Schema composition](../../understanding-json-schema/reference/combining) keywords and a boolean algebra concept called
 \"implication\". `A -> B` (pronounced, A implies B) means that if A is
 true, then B must also be true. It can be expressed as `!A || B` which
 can be expressed as a JSON Schema.

@@ -8,7 +8,7 @@ section: docs
 JSON Schema includes a few keywords for combining schemas together. Note
 that this doesn\'t necessarily mean combining schemas from multiple
 files or JSON trees, though these facilities help to enable that and are
-described in [Structuring a complex schema](/understanding-json-schema/structuring). Combining schemas may be as
+described in [Structuring a complex schema](../../understanding-json-schema/structuring). Combining schemas may be as
 simple as allowing a value to be validated against multiple criteria at
 the same time.
 
@@ -57,10 +57,10 @@ A snippet of the British royal family tree
 "too long"
 ```
 
-> [allOf](#allOf) can not be used to \"extend\" a schema to add more
+> [allOf](#allof) can not be used to \"extend\" a schema to add more
 details to it in the sense of object-oriented inheritance. Instances
 must independently be valid against \"all of\" the schemas in the
-`allOf`. See the section on [Extending Closed Schemas](/understanding-json-schema/reference/object#extending) for more
+`allOf`. See the section on [Extending Closed Schemas](../../understanding-json-schema/reference/object#extending) for more
 information.
 
 <Keywords label="single: anyOf single: schema composition; anyOf" />

@@ -8,13 +8,13 @@ type for a schema.
 
 At its core, JSON Schema defines the following basic types:
 
-- [string](/understanding-json-schema/reference/string)
-- [number](/understanding-json-schema/reference/numeric#number)
-- [integer](/understanding-json-schema/reference/numeric#integer)
-- [object](/understanding-json-schema/reference/object)
-- [array](/understanding-json-schema/reference/array)
-- [boolean](/understanding-json-schema/reference/boolean)
-- [null](/understanding-json-schema/reference/null)
+- [string](../../understanding-json-schema/reference/string)
+- [number](../../understanding-json-schema/reference/numeric#number)
+- [integer](../../understanding-json-schema/reference/numeric#integer)
+- [object](../../understanding-json-schema/reference/object)
+- [array](../../understanding-json-schema/reference/array)
+- [boolean](../../understanding-json-schema/reference/boolean)
+- [null](../../understanding-json-schema/reference/null)
 
 These types have analogs in most programming languages, though they may
 go by different names.
