@@ -12,7 +12,7 @@
       <img src="https://img.shields.io/badge/json-schema-@website.svg?logo=slack&color=yellow" />
     </a>
     <a href="https://github.com/json-schema-org/website" alt="JSON Schema License">
-      <img src="https://img.shields.io/github/license/jsonschema/website.svg" />
+      <img src="https://img.shields.io/github/license/json-schema-org/website.svg" />
     </a>
 </p>
 
