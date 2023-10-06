@@ -42,6 +42,7 @@ in the text.
 
 
 `© Copyright 2013-2016 Michael Droettboom, Space Telescope Science Institute;`<br>
-`© 2016-2023 Michael Droettboom.`
+`© 2016-2018 Michael Droettboom;`<br/>
+`© 2018-2023 JSON Schema project.`
 
 [Credits](../understanding-json-schema/credits)
