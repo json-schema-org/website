@@ -40,4 +40,8 @@ in the text.
     documents. These can be very handy if you want to try things out
     without installing any software.
 
+
+`© Copyright 2013-2016 Michael Droettboom, Space Telescope Science Institute;`<br>
+`© 2016-2023 Michael Droettboom.`
+
 [Credits](../understanding-json-schema/credits)
