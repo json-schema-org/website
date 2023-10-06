@@ -90,6 +90,7 @@ Here are some areas where you can contribute to the website:
 - Design
 - Documentation
 - Website enhancements
+- Add a new JSON Schema Implementation
 - JSON Schema Landscape
 
 To figure out a good first issue to work on, join our Slack workspace and visit the #contribute channel. This channel is specifically designed for onboarding and supporting new contributors.
