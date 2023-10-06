@@ -1,8 +1,10 @@
-import Layout from '../components/Layout'
 import React from 'react'
+import PlausibleProvider from 'next-plausible'
+import Layout from '../components/Layout'
+
 
 type SiteLayoutProps = {
-  children?: React.ReactNode 
+  children?: React.ReactNode
   hideAds?: boolean
   isDropdown?: boolean
 };
@@ -16,6 +18,10 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({ children, hideAds = fals
 }
 
 export const getLayout = (page: React.ReactNode, props?: SiteLayoutProps): JSX.Element => {
-  return <SiteLayout {...props}>{page}</SiteLayout>
+  return (
+    <PlausibleProvider domain='json-schema.org' trackLocalhost={true} trackOutboundLinks={true} >
+      <SiteLayout {...props}>{page}</SiteLayout>
+    </PlausibleProvider>
+  )
 }
 

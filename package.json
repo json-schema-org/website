@@ -26,6 +26,7 @@
     "markdown-to-jsx": "^7.1.6",
     "moment": "2.29.4",
     "next": "12.1.0",
+    "next-plausible": "^3.11.1",
     "node-ical": "0.16.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
