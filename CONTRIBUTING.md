@@ -39,7 +39,7 @@ Please use our issues templates that provide hints on what information we need t
 
 ### 💡 Issues and feature requests
 
-[Open an issue](https://github.com/json-schema-org/website/issues/new) **only**to report a bug or a feature. Don't open issues for questions or support, instead join our [Slack workspace](https://www.json-schema.org/slack) and ask there. Remember to follow our [Code of Conduct](https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md) while interacting with community members! It's more likely you'll get help, and much faster!
+[Open an issue](https://github.com/json-schema-org/website/issues/new) **only** to report a bug or a feature. Don't open issues for questions or support, instead join our [Slack workspace](https://www.json-schema.org/slack) and ask there. Remember to follow our [Code of Conduct](https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md) while interacting with community members! It's more likely you'll get help, and much faster!
 
 ### 🛠️ Add a new Implementation
 
