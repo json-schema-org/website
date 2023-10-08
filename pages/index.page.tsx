@@ -131,9 +131,8 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
           const time = utcDate.format('MMMM Do YYYY, h:mm a')
           const day = utcDate.format('D')
-          const timezone = utcDate.format('Z')
           const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
-          arrayDates.push({ title, time, day, timtimezone: 'UTC', parsedStartDate })
+          arrayDates.push({ title, time, day, timezone: 'UTC', parsedStartDate })
         }
       }
     }
