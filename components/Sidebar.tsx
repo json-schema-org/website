@@ -17,7 +17,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   return (
     <Link href={uri}>
       <a
-        className={classnames('text-base block border-l-2 py-1 pl-2', {
+        className={classnames('text-sm block border-l-2 py-1 pl-2', {
           '  font-medium': !isActive,
           'text-primary text-bold border-l-primary font-semibold': isActive,
         })}
@@ -28,7 +28,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
 
 const SegmentSubtitle = ({ label }: { label: string }) => {
   return (
-    <div className='text-base italic text-slate-900 mt-2 mb-2'>
+    <div className='text-sm italic text-slate-900 mt-2 mb-2'>
       {label}
     </div>
   )
@@ -65,6 +65,7 @@ const getReferencePath = [
   '/understanding-json-schema/reference/schema',
   '/understanding-json-schema/reference/string',
   '/understanding-json-schema/reference/type',
+  '/understanding-json-schema/reference/generic',  
   '/understanding-json-schema/reference',
   '/learn/glossary'
 ]
@@ -200,9 +201,11 @@ export const DocsNav = () => {
         >
           <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
           <SegmentSubtitle label='Examples' />
-          <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
-          <DocLink uri='/learn/file-system' label='Modelling a file system' />
-          <DocLink uri='/learn/json-schema-examples' label='Other examples' />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
+            <DocLink uri='/learn/file-system' label='Modelling a file system' />
+            <DocLink uri='/learn/json-schema-examples' label='Other examples' />
+          </div>
         </div>
       </div>
       {/* Reference */}
@@ -221,19 +224,13 @@ export const DocsNav = () => {
           <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
           <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
           <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
+            <DocLink uri='/understanding-json-schema/conventions' label='Conventions used' />
             <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
+            <DocLink uri='/understanding-json-schema/basics' label='The basics' />
+            <DocLink uri='/understanding-json-schema/reference' label='JSON Schema Reference' />
             <div className='pl-4 pb-1 pt-1'>
-              <DocLink uri='/understanding-json-schema/basics' label='The basics' />
+              <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
               <div className='pl-4 pb-1 pt-1'>
-                <DocLink uri='/understanding-json-schema/basics#hello-world!' label='Hello, World!' />
-                <DocLink uri='/understanding-json-schema/basics#the-type-keyword' label='The type keyword' />
-                <DocLink uri='/understanding-json-schema/basics#declaring-a-json-schema' label='Declaring a JSON Schema' />
-                <DocLink uri='/understanding-json-schema/basics#declaring-a-unique-identifier' label='Declaring a unique identifier' />
-              </div>
-              <DocLink uri='/understanding-json-schema/reference' label='JSON Schema Reference' />
-              <div className='pl-4 pb-1 pt-1'>
-                <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
                 <DocLink uri='/understanding-json-schema/reference/string' label='string' />
                 <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
                 <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
@@ -241,30 +238,20 @@ export const DocsNav = () => {
                 <DocLink uri='/understanding-json-schema/reference/array' label='array' />
                 <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
                 <DocLink uri='/understanding-json-schema/reference/null' label='null' />
-                <SegmentSubtitle label='Generic keywords' />
-                <div className='pl-4 pb-1 pt-1'>
-                  <DocLink uri='/understanding-json-schema/reference/annotations' label='Annotations' />
-                  <DocLink uri='/understanding-json-schema/reference/comments' label='Comments' />
-                  <DocLink uri='/understanding-json-schema/reference/enum' label='Enumerated values' />
-                  <DocLink uri='/understanding-json-schema/reference/const' label='Constant values' />
-                </div>
-                <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
-                <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
-                <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
-                <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
               </div>
-              <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
+              <DocLink uri='/understanding-json-schema/reference/generic' label='Generic keywords' />
               <div className='pl-4 pb-1 pt-1'>
-                <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
-                <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
-                <DocLink uri='/understanding-json-schema/structuring#dollarref' label='$ref' />
-                <DocLink uri='/understanding-json-schema/structuring#dollarid' label='$id' />                
-                <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
-                <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
-                <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
-                <DocLink uri='/understanding-json-schema/structuring#bundling' label='Bundling' />
+                <DocLink uri='/understanding-json-schema/reference/annotations' label='Annotations' />
+                <DocLink uri='/understanding-json-schema/reference/comments' label='Comments' />
+                <DocLink uri='/understanding-json-schema/reference/enum' label='Enumerated values' />
+                <DocLink uri='/understanding-json-schema/reference/const' label='Constant values' />
               </div>
+              <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
+              <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
+              <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
+              <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
             </div>
+            <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
           </div>
         </div>
       </div>

@@ -5,6 +5,15 @@ section: docs
 
 <Keywords label="single: single: structure" />
 
+* [Schema Identification](#schema-identification)
+* [Base URI](#base-uri)
+* [$ref](#dollarref)
+* [$id](#dollarid)
+* [$defs](#defs)
+* [Recursion](#recursion)
+* [Extending Recursive Schemas](#extending-recursive-schemas)
+* [Bundling](#bundling)
+
 When writing computer programs of even moderate complexity, it\'s
 commonly accepted that \"structuring\" the program into reusable
 functions is better than copying-and-pasting duplicate bits of code

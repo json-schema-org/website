@@ -219,7 +219,7 @@ must be absolute.
 - `"json-pointer"`: <StarInline label="New in draft 6" /> A JSON Pointer, according to
     [RFC6901](https://tools.ietf.org/html/rfc6901). There is more
     discussion on the use of JSON Pointer within JSON Schema in
-    [structuring]{.title-ref}. Note that this should be used only when
+    [Structuring a complex schema](../../understanding-json-schema/structuring). Note that this should be used only when
     the entire string contains only JSON Pointer content, e.g.
     `/foo/bar`. JSON Pointer URI fragments, e.g. `#/foo/bar/` should use
     `"uri-reference"`.
@@ -234,5 +234,4 @@ must be absolute.
     dialect.
 
 Be careful, in practice, JSON schema validators are only required to
-accept the safe subset of [regular-expressions]{.title-ref} described
-elsewhere in this document.
+accept the safe subset of [regular expressions](../../understanding-json-schema/reference/regular_expressions) described elsewhere in this document.
