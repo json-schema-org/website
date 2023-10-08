@@ -85,8 +85,8 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
     if (event.type === 'VEVENT') {
       const title = event.summary
 
-      let timezoneL = moment.tz.guess() // Default to UTC if timezone information is not provided
-      let startDate = moment.tz(event.start,timezoneL)
+      const timezoneL = moment.tz.guess() // Default to UTC if timezone information is not provided
+      const startDate = moment.tz(event.start, timezoneL)
     
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
@@ -100,7 +100,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
         // Loop through the set of date entries to see which recurrences should be printed.
         for (const date of dates) {
-          let startDate = moment.tz(date,timezoneL);
+          const startDate = moment.tz(date, timezoneL)
 
           // Check if the event falls within the next 4 weeks from today
           if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
@@ -109,17 +109,16 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
             const tz = event.rrule.origOptions.tzid === localTimezone ? event.rrule.origOptions.tzid : localTimezone
             const timezone = moment.tz.zone(tz)
             let offset
-            if (timezone && dateTimezone)
-              offset = timezone.utcOffset(date) - dateTimezone.utcOffset(date)
+            if (timezone && dateTimezone) offset = timezone.utcOffset(date) - dateTimezone.utcOffset(date)
             const newDate = moment(date).add(offset, 'minutes').toDate()
 
             const start = moment(newDate)
-            const utcDate = start.utc();
+            const utcDate = start.utc()
 
             const time = utcDate.format('MMMM Do YYYY, h:mm a')
             const day = utcDate.format('D')
             const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss')
-            arrayDates.push({ title, time, day, timezone : 'UTC', parsedStartDate })
+            arrayDates.push({ title, time, day, timezone: 'UTC', parsedStartDate })
 
           }
         }
