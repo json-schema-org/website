@@ -127,11 +127,13 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
         // Simple case - no recurrences, just print out the calendar event.
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
 
-          const time = startDate.format('MMMM Do YYYY, h:mm a')
-          const day = startDate.format('D')
-          const timezone = startDate.format('Z')
+          const utcDate = startDate.utc()
+
+          const time = utcDate.format('MMMM Do YYYY, h:mm a')
+          const day = utcDate.format('D')
+          const timezone = utcDate.format('Z')
           const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
-          arrayDates.push({ title, time, day, timezone, parsedStartDate })
+          arrayDates.push({ title, time, day, timtimezone: 'UTC', parsedStartDate })
         }
       }
     }
