@@ -4,6 +4,7 @@ import fs from 'fs'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
 import { SectionContext } from '~/context'
+import { DocsHelp } from '~/components/DocsHelp'
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/understanding-json-schema/reference/_index.md', 'utf-8')
@@ -19,6 +20,7 @@ export default function ContentExample ({ blocks }: { blocks: any[] }) {
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
+      <DocsHelp />
     </SectionContext.Provider>
   )
 }
