@@ -37,7 +37,7 @@ In addition to placeholder types like `String`, `Number`, `Boolean`, `Mapping`, 
 > The type of JSON dialects or dialect identifiers.
 > This type may simply be `String` if the dialect is represented within the implementation by its URI or by some short name.
 
-`EvaluationContext`
+`EvaluationOptions`
 
 :   The type of "fully ready" schemas and instances *along* with any additional implementation-specific customizable behavior.
     At minimum, this type is either `Schema → Instance` or `Schema × Instance` (depending on whether the implementation takes both schema and instance together or compiles schemas and then produces a separate function taking the instance to validate).
@@ -99,8 +99,8 @@ Implementations may offer one or more of the specific interfaces below in order 
 ::: topic
 **Type**
 
-`EvaluationContext → None <!> ValidationError` or
-`EvaluationContext → Result <!> ValidationError`
+`EvaluationOptions → None <!> ValidationError` or
+`EvaluationOptions → Result <!> ValidationError`
 :::
 
 A validation API which causes a language-specific failure or exception when validation itself fails.
@@ -111,7 +111,7 @@ If it succeeds, this API may return a result with further detail, or may simply 
 ::: topic
 **Type**
 
-`EvaluationContext` → Boolean
+`EvaluationOptions` → Boolean
 :::
 
 An API which produces a simple boolean result indicating an instance's validity under a schema.
@@ -144,7 +144,7 @@ It may (and likely will) perform some form of preoptimization, performing some s
 ::: topic
 **Type**
 
-`EvaluationContext` → `ResultWithAnnotations`
+`EvaluationOptions` → `ResultWithAnnotations`
 :::
 
 An API which collects annotations produced when processing a given schema and instance.
@@ -165,7 +165,7 @@ This API likely makes use of a corresponding metaschema (or metaschemas) for the
 ::: topic
 **Type**
 
-`Dialect` → `EvaluationContext` → `Result`
+`Dialect` → `EvaluationOptions` → `Result`
 :::
 
 An API which controls which dialect the implementation will assume when given a schema which does not otherwise indicate its dialect (i.e. which does not declare a `$schema` property).
@@ -199,7 +199,7 @@ An API which directly validates instances using schemas where both are represent
 ::: topic
 **Type**
 
-`EvaluationContext` → `Result`
+`EvaluationOptions` → `Result`
 :::
 
 An API which validates instances using schemas where both have been deserialized into language-level objects, or potentially built up programmatically directly as language-level objects.
