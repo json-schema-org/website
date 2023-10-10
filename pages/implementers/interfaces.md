@@ -21,55 +21,54 @@ Contributions and corrections from implementers are particularly welcome, as are
 For purposes of making some sections of this page more precise, we assume the existence of a set of *abstract types* all of which may be referenced below, and which will have specific concrete types within a given programming language or implementation.
 In addition to placeholder types like `String`, `Number`, `Boolean`, `Mapping`, `Callable` and the like, the JSON Schema-related types include:
 
-::: glossary
-`Schema`
+#### `Schema`
 
-> The type of JSON Schemas, which may also differ across dialects of JSON Schema.
-> For common or modern versions of JSON Schema this type must essentially be able to represent both arbitrary JSON objects as well as booleans.
+The type of JSON Schemas, which may also differ across dialects of JSON Schema.
+For common or modern versions of JSON Schema this type must essentially be able to represent both arbitrary JSON objects as well as booleans.
 
-`Instance`
+#### `Instance`
 
-> The type of JSON instances.
-> This type should essentially be `Any` or a type capable of representing all JSON values, given JSON Schema's applicability to any representable JSON.
+The type of JSON instances.
+This type should essentially be `Any` or a type capable of representing all JSON values, given JSON Schema's applicability to any representable JSON.
 
-`Dialect`
+#### `Dialect`
 
-> The type of JSON dialects or dialect identifiers.
-> This type may simply be `String` if the dialect is represented within the implementation by its URI or by some short name.
+The type of JSON dialects or dialect identifiers.
+This type may simply be `String` if the dialect is represented within the implementation by its URI or by some short name.
 
-`EvaluationOptions`
+#### `EvaluationOptions`
 
-:   The type of "fully ready" schemas and instances *along* with any additional implementation-specific customizable behavior.
-    At minimum, this type is either `Schema → Instance` or `Schema × Instance` (depending on whether the implementation takes both schema and instance together or compiles schemas and then produces a separate function taking the instance to validate).
-    It is highly likely to be richer in at least some of the following ways:
+The type of "fully ready" schemas and instances *along* with any additional implementation-specific customizable behavior.
+At minimum, this type is either `Schema → Instance` or `Schema × Instance` (depending on whether the implementation takes both schema and instance together or compiles schemas and then produces a separate function taking the instance to validate).
+It is highly likely to be richer in at least some of the following ways:
 
-    > -   Given likely support for some form of schema registry in order to support referencing external schemas, this type will likely include a registry of some sort, i.e. `Mapping<URI, Schema> → Schema → ...`
-    > -   If an implementation supports customizing which JSON types match to which language types (such as [discussed below](#type-customization)) then this type likely includes some representation of this mapping, i.e. `Mapping<String, Callable[...]> → Schema → ...` encapsulating what each type is mapped to during this evaluation.
-    > -   Similarly, if there is a specific API for [format assertion enablement](#format-assertion-enablement), some representation of the `format` keyword's behavior is present in the context
-    > -   If the implementation supports the [creation or customization of dialects](#dialect-creation), and especially if schemas can contain subschemas across different dialects, then the context will contain some representation of dialects, e.g. `Dialect → Schema → ...`
+  * Given likely support for some form of schema registry in order to support referencing external schemas, this type will likely include a registry of some sort, i.e. `Mapping<URI, Schema> → Schema → ...`
+  *   If an implementation supports customizing which JSON types match to which language types (such as [discussed below](#type-customization)) then this type likely includes some representation of this mapping, i.e. `Mapping<String, Callable[...]> → Schema → ...` encapsulating what each type is mapped to during this evaluation.
+  *   Similarly, if there is a specific API for [format assertion enablement](#format-assertion-enablement), some representation of the `format` keyword's behavior is present in the context
+  *   If the implementation supports the [creation or customization of dialects](#dialect-creation), and especially if schemas can contain subschemas across different dialects, then the context will contain some representation of dialects, e.g. `Dialect → Schema → ...`
 
-`Result`
+#### `Result`
 
-> The type of JSON Schema validation results, i.e. an object which encapsulates the validity of a given `Instance` under a `Schema`.
-> This type may simply be `Boolean` in some implementations or languages.
+The type of JSON Schema validation results, i.e. an object which encapsulates the validity of a given `Instance` under a `Schema`.
+This type may simply be `Boolean` in some implementations or languages.
 
 `ResultWithAnnotations`
 
 > The type of JSON Schema validation results that *include* JSON Schema annotations collected during validation.
 
-`URI`
+#### `URI`
 
-> The type of RFC 3986 compliant URIs.
-> This type should not generally be the same as `String`, as URIs have multiple possible string representations and require normalization to
-> have correct semantics.
-:::
+The type of RFC 3986 compliant URIs.
+This type should not generally be the same as `String`, as URIs have multiple possible string representations and require normalization to
+have correct semantics.
+
+---
 
 Because this page deals with concerns which cross language barriers, and different programming languages have different capabilities particularly around how they represent out of band errors (via exceptions, option types, wrapper return types, sentinel values or some other mechanism), this page also introduces[^1] specific notation for representing the types of functions which include explicit representation for their out-of-band errors.
 Interpreting these types will depend on the programming language.
 It's easier to explain the above with an example:
 
-[^1]: The authors of this page are not aware of a suitable existing and/or pervasive notation which serves this purpose already.
-      If you are aware of one, a pull request or pointer would be welcome.
+[^1]: The authors of this page are not aware of a suitable existing and/or pervasive notation which serves this purpose already. If you are aware of one, a pull request or pointer would be welcome.
 
 Consider a division function on floats, represented as `x / y`.
 
@@ -96,33 +95,20 @@ Implementations may offer one or more of the specific interfaces below in order 
 
 ### Exception-Driven Validation
 
-::: topic
-**Type**
-
-`EvaluationOptions → None <!> ValidationError` or
-`EvaluationOptions → Result <!> ValidationError`
-:::
+**Type**: `EvaluationOptions → None <!> ValidationError` or `EvaluationOptions → Result <!> ValidationError`
 
 A validation API which causes a language-specific failure or exception when validation itself fails.
 If it succeeds, this API may return a result with further detail, or may simply continue execution silently.
 
 ### Boolean Validation
 
-::: topic
-**Type**
-
-`EvaluationOptions` → Boolean
-:::
+**Type**: `EvaluationOptions` → Boolean
 
 An API which produces a simple boolean result indicating an instance's validity under a schema.
 
 ### Two-Argument Validation
 
-::: topic
-**Type**
-
-`Schema` × `Instance` → `Result`
-:::
+**Type**: `Schema` × `Instance` → `Result`
 
 An API which takes a schema and instance simultaneously and produces a result indicating whether the instance is valid under the given schema.
 
@@ -130,53 +116,33 @@ In some sense, two argument validation is the simplest possible API for JSON Sch
 
 ### Repeated Validation / Schema Compilation
 
-::: topic
-**Type**
-
-`Schema` → `Instance` → `Result`
-:::
+**Type**: `Schema` → `Instance` → `Result`
 
 An API which attempts to prepare a schema for repeated use.
 It may (and likely will) perform some form of preoptimization, performing some set of work ahead of time such that it will not be necessary to repeat when validating many instances.
 
 ## Annotation Collection
 
-::: topic
-**Type**
-
-`EvaluationOptions` → `ResultWithAnnotations`
-:::
+**Type**: `EvaluationOptions` → `ResultWithAnnotations`
 
 An API which collects annotations produced when processing a given schema and instance.
 
 ## Schema Validation
 
-::: topic
-**Type**
-
-`Schema` → `Result`
-:::
+**Type**: `Schema` → `Result`
 
 An API which validates a schema itself under the dialect it is written for.
 This API likely makes use of a corresponding metaschema (or metaschemas) for the dialect, but generally must do additional work to ensure the schema is not invalid even under conditions not checked for within the metaschema.
 
 ## Explicit Version Selection
 
-::: topic
-**Type**
-
-`Dialect` → `EvaluationOptions` → `Result`
-:::
+**Type**: `Dialect` → `EvaluationOptions` → `Result`
 
 An API which controls which dialect the implementation will assume when given a schema which does not otherwise indicate its dialect (i.e. which does not declare a `$schema` property).
 
 ## Version Detection
 
-::: topic
-**Type**
-
-`Schema` → `Dialect`
-:::
+**Type**: `Schema` → `Dialect`
 
 An API which identifies which dialect a given schema is written for, returning either the dialect itself or otherwise a dialect-specific validation function.
 
@@ -186,21 +152,13 @@ An API which allows (re-)configuring which language-level types correspond to wh
 
 ## String Validation
 
-::: topic
-**Type**
-
-`String` → `String` → `Result`
-:::
+**Type**: `String` → `String` → `Result`
 
 An API which directly validates instances using schemas where both are represented as strings -- serialized JSON -- as opposed to deserialized JSON.
 
 ## Language Object Validation
 
-::: topic
-**Type**
-
-`EvaluationOptions` → `Result`
-:::
+**Type**: `EvaluationOptions` → `Result`
 
 An API which validates instances using schemas where both have been deserialized into language-level objects, or potentially built up programmatically directly as language-level objects.
 
