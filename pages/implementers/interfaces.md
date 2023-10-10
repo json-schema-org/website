@@ -25,7 +25,7 @@ In addition to placeholder types like `String`, `Number`, `Boolean`, `Mapping`, 
 `Schema`
 
 > The type of JSON Schemas, which may also differ across dialects of JSON Schema.
-> For common or modern versions of JSON Schema this type is essentially `Map<String, Any> | Boolean`.
+> For common or modern versions of JSON Schema this type must essentially be able to represent both arbitrary JSON objects as well as booleans.
 
 `Instance`
 
