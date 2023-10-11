@@ -40,7 +40,7 @@ const DocLinkBlank = ({ uri, label }: { uri: string, label: string | React.React
           '  font-medium': !isActive,
           'text-primary text-bold border-l-primary font-semibold': isActive,
         })}
-      target='_blank' rel='noopener noreferrer'>{label}</a>
+        target='_blank' rel='noopener noreferrer'>{label}</a>
     </Link>
   )
 }
