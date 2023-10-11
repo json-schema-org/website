@@ -242,7 +242,7 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <Link href={`https://json-schema.org/slack`}>
+            <Link href='https://json-schema.org/slack'>
               <a className='inline-flex flex-col flex-1 w-full'>
                 <div className='w-full  mb-6'>
                   <h3 className='mb-4 font-semibold' >Join the JSON Schema Community Slack!</h3>
