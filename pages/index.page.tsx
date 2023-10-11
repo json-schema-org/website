@@ -178,11 +178,11 @@ const Home = (props: any) => {
             <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
-              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/3 md:w-100'>
-                <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
-                <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
-                <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
-                <img src='/img/logos/usedby/github-white.png' className='w-40' />
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
+                <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mx-auto' />
+                <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mx-auto' />
+                <img src='/img/logos/usedby/postman-white.png' className='w-40 mx-auto' />
+                <img src='/img/logos/usedby/github-white.png' className='w-40 mx-auto' />
               </div>
               <p className='text-white mx-4 my-5'>Please visit the official list of <a className='underline' href='https://github.com/json-schema-org/community/blob/main/ADOPTERS.md'>adopters</a> and discover more companies using JSON Schema.</p>
             </div>
@@ -336,7 +336,7 @@ const Home = (props: any) => {
 
         <section className='my-16'>
           <div className='text-center mb-12'>
-            <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Sponsors</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/json-schema' className='border-b border-black'>Support us!</a></p>
           </div>
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4'>
@@ -355,8 +355,8 @@ const Home = (props: any) => {
 
         <section className='my-20'>
           <div className='text-center mb-12'>
-            <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='px-4 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Supported by</h2>
+            <p className='px-36 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center'>
             <a href='https://orbit.love/'>
