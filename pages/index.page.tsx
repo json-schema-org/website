@@ -356,7 +356,7 @@ const Home = (props: any) => {
         <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Supported by</h2>
-            <p className='px-26 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
+            <p className='px-4 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center'>
             <a href='https://orbit.love/'>
