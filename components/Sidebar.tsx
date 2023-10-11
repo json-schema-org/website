@@ -26,6 +26,26 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   )
 }
 
+const DocLinkBlank = ({ uri, label }: { uri: string, label: string | React.ReactNode }) => {
+  const router = useRouter()
+  const url = new URL(`${router.asPath}`, HOST)
+  url.search = ''
+  url.hash = ''
+  const stringUrl = url.toString().substr(HOST.length, Infinity)
+  const isActive = uri === stringUrl
+  return (
+    <Link href={uri}>
+      <a
+        className={classnames('text-sm block border-l-2 py-1 pl-2', {
+          '  font-medium': !isActive,
+          'text-primary text-bold border-l-primary font-semibold': isActive,
+        })}
+      target='_blank' rel='noopener noreferrer'>{label}</a>
+    </Link>
+  )
+}
+
+
 const SegmentSubtitle = ({ label }: { label: string }) => {
   return (
     <div className='text-sm italic text-slate-900 mt-2 mb-2'>
@@ -223,7 +243,7 @@ export const DocsNav = () => {
           id='reference'
         >
           <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
-          <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
+          <DocLinkBlank uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
           <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
           <div className='pl-4 pb-1 pt-1'>
             <DocLink uri='/understanding-json-schema/conventions' label='Conventions used' />
