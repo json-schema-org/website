@@ -242,38 +242,46 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <div className='w-full  mb-6'>
-              <h3 className='mb-4 font-semibold' >Join the JSON Schema Community Slack!</h3>
-              <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
-              {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-              <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>Join us</a></button>
-            </div>
+            <Link href='https://json-schema.org/slack'>
+              <a className='inline-flex flex-col flex-1 w-full'>
+                <div className='w-full  mb-6'>
+                  <h3 className='mb-4 font-semibold' >Join the JSON Schema Community Slack!</h3>
+                  <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
+                  {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
+                  <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
+                  <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.org/slack'>Join us</a></button>
+                </div>
+              </a>
+            </Link>
             {/* BlogPost Data */}
-            <div className='w-full '>
-              <h3 className='mb-4 font-semibold' >The JSON Schema Blog</h3>
-              <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
-              <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
-              <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
-              <div className='flex ml-2 mb-2 '>
-                <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                  style={{ backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})` }}
-                />
-                <div className='flex flex-col ml-2'>
-                  <p className='text-sm font-semibold'>{blogPosts[0].frontmatter.authors[0].name}</p>
-                  <div className='text-slate-500 text-sm'>
-                    <span>
-                      {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
-                    </span>
+            <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+              <a className='inline-flex flex-col flex-1 w-full'>
+                <div className='w-full '>
+                  <h3 className='mb-4 font-semibold' >The JSON Schema Blog</h3>
+                  <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
+                  <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
+                  <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
+                  <div className='flex ml-2 mb-2 '>
+                    <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                      style={{ backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})` }}
+                    />
+                    <div className='flex flex-col ml-2'>
+                      <p className='text-sm font-semibold'>{blogPosts[0].frontmatter.authors[0].name}</p>
+                      <div className='text-slate-500 text-sm'>
+                        <span>
+                          {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div >
+                    <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+                      <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold'>Read more </a>
+                    </Link>
                   </div>
                 </div>
-              </div>
-              <div >
-                <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                  <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold'>Read more </a>
-                </Link>
-              </div>
-            </div>
+              </a>
+            </Link>
             <div>
               <div className='md:w-full mb-6 mr-4'>
                 <h3 className='mb-2 font-semibold' >JSON Schema Community Meetings & Events</h3>
