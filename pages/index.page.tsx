@@ -326,7 +326,7 @@ const Home = (props: any) => {
         {/* News & Blogs */}
         <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-full mx-auto text-center mt-28 '>
-            <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Contribute to the JSON Schema</h2>
+            <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Start contributing to JSON Schema</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='https://github.com/json-schema-org#-contributing-to-json-schema
 '>Contribute</a></button>
           </div>
@@ -356,7 +356,7 @@ const Home = (props: any) => {
         <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Supported by</h2>
-            <p className='px-36 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
+            <p className='px-12 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center'>
             <a href='https://orbit.love/'>
