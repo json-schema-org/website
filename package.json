@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "dev-c": "rm -rf .next && rm -rf node_modules && yarn && yarn dev",
-    "build": "next build && next export && npm run generate-sitemap",
-    "generate-sitemap": "next-sitemap --config next-sitemap.config.js",
+    "build": "next build && next export",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "export": "next export",
     "start": "next start",
     "lint": "eslint . --ext .tsx --ext .ts --max-warnings 0",
