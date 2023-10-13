@@ -6,7 +6,7 @@
     "dev": "next dev",
     "dev-c": "rm -rf .next && rm -rf node_modules && yarn && yarn dev",
     "build": "next build && next export",
-    "postbuild": "next-sitemap --config sitemap.config.js",
+    "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "next start",
     "lint": "eslint . --ext .tsx --ext .ts --max-warnings 0",
     "lint-fix": "eslint . --ext .tsx --ext .ts --fix --max-warnings 0",
