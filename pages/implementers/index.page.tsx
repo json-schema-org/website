@@ -20,7 +20,7 @@ export default function ContentExample ({ blocks }: { blocks: any[] }) {
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
-      <Remember/>
+      <Remember />
     </SectionContext.Provider>
   )
 }
