@@ -10,7 +10,7 @@ export const Remember = () => {
       </h3>
       <span className='inline-block mt-2 ml-2 font-medium antialiased font-semibold'>Contribute to the JSON Schema Docs</span>
       <div className='mt-2 mb-2'>
-        Code isn't the only way to contribute to OSS; Docs are extremely import for the JSON Schema Ecosystem. At JSON Schema, We value Doc contributions as much as every other type of contribution!
+        Code isn't the only way to contribute to OSS; Docs are extremely import for the JSON Schema Ecosystem. At JSON Schema, We value Docs contributions as much as every other type of contribution!
       </div>
       <span className='inline-block mt-3 ml-2 font-medium antialiased font-semibold'>To get started as a Docs contributor:</span>
       <div className='mt-2 mb-2'>
