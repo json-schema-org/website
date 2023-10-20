@@ -23,7 +23,7 @@ export const Remember = () => {
       </div>
       <span className='inline-block ml-2 font-medium antialiased font-semibold'>Docs contributor questions?</span>
       <div className='mt-2 mb-2'>
-        Do you have a documentation contributor question? Please leave a comment in the issue or PR or join the <code>#contributing</code> or <code>#documentation</code> channels on <a className='underline' rel='noreferrer' href='https://json-schema.org/slack'>Slack</a> and leave a message.  
+        Do you have a documentation contributor question? Please leave a comment in the issue or PR or join the <code>#contribute</code> or <code>#documentation</code> channels on <a className='underline' rel='noreferrer' href='https://json-schema.org/slack'>Slack</a> and leave a message.  
       </div>
     </div>
   )
