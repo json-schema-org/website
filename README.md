@@ -8,7 +8,7 @@
     <a href="https://github.com/json-schema-org/website/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" alt="Good First JSON Schema issue">
       <img src="https://img.shields.io/github/issues/json-schema-org/website/good%20first%20issue.svg?color=%23DDDD00" />
     </a>
-    <a href="https://json-schema.slack.com/" alt="JSON Schema Slack">
+    <a href="https://json-schema.org/slack" alt="JSON Schema Slack">
       <img src="https://img.shields.io/badge/Slack-json--schema-@website.svg?logo=slack&color=yellow" />
     </a>
     <a href="https://github.com/json-schema-org/website" alt="JSON Schema License">
@@ -115,7 +115,7 @@ Become a financial contributor and help us sustain our community. [[Contribute](
 ## Connect with the JSON Schema Community
 
 <p align="left">
-    <a href="https://json-schema.slack.com/" target="blank">
+    <a href="https://json-schema.org/slack" target="blank">
       <img align="center" src="https://img.icons8.com/color/48/null/slack-new.png" alt="JSON Schema Slack" height="30" width="40" />
     </a>
     <a href="https://twitter.com/jsonschema" target="blank">

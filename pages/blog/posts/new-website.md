@@ -46,6 +46,6 @@ The short term focus of our future work is:
 - Build the JSON Schema landscape. See this [issue](https://github.com/json-schema-org/community/issues/354) to know more.
 
 Are you interested in getting involved?
-Please join our [Slack workspace](https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email) and visit the #website channel.
+Please join our [Slack workspace](https://json-schema.org/slack) and visit the #website channel.
 
 _Cover photo by [Ricardo Rocha](https://unsplash.com/@rcrazy) on [Unsplash](https://unsplash.com/photos/nj1bqRzClq8)_
