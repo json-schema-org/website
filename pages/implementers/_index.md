@@ -6,7 +6,7 @@ section: docs
 For Implementers
 =========================
 
-Welcome to the **Implementers** section! The place of the Documentation for Implementations' Maintainers.
+Welcome to the **Implementers** section! The place for implementation maintainers' Docs.
 
 What you'll find in this section?
 * [Common Interfaces across JSON Schema Implementations](./implementers/interfaces)
