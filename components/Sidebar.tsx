@@ -88,6 +88,7 @@ const getReferencePath = [
   '/understanding-json-schema/reference/generic',  
   '/understanding-json-schema/reference',
   '/learn/glossary',
+  '/implementers',
   '/implementers/interfaces'
 ]
 const getSpecificationPath = [
@@ -276,7 +277,7 @@ export const DocsNav = () => {
             </div>
             <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
           </div>
-          <SegmentSubtitle label='For implementers' />
+          <DocLink uri='/implementers' label='For implementers' />
           <div className='pl-4 pb-1 pt-1'>
             <DocLink uri='/implementers/interfaces' label='Common Interfaces across Implementations' />
           </div>
