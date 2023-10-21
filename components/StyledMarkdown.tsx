@@ -212,9 +212,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] lg:max-w-[800px] xl:max-w-[900px]'>{/* definitely not the best way to prevent overflowing. found no better way that worked */}
+                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] max-w-screen-sm lg:max-w-[800px] xl:max-w-[900px]'>{/* definitely not the best way to prevent overflowing. found no better way that worked */}
                   <Highlight
                     language={language}
+                    wrapLines={true}
+                    wrapLongLines={true}
                     customStyle={{
                       borderRadius: 10,
                       paddingTop: 15,
