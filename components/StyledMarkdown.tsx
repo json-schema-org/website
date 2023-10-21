@@ -5,7 +5,7 @@ import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
 import JsonEditor from '~/components/JsonEditor'
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
 import Highlight from 'react-syntax-highlighter'
-import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import { BlockContext, BlockContextValue } from '~/context'
 import Code from '~/components/Code'
 import { FullMarkdownContext } from '~/context'
@@ -228,7 +228,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     lineNumberStyle={{
                       marginRight: 10
                     }}
-                    style={atomOneLight}
+                    style={atomOneDark}
                     showLineNumbers
                     startingLineNumber={1}
                     lineProps={() => {
