@@ -1,0 +1,47 @@
+name: New Implementation Commenter
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - main
+    paths:
+      - data/*.yml
+      - pages/implementations/main.md
+
+permissions:
+  pull-requests: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: process.env.NEW_TOOL_MESSAGE,
+            })
+        env:
+          NEW_TOOL_MESSAGE: |
+            Hey there 👋!
+
+            Are you an implementer of a new JSON Schema related tool, or an interested user submitting a tool you like?
+            If so, thanks for considering adding your tool to our collection -- and if not, sorry, I'm just a bot looking at which pages you're modifying!
+
+            Someone will review your pull request shortly.
+
+            In the interim, if you haven't already, there's a few things you might be interested in reviewing or confirming:
+
+              1. [ ] **Short description**: Tell us a small bit about your tool! We love staying up to date on what's out there, and what your intentions are in writing it.
+              2. [ ] **Common Interfaces**: We maintain a page with some "commonly useful programming interfaces" that tooling may want to implement and present to your users.
+                      You can find that page [here in our documentation](https://json-schema.org/implementers/interfaces).
+                      Have a read through and consider whether you implement or should implement any of what's there.
+              3. [ ] **Bowtie Harness**: [Bowtie](https://github.com/bowtie-json-schema/bowtie) is a tool which gives JSON Schema users access to a huge number of different implementations across many languages, and [reports on](https://bowtie.report/) the compliance of those implementations with the JSON Schema specifications.
+                      If it makes sense for your kind of tool, consider writing a *harness* which connects it to Bowtie. Instructions for doing so can be found in the tutorial in [Bowtie's documentation](https://docs.bowtie.report/).
+
+            If you have any questions, any feedback, or need help with the submission process, don't hesitate to reach out.
+            Thanks a bunch for your awesome contribution!
