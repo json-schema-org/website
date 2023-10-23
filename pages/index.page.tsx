@@ -249,7 +249,7 @@ const Home = (props: any) => {
                   <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
                   {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
                   <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
-                  <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.org/slack'>Join us</a></button>
+                  <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white h-[40px] flex items-center justify-center'><a href='https://json-schema.org/slack' className='flex items-center'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />Join Slack</a></button>
                 </div>
               </a>
             </Link>
@@ -276,7 +276,7 @@ const Home = (props: any) => {
                   </div>
                   <div >
                     <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                      <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold'>Read more </a>
+                      <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold flex items-center justify-center'>Read more </a>
                     </Link>
                   </div>
                 </div>
@@ -288,8 +288,8 @@ const Home = (props: any) => {
                 <p className='mb-4'>We hold monthly Office Hours and weekly Open Community Working Meetings. Office Hours are every first Tuesday of the month at 15:00 BST, and by appointment. Open Community Working Meetings are every Monday at 14:00 PT.
                 </p>
                 <div className=''>
-                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] mb-4'><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
-                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/34/'
+                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] mb-4 flex items-center justify-center'><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
+                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] flex items-center justify-center'><a href='https://github.com/orgs/json-schema-org/discussions/34/'
                   >Office Hours</a></button>
                 </div>
               </div>
@@ -317,7 +317,7 @@ const Home = (props: any) => {
                   </div>
 
                 </div>
-                <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1' target='_blank' rel='noopener noreferrer'>View Calendar</a>
+                <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 flex items-center justify-center' target='_blank' rel='noopener noreferrer'>View Calendar</a>
               </div>
             </div>
           </div>
