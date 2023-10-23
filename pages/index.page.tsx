@@ -245,7 +245,7 @@ const Home = (props: any) => {
             <Link href='https://json-schema.org/slack'>
               <a id='join-slack' className='inline-flex flex-col flex-1 w-full'>
                 <div className='w-full mb-6'>
-                  <h3 className='mb-4 font-semibold flex items-center' >Join the JSON Schema<img src='/img/logos/Slack-mark.svg' className='w-8 h-8' />Slack Workspace!</h3>
+                  <h3 className='mb-4 font-semibold flex items-center' >Join the JSON Schema Slack Workspace!<img src='/img/logos/Slack-mark.svg' className='w-8 h-8' /></h3>
                   <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
                   {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
                   <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
