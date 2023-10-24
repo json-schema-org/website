@@ -32,6 +32,13 @@ It's a small contribution to the project with a big impact to encourage and grow
 
 You can add your Company using this [Adopter form](https://forms.gle/vyFskw1RshJ55LY46) or following [these simple steps](https://forms.gle/vyFskw1RshJ55LY46).
 
+<div className='flex flex-wrap justify-center items-center gap-4 w-full'>
+    <a href='https://forms.gle/vyFskw1RshJ55LY46'>
+      <img className='max-w-400 px-20' src='/img/posts/2023/json-schema-adopters/join-button.png'/>
+    </a>
+</div>
+
+
 ### Join the JSON Schema Community
 
 If your organization uses JSON Schema, please consider [contributing](https://github.com/json-schema-org/.github/blob/main/profile/README.md) in other ways. You can report issues, suggest improvements, improve our documentation, become a sponsor, or even make code contributions.
