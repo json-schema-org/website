@@ -10,7 +10,7 @@ JSON Schema Reference
  * [boolean](reference/boolean)
  * [null](reference/null)
 * [Generic keywords](reference/generic)
- * [Annotations](/reference/annotations)
+ * [Annotations](reference/annotations)
  * [Comments](reference/comments)
  * [Enumerated values](reference/enum)
  * [Constant values](reference/const)
