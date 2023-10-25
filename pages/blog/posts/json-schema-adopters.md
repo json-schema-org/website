@@ -42,6 +42,6 @@ You can add your Company using this [Adopter form](https://forms.gle/vyFskw1RshJ
 
 If your organization uses JSON Schema, please consider [contributing](https://github.com/json-schema-org/.github/blob/main/profile/README.md) in other ways. You can report issues, suggest improvements, improve our documentation, [become a sponsor](https://opencollective.com/json-schema), or even make code contributions.
 
-**Join us to build the future of JSON Schema!**
+**Join us and shape the future of JSON Schema!**
 
 Photo by [Patrick Tomasso](https://unsplash.com/@impatrickt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](ttps://unsplash.com/photos/lighted-vintage-light-bulbs-1NTFSnV-KLs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
