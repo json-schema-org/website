@@ -194,39 +194,38 @@ Previously to Draft 2019-09, ``dependentRequired`` and
 ## If-Then-Else[#ifthenelse]
 
 <StarInline label="New in draft 7" />
-The `if`, `then` and `else` keywords allow the application of a
-subschema based on the outcome of another schema, much like the `if`/`then`/`else` constructs you\'ve probably seen in traditional
-programming languages.
+The `if`, `then` and `else` keywords allow the application of a subschema based
+on the outcome of another schema, much like the `if`/`then`/`else` constructs
+you've probably seen in traditional programming languages.
 
-If `if` is valid, `then` must also be valid (and `else` is ignored.) If
-`if` is invalid, `else` must also be valid (and `then` is ignored).
+If `if` is valid, `then` must also be valid (and `else` is ignored.) If `if` is
+invalid, `else` must also be valid (and `then` is ignored).
 
-If `then` or `else` is not defined, `if` behaves as if they have a value
-of `true`.
+If `then` or `else` is not defined, `if` behaves as if they have a value of
+`true`.
 
-If `then` and/or `else` appear in a schema without `if`, `then` and
-`else` are ignored.
+If `then` and/or `else` appear in a schema without `if`, `then` and `else` are
+ignored.
 
-We can put this in the form of a truth table, showing the combinations
-of when `if`, `then`, and `else` are valid and the resulting validity of
-the entire schema:
+We can put this in the form of a truth table, showing the combinations of when
+`if`, `then`, and `else` are valid and the resulting validity of the entire
+schema:
 
 | if   | then | else | whole schema |
-|:-----|:-----|:-----|:------------- |
-| T    | T    | n/a  | T |
-| T    | F    | n/a  | F |
-| F    | n/a  | T    | T |
-| F    | n/a  | F    | F |
-| n/a  | n/a  | n/a  | T |
+|:-----|:-----|:-----|:-------------|
+| T    | T    | n/a  | T            |
+| T    | F    | n/a  | F            |
+| F    | n/a  | T    | T            |
+| F    | n/a  | F    | F            |
+| n/a  | n/a  | n/a  | T            |
 
-For example, let\'s say you wanted to write a schema to handle addresses
-in the United States and Canada. These countries have different postal
-code formats, and we want to select which format to validate against
-based on the country. If the address is in the United States, the
-`postal_code` field is a \"zipcode\": five numeric digits followed by an
-optional four digit suffix. If the address is in Canada, the
-`postal_code` field is a six digit alphanumeric string where letters and
-numbers alternate.
+For example, let's say you wanted to write a schema to handle addresses in the
+United States and Canada. These countries have different postal code formats,
+and we want to select which format to validate against based on the country. If
+the address is in the United States, the `postal_code` field is a "zipcode":
+five numeric digits followed by an optional four digit suffix. If the address is
+in Canada, the `postal_code` field is a six digit alphanumeric string where
+letters and numbers alternate.
 
 ```json
 // props { "isSchema": true }
@@ -242,13 +241,19 @@ numbers alternate.
     }
   },
   "if": {
-    "properties": { "country": { "const": "United States of America" } }
+    "properties": {
+      "country": { "const": "United States of America" }
+    }
   },
   "then": {
-    "properties": { "postal_code": { "pattern": "[0-9]{5}(-[0-9]{4})?" } }
+    "properties": {
+      "postal_code": { "pattern": "[0-9]{5}(-[0-9]{4})?" }
+    }
   },
   "else": {
-    "properties": { "postal_code": { "pattern": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" } }
+    "properties": {
+      "postal_code": { "pattern": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" }
+    }
   }
 }
 ```
@@ -276,7 +281,7 @@ numbers alternate.
 }
 ```
 ```json
-// props { "indent": true, "valid": true }
+// props { "indent": true, "valid": false }
 {
   "street_address": "24 Sussex Drive",
   "country": "Canada",
@@ -284,29 +289,26 @@ numbers alternate.
 }
 ```
 ```json
-// props { "indent": true, "valid": true }
+// props { "indent": true, "valid": false }
 {
   "street_address": "1600 Pennsylvania Avenue NW",
   "postal_code": "K1M 1M4"
 }
 ```
 
-> In this example, \"country\" is not a required property. Because the
-\"if\" schema also doesn\'t require the \"country\" property, it will
-pass and the \"then\" schema will apply. Therefore, if the \"country\"
-property is not defined, the default behavior is to validate
-\"postal\_code\" as a USA postal code. The \"default\" keyword doesn\'t
-have an effect, but is nice to include for readers of the schema to more
-easily recognize the default behavior.
+> In this example, "country" is not a required property. Because the
+`if` schema also doesn't require the "country" property, it will pass and the
+"then" schema will apply. Therefore, if the "country" property is not defined,
+the default behavior is to validate "postal_code" as a USA postal code. The
+"default" keyword doesn't have an effect, but is nice to include for readers of
+the schema to more easily recognize the default behavior.
 
-
-Unfortunately, this approach above doesn\'t scale to more than two
-countries. You can, however, wrap pairs of `if` and `then` inside an
-`allOf` to create something that would scale. In this example, we\'ll
-use United States and Canadian postal codes, but also add Netherlands
-postal codes, which are 4 digits followed by two letters. It\'s left as
-an exercise to the reader to expand this to the remaining postal codes
-of the world.
+Unfortunately, the approach above doesn't scale to more than two countries. You
+can, however, wrap pairs of `if` and `then` inside an `allOf` to create
+something that would scale. In this example, we'll use United States and
+Canadian postal codes, but also add Netherlands postal codes, which are 4 digits
+followed by two letters. It's left as an exercise to the reader to expand this
+to the remaining postal codes of the world.
 
 ```json
 // props { "isSchema": true }
@@ -324,28 +326,40 @@ of the world.
   "allOf": [
     {
       "if": {
-        "properties": { "country": { "const": "United States of America" } }
+        "properties": {
+          "country": { "const": "United States of America" }
+        }
       },
       "then": {
-        "properties": { "postal_code": { "pattern": "[0-9]{5}(-[0-9]{4})?" } }
+        "properties": {
+          "postal_code": { "pattern": "[0-9]{5}(-[0-9]{4})?" }
+        }
       }
     },
     {
       "if": {
-        "properties": { "country": { "const": "Canada" } },
+        "properties": {
+          "country": { "const": "Canada" }
+        },
         "required": ["country"]
       },
       "then": {
-        "properties": { "postal_code": { "pattern": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" } }
+        "properties": {
+          "postal_code": { "pattern": "[A-Z][0-9][A-Z] [0-9][A-Z][0-9]" }
+        }
       }
     },
     {
       "if": {
-        "properties": { "country": { "const": "Netherlands" } },
+        "properties": {
+          "country": { "const": "Netherlands" }
+        },
         "required": ["country"]
       },
       "then": {
-        "properties": { "postal_code": { "pattern": "[0-9]{4} [A-Z]{2}" } }
+        "properties": {
+          "postal_code": { "pattern": "[0-9]{4} [A-Z]{2}" }
+        }
       }
     }
   ]
@@ -398,19 +412,16 @@ of the world.
 }
 ```
 
-> The \"required\" keyword is necessary in the \"if\" schemas or they
-would all apply if the \"country\" is not defined. Leaving \"required\"
-off of the \"United States of America\" \"if\" schema makes it
-effectively the default if no \"country\" is defined.
+> The `required` keyword is necessary in the `if` schemas or they would all
+apply if the "country" is not defined. Leaving `required` off of the "United
+States of America" `if` schema makes it effectively the default if no "country"
+is defined.
 
-<span />
-
-> Even if \"country\" was a required field, it\'s still recommended to
-have the \"required\" keyword in each \"if\" schema. The validation
-result will be the same because \"required\" will fail, but not
-including it will add noise to error results because it will validate
-the \"postal\_code\" against all three of the \"then\" schemas leading
-to irrelevant errors.
+> Even if "country" was a required field, it's still recommended to have the
+`required` keyword in each `if` schema. The validation result will be the same
+because `required` will fail, but not including it could add noise to error
+results because it will validate the "postal_code" against all three of the
+`then` schemas leading to irrelevant errors.
 
 <Keywords label="single: conditionals; implication single: implication" />
 
