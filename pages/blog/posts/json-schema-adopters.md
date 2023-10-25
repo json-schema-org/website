@@ -15,22 +15,22 @@ excerpt: "Explore our Adopters list to discover organizations successfully lever
 
 Data consistency and interoperability are critical for success in today's interconnected reality. While JSON is undoubtedly the most popular format for exchanging data, JSON Schema is essential for ensuring data consistency, validity, and interoperability at scale. Despite the widespread adoption of JSON Schema, there has yet to be a comprehensive list of adopters where individuals and organizations can seek inspiration and real-world use cases. This is why we are thrilled to announce the launch of the Adopters list.
 
-### What is the Adopters list?
+## What is the Adopters list?
 The [Adopters list](https://github.com/json-schema-org/community/blob/main/ADOPTERS.md) is a directory that features organizations that have successfully implemented JSON Schema. It's your go-to place to discover how industry leaders use JSON Schema.
 
 When you explore the Adopters list, you'll uncover how organizations use JSON Schema in Production. It's a valuable resource for inspiration and learning. Whether you are seeking insights to enhance your projects or to remain informed about the latest trends in the JSON Schema Ecosystem, the Adopters list provides a window into the best practices within the community.
 
-### We need you!
-Adding your organization to the JSON Schema [Adopters list](https://github.com/json-schema-org/community/blob/main/ADOPTERS.md) demonstrates your commitment to supporting the JSON Schema Ecosystem and encouraging others to do the same. Additionally, adding your organization to this list provides valuable feedback to the JSON Schema team, helping them to improve the project's adoption and impact.
+## We need you!
+Adding your organization to the JSON Schema Adopters list demonstrates your commitment to supporting the JSON Schema Ecosystem and encouraging others to do the same. Additionally, adding your organization to this list provides valuable feedback to the JSON Schema team, helping them to improve the project's adoption and impact.
 
-By joining the [list](https://github.com/json-schema-org/community/blob/main/ADOPTERS.md), you play an active role in the growth and sustainability of the JSON Schema Ecosystem.
+By joining the list, you play an active role in the growth and sustainability of the JSON Schema Ecosystem.
 It's a small contribution to the project with a big impact to encourage and grow the JSON Schema adoption.
 
-**This is the Open Source way:** Learn from others and give back to the community!
+**This is the Open Source way:** Learn from others and give back to the community! ❤️
 
-### Ready to join?
+## Ready to join?
 
-You can add your Company using this [Adopter form](https://forms.gle/vyFskw1RshJ55LY46) or following [these simple steps](https://forms.gle/vyFskw1RshJ55LY46).
+You can add your Company using this [Adopter form](https://forms.gle/vyFskw1RshJ55LY46) or following [these simple steps](https://github.com/json-schema-org/community/blob/main/ADOPTERS.md#how-to-add-your-company).
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <a href='https://forms.gle/vyFskw1RshJ55LY46'>
@@ -38,10 +38,9 @@ You can add your Company using this [Adopter form](https://forms.gle/vyFskw1RshJ
     </a>
 </div>
 
+## Join the JSON Schema Community
 
-### Join the JSON Schema Community
-
-If your organization uses JSON Schema, please consider [contributing](https://github.com/json-schema-org/.github/blob/main/profile/README.md) in other ways. You can report issues, suggest improvements, improve our documentation, become a sponsor, or even make code contributions.
+If your organization uses JSON Schema, please consider [contributing](https://github.com/json-schema-org/.github/blob/main/profile/README.md) in other ways. You can report issues, suggest improvements, improve our documentation, [become a sponsor](https://opencollective.com/json-schema), or even make code contributions.
 
 **Join us to build the future of JSON Schema!**
 
