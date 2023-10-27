@@ -256,8 +256,8 @@ const Home = (props: any) => {
             {/* BlogPost Data */}
             <Link href={`/blog/posts/${blogPosts[0].slug}`}>
               <a className='inline-flex flex-col flex-1 w-full'>
-                <div className='w-full '>
-                  <h3 className='mb-4 font-semibold' >The JSON Schema Blog</h3>
+                <div className='w-full mb-6'>
+                  <h3 className='mb-5 font-semibold pt-1' >The JSON Schema Blog</h3>
                   <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
                   <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
                   <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
