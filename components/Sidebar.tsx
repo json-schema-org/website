@@ -59,7 +59,7 @@ const getDocsPath = [
 const getStartedPath = [
   '/learn/json-schema-examples',
   '/learn/file-system',
-  '/learn/generic-examples',
+  '/learn/miscellaneous-examples',
   '/learn/getting-started-step-by-step'
 ]
 const getReferencePath = [
