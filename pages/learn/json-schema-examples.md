@@ -192,7 +192,7 @@ A schema representing an event in a calendar, including properties like `startDa
 
 ## Device type
 
-This schema represents electronic devices with a `deviceType` property that determines the device's category, such as `Smartphone` or `Laptop`.It employs the `$dynamicRef` keyword to dynamically reference schemas based on the `deviceType` property. This flexible schema structure allows data to conform to the appropriate device schema based on the `deviceType` specified, making it easy to describe different electronic devices with their unique characteristics
+This schema represents electronic devices with a `deviceType` property that determines the device's category, such as `smartphone` or `laptop`. It employs the `oneOf` keyword to dynamically reference schemas based on the `deviceType` property. This flexible schema structure allows data to conform to the appropriate device schema based on the deviceType specified, making it easy to describe different electronic devices with their unique characteristics. When `deviceType` is set to `smartphone`, the schema enforces properties specific to smartphones, and when `deviceType` is set to `laptop`, it enforces properties specific to laptops. 
 
 ```json
 {
@@ -205,7 +205,20 @@ This schema represents electronic devices with a `deviceType` property that dete
     }
   },
   "required": ["deviceType"],
-  "$dynamicRef": "#/$defs/DeviceTypes"
+  "oneOf": [
+    {
+      "properties": {
+        "deviceType": { "const": "smartphone" }
+      },
+      "$ref": "https://example.com/smartphone.schema.json"
+    },
+    {
+      "properties": {
+        "deviceType": { "const": "laptop" }
+      },
+      "$ref": "https://example.com/laptop.schema.json"
+    }
+  ]
 }
 
 {
@@ -284,7 +297,7 @@ A schema representing an ecommerce system, where `$anchor` is used within the de
         "orderId": { "type": "string" },
         "items": {
           "type": "array",
-          "items": { "$ref": "#/$defs/ProductSchema" }
+          "items": { "$ref": "#ProductSchema" }
         }
       }
     }
@@ -450,8 +463,7 @@ A schema representing a job posting, including properties like `title`, `company
       "type": "string",
       "format": "date"
     }
-  },
-  "$anchor": "JobPosting"
+  }
 }
 ```
 
@@ -506,8 +518,7 @@ A schema representing a movie, including properties such as `title`, `director`,
       },
       "additionalItems": false
     }
-  },
-  "$anchor": "MovieSchema"
+  }
 }
 ```
 
