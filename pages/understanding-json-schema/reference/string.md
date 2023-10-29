@@ -71,9 +71,9 @@ non-negative number.
 
 The `pattern` keyword is used to restrict a string to a particular
 regular expression. The regular expression syntax is the one defined in
-JavaScript ([ECMA 262](http://www.ecma-international.org/publications/standards/Ecma-262.htm)
+JavaScript ([ECMA 262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
 specifically) with Unicode support. See
-[Regular Expressions](/understanding-json-schema/reference/regular_expressions) for more information.
+[Regular Expressions](../../understanding-json-schema/reference/regular_expressions) for more information.
 
 > When defining the regular expressions, it\'s important to note that the
 string is considered valid if the expression matches anywhere within the
@@ -124,7 +124,7 @@ to enable `format` to function as an assertion rather than just an
 annotation. That means that validation will fail if, for example, a
 value with a `date` format isn\'t in a form that can be parsed as a
 date. This can allow values to be constrained beyond what the other
-tools in JSON Schema, including [Regular Expressions](/understanding-json-schema/reference/regular_expressions) can
+tools in JSON Schema, including [Regular Expressions](../../understanding-json-schema/reference/regular_expressions) can
 do.
 
 > Implementations may provide validation for only a subset of the built-in
@@ -219,7 +219,7 @@ must be absolute.
 - `"json-pointer"`: <StarInline label="New in draft 6" /> A JSON Pointer, according to
     [RFC6901](https://tools.ietf.org/html/rfc6901). There is more
     discussion on the use of JSON Pointer within JSON Schema in
-    [structuring]{.title-ref}. Note that this should be used only when
+    [Structuring a complex schema](../../understanding-json-schema/structuring). Note that this should be used only when
     the entire string contains only JSON Pointer content, e.g.
     `/foo/bar`. JSON Pointer URI fragments, e.g. `#/foo/bar/` should use
     `"uri-reference"`.
@@ -230,9 +230,8 @@ must be absolute.
 #### Regular Expressions
 
 - `"regex"`: <StarInline label="New in draft 7" /> A regular expression, which should be valid according to
-    the [ECMA 262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf)
+    the [ECMA 262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
     dialect.
 
 Be careful, in practice, JSON schema validators are only required to
-accept the safe subset of [regular-expressions]{.title-ref} described
-elsewhere in this document.
+accept the safe subset of [regular expressions](../../understanding-json-schema/reference/regular_expressions) described elsewhere in this document.

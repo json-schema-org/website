@@ -5,6 +5,7 @@ import { getLayout } from '~/components/Sidebar'
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import { Headline1 } from '~/components/Headlines'
+import { DocsHelp } from '~/components/DocsHelp'
 import { SectionContext } from '~/context'
 
 export async function getStaticPaths() { return getStaticMarkdownPaths('pages/understanding-json-schema') }
@@ -18,6 +19,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
       </Head>
       <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
       <StyledMarkdown markdown={content} />
+      <DocsHelp />
     </SectionContext.Provider>
   )
 }

@@ -17,7 +17,7 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   return (
     <Link href={uri}>
       <a
-        className={classnames('text-base block border-l-2 py-1 pl-2', {
+        className={classnames('text-sm block border-l-2 py-1 pl-2', {
           '  font-medium': !isActive,
           'text-primary text-bold border-l-primary font-semibold': isActive,
         })}
@@ -26,9 +26,29 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   )
 }
 
+const DocLinkBlank = ({ uri, label }: { uri: string, label: string | React.ReactNode }) => {
+  const router = useRouter()
+  const url = new URL(`${router.asPath}`, HOST)
+  url.search = ''
+  url.hash = ''
+  const stringUrl = url.toString().substr(HOST.length, Infinity)
+  const isActive = uri === stringUrl
+  return (
+    <Link href={uri}>
+      <a
+        className={classnames('text-sm block border-l-2 py-1 pl-2', {
+          '  font-medium': !isActive,
+          'text-primary text-bold border-l-primary font-semibold': isActive,
+        })}
+        target='_blank' rel='noopener noreferrer'>{label}</a>
+    </Link>
+  )
+}
+
+
 const SegmentSubtitle = ({ label }: { label: string }) => {
   return (
-    <div className='text-base italic text-slate-900 mt-2 mb-2'>
+    <div className='text-sm italic text-slate-900 mt-2 mb-2'>
       {label}
     </div>
   )
@@ -43,8 +63,8 @@ const getStartedPath = [
   '/learn/getting-started-step-by-step'
 ]
 const getReferencePath = [
-  '/understanding-json-schema/',
-  '/understanding-json-schema/basics/',
+  '/understanding-json-schema',
+  '/understanding-json-schema/basics',
   '/understanding-json-schema/conventions',
   '/understanding-json-schema/about',
   '/understanding-json-schema/credits',
@@ -65,16 +85,21 @@ const getReferencePath = [
   '/understanding-json-schema/reference/schema',
   '/understanding-json-schema/reference/string',
   '/understanding-json-schema/reference/type',
+  '/understanding-json-schema/reference/generic',  
   '/understanding-json-schema/reference',
-  '/learn/glossary'
+  '/learn/glossary',
+  '/implementers',
+  '/implementers/interfaces'
 ]
 const getSpecificationPath = [
-  '/draft/2020-12/',
-  '/draft-06/',
-  '/draft-07/',
-  '/draft-05/',
-  '/draft/2019-09/',
-  '/[slug]',
+  '/draft/2020-12/release-notes',
+  '/draft/2019-09/release-notes',
+  '/draft-07/json-schema-release-notes',
+  '/draft-06/json-schema-release-notes',
+  '/draft-05/readme',
+  '/draft-07/json-hyper-schema-release-notes',
+  '/draft-06/json-hyper-schema-release-notes',
+  '/specification-links',
   '/specification'
 ]
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
@@ -85,37 +110,39 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)'
 
   return (
-    <section>
-      <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden' >
-        <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleRotate(); setOpen(!open) }}>
+    <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
+      <section>
+        <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden' >
+          <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleRotate(); setOpen(!open) }}>
 
-          {router.asPath === '/overview/what-is-jsonschema' && <h3 className='text-white ml-12'>Overview</h3>}
-          {getStartedPath.includes(router.asPath) && <h3 className='text-white ml-12'>Getting Started</h3>}
+            {router.asPath === '/overview/what-is-jsonschema' && <h3 className='text-white ml-12'>Overview</h3>}
+            {getStartedPath.includes(router.asPath) && <h3 className='text-white ml-12'>Getting Started</h3>}
 
-          {getReferencePath.includes(router.asPath) && <h3 className='text-white ml-12'>Reference</h3>}
+            {getReferencePath.includes(router.asPath) && <h3 className='text-white ml-12'>Reference</h3>}
 
-          {getSpecificationPath.includes(router.asPath) && <h3 className='text-white ml-12'>Specification</h3>}
+            {getSpecificationPath.includes(router.asPath) && <h3 className='text-white ml-12'>Specification</h3>}
 
-          {router.pathname === null && <h3 className='text-white ml-12'>Docs</h3>}
-          <svg style={{ marginRight: '50px', color: 'white', transform: rotate, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 256 512'><path d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z' id='mainIconPathAttribute' fill='#ffffff'></path></svg>
+            {router.pathname === null && <h3 className='text-white ml-12'>Docs</h3>}
+            <svg style={{ marginRight: '50px', color: 'white', transform: rotate, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 256 512'><path d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z' id='mainIconPathAttribute' fill='#ffffff'></path></svg>
+          </div>
         </div>
-      </div>
 
-      <div className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
-        <div className='flex flex-col mt-4' >
-          <DocsNav />
+        <div className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}>
+          <div className='flex flex-col mt-4' >
+            <DocsNav />
+          </div>
         </div>
-      </div>
 
-      <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
-        <div className='hidden lg:block mt-24'>
-          <DocsNav />
+        <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
+          <div className='hidden lg:block mt-24'>
+            <DocsNav />
+          </div>
+          <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'>
+            {children}
+          </div>
         </div>
-        <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'>
-          {children}
-        </div>
-      </div>
-    </section>
+      </section>
+    </div>
   )
 
 }
@@ -198,9 +225,11 @@ export const DocsNav = () => {
         >
           <DocLink uri='/learn/getting-started-step-by-step' label='Creating your first schema' />
           <SegmentSubtitle label='Examples' />
-          <DocLink uri='/learn/generic-examples' label='Generic examples' />
-          <DocLink uri='/learn/file-system' label='Modelling a file system' />
-          <DocLink uri='/learn/json-schema-examples' label='Other examples' />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink uri='/learn/miscellaneous-examples' label='Miscellaneous examples' />
+            <DocLink uri='/learn/file-system' label='Modelling a file system' />
+            <DocLink uri='/learn/json-schema-examples' label='Other examples' />
+          </div>
         </div>
       </div>
       {/* Reference */}
@@ -216,22 +245,16 @@ export const DocsNav = () => {
           id='reference'
         >
           <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
-          <DocLink uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
+          <DocLinkBlank uri='https://www.learnjsonschema.com/' label='Learn JSON Schema' />
           <DocLink uri='/understanding-json-schema' label='Understanding JSON Schema' />
           <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/understanding-json-schema/conventions' label='Conventions used in this book' />
+            <DocLink uri='/understanding-json-schema/conventions' label='Conventions used' />
             <DocLink uri='/understanding-json-schema/about' label='What is a schema?' />
+            <DocLink uri='/understanding-json-schema/basics' label='The basics' />
+            <DocLink uri='/understanding-json-schema/reference' label='JSON Schema Reference' />
             <div className='pl-4 pb-1 pt-1'>
-              <DocLink uri='/understanding-json-schema/basics' label='The basics' />
+              <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
               <div className='pl-4 pb-1 pt-1'>
-                <DocLink uri='/understanding-json-schema/basics#hello-world!' label='Hello, World!' />
-                <DocLink uri='/understanding-json-schema/basics#the-type-keyword' label='The type keyword' />
-                <DocLink uri='/understanding-json-schema/basics#declaring-a-json-schema' label='Declaring a JSON Schema' />
-                <DocLink uri='/understanding-json-schema/basics#declaring-a-unique-identifier' label='Declaring a unique identifier' />
-              </div>
-              <DocLink uri='/understanding-json-schema/reference' label='JSON Schema Reference' />
-              <div className='pl-4 pb-1 pt-1'>
-                <DocLink uri='/understanding-json-schema/reference/type' label='Type-specific keywords' />
                 <DocLink uri='/understanding-json-schema/reference/string' label='string' />
                 <DocLink uri='/understanding-json-schema/reference/regular_expressions' label='regular expressions' />
                 <DocLink uri='/understanding-json-schema/reference/numeric' label='numeric types' />
@@ -239,29 +262,24 @@ export const DocsNav = () => {
                 <DocLink uri='/understanding-json-schema/reference/array' label='array' />
                 <DocLink uri='/understanding-json-schema/reference/boolean' label='boolean' />
                 <DocLink uri='/understanding-json-schema/reference/null' label='null' />
-                <SegmentSubtitle label='Generic keywords' />
-                <div className='pl-4 pb-1 pt-1'>
-                  <DocLink uri='/understanding-json-schema/reference/annotations' label='Annotations' />
-                  <DocLink uri='/understanding-json-schema/reference/comments' label='Comments' />
-                  <DocLink uri='/understanding-json-schema/reference/enum' label='Enumerated values' />
-                  <DocLink uri='/understanding-json-schema/reference/const' label='Constant values' />
-                </div>
-                <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
-                <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
-                <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
-                <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
               </div>
-              <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
+              <DocLink uri='/understanding-json-schema/reference/generic' label='Generic keywords' />
               <div className='pl-4 pb-1 pt-1'>
-                <DocLink uri='/understanding-json-schema/structuring#schema-identification' label='Schema Identification' />
-                <DocLink uri='/understanding-json-schema/structuring#base-uri' label='Base URI' />
-                <DocLink uri='/understanding-json-schema/structuring#ref' label='$ref' />
-                <DocLink uri='/understanding-json-schema/structuring#defs' label='$defs' />
-                <DocLink uri='/understanding-json-schema/structuring#recursion' label='Recursion' />
-                <DocLink uri='/understanding-json-schema/structuring#extending-recursive-schemas' label='Extending Recursive Schemas' />
-                <DocLink uri='/understanding-json-schema/structuring#bundling' label='Bundling' />
+                <DocLink uri='/understanding-json-schema/reference/annotations' label='Annotations' />
+                <DocLink uri='/understanding-json-schema/reference/comments' label='Comments' />
+                <DocLink uri='/understanding-json-schema/reference/enum' label='Enumerated values' />
+                <DocLink uri='/understanding-json-schema/reference/const' label='Constant values' />
               </div>
+              <DocLink uri='/understanding-json-schema/reference/non_json_data' label='Media: string-encoding non-JSON data' />
+              <DocLink uri='/understanding-json-schema/reference/combining' label='Schema Composition' />
+              <DocLink uri='/understanding-json-schema/reference/conditionals' label='Applying Subschemas Conditionally' />
+              <DocLink uri='/understanding-json-schema/reference/schema' label='Declaring a Dialect' />
             </div>
+            <DocLink uri='/understanding-json-schema/structuring' label='Structuring a complex schema' />
+          </div>
+          <DocLink uri='/implementers' label='For implementers' />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink uri='/implementers/interfaces' label='Common Interfaces across Implementations' />
           </div>
         </div>
       </div>
@@ -282,9 +300,15 @@ export const DocsNav = () => {
           <DocLink uri='/specification' label='Overview' />
           <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
           <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
-          <DocLink uri='/draft-07/readme' label='draft-07 notes' />
-          <DocLink uri='/draft-06/readme' label='draft-06 notes' />
+          <DocLink uri='/draft-07/json-schema-release-notes' label='draft-07 notes' />
+          <DocLink uri='/draft-06/json-schema-release-notes' label='draft-06 notes' />
           <DocLink uri='/draft-05/readme' label='draft-05 notes' />
+          <SegmentSubtitle label='JSON Hyper-Schema' />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink uri='/draft/2019-09/release-notes#hyper-schema-vocabulary' label='2019-09 notes' />
+            <DocLink uri='/draft-07/json-hyper-schema-release-notes' label='draft-07 notes' />
+            <DocLink uri='/draft-06/json-hyper-schema-release-notes' label='draft-06 notes' />
+          </div>
           <DocLink uri='/specification-links' label='Specification Links' />
         </div>
       </div>

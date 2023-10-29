@@ -3,7 +3,7 @@ title: The basics
 section: docs
 ---
 
-In [What is a schema?](/understanding-json-schema/about), we described what a schema is,
+In [What is a schema?](../understanding-json-schema/about), we described what a schema is,
 and hopefully justified the need for schema languages. Here, we proceed
 to write a simple JSON Schema.
 
@@ -101,13 +101,13 @@ accepted:
 42
 ```
 
-The `type` keyword is described in more detail in [here](/understanding-json-schema/reference/type).
+The `type` keyword is described in more detail in [here](../understanding-json-schema/reference/type).
 
 ## Declaring a JSON Schema
 
 It\'s not always easy to tell which draft a JSON Schema is using. You
 can use the `$schema` keyword to declare which version of the JSON
-Schema specification the schema is written to. See [$schema](/understanding-json-schema/reference/schema#schema)
+Schema specification the schema is written to. See [$schema](../understanding-json-schema/reference/schema#schema)
 for more information. It\'s generally good practice to include it,
 though it is not required.
 
@@ -139,7 +139,7 @@ you control, for example:
 { "$id": "http://yourdomain.com/schemas/myschema.json" }
 ```
 
-The details of `$id` become more apparent when you start [structuring](/understanding-json-schema/structuring#id).
+The details of `$id` become more apparent when you start [structuring a complex schema](../../understanding-json-schema/structuring#dollarid).
 
 <Infobox label="Draft-specific info">
 In Draft 4, `$id` is just `id` (without the dollar-sign).

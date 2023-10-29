@@ -24,7 +24,7 @@ Each dialect is identified by a URI, its *dialect identifier*, which [schemas](#
 Doing so identifies the schema as being written in the dialect, and thereby indicates which keywords are usable within it, along with their intended meaning.
 
 The JSON Schema specification defines a number of dialects, each of which enable vocabularies suitable for the dialect's specific use case.
-These vocabularies are [described](../specification#general-purpose-meta-schema) in meta-schemas.
+These vocabularies are [described](https://json-schema.org/specification.html#general-purpose-meta-schema) in meta-schemas.
 
 ### draft
 
@@ -35,6 +35,17 @@ JSON Schema drafts are not intended to be provisional documents, as the layman's
 While future drafts may introduce new behavior or changes to existing behavior, each draft is a completed, released document, batching together changes to the specification, and intended for implementation and use.
 
 The current list of drafts can be found [here](../specification-links#published-drafts).
+
+### JSON
+
+A pervasive data interchange format used for representing and transmitting data as human readable text.
+JSON is extremely widely used, and parsers which can read and write it exist for essentially every commonly-used programming language.
+
+JSON Schema, distinctly, is built *on top* of JSON, in that JSON [schemas](#schema) are themselves JSON objects which describe JSON values.
+The two are, however, entirely different pieces of the conceptual puzzle, with JSON being a concrete format for *representing* data, and JSON Schema being a way to *schematize* data which is written in a JSON-compatible format.
+
+The JSON format is an open format, with its own [homepage](https://www.json.org/), and specifications published in the [ECMA-404](https://www.ecma-international.org/publications-and-standards/standards/ecma-404/) and [RFC-8259](https://datatracker.ietf.org/doc/html/rfc8259) documents from ECMA and the IETF respectively.
+In particular, it is not managed or developed by the JSON Schema team, who simply make use of the format.
 
 ### keyword
 
@@ -79,7 +90,7 @@ A document, written according to the proscribed structure of the JSON Schema spe
 
 The rules constituting which schemas are conformant, as well as the rules governing their behavior when validating instances, are defined by the [JSON Schema specification](../specification).
 
-Strictly speaking, according to the specification, schemas are themselves JSON documents, though it is somewhat common for them to be authored or maintained in other languages which are easily translated to JSON, such as YAML.
+Strictly speaking, according to the specification, schemas are themselves [JSON documents](#JSON), though it is somewhat common for them to be authored or maintained in other languages which are easily translated to JSON, such as YAML.
 
 In recent [drafts](#draft) of the specification, a schema is either a JSON object or a JSON boolean value.
 
@@ -103,7 +114,7 @@ Subschemas may themselves contain sub-subschemas, though colloquially one genera
 
 ### vocabulary
 
-A tightly related collection of [keywords](keyword), grouped to facilitate re-use.
+A tightly related collection of [keywords](#keyword), grouped to facilitate re-use.
 
 A vocabulary is specified by a prose document or specification which explains the semantics of its keywords in a way suitable for implementers and users of the vocabulary.
 It often also includes a [meta-schema](#meta-schema) (or multiple metaschemas) which define the syntax of its keywords.

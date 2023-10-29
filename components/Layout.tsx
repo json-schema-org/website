@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import classnames from 'classnames'
@@ -23,7 +23,41 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
   const router = useRouter()
+
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
+
+  useEffect(() => {
+
+    // Check if the URL contains "#community"
+    if (window.location.hash === '#community') {
+      // Find the anchor element by its ID
+      const target = document.getElementById('community')
+
+      // Scroll to the anchor element if it exists
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+
+    // Function to load Carbon Ads script
+    const loadCarbonAdsScript = () => {     
+      if (!hideAds) {
+        const script = document.createElement('script')
+        script.src = `//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`
+        script.id = '_carbonads_js'
+        script.type = 'text/javascript'
+        script.async = true
+        document.body.appendChild(script)
+      } else {
+        // Remove all divs whose IDs start with "carbonads"
+        const carbonAdsDivs = document.querySelectorAll('[id^="carbonads"]')
+        carbonAdsDivs.forEach((div) => {
+          div.remove()
+        })
+      }
+    }
+    loadCarbonAdsScript()
+  }, [hideAds])
 
   return (
     <div className='min-h-screen relative flex flex-col justify-between'>
@@ -50,22 +84,10 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
             </>
           ) : (
             <div>
-              {!hideAds && (
-                <div>
-                  <script
-                    async
-                    type='text/javascript'
-                    src='//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg'
-                    id='_carbonads_js'
-                    className='z-10'
-                  />
-                </div>
-              )}
               {children}
             </div>
           )}
           <Footer />
-          <OpenJS />
         </main>
       </div>
     </div>
@@ -220,14 +242,16 @@ const Footer = () => (
     <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
-        <div className='flex flex-col'>
+        <div className='flex flex-col text-center sm:text-left'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
-          <a href='/understanding-json-schema/credits' className='text-white'>Acknowledgements</a>
+        </div>        
+        <div className='flex flex-col text-center sm:text-left'>
+          <a target='_blank' rel='noopener noreferrer' href='https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md' className='text-white mb-2'>Code of Conduct</a>
         </div>
       </div>
       <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
         <div className='mr-4 mb-4'>
-          <a href='https://json-schema.slack.com/join/shared_invite/zt-1tc77c02b-z~UiKXqpM2gHchClKbUoXw#/shared-invite/email' className='flex items-center text-white'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
+          <a href='https://json-schema.org/slack' className='flex items-center text-white'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
             Slack</a>
         </div>
         <div className='mb-4 mr-4'>

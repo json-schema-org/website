@@ -5,7 +5,7 @@ import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
 import JsonEditor from '~/components/JsonEditor'
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
 import Highlight from 'react-syntax-highlighter'
-import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
 import { BlockContext, BlockContextValue } from '~/context'
 import Code from '~/components/Code'
 import { FullMarkdownContext } from '~/context'
@@ -160,6 +160,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </>
               }
             },
+            ol: {
+              component: ({ children }) => (
+                <ol className='list-decimal mt-2 mb-4 ml-5'>
+                  {children}
+                </ol>
+              )
+            },
             ul: {
               component: ({ children }) => (
                 <ul className='mt-2 mb-4 list-disc list-outside ml-5'>
@@ -205,9 +212,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] lg:max-w-[800px] xl:max-w-[900px]'>{/* definitely not the best way to prevent overflowing. found no better way that worked */}
+                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] max-w-screen-sm lg:max-w-[800px] xl:max-w-[900px]'>{/* definitely not the best way to prevent overflowing. found no better way that worked */}
                   <Highlight
                     language={language}
+                    wrapLines={true}
+                    wrapLongLines={true}
                     customStyle={{
                       borderRadius: 10,
                       paddingTop: 15,
@@ -219,7 +228,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     lineNumberStyle={{
                       marginRight: 10
                     }}
-                    style={atomOneLight}
+                    style={atomOneDark}
                     showLineNumbers
                     startingLineNumber={1}
                     lineProps={() => {

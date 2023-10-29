@@ -7,9 +7,21 @@ Release notes for migrating from draft-luff-json-hyper-schema-00 (draft-04) to d
 
 <div className="text-red-500 text-2xl mb-1"><b>NOTE</b>: draft-07 has been released</div>
 
-The [migration notes for draft-07](/draft-07/json-hyper-schema-release-notes) give a much more straightforward overview of migrating from draft-04 to draft-07 by skipping the complicated intermediate states of draft-05 and draft-06.  This page has been retained for historical interest, but it is not recommened for those who just want to get going with the latest draft.
+The [migration notes for draft-07](../draft-07/json-hyper-schema-release-notes) give a much more straightforward overview of migrating from draft-04 to draft-07 by skipping the complicated intermediate states of draft-05 and draft-06.  This page has been retained for historical interest, but it is not recommened for those who just want to get going with the latest draft.
 
 **For implementors:** We recommend just implementing draft-07, and not draft-06 or earlier.
+
+* [Q: What are the incompatible changes between draft-04 and draft-06?](#q:-what-are-the-incompatible-changes-between-draft-04-and-draft-06)
+    * [Changes from draft-04 to draft-05](#changes-from-draft-04-to-draft-05)
+    * [Changes from draft-05 to draft-06](#changes-from-draft-05-to-draft-06)
+    * [Proper use of "targetSchema"](#proper-use-of)
+* [Q: Why were several major changes made to Hyper-Schema just before draft-06’s publication?](#q:-why-were-several-major-changes-made-to-hyper-schema-just-before-draft-06's-publication)
+* [Q: Why doesn’t the spec mention or behave like HTML anymore?](#q:-why-doesn't-the-spec-mention-or-behave-like-html-anymore)
+    * [Splitting "schema"](#splitting)
+    * [Removing "method"](#removing)
+* [Q: So how do I indicate which HTTP methods are supported on a link?](#q:-so-how-do-i-indicate-which-http-methods-are-supported-on-a-link)
+* [Q: No, really. How do I explicitly indicate which HTTP methods are supported on a link?](#q:-no-really.-how-do-i-indicate-which-http-methods-are-supported-on-a-link)
+* [Q: If "targetSchema" is not the response, how do I describe responses?](#q:-if-is-not-the-response-how-do-i-describe-responses)
 
 ### Q: What are the incompatible changes between draft-04 and draft-06?
 
@@ -27,7 +39,7 @@ keyword | change | consequence
 `"rel"` | "root" relation removed | use a fragment in your `"href"` URI Template
 `"fragmentResolution"` | *removed* | media type determines how fragments are interpreted
 `"pathStart"` | *removed* | *[no replacement]*
-`"method"` | [changed back to HTML form semantics](/draft-03/draft-zyp-json-schema-03.html#section-6.1.1.4.1) of "get" and "post" rather than all HTTP methods | *[changed again in draft-06 due to feedback that this was confusing]*
+`"method"` | [changed back to HTML form semantics](../draft-03/draft-zyp-json-schema-03.pdf) of "get" and "post" rather than all HTTP methods | *[changed again in draft-06 due to feedback that this was confusing]*
 
 #### Changes from draft-05 to draft-06
 

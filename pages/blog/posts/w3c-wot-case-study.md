@@ -58,8 +58,8 @@ plan to explore them further in conjunction with Semantic Web technologies."
 ## Impact
 
 The W3C Web of Things relies on JSON-LD for linking vocabularies and ontologies
-that already exist on the web, such as [SAREF][saref], [Units of
-Measure][units-of-measure] and [Schema.org][schema-org]. Being based on the
+that already exist on the web, such as [SAREF][#saref], [Units of
+Measure][#units-of-measure] and [Schema.org][#schema-org]. Being based on the
 JSON data model, JSON Schema fits well with JSON-LD when integrating both
 technologies as part of a single specification.
 
@@ -135,7 +135,7 @@ integration.
 To learn more, head over to the
 [documentation](https://www.w3.org/WoT/documentation/), watch the [introductory
 videos](https://www.w3.org/WoT/videos/), have a look at the many examples
-provided as part of the [Thing Description specification](thing-description)
+provided as part of the [Thing Description specification](#thing-description)
 and try them out on the [Thing Description
 Playground](http://plugfest.thingweb.io/playground/) app.
 

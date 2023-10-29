@@ -6,9 +6,10 @@ import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import { Headline1 } from '~/components/Headlines'
 import { SectionContext } from '~/context'
+import { DocsHelp } from '~/components/DocsHelp'
 
-export async function getStaticPaths() { return getStaticMarkdownPaths('pages/learn') }
-export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/learn') }
+export async function getStaticPaths() { return getStaticMarkdownPaths('pages/implementers') }
+export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/implementers') }
 
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
   return (
@@ -18,6 +19,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
       </Head>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
+      <DocsHelp />
     </SectionContext.Provider>
   )
 }

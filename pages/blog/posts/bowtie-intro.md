@@ -65,12 +65,12 @@ If you have a schema and instance and want to run it across many implementations
 
 If you're just interested in its output (i.e. reports on runs of the test suite), you can currently find them at the following links, corresponding to each version of the specification:
 
-* [draft2020-12](https://bowtie-json-schema.github.io/bowtie/draft2020)
-* [draft2019-09](https://bowtie-json-schema.github.io/bowtie/draft2019)
-* [draft7](https://bowtie-json-schema.github.io/bowtie/draft7)
-* [draft6](https://bowtie-json-schema.github.io/bowtie/draft6)
-* [draft4](https://bowtie-json-schema.github.io/bowtie/draft4)
-* [draft3](https://bowtie-json-schema.github.io/bowtie/draft3)
+* [draft2020-12](https://bowtie.report/#/dialects/draft2020-12)
+* [draft2019-09](https://bowtie.report/#/dialects/draft2019-09)
+* [draft7](https://bowtie.report/#/dialects/draft7)
+* [draft6](https://bowtie.report/#/dialects/draft6)
+* [draft4](https://bowtie.report/#/dialects/draft4)
+* [draft3](https://bowtie.report/#/dialects/draft3)
 
 The medium-term goal is to combine these onto one unified report (at which point the links may change, though hopefully we'll put a redirect in place).
 

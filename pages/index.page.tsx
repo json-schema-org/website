@@ -14,7 +14,7 @@ import { GetStaticProps } from 'next'
 /* eslint-disable */
 import axios from 'axios'
 import ical from 'node-ical'
-import moment from 'moment'
+import moment from 'moment-timezone'
 
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
@@ -58,6 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       blogPosts,
       datesInfo,
+      hideAds: true, 
       fallback: false,
     },
     revalidate: 10,
@@ -83,10 +84,9 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
     
     if (event.type === 'VEVENT') {
       const title = event.summary
-      let startDate = moment(event.start)
 
-      // Get the timezone of the event
-      const timezone = event.tz || 'UTC' // Default to UTC if timezone information is not provided
+      const timezoneL = moment.tz.guess() // Default to UTC if timezone information is not provided
+      const startDate = moment.tz(event.start, timezoneL)
     
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
@@ -100,14 +100,25 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
         // Loop through the set of date entries to see which recurrences should be printed.
         for (const date of dates) {
-          startDate = moment(date)
+          const startDate = moment.tz(date, timezoneL)
 
           // Check if the event falls within the next 4 weeks from today
           if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-            const time = startDate.format('MMMM Do YYYY, h:mm a')
-            const day = startDate.format('D')
-            const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
-            arrayDates.push({ title, time, day, timezone, parsedStartDate })
+            const dateTimezone = moment.tz.zone(event.start.tz)
+            const localTimezone = moment.tz.guess()
+            const tz = event.rrule.origOptions.tzid === localTimezone ? event.rrule.origOptions.tzid : localTimezone
+            const timezone = moment.tz.zone(tz)
+            let offset
+            if (timezone && dateTimezone) offset = timezone.utcOffset(date) - dateTimezone.utcOffset(date)
+            const newDate = moment(date).add(offset, 'minutes').toDate()
+
+            const start = moment(newDate)
+            const utcDate = start.utc()
+
+            const time = utcDate.format('MMMM Do YYYY, h:mm a')
+            const day = utcDate.format('D')
+            const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss')
+            arrayDates.push({ title, time, day, timezone: 'UTC', parsedStartDate })
 
           }
         }
@@ -115,10 +126,13 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
       else {
         // Simple case - no recurrences, just print out the calendar event.
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-          const time = startDate.format('MMMM Do YYYY, h:mm a')
-          const day = startDate.format('D')
+
+          const utcDate = startDate.utc()
+
+          const time = utcDate.format('MMMM Do YYYY, h:mm a')
+          const day = utcDate.format('D')
           const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss')
-          arrayDates.push({ title, time, day, timezone, parsedStartDate })
+          arrayDates.push({ title, time, day, timezone: 'UTC', parsedStartDate })
         }
       }
     }
@@ -164,13 +178,13 @@ const Home = (props: any) => {
             <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
-              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center  w-1/3 md:w-100'>
-                <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mr-4' />
-                <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mr-4' />
-                <img src='/img/logos/usedby/postman-white.png' className='w-40 mr-4' />
-                <img src='/img/logos/usedby/github-white.png' className='w-40' />
+              <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
+                <img src='/img/logos/usedby/zapier-logo_white.png' className='w-40 mx-auto' />
+                <img src='/img/logos/usedby/microsoft-white.png' className='w-40 mx-auto' />
+                <img src='/img/logos/usedby/postman-white.png' className='w-40 mx-auto' />
+                <img src='/img/logos/usedby/github-white.png' className='w-40 mx-auto' />
               </div>
-              <p className='text-white mx-4 my-8'>More than 200 implementations generating over 100 million weekly downloads</p>
+              <p className='text-white mx-4 my-5'>Please visit the official list of <a className='underline' href='https://github.com/json-schema-org/community/blob/main/ADOPTERS.md'>adopters</a> and discover more companies using JSON Schema.</p>
             </div>
           </div>
         </section>
@@ -228,46 +242,54 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <div className='w-full  mb-6'>
-              <h3 className='mb-4 font-semibold' >Join the JSON Schema Community Slack!</h3>
-              <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
-              {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-              <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] '><a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>Join us</a></button>
-            </div>
+            <Link href='https://json-schema.org/slack'>
+              <a id='join-slack' className='inline-flex flex-col flex-1 w-full'>
+                <div className='w-full mb-6'>
+                  <h3 className='mb-4 font-semibold flex items-center' >Join the JSON Schema Slack Workspace!<img src='/img/logos/Slack-mark.svg' className='w-8 h-8' /></h3>
+                  <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
+                  {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
+                  <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
+                  <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white h-[40px] flex items-center justify-center'><a href='https://json-schema.org/slack' className='flex items-center'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />Join Slack</a></button>
+                </div>
+              </a>
+            </Link>
             {/* BlogPost Data */}
-            <div className='w-full '>
-              <h3 className='mb-4 font-semibold' >The JSON Schema Blog</h3>
-              <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
-              <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
-              <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
-              <div className='flex ml-2 mb-2 '>
-                <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                  style={{ backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})` }}
-                />
-                <div className='flex flex-col ml-2'>
-                  <p className='text-sm font-semibold'>{blogPosts[0].frontmatter.authors[0].name}</p>
-                  <div className='text-slate-500 text-sm'>
-                    <span>
-                      {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
-                    </span>
+            <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+              <a className='inline-flex flex-col flex-1 w-full'>
+                <div className='w-full mb-6'>
+                  <h3 className='mb-5 font-semibold pt-1' >The JSON Schema Blog</h3>
+                  <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
+                  <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
+                  <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
+                  <div className='flex ml-2 mb-2 '>
+                    <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                      style={{ backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})` }}
+                    />
+                    <div className='flex flex-col ml-2'>
+                      <p className='text-sm font-semibold'>{blogPosts[0].frontmatter.authors[0].name}</p>
+                      <div className='text-slate-500 text-sm'>
+                        <span>
+                          {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                  <div >
+                    <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+                      <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold flex items-center justify-center'>Read more </a>
+                    </Link>
                   </div>
                 </div>
-              </div>
-              <div >
-                <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                  <a className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold'>Read more </a>
-                </Link>
-              </div>
-            </div>
+              </a>
+            </Link>
             <div>
               <div className='md:w-full mb-6 mr-4'>
                 <h3 className='mb-2 font-semibold' >JSON Schema Community Meetings & Events</h3>
                 <p className='mb-4'>We hold monthly Office Hours and weekly Open Community Working Meetings. Office Hours are every first Tuesday of the month at 15:00 BST, and by appointment. Open Community Working Meetings are every Monday at 14:00 PT.
                 </p>
                 <div className=''>
-                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] mb-4'><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
-                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] '><a href='https://github.com/orgs/json-schema-org/discussions/34/'
+                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] mb-4 flex items-center justify-center'><a href='https://github.com/orgs/json-schema-org/discussions/35' >Open Community Working Meetings</a></button>
+                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] flex items-center justify-center'><a href='https://github.com/orgs/json-schema-org/discussions/34/'
                   >Office Hours</a></button>
                 </div>
               </div>
@@ -286,7 +308,7 @@ const Home = (props: any) => {
                             </p>
                             <div className='text-sm'>
                               <p>{event.title}</p>
-                              <p><b>{event.time} {event.timezone}</b></p>
+                              <p><b>{event.time}</b> ({event.timezone})</p>
                             </div>
                           </div>
                         </li>
@@ -295,7 +317,7 @@ const Home = (props: any) => {
                   </div>
 
                 </div>
-                <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1' target='_blank' rel='noopener noreferrer'>View Calendar</a>
+                <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 flex items-center justify-center' target='_blank' rel='noopener noreferrer'>View Calendar</a>
               </div>
             </div>
           </div>
@@ -304,7 +326,7 @@ const Home = (props: any) => {
         {/* News & Blogs */}
         <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
           <div className='lg:w-full mx-auto text-center mt-28 '>
-            <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Contribute to the JSON Schema</h2>
+            <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Start contributing to JSON Schema</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='https://github.com/json-schema-org#-contributing-to-json-schema
 '>Contribute</a></button>
           </div>
@@ -314,7 +336,7 @@ const Home = (props: any) => {
 
         <section className='my-16'>
           <div className='text-center mb-12'>
-            <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Sponsors</h2>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Sponsors</h2>
             <p className='w-5/6 lg:w-3/5 mx-auto'>Want to become a sponsor? <a href='https://opencollective.com/json-schema' className='border-b border-black'>Support us!</a></p>
           </div>
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4'>
@@ -324,6 +346,7 @@ const Home = (props: any) => {
             <a href='https://www.postman.com/'><img src='/img/logos/sponsors/Postman_logo-orange.svg' className='w-44' /></a>
             <a href='https://retool.com/'><img src='/img/logos/sponsors/retool-logo.svg' className=' w-44' /></a>
             <a href='https://www.apideck.com/'><img src='/img/logos/sponsors/apideck-logo.png' className=' w-44' /></a>
+            <a href='https://endjin.com/'><img src='/img/logos/sponsors/endjin-logo.svg' className=' w-44' /></a>
           </div>
 
         </section>
@@ -332,14 +355,14 @@ const Home = (props: any) => {
 
         <section className='my-20'>
           <div className='text-center mb-12'>
-            <h2 className='text-h3mobile md:text-h3 font-semibold mb-4'>Supported by</h2>
-            <p className='px-4 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Supported by</h2>
+            <p className='px-12 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:ben@jsonschema.dev' className='border-b border-black'>Email us</a> for more info!</p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center'>
             <a href='https://orbit.love/'>
               <img src='/img/logos/supported/new-orbit-logo-color.svg' className='w-44 max-h-[58px] mb-4 md:mb-0 md:mr-8 md:ml-2' />
             </a>
-            <a href='https://json-schema.slack.com/join/shared_invite/zt-1ywpdj4yd-bXiBLjYEbKWUjzon0qiY9Q#/shared-invite/email'>
+            <a href='https://json-schema.org/slack'>
               <img src='/img/logos/supported/slack-logo.svg' className='w-44 mt-4 md:mt-0 md:ml-8 md:mr-2' />
             </a>
           </div>
@@ -350,4 +373,5 @@ const Home = (props: any) => {
 }
 
 export default Home
-Home.getLayout = getLayout
+Home.getLayout = (page: React.ReactNode) => getLayout(page, { hideAds: true })
+

@@ -24,14 +24,14 @@ in the text.
 
 ## Where to begin?
 
--   This book uses some novel [conventions](/understanding-json-schema/conventions)
+-   This book uses some novel [conventions](../understanding-json-schema/conventions)
     for showing schema examples and relating JSON Schema to your
     programming language of choice.
--   If you\'re not sure what a schema is, check out [What is a schema?](/understanding-json-schema/about).
--   [The basics](/understanding-json-schema/basics) chapter should be enough to get you started
-    with understanding the core [JSON Schema Reference](/understanding-json-schema/references).
+-   If you\'re not sure what a schema is, check out [What is a schema?](../understanding-json-schema/about).
+-   [The basics](../understanding-json-schema/basics) chapter should be enough to get you started
+    with understanding the core [JSON Schema Reference](../understanding-json-schema/reference).
 -   When you start developing large schemas with many nested and
-    repeated sections, check out [Structuring a complex schema](/understanding-json-schema/structuring).
+    repeated sections, check out [Structuring a complex schema](../understanding-json-schema/structuring).
 -   [json-schema.org](http://json-schema.org) has a number of resources,
     including the official specification and tools for working with JSON
     Schema from various programming languages.
@@ -40,6 +40,9 @@ in the text.
     documents. These can be very handy if you want to try things out
     without installing any software.
 
-There is also a [print version of this document](/UnderstandingJSONSchema.pdf).
 
-[Credits](/understanding-json-schema/credits)
+`© Copyright 2013-2016 Michael Droettboom, Space Telescope Science Institute;`<br />
+`© 2016-2018 Michael Droettboom;`<br/>
+`© 2018-2023 JSON Schema project.`
+
+[Credits](../understanding-json-schema/credits)
