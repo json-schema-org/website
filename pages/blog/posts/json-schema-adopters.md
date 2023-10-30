@@ -24,7 +24,7 @@ When you explore the Adopters list, you'll uncover how organizations use JSON Sc
 Adding your organization to the JSON Schema Adopters list demonstrates your commitment to supporting the JSON Schema Ecosystem and encouraging others to do the same. Additionally, adding your organization to this list provides valuable feedback to the JSON Schema team, helping them to improve the project's adoption and impact.
 
 By joining the list, you play an active role in the growth and sustainability of the JSON Schema Ecosystem.
-It's a small contribution to the project with a big impact to encourage and grow the JSON Schema adoption.
+It's a small contribution to the project with a big impact to encourage and grow JSON Schema adoption.
 
 **This is the Open Source way:** Learn from others and give back to the community! ❤️
 
