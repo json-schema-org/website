@@ -265,7 +265,7 @@ This schema represents electronic devices with a `deviceType` property that dete
 
 ```json
 {
-  "deviceType": "Smartphone",
+  "deviceType": "smartphone",
   "brand": "Samsung",
   "model": "Galaxy S21",
   "screenSize": 6.2
