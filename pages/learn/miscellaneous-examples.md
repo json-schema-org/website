@@ -3,10 +3,9 @@ section: docs
 title: Miscellaneous Examples
 ---
 
-In this page, you will find examples illustrating different uses cases to help you get the most out of your JSON Schemas, including:
+In this page, you will find miscellaneous examples illustrating different uses cases to help you get the most out of your JSON Schemas. Each example comes with accompanying JSON data and explanation.
 
 - [A typical minimum schema](#basic)
-- [Describing geographical coordinates](#describing-geographical-coordinates)
 - [Arrays of things](#arrays-of-things)
 - [Enumerated values](#enumerated-values)
 - [Regular expression pattern](#regular-expression-pattern)
@@ -64,49 +63,6 @@ This example provides a typical minimum you are likely to see in JSON Schema. It
 ```
 
 In the data example, we provide values for the `firstName`, `lastName`, and `age` properties. The values match the defined schema, where `firstName` is a string, `lastName` is a string, and `age` is an integer greater than or equal to zero.
-
-
-## Describing geographical coordinates
-
-In this schema, we define an object representing geographical coordinates. This example also introduces the following keywords:
-
-* [`required`](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.5.3) validation keyword
-* [`minimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.2.4) validation keyword
-* [`maximum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#rfc.section.6.2.2) validation keyword
-
-```json
-{
-  "$id": "https://example.com/geographical-location.schema.json",
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Longitude and Latitude Values",
-  "description": "A geographical coordinate.",
-  "required": [ "latitude", "longitude" ],
-  "type": "object",
-  "properties": {
-    "latitude": {
-      "type": "number",
-      "minimum": -90,
-      "maximum": 90
-    },
-    "longitude": {
-      "type": "number",
-      "minimum": -180,
-      "maximum": 180
-    }
-  }
-}
-```
-
-**Data**
-
-```json
-{
-  "latitude": 48.858093,
-  "longitude": 2.294694
-}
-```
-
-The provided data contains the latitude and longitude values, both falling within the specified minimum and maximum ranges.
 
 
 ## Arrays of things
