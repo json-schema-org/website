@@ -1,0 +1,4 @@
+/draft*/*/schema
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
