@@ -63,6 +63,76 @@ analogous types in Ruby:
 [#3] JSON does not have separate types for integer and
 floating-point.
 
+[tab "Perl"]
+
+The following table maps from the names of JSON types to
+their analogous types in Objective-C:
+
+| JSON | Perl |
+| --- | --- |
+| string | scalar (SV) |
+| number | scalar (NV or IV), or Math::BigNum, Math::BigInt |
+| object | reftype=HASH |
+| array | reftype=ARRAY |
+| boolean | scalar or JSON::PP::Boolean |
+| null | scalar (`undef`) |
+
+[tab "Objective-C"]
+
+The following table maps from the names of JavaScript types to
+their analogous types in Objective-C:
+
++----------+--------------------------+
+|JSON      |Objective-C               |
++----------+--------------------------+
+|string    |NSString                  |
++----------+--------------------------+
+|number    |NSNumber                  |
++----------+--------------------------+
+|object    |NSDictionary              |
++----------+--------------------------+
+|array     |NSArray                   |
++----------+--------------------------+
+|boolean   |NSNumber                  |
+|          |[#4]_                     |
++----------+--------------------------+
+|null      |NSNull                    |
++----------+--------------------------+
+
+#### Footnotes
+
+[#4] `NSJSONSerialization` represents JavaScript numbers and booleans
+as `NSNumber`. To distinguish them, we need to check an `NSNumber`
+value for identity (pointer equality) to `@YES` and `@NO` constants.
+
+[tab "Swift"]
+
+The following table maps from the names of JavaScript types to
+their analogous types in Swift:
+
++----------+----------------------+
+|JSON      |Swift                 |
++----------+----------------------+
+|string    |String                |
++----------+----------------------+
+|number    |Int/Double            |
+|          |[#5]_                 |
++----------+----------------------+
+|object    |Dictionary            |
++----------+----------------------+
+|array     |Array                 |
++----------+----------------------+
+|boolean   |Bool                  |
++----------+----------------------+
+|null      |Optional              |
++----------+----------------------+
+
+#### Footnotes
+
+[#5] While JavaScript does not have separate types for integer and
+floating-point, Swift ``JSONDecoder`` throws an error on attempt
+to decode ``Int`` from a non-integer number in JSON.
+
 [tabs-end]
 
 The `type` keyword may either be a string or an array:

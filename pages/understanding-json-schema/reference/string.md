@@ -13,6 +13,12 @@ In Python, "string" is analogous to the `unicode` type on Python
 [tab "Ruby"]
 In Ruby, "string" is analogous to the String type.
 
+[tab "Objective-C"]
+In Objective-C, "string" is analogous to the ``NSString`` type.
+
+[tab "Swift"]
+In Swift, "string" is analogous to the ``String`` type.
+
 [tabs-end]
 
 ```json

@@ -15,6 +15,12 @@ In Python, `null` is analogous to `None`.
 [tab "Ruby"]
 In Ruby, `null` is analogous to `nil`.
 
+[tab "Objective-C"]
+In Objective-C, `null` is analogous to `nil`.
+
+[tab "Swift"]
+In Swift, `null` is analogous to `nil`.
+
 [tabs-end]
 
 ```json

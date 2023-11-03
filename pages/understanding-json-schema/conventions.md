@@ -30,6 +30,11 @@ In Python, JSON can be read using the json module in the standard library.
 In Ruby, JSON can be read using the json gem.
 [tab "C"]
 For C, you may want to consider using [Jansson](http://www.digip.org/jansson/) to read and write JSON.
+[tab "Objective-C"]
+In Objective-C, JSON can be read using the `NSJSONSerialization` class.
+[tab "Swift"]
+In Swift, JSON can be read using the `JSONDecoder` class.
+
 [tabs-end]
 
 ## Draft-specific notes

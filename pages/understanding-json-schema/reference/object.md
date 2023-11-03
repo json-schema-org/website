@@ -34,6 +34,12 @@ Ruby uses the word `Object` to mean the generic base class for
 everything, whereas in JSON it is used only to mean a mapping from
 string keys to values.
 
+[tab "Objective-C"]
+In Objective-C, "objects" are analogous to the `NSDictionary` type.
+
+[tab "Swift"]
+In Swift, "objects" are analogous to the `Dictionary` type.
+
 [tabs-end]
 
 ```json
