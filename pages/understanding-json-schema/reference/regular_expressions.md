@@ -18,7 +18,9 @@ described below.
 -   `.`: Matches any character except line break characters. (Be aware
     that what constitutes a line break character is somewhat dependent
     on your platform and language environment, but in practice this
-    rarely matters).
+    rarely matters). To include newlines use the ``(.|\r?\n)*`` pattern
+    which avoids the use of regex flags/modifiers and has good support
+    across regex libraries.
 -   `^`: Matches only at the beginning of the string.
 -   `$`: Matches only at the end of the string.
 -   `(...)`: Group a series of regular expressions into a single regular
@@ -46,6 +48,8 @@ described below.
 -   `{x,}`: Match `x` occurrences or more of the preceding regular
     expression.
 -   `{x}?`, `{x,y}?`, `{x,}?`: Lazy versions of the above expressions.
+-   Use only standard escapes like ``\n``, ``\r``, ``\t`` and keep 
+    in mind that you also need to do JSON escaping.
 
 Example
 -------
@@ -75,4 +79,20 @@ with an optional area code:
 ```json
 // props { "indent": true, "valid": false }
 "(800)FLOWERS"
+```
+
+The following example checks that the string starts with `{{` and ends with `}}`
+and that it also allows multiline strings.
+
+```json
+   {
+      "type": "string",
+      "pattern": "^\\{\\{(.|[\\r\\n])*\\}\\}$",
+   }
+```
+```json
+   "{{ foo\nbar }}"
+```
+```json
+   "{ foo }"
 ```
