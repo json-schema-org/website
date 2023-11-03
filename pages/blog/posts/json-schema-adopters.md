@@ -1,6 +1,6 @@
 ---
 title: "Introducing the JSON Schema Adopters"
-date: "2023-10-26"
+date: "2023-11-07"
 tags:
   - News
 type: Community
