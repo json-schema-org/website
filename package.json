@@ -14,7 +14,7 @@
     "ts": "tsc --noEmit"
   },
   "engines": {
-    "node": "16.0.0"
+    "node": "^18.0.0"
   },
   "dependencies": {
     "@docsearch/react": "3.3.3",
