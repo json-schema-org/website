@@ -9,7 +9,7 @@ cover: /img/posts/2022/fixing-json-schema-output/cover.webp
 authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
-    twitter: gregsdennis
+    link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @Postman
 excerpt: "I have a problem: when I read GitHub issues, they occasionally resonate with me, and I obsess about them until they're resolved.  That may not sound like a problem to some, but when that resolution causes JSON Schema implementation developers to ask fundamental design questions for three years... yeah, that's a problem."
 ---

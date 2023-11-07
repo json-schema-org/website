@@ -8,7 +8,7 @@ cover: /img/posts/2023/custom-annotations-will-continue/cover.webp
 authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
-    link: https://twitter.com/gregsdennis
+    link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @Postman
 excerpt: "Custom annotations are one of JSON Schemas most-used features.  Here's how we're still supporting them."
 ---

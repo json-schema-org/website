@@ -9,7 +9,7 @@ cover: /img/posts/2023/modelling-inheritance/cover.webp
 authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
-    link: https://twitter.com/gregsdennis
+    link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @ Postman
 excerpt: Can it be done?  Well, sort of.
 ---

@@ -9,7 +9,7 @@ cover: /img/posts/2023/schema-static-analysis/cover.webp
 authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
-    link: https://twitter.com/gregsdennis
+    link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @Postman
 excerpt: What can we know about a schema without having an instance to evaluate?
 ---
