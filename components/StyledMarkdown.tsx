@@ -151,9 +151,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             a: {
               component: ({ children, href, title }) => {
                 if (!href) return children
-                const link = href.charAt(0) === '/' ? <Link as={href} href='/'>
-                  <a title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
-                </Link> : <a href={href} title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
+                const link = href.charAt(0) === '/' ? <Link as={href} href='/' title={title} className='text-blue-500 hover:text-blue-600'>{children}</Link> : <a href={href} title={title} className='text-blue-500 hover:text-blue-600'>{children}</a>
 
                 return <>
                   {link}

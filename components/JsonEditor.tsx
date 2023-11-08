@@ -205,7 +205,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
           }
         </div>
         <Editable
-          disabled={true}
+          readOnly={true}
           decorate={([node, path]) => {
             if (!Text.isText(node)) return []
             const stringPath = path.join(',')
