@@ -192,7 +192,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
   return (
     <Slate
       editor={editor}
-      value={value as Descendant[]}
+      initialValue={value as Descendant[]}
       onChange={e => setValue(e)}
     >
       <div className={classnames('relative font-mono bg-slate-800 border rounded-xl mt-1 overflow-hidden shadow-lg', {
