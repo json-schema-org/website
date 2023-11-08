@@ -29,7 +29,7 @@ This repository contains the sources of JSON Schema website:
 #### Requirements
 Use the following tools to set up the project:
 
-Node.js v16.0.0+
+Node.js 20.0.9+
 npm v7.10.0+
 
 #### Cloning the repository
