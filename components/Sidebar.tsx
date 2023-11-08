@@ -15,14 +15,11 @@ const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode 
   const stringUrl = url.toString().substr(HOST.length, Infinity)
   const isActive = uri === stringUrl
   return (
-    <Link href={uri}>
-      <a
-        className={classnames('text-sm block border-l-2 py-1 pl-2', {
-          '  font-medium': !isActive,
-          'text-primary text-bold border-l-primary font-semibold': isActive,
-        })}
-      >{label}</a>
-    </Link>
+    <Link href={uri} className={classnames('text-sm block border-l-2 py-1 pl-2', {
+      '  font-medium': !isActive,
+      'text-primary text-bold border-l-primary font-semibold': isActive,
+    })}
+    >{label}</Link>
   )
 }
 
@@ -34,14 +31,11 @@ const DocLinkBlank = ({ uri, label }: { uri: string, label: string | React.React
   const stringUrl = url.toString().substr(HOST.length, Infinity)
   const isActive = uri === stringUrl
   return (
-    <Link href={uri}>
-      <a
-        className={classnames('text-sm block border-l-2 py-1 pl-2', {
-          '  font-medium': !isActive,
-          'text-primary text-bold border-l-primary font-semibold': isActive,
-        })}
-        target='_blank' rel='noopener noreferrer'>{label}</a>
-    </Link>
+    <Link href={uri} className={classnames('text-sm block border-l-2 py-1 pl-2', {
+      '  font-medium': !isActive,
+      'text-primary text-bold border-l-primary font-semibold': isActive,
+    })}
+    target='_blank' rel='noopener noreferrer'>{label}</Link>
   )
 }
 

@@ -152,63 +152,61 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                   <div
                     className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden'
                   >
-                    <Link href={`/blog/posts/${blogPost.slug}`}>
-                      <a className='inline-flex flex-col flex-1 w-full'>
-                        <div
-                          className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                          style={{ backgroundImage: `url(${frontmatter.cover})` }}
-                        />
-                        <div className=' p-4 flex flex-col flex-1 justify-between'>
+                    <Link href={`/blog/posts/${blogPost.slug}`} className='inline-flex flex-col flex-1 w-full'>
+                      <div
+                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
+                        style={{ backgroundImage: `url(${frontmatter.cover})` }}
+                      />
+                      <div className=' p-4 flex flex-col flex-1 justify-between'>
+                        <div>
                           <div>
-                            <div>
-                              <div
-                                className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
-                                onClick={(e) => {
-                                  e.preventDefault()
-                                  e.stopPropagation()
-                                  setParam('type', frontmatter.type)
-                                }}
-                              >
-                                {frontmatter.type}
-                              </div>
-                            </div>
-                            <div className='text-lg font-semibold'>
-                              {frontmatter.title}
-                            </div>
-                            <div className='mt-3 mb-6 text-slate-500'>
-                              <TextTruncate element='span' line={4} text={frontmatter.excerpt} />
+                            <div
+                              className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                              onClick={(e) => {
+                                e.preventDefault()
+                                e.stopPropagation()
+                                setParam('type', frontmatter.type)
+                              }}
+                            >
+                              {frontmatter.type}
                             </div>
                           </div>
-                          <div className='flex flex-row items-center'>
-                            <div className='flex flex-row pl-2 mr-2'>
-                              {(frontmatter.authors || []).map((author: any, index: number) => {
-                                return (
-                                  <div
-                                    key={index}
-                                    className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                                    style={{ backgroundImage: `url(${author.photo})`, zIndex: 10 - index }}
-                                  />
-                                )
-                              })}
-                            </div>
-
-                            <div className='flex flex-col items-start'>
-                              <div className='text-sm font-semibold'>
-                                {(frontmatter.authors.map((author: any) => author.name).join(' & '))}
-                              </div>
-
-                              <div className='text-slate-500 text-sm'>
-                                {frontmatter.date && (
-                                  <span>
-                                    {date.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
-                                  </span>
-                                )} &middot; {timeToRead} min read
-                              </div>
-                            </div>
-
+                          <div className='text-lg font-semibold'>
+                            {frontmatter.title}
+                          </div>
+                          <div className='mt-3 mb-6 text-slate-500'>
+                            <TextTruncate element='span' line={4} text={frontmatter.excerpt} />
                           </div>
                         </div>
-                      </a>
+                        <div className='flex flex-row items-center'>
+                          <div className='flex flex-row pl-2 mr-2'>
+                            {(frontmatter.authors || []).map((author: any, index: number) => {
+                              return (
+                                <div
+                                  key={index}
+                                  className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                                  style={{ backgroundImage: `url(${author.photo})`, zIndex: 10 - index }}
+                                />
+                              )
+                            })}
+                          </div>
+
+                          <div className='flex flex-col items-start'>
+                            <div className='text-sm font-semibold'>
+                              {(frontmatter.authors.map((author: any) => author.name).join(' & '))}
+                            </div>
+
+                            <div className='text-slate-500 text-sm'>
+                              {frontmatter.date && (
+                                <span>
+                                  {date.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                </span>
+                              )} &middot; {timeToRead} min read
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
                     </Link>
                   </div>
                 </section>

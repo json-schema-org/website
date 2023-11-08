@@ -109,12 +109,10 @@ export const Search = () => {
 const MainNavLink = ({ uri, label, className, isActive }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   const router = useRouter()
   return (
-    <Link href={uri}>
-      <a className={classnames(className, 'font-semibold p-2 md:p-4', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
-      }`
-      )}
-      >{label}
-      </a>
+    <Link href={uri} className={classnames(className, 'font-semibold p-2 md:p-4', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
+    }`
+    )}
+    >{label}
     </Link>
   )
 }
@@ -292,10 +290,8 @@ const OpenJS = () => (
 )
 
 const Logo = () => (
-  <Link href='/' >
-    <a href='/' className=''>
-      <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
-    </a>
+  <Link href='/' className=''>
+    <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
   </Link>
 )
 
