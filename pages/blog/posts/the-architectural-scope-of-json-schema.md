@@ -9,7 +9,7 @@ cover: /img/posts/2022/the-architectural-scope-of-json-schema/cover.webp
 authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
-    twitter: gregsdennis
+    link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @ Postman
 excerpt: "What actually is JSON Schema?!"
 ---

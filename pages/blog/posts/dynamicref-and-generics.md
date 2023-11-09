@@ -8,7 +8,7 @@ cover: /img/posts/2022/dynamicref-and-generics/cover.webp
 authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
-    twitter: https://twitter.com/gregsdennis
+    link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @Postman
 excerpt: "A step in the right direction for modelling data with JSON Schema"
 ---

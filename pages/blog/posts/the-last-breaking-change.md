@@ -8,7 +8,7 @@ cover: /img/posts/2022/the-last-breaking-change/cover.webp
 authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
-    link: https://twitter.com/gregsdennis
+    link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @Postman
 excerpt: "We need to make a breaking change so that we can promise we won't again."
 ---

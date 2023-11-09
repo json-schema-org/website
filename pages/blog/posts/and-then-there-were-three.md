@@ -9,7 +9,7 @@ cover: /img/posts/2022/and-then-there-were-three/cover.webp
 authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
-    twitter: gregsdennis
+    link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @Postman
 excerpt: "More full-time contributors is better, right?"
 ---
