@@ -11,10 +11,10 @@ authors:
     photo: /img/avatars/gregsdennis.webp
     link: https://www.linkedin.com/in/gregdennis/
     byline: JSON Tooling Implementer, Specification & Tooling Architect @ Postman
-excerpt: How can successful validation output contain failure nodes?
+excerpt: Why does my passing validation contain errors?
 ---
 
-I've received a lot of questions (and purported bugs) and had quite a few discussions over the past few years regarding JSON Schema output, and by far the most common is, "How can successful validation output contain failure nodes?"
+I've received a lot of questions (and purported bugs) and had quite a few discussions over the past few years regarding JSON Schema output, and by far the most common is, "Why does my passing validation contain errors?"
 
 Let's dig in.
 
