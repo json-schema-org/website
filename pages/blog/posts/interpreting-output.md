@@ -1,6 +1,6 @@
 ---
 title: "Interpreting JSON Schema Output"
-date: 2023-10-08
+date: "2023-10-08"
 tags:
   - Questions
   - Output
