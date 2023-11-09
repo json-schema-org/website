@@ -338,6 +338,6 @@ JSON Schema output gives you all of the information that you need in order to kn
 
 If you have any questions, feel free to ask on our Slack workspace (link in the footer) or [open a discussion](https://github.com/orgs/json-schema-org/discussions).
 
-_All output was generated using my online evaluator https://json-everyting.net/json-schema._
+_All output was generated using my online evaluator https://json-everything.net/json-schema._
 
 _Cover image by [Tim Gouw](https://unsplash.com/@punttim) on [Unsplash](https://unsplash.com/photos/man-wearing-white-top-using-macbook-1K9T5YiZ2WU)_
