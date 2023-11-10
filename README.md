@@ -8,14 +8,16 @@
     <a href="https://github.com/json-schema-org/website/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22" alt="Good First JSON Schema issue">
       <img src="https://img.shields.io/github/issues/json-schema-org/website/good%20first%20issue.svg?color=%23DDDD00" />
     </a>
+    <a href="https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md" alt="Contributor Covenant">
+      <img src="https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg" />
+    </a> 
+    <a href="https://www.repostatus.org/#active" alt="Repo status">
+      <img src="https://www.repostatus.org/badges/latest/active.svg" />
+    </a> 
     <a href="https://json-schema.org/slack" alt="JSON Schema Slack">
       <img src="https://img.shields.io/badge/Slack-json--schema-@website.svg?logo=slack&color=yellow" />
-    </a>
-    <a href="https://github.com/json-schema-org/website" alt="JSON Schema License">
-      <img src="https://img.shields.io/github/license/json-schema-org/website.svg" />
-    </a>
+    </a>   
 </p>
-
 
 # 👋 Welcome to the JSON Schema website
 This repository contains the sources of JSON Schema website:
