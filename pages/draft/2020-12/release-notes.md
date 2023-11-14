@@ -413,7 +413,7 @@ embedded schemas using `$defs`. Here's what the bundled schema would look like.
     "name": { "type": "string" },
     "phone": { "$ref": "/schema/common#/$defs/phone" },
     "address": { "$ref": "/schema/address" }
-  }
+  },
 
   "$defs": {
     "https://example.com/schema/address": {
