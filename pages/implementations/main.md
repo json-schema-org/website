@@ -52,7 +52,7 @@ For example, the only incompatibilities between draft-04 and draft-06 involve `e
   -   [mashumaro](https://github.com/Fatal1ty/mashumaro) (Apache 2.0) - generates schemas from Python type annotations
   -   [drf-jsonschema-serializer](https://github.com/maykinmedia/drf-jsonschema-serializer) (BSD-3-Clause) - generates schemas from Django Rest Framework serializers
 -   Java
-  -   [jsonschema-generator](https://github.com/victools/jsonschema-generator) (Apache 2.0) - generates schemas from Java types *supports Draft 7 and Draft 2019-09*
+  -   [jsonschema-generator](https://github.com/victools/jsonschema-generator) (Apache 2.0) - generates schemas from Java types *supports Drafts 6, 7, 2019-09 and 2020-12*
 -   Scala
   -   [scala-jsonschema](https://github.com/andyglow/scala-jsonschema) (Apache 2.0) - generates schemad out of Scala case classes
 -   Ruby
