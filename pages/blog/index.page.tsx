@@ -85,9 +85,9 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               <div className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
                 {recentBlog[0].frontmatter.type}
               </div>
-              <div className='text-h1mobile md:text-h1 font-semibol text-stroke-1'>
+              <h1 className='text-h1mobile md:text-h1 font-semibol text-stroke-1'>
                 {recentBlog[0].frontmatter.title}
-              </div>
+              </h1>
               <div className='flex ml-2 mb-2 '>
                 <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                   style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
