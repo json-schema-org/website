@@ -70,7 +70,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16'>
+      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10'>
         {recentBlog[0] && (
           <div className='relative w-full lg:h-[50vh] lg:mt-6 clip-bottom'>
             <div className='-z-1'>
@@ -85,19 +85,19 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               <div className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
                 {recentBlog[0].frontmatter.type}
               </div>
-              <div className='text-h1mobile md:text-h1 font-semibold'>
+              <h1 className='text-h1mobile md:text-h1 font-semibol text-stroke-1'>
                 {recentBlog[0].frontmatter.title}
-              </div>
+              </h1>
               <div className='flex ml-2 mb-2 '>
                 <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                   style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
                 />
                 <div className='max-w-[1400px] mx-autoflex flex-col ml-2'>
-                  <p className='text-sm font-semibold'>{recentBlog[0].frontmatter.authors[0].name}</p>
-                  <div className=' text-sm'>
+                  <p className='text-sm font-semibold text-stroke-1'>{recentBlog[0].frontmatter.authors[0].name}</p>
+                  <div className=' text-sm  text-stroke-1'>
                     <span>
                       {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
-                    </span>
+                    </span> 
                   </div>
                 </div>
               </div>
@@ -105,7 +105,10 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
           </div>
         )}
         <div className='w-full flex justify-between items-center mx-auto px-2 sm:px-4 '>
-          <div className='flex items-center'><Headline1>Blog</Headline1> <p className='mt-8'>Filter blog post by category...</p></div>
+          <div className='flex items-center'><Headline1>Blog</Headline1></div>
+          <div className='text-center text-sm sm:mt-0 pt-3 sm:text-base'>
+            Want to publish a blog post? Check out the&nbsp;<a target='_blank' rel='noopener noreferrer' href='https://github.com/json-schema-org/community/blob/main/docs/blog-guidelines.md' className='underline'>guidelines</a>&nbsp;and submit yours!
+          </div>
           <div className='col-span-1'>
             <a
               href='/rss/feed.xml'
@@ -119,7 +122,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         {/* Filter Buttons */}
         <div className='w-full ml-8 flex flex-wrap justify-start'>{allTags.map((tag) => (
           <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</button>
-        ))}</div>
+        ))}<span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center'>Filter blog posts by category...</span></div>
 
         {/* filterTag === frontmatter.type &&  */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 '>

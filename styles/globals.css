@@ -22,6 +22,10 @@
   }
 }
 
+.text-stroke-1 {
+  text-shadow: black 0 0 1em;
+}
+
 html {
   font-family: 'Inter', sans-serif;
 }
