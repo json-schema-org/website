@@ -93,8 +93,8 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                   style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
                 />
                 <div className='max-w-[1400px] mx-autoflex flex-col ml-2'>
-                  <p className='text-sm font-semibold'>{recentBlog[0].frontmatter.authors[0].name}</p>
-                  <div className=' text-sm'>
+                  <p className='text-sm font-semibold text-stroke-1'>{recentBlog[0].frontmatter.authors[0].name}</p>
+                  <div className=' text-sm  text-stroke-1'>
                     <span>
                       {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
                     </span> 
