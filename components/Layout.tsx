@@ -59,7 +59,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
     loadCarbonAdsScript()
   }, [hideAds])
 
-  const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
+  const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`
   return (
     <div className='min-h-screen relative flex flex-col justify-between'>
       <FaviconHead />
