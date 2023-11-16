@@ -242,31 +242,35 @@ const Home = (props: any) => {
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
             <div className='w-full mb-6'>
-              <h3 className='mb-4 font-semibold flex items-center' >Join the JSON Schema Slack Workspace!<img src='/img/logos/Slack-mark.svg' className='w-8 h-8' /></h3>
-              <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
-              {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-              <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
+              <Link href='https://json-schema.org/slack'>
+                <h3 className='mb-4 font-semibold flex items-center' >Join the JSON Schema Slack Workspace!<img src='/img/logos/Slack-mark.svg' className='w-8 h-8' /></h3>
+                <img src='/img/home-page/slack-json-schema.png' className='w-full mb-4' />
+                {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
+                <p className='mb-4'>Join our Slack to ask questions, get feedback on your projects, and connect with +5000 practitioners and experts.</p>
+              </Link>
               <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white h-[40px] flex items-center justify-center'><a href='https://json-schema.org/slack' className='flex items-center'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />Join Slack</a></button>
             </div>
             {/* BlogPost Data */}
             <div className='w-full mb-6'>
-              <h3 className='mb-5 font-semibold pt-1' >The JSON Schema Blog</h3>
-              <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
-              <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
-              <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
-              <div className='flex ml-2 mb-2 '>
-                <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                  style={{ backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})` }}
-                />
-                <div className='flex flex-col ml-2'>
-                  <p className='text-sm font-semibold'>{blogPosts[0].frontmatter.authors[0].name}</p>
-                  <div className='text-slate-500 text-sm'>
-                    <span>
-                      {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
-                    </span>
+              <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+                <h3 className='mb-5 font-semibold pt-1' >The JSON Schema Blog</h3>
+                <img src={blogPosts[0].frontmatter.cover} className='w-full h-[232px]  mb-4' />
+                <h3 className='mb-4 font-semibold' > {blogPosts[0].frontmatter.title}</h3>
+                <div className='mb-4'><TextTruncate element='span' line={4} text={blogPosts[0].frontmatter.excerpt} /></div>
+                <div className='flex ml-2 mb-2 '>
+                  <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                    style={{ backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})` }}
+                  />
+                  <div className='flex flex-col ml-2'>
+                    <p className='text-sm font-semibold'>{blogPosts[0].frontmatter.authors[0].name}</p>
+                    <div className='text-slate-500 text-sm'>
+                      <span>
+                        {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
               <div >
                 <Link href={`/blog/posts/${blogPosts[0].slug}`} className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold flex items-center justify-center'>Read more </Link>
               </div>

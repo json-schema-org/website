@@ -12,10 +12,11 @@ export async function getStaticPaths() { return getStaticMarkdownPaths('pages/un
 export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/understanding-json-schema/reference') }
 
 export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
+  const newTitle = 'JSON Schema - ' + frontmatter.title
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
       <Head>
-        <title>JSON Schema - {frontmatter.title}</title>
+        <title>{newTitle}</title>
       </Head>
       <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
       <StyledMarkdown markdown={content} />

@@ -59,11 +59,12 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
     loadCarbonAdsScript()
   }, [hideAds])
 
+  const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`
   return (
     <div className='min-h-screen relative flex flex-col justify-between'>
       <FaviconHead />
       <Head>
-        <title>JSON Schema {metaTitle ? ` - ${metaTitle}` : ''}</title>
+        <title>{newTitle}</title>
         <meta name='description' content='JSON Schema' />
         <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'></meta>
       </Head>
