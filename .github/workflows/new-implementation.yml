@@ -1,6 +1,10 @@
 name: New Implementation Commenter
 on:
-  pull_request:
+  # Careful! Do not modify this workflow to run untrusted code!
+  # It runs even when the base is a forked repository.
+  # As-is, this is intended behavior (to properly show the comment).
+  # See the warning here: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#pull_request_target
+  pull_request_target:
     types:
       - opened
     branches:
