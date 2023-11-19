@@ -79,27 +79,28 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                 alt='hero image example'
               />
             </div>
-
             <div className='absolute text-white left-8 bottom-8'>
-              <div className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
+              <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
                 {recentBlog[0].frontmatter.type}
               </div>
-              <h1 className='text-h1mobile md:text-h1 font-semibol text-stroke-1'>
-                {recentBlog[0].frontmatter.title}
-              </h1>
-              <div className='flex ml-2 mb-2 '>
-                <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                  style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
-                />
-                <div className='max-w-[1400px] mx-autoflex flex-col ml-2'>
-                  <p className='text-sm font-semibold text-stroke-1'>{recentBlog[0].frontmatter.authors[0].name}</p>
-                  <div className=' text-sm  text-stroke-1'>
-                    <span>
-                      {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
-                    </span> 
+              <Link href={`/blog/posts/${recentBlog[0].slug}`}>
+                <h1 className='text-h1mobile md:text-h1 font-semibol text-stroke-1'>
+                  {recentBlog[0].frontmatter.title}
+                </h1>
+                <div className='flex ml-2 mb-2 '>
+                  <div className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                    style={{ backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})` }}
+                  />
+                  <div className='max-w-[1400px] mx-autoflex flex-col ml-2'>
+                    <p className='text-sm font-semibold text-stroke-1'>{recentBlog[0].frontmatter.authors[0].name}</p>
+                    <div className=' text-sm  text-stroke-1'>
+                      <span>
+                        {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
+                      </span> 
+                    </div>
                   </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
         )}
