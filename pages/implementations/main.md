@@ -9,6 +9,9 @@ Benchmarks that compare at least two implementations supporting draft-06+ may be
 -   PHP
   -   [php-json-schema-bench](https://github.com/swaggest/php-json-schema-bench) - comparative benchmark for JSON-schema PHP validators using JSON-Schema Test Suite and z-schema/JSCK (MIT)
 
+-   JVM (Java, Kotlin, Scala)
+  -   [json-schema-validation-comparison](https://www.creekservice.org/json-schema-validation-comparison/) - an independent functional and performance comparison of JVM-based validator implementations using JSON-Schema Test Suite and more (MIT)
+
 ### API documentation
 
 -   JavaScript
