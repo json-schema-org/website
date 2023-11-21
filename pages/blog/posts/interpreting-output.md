@@ -128,7 +128,7 @@ For this post, I'm going to focus on the conditional schema below, but the same 
 ```json
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://json-schema.org/blog/interpreting-output/exmaple2",
+  "$id": "https://json-schema.org/blog/interpreting-output/example2",
   "type": "object",
   "properties": {
     "foo": { "type": "boolean" }
@@ -136,7 +136,7 @@ For this post, I'm going to focus on the conditional schema below, but the same 
   "required": ["foo"],
   "if": {
     "properties": {
-      "foo": { "const": "true" }
+      "foo": { "const": true }
     }
   },
   "then": { "required": ["bar"] },
@@ -188,7 +188,7 @@ However, looking at the validation output for the second instance (below), we no
           "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#/if/properties/foo",
           "instanceLocation": "/foo",
           "errors": {
-            "const": "Expected \"\\\"true\\\"\""
+            "const": "Expected \"true\""
           }
         }
       ]
@@ -291,7 +291,7 @@ Here's the output from the conditional schema in _List_ format:
     {
       "valid": true,
       "evaluationPath": "",
-      "schemaLocation": "https://json-schema.org/blog/interpreting-output/exmaple2#",
+      "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#",
       "instanceLocation": "",
       "annotations": {
         "properties": [
@@ -302,28 +302,28 @@ Here's the output from the conditional schema in _List_ format:
     {
       "valid": true,
       "evaluationPath": "/properties/foo",
-      "schemaLocation": "https://json-schema.org/blog/interpreting-output/exmaple2#/properties/foo",
+      "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#/properties/foo",
       "instanceLocation": "/foo"
     },
     {
       "valid": false,
       "evaluationPath": "/if",
-      "schemaLocation": "https://json-schema.org/blog/interpreting-output/exmaple2#/if",
+      "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#/if",
       "instanceLocation": ""
     },
     {
       "valid": true,
       "evaluationPath": "/else",
-      "schemaLocation": "https://json-schema.org/blog/interpreting-output/exmaple2#/else",
+      "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#/else",
       "instanceLocation": ""
     },
     {
       "valid": false,
       "evaluationPath": "/if/properties/foo",
-      "schemaLocation": "https://json-schema.org/blog/interpreting-output/exmaple2#/if/properties/foo",
+      "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#/if/properties/foo",
       "instanceLocation": "/foo",
       "errors": {
-        "const": "Expected \"\\\"true\\\"\""
+        "const": "Expected \"true\""
       }
     }
   ]
