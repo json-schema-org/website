@@ -1,8 +1,7 @@
 name: Documentation
 description: Propose changes and improvements to JSON Schema Docs.
-labels: "documentation"
+labels: ["documentation"]
 title: "[📑 Docs]: "
-  - 
 body:
   - type: markdown
     attributes:
