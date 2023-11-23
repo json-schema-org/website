@@ -134,5 +134,5 @@ Become a financial contributor and help us sustain our community. [[Contribute](
 This document has been inspired by [AsyncAPI website README.md](https://github.com/asyncapi/website/blob/master/README.md).
 
 ## License
-The contents of this repository are [licensed under](./LICENSE) either the BSD 3-clause license *or* the Academic Free License v3.0.
+The contents of this repository are [licensed under](./LICENSE) the Academic Free License v3.0.
 
