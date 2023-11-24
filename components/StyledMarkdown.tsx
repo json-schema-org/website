@@ -174,7 +174,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             li: {
               component: ({ children }) => (
-                <li className='mt-1 leading-7'>
+                <li className='mt-1 leading-7 text-slate-600'>
                   {children}
                 </li>
               )
