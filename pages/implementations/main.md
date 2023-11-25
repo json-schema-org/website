@@ -236,6 +236,10 @@ the utility, and decided on a case-by-case basis.
 - [oXygen JSON Schema Documentation](https://www.oxygenxml.com/json_converter.html#generate-json-schema-documentation) - Generate JSON Schema documentation in HTML format including diagrams.
 - [wetzel](https://github.com/CesiumGS/wetzel) - Generates Markdown and AsciiDoc. With some limitations, supports draft-3, draft-4, draft-7, and 2020-12.
 
+### Linters
+
+- [remark-lint-frontmatter-schema](https://github.com/JulianCataldo/remark-lint-frontmatter-schema) - Validate **Markdown** frontmatter **YAML** against an associated **JSON schema** with this **remark-lint** rule plugin.
+
 ## Schema Repositories
 
 -   [SchemaStore.org](https://schemastore.org/json/) - validate against common JSON Schemas
