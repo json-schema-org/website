@@ -12,7 +12,7 @@ export default async function getStaticMarkdownProps(props: Props, path: string)
   let fileName = null
   const stats = fs.lstatSync(fileName2)
 
-  if (stats.isSymbolicLink()){
+  if (stats.isSymbolicLink()) {
     fileName2 = fs.readlinkSync(fileName2, 'utf-8')
   }
 
