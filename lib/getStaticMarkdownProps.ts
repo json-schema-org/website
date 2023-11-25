@@ -8,20 +8,18 @@ type Props = { params?: { slug: string }}
 export default async function getStaticMarkdownProps(props: Props, path: string) {
   const slug = props.params?.slug || '_index'
   
-  const fileName2 = `${path}/${slug}.md`
-  const stats = fs.lstatSync(fileName2)
+  var fileName2 = `${path}/${slug}.md`
   var fileName = null
+  const stats = fs.lstatSync(fileName2)
 
   if (stats.isSymbolicLink()){
-    fileName = fs.readFileSync(fileName2, 'utf-8')
-
-  } else {
-    fileName = fs.readFileSync(fileName2, 'utf-8')
+    fileName2 = fs.readlinkSync(fileName2, 'utf-8')
   }
 
-  const { data: frontmatter, content } = matter(fileName)
+  fileName = fs.readFileSync(fileName2, 'utf-8')
 
-  console.log("Conten Data: " + content)
+
+  const { data: frontmatter, content } = matter(fileName)
 
   return {
     props: {
