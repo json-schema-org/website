@@ -12,28 +12,27 @@ import Head from 'next/head'
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/overview/sponsors.md', 'utf-8')
 
-  const { data: frontmatter, content } = matter(block1)
-
+  const { content: block1Content } = matter(block1)
   return {
     props: {
-      frontmatter,
-      content,
+      blocks: [block1Content]
     }
   }
 }
 
-export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
-  const newTitle = 'JSON Schema - ' + frontmatter.title
+export default function ContentExample ({ blocks }: { blocks: any[] }) {
+  
+  const newTitle = 'Sponsors'
 
   return (
-    <SectionContext.Provider value={frontmatter.section || null}>
+    <SectionContext.Provider value='overview'>
       <Head>
         <title>{newTitle}</title>
       </Head>
-      <Headline1>{frontmatter.title}</Headline1>
-      <StyledMarkdown markdown={content} />
+      <Headline1>{newTitle}</Headline1>
+      <StyledMarkdown markdown={blocks[0]} />
       <DocsHelp />
     </SectionContext.Provider>
   )
 }
-StaticMarkdownPage.getLayout = getLayout
+ContentExample.getLayout = getLayout
