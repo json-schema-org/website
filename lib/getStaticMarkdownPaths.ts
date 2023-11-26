@@ -6,7 +6,7 @@ export default async function getStaticMarkdownPaths(path: string) {
     .filter(file => {
       const isMarkdownFile = file.substr(-3) === '.md'
       const isProtected = ['_'].includes(file.substr(0, 1))
-      const isSymlink = fs.lstatSync(path+'/'+file).isSymbolicLink()
+      const isSymlink = fs.lstatSync(path + '/' + file).isSymbolicLink()
       return isMarkdownFile && !isProtected && !isSymlink
     })
     .map((fileName) => ({
