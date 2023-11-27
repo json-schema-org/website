@@ -5,7 +5,7 @@ import Head from 'next/head'
 import { Headline1 } from '~/components/Headlines'
 import matter from 'gray-matter'
 import StyledMarkdown from '~/components/StyledMarkdown'
-import { Remember } from '~/components/Remember'
+import { DocsHelp } from '~/components/DocsHelp'
 import { SectionContext } from '~/context'
 
 export async function getStaticProps() {
@@ -28,7 +28,7 @@ export default function ContentExample ({ blocks }: { blocks: any[] }) {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
-      <Remember />
+      <DocsHelp />
     </SectionContext.Provider>
   )
 }
