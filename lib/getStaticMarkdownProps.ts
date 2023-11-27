@@ -1,10 +1,7 @@
 import fs from 'fs'
 import matter from 'gray-matter'
-import pathd from 'path'
 
 type Props = { params?: { slug: string }}
-
-
 
 export default async function getStaticMarkdownProps(props: Props, path: string) {
   const slug = props.params?.slug || '_index'
