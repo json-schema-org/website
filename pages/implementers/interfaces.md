@@ -121,6 +121,14 @@ In some sense, two argument validation is the simplest possible API for JSON Sch
 An API which attempts to prepare a schema for repeated use.
 It may (and likely will) perform some form of preoptimization, performing some set of work ahead of time such that it will not be necessary to repeat when validating many instances.
 
+### Subschema Validation
+
+**Type**: `Schema` × `String` × `Instance` → `Result`
+
+An API which supports validating an instance against a *subschema* contained within the given schema.
+
+The subschema is typically identified via a JSON Pointer, or equivalent syntax, and is as opposed to validation using a new schema referencing the subschema via the `$ref` keyword.
+
 ## Annotation Collection
 
 **Type**: `EvaluationOptions` → `ResultWithAnnotations`
@@ -162,9 +170,29 @@ An API which directly validates instances using schemas where both are represent
 
 An API which validates instances using schemas where both have been deserialized into language-level objects, or potentially built up programmatically directly as language-level objects.
 
-## Format Assertion Enablement
+## `format` Validation
+
+### Format Assertion Enablement
 
 An API which configures the behavior of the `format` keyword, in dialects where this behavior is not solely controlled by JSON Schema vocabulary enablement.
+
+### Format Registration
+
+**Type**: `String` × (`Instance` → Boolean)` → `EvaluationOptions`
+
+An API which allows registering a *new* format and its implementation for use with the `format` keyword, typically when it is used to [assert](#format-assertion-enablement).
+
+Some implementations may further allow registering different sets of available formats for different dialects.
+
+### Format Querying
+
+An API which queries or lists the set of available formats which have been [registered](#format-registration).
+
+### Direct Format Validation
+
+**Type**: `String` × `Instance` → `Boolean`
+
+An API which allows directly checking whether a JSON-like value satisfies a specific format, without the presence of a schema.
 
 ## Schema Registry Population
 
