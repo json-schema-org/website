@@ -34,3 +34,6 @@
 	path = _includes/draft/2020-12
 	url = https://github.com/json-schema-org/json-schema-spec.git
 	branch = 2020-12
+[submodule "_includes/community"]
+	path = _includes/community
+	url = https://github.com/json-schema-org/community.git

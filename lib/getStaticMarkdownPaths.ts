@@ -6,7 +6,7 @@ export default async function getStaticMarkdownPaths(path: string) {
     .filter(file => {
       const isMarkdownFile = file.substr(-3) === '.md'
       const isProtected = ['_'].includes(file.substr(0, 1))
-      return isMarkdownFile && !isProtected
+      return isMarkdownFile && !isProtected 
     })
     .map((fileName) => ({
       params: {
