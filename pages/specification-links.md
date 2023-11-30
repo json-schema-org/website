@@ -300,7 +300,7 @@ For links to the somewhat more readably formatted versions on this web site, and
 
 - Specifications
     - Core: [draft-bhutton-json-schema-01](../../draft/2020-12/draft-bhutton-json-schema-01.html) ([changes](../../draft/2020-12/draft-bhutton-json-schema-01.html#appendix-G))
-    - Validation: [draft-bhutton-json-schema-validation-01](/draft/2020-12/draft-bhutton-json-schema-validation-01.html) ([changes](/draft/2020-12/draft-bhutton-json-schema-validation-01.html#appendix-C))
+    - Validation: [draft-bhutton-json-schema-validation-01](../../draft/2020-12/draft-bhutton-json-schema-validation-01.html) ([changes](/draft/2020-12/draft-bhutton-json-schema-validation-01.html#appendix-C))
     - Relative JSON Pointer: [draft-bhutton-relative-json-pointer-00](https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00) ([changes](https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00#appendix-A))
 - General use meta-schemas
     - [JSON Schema meta-schema](../../draft/2020-12/schema)
