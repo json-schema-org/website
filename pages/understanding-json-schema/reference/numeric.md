@@ -99,7 +99,7 @@ Exponential notation also works:
 Numbers as strings are rejected:
 
 ```json
-// props { "indent": true, "valid": true }
+// props { "indent": true, "valid": false }
 "42"
 ```
 
