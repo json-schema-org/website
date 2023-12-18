@@ -43,7 +43,7 @@ It has been great having the chance to connect with JSON Schema practitioners in
 At JSON Schema, we need sponsors to help us deliver our Roadmap, and this event enabled some great opportunities that hopefully will turn into future sponsorships.
 
 ## Learning from the AsyncAPI and the OpenAPI conference tracks
-At JSON Schema, we have been discussing organizing a JSON Schema conference, but doing it alone will require a lot of resources and some years to get its own status. Instead, we returned inspired by great OpenAPI and AsyncAPI tracks, which we think is our path forward!. We'd love to host our own track in the future!
+At JSON Schema, we have been discussing organizing a JSON Schema conference, but doing it alone will require a lot of resources and some years to get its own status. Instead, we returned inspired by great OpenAPI and AsyncAPI tracks, which we think is our path forward! We'd love to host our own track in the future!
 
 ## We hope to see you next year!
 We'd like to thank AsyncAPI, OpenAPI and most important the API Days Team for its generosity having us in the Conference and we hope to repeat in the future!
