@@ -1,0 +1,47 @@
+# Dialect Schemas
+/draft/:draft/*schema
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
+
+# Vocabulary Schemas
+/draft/:draft/meta/*
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
+
+# Links Schemas
+/draft/:draft/links
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
+
+# Output Schemas
+/draft/:draft/output/*schema
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
+
+# Older Meta-Schemas
+/draft-:draft/*schema
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
+
+# Older Links Schemas
+/draft-:draft/links
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
+
+# Older Ouput Schemas
+/draft-07/hyper-schema-output
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
+
+# JSON Reference Schemas
+/draft-:draft/json-ref
+  Access-Control-Allow-Origin: *
+  Content-Type: application/schema+json
+  Cache-Control: public, max-age=31536000, immutable
