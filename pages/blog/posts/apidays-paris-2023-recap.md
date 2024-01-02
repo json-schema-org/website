@@ -33,14 +33,18 @@ In today's intricate digital landscape, APIs have emerged as powerful conduits f
 * **Sustainability**: Let's explore the sustainable development, deployment, and management of software solutions to grasp the importance of eco-friendly digital infrastructures, ethical AI, and the long-term impact of our digital choices.
 
 ## Connecting with JSON Schema and API practitioners
-It has been great having the chance to connect with JSON Schema practitioners in person. We received great feedback and created great connections to follow up with.
+It has been great having the chance to connect with JSON Schema practitioners in person. We received lots of feedback, we discussed about challenges and use cases and we created great connections with amazing people.
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='max-w-400 px-20' src='/img/posts/2023/apidays-paris-2023-recap/booth-apidays.jpeg'/>
 </div>
 
 ## Meaningful conversations with organizations
-At JSON Schema, we need sponsors to help us deliver our Roadmap, and this event enabled some great opportunities that hopefully will turn into future sponsorships.
+At JSON Schema we are looking for connecting with stakeholders from Organizations invested in JSON Schema and its ecosystem and this event was a perfect for it. We want Organizations to be more directly part of our community, and be involved in driving our roadmap. 
+
+We have an ambitious mission but we need help. We are looking for sponsors!. We recently updated our [sponsorship packages](https://json-schema.org/overview/sponsors) increasing the benefits for every sponsorship package, but this is not only about get funds, we'd love to explore other types of collaborations like "people-resource".
+
+If you are reading this, your Organizations is using JSON Schema and like to get involved, let's talk!
 
 ## Learning from the AsyncAPI and the OpenAPI conference tracks
 At JSON Schema, we have been discussing organizing a JSON Schema conference, but doing it alone will require a lot of resources and some years to get its own status. Instead, we returned inspired by great OpenAPI and AsyncAPI tracks, which we think is our path forward! We'd love to host our own track in the future!
