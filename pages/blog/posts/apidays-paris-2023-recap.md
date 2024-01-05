@@ -13,12 +13,12 @@ authors:
 excerpt: "API Days Paris 2023 has been an amazing experience for JSON Schema"
 ---
 
-Last week, we had the privilege of partnering with AsyncAPI and OpenAPI with the first API Specs and Standards booth at the API Days Paris Conference, which resulted in a fantastic experience where attendees had the chance to easily connect with experts in one single booth, and we had the opportunity of learning from the experience of OpenAPI and AsyncAPI conference tracks.
+Last month, we had the privilege of partnering with AsyncAPI and OpenAPI with the first API Specs and Standards booth at the API Days Paris Conference. This resulted in a fantastic experience where attendees could easily connect with experts in one booth. We had the opportunity to learn from the experience of OpenAPI and AsyncAPI conference tracks.
 
-This is the first time we have had a booth at a conference, but we are sure it won't be the last. We returned energized for the great conversations, inspired by the great work of the other standards, excited with the great content, and impressed by the great work done by the API Days Team.
+This is our first time having a booth at a conference, but we are sure it won't be the last. We returned energized for the great conversations, inspired by the great work of the other standards, excited with the great content, and impressed by the great work done by the API Days Team.
 
 ## About API Days Paris
-Apidays is the leading business and technology conference series in APIs, and the programmable economy and Paris edition is the biggest event of the series. 
+Apidays is the leading business and technology conference series in APIs, and the programmable economy and Paris edition is the biggest event of the series.
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
   <iframe width="500" height="300" src="https://apiglobal.b-cdn.net/wp-content/uploads/2020/04/APIDAYS-PARIS-22-TRAILER-2.mp4" frameborder="0" allowfullscreen></iframe>
@@ -40,16 +40,17 @@ It has been great having the chance to connect with JSON Schema practitioners in
 </div>
 
 ## Meaningful conversations with organizations
-At JSON Schema we are looking for connecting with stakeholders from Organizations invested in JSON Schema and its ecosystem and this event was a perfect for it. We want Organizations to be more directly part of our community, and be involved in driving our roadmap. 
+It has been great having the chance to connect with JSON Schema practitioners in person. We received lots of feedback, discussed challenges and use cases, and created great connections with amazing people.
 
-We have an ambitious mission but we need help. We are looking for sponsors!. We recently updated our [sponsorship packages](https://json-schema.org/overview/sponsors) increasing the benefits for every sponsorship package, but this is not only about get funds, we'd love to explore other types of collaborations like "people-resource".
+At JSON Schema, we are looking to connect with stakeholders from Organizations invested in JSON Schema and its ecosystem, and this event was perfect for it. We want Organizations to be more directly part of our community and be involved in driving our roadmap.
+We have an ambitious mission, but we need help. We are looking for sponsors!. We recently updated our [sponsorship packages](https://json-schema.org/overview/sponsors), increasing the benefits for every sponsorship package, but this is not only about getting funds; we'd love to explore other types of collaborations like "people-resource".
 
-If you are reading this, your Organizations is using JSON Schema and like to get involved, let's talk!
+If you are reading this, your Organization is using JSON Schema, and you like to get involved, let's talk!
 
 ## Learning from the AsyncAPI and the OpenAPI conference tracks
 At JSON Schema, we have been discussing organizing a JSON Schema conference, but doing it alone will require a lot of resources and some years to get its own status. Instead, we returned inspired by great OpenAPI and AsyncAPI tracks, which we think is our path forward! We'd love to host our own track in the future!
 
 ## We hope to see you next year!
-We'd like to thank AsyncAPI, OpenAPI and most important the API Days Team for its generosity having us in the Conference and we hope to repeat in the future!
+We'd like to thank AsyncAPI, OpenAPI, and most importantly, the API Days Team for their generosity in having us in the Conference, and we hope to repeat this in the future!
 
 In the meantime, you can connect with us in our [Slack workspace](https://json-schema.org/slack), the best place to ask questions, learn, get help, or discuss all things JSON Schema.
