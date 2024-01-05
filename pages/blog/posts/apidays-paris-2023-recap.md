@@ -45,7 +45,7 @@ It has been great having the chance to connect with JSON Schema practitioners in
 At JSON Schema, we are looking to connect with stakeholders from Organizations invested in JSON Schema and its ecosystem, and this event was perfect for it. We want Organizations to be more directly part of our community and be involved in driving our roadmap.
 We have an ambitious mission, but we need help. We are looking for sponsors!. We recently updated our [sponsorship packages](https://json-schema.org/overview/sponsors), increasing the benefits for every sponsorship package, but this is not only about getting funds; we'd love to explore other types of collaborations like "people-resource".
 
-If you are reading this, your Organization is using JSON Schema, and you like to get involved, let's talk!
+If you are reading this, your Organization is using JSON Schema, and you like to get involved, [let's talk](mailto:info@json-schema.org)!
 
 ## Learning from the AsyncAPI and the OpenAPI conference tracks
 At JSON Schema, we have been discussing organizing a JSON Schema conference, but doing it alone will require a lot of resources and some years to get its own status. Instead, we returned inspired by great OpenAPI and AsyncAPI tracks, which we think is our path forward! We'd love to host our own track in the future!
