@@ -19,6 +19,12 @@
       draft: [7, 6]
       license: Apache License, Version 2.0
       last-updated: "2023-02-14"
+    - name: LateApexEarlySpeed.Json.Schema
+      url: https://github.com/lateapexearlyspeed/Lateapexearlyspeed.JsonSchema.Doc
+      date-draft: [2020-12]
+      draft: []
+      license: BSD-3-Clause
+      last-updated: "2023-12-13"
 - name: C++
   implementations:
     - name: f5-json-schema
