@@ -95,6 +95,11 @@ support `id`, `exclusiveMinimum`, or `exclusiveMaxium`, then as long as it does
 not require a draft-04 `$schema`, it is compatible with draft-06 since those
 are the only keywords that changed.
 
+### Type generation
+
+-   TypeScript
+  -   [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts) (MIT) - generates TypeScript types from JSON schemas
+
 ### Code generation
 
 -   Dotnet
