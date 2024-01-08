@@ -13,7 +13,7 @@ authors:
 excerpt: "API Days Paris 2023 has been an amazing experience for JSON Schema"
 ---
 
-Last month, we had the privilege of partnering with AsyncAPI and OpenAPI with the first API Specs and Standards booth at the API Days Paris Conference. This resulted in a fantastic experience where attendees could easily connect with experts in one booth. We had the opportunity to learn from the experience of OpenAPI and AsyncAPI conference tracks.
+Last month, we had the privilege of partnering with AsyncAPI and OpenAPI with the first API Specs and Standards booth at the [API Days Paris Conference](https://www.apidays.global/paris/). This resulted in a fantastic experience where attendees could easily connect with experts in one booth. We had the opportunity to learn from the experience of OpenAPI and AsyncAPI conference tracks.
 
 This is our first time having a booth at a conference, but we are sure it won't be the last. We returned energized for the great conversations, inspired by the great work of the other standards, excited with the great content, and impressed by the great work done by the API Days Team.
 
