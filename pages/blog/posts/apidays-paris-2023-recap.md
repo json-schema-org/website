@@ -21,7 +21,13 @@ This is our first time having a booth at a conference, but we are sure it won't 
 Apidays is the leading business and technology conference series in APIs, and the programmable economy and Paris edition is the biggest event of the series.
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
-  <iframe className='max-w-400 px-20' src='https://apiglobal.b-cdn.net/wp-content/uploads/2020/04/APIDAYS-PARIS-22-TRAILER-2.mp4' frameborder='0' allowfullscreen></iframe>
+  <iframe
+    className='w-full md:w-1/2 lg:w-1/3 xl:w-2/4' 
+    height="300"
+    src="https://apiglobal.b-cdn.net/wp-content/uploads/2020/04/APIDAYS-PARIS-22-TRAILER-2.mp4"
+    frameborder="0"
+    allowfullscreen
+  ></iframe>
 </div>
 
 ### The Conference Theme
