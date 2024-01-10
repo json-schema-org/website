@@ -119,17 +119,24 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                         </td>
                         <td className='pl-6 hidden sm:table-cell'>
                           {implementation.notes && (
-                            <> <StyledMarkdown markdown={'Notes: ' + implementation.notes} /></>
+                            <React.Fragment>
+                              <StyledMarkdown markdown={'Notes: ' + implementation.notes} />
+                            </React.Fragment>
                           )}
                           {implementation.compliance && (
-                            <>Compliance:
+                            <React.Fragment>
+                              Compliance:
                               {implementation.compliance.config.docs && (
-                                <> This implementation <a href={implementation.compliance.config.docs}>documents</a> that you must</>
+                                <React.Fragment>
+                                  This implementation <a href={implementation.compliance.config.docs}>documents</a> that you must
+                                </React.Fragment>
                               )}
                               {implementation.compliance.config.instructions && (
-                                <> <StyledMarkdown markdown={'<strong>' + implementation.compliance.config.instructions + '</strong> to produce specification-compliant behavior.'} /></>
+                                <React.Fragment>
+                                  <StyledMarkdown markdown={'<strong>' + implementation.compliance.config.instructions + '</strong> to produce specification-compliant behavior.'} />
+                                </React.Fragment>
                               )}
-                            </>
+                            </React.Fragment>
                           )}
                         </td>
                         <td className='pl-6 pb-2 pt-2'>
