@@ -118,7 +118,19 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                           <a className='text-blue-500' href={implementation.url}>{implementation.name}</a>
                         </td>
                         <td className='pl-6 hidden sm:table-cell'>
-                          <StyledMarkdown markdown={implementation.notes} />
+                          {implementation.notes && (
+                            <> <StyledMarkdown markdown={'Notes: ' + implementation.notes} /></>
+                          )}
+                          {implementation.compliance && (
+                            <>Compliance:
+                            {implementation.compliance.config.docs && (
+                              <> This implementation <a href={implementation.compliance.config.docs}>documents</a> that you must</>
+                            )}
+                            {implementation.compliance.config.instructions && (
+                              <> <StyledMarkdown markdown={'<strong>' + implementation.compliance.config.instructions + '</strong> to produce specification-compliant behavior.'} /></>
+                            )}
+                            </>
+                          )}
                         </td>
                         <td className='pl-6 pb-2 pt-2'>
                           {allDrafts
