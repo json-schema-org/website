@@ -107,19 +107,19 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                   </tr>
                   {implementationByLanguage.implementations.map((implementation: any, index: number) => {
                     let mixedNotes = ''
-                    if (implementation.notes){
+                    if (implementation.notes) {
                       mixedNotes = implementation.notes
                     }
-                    if (implementation.compliance){
+                    if (implementation.compliance) {
                       if (implementation.notes){
                         mixedNotes += '<br/><em>Compliance:</em>'
                       } else {
                         mixedNotes = '<em>Compliance:</em>'
                       }
-                      if (implementation.compliance.config.docs){
+                      if (implementation.compliance.config.docs) {
                         mixedNotes += ' This implementation <a href="' + implementation.compliance.config.docs + '">documents</a> that you must '
                       }
-                      if (implementation.compliance.config.instructions){
+                      if (implementation.compliance.config.instructions) {
                         mixedNotes += '<strong>' + implementation.compliance.config.instructions + '</strong> to produce specification-compliant behavior.'
                       }
                     }                 
