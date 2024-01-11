@@ -111,7 +111,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                       mixedNotes = implementation.notes
                     }
                     if (implementation.compliance) {
-                      if (implementation.notes){
+                      if (implementation.notes) {
                         mixedNotes += '<br/><em>Compliance:</em>'
                       } else {
                         mixedNotes = '<em>Compliance:</em>'
