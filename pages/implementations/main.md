@@ -99,6 +99,7 @@ are the only keywords that changed.
 
 -   TypeScript
   -   [json-schema-to-ts](https://github.com/ThomasAribart/json-schema-to-ts) (MIT) - generates TypeScript types from JSON schemas
+  -   [json-schema-to-typescript](https://github.com/bcherny/json-schema-to-typescript) (MIT) - JSON Schema to TypeScript type generator used by Amazon, Microsoft, Mozilla, Webpack, and others
 
 ### Code generation
 
