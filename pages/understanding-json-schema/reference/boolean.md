@@ -20,6 +20,12 @@ capitalized (`True` and `False`).
 In Ruby, "boolean" is analogous to `TrueClass` and `FalseClass`.  Note
 that in Ruby there is no `Boolean` class.
 
+[tab "Objective-C"]
+In Objective-C, "boolean" is analogous to `BOOL`.
+
+[tab "Swift"]
+In Swift, "boolean" is analogous to `Bool`.
+
 [tabs-end]
 
 ```json

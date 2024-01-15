@@ -25,6 +25,11 @@ value an integer no matter which representation was used.
 In Python, "integer" is analogous to the `int` type.
 [tab "Ruby"]
 In Ruby, "integer" is analogous to the `Integer` type.
+[tab "Objective-C"]
+In Objective-C, "integer" is analogous to the `NSInteger` type.
+[tab "Swift"]
+In Swift, "integer" is analogous to the `Int` type.
+
 [tabs-end]
 
 ```json
@@ -70,6 +75,11 @@ floating point numbers.
 In Python, "number" is analogous to the `float` type.
 [tab "Ruby"]
 In Ruby, "number" is analogous to the `Float` type.
+[tab "Objective-C"]
+In Objective-C, "number" is analogous to the `double` or `NSNumber` type.
+[tab "Swift"]
+In Swift, "number" is analogous to the `Double` type.
+
 [tabs-end]
 
 ```json

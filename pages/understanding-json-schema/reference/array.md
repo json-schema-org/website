@@ -11,12 +11,19 @@ may be of a different type.
 [tabs-start "Language-specific info"]
 
 [tab "Python"]
-In Python, "array" is analogous to a `list` or `tuple` type,
+In Python, "array" is analogous to the `list` or `tuple` type,
 depending on usage.  However, the `json` module in the Python
 standard library will always use Python lists to represent JSON
 arrays.
+
 [tab "Ruby"]
-In Ruby, "array" is analogous to a `Array` type.
+In Ruby, "array" is analogous to the `Array` type.
+
+[tab "Objective-C"]
+In Objective-C, "array" is analogous to the `NSArray` type.
+
+[tab "Swift"]
+In Swift, "array" is analogous to the `Array` type.
 
 [tabs-end]
 
