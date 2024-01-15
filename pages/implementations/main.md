@@ -253,5 +253,6 @@ the utility, and decided on a case-by-case basis.
 ## Linter plugins
 
 - [remark-lint-frontmatter-schema](https://github.com/JulianCataldo/remark-lint-frontmatter-schema) - Validate **Markdown** frontmatter **YAML** against an associated **JSON schema** with this **remark-lint** rule plugin.
+- [eslint-plugin-json-schema-validator](https://github.com/ota-meshi/eslint-plugin-json-schema-validator) - ESLint plugin that validates code using JSON schema and reports violations.
 
 ## Hyper-Schema
