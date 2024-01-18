@@ -106,6 +106,23 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                     </td>
                   </tr>
                   {implementationByLanguage.implementations.map((implementation: any, index: number) => {
+                    let mixedNotes = ''
+                    if (implementation.notes) {
+                      mixedNotes = implementation.notes
+                    }
+                    if (implementation.compliance) {
+                      if (implementation.notes) {
+                        mixedNotes += '<br/><em>Compliance:</em>'
+                      } else {
+                        mixedNotes = '<em>Compliance:</em>'
+                      }
+                      if (implementation.compliance.config.docs) {
+                        mixedNotes += ' This implementation <a href="' + implementation.compliance.config.docs + '">documents</a> that you must '
+                      }
+                      if (implementation.compliance.config.instructions) {
+                        mixedNotes += '<strong>' + implementation.compliance.config.instructions + '</strong> to produce specification-compliant behavior.'
+                      }
+                    }                 
                     const allDrafts = [
                       ...(implementation['date-draft'] || []),
                       ...(implementation['draft'] || [])
@@ -118,7 +135,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                           <a className='text-blue-500' href={implementation.url}>{implementation.name}</a>
                         </td>
                         <td className='pl-6 hidden sm:table-cell'>
-                          <StyledMarkdown markdown={implementation.notes} />
+                          <StyledMarkdown markdown={mixedNotes} />
                         </td>
                         <td className='pl-6 pb-2 pt-2'>
                           {allDrafts
