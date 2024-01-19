@@ -143,7 +143,10 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             italic: {
               component: ({ children }) => <i>{children}</i>
-            },            
+            },    
+            bold: {
+              component: ({ children }) => <b>{children}</b>
+            },           
             p: {
               component: ({ children }) => (
                 <p className='text-slate-600 block leading-7 pb-4'>
