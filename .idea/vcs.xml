@@ -2,16 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/community" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft-00" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft-01" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft-02" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft-03" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft-04" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft-05" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft-06" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft-07" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft/2019-09" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/_includes/draft/2020-12" vcs="Git" />
   </component>
 </project>
