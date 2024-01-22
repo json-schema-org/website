@@ -21,6 +21,10 @@ keyword is independent of any other keywords, while the `minContains` and
 `maxContains` keywords depend on the `contains` keyword defined in the same
 schema object.
 
+> If you want to learn more about keyword dependencies, check out the [Static
+> Analysis of JSON Schema](schema-static-analysis) article by [Greg
+> Dennis](https://www.linkedin.com/in/gregdennis/).
+
 However, there is a small set of keywords whose evaluation depend on the
 *scope* they are in. These keywords are `$ref`, `$dynamicRef`,
 `unevaluatedItems`, and `unevaluatedProperties`. Additionally, there is also a
