@@ -21,13 +21,13 @@ while the `minContains` and `maxContains` keywords depend on the `contains`
 keyword defined in the same schema object.
 
 However, there is a small set of keywords whose evaluation depend on the
-<i>scope</i> they are in. These keywords are `$ref`, `$dynamicRef`,
+*scope* they are in. These keywords are `$ref`, `$dynamicRef`,
 `unevaluatedItems`, and `unevaluatedProperties`. Additionally, there is also a
-set of keywords that <i>affect</i> the scope they are declared in. These keywords
+set of keywords that *affect* the scope they are declared in. These keywords
 are `$id`, `$schema`, `$anchor`, and `$dynamicAnchor`.
 
-JSON Schema introduces two types of scopes: the <i>lexical scope</i> and the
-<i>dynamic scope</i>. Understanding how these scopes work is essential for mastering
+JSON Schema introduces two types of scopes: the *lexical scope* and the
+*dynamic scope*. Understanding how these scopes work is essential for mastering
 some of the most advanced (and often confusing!) features of JSON Schema, such
 as dynamic referencing.
 
@@ -35,7 +35,7 @@ Lexical Scope
 -------------
 
 JSON Schema is a circular data structure. What we mean by this is that as a
-schema author, you may use <i>applicator</i> keywords that take other schemas as
+schema author, you may use *applicator* keywords that take other schemas as
 arguments, effectively creating a tree of schemas. 
 
 Consider the following example. In the left, a JSON Schema consisting of 7
@@ -47,7 +47,7 @@ corresponds to a node in the tree:
 
 Thinking of a schema as a tree structure greatly helps understanding lexical
 scopes. Under this analogy, the lexical scope of a schema consists of the
-<i>ancestors</i> of such node, including the node itself. In other words, the
+*ancestors* of such node, including the node itself. In other words, the
 lexical scope of a schema consists of its parent schemas including the schema
 itself, but not its subschemas.
 
@@ -73,8 +73,8 @@ relative and some absolute:
 
 [In JSON Schema
 parlance](https://json-schema.org/draft/2020-12/json-schema-core#name-root-schema-and-subschemas-),
-we say that the `$id` keyword introduces a new <i>schema resource</i>, and that the
-top level schema resource is referred to as the <i>root schema resource</i>.
+we say that the `$id` keyword introduces a new *schema resource*, and that the
+top level schema resource is referred to as the *root schema resource*.
 
 Consider the following example of schema resources. This schema consists of 3
 schema resources, each highlighted using a different color: the root schema
@@ -84,8 +84,8 @@ resource at `/properties/bar` (green). Note that the subschema at
 
 ![A JSON Schema that consists of 3 schema resources](/img/posts/2024/understanding-lexical-dynamic-scopes/schema-resources.webp)
 
-Going back to scopes, <i>an important rule to remember is that the lexical scope
-of a schema does not extend past its schema resource</i>.
+Going back to scopes, <i>an important rule to remember is that the lexical
+scope of a schema does not extend past its schema resource</i>.
 
 As an example of the relationship between schema resources and lexical scopes,
 consider the `$anchor` keyword that defines a [location-independent
@@ -93,7 +93,7 @@ identifier](https://json-schema.org/draft/2020-12/json-schema-core#section-8.2.2
 for a schema. While declaring the same anchor identifier more than once in the
 same schema resource is an error, it is possible to declare the same anchor
 identifier on different schema resources within the same schema. This is
-possible because <i>schema resources do not share their lexical scopes</i>:
+possible because *schema resources do not share their lexical scopes*:
 
 ![Defining multiple anchors with the same name on different schema resources](/img/posts/2024/understanding-lexical-dynamic-scopes/static-anchors.webp)
 
@@ -101,8 +101,8 @@ possible because <i>schema resources do not share their lexical scopes</i>:
 
 Now that we understand lexical scopes and their boundaries within schema
 resources, let's consider the effect that following references has on them.
-<i>When evaluation encounters a reference keyword, it abandons the lexical scope
-of the reference schema and enters the lexical scope of the destination
+<i>When evaluation encounters a reference keyword, it abandons the lexical
+scope of the reference schema and enters the lexical scope of the destination
 schema</i>. In other words, the evaluation process needs to re-calculate the
 lexical scope of the schema it ends up at after following the reference.
 
@@ -136,7 +136,7 @@ belong to</i>.
 
 Coming back to our analogy of a JSON Schema as a tree structure, the dynamic
 scope corresponds to the sequence of nodes that were visited by the evaluation
-process. In JSON Schema parlance, this is referred to as the <i>evaluation path</i>.
+process. In JSON Schema parlance, this is referred to as the *evaluation path*.
 
 Consider the following example. In the left, a JSON Schema and a matching JSON
 instance with a single object property `bar`. In the right, the evaluation path
@@ -175,7 +175,7 @@ highlighted in red align:
 
 References are the only exception to top down evaluation. By definition,
 references (both static and dynamic) make the evaluation process break from
-this mode by <i>jumping</i> to another location (as we saw in the evaluation path
+this mode by *jumping* to another location (as we saw in the evaluation path
 figure at the beginning of the Dynamic Scope section). As a consequence, when
 the evaluation process encounters a reference, lexical scopes and dynamic
 scopes will typically diverge.
@@ -201,7 +201,7 @@ the evaluation of such reference (highlighted in blue):
 In comparison to the lexical scope, the dynamic scope of a schema is not
 limited by its schema resource. Moreover, the dynamic scope is a singleton
 entity that remains for the entirety of the evaluation process. In other words,
-the dynamic scope <i>is</i> the complete evaluation path.
+the dynamic scope *is* the complete evaluation path.
 
 Consider a variation of the previous example, where this time the anchor is
 within a subschema of a different schema resource. The lexical scope of the
