@@ -14,11 +14,12 @@ authors:
 excerpt: "A deep dive on lexical and dynamic scopes, essential for understanding more advanced topics like dynamic referencing"
 ---
 
-Most of the keywords defined by the JSON Schema organization can be either
-evaluated on their own, or by only considering the values of their adjacent
-keywords. For example, the `type` keyword is independent of any other keywords,
-while the `minContains` and `maxContains` keywords depend on the `contains`
-keyword defined in the same schema object.
+Most of the [keywords](https://json-schema.org/learn/glossary#keyword) defined
+by the JSON Schema organization can be either evaluated on their own, or by
+only considering the values of their adjacent keywords. For example, the `type`
+keyword is independent of any other keywords, while the `minContains` and
+`maxContains` keywords depend on the `contains` keyword defined in the same
+schema object.
 
 However, there is a small set of keywords whose evaluation depend on the
 *scope* they are in. These keywords are `$ref`, `$dynamicRef`,
@@ -35,13 +36,15 @@ Lexical Scope
 -------------
 
 JSON Schema is a circular data structure. What we mean by this is that as a
-schema author, you may use *applicator* keywords that take other schemas as
-arguments, effectively creating a tree of schemas. 
+schema author, you may use *applicator* keywords that take other
+[schemas](https://json-schema.org/learn/glossary#schema) as arguments,
+effectively creating a tree of schemas. 
 
 Consider the following example. On the left, a JSON Schema consisting of 7
-subschemas (declared using the `properties` and `prefixItems` applicators). On
-the right, a tree representation of the schema, where each subschema
-corresponds to a node in the tree:
+[subschemas](https://json-schema.org/learn/glossary#subschema) (declared using
+the `properties` and `prefixItems` applicators). On the right, a tree
+representation of the schema, where each subschema corresponds to a node in the
+tree:
 
 ![Thinking of a JSON Schema as a tree structure](/img/posts/2024/understanding-lexical-dynamic-scopes/tree.webp)
 
@@ -59,8 +62,9 @@ grayed out:
 ![The lexical scope of a JSON Schema represented as a tree structure](/img/posts/2024/understanding-lexical-dynamic-scopes/ancestor.webp)
 
 In comparison to the dynamic scope, the lexical scope of any subschema can be
-statically determined without taking instances into account, just as we did
-here.
+statically determined without taking
+[instances](https://json-schema.org/learn/glossary#instance) into account, just
+as we did here.
 
 ### The Schema Resource Boundary
 
@@ -109,10 +113,10 @@ lexical scope of the schema it ends up at after following the reference.
 Consider the following example. On the left, the lexical scope of a subschema
 that defines a static reference. On the right, the lexical scope of the
 destination subschema after following such reference. Note that the destination
-is part of a different schema resource, under a different meta-schema. The
-change of lexical scope lets the destination schema be governed, as expected,
-by its own meta-schema instead of by the meta-schema of the root schema
-resource:
+is part of a different schema resource, under a different
+[meta-schema](https://json-schema.org/learn/glossary#meta-schema). The change
+of lexical scope lets the destination schema be governed, as expected, by its
+own meta-schema instead of by the meta-schema of the root schema resource:
 
 ![Lexical scope before and after following a static reference](/img/posts/2024/understanding-lexical-dynamic-scopes/ref.webp)
 
