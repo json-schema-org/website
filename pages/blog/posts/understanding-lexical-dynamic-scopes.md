@@ -248,5 +248,4 @@ You can also connect with me on
 
 ***
 
-<i>Image by [Christina Morillo](https://www.pexels.com/@divinetechygirl/) from
-[Pexels](https://www.pexels.com/photo/man-standing-infront-of-white-board-1181345/).</i>
+*Image by [Christina Morillo](https://www.pexels.com/@divinetechygirl/) from [Pexels](https://www.pexels.com/photo/man-standing-infront-of-white-board-1181345/).*
