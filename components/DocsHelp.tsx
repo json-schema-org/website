@@ -9,7 +9,7 @@ export const DocsHelp = () => {
         </svg> Need help?
       </h3>
       <div className='mt-2 mb-2'>
-        Learning JSON Schema is often confusing, but don't worry, we are here to help! You can start a thread on <a target='_blank' className='underline' rel='noreferrer' href='https://github.com/json-schema-org/community/discussions/new?category=q-a'>GitHub Discussions</a>, connect with us on <a target='_blank' rel='noreferrer' className='underline' href='https://json-schema.org/slack'>Slack</a>, or join our live <a target='_blank' rel='noreferrer' className='underline' href='https://github.com/json-schema-org/community/discussions/34'>Office Hours</a>.
+        Learning JSON Schema is often confusing, but don't worry, we are here to help! You can start a thread on <a target='_blank' className='underline' rel='noreferrer' href='https://github.com/orgs/json-schema-org/discussions/new?category=q-a'>GitHub Discussions</a>, connect with us on <a target='_blank' rel='noreferrer' className='underline' href='https://json-schema.org/slack'>Slack</a>, or join our live <a target='_blank' rel='noreferrer' className='underline' href='https://github.com/json-schema-org/community/discussions/34'>Office Hours</a>.
       </div>
       <div className='mt-1 mb-2'>
         We'd love to help!! ❤️
