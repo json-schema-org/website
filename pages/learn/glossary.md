@@ -53,6 +53,19 @@ A property appearing within a [schema](#schema) object.
 
 The [JSON Schema specification](../specification) defines behavior for a large library of keywords which can be used to describe [instances](#instance).
 
+### implementation
+
+An implementation is any piece of software that provides or exposes behavior defined by the JSON Schema specification.
+
+The following are considered implementations:
+
+- a validator library
+- a CLI validator
+- a schema or code generator
+- a UI form generator
+
+Applications which use JSON Schema internally without exposing that functionality in some way, for example, validating configuration files or web requests, are not considered implementations.
+
 ### instance
 
 A piece of JSON data which is to be described by a [schema](#schema).
