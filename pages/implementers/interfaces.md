@@ -2,7 +2,6 @@
 title: Common Interfaces across JSON Schema Implementations
 section: implementers
 ---
-
 JSON Schema is extremely widely used and nearly equally widely implemented.
 There are implementations of JSON Schema validation for [over 20 languages](https://json-schema.org/implementations.html) or environments.
 This prevalence is fantastic for user choice -- as someone wishing to use JSON Schema you can be almost certain you'll find an implementation suitable for your target environment.

@@ -2,7 +2,6 @@
 title: Creating your first schema
 section: docs
 ---
-
 JSON Schema is a vocabulary that you can use to annotate and validate JSON documents. This tutorial guides you through the process of creating a JSON Schema document, including:
 
 * [Creating a schema definition](#create)

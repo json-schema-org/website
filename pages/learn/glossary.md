@@ -1,8 +1,7 @@
 ---
-title: JSON Schema Glossary
+title: Glossary
 section: docs
 ---
-
 This document collects short explanations of terminology one may encounter within the JSON Schema community.
 
 Whilst many of the entries below have precise technical definitions, preference is given to explanations of their conversational use, with additional references linked for further information.
