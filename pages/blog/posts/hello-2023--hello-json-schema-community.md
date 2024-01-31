@@ -8,7 +8,7 @@ type: Community
 cover: /img/posts/2023/hello-2023--hello-json-schema-community/jai.webp
 authors:
   - name: Benjamin Granados
-    photo: /img/avatars/benjagm.png
+    photo: /img/avatars/benjagm.webp
     twitter: benjagm
     byline: Developer Advocate
 excerpt: "I am excited to announce that I am joining as Developer Advocate with a focus on serving the Community"

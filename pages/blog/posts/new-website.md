@@ -5,7 +5,7 @@ type: Community
 cover: /img/posts/2023/new-website/cover.webp
 authors:
   - name: Benjamin Granados
-    photo: /img/avatars/benjagm.png
+    photo: /img/avatars/benjagm.webp
     link: https://twitter.com/benjagm
 excerpt: "We are so pleased to announce the launch of our new website!"
 ---
