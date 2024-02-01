@@ -44,7 +44,7 @@ The adoption of JSON Schema had a profound impact on Manfred's operations, contr
 * **Transparency and Accessibility**: Manfred's commitment to open data and JSON Schema allowed developers to access, understand, and navigate their professional data seamlessly. This transparency became a cornerstone of trust between Manfred and its user community.
 * **Community Engagement**: Manfred's usage of JSON Schema resonated with the developer community, strengthening its position as a developer-centric platform.
 * **Competitive Advantage**: The unique value proposition of providing actionable data in JSON format set Manfred apart in a competitive industry. Developers could now harness the power of their own data, making informed decisions about their careers.
-* **Flexibility and Scalability**: JSON Schema provided the necessary flexibility to adapt to evolving business needs and accommodate the rapid growth of Manfred's user base. The platform's agility in handling diverse data sets contributed to its continued success.
+* **Flexibility and Scalability**: JSON Schema provided the necessary flexibility to adapt to evolving business needs and accommodate the rapid growth of Manfred's user base. 
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='w-full md:w-full lg:w-3/5 xl:w-3/5 2xl:w-3/5 px-20' src='/img/posts/2024/manfred-case-study/MAC_Export.webp'/>
