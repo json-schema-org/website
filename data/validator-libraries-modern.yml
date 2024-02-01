@@ -20,7 +20,7 @@
       license: Apache License, Version 2.0
       last-updated: "2023-02-14"
     - name: LateApexEarlySpeed.Json.Schema
-      url: https://github.com/lateapexearlyspeed/Lateapexearlyspeed.JsonSchema.Doc
+      url: https://github.com/lateapexearlyspeed/Lateapexearlyspeed.JsonSchema
       date-draft: [2020-12]
       draft: []
       license: BSD-3-Clause
