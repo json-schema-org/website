@@ -1,5 +1,5 @@
 ---
-title: "Transformando la industria de contratación técnica con JSON Schema"
+title: "Transformando la industria de la contratación técnica con JSON Schema"
 date: "2024-02-05"
 type: Case Study
 cover: /img/posts/2024/manfred-case-study/background.webp
