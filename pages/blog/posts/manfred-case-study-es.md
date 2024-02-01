@@ -62,9 +62,9 @@ En sus propias palabras:
 
 <p>“Manfred es una empresa de reclutamiento. Bueno, para ser justos, es una empresa que nació para cambiar el reclutamiento, ayudando a la comunidad con procesos más estructurados y transparentes y un enfoque basado en las personas.</p>
 
-<p>Ayudamos a las personas a alcanzar sus metas profesionales conectando individuos y empresas que comparten objetivos, valores e intereses. Buscamos, entrevistamos, asesoramos y presentamos perfiles tecnológicos a empresas. Pero nuestra misión va más allá: buscamos ayudarlos a lo largo de su trayectoria profesional. Estamos allí, independientemente de la etapa en la que te encuentres, ya sea que estés buscando activamente un trabajo o no, ya sea que necesites consejos o no estés seguro de cómo reorientarte.</p>
+<p>Ayudamos a las personas a alcanzar sus metas profesionales conectando individuos y empresas que comparten objetivos, valores e intereses. Buscamos, entrevistamos, asesoramos y presentamos perfiles tecnológicos a empresas. Pero nuestra misión va más allá: buscamos ayudarlos a lo largo de su trayectoria profesional. Estamos allí, independientemente de la etapa en la que te encuentres, ya sea que estés buscando activamente un trabajo o no, ya sea que necesites consejos o no estés seguro de cómo reorientar tu carrera.</p>
 
-<p>Nuestra prioridad siempre han sido las personas. Nuestro objetivo es devolver a todos los desarrolladores lo que no nos han dado. Pertenezco a una comunidad muy abierta y colaborativa, pero tiene un problema: la adquisición y gestión de talentos.</p> 
+<p>Nuestra prioridad siempre han sido las personas. Nuestro objetivo es devolver a todos los desarrolladores lo que no nos han dado. Formamos parte de una comunidad abierta y colaborativa, pero tiene un problema: la adquisición y gestión de talento.</p> 
 
 <p>No movemos cajas, no movemos recursos. <del>Movemos</del>Ayudamos a las personas.”</p>
 
