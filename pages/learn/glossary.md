@@ -55,7 +55,7 @@ The [JSON Schema specification](../specification) defines behavior for a large l
 
 ### implementation
 
-An implementation is any piece of software that provides or exposes behavior defined by the JSON Schema specification.
+An implementation is any software tooling or library for working with or evaluating schemas in some way that does not contradict the JSON Schema specification.
 
 The following are considered implementations:
 
