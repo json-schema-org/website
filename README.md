@@ -109,12 +109,12 @@ Thanks goes to these wonderful people who contributed to this website:
 
 ### Sponsors
 
-[![Sponsors](https://opencollective.com/json-schema/sponsors.svg)][https://opencollective.com/json-schema/sponsors.svg?avatarHeight=70&width=890]
+[![Sponsors](https://opencollective.com/json-schema/sponsors.svg)](https://opencollective.com/json-schema/sponsors.svg?avatarHeight=70&width=890)
 
 ### Backers
 
 **Thank you to all our backers!**
-[![Backers](https://opencollective.com/json-schema/backers.svg)][https://opencollective.com/json-schema/backers.svg?avatarHeight=70&width=890]
+[![Backers](https://opencollective.com/json-schema/backers.svg)](https://opencollective.com/json-schema/backers.svg?avatarHeight=70&width=890)
 
 ## Connect with the JSON Schema Community
 
