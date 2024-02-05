@@ -152,14 +152,14 @@
     - name: networknt/json-schema-validator
       url: https://github.com/networknt/json-schema-validator
       notes: Support OpenAPI 3.0 with Jackson parser
-      date-draft: []
+      date-draft: [2020-12, 2019-09]
       draft: [7, 6, 4]
       license: Apache License 2.0
       compliance:
         config:
             docs: https://github.com/networknt/json-schema-validator/blob/master/doc/config.md
             instructions: "set `handleNullableField` to `false`"
-      last-updated: "2022-08-31"
+      last-updated: "2024-02-05"
     - name: erosb/json-sKema
       url: https://github.com/erosb/json-sKema
       notes: Successor of the everit-org/json-schema library
