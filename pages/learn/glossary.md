@@ -55,16 +55,7 @@ The [JSON Schema specification](../specification) defines behavior for a large l
 
 ### implementation
 
-An implementation is any software tooling or library for working with or evaluating schemas in some way that does not contradict the JSON Schema specification.
-
-The following are considered implementations:
-
-- a validator library
-- a CLI validator
-- a schema or code generator
-- a UI form generator
-
-Applications which use JSON Schema internally without exposing that functionality in some way, for example, validating configuration files or web requests, are not considered implementations.
+Historically, the word "implementation" has been used to describe both specifically validators/annotators (interpreted as strictly operating as the spec describes) and also various other kinds of JSON Schema tooling.  However, due to this ambiguity, we have decided that the preferred conversational term should be ["tooling"](#tooling).
 
 ### instance
 
@@ -124,6 +115,19 @@ Even though as a value it looks the same, the `const` keyword, which compares in
 Said more plainly, whether a particular value is a subschema or not depends on its precise location within a parent schema, as interpretation of the value depends on the defined behavior of the keyword(s) it lives under.
 
 Subschemas may themselves contain sub-subschemas, though colloquially one generally uses the term "subschema" regardless of the level of nesting, further clarifying which larger schema is the parent schema whenever needed.
+
+### tooling
+
+A JSON Schema tool (or colloquially "tooling") is any software application or library for working with or evaluating schemas in some way that does not contradict the JSON Schema specification.
+
+The following are considered tools:
+
+- a validator library
+- a CLI validator
+- a schema or code generator
+- a UI form generator
+
+Applications which use JSON Schema internally without exposing that functionality in some way, for example, validating configuration files or web requests, are not considered tooling.
 
 ### vocabulary
 
