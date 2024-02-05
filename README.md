@@ -98,8 +98,6 @@ To figure out a good first issue to work on, join our Slack workspace and visit 
 
 You should also check out our [Contributing guidelines](./CONTRIBUTING.md).
 
-
-
 ### Contributors
 
 Thanks goes to these wonderful people who contributed to this website:
@@ -109,9 +107,19 @@ Thanks goes to these wonderful people who contributed to this website:
 
 <sub>Made with [contributors-img](https://contrib.rocks).</sub>
 
-### Financial Contributors
+### Sponsors
 
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/json-schema/contribute)]
+[![Sponsors][sponsors-image]][bronze-sponsors-url]
+
+### Backers
+
+**Thank you to all our backers!**
+
+[![Backers][backers-image]][backers-url]
+
+[backers-image]: https://opencollective.com/json-schema/tiers/backer.svg?avatarHeight=70&width=890
+[sponsors-image]: https://opencollective.com/json-schema/sponsor.svg?avatarHeight=70&width=890
+
 
 ## Connect with the JSON Schema Community
 
