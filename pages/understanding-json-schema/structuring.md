@@ -348,7 +348,7 @@ resolvable. Let\'s assume this example is used as an anonymous schema
 > The `$ref` at `/properties/shipping_address` can resolve just fine
 without a non-relative base URI to resolve against, but the `$ref` at
 `/properties/billing_address` can\'t resolve to a non-relative URI and
-therefore can\'t can be used to retrieve the address schema.
+therefore can\'t be used to retrieve the address schema.
 
 <Keywords label="single: \$defs single: structuring; \$defs" />
 
