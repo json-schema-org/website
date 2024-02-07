@@ -55,7 +55,7 @@ The [JSON Schema specification](../specification) defines behavior for a large l
 
 ### implementation
 
-Historically, the word "implementation" has been used to describe both specifically validators/annotators (interpreted as strictly operating as the spec describes) and also various other kinds of JSON Schema tooling.  However, due to this ambiguity, we have decided that the preferred conversational term should be ["tooling"](#tooling).
+Historically, the word "implementation" has been used to describe both specifically validators/annotators (the scope of the spec) and also various other kinds of JSON Schema tooling.  However, due to this ambiguity, we have decided that the preferred conversational term should be ["tooling"](#tooling).
 
 ### instance
 
