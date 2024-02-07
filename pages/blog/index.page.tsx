@@ -72,10 +72,10 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
       <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10'>
         {recentBlog[0] && (
           <div className='relative w-full lg:h-[50vh] lg:mt-6 clip-bottom'>
-            <div className='-z-1'>
+            <div className='-z-1 bg-black'>
               <img
                 src={recentBlog[0].frontmatter.cover}
-                className='object-cover w-full h-full'
+                className='object-cover w-full h-full opacity-70'
                 alt='hero image example'
               />
             </div>
