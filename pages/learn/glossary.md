@@ -118,7 +118,7 @@ Subschemas may themselves contain sub-subschemas, though colloquially one genera
 
 ### tooling
 
-A JSON Schema tool (or colloquially "tooling") is any software application or library for working with or evaluating schemas in some way that does not contradict the JSON Schema specification.
+A JSON Schema tool (or colloquially "tooling") is any software application or library for working with or evaluating schemas in some way.
 
 The following are considered tools:
 
