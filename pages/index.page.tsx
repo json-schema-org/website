@@ -340,6 +340,7 @@ const Home = (props: any) => {
             <a href='https://retool.com/'><img src='/img/logos/sponsors/retool-logo.svg' className=' w-44' /></a>
             <a href='https://www.apideck.com/'><img src='/img/logos/sponsors/apideck-logo.png' className=' w-44' /></a>
             <a href='https://endjin.com/'><img src='/img/logos/sponsors/endjin-logo.svg' className=' w-44' /></a>
+            <a href='https://www.llc.org/'><img src='/img/logos/sponsors/llc-logo.svg' className=' w-44' /></a>
           </div>
 
         </section>

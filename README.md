@@ -98,8 +98,6 @@ To figure out a good first issue to work on, join our Slack workspace and visit 
 
 You should also check out our [Contributing guidelines](./CONTRIBUTING.md).
 
-
-
 ### Contributors
 
 Thanks goes to these wonderful people who contributed to this website:
@@ -109,9 +107,14 @@ Thanks goes to these wonderful people who contributed to this website:
 
 <sub>Made with [contributors-img](https://contrib.rocks).</sub>
 
-### Financial Contributors
+### Sponsors
 
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/json-schema/contribute)]
+[![Sponsors](https://opencollective.com/json-schema/sponsors.svg)](https://opencollective.com/json-schema/sponsors.svg?avatarHeight=90)
+
+### Backers
+
+**Thank you to all our backers!**
+[![Backers](https://opencollective.com/json-schema/backers.svg)](https://opencollective.com/json-schema/backers.svg?avatarHeight=90)
 
 ## Connect with the JSON Schema Community
 
@@ -135,4 +138,3 @@ This document has been inspired by [AsyncAPI website README.md](https://github.c
 
 ## License
 The contents of this repository are [licensed under](./LICENSE) either the BSD 3-clause license *or* the Academic Free License v3.0.
-
