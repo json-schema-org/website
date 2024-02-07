@@ -1,6 +1,6 @@
 ---
 title: "Transforming the technical recruiting industry with JSON Schema"
-date: "2024-02-05"
+date: "2024-02-06"
 type: Case Study
 cover: /img/posts/2024/manfred-case-study/background.webp
 authors:
