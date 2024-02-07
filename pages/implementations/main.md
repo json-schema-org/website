@@ -149,6 +149,7 @@ Various levels of support for UI generation primarily from the validation vocabu
   -   [JSON Editor](https://github.com/json-editor/json-editor) (MIT)
   -   [JSON Form (joshfire)](https://github.com/joshfire/jsonform) (joshfire) (MIT)
   -   [Json Forms (brutusin)](https://github.com/brutusin/json-forms) (brutusin) (MIT)
+  -   [json-schema-form (Remote.com)](https://github.com/remoteoss/json-schema-form) (Remote.com) (MIT) *
   -   [JSON Schema Form Element](https://jsfe.js.org) (ISC)
   -   [JSONForms (jsonforms.io)](https://jsonforms.io/) (EclipseSource) (MIT)
   -   [Liform-react](https://github.com/Limenius/liform-react) (MIT)
