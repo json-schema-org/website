@@ -98,10 +98,10 @@ Lexical Scope
 
 Under the graph analogy from the previous section, the lexical scope of a
 schema consists of the node being evaluated. In other words, the lexical scope
-of a schema consists of the entire schema resource of which it is part of. 
+of a schema consists of the entire schema resource to which it belongs. 
 
 Consider the following sequence of examples. In the left, a JSON Schema with a
-single nested schema resource. In the right, the corresponding directed graph
+single nested schema resource. On the right, the corresponding directed graph
 representations for the root schema resource called
 `https://example.com/person` and the nested schema resource called
 `https://example.com/surname`. At each step of the evaluation process, we gray
@@ -139,7 +139,7 @@ As another practical example, consider the `$anchor` keyword that defines a
 [location-independent
 identifier](https://json-schema.org/draft/2020-12/json-schema-core#section-8.2.2)
 for a schema. This keyword not only affects the schema object it is defined in,
-but its lexical scope. This is why declaring the same anchor identifier more
+but also its lexical scope. This is why declaring the same anchor identifier more
 than once in the same schema resource is an error (a clash in the lexical
 scope), while it is possible to declare the same anchor identifier on different
 schema resources (as the lexical scopes are different):
@@ -242,7 +242,7 @@ depending on the characteristics of the instance.
 
 ### Following References
 
-So far, we learnt that for the lexical scope, following a reference consists in
+So far, we've learned that for the lexical scope, following a reference consists of
 abandoning the lexical scope of the origin schema and entering the lexical
 scope of the destination schema. In comparison, for the dynamic scope,
 following a reference to another schema resource involves *retaining* the
@@ -400,7 +400,7 @@ summarized in the following table:
 |--------------------------------------|---------------|---------------|
 | **Definition**                       | Consists of the schema resource being evaluated | Consists of the stack of schema resources evaluated so far |
 | **Determining the scope**            | Can be statically determined without taking instances into account | Cannot be always statically determined. It may vary depending on the instance |
-| **Following references**             | Consists in abandoning the lexical scope of the origin schema and entering the lexical scope of the destination schema | Consists in pushing the destination schema resource to the top of the dynamic scope stack |
+| **Following references**             | Consists of abandoning the lexical scope of the origin schema and entering the lexical scope of the destination schema | Consists of pushing the destination schema resource to the top of the dynamic scope stack |
 
 In a future post, we will build on top of the concepts introduced in this
 article to demystify how dynamic referencing (`$dynamicRef` and
