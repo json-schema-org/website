@@ -7,7 +7,7 @@ type: Community
 cover: /img/posts/2023/apidays-paris-2023-recap/apidays-paris-2023.png
 authors:
   - name: Benjamin Granados
-    photo: /img/avatars/benjagm.png
+    photo: /img/avatars/benjagm.webp
     twitter: benjagm
     byline: DevRel & Community Program Manager @Postman
 excerpt: "API Days Paris 2023 has been an amazing experience for JSON Schema"

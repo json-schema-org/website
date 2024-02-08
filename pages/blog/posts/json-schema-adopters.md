@@ -7,7 +7,7 @@ type: Community
 cover: /img/posts/2023/json-schema-adopters/patrick-tomasso.jpg
 authors:
   - name: Benjamin Granados
-    photo: /img/avatars/benjagm.png
+    photo: /img/avatars/benjagm.webp
     twitter: benjagm
     byline: DevRel & Community Program Manager @Postman
 excerpt: "Explore our Adopters list to discover organizations successfully leveraging JSON Schema"
