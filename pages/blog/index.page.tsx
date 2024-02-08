@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import fs from 'fs'
@@ -41,8 +41,24 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const typeFilter: null | string = Array.isArray(router.query?.type)
     ? router.query?.type?.[0] : router.query?.type || null
 
+  const [filterTag, setFilterTag] = useState('')
   const setParam = useSetUrlParam()
 
+  useEffect(() => {
+    const { query } = router;
+    if (query.type) {
+      setFilterTag(Array.isArray(query.type) ? query.type[0] : query.type);
+    } else {
+      setFilterTag('All');
+    }
+  }, [router.query]);
+
+  const handleClick = (event: { currentTarget: { value: any } }) => {
+    const clickedTag = event.currentTarget.value;
+    setFilterTag(clickedTag);
+
+    router.push({ pathname: router.pathname, query: { type: clickedTag } }, undefined, { shallow: true });
+  };
 
   const recentBlog = blogPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime()
@@ -56,11 +72,11 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const allTags = [...new Set(spreadTags)]
   //add tag for all
   allTags.unshift('All')
-  const [filterTag, setFilterTag] = useState('')
-  const handleClick = (event: { currentTarget: { value: any } }) => {
-    const clickedTag = event.currentTarget.value
-    setFilterTag(clickedTag)
-  }
+  // const [filterTag, setFilterTag] = useState('')
+  // const handleClick = (event: { currentTarget: { value: any } }) => {
+  //   const clickedTag = event.currentTarget.value
+  //   setFilterTag(clickedTag)
+  // }
 
 
   return (
@@ -122,7 +138,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         </div>
         {/* Filter Buttons */}
         <div className='w-full ml-8 flex flex-wrap justify-start'>{allTags.map((tag) => (
-          <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</button>
+          <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag} </button>
         ))}<span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center'>Filter blog posts by category...</span></div>
 
         {/* filterTag === frontmatter.type &&  */}
@@ -130,7 +146,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
 
           {blogPosts
             .filter(post => {
-              if (!typeFilter) return true
+              if (!typeFilter || typeFilter === 'All') return true
               const blogType = post.frontmatter.type as string | undefined
               if (!blogType) return false
               return blogType.toLowerCase() === typeFilter.toLowerCase()
