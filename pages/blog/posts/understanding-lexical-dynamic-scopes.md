@@ -17,9 +17,9 @@ excerpt: "A deep dive on lexical and dynamic scopes, essential for understanding
 Most of the [keywords](https://json-schema.org/learn/glossary#keyword) defined
 by the JSON Schema organization can be either evaluated on their own, or by
 only considering the values of their adjacent keywords. For example, the `type`
-keyword is independent of any other keywords, while the `minContains` and
-`maxContains` keywords depend on the `contains` keyword defined in the same
-schema object.
+keyword is independent of any other keywords, while the `additionalProperties`
+keyword depends on the `properties` and `patternProperties` keywords defined in
+the same schema object.
 
 > If you want to learn more about keyword dependencies, check out the [Static
 > Analysis of JSON Schema](schema-static-analysis) article by [Greg
@@ -75,8 +75,8 @@ Schemas as Directed Graphs
 JSON Schema is a recursive data structure. In the context of schema resources,
 this means that a schema resource may introduce nested schema resources (like
 we saw on the previous section) and use referencing keywords (like `$ref`) to
-point to external schema resources, effectively creating a directed graph of
-schema resources. 
+point to external schema resources, creating a directed graph of schema
+resources. 
 
 Consider the following example. In the top left, a root schema resource named
 `https://example.com/origin` that declares a nested schema resource named
@@ -153,10 +153,10 @@ lexical scope of the reference schema and enters the lexical scope of the
 *destination* schema.
 
 If the reference points to a subschema *within* the same schema resource, the
-lexical scope effectively remains the same. Coming back to the graph analogy,
-the evaluation process remains at the same node. However, if the reference
-points to a subschema on a *different* schema resource, the schema resource of
-the destination becomes the new lexical scope.  In the graph analogy, the
+lexical scope remains the same. Coming back to the graph analogy, the
+evaluation process remains at the same node. However, if the reference points
+to a subschema on a *different* schema resource, the schema resource of the
+destination becomes the new lexical scope.  In the graph analogy, the
 evaluation process *follows an arrow* to another node.
 
 #### Within Schema Resources
