@@ -79,13 +79,13 @@ Bowtie is written in Python and published [on PyPI](https://pypi.org/project/bow
 If you have no existing preferred setup for installing Python applications, [install `pipx` using the platform-specific instructions for your OS](https://pipx.pypa.io/stable/), then run:
 
 ```sh
-pipx install bowtie-json-schema
+$ pipx install bowtie-json-schema
 ```
 
 which should give you a working Bowtie, which you can check via:
 
 ```sh
-bowtie --help
+$ bowtie --help
 ```
 
 The usage instructions are in [Bowtie's documentation](https://bowtie-json-schema.readthedocs.io/), but more documentation is definitely needed, so do ping myself (Julian) if there are things you can't figure out, it will motivate documenting them.
