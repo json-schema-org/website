@@ -18,7 +18,7 @@ I've received a lot of questions (and purported bugs) and had quite a few discus
 
 Let's dig in.
 
-_The last time we [talked about output](./fixing-json-schema-output), it was to announce changes from the 2019-09/2020-12 version.  I'm going to use the new formats because it's easier to read and more compact._
+_The last time we [talked about output](/blog/posts/fixing-json-schema-output), it was to announce changes from the 2019-09/2020-12 version.  I'm going to use the new formats because it's easier to read and more compact._
 
 ## No Problem
 
