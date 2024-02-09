@@ -84,7 +84,7 @@ Consider the following example. In the top left, a root schema resource named
 schema resource named `https://example.com/destination` (from
 `/properties/foo/$ref`). In the bottom left, a root schema resource named
 `https://example.com/destination` that references a nested schema resource
-called `https://example.com/nested-string` (from `/items/$ref`). In the right,
+called `https://example.com/nested-string` (from `/items/$ref`). On the right,
 a directed graph representation of the relationship between these schema
 resources:
 
@@ -100,7 +100,7 @@ Under the graph analogy from the previous section, the lexical scope of a
 schema consists of the node being evaluated. In other words, the lexical scope
 of a schema consists of the entire schema resource to which it belongs. 
 
-Consider the following sequence of examples. In the left, a JSON Schema with a
+Consider the following sequence of examples. On the left, a JSON Schema with a
 single nested schema resource. On the right, the corresponding directed graph
 representations for the root schema resource called
 `https://example.com/person` and the nested schema resource called
@@ -169,10 +169,10 @@ resource (the root schema resource), so the lexical scope remains the same:
 
 #### Across Schema Resources
 
-Now consider the following sequence of examples. In the left, a JSON Schema
+Now consider the following sequence of examples. On the left, a JSON Schema
 called `https://example.com/point-in-time` with a nested schema resource (at
 `/$defs/timestamp`) and a reference to an external schema called
-`https://example.com/epoch` (from `/anyOf/1/$ref`). In the right, the
+`https://example.com/epoch` (from `/anyOf/1/$ref`). On the right, the
 corresponding directed graph representations of the root schema resource, the
 nested schema resource, and the external schema resource. Like before, at each
 step of the evaluation process, we gray out the parts of the schema and of the
@@ -215,7 +215,7 @@ resource named `https://example.com/person` that declares two nested schema
 resources: `https://example.com/name` (at `/properties/name`) and
 `https://example.com/age` (at `/properties/age`). In the bottom left, an
 example instance that successfully validates against the schema. Note that the
-instance does not declare the `age` optional property. In the right, a directed
+instance does not declare the `age` optional property. On the right, a directed
 graph representation of the relationship between these schema resources.
 Similar to how we did before, we gray out the parts of the schema and of the
 directed graph that are not part of the dynamic scope.
@@ -271,7 +271,7 @@ references the latter (from `/properties/name/$ref`). Furthermore,
 `https://example.com/person` references a nested schema resource called
 `https://example.com/item` (from `/$defs/person/$ref`) that is part of an
 external schema resource called `https://example.com/people` shown in the
-bottom left. In the right, a directed graph representation of the relationship
+bottom left. On the right, a directed graph representation of the relationship
 between these schema resources and the dynamic scope.
 
 Like the other examples so far, the evaluation process starts with the top
@@ -348,7 +348,7 @@ subschema is a separate schema resource: `https://example.com/check` (at
 `/if`), `https://example.com/even` (at `/then`), and `https://example.com/odd`
 (at `/else`). In the bottom left, the even integer instance
 [42](https://www.scientificamerican.com/article/for-math-fans-a-hitchhikers-guide-to-the-number-42/).
-In the right, a directed graph representation of the relationship between these
+On the right, a directed graph representation of the relationship between these
 schema resources and the dynamic scope.
 
 As usual, the evaluation process starts with the top level schema. The dynamic
