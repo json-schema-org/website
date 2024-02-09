@@ -137,10 +137,10 @@ as we did here.
 
 As another practical example, consider the `$anchor` keyword that defines a
 [location-independent
-identifier](https://json-schema.org/draft/2020-12/json-schema-core#section-8.2.2)
+identifier](https://json-schema.org/understanding-json-schema/structuring#dollaranchor)
 for a schema. This keyword not only affects the schema object it is defined in,
-but also its lexical scope. This is why declaring the same anchor identifier more
-than once in the same schema resource is an error (a clash in the lexical
+but also its lexical scope. This is why declaring the same anchor identifier
+more than once in the same schema resource is an error (a clash in the lexical
 scope), while it is possible to declare the same anchor identifier on different
 schema resources (as the lexical scopes are different):
 
