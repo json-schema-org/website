@@ -146,7 +146,8 @@ This is probably the most beneficial area you can help in.
 I myself am not a frontend developer, in case that wasn't obvious.
 What I put together (with Bootstrap) is essentially the bare minimum of what's needed to show off results Bowtie emits.
 If you have more experience or headspace to think about how to effectively report test results, or compare implementations, please help!
-All of Bowtie's "frontend code" today lives in one place, [a Jinja2 template which gets formatted into a static single page site](https://github.com/bowtie-json-schema/bowtie/blob/b23644eb86cf9bcbdf1d98149cf3d976339f7cdf/bowtie/templates/report.html.j2).i
+All of Bowtie's "frontend code" today lives in one place, [a Jinja2 template which gets formatted into a static single page site](https://github.com/bowtie-json-schema/bowtie/blob/b23644eb86cf9bcbdf1d98149cf3d976339f7cdf/bowtie/templates/report.html.j2).
+Beyond generally "make it prettier, more responsive, or more usable", here are a few specific issues to look at:
 
 * [Add client-side filtering and sorting](https://github.com/bowtie-json-schema/bowtie/issues/37)
 * [Show combined errors+failures counts](https://github.com/bowtie-json-schema/bowtie/issues/53), or more generally improve the summary from a "table of counts" into a more graphically pleasing representation of what happened in a run
