@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
 import useStore from '~/store'
 import { SectionContext } from '~/context'
+import GithubButton from './GithubButton'
 
 
 type Props = {
@@ -160,6 +161,9 @@ const MainNavigation = () => {
         isActive={section === 'community'}
         
       />
+      <div className="hidden lg:block">
+        <GithubButton />
+      </div>
       <div className='flex items-center gap-12 md:gap-4'>
         <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
           <Search />
