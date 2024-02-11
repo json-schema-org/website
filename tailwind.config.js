@@ -38,7 +38,8 @@ module.exports = {
         btnGold: '#AB9700',
         startBlue: '#002CC4',
         endBlue: '#5468FF',
-        linkBlue: '#3B82F6'
+        linkBlue: '#3B82F6',
+        active: '#B3D6F3'
       },
       gradientColorStopPositions: {
         33: '145.47%',

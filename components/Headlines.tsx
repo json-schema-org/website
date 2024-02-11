@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect, useState} from 'react'
 import classnames from 'classnames'
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
 import { useRouter } from 'next/router'
@@ -20,10 +20,29 @@ const Headline = ({ children, Tag, attributes: propAttributes }: {
   const asPath = router.asPath
   const slug = slugifyMarkdownHeadline(children as any[])
 
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const element = document.getElementById(slug)
+      if (element) {
+        const rect = element.getBoundingClientRect()
+        setIsActive(rect.top <= window.innerHeight / 2 )
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [slug])
+
   const attributes = {
     ...propAttributes,
     id: propAttributes?.slug || slug,
-    className: classnames('group cursor-pointer hover:underline', propAttributes?.className),
+    className: classnames('group cursor-pointer hover:underline', propAttributes?.className,{
+      'bg-active': isActive
+    }),
     onClick: () => {
       const url = new URL(asPath, HOST)
       // recalculation necessary because of scope issue
