@@ -1,23 +1,16 @@
-name: Link Checker
+name: Links (Fail Fast)
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    types: [opened, synchronize, reopened]
-  workflow_dispatch:
 
 jobs:
-  linkinator:
+  linkChecker:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Validate Links in Markdown Files
-        uses: JustinBeckwith/linkinator-action@v1
+      - name: Link Checker
+        uses: lycheeverse/lychee-action@v1.9.0
         with:
-          paths: "pages/blog/posts/**/*.md"
-          markdown: true
-          retry: true
+          fail: true
