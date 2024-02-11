@@ -3,6 +3,8 @@ name: Links (Fail Fast)
 on:
   push:
   pull_request:
+    paths:
+      - 'pages/blog/posts/**/*.md'
 
 jobs:
   linkChecker:
