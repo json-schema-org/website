@@ -1,20 +1,16 @@
-name: Links (Fail Fast)
+name: Check Links
 
 on:
-  push:
-    paths:
-      - 'pages/blog/posts/**/*.md'
   pull_request:
-    paths:
-      - 'pages/blog/posts/**/*.md'
+    types: [opened, synchronize, reopened]
 
 jobs:
-  linkChecker:
+  check-links:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-
-      - name: Link Checker
-        uses: lycheeverse/lychee-action@v1.9.0
+      - uses: actions/checkout@v2
+      - uses: lycheeverse/lychee-action@v1
+      - name: Comment Broken Links
+        uses: marocchino/sticky-pull-request-comment@v2
         with:
-          fail: true
+          path: lychee/out.md
