@@ -2,12 +2,15 @@ name: Links (Fail Fast)
 
 on:
   push:
+    paths:
+      - 'pages/blog/posts/**/*.md'
   pull_request:
+    paths:
+      - 'pages/blog/posts/**/*.md'
 
 jobs:
   linkChecker:
     runs-on: ubuntu-latest
-    if: ${{ startsWith(github.event_path, 'pages/blog/posts/') && endsWith(github.event_path, '.md') }}
     steps:
       - uses: actions/checkout@v3
 
