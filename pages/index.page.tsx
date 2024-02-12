@@ -58,7 +58,6 @@ export const getStaticProps: GetStaticProps = async () => {
     props: {
       blogPosts,
       datesInfo,
-      hideAds: true, 
       fallback: false,
     },
   }
@@ -74,19 +73,19 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   // Calculate the range of dates for the next 4 weeks from today
   const today = moment().startOf('day')
   const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day')
- 
- 
+
+
 
   // Loop through the events in the iCal data
   for (const k in icalData) {
     const event = icalData[k]
-    
+
     if (event.type === 'VEVENT') {
       const title = event.summary
 
       const timezoneL = moment.tz.guess() // Default to UTC if timezone information is not provided
       const startDate = moment.tz(event.start, timezoneL)
-    
+
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
         // For recurring events, get the set of event start dates that fall within the range
@@ -344,7 +343,7 @@ const Home = (props: any) => {
           </div>
 
         </section>
- 
+
         {/* Supported */}
 
         <section className='my-20'>
@@ -367,4 +366,4 @@ const Home = (props: any) => {
 }
 
 export default Home
-Home.getLayout = (page: React.ReactNode) => getLayout(page, { hideAds: true })
+Home.getLayout = (page: React.ReactNode) => getLayout(page)
