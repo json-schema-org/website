@@ -269,11 +269,11 @@ instance and a root schema resource named `https://example.com` that declares
 two nested schema resources: `https://example.com/name` (at `/properties/name`)
 and `https://example.com/person` (at `/$defs/person`) where the former
 references the latter (from `/properties/name/$ref`). Furthermore,
-`https://example.com/person` references a nested schema resource called
-`https://example.com/item` (from `/$defs/person/$ref`) that is part of an
-external schema resource called `https://example.com/people` shown in the
-bottom left. On the right, a directed graph representation of the relationship
-between these schema resources and the dynamic scope.
+`https://example.com/person` references an anchored schema called `item` (from
+`/$defs/person/$ref`) that is part of an external schema resource called
+`https://example.com/people` shown in the bottom left. On the right, a directed
+graph representation of the relationship between these schema resources and the
+dynamic scope.
 
 Like the other examples so far, the evaluation process starts with the top
 level schema. The dynamic scope at that point is the root schema resource, and
@@ -301,20 +301,13 @@ schema resource at `/$defs/person`):
 Now comes an interesting case. We are currently evaluating the nested schema
 resource called `https://example.com/person`. This schema resource points to
 the remote schema called `https://example.com/people` (the `people` part of the
-`people#/item` URI reference), but does not land at its root schema resource.
-Instead, it lands at the nested schema resource called
-`https://example.com/item` (the `#/item` part of the `people#/item` URI
-reference).
-
-In this case, we only push the destination schema resource to the dynamic
-scope, *jumping* over the root schema resource of the external schema.  After
-following this final reference, the dynamic scope now consists of
-`https://example.com` (the root schema resource), followed by
-`https://example.com/name` (the nested schema resource at `/properties/name`),
-followed by `https://example.com/person` (the nested schema resource at
-`/$defs/person`), followed by `https://example.com/item` (the nested schema
-resource of the external schema). Note that the root schema resource called
-`https://example.com/people` is not part of the dynamic scope:
+`people#item` URI reference), but does not land at its root.  Instead, it lands
+at the subschema in `/items` (where the `item` anchor from the `people#item`
+URI reference is located). This subschema is part of the root schema resource,
+so the dynamic scope now consists of `https://example.com` (the root schema
+resource), followed by `https://example.com/name` (the nested schema resource
+at `/properties/name`), followed by `https://example.com/person` (the nested
+schema resource at `/$defs/person`), followed by `https://example.com/people`:
 
 ![The dynamic scope and remote references (4)](/img/posts/2024/understanding-lexical-dynamic-scopes/dynamic-scope-ref-remote-4.webp)
 
