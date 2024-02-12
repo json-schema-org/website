@@ -11,6 +11,9 @@ import generateRssFeed from './generateRssFeed'
 import { useRouter } from 'next/router'
 import useSetUrlParam from '~/lib/useSetUrlParam'
 import { SectionContext } from '~/context'
+import dynamic from 'next/dynamic'
+
+const CarbonAds = dynamic(() => import('~/components/CarbonsAds'), { ssr: false })
 
 export async function getStaticProps() {
   const files = fs.readdirSync(PATH)
@@ -62,6 +65,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
     setFilterTag(clickedTag)
   }
 
+  const randomAdIndex = Math.floor(Math.random() * 4) + 2
 
   return (
     // @ts-ignore
@@ -96,7 +100,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                     <div className=' text-sm  text-stroke-1'>
                       <span>
                         {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
-                      </span> 
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -127,7 +131,6 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
 
         {/* filterTag === frontmatter.type &&  */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 '>
-
           {blogPosts
             .filter(post => {
               if (!typeFilter) return true
@@ -146,74 +149,79 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               const dateB = new Date(b.frontmatter.date).getTime()
               return dateA < dateB ? 1 : -1
             })
-            .map((blogPost: any) => {
+            .map((blogPost: any, index: number) => {
               const { frontmatter, content } = blogPost
               const date = new Date(frontmatter.date)
               const timeToRead = Math.ceil(readingTime(content).minutes)
 
               return (
-                <section key={blogPost.slug}>
-                  <div
-                    className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden'
-                  >
-                    <Link href={`/blog/posts/${blogPost.slug}`} className='inline-flex flex-col flex-1 w-full'>
-                      <div
-                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                        style={{ backgroundImage: `url(${frontmatter.cover})` }}
-                      />
-                      <div className=' p-4 flex flex-col flex-1 justify-between'>
-                        <div>
+                <React.Fragment key={blogPost.slug}>
+                  {randomAdIndex === index && (
+                    <CarbonAds className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden' variant='grid' />
+                  )}
+                  <section key={blogPost.slug}>
+                    <div
+                      className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden'
+                    >
+                      <Link href={`/blog/posts/${blogPost.slug}`} className='inline-flex flex-col flex-1 w-full'>
+                        <div
+                          className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
+                          style={{ backgroundImage: `url(${frontmatter.cover})` }}
+                        />
+                        <div className=' p-4 flex flex-col flex-1 justify-between'>
                           <div>
-                            <div
-                              className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
-                              onClick={(e) => {
-                                e.preventDefault()
-                                e.stopPropagation()
-                                setParam('type', frontmatter.type)
-                              }}
-                            >
-                              {frontmatter.type}
+                            <div>
+                              <div
+                                className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                                onClick={(e) => {
+                                  e.preventDefault()
+                                  e.stopPropagation()
+                                  setParam('type', frontmatter.type)
+                                }}
+                              >
+                                {frontmatter.type}
+                              </div>
+                            </div>
+                            <div className='text-lg font-semibold'>
+                              {frontmatter.title}
+                            </div>
+                            <div className='mt-3 mb-6 text-slate-500'>
+                              <TextTruncate element='span' line={4} text={frontmatter.excerpt} />
                             </div>
                           </div>
-                          <div className='text-lg font-semibold'>
-                            {frontmatter.title}
-                          </div>
-                          <div className='mt-3 mb-6 text-slate-500'>
-                            <TextTruncate element='span' line={4} text={frontmatter.excerpt} />
+                          <div className='flex flex-row items-center'>
+                            <div className='flex flex-row pl-2 mr-2'>
+                              {(frontmatter.authors || []).map((author: any, index: number) => {
+                                return (
+                                  <div
+                                    key={index}
+                                    className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                                    style={{ backgroundImage: `url(${author.photo})`, zIndex: 10 - index }}
+                                  />
+                                )
+                              })}
+                            </div>
+
+                            <div className='flex flex-col items-start'>
+                              <div className='text-sm font-semibold'>
+                                {(frontmatter.authors.map((author: any) => author.name).join(' & '))}
+                              </div>
+
+                              <div className='text-slate-500 text-sm'>
+                                {frontmatter.date && (
+                                  <span>
+                                    {date.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
+                                  </span>
+                                )} &middot; {timeToRead} min read
+                              </div>
+                            </div>
+
                           </div>
                         </div>
-                        <div className='flex flex-row items-center'>
-                          <div className='flex flex-row pl-2 mr-2'>
-                            {(frontmatter.authors || []).map((author: any, index: number) => {
-                              return (
-                                <div
-                                  key={index}
-                                  className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                                  style={{ backgroundImage: `url(${author.photo})`, zIndex: 10 - index }}
-                                />
-                              )
-                            })}
-                          </div>
-
-                          <div className='flex flex-col items-start'>
-                            <div className='text-sm font-semibold'>
-                              {(frontmatter.authors.map((author: any) => author.name).join(' & '))}
-                            </div>
-
-                            <div className='text-slate-500 text-sm'>
-                              {frontmatter.date && (
-                                <span>
-                                  {date.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
-                                </span>
-                              )} &middot; {timeToRead} min read
-                            </div>
-                          </div>
-
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                </section>
+                      </Link>
+                    </div>
+                  </section>
+                </React.Fragment>
               )
             })
           }
