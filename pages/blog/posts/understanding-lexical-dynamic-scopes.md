@@ -321,10 +321,10 @@ stack.
 In traditional programming languages, program execution typically involves
 procedures calling other procedures, creating what is referred to in Computer
 Science as a [call stack](https://en.wikipedia.org/wiki/Call_stack).
-Eventually, a procedures will not call any other procedures. When such leaf
+Eventually, a procedure will not call any other procedures. When such leaf
 procedures finish executing, the call stack will
 [unwind](https://en.wikipedia.org/wiki/Call_stack#Unwinding) (a pop operation)
-and control will return the caller frame.
+and control will return to the caller frame.
 
 > If you are having trouble understanding the previous paragraph, you might
 > enjoy watching [Call Stacks - CS50
