@@ -393,7 +393,7 @@ summarized in the following table:
 | Comparison Point                     | Lexical Scope | Dynamic Scope |
 |--------------------------------------|---------------|---------------|
 | **Definition**                       | Consists of the schema resource being evaluated | Consists of the stack of schema resources evaluated so far |
-| **Determining the scope**            | Can be statically determined without taking instances into account | Cannot be always statically determined. It may vary depending on the instance |
+| **Determining the scope**            | Can be statically determined without taking instances into account | Cannot always be statically determined. It may vary depending on the instance |
 | **Following references**             | Consists of abandoning the lexical scope of the origin schema and entering the lexical scope of the destination schema | Consists of pushing the destination schema resource to the top of the dynamic scope stack |
 
 In a future post, we will build on top of the concepts introduced in this
