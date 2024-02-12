@@ -153,11 +153,12 @@ lexical scope of the reference schema and enters the lexical scope of the
 *destination* schema.
 
 If the reference points to a subschema *within* the same schema resource, the
-lexical scope remains the same. Coming back to the graph analogy, the
-evaluation process remains at the same node. However, if the reference points
-to a subschema on a *different* schema resource, the schema resource of the
-destination becomes the new lexical scope.  In the graph analogy, the
-evaluation process *follows an arrow* to another node.
+lexical scope remains the same. Coming back to the graph analogy, each node
+represents a schema resource, so the evaluation process remains at the same
+node. However, if the reference points to a subschema on a *different* schema
+resource, the schema resource of the destination becomes the new lexical scope.
+In the graph analogy, the evaluation process *follows an arrow* to another
+node.
 
 #### Within Schema Resources
 
