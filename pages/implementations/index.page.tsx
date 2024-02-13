@@ -122,7 +122,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                       if (implementation.compliance.config.instructions) {
                         mixedNotes += '<strong>' + implementation.compliance.config.instructions + '</strong> to produce specification-compliant behavior.'
                       }
-                    }                 
+                    }
                     const allDrafts = [
                       ...(implementation['date-draft'] || []),
                       ...(implementation['draft'] || [])

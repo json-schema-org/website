@@ -13,12 +13,11 @@ type Props = {
   mainClassName?: string
   metaTitle?: string
   whiteBg?: boolean
-  hideAds?: boolean
 }
 
 // const responsiveClasses = 'w-screen'
 
-export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
+export default function Layout({ children, mainClassName, metaTitle, whiteBg }: Props) {
 
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
@@ -27,7 +26,6 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
   useEffect(() => {
-
     // Check if the URL contains "#community"
     if (window.location.hash === '#community') {
       // Find the anchor element by its ID
@@ -39,25 +37,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       }
     }
 
-    // Function to load Carbon Ads script
-    const loadCarbonAdsScript = () => {     
-      if (!hideAds) {
-        const script = document.createElement('script')
-        script.src = `//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`
-        script.id = '_carbonads_js'
-        script.type = 'text/javascript'
-        script.async = true
-        document.body.appendChild(script)
-      } else {
-        // Remove all divs whose IDs start with "carbonads"
-        const carbonAdsDivs = document.querySelectorAll('[id^="carbonads"]')
-        carbonAdsDivs.forEach((div) => {
-          div.remove()
-        })
-      }
-    }
-    loadCarbonAdsScript()
-  }, [hideAds])
+  }, [])
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`
   return (
@@ -121,7 +101,7 @@ const MainNavLink = ({ uri, label, className, isActive }: { uri: string, label: 
 const MainNavigation = () => {
   const section = useContext(SectionContext)
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
-  
+
   return (
     <div className='flex justify-end mr-8 w-full justify-end'>
       <MainNavLink
@@ -129,14 +109,14 @@ const MainNavigation = () => {
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
-        
+
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/learn/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
-        
+
       />
 
       <MainNavLink
@@ -144,21 +124,21 @@ const MainNavigation = () => {
         uri='/implementations'
         label='Implementations'
         isActive={section === 'implementations'}
-        
+
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
-       
+
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/#community'
         label='Community'
         isActive={section === 'community'}
-        
+
       />
       <div className='flex items-center gap-12 md:gap-4'>
         <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
@@ -195,32 +175,32 @@ const MobileNav = () => {
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
-        
+
       />
       <MainNavLink
         uri='/learn/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
-       
+
       />
 
       <MainNavLink
         uri='/implementations'
         label='Implementations'
         isActive={section === 'implementations'}
-        
+
       />
       <MainNavLink
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
-       
+
       />
       <MainNavLink
         uri='/#community'
         label='Community'
         isActive={section === 'community'}
-        
+
       />
     </div>
   )
@@ -243,7 +223,7 @@ const Footer = () => (
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col text-center sm:text-left'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
-        </div>        
+        </div>
         <div className='flex flex-col text-center sm:text-left'>
           <a target='_blank' rel='noopener noreferrer' href='https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md' className='text-white mb-2'>Code of Conduct</a>
         </div>
