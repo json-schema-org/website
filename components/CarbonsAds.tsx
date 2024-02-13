@@ -124,6 +124,9 @@ CarbonAds.stylesheet = {
 
     #carbonads {
       height: fit-content;
+      margin: auto;
+      text-align: center;
+      transform: translate(0%, -10%);
     }
     
     #carbonads > span {
@@ -132,11 +135,13 @@ CarbonAds.stylesheet = {
       height: 100%;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
     .carbon-wrap {
       display: inline-flex;
       flex-direction: column;
+      align-items: center;
     }
 
     .carbon-img {
@@ -153,6 +158,7 @@ CarbonAds.stylesheet = {
       padding: 0.5rem;
       height: 100%;
       color: rgb(100 116 139);
+      max-width: 160px;
     }
 
     .carbon-poweredby {
