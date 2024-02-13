@@ -14,7 +14,7 @@ declare global {
 
 type Props = {
   className?: string
-  variant?: 'default' | 'grid' | 'sidebar'
+  variant?: 'default' | 'sidebar'
 }
 
 function CarbonAds({ className, variant = 'default' }: Props) {
@@ -119,55 +119,6 @@ CarbonAds.stylesheet = {
       color: #637381;
     }
 `,
-
-  'grid': `
-
-    #carbonads {
-      height: fit-content;
-      margin: auto;
-      text-align: center;
-      transform: translate(0%, -10%);
-    }
-    
-    #carbonads > span {
-      flex: 1;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .carbon-wrap {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .carbon-img {
-      padding: 0.4rem;
-    }
-
-    .carbon-img > img {
-      align-self: stretch;
-    }
-
-    .carbon-text {
-      font-size: 14px;
-      font-family: Inter, ui-sans-serif, system-ui;
-      padding: 0.5rem;
-      height: 100%;
-      color: rgb(100 116 139);
-      max-width: 160px;
-    }
-
-    .carbon-poweredby {
-      color: rgb(100 116 139);
-      padding: 0rem 0.5rem; 
-      font-size: 0.8rem;
-    }
-  
-  `,
   'sidebar': `
     #carbonads {
       padding: 0.5rem;
