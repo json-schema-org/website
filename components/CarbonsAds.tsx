@@ -14,10 +14,10 @@ declare global {
 
 type Props = {
   className?: string
-  variant?: 'default' | 'sidebar'
+  variant?: 'sidebar'
 }
 
-function CarbonAds({ className, variant = 'default' }: Props) {
+function CarbonAds({ className, variant = 'sidebar' }: Props) {
   const carbonRef = useRef<HTMLElement>(null)
   const router = useRouter()
 
@@ -62,63 +62,6 @@ function CarbonAds({ className, variant = 'default' }: Props) {
 }
 
 CarbonAds.stylesheet = {
-  default: `
-    #carbonads {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-        Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica, Arial,
-        sans-serif;
-      font-size: 12px;
-      line-height: 1.45;
-      background-color: #f9f9f9;
-      border: 1px dashed;
-      border-color: #cacaca;
-      box-sizing: border-box;
-      max-width: 300px;
-      text-align: left !important;
-      margin: 0;
-      border-top-left-radius: 10px;
-    }
-
-    #carbonads > span {
-      position: relative;
-      display: block;
-      padding: 10px;
-      border-radius: 4px;
-    }
-
-    .carbon-wrap {
-      display: flex;
-    }
-
-    .carbon-img {
-      margin-right: 10px;
-      line-height: 1;
-    }
-
-    .carbon-text {
-      font-size: 14px;
-      margin-bottom: 12px;
-      color: #637381;
-      text-decoration: none;
-    }
-
-    .carbon-poweredby {
-      position: absolute;
-      bottom: 10px;
-      left: 152px;
-      color: #c5cdd0;
-      text-decoration: none;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      font-weight: 500;
-      font-size: 10px;
-      line-height: 1;
-    }
-
-    #carbonads .carbon-poweredby:hover {
-      color: #637381;
-    }
-`,
   'sidebar': `
     #carbonads {
       padding: 0.5rem;
