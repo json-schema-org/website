@@ -13,7 +13,6 @@ import { DRAFT_ORDER } from '~/lib/config'
 
 // @ts-ignore
 import zeroFill from 'zero-fill'
-import CarbonAds from '~/components/CarbonsAds'
 
 export async function getStaticProps() {
   const validators = yaml.load(fs.readFileSync('data/validator-libraries-modern.yml', 'utf-8'))
@@ -43,7 +42,6 @@ export default function ImplementationsPages ({ blocks, validators, hyperLibarie
       <div className='w-5/6 mx-auto mt-12'>
         <Headline1>Implementations</Headline1>
         <StyledMarkdown markdown={blocks.intro} />
-        <CarbonAds />
         <Headline2>Validators</Headline2>
         <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />
         <StyledMarkdown markdown={blocks.main} />
