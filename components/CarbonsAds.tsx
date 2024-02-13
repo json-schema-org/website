@@ -20,6 +20,7 @@ type Props = {
 function CarbonAds({ className, variant = 'default' }: Props) {
   const carbonRef = useRef<HTMLElement>(null)
   const router = useRouter()
+  const isDevMode = process.env.NODE_ENV === 'development'
 
   useEffect(() => {
     const mobileMediaQuery = window.matchMedia('(max-width: 1023px)')
@@ -55,8 +56,7 @@ function CarbonAds({ className, variant = 'default' }: Props) {
   }, [router.asPath])
 
 
-  return <aside id='carbonads-container' ref={carbonRef} className={className}>
-  </aside>
+  return isDevMode ? null : <aside id='carbonads-container' ref={carbonRef} className={className}></aside>
 }
 
 CarbonAds.stylesheet = {
@@ -84,22 +84,23 @@ CarbonAds.stylesheet = {
       border-radius: 4px;
     }
 
-    #carbonads .carbon-wrap {
+    .carbon-wrap {
       display: flex;
     }
 
-    #carbonads .carbon-img {
+    .carbon-img {
       margin-right: 10px;
       line-height: 1;
     }
 
-    #carbonads .carbon-text {
+    .carbon-text {
+      font-size: 14px;
       margin-bottom: 12px;
       color: #637381;
       text-decoration: none;
     }
 
-    #carbonads .carbon-poweredby {
+    .carbon-poweredby {
       position: absolute;
       bottom: 10px;
       left: 152px;
@@ -139,13 +140,14 @@ CarbonAds.stylesheet = {
       margin-right: 0.75rem;
       height: 160px;
       width: 100%;
-      max-width: unset !important;
     }
 
     .carbon-text {
+      font-size: 14px;
       font-family: Inter, ui-sans-serif, system-ui;
       padding: 1rem;
       height: 100%;
+      color: rgb(100 116 139);
     }
 
     .carbon-poweredby {
@@ -173,12 +175,13 @@ CarbonAds.stylesheet = {
       align-self: stretch;
       margin-right: 0.75rem;
       width: 100%;
-      max-width: unset !important;
     }
 
     .carbon-text {
+      font-size: 14px;
       font-family: Inter, ui-sans-serif, system-ui;
       padding: 1rem 0rem;
+      color: rgb(100 116 139);
     }
 
     .carbon-poweredby {
