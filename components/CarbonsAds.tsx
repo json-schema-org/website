@@ -121,6 +121,11 @@ CarbonAds.stylesheet = {
 `,
 
   'grid': `
+
+    #carbonads {
+      height: fit-content;
+    }
+    
     #carbonads > span {
       flex: 1;
       width: 100%;
@@ -135,35 +140,40 @@ CarbonAds.stylesheet = {
     }
 
     .carbon-img {
-      background: #f6f6f6;
-      padding: 2rem;
+      padding: 0.4rem;
     }
 
     .carbon-img > img {
       align-self: stretch;
-      margin: auto;
     }
 
     .carbon-text {
       font-size: 14px;
       font-family: Inter, ui-sans-serif, system-ui;
-      padding: 1rem;
+      padding: 0.5rem;
       height: 100%;
       color: rgb(100 116 139);
     }
 
     .carbon-poweredby {
       color: rgb(100 116 139);
-      padding: 0rem 1rem; 
+      padding: 0rem 0.5rem; 
       font-size: 0.8rem;
     }
   
   `,
   'sidebar': `
     #carbonads {
+      padding: 0.5rem;
       margin: 2rem auto;
+      background-color: #f9f9f9;
+      border: 1px dashed;
+      border-color: #cacaca;
+      box-sizing: border-box;
+      border-radius: 10px;
+      max-width: 300px;
     }
-    
+
     #carbonads > span {
       width: 100%;
       height: fit-content;
@@ -174,7 +184,11 @@ CarbonAds.stylesheet = {
     .carbon-wrap {
       flex: 1;
       display: inline-flex;
-      flex-direction: column;
+      flex-direction: row;
+    }
+
+    .carbon-img {
+      margin: auto;
     }
 
     .carbon-img > img {
@@ -183,16 +197,15 @@ CarbonAds.stylesheet = {
     }
 
     .carbon-text {
-      font-size: 14px;
+      font-size: 12px;
       font-family: Inter, ui-sans-serif, system-ui;
-      padding: 1rem 0rem;
       color: rgb(100 116 139);
-      max-width: 130px;
     }
 
     .carbon-poweredby {
+      font-size: 12px;
+      margin-top: 4px;
       color: rgb(100 116 139);
-      font-size: 0.8rem;
     }
   `
 }
