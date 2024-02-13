@@ -20,23 +20,26 @@ type Props = {
 function CarbonAds({ className, variant = 'default' }: Props) {
   const carbonRef = useRef<HTMLElement>(null)
   const router = useRouter()
-  const isDevMode = process.env.NODE_ENV === 'development'
 
   useEffect(() => {
     const mobileMediaQuery = window.matchMedia('(max-width: 1023px)')
     if (!mobileMediaQuery.matches) {
       const hasCarbonAds = document.querySelector('#carbonads')
-
+      // Check if another ad is present to refresh
       if (hasCarbonAds) {
         window._carbonads.refresh()
         return
       } else {
-        const carbonAdsScript = document.createElement('script')
-        carbonAdsScript.id = '_carbonads_js'
-        carbonAdsScript.type = 'text/javascript'
-        carbonAdsScript.async = true
-        carbonAdsScript.src = `//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`
-        document.querySelector('#carbonads-container')?.appendChild(carbonAdsScript)
+        // Check if the script is present (ad is not yet present) so that duplicate requests are not made to carbon ads
+        const hasCarbonAdsScript = document.querySelector('#_carbonads_js')
+        if (!hasCarbonAdsScript) {
+          const carbonAdsScript = document.createElement('script')
+          carbonAdsScript.id = '_carbonads_js'
+          carbonAdsScript.type = 'text/javascript'
+          carbonAdsScript.async = true
+          document.querySelector('#carbonads-container')?.appendChild(carbonAdsScript)
+          carbonAdsScript.src = `//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`
+        }
       }
 
       const existingStyleSheet = document.querySelector('#_carbonads_css')
@@ -52,11 +55,10 @@ function CarbonAds({ className, variant = 'default' }: Props) {
       (carbonRef.current as HTMLElement).style.display = 'none'
     }
 
-
   }, [router.asPath])
 
 
-  return isDevMode ? null : <aside id='carbonads-container' ref={carbonRef} className={className}></aside>
+  return <aside id='carbonads-container' ref={carbonRef} className={className}></aside>
 }
 
 CarbonAds.stylesheet = {
@@ -119,7 +121,6 @@ CarbonAds.stylesheet = {
 `,
 
   'grid': `
-  
     #carbonads > span {
       flex: 1;
       width: 100%;
@@ -129,17 +130,18 @@ CarbonAds.stylesheet = {
     }
 
     .carbon-wrap {
-      flex: 1;
-      width: 100%;
       display: inline-flex;
       flex-direction: column;
     }
 
+    .carbon-img {
+      background: #f6f6f6;
+      padding: 2rem;
+    }
+
     .carbon-img > img {
       align-self: stretch;
-      margin-right: 0.75rem;
-      height: 160px;
-      width: 100%;
+      margin: auto;
     }
 
     .carbon-text {
@@ -152,12 +154,16 @@ CarbonAds.stylesheet = {
 
     .carbon-poweredby {
       color: rgb(100 116 139);
-      padding: 1rem; 
+      padding: 0rem 1rem; 
       font-size: 0.8rem;
     }
   
   `,
   'sidebar': `
+    #carbonads {
+      margin: 2rem auto;
+    }
+    
     #carbonads > span {
       width: 100%;
       height: fit-content;
@@ -166,7 +172,7 @@ CarbonAds.stylesheet = {
     }
 
     .carbon-wrap {
-      width: 100%;
+      flex: 1;
       display: inline-flex;
       flex-direction: column;
     }
@@ -174,7 +180,6 @@ CarbonAds.stylesheet = {
     .carbon-img > img {
       align-self: stretch;
       margin-right: 0.75rem;
-      width: 100%;
     }
 
     .carbon-text {
@@ -182,6 +187,7 @@ CarbonAds.stylesheet = {
       font-family: Inter, ui-sans-serif, system-ui;
       padding: 1rem 0rem;
       color: rgb(100 116 139);
+      max-width: 130px;
     }
 
     .carbon-poweredby {
