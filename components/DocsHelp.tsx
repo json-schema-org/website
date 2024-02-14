@@ -48,7 +48,7 @@ export const DocsHelp = () => {
           Learning JSON Schema is often confusing, but don't worry, we are here to help! You can start a thread on <a target='_blank' className='underline' rel='noreferrer' href='https://github.com/orgs/json-schema-org/discussions/new?category=q-a'>GitHub Discussions</a>, connect with us on <a target='_blank' rel='noreferrer' className='underline' href='https://json-schema.org/slack'>Slack</a>, or join our live <a target='_blank' rel='noreferrer' className='underline' href='https://github.com/json-schema-org/community/discussions/34'>Office Hours</a>.
         </p>
         <div className='mt-1 mb-2 text-[15px]'>
-          We'd love to help!! ❤️
+          We'd love to help!! &hearts;
         </div>
       </div>
 
