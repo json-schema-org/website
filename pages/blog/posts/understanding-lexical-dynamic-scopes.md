@@ -321,10 +321,10 @@ stack.
 In traditional programming languages, program execution typically involves
 procedures calling other procedures, creating what is referred to in Computer
 Science as a [call stack](https://en.wikipedia.org/wiki/Call_stack).
-Eventually, a procedures will not call any other procedures. When such leaf
+Eventually, a procedure will not call any other procedures. When such leaf
 procedures finish executing, the call stack will
 [unwind](https://en.wikipedia.org/wiki/Call_stack#Unwinding) (a pop operation)
-and control will return the caller frame.
+and control will return to the caller frame.
 
 > If you are having trouble understanding the previous paragraph, you might
 > enjoy watching [Call Stacks - CS50
@@ -393,7 +393,7 @@ summarized in the following table:
 | Comparison Point                     | Lexical Scope | Dynamic Scope |
 |--------------------------------------|---------------|---------------|
 | **Definition**                       | Consists of the schema resource being evaluated | Consists of the stack of schema resources evaluated so far |
-| **Determining the scope**            | Can be statically determined without taking instances into account | Cannot be always statically determined. It may vary depending on the instance |
+| **Determining the scope**            | Can be statically determined without taking instances into account | Cannot always be statically determined. It may vary depending on the instance |
 | **Following references**             | Consists of abandoning the lexical scope of the origin schema and entering the lexical scope of the destination schema | Consists of pushing the destination schema resource to the top of the dynamic scope stack |
 
 In a future post, we will build on top of the concepts introduced in this
