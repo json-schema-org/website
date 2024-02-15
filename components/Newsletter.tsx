@@ -1,62 +1,63 @@
 import React, { useState } from 'react'
+import classnames from 'classnames'
 
-const NewsletterForm = () => {
-  const [name, setName] = useState('')
+interface NewsletterFormProps {
+  wrapperClassName?: string
+  className?: string
+}
+const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', className = '' }) => { 
   const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // Handle form submission here, such as sending a request to subscribe the user
-  }
+  // const handleSubmit = (e: any) => {
+  //   e.preventDefault()
+  //   // Handle form submission here, such as sending a request to subscribe the user
+  // }
+
+  // const handleFileChange = (e: any) => {
+    
+  // }
 
   return (
-    <div className='bg-gray-100 min-h-screen flex items-center justify-center'>
-      <div className='w-full max-w-sm'>
-        <img src='logo.png' alt='AsyncAPI' className='mx-auto w-24 mb-6' />
-        <form onSubmit={handleSubmit}>
-          <div className='md:flex md:items-center mb-6'>
-            <div className='md:w-1/3'>
-              <label htmlFor='name' className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
-                Your name
-              </label>
-            </div>
-            <div className='md:w-2/3'>
-              <input
-                className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
-                id='name'
-                type='text'
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className='md:flex md:items-center mb-6'>
-            <div className='md:w-1/3'>
-              <label htmlFor='email' className='block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4'>
-                Your email
-              </label>
-            </div>
-            <div className='md:w-2/3'>
-              <input
-                className='bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
-                id='email'
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className='md:flex md:items-center'>
-            <div className='md:w-1/3'></div>
-            <div className='md:w-2/3'>
-              <button className='shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline-purple focus:outline-none text-white font-bold py-2 px-4 rounded' type='submit'>
-                Subscribe
-              </button>
-            </div>
-          </div>
+    <section
+      className={classnames('w-[100vw]  mx-auto flex items-center justify-center bg-[#090A11]', wrapperClassName)}>
+      <div className={classnames('w-full text-center px-5 py-9  bg-[#090A11] relative', className)}>
+        
+        <h3 className='text-white font-bold tracking-heading mb-4 text-h2 px-5'>
+            Subscribe to our newsletter to receive news about Json Schema.
+        </h3>
+        <p
+          className='text-gray-300 text-lg  mb-8'
+        >
+            We respect your inbox. No spam, promise ✌️
+        </p>
+        <form className='flex flex-col md:flex-row gap-4'>
+          <input
+            type='text'
+            name='username'
+            placeholder='Your Name'
+            className='form-input block w-full py-3 text-lg sm:text-lg sm:leading-5  md:flex-1 rounded-md px-5'
+            value={username}
+            onChange={(e: any) => setUsername(e.target.value)}
+          />
+          <input
+            type='email'
+            name='email'
+            placeholder='Your Email'
+            className='form-input block w-full py-3 text-lg sm:text-lg sm:leading-5  md:flex-1 rounded-md px-5'
+            value={email}
+            onChange={(e: any) => setEmail(e.target.value)}
+          />
+          <button
+            type='submit'
+            className='bg-primary-500 hover:bg-primary-400 text-white bg-[#445cf4] transition-all duration-500 ease-in-out rounded-md px-4 py-3 text-md font-semibold tracking-heading w-full md:mt-0 md:flex-1'
+          >
+            <span className='inline-block'>Subscribe</span>
+          </button>
         </form>
       </div>
-    </div>
+
+    </section>
   )
 }
 
