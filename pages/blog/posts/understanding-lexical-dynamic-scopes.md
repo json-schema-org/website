@@ -1,6 +1,6 @@
 ---
 title: "Understanding JSON Schema Lexical and Dynamic Scopes"
-date: "2024-02-07"
+date: "2024-02-15"
 tags:
   - Fundamentals
   - Scopes
