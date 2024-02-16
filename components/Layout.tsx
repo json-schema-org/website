@@ -225,7 +225,7 @@ const Footer = () => (
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
         </div>
         <div className='flex flex-col text-center sm:text-left'>
-          <a target='_blank' rel='noopener noreferrer' href='https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md' className='text-white mb-2'>Code of Conduct</a>
+          <a href='/overview/code-of-conduct' className='text-white mb-2'>Code of Conduct</a>
         </div>
       </div>
       <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>

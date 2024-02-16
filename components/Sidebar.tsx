@@ -50,7 +50,8 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
 }
 const getDocsPath = [
   '/overview/what-is-jsonschema',
-  '/overview/sponsors'
+  '/overview/sponsors',
+  '/overview/code-of-conduct'
 ]
 const getStartedPath = [
   '/learn/json-schema-examples',
@@ -206,6 +207,7 @@ export const DocsNav = () => {
         >
           <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
           <DocLink uri='/overview/sponsors' label='Sponsors' />
+          <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
         </div>
       </div>
       {/* Get Started */}
