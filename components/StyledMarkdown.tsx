@@ -31,7 +31,7 @@ function transformMarkdownLinks(markdown: string): string {
   markdown = markdown.replace(/^\[([^\]]+)\]:\s*(.+)$/gm, (_, key: string, value: string) => {
     linkDefinitions[key.toLowerCase()] = value
     return ''
-  });
+  })
 
   // Replace reference-style links with inline links
   return markdown.replace(/\[([^\]]+)\]\[([^\]]*)\]/g, (_, text: string, id: string) => {
