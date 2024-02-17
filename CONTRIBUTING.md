@@ -58,7 +58,7 @@ To publish a case study, we encourage you to join `#adopters` channel in our [Sl
 
 ### 📋 Improving the Documentation
 
-If you would like to join the efforts to improve the JSON Schema Documentation, we encourage you to check our [documentation board](https://github.com/orgs/json-schema-org/projects/16) to get a sense of the pending issues and who is doing what. We encourage you to join the discussion on this [issue](https://github.com/json-schema-org/community/issues/421) so you can see the long term vision for our docs. We also invite you to join the discussion in `#documentation` channel in our  [Slack workspace](https://json-schema.org/slack).
+If you would like to join the efforts to improve the JSON Schema Documentation, we encourage you to check our [documentation board](https://github.com/orgs/json-schema-org/projects/16) to get a sense of the pending issues and who is doing what. We encourage you to join the discussion on the [issue #421](https://github.com/json-schema-org/community/issues/421) so you can see the long term vision for our docs. We also invite you to join the discussion in `#documentation` channel in our  [Slack workspace](https://json-schema.org/slack).
 
 ### 📋 Improving the Website
 
