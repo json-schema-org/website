@@ -3,11 +3,14 @@ import React, { FormEvent, useRef, useState } from 'react'
 export function DocsHelp() {
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [feedbackStatus, setFeedbackStatus] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
   const feedbackFormRef = useRef<HTMLFormElement>(null)
 
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault()
     const formData = new FormData(feedbackFormRef.current!)
+    setIsSubmitting(true)
     try {
       const response = await fetch('', {
         method: 'POST',
@@ -19,25 +22,38 @@ export function DocsHelp() {
         submitFeedbackHandler('feedback')
       } else {
         console.error('Failed to submit form')
+        setError('An error occurred. Please try again later.')
       }
     } catch (error) {
       console.error('Error submitting form:', error)
+      setError('An error occurred. Please try again later.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
   const createGitHubIssueHandler = () => {
     const formData = new FormData(feedbackFormRef.current!)
-    const title = encodeURIComponent('Feedback on Documentation')
-    const body = encodeURIComponent(`${formData.get('feedback-comment')}`)
-    const url = `https://github.com/json-schema-org/website/issues/new?title=${title}&body=${body}`
+    setIsSubmitting(true)
+    try {
+      const title = encodeURIComponent('Feedback on Documentation')
+      const body = encodeURIComponent(`${formData.get('feedback-comment')}`)
+      const url = `https://github.com/json-schema-org/website/issues/new?title=${title}&body=${body}`
 
-    window.open(url, '_blank')
-    submitFeedbackHandler('github_issue')
+      window.open(url, '_blank')
+      submitFeedbackHandler('github_issue')
+    } catch (error) {
+      console.error('Error creating GitHub issue:', error)
+      setError('An error occurred. Please try again later.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const submitFeedbackHandler = (status: string) => {
     setIsFormOpen(false)
     setFeedbackStatus(status)
+    setError('')
     feedbackFormRef.current!.reset()
   }
 
@@ -82,9 +98,9 @@ export function DocsHelp() {
                     </div>
 
                     <div className='flex justify-end items-center mt-1 text-[14px]'>
-                      <button type='submit' className='px-[8px] py-[4px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200'>Submit Feedback</button>
+                      <button type='submit' className={`px-[8px] py-[4px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`} disabled={isSubmitting}>Submit Feedback</button>
                       <span className='mx-2'>or</span>
-                      <button type='button' className='px-[8px] py-[4px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200' onClick={createGitHubIssueHandler}>Create an issue</button>
+                      <button type='button' className={`px-[8px] py-[4px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`} disabled={isSubmitting} onClick={createGitHubIssueHandler}>Create an issue</button>
                     </div>
                   </div>
                 }
@@ -109,6 +125,12 @@ export function DocsHelp() {
               </p>
             </div>
           }
+
+          {error && (
+            <div className='my-6 text-base'>
+              <p>{error}</p>
+            </div>
+          )}
 
         </div>
 
