@@ -90,16 +90,18 @@ export function DocsHelp() {
                     <div className='mb-4'>
                       <p>
                         <label className='mb-1 block' htmlFor='feedback-comment'>
-                          <span className='font-bold text-[16px]'>Let us know what we do well</span>
-                          <span className='float-right text-[#7d8590] text-[14px]'>Optional</span>
+                          <span className='font-bold text-[14px] block'>Let us know your Feedback</span>
+                          <span className='float-right text-[#7d8590] text-[14px] block'>Optional</span>
                         </label>
                       </p>
                       <textarea className='py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid border-[#aaaaaa] rounded-md w-full overflow-hidden' name='feedback-comment' id='feedback-comment' />
                     </div>
 
-                    <div className='flex justify-end items-center mt-1 text-[14px]'>
+                    <div className='flex justify-start items-center mt-1 text-[14px]'>
                       <button type='submit' className={`px-[8px] py-[4px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`} disabled={isSubmitting}>Submit Feedback</button>
                       <span className='mx-2'>or</span>
+                    </div>
+                    <div className='flex justify-start items-center mt-1 text-[14px]'>
                       <button type='button' className={`px-[8px] py-[4px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`} disabled={isSubmitting} onClick={createGitHubIssueHandler}>Create an issue</button>
                     </div>
                   </div>
@@ -110,7 +112,7 @@ export function DocsHelp() {
 
           {
             feedbackStatus === 'feedback' &&
-            <div className='my-6 text-base'>
+            <div className='my-6 text-[14px]'>
               <p>
                 Thank you! We received your feedback.
               </p>
@@ -119,7 +121,7 @@ export function DocsHelp() {
 
           {
             feedbackStatus === 'github_issue' &&
-            <div className='my-6 text-base'>
+            <div className='my-6 text-[14px]'>
               <p>
                 Thank you! Let's create an issue on GitHub.
               </p>
@@ -127,7 +129,7 @@ export function DocsHelp() {
           }
 
           {error && (
-            <div className='my-6 text-base'>
+            <div className='my-6 text-[14px]'>
               <p>{error}</p>
             </div>
           )}
@@ -139,12 +141,12 @@ export function DocsHelp() {
             Help us make our docs great!
           </h3>
 
-          <div className='my-6 text-base'>
+          <div className='my-6 text-[14px]'>
             <p>
               At JSON Schema, we value docs contributions as much as every other type of contribution!
             </p>
           </div>
-          <div className='my-4 text-base'>
+          <div className='my-4 text-[14px]'>
             <a target='_blank' rel='noreferrer' className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200' href='https://github.com/orgs/json-schema-org/projects/16'>
               <svg className='inline-block select-none align-text-bottom mr-1' aria-hidden='true' role='img' viewBox='0 0 16 16' width='16' height='16' fill='currentColor'>
                 <path d='M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z' />
@@ -152,8 +154,11 @@ export function DocsHelp() {
               Make a contribution
             </a>
           </div>
-          <div className='my-2 text-base'>
+          <div className='my-2 text-[14px]'>
             <a target='_blank' rel='noreferrer' className='underline' href='https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md'>
+              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' className='bi bi-diagram-2 inline-block select-none align-text-bottom mr-1' viewBox='0 0 16 16'>
+                <path fill-rule='evenodd' d='M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H11a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 5 7h2.5V6A1.5 1.5 0 0 1 6 4.5zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5zM3 11.5A1.5 1.5 0 0 1 4.5 10h1A1.5 1.5 0 0 1 7 11.5v1A1.5 1.5 0 0 1 5.5 14h-1A1.5 1.5 0 0 1 3 12.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 9 12.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z'/>
+              </svg>
               Learn how to contribute
             </a>
           </div>
@@ -164,12 +169,12 @@ export function DocsHelp() {
             Still Need Help?
           </h3>
 
-          <div className='my-6 text-base'>
+          <div className='my-6 text-[14px]'>
             <p>
               Learning JSON Schema is often confusing, but don't worry, we are here to help!.
             </p>
           </div>
-          <div className='my-2 text-base'>
+          <div className='my-2 text-[14px]'>
             <a target='_blank' rel='noreferrer' className='underline' href='https://github.com/orgs/json-schema-org/discussions/new?category=q-a'>
               <svg className='inline-block select-none align-text-bottom mr-1' aria-hidden='true' role='img' viewBox='0 0 16 16' width='16' height='16' fill='currentColor'>
                 <path d='M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z' />
@@ -177,7 +182,7 @@ export function DocsHelp() {
               Ask the community on GitHub
             </a>
           </div>
-          <div className='my-2 text-base'>
+          <div className='my-2 text-[14px]'>
             <a target='_blank' rel='noreferrer' className='underline' href='https://json-schema.org/slack'>
               <svg className='inline-block select-none align-text-bottom mr-1' aria-hidden='true' role='img' viewBox='0 0 16 16' width='16' height='16' fill='currentColor'>
                 <path d='M1.75 1h8.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 10.25 10H7.061l-2.574 2.573A1.458 1.458 0 0 1 2 11.543V10h-.25A1.75 1.75 0 0 1 0 8.25v-5.5C0 1.784.784 1 1.75 1ZM1.5 2.75v5.5c0 .138.112.25.25.25h1a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h3.5a.25.25 0 0 0 .25-.25v-5.5a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25Zm13 2a.25.25 0 0 0-.25-.25h-.5a.75.75 0 0 1 0-1.5h.5c.966 0 1.75.784 1.75 1.75v5.5A1.75 1.75 0 0 1 14.25 12H14v1.543a1.458 1.458 0 0 1-2.487 1.03L9.22 12.28a.749.749 0 0 1 .326-1.275.749.749 0 0 1 .734.215l2.22 2.22v-2.19a.75.75 0 0 1 .75-.75h1a.25.25 0 0 0 .25-.25Z' />
