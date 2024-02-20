@@ -26,14 +26,14 @@ go by different names.
 The following table maps from the names of JSON types to their
 analogous types in Python:
 
-| JSON    | Python                                                |
-|:----|:------------------------------------------------------|
-| string | string *1                                             |
-| number | int/float *2                                          |
-| object | dict |
-| array | list |
-| boolean | bool |
-| null | None |
+| JSON    | Python       |
+|---------|--------------|
+| string  | string *1    |
+| number  | int/float *2 |
+| object  | dict         |
+| array   | list         |
+| boolean | bool         |
+| null    | None         |
 
 #### Footnotes
 
@@ -49,14 +49,14 @@ floating-point.
 The following table maps from the names of JSON types to their
 analogous types in Ruby:
 
-| JSON    | Ruby                             |
-|:----|:---------------------------------|
-| string | String                           |
-| number | Integer/Float *3                 |
-| object | Hash                             |
-| array | Array                            |
-| boolean | TrueClass/FalseClass             |
-| null | NilClass                             |
+| JSON    | Ruby                 |
+|---------|----------------------|
+| string  | String               |
+| number  | Integer/Float *3     |
+| object  | Hash                 |
+| array   | Array                |
+| boolean | TrueClass/FalseClass |
+| null    | NilClass             |
 
 #### Footnotes
 
@@ -68,36 +68,29 @@ floating-point.
 The following table maps from the names of JSON types to
 their analogous types in Objective-C:
 
-| JSON | Perl |
-| --- | --- |
-| string | scalar (SV) |
-| number | scalar (NV or IV), or Math::BigNum, Math::BigInt |
-| object | reftype=HASH |
-| array | reftype=ARRAY |
-| boolean | scalar or JSON::PP::Boolean |
-| null | scalar (`undef`) |
+| JSON    | Perl                                             |
+|---------|--------------------------------------------------|
+| string  | scalar (SV)                                      |
+| number  | scalar (NV or IV), or Math::BigNum, Math::BigInt |
+| object  | reftype=HASH                                     |
+| array   | reftype=ARRAY                                    |
+| boolean | scalar or JSON::PP::Boolean                      |
+| null    | scalar (`undef`)                                 |
 
 [tab "Objective-C"]
 
 The following table maps from the names of JavaScript types to
 their analogous types in Objective-C:
 
-+----------+--------------------------+
-|JSON      |Objective-C               |
-+----------+--------------------------+
-|string    |NSString                  |
-+----------+--------------------------+
-|number    |NSNumber                  |
-+----------+--------------------------+
-|object    |NSDictionary              |
-+----------+--------------------------+
-|array     |NSArray                   |
-+----------+--------------------------+
-|boolean   |NSNumber                  |
-|          |[#4]_                     |
-+----------+--------------------------+
-|null      |NSNull                    |
-+----------+--------------------------+
+| JSON    | Objective-C  |
+|---------|--------------|
+| string  | NSString     |
+| number  | NSNumber     |
+| object  | NSDictionary |
+| array   | NSArray      |
+| boolean | NSNumber     |
+|         | [#4]_        |
+| null    | NSNull       |
 
 #### Footnotes
 
@@ -110,22 +103,15 @@ value for identity (pointer equality) to `@YES` and `@NO` constants.
 The following table maps from the names of JavaScript types to
 their analogous types in Swift:
 
-+----------+----------------------+
-|JSON      |Swift                 |
-+----------+----------------------+
-|string    |String                |
-+----------+----------------------+
-|number    |Int/Double            |
-|          |[#5]_                 |
-+----------+----------------------+
-|object    |Dictionary            |
-+----------+----------------------+
-|array     |Array                 |
-+----------+----------------------+
-|boolean   |Bool                  |
-+----------+----------------------+
-|null      |Optional              |
-+----------+----------------------+
+| JSON    | Swift      |
+|---------|------------|
+| string  | String     |
+| number  | Int/Double |
+|         | [#5]_      |
+| object  | Dictionary |
+| array   | Array      |
+| boolean | Bool       |
+| null    | Optional   |
 
 #### Footnotes
 
