@@ -219,6 +219,18 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
           }
         </div>
         <Editable
+          onCopy={(e) => {
+            e.preventDefault()
+            const text = window.getSelection()?.toString()
+            navigator.clipboard.writeText(text || '')
+          }}
+          onCut = {(e) => {
+            e.preventDefault()
+            const text = window.getSelection()?.toString()
+            navigator.clipboard.writeText(text || '')
+            setValue([{ type: 'paragraph', children: [{ text: '' }] }])
+          }
+          }
           readOnly={true}
           decorate={([node, path]) => {
             if (!Text.isText(node)) return []
@@ -275,7 +287,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
             if (element.type === 'paragraph') {
               return (
                 <span className='relative flex flex-row first:pt-4 last:pb-4 ' {...attributes}>
-                  <div className='absolute px-4 w-16 text-slate-500 select-none' contentEditable={false}>{line}</div>
+                  <span className='absolute px-4 w-16 after:content-[attr(data-line-number)] text-slate-500 select-none' data-line-number={line} />
                   <span className='ml-12 text-white pl-4'>{children}</span>
                 </span>
               )
