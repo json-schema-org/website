@@ -23,7 +23,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', 
       className={classnames('w-[100vw]  mx-auto flex items-center justify-center bg-[#090A11]', wrapperClassName)}>
       <div className={classnames('w-full max-w-[900px] text-center px-5 py-9  bg-[#090A11] relative', className)}>
         
-        <h3 className=' font-bold tracking-heading mb-4 text-h2 px-5'>
+        <h3 className=' font-bold tracking-heading mb-4 text-h3 px-5'>
             Subscribe to our newsletter to receive news about Json Schema.
         </h3>
         <p
