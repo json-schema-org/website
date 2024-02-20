@@ -68,7 +68,7 @@ If you would like to join the efforts to improve the JSON Schema Website, we enc
 
 If you would like to contribute with designs, we encourage you to join `#design` channel in our [Slack workspace](https://json-schema.org/slack) and read the [contributing guidelines](https://github.com/json-schema-org/brand/blob/master/CONTRIBUTING.md) in the [Brand](https://github.com/json-schema-org/brand) repository.
 
-## ⌨️ Pull requests
+### ⌨️ Pull requests
 
 We welcome pull requests for editorial suggestions and resolving open issues.
 
@@ -78,11 +78,16 @@ Generally, pull requests should be made to the `main` branch.
 
 Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged more quickly once approved by a project member.
 
-## 🏛 License
+## Triage
 
-The contents of this repository are [licensed under](./LICENSE) either the BSD 3-clause license *or* the Academic Free License v3.0.
+Please check the [triage process](https://github.com/json-schema-org/.github/blob/main/TRIAGE.md) to learn how we review and label incoming issues . 
+
+## Feedback
+
+Feedback on this process can be made informally through our [Slack server](https://json-schema.org/slack) and formally using our [Community Discussions](https://github.com/json-schema-org/community/discussions).
 
 ## References 
+
 This document was adapted from [https://contributing.md](https://contributing.md/)!
 
 
