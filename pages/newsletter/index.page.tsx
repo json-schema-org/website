@@ -6,7 +6,7 @@ const index = () => {
   return (
     <>
       <Layout>
-        <NewsletterForm className='pt-[100px]' wrapperClassName='h-[calc(100vh-340px)]' />
+        <NewsletterForm className='pt-[100px] bg-white text-black' wrapperClassName='h-[calc(100vh-340px)] bg-white' />
       </Layout>
     
     </>

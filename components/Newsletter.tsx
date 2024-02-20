@@ -21,13 +21,13 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', 
   return (
     <section
       className={classnames('w-[100vw]  mx-auto flex items-center justify-center bg-[#090A11]', wrapperClassName)}>
-      <div className={classnames('w-full text-center px-5 py-9  bg-[#090A11] relative', className)}>
+      <div className={classnames('w-full max-w-[900px] text-center px-5 py-9  bg-[#090A11] relative', className)}>
         
-        <h3 className='text-white font-bold tracking-heading mb-4 text-h2 px-5'>
+        <h3 className=' font-bold tracking-heading mb-4 text-h2 px-5'>
             Subscribe to our newsletter to receive news about Json Schema.
         </h3>
         <p
-          className='text-gray-300 text-lg  mb-8'
+          className='text-lg  mb-8'
         >
             We respect your inbox. No spam, promise ✌️
         </p>
@@ -36,7 +36,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', 
             type='text'
             name='username'
             placeholder='Your Name'
-            className='form-input block w-full py-3 text-lg sm:text-lg sm:leading-5  md:flex-1 rounded-md px-5'
+            className='form-input block w-full py-3 text-lg sm:text-lg sm:leading-5  md:flex-1 rounded-md px-5 bg-gray-200'
             value={username}
             onChange={(e: any) => setUsername(e.target.value)}
           />
@@ -44,7 +44,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', 
             type='email'
             name='email'
             placeholder='Your Email'
-            className='form-input block w-full py-3 text-lg sm:text-lg sm:leading-5  md:flex-1 rounded-md px-5'
+            className='form-input block w-full py-3 text-lg sm:text-lg sm:leading-5  md:flex-1 rounded-md px-5 bg-gray-200'
             value={email}
             onChange={(e: any) => setEmail(e.target.value)}
           />
