@@ -17,6 +17,8 @@ import {
   Headline4
 } from '~/components/Headlines'
 import classnames from 'classnames'
+import Information from './Information'
+
 
 const REGEX_TAB_GROUPS = /\[tabs-start\s*"(?<label>.*)"\]((?!\[tabs-start).|\n)*\[tabs-end\]/gm
 
@@ -317,21 +319,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             Infobox: {
               component: ({ children, label }) => {
                 return (
-                  <BlockContext.Provider value={BlockContextValue.Infobox}>
-                    <div className='my-2'>
-                      {label && (
-                        <div className='bg-blue-100 inline-block text-sm rounded-t-lg px-6 py-1 text-blue-600'>
-                          {label}
-                        </div>
-                      )}
-                      <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded text-slate-600 leading-7'>
-                      <img src='/icons/info-blue.svg' className='h-7 w-7 mr-1' />
-                        <div className='font'>
-                          {children}
-                        </div>
-                      </div>
-                    </div>
-                  </BlockContext.Provider>
+                 
+                  <Information label={label} iconSrc='/icons/info-blue.svg' bgColor='blue' textColor='black'>
+                  {children}
+                </Information>
+             
                 )
               }
             },
@@ -339,63 +331,33 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             Tip: {
               component: ({ children, label }) => {
                 return (
-                  <BlockContext.Provider value={BlockContextValue.Infobox}>
-                    <div className='my-2'>
-                      {label && (
-                        <div className='bg-green-100  inline-block text-sm rounded-t-lg px-6 py-1 text-green-600'>
-                          {label}
-                        </div>
-                      )}
-                      <div className='flex flex-row items-center mb-6 bg-green-50 px-6 py-4 border border-green-100 rounded text-slate-600 leading-7'>
-                      <img src='/icons/bulb.svg' className='h-7 w-7 mr-1' />
-                        <div className='font'>
-                          {children}
-                        </div>
-                      </div>
-                    </div>
-                  </BlockContext.Provider>
+       
+                  <Information label={label} iconSrc='/icons/bulb.svg' bgColor='green' textColor='black'>
+                  {children}
+                </Information>
+             
                 )
               }
             },
             Warning: {
               component: ({ children, label }) => {
                 return (
-                  <BlockContext.Provider value={BlockContextValue.Infobox}>
-                    <div className='my-2'>
-                      {label && (
-                        <div className='bg-amber-100 inline-block text-sm rounded-t-lg px-6 py-1 text-amber-600'>
-                          {label}
-                        </div>
-                      )}
-                      <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
-                      <img src='/icons/info-yellow.svg' className='h-7 w-7 mr-1' />
-                        <div className='font'>
-                          {children}
-                        </div>
-                      </div>
-                    </div>
-                  </BlockContext.Provider>
+                  
+                  <Information label={label} iconSrc='/icons/info-yellow.svg'  bgColor='amber' textColor='black'>
+                  {children}
+                </Information>
+              
                 )
               }
             },
             Danger: {
               component: ({ children, label }) => {
                 return (
-                  <BlockContext.Provider value={BlockContextValue.Infobox}>
-                    <div className='my-2'>
-                      {label && (
-                        <div className='bg-red-100  inline-block text-sm rounded-t-lg px-6 py-1 text-red-600'>
-                          {label}
-                        </div>
-                      )}
-                      <div className='flex flex-row items-center mb-6 bg-red-50 px-6 py-4 border border-red-100 rounded text-slate-600 leading-7'>
-                      <img src='/icons/warning.svg' className='h-7 w-7 mr-1' />
-                        <div className='font'>
-                          {children}
-                        </div>
-                      </div>
-                    </div>
-                  </BlockContext.Provider>
+            
+                  <Information label={label} iconSrc='/icons/warning.svg' bgColor='red' textColor='black' >
+                  {children}
+                </Information>
+           
                 )
               }
             },
