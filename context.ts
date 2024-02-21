@@ -1,7 +1,7 @@
 import React from 'react'
 
 export enum BlockContextValue {
-  Infobox,
+  Information,
   CodeBlock,
   Details
 }
