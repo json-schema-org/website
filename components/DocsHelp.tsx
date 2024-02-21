@@ -12,7 +12,7 @@ export function DocsHelp() {
     const formData = new FormData(feedbackFormRef.current!)
     setIsSubmitting(true)
     try {
-      const response = await fetch('', {
+      const response = await fetch('https://json-schema-feedback-form.json-schema.workers.dev', {
         method: 'POST',
         body: formData,
       })
@@ -98,11 +98,23 @@ export function DocsHelp() {
                     </div>
 
                     <div className='flex justify-start items-center mt-1 text-[14px]'>
-                      <button type='submit' className={`px-[8px] py-[4px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`} disabled={isSubmitting}>Submit Feedback</button>
+                      <button type='submit' className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`} disabled={isSubmitting}>
+                        <svg className='inline-block select-none align-text-bottom mr-1' aria-hidden='true' role='img' viewBox='0 0 16 16' width='16' height='16' fill='currentColor'>
+                          <path d='M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2'/>
+                          <path d='m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2'/>
+                        </svg>
+                        Submit Feedback
+                      </button>
                       <span className='mx-2'>or</span>
                     </div>
                     <div className='flex justify-start items-center mt-1 text-[14px]'>
-                      <button type='button' className={`px-[8px] py-[4px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`} disabled={isSubmitting} onClick={createGitHubIssueHandler}>Create an issue</button>
+                      <button type='button' className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`} disabled={isSubmitting} onClick={createGitHubIssueHandler}>
+                        <svg className='inline-block select-none align-text-bottom mr-1' aria-hidden='true' role='img' viewBox='0 0 16 16' width='16' height='16' fill='currentColor'>
+                          <path d='M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z'></path>
+                          <path d='M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z'></path>
+                        </svg>
+                        Create an issue
+                      </button>
                     </div>
                   </div>
                 }
@@ -123,7 +135,7 @@ export function DocsHelp() {
             feedbackStatus === 'github_issue' &&
             <div className='my-6 text-[14px]'>
               <p>
-                Thank you! Let's create an issue on GitHub.
+                Thanks for creating an issue! Let's continue the discussion there!
               </p>
             </div>
           }
@@ -156,7 +168,7 @@ export function DocsHelp() {
           </div>
           <div className='my-2 text-[14px]'>
             <a target='_blank' rel='noreferrer' className='underline' href='https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md'>
-              <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' className='bi bi-diagram-2 inline-block select-none align-text-bottom mr-1' viewBox='0 0 16 16'>
+              <svg className='inline-block select-none align-text-bottom mr-1' aria-hidden='true' role='img' viewBox='0 0 16 16' width='16' height='16' fill='currentColor'>
                 <path fill-rule='evenodd' d='M6 3.5A1.5 1.5 0 0 1 7.5 2h1A1.5 1.5 0 0 1 10 3.5v1A1.5 1.5 0 0 1 8.5 6v1H11a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0V8h-5v.5a.5.5 0 0 1-1 0v-1A.5.5 0 0 1 5 7h2.5V6A1.5 1.5 0 0 1 6 4.5zM8.5 5a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5zM3 11.5A1.5 1.5 0 0 1 4.5 10h1A1.5 1.5 0 0 1 7 11.5v1A1.5 1.5 0 0 1 5.5 14h-1A1.5 1.5 0 0 1 3 12.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm4.5.5a1.5 1.5 0 0 1 1.5-1.5h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1A1.5 1.5 0 0 1 9 12.5zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z'/>
               </svg>
               Learn how to contribute
