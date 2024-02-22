@@ -23,6 +23,11 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
 
   const router = useRouter()
 
+  const isCommunityPage = router.asPath === '/#community';
+  
+  const isLandingPage = router.pathname === '/' && !isCommunityPage;
+
+
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
   useEffect(() => {
@@ -35,6 +40,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' })
       }
+      router.pathname = '/';
     }
 
   }, [])
@@ -52,7 +58,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
         <main className={
           classnames(mainClassName, 'z-10 xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
+          <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl',  { 'h-16': !isLandingPage, 'drop-shadow-lg': isLandingPage, 'shadow-sm': !isLandingPage })}>
             <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
               <Logo />
               <MainNavigation />
