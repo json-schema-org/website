@@ -8,6 +8,7 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
 import readingTime from 'reading-time'
 import { Headline1 } from '~/components/Headlines'
 import { SectionContext } from '~/context'
+import CarbonAds from '~/components/CarbonsAds'
 
 export async function getStaticPaths() { return getStaticMarkdownPaths('pages/blog/posts') }
 export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/blog/posts') }
@@ -61,6 +62,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
                   <div className='uppercase text-xs text-slate-400 mb-4'>on this page</div>
                   <TableOfContentMarkdown markdown={content} depth={0} />
                 </div>
+                <CarbonAds variant='sidebar' />
               </div>
             </div>
 

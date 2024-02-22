@@ -13,12 +13,11 @@ type Props = {
   mainClassName?: string
   metaTitle?: string
   whiteBg?: boolean
-  hideAds?: boolean
 }
 
 // const responsiveClasses = 'w-screen'
 
-export default function Layout({ children, mainClassName, metaTitle, whiteBg, hideAds }: Props) {
+export default function Layout({ children, mainClassName, metaTitle, whiteBg }: Props) {
 
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
@@ -27,7 +26,6 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
   useEffect(() => {
-
     // Check if the URL contains "#community"
     if (window.location.hash === '#community') {
       // Find the anchor element by its ID
@@ -39,25 +37,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg, hi
       }
     }
 
-    // Function to load Carbon Ads script
-    const loadCarbonAdsScript = () => {     
-      if (!hideAds) {
-        const script = document.createElement('script')
-        script.src = `//cdn.carbonads.com/carbon.js?serve=CE7I627Y&placement=json-schemaorg&rnd=${Math.random()}`
-        script.id = '_carbonads_js'
-        script.type = 'text/javascript'
-        script.async = true
-        document.body.appendChild(script)
-      } else {
-        // Remove all divs whose IDs start with "carbonads"
-        const carbonAdsDivs = document.querySelectorAll('[id^="carbonads"]')
-        carbonAdsDivs.forEach((div) => {
-          div.remove()
-        })
-      }
-    }
-    loadCarbonAdsScript()
-  }, [hideAds])
+  }, [])
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`
   return (
@@ -121,7 +101,7 @@ const MainNavLink = ({ uri, label, className, isActive }: { uri: string, label: 
 const MainNavigation = () => {
   const section = useContext(SectionContext)
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
-  
+
   return (
     <div className='flex justify-end mr-8 w-full justify-end'>
       <MainNavLink
@@ -129,14 +109,14 @@ const MainNavigation = () => {
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
-        
+
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/learn/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
-        
+
       />
 
       <MainNavLink
@@ -144,21 +124,21 @@ const MainNavigation = () => {
         uri='/implementations'
         label='Implementations'
         isActive={section === 'implementations'}
-        
+
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
-       
+
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/#community'
         label='Community'
         isActive={section === 'community'}
-        
+
       />
       <div className='flex items-center gap-12 md:gap-4'>
         <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
@@ -182,6 +162,16 @@ const MainNavigation = () => {
         />
         }
       </div>
+      <div className='flex items-center justify-end mr-8'>
+        <a data-testid='Button-link' target='_blank' rel='noopener noreferrer' className='cursor-pointer hidden lg:flex bg-primary hover:bg-blue-700 text-white transition-all duration-500 ease-in-out rounded-md px-3 text-sm font-medium tracking-heading py-2.5 ml-2' href='https://github.com/json-schema-org/json-schema-spec'>
+          <span className='inline-block mr-2'>
+            <svg className='inline-block -mt-1 w-6 h-6' fill='currentColor' viewBox='0 0 24 24'>
+              <path fillRule='evenodd' d='M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z' clipRule='evenodd'></path>
+            </svg>
+          </span>
+          <span className='inline-block'>Star on GitHub</span>
+        </a>
+      </div>
     </div>
   )
 }
@@ -195,33 +185,34 @@ const MobileNav = () => {
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
-        
+
       />
       <MainNavLink
         uri='/learn/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
-       
+
       />
 
       <MainNavLink
         uri='/implementations'
         label='Implementations'
         isActive={section === 'implementations'}
-        
+
       />
       <MainNavLink
         uri='/blog'
         label='Blog'
         isActive={section === 'blog'}
-       
+
       />
       <MainNavLink
         uri='/#community'
         label='Community'
         isActive={section === 'community'}
-        
+
       />
+    
     </div>
   )
 }
@@ -243,7 +234,7 @@ const Footer = () => (
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col text-center sm:text-left'>
           <a href='https://opencollective.com/json-schema' className='text-white mb-2'>Open Collective</a>
-        </div>        
+        </div>
         <div className='flex flex-col text-center sm:text-left'>
           <a target='_blank' rel='noopener noreferrer' href='https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md' className='text-white mb-2'>Code of Conduct</a>
         </div>

@@ -184,6 +184,20 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
   ) : null
   const caption: null | string = meta?.caption || null
 
+  // fullCodeText variable is for future use in copy pasting the code for the user
+  const fullCodeText = React.useMemo(() => {
+    let text = ''
+    if (value) { 
+      value.forEach((e: any) => {
+        text += e.children[0].text + '\n'
+      })
+    }
+    return text
+  }, [value])
+
+  // copy status react state 
+  const [copied, setCopied] = React.useState(false)
+
   const allPathDecorationsMap: Record<string, any> = React.useMemo(
     () => calculateNewDecorationsMap(value),
     [value]
@@ -205,6 +219,18 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
           }
         </div>
         <Editable
+          onCopy={(e) => {
+            e.preventDefault()
+            const text = window.getSelection()?.toString()
+            navigator.clipboard.writeText(text || '')
+          }}
+          onCut = {(e) => {
+            e.preventDefault()
+            const text = window.getSelection()?.toString()
+            navigator.clipboard.writeText(text || '')
+            setValue([{ type: 'paragraph', children: [{ text: '' }] }])
+          }
+          }
           readOnly={true}
           decorate={([node, path]) => {
             if (!Text.isText(node)) return []
@@ -261,7 +287,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
             if (element.type === 'paragraph') {
               return (
                 <span className='relative flex flex-row first:pt-4 last:pb-4 ' {...attributes}>
-                  <div className='absolute px-4 w-16 text-slate-500 select-none' contentEditable={false}>{line}</div>
+                  <span className='absolute px-4 w-16 after:content-[attr(data-line-number)] text-slate-500 select-none' data-line-number={line} />
                   <span className='ml-12 text-white pl-4'>{children}</span>
                 </span>
               )
@@ -269,6 +295,22 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
             throw new Error(`unknown element.type [${element.type}] in render function`)
           }}
         />
+
+        {/* Copy Code button */}
+        <div 
+          className='absolute right-0 bottom-0 text-white bg-slate-800/50 text-xs px-3 py-1 cursor-pointer
+           hover:bg-slate-500 rounded'
+          onClick={() => {
+            navigator.clipboard.writeText(fullCodeText)
+            setCopied(true)
+            setTimeout(() => setCopied(false), 2500)
+          }}
+        >
+          {
+            copied ? 'Copied' : 'Copy'
+          }
+        </div>
+
         {validation === 'invalid' && (
           <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'>
             <img src='/icons/x-mark.svg' className='h-4 w-4 mr-2' />

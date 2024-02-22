@@ -62,7 +62,6 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
     setFilterTag(clickedTag)
   }
 
-
   return (
     // @ts-ignore
     <SectionContext.Provider value='blog'>
@@ -96,7 +95,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                     <div className=' text-sm  text-stroke-1'>
                       <span>
                         {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
-                      </span> 
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -126,8 +125,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         ))}<span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center'>Filter blog posts by category...</span></div>
 
         {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto px-2 sm:px-4 '>
-
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto p-4'>
           {blogPosts
             .filter(post => {
               if (!typeFilter) return true
@@ -219,7 +217,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
           }
         </div>
       </div>
-    </SectionContext.Provider>
+    </SectionContext.Provider >
   )
 }
 
