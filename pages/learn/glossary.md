@@ -47,6 +47,18 @@ The two are, however, entirely different pieces of the conceptual puzzle, with J
 The JSON format is an open format, with its own [homepage](https://www.json.org/), and specifications published in the [ECMA-404](https://www.ecma-international.org/publications-and-standards/standards/ecma-404/) and [RFC-8259](https://datatracker.ietf.org/doc/html/rfc8259) documents from ECMA and the IETF respectively.
 In particular, it is not managed or developed by the JSON Schema team, who simply make use of the format.
 
+### JSON Hyper-Schema
+
+JSON Hyper-Schema is a JSON Schema vocabulary for annotating JSON documents with hyperlinks and instructions for processing and manipulating remote JSON resources through hypermedia environments such as HTTP.
+
+The term JSON Hyper-Schema is used to refer to a JSON Schema that uses these keywords. The term "hyper-schema" on its own refers to a JSON Hyper-Schema within the scope of this specification.
+
+The primary mechanism introduced for specifying links is the Link Description Object (LDO), which is a serialization of the abstract link model defined in RFC 8288, section 2 [RFC8288](https://json-schema.org/draft-07/json-schema-hypermedia#RFC8288).
+
+This specification will use the concepts, syntax, and terminology defined by the [JSON Schema core](https://json-schema.org/draft-07/json-schema-hypermedia#json-schema) [json-schema] and [JSON Schema validation](https://json-schema.org/draft-07/json-schema-hypermedia#json-schema-validation) [json-schema-validation] specifications. It is advised that readers have a copy of these specifications.
+
+JSON Hyper-Schema makes it possible to build hypermedia systems from JSON documents by describing how to construct hyperlinks from instance data.
+
 ### keyword
 
 A property appearing within a [schema](#schema) object.
