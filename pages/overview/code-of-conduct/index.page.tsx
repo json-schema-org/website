@@ -7,11 +7,11 @@ import StyledMarkdown from '~/components/StyledMarkdown'
 import { SectionContext } from '~/context'
 
 export async function getStaticProps() {
-  const block1 = fs.readFileSync('pages/overview/code-of-conduct/_index.md', 'utf-8')
-  const { content: block1Content } = matter(block1)
+  const block = fs.readFileSync('pages/overview/code-of-conduct/_index.md', 'utf-8')
+  const { content: blockContent } = matter(block)
   return {
     props: {
-      blocks: [block1Content]
+      blocks: [blockContent]
     }
   }
 }
