@@ -24,9 +24,30 @@ type Element = {
   type: 'markdown' | 'tabs-group'
   markdown: string
 }
+function transformMarkdownLinks(markdown: string): string {
+  const linkDefinitions: Record<string, string> = {}
+
+  // Extract and remove link definitions
+  markdown = markdown.replace(/^\[([^\]]+)\]:\s*(.+)$/gm, (_, key: string, value: string) => {
+    linkDefinitions[key.toLowerCase()] = value
+    return ''
+  })
+
+  // Replace reference-style links with inline links
+  return markdown.replace(/\[([^\]]+)\]\[([^\]]*)\]/g, (_, text: string, id: string) => {
+    const link = linkDefinitions[id.toLowerCase()]
+    if (link) {
+      return `[${text}](${link})`
+    }
+    return _ // Return the original string if no link is found
+  })
+}
 
 export default function StyledMarkdown ({ markdown }: { markdown?: string }) {
   if (!markdown) return null
+
+  markdown = transformMarkdownLinks(markdown)
+
   const sortedTabGroups = (getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS) || [])
     .sort((a, b) => a.index < b.index ? -1 : 1)
   let textCuts = sortedTabGroups.map(tabGroup => ({
