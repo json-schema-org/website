@@ -1,6 +1,8 @@
+import { useRouter } from 'next/router'
 import React, { FormEvent, useRef, useState } from 'react'
 
 export function DocsHelp() {
+  const router = useRouter()
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [feedbackStatus, setFeedbackStatus] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -10,9 +12,11 @@ export function DocsHelp() {
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault()
     const formData = new FormData(feedbackFormRef.current!)
+    formData.append('page', router.asPath)
     setIsSubmitting(true)
+
     try {
-      const response = await fetch('https://json-schema-feedback-form.json-schema.workers.dev/submit', {
+      const response = await fetch('https://feedback-collector.json-schema.workers.dev/submit', {
         method: 'POST',
         body: formData,
       })
