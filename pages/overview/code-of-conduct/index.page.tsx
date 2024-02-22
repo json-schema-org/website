@@ -16,7 +16,7 @@ export async function getStaticProps() {
   }
 }
 
-export default function ContentExample ({ blocks }: { blocks: any[] }) {
+export default function Content ({ blocks }: { blocks: any[] }) {
   const newTitle = 'Code of Conduct'
 
   return (
@@ -28,4 +28,4 @@ export default function ContentExample ({ blocks }: { blocks: any[] }) {
     </SectionContext.Provider>
   )
 }
-ContentExample.getLayout = getLayout
+Content.getLayout = getLayout
