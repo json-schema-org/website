@@ -135,6 +135,9 @@ Multiple of *both* 5 and 3 is rejected.
 15
 ```
 
+.. warning::
+   Careful consideration should be taken when using `oneOf` entries as the nature of it requires verification of all sub-schemas so doing anything recursive can have a severe performance impact.
+
 <Keywords label="single: not single: schema composition; not" />
 
 ## not
