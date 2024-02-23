@@ -245,7 +245,7 @@ const Footer = () => (
             Slack</a>
         </div>
         <div className='mb-4 mr-4'>
-          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
+          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
             Twitter</a>
         </div>
         <div className='mr-4 mb-4'>
