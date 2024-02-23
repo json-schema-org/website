@@ -15,7 +15,6 @@ import { SectionContext } from '~/context'
 export async function getStaticProps({ params, query} : {
   params: string, query: any
 }) {
-  console.log("Router Query:", query);
   const files = fs.readdirSync(PATH)
   const blogPosts = files
     .filter(file => file.substr(-3) === '.md')
@@ -44,10 +43,7 @@ export async function getStaticProps({ params, query} : {
 
 export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts: any[], filterTag: any }) {
   const router = useRouter()
-
   const setParam = useSetUrlParam()
-  console.log("Filter Tag Prop:", filterTag);
-  console.log("Router Pathname:", router.pathname);
   const [currentFilterTag, setCurrentFilterTag] = useState(filterTag ||'All')
 
   useEffect(() => {
@@ -71,8 +67,7 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
 
     // Check if the user is already on the "/blog" page
     if (router.pathname === "/blog") {
-      // If already on the "/blog" page, update the filter tag without adding query parameters
-      setParam('type', clickedTag)
+      true;
     }
     else {
       // If not on the "/blog" page, navigate to the "/blog" page with the type tag as a query parameter
@@ -92,10 +87,6 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
   const allTags = [...new Set(spreadTags)]
   //add tag for all
   allTags.unshift('All')
-
-  useEffect(() => {
-    setCurrentFilterTag(filterTag);
-  }, [filterTag])
 
   return (
     // @ts-ignore
