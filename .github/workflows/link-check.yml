@@ -2,12 +2,11 @@ name: Build and check Links
 
 on:
   push:
-    paths:
+    branches:
       - main
 
   pull_request:
-    paths:
-      - main
+    types: [opened, synchronize, reopened]
 
 jobs:
   build_and_serve:
@@ -31,11 +30,14 @@ jobs:
       - name: Serve App Locally
         run: yarn start &
 
+      - name: Wait for App to Start
+        run: sleep 20
+
   linkChecker:
     runs-on: ubuntu-latest
     needs: build_and_serve
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Link Checker
         uses: lycheeverse/lychee-action@v1.9.0
