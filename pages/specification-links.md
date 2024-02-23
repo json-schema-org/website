@@ -366,6 +366,7 @@ _**NOTE:** All meta-schema URIs now use `https://`.  While currently also availa
 - [JSON Hyper-Schema Link Description Object meta-schema](../../draft-07/links)
 - [JSON Hyper-Schema recommended output schema](../../draft-07/hyper-schema-output)
 - Relative JSON Pointer: [draft-handrews-relative-json-pointer-01](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01#appendix-B))
+- Release date: 
 
 #### Obsolete Draft 7 Documents
 
@@ -375,6 +376,7 @@ _These were updated without changing functionality or meta-schemas due to a few 
 - Validation: [draft-handrews-json-schema-validation-00](../../draft-07/draft-handrews-json-schema-validation-00.pdf) ([changes](../../draft-07/draft-handrews-json-schema-validation-00.pdf#appendix-B))
 - Hyper-Schema: [draft-handrews-json-schema-hyperschema-00](../../draft-07/draft-handrews-json-schema-hyperschema-00.html) ([changes](../../draft-07/draft-handrews-json-schema-hyperschema-00.html#rfc.appendix.B))
 - Relative JSON Pointer: [draft-handrews-relative-json-pointer-00](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00#appendix-B))
+- Release date: 
 
 ### Draft 6
 
@@ -383,13 +385,14 @@ _These were updated without changing functionality or meta-schemas due to a few 
 - Hyper-Schema: [draft-wright-json-schema-hyperschema-01](../../draft-06/draft-wright-json-schema-hyperschema-01.html) ([changes](../../draft-06/draft-wright-json-schema-hyperschema-01.html#rfc.appendix.B)) ([hyper-schema migration FAQ](draft-06/json-hyper-schema-release-notes))
 - [JSON Schema meta-schema](../../draft-06/schema)
 - [JSON Hyper-Schema meta-schema](../../draft-06/hyper-schema)
-
+- Release date: 
 ### Draft 5
 
  - Core: [draft-wright-json-schema-00](../../draft-05/draft-wright-json-schema-00.pdf) ([changes](../../draft-05/draft-wright-json-schema-00.pdf#appendix-B))
  - Validation: [draft-wright-json-schema-validation-00](../../draft-05/draft-wright-json-schema-validation-00.pdf) ([changes](../../draft-05/draft-wright-json-schema-validation-00.pdf#appendix-B))
  - Hyper-Schema: [draft-wright-json-schema-hyperschema-00](../../draft-05/draft-wright-json-schema-hyperschema-00.pdf) ([changes](../../draft-05/draft-wright-json-schema-hyperschema-00.pdf#appendix-B))
  - Draft 5 was primarily a cleanup of Draft 4 and continued to use the Draft 4 meta-schemas.
+ - Release date: 
 
 ### Draft 4
 
@@ -399,12 +402,14 @@ _These were updated without changing functionality or meta-schemas due to a few 
  - JSON Reference: [draft-pbryan-zyp-json-ref-03](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) ([changes](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03#appendix-A))
  * [JSON Schema meta-schema](../../draft-04/schema)
  * [JSON Hyper-Schema meta-schema](../../draft-04/hyper-schema)
+ - Release date: 
 
 ### Draft 3
 
  - Complete Specification: [draft-zyp-json-schema-03](../../draft-03/draft-zyp-json-schema-03.pdf) ([changes](../../draft-03/draft-zyp-json-schema-03.pdf#anchor54))
 * [JSON Schema meta-schema](../../draft-03/schema)
 * [JSON Hyper-Schema meta-schema](../../draft-03/hyper-schema)
+- Release date: 
 
 ### Draft 2
 
@@ -417,6 +422,7 @@ _These were updated without changing functionality or meta-schemas due to a few 
  - Complete Specification: [draft-zyp-json-schema-01](../../draft-01/draft-zyp-json-schema-01.html) ([changes](../../draft-01/draft-zyp-json-schema-01.html#anchor54))
 * [JSON Schema meta-schema](../../draft-01/schema)
 * [JSON Hyper-Schema meta-schema](../../draft-01/hyper-schema)
+- Release date: 
 
 ### Draft 0
 
@@ -425,7 +431,7 @@ _Note that Draft 0 erroneously claimed to update another RFC, and was replaced t
  - Specification: [draft-zyp-json-schema-00](../../draft-00/draft-zyp-json-schema-00.txt) (changes: Appendix-A))
 * [JSON Schema meta-schema](../../draft-00/schema)
 * [JSON Hyper-Schema meta-schema](../../draft-00/hyper-schema)
-
+- Release date: 
 ## Latest Snapshot (work in progress)
 
 The next unreleased draft is a work in progress.  You can [give feedback and get involved on GitHub](https://github.com/json-schema-org/json-schema-spec).
