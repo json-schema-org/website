@@ -25,7 +25,7 @@ The keywords used to combine schemas are:
     subschemas
 
 All of these keywords must be set to an array, where each item is a
-schema.
+schema. Be careful with recursive schemas as they can exponentially increase processing times.
 
 In addition, there is:
 
@@ -135,7 +135,8 @@ Multiple of *both* 5 and 3 is rejected.
 15
 ```
 
-Careful consideration should be taken when using `oneOf` entries as the nature of it requires verification of all sub-schemas so doing anything recursive can have a severe performance impact.
+Careful consideration should be taken when using `oneOf` entries as the nature of it requires verification of *every* sub-schema
+which can lead to increased processing times. Prefer `anyOf` where possible.
 
 <Keywords label="single: not single: schema composition; not" />
 
