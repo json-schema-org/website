@@ -59,8 +59,8 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
           classnames(mainClassName, 'z-10 xl:rounded-xl py-4 mx-auto')
         }>
           <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl',  { 'h-16': !isLandingPage, 'drop-shadow-lg': isLandingPage, 'shadow-sm': !isLandingPage })}>
-            <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
-              <Logo />
+            <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4 h-full'>
+              <Logo  isLandingPage={isLandingPage}/>
               <MainNavigation />
             </div>
           </header>
@@ -287,9 +287,9 @@ const OpenJS = () => (
   </div>
 )
 
-const Logo = () => (
-  <Link href='/' className=''>
-    <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
+const Logo = ({ isLandingPage = false }: { isLandingPage?: boolean }) => (
+  <Link href='/' >
+    <img src='/img/logos/logo-blue.svg' className={classnames('mr-2', { 'h-12': isLandingPage, 'h-10': !isLandingPage })}  />
   </Link>
 )
 
