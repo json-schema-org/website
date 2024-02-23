@@ -7,13 +7,13 @@ import { DocsHelp } from '~/components/DocsHelp'
 import { SectionContext } from '~/context'
 
 export async function getStaticProps() {
-  const block1 = fs.readFileSync('pages/implementers/_index.md', 'utf-8')
-  const { content: block1Content } = matter(block1)
+  const block1 = fs.readFileSync('pages/implementers/_index.md', 'utf-8');
+  const { content: block1Content } = matter(block1);
   return {
     props: {
-      blocks: [block1Content]
-    }
-  }
+      blocks: [block1Content],
+    },
+  };
 }
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
@@ -22,6 +22,6 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       <StyledMarkdown markdown={blocks[0]} />
       <DocsHelp />
     </SectionContext.Provider>
-  )
+  );
 }
-ContentExample.getLayout = getLayout
+ContentExample.getLayout = getLayout;
