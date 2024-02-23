@@ -98,6 +98,11 @@ const getSpecificationPath = [
   '/specification-links',
   '/specification'
 ]
+
+const getResourcesPath = [
+  '/resources',
+]
+
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
   const [open, setOpen] = useState(false)
@@ -117,6 +122,8 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             {getReferencePath.includes(router.asPath) && <h3 className='text-white ml-12'>Reference</h3>}
 
             {getSpecificationPath.includes(router.asPath) && <h3 className='text-white ml-12'>Specification</h3>}
+
+            {getResourcesPath.includes(router.asPath) && <h3 className='text-white ml-12'>Resources</h3>}
 
             {router.pathname === null && <h3 className='text-white ml-12'>Docs</h3>}
             <svg style={{ marginRight: '50px', color: 'white', transform: rotate, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' height='24' viewBox='0 0 256 512'><path d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z' id='mainIconPathAttribute' fill='#ffffff'></path></svg>
@@ -154,6 +161,7 @@ export const DocsNav = () => {
     getStarted: false,
     getReference: false,
     getSpecification: false,
+    getResources: false,
   })
   useEffect(() => {
     if (getDocsPath.includes(router.asPath)) {
@@ -164,6 +172,8 @@ export const DocsNav = () => {
       setActive({ ...active, getReference: true })
     } else if (getSpecificationPath.includes(router.asPath)) {
       setActive({ ...active, getSpecification: true })
+    } else if (getResourcesPath.includes(router.asPath)) {
+      setActive({ ...active, getResources: true })
     }
   }, [router.asPath])
 
@@ -182,6 +192,12 @@ export const DocsNav = () => {
   const handleClickSpec = () => {
     setActive({ ...active, getSpecification: !active.getSpecification })
   }
+
+  const handleClickResources = () => {
+    setActive({ ...active, getResources: !active.getResources })
+  }
+
+  const rotateResources = active.getResources ? 'rotate(180deg)' : 'rotate(0)'
 
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)'
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)'
@@ -308,6 +324,23 @@ export const DocsNav = () => {
             <DocLink uri='/draft-06/json-hyper-schema-release-notes' label='draft-06 notes' />
           </div>
           <DocLink uri='/specification-links' label='Specification Links' />
+        </div>
+      </div>
+      {/* Resources */}
+      <div className='mb-2 bg-slate-200 p-2 rounded'>
+        <div className='flex justify-between w-full items-center' onClick={handleClickResources}>
+          <div className='flex  items-center align-middle'>
+            <img src='/icons/settings.svg' alt='eye icon' className='mr-2' />
+            <SegmentHeadline label='Resources' />
+          </div>
+          <svg id='arrow' className='arrow' style={{ transform: rotateResources, transition: 'all 0.2s linear' }} xmlns='http://www.w3.org/2000/svg' fill='none' height='32' viewBox='0 0 24 24' width='24'><path clipRule='evenodd' d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z' fill='#707070' fillRule='evenodd' /></svg>
+
+        </div>
+        <div
+          className={classnames( 'ml-6', { 'hidden': !active.getResources })}
+          id='resources'
+        >
+          <DocLink uri='/resources' label='Overview' />
         </div>
       </div>
     </div>
