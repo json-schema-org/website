@@ -12,7 +12,10 @@ import { useRouter } from 'next/router'
 import useSetUrlParam from '~/lib/useSetUrlParam'
 import { SectionContext } from '~/context'
 
-export async function getStaticProps() {
+export async function getStaticProps({ params, query} : {
+  params: string, query: any
+}) {
+  console.log("Router Query:", query);
   const files = fs.readdirSync(PATH)
   const blogPosts = files
     .filter(file => file.substr(-3) === '.md')
@@ -29,35 +32,52 @@ export async function getStaticProps() {
 
   await generateRssFeed(blogPosts)
 
+  const filterTag: string = query?.type || 'All';
+
   return {
     props: {
-      blogPosts
+      blogPosts,
+      filterTag
     }
   }
 }
 
-export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) {
+export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts: any[], filterTag: any }) {
   const router = useRouter()
-  const typeFilter: null | string = Array.isArray(router.query?.type)
-    ? router.query?.type?.[0] : router.query?.type || null
 
-  const [filterTag, setFilterTag] = useState('')
   const setParam = useSetUrlParam()
+  console.log("Filter Tag Prop:", filterTag);
+  console.log("Router Pathname:", router.pathname);
+  const [currentFilterTag, setCurrentFilterTag] = useState(filterTag ||'All')
 
   useEffect(() => {
     const { query } = router;
     if (query.type) {
-      setFilterTag(Array.isArray(query.type) ? query.type[0] : query.type);
+      setCurrentFilterTag(Array.isArray(query.type) ? query.type[0] : query.type);
     } else {
-      setFilterTag('All');
+      setCurrentFilterTag('All');
     }
   }, [router.query]);
 
-  const handleClick = (event: { currentTarget: { value: any } }) => {
-    const clickedTag = event.currentTarget.value;
-    setFilterTag(clickedTag);
+  useEffect(() => {
+    // Set the filter tag based on the initial query parameter when the page loads
+    setCurrentFilterTag(filterTag);
+  }, [filterTag]);
 
-    router.push({ pathname: router.pathname, query: { type: clickedTag } }, undefined, { shallow: true });
+  const handleClick = (event: { currentTarget: { value: any } }) => {
+    const clickedTag = event.currentTarget.value
+
+    setCurrentFilterTag(clickedTag);
+
+    // Check if the user is already on the "/blog" page
+    if (router.pathname === "/blog") {
+      // If already on the "/blog" page, update the filter tag without adding query parameters
+      setParam('type', clickedTag)
+    }
+    else {
+      // If not on the "/blog" page, navigate to the "/blog" page with the type tag as a query parameter
+      router.push({ pathname: '/blog', query: { type: clickedTag } }, undefined, { shallow: true });
+    }
   };
 
   const recentBlog = blogPosts.sort((a, b) => {
@@ -72,12 +92,10 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const allTags = [...new Set(spreadTags)]
   //add tag for all
   allTags.unshift('All')
-  // const [filterTag, setFilterTag] = useState('')
-  // const handleClick = (event: { currentTarget: { value: any } }) => {
-  //   const clickedTag = event.currentTarget.value
-  //   setFilterTag(clickedTag)
-  // }
 
+  useEffect(() => {
+    setCurrentFilterTag(filterTag);
+  }, [filterTag])
 
   return (
     // @ts-ignore
@@ -146,17 +164,11 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
 
           {blogPosts
             .filter(post => {
-              if (!typeFilter || typeFilter === 'All') return true
+              if (!currentFilterTag || currentFilterTag === 'All') return true
               const blogType = post.frontmatter.type as string | undefined
               if (!blogType) return false
-              return blogType.toLowerCase() === typeFilter.toLowerCase()
-            }).filter(
-              post => {
-                if (post.frontmatter.type === filterTag) return true
-                else if (filterTag === 'All') return true
-                else if (filterTag === '') return true
-              }
-            )
+              return blogType.toLowerCase() === currentFilterTag.toLowerCase()
+            })
             .sort((a, b) => {
               const dateA = new Date(a.frontmatter.date).getTime()
               const dateB = new Date(b.frontmatter.date).getTime()
