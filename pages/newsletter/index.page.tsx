@@ -8,7 +8,6 @@ const index = () => {
       <Layout>
         <NewsletterForm className='pt-[100px] bg-white text-black' wrapperClassName='h-full sm:h-[calc(100vh-100px)]  bg-white py-[50px] sm:py-0  px-5 sm:px-10 lg:w-full' />
       </Layout>
-    
     </>
   )
 }
