@@ -15,7 +15,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', 
       className={classnames('w-[100vw]  mx-auto flex items-center justify-center ', background === 'white' ? 'bg-white text-black' : 'bg-transparent text-white', wrapperClassName)}>
       <div className={classnames('w-full max-w-[900px] text-center px-5 py-9 relative', background === 'white' ? 'bg-white' : 'bg-transparent', className)}>
         
-        <h3 className=' font-bold tracking-heading mb-4 text-h4 sm:text-h3  px-5'>
+        <h3 className=' font-bold tracking-heading mb-4 text-h4 md:text-h3  px-5'>
             Subscribe to our newsletter to receive news about Json Schema.
         </h3>
         <p
