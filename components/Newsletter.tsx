@@ -10,11 +10,10 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', 
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
 
-
   return (
     <section
       className={classnames('w-[100vw]  mx-auto flex items-center justify-center ', background === 'white' ? 'bg-white text-black' : 'bg-transparent text-white', wrapperClassName)}>
-      <div className={classnames('w-full max-w-[900px] text-center px-5 py-9  bg-white relative', background === 'white' ? 'bg-white' : 'bg-transparent', className)}>
+      <div className={classnames('w-full max-w-[900px] text-center px-5 py-9 relative', background === 'white' ? 'bg-white' : 'bg-transparent', className)}>
         
         <h3 className=' font-bold tracking-heading mb-4 text-h4 sm:text-h3  px-5'>
             Subscribe to our newsletter to receive news about Json Schema.
@@ -29,7 +28,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', 
             type='text'
             name='username'
             placeholder='Your Name'
-            className='form-input block w-full py-3 text-lg h-[40px] sm:h-[45px]  sm:text-lg sm:leading-5 border-2  md:flex-1 rounded px-5 bg-gray-200 text-black'
+            className= {classnames('form-input block w-full py-3 text-lg h-[38px] sm:h-[45px]  sm:text-lg sm:leading-5 border-2  md:flex-1 rounded px-5 bg-gray-200 text-black', background == 'black' ? 'bg-white' : '')}
             value={username}
             onChange={(e: any) => setUsername(e.target.value)}
           />
@@ -37,7 +36,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', 
             type='email'
             name='email'
             placeholder='Your Email'
-            className='form-input block w-full py-3 text-lg sm:text-lg border-2 sm:leading-5  h-[40px] sm:h-[45px]  md:flex-1 rounded px-5 bg-gray-200 text-black'
+            className= {classnames('form-input block w-full py-3 text-lg sm:text-lg border-2 sm:leading-5   h-[38px]  sm:h-[45px]  md:flex-1 rounded px-5 bg-gray-200 text-black', background == 'black' ? 'bg-white' : '')}
             value={email}
             onChange={(e: any) => setEmail(e.target.value)}
           />

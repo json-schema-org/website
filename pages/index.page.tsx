@@ -318,7 +318,7 @@ const Home = (props: any) => {
 
         {/* News & Blogs */}
         <section className='w-full bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both'>
-          <Newsletter background='black' wrapperClassName=' my-[90px] w-full md:w-5/6 lg:w-full ' className='' />
+          <Newsletter background='black' wrapperClassName=' my-[90px] px-5 sm:px-10 md:px-12 lg:w-full' className='' />
           {/* <div className='lg:w-full mx-auto text-center mt-28 '>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>Start contributing to JSON Schema</h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'><a href='/newsletter'>Subscribe</a></button>
