@@ -1,7 +1,7 @@
 name: Issue Labeler
 on:
   issues:
-    types: [opened, edited]
+    types: [opened]
 
 permissions:
   issues: write
@@ -11,9 +11,9 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
-    - uses: github/issue-labeler@v3.1 
+    - uses: github/issue-labeler@v3.4 
       with:
         configuration-path: .github/issue-labeler.yml
-        not-before: 2020-01-15T02:54:32Z
+        not-before: 2024-02-23T23:24:00+13:00
         enable-versioned-regex: 0
         repo-token: ${{ github.token }}

@@ -1,3 +1,2 @@
-Status: 
-  Triage:
-    - '(Describe the bug)'
+'Status: Triage':
+  - '/.*/'
