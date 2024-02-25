@@ -13,7 +13,7 @@ authors:
 excerpt: "Custom annotations are one of JSON Schemas most-used features.  Here's how we're still supporting them."
 ---
 
-[Last time](/blog/posts/the-last-breaking-change), I wrote about how we had to remove support for unknown keywords.  I ended that post with a note saying that we were still searching for a way that we can support non-functional custom keywords, that is, simple annotations.
+[Last time](the-last-breaking-change), I wrote about how we had to remove support for unknown keywords.  I ended that post with a note saying that we were still searching for a way that we can support non-functional custom keywords, that is, simple annotations.
 
 In this post, I'd like to review the solution and how we came to it, as well as a brief overview of some of the other solutions we dreamed up and were offered.  Buckle up, 'cause it's gonna be a mild ride!
 

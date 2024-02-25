@@ -18,7 +18,7 @@ Hi, everybody!
 
 I'm Greg Dennis.  I'm the author of [`json-everything`](https://github.com/gregsdennis/json-everything), which aims to be an all-encompassing tool suite for JSON needs in .Net, including JSON Path, JSON Patch, and (of course) JSON Schema, amongst others.  I'm also responsible for driving and authoring the output requirements in the JSON Schema specification.
 
-Piggybacking on [Julian's news](/blog/posts/hello-world-hello-postman), I'm also joining Postman to work on JSON Schema full time as a Specification & Tooling Architect!  This means that I will be working on updating the specification as well as helping define and implement validation and other JSON-Schema-adjacent tooling.  I also expect to be highly involved in the community by supporting other tooling implementors.
+Piggybacking on [Julian's news](hello-world-hello-postman), I'm also joining Postman to work on JSON Schema full time as a Specification & Tooling Architect!  This means that I will be working on updating the specification as well as helping define and implement validation and other JSON-Schema-adjacent tooling.  I also expect to be highly involved in the community by supporting other tooling implementors.
 
 ## Being Involved
 
