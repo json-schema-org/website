@@ -213,15 +213,15 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
         'ml-10': meta?.indent
       })}>
         <div className='flex flex-row absolute right-0 z-10'>
-          { /* Copy code button */ }
+          {/* Copy code button */}
           <div className='flex mr-1.5 cursor-pointer group'
             onClick={() => {
               navigator.clipboard.writeText(fullCodeText)
               setCopied(true)
               setTimeout(() => setCopied(false), 2000)
             }}>
-              <img src='/icons/copy.svg' title='Copy to clipboard' className={`opacity-50 hover:opacity-90 duration-150 ${copied ? 'hidden' : ''}`}></img>
-              <img src='/icons/copied.svg' title='Copied!' className={copied ? '' : 'hidden'}></img>
+            <img src='/icons/copy.svg' title='Copy to clipboard' className={`opacity-50 hover:opacity-90 duration-150 ${copied ? 'hidden' : ''}`}></img>
+            <img src='/icons/copied.svg' title='Copied!' className={copied ? '' : 'hidden'}></img>
           </div>
           <div className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
             {isJsonSchema
