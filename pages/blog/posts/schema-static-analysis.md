@@ -135,7 +135,7 @@ Dynamic references, on the other hand, generally boil down to one thing: dynamic
 
 ### Root schema dynamics
 
-Last year I wrote a [post](/blog/posts/dynamicref-and-generics) describing how to use `$dynamicRef` to model generic types in languages.  The idea went like this:
+Last year I wrote a [post](dynamicref-and-generics) describing how to use `$dynamicRef` to model generic types in languages.  The idea went like this:
 
 1. Start by defining a generic schema, using a `$dynamicRef` to a `$dynamicAnchor` to identify an undefined "type" parameter.
 2. Define multiple secondary schemas that reference the generic one and use their own `$dynamicAnchor` to define the "type" parameter: one for each type.

@@ -429,3 +429,5 @@ All feedback is welcome. If you have questions or comments, you can find me on t
 - [JSON Schema live playground (ajv) for draft-07 with shareable links](https://jsonschema.dev)
 - [JSON Schema live playground (hyperjump validator) for all drafts (from draft-04)](https://json-schema.hyperjump.io)
 - [Links to RFC specification documents](/specification)
+
+Photo by Heidi Fin on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
