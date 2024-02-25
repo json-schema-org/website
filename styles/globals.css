@@ -46,10 +46,13 @@ border-radius: 4px; */
 
 @media (max-width: 730px) {
   .DocSearch-Button-Container {
-    width: 40px;
     height: 40px;
     padding: 0px;
     border: none;
+  }
+
+  .DocSearch-Button-Placeholder {
+    display: inline;
   }
 }
 
