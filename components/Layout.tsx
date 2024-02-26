@@ -23,7 +23,6 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
   const router = useRouter()
-  const { theme } = useTheme()
 
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
@@ -183,7 +182,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext)
 
   return (
-    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-700'>
+    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-800'>
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -230,7 +229,7 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 }
 
 const Footer = () => (
-  <footer className={classnames('z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 ')}>
+  <footer className={classnames('z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 dark:from-[#002C34] dark:to-[#023e8a] ')}>
     <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
@@ -283,11 +282,23 @@ const OpenJS = () => (
   </div>
 )
 
-const Logo = () => (
-  <Link href='/' className=''>
-    <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
-  </Link>
-)
+const Logo = () => {
+  const {theme} = useTheme()
+  return (
+    <div>
+      { theme !== 'light' ? (
+        <Link href='/' className=''>
+          <img src='/img/logos/logo-white.svg' className='h-12 mr-2 ' />
+      </Link>
+      ) : (
+        <Link href='/' className=''>
+          <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
+        </Link>
+      )}
+    </div>
+  )
+}
+
 
 const FaviconHead = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(false)
