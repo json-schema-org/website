@@ -6,7 +6,6 @@ import JsonEditor from '~/components/JsonEditor'
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
 import Highlight from 'react-syntax-highlighter'
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import { BlockContext, BlockContextValue } from '~/context'
 import Code from '~/components/Code'
 import { FullMarkdownContext } from '~/context'
 
