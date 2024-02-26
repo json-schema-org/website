@@ -1,13 +1,13 @@
-import React, { useContext } from 'react'
-import Markdown from 'markdown-to-jsx'
-import Link from 'next/link'
-import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline'
-import JsonEditor from '~/components/JsonEditor'
-import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
-import Highlight from 'react-syntax-highlighter'
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import Code from '~/components/Code'
-import { FullMarkdownContext } from '~/context'
+import React, { useContext } from 'react';
+import Markdown from 'markdown-to-jsx';
+import Link from 'next/link';
+import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
+import JsonEditor from '~/components/JsonEditor';
+import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp';
+import Highlight from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import Code from '~/components/Code';
+import { FullMarkdownContext } from '~/context';
 
 import {
   Headline1,
@@ -352,8 +352,8 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     <img src='/icons/star.svg' className='h-3 w-3 mr-1' />
                     {label}
                   </div>
-                )
-              }
+                );
+              },
             },
             Warning: {
               component: ({ children, label }) => {
@@ -365,14 +365,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
-                      <img src='/icons/info-yellow.svg' className='h-7 w-7 mr-3' alt='' />
-                      <div className='font'>
-                        {children}
-                      </div>
+                      <img
+                        src='/icons/info-yellow.svg'
+                        className='h-7 w-7 mr-3'
+                        alt=''
+                      />
+                      <div className='font'>{children}</div>
                     </div>
                   </div>
-                )
-              }
+                );
+              },
             },
             Infobox: {
               component: ({ children, label }) => {
@@ -384,14 +386,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded text-slate-600 leading-7'>
-                      <img src='/icons/info-blue.svg' className='h-7 w-7 mr-3' alt='' />
-                      <div className='font'>
-                        {children}
-                      </div>
+                      <img
+                        src='/icons/info-blue.svg'
+                        className='h-7 w-7 mr-3'
+                        alt=''
+                      />
+                      <div className='font'>{children}</div>
                     </div>
                   </div>
-                )
-              }
+                );
+              },
             },
             Tip: {
               component: ({ children, label }) => {
@@ -403,14 +407,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-green-50 px-6 py-4 border border-green-100 rounded text-slate-600 leading-7'>
-                      <img src='/icons/bulb.svg' className='h-7 w-7 mr-3' alt='' />
-                      <div className='font'>
-                        {children}
-                      </div>
+                      <img
+                        src='/icons/bulb.svg'
+                        className='h-7 w-7 mr-3'
+                        alt=''
+                      />
+                      <div className='font'>{children}</div>
                     </div>
                   </div>
-                )
-              }
+                );
+              },
             },
             Danger: {
               component: ({ children, label }) => {
@@ -422,14 +428,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-red-50 px-6 py-4 border border-red-100 rounded text-slate-600 leading-7'>
-                      <img src='/icons/warning.svg' className='h-7 w-7 mr-3' alt='' />
-                      <div className='font'>
-                        {children}
-                      </div>
+                      <img
+                        src='/icons/warning.svg'
+                        className='h-7 w-7 mr-3'
+                        alt=''
+                      />
+                      <div className='font'>{children}</div>
                     </div>
                   </div>
-                )
-              }
+                );
+              },
             },
             Keywords: {
               component: () => null,

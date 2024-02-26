@@ -10,7 +10,7 @@ export default function Code({ children }: { children: any }) {
       className={classnames('font-mono rounded px-1.5 py-0.5', {
         'bg-slate-100': blockContext === null,
         'bg-amber-200': blockContext === BlockContextValue.Information,
-        'text-white': blockContext === BlockContextValue.CodeBlock
+        'text-white': blockContext === BlockContextValue.CodeBlock,
       })}
     >
       {children}
