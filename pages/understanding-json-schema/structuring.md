@@ -1,8 +1,7 @@
 ---
 title: "Structuring a complex schema"
 section: docs
----
-  
+--- 
 <Keywords label="single: single: structure" />
 
 * [Schema Identification](#schema-identification)
