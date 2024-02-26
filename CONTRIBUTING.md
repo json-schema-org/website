@@ -22,7 +22,7 @@ If you don't have time to contribute, that's fine. There are other easy ways to 
   - 📋 [Improving the Documentation](#-improving-the-documentation)
   - 🌐 [Improving the website](#-improving-the-website)
   - 🎨 [Improving the Design](#-improving-the-design)
-  - 🚀 [Markdown Writing Style Guide](#-markdown-style-guide)
+  - 🚀 [Markdown Writing Style Guide](#-custom -markdown-writing-style-guide)
 - ⌨️ [Pull requests](#%EF%B8%8F-pull-requests)
 - 🏛 [License](#-license)
 
@@ -70,21 +70,21 @@ If you would like to join the efforts to improve the JSON Schema Website, we enc
 
 If you would like to contribute with designs, we encourage you to join `#design` channel in our [Slack workspace](https://json-schema.org/slack) and read the [contributing guidelines](https://github.com/json-schema-org/brand/blob/master/CONTRIBUTING.md) in the [Brand](https://github.com/json-schema-org/brand) repository.
 
-### 🚀 Markdown Writing Style Guide
+### 🚀 Custom Markdown Writing Style Guide
 
 Star: `<Star label="label"/>`
 
-Infobox: `<Infobox label="label"> message to show. </Infobox>`
-
 StarInline: `<StarInline label="label"/>`
-
-Bigquote: `<Bigquote> message to show </Bigquote>`
 
 Summary: ` <summary> message to show </summary>`
 
+Details: `<details> message to show </details>`
+
+Bigquote: `<Bigquote> message to show </Bigquote>`
+
 Blockquote: `<blockquote> message to show </blockquote>`
 
-Details: `<details> message to show </details>`
+Infobox: `<Infobox label="label"> message to show. </Infobox>`
 
 Warning: `<Warning label="label"> message to show. </Warning>`
 
