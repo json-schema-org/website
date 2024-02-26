@@ -161,8 +161,8 @@ const Home = (props: any) => {
               JSON Schema enables the confident and reliable use of the JSON data format.
             </h2>
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
-              <Link href='/learn/getting-started-step-by-step' className='pt-1 rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</Link>
-              <Link href='/slack' className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Join Slack</Link>
+              <Link href='/learn/getting-started-step-by-step' className='flex items-center justify-center rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</Link>
+              <Link href='/slack' className='flex items-center justify-center rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Join Slack</Link>
 
               <div className='herobtn rounded border-2 border-white text-white mx-auto'>
                 <DocSearch
