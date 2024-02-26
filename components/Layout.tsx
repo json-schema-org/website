@@ -41,13 +41,17 @@ export default function Layout({
   const router = useRouter();
 
   // <<<<<<< HEAD
+  // <<<<<<< HEAD
   //   React.useEffect(
   //     () => useStore.setState({ overlayNavigation: null }),
   //     [router.asPath],
   //   );
   // =======
   // const router = useRouter()
-  const { theme } = useTheme();
+  //   const { theme } = useTheme();
+  // =======
+  // const router = useRouter();
+  // >>>>>>> 5a13b6c (completed home page)
 
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
@@ -296,10 +300,14 @@ const MobileNav = () => {
 
   return (
     // <<<<<<< HEAD
-    //     <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+    //     // <<<<<<< HEAD
+    //     //     <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+    //     // =======
+    //     <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-700'>
+    //       {/* >>>>>>> 932a9ad (added dark theme) */}
     // =======
-    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-700'>
-      {/* >>>>>>> 932a9ad (added dark theme) */}
+    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-800'>
+      {/* >>>>>>> 5a13b6c (completed home page) */}
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -332,18 +340,26 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 
 const Footer = () => (
   // <<<<<<< HEAD
+  //   // <<<<<<< HEAD
+  //   //   <footer
+  //   //     className={classnames(
+  //   //       'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-top grid items-center',
+  //   //     )}
+  //   //   >
+  //   //     <div className='max-w-[1400px] mx-auto  mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+  //   // =======
   //   <footer
   //     className={classnames(
-  //       'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-top grid items-center',
+  //       'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 ',
   //     )}
   //   >
-  //     <div className='max-w-[1400px] mx-auto  mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
   // =======
   <footer
     className={classnames(
-      'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 ',
+      'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 dark:from-[#002C34] dark:to-[#023e8a] ',
     )}
   >
+    {/* >>>>>>> 5a13b6c (completed home page) */}
     <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       {/* >>>>>>> 932a9ad (added dark theme) */}
       <div className=' my-6 m-auto md:mt-16'>
@@ -544,11 +560,35 @@ const OpenJS = () => (
   </div>
 );
 
+{
+  /* <<<<<<< HEAD
 const Logo = () => (
   <Link href='/' className=''>
     <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
   </Link>
 );
+======= */
+}
+const Logo = () => {
+  const { theme } = useTheme();
+  return (
+    <div>
+      {theme !== 'light' ? (
+        <Link href='/' className=''>
+          <img src='/img/logos/logo-white.svg' className='h-12 mr-2 ' />
+        </Link>
+      ) : (
+        <Link href='/' className=''>
+          <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
+        </Link>
+      )}
+    </div>
+  );
+};
+
+{
+  /* >>>>>>> 5a13b6c (completed home page) */
+}
 
 const FaviconHead = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
