@@ -44,7 +44,7 @@ html {
 border-radius: 4px; */
 }
 
-@media (max-width: 730px) {
+@media (max-width: 770px) {
   .DocSearch-Button-Container {
     height: 40px;
     padding: 0px;
