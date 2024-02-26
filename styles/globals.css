@@ -170,3 +170,9 @@ border-radius: 4px; */
   top: -80px;
   /* change this value to match the height of the header */
 }
+
+@layer base{
+  body {
+      @apply dark:bg-slate-800 bg-white
+  }
+}

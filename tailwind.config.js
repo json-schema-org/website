@@ -3,6 +3,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,md}',
     './components/**/*.{js,ts,jsx,tsx,md}',
   ],
+  darkMode: "class",
   theme: {
     fontFamily: {
       'sans': ['Inter', 'ui-sans-serif', 'system-ui'],

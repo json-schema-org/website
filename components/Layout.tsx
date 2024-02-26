@@ -6,7 +6,8 @@ import { useRouter } from 'next/router'
 import { DocSearch } from '@docsearch/react'
 import useStore from '~/store'
 import { SectionContext } from '~/context'
-
+import { useTheme } from 'next-themes'
+import DarkModeToggle from './DarkModeToggle'
 
 type Props = {
   children: React.ReactNode
@@ -22,6 +23,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
   const router = useRouter()
+  const { theme } = useTheme()
 
   React.useEffect(() => useStore.setState({ overlayNavigation: null }), [router.asPath])
 
@@ -41,7 +43,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`
   return (
-    <div className='min-h-screen relative flex flex-col justify-between'>
+    <div className='min-h-screen relative flex flex-col justify-between '>
       <FaviconHead />
       <Head>
         <title>{newTitle}</title>
@@ -52,7 +54,7 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
         <main className={
           classnames(mainClassName, 'z-10 xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
+          <header className={classnames('w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
             <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
               <Logo />
               <MainNavigation />
@@ -78,11 +80,11 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
 
 export const Search = () => {
   return (
-    <DocSearch
+      <DocSearch
       appId='6ZT4KX2OUI'
       apiKey='69f76fba13585144f6686622e9c8f2a8'
       indexName='json-schema'
-    />
+     />
   )
 }
 
@@ -90,7 +92,7 @@ export const Search = () => {
 const MainNavLink = ({ uri, label, className, isActive }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   const router = useRouter()
   return (
-    <Link href={uri} className={classnames(className, 'font-semibold p-2 md:p-4', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
+    <Link href={uri} className={classnames(className, 'font-semibold p-2 md:p-4 dark:text-slate-300', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
     }`
     )}
     >{label}
@@ -103,7 +105,7 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
   return (
-    <div className='flex justify-end mr-8 w-full justify-end'>
+    <div className='flex justify-end mr-8 w-full justify-end '>
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -140,10 +142,11 @@ const MainNavigation = () => {
         isActive={section === 'community'}
 
       />
-      <div className='flex items-center gap-12 md:gap-4'>
+      <div className='flex items-center gap-12 md:gap-4 dark:bg-slate-800'>
         <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
           <Search />
         </div>
+        <DarkModeToggle />
         {showMobileNav === false ? (
           <div
             onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
@@ -157,7 +160,7 @@ const MainNavigation = () => {
           </div>
         ) : <div
           style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-          className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer'
+          className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
           onClick={() => useStore.setState({ overlayNavigation: null })}
         />
         }
@@ -180,7 +183,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext)
 
   return (
-    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-700'>
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -212,7 +215,6 @@ const MobileNav = () => {
         isActive={section === 'community'}
 
       />
-    
     </div>
   )
 }
@@ -228,7 +230,7 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 }
 
 const Footer = () => (
-  <footer className={classnames('z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12')}>
+  <footer className={classnames('z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 ')}>
     <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
