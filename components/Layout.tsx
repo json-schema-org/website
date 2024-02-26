@@ -1,3 +1,14 @@
+// <<<<<<< HEAD
+// import React, { useContext, useEffect } from 'react';
+// import Head from 'next/head';
+// import Link from 'next/link';
+// import classnames from 'classnames';
+// import { useRouter } from 'next/router';
+// import { DocSearch } from '@docsearch/react';
+// import useStore from '~/store';
+// import { SectionContext } from '~/context';
+// import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
+// =======
 import React, { useContext, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -6,7 +17,9 @@ import { useRouter } from 'next/router';
 import { DocSearch } from '@docsearch/react';
 import useStore from '~/store';
 import { SectionContext } from '~/context';
-import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
+import { useTheme } from 'next-themes';
+import DarkModeToggle from './DarkModeToggle';
+// >>>>>>> 932a9ad (added dark theme)
 
 type Props = {
   children: React.ReactNode;
@@ -27,10 +40,20 @@ export default function Layout({
 
   const router = useRouter();
 
+  // <<<<<<< HEAD
+  //   React.useEffect(
+  //     () => useStore.setState({ overlayNavigation: null }),
+  //     [router.asPath],
+  //   );
+  // =======
+  // const router = useRouter()
+  const { theme } = useTheme();
+
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
     [router.asPath],
   );
+  // >>>>>>> 932a9ad (added dark theme)
 
   useEffect(() => {
     // Check if the URL contains "#community"
@@ -47,7 +70,7 @@ export default function Layout({
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
   return (
-    <div className='min-h-screen relative flex flex-col justify-between'>
+    <div className='min-h-screen relative flex flex-col justify-between '>
       <FaviconHead />
       <Head>
         <title>{newTitle}</title>
@@ -58,6 +81,7 @@ export default function Layout({
         ></meta>
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
+        {/* <<<<<<< HEAD
         <main
           className={classnames(
             mainClassName,
@@ -70,6 +94,20 @@ export default function Layout({
             )}
           >
             <div className='w-full flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
+======= */}
+        <main
+          className={classnames(
+            mainClassName,
+            'z-10 xl:rounded-xl py-4 mx-auto',
+          )}
+        >
+          <header
+            className={classnames(
+              'w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg',
+            )}
+          >
+            <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
+              {/* >>>>>>> 932a9ad (added dark theme) */}
               <Logo />
               <MainNavigation />
             </div>
@@ -95,9 +133,15 @@ export const Search = () => {
       appId='6ZT4KX2OUI'
       apiKey='69f76fba13585144f6686622e9c8f2a8'
       indexName='json-schema'
+      // <<<<<<< HEAD
+      //     />
+      //   );
+      // };
+      // =======
     />
   );
 };
+// >>>>>>> 932a9ad (added dark theme)
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const MainNavLink = ({
@@ -113,15 +157,31 @@ const MainNavLink = ({
 }) => {
   const router = useRouter();
   return (
+    // <<<<<<< HEAD
+    //     <Link
+    //       href={uri}
+    //       className={classnames(
+    //         className,
+    //         'font-semibold p-2 md:p-4',
+    //         `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
+    //       )}
+    //     >
+    //       {label}
+    // =======
     <Link
       href={uri}
       className={classnames(
         className,
-        'font-semibold p-2 md:p-4',
-        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
+        'font-semibold p-2 md:p-4 dark:text-slate-300',
+        `${
+          router.asPath === uri
+            ? 'text-primary hover:text-primary'
+            : 'text-slate-600 hover:text-primary'
+        }`,
       )}
     >
       {label}
+      {/* >>>>>>> 932a9ad (added dark theme) */}
     </Link>
   );
 };
@@ -131,7 +191,11 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
   return (
-    <div className='flex justify-end mr-8 w-full'>
+    // <<<<<<< HEAD
+    //     <div className='flex justify-end mr-8 w-full'>
+    // =======
+    <div className='flex justify-end mr-8 w-full '>
+      {/* >>>>>>> 932a9ad (added dark theme) */}
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -163,10 +227,16 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
+      {/* <<<<<<< HEAD
       <div className='flex max-sm:ml-4 items-center gap-6 md:gap-4'>
         <div className='flex justify-center rounded border-2 border-gray-100 ml-0 w-[120px] md:w-full'>
+======= */}
+      <div className='flex items-center gap-12 md:gap-4 dark:bg-slate-800'>
+        <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
+          {/* >>>>>>> 932a9ad (added dark theme) */}
           <Search />
         </div>
+        <DarkModeToggle />
         {showMobileNav === false ? (
           <div onClick={() => useStore.setState({ overlayNavigation: 'docs' })}>
             <div className='block lg:hidden space-y-2  items-center'>
@@ -176,12 +246,22 @@ const MainNavigation = () => {
             </div>
           </div>
         ) : (
+          // <<<<<<< HEAD
+          //         ) : (
+          //           <div
+          //             style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
+          //             className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer'
+          //             onClick={() => useStore.setState({ overlayNavigation: null })}
+          //           />
+          //         )}
+          // =======
           <div
             style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-            className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer'
+            className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
             onClick={() => useStore.setState({ overlayNavigation: null })}
           />
         )}
+        {/* >>>>>>> 932a9ad (added dark theme) */}
       </div>
       <div className='flex items-center justify-end mr-8'>
         <a
@@ -215,7 +295,11 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+    // <<<<<<< HEAD
+    //     <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+    // =======
+    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-700'>
+      {/* >>>>>>> 932a9ad (added dark theme) */}
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -247,12 +331,21 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 };
 
 const Footer = () => (
+  // <<<<<<< HEAD
+  //   <footer
+  //     className={classnames(
+  //       'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-top grid items-center',
+  //     )}
+  //   >
+  //     <div className='max-w-[1400px] mx-auto  mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+  // =======
   <footer
     className={classnames(
-      'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-top grid items-center',
+      'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 ',
     )}
   >
-    <div className='max-w-[1400px] mx-auto  mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+    <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+      {/* >>>>>>> 932a9ad (added dark theme) */}
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col text-center sm:text-left'>
