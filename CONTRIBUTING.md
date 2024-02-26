@@ -22,7 +22,7 @@ If you don't have time to contribute, that's fine. There are other easy ways to 
   - 📋 [Improving the Documentation](#-improving-the-documentation)
   - 🌐 [Improving the website](#-improving-the-website)
   - 🎨 [Improving the Design](#-improving-the-design)
-  - 🚀 [Markdown Writing Style Guide](#-custom -markdown-writing-style-guide)
+  - 🚀 [Custom Markdown Writing Style Guide](#-custom-markdown-writing-style-guide)
 - ⌨️ [Pull requests](#%EF%B8%8F-pull-requests)
 - 🏛 [License](#-license)
 
