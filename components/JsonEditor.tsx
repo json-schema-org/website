@@ -184,7 +184,7 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
   ) : null
   const caption: null | string = meta?.caption || null
 
-  // fullCodeText variable is for future use in copy pasting the code for the user
+  // fullCodeText variable is for use in copy pasting the code for the user
   const fullCodeText = React.useMemo(() => {
     let text = ''
     if (value) { 
@@ -212,11 +212,23 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
       <div className={classnames('relative font-mono bg-slate-800 border rounded-xl mt-1 overflow-hidden shadow-lg', {
         'ml-10': meta?.indent
       })}>
-        <div className='flex flex-row items-center absolute right-0 text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
-          {isJsonSchema
-            ? <><img src='/logo-white.svg' className='h-4 mr-1.5' /> schema</>
-            : <>data</>
-          }
+        <div className='flex flex-row absolute right-0 z-10'>
+          {/* Copy code button */}
+          <div className='flex mr-1.5 cursor-pointer group'
+            onClick={() => {
+              navigator.clipboard.writeText(fullCodeText)
+              setCopied(true)
+              setTimeout(() => setCopied(false), 2000)
+            }}>
+            <img src='/icons/copy.svg' title='Copy to clipboard' className={`opacity-50 hover:opacity-90 duration-150 ${copied ? 'hidden' : ''}`}></img>
+            <img src='/icons/copied.svg' title='Copied!' className={copied ? '' : 'hidden'}></img>
+          </div>
+          <div className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
+            {isJsonSchema
+              ? <><img src='/logo-white.svg' className='h-4 mr-1.5' /> schema</>
+              : <>data</>
+            }
+          </div>
         </div>
         <Editable
           onCopy={(e) => {
@@ -295,21 +307,6 @@ export default function JsonEditor ({ initialCode }: { initialCode: string }) {
             throw new Error(`unknown element.type [${element.type}] in render function`)
           }}
         />
-
-        {/* Copy Code button */}
-        <div 
-          className='absolute right-0 bottom-0 text-white bg-slate-800/50 text-xs px-3 py-1 cursor-pointer
-           hover:bg-slate-500 rounded'
-          onClick={() => {
-            navigator.clipboard.writeText(fullCodeText)
-            setCopied(true)
-            setTimeout(() => setCopied(false), 2500)
-          }}
-        >
-          {
-            copied ? 'Copied' : 'Copy'
-          }
-        </div>
 
         {validation === 'invalid' && (
           <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'>
