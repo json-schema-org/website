@@ -1,10 +1,10 @@
-import React from 'react'
-import { getLayout } from '~/components/Sidebar'
-import fs from 'fs'
-import matter from 'gray-matter'
-import StyledMarkdown from '~/components/StyledMarkdown'
-import { DocsHelp } from '~/components/DocsHelp'
-import { SectionContext } from '~/context'
+import React from 'react';
+import { getLayout } from '~/components/Sidebar';
+import fs from 'fs';
+import matter from 'gray-matter';
+import StyledMarkdown from '~/components/StyledMarkdown';
+import { DocsHelp } from '~/components/DocsHelp';
+import { SectionContext } from '~/context';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/implementers/_index.md', 'utf-8');

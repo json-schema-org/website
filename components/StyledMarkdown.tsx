@@ -504,6 +504,7 @@ export function TableOfContentMarkdown({
               );
             },
           },
+          /*eslint-disable */
           h3:
             depth >= 3
               ? {
@@ -534,7 +535,7 @@ export function TableOfContentMarkdown({
                       </a>
                     );
                   },
-                }
+                } /*eslint-enable */
               : { component: () => null },
           ...hiddenElements(
             'strong',

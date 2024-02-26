@@ -256,25 +256,43 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
       initialValue={value as Descendant[]}
       onChange={(e) => setValue(e)}
     >
-      <div className={classnames('relative font-mono bg-slate-800 border rounded-xl mt-1 overflow-hidden shadow-lg', {
-        'ml-10': meta?.indent
-      })}>
+      <div
+        className={classnames(
+          'relative font-mono bg-slate-800 border rounded-xl mt-1 overflow-hidden shadow-lg',
+          {
+            'ml-10': meta?.indent,
+          }
+        )}
+      >
         <div className='flex flex-row absolute right-0 z-10'>
           {/* Copy code button */}
-          <div className='flex mr-1.5 cursor-pointer group'
+          <div
+            className='flex mr-1.5 cursor-pointer group'
             onClick={() => {
-              navigator.clipboard.writeText(fullCodeText)
-              setCopied(true)
-              setTimeout(() => setCopied(false), 2000)
-            }}>
-            <img src='/icons/copy.svg' title='Copy to clipboard' className={`opacity-50 hover:opacity-90 duration-150 ${copied ? 'hidden' : ''}`}></img>
-            <img src='/icons/copied.svg' title='Copied!' className={copied ? '' : 'hidden'}></img>
+              navigator.clipboard.writeText(fullCodeText);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+          >
+            <img
+              src='/icons/copy.svg'
+              title='Copy to clipboard'
+              className={`opacity-50 hover:opacity-90 duration-150 ${copied ? 'hidden' : ''}`}
+            ></img>
+            <img
+              src='/icons/copied.svg'
+              title='Copied!'
+              className={copied ? '' : 'hidden'}
+            ></img>
           </div>
           <div className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
-            {isJsonSchema
-              ? <><img src='/logo-white.svg' className='h-4 mr-1.5' /> schema</>
-              : <>data</>
-            }
+            {isJsonSchema ? (
+              <>
+                <img src='/logo-white.svg' className='h-4 mr-1.5' /> schema
+              </>
+            ) : (
+              <>data</>
+            )}
           </div>
         </div>
         <Editable
@@ -389,7 +407,9 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
                 </span>
               );
             }
-            throw new Error(`unknown element.type [${element.type}] in render function`)
+            throw new Error(
+              `unknown element.type [${element.type}] in render function`
+            );
           }}
         />
 
