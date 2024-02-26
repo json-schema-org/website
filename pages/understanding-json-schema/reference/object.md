@@ -423,10 +423,6 @@ necessary properties and the schema works as expected. Keep reading to
 see how the `unevaluatedProperties` keyword solves this problem without
 needing to redeclare properties.
 
-::: {.index}
-single: object; properties; extending single: unevaluatedProperties
-:::
-
 ## Unevaluated Properties [#unevaluatedproperties]
 
 <Star label="New in draft 2019-09" />
