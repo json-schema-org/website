@@ -353,10 +353,10 @@ const Home = (props: any) => {
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center'>
             <a href='https://www.commonroom.io'>
-              <img src='/img/logos/supported/common-room.svg' className='w-44 max-h-[58px] mb-4 md:mb-0 md:mr-8 md:ml-2' />
+              <img src='/img/logos/supported/common-room.svg' className='w-44 max-h-[58px] mb-4 md:mb-0 md:mr-8 md:ml-2 scale-150' />
             </a>
             <a href='https://json-schema.org/slack'>
-              <img src='/img/logos/supported/slack-logo.svg' className='w-44 mt-4 md:mt-0 md:ml-8 md:mr-2' />
+              <img src='/img/logos/supported/slack-logo.svg' className='w-44 mt-4 md:mt-0 md:ml-8 md:mr-2 scale-75' />
             </a>
           </div>
         </section>
