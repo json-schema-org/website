@@ -139,6 +139,7 @@ With the new `properties` validation keyword, the overall schema looks like this
   "description": "A product from Acme's catalog",
   "type": "object",
   "properties": {
+    ...
     "productId": {
       "description": "The unique identifier for a product",
       "type": "integer"
@@ -157,6 +158,7 @@ The following example adds another required key, `productName`. This value is a 
   "description": "A product from Acme's catalog",
   "type": "object",
   "properties": {
+    ...
     "productId": {
       "description": "The unique identifier for a product",
       "type": "integer"
@@ -195,6 +197,7 @@ To define a required property:
 
 ```json
 {
+  ...
   "price": {
     "description": "The price of the product",
     "type": "number",
@@ -207,6 +210,7 @@ To define a required property:
 
 ```json
 {
+  ...
   "price": {
     "description": "The price of the product",
     "type": "number",
@@ -228,6 +232,7 @@ With the new `required` keyword and `price` key, the overall schema looks like t
   "description": "A product from Acme's catalog",
   "type": "object",
   "properties": {
+    ...
     "productId": {
       "description": "The unique identifier for a product",
       "type": "integer"
@@ -277,6 +282,7 @@ To define an optional property:
 
 ```json
 {
+  ...
   "tags": {
     "description": "Tags for the product",
     "type": "array",
@@ -291,6 +297,7 @@ To define an optional property:
 
 ```json
 {
+  ...
   "tags": {
     "description": "Tags for the product",
     "type": "array",
@@ -306,6 +313,7 @@ To define an optional property:
 
 ```json
 {
+  ...
   "tags": {
     "description": "Tags for the product",
     "type": "array",
@@ -328,6 +336,7 @@ With the new `tags` keyword, the overall schema looks like this:
   "description": "A product from Acme's catalog",
   "type": "object",
   "properties": {
+    ...
     "productId": {
       "description": "The unique identifier for a product",
       "type": "integer"
@@ -394,6 +403,7 @@ To create a nested data structure:
   "dimensions": {
     "type": "object",
     "properties": {
+      ...
       "length": {
         "type": "number"
       },
@@ -415,6 +425,7 @@ To create a nested data structure:
   "dimensions": {
     "type": "object",
     "properties": {
+      ...
       "length": {
         "type": "number"
       },
@@ -440,6 +451,7 @@ Using the new nested data structures, the overall schema looks like this:
   "description": "A product from Acme's catalog",
   "type": "object",
   "properties": {
+    ...
     "productId": {
       "description": "The unique identifier for a product",
       "type": "integer"
@@ -501,6 +513,7 @@ The following schema validates a geographical location:
   "required": ["latitude", "longitude"],
   "type": "object",
   "properties": {
+    ...
     "latitude": {
       "type": "number",
       "minimum": -90,
@@ -550,6 +563,7 @@ With the external schema reference, the overall schema looks like this:
   "description": "A product from Acme's catalog",
   "type": "object",
   "properties": {
+    ...
     "productId": {
       "description": "The unique identifier for a product",
       "type": "integer"
@@ -625,4 +639,5 @@ This example JSON data matches the product catalog schema:
 To validate this JSON data against the product catalog JSON Schema, you can use any validator of your choice. In addition to command-line and browser tools, validation tools are available in a wide range of languages, including Java, Python, .NET, and many others. To find a validator that’s right for your project, see [Implementations](https://json-schema.org/implementations).
 
 Use the example JSON data as the input data and the product catalog JSON Schema as the schema. Your validation tool compares the data against the schema, and if the data meets all the requirements defined in the schema, validation is successful.
+
 
