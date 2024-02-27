@@ -12,6 +12,8 @@ import { useRouter } from 'next/router'
 import useSetUrlParam from '~/lib/useSetUrlParam'
 import { SectionContext } from '~/context'
 
+export type blogCategories = 'All' | 'Community' | 'Case Study' | 'Engineering' | 'Update' | 'Opinion' 
+
 export async function getStaticProps({ params, query} : {
   params: string, query: any
 }) {
@@ -41,17 +43,19 @@ export async function getStaticProps({ params, query} : {
   }
 }
 
+function isValidCategory(category: any): category is blogCategories {
+  return ['All', 'Community', 'Case Study', 'Engineering', 'Update', 'Opinion'].includes(category);
+}
+
 export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts: any[], filterTag: any }) {
   const router = useRouter()
   const setParam = useSetUrlParam()
-  const [currentFilterTag, setCurrentFilterTag] = useState(filterTag ||'All')
+  const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(filterTag ||'All')
 
   useEffect(() => {
     const { query } = router;
-    if (query.type) {
-      setCurrentFilterTag(Array.isArray(query.type) ? query.type[0] : query.type);
-    } else {
-      setCurrentFilterTag('All');
+    if (query.type && isValidCategory(query.type)) {
+      setCurrentFilterTag(query.type);
     }
   }, [router.query]);
 
@@ -64,9 +68,6 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
     const clickedTag = event.currentTarget.value
 
     setCurrentFilterTag(clickedTag);
-
-    // Remove the 'type' query parameter from the URL
-    setParam('type', null);
 
     // Check if the user is already on the "/blog" page
     if (router.pathname === "/blog") {
