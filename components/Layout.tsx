@@ -140,7 +140,7 @@ const MainNavigation = () => {
         isActive={section === 'community'}
 
       />
-      <div className='flex items-center gap-12 md:gap-4'>
+      <div className='flex max-sm:ml-4 items-center gap-12 md:gap-4'>
         <div className='rounded border-2 border-gray-100 ml-0 w-[120px] md:w-full'>
           <Search />
         </div>
