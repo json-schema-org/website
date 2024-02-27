@@ -161,9 +161,10 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
   </tr>
   <tr>
     <td>
+          tree schema extensible
+
       ```json
         {
-          "comment": "tree schema extensible",
           "$schema": "https://json-schema.org/draft/2019-09/schema",
           "$id": "https://example.com/tree",
           "$recursiveAnchor": true,
@@ -177,6 +178,9 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
           }
         }
         ```
+
+        strict-tree schema, guards against misspelled properties
+
         ```json
         {
           "comment": "strict-tree schema, guards against misspelled properties",
@@ -189,9 +193,10 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
       ```
     </td>
     <td>
+      tree schema extensible
+
       ```json
         {
-          "comment": "tree schema extensible",
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "$id": "https://example.com/tree",
           "$dynamicAnchor": "node",
@@ -203,11 +208,12 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
               "items": { "$dynamicRef": "#node" }
             }
           }
-        }
+        } 
         ```
-        ```json
+        strict-tree schema, guards against misspelled properties
+
+        ```json  
         {
-          "comment": "strict-tree schema, guards against misspelled properties",
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "$id": "https://example.com/strict-tree",
           "$dynamicAnchor": "node",
@@ -400,7 +406,7 @@ external references that we want to bundle.
   "$defs": {
     "phone": {
       "type": "string",
-      "pattern": "^[+]?[(]?[0-9]{3}[)]?[-s.]?[0-9]{3}[-s.]?[0-9]{4,6}$"
+      "pattern": "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
     },
     "usaPostalCode": {
       "type": "string",
