@@ -53,7 +53,7 @@ const filterFragment = (children: string | React.ReactNode[]) => {
 type TagProps = { children: React.ReactNode, attributes: Record<string, any> }
 
 const Headline1Tag = ({ children, attributes }: TagProps) => (
-  <h1 {...attributes} className={classnames(attributes?.className, 'text-h1mobile md:text-h1  font-bold pt-5 mb-6')}>{children}</h1>
+  <h1 {...attributes} className={classnames(attributes?.className, 'text-h1mobile md:text-h1  font-bold pt-2 mb-4')}>{children}</h1>
 )
 const Headline2Tag = ({ children, attributes }: TagProps) => (
   <h2 {...attributes} className={classnames(attributes?.className, 'text-h2mobile md:text-h2 font-semibold mt-4 mb-4')}>{children}</h2>
