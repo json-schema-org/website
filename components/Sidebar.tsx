@@ -192,7 +192,7 @@ export const DocsNav = () => {
   return (
 
     <div id='sidebar '
-      className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
+      className='lg:mt-1 w-4/5 mx-auto lg:ml-4'>
       <div className='mb-2 bg-slate-200 p-2 rounded'>
         <div className='flex justify-between w-full items-center' onClick={handleClickDoc} >
           <div className='flex  items-center align-middle'>
