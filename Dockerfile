@@ -4,7 +4,11 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN git submodule init && git submodule update && yarn
+RUN apk add --update git && \
+    git init && \
+    git submodule init && \
+    git submodule update && \
+    yarn
 
 COPY . .
 

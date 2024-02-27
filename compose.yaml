@@ -1,9 +1,0 @@
-services:
-  web:
-    build:
-      context: .
-    ports:
-      - 3002:3000
-    volumes:
-      - .:/app
-      - /app/node_modules
