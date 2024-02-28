@@ -743,5 +743,5 @@ it's all JSON, and we know darn well how to munge that.
 [repo]: https://git.babyl.ca/yanick/hyperborea-character-sheet
 [jsonschema]: https://json-schema.org/
 [ASSH]: https://www.hyperborea.tv/
-[gizmo]: https://twitter.com/gizmomathboy
+[gizmo]: https://www.twitter.com/gizmomathboy
 [yaml]: https://yaml.org/
