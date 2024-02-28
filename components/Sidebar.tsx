@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { HOST } from '~/lib/config'
 import classnames from 'classnames'
 import { SegmentHeadline } from './Layout'
+import CarbonAds from './CarbonsAds'
 
 
 const DocLink = ({ uri, label }: { uri: string, label: string | React.ReactNode }) => {
@@ -49,7 +50,8 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
 }
 const getDocsPath = [
   '/overview/what-is-jsonschema',
-  '/overview/sponsors'
+  '/overview/sponsors',
+  '/overview/code-of-conduct'
 ]
 const getStartedPath = [
   '/learn/json-schema-examples',
@@ -80,7 +82,7 @@ const getReferencePath = [
   '/understanding-json-schema/reference/schema',
   '/understanding-json-schema/reference/string',
   '/understanding-json-schema/reference/type',
-  '/understanding-json-schema/reference/generic',  
+  '/understanding-json-schema/reference/generic',
   '/understanding-json-schema/reference',
   '/learn/glossary',
   '/implementers',
@@ -131,6 +133,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
         <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
           <div className='hidden lg:block mt-24'>
             <DocsNav />
+            <CarbonAds className='lg:mt-8 w-4/5 mx-auto lg:ml-4' variant='sidebar' />
           </div>
           <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'>
             {children}
@@ -204,6 +207,7 @@ export const DocsNav = () => {
         >
           <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
           <DocLink uri='/overview/sponsors' label='Sponsors' />
+          <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
         </div>
       </div>
       {/* Get Started */}
