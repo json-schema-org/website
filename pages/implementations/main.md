@@ -115,7 +115,7 @@ are the only keywords that changed.
   -  [jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) (Apache 2.0) - generates Java types from JSON Schema (or example JSON) and can annotate those types for data-binding with Jackson 2.x or Gson. *draft-07*
   -  [jsonschematypes](https://github.com/jimblackler/jsonschematypes) (Apache 2.0) - Java library to generate Java or TypeScript classes from standard JSON Schemas. *JSON Schema 2019-09, draft-07, -06, -04, -03*
   -  [jsongenerator](https://github.com/jimblackler/jsonschematypes/tree/master/codegen) *JSON Schema 2019-09, draft-07, -06, -04, -03* (Apache-2.0)
-  -  [OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI document](https://www.openapis.org). This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
+  -  [OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI](https://www.openapis.org) document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
 - Kotlin
   -  [json-kotlin-schema-codegen](https://github.com/pwall567/json-kotlin-schema-codegen) (MIT) - Generates Kotlin data classes, Java classes or TypeScript interfaces from JSON Schema.
 -   Online (web tool)
