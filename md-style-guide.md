@@ -52,14 +52,20 @@
 
 ### **Bigquote** 
 
+Useful to show the text wrapped in it, in a big quotation-like text.
+
 ```markdown
 <Bigquote> message to show </Bigquote>
 ```
 #### Image
+![image](https://github.com/DhairyaMajmudar/json-schema-website/assets/124715224/d15fdaaf-1b59-42a8-84f7-363a40662438)
 
 -----------------------------------------------------------------------
 
 ### **Blockquote**
+
+Useful to show the text wrapped in it, in a block quotation-like text.
+
 
  ```markdown
 <blockquote> message to show </blockquote>
