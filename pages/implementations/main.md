@@ -123,7 +123,7 @@ are the only keywords that changed.
 -   PHP
   -  [php-code-builder](https://github.com/swaggest/php-code-builder)(MIT) - generates PHP mapping structures defined by JSON schema using [swaggest/json-schema](https://github.com/swaggest/php-json-schema) *supports Draft 7*
 -   Python
-  -  [yacg](https://github.com/OkieOth/yacg) (MIT) - parse JSON Schema and [OpenAPI files](https://www.openapis.org) to build a meta model from them. This meta model can be used in Mako templates to generate source code, other schemas or plantUml.
+  -  [yacg](https://github.com/OkieOth/yacg) (MIT) - parse JSON Schema and [OpenAPI](https://www.openapis.org) files to build a meta model from them. This meta model can be used in Mako templates to generate source code, other schemas or plantUml.
   -  [statham](https://github.com/jacksmith15/statham-schema) (MIT) - generate type-annotated models from JSON Schema documents.
   -  [OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI](https://www.openapis.org) document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
 -   Rust
