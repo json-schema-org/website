@@ -6,10 +6,10 @@ cover: /img/posts/2023/6-river-systems-case-study/cover.webp
 authors:
   - name: Melinda Gutermuth
     photo: /img/avatars/melinda.webp
-    link: https://twitter.com/shelikeswords
+    link: https://www.twitter.com/shelikeswords
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://twitter.com/relequestual
+    link: https://www.twitter.com/relequestual
 excerpt: "Explore the powerful impact of JSON Schema on 6 River Systems' fulfillment operations. Discover how they enabled enhanced collaboration, time savings, and data quality assurance, propelling their successful scaling journey."
 ---
 
