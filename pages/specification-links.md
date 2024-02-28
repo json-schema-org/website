@@ -404,7 +404,7 @@ _These were updated without changing functionality or meta-schemas due to a few 
  - JSON Reference: [draft-pbryan-zyp-json-ref-03](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) ([changes](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03#appendix-A))
  * [JSON Schema meta-schema](../../draft-04/schema)
  * [JSON Hyper-Schema meta-schema](../../draft-04/hyper-schema)
- - Published: 2013
+ - Published: 31-January-2013
 
 ### Draft 3
 
