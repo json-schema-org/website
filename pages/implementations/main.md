@@ -200,7 +200,7 @@ the utility, and decided on a case-by-case basis.
 
 ### Format converters
 
--   OpenAPI
+-   [OpenAPI](https://www.openapis.org)
   -   [JSON Schema to OpenAPI Schema](https://github.com/wework/json-schema-to-openapi-schema) _draft-04_ Draft-06 and -07 planned per README (MIT)
   -   [OpenAPI specification to JSON Schema](https://github.com/instrumenta/openapi2jsonschema) Draft-07 (MIT)
 -   Orderly
