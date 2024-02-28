@@ -45,7 +45,7 @@ Bowtie attempts to bring these ideas to JSON Schema.
 
 From the existing [list of JSON Schema implementations](https://json-schema.org/implementations.html#validators), Bowtie already [supports](https://github.com/orgs/bowtie-json-schema/packages) *12* implementations across *9* programming languages, allowing anyone to run any of these implementations and see what they have to say about schemas and instances.
 
-It ships with a [command line program](https://bowtie-json-schema.readthedocs.io/en/latest/cli/), but perhaps more excitingly, ongoing automated runs of this CLI have been set up, such that Bowtie emits a [report across all of its supported implementations](https://bowtie-json-schema.github.io/bowtie/draft2020).
+It ships with a [command line program](https://docs.bowtie.report/en/stable/cli/) but perhaps more excitingly, ongoing automated runs of this CLI have been set up, such that Bowtie emits a [report across all of its supported implementations](https://bowtie.report).
 
 To produce this report, Bowtie runs the [official JSON Schema Test Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite), which is our existing set of tests meant to exercise compliance with the JSON Schema specifications.
 Many implementations already [use the suite within their own continuous integration](https://github.com/json-schema-org/JSON-Schema-Test-Suite#who-uses-the-test-suite), but this is the first time both users of JSON Schema as well as implementers can see results of running the suite in a single place, across many implementations.
@@ -76,7 +76,7 @@ The medium-term goal is to combine these onto one unified report (at which point
 
 If you want to go beyond the test suite reports, you can run Bowtie locally as well, on whatever input you'd like.
 Bowtie is written in Python and published [on PyPI](https://pypi.org/project/bowtie-json-schema/).
-If you have no existing preferred setup for installing Python applications, [install `pipx` using the platform-specific instructions for your OS](https://pypa.github.io/pipx/#install-pipx), then run:
+If you have no existing preferred setup for installing Python applications, [install `pipx` using the platform-specific instructions for your OS](https://pipx.pypa.io/stable/), then run:
 
 ```sh
 $ pipx install bowtie-json-schema
@@ -146,7 +146,7 @@ This is probably the most beneficial area you can help in.
 I myself am not a frontend developer, in case that wasn't obvious.
 What I put together (with Bootstrap) is essentially the bare minimum of what's needed to show off results Bowtie emits.
 If you have more experience or headspace to think about how to effectively report test results, or compare implementations, please help!
-All of Bowtie's "frontend code" today lives in one place, [a Jinja2 template which gets formatted into a static single page site](https://github.com/bowtie-json-schema/bowtie/blob/main/bowtie/templates/report.html.j2).
+All of Bowtie's "frontend code" today lives in one place, [a Jinja2 template which gets formatted into a static single page site](https://github.com/bowtie-json-schema/bowtie/blob/b23644eb86cf9bcbdf1d98149cf3d976339f7cdf/bowtie/templates/report.html.j2).
 Beyond generally "make it prettier, more responsive, or more usable", here are a few specific issues to look at:
 
 * [Add client-side filtering and sorting](https://github.com/bowtie-json-schema/bowtie/issues/37)
@@ -173,6 +173,7 @@ Bowtie also allows for a wider range of `$ref`-related testing, because its prot
 [This issue](https://github.com/bowtie-json-schema/bowtie/issues/61) is the relevant one, but ideas are welcome here on kinds of tests we can now add.
 
 #### I Found a Bug, or Have an Idea for Bowtie Itself
+
 If it's with an implementation, you likely should take it to the implementation's issue tracker.
 Please be polite, as there's still a small but non-zero chance that issues are caused by Bowtie itself.
 And even if there isn't, please do be kind to maintainers, many (including myself!) are already aware of issues Bowtie is flagging and may really want to fix them but have things which make doing so difficult.
