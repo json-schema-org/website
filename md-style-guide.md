@@ -1,21 +1,67 @@
 ### 🚀 Custom Markdown Writing Style Guide
 
-**Star**: `<Star label="label"/>`
+### **Star**
 
-**StarInline**: `<StarInline label="label"/>`
+#### Adds a star with a label along with it. In place of `"label"` text can be added which needed to be shown. 
 
-**Summary**: ` <summary> message to show </summary>`
+```markdown
+<Star label="label"/>
+```
 
-**Details**: `<details> message to show </details>`
+### **StarInline**
 
-**Bigquote**: `<Bigquote> message to show </Bigquote>`
+#### Adds an inline star with the label along with it. In place of `"label"` text can be added which needed to be shown. 
+```markdown
+ <StarInline label="label"/>
+```
 
-**Blockquote**: `<blockquote> message to show </blockquote>`
+### **Summary**
+#### Useful for adding summary. The text written between these tags will be shown as summary.
+ 
+```markdown
+ <summary> message to show </summary>
+```
 
-**Infobox**: `<Infobox label="label"> message to show. </Infobox>`
+### **Details**
+#### Useful to show message in detailed way.  The text written between these tags will be shown as detailed text.
+```markdown
+<details> message to show </details>
+```
 
-**Warning**: `<Warning label="label"> message to show. </Warning>`
+### **Bigquote** 
 
-**Tip**: `<Tip label="label"> message to show. </Tip>`
+```markdown
+<Bigquote> message to show </Bigquote>
+```
 
-**Danger**: `<Danger label="label"> message to show. </Danger>`
+### **Blockquote**
+ ```markdown
+<blockquote> message to show </blockquote>
+```
+
+### **Infobox**
+#### Infobox is useful to present an information it will show the details inside a box. The text written between these tags will be shown.
+
+ ```markdown
+<Infobox label="label"> message to show. </Infobox>
+```
+
+### **Warning**
+#### Warnings a special type of info box in which text showing any warning can be shown. The text written between these tags will be shown.
+```markdown
+<Warning label="label"> message to show. </Warning>
+```
+
+### **Tip** 
+
+#### Tip a special type of info box in which text showing a tip can be shown. The text written between these tags will be shown.
+```markdown
+<Tip label="label"> message to show. </Tip>
+```
+
+### **Danger** 
+
+#### Danger a special type of info box in which text showing any danger can be shown. The text written between these tags will be shown.
+```markdown
+<Danger label="label"> message to show. </Danger>
+```
