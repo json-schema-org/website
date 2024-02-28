@@ -97,7 +97,7 @@ Second is our [Open Community Working Meetings](https://github.com/json-schema-o
 
 Both sets of calls are open for anyone to join. Both are recorded, but only the Open Community Working Meeting is shared publicly. The Office Hours session is not shared, hopefully allowing people to speak more freely.
 
-Besides Slack, GitHub Discussions, and regular meetings, we do make use of Twitter. You can find me running the [@jsonschema account](https://twitter.com/jsonschema). Any mention of "JSON Schema" feeds into a channel on Slack, so we see most of the discussion, and can lend a hand or point people in a direction as appropriate.
+Besides Slack, GitHub Discussions, and regular meetings, we do make use of Twitter. You can find me running the [@jsonschema account](https://www.twitter.com/jsonschema). Any mention of "JSON Schema" feeds into a channel on Slack, so we see most of the discussion, and can lend a hand or point people in a direction as appropriate.
 
 Hopefully, this has been a helpful look at why JSON Schema specifically needs a Code of Conduct. Maybe you're considering if your project needs a Code of Conduct. If you have any questions, thoughts, or comments as a result of this article, please feel free to use any of the above methods to make contact.
 
