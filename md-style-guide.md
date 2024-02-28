@@ -9,6 +9,8 @@
 ```
 
 #### Image
+![image](https://github.com/DhairyaMajmudar/json-schema-website/assets/124715224/936f4561-a37e-42c3-aaad-8ac463ae5d34)
+
 
 -----------------------------------------------------------------------
 
@@ -20,26 +22,31 @@
 ```
 
 #### Image
+![image](https://github.com/DhairyaMajmudar/json-schema-website/assets/124715224/5537c8bd-be62-480e-8382-9e20efe233e5)
 
 -----------------------------------------------------------------------
 
 
 ### **Summary**
-#### Useful for adding a summary. The text written between these tags will be shown as a summary.
+#### Summary and details tags both can be used together the text wrapped in the `summary` tag will be shown primarily,  whereas the text shown in the `details` tag can be shown when its cliced on the summary text.
  
 ```markdown
  <summary> message to show </summary>
 ```
 #### Image
+![image](https://github.com/DhairyaMajmudar/json-schema-website/assets/124715224/8a9bfd1c-cce6-4859-a3e7-cd7288ae6918)
+
 
 -----------------------------------------------------------------------
 
 ### **Details**
-#### Useful to show a message in a detailed way.  The text written between these tags will be shown as detailed text.
+#### Summary and details tags both can be used together the text wrapped in the `summary` tag will be shown primarily,  whereas the text shown in the `details` tag can be shown when its cliced on the summary text.
+
 ```markdown
 <details> message to show </details>
 ```
 #### Image
+![image](https://github.com/DhairyaMajmudar/json-schema-website/assets/124715224/c269910f-9127-496a-a835-31da0d6bee09)
 
 -----------------------------------------------------------------------
 
