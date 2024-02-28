@@ -154,9 +154,13 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     <th>Draft 2020-12</th>
   </tr>
   <tr>
+  <th>tree schema extensible</th>
+  <th>tree schema extensible</th>
+  </tr>
+  <tr>
     <td>
       ```json
-        // tree schema, extensible
+
         {
           "$schema": "https://json-schema.org/draft/2019-09/schema",
           "$id": "https://example.com/tree",
@@ -182,7 +186,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     </td>
     <td>
       ```json
-        // tree schema, extensible
+
         {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "$id": "https://example.com/tree",
@@ -196,7 +200,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
             }
           }
         }
-        // strict-tree schema, guards against misspelled properties
+      // strict-tree schema, guards against misspelled properties
         {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "$id": "https://example.com/strict-tree",
