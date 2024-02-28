@@ -45,7 +45,7 @@ Please use our issues templates that provide hints on what information we need t
 
 ### 🛠️ Add a new Implementation
 
-To add a new implementation, please open a PR, adding the details of your implementation to `\pages\implementations\main.md` file. We also invite you to join the discussion in `#implementers` channel in our [Slack workspace](https://json-schema.org/slack).
+To add a new implementation, please open a PR, adding the details of your implementation to `\pages\implementations\main.md` file. We also invite you to join the discussion in `#implementers` channel in our  [Slack workspace](https://json-schema.org/slack).
 
 ### ✍️ Publish a blog post
 
@@ -59,11 +59,11 @@ To publish a case study, we encourage you to join `#adopters` channel in our [Sl
 
 ### 📋 Improving the Documentation
 
-If you would like to join the efforts to improve the JSON Schema Documentation, we encourage you to check our [documentation board](https://github.com/orgs/json-schema-org/projects/16) to get a sense of the pending issues and who is doing what. We encourage you to join the discussion on the [issue #421](https://github.com/json-schema-org/community/issues/421) so you can see the long term vision for our docs. We also invite you to join the discussion in `#documentation` channel in our [Slack workspace](https://json-schema.org/slack).
+If you would like to join the efforts to improve the JSON Schema Documentation, we encourage you to check our [documentation board](https://github.com/orgs/json-schema-org/projects/16) to get a sense of the pending issues and who is doing what. We encourage you to join the discussion on the [issue #421](https://github.com/json-schema-org/community/issues/421) so you can see the long term vision for our docs. We also invite you to join the discussion in `#documentation` channel in our  [Slack workspace](https://json-schema.org/slack).
 
 ### 📋 Improving the Website
 
-If you would like to join the efforts to improve the JSON Schema Website, we encourage you to check our [website contribution board](https://github.com/orgs/json-schema-org/projects/11) to get a sense of the pending issues and bugs and who is doing what. We also invite you to join the discussion in `#website` channel in our [Slack workspace](https://json-schema.org/slack).
+If you would like to join the efforts to improve the JSON Schema Website, we encourage you to check our [website contribution board](https://github.com/orgs/json-schema-org/projects/11) to get a sense of the pending issues and bugs and who is doing what. We also invite you to join the discussion in `#website` channel in our  [Slack workspace](https://json-schema.org/slack).
 
 ### 🎨 Improving the Design
 
@@ -77,16 +77,22 @@ If the pull request would solve a particular issue, reference the issue in the p
 
 Generally, pull requests should be made to the `main` branch.
 
-Most PRs, will be left open for a minimum of 14 days. Minor fixes may be merged more quickly once approved by a project member.
+Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged more quickly once approved by a project member.
 
 ## Triage
 
-Please check the [triage process](https://github.com/json-schema-org/.github/blob/main/TRIAGE.md) to learn how we review and label incoming issues .
+Please check the [triage process](https://github.com/json-schema-org/.github/blob/main/TRIAGE.md) to learn how we review and label incoming issues . 
 
 ## Feedback
 
 Feedback on this process can be made informally through our [Slack server](https://json-schema.org/slack) and formally using our [Community Discussions](https://github.com/json-schema-org/community/discussions).
 
-## References
+## References 
 
 This document was adapted from [https://contributing.md](https://contributing.md/)!
+
+
+
+
+
+
