@@ -39,7 +39,7 @@ type ImplementationByLanguage = { name: string }
 export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
     <SectionContext.Provider value='implementations'>
-      <div className='w-5/6 mx-auto mt-12'>
+      <div className='w-5/6 mx-auto mt-12 dark:text-slate-200'>
         <Headline1>Implementations</Headline1>
         <StyledMarkdown markdown={blocks.intro} />
         <Headline2>Validators</Headline2>
@@ -56,7 +56,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
   const router = useRouter()
   return (
     <>
-      <div className='flex flex-row flex-wrap grid-cols-7 grid'>
+      <div className='flex flex-row flex-wrap grid-cols-7 grid dark:bg-slate-700'>
         {implementationsByLanguage.map((implementationByLanguage: any, index: number) => {
           const slug = prefix + slugify(implementationByLanguage.name, { lower: true, trim: true })
           const isActive = router.query.language === slug
@@ -74,7 +74,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
           )
         })}
       </div>
-      <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5'>
+      <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-600'>
         <table>
           <thead>
             <tr>

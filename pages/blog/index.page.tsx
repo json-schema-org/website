@@ -68,10 +68,10 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10'>
+      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10 '>
         {recentBlog[0] && (
-          <div className='relative w-full lg:h-[50vh] lg:mt-6 clip-bottom'>
-            <div className='-z-1 bg-black'>
+          <div className='relative w-full lg:h-[50vh] lg:mt-6 clip-bottom dark:bg-slate-700'>
+            <div className='-z-1 bg-black dark:bg-[#282d6a]'>
               <img
                 src={recentBlog[0].frontmatter.cover}
                 className='object-cover w-full h-full opacity-70'
@@ -79,11 +79,11 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               />
             </div>
             <div className='absolute text-white left-8 bottom-8'>
-              <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
+              <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm '>
                 {recentBlog[0].frontmatter.type}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
-                <h1 className='text-h1mobile md:text-h1 font-semibol text-stroke-1'>
+                <h1 className='text-h1mobile md:text-h1 font-semibol text-stroke-1 dark:slate-300'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
                 <div className='flex ml-2 mb-2 '>
@@ -121,8 +121,8 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         </div>
         {/* Filter Buttons */}
         <div className='w-full ml-8 flex flex-wrap justify-start'>{allTags.map((tag) => (
-          <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm'>{tag}</button>
-        ))}<span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center'>Filter blog posts by category...</span></div>
+          <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm dark:bg-slate-400 dark:text-blue-900'>{tag}</button>
+        ))}<span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center dark:text-slate-300'>Filter blog posts by category...</span></div>
 
         {/* filterTag === frontmatter.type &&  */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto p-4'>
@@ -152,7 +152,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               return (
                 <section key={blogPost.slug}>
                   <div
-                    className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden'
+                    className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:slate-700'
                   >
                     <Link href={`/blog/posts/${blogPost.slug}`} className='inline-flex flex-col flex-1 w-full'>
                       <div

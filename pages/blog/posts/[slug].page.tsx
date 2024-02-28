@@ -22,7 +22,7 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
       <Head>
         <title>{frontmatter.title}</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16'>
+      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16 dark:bg-slate-700 dark:slate-700'>
         <div className='flex flex-col pt-6'>
           {frontmatter.date && (
             <div className='text-center text-sm text-slate-500 mt-16'>
