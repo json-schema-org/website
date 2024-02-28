@@ -2,6 +2,7 @@
 title: 2020-12 Release Notes
 section: docs
 ---
+
 The previous draft (2019-09) introduced a lot of new concepts including
 `$recursiveRef`/`$recursiveAnchor`, `unevaluatedProperties`/`unevaluatedItems`,
 vocabularies, and more. Since then, these new features have seen multiple
@@ -13,6 +14,7 @@ This document attempts to put information most useful to schema authors toward
 the top and information for implementation authors toward the bottom.
 
 ## Changes to items and additionalItems
+
 The keywords used for defining arrays and tuples have been redesigned to help
 lower the learning curve for JSON Schema. Since the `items` keyword was used for
 both types, we would often see people mistakenly defining a tuple when they
@@ -32,6 +34,7 @@ items that come before the normal items (`prefixItems`).
 Here are some examples to illustrate the changes.
 
 ### Open tuple
+
 <table>
   <tr>
     <th>Draft 2019-09</th>
@@ -62,6 +65,7 @@ Here are some examples to illustrate the changes.
 </table>
 
 ### Closed tuple
+
 <table>
   <tr>
     <th>Draft 2019-09</th>
@@ -94,6 +98,7 @@ Here are some examples to illustrate the changes.
 </table>
 
 ### Tuple with constrained additional items
+
 <table>
   <tr>
     <th>Draft 2019-09</th>
@@ -126,6 +131,7 @@ Here are some examples to illustrate the changes.
 </table>
 
 ## $dynamicRef and $dynamicAnchor
+
 The `$recursiveRef` and `$recursiveAnchor` keywords were replaced by the more
 powerful `$dynamicRef` and `$dynamicAnchor` keywords. `$recursiveRef` and
 `$recursiveAnchor` were introduced in the previous draft to solve the problem of
@@ -155,8 +161,9 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
   </tr>
   <tr>
     <td>
+          tree schema extensible
+
       ```json
-        // tree schema, extensible
         {
           "$schema": "https://json-schema.org/draft/2019-09/schema",
           "$id": "https://example.com/tree",
@@ -170,8 +177,13 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
             }
           }
         }
-        // strict-tree schema, guards against misspelled properties
+        ```
+
+        strict-tree schema, guards against misspelled properties
+
+        ```json
         {
+          "comment": "strict-tree schema, guards against misspelled properties",
           "$schema": "https://json-schema.org/draft/2019-09/schema",
           "$id": "https://example.com/strict-tree",
           "$recursiveAnchor": true,
@@ -181,8 +193,9 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
       ```
     </td>
     <td>
+      tree schema extensible
+
       ```json
-        // tree schema, extensible
         {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "$id": "https://example.com/tree",
@@ -195,8 +208,11 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
               "items": { "$dynamicRef": "#node" }
             }
           }
-        }
-        // strict-tree schema, guards against misspelled properties
+        } 
+        ```
+        strict-tree schema, guards against misspelled properties
+
+        ```json  
         {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "$id": "https://example.com/strict-tree",
@@ -210,6 +226,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
 </table>
 
 ## contains and unevaluatedItems
+
 In the previous draft, it wasn't specified how or if the `contains` keyword
 affects the `unevaluatedItems` keyword. This draft specifies that any item in an
 array that passes validation of the `contains` schema is considered "evaluated".
@@ -304,11 +321,13 @@ considered unevaluated and fails the `unevaluatedItems` keyword like it did in
 previous drafts.
 
 ## Regular Expressions
+
 Regular expressions are now expected (but not strictly required) to support
 unicode characters. Previously, this was unspecified and implementations may or
 may not support this unicode in regular expressions.
 
 ## Media Type Changes
+
 JSON Schema defines two media types, `application/schema+json` and
 `application/schema-instance+json`. This draft drops support for the `schema`
 media type parameter. It's caused a lot of confusion and disagreement. Since we
@@ -316,6 +335,7 @@ haven't seen any evidence of anyone actually using it, it was decided to remove
 it for now.
 
 ## Embedded Schemas and Bundling
+
 In Draft 2019-09, the meaning of `$id` in a sub-schema changed from indicating a
 base URI change within the current schema to indicating an embedded schema
 independent of the parent schema. A schema that contains one or more embedded
@@ -460,23 +480,25 @@ Here are a few things you might notice from this example.
 
 1. No `$ref`s were modified. Even local references are unchanged.
 2. `https://example.com/schema/common#/$defs/unsignedInt` got pulled in with the
-common schema even though it isn't used. It's allowed to trim out the extra
-definitions, but not necessary.
+   common schema even though it isn't used. It's allowed to trim out the extra
+   definitions, but not necessary.
 3. `https://example.com/schema/address` doesn't declare a `$schema`. Because it
-uses the same `$schema` as `https://example.com/schema/customer`, it can skip
-that declaration and use the `$schema` from the schema it's embedded in.
+   uses the same `$schema` as `https://example.com/schema/customer`, it can skip
+   that declaration and use the `$schema` from the schema it's embedded in.
 4. `https://example.com/schema/common` uses a different `$schema` than the
-document it's embedded in. That's allowed.
+   document it's embedded in. That's allowed.
 5. Definitions from `https://example.com/schema/common` are used in both of the
-other schemas and only needs to be included once. It isn't necessary for
-bundlers to embed a schema inside another embedded schema.
+   other schemas and only needs to be included once. It isn't necessary for
+   bundlers to embed a schema inside another embedded schema.
 
 ## Annotations
+
 Implementations that collect annotations should now include annotations for
 unknown keywords in the "verbose" output format. The annotation value for an
 unknown keyword is the keyword's value.
 
 ## Vocabulary Changes
+
 The `unevaluatedProperties` and `unevaluatedItems` keywords have been moved from
 the applicator vocabulary to their own designated vocabulary which is required
 in the default meta-schema. In Draft 2019-09, these keywords were expected to
