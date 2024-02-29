@@ -1,9 +1,11 @@
+---
+section: docs
+title: Similar Technologies
+---
 
-# Similar Technologies Overview
+While we think that JSON Schema has a unique value proposition, we'd like to provide visibility to other technologies that share similar goals:
 
-[**JSON Schema**](https://json-schema.org/) is not the only game in town when it comes to data validation and description. Here are some other technologies that share similar goals:
 
-##  Similar Technologies
 
 * **JSON Constraint Rules (JCR):** JCR aims to provide a more expressive way to define constraints on JSON data compared to JSON Schema. While still under development, you can learn more about it on GitHub: [http://codalogic.github.io/jcr/](http://codalogic.github.io/jcr/).
 

@@ -208,7 +208,7 @@ export const DocsNav = () => {
         >
           <DocLink uri='/overview/what-is-jsonschema' label='What is JSON Schema?' />
           <DocLink uri='/overview/sponsors' label='Sponsors' />
-          <DocLink uri='/overview/similar-technologies' label='Similar Technologies Overview' />
+          <DocLink uri='/overview/similar-technologies' label='Similar Technologies' />
           <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
         </div>
       </div>
