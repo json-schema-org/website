@@ -239,7 +239,7 @@ const Footer = () => (
           <a href='/overview/code-of-conduct' className='text-white mb-2'>Code of Conduct</a>
         </div>
       </div>
-      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12 gap-x-2.5 gap-y-2 md:gap-x-0 md:gap-y-0'>
+      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12 gap-x-4 gap-y-4 md:gap-x-0 md:gap-y-0'>
         <div className=''>
           <a href='https://json-schema.org/slack' className='flex items-center text-white'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
             Slack</a>
