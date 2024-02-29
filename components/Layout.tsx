@@ -222,7 +222,7 @@ const MobileNav = () => {
 
 export const SegmentHeadline = ({ label }: { label: string }) => {
   return (
-    <div className='text-slate-900 font-bold'>
+    <div className='text-slate-900 dark:text-slate-300 font-bold'>
       {label}
     </div>
   )

@@ -193,7 +193,7 @@ export const DocsNav = () => {
 
     <div id='sidebar '
       className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div className='flex justify-between w-full items-center' onClick={handleClickDoc} >
           <div className='flex  items-center align-middle'>
             <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
@@ -211,7 +211,7 @@ export const DocsNav = () => {
         </div>
       </div>
       {/* Get Started */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div className='flex justify-between w-full items-center' onClick={handleClickGet} >
           <div className='flex  items-center align-middle' >
             <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
@@ -233,7 +233,7 @@ export const DocsNav = () => {
         </div>
       </div>
       {/* Reference */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div className='flex justify-between w-full items-center' onClick={handleClickReference}>
           <div className='flex  items-center align-middle' >
             <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
@@ -284,7 +284,7 @@ export const DocsNav = () => {
         </div>
       </div>
       {/* Specification */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div className='flex justify-between w-full items-center' onClick={handleClickSpec}>
           <div className='flex  items-center align-middle'>
             <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />

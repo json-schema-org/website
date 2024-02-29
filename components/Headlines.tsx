@@ -53,14 +53,14 @@ const filterFragment = (children: string | React.ReactNode[]) => {
 type TagProps = { children: React.ReactNode, attributes: Record<string, any> }
 
 const Headline1Tag = ({ children, attributes }: TagProps) => (
-  <h1 {...attributes} className={classnames(attributes?.className, 'text-h1mobile md:text-h1  font-bold pt-10 mb-6')}>{children}</h1>
+  <h1 {...attributes} className={classnames(attributes?.className, 'text-h1mobile md:text-h1 dark:text-slate-200  font-bold pt-10 mb-6')}>{children}</h1>
 )
 const Headline2Tag = ({ children, attributes }: TagProps) => (
-  <h2 {...attributes} className={classnames(attributes?.className, 'text-h2mobile md:text-h2 font-semibold mt-10 mb-4')}>{children}</h2>
+  <h2 {...attributes} className={classnames(attributes?.className, 'text-h2mobile md:text-h2 dark:text-slate-200 font-semibold mt-10 mb-4')}>{children}</h2>
 )
 const Headline3Tag = ({ children, attributes }: TagProps) => (
-  <h3 {...attributes} className={classnames(attributes?.className, 'text-h3mobile md:text-h3 font-semibold mt-6 mb-3')}>{children}</h3>
+  <h3 {...attributes} className={classnames(attributes?.className, 'text-h3mobile dark:text-slate-200 md:text-h3 font-semibold mt-6 mb-3')}>{children}</h3>
 )
 const Headline4Tag = ({ children, attributes }: TagProps) => (
-  <h4 {...attributes} className={classnames(attributes?.className, 'text-h4mobile md:text-h4 font-semibold mt-4 mb-2')}>{children}</h4>
+  <h4 {...attributes} className={classnames(attributes?.className, 'text-h4mobile dark:text-slate-200 md:text-h4 font-semibold mt-4 mb-2')}>{children}</h4>
 )
