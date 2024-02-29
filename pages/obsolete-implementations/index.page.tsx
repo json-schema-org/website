@@ -41,8 +41,8 @@ type ImplementationByLanguage = { name: string }
 
 export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
-    <SectionContext.Provider value='implementations'>
-      <Headline1>Obsolete Implementations</Headline1>
+    <SectionContext.Provider value='tools'>
+      <Headline1>Obsolete Tools</Headline1>
       <StyledMarkdown markdown={blocks.intro} />
 
       <Headline2>Validators</Headline2>

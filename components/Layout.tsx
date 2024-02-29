@@ -65,10 +65,10 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
             </div>
           </header>
           {showMobileNav ? (
-            <>
+            <div>
               <MobileNav />
               {children}
-            </>
+            </div>
           ) : (
             <div>
               {children}
@@ -109,7 +109,7 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
   return (
-    <div className='flex justify-end mr-8 w-full justify-end'>
+    <div className='flex justify-end mr-8 w-full'>
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -128,8 +128,8 @@ const MainNavigation = () => {
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/implementations'
-        label='Implementations'
-        isActive={section === 'implementations'}
+        label='Tools'
+        isActive={section === 'tools'}
 
       />
       <MainNavLink
@@ -201,9 +201,9 @@ const MobileNav = () => {
       />
 
       <MainNavLink
-        uri='/implementations'
-        label='Implementations'
-        isActive={section === 'implementations'}
+        uri='/tools'
+        label='Tools'
+        isActive={section === 'tools'}
 
       />
       <MainNavLink
@@ -251,7 +251,7 @@ const Footer = () => (
             Slack</a>
         </div>
         <div className='mb-4 mr-4'>
-          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
+          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
             Twitter</a>
         </div>
         <div className='mr-4 mb-4'>
