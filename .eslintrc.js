@@ -29,6 +29,7 @@ module.exports = {
   rules: {
     'array-bracket-spacing': ['error', 'never'],
     'object-curly-spacing': ['error', 'always'],
+
     'react/jsx-curly-spacing': ['error', { when: 'never', children: true }],
     indent: ['error', 2, { SwitchCase: 1 }],
     'linebreak-style': ['error', 'windows'],

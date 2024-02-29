@@ -246,7 +246,7 @@ export const DocsNav = () => {
 
   return (
     <div id='sidebar ' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickDoc}
@@ -289,7 +289,8 @@ export const DocsNav = () => {
         </div>
       </div>
       {/* Get Started */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickGet}
@@ -335,7 +336,8 @@ export const DocsNav = () => {
         </div>
       </div>
       {/* Reference */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickReference}
@@ -480,7 +482,8 @@ export const DocsNav = () => {
         </div>
       </div>
       {/* Specification */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickSpec}

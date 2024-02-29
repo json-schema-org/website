@@ -1,14 +1,4 @@
-// <<<<<<< HEAD
-// import React, { useContext, useEffect } from 'react';
-// import Head from 'next/head';
-// import Link from 'next/link';
-// import classnames from 'classnames';
-// import { useRouter } from 'next/router';
-// import { DocSearch } from '@docsearch/react';
-// import useStore from '~/store';
-// import { SectionContext } from '~/context';
-// import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
-// =======
+
 import React, { useContext, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -19,7 +9,6 @@ import useStore from '~/store';
 import { SectionContext } from '~/context';
 import { useTheme } from 'next-themes';
 import DarkModeToggle from './DarkModeToggle';
-// >>>>>>> 932a9ad (added dark theme)
 
 type Props = {
   children: React.ReactNode;
@@ -40,18 +29,7 @@ export default function Layout({
 
   const router = useRouter();
 
-  // <<<<<<< HEAD
-  // <<<<<<< HEAD
-  //   React.useEffect(
-  //     () => useStore.setState({ overlayNavigation: null }),
-  //     [router.asPath],
-  //   );
-  // =======
-  // const router = useRouter()
-  //   const { theme } = useTheme();
-  // =======
-  // const router = useRouter();
-  // >>>>>>> 5a13b6c (completed home page)
+ 
 
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
@@ -85,20 +63,7 @@ export default function Layout({
         ></meta>
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
-        {/* <<<<<<< HEAD
-        <main
-          className={classnames(
-            mainClassName,
-            'z-10 xl:rounded-xl pt-4 mx-auto',
-          )}
-        >
-          <header
-            className={classnames(
-              'w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg',
-            )}
-          >
-            <div className='w-full flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
-======= */}
+      
         <main
           className={classnames(
             mainClassName,
@@ -137,16 +102,10 @@ export const Search = () => {
       appId='6ZT4KX2OUI'
       apiKey='69f76fba13585144f6686622e9c8f2a8'
       indexName='json-schema'
-      // <<<<<<< HEAD
-      //     />
-      //   );
-      // };
-      // =======
+    
     />
   );
 };
-// >>>>>>> 932a9ad (added dark theme)
-
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const MainNavLink = ({
   uri,
@@ -161,17 +120,7 @@ const MainNavLink = ({
 }) => {
   const router = useRouter();
   return (
-    // <<<<<<< HEAD
-    //     <Link
-    //       href={uri}
-    //       className={classnames(
-    //         className,
-    //         'font-semibold p-2 md:p-4',
-    //         `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
-    //       )}
-    //     >
-    //       {label}
-    // =======
+   
     <Link
       href={uri}
       className={classnames(
@@ -335,25 +284,16 @@ const MobileNav = () => {
 };
 
 export const SegmentHeadline = ({ label }: { label: string }) => {
-  return <div className='text-slate-900 font-bold'>{label}</div>;
-};
+
+  return (
+    <div className='text-slate-900 dark:text-slate-300 font-bold'>
+      {label}
+    </div>
+  )
+}
 
 const Footer = () => (
-  // <<<<<<< HEAD
-  //   // <<<<<<< HEAD
-  //   //   <footer
-  //   //     className={classnames(
-  //   //       'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-top grid items-center',
-  //   //     )}
-  //   //   >
-  //   //     <div className='max-w-[1400px] mx-auto  mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
-  //   // =======
-  //   <footer
-  //     className={classnames(
-  //       'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 ',
-  //     )}
-  //   >
-  // =======
+
   <footer
     className={classnames(
       'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 dark:from-[#002C34] dark:to-[#023e8a] ',

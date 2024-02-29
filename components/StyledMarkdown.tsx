@@ -184,7 +184,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             p: {
               component: ({ children }) => (
-                <p className='text-slate-600 block leading-7 pb-4'>
+                <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
                   {children}
                 </p>
               ),
@@ -229,7 +229,9 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             li: {
               component: ({ children }) => (
-                <li className='mt-1 leading-7 text-slate-600'>{children}</li>
+                <li className='mt-1 leading-7 text-slate-600 dark:text-slate-300'>
+                  {children}
+                </li>
               ),
             },
             table: {
@@ -314,7 +316,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             blockquote: {
               component: ({ children }) => (
-                <div className='bg-slate-50/50 px-4 pt-4 mt-2 mb-4 border-l-2 border-slate-300'>
+                <div className='bg-slate-50/50 dark:bg-slate-700 px-4 pt-4 mt-2 mb-4 border-l-2 border-slate-300'>
                   {children}
                 </div>
               ),
