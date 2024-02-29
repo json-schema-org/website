@@ -61,6 +61,27 @@ Build static files on /out folder
 yarn build
 ```
 
+### Run locally using Docker
+
+#### Prerequisites:
+
+- [install Docker](https://docs.docker.com/get-docker/)
+
+After cloning repository to your local, perform the following steps from the root of the repository.
+
+#### Steps:
+1. Build the Docker image:
+    ```bash
+    make install
+    ```
+
+2. Start the container:
+    ```bash
+      make run
+    ```
+
+Now you're running JSON Schema website in a development mode. Container is mapped with your local copy of the website. Whenever you make changes to the code, the website will refresh and changes visible in localhost:3000.
+
 ## Project structure
 
 This repository has the following structure:
