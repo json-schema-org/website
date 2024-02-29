@@ -45,7 +45,7 @@ html {
 border-radius: 4px; */
 }
 
-@media (max-width: 850px) {
+@media (max-width:1027px) {
   .DocSearch-Button-Container {
     height: 40px;
     padding: 0px;
@@ -59,6 +59,12 @@ border-radius: 4px; */
   .DocSearch-Button-Placeholder {
     display: inline;
   }
+
+  .herobtn .DocSearch-Button-Container {
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+
 }
 
 @media (max-width:450px) {
