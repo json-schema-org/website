@@ -430,7 +430,7 @@ _Note that Draft 0 erroneously claimed to update another RFC, and was replaced t
 
 The next unreleased draft is a work in progress.  You can [give feedback and get involved on GitHub](https://github.com/json-schema-org/json-schema-spec).
 
-The specification links here link to the XML and JSON sources.  We do not provide rendered [work-in-progress](work-in-progress) drafts except near the very end of a publication cycle, during the final review period.
+The specification links here link to the raw sources.  We do not provide rendered [work-in-progress](work-in-progress) drafts except near the very end of a publication cycle, during the final review period.
 
  - Core: [jsonschema-core.md](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-core.md)
  - Validation: [jsonschema-validation.md](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-validation.md)
