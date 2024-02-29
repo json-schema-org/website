@@ -72,7 +72,7 @@ After cloning repository to your local, perform the following steps from the roo
 #### Steps:
 1. Build the Docker image:
     ```bash
-    make install
+      make install
     ```
 
 2. Start the container:
