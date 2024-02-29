@@ -58,9 +58,9 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
         <main className={
           classnames(mainClassName, 'z-10 xl:rounded-xl py-4 mx-auto')
         }>
-          <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl',  { 'h-16': !isLandingPage, 'drop-shadow-lg': isLandingPage, 'shadow-sm': !isLandingPage })}>
-            <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4 h-full'>
-              <Logo  isLandingPage={isLandingPage}/>
+          <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
+            <div className='w-full flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
+              <Logo />
               <MainNavigation />
             </div>
           </header>
