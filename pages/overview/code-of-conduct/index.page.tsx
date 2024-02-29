@@ -9,7 +9,7 @@ import { SectionContext } from '~/context';
 export async function getStaticProps() {
   const block = fs.readFileSync(
     'pages/overview/code-of-conduct/_index.md',
-    'utf-8'
+    'utf-8',
   );
   const { content: blockContent } = matter(block);
   return {

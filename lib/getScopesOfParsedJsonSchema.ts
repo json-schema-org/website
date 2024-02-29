@@ -9,7 +9,7 @@ export type JsonSchemaPathWithScope = {
 
 export default function getScopesOfParsedJsonSchema(
   parsedJsonSchema: any,
-  jsonPath = '$'
+  jsonPath = '$',
 ): JsonSchemaPathWithScope[] {
   if (typeof parsedJsonSchema !== 'object' || parsedJsonSchema === null)
     return [];
@@ -19,24 +19,24 @@ export default function getScopesOfParsedJsonSchema(
   };
   if (parsedJsonSchema.type === 'object') {
     const scopesOfProperties = Object.keys(
-      parsedJsonSchema?.properties || {}
+      parsedJsonSchema?.properties || {},
     ).reduce<JsonSchemaPathWithScope[]>((acc, property) => {
       return [
         ...acc,
         ...getScopesOfParsedJsonSchema(
           parsedJsonSchema.properties?.[property],
-          `${jsonPath}['properties']['${property}']`
+          `${jsonPath}['properties']['${property}']`,
         ),
       ];
     }, []);
     const scopesOfPatternProperties = Object.keys(
-      parsedJsonSchema?.patternProperties || {}
+      parsedJsonSchema?.patternProperties || {},
     ).reduce<JsonSchemaPathWithScope[]>((acc, property) => {
       return [
         ...acc,
         ...getScopesOfParsedJsonSchema(
           parsedJsonSchema.patternProperties?.[property],
-          `${jsonPath}['patternProperties']['${property}']`
+          `${jsonPath}['patternProperties']['${property}']`,
         ),
       ];
     }, []);
@@ -51,7 +51,7 @@ export default function getScopesOfParsedJsonSchema(
       typeDefinitionScope,
       ...getScopesOfParsedJsonSchema(
         parsedJsonSchema.items,
-        `${jsonPath}['items']`
+        `${jsonPath}['items']`,
       ),
     ];
   }

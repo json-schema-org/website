@@ -6,11 +6,11 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
     'pages/managed-mixed-page/mdblock1.md',
-    'utf-8'
+    'utf-8',
   );
   const block2 = fs.readFileSync(
     'pages/managed-mixed-page/mdblock2.md',
-    'utf-8'
+    'utf-8',
   );
   const { content: block1Content } = matter(block1);
   const { content: block2Content } = matter(block2);

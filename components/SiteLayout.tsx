@@ -15,7 +15,7 @@ export const SiteLayout: React.FC<SiteLayoutProps> = ({
 
 export const getLayout = (
   page: React.ReactNode,
-  props?: SiteLayoutProps
+  props?: SiteLayoutProps,
 ): JSX.Element => {
   return (
     <PlausibleProvider

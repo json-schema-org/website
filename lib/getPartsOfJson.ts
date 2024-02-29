@@ -31,11 +31,11 @@ type StringWithPayload = {
 export default function getPartsOfJson(
   serializedJson: string,
   offset = 0,
-  jsonPath = '$'
+  jsonPath = '$',
 ): SyntaxPart[] {
   const objectMatch = getFindResultsByGlobalRegExp(
     serializedJson,
-    regexObject
+    regexObject,
   )[0];
   if (objectMatch) {
     const parts: SyntaxPart[] = objectMatch.groups.reduce(
@@ -44,7 +44,7 @@ export default function getPartsOfJson(
           offset + objectMatch.index + objectMatchGroup.index;
         if (
           ['objectStartBracket', 'objectEndBracket'].includes(
-            objectMatchGroup.name || ''
+            objectMatchGroup.name || '',
           )
         ) {
           const syntaxPart: SyntaxPart = {
@@ -60,19 +60,19 @@ export default function getPartsOfJson(
           const parts = getPartsOfJsonObjectContent(
             objectMatchGroup.match,
             totalGroupOffset,
-            jsonPath
+            jsonPath,
           );
           return [...acc, ...parts];
         }
         return acc;
       },
-      [] as SyntaxPart[]
+      [] as SyntaxPart[],
     );
     return parts;
   }
   const arrayMatch = getFindResultsByGlobalRegExp(
     serializedJson,
-    regexArray
+    regexArray,
   )[0];
   if (arrayMatch) {
     const parts: SyntaxPart[] = arrayMatch.groups.reduce(
@@ -81,7 +81,7 @@ export default function getPartsOfJson(
           offset + arrayMatch.index + arrayMatchGroup.index;
         if (
           ['arrayStartBracket', 'arrayEndBracket'].includes(
-            arrayMatchGroup.name || ''
+            arrayMatchGroup.name || '',
           )
         ) {
           const syntaxPart: SyntaxPart = {
@@ -97,24 +97,24 @@ export default function getPartsOfJson(
           const parts = getPartsOfArrayContent(
             arrayMatchGroup.match,
             totalGroupOffset,
-            jsonPath
+            jsonPath,
           );
           return [...acc, ...parts];
         }
         return acc;
       },
-      [] as SyntaxPart[]
+      [] as SyntaxPart[],
     );
     return parts;
   }
 
   const numberMatch = getFindResultsByGlobalRegExp(
     serializedJson,
-    regexNumber
+    regexNumber,
   )[0];
   if (numberMatch) {
     const numberRegExpGroup = numberMatch.groups.find(
-      (group) => group.name === 'number'
+      (group) => group.name === 'number',
     );
     if (!numberRegExpGroup)
       throw Error('no number group found in number regex');
@@ -129,11 +129,11 @@ export default function getPartsOfJson(
   }
   const stringMatch = getFindResultsByGlobalRegExp(
     serializedJson,
-    regexString
+    regexString,
   )[0];
   if (stringMatch) {
     const stringRegExpGroup = stringMatch.groups.find(
-      (group) => group.name === 'string'
+      (group) => group.name === 'string',
     );
     if (!stringRegExpGroup)
       throw Error('no string group found in number regex');
@@ -148,11 +148,11 @@ export default function getPartsOfJson(
   }
   const booleanMatch = getFindResultsByGlobalRegExp(
     serializedJson,
-    regexBoolean
+    regexBoolean,
   )[0];
   if (booleanMatch) {
     const booleanRegExpGroup = booleanMatch.groups.find(
-      (group) => group.name === 'boolean'
+      (group) => group.name === 'boolean',
     );
     if (!booleanRegExpGroup)
       throw Error('no boolean group found in boolean regex');
@@ -168,7 +168,7 @@ export default function getPartsOfJson(
   const nullMatch = getFindResultsByGlobalRegExp(serializedJson, regexNull)[0];
   if (nullMatch) {
     const nullRegExpGroup = nullMatch.groups.find(
-      (group) => group.name === 'null'
+      (group) => group.name === 'null',
     );
     if (!nullRegExpGroup) throw Error('no null group found in null regex');
     const part: SyntaxPart = {
@@ -186,11 +186,11 @@ export default function getPartsOfJson(
 const getPartsOfJsonObjectContent = (
   serializedJson: string,
   offset = 0,
-  jsonPath: string
+  jsonPath: string,
 ): SyntaxPart[] => {
   const doubleQuoteMatches = getFindResultsByGlobalRegExp(
     serializedJson,
-    regexDoubleQuote
+    regexDoubleQuote,
   );
   let keywordStartIndex = 0;
   let stringsWithPayload: StringWithPayload[] = [];
@@ -205,11 +205,11 @@ const getPartsOfJsonObjectContent = (
     const nextStartIndex = doubleQuoteMatches[index + 1]?.index || Infinity;
     const payload = serializedJson.substr(
       doubleQuoteMatch.index + 1,
-      nextStartIndex - doubleQuoteMatch.index - 1
+      nextStartIndex - doubleQuoteMatch.index - 1,
     );
     const match = serializedJson.substr(
       keywordStartIndex - 1,
-      nextStartIndex - (keywordStartIndex - 1)
+      nextStartIndex - (keywordStartIndex - 1),
     );
     const stringWithPayload: StringWithPayload = {
       index: keywordStartIndex,
@@ -245,19 +245,19 @@ const getPartsOfJsonObjectContent = (
     }
     const countOpenCurlyBracketsInPayload = getFindResultsByGlobalRegExp(
       stringWithPayload.payload,
-      /\{/g
+      /\{/g,
     ).length;
     const countClosedCurlyBracketsInPayload = getFindResultsByGlobalRegExp(
       stringWithPayload.payload,
-      /\}/g
+      /\}/g,
     ).length;
     const countOpenSquaredBracketsInPayload = getFindResultsByGlobalRegExp(
       stringWithPayload.payload,
-      /\[/g
+      /\[/g,
     ).length;
     const countClosedSquaredBracketsInPayload = getFindResultsByGlobalRegExp(
       stringWithPayload.payload,
-      /\]/g
+      /\]/g,
     ).length;
 
     openCurlyBrackets += countOpenCurlyBracketsInPayload;
@@ -289,7 +289,7 @@ const getPartsOfJsonObjectContent = (
           : stringWithPayload.match.length);
       const payload = serializedJson.substr(
         payloadStartIndex,
-        payloadEndIndex - payloadStartIndex - 1
+        payloadEndIndex - payloadStartIndex - 1,
       );
       keywordAndValue = {
         ...keywordAndValue,
@@ -331,7 +331,7 @@ const getPartsOfJsonObjectContent = (
     const partsFromPayload = getPartsOfJson(
       keywordAndValue.payload,
       offset + keywordAndValue.payloadStartIndex,
-      propertyJsonPath
+      propertyJsonPath,
     );
     return [
       ...acc,
@@ -346,7 +346,7 @@ const getPartsOfJsonObjectContent = (
 const getPartsOfArrayContent = (
   serializedJson: string,
   offset = 0,
-  jsonPath: string
+  jsonPath: string,
 ): SyntaxPart[] => {
   const endOfLineMatch: RegExpResult = {
     index: serializedJson.length,
@@ -369,19 +369,19 @@ const getPartsOfArrayContent = (
     //ToDo filter brackets in strings
     const countOpenCurlyBracketsInPayload = getFindResultsByGlobalRegExp(
       payload,
-      /\{/g
+      /\{/g,
     ).length;
     const countClosedCurlyBracketsInPayload = getFindResultsByGlobalRegExp(
       payload,
-      /\}/g
+      /\}/g,
     ).length;
     const countOpenSquaredBracketsInPayload = getFindResultsByGlobalRegExp(
       payload,
-      /\[/g
+      /\[/g,
     ).length;
     const countClosedSquaredBracketsInPayload = getFindResultsByGlobalRegExp(
       payload,
-      /\]/g
+      /\]/g,
     ).length;
     const openCurlyBrackets =
       countOpenCurlyBracketsInPayload - countClosedCurlyBracketsInPayload;
@@ -410,11 +410,11 @@ const getPartsOfArrayContent = (
       const parts: SyntaxPart[] = getPartsOfJson(
         value,
         offset + arrayValue.index,
-        indexJsonPath
+        indexJsonPath,
       );
       return [...acc, ...parts];
     },
-    [] as SyntaxPart[]
+    [] as SyntaxPart[],
   );
 
   return [...syntaxParts, ...partsFromArrayValues];

@@ -16,10 +16,10 @@ import zeroFill from 'zero-fill';
 
 export async function getStaticProps() {
   const validators = yaml.load(
-    fs.readFileSync('data/validator-libraries-modern.yml', 'utf-8')
+    fs.readFileSync('data/validator-libraries-modern.yml', 'utf-8'),
   );
   const hyperLibaries = yaml.load(
-    fs.readFileSync('data/hyper-libraries-modern.yml', 'utf-8')
+    fs.readFileSync('data/hyper-libraries-modern.yml', 'utf-8'),
   );
 
   const intro = fs.readFileSync('pages/implementations/intro.md', 'utf-8');
@@ -99,13 +99,13 @@ function ImplementationTable({
                   {
                     'bg-blue-800': isActive,
                     'bg-blue-500 hover:bg-blue-600': !isActive,
-                  }
+                  },
                 )}
               >
                 {implementationByLanguage.name}
               </a>
             );
-          }
+          },
         )}
       </div>
       <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5'>
@@ -192,7 +192,7 @@ function ImplementationTable({
                                   DRAFT_ORDER.indexOf(a) <
                                   DRAFT_ORDER.indexOf(b)
                                     ? -1
-                                    : 1
+                                    : 1,
                                 )
                                 ?.map((draft: string | number) => (
                                   <span
@@ -208,11 +208,11 @@ function ImplementationTable({
                             <td className='pl-6'>{implementation.license}</td>
                           </tr>
                         );
-                      }
+                      },
                     )}
                   </React.Fragment>
                 );
-              }
+              },
             )}
           </tbody>
         </table>

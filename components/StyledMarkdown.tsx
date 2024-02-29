@@ -33,7 +33,7 @@ function transformMarkdownLinks(markdown: string): string {
     (_, key: string, value: string) => {
       linkDefinitions[key.toLowerCase()] = value;
       return '';
-    }
+    },
   );
 
   // Replace reference-style links with inline links
@@ -45,7 +45,7 @@ function transformMarkdownLinks(markdown: string): string {
         return `[${text}](${link})`;
       }
       return _; // Return the original string if no link is found
-    }
+    },
   );
 }
 
@@ -110,7 +110,7 @@ const TAB_REGEX = /(?<=\[tab )\s*"(?<label>.*)"\](?<markdown>(.|\n)*?)\[tab/gm;
 const TabsGroup = ({ markdown }: { markdown: string }) => {
   const groupLabel: string | null =
     getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS)?.[0]?.groups?.find(
-      (g) => g.name === 'label'
+      (g) => g.name === 'label',
     )?.match || null;
 
   const tabs = getFindResultsByGlobalRegExp(markdown, TAB_REGEX).map((tab) => {
@@ -143,7 +143,7 @@ const TabsGroup = ({ markdown }: { markdown: string }) => {
                     'border-blue-400 text-blue-500 bg-blue-50': isActive,
                     'border-white/0 cursor-pointer text-slate-700 hover:border-blue-50 hover:bg-blue-50/20':
                       !isActive,
-                  }
+                  },
                 )}
               >
                 {tab.label}
@@ -512,6 +512,7 @@ export function TableOfContentMarkdown({
               );
             },
           },
+          /* eslint-disable */
           h3:
             depth >= 3
               ? {
@@ -542,7 +543,7 @@ export function TableOfContentMarkdown({
                       </a>
                     );
                   },
-                }
+                } /* eslint-enable */
               : { component: () => null },
           ...hiddenElements(
             'strong',
@@ -557,7 +558,7 @@ export function TableOfContentMarkdown({
             'span',
             'div',
             'figure',
-            'Bigquote'
+            'Bigquote',
           ),
         },
       }}
@@ -586,6 +587,6 @@ const checkHasContent = (reactNode: React.ReactChild) => {
       if (acc) return acc;
       return checkHasContent(reactNode);
     },
-    false
+    false,
   );
 };

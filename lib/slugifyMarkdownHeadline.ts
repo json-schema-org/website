@@ -3,7 +3,7 @@ import slugify from 'slugify';
 const FRAGMENT_REGEX = /\[#(?<slug>(\w|-|_)*)\]/g;
 
 export default function slugifyMarkdownHeadline(
-  markdownChildren: string | any[]
+  markdownChildren: string | any[],
 ): string {
   if (!markdownChildren) return '';
   if (typeof markdownChildren === 'string')

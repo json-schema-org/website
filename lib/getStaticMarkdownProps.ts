@@ -5,7 +5,7 @@ type Props = { params?: { slug: string } };
 
 export default async function getStaticMarkdownProps(
   props: Props,
-  path: string
+  path: string,
 ) {
   const slug = props.params?.slug || '_index';
 

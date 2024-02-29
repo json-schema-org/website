@@ -33,7 +33,7 @@ export default async function generateRssFeed(blogPosts: any) {
           name: author.name,
           link,
         };
-      }
+      },
     );
 
     const url = `${SITE_URL}/blog/posts/${post.slug}`;

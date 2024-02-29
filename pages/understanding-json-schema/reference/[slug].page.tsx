@@ -14,7 +14,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(args: any) {
   return getStaticMarkdownProps(
     args,
-    'pages/understanding-json-schema/reference'
+    'pages/understanding-json-schema/reference',
   );
 }
 

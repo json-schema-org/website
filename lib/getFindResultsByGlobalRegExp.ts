@@ -3,7 +3,7 @@ import { RegExpResult, RegExpGroupResult } from '~/components/JsonEditor';
 export default function getFindResultsByGlobalRegExp(
   text: string,
   regex: RegExp,
-  offset = 0
+  offset = 0,
 ): RegExpResult[] {
   let results: RegExpResult[] = [];
   let regexResult;
@@ -11,7 +11,7 @@ export default function getFindResultsByGlobalRegExp(
     throw new Error('array used for regular expression!');
   if (!regex.global)
     throw new Error(
-      `regex for getFindResultsByGlobalRegExp() has no global flag ${regex.toString()}`
+      `regex for getFindResultsByGlobalRegExp() has no global flag ${regex.toString()}`,
     );
   while ((regexResult = regex.exec(text)) !== null) {
     const fullMatchText = regexResult[0];
@@ -19,7 +19,7 @@ export default function getFindResultsByGlobalRegExp(
     let groupOffset: number = regexResult.index;
     let groups: RegExpGroupResult[] = [];
     const groupsReverseMap: Record<string, string> = Object.entries(
-      regexResult.groups || {}
+      regexResult.groups || {},
     ).reduce((acc, [groupName, match]) => {
       return { ...acc, [match]: groupName };
     }, {});

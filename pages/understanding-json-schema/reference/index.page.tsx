@@ -9,7 +9,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
     'pages/understanding-json-schema/reference/_index.md',
-    'utf-8'
+    'utf-8',
   );
   const { content: block1Content } = matter(block1);
   return {

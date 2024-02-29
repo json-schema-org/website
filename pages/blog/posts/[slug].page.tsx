@@ -89,7 +89,7 @@ export default function StaticMarkdownPage({
                           </div>
                         </div>
                       );
-                    }
+                    },
                   )}
                 </div>
                 <div className='pt-12 pr-4 border-r border-slate-100 hidden lg:block w-full'>

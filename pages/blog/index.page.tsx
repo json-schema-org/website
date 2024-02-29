@@ -28,7 +28,7 @@ export async function getStaticProps({ query }: { query: any }) {
       const slug = fileName.replace('.md', '');
       const fullFileName = fs.readFileSync(
         `pages/blog/posts/${slug}.md`,
-        'utf-8'
+        'utf-8',
       );
       const { data: frontmatter, content } = matter(fullFileName);
       return {
@@ -286,7 +286,7 @@ export default function StaticMarkdownPage({
                                     }}
                                   />
                                 );
-                              }
+                              },
                             )}
                           </div>
 

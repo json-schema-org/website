@@ -25,7 +25,7 @@ export const getStaticProps: GetStaticProps = async () => {
       const slug = fileName.replace('.md', '');
       const fullFileName = fs.readFileSync(
         `pages/blog/posts/${slug}.md`,
-        'utf-8'
+        'utf-8',
       );
       const { data: frontmatter, content } = matter(fullFileName);
       return {
@@ -95,7 +95,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
         const dates = event.rrule.between(
           today.toDate(),
           nextFourWeeksEnd.toDate(),
-          true
+          true,
         );
 
         // Loop through the set of date entries to see which recurrences should be printed.
@@ -154,7 +154,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   arrayDates.sort(
     (x, y) =>
       new Date(x.parsedStartDate).getTime() -
-      new Date(y.parsedStartDate).getTime()
+      new Date(y.parsedStartDate).getTime(),
   );
 
   return arrayDates;
