@@ -16,11 +16,13 @@ excerpt: "Explore our Adopters list to discover organizations successfully lever
 Data consistency and interoperability are critical for success in today's interconnected reality. While JSON is undoubtedly the most popular format for exchanging data, JSON Schema is essential for ensuring data consistency, validity, and interoperability at scale. Despite the widespread adoption of JSON Schema, there has yet to be a comprehensive list of adopters where individuals and organizations can seek inspiration and real-world use cases. This is why we are thrilled to announce the launch of the Adopters list.
 
 ## What is the Adopters list?
+
 The [Adopters list](https://github.com/json-schema-org/community/blob/main/ADOPTERS.md) is a directory that features organizations that have successfully implemented JSON Schema. It's your go-to place to discover how industry leaders use JSON Schema.
 
 When you explore the Adopters list, you'll uncover how organizations use JSON Schema in Production. It's a valuable resource for inspiration and learning. Whether you are seeking insights to enhance your projects or to remain informed about the latest trends in the JSON Schema Ecosystem, the Adopters list provides a window into the best practices within the community.
 
 ## We need you!
+
 Adding your organization to the JSON Schema Adopters list demonstrates your commitment to supporting the JSON Schema Ecosystem and encouraging others to do the same. Additionally, adding your organization to this list provides valuable feedback to the JSON Schema team, helping them to improve the project's adoption and impact.
 
 By joining the list, you play an active role in the growth and sustainability of the JSON Schema Ecosystem.
@@ -44,4 +46,4 @@ If your organization uses JSON Schema, please consider [contributing](https://gi
 
 **Join us and shape the future of JSON Schema!**
 
-Photo by [Patrick Tomasso](https://unsplash.com/@impatrickt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](ttps://unsplash.com/photos/lighted-vintage-light-bulbs-1NTFSnV-KLs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
+Photo by [Patrick Tomasso](https://unsplash.com/@impatrickt?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash) on [Unsplash](https://unsplash.com/photos/lighted-vintage-light-bulbs-1NTFSnV-KLs?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash)
