@@ -351,12 +351,12 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Supported by</h2>
             <p className='px-12 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:info@json-schema.org' className='border-b border-black'>Email us</a> for more info!</p>
           </div>
-          <div className='flex flex-col items-center md:flex-row justify-center text-center'>
+          <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-              <img src='/img/logos/supported/common-room.svg' className='w-44 max-h-[58px] mb-4 md:mb-0 md:mr-8 md:ml-2' />
+              <img src='/img/logos/supported/common-room.svg' className='w-48 md:w-56' />
             </a>
             <a href='https://json-schema.org/slack'>
-              <img src='/img/logos/supported/slack-logo.svg' className='w-44 mt-4 md:mt-0 md:ml-8 md:mr-2' />
+              <img src='/img/logos/supported/slack-logo.svg' className='w-24 md:w-32' />
             </a>
           </div>
         </section>
