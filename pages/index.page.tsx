@@ -161,8 +161,8 @@ const Home = (props: any) => {
               JSON Schema enables the confident and reliable use of the JSON data format.
             </h2>
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
-              <Link href='/learn/getting-started-step-by-step' className='pt-1 rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</Link>
-              <Link href='/slack' className='pt-1 rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Join Slack</Link>
+              <Link href='/learn/getting-started-step-by-step' className='flex items-center justify-center rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'>Getting started</Link>
+              <Link href='/slack' className='flex items-center justify-center rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold'>Join Slack</Link>
 
               <div className='herobtn rounded border-2 border-white text-white mx-auto'>
                 <DocSearch
@@ -351,12 +351,12 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>Supported by</h2>
             <p className='px-12 mx-auto'>The following companies support us by letting us use their products.<br /><a href='mailto:info@json-schema.org' className='border-b border-black'>Email us</a> for more info!</p>
           </div>
-          <div className='flex flex-col items-center md:flex-row justify-center text-center'>
+          <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-              <img src='/img/logos/supported/common-room.svg' className='w-44 max-h-[58px] mb-4 md:mb-0 md:mr-8 md:ml-2' />
+              <img src='/img/logos/supported/common-room.svg' className='w-48 md:w-56' />
             </a>
             <a href='https://json-schema.org/slack'>
-              <img src='/img/logos/supported/slack-logo.svg' className='w-44 mt-4 md:mt-0 md:ml-8 md:mr-2' />
+              <img src='/img/logos/supported/slack-logo.svg' className='w-24 md:w-32' />
             </a>
           </div>
         </section>

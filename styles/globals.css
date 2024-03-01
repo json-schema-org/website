@@ -28,14 +28,17 @@
 
 html {
   font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 .DocSearch-Button-Keys {
   display: none !important;
 }
 
-.DocSearch-Button-Container {
+.herobtn .DocSearch-Button-Container {
   background-color: transparent !important;
+  justify-content: center;
   width: 168px;
   height: 32px;
   padding: 8px 8px;
@@ -44,12 +47,31 @@ html {
 border-radius: 4px; */
 }
 
-@media (max-width: 730px) {
+@media (max-width:1027px) {
   .DocSearch-Button-Container {
-    width: 40px;
     height: 40px;
     padding: 0px;
     border: none;
+  }
+
+  .DocSearch-Button {
+    margin: 0;
+  }
+
+  .DocSearch-Button-Placeholder {
+    display: inline;
+  }
+
+  .herobtn .DocSearch-Button-Container {
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+
+}
+
+@media (max-width:450px) {
+  .DocSearch-Button {
+    margin: 0;
   }
 }
 
@@ -140,10 +162,6 @@ border-radius: 4px; */
 
 .navSearch svg {
   color: black;
-}
-
-.herobtn span {
-  margin: 0 auto;
 }
 
 .herobtn span {

@@ -19,7 +19,7 @@ Benchmarks that compare at least two implementations supporting draft-06+ may be
   -   [@adobe/jsonschema2md](https://github.com/adobe/jsonschema2md) makes it easier by providing a number of scripts that can turn JSON Schema files into readable Markdown documentation that is ready for consumption on GitHub or processed using Jekyll or other static site generators. _JSON Schema 2019-09_ ([partial](https://github.com/adobe/jsonschema2md/blob/master/schemasupport.md))
 
 -   Python
-  -   [FastAPI](https://github.com/tiangolo/fastapi) (MIT) is an API framework based on Python 3.6+ types that generates **OpenAPI 3** schemas, including **JSON Schemas** for all the models declared.
+  -   [FastAPI](https://github.com/tiangolo/fastapi) (MIT) is an API framework based on Python 3.6+ types that generates [OpenAPI 3](https://www.openapis.org) schemas, including **JSON Schemas** for all the models declared.
 
 ### Link Description Object utilities
 
@@ -115,7 +115,7 @@ are the only keywords that changed.
   -  [jsonschema2pojo](https://github.com/joelittlejohn/jsonschema2pojo) (Apache 2.0) - generates Java types from JSON Schema (or example JSON) and can annotate those types for data-binding with Jackson 2.x or Gson. *draft-07*
   -  [jsonschematypes](https://github.com/jimblackler/jsonschematypes) (Apache 2.0) - Java library to generate Java or TypeScript classes from standard JSON Schemas. *JSON Schema 2019-09, draft-07, -06, -04, -03*
   -  [jsongenerator](https://github.com/jimblackler/jsonschematypes/tree/master/codegen) *JSON Schema 2019-09, draft-07, -06, -04, -03* (Apache-2.0)
-  -  [OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
+  -  [OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI](https://www.openapis.org) document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
 - Kotlin
   -  [json-kotlin-schema-codegen](https://github.com/pwall567/json-kotlin-schema-codegen) (MIT) - Generates Kotlin data classes, Java classes or TypeScript interfaces from JSON Schema.
 -   Online (web tool)
@@ -123,9 +123,9 @@ are the only keywords that changed.
 -   PHP
   -  [php-code-builder](https://github.com/swaggest/php-code-builder)(MIT) - generates PHP mapping structures defined by JSON schema using [swaggest/json-schema](https://github.com/swaggest/php-json-schema) *supports Draft 7*
 -   Python
-  -  [yacg](https://github.com/OkieOth/yacg) (MIT) - parse JSON Schema and OpenApi files to build a meta model from them. This meta model can be used in Mako templates to generate source code, other schemas or plantUml.
+  -  [yacg](https://github.com/OkieOth/yacg) (MIT) - parse JSON Schema and [OpenAPI](https://www.openapis.org) files to build a meta model from them. This meta model can be used in Mako templates to generate source code, other schemas or plantUml.
   -  [statham](https://github.com/jacksmith15/statham-schema) (MIT) - generate type-annotated models from JSON Schema documents.
-  -  [OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
+  -  [OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator) (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI](https://www.openapis.org) document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
 -   Rust
   -  [schemafy](https://github.com/Marwes/schemafy/) - generates Rust types and serialization code from a JSON schema. *supports Draft 4*
 -   Scala
@@ -200,7 +200,7 @@ the utility, and decided on a case-by-case basis.
 
 ### Format converters
 
--   OpenAPI
+-   [OpenAPI](https://www.openapis.org)
   -   [JSON Schema to OpenAPI Schema](https://github.com/wework/json-schema-to-openapi-schema) _draft-04_ Draft-06 and -07 planned per README (MIT)
   -   [OpenAPI specification to JSON Schema](https://github.com/instrumenta/openapi2jsonschema) Draft-07 (MIT)
 -   Orderly
@@ -228,7 +228,7 @@ the utility, and decided on a case-by-case basis.
 -   [JSONEditor Online](https://jsoneditoronline.org/) - *View, edit, format, and validate JSON online* Support draft-4, draft-6, and draft-7.
 -   [Liquid JSON Schema Editor](https://www.liquid-technologies.com/json-schema-editor) - *Graphical JSON Schema editor for draft-04, draft-06, draft-07 and 2019-09, with split source code and grphical editing. Includes validation of JSON files based on JSON Schema, JSON Sample Generator and JSON Schema Documentation Generator.*
 -   [Oxygen JSON Schema Editor](https://www.oxygenxml.com/xml_developer/json_schema_editor.html) - *JSON Schema editor with a variety of editing features and helper views (Design/Text/Author). Support for validation and editing JSON Schema draft-4, draft-6, and draft-7, 2019-09 (partial), 2020-12 (partial). Validation and editing of JSON files based on JSON Schema.*
--   [Perseid Modeler](https://www.datensen.com/data-modeling/perseid-modeler-for-json-schema.html) - *a modeling tool for JSON Schema and OpenAPI. Key features include: visual JSON schema creation using tree and ERD-like diagrams, support for JSON schema structures including operators and conditions, import of existing schemas from files, creation of detailed HTML reports, export to PDF, script generation, and more. Supported versions: draft 4, 6, 7, 2019-09 and 2020-12*
+-   [Perseid Modeler](https://www.datensen.com/data-modeling/perseid-modeler-for-json-schema.html) - *a modeling tool for JSON Schema and [OpenAPI](https://www.openapis.org). Key features include: visual JSON schema creation using tree and ERD-like diagrams, support for JSON schema structures including operators and conditions, import of existing schemas from files, creation of detailed HTML reports, export to PDF, script generation, and more. Supported versions: draft 4, 6, 7, 2019-09 and 2020-12*
 -   [Stoplight Studio](https://stoplight.io/) - *JSON Schema IDE (text-based and GUI) with support for JSON/YAML linting, which can also be based on JSON Schema rules via Spectral. Support for draft-4, draft-6 and draft-7.*
 -   [Visual Studio Code](https://code.visualstudio.com/) - *Schema driven code completion, hovers and validation for editing JSON files (including schemas)*
 -   [WebStorm](https://www.jetbrains.com/webstorm/), [IntelliJ IDEA](https://www.jetbrains.com/idea/), and other [JetBrains IDEs](https://www.jetbrains.com/products.html?fromMenu#type=ide) - *Code completion, documentation, and validation for JSON and YAML files using JSON Schema. Support for draft-4, draft-6, and draft-7.*
@@ -251,7 +251,7 @@ the utility, and decided on a case-by-case basis.
 ## Schema Linter
 
 -   [json-schema-linter](https://www.json-schema-linter.com/) - Lint/validate/parse json-schema itself, and find typos, missing properties, missing required keys, etc. Supports draft 4, 6, and 7.
--   [Stoplight Spectral](https://stoplight.io/open-source/spectral) - A flexible JSON/YAML linter for creating automated style guides, with baked in support for OpenAPI v2/v3 and JSON Schema. Supports draft 4, 6, and 7.
+-   [Stoplight Spectral](https://stoplight.io/open-source/spectral) - A flexible JSON/YAML linter for creating automated style guides, with baked in support for [OpenAPI v2/v3 ](https://www.openapis.org)and JSON Schema. Supports draft 4, 6, and 7.
 
 ## Linter plugins
 

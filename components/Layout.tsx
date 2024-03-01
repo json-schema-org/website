@@ -90,10 +90,8 @@ export const Search = () => {
 const MainNavLink = ({ uri, label, className, isActive }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   const router = useRouter()
   return (
-    <Link href={uri} className={classnames(className, 'font-semibold p-2 md:p-4', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
-    }`
-    )}
-    >{label}
+    <Link href={uri} className={classnames(className, 'font-semibold p-2 md:p-4', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`)}>
+      {label}
     </Link>
   )
 }
@@ -140,8 +138,8 @@ const MainNavigation = () => {
         isActive={section === 'community'}
 
       />
-      <div className='flex items-center gap-12 md:gap-4'>
-        <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
+      <div className='flex max-sm:ml-4 items-center gap-12 md:gap-4'>
+        <div className='flex justify-center rounded border-2 border-gray-100 ml-0 w-[120px] md:w-full'>
           <Search />
         </div>
         {showMobileNav === false ? (
@@ -180,7 +178,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext)
 
   return (
-    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+    <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -195,7 +193,7 @@ const MobileNav = () => {
       />
 
       <MainNavLink
-        uri='/tools'
+        uri='/implementations'
         label='Tools'
         isActive={section === 'tools'}
 
@@ -212,7 +210,7 @@ const MobileNav = () => {
         isActive={section === 'community'}
 
       />
-    
+
     </div>
   )
 }
