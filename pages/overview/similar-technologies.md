@@ -17,6 +17,6 @@ While we think that JSON Schema has a unique value proposition, we'd like to pro
 
 ## Contributing to the Community
 
-Do you know of any other relevant technologies that we should add to this list? We encourage contributions! Please submit a pull request to the relevant contributions page on the JSON Schema website.
+Do you know of any other relevant technologies that we should add to this list? Please submit a pull request. We encourage contributions! 
 
 
