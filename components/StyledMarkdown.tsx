@@ -171,7 +171,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             h4: { component: Headline4 },
             strong: {
               component: ({ children }) => (
-                <strong className='font-semibold text-slate-800'>
+                <strong className='font-semibold text-slate-800 dark:text-slate-500'>
                   {children}
                 </strong>
               ),

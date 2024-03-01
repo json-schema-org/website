@@ -108,16 +108,21 @@ function ImplementationTable({
           },
         )}
       </div>
-      <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-600'>
+      <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-900'>
         <table>
           <thead>
             <tr>
               <td />
-              <td className='pt-6 pl-5 text-sm text-slate-500 hidden sm:table-cell'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200 hidden sm:table-cell'>
                 About
               </td>
-              <td className='pt-6 pl-5 text-sm text-slate-500'>Drafts</td>
-              <td className='pt-6 pl-5 text-sm text-slate-500'>License</td>
+
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200'>
+                Drafts
+              </td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200'>
+                License
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -132,26 +137,56 @@ function ImplementationTable({
                 const isActive = router.query.language === slug;
                 if (router.query.language && !isActive) return null;
 
-                return (
-                  <React.Fragment key={index}>
-                    <tr>
-                      <td colSpan={3}>
-                        <Headline3 attributes={{ slug }}>
-                          {implementationByLanguage.name}
-                        </Headline3>
-                      </td>
-                    </tr>
-                    {implementationByLanguage.implementations.map(
-                      (implementation: any, index: number) => {
-                        let mixedNotes = '';
-                        if (implementation.notes) {
-                          mixedNotes = implementation.notes;
-                        }
-                        if (implementation.compliance) {
-                          if (implementation.notes) {
-                            mixedNotes += '<br/><em>Compliance:</em>';
-                          } else {
-                            mixedNotes = '<em>Compliance:</em>';
+
+              return (
+                <React.Fragment
+                  key={index}
+                >
+                  <tr>
+                    <td colSpan={3}>
+                      <Headline3 attributes={{ slug }} >{implementationByLanguage.name}</Headline3>
+                    </td>
+                  </tr>
+                  {implementationByLanguage.implementations.map((implementation: any, index: number) => {
+                    let mixedNotes = ''
+                    if (implementation.notes) {
+                      mixedNotes = implementation.notes
+                    }
+                    if (implementation.compliance) {
+                      if (implementation.notes) {
+                        mixedNotes += '<br/><em>Compliance:</em>'
+                      } else {
+                        mixedNotes = '<em>Compliance:</em>'
+                      }
+                      if (implementation.compliance.config.docs) {
+                        mixedNotes += ' This implementation <a href="' + implementation.compliance.config.docs + '">documents</a> that you must '
+                      }
+                      if (implementation.compliance.config.instructions) {
+                        mixedNotes += '<strong>' + implementation.compliance.config.instructions + '</strong> to produce specification-compliant behavior.'
+                      }
+                    }
+                    const allDrafts = [
+                      ...(implementation['date-draft'] || []),
+                      ...(implementation['draft'] || [])
+                    ]
+                    return (
+                      <tr key={index}
+                        className='pl-4 list-disc list-inside pl-2 separation-line'
+                      >
+                        <td className=''>
+                          <a className='text-blue-500' href={implementation.url}>{implementation.name}</a>
+                        </td>
+                        <td className='pl-6 hidden sm:table-cell'>
+                          <StyledMarkdown markdown={mixedNotes} />
+                        </td>
+                        <td className='pl-6 pb-2 pt-2'>
+                          {allDrafts
+                            ?.sort((a, b) => DRAFT_ORDER.indexOf(a) < DRAFT_ORDER.indexOf(b) ? -1 : 1)
+                            ?.map((draft: string | number) => (
+                              <span className='bg-blue-400 dark:bg-blue-600 inline-block mr-1 mb-1 text-white rounded px-1' key={draft}>
+                                {typeof draft === 'number' ? zeroFill(2, draft) : draft}
+                              </span>
+                            ))
                           }
                           if (implementation.compliance.config.docs) {
                             mixedNotes +=
