@@ -20,7 +20,7 @@ If you're a user of JSON Schema, you may know me as the author of [a popular Pyt
 
 I'd love to share some good news with the JSON Schema community.
 
-In short: I've joined [Postman's](https://www.postman.com/) Open Technology team to work on JSON Schema full-time. In doing so I'm joining a growing existing group of folks from the ecosystem, including amongst them [Ben Hutton](https://twitter.com/relequestual), JSON Schema's specification lead. This brings the number of people working on JSON Schema full-time up to 2 (and counting!).
+In short: I've joined [Postman's](https://www.postman.com/) Open Technology team to work on JSON Schema full-time. In doing so I'm joining a growing existing group of folks from the ecosystem, including amongst them [Ben Hutton](https://www.twitter.com/relequestual), JSON Schema's specification lead. This brings the number of people working on JSON Schema full-time up to 2 (and counting!).
 
 What does this mean? Primarily, on my part, more mindspace dedicated to JSON Schema, and hopefully thereby some long-needed improvements to the test suite, to my implementation, to new implementations, and beyond. We hope to grow the community even further, and to connect more strongly with it.
 

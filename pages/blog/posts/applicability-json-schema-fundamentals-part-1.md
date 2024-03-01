@@ -8,7 +8,7 @@ cover: /img/posts/2022/fundamentals-part-1/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://twitter.com/relequestual
+    link: https://www.twitter.com/relequestual
     byline: JSON Schema Specification Lead @Postman
 excerpt: "We explore the fundamental JSON Schema concepts: Applicability, Subschemas, and Assertion Boolean Logic - Everyone needs good fundamentals."
 ---
@@ -31,7 +31,7 @@ The validation process for JSON Schema begins with applying the whole JSON Schem
 A JSON Schema may be a Boolean or an Object. In the introductory article mentioned above, we noted how a Boolean Schema of `true` or `false` resulted in the same assertion result (true and false respectivly) regardless of the instance data. We also noted how the equivalent Object Schemas were `{ }` and `{ "not": { } }` respectively. (The `not` keyword inverts the assertion result.)
 
 <div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
-  <p className="font-bold"><svg className="w-6 h-6 mr-2 float-left mt-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" /></svg>Vocabulary check</p>
+  <p className="font-bold"><svg className="w-6 h-6 mr-2 float-left mt-0" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" /></svg>Vocabulary check</p>
   <p>An "assertion" is a statement of fact. This is used in reference to the result of testing in Computing. The test might be called "X is 1". If the test passes, the assertion is true!</p>
 </div>
 
@@ -394,7 +394,7 @@ When you apply the second subschema in `oneOf` to the instance, there are no con
 
 We can use the same approach as before to make sure our subschemas have sufficient constraints. <a href="https://jsonschema.dev/s/Cbcss" target="_blank">Give it a try</a>, and see if you can manage to make the validation work as expected.
 
-The link is pre-loaded with your starting Schema and instance. Let me know if you get stuck via <a href="/slack" target="_blank">Slack</a> or <a href="https://twitter.com/relequestual" target="_blank">Twitter</a>.
+The link is pre-loaded with your starting Schema and instance. Let me know if you get stuck via <a href="/slack" target="_blank">Slack</a> or <a href="https://www.twitter.com/relequestual" target="_blank">Twitter</a>.
 
 # In summary
 
@@ -412,7 +412,7 @@ I've really enjoyed being able to share the first of our fundamentals series wit
 
 You can find all of the example instances and schemas in the <a href="https://github.com/Relequestual/json-schema-fundamentals" target="_blank">JSON Schema Fundamentals repo</a>.
 
-All feedback is welcome. If you have questions or comments, you can find me on the <a href="/slack" target="_blank">JSON Schema Slack</a> or reach out to me on Twitter <a href="https://twitter.com/relequestual" target="_blank">@relequestual</a>.
+All feedback is welcome. If you have questions or comments, you can find me on the <a href="/slack" target="_blank">JSON Schema Slack</a> or reach out to me on Twitter <a href="https://www.twitter.com/relequestual" target="_blank">@relequestual</a>.
 
 # Useful links and further reading
 
@@ -430,5 +430,4 @@ All feedback is welcome. If you have questions or comments, you can find me on t
 - [JSON Schema live playground (hyperjump validator) for all drafts (from draft-04)](https://json-schema.hyperjump.io)
 - [Links to RFC specification documents](/specification)
 
-
-Photo by [Heidi Fin](https://unsplash.com/@heidijfin?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
+Photo by Heidi Fin on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
