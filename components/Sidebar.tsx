@@ -109,7 +109,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
-        <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden' >
+        <div className='bg-primary w-full h-12 mt-14 z-150 flex relative flex-col justify-between items-center lg:hidden' >
           <div className='z-[150] flex w-full bg-primary justify-between items-center mt-2' onMouseDown={e => e.stopPropagation()} onClick={(e) => { e.stopPropagation(); handleRotate(); setOpen(!open) }}>
 
             {router.asPath === '/overview/what-is-jsonschema' && <h3 className='text-white ml-12'>Overview</h3>}
