@@ -81,7 +81,7 @@ Linting
 you can check linting issues using the following command:
 
 ```
-yarn run lint:check
+yarn run lint
 ```
 
 you can fix linting issues using the following command:
@@ -97,8 +97,7 @@ This project uses Husky to run checks for the formatting, linting, typecheck and
 pre-commit hook will run the following commands:
 
 ```
-yarn run format:check
-yarn run lint:check
+yarn run lint
 yarn run typecheck
 yarn run build
 ```
