@@ -63,6 +63,8 @@ yarn build
 
 ### Run locally using Docker
 
+If you are a Docker lover, you have the option to use it following these instructions.
+
 #### Prerequisites:
 
 - [install Docker](https://docs.docker.com/get-docker/)
