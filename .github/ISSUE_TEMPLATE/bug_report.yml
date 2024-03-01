@@ -60,7 +60,7 @@ body:
     required: true
 - type: dropdown
   attributes:
-    label: Do you think this work might require an [Architectural Decision Record (ADR)](https://github.com/json-schema-org/community/blob/main/CONTRIBUTING.md#key-architectural-decisions)? (significant or noteworthy)
+    label: Do you think this work might require an [Architectural Decision Record (ADR)]? (significant or noteworthy)
     options:
       - 'Yes'
       - 'No'
