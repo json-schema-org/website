@@ -185,6 +185,6 @@ border-radius: 4px; */
 .anchor #community {
   position: absolute;
   left: 0;
-  top: -80px;
+  top: 35px;
   /* change this value to match the height of the header */
 }
