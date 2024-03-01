@@ -74,18 +74,18 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
           )
         })}
       </div>
-      <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-600'>
+      <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-900'>
         <table>
           <thead>
             <tr>
               <td />
-              <td className='pt-6 pl-5 text-sm text-slate-500 hidden sm:table-cell'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200 hidden sm:table-cell'>
                 About
               </td>
-              <td className='pt-6 pl-5 text-sm text-slate-500'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200'>
                 Drafts
               </td>
-              <td className='pt-6 pl-5 text-sm text-slate-500'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200'>
                 License
               </td>
             </tr>
@@ -141,7 +141,7 @@ function ImplementationTable ({ implementationsByLanguage, prefix }: { implement
                           {allDrafts
                             ?.sort((a, b) => DRAFT_ORDER.indexOf(a) < DRAFT_ORDER.indexOf(b) ? -1 : 1)
                             ?.map((draft: string | number) => (
-                              <span className='bg-blue-400 inline-block mr-1 mb-1 text-white rounded px-1' key={draft}>
+                              <span className='bg-blue-400 dark:bg-blue-600 inline-block mr-1 mb-1 text-white rounded px-1' key={draft}>
                                 {typeof draft === 'number' ? zeroFill(2, draft) : draft}
                               </span>
                             ))

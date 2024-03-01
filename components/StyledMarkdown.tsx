@@ -160,7 +160,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             h3: { component: Headline3 },
             h4: { component: Headline4 },
             strong: {
-              component: ({ children }) => <strong className='font-semibold text-slate-800'>{children}</strong>
+              component: ({ children }) => <strong className='font-semibold text-slate-800 dark:text-slate-500'>{children}</strong>
             },
             italic: {
               component: ({ children }) => <i>{children}</i>
