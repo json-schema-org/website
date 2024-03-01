@@ -90,10 +90,8 @@ export const Search = () => {
 const MainNavLink = ({ uri, label, className, isActive }: { uri: string, label: string, isActive: boolean, className?: string }) => {
   const router = useRouter()
   return (
-    <Link href={uri} className={classnames(className, 'font-semibold p-2 md:p-4', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'
-    }`
-    )}
-    >{label}
+    <Link href={uri} className={classnames(className, 'font-semibold p-2 md:p-4', `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`)}>
+      {label}
     </Link>
   )
 }
@@ -195,7 +193,7 @@ const MobileNav = () => {
       />
 
       <MainNavLink
-        uri='/tools'
+        uri='/implementations'
         label='Tools'
         isActive={section === 'tools'}
 
@@ -212,7 +210,7 @@ const MobileNav = () => {
         isActive={section === 'community'}
 
       />
-    
+
     </div>
   )
 }
