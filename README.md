@@ -60,6 +60,48 @@ Build static files on /out folder
 ```
 yarn build
 ```
+#### Testing
+
+Formatting
+
+you can check code formatting using the following command:
+
+```
+yarn run format:check
+```
+
+you can format the code using the following command:
+
+```
+yarn run format:fix
+```
+
+Linting
+
+you can check linting issues using the following command:
+
+```
+yarn run lint:check
+```
+
+you can fix linting issues using the following command:
+
+```
+yarn run lint:fix
+```
+
+Husky for git hooks
+
+This project uses Husky to run checks for the formatting, linting, typecheck and build commands before committing the code.
+
+pre-commit hook will run the following commands:
+
+```
+yarn run format:check
+yarn run lint:check
+yarn run typecheck
+yarn run build
+```
 
 ### Run locally using Docker
 
