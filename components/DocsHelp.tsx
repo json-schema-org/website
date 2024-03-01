@@ -21,7 +21,7 @@ export function DocsHelp() {
         {
           method: 'POST',
           body: formData,
-        }
+        },
       );
 
       if (response.ok) {

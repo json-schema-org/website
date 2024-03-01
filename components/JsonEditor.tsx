@@ -57,12 +57,12 @@ const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/g;
 function getTextPathIndexesFromNodes(
   elements: CustomElement[],
   path: number[] = [],
-  acc: TextPathIndex[] = []
+  acc: TextPathIndex[] = [],
 ): TextPathIndex[] {
   const textPathIndexes = elements.reduce(
     (acc, node, index) =>
       getTextPathIndexesFromNode(node, [...path, index], acc),
-    acc
+    acc,
   );
   return textPathIndexes;
 }
@@ -70,7 +70,7 @@ function getTextPathIndexesFromNodes(
 const getTextPathIndexesFromNode = (
   customElement: CustomElement,
   path: number[],
-  acc: TextPathIndex[]
+  acc: TextPathIndex[],
 ): TextPathIndex[] => {
   if (typeof (customElement as CustomText).text === 'string') {
     const customText = customElement as CustomText;
@@ -81,7 +81,7 @@ const getTextPathIndexesFromNode = (
   const textPathIndexesFromNodes = getTextPathIndexesFromNodes(
     customNode?.children || [],
     path,
-    acc
+    acc,
   );
   return textPathIndexesFromNodes;
 };
@@ -93,7 +93,7 @@ const calculateNewDecorationsMap = (value: CustomElement[]) => {
   const multipathDecorations =
     getMultipathDecorationsByMatchesAndTextPathIndexes(
       partsOfJson,
-      textPathIndexes
+      textPathIndexes,
     );
   const highlightingDecorations = multipathDecorations.reduce(
     (acc, multipathDecoration: MultipathDecoration) => {
@@ -112,11 +112,11 @@ const calculateNewDecorationsMap = (value: CustomElement[]) => {
           };
           return [...acc, decorationOfNode];
         },
-        []
+        [],
       );
       return [...acc, ...decorationsOfNodes];
     },
-    []
+    [],
   );
 
   const decorationMap = makeDecorationsToMap(highlightingDecorations);
@@ -125,13 +125,13 @@ const calculateNewDecorationsMap = (value: CustomElement[]) => {
 
 const serializeNodesWithoutLineBreaks = (
   nodes: CustomElement[],
-  acc = ''
+  acc = '',
 ): string => {
   return nodes.reduce((acc, node) => {
     if ((node as CustomNode).children)
       return serializeNodesWithoutLineBreaks(
         (node as CustomNode).children,
-        acc
+        acc,
       );
     const customText = node as CustomText;
     return `${acc}${customText.text}`;
@@ -140,13 +140,13 @@ const serializeNodesWithoutLineBreaks = (
 
 const serializeNodesWithLineBreaks = (
   nodes: CustomElement[],
-  acc = ''
+  acc = '',
 ): string => {
   return nodes.reduce((acc, node, index) => {
     if ((node as CustomNode).children) {
       const serializedChildren = serializeNodesWithLineBreaks(
         (node as CustomNode).children,
-        ''
+        '',
       );
       return `${acc}${index > 0 ? '\n' : ''}${serializedChildren}`;
     }
@@ -160,7 +160,7 @@ const deserializeCode = (code: string): CustomElement[] => {
     (text): CustomElement => ({
       type: 'paragraph',
       children: [{ text }],
-    })
+    }),
   );
   return paragraphs;
 };
@@ -173,7 +173,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
     const endPositionOfCode = positionOfCodeInFullMarkdown + initialCode.length;
     const startPositionOfNextBlock = endPositionOfCode + '\n```\n'.length;
     const markdownAfterCodeBlock = fullMarkdown?.substr(
-      startPositionOfNextBlock
+      startPositionOfNextBlock,
     );
     return markdownAfterCodeBlock?.startsWith('```');
   })();
@@ -184,11 +184,11 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
   }, [initialCode]);
 
   const [value, setValue] = React.useState<CustomElement[]>(
-    deserializeCode(cleanedUpCode)
+    deserializeCode(cleanedUpCode),
   );
   const serializedCode = React.useMemo(
     () => serializeNodesWithLineBreaks(value),
-    [value]
+    [value],
   );
 
   const [editor] = React.useState(() => withReact(createEditor()));
@@ -247,7 +247,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
 
   const allPathDecorationsMap: Record<string, any> = React.useMemo(
     () => calculateNewDecorationsMap(value),
-    [value]
+    [value],
   );
 
   return (
@@ -261,7 +261,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
           'relative font-mono bg-slate-800 border rounded-xl mt-1 overflow-hidden shadow-lg',
           {
             'ml-10': meta?.indent,
-          }
+          },
         )}
       >
         <div className='flex flex-row absolute right-0 z-10'>
@@ -327,10 +327,11 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
                 const isJsonScope = jsonPathsWithJsonScope
                   .filter(
                     (jsonPathWithScope) =>
-                      jsonPathWithScope.scope === JsonSchemaScope.TypeDefinition
+                      jsonPathWithScope.scope ===
+                      JsonSchemaScope.TypeDefinition,
                   )
                   .map(
-                    (jsonPathsWithJsonScope) => jsonPathsWithJsonScope.jsonPath
+                    (jsonPathsWithJsonScope) => jsonPathsWithJsonScope.jsonPath,
                   )
                   .includes(leaf.syntaxPart?.parentJsonPath);
                 // console.log('jsonPathsWithJsonScope', jsonPathsWithJsonScope, leaf, leaf.syntaxPart?.parentJsonPath)
@@ -408,7 +409,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
               );
             }
             throw new Error(
-              `unknown element.type [${element.type}] in render function`
+              `unknown element.type [${element.type}] in render function`,
             );
           }}
         />
@@ -454,13 +455,13 @@ export type PathIndex = [number, number[]];
 
 const getMultipathDecorationsByMatchesAndTextPathIndexes = (
   syntaxParts: SyntaxPart[],
-  textPathIndexes: PathIndex[]
+  textPathIndexes: PathIndex[],
 ): any[] => {
   const multipathDecorations: any[] = syntaxParts.map((syntaxPart) => {
     const nodes = getNodesFromIndexAndLength(
       syntaxPart.index,
       syntaxPart.length,
-      textPathIndexes
+      textPathIndexes,
     );
     return {
       nodes: nodes,
@@ -473,12 +474,12 @@ const getMultipathDecorationsByMatchesAndTextPathIndexes = (
 export const getNodesFromIndexAndLength = (
   index: number,
   length: number,
-  textPathIndexes: PathIndex[]
+  textPathIndexes: PathIndex[],
 ): any[] => {
   const { nodes } = textPathIndexes.reduce(
     (
       acc: { nodes: any[]; index: number; length: number },
-      textPathIndex: PathIndex
+      textPathIndex: PathIndex,
     ) => {
       if (acc.length <= 0) return acc;
       const [textPathLength, nodePath] = textPathIndex;
@@ -495,7 +496,7 @@ export const getNodesFromIndexAndLength = (
         length: acc.length - lengthInNode,
       };
     },
-    { nodes: [], index, length }
+    { nodes: [], index, length },
   );
   return nodes;
 };

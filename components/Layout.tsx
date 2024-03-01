@@ -28,7 +28,7 @@ export default function Layout({
 
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
-    [router.asPath]
+    [router.asPath],
   );
 
   useEffect(() => {
@@ -60,12 +60,12 @@ export default function Layout({
         <main
           className={classnames(
             mainClassName,
-            'z-10 xl:rounded-xl py-4 mx-auto'
+            'z-10 xl:rounded-xl py-4 mx-auto',
           )}
         >
           <header
             className={classnames(
-              'w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg'
+              'w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg',
             )}
           >
             <div className='w-full flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
@@ -117,7 +117,7 @@ const MainNavLink = ({
       className={classnames(
         className,
         'font-semibold p-2 md:p-4',
-        `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`
+        `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
       )}
     >
       {label}
@@ -248,7 +248,7 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 const Footer = () => (
   <footer
     className={classnames(
-      'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12'
+      'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12',
     )}
   >
     <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
@@ -464,7 +464,7 @@ const FaviconHead = () => {
 
   React.useEffect(() => {
     const matcher: MediaQueryList = window.matchMedia(
-      '(prefers-color-scheme: dark)'
+      '(prefers-color-scheme: dark)',
     );
     matcher.addEventListener('change', () => onUpdate(matcher));
     onUpdate(matcher);

@@ -71,7 +71,7 @@ export default function StaticMarkdownPage({
   const router = useRouter();
   const setParam = useSetUrlParam();
   const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(
-    filterTag || 'All'
+    filterTag || 'All',
   );
 
   useEffect(() => {
@@ -103,7 +103,7 @@ export default function StaticMarkdownPage({
       router.replace(
         { pathname: '/blog', query: { type: clickedTag } },
         undefined,
-        { shallow: true }
+        { shallow: true },
       );
     }
   };
