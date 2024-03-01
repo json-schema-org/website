@@ -262,7 +262,7 @@ const Home = (props: any) => {
                   />
                   <div className='flex flex-col ml-2'>
                     <p className='text-sm font-semibold dark:text-slate-300'>{blogPosts[0].frontmatter.authors[0].name}</p>
-                    <div className='text-slate-500 text-sm'>
+                    <div className='text-slate-500 text-sm dark:text-slate-300'>
                       <span>
                         {blogPosts[0].frontmatter.date} &middot; {timeToRead} min read
                       </span>

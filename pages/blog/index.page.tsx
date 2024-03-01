@@ -121,11 +121,11 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         </div>
         {/* Filter Buttons */}
         <div className='w-full ml-8 flex flex-wrap justify-start'>{allTags.map((tag) => (
-          <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm dark:bg-slate-400 dark:text-blue-900'>{tag}</button>
+          <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm dark:bg-slate-700 dark:text-blue-100'>{tag}</button>
         ))}<span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center dark:text-slate-300'>Filter blog posts by category...</span></div>
 
         {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto p-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800  mx-auto p-4'>
           {blogPosts
             .filter(post => {
               if (!typeFilter) return true
@@ -152,7 +152,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
               return (
                 <section key={blogPost.slug}>
                   <div
-                    className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:slate-700'
+                    className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'
                   >
                     <Link href={`/blog/posts/${blogPost.slug}`} className='inline-flex flex-col flex-1 w-full'>
                       <div
@@ -163,7 +163,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                         <div>
                           <div>
                             <div
-                              className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
                               onClick={(e) => {
                                 e.preventDefault()
                                 e.stopPropagation()
@@ -176,7 +176,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                           <div className='text-lg font-semibold'>
                             {frontmatter.title}
                           </div>
-                          <div className='mt-3 mb-6 text-slate-500'>
+                          <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
                             <TextTruncate element='span' line={4} text={frontmatter.excerpt} />
                           </div>
                         </div>
@@ -198,7 +198,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
                               {(frontmatter.authors.map((author: any) => author.name).join(' & '))}
                             </div>
 
-                            <div className='text-slate-500 text-sm'>
+                            <div className='text-slate-500 text-sm dark:text-slate-300'>
                               {frontmatter.date && (
                                 <span>
                                   {date.toLocaleDateString('en-us', { year: 'numeric', month: 'long', day: 'numeric' })}
