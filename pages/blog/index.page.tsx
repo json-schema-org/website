@@ -14,8 +14,8 @@ import { SectionContext } from '~/context'
 
 export type blogCategories = 'All' | 'Community' | 'Case Study' | 'Engineering' | 'Update' | 'Opinion' 
 
-export async function getStaticProps({ params, query} : {
-  params: string, query: any
+export async function getStaticProps({ query }: {
+  query: any
 }) {
   const files = fs.readdirSync(PATH)
   const blogPosts = files
@@ -33,7 +33,7 @@ export async function getStaticProps({ params, query} : {
 
   await generateRssFeed(blogPosts)
 
-  const filterTag: string = query?.type || 'All';
+  const filterTag: string = query?.type || 'All'
 
   return {
     props: {
@@ -44,33 +44,33 @@ export async function getStaticProps({ params, query} : {
 }
 
 function isValidCategory(category: any): category is blogCategories {
-  return ['All', 'Community', 'Case Study', 'Engineering', 'Update', 'Opinion'].includes(category);
+  return ['All', 'Community', 'Case Study', 'Engineering', 'Update', 'Opinion'].includes(category)
 }
 
 export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts: any[], filterTag: any }) {
   const router = useRouter()
   const setParam = useSetUrlParam()
-  const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(filterTag ||'All')
+  const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(filterTag || 'All')
 
   useEffect(() => {
-    const { query } = router;
+    const { query } = router
     if (query.type && isValidCategory(query.type)) {
-      setCurrentFilterTag(query.type);
+      setCurrentFilterTag(query.type)
     }
-  }, [router.query]);
+  }, [router.query])
 
   useEffect(() => {
     // Set the filter tag based on the initial query parameter when the page loads
-    setCurrentFilterTag(filterTag);
-  }, [filterTag]);
+    setCurrentFilterTag(filterTag)
+  }, [filterTag])
 
   const handleClick = (event: { currentTarget: { value: any }}) => {
     const clickedTag = event.currentTarget.value
 
-    setCurrentFilterTag(clickedTag);
+    setCurrentFilterTag(clickedTag)
 
     // Check if the user is already on the "/blog" page
-    if (router.pathname === "/blog") {
+    if (router.pathname === '/blog') {
       if (router.query.type) {
         // Remove the 'type' query parameter from the URL
         setParam('type', null)
@@ -79,9 +79,9 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
     }
     else {
       // If not on the "/blog" page, navigate to the "/blog" page with the type tag as a query parameter
-      router.replace({ pathname: '/blog', query: { type: clickedTag } }, undefined, { shallow: true });
+      router.replace({ pathname: '/blog', query: { type: clickedTag } }, undefined, { shallow: true })
     }
-  };
+  }
 
   const recentBlog = blogPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime()
