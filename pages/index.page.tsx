@@ -410,8 +410,7 @@ const Home = (props: any) => {
                     <p className='text-sm font-semibold dark:text-slate-300'>
                       {blogPosts[0].frontmatter.authors[0].name}
                     </p>
-                    {/* >>>>>>> 5a13b6c (completed home page) */}
-                    <div className='text-slate-500 text-sm'>
+                    <div className='text-slate-500 text-sm dark:text-slate-300'>
                       <span>
                         {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
                         min read

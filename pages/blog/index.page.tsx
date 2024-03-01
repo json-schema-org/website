@@ -215,7 +215,7 @@ export default function StaticMarkdownPage({
               key={tag}
               value={tag}
               onClick={handleClick}
-              className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm dark:bg-slate-400 dark:text-blue-900'
+              className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm dark:bg-slate-700 dark:text-blue-100'
             >
               {tag}
             </button>
@@ -226,7 +226,7 @@ export default function StaticMarkdownPage({
         </div>
 
         {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto p-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800  mx-auto p-4'>
           {blogPosts
             .filter((post) => {
               if (!currentFilterTag || currentFilterTag === 'All') return true;
@@ -246,7 +246,7 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-                  <div className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:slate-700'>
+                  <div className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
                     <Link
                       href={`/blog/posts/${blogPost.slug}`}
                       className='inline-flex flex-col flex-1 w-full'
@@ -259,7 +259,7 @@ export default function StaticMarkdownPage({
                         <div>
                           <div>
                             <div
-                              className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -272,7 +272,8 @@ export default function StaticMarkdownPage({
                           <div className='text-lg font-semibold'>
                             {frontmatter.title}
                           </div>
-                          <div className='mt-3 mb-6 text-slate-500'>
+
+                          <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
                             <TextTruncate
                               element='span'
                               line={4}
@@ -305,7 +306,7 @@ export default function StaticMarkdownPage({
                                 .join(' & ')}
                             </div>
 
-                            <div className='text-slate-500 text-sm'>
+                            <div className='text-slate-500 text-sm dark:text-slate-300'>
                               {frontmatter.date && (
                                 <span>
                                   {date.toLocaleDateString('en-us', {
