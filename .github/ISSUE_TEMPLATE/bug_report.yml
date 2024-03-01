@@ -1,7 +1,7 @@
-name: 🐞 Bug
+name: 🐛 Bug
 description: Create a report to help us improve
-title: "🐞 Bug"
-labels: ["🐞 bug", "pending triage"]
+title: "🐛 Bug"
+labels: ["🐛 Bug", "Status: triage"]
 body:
 - type: textarea
   attributes:
