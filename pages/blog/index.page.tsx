@@ -70,7 +70,7 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
     setCurrentFilterTag(clickedTag)
 
     // Check if the user is already on the "/blog" page
-    if (router.pathname === "/blog") {
+    if (router.pathname === '/blog') {
       if (router.query.type) {
         // Remove the 'type' query parameter from the URL
         setParam('type', null)
