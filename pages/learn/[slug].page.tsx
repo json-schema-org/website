@@ -1,18 +1,28 @@
-import React from 'react'
-import Head from 'next/head'
-import StyledMarkdown from '~/components/StyledMarkdown'
-import { getLayout } from '~/components/Sidebar'
-import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
-import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
-import { Headline1 } from '~/components/Headlines'
-import { SectionContext } from '~/context'
-import { DocsHelp } from '~/components/DocsHelp'
+import React from 'react';
+import Head from 'next/head';
+import StyledMarkdown from '~/components/StyledMarkdown';
+import { getLayout } from '~/components/Sidebar';
+import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths';
+import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
+import { Headline1 } from '~/components/Headlines';
+import { SectionContext } from '~/context';
+import { DocsHelp } from '~/components/DocsHelp';
 
-export async function getStaticPaths() { return getStaticMarkdownPaths('pages/learn') }
-export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages/learn') }
+export async function getStaticPaths() {
+  return getStaticMarkdownPaths('pages/learn');
+}
+export async function getStaticProps(args: any) {
+  return getStaticMarkdownProps(args, 'pages/learn');
+}
 
-export default function StaticMarkdownPage ({ frontmatter, content }: { frontmatter: any, content: any }) {
-  const newTitle = 'JSON Schema - ' + frontmatter.title
+export default function StaticMarkdownPage({
+  frontmatter,
+  content,
+}: {
+  frontmatter: any;
+  content: any;
+}) {
+  const newTitle = 'JSON Schema - ' + frontmatter.title;
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
       <Head>
@@ -20,8 +30,8 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
       </Head>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
-      <DocsHelp />      
+      <DocsHelp />
     </SectionContext.Provider>
-  )
+  );
 }
-StaticMarkdownPage.getLayout = getLayout
+StaticMarkdownPage.getLayout = getLayout;
