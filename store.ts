@@ -1,11 +1,11 @@
-import { create } from 'zustand'
+import { create } from 'zustand';
 
 type Store = {
-  overlayNavigation: null | 'docs'
-}
+  overlayNavigation: null | 'docs';
+};
 
 const useStore = create<Store>(() => ({
-  overlayNavigation: null
-}))
+  overlayNavigation: null,
+}));
 
-export default useStore
+export default useStore;
