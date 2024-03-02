@@ -10,6 +10,7 @@ yarn run lint ||
         false; 
 )
 
+
 # Check tsconfig standards
 yarn run typecheck ||
 (
