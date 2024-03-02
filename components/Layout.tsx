@@ -57,11 +57,8 @@ export default function Layout({
         ></meta>
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
-        <main className={
-          classnames(mainClassName, 'z-10 xl:rounded-xl pt-4 mx-auto')
-        }>
+        <main className={classnames(mainClassName, 'z-10 xl:rounded-xl pt-4 mx-auto')}>
           <header className={classnames('w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
-
             <div className='w-full flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
               <Logo />
               <MainNavigation />
