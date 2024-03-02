@@ -154,79 +154,60 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     <th>Draft 2020-12</th>
   </tr>
   <tr>
-    <th colspan="2">Tree Schema Extensible</th>
-    <th colspan="2">Tree Schema Extensible</th>
-  </tr>
-  <tr>
     <td>
 
-```json
-
-  {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "$id": "https://example.com/tree",
-    "$recursiveAnchor": true,
-    "type": "object",
-    "properties": {
-      "data": true,
-      "children": {
-        "type": "array",
-        "items": { "$recursiveRef": "#" }
-      }
+```jsonc
+// tree schema, extensible
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://example.com/tree",
+  "$recursiveAnchor": true,
+  "type": "object",
+  "properties": {
+    "data": true,
+    "children": {
+      "type": "array",
+      "items": { "$recursiveRef": "#" }
     }
   }
+}
+// strict-tree schema, guards against misspelled properties
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://example.com/strict-tree",
+  "$recursiveAnchor": true,
+  "$ref": "tree",
+  "unevaluatedProperties": false
+}
 ```
-    </td>
+  </td>
     <td>
 
-```json
-
-  {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://example.com/tree",
-    "$dynamicAnchor": "node",
-    "type": "object",
-    "properties": {
-      "data": true,
-      "children": {
-        "type": "array",
-        "items": { "$dynamicRef": "#node" }
+```jsonc
+    // tree schema, extensible
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://example.com/tree",
+      "$dynamicAnchor": "node",
+      "type": "object",
+      "properties": {
+        "data": true,
+        "children": {
+          "type": "array",
+          "items": { "$dynamicRef": "#node" }
+        }
       }
     }
-  }
+    // strict-tree schema, guards against misspelled properties
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "$id": "https://example.com/strict-tree",
+      "$dynamicAnchor": "node",
+      "$ref": "tree",
+      "unevaluatedProperties": false
+    }
 ```
-    </td>
-  </tr>
-  <tr>
-    <th colspan="2"> strict-tree schema, guards against misspelled properties</th>
-    <th colspan="2"> strict-tree schema, guards against misspelled properties</th>
-  </tr>
-  <tr>
-    <td>
-
-```json
-  {
-    "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "$id": "https://example.com/strict-tree",
-    "$recursiveAnchor": true,
-    "$ref": "tree",
-    "unevaluatedProperties": false
-  }
-```
-    </td>
-    <td>
-
-```json
-
-  {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://example.com/strict-tree",
-    "$dynamicAnchor": "node",
-    "$ref": "tree",
-    "unevaluatedProperties": false
-  }
-```
-    </td>
+  </td>
   </tr>
 </table>
 
