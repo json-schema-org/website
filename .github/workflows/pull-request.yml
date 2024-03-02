@@ -18,10 +18,10 @@ jobs:
             node-version: '20'  
 
         - name: Install dependencies
-          run: yarn
+          run: yarn install --frozen-lockfile
 
         - name: Run linting check
-          run: npm run lint
+          run: yarn run lint
 
         - name: Run formatting check
           run: yarn run format:check
@@ -29,9 +29,22 @@ jobs:
         - name: Run typecheck
           run: yarn run typecheck
        
-        - name: Sleep
-          run: sleep 45
-          
-        - name: Testing Changes
-          run: echo `Hello World`
+    Build:
+      runs-on: ubuntu-latest
+      needs: [Testing-Formatting-Styles]
+      steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Setup Node 20
+          uses: actions/setup-node@v4
+          with:
+            node-version: '20'   
+
+        - name: Install dependencies
+          run: npm install --frozen-lockfile
+
+        - name: Build
+          run: yarn run build
+
           
