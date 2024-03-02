@@ -47,7 +47,7 @@ described below.
     preceding regular expression.
 -   `{x,}`: Match `x` occurrences or more of the preceding regular
     expression.
--   `{x}?`, `{x,y}?`, `{x,}?`: Lazy versions of the above expressions.
+-   `{x,y}?`, `{x,}?`: Non-greedy versions of the above expressions.
 -   Use only standard escapes like ``\n``, ``\r``, ``\t`` and keep 
     in mind that you also need to do JSON escaping.
 
