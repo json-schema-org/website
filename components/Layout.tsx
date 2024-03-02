@@ -263,16 +263,22 @@ const Footer = () => (
           </a>
         </div>
         <div className=''>
-          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
-            Twitter</a>
+          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'>
+            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
+            Twitter
+          </a>
         </div>
         <div className=''>
-          <a href='https://linkedin.com/company/jsonschema/' className='flex items-center text-white'><img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
-            LinkedIn</a>
+          <a href='https://linkedin.com/company/jsonschema/' className='flex items-center text-white'>
+            <img src='/img/logos/icons8-linkedin-2.svg' className='w-4 h-4 mr-2' />
+            LinkedIn
+          </a>
         </div>
         <div className=''>
-          <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='flex items-center text-white'><img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
-            Youtube</a>
+          <a href='https://www.youtube.com/@JSONSchemaOrgOfficial' className='flex items-center text-white'>
+            <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
+            Youtube
+          /a>
         </div>
         <div className=''>
           <a
