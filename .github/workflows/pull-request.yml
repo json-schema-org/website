@@ -34,4 +34,7 @@ jobs:
 
         - name: Testing Changes
           run: echo `Hello World`
+
+        - name: Testing changes again
+          run: echo `testing changes`
           
