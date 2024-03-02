@@ -257,8 +257,10 @@ const Footer = () => (
       </div>
       <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12 gap-x-4 gap-y-4 md:gap-x-0 md:gap-y-0'>
         <div className=''>
-          <a href='https://json-schema.org/slack' className='flex items-center text-white'><img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
-            Slack</a>
+          <a href='https://json-schema.org/slack' className='flex items-center text-white'>
+            <img src='/img/logos/slack_logo_small-white.svg' className='w-4 h-4 mr-2' />
+            Slack
+          </a>
         </div>
         <div className=''>
           <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
