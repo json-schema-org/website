@@ -30,11 +30,8 @@ jobs:
           run: yarn run typecheck
        
         - name: Sleep
-          run: sleep 30
-
+          run: sleep 45
+          
         - name: Testing Changes
           run: echo `Hello World`
-
-        - name: Testing changes again
-          run: echo `testing changes`
           
