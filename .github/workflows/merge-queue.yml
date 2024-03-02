@@ -43,7 +43,7 @@ jobs:
           run: yarn install --frozen-lockfile
 
         - name: Start App Locally
-          run: yarn start &
+          run: yarn dev &
           
         - name: Wait for server to start
           run: sleep 20
