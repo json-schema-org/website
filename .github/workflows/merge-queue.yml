@@ -1,0 +1,27 @@
+
+name: Merge-Queue Continous Integration
+
+on:
+  merge-group:
+    
+jobs:
+  Testing-Formatting-Styles:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: yarn
+
+      - name: Run linting check
+        run: npm run lint
+
+      - name: Run formatting check
+        run: yarn run format:check
+
+      - name: Run typecheck
+        run: yarn run typecheck
+
+      - name: Run Build
+        run: yarn run build
