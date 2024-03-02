@@ -31,4 +31,7 @@ jobs:
        
         - name: Sleep
           run: sleep 30
+
+        - name: Testing Changes
+          run: echo `Hello World`
           
