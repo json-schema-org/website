@@ -11,6 +11,7 @@ yarn run lint ||
 )
 
 
+
 # Check tsconfig standards
 yarn run typecheck ||
 (
