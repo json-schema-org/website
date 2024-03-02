@@ -18,7 +18,7 @@ I've received a lot of questions (and purported bugs) and had quite a few discus
 
 Let's dig in.
 
-_The last time we [talked about output](./fixing-json-schema-output), it was to announce changes from the 2019-09/2020-12 version.  I'm going to use the new formats because it's easier to read and more compact._
+_The last time we [talked about output](fixing-json-schema-output), it was to announce changes from the 2019-09/2020-12 version.  I'm going to use the new formats because it's easier to read and more compact._
 
 ## No Problem
 
@@ -338,6 +338,6 @@ JSON Schema output gives you all of the information that you need in order to kn
 
 If you have any questions, feel free to ask on our Slack workspace (link in the footer) or [open a discussion](https://github.com/orgs/json-schema-org/discussions).
 
-_All output was generated using my online evaluator https://json-everything.net/json-schema._
+_All output was generated using my online evaluator <https://json-everything.net/json-schema>._
 
 _Cover image by [Tim Gouw](https://unsplash.com/@punttim) on [Unsplash](https://unsplash.com/photos/man-wearing-white-top-using-macbook-1K9T5YiZ2WU)_

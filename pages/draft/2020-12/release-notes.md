@@ -161,6 +161,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     <td>
 
       ```json
+
         {
           "$schema": "https://json-schema.org/draft/2019-09/schema",
           "$id": "https://example.com/tree",
@@ -179,6 +180,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     <td>
 
       ```json
+
         {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "$id": "https://example.com/tree",
@@ -215,6 +217,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     <td>
 
       ```json
+
         {
           "$schema": "https://json-schema.org/draft/2020-12/schema",
           "$id": "https://example.com/strict-tree",
@@ -226,6 +229,8 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     </td>
   </tr>
 </table>
+
+
 
 ## contains and unevaluatedItems
 In the previous draft, it wasn't specified how or if the `contains` keyword
