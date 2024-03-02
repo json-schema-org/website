@@ -42,8 +42,14 @@ jobs:
         - name: Install dependencies
           run: yarn install --frozen-lockfile
 
+        - name: Start App Locally
+          run: yarn start &
+          
+        - name: Wait for server to start
+          run: sleep 20
+      
         - name: Build
-          run: yarn run build  
+          run: yarn build
 
 
 
