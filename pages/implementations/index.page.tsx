@@ -38,9 +38,11 @@ type ImplementationByLanguage = { name: string }
 
 export default function ImplementationsPages ({ blocks, validators, hyperLibaries }: { blocks: any, validators: ImplementationByLanguage[], hyperLibaries: ImplementationByLanguage[] }) {
   return (
+
     <SectionContext.Provider value='implementations'>
       <div className='w-5/6 mx-auto mt-12 dark:text-slate-200'>
         <Headline1>Implementations</Headline1>
+
         <StyledMarkdown markdown={blocks.intro} />
         <Headline2>Validators</Headline2>
         <ImplementationTable implementationsByLanguage={validators} prefix='validators-' />

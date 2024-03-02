@@ -6,7 +6,7 @@ cover: /img/posts/2023/website-analytics-snapshot-2023/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://twitter.com/relequestual
+    link: https://www.twitter.com/relequestual
 excerpt: "See what we discovered when looking at over 50 million requests to the JSON Schema org domain from the last 7 days"
 ---
 

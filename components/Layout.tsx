@@ -53,17 +53,19 @@ export default function Layout({ children, mainClassName, metaTitle, whiteBg }: 
         <main className={
           classnames(mainClassName, 'z-10 xl:rounded-xl py-4 mx-auto')
         }>
+
           <header className={classnames('w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
             <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
+
               <Logo />
               <MainNavigation />
             </div>
           </header>
           {showMobileNav ? (
-            <>
+            <div>
               <MobileNav />
               {children}
-            </>
+            </div>
           ) : (
             <div>
               {children}
@@ -104,7 +106,9 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs')
 
   return (
+
     <div className='flex justify-end mr-8 w-full justify-end '>
+
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -123,8 +127,8 @@ const MainNavigation = () => {
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/implementations'
-        label='Implementations'
-        isActive={section === 'implementations'}
+        label='Tools'
+        isActive={section === 'tools'}
 
       />
       <MainNavLink
@@ -141,8 +145,10 @@ const MainNavigation = () => {
         isActive={section === 'community'}
 
       />
+
       <div className='flex items-center gap-12 md:gap-4 dark:bg-slate-800'>
         <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
+
           <Search />
         </div>
         <DarkModeToggle />
@@ -182,7 +188,9 @@ const MobileNav = () => {
   const section = useContext(SectionContext)
 
   return (
+
     <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-800'>
+
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -198,8 +206,8 @@ const MobileNav = () => {
 
       <MainNavLink
         uri='/implementations'
-        label='Implementations'
-        isActive={section === 'implementations'}
+        label='Tools'
+        isActive={section === 'tools'}
 
       />
       <MainNavLink
@@ -214,6 +222,7 @@ const MobileNav = () => {
         isActive={section === 'community'}
 
       />
+
     </div>
   )
 }
@@ -246,7 +255,7 @@ const Footer = () => (
             Slack</a>
         </div>
         <div className='mb-4 mr-4'>
-          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/twitter_logo-white.svg' className='w-4 h-4 mr-2' />
+          <a href='https://twitter.com/jsonschema' className='flex items-center text-white'><img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
             Twitter</a>
         </div>
         <div className='mr-4 mb-4'>

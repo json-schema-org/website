@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import fs from 'fs'
@@ -12,7 +12,11 @@ import { useRouter } from 'next/router'
 import useSetUrlParam from '~/lib/useSetUrlParam'
 import { SectionContext } from '~/context'
 
-export async function getStaticProps() {
+export type blogCategories = 'All' | 'Community' | 'Case Study' | 'Engineering' | 'Update' | 'Opinion' 
+
+export async function getStaticProps({ query }: {
+  query: any
+}) {
   const files = fs.readdirSync(PATH)
   const blogPosts = files
     .filter(file => file.substr(-3) === '.md')
@@ -29,20 +33,55 @@ export async function getStaticProps() {
 
   await generateRssFeed(blogPosts)
 
+  const filterTag: string = query?.type || 'All'
+
   return {
     props: {
-      blogPosts
+      blogPosts,
+      filterTag
     }
   }
 }
 
-export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) {
+function isValidCategory(category: any): category is blogCategories {
+  return ['All', 'Community', 'Case Study', 'Engineering', 'Update', 'Opinion'].includes(category)
+}
+
+export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts: any[], filterTag: any }) {
   const router = useRouter()
-  const typeFilter: null | string = Array.isArray(router.query?.type)
-    ? router.query?.type?.[0] : router.query?.type || null
-
   const setParam = useSetUrlParam()
+  const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(filterTag || 'All')
 
+  useEffect(() => {
+    const { query } = router
+    if (query.type && isValidCategory(query.type)) {
+      setCurrentFilterTag(query.type)
+    }
+  }, [router.query])
+
+  useEffect(() => {
+    // Set the filter tag based on the initial query parameter when the page loads
+    setCurrentFilterTag(filterTag)
+  }, [filterTag])
+
+  const handleClick = (event: { currentTarget: { value: any }}) => {
+    const clickedTag = event.currentTarget.value
+
+    setCurrentFilterTag(clickedTag)
+
+    // Check if the user is already on the "/blog" page
+    if (router.pathname === '/blog') {
+      if (router.query.type) {
+        // Remove the 'type' query parameter from the URL
+        setParam('type', null)
+      }
+      setCurrentFilterTag(clickedTag)
+    }
+    else {
+      // If not on the "/blog" page, navigate to the "/blog" page with the type tag as a query parameter
+      router.replace({ pathname: '/blog', query: { type: clickedTag } }, undefined, { shallow: true })
+    }
+  }
 
   const recentBlog = blogPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime()
@@ -56,11 +95,6 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
   const allTags = [...new Set(spreadTags)]
   //add tag for all
   allTags.unshift('All')
-  const [filterTag, setFilterTag] = useState('')
-  const handleClick = (event: { currentTarget: { value: any } }) => {
-    const clickedTag = event.currentTarget.value
-    setFilterTag(clickedTag)
-  }
 
   return (
     // @ts-ignore
@@ -121,24 +155,20 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         </div>
         {/* Filter Buttons */}
         <div className='w-full ml-8 flex flex-wrap justify-start'>{allTags.map((tag) => (
+
           <button key={tag} value={tag} onClick={handleClick} className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm dark:bg-slate-700 dark:text-blue-100'>{tag}</button>
         ))}<span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center dark:text-slate-300'>Filter blog posts by category...</span></div>
+
 
         {/* filterTag === frontmatter.type &&  */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800  mx-auto p-4'>
           {blogPosts
             .filter(post => {
-              if (!typeFilter) return true
+              if (!currentFilterTag || currentFilterTag === 'All') return true
               const blogType = post.frontmatter.type as string | undefined
               if (!blogType) return false
-              return blogType.toLowerCase() === typeFilter.toLowerCase()
-            }).filter(
-              post => {
-                if (post.frontmatter.type === filterTag) return true
-                else if (filterTag === 'All') return true
-                else if (filterTag === '') return true
-              }
-            )
+              return blogType.toLowerCase() === currentFilterTag.toLowerCase()
+            })
             .sort((a, b) => {
               const dateA = new Date(a.frontmatter.date).getTime()
               const dateB = new Date(b.frontmatter.date).getTime()

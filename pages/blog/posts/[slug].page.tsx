@@ -35,10 +35,12 @@ export default function StaticMarkdownPage ({ frontmatter, content }: { frontmat
           <div className='flex ml-10 mr-10 lg:w-1/4'>
             <div className='block -mt-2 w-full'>
               <div className='sticky top-0 overflow-y-auto h-auto pt-4 w-full items-center lg:items-start flex justify-between flex-row lg:flex-col'>
+
                 <Link href='/blog' className='font-semibold text-sm pb-0 lg:pb-5 text-slate-700 hover:text-slate-800 dark:text-slate-300 dark:hover:text-slate-400  inline-flex flex-row items-center'>
                   <img src='/icons/left-arrow.svg' className='h-4 w-4 mr-2' /> Go back to blog
                 </Link>
                 <div className='pt-6 lg:border-t  border-none lg:border-r border-slate-100'>
+
                   {(frontmatter.authors || []).map((author: any, index: number) => {
                     return (
                       <div key={index} className='flex flex-row items-center mb-3 w-full'>

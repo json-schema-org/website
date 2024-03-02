@@ -6,7 +6,6 @@ import JsonEditor from '~/components/JsonEditor'
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp'
 import Highlight from 'react-syntax-highlighter'
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs'
-import { BlockContext, BlockContextValue } from '~/context'
 import Code from '~/components/Code'
 import { FullMarkdownContext } from '~/context'
 
@@ -314,23 +313,79 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 )
               }
             },
+            Warning: {
+              component: ({ children, label }) => {
+                return (
+                  <div className='my-2'>
+                    {label && (
+                      <div className='bg-amber-100 inline-block text-sm rounded-t-lg px-6 py-1 text-amber-600'>
+                        {label}
+                      </div>
+                    )}
+                    <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
+                      <img src='/icons/info-yellow.svg' className='h-7 w-7 mr-3' alt='' />
+                      <div className='font'>
+                        {children}
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+            },
             Infobox: {
               component: ({ children, label }) => {
                 return (
-                  <BlockContext.Provider value={BlockContextValue.Infobox}>
-                    <div className='my-2'>
-                      {label && (
-                        <div className='bg-amber-100 inline-block text-sm rounded-t-lg px-6 py-1 text-amber-600'>
-                          {label}
-                        </div>
-                      )}
-                      <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
-                        <div className='font'>
-                          {children}
-                        </div>
+                  <div className='my-2'>
+                    {label && (
+                      <div className='bg-blue-100 inline-block text-sm rounded-t-lg px-6 py-1 text-blue-600'>
+                        {label}
+                      </div>
+                    )}
+                    <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded text-slate-600 leading-7'>
+                      <img src='/icons/info-blue.svg' className='h-7 w-7 mr-3' alt='' />
+                      <div className='font'>
+                        {children}
                       </div>
                     </div>
-                  </BlockContext.Provider>
+                  </div>
+                )
+              }
+            },
+            Tip: {
+              component: ({ children, label }) => {
+                return (
+                  <div className='my-2'>
+                    {label && (
+                      <div className='bg-green-100 inline-block text-sm rounded-t-lg px-6 py-1 text-green-600'>
+                        {label}
+                      </div>
+                    )}
+                    <div className='flex flex-row items-center mb-6 bg-green-50 px-6 py-4 border border-green-100 rounded text-slate-600 leading-7'>
+                      <img src='/icons/bulb.svg' className='h-7 w-7 mr-3' alt='' />
+                      <div className='font'>
+                        {children}
+                      </div>
+                    </div>
+                  </div>
+                )
+              }
+            },
+            Danger: {
+              component: ({ children, label }) => {
+                return (
+                  <div className='my-2'>
+                    {label && (
+                      <div className='bg-red-100 inline-block text-sm rounded-t-lg px-6 py-1 text-red-600'>
+                        {label}
+                      </div>
+                    )}
+                    <div className='flex flex-row items-center mb-6 bg-red-50 px-6 py-4 border border-red-100 rounded text-slate-600 leading-7'>
+                      <img src='/icons/warning.svg' className='h-7 w-7 mr-3' alt='' />
+                      <div className='font'>
+                        {children}
+                      </div>
+                    </div>
+                  </div>
                 )
               }
             },
