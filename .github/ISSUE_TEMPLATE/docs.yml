@@ -1,6 +1,6 @@
 name: 📝 Documentation
 description: Propose changes and improvements to JSON Schema Docs.
-labels: ["📝 Documentation", "Status: triage"]
+labels: ["📝 Documentation", "Status: Triage"]
 title: "[📝 Docs]: "
 body:
   - type: markdown
