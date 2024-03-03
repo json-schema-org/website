@@ -50,8 +50,8 @@ jobs:
           run: sleep 20
         
         - name: Getting into code-of-conduct directory
-          run: ls -a  
-
+          run: |
+            cd pages/overview/code-of-conduct && cat _index.md
 
         - name: Build
           run: yarn build
