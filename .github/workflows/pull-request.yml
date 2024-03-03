@@ -45,13 +45,10 @@ jobs:
 
         - name: Start App Locally
           run: yarn dev &
-          
-        - name: Wait for server to start
-          run: sleep 20
-        
+
         - name: Getting into code-of-conduct directory
           run: |
-            cd pages/overview/code-of-conduct && cat _index.md
+            cd pages/overview/code-of-conduct && ls -a 
 
         - name: Build
           run: yarn build
