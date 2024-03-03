@@ -47,6 +47,14 @@ The two are, however, entirely different pieces of the conceptual puzzle, with J
 The JSON format is an open format, with its own [homepage](https://www.json.org/), and specifications published in the [ECMA-404](https://www.ecma-international.org/publications-and-standards/standards/ecma-404/) and [RFC-8259](https://datatracker.ietf.org/doc/html/rfc8259) documents from ECMA and the IETF respectively.
 In particular, it is not managed or developed by the JSON Schema team, who simply make use of the format.
 
+### JSON Hyper-Schema
+
+JSON Hyper-Schema extends JSON Schema, offering a [vocabulary](#vocabulary) to annotate JSON documents with hypermedia controls. This extension facilitates the description of links and actions that can be executed on JSON data, making it a powerful tool for developing hypermedia-driven APIs.
+
+The essence of JSON Hyper-Schema lies in its ability to define links and actions that can be executed on JSON data. This is achieved through the use of the `links` keyword, which allows for the creation of dynamic, interactive data representations. For example, a JSON document representing a blog post might include an "author" property. The JSON Hyper-Schema that describes this document could include a template for a hypermedia control that uses the author's identifier in the [instance](#instance) to construct a link to the author's profile. The developer doesn't need to construct the URL manually, which enhances the developer experience by offering a seamless navigation experience.
+
+In other words, JSON Hyper-Schema extends JSON Schema by introducing features for creating hypermedia controls. This facilitates the creation of interactive APIs and ensures compatibility with existing JSON HTTP APIs, maintaining a seamless integration. It adds a layer of interactivity to JSON documents, making it easier to interact with remote JSON resources.
+
 ### keyword
 
 A property appearing within a [schema](#schema) object.
