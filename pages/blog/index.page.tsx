@@ -103,7 +103,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
             </div>
           </div>
         )}
-        <div className='w-full mx-auto my-5 overflow-hidden'>
+        <div className='w-full mx-auto my-5'>
 
           <div className='flex h-full flex-col justify-center items-center mb-3 my-2'>
             <h2 className='text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>Welcome to the JSON Schema Blog!</h2>
@@ -125,7 +125,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
         ))}<span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center'>Filter blog posts by category...</span></div>
 
         {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto p-4 overflow-hidden'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto p-4'>
           {blogPosts
             .filter(post => {
               if (!typeFilter) return true
