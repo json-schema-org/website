@@ -48,7 +48,11 @@ jobs:
           
         - name: Wait for server to start
           run: sleep 20
-      
+        
+        - name: Getting into code-of-conduct directory
+          run: ls -a  
+
+
         - name: Build
           run: yarn build
 
