@@ -1,7 +1,7 @@
 name: ⭐️ Feature request
 description: Suggest an idea for this project
 title: "Feature "
-labels: ["🌟 Feature", "Status: triage"]
+labels: ["🌟 Feature", "Status: Triage"]
 body:
 - type: textarea
   attributes:
