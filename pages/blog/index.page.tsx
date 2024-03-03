@@ -127,7 +127,7 @@ export default function StaticMarkdownPage({
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10 overflow-x-hidden'>
+      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10'>
         {recentBlog[0] && (
           <div className='relative w-full lg:h-[50vh] lg:mt-6 clip-bottom'>
             <div className='-z-1 bg-black'>
@@ -168,7 +168,7 @@ export default function StaticMarkdownPage({
             </div>
           </div>
         )}
-        <div className='w-full mx-auto my-5 overflow-hidden'>
+        <div className='w-full mx-auto my-5'>
 
         <div className='w-full mx-auto my-5'>
           <div className='flex h-full flex-col justify-center items-center mb-3 my-2'>
@@ -220,7 +220,7 @@ export default function StaticMarkdownPage({
         </div>
 
         {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto p-4 overflow-hidden'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white  mx-auto p-4'>
           {blogPosts
             .filter((post) => {
               if (!currentFilterTag || currentFilterTag === 'All') return true;
