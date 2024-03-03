@@ -184,28 +184,28 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     <td>
 
 ```jsonc
-    // tree schema, extensible
-    {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "$id": "https://example.com/tree",
-      "$dynamicAnchor": "node",
-      "type": "object",
-      "properties": {
-        "data": true,
-        "children": {
-          "type": "array",
-          "items": { "$dynamicRef": "#node" }
-        }
-      }
+// tree schema, extensible
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/tree",
+  "$dynamicAnchor": "node",
+  "type": "object",
+  "properties": {
+    "data": true,
+    "children": {
+      "type": "array",
+      "items": { "$dynamicRef": "#node"}
     }
-    // strict-tree schema, guards against misspelled properties
-    {
-      "$schema": "https://json-schema.org/draft/2020-12/schema",
-      "$id": "https://example.com/strict-tree",
-      "$dynamicAnchor": "node",
-      "$ref": "tree",
-      "unevaluatedProperties": false
-    }
+  }
+}
+// strict-tree schema, guards against misspelled properties
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/strict-tree",
+  "$dynamicAnchor": "node",
+  "$ref": "tree",
+  "unevaluatedProperties": false
+}
 ```
   </td>
   </tr>
