@@ -40,15 +40,17 @@ jobs:
           with:
             node-version: '20'   
 
+        - name: Initialize and update submodule
+          run: git submodule update --init --recursive
+
         - name: Install dependencies
           run: yarn install --frozen-lockfile
 
         - name: Start App Locally
           run: yarn dev &
 
-        - name: Getting into code-of-conduct directory
-          run: |
-            cd pages/overview/code-of-conduct && ls -a 
+        - name: Sleep for 10 second
+          run: sleep 10
 
         - name: Build
           run: yarn build

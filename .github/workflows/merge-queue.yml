@@ -39,6 +39,9 @@ jobs:
           with:
             node-version: '20'   
 
+        - name: Initialize and update submodule
+          run: git submodule update --init --recursive
+
         - name: Install dependencies
           run: yarn install --frozen-lockfile
 
