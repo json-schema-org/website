@@ -68,7 +68,7 @@ export default function StaticMarkdownPage({ blogPosts }: { blogPosts: any[] }) 
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10 overflow-hidden'>
+      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10 overflow-x-hidden'>
         {recentBlog[0] && (
           <div className='relative w-full lg:h-[50vh] lg:mt-6 clip-bottom'>
             <div className='-z-1 bg-black'>
