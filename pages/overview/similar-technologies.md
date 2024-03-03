@@ -1,9 +1,6 @@
 ---
-noteId: "2b349790d91d11eeb30e2911998fc912"
-tags: []
-section: "docs"
-title: "Similar Technologies"
-
+section: docs
+title: Similar Technologies
 ---
 
 While we think that JSON Schema has a unique value proposition, we'd like to provide visibility to other technologies that share similar goals:
