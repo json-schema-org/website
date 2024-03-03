@@ -168,7 +168,6 @@ export default function StaticMarkdownPage({
             </div>
           </div>
         )}
-
         <div className='w-full mx-auto my-5'>
           <div className='flex h-full flex-col justify-center items-center mb-3 my-2'>
             <h2 className='text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>
