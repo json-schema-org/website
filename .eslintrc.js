@@ -14,7 +14,8 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-    'plugin:@next/next/recommended'
+    'plugin:@next/next/recommended',
+    'plugin:prettier/recommended'
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -26,7 +27,8 @@ module.exports = {
   },
   plugins: [
     'react',
-    '@typescript-eslint'
+    '@typescript-eslint',
+    'prettier'
   ],
   rules: {
     'array-bracket-spacing': ['error', 'never'],
@@ -36,22 +38,11 @@ module.exports = {
     'linebreak-style': ['error', 'unix'],
     'quotes': ['error', 'single'],
     'jsx-quotes': ['error', 'prefer-single'],
-    'semi': ['error', 'never'],
     'no-eval': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-unused-vars': ['error', { 'ignoreRestSiblings': true }],
-    '@typescript-eslint/member-delimiter-style': ['error', {
-      'singleline': {
-        'delimiter': 'comma',
-        'requireLast': false
-      },
-      'multiline': {
-        'delimiter': 'none',
-        'requireLast': false
-      }
-    }],
     '@typescript-eslint/type-annotation-spacing': ['error'],
     'react/no-unescaped-entities': 'off',
     'react/jsx-tag-spacing': 'error',
@@ -63,7 +54,6 @@ module.exports = {
     'no-multi-spaces': 'error',
     'space-infix-ops': 'error',
     'space-before-blocks': 'error',
-    'nonblock-statement-body-position': 'error',
     'arrow-spacing': 'error'
   }
 }
