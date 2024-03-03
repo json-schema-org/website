@@ -42,12 +42,15 @@ const Headline = ({
   const router = useRouter();
   const asPath = router.asPath;
   const slug = slugifyMarkdownHeadline(children as any[]);
-
+  const id= propAttributes?.slug || slug
+  const isActive = id===asPath.split('#')[1];
   const attributes = {
     ...propAttributes,
     id: propAttributes?.slug || slug,
+    
     className: classnames(
-      'group cursor-pointer hover:underline',
+      'group cursor-pointer',
+      isActive ? 'hover, text-blue-500' : 'hover:underline',
       propAttributes?.className,
     ),
     onClick: () => {
@@ -60,6 +63,7 @@ const Headline = ({
       window.location.href = urlString;
     },
   };
+
   const childredWithoutFragment = filterFragment(children);
   return (
     <Tag attributes={attributes}>
