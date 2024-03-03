@@ -102,7 +102,7 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10'>
+      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10 overflow-x-hidden'>
         {recentBlog[0] && (
            <div className='relative w-full  h-[400px] lg:h-auto clip-bottom mt-6'>
             <div className='-z-1 bg-black h-full'>
