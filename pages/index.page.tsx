@@ -292,9 +292,9 @@ const Home = (props: any) => {
             </div>
           </div>
         </section>
-        
-         <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both grid items-center'>
-         <div className='lg:w-full mx-auto text-center'>
+
+        <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both grid items-center'>
+          <div className='lg:w-full mx-auto text-center'>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>
               Start learning JSON Schema
             </h2>
@@ -484,7 +484,7 @@ const Home = (props: any) => {
         </section>
 
         {/* News & Blogs */}
-            
+
         <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both grid items-center'>
           <div className='lg:w-full mx-auto text-center'>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>
