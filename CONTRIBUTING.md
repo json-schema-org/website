@@ -21,7 +21,6 @@ If you don't have time to contribute, that's fine. There are other easy ways to 
   - 📋 [Improving the Documentation](#-improving-the-documentation)
   - 🌐 [Improving the website](#-improving-the-website)
   - 🎨 [Improving the Design](#-improving-the-design)
-  - 🚀 [Custom Markdown Writing Style Guide](./md-style-guide.md)
 - ⌨️ [Pull requests](#%EF%B8%8F-pull-requests)
 - 🏛 [License](#-license)
 
@@ -78,6 +77,10 @@ If the pull request would solve a particular issue, reference the issue in the p
 Generally, pull requests should be made to the `main` branch.
 
 Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged more quickly once approved by a project member.
+
+### Markdown Style Guide
+
+User contributing to doc and other blog pls. have a look at our [custom markdown style guide](https://json-schema.org/md-style-guide). This style guide has information of custom markdown tags used by us.
 
 ## Triage
 
