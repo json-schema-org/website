@@ -239,7 +239,7 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-bold mb-6'>
               Why JSON Schema?
             </h2>
-            <p className='mb-6 leading-5 text-h5mobile md:text-h5 leading-7'>
+            <p className='mb-6 text-h5mobile md:text-h5 leading-7'>
               While JSON is probably the most popular format for exchanging
               data, JSON Schema is the vocabulary that enables JSON data
               consistency, validity, and interoperability at scale.
@@ -472,7 +472,7 @@ const Home = (props: any) => {
                 </div>
                 <a
                   href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com'
-                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center flex items-center justify-center'
+                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center flex items-center justify-center'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
