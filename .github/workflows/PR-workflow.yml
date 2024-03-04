@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -17,7 +17,13 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install --frozen-lockfile
+
+      - name: Cache Node dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm 
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Linting and Formatting checks
         run: yarn run lint
@@ -31,7 +37,7 @@ jobs:
     needs: linting_and_type-checking 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -41,7 +47,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: yarn
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn run build
