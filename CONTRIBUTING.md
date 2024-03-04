@@ -80,7 +80,7 @@ Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged
 
 ### Markdown Style Guide
 
-User contributing to doc and other blog pls. have a look at our [custom markdown style guide](https://json-schema.org/md-style-guide). This style guide has information of custom markdown tags used by us.
+User contributing to doc and or other types of written content like blogs or case studies can have a look at our [custom markdown style guide](https://json-schema.org/md-style-guide). This style guide has information of custom markdown tags used by us.
 
 ## Triage
 
