@@ -4,6 +4,9 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,md}',
   ],
   theme: {
+    screens: {
+      'sm1':'890px'
+    },
     fontFamily: {
       'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
       'serif': ['ui-serif', 'Georgia'],

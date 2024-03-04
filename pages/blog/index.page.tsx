@@ -105,19 +105,19 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
       <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10 overflow-x-hidden'>
         {recentBlog[0] && (
            <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start'>
-            <div className='absolute w-full h-full'>
+            <div className='absolute w-full h-full '>
               <img
                 src={recentBlog[0].frontmatter.cover}
                 className='object-cover w-full h-full opacity-70'
                 alt='hero image example'
               />
             </div>
-            <div className='absolute h-full w-full text-white mt-14 ml-14 '>
-            <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
+            <div className='absolute h-full w-full text-white my-16 ml-14 '>
+            <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm'>
                 {recentBlog[0].frontmatter.type}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
-                <h1 className='text-h1mobile md:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6'>
+                <h1 className='text-h1mobile sm1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
                 <div className='flex ml-2 mb-2 '>
