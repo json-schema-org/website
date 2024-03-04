@@ -10,7 +10,7 @@ jobs:
       with:
         repo-token: ${{ secrets.AUTH_TOKEN }}
         issue-message: > 
-            Welcome to offical website repository for [json-schema.org](https://json-schema.org/). Thanks a lot for reporting your first issue. Please check out our [contributors guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md) if you plan on opening a pull request.
+            Welcome to the [JSON Schema](https://json-schema.org/) Community. We are so excited you are here! Thanks a lot for reporting your first issue!! 🎉🎉  Please make sure to take a look to our [contributors guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md) if you plan on opening a pull request. 
             For more details check out [README.md](https://github.com/json-schema-org/website?tab=readme-ov-file#-welcome-to-the-json-schema-website) file.
 
         pr-message: > 
