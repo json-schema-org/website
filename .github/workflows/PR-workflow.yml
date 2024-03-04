@@ -1,4 +1,4 @@
-name: Code Checker
+name: PR Workflow
 on:
   pull_request:
     types: [opened, reopened, synchronize]
