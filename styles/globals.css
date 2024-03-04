@@ -36,8 +36,9 @@ html {
   display: none !important;
 }
 
-.DocSearch-Button-Container {
+.herobtn .DocSearch-Button-Container {
   background-color: transparent !important;
+  justify-content: center;
   width: 168px;
   height: 32px;
   padding: 8px 8px;
@@ -46,12 +47,30 @@ html {
 border-radius: 4px; */
 }
 
-@media (max-width: 730px) {
+@media (max-width: 1027px) {
   .DocSearch-Button-Container {
-    width: 40px;
     height: 40px;
     padding: 0px;
     border: none;
+  }
+
+  .DocSearch-Button {
+    margin: 0;
+  }
+
+  .DocSearch-Button-Placeholder {
+    display: inline;
+  }
+
+  .herobtn .DocSearch-Button-Container {
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+}
+
+@media (max-width: 450px) {
+  .DocSearch-Button {
+    margin: 0;
   }
 }
 
@@ -145,10 +164,6 @@ border-radius: 4px; */
 }
 
 .herobtn span {
-  margin: 0 auto;
-}
-
-.herobtn span {
   color: white !important;
   font-weight: 600;
 }
@@ -169,6 +184,6 @@ border-radius: 4px; */
 .anchor #community {
   position: absolute;
   left: 0;
-  top: -80px;
+  top: 35px;
   /* change this value to match the height of the header */
 }
