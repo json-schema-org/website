@@ -45,7 +45,7 @@ Bowtie attempts to bring these ideas to JSON Schema.
 
 From the existing [list of JSON Schema implementations](https://json-schema.org/implementations.html#validators), Bowtie already [supports](https://github.com/orgs/bowtie-json-schema/packages) *12* implementations across *9* programming languages, allowing anyone to run any of these implementations and see what they have to say about schemas and instances.
 
-It ships with a [command line program](https://docs.bowtie.report/en/stable/cli/), but perhaps more excitingly, ongoing automated runs of this CLI have been set up, such that Bowtie emits a [report across all of its supported implementations](https://bowtie-json-schema.github.io/bowtie/draft2020).
+It ships with a [command line program](https://bowtie-json-schema.readthedocs.io/en/latest/cli/), but perhaps more excitingly, ongoing automated runs of this CLI have been set up, such that Bowtie emits a [report across all of its supported implementations](https://bowtie-json-schema.github.io/bowtie/draft2020).
 
 To produce this report, Bowtie runs the [official JSON Schema Test Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite), which is our existing set of tests meant to exercise compliance with the JSON Schema specifications.
 Many implementations already [use the suite within their own continuous integration](https://github.com/json-schema-org/JSON-Schema-Test-Suite#who-uses-the-test-suite), but this is the first time both users of JSON Schema as well as implementers can see results of running the suite in a single place, across many implementations.
