@@ -10,6 +10,20 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        
+      - name: Cache Node dependencies
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm 
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -19,11 +33,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Cache Node dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm 
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
 
       - name: Linting and Formatting checks
         run: yarn run lint
@@ -41,6 +50,20 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Cache Node dependencies
+        id: cache-npm
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm 
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      
+      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
+        name: List the state of node modules
+        continue-on-error: true
+        run: npm list
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
