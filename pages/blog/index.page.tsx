@@ -104,20 +104,20 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
       </Head>
       <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-10 overflow-x-hidden'>
         {recentBlog[0] && (
-           <div className='relative w-full  h-[400px] lg:h-auto clip-bottom mt-6'>
-            <div className='-z-1 bg-black h-full'>
+           <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start'>
+            <div className='absolute w-full h-full'>
               <img
                 src={recentBlog[0].frontmatter.cover}
                 className='object-cover w-full h-full opacity-70'
                 alt='hero image example'
               />
             </div>
-            <div className='absolute text-white left-8 bottom-8'>
+            <div className='absolute h-full w-full text-white mt-14 ml-14 '>
             <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
                 {recentBlog[0].frontmatter.type}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
-                <h1 className='text-h1mobile md:text-h1 font-semibold text-stroke-1'>
+                <h1 className='text-h1mobile md:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
                 <div className='flex ml-2 mb-2 '>
@@ -126,7 +126,7 @@ export default function StaticMarkdownPage({ blogPosts, filterTag }: { blogPosts
                   />
                   <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
                     <p className='text-sm font-semibold text-stroke-1'>{recentBlog[0].frontmatter.authors[0].name}</p>
-                    <div className=' text-sm  text-stroke-1'>
+                    <div className=' mb-6 text-sm  text-stroke-1'>
                       <span>
                         {recentBlog[0].frontmatter.date} &middot; {timeToRead} min read
                       </span>
