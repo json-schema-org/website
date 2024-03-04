@@ -13,8 +13,6 @@ While we think that JSON Schema has a unique value proposition, we'd like to pro
 
 * **CBOR Data Definition Language (Cddl):** While not strictly focused on constraints, Cddl allows defining the structure of CBOR data. Check out the Cddl IETF draft: [https://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl-08](https://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl-08) for more information.
 
-* **AJV (Another JSON Schema Validator):** A high-performance JSON Schema validator with extensive support for various features. Explore it at AJV website: [https://ajv.js.org/](https://ajv.js.org/).
-
 ## Contributing to the Community
 
 Do you know of any other relevant technologies that we should add to this list? Please submit a pull request. We encourage contributions! 
