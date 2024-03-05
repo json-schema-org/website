@@ -27,8 +27,8 @@ jobs:
             })
             
             
-            const data =  await octokit.request('POST /orgs/{org}/{repo}/pulls/{pull_number}/requested_reviewers', {
-              org: 'Lakhua-dev',
+            await octokit.request('POST /repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers', {
+              owner: 'Lakhua-dev',
               repo: 'website',
               pull_number: '7',
               team_reviewers: [
@@ -40,6 +40,4 @@ jobs:
             })
 
             console.log(data)
-
-            
 
