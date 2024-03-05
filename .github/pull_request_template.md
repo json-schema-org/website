@@ -10,7 +10,7 @@ Thanks for submitting a pull request! Please provide enough information so that 
 <!-- E.g. a bugfix, feature, refactoring, etc… -->
 
 **Issue Number:**
-<!-- Pick one of the below option -->
+<!-- Pick one of the below options -->
 -  Closes #___ <!-- Replace ___ with the issue number this PR resolves -->
 -  Related to #___ <!-- Use when the PR doesn't completely resolve an issue -->
 -  Others? <!-- Add any additional notes or references here -->
