@@ -26,8 +26,8 @@ jobs:
             })
             
             const data =  await octokit.request('GET /orgs/{org}/teams/{team_slug}/members', {
-            org: 'ORG',
-            team_slug: 'TEAM_SLUG',
+            org: 'Lakhua-dev',
+            team_slug: 'web-team',
             headers: {
                 'X-GitHub-Api-Version': '2022-11-28'
             }
