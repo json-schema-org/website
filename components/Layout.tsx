@@ -30,6 +30,8 @@ export default function Layout({
 
   const router = useRouter();
 
+  const isLandingPage = router.pathname === '/';
+
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
     [router.asPath],
