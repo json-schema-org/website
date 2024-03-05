@@ -1,0 +1,30 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo 'Performing code styling, testing, and building processes before committing'
+
+# Check ESLint Standards
+yarn run lint ||
+(
+        echo 'ESLint Check Failed. Run yarn run lint:fix, Review the listed issues, make the required adjustments, add the changes, and attempt to commit again.'
+        false; 
+)
+
+# Check tsconfig standards
+yarn run typecheck ||
+(
+    echo 'The TypeScript configuration check has failed. Address the outlined issues above.'
+    false;
+)
+
+# If everything passes... Now we can commit
+echo 'The code appears to meet the required standards. Proceeding with the build process.'
+
+yarn run build ||
+(
+    echo 'The Next.js build process encountered errors. Refer to the error messages above for troubleshooting steps.'
+    false;
+)
+
+# If everything passes... Now we can commit
+echo 'The code has been successfully validated and built. Proceeding with the commit process...'

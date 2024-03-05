@@ -1,0 +1,18 @@
+name: Greeting the new contributor 
+
+on: [pull_request, issues]
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: > 
+            Welcome to the [JSON Schema](https://json-schema.org/) Community. We are so excited you are here! Thanks a lot for reporting your first issue!! 🎉🎉  Please make sure to take a look to our [contributors guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md) if you plan on opening a pull request. 
+            For more details check out [README.md](https://github.com/json-schema-org/website?tab=readme-ov-file#-welcome-to-the-json-schema-website) file.
+
+        pr-message: > 
+            Welcome to the [JSON Schema](https://json-schema.org/) Community. Thanks a lot for creating your first pull request!! 🎉🎉  We are so excited you are here! We hope this is only the first of many!
+            For more details check out [README.md](https://github.com/json-schema-org/website?tab=readme-ov-file#-welcome-to-the-json-schema-website) file.

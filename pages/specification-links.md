@@ -302,6 +302,7 @@ For links to the somewhat more readably formatted versions on this web site, and
     - Core: [draft-bhutton-json-schema-01](../../draft/2020-12/draft-bhutton-json-schema-01.html) ([changes](../../draft/2020-12/draft-bhutton-json-schema-01.html#appendix-G))
     - Validation: [draft-bhutton-json-schema-validation-01](../../draft/2020-12/draft-bhutton-json-schema-validation-01.html) ([changes](/draft/2020-12/draft-bhutton-json-schema-validation-01.html#appendix-C))
     - Relative JSON Pointer: [draft-bhutton-relative-json-pointer-00](https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00) ([changes](https://tools.ietf.org/html/draft-bhutton-relative-json-pointer-00#appendix-A))
+    - Published: 16-June-2022
 - General use meta-schemas
     - [JSON Schema meta-schema](../../draft/2020-12/schema)
     - [JSON Hyper-Schema meta-schema](../../draft/2020-12/hyper-schema) (2019-09 Hyper-Schema with 2020-12 Validation)
@@ -338,6 +339,7 @@ _**NOTE:** All meta-schema URIs now use `https://`.  While currently also availa
     - Validation: [draft-handrews-json-schema-validation-02](../../draft/2019-09/draft-handrews-json-schema-validation-02.html) ([changes](/draft/2019-09/draft-handrews-json-schema-validation-02.html#rfc.appendix.C))
     - Hyper-Schema: [draft-handrews-json-schema-hyperschema-02](../../draft/2019-09/draft-handrews-json-schema-hyperschema-02.html) ([changes](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html#rfc.appendix.B))
     - Relative JSON Pointer: [draft-handrews-relative-json-pointer-02](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-02) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-02#appendix-A))
+    - Published: 17-September-2019
 - General use meta-schemas
     - [JSON Schema meta-schema](../../draft/2019-09/schema)
     - [JSON Hyper-Schema meta-schema](../../draft/2019-09/hyper-schema)
@@ -366,6 +368,7 @@ _**NOTE:** All meta-schema URIs now use `https://`.  While currently also availa
 - [JSON Hyper-Schema Link Description Object meta-schema](../../draft-07/links)
 - [JSON Hyper-Schema recommended output schema](../../draft-07/hyper-schema-output)
 - Relative JSON Pointer: [draft-handrews-relative-json-pointer-01](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01#appendix-B))
+- Published: 19-March-2018
 
 #### Obsolete Draft 7 Documents
 
@@ -383,6 +386,7 @@ _These were updated without changing functionality or meta-schemas due to a few 
 - Hyper-Schema: [draft-wright-json-schema-hyperschema-01](../../draft-06/draft-wright-json-schema-hyperschema-01.html) ([changes](../../draft-06/draft-wright-json-schema-hyperschema-01.html#rfc.appendix.B)) ([hyper-schema migration FAQ](draft-06/json-hyper-schema-release-notes))
 - [JSON Schema meta-schema](../../draft-06/schema)
 - [JSON Hyper-Schema meta-schema](../../draft-06/hyper-schema)
+- Published: 21-April-2017
 
 ### Draft 5
 
@@ -390,6 +394,7 @@ _These were updated without changing functionality or meta-schemas due to a few 
  - Validation: [draft-wright-json-schema-validation-00](../../draft-05/draft-wright-json-schema-validation-00.pdf) ([changes](../../draft-05/draft-wright-json-schema-validation-00.pdf#appendix-B))
  - Hyper-Schema: [draft-wright-json-schema-hyperschema-00](../../draft-05/draft-wright-json-schema-hyperschema-00.pdf) ([changes](../../draft-05/draft-wright-json-schema-hyperschema-00.pdf#appendix-B))
  - Draft 5 was primarily a cleanup of Draft 4 and continued to use the Draft 4 meta-schemas.
+ - Published: 13-October-2016
 
 ### Draft 4
 
@@ -399,24 +404,28 @@ _These were updated without changing functionality or meta-schemas due to a few 
  - JSON Reference: [draft-pbryan-zyp-json-ref-03](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03) ([changes](https://tools.ietf.org/html/draft-pbryan-zyp-json-ref-03#appendix-A))
  * [JSON Schema meta-schema](../../draft-04/schema)
  * [JSON Hyper-Schema meta-schema](../../draft-04/hyper-schema)
+ - Published: 31-January-2013
 
 ### Draft 3
 
  - Complete Specification: [draft-zyp-json-schema-03](../../draft-03/draft-zyp-json-schema-03.pdf) ([changes](../../draft-03/draft-zyp-json-schema-03.pdf#anchor54))
 * [JSON Schema meta-schema](../../draft-03/schema)
 * [JSON Hyper-Schema meta-schema](../../draft-03/hyper-schema)
+- Published: 22-November-2010
 
 ### Draft 2
 
  - Complete Specification: [draft-zyp-json-schema-02](../../draft-02/draft-zyp-json-schema-02.txt) (changes: Appendix-A)
 * [JSON Schema meta-schema](../../draft-02/schema)
 * [JSON Hyper-Schema meta-schema](../../draft-02/hyper-schema)
+- Published: 23-March-2010
 
 ### Draft 1
 
  - Complete Specification: [draft-zyp-json-schema-01](../../draft-01/draft-zyp-json-schema-01.html) ([changes](../../draft-01/draft-zyp-json-schema-01.html#anchor54))
 * [JSON Schema meta-schema](../../draft-01/schema)
 * [JSON Hyper-Schema meta-schema](../../draft-01/hyper-schema)
+- Published: 05-December-2009
 
 ### Draft 0
 
@@ -425,15 +434,16 @@ _Note that Draft 0 erroneously claimed to update another RFC, and was replaced t
  - Specification: [draft-zyp-json-schema-00](../../draft-00/draft-zyp-json-schema-00.txt) (changes: Appendix-A))
 * [JSON Schema meta-schema](../../draft-00/schema)
 * [JSON Hyper-Schema meta-schema](../../draft-00/hyper-schema)
+- Published: 05-December-2009
 
 ## Latest Snapshot (work in progress)
 
 The next unreleased draft is a work in progress.  You can [give feedback and get involved on GitHub](https://github.com/json-schema-org/json-schema-spec).
 
-The specification links here link to the XML and JSON sources.  We do not provide rendered [work-in-progress](work-in-progress) drafts except near the very end of a publication cycle, during the final review period.
+The specification links here link to the raw sources.  We do not provide rendered [work-in-progress](work-in-progress) drafts except near the very end of a publication cycle, during the final review period.
 
- - Core: [jsonschema-core.xml](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-core.md)
- - Validation: [jsonschema-validation.xml](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-validation.md)
+ - Core: [jsonschema-core.md](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-core.md)
+ - Validation: [jsonschema-validation.md](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-validation.md)
  - Hyper-Schema: [jsonschema-hyperschema.xml](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/jsonschema-hyperschema.xml)
 - Relative JSON Pointer: [relative-json-pointer.xml](https://github.com/json-schema-org/json-schema-spec/blob/master/relative-json-pointer.xml)
 - [JSON Schema meta-schema](https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json)

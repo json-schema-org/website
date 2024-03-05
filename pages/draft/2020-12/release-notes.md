@@ -366,8 +366,8 @@ external references that we want to bundle.
   "properties": {
     "address": { "type": "string" },
     "city": { "type": "string" },
-    "postalCode": { "type": "/schema/common#/$defs/usaPostalCode" },
-    "state": { "type": "/$defs/states" }
+    "postalCode": { "$ref": "/schema/common#/$defs/usaPostalCode" },
+    "state": { "$ref": "/$defs/states" }
   },
 
   "$defs": {
@@ -423,8 +423,8 @@ embedded schemas using `$defs`. Here's what the bundled schema would look like.
       "properties": {
         "address": { "type": "string" },
         "city": { "type": "string" },
-        "postalCode": { "type": "/schema/common#/$defs/usaPostalCode" },
-        "state": { "type": "#/$defs/states" }
+        "postalCode": { "$ref": "/schema/common#/$defs/usaPostalCode" },
+        "state": { "$ref": "#/$defs/states" }
       },
 
       "$defs": {

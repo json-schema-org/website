@@ -11,6 +11,10 @@
     clip-path: polygon(0 15%, 0 100%, 0% 100%, 100% 85%, 100% 0);
   }
 
+  .clip-top {
+    clip-path: polygon(0 15%, 0 100%, 0% 100%, 100% 100%, 100% 0);
+  }
+
   @media (min-width: 320px) and (max-width: 759px) {
     .clip-bottom {
       clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 95%, 100% 0);
@@ -18,6 +22,10 @@
 
     .clip-both {
       clip-path: polygon(0 05%, 0 100%, 0% 100%, 100% 95%, 100% 0);
+    }
+
+    .clip-top {
+      clip-path: polygon(0 05%, 0 100%, 0% 100%, 100% 100%, 100% 0);
     }
   }
 }
@@ -28,14 +36,17 @@
 
 html {
   font-family: 'Inter', sans-serif;
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
 }
 
 .DocSearch-Button-Keys {
   display: none !important;
 }
 
-.DocSearch-Button-Container {
+.herobtn .DocSearch-Button-Container {
   background-color: transparent !important;
+  justify-content: center;
   width: 168px;
   height: 32px;
   padding: 8px 8px;
@@ -44,12 +55,30 @@ html {
 border-radius: 4px; */
 }
 
-@media (max-width: 730px) {
+@media (max-width: 1027px) {
   .DocSearch-Button-Container {
-    width: 40px;
     height: 40px;
     padding: 0px;
     border: none;
+  }
+
+  .DocSearch-Button {
+    margin: 0;
+  }
+
+  .DocSearch-Button-Placeholder {
+    display: inline;
+  }
+
+  .herobtn .DocSearch-Button-Container {
+    margin-right: 4px;
+    margin-left: 4px;
+  }
+}
+
+@media (max-width: 450px) {
+  .DocSearch-Button {
+    margin: 0;
   }
 }
 
@@ -60,89 +89,6 @@ border-radius: 4px; */
   border: transparent !important;
   background-color: transparent;
   box-shadow: none;
-}
-
-/* CARBON ADS */
-
-#carbonads {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  line-height: 1.45;
-  background-color: #f9f9f9;
-  border: 1px dashed;
-  border-color: #cacaca;
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  box-sizing: border-box;
-  float: right;
-  max-width: 300px;
-  text-align: left !important;
-  margin: 0;
-  z-index: 1000;
-  border-top-left-radius: 10px;
-}
-
-@media (min-width: 775px) and (max-device-width: 1068px) {
-  #carbonads {
-    top: 140px;
-  }
-}
-
-@media (max-width: 775px) {
-  #carbonads {
-    display: none;
-
-  }
-}
-
-.separation-line {
-  border-bottom: 1px solid white; /* Adjust the border style as needed */
-}
-
-#carbonads>span {
-  position: relative;
-  display: block;
-  padding: 10px;
-  border-radius: 4px
-}
-
-#carbonads .carbon-wrap {
-  display: flex
-}
-
-#carbonads .carbon-img {
-  margin-right: 10px;
-  line-height: 1
-}
-
-#carbonads .carbon-text {
-  margin-bottom: 12px;
-  color: #637381;
-  text-decoration: none
-}
-
-#carbonads .carbon-poweredby {
-  position: absolute;
-  bottom: 10px;
-  left: 152px;
-  color: #c5cdd0;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: .5px;
-  font-weight: 500;
-  font-size: 10px;
-  line-height: 1
-}
-
-#carbonads .carbon-poweredby:hover {
-  color: #637381
-}
-
-@media only screen and (min-width: 320px) and (max-width: 759px) {
-  .carbon-text {
-    font-size: 14px
-  }
 }
 
 /** Style Algolia */
@@ -226,10 +172,6 @@ border-radius: 4px; */
 }
 
 .herobtn span {
-  margin: 0 auto;
-}
-
-.herobtn span {
   color: white !important;
   font-weight: 600;
 }
@@ -250,6 +192,11 @@ border-radius: 4px; */
 .anchor #community {
   position: absolute;
   left: 0;
-  top: -80px;
+  top: 35px;
   /* change this value to match the height of the header */
 }
+/* In your CSS file */
+.mt-custom {
+  margin-top: 4.4rem;
+}
+

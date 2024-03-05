@@ -269,7 +269,7 @@ The astute among you might have noticed that Compound Documents may not be corre
 
 If you’d like a more in-depth look at edge case situations, please do let us know.
 
-You can reach out to us [@jsonschema](https://twitter.com/jsonschema) or our [Slack server](/slack).
+You can reach out to us [@jsonschema](https://www.twitter.com/jsonschema) or our [Slack server](/slack).
 
 *I hope you’ll agree, Ben has clarified the process for us all here, and we can use this example to fully meet JSON Schema’s bundling expectations when writing tools which bundle multiple resources into compound OpenAPI documents. Thanks, Ben!* - Mike
 

@@ -35,7 +35,7 @@ If you like to know more about me, check out [this intro post](https://www.twili
 2023 will be a fantastic year for JSON Schema, and I am excited to be part of this journey with all of you! I can't wait to start connecting with you in the upcoming [working meetings](https://github.com/json-schema-org/community/discussions/35), in [Slack](https://json-schema.org/slack), and [Github](https://github.com/orgs/json-schema-org/discussions).
 
 >* Email: benjamin.granados@postman.com
->* Twitter: [@benjagm](https://twitter.com/benjagm)
+>* Twitter: [@benjagm](https://www.twitter.com/benjagm)
 >* Linkedin: [benjagranados](https://www.linkedin.com/in/benjagranados/)
 >* Github: [benjagm](https://github.com/benjagm)
 
