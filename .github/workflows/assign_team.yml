@@ -1,0 +1,28 @@
+name: Assign Team to PR Workflow
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  assign_team:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Assign Team
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const teamName = 'web-team';
+          const teamMembers = await github.teams.listMembersInOrg({
+            org: 'Lakhua-dev',
+            team_slug: teamName
+          });
+          const assignees = teamMembers.data.map(member => member.login);
+          await github.pulls.createReviewRequest({
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            pull_number: context.payload.pull_request.number,
+            reviewers: assignees
+          });
