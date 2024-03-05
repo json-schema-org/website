@@ -26,11 +26,6 @@ jobs:
               auth: process.env.AUTH_TOKEN,
             })
             
-            // Octokit.js
-            // https://github.com/octokit/core.js#readme
-            const octokit = new Octokit({
-              auth: 'YOUR-TOKEN'
-            })
             
             const data =  await octokit.request('POST /orgs/{org}/{repo}/pulls/{pull_number}/requested_reviewers', {
               org: 'Lakhua-dev',
