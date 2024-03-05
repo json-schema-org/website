@@ -1,23 +1,26 @@
-import React from 'react'
-import { getLayout } from '~/components/Sidebar'
-import fs from 'fs'
-import Head from 'next/head'
-import matter from 'gray-matter'
-import StyledMarkdown from '~/components/StyledMarkdown'
-import { SectionContext } from '~/context'
+import React from 'react';
+import { getLayout } from '~/components/Sidebar';
+import fs from 'fs';
+import Head from 'next/head';
+import matter from 'gray-matter';
+import StyledMarkdown from '~/components/StyledMarkdown';
+import { SectionContext } from '~/context';
 
 export async function getStaticProps() {
-  const block = fs.readFileSync('pages/overview/code-of-conduct/_index.md', 'utf-8')
-  const { content: blockContent } = matter(block)
+  const block = fs.readFileSync(
+    'pages/overview/code-of-conduct/_index.md',
+    'utf-8',
+  );
+  const { content: blockContent } = matter(block);
   return {
     props: {
-      blocks: [blockContent]
-    }
-  }
+      blocks: [blockContent],
+    },
+  };
 }
 
-export default function Content ({ blocks }: { blocks: any[] }) {
-  const newTitle = 'Code of Conduct'
+export default function Content({ blocks }: { blocks: any[] }) {
+  const newTitle = 'Code of Conduct';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -26,6 +29,6 @@ export default function Content ({ blocks }: { blocks: any[] }) {
       </Head>
       <StyledMarkdown markdown={blocks[0]} />
     </SectionContext.Provider>
-  )
+  );
 }
-Content.getLayout = getLayout
+Content.getLayout = getLayout;

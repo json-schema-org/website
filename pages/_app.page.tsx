@@ -1,3 +1,4 @@
+
 import '../styles/globals.css'
 import 'tailwindcss/tailwind.css'
 import React from 'react'
@@ -13,6 +14,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         {getLayout(<AnyComponent {...pageProps} />, pageProps)}
       </ThemeProvider>
   )
+
 }
 
-export default MyApp
+export default MyApp;

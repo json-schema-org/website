@@ -47,7 +47,7 @@ html {
 border-radius: 4px; */
 }
 
-@media (max-width:1027px) {
+@media (max-width: 1027px) {
   .DocSearch-Button-Container {
     height: 40px;
     padding: 0px;
@@ -66,10 +66,9 @@ border-radius: 4px; */
     margin-right: 4px;
     margin-left: 4px;
   }
-
 }
 
-@media (max-width:450px) {
+@media (max-width: 450px) {
   .DocSearch-Button {
     margin: 0;
   }
@@ -185,12 +184,14 @@ border-radius: 4px; */
 .anchor #community {
   position: absolute;
   left: 0;
-  top: -80px;
+  top: 35px;
   /* change this value to match the height of the header */
 }
+
 
 @layer base{
   body {
       @apply dark:bg-slate-800 bg-white
   }
 }
+
