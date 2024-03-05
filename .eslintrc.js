@@ -35,7 +35,7 @@ module.exports = {
     'object-curly-spacing': ['error', 'always'],
     'react/jsx-curly-spacing': ['error', { 'when': 'never', 'children': true }],
     'indent': ['error', 2, { 'SwitchCase': 1 }],
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': ['error', 'unix'],
     'quotes': ['error', 'single'],
     'jsx-quotes': ['error', 'prefer-single'],
     'no-eval': 'error',
