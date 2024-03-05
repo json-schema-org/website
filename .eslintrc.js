@@ -29,11 +29,18 @@ module.exports = {
   rules: {
     'array-bracket-spacing': ['error', 'never'],
     'object-curly-spacing': ['error', 'always'],
+<<<<<<< HEAD
 
     'react/jsx-curly-spacing': ['error', { when: 'never', children: true }],
     indent: ['error', 2, { SwitchCase: 1 }],
     'linebreak-style': ['error', 'windows'],
     quotes: ['error', 'single'],
+=======
+    'react/jsx-curly-spacing': ['error', { 'when': 'never', 'children': true }],
+    'indent': ['error', 2, { 'SwitchCase': 1 }],
+    'linebreak-style': ['error', 'unix'],
+    'quotes': ['error', 'single'],
+>>>>>>> 6635e29 (Update .eslintrc.js)
     'jsx-quotes': ['error', 'prefer-single'],
     'no-eval': 'error',
     '@typescript-eslint/no-explicit-any': 'off',
