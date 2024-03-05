@@ -8,7 +8,7 @@ validation, but are used to describe parts of a schema. None of these
 \"annotation\" keywords are required, but they are encouraged for good
 practice, and can make your schema \"self-documenting\".
 
-Annotation keywords can be put inside any schema or subschema object. However, there cannot be duplicates in the same object.
+Annotation keywords can be used in any schema object, including sub-schemas. Like other keywords, they may be used once per object.
 
 The `title` and `description` keywords must be strings. A \"title\" will
 preferably be short, whereas a \"description\" will provide a more
