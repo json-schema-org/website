@@ -62,12 +62,14 @@ export default function Layout({
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
 
+
         <main className={
           classnames(mainClassName, 'z-10 xl:rounded-xl py-4 mx-auto')
         }>
 
           <header className={classnames('w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg')}>
             <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
+
 
 
               <Logo />
@@ -261,9 +263,11 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 }
 
 const Footer = () => (
+
   <footer className={classnames('z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 dark:from-[#002C34] dark:to-[#023e8a] ')}>
 
     <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col text-center sm:text-left'>
@@ -280,8 +284,8 @@ const Footer = () => (
           </a>
         </div>
       </div>
-      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
-        <div className='mr-4 mb-4'>
+      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0  gap-x-4 gap-y-4 md:gap-x-0 md:gap-y-0'>
+        <div className=''>
           <a
             href='https://json-schema.org/slack'
             className='flex items-center text-white'
@@ -293,7 +297,7 @@ const Footer = () => (
             Slack
           </a>
         </div>
-        <div className='mb-4 mr-4'>
+        <div className=''>
           <a
             href='https://twitter.com/jsonschema'
             className='flex items-center text-white'
@@ -302,7 +306,7 @@ const Footer = () => (
             Twitter
           </a>
         </div>
-        <div className='mr-4 mb-4'>
+        <div className=''>
           <a
             href='https://linkedin.com/company/jsonschema/'
             className='flex items-center text-white'
@@ -314,7 +318,7 @@ const Footer = () => (
             LinkedIn
           </a>
         </div>
-        <div className='mr-4 mb-4'>
+        <div className=''>
           <a
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
             className='flex items-center text-white'

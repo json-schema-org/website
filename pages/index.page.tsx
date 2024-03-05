@@ -222,9 +222,11 @@ const Home = (props: any) => {
         {/* Feature */}
         <section className='max-w-[1400px] mt-12 lg:mt-[80px]'>
 
+
           <div className='w-5/6 md:w-1/2 text-center  mb-6  mx-auto '>
             <h2 className='text-h3mobile md:text-h3 font-bold mb-6 dark:text-slate-200'>Why JSON Schema?</h2>
             <p className='mb-6 leading-5 text-h5mobile md:text-h5 leading-7 dark:text-slate-300'>While JSON is probably the most popular format for exchanging data, JSON Schema is the vocabulary that enables JSON data consistency, validity, and interoperability at scale.</p>
+
           </div>
           {/* Feature 4 section*/}
           <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
@@ -324,8 +326,10 @@ const Home = (props: any) => {
                 </div>
               </Link>
 
+
               <div >
                 <Link href={`/blog/posts/${blogPosts[0].slug}`} className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold flex items-center justify-center dark:border-none '>Read more </Link>
+
               </div>
             </div>
             <div>
@@ -364,7 +368,9 @@ const Home = (props: any) => {
                   </div>
                 </div>
 
+
                 <a href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com' className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 flex items-center justify-center dark:border-none ' target='_blank' rel='noopener noreferrer'>View Calendar</a>
+
 
               </div>
             </div>
