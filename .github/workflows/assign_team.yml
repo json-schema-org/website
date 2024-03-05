@@ -26,7 +26,7 @@ jobs:
               auth: process.env.GITHUB_TOKEN,
             })
             
-            const data =  await octokit.request('GET /orgs/{org}/teams', {
+            const data =  await octokit.request('GET /orgs/{org}', {
             org: 'Lakhua-dev',
             team_slug: 'web-team',
             headers: {
