@@ -26,13 +26,25 @@ jobs:
               auth: process.env.AUTH_TOKEN,
             })
             
-            const data =  await octokit.request('GET /orgs/{org}/teams/{team_slug}/members', {
-            org: 'Lakhua-dev',
-            team_slug: 'web-team',
-            headers: {
+            // Octokit.js
+            // https://github.com/octokit/core.js#readme
+            const octokit = new Octokit({
+              auth: 'YOUR-TOKEN'
+            })
+            
+            const data =  await octokit.request('POST /orgs/{org}/{repo}/pulls/{pull_number}/requested_reviewers', {
+              org: 'Lakhua-dev',
+              repo: 'website',
+              pull_number: '7',
+              team_reviewers: [
+                'web-team'
+              ],
+              headers: {
                 'X-GitHub-Api-Version': '2022-11-28'
-            }
+              }
             })
 
             console.log(data)
+
+            
 
