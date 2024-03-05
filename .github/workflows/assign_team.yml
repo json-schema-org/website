@@ -9,20 +9,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+    - name: Install dependencies
+      run: npm install @octokit/core@5.1.0
+        
     - name: Assign Team
-      uses: actions/github-script@v5
+      uses: actions/github-script@v7
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-          const teamName = 'web-team';
-          const teamMembers = await github.teams.listMembersInOrg({
-            org: 'Lakhua-dev',
-            team_slug: teamName
-          });
-          const assignees = teamMembers.data.map(member => member.login);
-          await github.pulls.createReviewRequest({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_number: context.payload.pull_request.number,
-            reviewers: assignees
-          });
+            // Octokit.js
+            // https://github.com/octokit/core.js#readme
+            const octokit = new Octokit({
+            auth: process.env.GITHUB_TOKEN,
+            })
+            
+            const data =  await octokit.request('GET /orgs/{org}/teams/{team_slug}/members', {
+            org: 'ORG',
+            team_slug: 'TEAM_SLUG',
+            headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+            }
+            })
+
+            console.log(data)
+
