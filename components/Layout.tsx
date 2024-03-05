@@ -26,6 +26,8 @@ export default function Layout({
 
   const router = useRouter();
 
+  const isLandingPage = router.pathname === '/';
+
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
     [router.asPath],
@@ -68,8 +70,8 @@ export default function Layout({
               'w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg',
             )}
           >
-            <div className='w-full flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
-              <Logo />
+            <div className={`w-full flex md:justify-between items-center ml-8 2xl:px-12 ${isLandingPage ? 'py-4' : 'py-1'}`}>
+              <Logo isLandingPage={isLandingPage}/>
               <MainNavigation />
             </div>
           </header>
@@ -450,9 +452,9 @@ const OpenJS = () => (
   </div>
 );
 
-const Logo = () => (
+const Logo = ({ isLandingPage }: { isLandingPage: boolean }) => (
   <Link href='/' className=''>
-    <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
+    <img src={'/img/logos/logo-blue.svg'} className={`h-${isLandingPage ? '12' : '10'} mr-2`} />
   </Link>
 );
 
