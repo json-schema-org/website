@@ -2,6 +2,7 @@ name: 🐛 Bug
 description: Create a report to help us improve
 title: "🐛 Bug: "
 labels: ["🐛 Bug", "Status: Triage"]
+projects: "json-schema-org/11"
 body:
 - type: textarea
   attributes:
