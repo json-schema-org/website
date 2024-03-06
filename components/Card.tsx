@@ -11,7 +11,7 @@ interface CardProps {
 
 const CardBody = ({ title, body, icon, link, image }: CardProps) => {
   return (
-    <div className='group relative h-full w-full max-w-lg rounded-lg border border-gray-200 bg-white p-6 shadow-3xl transition-colors delay-[150ms] ease-in-out hover:bg-slate-100'>
+    <div className='group relative h-full w-full max-w-lg rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl transition-colors delay-[150ms] ease-in-out hover:bg-slate-100'>
       <div className='flex justify-center'>
         {image && <img src={image} className='h-32 w-36 p-2' />}
       </div>
