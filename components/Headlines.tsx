@@ -40,6 +40,8 @@ const Headline = ({
   attributes?: Record<string, any>;
 }) => {
   const router = useRouter();
+  const isCommunityPage = router.asPath === '/#community';
+  const isLandingPage = router.pathname === '/' && !isCommunityPage;
   const asPath = router.asPath;
   const slug = slugifyMarkdownHeadline(children as any[]);
 
@@ -85,7 +87,7 @@ const Headline1Tag = ({ children, attributes }: TagProps) => (
     {...attributes}
     className={classnames(
       attributes?.className,
-      'text-h1mobile md:text-h1  font-bold pt-10 mb-6',
+      'text-h1mobile md:text-h1  font-bold pt-2 mb-4',
     )}
   >
     {children}
@@ -96,7 +98,7 @@ const Headline2Tag = ({ children, attributes }: TagProps) => (
     {...attributes}
     className={classnames(
       attributes?.className,
-      'text-h2mobile md:text-h2 font-semibold mt-10 mb-4',
+      'text-h2mobile md:text-h2 font-semibold mt-4 mb-4',
     )}
   >
     {children}
