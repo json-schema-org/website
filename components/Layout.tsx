@@ -25,6 +25,9 @@ export default function Layout({
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
   const router = useRouter();
+  
+  const isCommunityPage = router.asPath === '/#community';
+  const isLandingPage = router.pathname === '/' && !isCommunityPage;
 
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
@@ -41,6 +44,7 @@ export default function Layout({
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
       }
+      router.pathname = '/';
     }
   }, []);
 
@@ -65,11 +69,12 @@ export default function Layout({
         >
           <header
             className={classnames(
-              'w-full bg-white fixed top-0 z-[170] shadow-xl drop-shadow-lg',
+              'w-full bg-white fixed top-0 z-[170] shadow-xl',
+              { 'h-16': !isLandingPage, 'drop-shadow-lg': isLandingPage, 'shadow-sm': !isLandingPage }
             )}
           >
-            <div className='w-full flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
-              <Logo />
+            <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4 h-full'>
+              <Logo isLandingPage={isLandingPage} />
               <MainNavigation />
             </div>
           </header>
@@ -450,9 +455,15 @@ const OpenJS = () => (
   </div>
 );
 
-const Logo = () => (
-  <Link href='/' className=''>
-    <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
+const Logo = ({ isLandingPage = false }: { isLandingPage?: boolean }) => (
+  <Link href='/'>
+    <img 
+      src='/img/logos/logo-blue.svg' 
+      className={classnames(
+        'mr-2', 
+        { 'h-12': isLandingPage, 'h-10': !isLandingPage }
+      )} 
+    />
   </Link>
 );
 
