@@ -1,0 +1,83 @@
+[
+    {
+      "logo": "/img/logos/logo-blue.svg",
+      "summary": "Here we are going to give summary about the casestudy.",
+      "links": [
+        {
+          "lang": "URL1",
+          "url": "/"
+        },
+        {
+          "lang": "URL2",
+          "url": "/"
+        }
+      ]
+    },
+    {
+        "logo": "/img/logos/logo-blue.svg",
+        "summary": "Here we are going to give summary about the casestudy.",
+        "links": [
+          {
+            "lang": "URL1",
+            "url": "/"
+          },
+          {
+            "lang": "URL2",
+            "url": "/"
+          }
+        ]
+      },{
+        "logo": "/img/logos/logo-blue.svg",
+        "summary": "Here we are going to give summary about the casestudy.",
+        "links": [
+          {
+            "lang": "URL1",
+            "url": "/"
+          },
+          {
+            "lang": "URL2",
+            "url": "/"
+          }
+        ]
+      },{
+        "logo": "/img/logos/logo-blue.svg",
+        "summary": "Here we are going to give summary about the casestudy.",
+        "links": [
+          {
+            "lang": "URL1",
+            "url": "/"
+          },
+          {
+            "lang": "URL2",
+            "url": "/"
+          }
+        ]
+      },{
+        "logo": "/img/logos/logo-blue.svg",
+        "summary": "Here we are going to give summary about the casestudy.",
+        "links": [
+          {
+            "lang": "URL1",
+            "url": "/"
+          },
+          {
+            "lang": "URL2",
+            "url": "/"
+          }
+        ]
+      },{
+        "logo": "/img/logos/logo-blue.svg",
+        "summary": "Here we are going to give summary about the casestudy.",
+        "links": [
+          {
+            "lang": "URL1",
+            "url": "/"
+          },
+          {
+            "lang": "URL2",
+            "url": "/"
+          }
+        ]
+      }
+  ]
+  
