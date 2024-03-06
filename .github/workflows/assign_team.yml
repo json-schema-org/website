@@ -1,0 +1,43 @@
+name: Assign Team to PR Workflow
+
+on:
+  pull_request:
+
+jobs:
+  assign_team:
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Install dependencies
+      run: npm install @octokit/core@5.1.0
+        
+    - name: Assign Team
+      uses: actions/github-script@v7
+      env:
+        AUTH_TOKEN: ${{ secrets.AUTH_TOKEN }}
+      with:
+        script: |
+            // Octokit.js
+            // https://github.com/octokit/core.js#readme
+            const Octokit = require('@octokit/core').Octokit;
+            const octokit = new Octokit({
+              request: { fetch: fetch,},
+              auth: process.env.AUTH_TOKEN,
+            })
+            
+            
+            await octokit.request('POST /repos/{owner}/{repo}/pulls/{pull_number}/requested_reviewers', {
+              owner: 'Lakhua-dev',
+              repo: 'website',
+              pull_number: '7',
+              team_reviewers: [
+                'web-team'
+              ],
+              headers: {
+                'X-GitHub-Api-Version': '2022-11-28'
+              }
+            })
+
+            console.log(data)
+

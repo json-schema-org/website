@@ -11,6 +11,10 @@ jobs:
   triage:
     runs-on: ubuntu-latest
     steps:
+
+    - name: Install dependencies
+      run: npm install @octokit/core@5.1.0
+
     - uses: github/issue-labeler@v3.4 
       with:
         configuration-path: .github/issue-labeler.yml
