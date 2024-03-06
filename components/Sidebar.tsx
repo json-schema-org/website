@@ -126,7 +126,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
-        <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden'>
+        <div className='bg-primary w-full h-12 mt-14 z-150 flex relative flex-col justify-between items-center lg:hidden'>
           <div
             className='z-[150] flex w-full bg-primary justify-between items-center mt-2'
             onMouseDown={(e) => e.stopPropagation()}
@@ -243,7 +243,7 @@ export const DocsNav = () => {
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
 
   return (
-    <div id='sidebar ' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
+    <div id='sidebar ' className='lg:mt-1 w-4/5 mx-auto lg:ml-4'>
       <div className='mb-2 bg-slate-200 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
