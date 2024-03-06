@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@docsearch/react": "3.5.2",
-    "axios": "1.6.0",
+    "axios": "^1.6.7",
     "classnames": "^2.3.1",
     "feed": "^4.2.2",
     "gray-matter": "^4.0.3",
