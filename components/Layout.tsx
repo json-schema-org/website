@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { DocSearch } from '@docsearch/react';
 import useStore from '~/store';
 import { SectionContext } from '~/context';
+import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 
 type Props = {
   children: React.ReactNode;
@@ -117,7 +118,7 @@ const MainNavLink = ({
       className={classnames(
         className,
         'font-semibold p-2 md:p-4',
-        `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
+        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
       )}
     >
       {label}
