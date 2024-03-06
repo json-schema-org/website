@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-
+import { useRouter } from 'next/router';
 
 type Props = {
   className?: string;
@@ -8,7 +8,7 @@ type Props = {
 
 function CarbonAds({ className, variant = 'sidebar' }: Props) {
   const carbonRef = useRef<HTMLElement>(null);
-  
+  const router = useRouter();
 
   useEffect(() => {
     const hasCarbonAdsScript = document.querySelector('#_carbonads_js');
@@ -34,7 +34,7 @@ function CarbonAds({ className, variant = 'sidebar' }: Props) {
         .querySelector('#carbonads-container')
         ?.appendChild(carbonAdsStyleSheet);
     }
-  }, [variant]);
+  }, [router.asPath]);
 
   return (
     <aside
