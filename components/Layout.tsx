@@ -25,7 +25,7 @@ export default function Layout({
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
   const router = useRouter();
-  
+
   const isCommunityPage = router.asPath === '/#community';
   const isLandingPage = router.pathname === '/' && !isCommunityPage;
 
@@ -456,14 +456,8 @@ const OpenJS = () => (
 );
 
 const Logo = ({ isLandingPage = false }: { isLandingPage?: boolean }) => (
-  <Link href='/'>
-    <img 
-      src='/img/logos/logo-blue.svg' 
-      className={classnames(
-        'mr-2', 
-        { 'h-12': isLandingPage, 'h-10': !isLandingPage }
-      )} 
-    />
+  <Link href='/' >
+    <img src='/img/logos/logo-blue.svg' className={classnames('mr-2', { 'h-12': isLandingPage, 'h-10': !isLandingPage })} />
   </Link>
 );
 
