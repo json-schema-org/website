@@ -54,6 +54,11 @@ type MultipathDecoration = {
 
 const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/g;
 
+// Prevent annoying error messages because slate is not SSR ready
+if (typeof process !== 'undefined' && process.browser !== true) {
+  React.useLayoutEffect = React.useEffect;
+}
+
 function getTextPathIndexesFromNodes(
   elements: CustomElement[],
   path: number[] = [],
