@@ -166,7 +166,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
       <Markdown
         options={{
           overrides: {
-            h1: { component:Headline1 },
+            h1: { component: Headline1 },
             h2: { component: Headline2 },
             h3: { component: Headline3 },
             h4: { component: Headline4 },
@@ -492,7 +492,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 );
               },
             },
-           
+
             TableOfContent: {
               component: ({ depth }) => {
                 // eslint-disable-next-line react-hooks/rules-of-hooks

@@ -7,13 +7,13 @@ export default function CaseStudies() {
       {data.map((element, index) => (
         <div key={index} className='w-full shadow-3xl rounded-[10px] p-[20px]'>
           <img src={element.logo} className='h-5' />
-          <div className="mt-4 mb-4">
-            {element.summary}
-          </div>
+          <div className='mt-4 mb-4'>{element.summary}</div>
           <ul>
             {element.links.map((link, linkIndex) => (
               <li key={linkIndex}>
-                <Link href={link.url} className="text-blue-500">{link.lang}</Link>
+                <Link href={link.url} className='text-blue-500'>
+                  {link.lang}
+                </Link>
               </li>
             ))}
           </ul>
@@ -22,4 +22,3 @@ export default function CaseStudies() {
     </div>
   );
 }
-
