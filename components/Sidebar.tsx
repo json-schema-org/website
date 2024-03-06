@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { HOST } from '~/lib/config';
 import classnames from 'classnames';
 import { SegmentHeadline } from './Layout';
+import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import CarbonAds from './CarbonsAds';
 
 const DocLink = ({
@@ -19,7 +20,7 @@ const DocLink = ({
   url.search = '';
   url.hash = '';
   const stringUrl = url.toString().substr(HOST.length, Infinity);
-  const isActive = uri === stringUrl;
+  const isActive = uri === extractPathWithoutFragment(stringUrl);
   return (
     <Link
       href={uri}
@@ -45,7 +46,7 @@ const DocLinkBlank = ({
   url.search = '';
   url.hash = '';
   const stringUrl = url.toString().substr(HOST.length, Infinity);
-  const isActive = uri === stringUrl;
+  const isActive = uri === extractPathWithoutFragment(stringUrl);
   return (
     <Link
       href={uri}
@@ -122,7 +123,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const [rotateChevron, setRotateChevron] = useState(false);
   const handleRotate = () => setRotateChevron(!rotateChevron);
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)';
-
+  const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
@@ -136,18 +137,18 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               setOpen(!open);
             }}
           >
-            {router.asPath === '/overview/what-is-jsonschema' && (
+            {pathWtihoutFragment === '/overview/what-is-jsonschema' && (
               <h3 className='text-white ml-12'>Overview</h3>
             )}
-            {getStartedPath.includes(router.asPath) && (
+            {getStartedPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Getting Started</h3>
             )}
 
-            {getReferencePath.includes(router.asPath) && (
+            {getReferencePath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Reference</h3>
             )}
 
-            {getSpecificationPath.includes(router.asPath) && (
+            {getSpecificationPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Specification</h3>
             )}
 
@@ -210,13 +211,14 @@ export const DocsNav = () => {
     getSpecification: false,
   });
   useEffect(() => {
-    if (getDocsPath.includes(router.asPath)) {
+    const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+    if (getDocsPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getDocs: true });
-    } else if (getStartedPath.includes(router.asPath)) {
+    } else if (getStartedPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getStarted: true });
-    } else if (getReferencePath.includes(router.asPath)) {
+    } else if (getReferencePath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getReference: true });
-    } else if (getSpecificationPath.includes(router.asPath)) {
+    } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getSpecification: true });
     }
   }, [router.asPath]);
