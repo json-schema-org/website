@@ -8,7 +8,7 @@ type Props = {
 
 function CarbonAds({ className, variant = 'sidebar' }: Props) {
   const carbonRef = useRef<HTMLElement>(null);
-  const router = useRouter();
+  
 
   useEffect(() => {
     const hasCarbonAdsScript = document.querySelector('#_carbonads_js');
