@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { useRouter } from 'next/router';
+
 
 type Props = {
   className?: string;
