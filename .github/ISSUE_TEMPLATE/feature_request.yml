@@ -1,7 +1,8 @@
 name: ⭐️ Feature request
 description: Suggest an idea for this project
-title: "Feature "
-labels: ["🌟 Feature", "Status: triage"]
+title: "✨ Enhancement: "
+labels: ["✨ Enhancement", "Status: Triage"]
+projects: "json-schema-org/11"
 body:
 - type: textarea
   attributes:
@@ -21,7 +22,7 @@ body:
     description: A clear and concise description of any alternative solutions or features you've considered
   validations:
     required: false
-- type: input
+- type: textarea
   attributes:
     label: Additional context
     description: Add any other context about the problem here

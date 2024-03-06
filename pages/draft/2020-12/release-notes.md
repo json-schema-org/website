@@ -155,59 +155,63 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
   </tr>
   <tr>
     <td>
-      ```json
-        // tree schema, extensible
-        {
-          "$schema": "https://json-schema.org/draft/2019-09/schema",
-          "$id": "https://example.com/tree",
-          "$recursiveAnchor": true,
-          "type": "object",
-          "properties": {
-            "data": true,
-            "children": {
-              "type": "array",
-              "items": { "$recursiveRef": "#" }
-            }
-          }
-        }
-        // strict-tree schema, guards against misspelled properties
-        {
-          "$schema": "https://json-schema.org/draft/2019-09/schema",
-          "$id": "https://example.com/strict-tree",
-          "$recursiveAnchor": true,
-          "$ref": "tree",
-          "unevaluatedProperties": false
-        }
-      ```
-    </td>
+
+```jsonc
+// tree schema, extensible
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://example.com/tree",
+  "$recursiveAnchor": true,
+  "type": "object",
+  "properties": {
+    "data": true,
+    "children": {
+      "type": "array",
+      "items": { "$recursiveRef": "#" }
+    }
+  }
+}
+// strict-tree schema, guards against misspelled properties
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "https://example.com/strict-tree",
+  "$recursiveAnchor": true,
+  "$ref": "tree",
+  "unevaluatedProperties": false
+}
+```
+  </td>
     <td>
-      ```json
-        // tree schema, extensible
-        {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "$id": "https://example.com/tree",
-          "$dynamicAnchor": "node",
-          "type": "object",
-          "properties": {
-            "data": true,
-            "children": {
-              "type": "array",
-              "items": { "$dynamicRef": "#node" }
-            }
-          }
-        }
-        // strict-tree schema, guards against misspelled properties
-        {
-          "$schema": "https://json-schema.org/draft/2020-12/schema",
-          "$id": "https://example.com/strict-tree",
-          "$dynamicAnchor": "node",
-          "$ref": "tree",
-          "unevaluatedProperties": false
-        }
-      ```
-    </td>
+
+```jsonc
+// tree schema, extensible
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/tree",
+  "$dynamicAnchor": "node",
+  "type": "object",
+  "properties": {
+    "data": true,
+    "children": {
+      "type": "array",
+      "items": { "$dynamicRef": "#node"}
+    }
+  }
+}
+// strict-tree schema, guards against misspelled properties
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/strict-tree",
+  "$dynamicAnchor": "node",
+  "$ref": "tree",
+  "unevaluatedProperties": false
+}
+```
+  </td>
   </tr>
 </table>
+
+
 
 ## contains and unevaluatedItems
 In the previous draft, it wasn't specified how or if the `contains` keyword
