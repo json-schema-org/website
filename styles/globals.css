@@ -195,8 +195,231 @@ border-radius: 4px; */
   top: 35px;
   /* change this value to match the height of the header */
 }
+
 /* In your CSS file */
 .mt-custom {
   margin-top: 4.4rem;
 }
 
+
+@media (max-width: 767px) {
+  .orbits {
+    display: none;
+  }
+}
+
+.orbit-container {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  top: -200px;
+}
+
+.orbit {
+  position: absolute;
+  border-radius: 100%;
+  border: solid 3px #f3f3f4;
+  transition: 0.2s;
+}
+
+.orbit>div {
+  cursor: pointer;
+}
+
+.orbit>div>img {
+  border-radius: 100%;
+}
+
+.title {
+  line-height: 0.9;
+  font-size: 60px;
+}
+
+#first-orbit {
+  --n: 6;
+  /* number of item */
+  --d: 70s;
+  /* duration */
+  width: 600px;
+  height: 600px;
+  top: 165px;
+  left: calc(50% - 300px);
+  position: relative;
+  display: grid;
+  grid-template-columns: 35px;
+  grid-template-rows: 35px;
+  place-content: center;
+}
+
+#second-orbit {
+  --no: 7;
+  /* number of item */
+  --de: 80s;
+  /* duration */
+  width: 800px;
+  height: 800px;
+  top: 75px;
+  left: calc(50% - 400px);
+  display: grid;
+  grid-template-columns: 35px;
+  grid-template-rows: 35px;
+  place-content: center;
+}
+
+#third-orbit {
+  --ni: 7;
+  /* number of item */
+  --ds: 80s;
+  /* duration */
+  width: 1000px;
+  height: 1000px;
+  top: -10px;
+  left: calc(50% - 500px);
+  display: grid;
+  grid-template-columns: 35px;
+  grid-template-rows: 35px;
+  place-content: center;
+}
+
+.item,
+.item-2,
+.item-3 {
+  grid-area: 1/1;
+  line-height: 30px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.item {
+  animation: orbit-spin var(--d) linear infinite;
+  transform: rotate(0) translate(300px) rotate(0);
+}
+
+.item-2 {
+  animation: orbit-spin2 var(--de) linear infinite;
+  transform: rotate(-0) translate(400px) rotate(-0);
+}
+
+.item-3 {
+  animation: orbit-spin3 var(--ds) linear infinite;
+  transform: rotate(0) translate(500px) rotate(0);
+}
+
+@keyframes orbit-spin {
+  100% {
+    transform: rotate(1turn) translate(300px) rotate(-1turn);
+  }
+}
+
+.item:nth-child(1) {
+  animation-delay: calc(-0 * var(--d) / var(--n));
+}
+
+.item:nth-child(2) {
+  animation-delay: calc(-1 * var(--d) / var(--n));
+}
+
+.item:nth-child(3) {
+  animation-delay: calc(-2 * var(--d) / var(--n));
+}
+
+.item:nth-child(4) {
+  animation-delay: calc(-3 * var(--d) / var(--n));
+}
+
+.item:nth-child(5) {
+  animation-delay: calc(-4 * var(--d) / var(--n));
+}
+
+.item:nth-child(6) {
+  animation-delay: calc(-5 * var(--d) / var(--n));
+}
+
+@keyframes orbit-spin2 {
+  100% {
+    transform: rotate(-1turn) translate(400px) rotate(1turn);
+  }
+}
+
+.item-2:nth-child(1) {
+  animation-delay: calc(-0 * var(--de) / var(--no));
+}
+
+.item-2:nth-child(2) {
+  animation-delay: calc(-1 * var(--de) / var(--no));
+}
+
+.item-2:nth-child(3) {
+  animation-delay: calc(-2 * var(--de) / var(--no));
+}
+
+.item-2:nth-child(4) {
+  animation-delay: calc(-3 * var(--de) / var(--no));
+}
+
+.item-2:nth-child(5) {
+  animation-delay: calc(-4 * var(--de) / var(--no));
+}
+
+.item-2:nth-child(6) {
+  animation-delay: calc(-5 * var(--de) / var(--no));
+}
+
+.item-2:nth-child(7) {
+  animation-delay: calc(-6 * var(--de) / var(--no));
+}
+
+.item-2:nth-child(8) {
+  animation-delay: calc(-7 * var(--de) / var(--no));
+}
+
+.item-2:nth-child(9) {
+  animation-delay: calc(-8 * var(--de) / var(--no));
+}
+
+@keyframes orbit-spin3 {
+  100% {
+    transform: rotate(1turn) translate(500px) rotate(-1turn);
+  }
+}
+
+.item-3:nth-child(1) {
+  animation-delay: calc(-0 * var(--ds) / var(--ni));
+}
+
+.item-3:nth-child(2) {
+  animation-delay: calc(-1 * var(--ds) / var(--ni));
+}
+
+.item-3:nth-child(3) {
+  animation-delay: calc(-2 * var(--ds) / var(--ni));
+}
+
+.item-3:nth-child(4) {
+  animation-delay: calc(-3 * var(--ds) / var(--ni));
+}
+
+.item-3:nth-child(5) {
+  animation-delay: calc(-4 * var(--ds) / var(--ni));
+}
+
+.item-3:nth-child(6) {
+  animation-delay: calc(-5 * var(--ds) / var(--ni));
+}
+
+.item-3:nth-child(7) {
+  animation-delay: calc(-6 * var(--ds) / var(--ni));
+}
+
+.item-3:nth-child(8) {
+  animation-delay: calc(-7 * var(--ds) / var(--ni));
+}
+
+.item-3:nth-child(9) {
+  animation-delay: calc(-8 * var(--ds) / var(--ni));
+}
+
+.top-12 {
+  top: 48px;
+}
