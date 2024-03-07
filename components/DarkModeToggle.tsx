@@ -1,5 +1,6 @@
 import { useTheme } from 'next-themes';
 import { useState } from 'react';
+import React from 'react';
 
 const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme();
@@ -9,22 +10,26 @@ const DarkModeToggle = () => {
   const toggleDarkMode = () => {
     if (!isClickable) return;
 
-    setIsClickable(false); 
+    setIsClickable(false);
     const newTheme = isDarkMode ? 'light' : 'dark';
     setTheme(newTheme);
     setIsDarkMode(!isDarkMode);
 
     setTimeout(() => {
       setIsClickable(true);
-    }, 500); 
+    }, 500);
   };
 
   return (
-    <button onClick={toggleDarkMode} className="dark-mode-toggle" disabled={!isClickable}>
+    <button
+      onClick={toggleDarkMode}
+      className='dark-mode-toggle'
+      disabled={!isClickable}
+    >
       {isDarkMode ? (
-        <img src="/icons/sun.svg" alt="Dark Mode" width={27} height={27} />
+        <img src='/icons/sun.svg' alt='Dark Mode' width={27} height={27} />
       ) : (
-        <img src="/icons/moon.svg" alt="Light Mode" width={27} height={27} />
+        <img src='/icons/moon.svg' alt='Light Mode' width={27} height={27} />
       )}
     </button>
   );

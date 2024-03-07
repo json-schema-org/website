@@ -116,7 +116,6 @@ function ImplementationTable({
               <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200 hidden sm:table-cell'>
                 About
               </td>
-
               <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200'>
                 Drafts
               </td>
@@ -137,6 +136,7 @@ function ImplementationTable({
                 const isActive = router.query.language === slug;
                 if (router.query.language && !isActive) return null;
 
+<<<<<<< HEAD
 
               return (
                 <React.Fragment
@@ -187,6 +187,28 @@ function ImplementationTable({
                                 {typeof draft === 'number' ? zeroFill(2, draft) : draft}
                               </span>
                             ))
+=======
+                return (
+                  <React.Fragment key={index}>
+                    <tr>
+                      <td colSpan={3}>
+                        <Headline3 attributes={{ slug }}>
+                          {implementationByLanguage.name}
+                        </Headline3>
+                      </td>
+                    </tr>
+                    {implementationByLanguage.implementations.map(
+                      (implementation: any, index: number) => {
+                        let mixedNotes = '';
+                        if (implementation.notes) {
+                          mixedNotes = implementation.notes;
+                        }
+                        if (implementation.compliance) {
+                          if (implementation.notes) {
+                            mixedNotes += '<br/><em>Compliance:</em>';
+                          } else {
+                            mixedNotes = '<em>Compliance:</em>';
+>>>>>>> 46ec3fa (resolved code)
                           }
                           if (implementation.compliance.config.docs) {
                             mixedNotes +=
@@ -231,7 +253,7 @@ function ImplementationTable({
                                 )
                                 ?.map((draft: string | number) => (
                                   <span
-                                    className='bg-blue-400 inline-block mr-1 mb-1 text-white rounded px-1'
+                                    className='bg-blue-400 dark:bg-blue-600 inline-block mr-1 mb-1 text-white rounded px-1'
                                     key={draft}
                                   >
                                     {typeof draft === 'number'

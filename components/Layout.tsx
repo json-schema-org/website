@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 46ec3fa (resolved code)
 import React, { useContext, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -63,7 +66,10 @@ export default function Layout({
         ></meta>
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
+<<<<<<< HEAD
       
+=======
+>>>>>>> 46ec3fa (resolved code)
         <main
           className={classnames(
             mainClassName,
@@ -76,7 +82,10 @@ export default function Layout({
             )}
           >
             <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
+<<<<<<< HEAD
               {/* >>>>>>> 932a9ad (added dark theme) */}
+=======
+>>>>>>> 46ec3fa (resolved code)
               <Logo />
               <MainNavigation />
             </div>
@@ -102,10 +111,17 @@ export const Search = () => {
       appId='6ZT4KX2OUI'
       apiKey='69f76fba13585144f6686622e9c8f2a8'
       indexName='json-schema'
+<<<<<<< HEAD
     
     />
   );
 };
+=======
+    />
+  );
+};
+
+>>>>>>> 46ec3fa (resolved code)
 /* eslint-disable @typescript-eslint/no-unused-vars */
 const MainNavLink = ({
   uri,
@@ -120,7 +136,10 @@ const MainNavLink = ({
 }) => {
   const router = useRouter();
   return (
+<<<<<<< HEAD
    
+=======
+>>>>>>> 46ec3fa (resolved code)
     <Link
       href={uri}
       className={classnames(
@@ -134,7 +153,10 @@ const MainNavLink = ({
       )}
     >
       {label}
+<<<<<<< HEAD
       {/* >>>>>>> 932a9ad (added dark theme) */}
+=======
+>>>>>>> 46ec3fa (resolved code)
     </Link>
   );
 };
@@ -144,11 +166,15 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
   return (
+<<<<<<< HEAD
     // <<<<<<< HEAD
     //     <div className='flex justify-end mr-8 w-full'>
     // =======
     <div className='flex justify-end mr-8 w-full '>
       {/* >>>>>>> 932a9ad (added dark theme) */}
+=======
+    <div className='flex justify-end mr-8 w-full justify-end '>
+>>>>>>> 46ec3fa (resolved code)
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -180,6 +206,7 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
+<<<<<<< HEAD
       {/* <<<<<<< HEAD
       <div className='flex max-sm:ml-4 items-center gap-6 md:gap-4'>
         <div className='flex justify-center rounded border-2 border-gray-100 ml-0 w-[120px] md:w-full'>
@@ -187,6 +214,11 @@ const MainNavigation = () => {
       <div className='flex items-center gap-12 md:gap-4 dark:bg-slate-800'>
         <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
           {/* >>>>>>> 932a9ad (added dark theme) */}
+=======
+
+      <div className='flex items-center gap-12 md:gap-4 dark:bg-slate-800'>
+        <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
+>>>>>>> 46ec3fa (resolved code)
           <Search />
         </div>
         <DarkModeToggle />
@@ -199,6 +231,7 @@ const MainNavigation = () => {
             </div>
           </div>
         ) : (
+<<<<<<< HEAD
           // <<<<<<< HEAD
           //         ) : (
           //           <div
@@ -208,13 +241,18 @@ const MainNavigation = () => {
           //           />
           //         )}
           // =======
+=======
+>>>>>>> 46ec3fa (resolved code)
           <div
             style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
             className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
             onClick={() => useStore.setState({ overlayNavigation: null })}
           />
         )}
+<<<<<<< HEAD
         {/* >>>>>>> 932a9ad (added dark theme) */}
+=======
+>>>>>>> 46ec3fa (resolved code)
       </div>
       <div className='flex items-center justify-end mr-8'>
         <a
@@ -248,6 +286,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
+<<<<<<< HEAD
     // <<<<<<< HEAD
     //     // <<<<<<< HEAD
     //     //     <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
@@ -257,6 +296,9 @@ const MobileNav = () => {
     // =======
     <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-800'>
       {/* >>>>>>> 5a13b6c (completed home page) */}
+=======
+    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-800'>
+>>>>>>> 46ec3fa (resolved code)
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -284,24 +326,28 @@ const MobileNav = () => {
 };
 
 export const SegmentHeadline = ({ label }: { label: string }) => {
-
   return (
-    <div className='text-slate-900 dark:text-slate-300 font-bold'>
-      {label}
-    </div>
-  )
-}
+    <div className='text-slate-900 dark:text-slate-300 font-bold'>{label}</div>
+  );
+};
 
 const Footer = () => (
+<<<<<<< HEAD
 
+=======
+>>>>>>> 46ec3fa (resolved code)
   <footer
     className={classnames(
       'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 dark:from-[#002C34] dark:to-[#023e8a] ',
     )}
   >
+<<<<<<< HEAD
     {/* >>>>>>> 5a13b6c (completed home page) */}
     <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       {/* >>>>>>> 932a9ad (added dark theme) */}
+=======
+    <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+>>>>>>> 46ec3fa (resolved code)
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col text-center sm:text-left'>
@@ -318,8 +364,8 @@ const Footer = () => (
           </a>
         </div>
       </div>
-      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0  gap-x-4 gap-y-4 md:gap-x-0 md:gap-y-0'>
-        <div className=''>
+      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
+        <div className='mr-4 mb-4'>
           <a
             href='https://json-schema.org/slack'
             className='flex items-center text-white'
@@ -331,7 +377,7 @@ const Footer = () => (
             Slack
           </a>
         </div>
-        <div className=''>
+        <div className='mb-4 mr-4'>
           <a
             href='https://twitter.com/jsonschema'
             className='flex items-center text-white'
@@ -340,7 +386,7 @@ const Footer = () => (
             Twitter
           </a>
         </div>
-        <div className=''>
+        <div className='mr-4 mb-4'>
           <a
             href='https://linkedin.com/company/jsonschema/'
             className='flex items-center text-white'
@@ -352,7 +398,7 @@ const Footer = () => (
             LinkedIn
           </a>
         </div>
-        <div className=''>
+        <div className='mr-4 mb-4'>
           <a
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
             className='flex items-center text-white'
@@ -500,6 +546,7 @@ const OpenJS = () => (
   </div>
 );
 
+<<<<<<< HEAD
 {
   /* <<<<<<< HEAD
 const Logo = () => (
@@ -509,6 +556,8 @@ const Logo = () => (
 );
 ======= */
 }
+=======
+>>>>>>> 46ec3fa (resolved code)
 const Logo = () => {
   const { theme } = useTheme();
   return (
@@ -526,10 +575,13 @@ const Logo = () => {
   );
 };
 
+<<<<<<< HEAD
 {
   /* >>>>>>> 5a13b6c (completed home page) */
 }
 
+=======
+>>>>>>> 46ec3fa (resolved code)
 const FaviconHead = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
   const onUpdate = React.useCallback((matcher: MediaQueryList) => {

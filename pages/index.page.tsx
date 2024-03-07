@@ -177,6 +177,10 @@ const Home = (props: any) => {
               JSON Schema enables the confident and reliable use of the JSON
               data format.
             </h2>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 46ec3fa (resolved code)
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
               <Link
                 href='/learn/getting-started-step-by-step'
@@ -291,7 +295,10 @@ const Home = (props: any) => {
                 tools, libraries, and frameworks across many programming
                 languages.
               </p>
+<<<<<<< HEAD
               {/* >>>>>>> 5a13b6c (completed home page) */}
+=======
+>>>>>>> 46ec3fa (resolved code)
             </div>
           </div>
         </section>
@@ -304,7 +311,10 @@ const Home = (props: any) => {
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold dark:bg-[560bad] dark:border-none'>
               <a href='/learn/getting-started-step-by-step '>Read the docs</a>
             </button>
+<<<<<<< HEAD
             {/* >>>>>>> 5a13b6c (completed home page) */}
+=======
+>>>>>>> 46ec3fa (resolved code)
           </div>
         </section>
 
@@ -398,7 +408,11 @@ const Home = (props: any) => {
                     text={blogPosts[0].frontmatter.excerpt}
                   />
                 </div>
+<<<<<<< HEAD
                 {/* >>>>>>> 5a13b6c (completed home page) */}
+=======
+
+>>>>>>> 46ec3fa (resolved code)
                 <div className='flex ml-2 mb-2 '>
                   <div
                     className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
@@ -485,7 +499,10 @@ const Home = (props: any) => {
                 >
                   View Calendar
                 </a>
+<<<<<<< HEAD
                 {/* >>>>>>> 5a13b6c (completed home page) */}
+=======
+>>>>>>> 46ec3fa (resolved code)
               </div>
             </div>
           </div>
@@ -503,7 +520,10 @@ const Home = (props: any) => {
                 Contribute
               </a>
             </button>
+<<<<<<< HEAD
             {/* >>>>>>> 5a13b6c (completed home page) */}
+=======
+>>>>>>> 46ec3fa (resolved code)
           </div>
         </section>
 
@@ -586,7 +606,10 @@ const Home = (props: any) => {
             <a href='https://www.llc.org/'>
               <img src='/img/logos/sponsors/llc-logo.svg' className=' w-44' />
             </a>
+<<<<<<< HEAD
             {/* >>>>>>> 5a13b6c (completed home page) */}
+=======
+>>>>>>> 46ec3fa (resolved code)
           </div>
         </section>
 

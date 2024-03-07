@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // <<<<<<< HEAD
 // import '../styles/globals.css';
 // import 'tailwindcss/tailwind.css';
@@ -10,6 +11,8 @@
 //   const AnyComponent = Component as any;
 //   return getLayout(<AnyComponent {...pageProps} />, pageProps);
 // =======
+=======
+>>>>>>> 46ec3fa (resolved code)
 import '../styles/globals.css';
 import 'tailwindcss/tailwind.css';
 import React from 'react';
@@ -25,7 +28,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       {getLayout(<AnyComponent {...pageProps} />, pageProps)}
     </ThemeProvider>
   );
+<<<<<<< HEAD
   // >>>>>>> 932a9ad (added dark theme)
+=======
+>>>>>>> 46ec3fa (resolved code)
 }
 
 export default MyApp;
