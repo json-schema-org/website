@@ -201,7 +201,6 @@ border-radius: 4px; */
   margin-top: 4.4rem;
 }
 
-
 @media (max-width: 767px) {
   .orbits {
     display: none;
@@ -223,11 +222,11 @@ border-radius: 4px; */
   transition: 0.2s;
 }
 
-.orbit>div {
+.orbit > div {
   cursor: pointer;
 }
 
-.orbit>div>img {
+.orbit > div > img {
   border-radius: 100%;
 }
 
@@ -422,4 +421,16 @@ border-radius: 4px; */
 
 .top-12 {
   top: 48px;
+}
+
+.bg-ambassador {
+  background-image: url(/img/avatars/benhutton.webp);
+}
+
+.bg-slack {
+  background-image: url(/img/home-page/slack.png);
+}
+
+.bg-meeting {
+  background-image: url(/img/event/meet.jpg);
 }

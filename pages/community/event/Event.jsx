@@ -1,9 +1,8 @@
 import React from 'react'
 import Heading from '../typography/Heading';
-import Button from './Button'
+import Button from '../card/Button';
 
-export default function Card(props) {
-
+export default function Event(props) {
     return (
         <div className="z-40 mt-20 bg-white w-full md:h-130 rounded-lg shadow-xl md:flex grid grid-cols-2 justify-between">
             <div className="p-10 flex justify-between w-full md:w-2/5 h-auto flex-col text-center md:text-left">
@@ -31,8 +30,14 @@ export default function Card(props) {
                     </Heading>
                     <div className="mt-10" data-testid="HomeCard-button">
                         <Button 
+                        class={props.btn1Class}
                         href={props.href}
                         btnText={props.btnText}
+                        />
+                         <Button 
+                        class={props.btn2Class}
+                        href={props.href2}
+                        btnText={props.btnText2}
                         />
                     </div>
                 </div>
