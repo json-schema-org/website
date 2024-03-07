@@ -9,7 +9,7 @@ cover: /img/posts/2022/json-schema-joins-the-openjsf/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://twitter.com/relequestual
+    link: https://www.twitter.com/relequestual
     byline: JSON Schema Specification Lead @Postman
 excerpt: "Find out what we've been doing in 2021 and read about our biggest development yet... joining the OpenJS Foundation. Oh, and WE'RE HIRING!"
 ---
@@ -60,13 +60,7 @@ On joining Postman, one thing we discussed is the potential to bring on more peo
 
 In the immediate future, we're looking to hire for Software Engineer and for Technical Community Manager / Developer Relations roles.
 
-Here are the roles and application links!
-
-[Software Engineer](https://www.postman.com/company/careers/software-engineer-json-schema-4918592003)
-
-[Technical Community Manager (/devrel)](https://postman.com/company/careers/technical-community-manager-open-technologies-4918571003)
-
-Feel free to reach out to me directly via [Twitter](https://twitter.com/jsonschema) or [Slack](https://json-schema.org/slack) should you have any questions.
+Feel free to reach out to me directly via [Twitter](https://www.twitter.com/jsonschema) or [Slack](https://json-schema.org/slack) should you have any questions.
 
 
 # Regular calls

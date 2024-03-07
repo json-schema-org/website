@@ -13,7 +13,7 @@ authors:
 excerpt: "Custom annotations are one of JSON Schemas most-used features.  Here's how we're still supporting them."
 ---
 
-[Last time](./the-last-breaking-change), I wrote about how we had to remove support for unknown keywords.  I ended that post with a note saying that we were still searching for a way that we can support non-functional custom keywords, that is, simple annotations.
+[Last time](the-last-breaking-change), I wrote about how we had to remove support for unknown keywords.  I ended that post with a note saying that we were still searching for a way that we can support non-functional custom keywords, that is, simple annotations.
 
 In this post, I'd like to review the solution and how we came to it, as well as a brief overview of some of the other solutions we dreamed up and were offered.  Buckle up, 'cause it's gonna be a mild ride!
 
@@ -43,7 +43,7 @@ This option actually builds on the one we selected by defining a new Core keywor
 
 It was pointed out, however, that in order for a schema to be validated by the meta-schema, the meta-schema would need to be able to read this new keyword to get the prefix so that it could ignore the keywords that started with it.  This requires a whole lot of new mechanisms that we don't currently have in JSON Schema, so it's not very practical at this time.
 
-We also noted that we couldn't figure out what the scope of this keyword would be.  Would it be only the schema resource (indicated by `$id`) where the keyword was used?  Would it be the whole document?  What if we `$ref` to another schema resource or document that doesn't define a prefix?  There's a balance somewhere between inferring intent and requiring too much repetition. 
+We also noted that we couldn't figure out what the scope of this keyword would be.  Would it be only the schema resource (indicated by `$id`) where the keyword was used?  Would it be the whole document?  What if we `$ref` to another schema resource or document that doesn't define a prefix?  There's a balance somewhere between inferring intent and requiring too much repetition.
 
 ### Alternative #2 - Listing the custom keywords to ignore in a new keyword
 

@@ -60,6 +60,70 @@ Build static files on /out folder
 ```
 yarn build
 ```
+#### Testing
+
+Formatting
+
+you can check code formatting using the following command:
+
+```
+yarn run format:check
+```
+
+you can format the code using the following command:
+
+```
+yarn run format:fix
+```
+
+Linting
+
+you can check linting issues using the following command:
+
+```
+yarn run lint
+```
+
+you can fix linting issues using the following command:
+
+```
+yarn run lint:fix
+```
+
+Husky for git hooks
+
+This project uses Husky to run checks for the formatting, linting, typecheck and build commands before committing the code.
+
+pre-commit hook will run the following commands:
+
+```
+yarn run lint
+yarn run typecheck
+yarn run build
+```
+
+### Run locally using Docker
+
+If you are a Docker lover, you have the option to use it following these instructions.
+
+#### Prerequisites:
+
+- [install Docker](https://docs.docker.com/get-docker/)
+
+After cloning repository to your local, perform the following steps from the root of the repository.
+
+#### Steps:
+1. Build the Docker image:
+    ```bash
+      make install
+    ```
+
+2. Start the container:
+    ```bash
+      make run
+    ```
+
+Now you're running JSON Schema website in a development mode. Container is mapped with your local copy of the website. Whenever you make changes to the code, the website will refresh and changes visible in localhost:3000.
 
 ## Project structure
 
@@ -119,18 +183,10 @@ Thanks goes to these wonderful people who contributed to this website:
 ## Connect with the JSON Schema Community
 
 <p align="left">
-    <a href="https://json-schema.org/slack" target="blank">
-      <img align="center" src="https://img.icons8.com/color/48/null/slack-new.png" alt="JSON Schema Slack" height="30" width="40" />
-    </a>
-    <a href="https://twitter.com/jsonschema" target="blank">
-      <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="JSON Schema Twitter" height="30" width="40" />
-    </a>
-    <a href="https://www.linkedin.com/company/jsonschema" target="blank">
-      <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="JSON Schema LinkedIn" height="30" width="40" />
-    </a>
-    <a href="https://www.youtube.com/@JSONSchemaOrgOfficial" target="blank">
-      <img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="JSON Schema YouTube" height="30" width="40" />
-    </a>
+    <a href="https://json-schema.org/slack" target="blank" style="margin-right: 5px;"><img align="center" src="https://img.icons8.com/color/48/null/slack-new.png" alt="JSON Schema Slack" height="30" width="40" /></a>
+    <a href="https://twitter.com/jsonschema" target="blank" style="margin-right: 5px;"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/twitter.svg" alt="JSON Schema Twitter" height="30" width="40" /></a>
+    <a href="https://www.linkedin.com/company/jsonschema" target="blank" style="margin-right: 5px;"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg" alt="JSON Schema LinkedIn" height="30" width="40" /></a>
+    <a href="https://www.youtube.com/@JSONSchemaOrgOfficial" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/youtube.svg" alt="JSON Schema YouTube" height="30" width="40" /></a>
 </p>
 
 ## Inspired by
