@@ -472,7 +472,7 @@ const Home = (props: any) => {
                 </div>
                 <a
                   href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com'
-                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-500 ease-in-out h-[40px] text-center pt-1 flex items-center justify-center'
+                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-500 ease-in-out h-[40px] text-center pt-1 flex items-center justify-center'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
