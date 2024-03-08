@@ -211,11 +211,11 @@ const MainNavigation = () => {
   );
 };
 
-const MobileNav: React.FC = () => {
-  const section = useContext(SectionContext)
- 
+const MobileNav = () => {
+  const section = useContext(SectionContext);
+
   return (
-    <div className={`flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] left-0 pl-8 ${marginTopClass}`}>
+    <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
       <MainNavLink
         uri='/specification'
         label='Specification'
