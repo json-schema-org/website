@@ -417,7 +417,7 @@ const Home = (props: any) => {
               <div>
                 <Link
                   href={`/blog/posts/${blogPosts[0].slug}`}
-                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-500 ease-in-out h-[40px] text-center pt-1 semi-bold flex items-center justify-center'
+                  className=' w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-500 ease-in-out h-[40px] text-center pt-1 semi-bold flex items-center justify-center'
                 >
                   Read more{' '}
                 </Link>
