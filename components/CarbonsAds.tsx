@@ -115,6 +115,12 @@ CarbonAds.stylesheet = {
       margin-top: 4px;
       color: rgb(100 116 139);
     }
+
+    @media (max-width: 1023px) {
+      #carbonads-container {
+        display: none;
+      }
+    }
   `,
 };
 
