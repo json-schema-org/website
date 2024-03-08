@@ -174,11 +174,13 @@ const MainNavigation = () => {
   )
 }
 
-const MobileNav = () => {
+const MobileNav: React.FC = () => {
   const section = useContext(SectionContext)
+  
+  const marginTopClass = section !== 'tools' && section !== 'blog' ? 'mt-16' : '';
 
   return (
-    <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
+    <div className={`flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] left-0 pl-8 ${marginTopClass}`}>
       <MainNavLink
         uri='/specification'
         label='Specification'
