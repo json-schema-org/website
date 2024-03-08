@@ -1,18 +1,28 @@
-import React from 'react'
-import { getLayout } from '~/components/Sidebar'
-import Head from 'next/head'
-import StyledMarkdown from '~/components/StyledMarkdown'
-import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths'
-import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps'
-import { Headline1 } from '~/components/Headlines'
-import { SectionContext } from '~/context'
-import { DocsHelp } from '~/components/DocsHelp'
+import React from 'react';
+import { getLayout } from '~/components/Sidebar';
+import Head from 'next/head';
+import StyledMarkdown from '~/components/StyledMarkdown';
+import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths';
+import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
+import { Headline1 } from '~/components/Headlines';
+import { SectionContext } from '~/context';
+import { DocsHelp } from '~/components/DocsHelp';
 
-export async function getStaticPaths() { return getStaticMarkdownPaths('pages') }
-export async function getStaticProps(args: any) { return getStaticMarkdownProps(args, 'pages') }
+export async function getStaticPaths() {
+  return getStaticMarkdownPaths('pages');
+}
+export async function getStaticProps(args: any) {
+  return getStaticMarkdownProps(args, 'pages');
+}
 
-export default function StaticMarkdownPage({ frontmatter, content }: { frontmatter: any, content: any }) {
-  const newTitle = 'JSON Schema - ' + frontmatter.title
+export default function StaticMarkdownPage({
+  frontmatter,
+  content,
+}: {
+  frontmatter: any;
+  content: any;
+}) {
+  const newTitle = 'JSON Schema - ' + frontmatter.title;
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
       <Head>
@@ -22,6 +32,6 @@ export default function StaticMarkdownPage({ frontmatter, content }: { frontmatt
       <StyledMarkdown markdown={content} />
       <DocsHelp />
     </SectionContext.Provider>
-  )
+  );
 }
-StaticMarkdownPage.getLayout = getLayout
+StaticMarkdownPage.getLayout = getLayout;
