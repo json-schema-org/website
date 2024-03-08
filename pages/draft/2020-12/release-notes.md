@@ -39,7 +39,7 @@ Here are some examples to illustrate the changes.
   </tr>
   <tr>
     <td>
-      ```json
+      ```jsonc
       {
         "items": [
           { "$ref": "#/$defs/foo" },
@@ -49,7 +49,7 @@ Here are some examples to illustrate the changes.
       ```
     </td>
     <td>
-      ```json
+      ```jsonc
       {
         "prefixItems": [
           { "$ref": "#/$defs/foo" },
@@ -69,7 +69,7 @@ Here are some examples to illustrate the changes.
   </tr>
   <tr>
     <td>
-      ```json
+      ```jsonc
       {
         "items": [
           { "$ref": "#/$defs/foo" },
@@ -80,7 +80,7 @@ Here are some examples to illustrate the changes.
       ```
     </td>
     <td>
-      ```json
+      ```jsonc
       {
         "prefixItems": [
           { "$ref": "#/$defs/foo" },
@@ -101,7 +101,7 @@ Here are some examples to illustrate the changes.
   </tr>
   <tr>
     <td>
-      ```json
+      ```jsonc
       {
         "items": [
           { "$ref": "#/$defs/foo" },
@@ -112,7 +112,7 @@ Here are some examples to illustrate the changes.
       ```
     </td>
     <td>
-      ```json
+      ```jsonc
       {
         "prefixItems": [
           { "$ref": "#/$defs/foo" },
@@ -159,7 +159,8 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
 ```jsonc
 // tree schema, extensible
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$schema": "https://json-
+  schema.org/draft/2019-09/schema",
   "$id": "https://example.com/tree",
   "$recursiveAnchor": true,
   "type": "object",
@@ -171,9 +172,11 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     }
   }
 }
-// strict-tree schema, guards against misspelled properties
+// strict-tree schema, 
+//guards against misspelled properties
 {
-  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$schema": "https://json-
+  schema.org/draft/2019-09/schema",
   "$id": "https://example.com/strict-tree",
   "$recursiveAnchor": true,
   "$ref": "tree",
@@ -186,7 +189,8 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
 ```jsonc
 // tree schema, extensible
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://json-
+  schema.org/draft/2020-12/schema",
   "$id": "https://example.com/tree",
   "$dynamicAnchor": "node",
   "type": "object",
@@ -194,13 +198,16 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
     "data": true,
     "children": {
       "type": "array",
-      "items": { "$dynamicRef": "#node"}
+      "items": 
+      {"$dynamicRef": "#node"}
     }
   }
 }
-// strict-tree schema, guards against misspelled properties
+// strict-tree schema,
+//guards against misspelled properties
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$schema": "https://json-
+  schema.org/draft/2020-12/schema",
   "$id": "https://example.com/strict-tree",
   "$dynamicAnchor": "node",
   "$ref": "tree",
@@ -230,7 +237,7 @@ schema.
   </tr>
   <tr>
     <td>
-      ```json
+      ```jsonc
         {
           "type": "array",
           "contains": { "type": "string" },
@@ -244,7 +251,7 @@ schema.
       ```
     </td>
     <td>
-      ```json
+      ```jsonc
         {
           "type": "array",
           "contains": { "type": "string" },
@@ -260,7 +267,7 @@ situations you did before. Consider this draft 2019-09 schema describing a tuple
 of two strings where one of the two must be three or more characters long and
 any additional items are not allowed.
 
-```json
+```jsonc
 {
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "type": "array",
@@ -274,7 +281,7 @@ Given this schema, the instance `["a", "b", "ccc"]` will fail because `"ccc"` is
 considered unevaluated and fails the `unevaluatedItems` keyword. Now let's
 naively convert that example to a draft 2020-12 schema.
 
-```json
+```jsonc
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "array",
@@ -289,7 +296,7 @@ considered evaluated and doesn't not apply to the `unevaluatedItems` keyword. To
 fix this problem we can use the same boolean algebra transformation we used to
 use before we had the `contains` keyword.
 
-```json
+```jsonc
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "array",
@@ -347,7 +354,7 @@ remain as similar as possible whether you are validating the bundled schema or
 following external references. Here's an example of a customer schema with
 external references that we want to bundle.
 
-```json
+```jsonc
 {
   "$schema": "https://json-schema.org/draft/2020-12",
   "$id": "https://example.com/schema/customer",
@@ -361,7 +368,7 @@ external references that we want to bundle.
 }
 ```
 
-```json
+```jsonc
 {
   "$schema": "https://json-schema.org/draft/2020-12",
   "$id": "https://example.com/schema/address",
@@ -382,7 +389,7 @@ external references that we want to bundle.
 }
 ```
 
-```json
+```jsonc
 {
   "$schema": "https://json-schema.org/draft/2019-09",
   "$id": "https://example.com/schema/common",
@@ -407,53 +414,53 @@ external references that we want to bundle.
 To bundle these schemas, we simply add each of the referenced schemas as
 embedded schemas using `$defs`. Here's what the bundled schema would look like.
 
-```json
+```jsonc
 {
-  "$schema": "https://json-schema.org/draft/2020-12",
-  "$id": "https://example.com/schema/customer",
+"$schema": "https://json-schema.org/draft/2020-12",
+"$id": "https://example.com/schema/customer",
+
+"type": "object",
+"properties": {
+  "name": { "type": "string" },
+  "phone": { "$ref": "/schema/common#/$defs/phone" },
+  "address": { "$ref": "/schema/address" }
+},
+
+"$defs": {
+"https://example.com/schema/address": {
+  "$id": "https://example.com/schema/address",
 
   "type": "object",
   "properties": {
-    "name": { "type": "string" },
-    "phone": { "$ref": "/schema/common#/$defs/phone" },
-    "address": { "$ref": "/schema/address" }
+    "address": { "type": "string" },
+    "city": { "type": "string" },
+    "postalCode": { "$ref": "/schema/common#/$defs/usaPostalCode" },
+    "state": { "$ref": "#/$defs/states" }
   },
 
   "$defs": {
-    "https://example.com/schema/address": {
-      "$id": "https://example.com/schema/address",
+    "states": {
+      "enum": [...]
+    }
+  }
+},
+"https://example.com/schema/common": {
+"$schema": "https://json-schema.org/draft/2019-09",
+"$id": "https://example.com/schema/common",
 
-      "type": "object",
-      "properties": {
-        "address": { "type": "string" },
-        "city": { "type": "string" },
-        "postalCode": { "$ref": "/schema/common#/$defs/usaPostalCode" },
-        "state": { "$ref": "#/$defs/states" }
-      },
-
-      "$defs": {
-        "states": {
-          "enum": [...]
-        }
-      }
+  "$defs": {
+    "phone": {
+      "type": "string",
+      "pattern": "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
     },
-    "https://example.com/schema/common": {
-      "$schema": "https://json-schema.org/draft/2019-09",
-      "$id": "https://example.com/schema/common",
-
-      "$defs": {
-        "phone": {
-          "type": "string",
-          "pattern": "^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$"
-        },
-        "usaPostalCode": {
-          "type": "string",
-          "pattern": "^[0-9]{5}(?:-[0-9]{4})?$"
-        },
-        "unsignedInt": {
-          "type": "integer",
-          "minimum": 0
-        }
+    "usaPostalCode": {
+      "type": "string",
+      "pattern": "^[0-9]{5}(?:-[0-9]{4})?$"
+    },
+    "unsignedInt": {
+      "type": "integer",
+      "minimum": 0
+    }
       }
     }
   }

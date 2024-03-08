@@ -277,38 +277,46 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] max-w-screen-sm lg:max-w-[800px] xl:max-w-[900px]'>
-                  {/* definitely not the best way to prevent overflowing. found no better way that worked */}
-                  <Highlight
-                    language={language}
-                    wrapLines={true}
-                    wrapLongLines={true}
-                    customStyle={{
-                      borderRadius: 10,
-                      paddingTop: 15,
-                      paddingBottom: 10,
-                      paddingLeft: 10,
-                      marginBottom: 20,
-                      maxWidth: '100%',
-                    }}
-                    lineNumberStyle={{
-                      marginRight: 10,
-                    }}
-                    style={atomOneDark}
-                    showLineNumbers
-                    startingLineNumber={1}
-                    lineProps={() => {
-                      const isHighlighted = false;
-                      return {
-                        className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
-                      };
-                    }}
-                    codeTagProps={{
-                      className: 'mr-8',
-                    }}
+                <div style={{ overflowX: 'auto', whiteSpace: 'pre-wrap' }}>
+                  <div
+                    className='overflow-x-hidden flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] max-w-screen-sm lg:max-w-[800px] xl:max-w-[900px]'
+                    style={{ contain: 'content' }}
                   >
-                    {code}
-                  </Highlight>
+                    {/* definitely not the best way to prevent overflowing. found no better way that worked */}
+                    <Highlight
+                      language={language}
+                      wrapLines={true}
+                      // wrapLongLines={true}
+                      customStyle={{
+                        borderRadius: 10,
+                        paddingTop: 15,
+                        paddingBottom: 10,
+                        paddingLeft: 10,
+                        marginBottom: 20,
+                        maxWidth: '100%',
+                        whiteSpace: 'pre-wrap',
+                        wordBreak: 'break-word',
+                        overflowWrap: 'break-word',
+                      }}
+                      lineNumberStyle={{
+                        marginRight: 10,
+                      }}
+                      style={atomOneDark}
+                      showLineNumbers
+                      startingLineNumber={1}
+                      lineProps={() => {
+                        const isHighlighted = false;
+                        return {
+                          className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
+                        };
+                      }}
+                      codeTagProps={{
+                        className: 'mr-8',
+                      }}
+                    >
+                      {code}
+                    </Highlight>
+                  </div>
                 </div>
               );
             },
