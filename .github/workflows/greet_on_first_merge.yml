@@ -27,7 +27,7 @@ jobs:
             console.log(firstPR.data.length); 
 
             if (firstPR.data.length === 1) {
-              const greetingMessage = ` Congratulations, @${authorLogin}! This is your first pull request merge. Thank you for your contribution! `;
+              const greetingMessage = ` Congratulations, @${authorLogin} for your first pull request merge in this repository! 🎉🎉. Thanks for your contribution to JSON Schema! `;
 
               await github.issues.createComment({
                 owner: context.repo.owner,
