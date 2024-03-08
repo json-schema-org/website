@@ -20,16 +20,7 @@ export type blogCategories =
   | 'Update'
   | 'Opinion';
 
-<<<<<<< HEAD
-export async function getStaticProps({
-  query,
-}: {
-  params: string;
-  query: any;
-}) {
-=======
 export async function getStaticProps({ query }: { query: any }) {
->>>>>>> 46ec3fa (resolved code)
   const files = fs.readdirSync(PATH);
   const blogPosts = files
     .filter((file) => file.substr(-3) === '.md')
@@ -156,28 +147,17 @@ export default function StaticMarkdownPage({
                 </h1>
                 <div className='flex ml-2 mb-2 '>
                   <div
-<<<<<<< HEAD
-                    className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-=======
                     className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
->>>>>>> 46ec3fa (resolved code)
                     style={{
                       backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})`,
                     }}
                   />
-<<<<<<< HEAD
-                  <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
-                    <p className='text-sm font-semibold text-stroke-1'>
-                      {recentBlog[0].frontmatter.authors[0].name}
-                    </p>
-                    <div className=' mb-6 text-sm  text-stroke-1'>
-=======
+
                   <div className='max-w-[1400px] mx-autoflex flex-col ml-2'>
                     <p className='text-sm font-semibold text-stroke-1'>
                       {recentBlog[0].frontmatter.authors[0].name}
                     </p>
                     <div className=' text-sm  text-stroke-1'>
->>>>>>> 46ec3fa (resolved code)
                       <span>
                         {recentBlog[0].frontmatter.date} &middot; {timeToRead}{' '}
                         min read
@@ -222,10 +202,7 @@ export default function StaticMarkdownPage({
           </div>
         </div>
         {/* Filter Buttons */}
-<<<<<<< HEAD
 
-=======
->>>>>>> 46ec3fa (resolved code)
         <div className='w-full ml-8 flex flex-wrap justify-start'>
           {allTags.map((tag) => (
             <button
@@ -289,10 +266,7 @@ export default function StaticMarkdownPage({
                           <div className='text-lg font-semibold'>
                             {frontmatter.title}
                           </div>
-<<<<<<< HEAD
 
-=======
->>>>>>> 46ec3fa (resolved code)
                           <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
                             <TextTruncate
                               element='span'
