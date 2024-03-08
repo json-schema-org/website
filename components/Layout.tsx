@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { DocSearch } from '@docsearch/react';
 import useStore from '~/store';
 import { SectionContext } from '~/context';
+import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 
 type Props = {
   children: React.ReactNode;
@@ -60,7 +61,7 @@ export default function Layout({
         <main
           className={classnames(
             mainClassName,
-            'z-10 xl:rounded-xl py-4 mx-auto',
+            'z-10 xl:rounded-xl pt-4 mx-auto',
           )}
         >
           <header
@@ -117,7 +118,7 @@ const MainNavLink = ({
       className={classnames(
         className,
         'font-semibold p-2 md:p-4',
-        `${router.asPath === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
+        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
       )}
     >
       {label}
@@ -248,10 +249,10 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 const Footer = () => (
   <footer
     className={classnames(
-      'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12',
+      'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-top grid items-center',
     )}
   >
-    <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+    <div className='max-w-[1400px] mx-auto  mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col text-center sm:text-left'>
@@ -268,8 +269,8 @@ const Footer = () => (
           </a>
         </div>
       </div>
-      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0 lg:ml-12'>
-        <div className='mr-4 mb-4'>
+      <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0  gap-x-4 gap-y-4 md:gap-x-0 md:gap-y-0'>
+        <div className=''>
           <a
             href='https://json-schema.org/slack'
             className='flex items-center text-white'
@@ -281,7 +282,7 @@ const Footer = () => (
             Slack
           </a>
         </div>
-        <div className='mb-4 mr-4'>
+        <div className=''>
           <a
             href='https://twitter.com/jsonschema'
             className='flex items-center text-white'
@@ -290,7 +291,7 @@ const Footer = () => (
             Twitter
           </a>
         </div>
-        <div className='mr-4 mb-4'>
+        <div className=''>
           <a
             href='https://linkedin.com/company/jsonschema/'
             className='flex items-center text-white'
@@ -302,7 +303,7 @@ const Footer = () => (
             LinkedIn
           </a>
         </div>
-        <div className='mr-4 mb-4'>
+        <div className=''>
           <a
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
             className='flex items-center text-white'
@@ -326,128 +327,6 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
-
-const OpenJS = () => (
-  <div className={classnames('')}>
-    <div className='max-w-[1400px] mx-auto my-6 lg:mt-20 grid grid-cols-1 lg:grid-cols-2 w-4/5'>
-      <div className='md:w-1/2 mb-12 lg:ml-28'>
-        <img
-          className='h-24 mx-auto mb-6 lg:mb-0'
-          src='/img/logos/openjs_foundation-logo-horizontal-color.svg'
-          alt='color openjs foundation logo'
-        ></img>
-        {/* <div className='absolute bottom-0 ml-6  mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div> */}
-      </div>
-      <div className='md:w-5/6 lg:w-full mx-auto  mb-16'>
-        <p className='mb-6'>
-          Copyright{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://openjsf.org'
-          >
-            OpenJS Foundation
-          </a>{' '}
-          and JSON Schema contributors. All rights reserved. The{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://openjsf.org'
-          >
-            OpenJS Foundation
-          </a>{' '}
-          has registered trademarks and uses trademarks. For a list of
-          trademarks of the{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://openjsf.org'
-          >
-            OpenJS Foundation
-          </a>
-          , please see our{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-policy.openjsf.org'
-          >
-            Trademark Policy
-          </a>{' '}
-          and{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-list.openjsf.org'
-          >
-            Trademark List
-          </a>
-          . Trademarks and logos not indicated on the{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-list.openjsf.org'
-          >
-            list of OpenJS Foundation trademarks
-          </a>{' '}
-          are trademarks&trade; or registered&reg; trademarks of their
-          respective holders. Use of them does not imply any affiliation with or
-          endorsement by them.
-        </p>
-        <p className='mb-4 sm:mb-8'>
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://openjsf.org'
-          >
-            The OpenJS Foundation
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://terms-of-use.openjsf.org'
-          >
-            Terms of Use
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://privacy-policy.openjsf.org'
-          >
-            Privacy Policy
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://bylaws.openjsf.org'
-          >
-            Bylaws
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://code-of-conduct.openjsf.org'
-          >
-            Code of Conduct
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-policy.openjsf.org'
-          >
-            Trademark Policy
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-list.openjsf.org'
-          >
-            Trademark List
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://www.linuxfoundation.org/cookies'
-          >
-            Cookie Policy
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
 );
 
 const Logo = () => (

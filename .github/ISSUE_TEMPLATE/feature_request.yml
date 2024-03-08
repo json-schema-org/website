@@ -22,7 +22,7 @@ body:
     description: A clear and concise description of any alternative solutions or features you've considered
   validations:
     required: false
-- type: input
+- type: textarea
   attributes:
     label: Additional context
     description: Add any other context about the problem here
