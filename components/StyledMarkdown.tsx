@@ -24,6 +24,7 @@ type Element = {
   type: 'markdown' | 'tabs-group';
   markdown: string;
 };
+
 function transformMarkdownLinks(markdown: string): string {
   const linkDefinitions: Record<string, string> = {};
 
@@ -48,7 +49,6 @@ function transformMarkdownLinks(markdown: string): string {
     },
   );
 }
-
 export default function StyledMarkdown({ markdown }: { markdown?: string }) {
   if (!markdown) return null;
 
@@ -106,7 +106,6 @@ export default function StyledMarkdown({ markdown }: { markdown?: string }) {
 }
 
 const TAB_REGEX = /(?<=\[tab )\s*"(?<label>.*)"\](?<markdown>(.|\n)*?)\[tab/gm;
-
 const TabsGroup = ({ markdown }: { markdown: string }) => {
   const groupLabel: string | null =
     getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS)?.[0]?.groups?.find(
@@ -277,7 +276,17 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div style={{overflowX: 'auto', whiteSpace: 'pre-wrap', scrollbarColor: 'green grey',scrollbarWidth: 'thin',}}>
+                <div
+                  style={{
+                    overflowX: 'auto',
+                    whiteSpace: 'pre-wrap',
+                    scrollbarColor: 'green grey',
+                    scrollbarWidth: 'thin',
+                    display: 'grid',
+                    gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+                    gap: '1rem',
+                  }}
+                >
                   <div
                     className='overflow-x-hidden flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] max-w-screen-sm lg:max-w-[800px] xl:max-w-[900px]'
                     style={{ contain: 'content' }}
