@@ -10,7 +10,6 @@ import TextTruncate from 'react-text-truncate';
 
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
-import Newsletter from '~/components/Newsletter';
 /* eslint-disable */
 import axios from 'axios';
 import ical from 'node-ical';
