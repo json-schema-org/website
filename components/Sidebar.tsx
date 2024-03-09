@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { SegmentHeadline } from './Layout';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import CarbonAds from './CarbonsAds';
+import { useTheme } from 'next-themes';
 
 const DocLink = ({
   uri,
@@ -243,7 +244,7 @@ export const DocsNav = () => {
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
-
+  const { theme } = useTheme();
   return (
     <div id='sidebar ' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
@@ -252,7 +253,11 @@ export const DocsNav = () => {
           onClick={handleClickDoc}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
+            <img
+              src={`${theme === 'dark' ? '/icons/eye-dark.svg' : '/icons/eye.svg'}`}
+              alt='eye icon'
+              className='mr-2'
+            />
             <SegmentHeadline label='Overview' />
           </div>
           <svg
@@ -296,7 +301,11 @@ export const DocsNav = () => {
           onClick={handleClickGet}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
+            <img
+              src={`${theme === 'dark' ? '/icons/compass-dark.svg' : '/icons/compass.svg'}`}
+              alt='eye icon'
+              className='mr-2'
+            />
             <SegmentHeadline label='Getting Started' />
           </div>
           <svg
@@ -343,7 +352,11 @@ export const DocsNav = () => {
           onClick={handleClickReference}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
+            <img
+              src={`${theme === 'dark' ? '/icons/book-dark.svg' : '/icons/book.svg'}`}
+              alt='eye icon'
+              className='mr-2'
+            />
             <SegmentHeadline label='Reference' />
           </div>
           <svg
@@ -489,7 +502,11 @@ export const DocsNav = () => {
           onClick={handleClickSpec}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
+            <img
+              src={`${theme === 'dark' ? '/icons/clipboard-dark.svg' : '/icons/clipboard.svg'}   `}
+              alt='eye icon'
+              className='mr-2'
+            />
             <SegmentHeadline label='Specification' />
           </div>
           <svg

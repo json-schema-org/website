@@ -8,6 +8,7 @@ import useStore from '~/store';
 import { SectionContext } from '~/context';
 import { useTheme } from 'next-themes';
 import DarkModeToggle from './DarkModeToggle';
+import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 
 type Props = {
   children: React.ReactNode;
@@ -71,7 +72,7 @@ export default function Layout({
               'w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg',
             )}
           >
-            <div className='flex md:justify-between items-center ml-8 2xl:px-12 py-4'>
+            <div className='flex w-full md:justify-between items-center ml-8 2xl:px-12 py-4'>
               {/* >>>>>>> 932a9ad (added dark theme) */}
               <Logo />
               <MainNavigation />
@@ -120,11 +121,12 @@ const MainNavLink = ({
       className={classnames(
         className,
         'font-semibold p-2 md:p-4 dark:text-slate-300',
-        `${
-          router.asPath === uri
-            ? 'text-primary hover:text-primary'
-            : 'text-slate-600 hover:text-primary'
-        }`,
+        // `${
+        //   router.asPath === uri
+        //     ? 'text-primary hover:text-primary'
+        //     : 'text-slate-600 hover:text-primary'
+        // }`,
+        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
       )}
     >
       {label}
@@ -137,11 +139,7 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
   return (
-    // <<<<<<< HEAD
-    //     <div className='flex justify-end mr-8 w-full'>
-    // =======
-    <div className='flex justify-end mr-8 w-full '>
-      {/* >>>>>>> 932a9ad (added dark theme) */}
+    <div className='flex justify-end md:mr-8 w-full '>
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -177,8 +175,8 @@ const MainNavigation = () => {
       <div className='flex max-sm:ml-4 items-center gap-6 md:gap-4'>
         <div className='flex justify-center rounded border-2 border-gray-100 ml-0 w-[120px] md:w-full'>
 ======= */}
-      <div className='flex items-center gap-12 md:gap-4 dark:bg-slate-800'>
-        <div className='rounded border-2 border-gray-100 ml-0 w-2/5 md:w-full'>
+      <div className='flex items-center max-sm:ml-4  gap-6 md:gap-4 dark:bg-slate-800'>
+        <div className='rounded border-2  md:block border-gray-100 ml-0 w-2/5 md:w-full'>
           {/* >>>>>>> 932a9ad (added dark theme) */}
           <Search />
         </div>
@@ -192,22 +190,12 @@ const MainNavigation = () => {
             </div>
           </div>
         ) : (
-          // <<<<<<< HEAD
-          //         ) : (
-          //           <div
-          //             style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
-          //             className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer'
-          //             onClick={() => useStore.setState({ overlayNavigation: null })}
-          //           />
-          //         )}
-          // =======
           <div
             style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
             className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
             onClick={() => useStore.setState({ overlayNavigation: null })}
           />
         )}
-        {/* >>>>>>> 932a9ad (added dark theme) */}
       </div>
       <div className='flex items-center justify-end mr-8'>
         <a
@@ -487,15 +475,6 @@ const OpenJS = () => (
   </div>
 );
 
-{
-  /* <<<<<<< HEAD
-const Logo = () => (
-  <Link href='/' className=''>
-    <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
-  </Link>
-);
-======= */
-}
 const Logo = () => {
   const { theme } = useTheme();
   return (
@@ -512,10 +491,6 @@ const Logo = () => {
     </div>
   );
 };
-
-{
-  /* >>>>>>> 5a13b6c (completed home page) */
-}
 
 const FaviconHead = () => {
   const [isDarkMode, setIsDarkMode] = React.useState(false);
