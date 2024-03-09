@@ -264,7 +264,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             tr: {
               component: ({ children }) => (
-                <tr className='even:bg-blue-50 even:bg-opacity-40'>
+                <tr className='even:bg-blue-50 dark:even:bg-slate-900 even:bg-opacity-40'>
                   {children}
                 </tr>
               ),
@@ -383,11 +383,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 return (
                   <div className='my-2'>
                     {label && (
-                      <div className='bg-blue-100 inline-block text-sm rounded-t-lg px-6 py-1 text-blue-600'>
+                      <div className='bg-blue-100 dark:bg-slate-950 dark:text-white inline-block text-sm rounded-t-lg px-6 py-1 text-blue-600'>
                         {label}
                       </div>
                     )}
-                    <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded text-slate-600 leading-7'>
+                    <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded dark:bg-slate-900 dark:text-slate-300 text-slate-600 leading-7'>
                       <img
                         src='/icons/info-blue.svg'
                         className='h-7 w-7 mr-3'

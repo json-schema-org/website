@@ -27,7 +27,8 @@ const DocLink = ({
       href={uri}
       className={classnames('text-sm block border-l-2 py-1 pl-2', {
         '  font-medium': !isActive,
-        'text-primary text-bold border-l-primary font-semibold': isActive,
+        'text-primary dark:text-[#007bff] text-bold border-l-primary  font-semibold':
+          isActive,
       })}
     >
       {label}

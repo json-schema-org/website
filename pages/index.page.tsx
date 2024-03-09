@@ -181,18 +181,18 @@ const Home = (props: any) => {
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
               <Link
                 href='/learn/getting-started-step-by-step'
-                className=' flex items-center justify-center rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold dark:border-none dark:shadow-2xl'
+                className=' flex items-center justify-center rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold  dark:shadow-2xl'
               >
                 Getting started
               </Link>
               <Link
                 href='/slack'
-                className=' flex items-center justify-center rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold dark:border-shadow-white dark:border-none dark:shadow-2xl'
+                className=' flex items-center justify-center rounded border-2 border-white text-white  w-[194px] h-[40px] font-semibold dark:border-shadow-white  dark:shadow-2xl'
               >
                 Join Slack
               </Link>
 
-              <div className='herobtn rounded border-2 border-white text-white mx-auto dark:border-none dark:shadow-2xl'>
+              <div className='herobtn rounded border-2 border-white text-white mx-auto  dark:shadow-2xl'>
                 <DocSearch
                   appId='6ZT4KX2OUI'
                   apiKey='69f76fba13585144f6686622e9c8f2a8'
