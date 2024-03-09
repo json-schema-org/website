@@ -10,6 +10,7 @@ import getScopesOfParsedJsonSchema, {
   JsonSchemaPathWithScope,
   JsonSchemaScope,
 } from '~/lib/getScopesOfParsedJsonSchema';
+import { useState, useEffect } from 'react';
 
 type CustomElement = CustomNode | CustomText;
 type CustomNode = { type: 'paragraph'; children: CustomText[] };
@@ -191,6 +192,15 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
   const [value, setValue] = React.useState<CustomElement[]>(
     deserializeCode(cleanedUpCode),
   );
+  const [windowWidth, setWindowWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 600,
+  );
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+  const isMobile = windowWidth <= 600;
   const serializedCode = React.useMemo(
     () => serializeNodesWithLineBreaks(value),
     [value],
@@ -268,6 +278,17 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             'ml-10': meta?.indent,
           },
         )}
+        style={{
+          overflowX: 'auto',
+          whiteSpace: 'pre-wrap',
+          scrollbarColor: 'darkgray transparent',
+          scrollbarWidth: 'thin',
+          display: isMobile ? 'block' : 'grid',
+          gridTemplateColumns: isMobile
+            ? 'none'
+            : 'repeat(auto-fit, minmax(300px, 1fr))',
+          gap: '1rem',
+        }}
       >
         <div className='flex flex-row absolute right-0 z-10'>
           {/* Copy code button */}
