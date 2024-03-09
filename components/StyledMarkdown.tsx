@@ -280,7 +280,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                   style={{
                     overflowX: 'auto',
                     whiteSpace: 'pre-wrap',
-                    scrollbarColor: 'green grey',
+                    scrollbarColor: 'darkgray transparent',
                     scrollbarWidth: 'thin',
                     display: 'grid',
                     gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
