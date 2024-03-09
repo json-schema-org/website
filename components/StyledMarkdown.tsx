@@ -277,14 +277,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div
-                style={{
-                  overflowX: 'auto',
-                  whiteSpace: 'pre-wrap',
-                  scrollbarColor: 'green grey',
-                  scrollbarWidth: 'thin',
-                }}
-              >
+                <div style={{overflowX: 'auto', whiteSpace: 'pre-wrap', scrollbarColor: 'green grey',scrollbarWidth: 'thin',}}>
                   <div
                     className='overflow-x-hidden flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] max-w-screen-sm lg:max-w-[800px] xl:max-w-[900px]'
                     style={{ contain: 'content' }}
