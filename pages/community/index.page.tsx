@@ -258,7 +258,7 @@ export default function communityPages(props: any) {
           description="Launch OSS community programs that your community is proud to
             participate in. Let's build thriving OSS communities together!"
           btnText='Become an ambassador'
-          link='/community/ambassadors'
+          href='/community/ambassadors'
           className='bg-ambassador'
         />
         {/* </div> */}

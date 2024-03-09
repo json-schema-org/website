@@ -5,7 +5,10 @@ import Heading from './typography/Heading';
 
 export default function Header() {
   return (
-    <div className='text-center flex justify-center flex-col items-center mt-10 md:mt-0' data-testid='Header-hero-heading'>
+    <div
+      className='text-center flex justify-center flex-col items-center mt-10 md:mt-0'
+      data-testid='Header-hero-heading'
+    >
       <Heading
         className='bg-gradient-to-r from-startBlue from-1.95% to-endBlue bg-gradient-to-r from-startBlue to-endBlue text-transparent bg-clip-text font-bold'
         level='h6'
@@ -28,16 +31,22 @@ export default function Header() {
           textColor='text-gray-700'
           className='text-slate-500 text-sm'
         >
-          With over 60 million weekly downloads, JSON Schema has a large and active
-          developer community across the world. Join the Community to learn, share
-          ideas, ask questions, develop JSON Schema tooling and build new connections.
-          sharing ideas, and building connections.
+          With over 60 million weekly downloads, JSON Schema has a large and
+          active developer community across the world. Join the Community to
+          learn, share ideas, ask questions, develop JSON Schema tooling and
+          build new connections. sharing ideas, and building connections.
         </Heading>
       </div>
       <div className='mt-8'>
         <button
           className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
-          onClick={() => window.open('https://github.com/orgs/json-schema-org/discussions', '_blank')}>
+          onClick={() =>
+            window.open(
+              'https://github.com/orgs/json-schema-org/discussions',
+              '_blank',
+            )
+          }
+        >
           Join Discussions
         </button>
       </div>
