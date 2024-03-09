@@ -1,16 +1,16 @@
-import React, { useState } from 'react'
-import classnames from 'classnames'
+import React, { useState } from 'react';
+import classnames from 'classnames';
 
 interface NewsletterFormProps {
-  wrapperClassName?: string
-  className?: string
-  background?: 'white' | 'black'
+  wrapperClassName?: string;
+  className?: string;
+  background?: 'white' | 'black';
 }
 
 const NewsletterForm: React.FC<NewsletterFormProps> = ({ wrapperClassName = '', className = '', background = 'white' }) => { 
-  const [email, setEmail] = useState('')
-  const [username, setUsername] = useState('')
-  const formAction = "https://json-schema.us8.list-manage.com/subscribe/post?u=ef8789d5789a6aff8113a701d&amp;id=11103c248b&amp;f_id=00822be0f0"
+  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
+  const formAction = 'https://json-schema.us8.list-manage.com/subscribe/post?u=ef8789d5789a6aff8113a701d&amp;id=11103c248b&amp;f_id=00822be0f0';
 
   return (
     <section
