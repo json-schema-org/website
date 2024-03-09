@@ -21,11 +21,6 @@
       "@public/*": ["./public/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx",
-    "pages/community/event/Event.jsx"
-  ],
+  "include": ["next-env.d.ts", "**/*.ts","**/*.tsx"],
   "exclude": ["node_modules"]
 }
