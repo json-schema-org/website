@@ -7,13 +7,14 @@ import Coloumn from './column/Coloumn';
 import Card from './card/Card';
 import Event from './event/Event';
 import Heading from './typography/Heading';
+import BlogCard from './card/BlogCard';
 
 // import { getLayout } from '../components/SiteLayout';
 // import { DocSearch } from '@docsearch/react';
 import fs from 'fs';
 import matter from 'gray-matter';
 const PATH = 'pages/blog/posts';
-// import readingTime from 'reading-time';
+import readingTime from 'reading-time';
 // import Link from 'next/link';
 // import TextTruncate from 'react-text-truncate';
 import { GetStaticProps } from 'next';
@@ -177,13 +178,16 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 // }
 
 export default function communityPages(props: any) {
+  const blogPosts = props.blogPosts;
+  const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
+
   return (
     <SectionContext.Provider value='community'>
       <div
         className='max-w-screen-xl block px-4 sm:px-6 lg:px-8 mx-auto w-full'
         data-testid='Container-main'
       >
-        <div className='md:hidden mt-15'>
+        <div className='md:hidden mt-[100px]'>
           <Header />
         </div>
         <div className='overflow-hidden orbits'>
@@ -228,113 +232,186 @@ export default function communityPages(props: any) {
           </div>
         </div>
         <section className='mt-10 md:mt-0'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-8/12 m-auto'>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-9/12 sm:w-8/12 md:w-10/12 lg:w-10/12 xl:w-9/12 2xl:8/12 m-auto'>
             <Coloumn
               testId='1'
+              href='https://github.com/orgs/json-schema-org/discussions/427'
+              className='bg-sky-400'
               emoji='🚀'
               h1='Roadmap'
               p='We’re looking forward to working with you. Welcome aboard! 🚀'
             />
             <Coloumn
               testId='2'
+              href='https://github.com/json-schema-org/.github/blob/main/CONTRIBUTING.md'
+              className='bg-sky-400'
               emoji='🚀'
               h1='Contributing'
               p='We’re looking forward to working with you. Welcome aboard! 🚀'
             />
           </div>
         </section>
-        <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <Card
-            headline='Thanking our JSON Schema Ambassadors'
-            title='Ambassador Programs'
-            description="Launch OSS community programs that your community is proud to
+        {/* <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'> */}
+        <Card
+          headline='Thanking our JSON Schema Ambassadors'
+          title='Ambassador Programs'
+          description="Launch OSS community programs that your community is proud to
             participate in. Let's build thriving OSS communities together!"
-            btnText='Become an ambassador'
-            link='/community/ambassadors'
-            className='bg-ambassador'
-          />
-        </div>
+          btnText='Become an ambassador'
+          link='/community/ambassadors'
+          className='bg-ambassador'
+        />
+        {/* </div> */}
 
-        <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <Card
-            headline='Join the JSON Schema Slack Workspace!'
-            title='Slack Community'
-            description='Join our Slack to ask questions, get feedback on your
+        {/* <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'> */}
+        <Card
+          headline='Join the JSON Schema Slack Workspace!'
+          title='Slack Community'
+          description='Join our Slack to ask questions, get feedback on your
              projects, and connect with +5000 practitioners and experts.'
-            btnText='Join Slack'
-            href='https://json-schema.slack.com/ssb/redirect'
-            className='bg-slack'
-          />
-        </div>
+          btnText='Join Slack'
+          href='https://json-schema.slack.com/ssb/redirect'
+          className='bg-slack'
+        />
+        {/* </div> */}
 
-        <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <Event
-            // headline='JSON Schema Community Meetings & Events'
-            title='JSON Schema Community Meetings & Events'
-            description='We hold monthly Office Hours and weekly Open Community Working
+        {/* <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'> */}
+        <Event
+          // headline='JSON Schema Community Meetings & Events'
+          title='JSON Schema Community Meetings & Events'
+          description='We hold monthly Office Hours and weekly Open Community Working
             Meetings. Office Hours are every first Tuesday of the month at
             15:00 BST, and by appointment. Open Community Working Meetings
             are every Monday at 14:00 PT.'
-            btnText='Open Community Working Meetings'
-            href='https://github.com/orgs/json-schema-org/discussions/35'
-            btn2Class='mt-2'
-            btnText2='Office Hours'
-            href2='https://github.com/orgs/json-schema-org/discussions/34/'
-            className='bg-meeting'
-          />
-        </div>
+          btnText='Open Community Working Meetings'
+          href='https://github.com/orgs/json-schema-org/discussions/35'
+          btn2Class='mt-2'
+          btnText2='Office Hours'
+          href2='https://github.com/orgs/json-schema-org/discussions/34/'
+          className='bg-meeting'
+        />
+        {/* </div> */}
 
-        <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <div className='z-40 mt-20 bg-white w-full md:h-130 rounded-lg shadow-xl md:flex grid grid-cols-2 justify-between'>
-            <div className='p-10 flex justify-between w-full md:w-2/5 h-auto flex-col text-center md:text-left'>
-              <div data-testid='HomeCard-main'>
-                <Heading
-                  level='h2'
-                  typeStyle='heading-md'
-                  textColor='text-purple-300'
-                  id=''
-                  className=''
-                >
-                  Upcoming events
-                </Heading>
-              </div>
-              <div data-testid='HomeCard-title'>
-                <div className='mt-4'>
-                  <ul>
-                    {props.datesInfo.map((event: any, index: any) => (
-                      <li key={index}>
-                        <div className='flex mb-4'>
-                          <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
-                            {event.day}
+        {/* <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'> */}
+        <div className='z-40 mt-20 bg-white w-full md:h-130 rounded-lg shadow-xl md:flex grid grid-cols-2 justify-between'>
+          <div className='p-10 flex justify-between w-full md:w-2/5 h-auto flex-col text-center md:text-left'>
+            <div data-testid='HomeCard-main'>
+              <Heading
+                level='h2'
+                typeStyle='heading-md'
+                textColor='text-purple-300'
+                id=''
+                className=''
+              >
+                Upcoming events
+              </Heading>
+            </div>
+            <div data-testid='HomeCard-title'>
+              <div className='mt-4'>
+                <ul>
+                  {props.datesInfo.map((event: any, index: any) => (
+                    <li key={index}>
+                      <div className='flex mb-4'>
+                        <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
+                          {event.day}
+                        </p>
+                        <div className='text-sm'>
+                          <p>{event.title}</p>
+                          <p>
+                            <b>{event.time}</b> ({event.timezone})
                           </p>
-                          <div className='text-sm'>
-                            <p>{event.title}</p>
-                            <p>
-                              <b>{event.time}</b> ({event.timezone})
-                            </p>
-                          </div>
                         </div>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className='mt-10' data-testid='HomeCard-button'>
-                  <a
-                    href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com'
-                    className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center flex items-center justify-center'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    View Calendar
-                  </a>
-                </div>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className='mt-10' data-testid='HomeCard-button'>
+                <a
+                  href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com'
+                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center flex items-center justify-center'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  View Calendar
+                </a>
               </div>
             </div>
-            <div
-              className={`w-full h-fit-content md:w-3/6 flex rounded-r-lg justify-end bg-cover bg-center ${props.className}`}
-            ></div>
           </div>
+          <div
+            className={`w-full h-fit-content md:w-3/6 flex rounded-r-lg justify-end bg-cover bg-center ${props.className}`}
+          ></div>
         </div>
+        {/* </div> */}
+
+        {/* <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'> */}
+        <div className='z-40 mt-20 bg-white w-full md:h-130 rounded-lg shadow-xl md:flex grid grid-cols-2 justify-between'>
+          <div className='p-10 flex justify-between w-full md:w-2/5 h-auto flex-col text-center md:text-left'>
+            <BlogCard
+              href={`/blog/posts/${blogPosts[0].slug}`}
+              src={blogPosts[0].frontmatter.cover}
+              h3_1={blogPosts[0].frontmatter.title}
+              text={blogPosts[0].frontmatter.excerpt}
+              url={blogPosts[0].frontmatter.authors[0].photo}
+              author={blogPosts[0].frontmatter.authors[0].name}
+              spanPart1={blogPosts[0].frontmatter.date}
+              spanPart2={timeToRead}
+            />
+          </div>
+          <div className='w-full h-fit-content md:w-3/6 flex rounded-r-lg justify-end bg-cover bg-center bg-blog'></div>
+        </div>
+        {/* </div> */}
+
+        {/* BlogPost Data */}
+        {/* <div className='w-full mb-6'>
+              <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+                <h3 className='mb-5 font-semibold pt-1'>
+                  The JSON Schema Blog
+                </h3>
+                <img
+                  src={blogPosts[0].frontmatter.cover}
+                  className='w-full h-[232px]  mb-4'
+                />
+                <h3 className='mb-4 font-semibold'>
+                  {' '}
+                  {blogPosts[0].frontmatter.title}
+                </h3>
+                <div className='mb-4'>
+                  <TextTruncate
+                    element='span'
+                    line={4}
+                    text={blogPosts[0].frontmatter.excerpt}
+                  />
+                </div>
+                <div className='flex ml-2 mb-2 '>
+                  <div
+                    className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                    style={{
+                      backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})`,
+                    }}
+                  />
+                  <div className='flex flex-col ml-2'>
+                    <p className='text-sm font-semibold'>
+                      {blogPosts[0].frontmatter.authors[0].name}
+                    </p>
+                    <div className='text-slate-500 text-sm'>
+                      <span>
+                        {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
+                        min read
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+              <div>
+                <Link
+                  href={`/blog/posts/${blogPosts[0].slug}`}
+                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center semi-bold flex items-center justify-center'
+                >
+                  Read more{' '}
+                </Link>
+              </div>
+            </div> */}
 
         {/* <div>
           <div>

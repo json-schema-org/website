@@ -5,7 +5,7 @@ import Button from './Button'
 export default function Card(props) {
 
     return (
-        <div className="z-40 mt-20 bg-white w-full md:h-130 rounded-lg shadow-xl md:flex grid grid-cols-2 justify-between">
+        <div className="z-40 mt-20 bg-white w-full md:h-[520px] rounded-lg shadow-xl md:flex grid grid-cols-2 md:justify-between">
             <div className="p-10 flex justify-between w-full md:w-2/5 h-auto flex-col text-center md:text-left">
                 <div data-testid="HomeCard-main">
                     <Heading
@@ -37,8 +37,8 @@ export default function Card(props) {
                     </div>
                 </div>
             </div>
-            <div className={`w-full h-fit-content md:w-3/6 flex rounded-r-lg justify-end bg-cover bg-center ${props.className}`} >
-            </div>
+            <div className={`w-full h-fit-content md:w-3/5  flex rounded-r-lg justify-end bg-cover bg-center ${props.className}`} 
+            />
         </div>
     );
 }

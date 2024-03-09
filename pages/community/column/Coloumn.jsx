@@ -3,8 +3,8 @@ import React from "react";
 function Coloumn(props) {
     return (
         <div data-test-id={props.testId}>
-            <a href="">
-                <div className="p-3 cursor-pointer border w-full bg-teal-300 shadow-3xl rounded-[5px] p-[20px]">
+            <a href={props.href}>
+                <div className={`p-3 cursor-pointer border w-full  shadow-3xl rounded-[5px] p-[20px] ${props.className}`}>
                     <div className="p-2 rounded-xl bg-transparent text-center w-min text-xs flex justify-between">
                         <span>
                             {props.emoji}

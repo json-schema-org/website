@@ -7,7 +7,7 @@ export default function Header() {
   return (
     <div className='text-center flex justify-center flex-col items-center mt-10 md:mt-0' data-testid='Header-hero-heading'>
       <Heading
-        className='bg-gradient-to-r from-startBlue from-1.95% to-endBluebg-gradient-to-r from-startBlue to-endBlue text-transparent bg-clip-text font-bold'
+        className='bg-gradient-to-r from-startBlue from-1.95% to-endBlue bg-gradient-to-r from-startBlue to-endBlue text-transparent bg-clip-text font-bold'
         level='h6'
         typeStyle='heading-xs'
       >
@@ -15,7 +15,7 @@ export default function Header() {
       </Heading>
       <div className='mt-8' data-testid='Header-heading-1'>
         <Heading level='h1' typeStyle='heading-xl' className=''>
-          <span className='title block md:-mt-1 leading-[3.5rem]'>
+          <span className='title block md:-mt-1 leading-[3rem] md:leading-[3.5rem]'>
             Welcome to the
             <br /> JSON Schema Community
           </span>
@@ -35,11 +35,11 @@ export default function Header() {
         </Heading>
       </div>
       <div className='mt-8'>
-      <button 
-  className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
-  onClick={() => window.open('https://github.com/orgs/json-schema-org/discussions', '_blank')}>
-  Join Discussions
-</button>
+        <button
+          className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+          onClick={() => window.open('https://github.com/orgs/json-schema-org/discussions', '_blank')}>
+          Join Discussions
+        </button>
       </div>
     </div>
   );

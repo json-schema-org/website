@@ -432,5 +432,9 @@ border-radius: 4px; */
 }
 
 .bg-meeting {
-  background-image: url(/img/event/meet.jpg);
+  background-image: url(/img/event/meet.png);
+}
+
+.bg-blog {
+  background-image: url(/img/event/Json-Schema-Blog.png);
 }
