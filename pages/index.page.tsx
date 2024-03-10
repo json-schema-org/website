@@ -179,18 +179,18 @@ const Home = (props: any) => {
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center'>
               <Link
                 href='/learn/getting-started-step-by-step'
-                className='flex items-center justify-center rounded border-2 border-white hover:bg-blue-700 transition-all duration-500 ease-in-out text-white w-[194px] h-[40px] font-semibold'
+                className='flex items-center justify-center rounded border-2 border-white text-white w-[194px] h-[40px] font-semibold'
               >
                 Getting started
               </Link>
               <Link
                 href='/slack'
-                className='flex items-center justify-center rounded border-2 border-white  hover:bg-blue-700 transition-all duration-500 ease-in-out text-white  w-[194px] h-[40px] font-semibold'
+                className='flex items-center justify-center rounded border-2 border-white  text-white  w-[194px] h-[40px] font-semibold'
               >
                 Join Slack
               </Link>
 
-              <div className='herobtn rounded border-2 border-white hover:bg-blue-700 transition-all duration-500 ease-in-out text-white mx-auto'>
+              <div className='herobtn rounded border-2 border-white text-white mx-auto'>
                 <DocSearch
                   appId='6ZT4KX2OUI'
                   apiKey='69f76fba13585144f6686622e9c8f2a8'
@@ -298,7 +298,7 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>
               Start learning JSON Schema
             </h2>
-            <button className='w-[170px] h-[45px] mx-auto hover:bg-blue-700 transition-all duration-500 ease-in-out rounded border-2 bg-primary text-white font-semibold'>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'>
               <a href='/learn/getting-started-step-by-step '>Read the docs</a>
             </button>
           </div>
@@ -321,7 +321,7 @@ const Home = (props: any) => {
               Generators, Linters, and other JSON Schema Utilities made by this
               amazing Community.
             </p>
-            <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto hover:bg-blue-700 transition-all duration-500 ease-in-out h-[45px] rounded border-2 bg-primary text-white'>
+            <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto h-[45px] rounded border-2 bg-primary text-white'>
               <a href='/implementations/'>Explore</a>
             </button>
           </div>
@@ -360,7 +360,7 @@ const Home = (props: any) => {
                   projects, and connect with +5000 practitioners and experts.
                 </p>
               </Link>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-500 ease-in-out text-white h-[40px] flex items-center justify-center'>
+              <button className='w-full lg:w-1/2 rounded border-2 bg-primary text-white h-[40px] flex items-center justify-center'>
                 <a
                   href='https://json-schema.org/slack'
                   className='flex items-center'
@@ -417,7 +417,7 @@ const Home = (props: any) => {
               <div>
                 <Link
                   href={`/blog/posts/${blogPosts[0].slug}`}
-                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-500 ease-in-out h-[40px] text-center pt-1 semi-bold flex items-center justify-center'
+                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white h-[40px] text-center pt-1 semi-bold flex items-center justify-center'
                 >
                   Read more{' '}
                 </Link>
@@ -435,12 +435,12 @@ const Home = (props: any) => {
                   are every Monday at 14:00 PT.
                 </p>
                 <div className=''>
-                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-500 ease-in-out text-white  h-[40px] mb-4 flex items-center justify-center'>
+                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] mb-4 flex items-center justify-center'>
                     <a href='https://github.com/orgs/json-schema-org/discussions/35'>
                       Open Community Working Meetings
                     </a>
                   </button>
-                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-500 ease-in-out text-white  h-[40px] flex items-center justify-center'>
+                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary text-white  h-[40px] flex items-center justify-center'>
                     <a href='https://github.com/orgs/json-schema-org/discussions/34/'>
                       Office Hours
                     </a>
@@ -472,7 +472,7 @@ const Home = (props: any) => {
                 </div>
                 <a
                   href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com'
-                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-500 ease-in-out h-[40px] text-center pt-1 flex items-center justify-center'
+                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white h-[40px] text-center pt-1 flex items-center justify-center'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -489,7 +489,7 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>
               Start contributing to JSON Schema
             </h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-500 ease-in-out text-white font-semibold'>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold'>
               <a href='https://github.com/json-schema-org#-contributing-to-json-schema'>
                 Contribute
               </a>
