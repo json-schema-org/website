@@ -108,16 +108,20 @@ function ImplementationTable({
           },
         )}
       </div>
-      <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5'>
+      <div className='bg-blue-50 rounded-xl py-2 p-3 sm:p-6 mt-4 pb-6 pt-0.5 overflow-x-auto'>
         <table>
           <thead>
             <tr>
               <td />
-              <td className='pt-6 pl-5 text-sm text-slate-500 hidden sm:table-cell'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center hidden md:table-cell'>
                 About
               </td>
-              <td className='pt-6 pl-5 text-sm text-slate-500'>Drafts</td>
-              <td className='pt-6 pl-5 text-sm text-slate-500'>License</td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center'>
+                Drafts
+              </td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center'>
+                License
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -175,7 +179,7 @@ function ImplementationTable({
                             key={index}
                             className='pl-4 list-disc list-inside pl-2 separation-line'
                           >
-                            <td className=''>
+                            <td className='text-sm sm:text-base'>
                               <a
                                 className='text-blue-500'
                                 href={implementation.url}
@@ -183,10 +187,10 @@ function ImplementationTable({
                                 {implementation.name}
                               </a>
                             </td>
-                            <td className='pl-6 hidden sm:table-cell'>
+                            <td className='pl-6 hidden md:table-cell'>
                               <StyledMarkdown markdown={mixedNotes} />
                             </td>
-                            <td className='pl-6 pb-2 pt-2'>
+                            <td className='w-1/4 pl-3 sm:pl-6 pb-2 pt-2'>
                               {allDrafts
                                 ?.sort((a, b) =>
                                   DRAFT_ORDER.indexOf(a) <
@@ -196,7 +200,7 @@ function ImplementationTable({
                                 )
                                 ?.map((draft: string | number) => (
                                   <span
-                                    className='bg-blue-400 inline-block mr-1 mb-1 text-white rounded px-1'
+                                    className='bg-blue-400 inline-block mr-1 mb-1 text-white rounded px-1 text-sm sm:text-base'
                                     key={draft}
                                   >
                                     {typeof draft === 'number'
@@ -205,7 +209,9 @@ function ImplementationTable({
                                   </span>
                                 ))}
                             </td>
-                            <td className='pl-6'>{implementation.license}</td>
+                            <td className='pl-3 sm:pl-6 text-sm sm:text-base'>
+                              {implementation.license}
+                            </td>
                           </tr>
                         );
                       },
