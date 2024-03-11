@@ -215,7 +215,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-0 left-0 pl-8'>
+    <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] top-16 left-0 pl-8'>
       <MainNavLink
         uri='/specification'
         label='Specification'
