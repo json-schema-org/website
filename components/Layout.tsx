@@ -61,7 +61,7 @@ export default function Layout({
         <main
           className={classnames(
             mainClassName,
-            'z-10 xl:rounded-xl pt-4 mx-auto',
+            'z-10 h-screen  xl:rounded-xl pt-4 mx-auto',
           )}
         >
           <header

@@ -183,7 +183,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
 
-        <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
+        <div className='max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
           <div className='hidden lg:block mt-24'>
             <DocsNav />
             <CarbonAds
