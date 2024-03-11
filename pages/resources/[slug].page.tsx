@@ -21,7 +21,7 @@ type DataProps = {
   data: ResourcesProps[];
 };
 
-export async function getStaticPaths () {
+export async function getStaticPaths() {
   const paths = [
     { params: { slug: 'books' } },
     { params: { slug: 'articles' } },
@@ -33,7 +33,7 @@ export async function getStaticPaths () {
   return { paths, fallback: false };
 }
 
-export async function getStaticProps ({ params }: { params: ParamProps }) {
+export async function getStaticProps({ params }: { params: ParamProps }) {
   const { slug } = params;
   const data = await fetchResourceData(slug);
 
@@ -43,7 +43,7 @@ export async function getStaticProps ({ params }: { params: ParamProps }) {
     },
   };
 }
-export default function ResourcePageComponent ({ data }: { data: DataProps }) {
+export default function ResourcePageComponent({ data }: { data: DataProps }) {
   const { slug, data: resourceData } = data;
   const routeName = slug.slice(0, -1);
   const [searchTerm, setSearchTerm] = useState('');
@@ -58,7 +58,7 @@ export default function ResourcePageComponent ({ data }: { data: DataProps }) {
     );
     setFilteredArticles(results);
   }, [searchTerm, resourceData]);
-  function capitalizeFirstLetter (value: string) {
+  function capitalizeFirstLetter(value: string) {
     return value.charAt(0).toUpperCase() + value.slice(1);
   }
   const newTitle = capitalizeFirstLetter(slug);
