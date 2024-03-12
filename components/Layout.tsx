@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -137,6 +137,22 @@ const MainNavigation = () => {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
   const { theme } = useTheme();
+  const [icon, setIcon] = useState('');
+  const [menu, setMenu] = useState('bg-black');
+  const [closeMenu, setCLoseMenu] = useState('url("/icons/cancel.svg")');
+
+  useEffect(() => {
+    const icon = theme === 'dark' ? 'herobtn' : '';
+    const menu = theme === 'dark' ? 'bg-white' : 'bg-black';
+    const closeMenu =
+      theme === 'dark'
+        ? 'url("/icons/cancel-dark.svg")'
+        : 'url("/icons/cancel.svg")';
+
+    setIcon(icon);
+    setMenu(menu);
+    setCLoseMenu(closeMenu);
+  }, [theme]);
 
   return (
     <div className='flex justify-end md:mr-8 w-full '>
@@ -172,9 +188,9 @@ const MainNavigation = () => {
         isActive={section === 'community'}
       />
 
-      <div className='flex items-center max-sm:ml-4  gap-6 md:gap-4 dark:bg-slate-800'>
+      <div className='flex items-center max-sm:ml-4 mr-8  gap-6 md:gap-4 dark:bg-slate-800'>
         <div
-          className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${theme === 'dark' && 'herobtn'}`}
+          className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
         >
           <Search />
         </div>
@@ -182,14 +198,16 @@ const MainNavigation = () => {
         {showMobileNav === false ? (
           <div onClick={() => useStore.setState({ overlayNavigation: 'docs' })}>
             <div className='block lg:hidden space-y-2  items-center'>
-              <div className='w-6 h-1 bg-black rounded'></div>
-              <div className='w-6 h-1 bg-black rounded'></div>
-              <div className='w-6 h-1 bg-black rounded'></div>
+              <div className={`w-6 h-1 ${menu} rounded`}></div>
+              <div className={`w-6 h-1 ${menu} rounded`}></div>
+              <div className={`w-6 h-1 ${menu} rounded`}></div>
             </div>
           </div>
         ) : (
           <div
-            style={{ backgroundImage: 'url("/icons/cancel.svg")' }}
+            style={{
+              backgroundImage: closeMenu,
+            }}
             className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
             onClick={() => useStore.setState({ overlayNavigation: null })}
           />
@@ -466,17 +484,21 @@ const OpenJS = () => (
 
 const Logo = () => {
   const { theme } = useTheme();
+  const [imageSrc, setImageSrc] = useState('/img/logos/logo-blue.svg'); // Default to match the server-side render
+
+  useEffect(() => {
+    const src =
+      theme === 'dark'
+        ? '/img/logos/logo-white.svg'
+        : '/img/logos/logo-blue.svg';
+    setImageSrc(src);
+  }, [theme]);
+
   return (
     <div>
-      {theme !== 'light' ? (
-        <Link href='/' className=''>
-          <img src='/img/logos/logo-white.svg' className='h-12 mr-2 ' />
-        </Link>
-      ) : (
-        <Link href='/' className=''>
-          <img src='/img/logos/logo-blue.svg' className='h-12 mr-2 ' />
-        </Link>
-      )}
+      <Link href='/' className=''>
+        <img src={imageSrc} className='h-12 mr-2 ' />
+      </Link>
     </div>
   );
 };

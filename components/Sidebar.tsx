@@ -65,7 +65,11 @@ const DocLinkBlank = ({
 };
 
 const SegmentSubtitle = ({ label }: { label: string }) => {
-  return <div className='text-sm italic text-slate-900 mt-2 mb-2'>{label}</div>;
+  return (
+    <div className='text-sm italic text-slate-900 dark:text-slate-400 mt-2 mb-2'>
+      {label}
+    </div>
+  );
 };
 const getDocsPath = [
   '/overview/what-is-jsonschema',

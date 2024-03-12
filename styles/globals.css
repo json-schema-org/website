@@ -70,6 +70,11 @@ border-radius: 4px; */
   .DocSearch-Button-Placeholder {
     display: none;
   }
+
+  .DocSearch-Search-Icon {
+    width: 23px;
+    height: 23px;
+  }
   
 
   .herobtn .DocSearch-Button-Container {
@@ -182,6 +187,8 @@ border-radius: 4px; */
 
 .herobtn svg {
   color: white !important;
+  width: 20px;
+  height: 20px;
 }
 
 .herobtn span:hover {
