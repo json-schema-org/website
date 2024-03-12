@@ -7,6 +7,7 @@ import { DocSearch } from '@docsearch/react';
 import useStore from '~/store';
 import { SectionContext } from '~/context';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
+import ScrollButton from './ScrollButton';
 
 type Props = {
   children: React.ReactNode;
@@ -82,6 +83,7 @@ export default function Layout({
           ) : (
             <div>{children}</div>
           )}
+          <ScrollButton />
           <Footer />
         </main>
       </div>

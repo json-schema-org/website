@@ -2,7 +2,10 @@
 const nextConfig = {
   reactStrictMode: true,
   output: 'export',
-  pageExtensions: ['page.tsx']
+  pageExtensions: ['page.tsx'],
+  images: {
+    unoptimized: true,
+  },
 };
 
 module.exports = nextConfig;
