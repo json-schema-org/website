@@ -119,7 +119,7 @@ function ImplementationTable({
               <td className='pt-6 pl-5 text-sm text-slate-500 text-center'>
                 Drafts
               </td>
-              <td className='pt-6 pl-5 text-sm text-slate-500 text-center'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center hidden sm:table-cell'>
                 License
               </td>
             </tr>
@@ -209,7 +209,7 @@ function ImplementationTable({
                                   </span>
                                 ))}
                             </td>
-                            <td className='pl-3 sm:pl-6 text-sm sm:text-base'>
+                            <td className='pl-3 sm:pl-6 text-sm sm:text-base hidden sm:table-cell'>
                               {implementation.license}
                             </td>
                           </tr>
