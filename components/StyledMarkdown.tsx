@@ -7,7 +7,6 @@ import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp';
 import Highlight from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Code from '~/components/Code';
-import CustomComponent from '~/components/CustomComponent';
 import { FullMarkdownContext } from '~/context';
 
 import {
@@ -170,7 +169,6 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             h2: { component: Headline2 },
             h3: { component: Headline3 },
             h4: { component: Headline4 },
-            cardcomponent: { component: CustomComponent },
             strong: {
               component: ({ children }) => (
                 <strong className='font-semibold text-slate-800 dark:text-slate-500'>
