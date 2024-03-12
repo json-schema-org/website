@@ -7,6 +7,7 @@ import { DocSearch } from '@docsearch/react';
 import useStore from '~/store';
 import { SectionContext } from '~/context';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
+import ScrollButton from './ScrollButton';
 
 type Props = {
   children: React.ReactNode;
@@ -82,6 +83,7 @@ export default function Layout({
           ) : (
             <div>{children}</div>
           )}
+          <ScrollButton />
           <Footer />
         </main>
       </div>
@@ -164,7 +166,12 @@ const MainNavigation = () => {
         isActive={section === 'community'}
       />
       <div className='flex max-sm:ml-4 items-center gap-6 md:gap-4'>
-        <div className='flex justify-center rounded border-2 border-gray-100 ml-0 w-[120px] md:w-full'>
+        <div
+          className='flex justify-center rounded border-2 border-gray-100 ml-0 w-[120px] md:w-full'
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
+        >
           <Search />
         </div>
         {showMobileNav === false ? (
