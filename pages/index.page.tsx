@@ -192,12 +192,13 @@ const Home = (props: any) => {
                 Join Slack
               </Link>
 
-              <div className='herobtn rounded border-2 border-white text-white mx-auto  dark:shadow-2xl'>
+              <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white text-white mx-auto  dark:shadow-2xl'>
                 <DocSearch
                   appId='6ZT4KX2OUI'
                   apiKey='69f76fba13585144f6686622e9c8f2a8'
                   indexName='json-schema'
                 />
+                <p>Search</p>
               </div>
             </div>
 

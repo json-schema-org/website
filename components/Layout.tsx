@@ -33,7 +33,6 @@ export default function Layout({
     () => useStore.setState({ overlayNavigation: null }),
     [router.asPath],
   );
-  // >>>>>>> 932a9ad (added dark theme)
 
   useEffect(() => {
     // Check if the URL contains "#community"
@@ -73,7 +72,6 @@ export default function Layout({
             )}
           >
             <div className='flex w-full md:justify-between items-center ml-8 2xl:px-12 py-4'>
-              {/* >>>>>>> 932a9ad (added dark theme) */}
               <Logo />
               <MainNavigation />
             </div>
@@ -138,6 +136,8 @@ const MainNavigation = () => {
   const section = useContext(SectionContext);
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
+  const { theme } = useTheme();
+
   return (
     <div className='flex justify-end md:mr-8 w-full '>
       <MainNavLink
@@ -171,13 +171,11 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      {/* <<<<<<< HEAD
-      <div className='flex max-sm:ml-4 items-center gap-6 md:gap-4'>
-        <div className='flex justify-center rounded border-2 border-gray-100 ml-0 w-[120px] md:w-full'>
-======= */}
+
       <div className='flex items-center max-sm:ml-4  gap-6 md:gap-4 dark:bg-slate-800'>
-        <div className='rounded border-2  md:block border-gray-100 ml-0 w-2/5 md:w-full'>
-          {/* >>>>>>> 932a9ad (added dark theme) */}
+        <div
+          className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${theme === 'dark' && 'herobtn'}`}
+        >
           <Search />
         </div>
         <DarkModeToggle />
@@ -229,15 +227,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    // <<<<<<< HEAD
-    //     // <<<<<<< HEAD
-    //     //     <div className='flex flex-col justify-end fixed shadow-xl bg-white w-full  z-[190] mt-16 left-0 pl-8'>
-    //     // =======
-    //     <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-700'>
-    //       {/* >>>>>>> 932a9ad (added dark theme) */}
-    // =======
     <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-800'>
-      {/* >>>>>>> 5a13b6c (completed home page) */}
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -362,7 +352,6 @@ const OpenJS = () => (
           src='/img/logos/openjs_foundation-logo-horizontal-color.svg'
           alt='color openjs foundation logo'
         ></img>
-        {/* <div className='absolute bottom-0 ml-6  mb-12'>© {new Date().getFullYear()} Copyright JSON Schema Organisation </div> */}
       </div>
       <div className='md:w-5/6 lg:w-full mx-auto  mb-16'>
         <p className='mb-6'>
