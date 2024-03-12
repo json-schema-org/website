@@ -250,9 +250,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             table: {
               component: ({ children }) => (
-                <div className='max-w-[100%] mx-auto mb-8 overflow-auto'>
-                  <table className='table-auto'>{children}</table>
-                </div>
+                <table className='table-auto mb-8'>{children}</table>
               ),
             },
             thead: {
