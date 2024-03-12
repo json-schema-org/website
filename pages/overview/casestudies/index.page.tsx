@@ -7,7 +7,6 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import data from 'data/casestudies.json';
-import Link from 'next/link';
 import Card from '~/components/Card';
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
@@ -35,6 +34,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto '>
         {data.map((element, index) => (
           <Card
+            key={index}
             title='Card Title'
             body={element.summary}
             icon={element.logo}
