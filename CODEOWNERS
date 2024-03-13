@@ -1,0 +1,16 @@
+##############################################################
+#
+# List of approvers/reviewers for JSON Schema website
+#
+##############################################################
+#
+# Get in touch with us via the JSON Schema Community
+#  https://json-schema.org/#community
+# 
+#
+# Learn about CODEOWNERS file format: 
+#  https://help.github.com/en/articles/about-code-owners
+#
+
+# This group will be the default group approving/reviewing PRs
+* @json-schema-org/web-team

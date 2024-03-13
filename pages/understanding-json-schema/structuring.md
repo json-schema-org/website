@@ -8,7 +8,7 @@ section: docs
 * [Schema Identification](#schema-identification)
 * [Base URI](#base-uri)
 * [$ref](#dollarref)
-* [$id](#dollarid)
+* [$id](#id)
 * [$defs](#defs)
 * [Recursion](#recursion)
 * [Extending Recursive Schemas](#extending-recursive-schemas)

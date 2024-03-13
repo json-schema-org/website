@@ -33,96 +33,102 @@ Here are some examples to illustrate the changes.
 
 ### Open tuple
 <table>
-  <tr>
-    <th>Draft 2019-09</th>
-    <th>Draft 2020-12</th>
-  </tr>
-  <tr>
-    <td>
-      ```json
-      {
-        "items": [
-          { "$ref": "#/$defs/foo" },
-          { "$ref": "#/$defs/bar" }
-        ]
-      }
-      ```
-    </td>
-    <td>
-      ```json
-      {
-        "prefixItems": [
-          { "$ref": "#/$defs/foo" },
-          { "$ref": "#/$defs/bar" }
-        ]
-      }
-      ```
-    </td>
-  </tr>
+   <tbody>
+    <tr>
+      <th>Draft 2019-09</th>
+      <th>Draft 2020-12</th>
+    </tr>
+    <tr>
+      <td>
+        ```json
+        {
+          "items": [
+            { "$ref": "#/$defs/foo" },
+            { "$ref": "#/$defs/bar" }
+          ]
+        }
+        ```
+      </td>
+      <td>
+        ```json
+        {
+          "prefixItems": [
+            { "$ref": "#/$defs/foo" },
+            { "$ref": "#/$defs/bar" }
+          ]
+        }
+        ```
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ### Closed tuple
 <table>
-  <tr>
-    <th>Draft 2019-09</th>
-    <th>Draft 2020-12</th>
-  </tr>
-  <tr>
-    <td>
-      ```json
-      {
-        "items": [
-          { "$ref": "#/$defs/foo" },
-          { "$ref": "#/$defs/bar" }
-        ],
-        "additionalItems": false
-      }
-      ```
-    </td>
-    <td>
-      ```json
-      {
-        "prefixItems": [
-          { "$ref": "#/$defs/foo" },
-          { "$ref": "#/$defs/bar" }
-        ],
-        "items": false
-      }
-      ```
-    </td>
-  </tr>
+   <tbody>
+    <tr>
+      <th>Draft 2019-09</th>
+      <th>Draft 2020-12</th>
+    </tr>
+    <tr>
+      <td>
+        ```json
+        {
+          "items": [
+            { "$ref": "#/$defs/foo" },
+            { "$ref": "#/$defs/bar" }
+          ],
+          "additionalItems": false
+        }
+        ```
+      </td>
+      <td>
+        ```json
+        {
+          "prefixItems": [
+            { "$ref": "#/$defs/foo" },
+            { "$ref": "#/$defs/bar" }
+          ],
+          "items": false
+        }
+        ```
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ### Tuple with constrained additional items
 <table>
-  <tr>
-    <th>Draft 2019-09</th>
-    <th>Draft 2020-12</th>
-  </tr>
-  <tr>
-    <td>
-      ```json
-      {
-        "items": [
-          { "$ref": "#/$defs/foo" },
-          { "$ref": "#/$defs/bar" }
-        ],
-        "additionalItems": { "$ref": "#/$defs/baz" }
-      }
-      ```
-    </td>
-    <td>
-      ```json
-      {
-        "prefixItems": [
-          { "$ref": "#/$defs/foo" },
-          { "$ref": "#/$defs/bar" }
-        ],
-        "items": { "$ref": "#/$defs/baz" }
-      }
-      ```
-    </td>
-  </tr>
+  <tbody>
+    <tr>
+      <th>Draft 2019-09</th>
+      <th>Draft 2020-12</th>
+    </tr>
+    <tr>
+      <td>
+        ```json
+        {
+          "items": [
+            { "$ref": "#/$defs/foo" },
+            { "$ref": "#/$defs/bar" }
+          ],
+          "additionalItems": { "$ref": "#/$defs/baz" }
+        }
+        ```
+      </td>
+      <td>
+        ```json
+        {
+          "prefixItems": [
+            { "$ref": "#/$defs/foo" },
+            { "$ref": "#/$defs/bar" }
+          ],
+          "items": { "$ref": "#/$defs/baz" }
+        }
+        ```
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 ## $dynamicRef and $dynamicAnchor
@@ -149,6 +155,7 @@ used as the starting point for dynamic resolution.
 Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
 
 <table>
+<tbody>
   <tr>
     <th>Draft 2019-09</th>
     <th>Draft 2020-12</th>
@@ -209,6 +216,7 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
 ```
   </td>
   </tr>
+</tbody>
 </table>
 
 
@@ -224,35 +232,37 @@ that has some item matching one schema and everything else matching another
 schema.
 
 <table>
-  <tr>
-    <th>Draft 2019-09</th>
-    <th>Draft 2020-12</th>
-  </tr>
-  <tr>
-    <td>
-      ```json
-        {
-          "type": "array",
-          "contains": { "type": "string" },
-          "items": {
-            "anyOf": [
-              { "type": "string" },
-              { "type": "number" }
-            ]
+  <tbody>
+    <tr>
+      <th>Draft 2019-09</th>
+      <th>Draft 2020-12</th>
+    </tr>
+    <tr>
+      <td>
+        ```json
+          {
+            "type": "array",
+            "contains": { "type": "string" },
+            "items": {
+              "anyOf": [
+                { "type": "string" },
+                { "type": "number" }
+              ]
+            }
           }
-        }
-      ```
-    </td>
-    <td>
-      ```json
-        {
-          "type": "array",
-          "contains": { "type": "string" },
-          "unevaluatedItems": { "type": "number" }
-        }
-      ```
-    </td>
-  </tr>
+        ```
+      </td>
+      <td>
+        ```json
+          {
+            "type": "array",
+            "contains": { "type": "string" },
+            "unevaluatedItems": { "type": "number" }
+          }
+        ```
+      </td>
+    </tr>
+  </tbody>
 </table>
 
 Unfortunately, this change means you may not be able to use `contains` in some
@@ -463,7 +473,8 @@ embedded schemas using `$defs`. Here's what the bundled schema would look like.
 Here are a few things you might notice from this example.
 
 1. No `$ref`s were modified. Even local references are unchanged.
-2. `https://example.com/schema/common#/$defs/unsignedInt` got pulled in with the
+2. `https://example.com/schema/common#/`
+`$defs/unsignedInt` got pulled in with the
 common schema even though it isn't used. It's allowed to trim out the extra
 definitions, but not necessary.
 3. `https://example.com/schema/address` doesn't declare a `$schema`. Because it

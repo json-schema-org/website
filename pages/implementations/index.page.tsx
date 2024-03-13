@@ -52,7 +52,7 @@ export default function ImplementationsPages({
   return (
     <SectionContext.Provider value='implementations'>
       <div className='w-5/6 mx-auto mt-12 dark:text-slate-200'>
-        <Headline1>Implementations</Headline1>
+        <Headline1>Tools</Headline1>
         <StyledMarkdown markdown={blocks.intro} />
         <Headline2>Validators</Headline2>
         <ImplementationTable
@@ -80,7 +80,7 @@ function ImplementationTable({
   const router = useRouter();
   return (
     <>
-      <div className='flex flex-row flex-wrap grid-cols-7 grid dark:bg-slate-700'>
+      <div className=' flex-row flex-wrap  grid dark:bg-slate-700  grid-cols-3 text-sm md:grid-cols-5 md:text-base lg:grid-cols-6'>
         {implementationsByLanguage.map(
           (implementationByLanguage: any, index: number) => {
             const slug =
@@ -95,7 +95,7 @@ function ImplementationTable({
                 key={index}
                 href={`#${slug}`}
                 className={classnames(
-                  'block text-center text-white rounded p-2 cursor-pointer flex-1 m-1',
+                  'text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
                   {
                     'bg-blue-800': isActive,
                     'bg-blue-500 hover:bg-blue-600': !isActive,
@@ -108,18 +108,18 @@ function ImplementationTable({
           },
         )}
       </div>
-      <div className='bg-blue-50 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-900'>
+      <div className='bg-blue-50 rounded-xl py-2 sm:p-6 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-900 overflow-x-auto'>
         <table>
           <thead>
             <tr>
               <td />
-              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200 hidden sm:table-cell'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200 text-center hidden md:table-cell'>
                 About
               </td>
-              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center dark:text-slate-200'>
                 Drafts
               </td>
-              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200'>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200 text-center hidden sm:table-cell'>
                 License
               </td>
             </tr>
@@ -179,7 +179,7 @@ function ImplementationTable({
                             key={index}
                             className='pl-4 list-disc list-inside pl-2 separation-line'
                           >
-                            <td className=''>
+                            <td className='text-sm sm:text-base'>
                               <a
                                 className='text-blue-500'
                                 href={implementation.url}
@@ -187,10 +187,10 @@ function ImplementationTable({
                                 {implementation.name}
                               </a>
                             </td>
-                            <td className='pl-6 hidden sm:table-cell'>
+                            <td className='pl-6 hidden md:table-cell'>
                               <StyledMarkdown markdown={mixedNotes} />
                             </td>
-                            <td className='pl-6 pb-2 pt-2'>
+                            <td className='w-1/4 pl-3 sm:pl-6 pb-2 pt-2'>
                               {allDrafts
                                 ?.sort((a, b) =>
                                   DRAFT_ORDER.indexOf(a) <
@@ -200,7 +200,7 @@ function ImplementationTable({
                                 )
                                 ?.map((draft: string | number) => (
                                   <span
-                                    className='bg-blue-400 dark:bg-blue-600 inline-block mr-1 mb-1 text-white rounded px-1'
+                                    className='bg-blue-400 dark:bg-blue-600 inline-block mr-1 mb-1 text-white rounded px-1 text-sm sm:text-base'
                                     key={draft}
                                   >
                                     {typeof draft === 'number'
@@ -209,7 +209,9 @@ function ImplementationTable({
                                   </span>
                                 ))}
                             </td>
-                            <td className='pl-6'>{implementation.license}</td>
+                            <td className='pl-3 sm:pl-6 text-sm sm:text-base hidden sm:table-cell'>
+                              {implementation.license}
+                            </td>
                           </tr>
                         );
                       },
