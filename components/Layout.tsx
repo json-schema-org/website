@@ -251,7 +251,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col justify-end fixed bg-white w-full  z-[190] mt-16 left-0 pl-8 dark:bg-slate-800'>
+    <div className='flex flex-col shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -365,127 +365,6 @@ const Footer = () => (
       </div>
     </div>
   </footer>
-);
-
-const OpenJS = () => (
-  <div className={classnames('')}>
-    <div className='max-w-[1400px] mx-auto my-6 lg:mt-20 grid grid-cols-1 lg:grid-cols-2 w-4/5'>
-      <div className='md:w-1/2 mb-12 lg:ml-28'>
-        <img
-          className='h-24 mx-auto mb-6 lg:mb-0'
-          src='/img/logos/openjs_foundation-logo-horizontal-color.svg'
-          alt='color openjs foundation logo'
-        ></img>
-      </div>
-      <div className='md:w-5/6 lg:w-full mx-auto  mb-16'>
-        <p className='mb-6'>
-          Copyright{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://openjsf.org'
-          >
-            OpenJS Foundation
-          </a>{' '}
-          and JSON Schema contributors. All rights reserved. The{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://openjsf.org'
-          >
-            OpenJS Foundation
-          </a>{' '}
-          has registered trademarks and uses trademarks. For a list of
-          trademarks of the{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://openjsf.org'
-          >
-            OpenJS Foundation
-          </a>
-          , please see our{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-policy.openjsf.org'
-          >
-            Trademark Policy
-          </a>{' '}
-          and{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-list.openjsf.org'
-          >
-            Trademark List
-          </a>
-          . Trademarks and logos not indicated on the{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-list.openjsf.org'
-          >
-            list of OpenJS Foundation trademarks
-          </a>{' '}
-          are trademarks&trade; or registered&reg; trademarks of their
-          respective holders. Use of them does not imply any affiliation with or
-          endorsement by them.
-        </p>
-        <p className='mb-4 sm:mb-8'>
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://openjsf.org'
-          >
-            The OpenJS Foundation
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://terms-of-use.openjsf.org'
-          >
-            Terms of Use
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://privacy-policy.openjsf.org'
-          >
-            Privacy Policy
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://bylaws.openjsf.org'
-          >
-            Bylaws
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://code-of-conduct.openjsf.org'
-          >
-            Code of Conduct
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-policy.openjsf.org'
-          >
-            Trademark Policy
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://trademark-list.openjsf.org'
-          >
-            Trademark List
-          </a>{' '}
-          |{' '}
-          <a
-            className='text-linkBlue hover:text-blue-600'
-            href='https://www.linuxfoundation.org/cookies'
-          >
-            Cookie Policy
-          </a>
-        </p>
-      </div>
-    </div>
-  </div>
 );
 
 const Logo = () => {

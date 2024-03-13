@@ -243,7 +243,7 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile md:text-h3 font-bold mb-6 dark:text-slate-200'>
               Why JSON Schema?
             </h2>
-            <p className='mb-6 leading-5 text-h5mobile md:text-h5 leading-7 dark:text-slate-300'>
+            <p className='mb-6 text-h5mobile md:text-h5 leading-7 dark:text-slate-300'>
               While JSON is probably the most popular format for exchanging
               data, JSON Schema is the vocabulary that enables JSON data
               consistency, validity, and interoperability at scale.
@@ -297,8 +297,8 @@ const Home = (props: any) => {
           </div>
         </section>
 
-        <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both dark:from-[#002C34] dark:to-[#023e8a]'>
-          <div className='lg:w-full mx-auto text-center mt-28 '>
+        <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both dark:from-[#002C34] dark:to-[#023e8a] grid items-center'>
+          <div className='lg:w-full mx-auto text-center  '>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>
               Start learning JSON Schema
             </h2>
@@ -423,7 +423,7 @@ const Home = (props: any) => {
               <div>
                 <Link
                   href={`/blog/posts/${blogPosts[0].slug}`}
-                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 semi-bold flex items-center justify-center dark:border-none '
+                  className=' w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center semi-bold flex items-center justify-center dark:border-none '
                 >
                   Read more{' '}
                 </Link>
@@ -479,7 +479,7 @@ const Home = (props: any) => {
 
                 <a
                   href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com'
-                  className='block w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center pt-1 flex items-center justify-center dark:border-none '
+                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white  h-[40px] text-center flex items-center justify-center dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -492,8 +492,8 @@ const Home = (props: any) => {
 
         {/* News & Blogs */}
 
-        <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both dark:from-[#002C34] dark:to-[#023e8a]'>
-          <div className='lg:w-full mx-auto text-center mt-28 '>
+        <section className='w-full h-[300px] lg:h-[367px] bg-gradient-to-r from-primary from-1.95% to-endBlue clip-both dark:from-[#002C34] dark:to-[#023e8a] grid items-center'>
+          <div className='lg:w-full mx-auto text-center'>
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6 dark:text-slate-200'>
               Start contributing to JSON Schema
             </h2>
