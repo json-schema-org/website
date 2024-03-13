@@ -5,7 +5,7 @@ section: docs
 
 <Keywords label="single: object" />
 
-Objects are the mapping type in JSON. They map \"keys\" to \"values\".
+Objects are the mapping type in [JSON](../../learn/glossary#json). They map \"keys\" to \"values\".
 In JSON, the \"keys\" must always be strings. Each of these pairs is
 conventionally referred to as a \"property\".
 
@@ -91,8 +91,8 @@ Using non-strings as keys is invalid JSON:
 ## Properties
 
 The properties (key-value pairs) on an object are defined using the
-`properties` keyword. The value of `properties` is an object, where each
-key is the name of a property and each value is a schema used to
+`properties` [keyword](../../learn/glossary#keyword). The value of `properties` is an object, where each
+key is the name of a property and each value is a [schema](../../learn/glossary#schema) used to
 validate that property. Any property that doesn\'t match any of the
 property names in the `properties` keyword is ignored by this keyword.
 
@@ -210,7 +210,7 @@ extra stuff, that is, properties whose names are not listed in the
 allowed.
 
 The value of the `additionalProperties` keyword is a schema that will be
-used to validate any properties in the instance that are not matched by
+used to validate any properties in the [instance](../../learn/glossary#instance) that are not matched by
 `properties` or `patternProperties`. Setting the `additionalProperties`
 schema to `false` means no additional properties will be allowed.
 
@@ -316,7 +316,7 @@ It must be a string:
 ### Extending Closed Schemas[#extending]
 
 It\'s important to note that `additionalProperties` only recognizes
-properties declared in the same subschema as itself. So,
+properties declared in the same [subschema](../../learn/glossary#subschema) as itself. So,
 `additionalProperties` can restrict you from \"extending\" a schema
 using [combining](../../understanding-json-schema/reference/combining) keywords such as [allOf](../../understanding-json-schema/reference/combining#allof). In
 the following example, we can see how the `additionalProperties` can
@@ -548,7 +548,7 @@ The `required` keyword takes an array of zero or more strings. Each of
 these strings must be unique.
 
 <Infobox label="Draft-specific info">
-In Draft 4, `required` must contain at least one string.
+In [Draft](../../learn/glossary#draft) 4, `required` must contain at least one string.
 </Infobox>
 
 In the following example schema defining a user record, we require that

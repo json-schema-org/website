@@ -5,7 +5,7 @@ section: docs
 
 <Keywords label="single: array" />
 
-Arrays are used for ordered elements. In JSON, each element in an array
+Arrays are used for ordered elements. In [JSON](../../learn/glossary#json), each element in an array
 may be of a different type.
 
 [tabs-start "Language-specific info"]
@@ -49,7 +49,7 @@ In Swift, "array" is analogous to the `Array` type.
 There are two ways in which arrays are generally used in JSON:
 
 - **List validation:** a sequence of arbitrary length where each item
-    matches the same schema.
+    matches the same [schema](../../learn/glossary#schema).
 - **Tuple validation:** a sequence of fixed length where each item may
     have a different schema. In this usage, the index (or location) of
     each item is meaningful as to how the value is interpreted. (This
@@ -59,7 +59,7 @@ There are two ways in which arrays are generally used in JSON:
 ## Items[#items]
 
 List validation is useful for arrays of arbitrary length where each item
-matches the same schema. For this kind of array, set the `items` keyword
+matches the same schema. For this kind of array, set the `items` [keyword](../../learn/glossary#keyword)
 to a single schema that will be used to validate all of the items in the
 array.
 
@@ -125,7 +125,7 @@ the first element of the input array, the second element validates the
 second element of the input array, etc.
 
 <Infobox label="Draft-specific info">
-In Draft 4 - 2019-09, tuple validation was handled by an alternate
+In [Draft](../../learn/glossary#draft) 4 - 2019-09, tuple validation was handled by an alternate
    form of the `items` keyword. When `items` was an array of
    schemas instead of a single schema, it behaved the way
    `prefixItems` behaves.
@@ -306,8 +306,8 @@ specifies that no extra values should exist.
 ["foo", 42, null]
 ```
 
-Note that `items` doesn't "see inside" any instances of `allOf`,
-`anyOf`, or `oneOf` in the same subschema. So in this next example,
+Note that `items` doesn't "see inside" any [instances](../../learn/glossary#instance) of `allOf`,
+`anyOf`, or `oneOf` in the same [subschema](../../learn/glossary#subschema). So in this next example,
 `items` ignores `allOf` and thus fails to validate.
 
 ```json

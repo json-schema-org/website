@@ -17,7 +17,7 @@ section: docs
 When writing computer programs of even moderate complexity, it\'s
 commonly accepted that \"structuring\" the program into reusable
 functions is better than copying-and-pasting duplicate bits of code
-everywhere they are used. Likewise in JSON Schema, for anything but the
+everywhere they are used. Likewise in [JSON](../learn/glossary#json) [Schema](../learn/glossary#schema), for anything but the
 most trivial schema, it\'s really useful to structure the schema into
 parts that can be reused in a number of places. This chapter will
 present the tools available for reusing and structuring schemas as well
@@ -66,7 +66,7 @@ following definitions are used.
 
 > Even though schemas are identified by URIs, those identifiers are not
 necessarily network-addressable. They are just identifiers. Generally,
-implementations don\'t make HTTP requests (`https://`) or read from the
+[implementations](../learn/glossary#implementation) don\'t make HTTP requests (`https://`) or read from the
 file system (`file://`) to fetch schemas. Instead, they provide a way to
 load schemas into an internal schema database. When a schema is
 referenced by it\'s URI identifier, the schema is retrieved from the
@@ -117,7 +117,7 @@ The base URI for this schema is the same as the retrieval URI, `https://example.
 
 ## $id[#id]
 
-You can set the base URI by using the `$id` keyword at the root of the
+You can set the base URI by using the `$id` [keyword](../learn/glossary#keyword) at the root of the
 schema. The value of `$id` is a URI-reference without a fragment that
 resolves against the [retrieval-uri](#retrieval-uri). The resulting URI is
 the base URI for the schema.
@@ -125,7 +125,7 @@ the base URI for the schema.
 [tabs-start "Draft-specific info"]
 
 [tab "Draft 4"]
-In Draft 4, `$id` is just `id` (without the dollar sign).
+In [Draft](../learn/glossary#draft) 4, `$id` is just `id` (without the dollar sign).
 [tab "Draft 4-7"]
 In Draft 4-7 it was allowed to have fragments in an `$id` (or
 `id` in Draft 4). However, the behavior when setting a base URI
@@ -138,7 +138,7 @@ because implementations may treat them differently.
 
 <span />
 
-> When the `$id` keyword appears in a subschema, it means something slightly different. See the [bundling](#bundling) section for more.
+> When the `$id` keyword appears in a [subschema](../learn/glossary#subschema), it means something slightly different. See the [bundling](#bundling) section for more.
 
 Let\'s assume the URIs `https://example.com/schema/address` and
 `https://example.com/schema/billing-address` both identify the following
@@ -282,7 +282,7 @@ A schema can reference another schema using the `$ref` keyword. The
 value of `$ref` is a URI-reference that is resolved against the
 schema\'s [Base URI](#base-uri). When evaluating a `$ref`, an
 implementation uses the resolved identifier to retrieve the referenced
-schema and applies that schema to the instance.
+schema and applies that schema to the [instance](../learn/glossary#instance).
 
 
 <Infobox label="Draft-specific info">
@@ -558,7 +558,7 @@ You should also see that `"$ref": "#/definitions/state"` resolves to the
 top level schema like it would if the embedded schema wasn\'t used.
 
 Each Schema Resource is evaluated independently and may use different
-JSON Schema dialects. The example above has the address Schema Resource
+JSON Schema [dialects](../learn/glossary#dialect). The example above has the address Schema Resource
 using Draft 7 while the customer Schema Resource uses Draft 2020-12. If
 no `$schema` is declared in an embedded schema, it defaults to using the
 dialect of the parent schema.

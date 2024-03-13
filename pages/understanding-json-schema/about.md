@@ -6,7 +6,7 @@ section: "docs"
 If you\'ve ever used XML Schema, RelaxNG or ASN.1 you probably already
 know what a schema is and you can happily skip along to the next
 section. If all that sounds like gobbledygook to you, you\'ve come to
-the right place. To define what JSON Schema is, we should probably first
+the right place. To define what [JSON](../learn/glossary#json) [Schema](../learn/glossary#schema) is, we should probably first
 define what JSON is.
 
 JSON stands for \"JavaScript Object Notation\", a simple data

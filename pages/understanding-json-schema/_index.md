@@ -8,7 +8,7 @@ Understanding JSON Schema
 
 <img src="understanding/octopus.svg" className="w-1/2 float-right" />
 
-JSON Schema is a powerful tool for validating the structure of JSON
+[JSON](../learn/glossary#json) [Schema](../learn/glossary#schema) is a powerful tool for validating the structure of JSON
 data. However, learning to use it by reading its specification is like
 learning to drive a car by looking at its blueprints. You don\'t need to
 know how an electric motor fits together if all you want to do is pick
@@ -17,7 +17,7 @@ instructor for JSON Schema. It\'s for those that want to write it and
 understand it, but maybe aren\'t interested in building their own
 car—er, writing their own JSON Schema validator — just yet.
 
-> This tutorial describes JSON Schema draft 2020-12. Earlier versions of
+> This tutorial describes JSON Schema [draft](../learn/glossary#draft) 2020-12. Earlier versions of
 JSON Schema are not completely compatible with the format
 described here, but for the most part, those differences are noted
 in the text.
