@@ -507,7 +507,7 @@ const Home = (props: any) => {
 
         {/* Sponsors */}
 
-        <section className='mt-16 bg-gradient-to-b from-[#1e293b] via-[#023e8a] to-[#023e8a]'>
+        <section className='w-full mt-16 bg-gradient-to-b from-[#1e293b] via-[#023e8a] to-[#023e8a]'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
               Sponsors
@@ -590,7 +590,7 @@ const Home = (props: any) => {
 
         {/* Supported */}
 
-        <section className='my-20'>
+        <section className='mt-20 w-full  bg-gradient-to-b from-[#1e293b] via-[#023e8a] to-[#023e8a]'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
               Supported by
@@ -622,6 +622,7 @@ const Home = (props: any) => {
               />
             </a>
           </div>
+          <div className='h-28 bg-gradient-to-b from-[#023e8a] to-[#1e293b]'></div>
         </section>
       </div>
     </div>
