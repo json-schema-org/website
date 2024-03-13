@@ -584,9 +584,8 @@ const Home = (props: any) => {
             <a href='https://www.llc.org/'>
               <img src='/img/logos/sponsors/llc-logo.svg' className=' w-44' />
             </a>
-          </div>          
-          <div className='h-28 bg-gradient-to-b from-[#023e8a] to-[#1e293b]'>
           </div>
+          <div className='h-28 bg-gradient-to-b from-[#023e8a] to-[#1e293b]'></div>
         </section>
 
         {/* Supported */}
