@@ -91,7 +91,7 @@ A snippet of the British royal family tree
 ```
 ```json
 // props { "indent": true, "valid": true }
-12"
+12
 ```
 ```json
 // props { "indent": true, "valid": false }
