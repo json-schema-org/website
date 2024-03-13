@@ -44,18 +44,19 @@ html {
   display: none !important;
 }
 
-.herobtn .DocSearch-Button-Container {
-  background-color: transparent !important;
-  justify-content: center;
-  width: 168px;
-  height: 32px;
-  padding: 8px 8px;
-  margin-right: 10px;
+/* .herobtn { */
+  /* background-color: transparent !important; */
+  /* justify-content: center; */
+  /* width: 168px; */
+  /* height: 32px; */
+  /* padding: 8px 8px; */
+  /* margin-right: 10px; */
+  /* display: flex; */
   /* border: 1px solid #E3E8EE;
 border-radius: 4px; */
-}
+/* } */
 
-@media (max-width: 1027px) {
+/* @media (max-width: 1027px) { */
   .DocSearch-Button-Container {
     height: 40px;
     padding: 0px;
@@ -67,14 +68,20 @@ border-radius: 4px; */
   }
 
   .DocSearch-Button-Placeholder {
-    display: inline;
+    display: none;
   }
+
+  .DocSearch-Search-Icon {
+    width: 23px;
+    height: 23px;
+  }
+  
 
   .herobtn .DocSearch-Button-Container {
     margin-right: 4px;
     margin-left: 4px;
   }
-}
+/* } */
 
 @media (max-width: 450px) {
   .DocSearch-Button {
@@ -121,6 +128,8 @@ border-radius: 4px; */
 .search-input svg {
   margin-left: 40px;
 }
+
+
 
 .search-input span {
   margin-left: 15px;
@@ -178,6 +187,8 @@ border-radius: 4px; */
 
 .herobtn svg {
   color: white !important;
+  width: 20px;
+  height: 20px;
 }
 
 .herobtn span:hover {
@@ -199,4 +210,13 @@ border-radius: 4px; */
 .mt-custom {
   margin-top: 4.4rem;
 }
+
+
+@layer base{
+  body {
+      @apply dark:bg-slate-800 bg-white
+  }
+}
+
+
 
