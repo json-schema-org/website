@@ -10,9 +10,13 @@ import CarbonAds from './CarbonsAds';
 const DocLink = ({
   uri,
   label,
+  onClick,
+  setOpen,
 }: {
   uri: string;
   label: string | React.ReactNode;
+  onClick?: () => void;
+  setOpen: (open: boolean) => void;
 }) => {
   const router = useRouter();
   const url = new URL(`${router.asPath}`, HOST);
@@ -20,6 +24,10 @@ const DocLink = ({
   url.hash = '';
   const stringUrl = url.toString().substr(HOST.length, Infinity);
   const isActive = uri === stringUrl;
+  // const handleClick = () => {
+  //   if (onClick) onClick();
+  //   setOpen(false);
+  // };
   return (
     <Link
       href={uri}
@@ -27,6 +35,10 @@ const DocLink = ({
         '  font-medium': !isActive,
         'text-primary text-bold border-l-primary font-semibold': isActive,
       })}
+      onClick={() => {
+        if (onClick) onClick();
+        setOpen(false);
+      }}
     >
       {label}
     </Link>
@@ -36,9 +48,13 @@ const DocLink = ({
 const DocLinkBlank = ({
   uri,
   label,
+  onClick,
+  setOpen,
 }: {
   uri: string;
   label: string | React.ReactNode;
+  onClick?: () => void;
+  setOpen: (open: boolean) => void;
 }) => {
   const router = useRouter();
   const url = new URL(`${router.asPath}`, HOST);
@@ -55,6 +71,10 @@ const DocLinkBlank = ({
       })}
       target='_blank'
       rel='noopener noreferrer'
+      onClick={() => {
+        if (onClick) onClick();
+        setOpen(false);
+      }}
     >
       {label}
     </Link>
@@ -178,13 +198,13 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
           className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}
         >
           <div className='flex flex-col mt-4'>
-            <DocsNav />
+            <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
 
         <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
           <div className='hidden lg:block mt-24'>
-            <DocsNav />
+            <DocsNav open={open} setOpen={setOpen} />
             <CarbonAds
               className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
               variant='sidebar'
@@ -199,9 +219,13 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export const DocsNav = () => {
+export const DocsNav = ({
+  setOpen,
+}: {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}) => {
   const router = useRouter();
-
   /* eslint-disable no-constant-condition */
   const [active, setActive] = useState({
     getDocs: false,
@@ -277,13 +301,23 @@ export const DocsNav = () => {
           <DocLink
             uri='/overview/what-is-jsonschema'
             label='What is JSON Schema?'
+            setOpen={setOpen}
           />
-          <DocLink uri='/overview/sponsors' label='Sponsors' />
+          <DocLink
+            uri='/overview/sponsors'
+            label='Sponsors'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/overview/similar-technologies'
             label='Similar Technologies'
+            setOpen={setOpen}
           />
-          <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
+          <DocLink
+            uri='/overview/code-of-conduct'
+            label='Code of Conduct'
+            setOpen={setOpen}
+          />
         </div>
       </div>
       {/* Get Started */}
@@ -320,15 +354,25 @@ export const DocsNav = () => {
           <DocLink
             uri='/learn/getting-started-step-by-step'
             label='Creating your first schema'
+            setOpen={setOpen}
           />
           <SegmentSubtitle label='Examples' />
           <div className='pl-4 pb-1 pt-1'>
             <DocLink
               uri='/learn/miscellaneous-examples'
               label='Miscellaneous examples'
+              setOpen={setOpen}
             />
-            <DocLink uri='/learn/file-system' label='Modelling a file system' />
-            <DocLink uri='/learn/json-schema-examples' label='Other examples' />
+            <DocLink
+              uri='/learn/file-system'
+              label='Modelling a file system'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/learn/json-schema-examples'
+              label='Other examples'
+              setOpen={setOpen}
+            />
           </div>
         </div>
       </div>
@@ -363,116 +407,149 @@ export const DocsNav = () => {
           className={classnames('ml-6', { hidden: !active.getReference })}
           id='reference'
         >
-          <DocLink uri='/learn/glossary' label='JSON Schema Glossary' />
+          <DocLink
+            uri='/learn/glossary'
+            label='JSON Schema Glossary'
+            setOpen={setOpen}
+          />
           <DocLinkBlank
             uri='https://www.learnjsonschema.com/'
             label='Learn JSON Schema'
+            setOpen={setOpen}
           />
           <DocLink
             uri='/understanding-json-schema'
             label='Understanding JSON Schema'
+            setOpen={setOpen}
           />
           <div className='pl-4 pb-1 pt-1'>
             <DocLink
               uri='/understanding-json-schema/conventions'
               label='Conventions used'
+              setOpen={setOpen}
             />
             <DocLink
               uri='/understanding-json-schema/about'
               label='What is a schema?'
+              setOpen={setOpen}
             />
             <DocLink
               uri='/understanding-json-schema/basics'
               label='The basics'
+              setOpen={setOpen}
             />
             <DocLink
               uri='/understanding-json-schema/reference'
               label='JSON Schema Reference'
+              setOpen={setOpen}
             />
             <div className='pl-4 pb-1 pt-1'>
               <DocLink
                 uri='/understanding-json-schema/reference/type'
                 label='Type-specific keywords'
+                setOpen={setOpen}
               />
               <div className='pl-4 pb-1 pt-1'>
                 <DocLink
                   uri='/understanding-json-schema/reference/string'
                   label='string'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/regular_expressions'
                   label='regular expressions'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/numeric'
                   label='numeric types'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/object'
                   label='object'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/array'
                   label='array'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/boolean'
                   label='boolean'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/null'
                   label='null'
+                  setOpen={setOpen}
                 />
               </div>
               <DocLink
                 uri='/understanding-json-schema/reference/generic'
                 label='Generic keywords'
+                setOpen={setOpen}
               />
               <div className='pl-4 pb-1 pt-1'>
                 <DocLink
                   uri='/understanding-json-schema/reference/annotations'
                   label='Annotations'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/comments'
                   label='Comments'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/enum'
                   label='Enumerated values'
+                  setOpen={setOpen}
                 />
                 <DocLink
                   uri='/understanding-json-schema/reference/const'
                   label='Constant values'
+                  setOpen={setOpen}
                 />
               </div>
               <DocLink
                 uri='/understanding-json-schema/reference/non_json_data'
                 label='Media: string-encoding non-JSON data'
+                setOpen={setOpen}
               />
               <DocLink
                 uri='/understanding-json-schema/reference/combining'
                 label='Schema Composition'
+                setOpen={setOpen}
               />
               <DocLink
                 uri='/understanding-json-schema/reference/conditionals'
                 label='Applying Subschemas Conditionally'
+                setOpen={setOpen}
               />
               <DocLink
                 uri='/understanding-json-schema/reference/schema'
                 label='Declaring a Dialect'
+                setOpen={setOpen}
               />
             </div>
             <DocLink
               uri='/understanding-json-schema/structuring'
               label='Structuring a complex schema'
+              setOpen={setOpen}
             />
           </div>
-          <DocLink uri='/implementers' label='For implementers' />
+          <DocLink
+            uri='/implementers'
+            label='For implementers'
+            setOpen={setOpen}
+          />
           <div className='pl-4 pb-1 pt-1'>
             <DocLink
               uri='/implementers/interfaces'
               label='Common Interfaces across Implementations'
+              setOpen={setOpen}
             />
           </div>
         </div>
@@ -509,34 +586,55 @@ export const DocsNav = () => {
           className={classnames('ml-6', { hidden: !active.getSpecification })}
           id='specification'
         >
-          <DocLink uri='/specification' label='Overview' />
-          <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
-          <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
+          <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
+          <DocLink
+            uri='/draft/2020-12/release-notes'
+            label='2020-12 notes'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/draft/2019-09/release-notes'
+            label='2019-09 notes'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/draft-07/json-schema-release-notes'
             label='draft-07 notes'
+            setOpen={setOpen}
           />
           <DocLink
             uri='/draft-06/json-schema-release-notes'
             label='draft-06 notes'
+            setOpen={setOpen}
           />
-          <DocLink uri='/draft-05/readme' label='draft-05 notes' />
+          <DocLink
+            uri='/draft-05/readme'
+            label='draft-05 notes'
+            setOpen={setOpen}
+          />
           <SegmentSubtitle label='JSON Hyper-Schema' />
           <div className='pl-4 pb-1 pt-1'>
             <DocLink
               uri='/draft/2019-09/release-notes#hyper-schema-vocabulary'
               label='2019-09 notes'
+              setOpen={setOpen}
             />
             <DocLink
               uri='/draft-07/json-hyper-schema-release-notes'
               label='draft-07 notes'
+              setOpen={setOpen}
             />
             <DocLink
               uri='/draft-06/json-hyper-schema-release-notes'
               label='draft-06 notes'
+              setOpen={setOpen}
             />
           </div>
-          <DocLink uri='/specification-links' label='Specification Links' />
+          <DocLink
+            uri='/specification-links'
+            label='Specification Links'
+            setOpen={setOpen}
+          />
         </div>
       </div>
     </div>
