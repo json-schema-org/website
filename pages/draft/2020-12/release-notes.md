@@ -61,7 +61,6 @@ Here are some examples to illustrate the changes.
       </td>
     </tr>
   </tbody>
->>>>>>> main
 </table>
 
 ### Closed tuple
@@ -96,7 +95,6 @@ Here are some examples to illustrate the changes.
       </td>
     </tr>
   </tbody>
->>>>>>> main
 </table>
 
 ### Tuple with constrained additional items
@@ -131,7 +129,6 @@ Here are some examples to illustrate the changes.
       </td>
     </tr>
   </tbody>
->>>>>>> main
 </table>
 
 ## $dynamicRef and $dynamicAnchor
