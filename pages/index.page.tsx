@@ -507,7 +507,7 @@ const Home = (props: any) => {
 
         {/* Sponsors */}
 
-        <section className='my-16'>
+        <section className='mt-16 bg-gradient-to-b from-[#1e293b] via-[#023e8a] to-[#023e8a]'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
               Sponsors
@@ -584,6 +584,8 @@ const Home = (props: any) => {
             <a href='https://www.llc.org/'>
               <img src='/img/logos/sponsors/llc-logo.svg' className=' w-44' />
             </a>
+          </div>          
+          <div className='h-28 bg-gradient-to-b from-[#023e8a] to-[#1e293b]'>
           </div>
         </section>
 
