@@ -607,7 +607,11 @@ export const DocsNav = () => {
           onClick={handleClickResources}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
+            <img
+              src='/icons/bookshelf.svg'
+              alt='eye icon'
+              className='mr-2 w-6'
+            />
             <SegmentHeadline label='Resources' />
           </div>
           <svg
