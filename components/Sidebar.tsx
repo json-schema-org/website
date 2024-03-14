@@ -67,6 +67,7 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
 };
 const getDocsPath = [
   '/overview/what-is-jsonschema',
+  '/overview/casestudies',
   '/overview/sponsors',
   '/overview/similar-technologies',
   '/overview/code-of-conduct',
@@ -286,6 +287,7 @@ export const DocsNav = () => {
             label='Similar Technologies'
           />
           <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
+          <DocLink uri='/overview/casestudies' label='Case Studies' />
         </div>
       </div>
       {/* Get Started */}
