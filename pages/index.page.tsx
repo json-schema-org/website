@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getLayout } from '../components/SiteLayout';
 import { DocSearch } from '@docsearch/react';
 import fs from 'fs';
@@ -15,7 +15,7 @@ import { GetStaticProps } from 'next';
 import axios from 'axios';
 import ical from 'node-ical';
 import moment from 'moment-timezone';
-
+import { useTheme } from 'next-themes';
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH);
@@ -162,7 +162,44 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 const Home = (props: any) => {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
+  const { theme } = useTheme();
 
+  const [asyncapi_logo, setAsyncapi_logo] = useState('');
+  const [airbnb_logo, setAirbnb_logo] = useState('');
+  const [stoplight_logo, setStoplight_logo] = useState('');
+  const [postman_logo, setPostman_logo] = useState('');
+  const [retool_logo, setRetool_logo] = useState('');
+  const [apideck_logo, setApideck_logo] = useState('');
+  const [endjin_logo, setEndjin_logo] = useState('');
+  const [llc_logo, setLlc_logo] = useState('');
+  const [common_room_logo, setCommon_room_logo] = useState('');
+  const [slack_logo, setSlack_logo] = useState('');
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      setAsyncapi_logo('/img/logos/dark-mode/asyncapi-logo-white.svg');
+      setAirbnb_logo('/img/logos/sponsors/airbnb-logo.svg');
+      setStoplight_logo('/img/logos/dark-mode/stoplight-logo_white.svg');
+      setPostman_logo('/img/logos/sponsors/postman_logo-orange.svg');
+      setRetool_logo('/img/logos/dark-mode/retool_logo_white.png');
+      setApideck_logo('/img/logos/dark-mode/apideck-logo.svg');
+      setEndjin_logo('/img/logos/sponsors/endjin-logo.svg');
+      setLlc_logo('/img/logos/dark-mode/llc-logo_white.svg');
+      setCommon_room_logo('/img/logos/dark-mode/common-room_white.svg');
+      setSlack_logo('/img/logos/dark-mode/slack-logo_white.svg');
+    } else {
+      setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
+      setAirbnb_logo('/img/logos/sponsors/airbnb-logo.svg');
+      setStoplight_logo('/img/logos/sponsors/stoplight-logo.svg');
+      setPostman_logo('/img/logos/sponsors/postman_logo-orange.svg');
+      setRetool_logo('/img/logos/sponsors/retool-logo.svg');
+      setApideck_logo('/img/logos/sponsors/apideck-logo.png');
+      setEndjin_logo('/img/logos/sponsors/endjin-logo.svg');
+      setLlc_logo('/img/logos/sponsors/llc-logo.svg');
+      setCommon_room_logo('/img/logos/supported/common-room.svg');
+      setSlack_logo('/img/logos/supported/slack-logo.svg');
+    }
+  }, [theme]);
   return (
     <div>
       <div className='flex flex-col items-center'>
@@ -507,7 +544,7 @@ const Home = (props: any) => {
 
         {/* Sponsors */}
 
-        <section className='w-full mt-16 bg-gradient-to-b from-[#1e293b] via-[#023e8a] to-[#023e8a]'>
+        <section className='my-16'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
               Sponsors
@@ -538,59 +575,38 @@ const Home = (props: any) => {
               </a>
             </p>
           </div>
+
           <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
             <a href=' https://www.asyncapi.com/'>
-              <img
-                src='/img/logos/sponsors/asyncapi-logo-dark.svg'
-                className=' w-44'
-              />
+              <img src={asyncapi_logo} className=' w-44' />
             </a>
             <a href='https://www.airbnb.com/'>
-              <img
-                src='/img/logos/sponsors/airbnb-logo.svg'
-                className=' w-44'
-              />
+              <img src={airbnb_logo} className=' w-44' />
             </a>
             <a href='https://stoplight.io/'>
-              <img
-                src='/img/logos/sponsors/stoplight-logo.svg'
-                className=' w-44'
-              />
+              <img src={stoplight_logo} className=' w-44' />
             </a>
             <a href='https://www.postman.com/'>
-              <img
-                src='/img/logos/sponsors/Postman_logo-orange.svg'
-                className='w-44'
-              />
+              <img src={postman_logo} className=' w-44' />
             </a>
             <a href='https://retool.com/'>
-              <img
-                src='/img/logos/sponsors/retool-logo.svg'
-                className=' w-44'
-              />
+              <img src={retool_logo} className=' w-44' />
             </a>
             <a href='https://www.apideck.com/'>
-              <img
-                src='/img/logos/sponsors/apideck-logo.png'
-                className=' w-44'
-              />
+              <img src={apideck_logo} className=' w-44' />
             </a>
             <a href='https://endjin.com/'>
-              <img
-                src='/img/logos/sponsors/endjin-logo.svg'
-                className=' w-44'
-              />
+              <img src={endjin_logo} className=' w-44' />
             </a>
             <a href='https://www.llc.org/'>
-              <img src='/img/logos/sponsors/llc-logo.svg' className=' w-44' />
+              <img src={llc_logo} className=' w-44' />
             </a>
           </div>
-          <div className='h-28 bg-gradient-to-b from-[#023e8a] to-[#1e293b]'></div>
         </section>
 
         {/* Supported */}
 
-        <section className='mt-20 w-full  bg-gradient-to-b from-[#1e293b] via-[#023e8a] to-[#023e8a]'>
+        <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
               Supported by
@@ -610,19 +626,12 @@ const Home = (props: any) => {
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-              <img
-                src='/img/logos/supported/common-room.svg'
-                className='w-48 md:w-56'
-              />
+              <img src={common_room_logo} className='w-48 md:w-56' />
             </a>
             <a href='https://json-schema.org/slack'>
-              <img
-                src='/img/logos/supported/slack-logo.svg'
-                className='w-24 md:w-32'
-              />
+              <img src={slack_logo} className='w-24 md:w-32' />
             </a>
-          </div>
-          <div className='h-28 bg-gradient-to-b from-[#023e8a] to-[#1e293b]'></div>
+          </div>{' '}
         </section>
       </div>
     </div>
