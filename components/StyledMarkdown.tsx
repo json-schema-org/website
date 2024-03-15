@@ -190,15 +190,29 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               ),
             },
             a: {
-              component: ({ children, href, title }) => {
+              component: ({ children, href, title, className }) => {
                 if (!href) return children;
+
+                // Check if the existing className starts with 'plausible-event-name'
+                const additionalClass =
+                  className && className.startsWith('plausible-event-name')
+                    ? className
+                    : '';
+
+                // Define the base className
+                const baseClassName = 'text-blue-500 hover:text-blue-600';
+
+                // Combine the base className with the additionalClass if it exists
+                const combinedClassName =
+                  `${baseClassName} ${additionalClass}`.trim();
+
                 const link =
                   href.charAt(0) === '/' ? (
                     <Link
                       as={href}
                       href='/'
                       title={title}
-                      className='text-blue-500 hover:text-blue-600'
+                      className={combinedClassName} // Use the combined className
                     >
                       {children}
                     </Link>
@@ -206,7 +220,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     <a
                       href={href}
                       title={title}
-                      className='text-blue-500 hover:text-blue-600'
+                      className={combinedClassName} // Use the combined className
                     >
                       {children}
                     </a>
