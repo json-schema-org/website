@@ -166,9 +166,7 @@ const Home = (props: any) => {
 
   const [asyncapi_logo, setAsyncapi_logo] = useState('');
   const [airbnb_logo, setAirbnb_logo] = useState('');
-  const [stoplight_logo, setStoplight_logo] = useState('');
   const [postman_logo, setPostman_logo] = useState('');
-  const [retool_logo, setRetool_logo] = useState('');
   const [apideck_logo, setApideck_logo] = useState('');
   const [endjin_logo, setEndjin_logo] = useState('');
   const [llc_logo, setLlc_logo] = useState('');
@@ -177,22 +175,18 @@ const Home = (props: any) => {
 
   useEffect(() => {
     if (theme === 'dark') {
-      setAsyncapi_logo('/img/logos/dark-mode/asyncapi-logo-white.svg');
-      setAirbnb_logo('/img/logos/sponsors/airbnb-logo.svg');
-      setStoplight_logo('/img/logos/dark-mode/stoplight-logo_white.svg');
-      setPostman_logo('/img/logos/sponsors/postman_logo-orange.svg');
-      setRetool_logo('/img/logos/dark-mode/retool_logo_white.png');
-      setApideck_logo('/img/logos/dark-mode/apideck-logo.svg');
+      setAsyncapi_logo('/img/logos/dark-mode/asyncapi_white.svg');
+      setAirbnb_logo('/img/logos/dark-mode/airbnb_white.png');
+      setPostman_logo('/img/logos/usedby/postman-white.png');
+      setApideck_logo('/img/logos/dark-mode/apideck_white.svg');
       setEndjin_logo('/img/logos/sponsors/endjin-logo.svg');
-      setLlc_logo('/img/logos/dark-mode/llc-logo_white.svg');
+      setLlc_logo('/img/logos/dark-mode/llc_white.svg');
       setCommon_room_logo('/img/logos/dark-mode/common-room_white.svg');
-      setSlack_logo('/img/logos/dark-mode/slack-logo_white.svg');
+      setSlack_logo('/img/logos/dark-mode/slack_white.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
-      setAirbnb_logo('/img/logos/sponsors/airbnb-logo.svg');
-      setStoplight_logo('/img/logos/sponsors/stoplight-logo.svg');
+      setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
       setPostman_logo('/img/logos/sponsors/postman_logo-orange.svg');
-      setRetool_logo('/img/logos/sponsors/retool-logo.svg');
       setApideck_logo('/img/logos/sponsors/apideck-logo.png');
       setEndjin_logo('/img/logos/sponsors/endjin-logo.svg');
       setLlc_logo('/img/logos/sponsors/llc-logo.svg');
@@ -583,14 +577,8 @@ const Home = (props: any) => {
             <a href='https://www.airbnb.com/'>
               <img src={airbnb_logo} className=' w-44' />
             </a>
-            <a href='https://stoplight.io/'>
-              <img src={stoplight_logo} className=' w-44' />
-            </a>
             <a href='https://www.postman.com/'>
               <img src={postman_logo} className=' w-44' />
-            </a>
-            <a href='https://retool.com/'>
-              <img src={retool_logo} className=' w-44' />
             </a>
             <a href='https://www.apideck.com/'>
               <img src={apideck_logo} className=' w-44' />
