@@ -1,7 +1,7 @@
 name: Greeting the new contributor 
 
 on:
-  pull_request:
+  pull_request_target:
     types: [opened] 
   issues:
     types: [opened]  

@@ -65,7 +65,7 @@ export function DocsHelp() {
   };
 
   return (
-    <section className='mt-10 mb-4 text-gray-600'>
+    <section className='mt-10 mb-4 text-gray-600 dark:text-white'>
       <h2 className='text-[24px] font-semibold'>Need Help?</h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-10 border-t border-gray-600'>
         <div>
@@ -90,7 +90,7 @@ export function DocsHelp() {
                     value='Y'
                   ></input>
                   <label
-                    className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md peer-checked/feedback-survery-yes:bg-[#1f6feb] peer-checked/feedback-survery-yes:text-white hover:bg-gray-200'
+                    className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md peer-checked/feedback-survery-yes:bg-[#1f6feb] peer-checked/feedback-survery-yes:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
                     htmlFor='feedback-survey-yes'
                     onClick={() => {
                       setIsFormOpen(true);
@@ -118,7 +118,7 @@ export function DocsHelp() {
                     value='N'
                   ></input>
                   <label
-                    className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md mx-2 peer-checked/feedback-survery-no:bg-[#da3633] peer-checked/feedback-survery-no:text-white hover:bg-gray-200'
+                    className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md mx-2 peer-checked/feedback-survery-no:bg-[#da3633] peer-checked/feedback-survery-no:text-white hover:bg-gray-200 dark:hover:bg-gray-600'
                     htmlFor='feedback-survey-no'
                     onClick={() => {
                       setIsFormOpen(true);
@@ -165,7 +165,7 @@ export function DocsHelp() {
                     <div className='flex justify-start items-center mt-1 text-[14px]'>
                       <button
                         type='submit'
-                        className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`}
+                        className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200 dark:hover:bg-gray-600'}`}
                         disabled={isSubmitting}
                       >
                         <svg
@@ -187,7 +187,7 @@ export function DocsHelp() {
                     <div className='flex justify-start items-center mt-1 text-[14px]'>
                       <button
                         type='button'
-                        className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200'}`}
+                        className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200 dark:hover:bg-gray-600'}`}
                         disabled={isSubmitting}
                         onClick={createGitHubIssueHandler}
                       >
@@ -249,7 +249,7 @@ export function DocsHelp() {
             <a
               target='_blank'
               rel='noreferrer'
-              className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200'
+              className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
               href='https://github.com/orgs/json-schema-org/projects/16'
             >
               <svg
