@@ -64,7 +64,7 @@ export default function Layout({
         <main
           className={classnames(
             mainClassName,
-            'z-10 xl:rounded-xl py-4 mx-auto',
+            'z-10 h-screen xl:rounded-xl pt-4 mx-auto',
             // 'z-10 h-screen  xl:rounded-xl pt-4 mx-auto',
           )}
         >
@@ -287,10 +287,10 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 const Footer = () => (
   <footer
     className={classnames(
-      'z-10 md:h-[300px]  bg-gradient-to-r from-startBlue from-1.95% to-endBlue clip-bottom mb-12 dark:from-[#002C34] dark:to-[#023e8a] ',
+      'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue dark:from-[#002C34] dark:to-[#023e8a] clip-top grid items-center',
     )}
   >
-    <div className='max-w-[1400px] mx-auto mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
+    <div className='max-w-[1400px] mx-auto mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
         <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
         <div className='flex flex-col text-center sm:text-left'>
