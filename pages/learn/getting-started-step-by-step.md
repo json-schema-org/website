@@ -11,7 +11,7 @@ JSON Schema is a vocabulary that you can use to annotate and validate JSON docum
 * [Adding outside references](#external)
 * [Validating JSON data against the schema](#validate)
 
-After you create the JSON Schema document, you can validate the example data against your schema using a validator in a language of your choice. See <a className='plausible-event-name=select-tool' href='https://json-schema.org/implementations'>Implementations</a> for a current list of supported validators.
+After you create the JSON Schema document, you can validate the example data against your schema using a validator in a language of your choice. See <a className='plausible-event-name=activation-select-tool' href='https://json-schema.org/implementations'>Implementations</a> for a current list of supported validators.
 
 For more information about the value JSON Schema can provide, see the full [JSON Schema Specification](https://json-schema.org/specification.html).
 
