@@ -4,7 +4,6 @@ export enum BlockContextValue {
   Information,
   CodeBlock,
   Details,
-  Infobox,
 }
 
 export const SectionContext = React.createContext<
@@ -12,7 +11,6 @@ export const SectionContext = React.createContext<
   | 'learn'
   | 'docs'
   | 'implementers'
-  | 'implementations'
   | 'tools'
   | 'blog'
   | 'community'
