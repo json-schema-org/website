@@ -152,7 +152,7 @@ const TabsGroup = ({ markdown }: { markdown: string }) => {
           })}
         </div>
       </div>
-      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b'>
+      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-600 dark:to-slate-900'>
         <StyledMarkdownBlock markdown={activeTab.markdown} />
       </div>
     </div>
