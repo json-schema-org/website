@@ -95,7 +95,7 @@ function ImplementationTable({
                 key={index}
                 href={`#${slug}`}
                 className={classnames(
-                  'plausible-event-name=activation-click-tool text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
+                  'text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
                   {
                     'bg-blue-800': isActive,
                     'bg-blue-500 hover:bg-blue-600': !isActive,
@@ -181,7 +181,7 @@ function ImplementationTable({
                           >
                             <td className='text-sm sm:text-base'>
                               <a
-                                className='text-blue-500'
+                                className='plausible-event-name=activation-click-tool text-blue-500'
                                 href={implementation.url}
                               >
                                 {implementation.name}
