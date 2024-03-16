@@ -17,7 +17,7 @@ section: docs
 When writing computer programs of even moderate complexity, it\'s
 commonly accepted that \"structuring\" the program into reusable
 functions is better than copying-and-pasting duplicate bits of code
-everywhere they are used. Likewise in [JSON](../learn/glossary#json) [Schema](../learn/glossary#schema), for anything but the
+everywhere they are used. Likewise in JSON Schema, for anything but the
 most trivial schema, it\'s really useful to structure the schema into
 parts that can be reused in a number of places. This chapter will
 present the tools available for reusing and structuring schemas as well
