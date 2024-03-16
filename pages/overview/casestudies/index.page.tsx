@@ -7,7 +7,7 @@ import data from 'data/casestudies.json';
 import Card from '~/components/Cardforcasestudies';
 
 export default function ContentExample() {
-  const newTitle = 'Casestudies';
+  const newTitle = 'Case Studies';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -25,7 +25,7 @@ export default function ContentExample() {
             key={index}
             title={element.title}
             body={element.summary}
-            icon={element.logo}
+            image={element.logo}
             link={element.links.url}
           />
         ))}

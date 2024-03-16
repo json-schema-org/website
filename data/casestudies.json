@@ -1,8 +1,18 @@
 [
+  {
+    "title":"How JSON Schema Was an Obvious Choice at GitHub",
+    "summary":"At GitHub's Docs Engineering team, while shipping releases to production 20 times per day or more, JSON Schema is critical in increasing confidence in changes to data, content and APIs.",
+    "logo": "/img/logos/github-logo.png",
+    "links": 
+      {
+        "lang": "URL1",
+        "url": "/blog/posts/github-case-study"
+      }
+    },    
     {
       "title":"How 6 River Systems saves time and boosts collaboration with JSON Schema",
       "summary":"Explore the powerful impact of JSON Schema on 6 River Systems' fulfillment operations. Discover how they enabled enhanced collaboration, time savings, and data quality assurance, propelling their successful scaling journey.",
-      "logo": "/img/logos/logo-blue.svg",
+      "logo": "/img/logos/6river-logo.svg",
       "links": 
         {
           "lang": "URL1",
@@ -11,262 +21,9 @@
       
     },
     {
-      "title":"And Then There Were Three",
-      "summary":"More full-time contributors is better, right?",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/and-then-there-were-three"
-        }
-      
-    },
-    {
-      "title":"API Days Paris 2023 - Recap",
-      "summary":"API Days Paris 2023 has been an amazing experience for JSON Schema",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/apidays-paris-2023-recap"
-        }
-      
-    },
-    {
-      "title":"It all starts with applicability - JSON Schema Fundamentals part 1",
-      "summary":"We explore the fundamental JSON Schema concepts: Applicability, Subschemas, and Assertion Boolean Logic - Everyone needs good fundamentals.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/applicability-json-schema-fundamentals-part-1"
-        }
-      
-    },
-    {
-      "title":"Introducing: Bowtie",
-      "summary":"A new tool for executing JSON Schema implementations & a call to help improve it",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/bowtie-intro"
-        }
-      
-    },
-    {
-      "title":"JSON Schema bundling finally formalised",
-      "summary":"Existing tooling developers have created their own approaches to bundling JSON Schema and OpenAPI documents, but that can lead to errors. Bundling is now standardised.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/bundling-json-schema-compound-documents"
-        }
-      
-    },
-    {
-      "title":"Why JSON Schema needs a Code of Conduct",
-      "summary":"The community of JSON Schema is growing, and the community needs a culture for interactions to avoid past mistakes.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/code-of-conduct-for-json-schema"
-        }
-      
-    },
-    {
-      "title":"JSON Schema deduplicated complex logic and validation at Cookpad",
-      "summary":"Using JSON Schema at Cookpad improved the accuracy and experience when registering products, and has greatly reduced the operational burden of product screening.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/cookpad-case-study-en"
-        }
-      
-    },
-    {
-      "title":"クックパッド株式会社におけるJSON Schemaの活用事例",
-      "summary":"クックパッド株式会社ではJSON Schemaを活用することによって、クックパッドマートにおける販売者の商品登録時の正確性と体験を改善し、商品審査にかかる運営上の負担を大幅に軽減することができました。",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/cookpad-case-study-jp"
-        }
-      
-    },
-    {
-      "title":"Custom Annotations Will Continue",
-      "summary":"Custom annotations are one of JSON Schemas most-used features.  Here's how we're still supporting them.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/custom-annotations-will-continue"
-        }
-      
-    },
-    {
-      "title":"Using Dynamic References to Support Generic Types",
-      "summary":"A step in the right direction for modelling data with JSON Schema",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/dynamicref-and-generics"
-        }
-      
-    },
-    {
-      "title":"Fixing JSON Schema Output",
-      "summary":"I have a problem: when I read GitHub issues, they occasionally resonate with me, and I obsess about them until they're resolved.  That may not sound like a problem to some, but when that resolution causes JSON Schema implementation developers to ask fundamental design questions for three years... yeah, that's a problem.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/fixing-json-schema-output"
-        }
-      
-    },
-    {
-      "title":"Towards a stable JSON Schema", 
-      "summary": "About this time last year, I hosted a discussion at the API Specification Conference about the future of JSON Schema. The most popular topic of discussion was, when JSON Schema is going to be 'done'. Of course we've heard that question a lot. The question stems from the 'draft' label we put on your releases. The term 'draft' has led to quite a bit of confusion for our community over the years, so let's take a moment to understand where it comes from.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/future-of-json-schema"
-        }
-      
-    },
-    {
-      "title":"Get started with JSON Schema in Node.js",
-      "summary":"Learn how to use JSON Schema for validation in your Node.js applications.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/get-started-with-json-schema-in-node-js"
-        }
-      
-    },
-    {
-      "title":"How JSON Schema Was an Obvious Choice at GitHub",
-      "summary":"At GitHub's Docs Engineering team, while shipping releases to production 20 times per day or more, JSON Schema is critical in increasing confidence in changes to data, content and APIs.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/github-case-study"
-        }
-      
-    },
-    {
-      "title":"Hello 2023, Hello JSON Schema Community",
-      "summary":"I am excited to announce that I am joining as Developer Advocate with a focus on serving the Community",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/hello-world-hello-postman"
-        }
-      
-    },
-    {
-      "title":"Hello World, Hello Postman",
-      "summary":"Oh hello there! A second person is now working full-time on JSON Schema.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/understanding-lexical-dynamic-scopes"
-        }
-      
-    },
-    {
-      "title":"Astonishing Serializations & Schemas of Hyperborea",
-      "summary":"Using JSON Schema for validating role-playing character sheets.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/hyperborea"
-        }
-      
-    },
-    {
-      "title":"Interpreting JSON Schema Output",
-      "summary":"Why does my passing validation contain errors?",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/interpreting-output"
-        }
-      
-    },
-    {
-      "title":"Joining Postman",
-      "summary":"In the last couple of weeks, you may have seen that Postman has been investing heavily in JSON Schema's future by hiring some of its top contributors giving them the opportunity to work full time on improving the JSON Schema specification and tooling ecosystem. I'm happy to announce that I'm the next addition to that team.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/joining-postman"
-        }
-      
-    },
-    {
-      "title":"Introducing the JSON Schema Adopters",
-      "summary":"Explore our Adopters list to discover organizations successfully leveraging JSON Schema",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/json-schema-adopters"
-        }
-      
-    },
-    {
-      "title":"JSON Schema in 5 minutes",
-      "summary":"Everyone needs good fundamentals, and understanding the basics of JSON Schema changes how you read, reason, and develop Schemas.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/json-schema-in-5-minutes"
-        }
-      
-    },
-    {
-      "title":"JSON Schema joins the OpenJS Foundation and 2022 updates",
-      "summary":"Find out what we've been doing in 2021 and read about our biggest development yet... joining the OpenJS Foundation. Oh, and WE'RE HIRING!",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/json-schema-joins-the-openjsf"
-        }
-      
-    },
-    {
-      "title":"Transformando la industria de la contratación técnica con JSON Schema",
-      "summary":"Descubre cómo Manfred ha usado JSON Schema para transformar la industria de la contratación técnica.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/manfred-case-study-es"
-        }
-      
-    },
-    {
       "title":"Transforming the technical recruiting industry with JSON Schema",
       "summary":"Learn how Manfred used JSON Schema to transform the technical recruiting industry.",
-      "logo": "/img/logos/logo-blue.svg",
+      "logo": "/img/logos/manfred-color.svg",
       "links": 
         {
           "lang": "URL1",
@@ -275,31 +32,9 @@
       
     },
     {
-      "title":"Modelling Inheritance with JSON Schema",
-      "summary":"Can it be done?  Well, sort of.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/modelling-inheritance"
-        }
-      
-    },
-    {
-      "title":"Announcing our new website",
-      "summary":"We are so pleased to announce the launch of our new website!",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/new-website"
-        }
-      
-    },
-    {
       "title":"How Postman uses JSON Schema",
       "summary":"Learn how JSON Schema continues to be a crucial component of the Postman API Platform and the API ecosystem.",
-      "logo": "/img/logos/logo-blue.svg",
+      "logo": "/img/logos/sponsors/Postman_logo-orange.svg",
       "links": 
         {
           "lang": "URL1",
@@ -310,7 +45,7 @@
     {
       "title":"Using JSON Schema at Remote to scale forms and data validations",
       "summary":"Using JSON Schema at Remote was the first step to solving data validation and form generation problems across all levels at Remote.",
-      "logo": "/img/logos/logo-blue.svg",
+      "logo": "/img/logos/remote-logo.png",
       "links": 
         {
           "lang": "URL1",
@@ -319,42 +54,9 @@
       
     },
     {
-      "title":"Static Analysis of JSON Schema",
-      "summary":"What can we know about a schema without having an instance to evaluate?",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/schema-static-analysis"
-        }
-      
-    },
-    {
-      "title":"The Architectural Scope of JSON Schema",
-      "summary":"What actually is JSON Schema?!",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/the-architectural-scope-of-json-schema"
-        }
-      
-    },
-    {
-      "title":"The Last Breaking Change",
-      "summary":"We need to make a breaking change so that we can promise we won't again.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/the-last-breaking-change"
-        }
-      
-    },
-    {
       "title":"How Tyler Technologies reduced its client feedback loop with JSON Schema",
       "summary":"Using JSON Schema at Tyler Technologies meant showing added value to clients could take minutes rather than days or in some cases weeks.",
-      "logo": "/img/logos/logo-blue.svg",
+      "logo": "/img/logos/tyler-tech-logo.png",
       "links": 
         {
           "lang": "URL1",
@@ -363,46 +65,13 @@
       
     },
     {
-      "title":"Understanding JSON Schema Lexical and Dynamic Scopes",
-      "summary":"A deep dive on lexical and dynamic scopes, essential for understanding more advanced topics like dynamic referencing",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/understanding-lexical-dynamic-scopes"
-        }
-      
-    },
-    {
-      "title":"Validating OpenAPI and JSON Schema",
-      "summary":"Dynamic references make it possible to validate the schemas in an OpenAPI document even though OpenAPI does not constrain which JSON Schema dialects can be used.",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/validating-openapi-and-json-schema"
-        }
-      
-    },
-    {
       "title":"How the W3C Web of Things brings JSON Schema to the Internet of Things",
       "summary":"Using JSON Schema at the W3C Web of Things to create an interoperability layer so that different IoT platforms, protocols and standards can operate together",
-      "logo": "/img/logos/logo-blue.svg",
+      "logo": "/img/logos/wot-logo.png",
       "links": 
         {
           "lang": "URL1",
           "url": "/blog/posts/w3c-wot-case-study"
-        }
-      
-    },
-    {
-      "title":"50+ million requests in 7 days on json-schema.org",
-      "summary":"See what we discovered when looking at over 50 million requests to the JSON Schema org domain from the last 7 days",
-      "logo": "/img/logos/logo-blue.svg",
-      "links": 
-        {
-          "lang": "URL1",
-          "url": "/blog/posts/website-analytics-snapshot-2023"
         }
       
     }
