@@ -132,7 +132,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
-      <section>
+      <section className='w-full'>
         <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden'>
           <div
             className='z-[150] flex w-full bg-primary justify-between items-center mt-2'
@@ -313,6 +313,7 @@ export const DocsNav = () => {
             label='Similar Technologies'
           />
           <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
+          <DocLink uri='/overview/faq' label='Faq' />
         </div>
       </div>
       {/* Get Started */}
