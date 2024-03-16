@@ -5,7 +5,7 @@ section: docs
 
 <Keywords label="single: integer single: number single: types; numeric" />
 
-There are two numeric types in [JSON](../../learn/glossary#json) [Schema](../../learn/glossary#schema): [integer](#integer) and [number](#number).
+There are two numeric types in JSON Schema: [integer](#integer) and [number](#number).
 They share the same validation [keywords](../../learn/glossary#keyword).
 
 > JSON has no standard way to represent complex numbers, so there is no
