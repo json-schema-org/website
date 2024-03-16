@@ -14,7 +14,6 @@ export const SectionContext = React.createContext<
   | 'implementers'
   | 'tools'
   | 'implementations'
-  | 'tools'
   | 'blog'
   | 'community'
   | 'specification'
