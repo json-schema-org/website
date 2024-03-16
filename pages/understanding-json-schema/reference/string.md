@@ -119,7 +119,7 @@ with an optional area code:
 ## Format[#format]
 
 The `format` keyword allows for basic semantic identification of certain
-kinds of string values that are commonly used. For example, because [JSON](../../learn/glossary#json)
+kinds of string values that are commonly used. For example, because JSON
 doesn\'t have a \"DateTime\" type, dates need to be encoded as strings.
 `format` allows the schema author to indicate that the string value
 should be interpreted as a date. By default, `format` is just an
