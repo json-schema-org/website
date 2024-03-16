@@ -5,7 +5,7 @@ section: docs
 
 <Keywords label="single: object" />
 
-Objects are the mapping type in [JSON](../../learn/glossary#json). They map \"keys\" to \"values\".
+Objects are the mapping type in JSON. They map \"keys\" to \"values\".
 In JSON, the \"keys\" must always be strings. Each of these pairs is
 conventionally referred to as a \"property\".
 
