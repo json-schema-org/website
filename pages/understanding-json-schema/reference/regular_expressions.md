@@ -49,7 +49,7 @@ described below.
     expression.
 -   `{x,y}?`, `{x,}?`: Non-greedy versions of the above expressions.
 -   Use only standard escapes like ``\n``, ``\r``, ``\t`` and keep 
-    in mind that you also need to do [JSON](../../learn/glossary#json) escaping.
+    in mind that you also need to do JSON escaping.
 
 Example
 -------
