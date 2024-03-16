@@ -5,7 +5,7 @@ section: docs
 
 <Keywords label="schema composition" />
 
-[JSON](../../learn/glossary#json) [Schema](../../learn/glossary#schema) includes a few [keywords](../../learn/glossary#keyword) for combining schemas together. Note
+JSON Schema includes a few [keywords](../../learn/glossary#keyword) for combining schemas together. Note
 that this doesn\'t necessarily mean combining schemas from multiple
 files or JSON trees, though these facilities help to enable that and are
 described in [Structuring a complex schema](../../understanding-json-schema/structuring). Combining schemas may be as
