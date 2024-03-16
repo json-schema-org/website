@@ -5,11 +5,11 @@ title: "Conventions used in this documentation"
 
 ## Language-specific notes
 
-The names of the basic types in JavaScript and [JSON](../learn/glossary#json) can be confusing
+The names of the basic types in JavaScript and JSON can be confusing
 when coming from another dynamic language. I\'m a Python programmer by
 day, so I\'ve notated here when the names for things are different from
 what they are in Python, and any other Python-specific advice for using
-JSON and JSON [Schema](../learn/glossary#schema). I\'m by no means trying to create a Python bias to
+JSON and JSON Schema. I\'m by no means trying to create a Python bias to
 this book, but it is what I know, so I\'ve started there. In the long
 run, I hope this book will be useful to programmers of all stripes, so
 if you\'re interested in translating the Python references into Algol-68
