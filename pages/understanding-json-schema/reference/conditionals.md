@@ -116,7 +116,7 @@ This has a ``billing_address``, but is missing a ``credit_card``.
 ```
 
 <Infobox label="Draft-specific info">
-Previously to [Draft](../../learn/glossary#draft) 2019-09, ``dependentRequired`` and
+Previously to Draft 2019-09, ``dependentRequired`` and
    ``dependentSchemas`` were one keyword called ``dependencies``. If
    the dependency value was an array, it would behave like
    ``dependentRequired`` and if the dependency value was a schema, it
@@ -431,7 +431,7 @@ Before Draft 7, you can express an \"if-then\" conditional using the
 [Schema composition](../../understanding-json-schema/reference/combining) keywords and a boolean algebra concept called
 \"implication\". `A -> B` (pronounced, A implies B) means that if A is
 true, then B must also be true. It can be expressed as `!A || B` which
-can be expressed as a [JSON](../../learn/glossary#json) [Schema](../../learn/glossary#schema).
+can be expressed as a JSON Schema.
 
 ```json
 // props { "isSchema": true }
