@@ -5,7 +5,7 @@ section: docs
 
 In [What is a schema?](../understanding-json-schema/about), we described what a [schema](../learn/glossary#schema) is,
 and hopefully justified the need for schema languages. Here, we proceed
-to write a simple [JSON](../learn/glossary#json) Schema.
+to write a simple JSON Schema.
 
 ## Hello, World!
 
