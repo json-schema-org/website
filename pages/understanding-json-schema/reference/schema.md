@@ -3,7 +3,7 @@ title: "Declaring a Dialect"
 section: docs
 ---
 
-A version of [JSON](../../learn/glossary#json) [Schema](../../learn/glossary#schema) is called a [dialect](../../learn/glossary#dialect). A dialect represents the
+A version of JSON Schema is called a [dialect](../../learn/glossary#dialect). A dialect represents the
 set of [keywords](../../learn/glossary#keyword) and semantics that can be used to evaluate a schema.
 Each JSON Schema release is a new dialect of JSON Schema. JSON Schema
 provides a way for you to declare which dialect a schema conforms to and
