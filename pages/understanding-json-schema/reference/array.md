@@ -5,7 +5,7 @@ section: docs
 
 <Keywords label="single: array" />
 
-Arrays are used for ordered elements. In [JSON](../../learn/glossary#json), each element in an array
+Arrays are used for ordered elements. In JSON, each element in an array
 may be of a different type.
 
 [tabs-start "Language-specific info"]
