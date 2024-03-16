@@ -8,8 +8,8 @@ export default function Code({ children }: { children: any }) {
   return (
     <code
       className={classnames('font-mono rounded px-1.5 py-0.5', {
-        'bg-slate-100': blockContext === null,
-        'bg-amber-200': blockContext === BlockContextValue.Information,
+        'bg-slate-100 dark:bg-slate-900': blockContext === null,
+        'bg-amber-200': blockContext === BlockContextValue.Infobox,
         'text-white': blockContext === BlockContextValue.CodeBlock,
       })}
     >

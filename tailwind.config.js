@@ -3,6 +3,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,md}',
     './components/**/*.{js,ts,jsx,tsx,md}',
   ],
+  darkMode: "class",
   theme: {
     screens: {
       'sm': '640px',
