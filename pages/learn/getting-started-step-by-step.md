@@ -11,7 +11,7 @@ JSON Schema is a vocabulary that you can use to annotate and validate JSON docum
 * [Adding outside references](#external)
 * [Validating JSON data against the schema](#validate)
 
-After you create the JSON Schema document, you can validate the example data against your schema using a validator in a language of your choice. See <a className='plausible-event-name=activation-explore-tools' href='https://json-schema.org/implementations'>Implementations</a> for a current list of supported validators.
+After you create the JSON Schema document, you can validate the example data against your schema using a validator in a language of your choice. See <a className='plausible-event-name=activation-explore-tools' href='https://json-schema.org/implementations'>Tools</a> for a current list of supported validators.
 
 For more information about the value JSON Schema can provide, see the full [JSON Schema Specification](https://json-schema.org/specification.html).
 
@@ -614,6 +614,6 @@ This example JSON data matches the product catalog schema:
 }
 ```
 
-To validate this JSON data against the product catalog JSON Schema, you can use any validator of your choice. In addition to command-line and browser tools, validation tools are available in a wide range of languages, including Java, Python, .NET, and many others. To find a validator that’s right for your project, see [Implementations](https://json-schema.org/implementations).
+To validate this JSON data against the product catalog JSON Schema, you can use any validator of your choice. In addition to command-line and browser tools, validation tools are available in a wide range of languages, including Java, Python, .NET, and many others. To find a validator that’s right for your project, see <a className='plausible-event-name=activation-explore-tools' href='https://json-schema.org/implementations'>Tools</a>.
 
 Use the example JSON data as the input data and the product catalog JSON Schema as the schema. Your validation tool compares the data against the schema, and if the data meets all the requirements defined in the schema, validation is successful.
