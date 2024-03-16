@@ -125,7 +125,7 @@ the first element of the input array, the second element validates the
 second element of the input array, etc.
 
 <Infobox label="Draft-specific info">
-In [Draft](../../learn/glossary#draft) 4 - 2019-09, tuple validation was handled by an alternate
+In Draft 4 - 2019-09, tuple validation was handled by an alternate
    form of the `items` keyword. When `items` was an array of
    schemas instead of a single schema, it behaved the way
    `prefixItems` behaves.
