@@ -5,7 +5,7 @@ section: docs
 
 When a [schema](../../learn/glossary#schema) specifies a `type` of `null`, it has only one acceptable value: `null`.
 
-> It's important to remember that in [JSON](../../learn/glossary#json), `null` isn't equivalent to something being absent. See [Required Properties](../../understanding-json-schema/reference/object#required) for an example.
+> It's important to remember that in JSON, `null` isn't equivalent to something being absent. See [Required Properties](../../understanding-json-schema/reference/object#required) for an example.
 
 [tabs-start "Language-specific info"]
 
