@@ -3,7 +3,7 @@ title: "Annotations"
 section: docs
 ---
 
-[JSON](../../learn/glossary#json) [Schema](../../learn/glossary#schema) includes a few [keywords](../../learn/glossary#keyword), that aren\'t strictly used for
+JSON Schema includes a few [keywords](../../learn/glossary#keyword), that aren\'t strictly used for
 validation, but are used to describe parts of a schema. None of these
 \"annotation\" keywords are required, but they are encouraged for good
 practice, and can make your schema \"self-documenting\".
