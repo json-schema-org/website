@@ -50,7 +50,7 @@ export default function ImplementationsPages({
   hyperLibaries: ImplementationByLanguage[];
 }) {
   return (
-    <SectionContext.Provider value='implementations'>
+    <SectionContext.Provider value='tools'>
       <div className='w-5/6 mx-auto mt-12 dark:text-slate-200'>
         <Headline1>Tools</Headline1>
         <StyledMarkdown markdown={blocks.intro} />
@@ -95,7 +95,7 @@ function ImplementationTable({
                 key={index}
                 href={`#${slug}`}
                 className={classnames(
-                  'text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
+                  'plausible-event-name=activation-click-tool text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
                   {
                     'bg-blue-800': isActive,
                     'bg-blue-500 hover:bg-blue-600': !isActive,
