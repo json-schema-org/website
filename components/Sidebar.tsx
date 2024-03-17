@@ -537,6 +537,7 @@ export const DocsNav = () => {
           id='specification'
         >
           <DocLink uri='/specification' label='Overview' />
+          <DocLink uri='/specification-links' label='Specification Links' />
           <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
           <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
           <DocLink
@@ -563,7 +564,6 @@ export const DocsNav = () => {
               label='draft-06 notes'
             />
           </div>
-          <DocLink uri='/specification-links' label='Specification Links' />
         </div>
       </div>
     </div>
