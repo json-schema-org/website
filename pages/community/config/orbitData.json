@@ -1,0 +1,108 @@
+[
+  [
+    {
+      "id": "item",
+      "img": "./img/avatars/benhutton.webp",
+      "alt": "benhutton"
+    },
+    {
+      "id": "item",
+      "img": "./img/avatars/benjagm.webp",
+      "alt": "benjagm"
+    },
+    {
+      "id": "item",
+      "img": "./img/avatars/gregsdennis.webp",
+      "alt": "gregs"
+    },
+    {
+      "id": "item",
+      "img": "./img/avatars/jasondesrosiers.jpeg",
+      "alt": "jason"
+    },
+    {
+      "id": "item",
+      "img": "./img/avatars/julian.webp",
+      "alt": "julian"
+    },
+    {
+      "id": "item",
+      "img": "./img/avatars/jviotti.webp",
+      "alt": "jviotti"
+    }
+  ],
+  [
+    {
+      "id": "item-2",
+      "img": "./img/avatars/melinda.webp",
+      "alt": "melinda"
+    },
+    {
+      "id": "item-2",
+      "img": "./img/avatars/mikeralphson.webp",
+      "alt": "mikeralphson"
+    },
+    {
+      "id": "item-2",
+      "img": "./img/avatars/simonplenderleith.webp",
+      "alt": "simon"
+    },
+    {
+      "id": "item-2",
+      "img": "./img/avatars/yanick.jpg",
+      "alt": "yanick"
+    },
+    {
+      "id": "item-2",
+      "img": "./img/avatars/yeray.webp",
+      "alt": "yeray"
+    },
+    {
+      "id": "item-2",
+      "img": "./img/contributer_gsoc_2024/akanksha_kushwaha.jpeg",
+      "alt": "maciej"
+    },
+    {
+      "id": "item-2",
+      "img": "./img/contributer_gsoc_2024/alok_gupta.jpeg",
+      "alt": "git"
+    }
+  ],
+  [
+    {
+      "id": "item-3",
+      "img": "./img/contributer_gsoc_2024/dairya.jpeg",
+      "alt": "ace"
+    },
+    {
+      "id": "item-3",
+      "img": "./img/contributer_gsoc_2024/jeel_rajodiya.jpeg",
+      "alt": "star"
+    },
+    {
+      "id": "item-3",
+      "img": "./img/contributer_gsoc_2024/neeraj_saini.jpeg",
+      "alt": "barbano"
+    },
+    {
+      "id": "item-3",
+      "img": "./img/contributer_gsoc_2024/michael_sharber.jpeg",
+      "alt": "dale"
+    },
+    {
+      "id": "item-3",
+      "img": "./img/contributer_gsoc_2024/mintu_gogoi.jpeg",
+      "alt": "kuda"
+    },
+    {
+      "id": "item-3",
+      "img": "./img/contributer_gsoc_2024/paul_waller.jpeg",
+      "alt": "yash"
+    },
+    {
+      "id": "item-3",
+      "img": "./img/contributer_gsoc_2024/roni.jpeg",
+      "alt": "sergio"
+    }
+  ]
+]

@@ -159,7 +159,7 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/#community'
+        uri='/community'
         label='Community'
         isActive={section === 'community'}
       />
@@ -234,7 +234,7 @@ const MobileNav = () => {
       />
       <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
-        uri='/#community'
+        uri='/community'
         label='Community'
         isActive={section === 'community'}
       />
