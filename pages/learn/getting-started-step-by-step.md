@@ -404,22 +404,25 @@ To create a nested data structure:
 ```
 
 4. To make each of these properties required, add a `required` validation keyword inside the `dimensions` object:
+   
+
     
 ```jsonc
-"dimensions": {
-  "type": "object",
-  "properties": {
-    "length": {
-      "type": "number"
+...
+  "dimensions": {
+    "type": "object",
+    "properties": {
+      "length": {
+        "type": "number"
+      },
+      "width": {
+        "type": "number"
+      },
+      "height": {
+        "type": "number"
+      }
     },
-    "width": {
-      "type": "number"
-    },
-    "height": {
-      "type": "number"
-    }
-  },
-  "required": [ "length", "width", "height" ]
+    "required": [ "length", "width", "height" ]
 }
 ```
 
