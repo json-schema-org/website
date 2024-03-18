@@ -50,7 +50,7 @@ export default function Layout({
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
   return (
-    <div className='min-h-screen fixed inset-0 w-full overflow-y-scroll flex flex-col justify-between'>
+    <div className='min-h-screen relative flex flex-col justify-between '>
       <FaviconHead />
       <Head>
         <title>{newTitle}</title>
