@@ -404,6 +404,8 @@ To create a nested data structure:
 ```
 
 4. To make each of these properties required, add a `required` validation keyword inside the `dimensions` object:
+   
+
     
 ```jsonc
 "dimensions": {
