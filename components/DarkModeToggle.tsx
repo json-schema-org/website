@@ -2,7 +2,7 @@ import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import React from 'react';
 
-const DarkModeToggle = () => {
+export default function DarkModeToggle() {
   const { theme, setTheme } = useTheme();
   const [isDarkMode, setIsDarkMode] = useState(theme === 'dark');
   const [isClickable, setIsClickable] = useState(true);
@@ -37,6 +37,4 @@ const DarkModeToggle = () => {
       <img src={img} alt='Dark Mode' width={25} height={25} />
     </button>
   );
-};
-
-export default DarkModeToggle;
+}
