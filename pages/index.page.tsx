@@ -213,32 +213,31 @@ const Home = (props: any) => {
               JSON Schema enables the confident and reliable use of the JSON
               data format.
             </h2>
+          </div>
+          <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
+            <Link
+              href='/learn/getting-started-step-by-step'
+              className=' flex items-center justify-center rounded border-2 border-white dark:border-none text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
+            >
+              Getting started
+            </Link>
+            <Link
+              href='/slack'
+              className=' flex items-center justify-center rounded border-2 border-white dark:border-none text-white  w-[194px] h-[40px] font-semibold bg-primary dark:border-shadow-white  dark:shadow-2xl'
+            >
+              Join Slack
+            </Link>
 
-            <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
-              <Link
-                href='/learn/getting-started-step-by-step'
-                className=' flex items-center justify-center rounded border-2 border-white dark:border-none text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
-              >
-                Getting started
-              </Link>
-              <Link
-                href='/slack'
-                className=' flex items-center justify-center rounded border-2 border-white dark:border-none text-white  w-[194px] h-[40px] font-semibold bg-primary dark:border-shadow-white  dark:shadow-2xl'
-              >
-                Join Slack
-              </Link>
-
-
-              <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none text-white bg-primary mx-auto  dark:shadow-2xl'>
-                <div className='flex flex-row justify-center items-center mr-4 '>
-                  <DocSearch
-                    appId={algoliaAppId}
-                    apiKey={algoliaApiKey}
-                    indexName='json-schema'
-                  />
-                  <p>Search</p>
-                </div>
+            <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none text-white bg-primary mx-auto  dark:shadow-2xl'>
+              <div className='flex flex-row justify-center items-center mr-4 '>
+                <DocSearch
+                  appId={algoliaAppId}
+                  apiKey={algoliaApiKey}
+                  indexName='json-schema'
+                />
+                <p>Search</p>
               </div>
+            </div>
 
             <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
               <h3 className='text-white text-xl mb-4'>Used by</h3>
