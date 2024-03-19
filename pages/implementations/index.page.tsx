@@ -181,7 +181,7 @@ function ImplementationTable({
                           >
                             <td className='text-sm sm:text-base'>
                               <a
-                                className='text-blue-500'
+                                className='plausible-event-name=activation-click-tool text-blue-500'
                                 href={implementation.url}
                               >
                                 {implementation.name}
