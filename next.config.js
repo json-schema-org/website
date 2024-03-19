@@ -5,7 +5,7 @@ const nextConfig = {
   pageExtensions: ['page.tsx'],
   images: {
     unoptimized: true,
-  },
+  }
 };
 
 module.exports = nextConfig;

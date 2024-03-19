@@ -36,7 +36,6 @@
 
 html {
   font-family: 'Inter', sans-serif;
-  scroll-behavior: smooth;
   scroll-padding-top: 100px;
 }
 
@@ -203,7 +202,7 @@ border-radius: 4px; */
 .anchor #community {
   position: absolute;
   left: 0;
-  top: 35px;
+  top: -35px;
   /* change this value to match the height of the header */
 }
 /* In your CSS file */
