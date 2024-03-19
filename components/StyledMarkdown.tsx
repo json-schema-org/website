@@ -353,6 +353,27 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 );
               },
             },
+            userevent: {
+              component: ({ children, type }) => {
+                // Use React.Children.map to iterate over each child element
+                const modifiedChildren = React.Children.map(
+                  children,
+                  (child) => {
+                    // Clone each child element
+                    const clonedChild = React.cloneElement(child, {
+                      // Append the type class to the existing className
+                      className: classnames(child.props.className, type),
+                    });
+
+                    return clonedChild;
+                  },
+                );
+                console.log(children);
+                console.log(modifiedChildren);
+
+                return <>{modifiedChildren}</>;
+              },
+            },
             Star: {
               component: ({ label }) => {
                 return (
