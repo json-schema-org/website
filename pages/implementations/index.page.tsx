@@ -50,7 +50,7 @@ export default function ImplementationsPages({
   hyperLibaries: ImplementationByLanguage[];
 }) {
   return (
-    <SectionContext.Provider value='implementations'>
+    <SectionContext.Provider value='tools'>
       <div className='w-5/6 mx-auto mt-12 dark:text-slate-200'>
         <Headline1>Tools</Headline1>
         <StyledMarkdown markdown={blocks.intro} />
@@ -80,7 +80,7 @@ function ImplementationTable({
   const router = useRouter();
   return (
     <>
-      <div className=' flex-row flex-wrap  grid dark:bg-slate-700  grid-cols-3 text-sm md:grid-cols-5 md:text-base lg:grid-cols-6'>
+      <div className='flex-row flex-wrap  grid dark:bg-slate-700  grid-cols-3 text-sm md:grid-cols-5 md:text-base lg:grid-cols-6'>
         {implementationsByLanguage.map(
           (implementationByLanguage: any, index: number) => {
             const slug =
@@ -181,7 +181,7 @@ function ImplementationTable({
                           >
                             <td className='text-sm sm:text-base'>
                               <a
-                                className='text-blue-500'
+                                className='plausible-event-name=activation-click-tool text-blue-500'
                                 href={implementation.url}
                               >
                                 {implementation.name}

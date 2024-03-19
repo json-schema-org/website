@@ -152,7 +152,7 @@ const TabsGroup = ({ markdown }: { markdown: string }) => {
           })}
         </div>
       </div>
-      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b'>
+      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-600 dark:to-slate-900'>
         <StyledMarkdownBlock markdown={activeTab.markdown} />
       </div>
     </div>
@@ -190,15 +190,29 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               ),
             },
             a: {
-              component: ({ children, href, title }) => {
+              component: ({ children, href, title, className }) => {
                 if (!href) return children;
+
+                // Check if the existing className starts with 'plausible-event-name'
+                const additionalClass =
+                  className && className.startsWith('plausible-event-name')
+                    ? className
+                    : '';
+
+                // Define the base className
+                const baseClassName = 'text-blue-500 hover:text-blue-600';
+
+                // Combine the base className with the additionalClass if it exists
+                const combinedClassName =
+                  `${baseClassName} ${additionalClass}`.trim();
+
                 const link =
                   href.charAt(0) === '/' ? (
                     <Link
                       as={href}
                       href='/'
                       title={title}
-                      className='text-blue-500 hover:text-blue-600'
+                      className={combinedClassName} // Use the combined className
                     >
                       {children}
                     </Link>
@@ -206,7 +220,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     <a
                       href={href}
                       title={title}
-                      className='text-blue-500 hover:text-blue-600'
+                      className={combinedClassName} // Use the combined className
                     >
                       {children}
                     </a>
@@ -337,6 +351,27 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     {children}
                   </details>
                 );
+              },
+            },
+            userevent: {
+              component: ({ children, type }) => {
+                // Use React.Children.map to iterate over each child element
+                const modifiedChildren = React.Children.map(
+                  children,
+                  (child) => {
+                    // Clone each child element
+                    const clonedChild = React.cloneElement(child, {
+                      // Append the type class to the existing className
+                      className: classnames(child.props.className, type),
+                    });
+
+                    return clonedChild;
+                  },
+                );
+                console.log(children);
+                console.log(modifiedChildren);
+
+                return <>{modifiedChildren}</>;
               },
             },
             Star: {
