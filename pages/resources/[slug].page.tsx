@@ -82,7 +82,7 @@ export default function ResourcePageComponent({ data }: { data: DataProps }) {
         />
         {filteredArticles &&
           filteredArticles.map((item: ResourcesProps, index: number) => (
-            <div key={index} className='bg-white p-3'>
+            <div key={index} className='p-3'>
               <a
                 href={item.url}
                 target='_blank'
