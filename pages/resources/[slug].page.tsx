@@ -69,8 +69,9 @@ export default function ResourcePageComponent({ data }: { data: DataProps }) {
         <title>{newTitle}</title>
       </Head>
       <Headline1>{newTitle}</Headline1>
-
-      <div className='max-w-2xl mx-auto mt-6'>
+      Welcome to the {`${newTitle}`} section. Please use the search box to
+      search for specific terms.
+      <div className='mt-6'>
         <input
           type='text'
           name='text'
@@ -84,6 +85,8 @@ export default function ResourcePageComponent({ data }: { data: DataProps }) {
             <div key={index} className='bg-white p-3'>
               <a
                 href={item.url}
+                target='_blank'
+                rel='noreferrer'
                 className='text-xl text-blue-500 underline mb-2'
               >
                 {item.title}
