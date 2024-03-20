@@ -76,6 +76,7 @@ const getDocsPath = [
   '/overview/sponsors',
   '/overview/similar-technologies',
   '/overview/code-of-conduct',
+  '/overview/FAQ',
 ];
 const getStartedPath = [
   '/learn/json-schema-examples',
@@ -313,7 +314,7 @@ export const DocsNav = () => {
             label='Similar Technologies'
           />
           <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
-          <DocLink uri='/overview/faq' label='Faq' />
+          <DocLink uri='/overview/faq' label='FAQ' />
         </div>
       </div>
       {/* Get Started */}
