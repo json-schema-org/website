@@ -47,7 +47,6 @@ To validate against `allOf`, the given data must be valid against all of the giv
 }
 ```  
 
-
 ```json
 // props { "indent": true, "valid": true }
 "short"
@@ -79,7 +78,6 @@ To validate against `anyOf`, the given data must be valid against any
   ]
 }
 ```  
-
 
 ```json
 // props { "indent": true, "valid": true }
