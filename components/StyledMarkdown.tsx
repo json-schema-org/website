@@ -490,6 +490,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 );
               },
             },
+
             TableOfContent: {
               component: ({ depth }) => {
                 // eslint-disable-next-line react-hooks/rules-of-hooks
