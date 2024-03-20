@@ -14,7 +14,7 @@ export default function StaticMarkdownPage() {
       <div className='flex flex-col items-center justify-center'>
         <div className='max-w-[1400px] mx-auto'>
           <NewsletterForm
-            className='pt-[100px] bg-white text-black'
+            className='pt-[100px] text-black'
             wrapperClassName='h-full sm:h-[calc(100vh-312px)] py-[50px] sm:py-0 px-5 sm:px-10 lg:w-full'
           />
         </div>
