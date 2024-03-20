@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -30,6 +30,8 @@ export default function Layout({
 
   const router = useRouter();
 
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
     [router.asPath],
@@ -47,6 +49,21 @@ export default function Layout({
       }
     }
   }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        mobileNavRef.current &&
+        (mobileNavRef.current as any).contains(event.target)
+      ) {
+        useStore.setState({ overlayNavigation: null });
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showMobileNav]);
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
   return (
@@ -84,7 +101,7 @@ export default function Layout({
             </div>
           </header>
           {showMobileNav ? (
-            <div>
+            <div ref={mobileNavRef}>
               <MobileNav />
               {children}
             </div>
