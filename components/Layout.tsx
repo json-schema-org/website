@@ -196,7 +196,7 @@ const MainNavigation = () => {
         isActive={section === 'community'}
       />
 
-      <div className='flex items-center max-sm:ml-4 mr-8  gap-6 md:gap-4 dark:bg-slate-800'>
+      <div className='flex items-center max-sm:ml-4 mr-8 lg:mr-0 gap-6 md:gap-4 dark:bg-slate-800'>
         <div
           className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
           onClick={() => {
