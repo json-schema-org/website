@@ -72,6 +72,7 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
   );
 };
 const getDocsPath = [
+  '/overview/welcome',
   '/overview/what-is-jsonschema',
   '/overview/sponsors',
   '/overview/casestudies',
@@ -333,10 +334,7 @@ export const DocsNav = () => {
           className={classnames('ml-6', { hidden: !active.getDocs })}
           id='overview'
         >
-          <DocLink
-            uri='/overview/what-is-jsonschema'
-            label='What is JSON Schema?'
-          />
+          <DocLink uri='/overview/welcome' label='Welcome' />
           <DocLink uri='/overview/sponsors' label='Sponsors' />
           <DocLink uri='/overview/casestudies' label='Case Studies' />
           <DocLink
@@ -379,6 +377,10 @@ export const DocsNav = () => {
           className={classnames('ml-6', { hidden: !active.getStarted })}
           id='getStarted'
         >
+          <DocLink
+            uri='/overview/what-is-jsonschema'
+            label='What is JSON Schema?'
+          />
           <DocLink
             uri='/learn/getting-started-step-by-step'
             label='Creating your first schema'
