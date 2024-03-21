@@ -152,6 +152,7 @@ const MainNavigation = () => {
   useEffect(() => {
     const icon = theme === 'dark' ? 'herobtn' : '';
     const menu = theme === 'dark' ? 'bg-white' : 'bg-black';
+    document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
     const closeMenu =
       theme === 'dark'
         ? 'url("/icons/cancel-dark.svg")'
