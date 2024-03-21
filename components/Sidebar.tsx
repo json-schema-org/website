@@ -7,6 +7,7 @@ import classnames from 'classnames';
 import { SegmentHeadline } from './Layout';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import CarbonAds from './CarbonsAds';
+import { useTheme } from 'next-themes';
 
 const DocLink = ({
   uri,
@@ -26,7 +27,8 @@ const DocLink = ({
       href={uri}
       className={classnames('text-sm block border-l-2 py-1 pl-2', {
         '  font-medium': !isActive,
-        'text-primary text-bold border-l-primary font-semibold': isActive,
+        'text-primary dark:text-[#007bff] text-bold border-l-primary  font-semibold':
+          isActive,
       })}
     >
       {label}
@@ -63,13 +65,20 @@ const DocLinkBlank = ({
 };
 
 const SegmentSubtitle = ({ label }: { label: string }) => {
-  return <div className='text-sm italic text-slate-900 mt-2 mb-2'>{label}</div>;
+  return (
+    <div className='text-sm italic text-slate-900 dark:text-slate-400 mt-2 mb-2'>
+      {label}
+    </div>
+  );
 };
 const getDocsPath = [
+  '/overview/welcome',
   '/overview/what-is-jsonschema',
   '/overview/sponsors',
+  '/overview/casestudies',
   '/overview/similar-technologies',
   '/overview/code-of-conduct',
+  '/overview/FAQ',
 ];
 const getStartedPath = [
   '/learn/json-schema-examples',
@@ -117,6 +126,22 @@ const getSpecificationPath = [
   '/specification-links',
   '/specification',
 ];
+const getResourcePath = [
+  '/resources/articles',
+  '/resources/books',
+  '/resources/articles',
+  '/resources/podcasts',
+  '/resources/papers',
+  '/resources/audios',
+];
+const resourceRoutes = [
+  { uri: '/resources/books', label: 'Books' },
+  { uri: '/resources/articles', label: 'Articles' },
+  { uri: '/resources/courses', label: 'Courses' },
+  { uri: '/resources/videos', label: 'Videos' },
+  { uri: '/resources/podcasts', label: 'Podcasts' },
+  { uri: '/resources/papers', label: 'Papers' },
+];
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -126,7 +151,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
-      <section>
+      <section className='w-full'>
         <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden'>
           <div
             className='z-[150] flex w-full bg-primary justify-between items-center mt-2'
@@ -176,14 +201,15 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         <div
-          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}
+          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${
+            open ? '-translate-x-0' : '-translate-x-full'
+          } transition-transform duration-300 ease-in-out filter drop-shadow-md `}
         >
           <div className='flex flex-col mt-4'>
             <DocsNav />
           </div>
         </div>
-
-        <div className='max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
+        <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
           <div className='hidden lg:block mt-24'>
             <DocsNav />
             <CarbonAds
@@ -209,6 +235,7 @@ export const DocsNav = () => {
     getStarted: false,
     getReference: false,
     getSpecification: false,
+    getResources: false,
   });
   useEffect(() => {
     const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
@@ -220,6 +247,8 @@ export const DocsNav = () => {
       setActive({ ...active, getReference: true });
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getSpecification: true });
+    } else if (getResourcePath.includes(router.asPath)) {
+      setActive({ ...active, getResources: true });
     }
   }, [router.asPath]);
 
@@ -239,20 +268,49 @@ export const DocsNav = () => {
     setActive({ ...active, getSpecification: !active.getSpecification });
   };
 
+  const handleClickResources = () => {
+    setActive({ ...active, getResources: !active.getResources });
+  };
+
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateResources = active.getResources ? 'rotate(180deg)' : 'rotate(0)';
+
+  const { theme } = useTheme();
+
+  const [learn_icon, setLearn_icon] = useState('');
+  const [reference_icon, setReference_icon] = useState('');
+  const [spec_icon, setSpec_icon] = useState('');
+  const [overview_icon, setOverview_icon] = useState('');
+  const [resources_icon, setResources_icon] = useState('');
+
+  useEffect(() => {
+    if (theme === 'dark') {
+      setOverview_icon('/icons/eye-dark.svg');
+      setLearn_icon('/icons/compass-dark.svg');
+      setReference_icon('/icons/book-dark.svg');
+      setSpec_icon('/icons/clipboard-dark.svg');
+      setResources_icon('/icons/bookshelf-dark.svg');
+    } else {
+      setOverview_icon('/icons/eye.svg');
+      setLearn_icon('/icons/compass.svg');
+      setReference_icon('/icons/book.svg');
+      setSpec_icon('/icons/clipboard.svg');
+      setResources_icon('/icons/bookshelf.svg');
+    }
+  }, [theme]);
 
   return (
     <div id='sidebar ' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickDoc}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/eye.svg' alt='eye icon' className='mr-2' />
+            <img src={`${overview_icon}`} alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Overview' />
           </div>
           <svg
@@ -276,26 +334,26 @@ export const DocsNav = () => {
           className={classnames('ml-6', { hidden: !active.getDocs })}
           id='overview'
         >
-          <DocLink
-            uri='/overview/what-is-jsonschema'
-            label='What is JSON Schema?'
-          />
+          <DocLink uri='/overview/welcome' label='Welcome' />
           <DocLink uri='/overview/sponsors' label='Sponsors' />
+          <DocLink uri='/overview/casestudies' label='Case Studies' />
           <DocLink
             uri='/overview/similar-technologies'
             label='Similar Technologies'
           />
           <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
+          <DocLink uri='/overview/faq' label='FAQ' />
         </div>
       </div>
       {/* Get Started */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickGet}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
+            <img src={`${learn_icon}`} alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Getting Started' />
           </div>
           <svg
@@ -320,6 +378,10 @@ export const DocsNav = () => {
           id='getStarted'
         >
           <DocLink
+            uri='/overview/what-is-jsonschema'
+            label='What is JSON Schema?'
+          />
+          <DocLink
             uri='/learn/getting-started-step-by-step'
             label='Creating your first schema'
           />
@@ -335,13 +397,14 @@ export const DocsNav = () => {
         </div>
       </div>
       {/* Reference */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickReference}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/book.svg' alt='eye icon' className='mr-2' />
+            <img src={`${reference_icon}`} alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Reference' />
           </div>
           <svg
@@ -480,13 +543,14 @@ export const DocsNav = () => {
         </div>
       </div>
       {/* Specification */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
+
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickSpec}
         >
           <div className='flex  items-center align-middle'>
-            <img src='/icons/clipboard.svg' alt='eye icon' className='mr-2' />
+            <img src={`${spec_icon}`} alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Specification' />
           </div>
           <svg
@@ -512,6 +576,7 @@ export const DocsNav = () => {
           id='specification'
         >
           <DocLink uri='/specification' label='Overview' />
+          <DocLink uri='/specification-links' label='Specification Links' />
           <DocLink uri='/draft/2020-12/release-notes' label='2020-12 notes' />
           <DocLink uri='/draft/2019-09/release-notes' label='2019-09 notes' />
           <DocLink
@@ -538,7 +603,50 @@ export const DocsNav = () => {
               label='draft-06 notes'
             />
           </div>
-          <DocLink uri='/specification-links' label='Specification Links' />
+        </div>
+      </div>
+      {/* Resources */}
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
+        <div
+          className='flex justify-between w-full items-center'
+          onClick={handleClickResources}
+        >
+          <div className='flex  items-center align-middle'>
+            <img
+              src={`${resources_icon}`}
+              alt='eye icon'
+              className='mr-2 w-6'
+            />
+            <SegmentHeadline label='Resources' />
+          </div>
+          <svg
+            id='arrow'
+            className='arrow'
+            style={{
+              transform: rotateResources,
+              transition: 'all 0.2s linear',
+            }}
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            height='32'
+            viewBox='0 0 24 24'
+            width='24'
+          >
+            <path
+              clipRule='evenodd'
+              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+              fill='#707070'
+              fillRule='evenodd'
+            />
+          </svg>
+        </div>
+        <div
+          className={classnames('ml-6', { hidden: !active.getResources })}
+          id='resources'
+        >
+          {resourceRoutes.map(({ uri, label }) => (
+            <DocLink key={uri} uri={uri} label={label} />
+          ))}
         </div>
       </div>
     </div>

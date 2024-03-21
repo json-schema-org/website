@@ -1,0 +1,50 @@
+[
+    {
+      "id": 1,
+      "question": "What is JSON Schema?",
+      "answer": "JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It defines the structure, data types, and constraints of JSON data.",
+      "category": "general"
+    },
+    {
+      "id": 2,
+      "question": "How do I create a simple JSON Schema?",
+      "answer": "You can create a simple JSON Schema using a JSON object with properties like 'type', 'properties', and 'required'. These define the data type, properties, and mandatory fields of your JSON document.",
+      "category": "general"
+    },
+    {
+      "id": 3,
+      "question": "What is the purpose of 'type' in JSON Schema?",
+      "answer": "The 'type' keyword specifies the data type of the JSON value. It can be 'string', 'number', 'object', 'array', 'boolean', 'null', or a combination of these.",
+      "category": "general"
+    },
+    {
+      "id": 4,
+      "question": "How can I define default values in a JSON Schema?",
+      "answer": "You can use the 'default' keyword to set a default value for a property in your JSON Schema. It provides a fallback value if the property is not present in the JSON document.",
+      "category": "general"
+    },
+    {
+      "id": 5,
+      "question": "What is the significance of 'required' in JSON Schema?",
+      "answer": "The 'required' keyword is an array that specifies which properties must be present in a JSON document. It enforces that these properties are not omitted.",
+      "category": "general"
+    },
+    {
+      "id": 6,
+      "question": "How can I validate a JSON document against a JSON Schema?",
+      "answer": "You can use various tools and libraries, such as AJV (Another JSON Schema Validator) in JavaScript, to validate a JSON document against a JSON Schema. These tools check if the document adheres to the specified schema rules.",
+      "category": "general"
+    },
+    {
+      "id": 7,
+      "question": "What is the difference between 'object' and 'array' types in JSON Schema?",
+      "answer": "In JSON Schema, 'object' is used to define an object with named properties, while 'array' is used to define an ordered list of values. 'object' contains key-value pairs, whereas 'array' contains elements identified by their index.",
+      "category": "general"
+    },
+    {
+      "id": 8,
+      "question": "Can I use JSON Schema to describe nested structures?",
+      "answer": "Yes, JSON Schema supports nested structures. You can define properties with their own JSON Schema, allowing you to describe complex hierarchical data.",
+      "category": "general"
+    }
+  ]

@@ -3,6 +3,7 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,md}',
     './components/**/*.{js,ts,jsx,tsx,md}',
   ],
+  darkMode: "class",
   theme: {
     screens: {
       'sm': '640px',
@@ -19,7 +20,7 @@ module.exports = {
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
-      ab1:'890px'
+      'ab1':'890px'
 
     },
     fontFamily: {

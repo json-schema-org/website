@@ -96,8 +96,8 @@ key is the name of a property and each value is a schema used to
 validate that property. Any property that doesn\'t match any of the
 property names in the `properties` keyword is ignored by this keyword.
 
-> See [Additional Properties](#additional-properties) and
-[Unevaluated Properties](#unevaluated-properties) for how to disallow properties that
+> See [Additional Properties](#additionalproperties) and
+[Unevaluated Properties](#unevaluatedproperties) for how to disallow properties that
 don\'t match any of the property names in `properties`.
 
 For example, let\'s say we want to define a simple schema for an address

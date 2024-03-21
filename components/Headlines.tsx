@@ -85,7 +85,7 @@ const Headline1Tag = ({ children, attributes }: TagProps) => (
     {...attributes}
     className={classnames(
       attributes?.className,
-      'text-h1mobile md:text-h1  font-bold pt-10 mb-6',
+      'text-h1mobile md:text-h1 dark:text-slate-200  font-bold pt-10 mb-6',
     )}
   >
     {children}
@@ -96,7 +96,7 @@ const Headline2Tag = ({ children, attributes }: TagProps) => (
     {...attributes}
     className={classnames(
       attributes?.className,
-      'text-h2mobile md:text-h2 font-semibold mt-10 mb-4',
+      'text-h2mobile md:text-h2 dark:text-slate-200 font-semibold mt-10 mb-4',
     )}
   >
     {children}
@@ -107,7 +107,7 @@ const Headline3Tag = ({ children, attributes }: TagProps) => (
     {...attributes}
     className={classnames(
       attributes?.className,
-      'text-h3mobile md:text-h3 font-semibold mt-6 mb-3',
+      'text-h3mobile dark:text-slate-200 md:text-h3 font-semibold mt-6 mb-3',
     )}
   >
     {children}
@@ -118,7 +118,7 @@ const Headline4Tag = ({ children, attributes }: TagProps) => (
     {...attributes}
     className={classnames(
       attributes?.className,
-      'text-h4mobile md:text-h4 font-semibold mt-4 mb-2',
+      'text-h4mobile dark:text-slate-200 md:text-h4 font-semibold mt-4 mb-2',
     )}
   >
     {children}
