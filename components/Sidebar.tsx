@@ -72,6 +72,7 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
   );
 };
 const getDocsPath = [
+  '/overview/welcome',
   '/overview/what-is-jsonschema',
   '/overview/sponsors',
   '/overview/casestudies',
@@ -133,7 +134,6 @@ const getResourcePath = [
   '/resources/papers',
   '/resources/audios',
 ];
-const getWelcomePath = ['/welcome'];
 const resourceRoutes = [
   { uri: '/resources/books', label: 'Books' },
   { uri: '/resources/articles', label: 'Articles' },
@@ -236,7 +236,6 @@ export const DocsNav = () => {
     getReference: false,
     getSpecification: false,
     getResources: false,
-    getWelcome: false,
   });
   useEffect(() => {
     const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
@@ -250,8 +249,6 @@ export const DocsNav = () => {
       setActive({ ...active, getSpecification: true });
     } else if (getResourcePath.includes(router.asPath)) {
       setActive({ ...active, getResources: true });
-    } else if (getWelcomePath.includes(pathWtihoutFragment)) {
-      setActive({ ...active, getWelcome: true });
     }
   }, [router.asPath]);
 
@@ -274,12 +271,8 @@ export const DocsNav = () => {
   const handleClickResources = () => {
     setActive({ ...active, getResources: !active.getResources });
   };
-  const handleClickWelcome = () => {
-    setActive({ ...active, getResources: !active.getWelcome });
-  };
 
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
-  const rotateW = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
@@ -311,41 +304,6 @@ export const DocsNav = () => {
 
   return (
     <div id='sidebar ' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
-      {/* Welcome */}
-      <div className='mb-2 bg-slate-200 p-2 rounded'>
-        <div
-          className='flex justify-between w-full items-center'
-          onClick={handleClickWelcome}
-        >
-          <div className='flex  items-center align-middle'>
-            <img src='/icons/compass.svg' alt='eye icon' className='mr-2' />
-            <SegmentHeadline label='Welcome' />
-          </div>
-          <svg
-            style={{ transform: rotateW, transition: 'all 0.2s linear' }}
-            id='arrow'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            height='32'
-            viewBox='0 0 24 24'
-            width='24'
-          >
-            <path
-              clipRule='evenodd'
-              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
-              fill='#707070'
-              fillRule='evenodd'
-            />
-          </svg>
-        </div>
-        <div
-          className={classnames('ml-6', { hidden: !active.getWelcome })}
-          id='getWelcome'
-        >
-          <DocLink uri='/welcome' label='Welcome to JSON Schema?' />
-        </div>
-      </div>
-      {/* Overview */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
@@ -376,10 +334,7 @@ export const DocsNav = () => {
           className={classnames('ml-6', { hidden: !active.getDocs })}
           id='overview'
         >
-          <DocLink
-            uri='/overview/what-is-jsonschema'
-            label='What is JSON Schema?'
-          />
+          <DocLink uri='/overview/welcome' label='Welcome' />
           <DocLink uri='/overview/sponsors' label='Sponsors' />
           <DocLink uri='/overview/casestudies' label='Case Studies' />
           <DocLink
@@ -422,6 +377,10 @@ export const DocsNav = () => {
           className={classnames('ml-6', { hidden: !active.getStarted })}
           id='getStarted'
         >
+          <DocLink
+            uri='/overview/what-is-jsonschema'
+            label='What is JSON Schema?'
+          />
           <DocLink
             uri='/learn/getting-started-step-by-step'
             label='Creating your first schema'
