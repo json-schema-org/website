@@ -3,7 +3,7 @@ title: "Type-specific keywords"
 section: docs
 ---
 
-The `type` keyword is fundamental to JSON Schema. It specifies the data
+The `type` [keyword](../../learn/glossary#keyword) is fundamental to JSON Schema. It specifies the data
 type for a schema.
 
 At its core, JSON Schema defines the following basic types:

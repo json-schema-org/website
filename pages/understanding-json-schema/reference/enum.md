@@ -3,7 +3,7 @@ title: "Enumerated values"
 section: docs
 ---
 
-The `enum` keyword is used to restrict a value to a fixed set of values.
+The `enum` [keyword](../../learn/glossary#keyword) is used to restrict a value to a fixed set of values.
 It must be an array with at least one element, where each element is
 unique.
 

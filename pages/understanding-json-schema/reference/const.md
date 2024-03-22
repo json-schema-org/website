@@ -5,7 +5,7 @@ section: docs
 
 <Star label="New in draft 6" />
 
-The `const` keyword is used to restrict a value to a single value.
+The `const` [keyword](../../learn/glossary#keyword) is used to restrict a value to a single value.
 
 For example, if you only support shipping to the United States for
 export reasons:
