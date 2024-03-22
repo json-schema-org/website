@@ -158,6 +158,8 @@ const MainNavigation = () => {
         ? 'url("/icons/cancel-dark.svg")'
         : 'url("/icons/cancel.svg")';
     document.documentElement.setAttribute('data-theme', dataTheme);
+    document.documentElement.style.setProperty("--docsearch-key-gradient", "linear-gradient(-225deg, #d5dbe4, #f8f8f8)");
+    document.documentElement.style.setProperty("--docsearch-key-shadow", theme === 'dark' ? "inset 0 -2px 0 0 #ffffff, inset 0 0 1px 1px #ffffff, 0 2px 2px 0 rgba(3, 4, 9, 0.3)": "inset 0 -2px 0 0 #cdcde6,inset 0 0 1px 1px #fff,0 1px 2px 1px rgba(30,35,90,0.4)");
 
     setIcon(icon);
     setMenu(menu);
