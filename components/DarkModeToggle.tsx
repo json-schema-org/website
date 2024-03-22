@@ -18,7 +18,7 @@ export default function DarkModeToggle() {
 
     const dataTheme = isDarkMode ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', dataTheme);
-    
+
     setTimeout(() => {
       setIsClickable(true);
     }, 500);
