@@ -63,7 +63,7 @@ export default function Layout({
     document.addEventListener('click', handleClickOutside);
 
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [showMobileNav]);
+  }, [mobileNavRef]);
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
   return (
