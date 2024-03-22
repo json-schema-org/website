@@ -219,7 +219,7 @@ const MainNavigation = () => {
             style={{
               backgroundImage: closeMenu,
             }}
-            className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
+            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
             onClick={() => useStore.setState({ overlayNavigation: null })}
           />
         )}
@@ -256,7 +256,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
+    <div className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
       <MainNavLink
         uri='/specification'
         label='Specification'

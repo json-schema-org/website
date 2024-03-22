@@ -131,6 +131,15 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const handleRotate = () => setRotateChevron(!rotateChevron);
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)';
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+  useEffect(() => {
+    if (window) {
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 1024) {
+          setOpen(false);
+        }
+      });
+    }
+  }, [typeof window !== 'undefined']);
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
