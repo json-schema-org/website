@@ -17,7 +17,7 @@ export function DocsHelp() {
 
     try {
       const response = await fetch(
-        '',
+        'https://feedback-collector.json-schema.workers.dev/submit',
         {
           method: 'POST',
           body: formData,
