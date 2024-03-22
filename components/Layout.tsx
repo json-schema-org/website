@@ -163,12 +163,8 @@ const MainNavigation = () => {
         ? 'url("/icons/cancel-dark.svg")'
         : 'url("/icons/cancel.svg")';
     document.documentElement.setAttribute('data-theme', dataTheme);
-    document.documentElement.style.setProperty(
-      '--docsearch-key-gradient',
-      keyGrad);
-    document.documentElement.style.setProperty(
-      '--docsearch-key-shadow', 
-      keyShadow);
+    document.documentElement.style.setProperty('--docsearch-key-gradient', keyGrad);
+    document.documentElement.style.setProperty('--docsearch-key-shadow', keyShadow);
 
     setIcon(icon);
     setMenu(menu);
