@@ -215,7 +215,7 @@ export function DocsHelp() {
           {feedbackStatus === 'feedback' && (
             <div className='my-6 text-[14px]'>
               <p>
-                Thanks for the feedback! See it on&nbsp;
+                Thanks for the feedback! Feel free to join on&nbsp;
                 <a
                   target='_blank'
                   rel='noreferrer'
