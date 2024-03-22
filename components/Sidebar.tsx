@@ -25,9 +25,9 @@ const DocLink = ({
   return (
     <Link
       href={uri}
-      className={classnames('text-sm block border-l-2 py-1 pl-2', {
+      className={classnames('text-sm block py-1 pl-2', {
         '  font-medium': !isActive,
-        'text-primary dark:text-[#007bff] text-bold border-l-primary  font-semibold':
+        'text-primary dark:text-[#007bff] text-bold border-l-2 border-l-primary  font-semibold':
           isActive,
       })}
     >
@@ -52,9 +52,10 @@ const DocLinkBlank = ({
   return (
     <Link
       href={uri}
-      className={classnames('text-sm block border-l-2 py-1 pl-2', {
+      className={classnames('text-sm block  py-1 pl-2', {
         '  font-medium': !isActive,
-        'text-primary text-bold border-l-primary font-semibold': isActive,
+        'text-primary text-bold border-l-2 border-l-primary font-semibold':
+          isActive,
       })}
       target='_blank'
       rel='noopener noreferrer'
