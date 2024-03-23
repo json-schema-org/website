@@ -1,9 +1,16 @@
 import { useRouter } from 'next/router';
 import React, { FormEvent, useRef, useState } from 'react';
 
-export function DocsHelp() {
+interface DocsHelpProps {
+  markdownFile?: string;
+}
+
+export function DocsHelp({ markdownFile }: DocsHelpProps) {
   const router = useRouter();
   const path = encodeURIComponent(router.pathname);
+  const targetUrl = markdownFile
+    ? `https://github.com/json-schema-org/website/blob/main/pages${router.asPath}.md`
+    : `https://github.com/json-schema-org/website/blob/main/pages/${path}.page.tsx`;
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -251,7 +258,7 @@ export function DocsHelp() {
               target='_blank'
               rel='noreferrer'
               className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
-              href={`https://github.com/json-schema-org/website/blob/main/pages/${path}.page.tsx`}
+              href={targetUrl}
             >
               <svg
                 className='inline-block select-none align-text-bottom mr-1'
