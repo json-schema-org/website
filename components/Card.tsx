@@ -11,15 +11,22 @@ interface CardProps {
   bodyTextSize?: 'small' | 'medium' | 'large';
 }
 
-const CardBody = ({ title, body, icon, link, image, headerSize, bodyTextSize  }: CardProps) => {
-
-  const headerSizeClasses: Record<string, string>  = {
-    small: 'text-[.9rem]',
+const CardBody = ({
+  title,
+  body,
+  icon,
+  link,
+  image,
+  headerSize,
+  bodyTextSize,
+}: CardProps) => {
+  const headerSizeClasses: Record<string, string> = {
+    small: 'text-[0.9rem]',
     medium: 'text-[1.3rem]',
     large: 'text-[2rem]',
   };
-  const bodyTextSizeClasses: Record<string, string>  = {
-    small: 'text-[.85rem]',
+  const bodyTextSizeClasses: Record<string, string> = {
+    small: 'text-[0.85rem]',
     medium: 'text-[1rem]',
     large: 'text-[1.5rem]',
   };
@@ -34,12 +41,16 @@ const CardBody = ({ title, body, icon, link, image, headerSize, bodyTextSize  }:
             <img src={icon} alt={title} className='h-full w-full' />
           </span>
         )}
-        <p className={`mb-1 mt-1 items-center font-bold text-gray-900 ${headerSizeClasses[headerSize || 'medium']}`}>
+        <p
+          className={`mb-1 mt-1 items-center font-bold text-gray-900 ${headerSizeClasses[headerSize || 'medium']}`}
+        >
           {title}
         </p>
       </div>
       <hr className='mb-4 mt-3.5 h-px border-0 bg-gray-400' />
-      <p className={`text-[1rem] mb-8 mt-5 ${bodyTextSizeClasses[bodyTextSize || 'medium']} `}>
+      <p
+        className={`mb-8 mt-5 ${bodyTextSizeClasses[bodyTextSize || 'medium']} `}
+      >
         <TextTruncate element='span' line={3} text={body} />
       </p>
       {link && (
@@ -51,15 +62,27 @@ const CardBody = ({ title, body, icon, link, image, headerSize, bodyTextSize  }:
   );
 };
 
-const Card: React.FC<CardProps> = ({ title, body, icon, link, image, headerSize, bodyTextSize  }) => {
+const Card: React.FC<CardProps> = ({
+  title,
+  body,
+  icon,
+  link,
+  image,
+  headerSize,
+  bodyTextSize,
+}) => {
   return (
     <>
       {link ? (
         <Link href={link}>
-          <CardBody {...{ title, body, icon, link, image, headerSize, bodyTextSize  }} />
+          <CardBody
+            {...{ title, body, icon, link, image, headerSize, bodyTextSize }}
+          />
         </Link>
       ) : (
-        <CardBody {...{ title, body, icon, link, image, headerSize, bodyTextSize  }} />
+        <CardBody
+          {...{ title, body, icon, link, image, headerSize, bodyTextSize }}
+        />
       )}
     </>
   );
