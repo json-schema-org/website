@@ -1,0 +1,77 @@
+[
+    {
+        "title":"JSON Schema oihgfewrnrnvon ",
+        "summary":"At GitHub's Docs Engineering team, while shipping releases to production 20 times per day.",
+        "links": 
+          {
+            "lang": "URL1",
+            "url": "/blog/posts/github-case-study"
+          }
+        },    
+        {
+          "title":"How JSON Schema",
+          "summary":"Explore the powerful impact of JSON Schema on 6 River Systems' fulfillment operations.",
+          "logo": "/img/logos/6river-logo.svg",
+          "links": 
+            {
+              "lang": "URL1",
+              "url": "/blog/posts/6-river-systems-case-study"
+            }
+    
+        },
+        {
+          "title":"Transform the Schema",
+          "summary":"Explore the powerful impact of JSON Schema on 6 River Systems' fulfillment operations.",
+          "logo": "/img/logos/manfred-color.svg",
+          "links": 
+            {
+              "lang": "URL1",
+              "url": "/blog/posts/manfred-case-study"
+            }
+    
+        },
+        {
+          "title":"How Postman uses JSON Schema",
+          "summary":"Learn how JSON Schema continues to be a crucial component of the Postman API Platform and the API ecosystem.",
+          "logo": "/img/logos/sponsors/Postman_logo-orange.svg",
+          "links": 
+            {
+              "lang": "URL1",
+              "url": "/blog/posts/postman-case-study"
+            }
+    
+        },
+        {
+          "title":"Using JSON Schema at Remote to",
+          "summary":"Using JSON Schema at Remote was the first step to solving data validation and form generation problems across all levels at Remote.",
+          "logo": "/img/logos/remote-logo.png",
+          "links": 
+            {
+              "lang": "URL1",
+              "url": "/blog/posts/remote-case-study"
+            }
+    
+        },
+        {
+          "title":"How Tyler Technologies reduced ",
+          "summary":"Using JSON Schema at Tyler Technologies meant showing added value to clients could take minutes rather than days or in some cases weeks.",
+          "logo": "/img/logos/tyler-tech-logo.svg",
+          "links": 
+            {
+              "lang": "URL1",
+              "url": "/blog/posts/tyler-technologies-case-study"
+            }
+    
+        },
+        {
+          "title":"How the W3C Web of Things brings JSON Schema to the Internet of Things",
+          "summary":"Using JSON Schema at the W3C Web of Things to create an interoperability layer so that different IoT platforms, protocols and standards can operate together",
+          "logo": "/img/logos/wot-logo.png",
+          "links": 
+            {
+              "lang": "URL1",
+              "url": "/blog/posts/w3c-wot-case-study"
+            }
+    
+        }
+    ]
