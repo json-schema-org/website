@@ -51,7 +51,7 @@ export default function Layout({
   }, []);
 
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleCloseNavbar = (event: MouseEvent) => {
       if (
         mobileNavRef.current &&
         (mobileNavRef.current as any).contains(event.target)
@@ -60,9 +60,9 @@ export default function Layout({
       }
     };
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('click', handleCloseNavbar);
 
-    return () => document.removeEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleCloseNavbar);
   }, [mobileNavRef]);
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
