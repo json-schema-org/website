@@ -77,6 +77,7 @@ const getDocsPath = [
   '/overview/sponsors',
   '/overview/casestudies',
   '/overview/similar-technologies',
+  '/overview/use-cases',
   '/overview/code-of-conduct',
   '/overview/FAQ',
 ];
@@ -341,6 +342,7 @@ export const DocsNav = () => {
             uri='/overview/similar-technologies'
             label='Similar Technologies'
           />
+          <DocLink uri='/overview/use-cases' label='Use Cases' />
           <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
           <DocLink uri='/overview/faq' label='FAQ' />
         </div>
