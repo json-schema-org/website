@@ -152,7 +152,7 @@ const TabsGroup = ({ markdown }: { markdown: string }) => {
           })}
         </div>
       </div>
-      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b'>
+      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-600 dark:to-slate-900'>
         <StyledMarkdownBlock markdown={activeTab.markdown} />
       </div>
     </div>
@@ -171,7 +171,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             h4: { component: Headline4 },
             strong: {
               component: ({ children }) => (
-                <strong className='font-semibold text-slate-800'>
+                <strong className='font-semibold text-slate-800 dark:text-slate-500'>
                   {children}
                 </strong>
               ),
@@ -184,21 +184,35 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             p: {
               component: ({ children }) => (
-                <p className='text-slate-600 block leading-7 pb-4'>
+                <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
                   {children}
                 </p>
               ),
             },
             a: {
-              component: ({ children, href, title }) => {
+              component: ({ children, href, title, className }) => {
                 if (!href) return children;
+
+                // Check if the existing className starts with 'plausible-event-name'
+                const additionalClass =
+                  className && className.startsWith('plausible-event-name')
+                    ? className
+                    : '';
+
+                // Define the base className
+                const baseClassName = 'text-blue-500 hover:text-blue-600';
+
+                // Combine the base className with the additionalClass if it exists
+                const combinedClassName =
+                  `${baseClassName} ${additionalClass}`.trim();
+
                 const link =
                   href.charAt(0) === '/' ? (
                     <Link
                       as={href}
                       href='/'
                       title={title}
-                      className='text-blue-500 hover:text-blue-600'
+                      className={combinedClassName} // Use the combined className
                     >
                       {children}
                     </Link>
@@ -206,7 +220,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     <a
                       href={href}
                       title={title}
-                      className='text-blue-500 hover:text-blue-600'
+                      className={combinedClassName} // Use the combined className
                     >
                       {children}
                     </a>
@@ -229,12 +243,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             li: {
               component: ({ children }) => (
-                <li className='mt-1 leading-7 text-slate-600'>{children}</li>
+                <li className='mt-1 leading-7 text-slate-600 dark:text-slate-300'>
+                  {children}
+                </li>
               ),
             },
             table: {
               component: ({ children }) => (
-                <table className='table-auto mb-8'>{children}</table>
+                <div className='max-w-[100%] mx-auto mb-8 overflow-auto'>
+                  <table className='table-auto'>{children}</table>
+                </div>
               ),
             },
             thead: {
@@ -262,7 +280,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             tr: {
               component: ({ children }) => (
-                <tr className='even:bg-blue-50 even:bg-opacity-40'>
+                <tr className='even:bg-blue-50 dark:even:bg-slate-900 even:bg-opacity-40'>
                   {children}
                 </tr>
               ),
@@ -314,7 +332,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             blockquote: {
               component: ({ children }) => (
-                <div className='bg-slate-50/50 px-4 pt-4 mt-2 mb-4 border-l-2 border-slate-300'>
+                <div className='bg-slate-50/50 dark:bg-slate-700 px-4 pt-4 mt-2 mb-4 border-l-2 border-slate-300'>
                   {children}
                 </div>
               ),
@@ -333,6 +351,27 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     {children}
                   </details>
                 );
+              },
+            },
+            userevent: {
+              component: ({ children, type }) => {
+                // Use React.Children.map to iterate over each child element
+                const modifiedChildren = React.Children.map(
+                  children,
+                  (child) => {
+                    // Clone each child element
+                    const clonedChild = React.cloneElement(child, {
+                      // Append the type class to the existing className
+                      className: classnames(child.props.className, type),
+                    });
+
+                    return clonedChild;
+                  },
+                );
+                console.log(children);
+                console.log(modifiedChildren);
+
+                return <>{modifiedChildren}</>;
               },
             },
             Star: {
@@ -381,11 +420,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 return (
                   <div className='my-2'>
                     {label && (
-                      <div className='bg-blue-100 inline-block text-sm rounded-t-lg px-6 py-1 text-blue-600'>
+                      <div className='bg-blue-100 dark:bg-slate-950 dark:text-white inline-block text-sm rounded-t-lg px-6 py-1 text-blue-600'>
                         {label}
                       </div>
                     )}
-                    <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded text-slate-600 leading-7'>
+                    <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded dark:bg-slate-900 dark:text-slate-300 text-slate-600 leading-7'>
                       <img
                         src='/icons/info-blue.svg'
                         className='h-7 w-7 mr-3'

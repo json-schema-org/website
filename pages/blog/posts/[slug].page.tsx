@@ -34,7 +34,7 @@ export default function StaticMarkdownPage({
       <Head>
         <title>{frontmatter.title}</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16'>
+      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16 dark:bg-slate-800 dark:slate-700'>
         <div className='flex flex-col pt-6'>
           {frontmatter.date && (
             <div className='text-center text-sm text-slate-500 mt-16'>
@@ -54,15 +54,15 @@ export default function StaticMarkdownPage({
         <div className='relative flex flex-col lg:flex-row'>
           <div className='flex ml-10 mr-10 lg:w-1/4'>
             <div className='block -mt-2 w-full'>
-              <div className='sticky top-0 overflow-y-auto h-auto pt-4 w-full items-center lg:items-start flex justify-between flex-row lg:flex-col'>
+              <div className='sticky top-[90px] overflow-y-auto h-auto pt-4 w-full items-center lg:items-start flex justify-between flex-row lg:flex-col'>
                 <Link
                   href='/blog'
-                  className='font-semibold text-sm pb-0 lg:pb-5 text-slate-700 hover:text-slate-800 inline-flex flex-row items-center'
+                  className='font-semibold text-sm pb-0 lg:pb-5 text-slate-700 dark:text-slate-300 dark:hover:text-slate-100 hover:text-slate-800 inline-flex flex-row items-center'
                 >
                   <img src='/icons/left-arrow.svg' className='h-4 w-4 mr-2' />{' '}
                   Go back to blog
                 </Link>
-                <div className='pt-6 lg:border-t border-none lg:border-r border-slate-100'>
+                <div className='pt-4 lg:border-t border-none lg:border-r border-slate-100'>
                   {(frontmatter.authors || []).map(
                     (author: any, index: number) => {
                       return (
@@ -92,7 +92,7 @@ export default function StaticMarkdownPage({
                     },
                   )}
                 </div>
-                <div className='pt-12 pr-4 border-r border-slate-100 hidden lg:block w-full'>
+                <div className='pt-4 pr-4 border-r border-slate-100 hidden lg:block w-full'>
                   <div className='uppercase text-xs text-slate-400 mb-4'>
                     on this page
                   </div>

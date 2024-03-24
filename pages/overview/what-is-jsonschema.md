@@ -70,7 +70,7 @@ else:
 
 In the above code snippet, we are performing basic validation to check if the JSON object has the required fields. Since this is a relatively simpler data, this way of checking works for now. 
 
-To show the challenges of performing data validation without using JSON Schema, we can take this exmaple in Python:
+To show the challenges of performing data validation without using JSON Schema, we can take this example in Python:
 
 ```python
 # Without JSON Schema

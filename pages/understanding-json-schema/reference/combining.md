@@ -46,7 +46,6 @@ To validate against `allOf`, the given data must be valid against all of the giv
   ]
 }
 ```  
-A snippet of the British royal family tree
 
 ```json
 // props { "indent": true, "valid": true }
@@ -79,7 +78,6 @@ To validate against `anyOf`, the given data must be valid against any
   ]
 }
 ```  
-A snippet of the British royal family tree
 
 ```json
 // props { "indent": true, "valid": true }
@@ -91,7 +89,7 @@ A snippet of the British royal family tree
 ```
 ```json
 // props { "indent": true, "valid": true }
-12"
+12
 ```
 ```json
 // props { "indent": true, "valid": false }
