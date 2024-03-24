@@ -91,7 +91,7 @@ function ImplementationTable({
   const router = useRouter();
   return (
     <>
-      <div className='flex flex-row flex-wrap grid-cols-7 grid'>
+      <div className='flex flex-row flex-wrap grid grid-cols-3 text-sm md:grid-cols-4 md:text-base lg:grid-cols-5'>
         {implementationsByLanguage.map(
           (implementationByLanguage: any, index: number) => {
             const slug =
@@ -106,7 +106,7 @@ function ImplementationTable({
                 key={index}
                 href={`#${slug}`}
                 className={classnames(
-                  'block text-center text-white rounded p-2 cursor-pointer flex-1 m-1',
+                  'block text-center text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
                   {
                     'bg-blue-800': isActive,
                     'bg-blue-500 hover:bg-blue-600': !isActive,
