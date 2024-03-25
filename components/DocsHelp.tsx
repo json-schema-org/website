@@ -214,7 +214,27 @@ export function DocsHelp() {
 
           {feedbackStatus === 'feedback' && (
             <div className='my-6 text-[14px]'>
-              <p>Thank you! We received your feedback.</p>
+              <p>
+                Thanks for the feedback! Feel free to join the&nbsp;
+                <a
+                  target='_blank'
+                  rel='noreferrer'
+                  className='underline'
+                  href='https://json-schema.slack.com/archives/C8C4UBXDF'
+                >
+                  #website
+                </a>
+                &nbsp;channel on&nbsp;
+                <a
+                  target='_blank'
+                  rel='noreferrer'
+                  className='underline'
+                  href='https://json-schema.org/slack'
+                >
+                  Slack&nbsp;
+                </a>
+                for further discussion.
+              </p>
             </div>
           )}
 
