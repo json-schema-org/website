@@ -16,6 +16,11 @@ import axios from 'axios';
 import ical from 'node-ical';
 import moment from 'moment-timezone';
 import { useTheme } from 'next-themes';
+
+// apiKey and appId are set in the .env.local file
+const algoliaAppId: string = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
+const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
+
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH);
@@ -208,30 +213,29 @@ const Home = (props: any) => {
               JSON Schema enables the confident and reliable use of the JSON
               data format.
             </h2>
+          </div>
+          <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
+            <Link
+              href='/learn/getting-started-step-by-step'
+              className=' flex items-center justify-center rounded border-2 border-white dark:border-none text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
+            >
+              Getting started
+            </Link>
+            <Link
+              href='/slack'
+              className=' flex items-center justify-center rounded border-2 border-white dark:border-none text-white  w-[194px] h-[40px] font-semibold bg-primary dark:border-shadow-white  dark:shadow-2xl'
+            >
+              Join Slack
+            </Link>
 
-            <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
-              <Link
-                href='/learn/getting-started-step-by-step'
-                className=' flex items-center justify-center rounded border-2 border-white dark:border-none text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
-              >
-                Getting started
-              </Link>
-              <Link
-                href='/slack'
-                className=' flex items-center justify-center rounded border-2 border-white dark:border-none text-white  w-[194px] h-[40px] font-semibold bg-primary dark:border-shadow-white  dark:shadow-2xl'
-              >
-                Join Slack
-              </Link>
-
-              <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none text-white bg-primary mx-auto  dark:shadow-2xl'>
-                <div className='flex flex-row justify-center items-center mr-4 '>
-                  <DocSearch
-                    appId='6ZT4KX2OUI'
-                    apiKey='69f76fba13585144f6686622e9c8f2a8'
-                    indexName='json-schema'
-                  />
-                  <p>Search</p>
-                </div>
+            <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none text-white bg-primary mx-auto  dark:shadow-2xl'>
+              <div className='flex flex-row justify-center items-center mr-4 '>
+                <DocSearch
+                  appId={algoliaAppId}
+                  apiKey={algoliaApiKey}
+                  indexName='json-schema'
+                />
+                <p>Search</p>
               </div>
             </div>
 
