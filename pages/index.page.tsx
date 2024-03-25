@@ -168,7 +168,6 @@ const Home = (props: any) => {
   const [vpsserver_logo, setVPSserver_logo] = useState('');
   const [airbnb_logo, setAirbnb_logo] = useState('');
   const [postman_logo, setPostman_logo] = useState('');
-  const [apideck_logo, setApideck_logo] = useState('');
   const [endjin_logo, setEndjin_logo] = useState('');
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
@@ -179,7 +178,6 @@ const Home = (props: any) => {
       setAsyncapi_logo('/img/logos/dark-mode/asyncapi_white.svg');
       setAirbnb_logo('/img/logos/dark-mode/airbnb_white.png');
       setPostman_logo('/img/logos/usedby/postman-white.png');
-      setApideck_logo('/img/logos/dark-mode/apideck_white.svg');
       setEndjin_logo('/img/logos/sponsors/endjin-logo.svg');
       setLlc_logo('/img/logos/dark-mode/llc_white.svg');
       setCommon_room_logo('/img/logos/dark-mode/common-room_white.svg');
@@ -189,7 +187,6 @@ const Home = (props: any) => {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
       setPostman_logo('/img/logos/sponsors/postman_logo-orange.svg');
-      setApideck_logo('/img/logos/sponsors/apideck-logo.png');
       setEndjin_logo('/img/logos/sponsors/endjin-logo.svg');
       setLlc_logo('/img/logos/sponsors/llc-logo.svg');
       setCommon_room_logo('/img/logos/supported/common-room.svg');
@@ -584,9 +581,6 @@ const Home = (props: any) => {
             </a>
             <a href='https://www.postman.com/'>
               <img src={postman_logo} className=' w-44' />
-            </a>
-            <a href='https://www.apideck.com/'>
-              <img src={apideck_logo} className=' w-44' />
             </a>
             <a href='https://endjin.com/'>
               <img src={endjin_logo} className=' w-44' />
