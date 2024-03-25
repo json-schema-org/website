@@ -594,7 +594,7 @@ const Home = (props: any) => {
             <a href='https://www.llc.org/'>
               <img src={llc_logo} className=' w-44' />
             </a>
-            <a href='https://www.vpsserver.com/'>
+            <a href='https://www.vpsserver.com/en-us/'>
               <img src={vpsserver_logo} className=' w-44' />
             </a>
           </div>
