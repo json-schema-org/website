@@ -496,7 +496,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 const fullMarkdown = useContext(FullMarkdownContext);
                 if (!fullMarkdown) return null;
                 return (
-                  <div className='text-blue-500 mt-3 bg-slate-50 pt-6 pb-3 px-3 rounded-l border-l-blue-400 border-l-[3px]'>
+                  <div className='text-blue-500 mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 px-3 rounded-l border-l-blue-400 border-l-[3px]'>
                     <TableOfContentMarkdown
                       markdown={fullMarkdown}
                       depth={depth}
