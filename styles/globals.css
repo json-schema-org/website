@@ -222,10 +222,13 @@ border-radius: 4px; */
  font-weight: normal;
  font-family: Inter, uni-sans, system;
  text-align: center;
- margin: auto;
- height: auto;
- margin-inline-start: 35%;
-
+ position: relative;
+ margin: 0;
+ left: auto;
+ right: auto;
+ margin-inline-start: 0%;
+ margin-inline-end: 2%;
+ 
 }
 
 
