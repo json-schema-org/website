@@ -1,13 +1,13 @@
 ---
-title: 'JSON Schema deduplicated complex logic and validation at Cookpad'
-date: '2021-12-09'
+title: "JSON Schema deduplicated complex logic and validation at Cookpad"
+date: "2021-12-09"
 type: Case Study
 cover: /img/posts/2021/cookpad-case-study/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
     twitter: relequestual
-excerpt: 'Using JSON Schema at Cookpad improved the accuracy and experience when registering products, and has greatly reduced the operational burden of product screening.'
+excerpt: "Using JSON Schema at Cookpad improved the accuracy and experience when registering products, and has greatly reduced the operational burden of product screening."
 language: en
 translations:
   en: cookpad-case-study-en

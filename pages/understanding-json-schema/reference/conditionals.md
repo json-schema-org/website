@@ -1,5 +1,5 @@
 ---
-title: 'Applying Subschemas Conditionally'
+title: "Applying Subschemas Conditionally"
 section: docs
 ---
 
@@ -15,8 +15,8 @@ billing address. If you don\'t have their credit card number, a billing
 address would not be required. We represent this dependency of one
 property on another using the `dependentRequired` keyword. The value of
 the `dependentRequired` keyword is an object. Each entry in the object
-maps from the name of a property, _p_, to an array of strings listing
-properties that are required if _p_ is present.
+maps from the name of a property, *p*, to an array of strings listing
+properties that are required if *p* is present.
 
 In the following example, whenever a `credit_card` property is provided,
 a `billing_address` property must also be present:
@@ -38,8 +38,7 @@ a `billing_address` property must also be present:
     "credit_card": ["billing_address"]
   }
 }
-```
-
+```  
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -48,7 +47,6 @@ a `billing_address` property must also be present:
   "billing_address": "555 Debtor's Lane"
 }
 ```
-
 This instance has a `credit_card`, but it's missing a `billing_address`.
 
 ```json
@@ -58,8 +56,7 @@ This instance has a `credit_card`, but it's missing a `billing_address`.
   "credit_card": 5555555555555555
 }
 ```
-
-This is okay, since we have neither a `credit_card`, or a `billing_address`.
+This is okay, since we have neither a ``credit_card``, or a ``billing_address``.
 
 ```json
 // props { "indent": true, "valid": true }
@@ -67,8 +64,7 @@ This is okay, since we have neither a `credit_card`, or a `billing_address`.
   "name": "John Doe"
 }
 ```
-
-Note that dependencies are not bidirectional. It's okay to have a billing address without a credit card number.
+Note that dependencies are not bidirectional.  It's okay to have a billing address without a credit card number.
 
 ```json
 // props { "indent": true, "valid": true }
@@ -99,9 +95,8 @@ you can, of course, define the bidirectional dependencies explicitly:
     "billing_address": ["credit_card"]
   }
 }
-```
-
-This instance has a `credit_card`, but it's missing a `billing_address`.
+```  
+This instance has a ``credit_card``, but it's missing a ``billing_address``.
 
 ```json
 // props { "indent": true, "valid": false }
@@ -110,8 +105,7 @@ This instance has a `credit_card`, but it's missing a `billing_address`.
   "credit_card": 5555555555555555
 }
 ```
-
-This has a `billing_address`, but is missing a `credit_card`.
+This has a ``billing_address``, but is missing a ``credit_card``.
 
 ```json
 // props { "indent": true, "valid": false }
@@ -168,8 +162,7 @@ For example, here is another way to write the above:
   "billing_address": "555 Debtor's Lane"
 }
 ```
-
-This instance has a `credit_card`, but it's missing a `billing_address`:
+This instance has a ``credit_card``, but it's missing a ``billing_address``:
 
 ```json
 // props { "indent": true, "valid": false }
@@ -178,8 +171,7 @@ This instance has a `credit_card`, but it's missing a `billing_address`:
   "credit_card": 5555555555555555
 }
 ```
-
-This has a `billing_address`, but is missing a `credit_card`. This passes, because here `billing_address` just looks like an additional property:
+This has a ``billing_address``, but is missing a ``credit_card``.  This passes, because here ``billing_address`` just looks like an additional property:
 
 ```json
 // props { "indent": true, "valid": true }
@@ -219,13 +211,13 @@ We can put this in the form of a truth table, showing the combinations of when
 `if`, `then`, and `else` are valid and the resulting validity of the entire
 schema:
 
-| if  | then | else | whole schema |
-| :-- | :--- | :--- | :----------- |
-| T   | T    | n/a  | T            |
-| T   | F    | n/a  | F            |
-| F   | n/a  | T    | T            |
-| F   | n/a  | F    | F            |
-| n/a | n/a  | n/a  | T            |
+| if   | then | else | whole schema |
+|:-----|:-----|:-----|:-------------|
+| T    | T    | n/a  | T            |
+| T    | F    | n/a  | F            |
+| F    | n/a  | T    | T            |
+| F    | n/a  | F    | F            |
+| n/a  | n/a  | n/a  | T            |
 
 For example, let's say you wanted to write a schema to handle addresses in the
 United States and Canada. These countries have different postal code formats,
@@ -265,7 +257,6 @@ letters and numbers alternate.
   }
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -274,7 +265,6 @@ letters and numbers alternate.
   "postal_code": "20500"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -282,7 +272,6 @@ letters and numbers alternate.
   "postal_code": "20500"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -291,7 +280,6 @@ letters and numbers alternate.
   "postal_code": "K1M 1M4"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -300,7 +288,6 @@ letters and numbers alternate.
   "postal_code": "10000"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -310,11 +297,11 @@ letters and numbers alternate.
 ```
 
 > In this example, "country" is not a required property. Because the
-> `if` schema also doesn't require the "country" property, it will pass and the
-> "then" schema will apply. Therefore, if the "country" property is not defined,
-> the default behavior is to validate "postal_code" as a USA postal code. The
-> "default" keyword doesn't have an effect, but is nice to include for readers of
-> the schema to more easily recognize the default behavior.
+`if` schema also doesn't require the "country" property, it will pass and the
+"then" schema will apply. Therefore, if the "country" property is not defined,
+the default behavior is to validate "postal_code" as a USA postal code. The
+"default" keyword doesn't have an effect, but is nice to include for readers of
+the schema to more easily recognize the default behavior.
 
 Unfortunately, the approach above doesn't scale to more than two countries. You
 can, however, wrap pairs of `if` and `then` inside an `allOf` to create
@@ -378,7 +365,6 @@ to the remaining postal codes of the world.
   ]
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -387,7 +373,6 @@ to the remaining postal codes of the world.
   "postal_code": "20500"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -395,7 +380,6 @@ to the remaining postal codes of the world.
   "postal_code": "20500"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -404,7 +388,6 @@ to the remaining postal codes of the world.
   "postal_code": "K1M 1M4"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -413,7 +396,6 @@ to the remaining postal codes of the world.
   "postal_code": "2517 JX"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -422,7 +404,6 @@ to the remaining postal codes of the world.
   "postal_code": "10000"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -432,15 +413,15 @@ to the remaining postal codes of the world.
 ```
 
 > The `required` keyword is necessary in the `if` schemas or they would all
-> apply if the "country" is not defined. Leaving `required` off of the "United
-> States of America" `if` schema makes it effectively the default if no "country"
-> is defined.
+apply if the "country" is not defined. Leaving `required` off of the "United
+States of America" `if` schema makes it effectively the default if no "country"
+is defined.
 
 > Even if "country" was a required field, it's still recommended to have the
-> `required` keyword in each `if` schema. The validation result will be the same
-> because `required` will fail, but not including it could add noise to error
-> results because it will validate the "postal_code" against all three of the
-> `then` schemas leading to irrelevant errors.
+`required` keyword in each `if` schema. The validation result will be the same
+because `required` will fail, but not including it could add noise to error
+results because it will validate the "postal_code" against all three of the
+`then` schemas leading to irrelevant errors.
 
 <Keywords label="single: conditionals; implication single: implication" />
 
@@ -472,7 +453,6 @@ can be expressed as a JSON Schema.
   ]
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -481,7 +461,6 @@ can be expressed as a JSON Schema.
   "tip": 3.4
 }
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -489,7 +468,6 @@ can be expressed as a JSON Schema.
   "total": 16.99
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -497,7 +475,6 @@ can be expressed as a JSON Schema.
   "total": 6.99
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 { "total": 5.25 }
@@ -509,6 +486,6 @@ expressed as `A -> B`, `if`/`else` can be expressed as `!A -> B`, and
 `if`/`then`/`else` can be expressed as `A -> B AND !A -> C`.
 
 > Since this pattern is not very intuitive, it\'s recommended to put your
-> conditionals in `$defs` with a descriptive name and `$ref` it into your
-> schema with
-> `"allOf": [{ "$ref": "#/$defs/sit-down-restaurant-implies-tip-is-required" }]`.
+conditionals in `$defs` with a descriptive name and `$ref` it into your
+schema with
+`"allOf": [{ "$ref": "#/$defs/sit-down-restaurant-implies-tip-is-required" }]`.

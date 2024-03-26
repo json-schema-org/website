@@ -1,6 +1,6 @@
 ---
-title: 'Interpreting JSON Schema Output'
-date: '2023-11-08'
+title: "Interpreting JSON Schema Output"
+date: "2023-11-08"
 tags:
   - Questions
   - Output
@@ -18,7 +18,7 @@ I've received a lot of questions (and purported bugs) and had quite a few discus
 
 Let's dig in.
 
-_The last time we [talked about output](fixing-json-schema-output), it was to announce changes from the 2019-09/2020-12 version. I'm going to use the new formats because it's easier to read and more compact._
+_The last time we [talked about output](fixing-json-schema-output), it was to announce changes from the 2019-09/2020-12 version.  I'm going to use the new formats because it's easier to read and more compact._
 
 ## No Problem
 
@@ -38,7 +38,7 @@ These cases are pretty easy to understand, so it serves as a good place to start
     "foo": { "type": "boolean" },
     "bar": { "type": "integer" }
   },
-  "required": ["foo"]
+  "required": [ "foo" ]
 }
 ```
 
@@ -57,7 +57,10 @@ with the output:
   "schemaLocation": "https://json-schema.org/blog/interpreting-output/example1#",
   "instanceLocation": "",
   "annotations": {
-    "properties": ["foo", "bar"]
+    "properties": [
+      "foo",
+      "bar"
+    ]
   },
   "details": [
     {
@@ -114,11 +117,11 @@ with the output:
 
 The subschema output at `/details/1` is invalid, and the root is invalid, and while we may be a bit less happy because it failed, we at least understand why.
 
-So is that always the case? Can a subschema that passes validation have failed subschemas? Absolutely!
+So is that always the case?  Can a subschema that passes validation have failed subschemas?  Absolutely!
 
 ## More Complexity
 
-There are limitless ways that we can create a schema and an instance that pass it while outputting a failed node. Pretty much all of them have to do with keywords that present multiple options (`anyOf` or `oneOf`) or conditionals (`if`, `then`, and `else`). These cases, specifically, have subschemas that are _designed_ to fail while still producing a successful validation outcome.
+There are limitless ways that we can create a schema and an instance that pass it while outputting a failed node.  Pretty much all of them have to do with keywords that present multiple options (`anyOf` or `oneOf`) or conditionals (`if`, `then`, and `else`).  These cases, specifically, have subschemas that are _designed_ to fail while still producing a successful validation outcome.
 
 For this post, I'm going to focus on the conditional schema below, but the same ideas pertain to schemas that contain "multiple option" keywords.
 
@@ -141,7 +144,7 @@ For this post, I'm going to focus on the conditional schema below, but the same 
 }
 ```
 
-This schema says that if `foo` is true, we also need a `bar` property, otherwise we need a `baz` property. Thus, both of the following are valid:
+This schema says that if `foo` is true, we also need a `bar` property, otherwise we need a `baz` property.  Thus, both of the following are valid:
 
 ```json
 { "foo": true, "bar": 1 }
@@ -153,7 +156,7 @@ This schema says that if `foo` is true, we also need a `bar` property, otherwise
 
 When we look at the validation output for the first instance, we get output that resembles the happy path from the previous section: all of the output nodes have `valid: true`, and everything makes sense.
 
-However, looking at the validation output for the second instance (below), we notice that the output node for the `/if` subschema has `valid: false`. But the overall validation passed.
+However, looking at the validation output for the second instance (below), we notice that the output node for the `/if` subschema has `valid: false`.  But the overall validation passed.
 
 ```json
 {
@@ -162,7 +165,9 @@ However, looking at the validation output for the second instance (below), we no
   "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#",
   "instanceLocation": "",
   "annotations": {
-    "properties": ["foo"]
+    "properties": [
+      "foo"
+    ]
   },
   "details": [
     {
@@ -202,7 +207,7 @@ How can this be?
 
 ## Output Includes Why
 
-Often more important than the simple result that an instance passed validation is _why_ it passed validation, especially if it's not the expected outcome. In order to support this, it's necessary to include all relevant output nodes.
+Often more important than the simple result that an instance passed validation is _why_ it passed validation, especially if it's not the expected outcome.  In order to support this, it's necessary to include all relevant output nodes.
 
 If we exclude the failed output nodes from the result,
 
@@ -213,7 +218,9 @@ If we exclude the failed output nodes from the result,
   "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#",
   "instanceLocation": "",
   "annotations": {
-    "properties": ["foo"]
+    "properties": [
+      "foo"
+    ]
   },
   "details": [
     {
@@ -232,7 +239,7 @@ If we exclude the failed output nodes from the result,
 }
 ```
 
-we see that the `/else` subschema was evaluated, from which we can infer that the `/if` subschema MUST have failed. However, we have no information as to _why_ it failed because that subschema's output was omitted. But looking back at the full output, it's clear that the `/if` subschema failed because it expected `foo` to be true.
+we see that the `/else` subschema was evaluated, from which we can infer that the `/if` subschema MUST have failed.  However, we have no information as to _why_ it failed because that subschema's output was omitted.  But looking back at the full output, it's clear that the `/if` subschema failed because it expected `foo` to be true.
 
 For this reason, the output must retain the nodes for all evaluated subschemas.
 
@@ -240,7 +247,7 @@ It's also important to note that the [specification](https://json-schema.org/dra
 
 ## A Note About Format
 
-Before we finish up, there is one other aspect of reading output that can be important: format. All of the above examples use the _Hierarchical_ format (formerly _Verbose_). However, depending on your needs and preferences, you may want to use the _List_ format (formerly _Basic_).
+Before we finish up, there is one other aspect of reading output that can be important: format.  All of the above examples use the _Hierarchical_ format (formerly _Verbose_).  However, depending on your needs and preferences, you may want to use the _List_ format (formerly _Basic_).
 
 Here's the output from the simple schema in _List_ format:
 
@@ -273,7 +280,7 @@ Here's the output from the simple schema in _List_ format:
 }
 ```
 
-This is easy to read and process because all of the output nodes are on a single level. To find errors, you just need to scan the nodes in `/details` for any that contain errors.
+This is easy to read and process because all of the output nodes are on a single level.  To find errors, you just need to scan the nodes in `/details` for any that contain errors.
 
 Here's the output from the conditional schema in _List_ format:
 
@@ -287,7 +294,9 @@ Here's the output from the conditional schema in _List_ format:
       "schemaLocation": "https://json-schema.org/blog/interpreting-output/example2#",
       "instanceLocation": "",
       "annotations": {
-        "properties": ["foo"]
+        "properties": [
+          "foo"
+        ]
       }
     },
     {
@@ -321,11 +330,11 @@ Here's the output from the conditional schema in _List_ format:
 }
 ```
 
-Here, it becomes obvious that we can't just scan for errors because we have to consider where those errors are coming from. The error in the last output node only pertains to the `/if` subschema, which (as mentioned before) doesn't affect the validation result.
+Here, it becomes obvious that we can't just scan for errors because we have to consider where those errors are coming from.  The error in the last output node only pertains to the `/if` subschema, which (as mentioned before) doesn't affect the validation result.
 
 ## Wrap-up
 
-JSON Schema output gives you all of the information that you need in order to know what the validation result is and how an evaluator came to that result. Knowing how to read it, though, takes understanding of why all the pieces are there.
+JSON Schema output gives you all of the information that you need in order to know what the validation result is and how an evaluator came to that result.  Knowing how to read it, though, takes understanding of why all the pieces are there.
 
 If you have any questions, feel free to ask on our Slack workspace (link in the footer) or [open a discussion](https://github.com/orgs/json-schema-org/discussions).
 

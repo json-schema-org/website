@@ -1,5 +1,5 @@
 ---
-title: 'Schema Composition'
+title: "Schema Composition"
 section: docs
 ---
 
@@ -19,17 +19,17 @@ JSON Schema keywords.
 
 The keywords used to combine schemas are:
 
-- `allOf`: (AND) Must be valid against _all_ of the subschemas
-- `anyOf`: (OR) Must be valid against _any_ of the subschemas
-- `oneOf`: (XOR) Must be valid against _exactly one_ of the
-  subschemas
+- `allOf`: (AND) Must be valid against *all* of the subschemas
+- `anyOf`: (OR) Must be valid against *any* of the subschemas
+- `oneOf`: (XOR) Must be valid against *exactly one* of the
+    subschemas
 
 All of these keywords must be set to an array, where each item is a
 schema. Be careful with recursive schemas as they can exponentially increase processing times.
 
 In addition, there is:
 
-- `not`: (NOT) Must _not_ be valid against the given schema
+- `not`: (NOT) Must *not* be valid against the given schema
 
 <Keywords label="single: allOf single: schema composition; allOf" />
 
@@ -40,25 +40,27 @@ To validate against `allOf`, the given data must be valid against all of the giv
 ```json
 // props { "isSchema": true }
 {
-  "allOf": [{ "type": "string" }, { "maxLength": 5 }]
+  "allOf": [
+    { "type": "string" },
+    { "maxLength": 5 }
+  ]
 }
-```
+```  
 
 ```json
 // props { "indent": true, "valid": true }
 "short"
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 "too long"
 ```
 
 > [allOf](#allof) can not be used to \"extend\" a schema to add more
-> details to it in the sense of object-oriented inheritance. Instances
-> must independently be valid against \"all of\" the schemas in the
-> `allOf`. See the section on [Extending Closed Schemas](../../understanding-json-schema/reference/object#extending) for more
-> information.
+details to it in the sense of object-oriented inheritance. Instances
+must independently be valid against \"all of\" the schemas in the
+`allOf`. See the section on [Extending Closed Schemas](../../understanding-json-schema/reference/object#extending) for more
+information.
 
 <Keywords label="single: anyOf single: schema composition; anyOf" />
 
@@ -75,23 +77,20 @@ To validate against `anyOf`, the given data must be valid against any
     { "type": "number", "minimum": 0 }
   ]
 }
-```
+```  
 
 ```json
 // props { "indent": true, "valid": true }
 "short"
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 "too long"
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 12
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 -5
@@ -113,25 +112,21 @@ exactly one of the given subschemas.
   ]
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 10
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 9
 ```
-
 Not a multiple of either 5 or 3.
 
 ```json
 // props { "indent": true, "valid": false }
 2
 ```
-
-Multiple of _both_ 5 and 3 is rejected.
+Multiple of *both* 5 and 3 is rejected.
 
 ```json
 // props { "indent": true, "valid": false }
@@ -156,17 +151,14 @@ a string:
 // props { "isSchema": true }
 { "not": { "type": "string" } }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 42
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 { "key": "value" }
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 "I am a string"
@@ -186,15 +178,16 @@ both a string and a number at the same time):
 ```json
 // props { "isSchema": true }
 {
-  "allOf": [{ "type": "string" }, { "type": "number" }]
+  "allOf": [
+    { "type": "string" },
+    { "type": "number" }
+  ]
 }
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 "No way"
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 -1
@@ -214,11 +207,13 @@ subschemas. The following two schemas are equivalent.
   ]
 }
 ```
-
 ```json
 // props { "isSchema": true }
 {
   "type": "number",
-  "oneOf": [{ "multipleOf": 5 }, { "multipleOf": 3 }]
+  "oneOf": [
+    { "multipleOf": 5 },
+    { "multipleOf": 3 }
+  ]
 }
 ```

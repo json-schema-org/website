@@ -1,13 +1,13 @@
 ---
-title: 'Announcing our new website'
-date: '2023-10-02'
+title: "Announcing our new website"
+date: "2023-10-02"
 type: Community
 cover: /img/posts/2023/new-website/cover.webp
 authors:
   - name: Benjamin Granados
     photo: /img/avatars/benjagm.webp
     link: https://www.twitter.com/benjagm
-excerpt: 'We are so pleased to announce the launch of our new website!'
+excerpt: "We are so pleased to announce the launch of our new website!"
 ---
 
 ## We are so pleased to announce the launch of our new website!
@@ -42,7 +42,6 @@ We'd like to recognize and thank everybody who worked on the new site release: [
 This journey has just started, but now we still have much work to do, and we are actively looking for contributors!
 
 The short term focus of our future work is:
-
 - Continue refining our docs. See this [issue](https://github.com/json-schema-org/community/issues/421) for more details.
 - Build the JSON Schema landscape. See this [issue](https://github.com/json-schema-org/community/issues/354) to know more.
 

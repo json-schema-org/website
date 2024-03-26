@@ -1,6 +1,6 @@
 ---
-title: 'Get started with JSON Schema in Node.js'
-date: '2022-05-16'
+title: "Get started with JSON Schema in Node.js"
+date: "2022-05-16"
 tags:
   - Node.js
   - Ajv
@@ -12,7 +12,7 @@ authors:
     photo: /img/avatars/simonplenderleith.webp
     twitter: simonplend
     byline: Independent Node.js consultant and educator
-excerpt: 'Learn how to use JSON Schema for validation in your Node.js applications.'
+excerpt: "Learn how to use JSON Schema for validation in your Node.js applications."
 canonicalLink: https://simonplend.com/get-started-with-validation-in-node-js/
 ---
 
@@ -20,7 +20,7 @@ canonicalLink: https://simonplend.com/get-started-with-validation-in-node-js/
 
 The first step in putting together request validation for your Node.js application is finding a way to create flexible validation rules. When you try to pick a validation library to use, it's often more difficult than you expect. They're all different from each other, and it's not clear what benefits one has over another.
 
-Perhaps you've tried to build your own custom validation before, but it starts to feel messy and difficult to maintain. You want to put some reliable validation in place and move on to building exciting new features in your application. Why is adding in validation _such_ a headache?!
+Perhaps you've tried to build your own custom validation before, but it starts to feel messy and difficult to maintain. You want to put some reliable validation in place and move on to building exciting new features in your application. Why is adding in validation *such* a headache?!
 
 In this article, we're going to learn how the JSON Schema specification can help us create flexible validation rules. We'll write a schema which describes the format we expect data to be in, then we'll write some JavaScript that uses the Ajv validator library to validate our data against it.
 
@@ -49,13 +49,13 @@ Then we can jump straight into defining a JSON schema. It describes the structur
 
 ```javascript
 const iceCreamSchema = {
-  type: 'object',
+  type: "object",
   properties: {
-    flavour: { type: 'string' },
-    price: { type: 'number' },
-    stock: { type: 'number' },
+    flavour: { type: "string" },
+    price: { type: "number" },
+    stock: { type: "number" },
   },
-  required: ['flavour', 'price', 'stock'],
+  required: ["flavour", "price", "stock"],
 };
 ```
 
@@ -63,7 +63,7 @@ Now we'll define the data which we want to validate:
 
 ```javascript
 const iceCreamData = {
-  flavour: 'Pistachio',
+  flavour: "Pistachio",
   price: 1.99,
   stock: null,
 };
@@ -72,7 +72,7 @@ const iceCreamData = {
 Then we'll import the Ajv library and create a new Ajv instance:
 
 ```javascript
-import Ajv from 'ajv';
+import Ajv from "ajv";
 
 const ajv = new Ajv();
 ```
@@ -87,9 +87,9 @@ Lastly, we'll add some code to handle the validation results:
 
 ```javascript
 if (isDataValid) {
-  console.log('The ice cream data is valid! 🍨');
+  console.log("The ice cream data is valid! 🍨");
 } else {
-  console.error('The ice cream data is invalid:', ajv.errors);
+  console.error("The ice cream data is invalid:", ajv.errors);
 }
 ```
 

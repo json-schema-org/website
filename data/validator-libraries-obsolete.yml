@@ -18,7 +18,7 @@
       date-draft: []
       draft: [4, 3]
       license: LGPL-3.0
-      notes: 'Draft-06+ progress: issue [17](https://github.com/netmail-open/wjelement/issues/17#issuecomment-390899432)'
+      notes: "Draft-06+ progress: issue [17](https://github.com/netmail-open/wjelement/issues/17#issuecomment-390899432)"
 - name: C++
   anchor-name: cpp
   implementations:
@@ -34,15 +34,15 @@
       license: BSD-2-Clause
     - name: Modern C++ JSON schema validator
       url: https://github.com/pboettch/json-schema-validator
-      notes: 'based on JSON for Modern C++'
+      notes: "based on JSON for Modern C++"
       date-draft: []
       draft: [4]
-      license: 'MIT'
+      license: "MIT"
 - name: Clojure
   implementations:
     - name: scjsv
       url: https://github.com/metosin/scjsv
-      notes: '(wrapper for [java-json-tools/json-schema-validator](https://github.com/java-json-tools/json-schema-validator))'
+      notes: "(wrapper for [java-json-tools/json-schema-validator](https://github.com/java-json-tools/json-schema-validator))"
       date-draft: []
       draft: [4]
       license: Eclipse Public License v1.0
@@ -51,14 +51,14 @@
       date-draft: []
       draft: [3, 4]
       license: MIT
-- name: CoffeeScript
+- name:  CoffeeScript
   implementations:
     - name: JSCK
       url: https://github.com/pandastrike/jsck
       date-draft: []
       draft: [4, 3]
       license: MIT
-- name: Dart
+- name:  Dart
   implementations:
     - name: json_schema
       url: https://github.com/patefacio/json_schema
@@ -71,7 +71,7 @@
       url: https://github.com/jonasschmidt/ex_json_schema
       date-draft: []
       draft: [4]
-      notes: 'Draft-06+ progress: issue [24](https://github.com/jonasschmidt/ex_json_schema/issues/24); branch [multi-draft-support](https://github.com/jonasschmidt/ex_json_schema/tree/multi-draft-support)'
+      notes: "Draft-06+ progress: issue [24](https://github.com/jonasschmidt/ex_json_schema/issues/24); branch [multi-draft-support](https://github.com/jonasschmidt/ex_json_schema/tree/multi-draft-support)"
       license: MIT
 - name: Go
   implementations:
@@ -98,7 +98,7 @@
   implementations:
     - name: jsonschema
       url: https://github.com/tdegrunt/jsonschema
-      notes: 'for Node.js'
+      notes: "for Node.js"
       date-draft: []
       draft: [4]
       license: MIT
@@ -114,13 +114,13 @@
       license: MIT
     - name: JaySchema
       url: https://github.com/natesilva/jayschema
-      notes: 'for Node.js'
+      notes: "for Node.js"
       date-draft: []
       draft: [4]
       license: BSD
     - name: z-schema
       url: https://github.com/zaggino/z-schema
-      notes: 'for Node.js'
+      notes: "for Node.js"
       date-draft: []
       draft: [4]
       license: MIT
@@ -128,34 +128,34 @@
       url: http://github.com/IreneKnapp/direct-schema
       date-draft: []
       draft: [3]
-      license: 'BSD'
+      license: "BSD"
     - name: JSV
       url: http://github.com/garycourt/JSV
       date-draft: []
       draft: [1, 2, 3]
-      license: 'BSD'
+      license: "BSD"
     - name: json-schema
       url: https://github.com/kriszyp/json-schema
       date-draft: []
       draft: [4]
-      notes: 'part of the [Persevere](http://github.com/kriszyp/json-schema) project'
+      notes: "part of the [Persevere](http://github.com/kriszyp/json-schema) project"
       license: AFL, BSD
     - name: schema.js
       url: https://github.com/akidee/schema.js
       date-draft: []
       draft: [2]
-      license: 'MIT'
+      license: "MIT"
     - name: json-gate
       url: https://github.com/oferei/json-gate
       date-draft: []
       draft: [3]
-      license: 'MIT'
+      license: "MIT"
     - name: JSEN
       url: https://github.com/bugventure/jsen
-      notes: 'for Node.js'
+      notes: "for Node.js"
       date-draft: []
       draft: [4]
-      license: 'MIT'
+      license: "MIT"
     - name: Skeemas
       url: https://github.com/ericgj/json-schema-valid
       date-draft: []
@@ -177,7 +177,7 @@
       url: https://github.com/justinrainbow/json-schema
       date-draft: []
       draft: [4, 3]
-      license: 'Berkeley'
+      license: "Berkeley"
     - name: jsv4-php
       url: https://github.com/geraintluff/jsv4-php
       date-draft: []
@@ -187,29 +187,29 @@
       url: https://github.com/stefk/jval
       date-draft: []
       draft: [4]
-      license: 'MIT'
+      license: "MIT"
     - name: JSON Guard
       url: https://github.com/thephpleague/json-guard
       date-draft: []
       draft: [4]
-      license: 'MIT'
+      license: "MIT"
     - name: Swaggest Json Schema
       url: https://github.com/swaggest/php-json-schema
       date-draft: []
       draft: [4]
-      license: 'MIT'
+      license: "MIT"
 - name: Perl
   implementations:
     - name: JSV::Validator
       url: https://metacpan.org/module/JSV::Validator
       date-draft: []
       draft: [4]
-      license: 'MIT'
+      license: "MIT"
 - name: PostgreSQL
   implementations:
     - name: postgres-json-schema
       url: https://github.com/gavinwahl/postgres-json-schema
-      notes: 'PL/pgSQL implementation, no remote (http) references'
+      notes: "PL/pgSQL implementation, no remote (http) references"
       date-draft: []
       draft: [4]
       license: PostgreSQL
@@ -217,7 +217,7 @@
   implementations:
     - name: json_schema
       url: https://github.com/brandur/json_schema
-      notes: 'Schema parser and validator, with hyper-schema support'
+      notes: "Schema parser and validator, with hyper-schema support"
       date-draft: []
       draft: [4]
       license: MIT
@@ -237,7 +237,7 @@
   implementations:
     - name: json-schema-parser
       url: https://github.com/VoxSupplyChain/json-schema-parser
-      notes: 'Schema parser and validator'
+      notes: "Schema parser and validator"
       date-draft: []
       draft: [4]
       license: Apache 2.0

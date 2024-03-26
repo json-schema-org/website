@@ -20,25 +20,21 @@
 </p>
 
 # 👋 Welcome to the JSON Schema website
-
 This repository contains the sources of JSON Schema website:
 
-- It's powered by Next.js,
-- It uses Tailwind CSS framework,
-- It's build and deployed with Netlify.
+* It's powered by Next.js,
+* It uses Tailwind CSS framework,
+* It's build and deployed with Netlify.
 
 ## Run locally
 
 #### Requirements
-
 Use the following tools to set up the project:
 
 Node.js v20.9.0+
 
 #### Cloning the repository
-
 This project uses git submodules, so you will need to run the following commands to fully clone the repo.
-
 ```
 git submodule init
 git submodule update
@@ -47,7 +43,6 @@ git submodule update
 #### Install dependencies
 
 Install dependencies
-
 ```
 yarn
 ```
@@ -55,19 +50,16 @@ yarn
 #### Run the development server
 
 Run the development server on http://localhost:3000
-
 ```
 yarn dev
 ```
 
-#### Build static files
+#### Build static files 
 
 Build static files on /out folder
-
 ```
 yarn build
 ```
-
 #### Testing
 
 Formatting
@@ -121,17 +113,15 @@ If you are a Docker lover, you have the option to use it following these instruc
 After cloning repository to your local, perform the following steps from the root of the repository.
 
 #### Steps:
-
 1. Build the Docker image:
-
-   ```bash
-     make install
-   ```
+    ```bash
+      make install
+    ```
 
 2. Start the container:
-   ```bash
-     make run
-   ```
+    ```bash
+      make run
+    ```
 
 Now you're running JSON Schema website in a development mode. Container is mapped with your local copy of the website. Whenever you make changes to the code, the website will refresh and changes visible in localhost:3000.
 
@@ -160,7 +150,6 @@ This repository has the following structure:
 ## Contribute
 
 Here are some areas where you can contribute to the website:
-
 - Blogs posts
 - Case Studies
 - Design
@@ -177,7 +166,7 @@ You should also check out our [Contributing guidelines](./CONTRIBUTING.md).
 
 Thanks goes to these wonderful people who contributed to this website:
 <a href = "https://github.com/json-schema-org/website/graphs/contributors">
-<img src = "https://contrib.rocks/image?repo=json-schema-org/website"/>
+  <img src = "https://contrib.rocks/image?repo=json-schema-org/website"/>
 </a>
 
 <sub>Made with [contributors-img](https://contrib.rocks).</sub>
@@ -201,9 +190,7 @@ Thanks goes to these wonderful people who contributed to this website:
 </p>
 
 ## Inspired by
-
 This document has been inspired by [AsyncAPI website README.md](https://github.com/asyncapi/website/blob/master/README.md).
 
 ## License
-
-The contents of this repository are [licensed under](./LICENSE) either the BSD 3-clause license _or_ the Academic Free License v3.0.
+The contents of this repository are [licensed under](./LICENSE) either the BSD 3-clause license *or* the Academic Free License v3.0.

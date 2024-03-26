@@ -1,6 +1,6 @@
 ---
-title: 'JSON Schema in 5 minutes'
-date: '2022-01-21'
+title: "JSON Schema in 5 minutes"
+date: "2022-01-21"
 tags:
   - Fundamentals
 type: Engineering
@@ -10,7 +10,7 @@ authors:
     photo: /img/avatars/benhutton.webp
     twitter: relequestual
     byline: JSON Schema Specification Lead @Postman
-excerpt: 'Everyone needs good fundamentals, and understanding the basics of JSON Schema changes how you read, reason, and develop Schemas.'
+excerpt: "Everyone needs good fundamentals, and understanding the basics of JSON Schema changes how you read, reason, and develop Schemas."
 ---
 
 If you have never heard of JSON Schema till now, then you are in the right place to learn more.
@@ -27,7 +27,6 @@ By the end of this article, you will:
 Although this is a technical introduction, we won't cover writing any code today. But we will link you to a list of implementations in almost any programming language.
 
 ## JSON What?
-
 Primarily, JSON Schema is used to validate data.
 The sorts of data JSON Schema can validate is data encoded in JSON.
 
@@ -39,7 +38,6 @@ JSON Schema is both the name given to the project and the artefact (A JSON Schem
 The JSON data you are validating is called a "JSON instance".
 
 ## JSON Schema
-
 JSON Schema the project is located [on GitHub](https://github.com/json-schema-org) under the organization name "json-schema-org". It is comprised of several git repositories used to track changes and enable collaboration on the specification and supporting resources.
 
 The JSON Schema specification is made up of technical specification documents currently published canonically through the Internet Engineering Task Force (IETF) as a series of "personal drafts". A "personal draft" is the category given to documents published on the IETF which are from an IETF working group.
@@ -47,7 +45,6 @@ The JSON Schema specification is made up of technical specification documents cu
 A JSON Schema document is written in JSON itself. Being written in JSON means that it can be read by almost every programming language, making it an interoperable validation solution. It can also be written using other formats which translate to JSON, or using code that can serialize to JSON.
 
 ## A JSON Schema (document)
-
 We mentioned JSON Schema is itself JSON. It used to be that JSON had to be an Object or an Array at the root level, but today, it can also be any of the allowed values.
 
 A JSON Schema may be an Object or a Boolean. The Boolean form results in the same value as the validation assertion result. The Object form allows for keywords and values to express constraints for validation.
@@ -75,7 +72,7 @@ false
 
 ```json
 // props { "caption": "Not, empty Object"}
-{ "not": {} }
+{ "not": { } }
 ```
 
 Let's take each Schema in turn and explain the validation result.
@@ -88,7 +85,6 @@ As you may have guessed, the inverse is true for the remaining two Schemas. The 
 The `not` keyword takes a JSON Schema as its value. These "schema values" are called subschemas. The subschema is applied to the instance data, and the resulting assertion is inverted. As we now know, the empty Object schema results in a "true" assertion, so the inverse is "false".
 
 ## The Object Schema
-
 The keys in an Object Schema are the JSON Schema keywords. These keywords have four classes: Identifiers, Applicators, Assertions, and Annotations. Some keywords don't fit into these classes, as they have unique functions.
 
 The `$schema` keyword has a unique function. The value of this keyword is a URI that identifies the JSON Schema Dialect to use when processing the schema.
@@ -104,7 +100,6 @@ In this introduction, we will use the 2020-12 version of JSON Schema, however, m
 The 2020-12 JSON Schema Dialect URI is `https://json-schema.org/draft/2020-12/schema`.
 
 ## Assertions
-
 Remembering that JSON Schema provides constraints based validation, JSON Schema defines keywords that, when applied to the instance, provide an assertion result (pass or fail).
 
 ### The "const" keyword
@@ -139,12 +134,10 @@ Another assertion keyword is `type`. Its value is an array of strings that are t
 // props { "valid": true, "caption": "valid - An Object is allowed." }
 { "ok": "yes" }
 ```
-
 ```json
 // props { "valid": true, "caption": "valid - A Boolean is allowed." }
 true
 ```
-
 ```json
 // props { "valid": true, "caption": "valid - Null is allowed." }
 null
@@ -154,7 +147,6 @@ null
 // props { "valid": false, "caption": "invalid - A Number is not allowed." }
 123
 ```
-
 ```json
 // props { "valid": false, "caption": "invalid - A string is not allowed." }
 "foobar"
@@ -181,7 +173,6 @@ You should combine using `type` with other keywords in the same Schema to avoid 
 Validation begins by applying the root Schema to the complete instance document. Applicator keywords apply subschemas to the instance location.
 
 ### The "properties" keyword
-
 The most commonly used applicator keyword is `properties`, which has an object value, where the values are subschemas. Let's see it in action.
 
 ```json
@@ -211,8 +202,9 @@ The most commonly used applicator keyword is `properties`, which has an object v
 
 ```json
 // props { "caption": "instance is not an object, therefore `properties` isn't applicable", "valid": true }
-["name", 123]
+[ "name", 123 ]
 ```
+
 
 The subschemas are only applied to the instance location where the key matches a key in the instance locations object.
 
@@ -221,7 +213,6 @@ If you want to make sure the instance data is an Object, use the `type` keyword.
 If you want to make sure that the Object has the "name" property, use the `required` keyword.
 
 ## Recap
-
 The most common reason a JSON Schema appears to not be working is the lack of the fully required constraints.
 
 JSON Schema is "constraints based", and keywords may only be applicable to the correct data types.
@@ -230,10 +221,9 @@ Using multiple keywords to tighten constraints allows you to make sure type-spec
 Identifying subschemas, and knowing that Schemas can always be Boolean values allows you to confirm assumptions about correct applicability. Subschemas can always be tested on their own if required.
 
 ## Next steps / Further Reading
-
 I hope you've found this very brief introduction to the fundamentals of JSON Schema beneficial in how you read, reason, and develop JSON Schemas.
 
-My recommendation for writing JSON Schemas today is to use VSCode. When a file is in JSON language mode, and a `$schema` value is added to a root object, VSCode provides auto-complete and IntelliSense (Although this is limited to draft-07).
+My recommendation for writing JSON Schemas today is to use VSCode. When a file is in JSON language mode, and a `$schema` value is added to a root object, VSCode provides auto-complete and IntelliSense  (Although this is limited to draft-07).
 
 Here are some places you may find helpful moving forward:
 

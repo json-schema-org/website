@@ -12,36 +12,36 @@ so keywords used for other purposes (`readOnly` and `media`) have been
 
 The [new draft](../../draft-07/json-schema-hypermedia.html) has been completely rewritten
 for clarity and accessibility, so it is best to simply approach it as a new
-proposal. We hope to add tutorial material at some point, but that is
+proposal.  We hope to add tutorial material at some point, but that is
 outside of the scope of release notes.
 
 However, if you wish to migrate from an earlier draft, this page is a guide
-to the key _changes_. The additions, which are much more numerous,
+to the key _changes_.  The additions, which are much more numerous,
 should be learned directly from the new specification until we can provide
 tutorials.
 
 Note that draft-handrews-json-schema-hyperschema-00 has been replaced
 by draft-handrews-json-schema-hyperschema-01 in order to fix confusing
-bugs. The newer -01 draft is **still considered to be draft-07**.
+bugs.  The newer -01 draft is **still considered to be draft-07**.
 It now references the draft-07 meta-schema with the correct URI, among
-other typo fixes. There are no funcitonal changes between -00 and -01.
+other typo fixes.  There are no funcitonal changes between -00 and -01.
 
-- [Migrating from draft-06](#migrating-from-draft-06)
-- [Migrating from draft-05](#migrating-from-draft-05)
-- [Migrating from draft-04](#migrating-from-draft-04)
-  - [GET](#get)
-  - [PUT](#put)
-  - [DELETE](#delete)
-  - [POST](#post)
-  - [PATCH](#patch)
+* [Migrating from draft-06](#migrating-from-draft-06)
+* [Migrating from draft-05](#migrating-from-draft-05)
+* [Migrating from draft-04](#migrating-from-draft-04)
+    * [GET](#get)
+    * [PUT](#put)
+    * [DELETE](#delete)
+    * [POST](#post)
+    * [PATCH](#patch)
 
 ### Migrating from draft-06
 
 No draft-06 features were changed, although two keywords were renamed
 for clarity and consistency:
 
-- `mediaType` -> `targetMediaType`
-- `submissionEncType` -> `submissionMediaType`
+* `mediaType` -> `targetMediaType`
+* `submissionEncType` -> `submissionMediaType`
 
 Additionally, `hrefSchema` was somewhat confusing, so a great deal
 more effort has gone into explaining how it works, and how it fits
@@ -56,12 +56,12 @@ for information related to draft-05.
 
 In the ideal draft-07 world, links and
 [operations](https://json-schema.org/draft-07/json-schema-hypermedia.html#rfc.section.3.1)
-are not the same concept. Using terminology borrowed from
+are not the same concept.  Using terminology borrowed from
 [OpenAPI's Operation Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/3.0.0.md#operationObject), HTTP methods are operations, and each
 link (as described by a single LDO) can support multiple operations.
 
 Therefore, unlike draft-04, draft-07 hyper-schemas
-[do not have separate links for each operation](../../draft-07/json-schema-hypermedia.html#rfc.section.8.1). This makes the migration guidelines below approximate at best.
+[do not have separate links for each operation](../../draft-07/json-schema-hypermedia.html#rfc.section.8.1).  This makes the migration guidelines below approximate at best.
 
 For a more detailed explanation of how draft-04's `method` and `targetSchema`
 were typically used to create single-operation links, and how that poses
@@ -81,10 +81,10 @@ Any keyword not mentioned in a list below is unchanged for that link operation.
 
 #### GET
 
-- `"method": "GET"` -> `"targetHints": {"allow": ["GET"]}`
-- `mediaType` -> `targetMediaType`
-- `schema` -> `hrefSchema` with parameters added to `href`
-- `encType` -> drop if `application/x-www-form-urlencoded`, contact the mailing list otherwise
+* `"method": "GET"` -> `"targetHints": {"allow": ["GET"]}`
+* `mediaType` -> `targetMediaType`
+* `schema` -> `hrefSchema` with parameters added to `href`
+* `encType` -> drop if `application/x-www-form-urlencoded`, contact the mailing list otherwise
 
 #### PUT
 
@@ -93,39 +93,39 @@ If you have a PUT link where `schema`/`encType` differ from
 describe a non-representation response, then those fields do
 not have a direct replacement.
 
-- `"method": "PUT"` -> `"targetHints": {"allow": ["PUT"]}`
-- `schema` -> `targetSchema`
-- `encType` -> `targetMediaType`
+* `"method": "PUT"` -> `"targetHints": {"allow": ["PUT"]}`
+* `schema` -> `targetSchema`
+* `encType` -> `targetMediaType`
 
 #### DELETE
 
 DELETE does not take a request payload, so `schema` and `encType`
-should be unused. If `targetSchema` and `mediaType` were being
+should be unused.  If `targetSchema` and `mediaType` were being
 used for a response other than the just-deleted resource's representation,
 then they do not have a direct replacement.
 
-- `"method": "DELETE"` -> `"targetHints": {"allow": ["DELETE"]}`
-- `mediaType` -> `targetMediaType` (if describing the representation)
+* `"method": "DELETE"` -> `"targetHints": {"allow": ["DELETE"]}`
+* `mediaType` -> `targetMediaType` (if describing the representation)
 
 #### POST
 
 In most cases, the response of a POST is **not** a representation of the
 target resource, but rather some sort of result or status of whatever
-the POST attempted to do. Therefore `targetSchema` and `mediaType`
-should almost certainly be dropped. Other than that:
+the POST attempted to do.  Therefore `targetSchema` and `mediaType`
+should almost certainly be dropped.  Other than that:
 
-- `"method": "POST"` -> `"targetHints": {"allow": ["POST"]}`
-- `schema` -> `submissionSchema`
-- `encType` -> `submissionMediaType`
+* `"method": "POST"` -> `"targetHints": {"allow": ["POST"]}`
+* `schema` -> `submissionSchema`
+* `encType` -> `submissionMediaType`
 
 #### PATCH
 
 It was never entirely clear how to model a proper PATCH (that uses
 a patch media type rather than `application/json` in the request) in Hyper-Schema.
 One option was to treat it identically to PUT except with the patch media type
-in `encType`. Assuming that approach (and the same `taregetSchema`/`mediaType`
+in `encType`.  Assuming that approach (and the same `taregetSchema`/`mediaType`
 caveats as for PUT):
 
-- `"method": "PATCH"` -> `"targetHints": {"allow": ["PATCH"]}`
-- `schema` -> `targetSchema`
-- `"encType": "..."` -> `"targetHints": {"accept-patch": "..."}`
+* `"method": "PATCH"` -> `"targetHints": {"allow": ["PATCH"]}`
+* `schema` -> `targetSchema`
+* `"encType": "..."` -> `"targetHints": {"accept-patch": "..."}`

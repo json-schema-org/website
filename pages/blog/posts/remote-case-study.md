@@ -1,13 +1,13 @@
 ---
-title: 'Using JSON Schema at Remote to scale forms and data validations'
-date: '2023-05-06'
+title: "Using JSON Schema at Remote to scale forms and data validations"
+date: "2023-05-06"
 type: Case Study
 cover: /img/posts/2023/remote-case-study/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
     link: https://www.twitter.com/relequestual
-excerpt: 'Using JSON Schema at Remote was the first step to solving data validation and form generation problems across all levels at Remote.'
+excerpt: "Using JSON Schema at Remote was the first step to solving data validation and form generation problems across all levels at Remote."
 ---
 
 ## Challenge
@@ -21,7 +21,7 @@ Forms. Legal forms, employment forms, salary forms, all the forms! Hiring from m
   <figcaption class="mt-2 mb-10 text-sm text-center text-gray-500">One of the onboarding forms for Netherlands, among more than 500 unique forms to all the countries.</figcaption>
 </figure>
 
-When Remote first started, the company only covered a handful of countries with a few specific forms per country. Scaling to hundreds of country forms with complex requirements is impressive. Did you even realize that the working hours and weekend days are different across countries and employment types? In some countries, the weekend is Friday and Saturday. And there are many other types of schedules besides the traditional 9 to 5. Getting that wrong for someone's salary payment could have huge implications.
+When Remote first started,  the company only covered a handful of countries with a few specific forms per country. Scaling to hundreds of country forms with complex requirements is impressive. Did you even realize that the working hours and weekend days are different across countries and employment types? In some countries, the weekend is Friday and Saturday. And there are many other types of schedules besides the traditional 9 to 5. Getting that wrong for someone's salary payment could have huge implications.
 
 Managing and maintaining hardcoded forms in full HTML format (or even frontend components), wasn't going to be viable for the scaling Remote wanted.
 
@@ -84,6 +84,7 @@ Remote wants to empower employees too: "Talent is everywhere, but opportunities 
 In 2021, Remote launched their [Refugee program](https://remote.com/news/en-GLO/208556-announcing-remote-for-refugees), enabling employers to invest in a cost effective way, while also helping refugees rebuild their lives. Remote has also set up [dedicated resources for displaced Ukrainians](https://remotecom.notion.site/Remote-for-Ukrainians-b9cf24e00ef145b1b96cd3cca919c9b2).
 
 Remote raised a $300 million Round C in 2022, at a validation of over $3 billion.
+
 
 ## Further Benefits
 

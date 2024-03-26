@@ -1,6 +1,6 @@
 ---
-title: 'JSON Schema bundling finally formalised'
-date: '2021-08-04'
+title: "JSON Schema bundling finally formalised"
+date: "2021-08-04"
 type: Engineering
 tags:
   - OpenAPI
@@ -15,10 +15,10 @@ authors:
     photo: /img/avatars/mikeralphson.webp
     twitter: PermittedSoc
     byline: OpenAPI Specification Lead @Postman
-excerpt: 'Existing tooling developers have created their own approaches to bundling JSON Schema and OpenAPI documents, but that can lead to errors. Bundling is now standardised.'
+excerpt: "Existing tooling developers have created their own approaches to bundling JSON Schema and OpenAPI documents, but that can lead to errors. Bundling is now standardised."
 ---
 
-_I’ve been known to say “If you haven’t rewritten your OpenAPI bundling implementation recently, then you don’t support OpenAPI 3.1”. This observation may be true, but perhaps some more detail would be helpful? When implementing support for OAS 3.1 and JSON Schema draft 2020-12 in `oas-kit`, reading the sections of the JSON Schema spec on bundling compound documents, I still wasn’t totally clear on what was expected of compliant tooling. Thankfully, Ben Hutton is here to set the record straight with a worked example._ - Mike Ralphson, OAI TSC
+*I’ve been known to say “If you haven’t rewritten your OpenAPI bundling implementation recently, then you don’t support OpenAPI 3.1”. This observation may be true, but perhaps some more detail would be helpful? When implementing support for OAS 3.1 and JSON Schema draft 2020-12 in `oas-kit`, reading the sections of the JSON Schema spec on bundling compound documents, I still wasn’t totally clear on what was expected of compliant tooling. Thankfully, Ben Hutton is here to set the record straight with a worked example.* - Mike Ralphson, OAI TSC
 
 ## Bundling has renewed importance
 
@@ -28,7 +28,7 @@ Developers of platforms and libraries that use OpenAPI haven't had such a shake 
 
 While the number of changes from JSON Schema draft-04 to draft 2020-12 are vast and the subject of more blog posts than are likely interesting, one of the key "features" of draft 2020-12 is a defined bundling process. (draft-04 is the version of JSON Schema that OAS used prior to version 3.1.0; or rather, a subset/superset of it.)
 
-Indeed, bundling, if anything, is going to be more important to get right than ever. OAS 3.1 ushering in full JSON Schema support dramatically increases the likelihood that developers with existing JSON Schema documents will use them **by reference** in new and updated OpenAPI definitions. Ultimate source of truth matters, and it's often the JSON Schemas.
+Indeed, bundling, if anything, is going to be more important to get right than ever. OAS 3.1 ushering in full JSON Schema support dramatically increases the likelihood that developers with existing JSON Schema documents will use them __by reference__ in new and updated OpenAPI definitions. Ultimate source of truth matters, and it's often the JSON Schemas.
 
 Many tools don't support referencing external resources.
 Bundling is a convenient way to package up schema resources spread across multiple files in a single file for use elsewhere, such as an OpenAPI document.
@@ -88,22 +88,20 @@ A "Compound Schema Document" is a JSON document which has multiple embedded JSON
   "$ref": "#/$defs/nonNegativeInteger"
 }
 ```
-
 > Note that schema bundling and the use of multiple definitions are not necessary to represent non-negative integers.
 > This example is purely for illustrative purposes and the schema below is perfectly suitable for representing non-negative integers without the use of bundling.
->
 > ```json
-> { "type": "integer", "minimum": 0 }
+> {"type": "integer", "minimum": 0}
 > ```
 
 Last, let's look at the carefully crafted definition of "bundling" according to the JSON Schema specification:
 
 "The bundling process for creating a Compound Schema Document is
-defined as taking references (such as "$ref") to an external Schema
-Resource and embedding the referenced Schema Resources within the
-referring document. Bundling SHOULD be done in such a way that all
-URIs (used for referencing) in the base document and any referenced/
-embedded documents do not require altering."
+   defined as taking references (such as "$ref") to an external Schema
+   Resource and embedding the referenced Schema Resources within the
+   referring document.  Bundling SHOULD be done in such a way that all
+   URIs (used for referencing) in the base document and any referenced/
+   embedded documents do not require altering."
 
 With these definitions in mind, now we can look at the defined bundling process for JSON Schema resources! We will only cover the ideal situation in this article. The goal here is to have no external Schema Resources.
 
@@ -244,9 +242,9 @@ components:
       $defs:
         nonNegativeInteger:
           allOf:
-            # These references remain unchanged because they rely on the base URI of this schema resource
-            - $ref: /schemas/mixins/integer
-            - $ref: /schemas/mixins/non-negative
+          # These references remain unchanged because they rely on the base URI of this schema resource
+          - $ref: /schemas/mixins/integer
+          - $ref: /schemas/mixins/non-negative
       $ref: '#/$defs/nonNegativeInteger'
     integer:
       $schema: 'https://json-schema.org/draft/2020-12/schema'
@@ -262,17 +260,18 @@ components:
 
 The schemas are inserted into the `components/schemas` location of the OAS document. The keys used in the `schemas` object have no importance for reference resolution, although you will want to avoid potential duplications. References need not change, and a processor of the resulting bundled or Compound Document, should look for the use of embedded Schema Resources within the OAS document, keeping track of the `$id` values.
 
+
 ## But what about...
 
 The astute among you might have noticed that Compound Documents may not be correctly validated using a meta-schema for the dialect defined at the document root. One of our principal contributors distilled a great explanation which he has agreed to let us share with you.
 
-“_If an embedded schema has a different `$schema` than the parent schema, then a Compound Schema Document can't be validated against a meta-schema without deconstructing it into separate schema resources and applying the appropriate meta-schema to each. That doesn't mean the Compound Schema Document is not usable without deconstruction, it just means that implementations need to be aware that the `$schema` can change during evaluation and handle such changes appropriately._” - Jason Desrosiers.
+“*If an embedded schema has a different `$schema` than the parent schema, then a Compound Schema Document can't be validated against a meta-schema without deconstructing it into separate schema resources and applying the appropriate meta-schema to each. That doesn't mean the Compound Schema Document is not usable without deconstruction, it just means that implementations need to be aware that the `$schema` can change during evaluation and handle such changes appropriately.*” - Jason Desrosiers.
 
 If you’d like a more in-depth look at edge case situations, please do let us know.
 
 You can reach out to us [@jsonschema](https://www.twitter.com/jsonschema) or our [Slack server](/slack).
 
-_I hope you’ll agree, Ben has clarified the process for us all here, and we can use this example to fully meet JSON Schema’s bundling expectations when writing tools which bundle multiple resources into compound OpenAPI documents. Thanks, Ben!_ - Mike
+*I hope you’ll agree, Ben has clarified the process for us all here, and we can use this example to fully meet JSON Schema’s bundling expectations when writing tools which bundle multiple resources into compound OpenAPI documents. Thanks, Ben!* - Mike
 
 <a href="https://www.freepik.com/vanitjan1">Business photo created by vanitjan - www.freepik.com</a>
 

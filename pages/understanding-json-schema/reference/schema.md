@@ -1,5 +1,5 @@
 ---
-title: 'Declaring a Dialect'
+title: "Declaring a Dialect"
 section: docs
 ---
 
@@ -37,10 +37,10 @@ time, you\'ll want this at the root of your schema:
 [tabs-start "Draft-specific info"]
 
 [tab "Draft 4"]
-The identifier for Draft 4 is `http://json-schema.org/draft-04/schema#`.
+The identifier for Draft 4 is ``http://json-schema.org/draft-04/schema#``.
 
-Draft 4 defined a value for `$schema` without a specific dialect
-(`http://json-schema.org/schema#`) which meant, use the latest
+Draft 4 defined a value for ``$schema`` without a specific dialect
+(``http://json-schema.org/schema#``) which meant, use the latest
 dialect. This has since been deprecated and should no longer be
 used.
 
@@ -53,11 +53,11 @@ here looking for information about Draft 5, you'll find it under
 Draft 4. We no longer use the "draft" terminology to refer to
 patch releases to avoid this confusion.
 [tab "Draft 6"]
-The identifier for Draft 6 is `http://json-schema.org/draft-06/schema#`.
+The identifier for Draft 6 is ``http://json-schema.org/draft-06/schema#``.
 [tab "Draft 7"]
-The identifier for Draft 7 is `http://json-schema.org/draft-07/schema#`.
+The identifier for Draft 7 is ``http://json-schema.org/draft-07/schema#``.
 [tab "Draft 2019-09"]
-The identifier for Draft 2019-09 is `https://json-schema.org/draft/2019-09/schema`.
+The identifier for Draft 2019-09 is ``https://json-schema.org/draft/2019-09/schema``.
 
 [tabs-end]
 
@@ -85,7 +85,7 @@ Before the introduction of Vocabularies, you could still extend
 </Infobox>
 
 > Not all implementations support custom meta-schemas and custom
-> keyword implementations.
+keyword implementations.
 
 <Keywords label="single: \$vocabularies single: schema; \$vocabularies; guidelines" />
 
@@ -111,12 +111,10 @@ always work as expecting with an compliant validator.
   "units": "kg"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 42
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 "42"
@@ -137,20 +135,17 @@ understands the custom keyword.
   "isEven": true
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 2
 ```
-
-This passes because the validator doesn't understand `isEven`
+This passes because the validator doesn't understand ``isEven``
 
 ```json
 // props { "indent": true, "valid": true }
 3
 ```
-
-The schema isn't completely impaired because it doesn't understand `isEven`
+The schema isn't completely impaired because it doesn't understand ``isEven``
 
 ```json
 // props { "indent": true, "valid": false }
@@ -176,20 +171,17 @@ doesn\'t understand custom keywords.
   }
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 { "foo": "bar" }
 ```
-
-This passes because `requiredProperties` is not understood
+This passes because ``requiredProperties`` is not understood
 
 ```json
 // props { "indent": true, "valid": true }
 {}
 ```
-
-This passes because `requiredProperties` is not understood
+This passes because ``requiredProperties`` is not understood
 
 ```json
 // props { "indent": true, "valid": true }

@@ -1,6 +1,6 @@
 ---
-title: 'How JSON Schema Was an Obvious Choice at GitHub'
-date: '2023-09-09'
+title: "How JSON Schema Was an Obvious Choice at GitHub"
+date: "2023-09-09"
 type: Case Study
 cover: /img/posts/2023/github-case-study/cover.webp
 authors:
@@ -41,15 +41,15 @@ Each time a change to the data model is made, the schemas are updated accordingl
 
 This occurs in three main ways:
 
-- While the application runs in production, each API call has its request body validated via a corresponding JSON Schema before passing the event off to a data warehouse
-- When retrieving external data in automation pipelines, whenever data is transformed from a source format into JSON, the generated data is validated against a JSON Schema to ensure it has been correctly transformed.
-  If validation succeeds, the generated data is checked into a git repository to be used in production.
-  Otherwise, the failure is raised for investigation.
-- When running continuous integration each time a change is made to the application, various additional schemas ensure:
+  * While the application runs in production, each API call has its request body validated via a corresponding JSON Schema before passing the event off to a data warehouse
+  * When retrieving external data in automation pipelines, whenever data is transformed from a source format into JSON, the generated data is validated against a JSON Schema to ensure it has been correctly transformed.
+    If validation succeeds, the generated data is checked into a git repository to be used in production.
+    Otherwise, the failure is raised for investigation.
+  * When running continuous integration each time a change is made to the application, various additional schemas ensure:
 
-  - that YAML frontmatter properties are correctly included in Markdown files which are used to generate pages within the application
-  - that YAML or JSON data files which contain page content and which have been hand authored by content writers are correctly formed
-  - that the context object created at runtime which contains the entirety of the site content along with a site tree for the application is itself correctly formed
+    * that YAML frontmatter properties are correctly included in Markdown files which are used to generate pages within the application
+    * that YAML or JSON data files which contain page content and which have been hand authored by content writers are correctly formed
+    * that the context object created at runtime which contains the entirety of the site content along with a site tree for the application is itself correctly formed
 
 <p className="text-2xl my-10">"Choosing JSON schema to allow JSON schema validation was a natural and obvious choice that our team made. It has been a fundamental part of our application since we moved from having a static site to a dynamic application about 3 years ago." - Rachael Sewell & Robert Sese, Docs Engineers at GitHub</p>
 

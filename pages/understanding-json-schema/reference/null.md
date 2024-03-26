@@ -1,5 +1,5 @@
 ---
-title: 'null'
+title: "null"
 section: docs
 ---
 
@@ -27,27 +27,22 @@ In Swift, `null` is analogous to `nil`.
 // props { "isSchema": true }
 { "type": "null" }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 null
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 false
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 0
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 ""
 ```
-
 ```json
 // props { "indent": true, "valid": false }
 ⠀

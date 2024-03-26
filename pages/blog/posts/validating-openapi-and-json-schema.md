@@ -1,6 +1,6 @@
 ---
-title: 'Validating OpenAPI and JSON Schema'
-date: '2021-12-08'
+title: "Validating OpenAPI and JSON Schema"
+date: "2021-12-08"
 type: Engineering
 tags:
   - OpenAPI
@@ -13,7 +13,7 @@ authors:
     photo: /img/avatars/jasondesrosiers.jpeg
     twitter: jasondesrosiers
     byline: JSON Schema Specification Contributor
-excerpt: 'Dynamic references make it possible to validate the schemas in an OpenAPI document even though OpenAPI does not constrain which JSON Schema dialects can be used.'
+excerpt: "Dynamic references make it possible to validate the schemas in an OpenAPI document even though OpenAPI does not constrain which JSON Schema dialects can be used."
 ---
 
 Starting with the release of OpenAPI 3.1, the dialect of JSON Schema used in
@@ -73,37 +73,35 @@ and many validators don't yet support them, or have limited support, or have
 bugs.
 
 #### Without schema validation
-
 ```javascript
-const OasSchema = require('@hyperjump/oas-schema-validator');
-const example = require('./example.openapi.json');
+const OasSchema = require("@hyperjump/oas-schema-validator");
+const example = require("./example.openapi.json");
 
 (async function () {
   const schema = await OasSchema.get(
-    'https://spec.openapis.org/oas/3.1/schema',
+    "https://spec.openapis.org/oas/3.1/schema"
   );
   const validate = await OasSchema.validate(schema);
 
   const result = validate(example);
   console.log(result.valid);
-})();
+}());
 ```
 
 #### With OpenAPI Schema dialect schema validation
-
 ```javascript
-const OasSchema = require('@hyperjump/oas-schema-validator');
-const example = require('./example.openapi.json');
+const OasSchema = require("@hyperjump/oas-schema-validator");
+const example = require("./example.openapi.json");
 
 (async function () {
   const schema = await OasSchema.get(
-    'https://spec.openapis.org/oas/3.1/schema-base',
+    "https://spec.openapis.org/oas/3.1/schema-base"
   );
   const validate = await OasSchema.validate(schema);
 
   const result = validate(example);
   console.log(result.valid);
-})();
+}());
 ```
 
 ### How does it work?

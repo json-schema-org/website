@@ -118,17 +118,17 @@ as Relative JSON Pointer through IETF.
 Details about the new process will be shared in a separate post when they are
 finalized, but here are some outcomes users can expect.
 
-- If you use only stable features, you are guaranteed interoperability between
+* If you use only stable features, you are guaranteed interoperability between
   JSON Schema libraries and you will never need to update your schemas just for
   the sake of keeping up with new releases.
-- You can safely use new features before they are stable, as long as the
+* You can safely use new features before they are stable, as long as the
   libraries consuming your schemas support the feature.
-- Compatibility/Interoperability guarantees will only apply to the next release
+* Compatibility/Interoperability guarantees will only apply to the next release
   and beyond. You will need to update your schemas to the stable version, but
   you won't have to continue to update them as JSON Schema evolves.
-- Custom dialects and vocabularies will continue to be central concepts for
+* Custom dialects and vocabularies will continue to be central concepts for
   customizing and extending JSON Schema.
-- Implementers won't need to maintain distinct code to support past stable
+* Implementers won't need to maintain distinct code to support past stable
   releases. A library that supports the 2025 release will automatically support
   the 2023 and 2024 releases. The past stable releases will no longer need to be
   maintained as distinct versions. However, implementations that continue to

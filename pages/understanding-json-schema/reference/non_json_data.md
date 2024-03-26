@@ -1,5 +1,5 @@
 ---
-title: 'Media: string-encoding non-JSON data'
+title: "Media: string-encoding non-JSON data"
 section: docs
 ---
 
@@ -33,7 +33,7 @@ contents, as specified in [RFC 2054, part
 6.1](https://tools.ietf.org/html/rfc2045) and [RFC
 4648](https://datatracker.ietf.org/doc/html/rfc4648).
 
-The acceptable values are `quoted-printable`,
+The acceptable values are  `quoted-printable`,
 `base16`, `base32`, and `base64`. If not specified, the encoding is the
 same as the containing JSON document.
 
@@ -41,20 +41,19 @@ Without getting into the low-level details of each of these encodings,
 there are really only two options useful for modern usage:
 
 - If the content is encoded in the same encoding as the enclosing JSON
-  document (which for practical purposes, is almost always UTF-8),
-  leave `contentEncoding` unspecified, and include the content in a
-  string as-is. This includes text-based content types, such as
-  `text/html` or `application/xml`.
+    document (which for practical purposes, is almost always UTF-8),
+    leave `contentEncoding` unspecified, and include the content in a
+    string as-is. This includes text-based content types, such as
+    `text/html` or `application/xml`.
 - If the content is binary data, set `contentEncoding` to `base64` and
-  encode the contents using
-  [Base64](https://tools.ietf.org/html/rfc4648). This would include
-  many image types, such as `image/png` or audio types, such as
-  `audio/mpeg`.
+    encode the contents using
+    [Base64](https://tools.ietf.org/html/rfc4648). This would include
+    many image types, such as `image/png` or audio types, such as
+    `audio/mpeg`.
 
 <Keywords label="single: contentSchema single: media; contentSchema" />
 
 ## contentSchema
-
 <Star label="New in draft 2019-09" />
 
 Documentation Coming soon
@@ -71,12 +70,10 @@ encoded using the same encoding as the surrounding document:
   "contentMediaType": "text/html"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 "<!DOCTYPE html><html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head></html>"
 ```
-
 The following schema indicates that a string contains a PNG image, encoded using Base64:
 
 ```json
@@ -87,7 +84,6 @@ The following schema indicates that a string contains a PNG image, encoded using
   "contentMediaType": "image/png"
 }
 ```
-
 ```json
 // props { "indent": true, "valid": true }
 "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA..."

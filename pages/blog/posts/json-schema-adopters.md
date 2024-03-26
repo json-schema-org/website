@@ -1,6 +1,6 @@
 ---
-title: 'Introducing the JSON Schema Adopters'
-date: '2023-11-07'
+title: "Introducing the JSON Schema Adopters"
+date: "2023-11-07"
 tags:
   - News
 type: Community
@@ -10,7 +10,7 @@ authors:
     photo: /img/avatars/benjagm.webp
     twitter: benjagm
     byline: DevRel & Community Program Manager @Postman
-excerpt: 'Explore our Adopters list to discover organizations successfully leveraging JSON Schema'
+excerpt: "Explore our Adopters list to discover organizations successfully leveraging JSON Schema"
 ---
 
 Data consistency and interoperability are critical for success in today's interconnected reality. While JSON is undoubtedly the most popular format for exchanging data, JSON Schema is essential for ensuring data consistency, validity, and interoperability at scale. Despite the widespread adoption of JSON Schema, there has yet to be a comprehensive list of adopters where individuals and organizations can seek inspiration and real-world use cases. This is why we are thrilled to announce the launch of the Adopters list.

@@ -1,6 +1,6 @@
 ---
-title: 'Transformando la industria de la contratación técnica con JSON Schema'
-date: '2024-02-05'
+title: "Transformando la industria de la contratación técnica con JSON Schema"
+date: "2024-02-05"
 type: Case Study
 cover: /img/posts/2024/manfred-case-study/background.webp
 authors:
@@ -12,7 +12,7 @@ authors:
     photo: /img/avatars/yeray.webp
     twitter: ydarias
     byline: Lead Software Engineer
-excerpt: 'Descubre cómo Manfred ha usado JSON Schema para transformar la industria de la contratación técnica.'
+excerpt: "Descubre cómo Manfred ha usado JSON Schema para transformar la industria de la contratación técnica."
 ---
 
 [Manfred](https://www.getmanfred.com/) es una plataforma de gestión de talento tecnológico con sede en España que permite a sus usuarios gestionar sus carreras profesionales manteniendo un control absoluto sobre sus datos. Manfred ha sido creada por desarrolladores para desarrolladores, liderando un cambio de paradigma en la industria de contratación técnica. Este case study muestra cómo Manfred utilizó JSON Schema para potenciar la transparencia, empoderar a los desarrolladores y fomentar la interoperabilidad dentro del ecosistema de reclutamiento tecnológico.
@@ -45,10 +45,10 @@ Reconociendo la necesidad de un enfoque developer-friendly, Manfred apostó por 
 
 La adopción de JSON Schema tuvo un impacto profundo en la estrategia de Manfred, contribuyendo a la transparencia, flexibilidad y escalabilidad de la plataforma. A diferencia de las plataformas convencionales que proporcionan datos estáticos y poco accionables, Manfred empoderó a los desarrolladores para utilizar sus propios datos de manera efectiva. La adopción de JSON Schema afectó muy positivamente en distintas áreas:
 
-- **Transparencia y Accesibilidad**: El compromiso de Manfred con los datos abiertos sumado al uso de JSON Schema permitió a los desarrolladores acceder, comprender y navegar sus datos profesionales de una manera fácil e intuitiva. Esta transparencia se convirtió en un factor clave de la confianza entre Manfred y la comunidad.
-- **Comunidad**: El uso de JSON Schema por parte de Manfred fue percibido positivamente por la comunidad de desarrolladores, fortaleciendo su posición como una plataforma que pone a los desarrolladores en el centro.
-- **Ventaja competitiva**: La propuesta de valor única de proporcionar datos accionables en formato JSON diferenció a Manfred en una industria muy competitiva. Los desarrolladores ahora podían aprovechar el poder de sus propios datos, tomando mejores decisiones sobre sus carreras.
-- **Flexibilidad y Escalabilidad**: JSON Schema proporcionó la flexibilidad necesaria para adaptarse a las necesidades de una industria cambiante y facilitando un crecimiento más rápido de la base de usuarios.
+* **Transparencia y Accesibilidad**: El compromiso de Manfred con los datos abiertos sumado al uso de JSON Schema permitió a los desarrolladores acceder, comprender y navegar sus datos profesionales de una manera fácil e intuitiva. Esta transparencia se convirtió en un factor clave de la confianza entre Manfred y la comunidad.
+* **Comunidad**: El uso de JSON Schema por parte de Manfred fue percibido positivamente por la comunidad de desarrolladores, fortaleciendo su posición como una plataforma que pone a los desarrolladores en el centro.
+* **Ventaja competitiva**: La propuesta de valor única de proporcionar datos accionables en formato JSON diferenció a Manfred en una industria muy competitiva. Los desarrolladores ahora podían aprovechar el poder de sus propios datos, tomando mejores decisiones sobre sus carreras.
+* **Flexibilidad y Escalabilidad**: JSON Schema proporcionó la flexibilidad necesaria para adaptarse a las necesidades de una industria cambiante y facilitando un crecimiento más rápido de la base de usuarios.
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='w-full md:w-full lg:w-3/5 xl:w-3/5 2xl:w-3/5 px-20' src='/img/posts/2024/manfred-case-study/MAC_Export.webp'/>

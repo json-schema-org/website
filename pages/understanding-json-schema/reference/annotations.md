@@ -1,5 +1,5 @@
 ---
-title: 'Annotations'
+title: "Annotations"
 section: docs
 ---
 
@@ -53,7 +53,10 @@ the future.
   "title": "Match anything",
   "description": "This is a schema that matches anything.",
   "default": "Default value",
-  "examples": ["Anything", 4035],
+  "examples": [
+    "Anything",
+    4035
+  ],
   "deprecated": true,
   "readOnly": true,
   "writeOnly": false

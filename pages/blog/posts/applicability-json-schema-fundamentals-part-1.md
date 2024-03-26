@@ -1,6 +1,6 @@
 ---
-title: 'It all starts with applicability - JSON Schema Fundamentals part 1'
-date: '2022-03-21'
+title: "It all starts with applicability - JSON Schema Fundamentals part 1"
+date: "2022-03-21"
 tags:
   - Fundamentals
 type: Engineering
@@ -10,12 +10,13 @@ authors:
     photo: /img/avatars/benhutton.webp
     link: https://www.twitter.com/relequestual
     byline: JSON Schema Specification Lead @Postman
-excerpt: 'We explore the fundamental JSON Schema concepts: Applicability, Subschemas, and Assertion Boolean Logic - Everyone needs good fundamentals.'
+excerpt: "We explore the fundamental JSON Schema concepts: Applicability, Subschemas, and Assertion Boolean Logic - Everyone needs good fundamentals."
 ---
 
 "Validation begins by applying the root Schema to the complete instance document. Applicator keywords apply subschemas to the instance location." - Borrowed from [JSON Schema in 5 minutes](https://json-schema.org/blog/posts/json-schema-in-5-minutes).
 
 The primary use case for JSON Schema is validation. Therefore it's imperative to understand precisely how the validation process happens. Let's take a little time to properly grasp the fundamental JSON Schema concept of Applicability.
+
 
 # Applicator keywords
 
@@ -40,9 +41,11 @@ When we talk about the whole Schema in terms of application, we usually refer to
   <p>The following examples assume to be using JSON Schema 2020-12. Where there are things you should know about previous versions (or drafts) of JSON Schema, it will be highlighted.</p>
 </div>
 
+
 # Subschema application - Validating Objects and Arrays
 
 If your JSON instance is an Object or an Array, you'll likely want to validate the values of the Object or the items in the Array. In this introduction, you'll be using the `properties` and `items` keywords, and subschemas.
+
 
 ## Validating Objects
 
@@ -82,7 +85,6 @@ OK, let's check our Schema does all we need it to. What happens when our instanc
   "isEmailConfirmed": "true"
 }
 // isEmailConfirmed should be a Boolean, not a string.
-
 // Will cause validation error.
 ```
 
@@ -96,7 +98,7 @@ We need to make sure we define the appropriate constraint if we want any keys to
     "email": { "type": "string" },
     "isEmailConfirmed": { "type": "boolean" }
   },
-  "required": ["id", "name", "email"]
+  "required": [ "id", "name", "email" ]
 }
 ```
 
@@ -110,7 +112,6 @@ We can now be confident that if our required fields are missing, validation will
   "isEmaleConfirmed": "true"
 }
 // Typo for key "isEmaleConfirmed".
-
 // Validates because of applicability.
 ```
 
@@ -126,7 +127,7 @@ Luckily, picking this up with our Schema is simple. The `additionalProperties` k
     "email": { "type": "string" },
     "isEmailConfirmed": { "type": "boolean" }
   },
-  "required": ["id", "name", "email"],
+  "required": [ "id", "name", "email" ],
   "additionalProperties": false
 }
 ```
@@ -148,7 +149,6 @@ Finally, what if we expect an Object, but are given an Array or another non-obje
     "isEmaleConfirmed": "true"
   }
 ]
-
 // An array is not an object...
 ```
 
@@ -165,7 +165,7 @@ The three keywords we've explored so far, `properties`, `required`, and `additio
     "email": { "type": "string" },
     "isEmailConfirmed": { "type": "boolean" }
   },
-  "required": ["id", "name", "email"],
+  "required": [ "id", "name", "email" ],
   "additionalProperties": false
 }
 ```
@@ -173,6 +173,7 @@ The three keywords we've explored so far, `properties`, `required`, and `additio
 In summary, for the soundest validation, we must express all the constraints we require. Given the `properties` keyword only applies its Schema values when keys match, and only when the current instance location is an Object, we need to make sure other constraints are in place to capture those other possible situations.
 
 Note, `type` takes an Array of types. It may be that your instance is allowed to be an Object or an Array, and constraints for both can be defined within the same Schema Object.
+
 
 ## Validating Arrays
 
@@ -194,7 +195,7 @@ To validate every item in the array, we need to use the `items` keyword. The `it
       "email": { "type": "string" },
       "isEmailConfirmed": { "type": "boolean" }
     },
-    "required": ["id", "name", "email"],
+    "required": [ "id", "name", "email" ],
     "additionalProperties": false
   }
 }
@@ -203,6 +204,7 @@ To validate every item in the array, we need to use the `items` keyword. The `it
 As with the applicability rules of `properties`, the value Schema of `items` is only applicable if the instance location being validated is an array. If we want to make sure it's an array, we need to specify the constraint by adding `"type": ["array"]` to our Schema.
 
 There are other keywords that are applicable to arrays, but If I continue to explain all of them in detail, this article might start to turn into a reference book! Moving on...
+
 
 # Apply but modify - Boolean logic with subschemas
 
@@ -220,16 +222,15 @@ This sounds simple, but let's look at some examples.
 
 ```json caption="allOf/example1.schema.json"
 {
-  "allOf": [true, true, true]
+  "allOf": [ true, true, true]
 }
 ```
 
 ```json caption="allOf/example2.schema.json"
 {
-  "allOf": [true, false, true]
+  "allOf": [ true, false, true]
 }
 ```
-
 <div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
   <p><span className="font-bold">Remember:</span> A Boolean is a valid schema that always produces the assertion result of its value, regardless of the instance data.</p>
 </div>
@@ -242,15 +243,16 @@ The `true` and `false` Boolean Schemas in this example could be any subschemas t
 
 Let's take the two examples again, but use `anyOf` rather than `allOf`.
 
+
 ```json caption="anyOf/example1.schema.json"
 {
-  "anyOf": [true, true, true]
+  "anyOf": [ true, true, true]
 }
 ```
 
 ```json caption="anyOf/example2.schema.json"
 {
-  "anyOf": [true, false, true]
+  "anyOf": [ true, false, true]
 }
 ```
 
@@ -327,8 +329,7 @@ Let's go back to our array of people data, modify it, and say it represents an a
     "email": "bob@example.com",
     "isStudent": true,
     "year": 1
-  },
-  {
+  }, {
     "name": "Alice",
     "email": "alice@example.com",
     "isTeacher": true,
@@ -342,7 +343,7 @@ To start, let's do the same as we did when creating our first schema. Copy the i
 ```json caption="oneOf/example1.schema.json"
 {
   "items": {
-    "oneOf": [
+    "oneOf":[
       {
         "properties": {
           "name": { "type": "string" },
@@ -350,8 +351,7 @@ To start, let's do the same as we did when creating our first schema. Copy the i
           "isStudent": { "type": "boolean" },
           "year": { "type": "number" }
         }
-      },
-      {
+      }, {
         "properties": {
           "name": { "type": "string" },
           "email": { "type": "string" },
@@ -376,7 +376,7 @@ Yikes! That's not what we want!
 
 But why isn't it working? Why isn't the instance passing validation?
 
-**What do we know?**
+__What do we know?__
 
 The validator is "failing fast". This means it's stopping after the first error.
 
