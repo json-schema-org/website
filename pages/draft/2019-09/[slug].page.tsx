@@ -22,7 +22,7 @@ export default function StaticMarkdownPage({
   frontmatter: any;
   content: any;
 }) {
-  const markdownFile = 'release-notes';
+  const markdownFile = '_index';
   const newTitle = 'JSON Schema - ' + frontmatter.title;
 
   return (
