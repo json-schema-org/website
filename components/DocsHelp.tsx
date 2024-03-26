@@ -8,9 +8,7 @@ interface DocsHelpProps {
 export function DocsHelp({ markdownFile }: DocsHelpProps) {
   const router = useRouter();
   const path = encodeURIComponent(router.pathname);
-  const targetUrl = markdownFile
-    ? `https://github.com/json-schema-org/website/blob/main/pages${router.asPath}.md`
-    : `https://github.com/json-schema-org/website/blob/main/pages/${path}.page.tsx`;
+  const targetUrl = `https://github.com/json-schema-org/website/blob/main/pages${markdownFile ? router.asPath : `/${path}.page.tsx`}.md`;
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
