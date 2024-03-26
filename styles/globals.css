@@ -217,5 +217,15 @@ border-radius: 4px; */
   }
 }
 
+.copyright-section{
+ color: white;
+ font-weight: normal;
+ font-family: Inter, uni-sans, system;
+ text-align: center;
+ margin: auto;
+ height: auto;
+ margin-inline-start: 35%;
+
+}
 
 
