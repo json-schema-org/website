@@ -8,17 +8,17 @@ There are implementations of JSON Schema validation for [over 20 languages](http
 This prevalence is fantastic for user choice -- as someone wishing to use JSON Schema you can be almost certain you'll find an implementation suitable for your target environment.
 
 But when it comes to community support, it can be challenging to know how to perform various JSON Schema operations in a particular library or implementation, as each may have slightly differing (or more than slightly differing) APIs.
-This can become particularly challenging when considering behavior not necessarily prescribed or required by the specification itself, but which is nonetheless common, useful, or even required behavior *in practice* in order to use JSON Schema.
-This page serves to document a number of these *common operations*, documenting the interfaces offered by many implementations across the existing JSON Schema ecosystem.
+This can become particularly challenging when considering behavior not necessarily prescribed or required by the specification itself, but which is nonetheless common, useful, or even required behavior _in practice_ in order to use JSON Schema.
+This page serves to document a number of these _common operations_, documenting the interfaces offered by many implementations across the existing JSON Schema ecosystem.
 
 For each, we first name and describe the operation using terminology from the specification where available, or otherwise using terminology that is aimed to be succinct but precise.
 The intention of this page is partially to be a reference of important JSON Schema operations as well as a way of tailoring help for a particular language and implementation.
 We therefore include examples of each interface or piece of functionality across implementations, when known.
 The ordering of sections on this page is not necessarily indicative of their importance relative to each other.
-Omission of functionality (i.e. if you do not find the way to do something below with a given implementation) is *not* necessarily a sign that the implementation does not support the functionality, though it might mean it could not be easily found by the page authors.
+Omission of functionality (i.e. if you do not find the way to do something below with a given implementation) is _not_ necessarily a sign that the implementation does not support the functionality, though it might mean it could not be easily found by the page authors.
 Contributions and corrections from implementers are particularly welcome, as are documentation links!
 
-For purposes of making some sections of this page more precise, we assume the existence of a set of *abstract types* all of which may be referenced below, and which will have specific concrete types within a given programming language or implementation.
+For purposes of making some sections of this page more precise, we assume the existence of a set of _abstract types_ all of which may be referenced below, and which will have specific concrete types within a given programming language or implementation.
 In addition to placeholder types like `String`, `Number`, `Boolean`, `Mapping`, `Callable` and the like, the JSON Schema-related types include:
 
 #### `Schema`
@@ -38,14 +38,14 @@ This type may simply be `String` if the dialect is represented within the implem
 
 #### `EvaluationOptions`
 
-The type of "fully ready" schemas and instances *along* with any additional implementation-specific customizable behavior.
+The type of "fully ready" schemas and instances _along_ with any additional implementation-specific customizable behavior.
 At minimum, this type is either `Schema → Instance` or `Schema × Instance` (depending on whether the implementation takes both schema and instance together or compiles schemas and then produces a separate function taking the instance to validate).
 It is highly likely to be richer in at least some of the following ways:
 
-  * Given likely support for some form of schema registry in order to support referencing external schemas, this type will likely include a registry of some sort, i.e. `Mapping<URI, Schema> → Schema → ...`
-  *   If an implementation supports customizing which JSON types match to which language types (such as [discussed below](#type-customization)) then this type likely includes some representation of this mapping, i.e. `Mapping<String, Callable[...]> → Schema → ...` encapsulating what each type is mapped to during this evaluation.
-  *   Similarly, if there is a specific API for [format assertion enablement](#format-assertion-enablement), some representation of the `format` keyword's behavior is present in the context
-  *   If the implementation supports the [creation or customization of dialects](#dialect-creation), and especially if schemas can contain subschemas across different dialects, then the context will contain some representation of dialects, e.g. `Dialect → Schema → ...`
+- Given likely support for some form of schema registry in order to support referencing external schemas, this type will likely include a registry of some sort, i.e. `Mapping<URI, Schema> → Schema → ...`
+- If an implementation supports customizing which JSON types match to which language types (such as [discussed below](#type-customization)) then this type likely includes some representation of this mapping, i.e. `Mapping<String, Callable[...]> → Schema → ...` encapsulating what each type is mapped to during this evaluation.
+- Similarly, if there is a specific API for [format assertion enablement](#format-assertion-enablement), some representation of the `format` keyword's behavior is present in the context
+- If the implementation supports the [creation or customization of dialects](#dialect-creation), and especially if schemas can contain subschemas across different dialects, then the context will contain some representation of dialects, e.g. `Dialect → Schema → ...`
 
 #### `Result`
 
@@ -54,7 +54,7 @@ This type may simply be `Boolean` in some implementations or languages.
 
 `ResultWithAnnotations`
 
-> The type of JSON Schema validation results that *include* JSON Schema annotations collected during validation.
+> The type of JSON Schema validation results that _include_ JSON Schema annotations collected during validation.
 
 #### `URI`
 
@@ -75,7 +75,7 @@ Consider a division function on floats, represented as `x / y`.
 We will write the type of this function as `Float → Float → Float <!> DivideByZeroError`, where the interpretation of this signature is that the function takes 2 floats and returns a float, but the `<!>` signals it may also propagate a `DivideByZeroError` (in this case when the function is asked to divide by zero).
 
 The specific manifestation of `DivideByZeroError` will depend on the programming language.
-In a language with exceptions, this function may raise a `DivideByZeroError`-equivalent as an exception, which must or may be handled by the caller. 
+In a language with exceptions, this function may raise a `DivideByZeroError`-equivalent as an exception, which must or may be handled by the caller.
 In a language with option types, the "correct" type signature may really be wrapped in an `Option` type which represents the division by zero case (so the "true" signature in such a language would be `Option[Float → Float → Float]`).
 In a language with wrapper return types, the true type signature may be `Result<Float, DivideByZeroError>` where the returned value must be inspected to ensure it contains a successful result, and where the divide by zero error is instead a possible error value.
 In a language with a convention to return "junk" values, the true type may be precisely `Float → Float → Float` where some arbitrary float value is
@@ -125,7 +125,7 @@ It may (and likely will) perform some form of preoptimization, performing some s
 
 **Type**: `Schema` × `String` × `Instance` → `Result`
 
-An API which supports validating an instance against a *subschema* contained within the given schema.
+An API which supports validating an instance against a _subschema_ contained within the given schema.
 
 The subschema is typically identified via a JSON Pointer, or equivalent syntax, and is as opposed to validation using a new schema referencing the subschema via the `$ref` keyword.
 
@@ -178,9 +178,9 @@ An API which configures the behavior of the `format` keyword, in dialects where 
 
 ### Format Registration
 
-**Type**: `String` × (`Instance` → Boolean)` → `EvaluationOptions`
+**Type**: `String` × (`Instance` → Boolean)`→`EvaluationOptions`
 
-An API which allows registering a *new* format and its implementation for use with the `format` keyword, typically when it is used to [assert](#format-assertion-enablement).
+An API which allows registering a _new_ format and its implementation for use with the `format` keyword, typically when it is used to [assert](#format-assertion-enablement).
 
 Some implementations may further allow registering different sets of available formats for different dialects.
 

@@ -1,5 +1,5 @@
 ---
-title: "Enumerated values"
+title: 'Enumerated values'
 section: docs
 ---
 
@@ -15,10 +15,12 @@ The following is an example for validating street light colors:
   "enum": ["red", "amber", "green"]
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "red"
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 "blue"
@@ -34,18 +36,22 @@ also add 42, just for fun.
   "enum": ["red", "amber", "green", null, 42]
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "red"
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 null
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 42
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 0

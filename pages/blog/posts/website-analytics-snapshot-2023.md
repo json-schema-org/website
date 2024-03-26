@@ -1,13 +1,13 @@
 ---
-title: "50+ million requests in 7 days on json-schema.org"
-date: "2023-09-15"
+title: '50+ million requests in 7 days on json-schema.org'
+date: '2023-09-15'
 type: Engineering
 cover: /img/posts/2023/website-analytics-snapshot-2023/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
     link: https://www.twitter.com/relequestual
-excerpt: "See what we discovered when looking at over 50 million requests to the JSON Schema org domain from the last 7 days"
+excerpt: 'See what we discovered when looking at over 50 million requests to the JSON Schema org domain from the last 7 days'
 ---
 
 I grant you, 7 days isn't an ideal length of time to do an analysis over, but this is what we have for now. Previously, we had basic website analytics, but that only tells a fraction of the story. We run the website on GitHub pages with Cloudflare in front, which provides 7 days of analytics, critically, including direct access traffic.
@@ -76,7 +76,7 @@ I guess we should reach out to them to find out about their use case for Hyper S
 
 Accessing the latest meta-schema published using this unversioned URI is not advised. We started making people aware of this about four years ago, and you'll see [a message with your redirection](https://github.com/json-schema-org/json-schema-org.github.io/blob/fb3b1e681e273738f38cb1438b0635b6d4ad5383/_layouts/redirect.html#L13) if using a browser.
 
-The vast majority of requests to this have no referring source, so that's not very helpful. Turning to user agent, we see the vast majority of requests have a user agent of "". *sigh*. Yup! blank! This is poor form, and I had a suspicion about what might be causing this.
+The vast majority of requests to this have no referring source, so that's not very helpful. Turning to user agent, we see the vast majority of requests have a user agent of "". _sigh_. Yup! blank! This is poor form, and I had a suspicion about what might be causing this.
 
 When you look at the adjacent data, seeing over half of the remaining top 15 user agents, it's pretty clear that most of these requests are coming from IDEs and code editors. We see InteliJ IDEA, WebStorm, and multiple versions of each. But, what we don't see is VSCode.
 

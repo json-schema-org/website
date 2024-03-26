@@ -1,6 +1,6 @@
 ---
 title: Astonishing Serializations & Schemas of Hyperborea
-date: "2022-05-18"
+date: '2022-05-18'
 tags: []
 type: Engineering
 cover: /img/posts/2022/hyperborea/cover.jpg
@@ -36,7 +36,7 @@ documents. [JSON Schemas][jsonschema] can totally be used to define document
 schemas... surely it could twisted a little bit more to accommodate the exotic
 logic of a game?
 
-The answer is that, of *course*, everything can be twisted provided the spell is dark
+The answer is that, of _course_, everything can be twisted provided the spell is dark
 enough. This blog entry and its associated [project repository][repo], while not
 an exhaustive solution (yet), is intended to the goodies that JSON
 Schema could bring to the table, as well as the tools of the ecosystem.
@@ -76,15 +76,15 @@ we'll convert those YAML documents to JSON via [transerialize][].
 ```yaml
 # in Taskfile.yml
 tasks:
-    schemas: fd -e yml -p ./schemas-yaml -x task schema SCHEMA='{}'
+  schemas: fd -e yml -p ./schemas-yaml -x task schema SCHEMA='{}'
 
-    schema:
-        vars:
-            DEST:
-                sh: echo {{.SCHEMA}} | perl -pe's/ya?ml/json/g'
-        sources: ["{{.SCHEMA}}"]
-        generates: ["{{.DEST}}"]
-        cmds: transerialize {{.SCHEMA}} {{.DEST}}
+  schema:
+    vars:
+      DEST:
+        sh: echo {{.SCHEMA}} | perl -pe's/ya?ml/json/g'
+    sources: ['{{.SCHEMA}}']
+    generates: ['{{.DEST}}']
+    cmds: transerialize {{.SCHEMA}} {{.DEST}}
 ```
 
 Oh yeah, `task` is unfortunately janky where loops
@@ -128,15 +128,15 @@ we're ready to roll.
 # file: Taskfile.yml
 # in the tasks
 validate:
-    silent: true
-    cmds:
-        - |
-            ajv validate  \\
-                --all-errors \\
-                --errors=json \\
-                --verbose \\
-                -s schemas-yaml/character.yml \\
-                -d {{.CLI_ARGS}}
+  silent: true
+  cmds:
+    - |
+      ajv validate  \\
+          --all-errors \\
+          --errors=json \\
+          --verbose \\
+          -s schemas-yaml/character.yml \\
+          -d {{.CLI_ARGS}}
 ```
 
 ## Starting on the schema
@@ -151,12 +151,12 @@ title: Hyperboria character sheet
 type: object
 additionalProperties: false
 required:
-    - name
-    - player
+  - name
+  - player
 properties:
-    name: &string
-        type: string
-    player: *string
+  name: &string
+    type: string
+  player: *string
 ```
 
 Nothing special there, except for the YAML anchor and alias, because I'm a
@@ -201,26 +201,26 @@ a schema definition, to make things a little more formal.
 # file: schemas-yaml/character.yml
 # only showing deltas
 required:
-    # ...
-    - statistics
+  # ...
+  - statistics
 properties:
-    # ...
-    statistics:
-        type: object
-        allRequired: true
-        properties:
-            strength: &stat
-                $ref: "#/$defs/statistic"
-            dexterity: *stat
-            constitution: *stat
-            intelligence: *stat
-            wisdom: *stat
-            charisma: *stat
+  # ...
+  statistics:
+    type: object
+    allRequired: true
+    properties:
+      strength: &stat
+        $ref: '#/$defs/statistic'
+      dexterity: *stat
+      constitution: *stat
+      intelligence: *stat
+      wisdom: *stat
+      charisma: *stat
 $defs:
-    statistic:
-        type: number
-        minimum: 1
-        maximum: 20
+  statistic:
+    type: number
+    minimum: 1
+    maximum: 20
 ```
 
 Note that the `allRequired` is a custom keyword made available by
@@ -230,16 +230,16 @@ Note that the `allRequired` is a custom keyword made available by
 ```yaml
 # file: Taskfile.yml
 validate:
-    silent: true
-    cmds:
-        - |
-            ajv validate \\
-                --all-errors \\
-                --errors=json \\
-                --verbose \\
-                -c ajv-keywords \\
-                -s schemas-yaml/character.yml \\
-                -d {{.CLI_ARGS}}
+  silent: true
+  cmds:
+    - |
+      ajv validate \\
+          --all-errors \\
+          --errors=json \\
+          --verbose \\
+          -c ajv-keywords \\
+          -s schemas-yaml/character.yml \\
+          -d {{.CLI_ARGS}}
 ```
 
 To conform to the schema, we add the stats to our sample character too:
@@ -247,12 +247,12 @@ To conform to the schema, we add the stats to our sample character too:
 ```yaml
 # file: samples/verg.yml
 statistics:
-    strength: 11
-    dexterity: 13
-    constitution: 10
-    intelligence: 18
-    wisdom: 15
-    charisma: 11
+  strength: 11
+  dexterity: 13
+  constitution: 10
+  intelligence: 18
+  wisdom: 15
+  charisma: 11
 ```
 
 And we check and, yup, our sheet is still valid.
@@ -295,27 +295,27 @@ For example, let's test statistics.
 
 ```js
 // file: src/statistics.test.js
-import { test, expect } from "vitest";
+import { test, expect } from 'vitest';
 
-import Ajv from "ajv";
+import Ajv from 'ajv';
 
-import characterSchema from "../schemas-json/character.json";
+import characterSchema from '../schemas-json/character.json';
 
 const ajv = new Ajv();
 // we just care about the statistic schema here, so that's what
 // we take
 const validate = ajv.compile(characterSchema.$defs.statistic);
 
-test("good statistic", () => {
-    expect(validate(12)).toBeTruthy();
-    expect(validate.errors).toBeNull();
+test('good statistic', () => {
+  expect(validate(12)).toBeTruthy();
+  expect(validate.errors).toBeNull();
 });
 
-test("bad statistic", () => {
-    expect(validate(21)).toBeFalsy();
-    expect(validate.errors[0]).toMatchObject({
-        message: "must be <= 20",
-    });
+test('bad statistic', () => {
+  expect(validate(21)).toBeFalsy();
+  expect(validate.errors[0]).toMatchObject({
+    message: 'must be <= 20',
+  });
 });
 ```
 
@@ -324,9 +324,9 @@ We add a `test` task to our taskfile:
 ```yaml
 # file: Taskfile.yml
 test:
-    deps: [schemas]
-    cmds:
-        - vitest run
+  deps: [schemas]
+  cmds:
+    - vitest run
 ```
 
 And just like that, we have tests.
@@ -375,15 +375,15 @@ like this:
 $id: https://hyperboria.babyl.ca/classes.json
 title: Classes of characters for Hyperborea
 $defs:
-    fighter:
-        - barbarian
-        - berserker
-        - cataphract
-        - hunstman
-        - paladin
-        - ranger
-        - warlock
-    magician: [cryomancer, illusionist, necromancer, pyromancer, witch]
+  fighter:
+    - barbarian
+    - berserker
+    - cataphract
+    - hunstman
+    - paladin
+    - ranger
+    - warlock
+  magician: [cryomancer, illusionist, necromancer, pyromancer, witch]
 ```
 
 And then have a little script massage the data as we turn the YAML into
@@ -393,15 +393,15 @@ our `taskfile` schema task to be:
 
 ```yaml
 schema:
-    vars:
-        TRANSFORM:
-            sh: |
-                echo {{.SCHEMA}} | \\
-                    perl -lnE's/yml$/pl/; s/^/.\//; say if -f $_'
-        DEST:
-            sh: echo {{.SCHEMA}} | perl -pe's/ya?ml/json/g'
-    cmds:
-        - transerialize {{.SCHEMA}} {{.TRANSFORM}} {{.DEST}}
+  vars:
+    TRANSFORM:
+      sh: |
+        echo {{.SCHEMA}} | \\
+            perl -lnE's/yml$/pl/; s/^/.\//; say if -f $_'
+    DEST:
+      sh: echo {{.SCHEMA}} | perl -pe's/ya?ml/json/g'
+  cmds:
+    - transerialize {{.SCHEMA}} {{.TRANSFORM}} {{.DEST}}
 ```
 
 And then we slip in a transform script that looks like this:
@@ -435,28 +435,28 @@ to the classes schema from the character schema:
 ```yaml
 # file: schemas-yaml/character.yml
 required:
-    # ...
-    - class
+  # ...
+  - class
 properties:
-    # ...
-    class: { $ref: "/classes.json" }
+  # ...
+  class: { $ref: '/classes.json' }
 ```
 
 We also need to tell `ajv` of the existence of that new schema:
 
 ```yaml
 validate:
-    silent: true
-    cmds:
-        - |
-            ajv validate \\
-                --all-errors \\
-                --errors=json \\
-                --verbose \\
-                -c ajv-keywords \\
-                -r schemas-json/classes.json \\
-                -s schemas-json/character.json \\
-                -d {{.CLI_ARGS}}
+  silent: true
+  cmds:
+    - |
+      ajv validate \\
+          --all-errors \\
+          --errors=json \\
+          --verbose \\
+          -c ajv-keywords \\
+          -r schemas-json/classes.json \\
+          -s schemas-json/character.json \\
+          -d {{.CLI_ARGS}}
 ```
 
 Finally, we add Verg's class to his sheet:
@@ -488,17 +488,17 @@ We'll do it through the magic of [JSON Pointers][jpointer] and avj's $data, like
 # file: schemas-yaml/character.yml
 level: { type: number, minimum: 1 }
 health:
-    type: object
-    required: [ max ]
-    properties:
-        max: { type: number }
-        current: { type: number }
-        log:
-            type: array
-            description: history of health rolls
-            items: { type: number }
-            minItems: { $data: /level }
-            maxItems: { $data: /level }
+  type: object
+  required: [max]
+  properties:
+    max: { type: number }
+    current: { type: number }
+    log:
+      type: array
+      description: history of health rolls
+      items: { type: number }
+      minItems: { $data: /level }
+      maxItems: { $data: /level }
 ```
 
 Basically (and once we add a `--data` flag to `ajv` to tell it to enable
@@ -522,14 +522,14 @@ equal to the max health points we have. We'd need something like:
 ```yaml
 # file: schemas-yaml/character.yml
 health:
-    type: object
-    properties:
-        max:
-            type: number
-            sumOf: { list: { $data: 1/log } }
-        log:
-            type: array
-            items: { type: number }
+  type: object
+  properties:
+    max:
+      type: number
+      sumOf: { list: { $data: 1/log } }
+    log:
+      type: array
+      items: { type: number }
 ```
 
 That's where custom keywords enter the picture. AJV allows us to
@@ -542,52 +542,51 @@ complex because we're dealing internally with JSON pointers):
 ```js
 // file: src/sumOf.cjs
 
-const _ = require("lodash");
-const ptr = require("json-pointer");
+const _ = require('lodash');
+const ptr = require('json-pointer');
 
 function resolvePointer(data, rootPath, relativePath) {
-    if (relativePath[0] === "/") return ptr.get(data, relativePath);
+  if (relativePath[0] === '/') return ptr.get(data, relativePath);
 
-    const m = relativePath.match(/^(\d+)(.*)/);
-    relativePath = m[2];
-    for (let i = 0; i < parseInt(m[1]); i++) {
-        rootPath = rootPath.replace(/\/[^\/]+$/, "");
-    }
+  const m = relativePath.match(/^(\d+)(.*)/);
+  relativePath = m[2];
+  for (let i = 0; i < parseInt(m[1]); i++) {
+    rootPath = rootPath.replace(/\/[^\/]+$/, '');
+  }
 
-    return ptr.get(data, rootPath + relativePath);
+  return ptr.get(data, rootPath + relativePath);
 }
 
 module.exports = (ajv) =>
-    ajv.addKeyword({
-        keyword: "sumOf",
-        $data: true,
-        errors: true,
-        validate: function validate(
-            { list, map },
-            total,
-            _parent,
-            { rootData, instancePath }
-        ) {
-            if (list.$data)
-                list = resolvePointer(rootData, instancePath, list.$data);
+  ajv.addKeyword({
+    keyword: 'sumOf',
+    $data: true,
+    errors: true,
+    validate: function validate(
+      { list, map },
+      total,
+      _parent,
+      { rootData, instancePath },
+    ) {
+      if (list.$data) list = resolvePointer(rootData, instancePath, list.$data);
 
-            if (map) data = _.map(data, map);
+      if (map) data = _.map(data, map);
 
-            if (_.sum(list) === total) return true;
+      if (_.sum(list) === total) return true;
 
-            validate.errors = [
-                {
-                    keyword: "sumOf",
-                    message: "should add up to sum total",
-                    params: {
-                        list,
-                    },
-                },
-            ];
-
-            return false;
+      validate.errors = [
+        {
+          keyword: 'sumOf',
+          message: 'should add up to sum total',
+          params: {
+            list,
+          },
         },
-    });
+      ];
+
+      return false;
+    },
+  });
 ```
 
 As usual we have to tell `ajv` to include that new bit of code via
@@ -636,12 +635,12 @@ Fields based on lists? Been there, done that:
 
 ```yaml
 # file: schemas-yaml/character.yml
-  race: { $ref: /races.json }
-  languages:
-    type: array
-    minItems: 1
-    items:
-      $ref: /languages.json
+race: { $ref: /races.json }
+languages:
+  type: array
+  minItems: 1
+  items:
+    $ref: /languages.json
 ```
 
 Spells are only for magicians? Not a problem.
@@ -650,13 +649,13 @@ Spells are only for magicians? Not a problem.
 # file: schemas-yaml/character.yml
 type: object
 properties:
-    # ...
-    spells:
-      type: array
-      items: { $ref: /spells.json }
-      maxSpells:
-        class: { $data: /class }
-        level: { $data: /level }
+  # ...
+  spells:
+    type: array
+    items: { $ref: /spells.json }
+    maxSpells:
+      class: { $data: /class }
+      level: { $data: /level }
 ```
 
 With the new keyword `maxSpells`:
@@ -664,40 +663,44 @@ With the new keyword `maxSpells`:
 ```js
 // file: src/maxSpells.cjs
 
-const _ = require("lodash");
+const _ = require('lodash');
 const resolvePointer = require('./resolvePointer.cjs');
 
 module.exports = (ajv) =>
-    ajv.addKeyword({
-        keyword: "maxSpells",
-        validate: function validate(
-            schema,
-            data,
-            _parent,
-            { rootData, instancePath }
-        ) {
-            if (schema.class.$data) {
-                schema.class = resolvePointer(
-                    rootData, instancePath, schema.class.$data
-                );
-            }
+  ajv.addKeyword({
+    keyword: 'maxSpells',
+    validate: function validate(
+      schema,
+      data,
+      _parent,
+      { rootData, instancePath },
+    ) {
+      if (schema.class.$data) {
+        schema.class = resolvePointer(
+          rootData,
+          instancePath,
+          schema.class.$data,
+        );
+      }
 
-            if( schema.class !== 'magician'
-                && schema.class?.generic !== 'magician'
-                && data.length ) {
-                validate.errors = [
-                    {
-                        message: "non-magician can't have spells",
-                    },
-                ];
-                return false;
-            }
+      if (
+        schema.class !== 'magician' &&
+        schema.class?.generic !== 'magician' &&
+        data.length
+      ) {
+        validate.errors = [
+          {
+            message: "non-magician can't have spells",
+          },
+        ];
+        return false;
+      }
 
-            return true;
-        },
-        $data: true,
-        errors: true,
-    });
+      return true;
+    },
+    $data: true,
+    errors: true,
+  });
 ```
 
 Gears? Pfah! Sure.
