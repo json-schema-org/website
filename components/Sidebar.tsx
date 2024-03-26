@@ -318,6 +318,7 @@ export const DocsNav = () => {
             label='What is JSON Schema?'
           />
           <DocLink uri='/overview/sponsors' label='Sponsors' />
+          <DocLink uri='/overview/roadmap' label='Roadmap' />
           <DocLink
             uri='/overview/similar-technologies'
             label='Similar Technologies'
