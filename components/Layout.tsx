@@ -367,7 +367,10 @@ const Footer = () => (
             GitHub
           </a>
         </div>
-      </div>
+       </div>
+       </div>
+      <div className='copyright-section'>
+        <p>Copyright © 2024 JSON Schema. All rights reserved</p>
     </div>
   </footer>
 );
