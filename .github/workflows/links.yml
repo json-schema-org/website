@@ -1,0 +1,57 @@
+name: Links
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 15 * * 1'  # Run every Monday at 3:00 PM UTC
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository  
+        uses: actions/checkout@v4
+
+      - name: Submodule
+        run: git submodule update --init --recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Serve App Locally
+        run: yarn run dev &
+
+      - name: Wait for App to Start
+        run: sleep 20
+      
+      # This will restore the lychee cache
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: cache-lychee-${{ github.sha }}
+          restore-keys: cache-lychee-
+
+      # This will run the link checker on all markdown files in the pages directory      
+      - name: Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --base http://localhost:3000  --verbose --no-progress --accept 200,204,429,403  './pages/**/*.md' --cache --max-cache-age 1d  http://localhost:3000 
+          token: ${{secrets.AUTH_TOKEN}}
+        
+      # This will create an issue with the report if the link checker fails      
+      - name: Create Issue From File
+        if: github.repository_owner=='json-schema-org' && env.lychee_exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: Link Checker Report
+          content-filepath: ./lychee/out.md
+          labels: report, automated issue
+          token: ${{secrets.AUTH_TOKEN}}
