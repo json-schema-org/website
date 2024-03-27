@@ -63,10 +63,9 @@ export default function ImplementationsPages({
 }) {
   return (
     <SectionContext.Provider value='tools'>
-      <div className='w-5/6 mx-auto mt-12'>
+    <div className='w-5/6 mx-auto mt-12 dark:text-slate-200'>
       <Headline1>Obsolete Tools</Headline1>
       <StyledMarkdown markdown={blocks.intro} />
-
       <Headline2>Validators</Headline2>
       <ImplementationTable
         implementationsByLanguage={validators}
@@ -93,7 +92,7 @@ function ImplementationTable({
   const router = useRouter();
   return (
     <>
-      <div className='flex flex-row flex-wrap grid grid-cols-3 text-sm md:grid-cols-5 md:text-base lg:grid-cols-6'>
+      <div className='flex-row flex-wrap  grid dark:bg-slate-700  grid-cols-3 text-sm md:grid-cols-5 md:text-base lg:grid-cols-6'>
         {implementationsByLanguage.map(
           (implementationByLanguage: any, index: number) => {
             const slug =
@@ -108,7 +107,7 @@ function ImplementationTable({
                 key={index}
                 href={`#${slug}`}
                 className={classnames(
-                  'block text-center text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
+                  'text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
                   {
                     'bg-blue-800': isActive,
                     'bg-blue-500 hover:bg-blue-600': !isActive,
@@ -121,14 +120,20 @@ function ImplementationTable({
           },
         )}
       </div>
-      <div className='bg-blue-50 rounded-xl py-2 sm:p-6 p-6 mt-4 pb-6 pt-0.5 overflow-x-auto'>
+      <div className='bg-blue-50 rounded-xl py-2 sm:p-6 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-900 overflow-x-auto'>
         <table>
           <thead>
             <tr>
               <td />
-              <td className='pt-6 pl-5 text-sm text-slate-500 text-center hidden md:table-cell'>About</td>
-              <td className='pt-6 pl-5 text-sm text-slate-500 text-center'>Drafts</td>
-              <td className='pt-6 pl-5 text-sm text-slate-500 text-center hidden sm:table-cell'>License</td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200 text-center hidden md:table-cell'>
+                About
+              </td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center dark:text-slate-200'>
+                Drafts
+              </td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 dark:text-slate-200 text-center hidden sm:table-cell'>
+                License
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -184,7 +189,7 @@ function ImplementationTable({
                                 )
                                 ?.map((draft: string | number) => (
                                   <span
-                                    className='bg-blue-400 inline-block mr-1 mb-1 text-white rounded px-1 text-sm sm:text-base'
+                                    className='bg-blue-400 dark:bg-blue-600 inline-block mr-1 mb-1 text-white rounded px-1 text-sm sm:text-base'
                                     key={draft}
                                   >
                                     {typeof draft === 'number'
@@ -193,7 +198,9 @@ function ImplementationTable({
                                   </span>
                                 ))}
                             </td>
-                            <td className='pl-3 sm:pl-6 text-sm sm:text-base hidden sm:table-cell'>{implementation.license}</td>
+                            <td className='pl-3 sm:pl-6 text-sm sm:text-base hidden sm:table-cell'>
+                              {implementation.license}
+                            </td>
                           </tr>
                         );
                       },
