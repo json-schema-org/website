@@ -64,20 +64,20 @@ export default function ImplementationsPages({
   return (
     <SectionContext.Provider value='tools'>
       <div className='w-5/6 mx-auto mt-12'>
-      <Headline1>Obsolete Tools</Headline1>
-      <StyledMarkdown markdown={blocks.intro} />
+        <Headline1>Obsolete Tools</Headline1>
+        <StyledMarkdown markdown={blocks.intro} />
 
-      <Headline2>Validators</Headline2>
-      <ImplementationTable
-        implementationsByLanguage={validators}
-        prefix='validators-'
-      />
-      <StyledMarkdown markdown={blocks.main} />
-      <ImplementationTable
-        implementationsByLanguage={hyperLibaries}
-        prefix='hyper-libaries-'
-      />
-      <StyledMarkdown markdown={blocks.main2} />
+        <Headline2>Validators</Headline2>
+        <ImplementationTable
+          implementationsByLanguage={validators}
+          prefix='validators-'
+        />
+        <StyledMarkdown markdown={blocks.main} />
+        <ImplementationTable
+          implementationsByLanguage={hyperLibaries}
+          prefix='hyper-libaries-'
+        />
+        <StyledMarkdown markdown={blocks.main2} />
       </div>
     </SectionContext.Provider>
   );
@@ -126,9 +126,15 @@ function ImplementationTable({
           <thead>
             <tr>
               <td />
-              <td className='pt-6 pl-5 text-sm text-slate-500 text-center hidden md:table-cell'>About</td>
-              <td className='pt-6 pl-5 text-sm text-slate-500 text-center'>Drafts</td>
-              <td className='pt-6 pl-5 text-sm text-slate-500 text-center hidden sm:table-cell'>License</td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center hidden md:table-cell'>
+                About
+              </td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center'>
+                Drafts
+              </td>
+              <td className='pt-6 pl-5 text-sm text-slate-500 text-center hidden sm:table-cell'>
+                License
+              </td>
             </tr>
           </thead>
           <tbody>
@@ -193,7 +199,9 @@ function ImplementationTable({
                                   </span>
                                 ))}
                             </td>
-                            <td className='pl-3 sm:pl-6 text-sm sm:text-base hidden sm:table-cell'>{implementation.license}</td>
+                            <td className='pl-3 sm:pl-6 text-sm sm:text-base hidden sm:table-cell'>
+                              {implementation.license}
+                            </td>
                           </tr>
                         );
                       },
