@@ -368,8 +368,6 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     return clonedChild;
                   },
                 );
-                console.log(children);
-                console.log(modifiedChildren);
 
                 return <>{modifiedChildren}</>;
               },
