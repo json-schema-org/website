@@ -17,7 +17,7 @@ For more information about the value JSON Schema can provide, see the full [JSON
 
 <span id="overview"></span>
 
-## Overview
+## Overview [#overview-section]
 
 The example we use in this guide is a product catalog that stores its data using JSON objects, like the following:
 

@@ -1,5 +1,5 @@
 ---
-title: Specification
+title: Specification [#section]
 section: docs
 ---
 
