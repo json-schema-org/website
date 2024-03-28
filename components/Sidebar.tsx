@@ -293,7 +293,7 @@ export const DocsNav = () => {
             <SegmentHeadline label='Overview' />
           </div>
           <svg
-            style={{ transform: rotate, transition: 'all 0.2s linear' }}
+            style={{ transform: rotate, transition: 'all 0.2s linear',cursor:"pointer" }}
             id='arrow'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -337,7 +337,7 @@ export const DocsNav = () => {
             <SegmentHeadline label='Getting Started' />
           </div>
           <svg
-            style={{ transform: rotateG, transition: 'all 0.2s linear' }}
+            style={{ transform: rotateG, transition: 'all 0.2s linear',cursor:"pointer" }}
             id='arrow'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -384,7 +384,7 @@ export const DocsNav = () => {
             <SegmentHeadline label='Reference' />
           </div>
           <svg
-            style={{ transform: rotateR, transition: 'all 0.2s linear' }}
+            style={{ transform: rotateR, transition: 'all 0.2s linear',cursor:"pointer" }}
             id='arrow'
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
@@ -532,7 +532,7 @@ export const DocsNav = () => {
           <svg
             id='arrow'
             className='arrow'
-            style={{ transform: rotateSpec, transition: 'all 0.2s linear' }}
+            style={{ transform: rotateSpec, transition: 'all 0.2s linear',cursor:"pointer" }}
             xmlns='http://www.w3.org/2000/svg'
             fill='none'
             height='32'
