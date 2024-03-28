@@ -8,7 +8,6 @@ interface DocsHelpProps {
 export function DocsHelp({ markdownFile }: DocsHelpProps) {
   const router = useRouter();
   const path = encodeURIComponent(router.pathname);
-  const targetUrl = `https://github.com/json-schema-org/website/blob/main/pages${markdownFile ? router.asPath : `/${path}.page.tsx`}.md`;
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -256,7 +255,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               target='_blank'
               rel='noreferrer'
               className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
-              href={targetUrl}
+              href={`https://github.com/json-schema-org/website/blob/main/pages${markdownFile ? router.asPath : `/${path}.page.tsx`}.md`}
             >
               <svg
                 className='inline-block select-none align-text-bottom mr-1'
