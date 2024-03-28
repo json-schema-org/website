@@ -628,5 +628,4 @@ const Home = (props: any) => {
   );
 };
 
-export default Home;
-Home.getLayout = (page: React.ReactNode) => getLayout(page);
+export default Home;Home.getLayout = (page: React.ReactNode) => getLayout(page);
