@@ -119,7 +119,7 @@ function ImplementationTable({
           },
         )}
       </div>
-      <div className='bg-slate-100 dark:bg-slate-900 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5'>
+      <div className='bg-slate-50 dark:bg-slate-900 rounded-xl py-2 p-6 mt-4 pb-6 pt-0.5'>
         <table>
           <thead>
             <tr>
