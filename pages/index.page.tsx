@@ -541,21 +541,21 @@ const Home = (props: any) => {
         {/* Sponsors */}
 
         <section className='my-16'>
-          <div className='text-center mb-12'>
+          <div className='text-center mb-4'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
               Sponsors
             </h2>
             <p className='w-5/6 lg:w-3/5 mx-auto dark:text-slate-300'>
               If you ❤️ JSON Schema consider becoming a{' '}
               <a
-                href='https://opencollective.com/json-schema/contribute'
+                href='https://json-schema.org/overview/sponsors'
                 className='border-b border-black'
               >
                 sponsor
               </a>{' '}
               or a{' '}
               <a
-                href='https://opencollective.com/json-schema/contribute'
+                href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
                 className='border-b border-black '
               >
                 backer
