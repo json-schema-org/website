@@ -451,4 +451,3 @@ The specification links here link to the raw sources.  We do not provide rendere
 - [JSON Hyper-Schema Link Description Object meta-schema](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/links.json)
 - [JSON Schema Vocabulary meta-schemas](https://github.com/json-schema-org/json-hyperschema-spec/tree/main/meta/)
 - [JSON Schema Output schemas and examples](https://github.com/json-schema-org/json-hyperschema-spec/tree/main/output/)
-
