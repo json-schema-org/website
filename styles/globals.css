@@ -214,16 +214,3 @@ border-radius: 4px; */
     @apply dark:bg-slate-800 bg-white;
   }
 }
-
-.copyright-section {
-  color: white;
-  font-weight: normal;
-  font-family: Inter, uni-sans, system;
-  text-align: center;
-  position: relative;
-  margin: 0;
-  left: auto;
-  right: auto;
-  margin-inline-start: 0%;
-  margin-inline-end: 2%;
-}
