@@ -571,24 +571,20 @@ const Home = (props: any) => {
               </a>
             </p>
           </div>
-          <div className='text-center mb-12 '>
-            <h3 className='text-h4mobile md:text-h4 font-semibold mb-4 dark:text-slate-200'>
+          <div className=' text-center mb-12 '>
+            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Gold Sponsors
             </h3>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold dark:bg-[560bad] dark:border-none'>
-              <a href='/learn/getting-started-step-by-step '>
-                Add your logo here
-              </a>
+            <button className=' w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold dark:bg-[560bad] dark:border-none'>
+              <a href=''>Add your logo here</a>
             </button>
-            <h3 className='text-h4mobile md:text-h4 font-semibold mb-4 dark:text-slate-200'>
+            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
             </h3>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2text-white bg-gradient-to-br from-purple-600 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 font-semibold dark:bg-[560bad] dark:border-none'>
-              <a href='/learn/getting-started-step-by-step '>
-                Add your logo here
-              </a>
+            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold dark:bg-[560bad] dark:border-none'>
+              <a href=''>Add your logo here</a>
             </button>
-            <h3 className='text-h4mobile md:text-h4 font-semibold mb-4 dark:text-slate-200'>
+            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
@@ -611,9 +607,7 @@ const Home = (props: any) => {
                 <img src={vpsserver_logo} className=' w-44' />
               </a>
               <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold dark:bg-[560bad] dark:border-none'>
-                <a href='/learn/getting-started-step-by-step '>
-                  Add your logo here
-                </a>
+                <a href=''>Add your logo here</a>
               </button>
             </div>
           </div>
