@@ -98,7 +98,7 @@ const getReferencePath = [
   '/understanding-json-schema/reference/comments',
   '/understanding-json-schema/reference/conditionals',
   '/understanding-json-schema/reference/const',
-  '/understanding-json-schema/reference/enums',
+  '/understanding-json-schema/reference/enum',
   '/understanding-json-schema/reference/non_json_data',
   '/understanding-json-schema/reference/null',
   '/understanding-json-schema/reference/numeric',
@@ -153,7 +153,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               setOpen(!open);
             }}
           >
-            {pathWtihoutFragment === '/overview/what-is-jsonschema' && (
+            {getDocsPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Overview</h3>
             )}
             {getStartedPath.includes(pathWtihoutFragment) && (
