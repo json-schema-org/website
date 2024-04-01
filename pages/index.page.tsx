@@ -575,14 +575,49 @@ const Home = (props: any) => {
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Gold Sponsors
             </h3>
-            <button className=' w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold dark:bg-[560bad] dark:border-none'>
-              <a href=''>Add your logo here</a>
+            <button className='w-[310px] h-[180px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M12 4v16m8-8H4'
+                />
+              </svg>
+              <a
+                href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+                className='block'
+              >
+                Your logo here
+              </a>
             </button>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
             </h3>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold dark:bg-[560bad] dark:border-none'>
-              <a href=''>Add your logo here</a>
+            <button className='w-[200px] h-[120px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
+              >
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M12 4v16m8-8H4'
+                />
+              </svg>
+              <a href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
+                Your logo here
+              </a>
             </button>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
@@ -606,8 +641,24 @@ const Home = (props: any) => {
               <a href='https://www.vpsserver.com/en-us/'>
                 <img src={vpsserver_logo} className=' w-44' />
               </a>
-              <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary text-white font-semibold dark:bg-[560bad] dark:border-none'>
-                <a href=''>Add your logo here</a>
+              <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-6 w-6'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M12 4v16m8-8H4'
+                  />
+                </svg>
+                <a href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
+                  Your logo here
+                </a>
               </button>
             </div>
           </div>
