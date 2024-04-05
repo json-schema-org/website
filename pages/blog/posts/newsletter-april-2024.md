@@ -25,8 +25,8 @@ With this monthly newsletter we'd like to make sure that vital updates reach a w
 * We are so excited about having received **+70 applications** for our Google Summer of Code [projects](https://github.com/json-schema-org/community/blob/main/programs/mentoring/gsoc/gsoc-2024.md).
 * We have submitted [our application](https://github.com/orgs/json-schema-org/discussions/687) for Google Season of Docs and we are so excited to see if we are lucky enough to be selected this year.
 * We have shared with the Community an ambitious [1 year budget proposal](https://github.com/orgs/json-schema-org/discussions/692). A great step to improve transparency and sustainability. 
-* We are so excited to share that this year we'll be running the first ever [JSON Schema Conference](https://github.com/orgs/json-schema-org/discussions/690) as part of API Days Paris. Stay tuned for more updates!!
-* We are so pleased to announce [LLC.org](https://www.llc.org/) and [VPS Server](https://www.vpsserver.com/en-us/) as new Bronze Sponsors. Thanks for your support!!
+* This year we'll be running the first ever [JSON Schema Conference](https://github.com/orgs/json-schema-org/discussions/690) as part of API Days Paris. Stay tuned for more updates!!
+* We welcome [LLC.org](https://www.llc.org/) and [VPS Server](https://www.vpsserver.com/en-us/) as new Bronze Sponsors. Thanks for your support!!
 
 ## 🎯 Specification Development
 
