@@ -17,6 +17,7 @@ export type blogCategories =
   | 'Community'
   | 'Case Study'
   | 'Engineering'
+  | 'Newsletter'
   | 'Update'
   | 'Opinion';
 
@@ -56,6 +57,7 @@ function isValidCategory(category: any): category is blogCategories {
     'Community',
     'Case Study',
     'Engineering',
+    'Newsletter',
     'Update',
     'Opinion',
   ].includes(category);
