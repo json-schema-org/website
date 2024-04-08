@@ -37,7 +37,7 @@ export default function Event(props) {
               href={props.href}
               btnText={props.btnText}
             />
-            <br/>
+            <br />
             <Button
               class={props.btn2Class}
               href={props.href2}

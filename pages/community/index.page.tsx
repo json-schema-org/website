@@ -193,118 +193,117 @@ export default function communityPages(props: any) {
           </div>
           <div className='grid justify-center items-center gap-y-[10px]'>
             <div className='grid  justify-center mt-[50px] gap-y-[10px]'>
+              <div className='flex justify-start gap-x-[10px]'>
+                {orbitData[0].map((orbit, index) => (
+                  <>
+                    <img
+                      key={index} // Ensure each element has a unique key
+                      src={orbit.img}
+                      alt={orbit.alt}
+                      className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
+                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                    />
+                  </>
+                ))}
+              </div>
 
-            <div className='flex justify-start gap-x-[10px]'>
-              {orbitData[0].map((orbit, index) => (
-                <>
-                  <img
-                    key={index} // Ensure each element has a unique key
-                    src={orbit.img}
-                    alt={orbit.alt}
-                    className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
+              <div className='flex justify-start gap-x-[10px]'>
+                {orbitData[1].map((orbit, index) => (
+                  <>
+                    <img
+                      key={index} // Ensure each element has a unique key
+                      src={orbit.img}
+                      alt={orbit.alt}
+                      className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
                     // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
-                </>
-              ))}
-            </div>
-            
-            <div className='flex justify-start gap-x-[10px]'>
-              {orbitData[1].map((orbit, index) => (
-                <>
-                  <img
-                    key={index} // Ensure each element has a unique key
-                    src={orbit.img}
-                    alt={orbit.alt}
-                    className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
+                  </>
+                ))}
+              </div>
+              <div className='flex justify-start gap-x-[10px]'>
+                {orbitData[2].map((orbit, index) => (
+                  <>
+                    <img
+                      key={index} // Ensure each element has a unique key
+                      src={orbit.img}
+                      alt={orbit.alt}
+                      className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
                     // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
-                </>
-              ))}
-            </div>
-            <div className='flex justify-start gap-x-[10px]'>
-              {orbitData[2].map((orbit, index) => (
-                <>
-                  <img
-                    key={index} // Ensure each element has a unique key
-                    src={orbit.img}
-                    alt={orbit.alt}
-                    className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
+                  </>
+                ))}
+              </div>
+
+              <div className='flex justify-start gap-x-[10px]'>
+                {orbitData[3].map((orbit, index) => (
+                  <>
+                    <img
+                      key={index} // Ensure each element has a unique key
+                      src={orbit.img}
+                      alt={orbit.alt}
+                      className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
                     // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
-                </>
-              ))}
-            </div>
-            
-            <div className='flex justify-start gap-x-[10px]'>
-              {orbitData[3].map((orbit, index) => (
-                <>
-                  <img
-                    key={index} // Ensure each element has a unique key
-                    src={orbit.img}
-                    alt={orbit.alt}
-                    className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
+                  </>
+                ))}
+              </div>
+              <div className='flex justify-start gap-x-[10px]'>
+                {orbitData[4].map((orbit, index) => (
+                  <>
+                    <img
+                      key={index} // Ensure each element has a unique key
+                      src={orbit.img}
+                      alt={orbit.alt}
+                      className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
                     // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
-                </>
-              ))}
-            </div>
-            <div className='flex justify-start gap-x-[10px]'>
-              {orbitData[4].map((orbit, index) => (
-                <>
-                  <img
-                    key={index} // Ensure each element has a unique key
-                    src={orbit.img}
-                    alt={orbit.alt}
-                    className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
+                  </>
+                ))}
+              </div>
+
+              <div className='flex justify-start gap-x-[10px]'>
+                {orbitData[5].map((orbit, index) => (
+                  <>
+                    <img
+                      key={index} // Ensure each element has a unique key
+                      src={orbit.img}
+                      alt={orbit.alt}
+                      className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
                     // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
-                </>
-              ))}
-            </div>
-            
-            <div className='flex justify-start gap-x-[10px]'>
-              {orbitData[5].map((orbit, index) => (
-                <>
-                  <img
-                    key={index} // Ensure each element has a unique key
-                    src={orbit.img}
-                    alt={orbit.alt}
-                    className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
+                  </>
+                ))}
+              </div>
+              <div className='flex justify-start gap-x-[10px]'>
+                {orbitData[6].map((orbit, index) => (
+                  <>
+                    <img
+                      key={index} // Ensure each element has a unique key
+                      src={orbit.img}
+                      alt={orbit.alt}
+                      className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
                     // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
-                </>
-              ))}
-            </div>
-            <div className='flex justify-start gap-x-[10px]'>
-              {orbitData[6].map((orbit, index) => (
-                <>
-                  <img
-                    key={index} // Ensure each element has a unique key
-                    src={orbit.img}
-                    alt={orbit.alt}
-                    className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
+                  </>
+                ))}
+              </div>
+
+              <div className='flex justify-start gap-x-[10px]'>
+                {orbitData[7].map((orbit, index) => (
+                  <>
+                    <img
+                      key={index} // Ensure each element has a unique key
+                      src={orbit.img}
+                      alt={orbit.alt}
+                      className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
                     // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
-                </>
-              ))}
-            </div>
-            
-            <div className='flex justify-start gap-x-[10px]'>
-              {orbitData[7].map((orbit, index) => (
-                <>
-                  <img
-                    key={index} // Ensure each element has a unique key
-                    src={orbit.img}
-                    alt={orbit.alt}
-                    className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
-                    />
-                </>
-              ))}
+                  </>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-            </div>
         <section className='mt-10'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4  w-8/12 sm:w-8/12 md:w-10/12 lg:w-[70%] xl:w-[70%] m-auto'>
             <Coloumn
@@ -326,44 +325,44 @@ export default function communityPages(props: any) {
           </div>
         </section>
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-        <Card
-          headline='Thanking our JSON Schema Ambassadors'
-          title='Ambassador Programs'
-          description="Launch OSS community programs that your community is proud to
+          <Card
+            headline='Thanking our JSON Schema Ambassadors'
+            title='Ambassador Programs'
+            description="Launch OSS community programs that your community is proud to
             participate in. Let's build thriving OSS communities together!"
-          btnText='Become an ambassador'
-          href='/community/ambassadors'
-          className='bg-ambassador'
-        />
-        {/* </div> */}
+            btnText='Become an ambassador'
+            href='/community/ambassadors'
+            className='bg-ambassador'
+          />
+          {/* </div> */}
 
-        {/* <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'> */}
-        <Card
-          headline='Join the JSON Schema Slack Workspace!'
-          title='Slack Community'
-          description='Join our Slack to ask questions, get feedback on your
+          {/* <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'> */}
+          <Card
+            headline='Join the JSON Schema Slack Workspace!'
+            title='Slack Community'
+            description='Join our Slack to ask questions, get feedback on your
              projects, and connect with +5000 practitioners and experts.'
-          btnText='Join Slack'
-          href='https://json-schema.slack.com/ssb/redirect'
-          className='bg-slack'
-        />
+            btnText='Join Slack'
+            href='https://json-schema.slack.com/ssb/redirect'
+            className='bg-slack'
+          />
         </div>
 
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-        <Event
-          headline='JSON Schema Community Meetings & Events'
-          title='Join Meetings'
-          description='We hold monthly Office Hours and weekly Open Community Working
+          <Event
+            headline='JSON Schema Community Meetings & Events'
+            title='Join Meetings'
+            description='We hold monthly Office Hours and weekly Open Community Working
             Meetings. Office Hours are every first Tuesday of the month at
             15:00 BST, and by appointment. Open Community Working Meetings
             are every Monday at 14:00 PT.'
-          btnText='Open Community Working Meetings'
-          href='https://github.com/orgs/json-schema-org/discussions/35'
-          btn2Class='mt-2'
-          btnText2='Office Hours'
-          href2='https://github.com/orgs/json-schema-org/discussions/34/'
-          className='bg-meeting'
-        />
+            btnText='Open Community Working Meetings'
+            href='https://github.com/orgs/json-schema-org/discussions/35'
+            btn2Class='mt-2'
+            btnText2='Office Hours'
+            href2='https://github.com/orgs/json-schema-org/discussions/34/'
+            className='bg-meeting'
+          />
         </div>
         <div className='mx-auto mt-20'>
           <Heading
@@ -415,4 +414,3 @@ export default function communityPages(props: any) {
 }
 
 communityPages.getLayout = getLayout;
-
