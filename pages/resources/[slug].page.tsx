@@ -87,11 +87,11 @@ export default function ResourcePageComponent({ data }: { data: DataProps }) {
                 href={item.url}
                 target='_blank'
                 rel='noreferrer'
-                className='text-xl text-blue-500 underline mb-2'
+                className='text-[14px] text-blue-500 underline mb-2'
               >
                 {item.title}
               </a>
-              <p className='mt-2'>{item.summary}</p>
+              <p className='text-[14px] mt-2'>{item.summary}</p>
             </div>
           ))}
       </div>
