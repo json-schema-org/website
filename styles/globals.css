@@ -201,7 +201,7 @@ border-radius: 4px; */
   margin-bottom: 20px;
 }
 
-.anchor #community {
+.anchor community {
   position: absolute;
   left: 0;
   top: -35px;
@@ -211,6 +211,53 @@ border-radius: 4px; */
 .mt-custom {
   margin-top: 4.4rem;
 }
+
+/**/
+.title {
+  line-height: 0.9;
+  font-size: 60px;
+} 
+
+.top-12 {
+  top: 48px;
+} 
+
+.bg-ambassador {
+  background-image: url(/img/avatars/benhutton.webp);
+}
+
+.bg-slack {
+  background-image: url(/img/home-page/slack.png);
+}
+
+.bg-meeting {
+  background-image: url(/img/event/meet.png);
+}
+
+.bg-blog {
+  background-image: url(/img/event/Json-Schema-Blog.png);
+}
+
+.bg-index-0{
+  background-color: #a5b4fc8a;
+}
+
+.bg-index-1{
+  background-color: #fca5a582;
+}
+
+.bg-index-2{
+  background-color: #fdbb7483;
+}
+
+.bg-index-3{
+  background-color: #86efad85;
+}
+
+.bg-index-4{
+  background-color: #fddf4784;
+}
+
 
 
 @layer base{
