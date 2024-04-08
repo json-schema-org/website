@@ -75,7 +75,7 @@ const getDocsPath = [
   '/overview/welcome',
   '/overview/what-is-jsonschema',
   '/overview/sponsors',
-  '/overview/casestudies',
+  '/overview/case-studies',
   '/overview/similar-technologies',
   '/overview/use-cases',
   '/overview/code-of-conduct',
@@ -336,15 +336,19 @@ export const DocsNav = () => {
           id='overview'
         >
           <DocLink uri='/overview/welcome' label='Welcome' />
+          <DocLink
+            uri='/overview/what-is-jsonschema'
+            label='What is JSON Schema?'
+          />
           <DocLink uri='/overview/sponsors' label='Sponsors' />
-          <DocLink uri='/overview/casestudies' label='Case Studies' />
+          <DocLink uri='/overview/use-cases' label='Use Cases' />
+          <DocLink uri='/overview/case-studies' label='Case Studies' />
+          <DocLink uri='/overview/faq' label='FAQ' />
           <DocLink
             uri='/overview/similar-technologies'
             label='Similar Technologies'
           />
-          <DocLink uri='/overview/use-cases' label='Use Cases' />
           <DocLink uri='/overview/code-of-conduct' label='Code of Conduct' />
-          <DocLink uri='/overview/faq' label='FAQ' />
         </div>
       </div>
       {/* Get Started */}
@@ -379,10 +383,6 @@ export const DocsNav = () => {
           className={classnames('ml-6', { hidden: !active.getStarted })}
           id='getStarted'
         >
-          <DocLink
-            uri='/overview/what-is-jsonschema'
-            label='What is JSON Schema?'
-          />
           <DocLink
             uri='/learn/getting-started-step-by-step'
             label='Creating your first schema'
@@ -619,7 +619,7 @@ export const DocsNav = () => {
               alt='eye icon'
               className='mr-2 w-6'
             />
-            <SegmentHeadline label='Resources' />
+            <SegmentHeadline label='Other Resources' />
           </div>
           <svg
             id='arrow'

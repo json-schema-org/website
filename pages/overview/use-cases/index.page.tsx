@@ -29,7 +29,6 @@ export default function Content() {
             key={index}
             title={element.title}
             body={element.summary}
-            link={element.links.url}
             headerSize={'medium'}
             bodyTextSize={'small'}
           />

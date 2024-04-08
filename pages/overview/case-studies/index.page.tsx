@@ -3,7 +3,7 @@ import { getLayout } from '~/components/Sidebar';
 import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
-import data from 'data/casestudies.json';
+import data from 'data/case-studies.json';
 import Card from '~/components/Card';
 
 export default function ContentExample() {

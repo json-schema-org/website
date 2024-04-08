@@ -48,6 +48,16 @@ export default function Welcome() {
         url: '/specification',
       },
     },
+    {
+      title: 'Other Resources',
+      summary:
+        'Deserunt et fugiat do adipisicing enim in nostrud Lorem anim ut amet enim.',
+      logo: '/icons/bookshelf.svg',
+      links: {
+        lang: 'URL1',
+        url: '/resources/books',
+      },
+    },
   ];
   return (
     <SectionContext.Provider value='docs'>
