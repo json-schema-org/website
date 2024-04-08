@@ -266,7 +266,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             th: {
               component: ({ children }) => (
-                <th className='border border-slate-300 p-4 font-semibold'>
+                <th className='border border-slate-300 p-4 font-semibold text-black'>
                   {children}
                 </th>
               ),
@@ -295,7 +295,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] max-w-screen-sm lg:max-w-[800px] xl:max-w-[900px]'>
+                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
                   {/* definitely not the best way to prevent overflowing. found no better way that worked */}
                   <Highlight
                     language={language}
