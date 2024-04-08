@@ -224,12 +224,14 @@ const Home = (props: any) => {
               </Link>
 
               <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white bg-primary mx-auto dark:shadow-2xl'>
-                <DocSearch
-                  appId='6ZT4KX2OUI'
-                  apiKey='69f76fba13585144f6686622e9c8f2a8'
-                  indexName='json-schema'
-                />
-                <p>Search</p>
+                <div className='flex flex-row justify-center items-center mr-4 '>
+                  <DocSearch
+                    appId='6ZT4KX2OUI'
+                    apiKey='69f76fba13585144f6686622e9c8f2a8'
+                    indexName='json-schema'
+                  />
+                  <p>Search</p>
+                </div>
               </div>
             </div>
 
