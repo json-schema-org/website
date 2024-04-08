@@ -32,7 +32,7 @@ function BlogCard(props) {
         </div>
       </Link>
       <div className='mx-auto '>
-        <Button class={'mt-4'} href={props.href} btnText={`Read more`} />
+        <Button class={'mt-4'} href={props.href} btnText={'Read more'} />
       </div>
     </div>
   );
