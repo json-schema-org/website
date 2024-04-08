@@ -201,7 +201,7 @@ export default function communityPages(props: any) {
                       src={orbit.img}
                       alt={orbit.alt}
                       className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                      // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
                   </>
                 ))}
@@ -215,7 +215,7 @@ export default function communityPages(props: any) {
                       src={orbit.img}
                       alt={orbit.alt}
                       className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                      // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
                   </>
                 ))}
@@ -228,7 +228,7 @@ export default function communityPages(props: any) {
                       src={orbit.img}
                       alt={orbit.alt}
                       className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                      // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
                   </>
                 ))}
@@ -242,7 +242,7 @@ export default function communityPages(props: any) {
                       src={orbit.img}
                       alt={orbit.alt}
                       className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                      // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
                   </>
                 ))}
@@ -255,7 +255,7 @@ export default function communityPages(props: any) {
                       src={orbit.img}
                       alt={orbit.alt}
                       className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                      // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
                   </>
                 ))}
@@ -269,7 +269,7 @@ export default function communityPages(props: any) {
                       src={orbit.img}
                       alt={orbit.alt}
                       className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                      // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
                   </>
                 ))}
@@ -282,7 +282,7 @@ export default function communityPages(props: any) {
                       src={orbit.img}
                       alt={orbit.alt}
                       className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                      // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
                   </>
                 ))}
@@ -296,7 +296,7 @@ export default function communityPages(props: any) {
                       src={orbit.img}
                       alt={orbit.alt}
                       className='orbit-img w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full'
-                    // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
+                      // data-testid={`Hero-img-${index}`} // Ensure each img has a unique data-testid
                     />
                   </>
                 ))}
