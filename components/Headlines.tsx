@@ -40,7 +40,7 @@ const Headline = ({
   attributes?: Record<string, any>;
 }) => {
   const router = useRouter();
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState<boolean>(false);
   const asPath = router.asPath;
   const slug = slugifyMarkdownHeadline(children as any[]);
 
