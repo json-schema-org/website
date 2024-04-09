@@ -486,7 +486,7 @@ const Home = (props: any) => {
                   </button>
                 </div>
               </div>
-              <div>
+              <div className='p-2'>
                 <div>
                   <Headline4>Upcoming events</Headline4>
                   <div>
