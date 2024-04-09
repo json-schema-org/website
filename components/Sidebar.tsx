@@ -65,7 +65,7 @@ const DocLinkBlank = ({
     <Link
       href={uri}
       className={classnames('text-sm block  py-1 pl-2', {
-        '  font-medium': !isActive,
+        'font-medium': !isActive,
         'text-primary text-bold border-l-2 border-l-primary font-semibold':
           isActive,
       })}
@@ -159,9 +159,9 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
-        <div className='bg-primary w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-between items-center lg:hidden'>
+        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center  lg:hidden '>
           <div
-            className='z-[150] flex w-full bg-primary justify-between items-center mt-2'
+            className='z-[150] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
@@ -170,7 +170,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             }}
           >
             {getDocsPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Overview</h3>
+              <h3 className='text-white  ml-12'>Overview</h3>
             )}
             {getStartedPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Getting Started</h3>
@@ -208,9 +208,9 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         <div
-          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}
+          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}
         >
-          <div className='flex flex-col mt-4'>
+          <div className='flex flex-col  dark:bg-slate-900'>
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
@@ -303,8 +303,8 @@ export const DocsNav = ({
   }, [theme]);
 
   return (
-    <div id='sidebar ' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
+    <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
+      <div className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickDoc}
@@ -362,7 +362,7 @@ export const DocsNav = ({
       </div>
       {/* Get Started */}
 
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickGet}
@@ -423,7 +423,7 @@ export const DocsNav = ({
       </div>
       {/* Reference */}
 
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white shadow-lg  lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickReference}
@@ -606,7 +606,7 @@ export const DocsNav = ({
       </div>
       {/* Specification */}
 
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickSpec}
