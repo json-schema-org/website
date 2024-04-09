@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import { useRouter } from 'next/router';
@@ -40,33 +40,46 @@ const Headline = ({
   attributes?: Record<string, any>;
 }) => {
   const router = useRouter();
+  const [isActive, setIsActive] = useState<boolean>(false);
   const asPath = router.asPath;
   const slug = slugifyMarkdownHeadline(children as any[]);
+
+  useEffect(() => {
+    const hashIndex = asPath.indexOf('#');
+    const slugFromPath = hashIndex !== -1 ? asPath.slice(hashIndex + 1) : null;
+
+    setIsActive(slug === slugFromPath);
+  }, [router.asPath]);
+
+  const handleHeadingClick = () => {
+    const url = new URL(asPath, HOST);
+    const newHash = `#${slug}`;
+    url.hash = newHash;
+
+    const urlString = url.toString().substr(HOST.length, Infinity);
+    router.push(urlString, undefined, { shallow: true });
+    setIsActive(true);
+  };
 
   const attributes = {
     ...propAttributes,
     id: propAttributes?.slug || slug,
     className: classnames(
       'group cursor-pointer hover:underline',
+      { 'text-startBlue dark:text-endBlue': isActive },
       propAttributes?.className,
     ),
-    onClick: () => {
-      const url = new URL(asPath, HOST);
-      // recalculation necessary because of scope issue
-      const slug = slugifyMarkdownHeadline(children as any[]);
-      url.hash = `#${slug}`;
-
-      const urlString = url.toString().substr(HOST.length, Infinity);
-      window.location.href = urlString;
-    },
+    onClick: handleHeadingClick,
   };
   const childredWithoutFragment = filterFragment(children);
   return (
     <Tag attributes={attributes}>
       {childredWithoutFragment}
-      <span className='text-slate-300 inline-block ml-2 opacity-0 group-hover:opacity-100'>
-        ¶
-      </span>
+      {isActive && (
+        <span className={'text-startBlue dark:text-endBlue inline-block ml-2'}>
+          ¶
+        </span>
+      )}
     </Tag>
   );
 };
