@@ -225,7 +225,7 @@ border-radius: 4px; */
 
 @layer base{
   body {
-      @apply dark:bg-slate-800 bg-white
+      @apply dark:bg-slate-800 bg-white;
   }
 }
 
