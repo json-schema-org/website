@@ -66,7 +66,7 @@ const Headline = ({
     id: propAttributes?.slug || slug,
     className: classnames(
       'group cursor-pointer hover:underline',
-      { 'text-startBlue': isActive },
+      { 'text-startBlue dark:text-endBlue': isActive },
       propAttributes?.className,
     ),
     onClick: handleHeadingClick,
@@ -76,7 +76,9 @@ const Headline = ({
     <Tag attributes={attributes}>
       {childredWithoutFragment}
       {isActive && (
-        <span className={'text-startBlue inline-block ml-2'}>¶</span>
+        <span className={'text-startBlue dark:text-endBlue inline-block ml-2'}>
+          ¶
+        </span>
       )}
     </Tag>
   );
