@@ -35,13 +35,13 @@ For links to the somewhat more readably formatted versions on this web site, and
       <td>
         <small><i>(TBD)</i></small>
       </td>
-	  <td>
+    <td>
         <small><i>(TBD)</i></small>
       </td>
-	  <td>
+    <td>
         <small><i>(TBD)</i></small>
       </td>
-	   <td>
+     <td>
         <small>Milestone:
         <a href="https://github.com/json-schema-org/json-schema-spec/milestone/7">
           Draft 2021-NN
@@ -50,10 +50,10 @@ For links to the somewhat more readably formatted versions on this web site, and
       </td>
     </tr>
     <tr>
-	    <td rowspan="3">
+      <td rowspan="3">
         Draft 2020-12
       </td>
-	    <td rowspan="3">
+      <td rowspan="3">
          <small>16-June-2022</small>
       </td>
       <td rowspan="3">
@@ -92,13 +92,13 @@ For links to the somewhat more readably formatted versions on this web site, and
       </td>
     </tr>
     <tr>
-	    <td>
+      <td>
         Draft 2019-09
       </td>
-		  <td>
-	    <small>
+      <td>
+      <small>
         17-September-2019
-		  </small>
+      </small>
       </td>
       <td>
         <small>2019-09</small>
@@ -124,13 +124,13 @@ For links to the somewhat more readably formatted versions on this web site, and
       </td>
     </tr>
     <tr>
-	  <td rowspan="3">
+    <td rowspan="3">
         Draft 7
       </td>
-	    <td rowspan="3">
-	      <small>
+      <td rowspan="3">
+        <small>
           19-March-2018
-		    </small>
+        </small>
       </td>
       <td rowspan="3">
         <small>draft-07</small>
@@ -181,9 +181,9 @@ For links to the somewhat more readably formatted versions on this web site, and
         Draft 6
       </td>
       <td>
-	      <small>
+        <small>
           21-April-2017
-		    </small>
+        </small>
       </td>
       <td>
         <small>draft-06</small>
@@ -210,12 +210,12 @@ For links to the somewhat more readably formatted versions on this web site, and
       <td>
         Draft 5
       </td>
-	    <td>
-		    <small>
+      <td>
+        <small>
           13-October-2016
-		    </small>
+        </small>
       </td>
-	   <td rowspan="2">
+     <td rowspan="2">
         <small>draft-04</small>
       </td>
       <td>
@@ -241,10 +241,10 @@ For links to the somewhat more readably formatted versions on this web site, and
       <td>
         Draft 4
       </td>
-	    <td>
-	      <small>
+      <td>
+        <small>
           31-January-2013
-	  	  </small>
+        </small>
       </td>
       <td>
         <small><a href="../draft-04/draft-zyp-json-schema-04.html">
@@ -274,9 +274,9 @@ For links to the somewhat more readably formatted versions on this web site, and
         Draft 3
       </td>
       <td>
-	      <small>
+        <small>
           22-November-2010
-		    </small>
+        </small>
       </td>
       <td>
         <small>draft-03</small>
@@ -293,9 +293,9 @@ For links to the somewhat more readably formatted versions on this web site, and
         Draft 2
       </td>
       <td>
-	      <small>
+        <small>
           23-March-2010
-		    </small>
+        </small>
       </td>
       <td>
         <small>draft-02</small>
@@ -311,9 +311,9 @@ For links to the somewhat more readably formatted versions on this web site, and
         Draft 1
       </td>
       <td>
-	      <small>
+        <small>
           05-December-2009
-		    </small>
+        </small>
       </td>
       <td>
         <small>draft-01</small>
@@ -322,7 +322,7 @@ For links to the somewhat more readably formatted versions on this web site, and
         <small><a href="../draft-01/draft-zyp-json-schema-01.html">
           draft-zyp-json-schema-01
         </a></small>
-		</td>
+    </td>
       <td></td>
     </tr>
     <tr>
@@ -331,8 +331,8 @@ For links to the somewhat more readably formatted versions on this web site, and
       </td>
       <td>
         <small>
-		      05-December-2009
-		    </small>
+          05-December-2009
+        </small>
       </td>
       <td>
         <small>draft-00</small></td>
