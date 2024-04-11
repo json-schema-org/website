@@ -548,7 +548,7 @@ The `required` keyword takes an array of zero or more strings. Each of
 these strings must be unique.
 
 <Infobox label="Draft-specific info">
-In [Draft](../../learn/glossary#draft) 4, `required` must contain at least one string.
+In Draft 4, `required` must contain at least one string.
 </Infobox>
 
 In the following example schema defining a user record, we require that
