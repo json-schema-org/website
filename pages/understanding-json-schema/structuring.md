@@ -125,7 +125,7 @@ the base URI for the schema.
 [tabs-start "Draft-specific info"]
 
 [tab "Draft 4"]
-In [Draft](../learn/glossary#draft) 4, `$id` is just `id` (without the dollar sign).
+In Draft 4, `$id` is just `id` (without the dollar sign).
 [tab "Draft 4-7"]
 In Draft 4-7 it was allowed to have fragments in an `$id` (or
 `id` in Draft 4). However, the behavior when setting a base URI
