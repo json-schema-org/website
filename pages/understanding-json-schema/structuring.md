@@ -215,11 +215,10 @@ identifies the highlighted subschema in the following schema.
   "$id": "https://example.com/schemas/address",
   "type": "object",
   "properties": {
-    "street_address":
-       { "type": "string" },
-       "city": { "type": "string" },
-       "state": { "type": "string" }
-    },
+    "street_address": { "type": "string" },
+    "city": { "type": "string" },
+    "state": { "type": "string" }
+  },
   "required": ["street_address", "city", "state"]
 }
 ```
@@ -263,10 +262,7 @@ the subschema on the highlighted part of the following schema.
   "$id": "https://example.com/schemas/address",
   "type": "object",
   "properties": {
-    "street_address":
-     {
-       "$anchor": "street_address", "type": "string"
-     },
+    "street_address": { "$anchor": "street_address", "type": "string" },
     "city": { "type": "string" },
     "state": { "type": "string" }
   }, 
