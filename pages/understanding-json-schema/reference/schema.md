@@ -37,7 +37,7 @@ time, you\'ll want this at the root of your schema:
 [tabs-start "Draft-specific info"]
 
 [tab "Draft 4"]
-The identifier for [Draft](../../learn/glossary#draft) 4 is ``http://json-schema.org/draft-04/schema#``.
+The identifier for Draft 4 is ``http://json-schema.org/draft-04/schema#``.
 
 Draft 4 defined a value for ``$schema`` without a specific dialect
 (``http://json-schema.org/schema#``) which meant, use the latest
