@@ -3,8 +3,8 @@ title: "Declaring a Dialect"
 section: docs
 ---
 
-A version of JSON Schema is called a dialect. A dialect represents the
-set of keywords and semantics that can be used to evaluate a schema.
+A version of JSON Schema is called a [dialect](../../learn/glossary#dialect). A dialect represents the
+set of [keywords](../../learn/glossary#keyword) and semantics that can be used to evaluate a schema.
 Each JSON Schema release is a new dialect of JSON Schema. JSON Schema
 provides a way for you to declare which dialect a schema conforms to and
 provides ways to describe your own custom dialects.
@@ -17,17 +17,17 @@ The `$schema` keyword is used to declare which dialect of JSON Schema
 the schema was written for. The value of the `$schema` keyword is also
 the identifier for a schema that can be used to verify that the schema
 is valid according to the dialect `$schema` identifies. A schema that
-describes another schema is called a \"meta-schema\".
+describes another schema is called a [\"meta-schema\"](../../learn/glossary#meta-schema).
 
 `$schema` applies to the entire document and must be at the root level.
 It does not apply to externally referenced (`$ref`, `$dynamicRef`)
 documents. Those schemas need to declare their own `$schema`.
 
-If `$schema` is not used, an implementation might allow you to specify a
+If `$schema` is not used, an [implementation](../../learn/glossary#implementation) might allow you to specify a
 value externally or it might make assumptions about which specification
 version should be used to evaluate the schema. It\'s recommended that
 all JSON Schemas have a `$schema` keyword to communicate to readers and
-tooling which specification version is intended. Therefore most of the
+[tooling](../../learn/glossary#tooling) which specification version is intended. Therefore most of the
 time, you\'ll want this at the root of your schema:
 
 ```

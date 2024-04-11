@@ -7,7 +7,7 @@ section: docs
 
 <Star label="New in draft 7" />
 
-JSON schema has a set of keywords to describe and optionally validate
+JSON schema has a set of [keywords](../../learn/glossary#keyword) to describe and optionally validate
 non-JSON data stored inside JSON strings. Since it would be difficult to
 write validators for many media types, JSON schema validators are not
 required to validate the contents of JSON strings based on these
