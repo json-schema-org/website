@@ -91,7 +91,7 @@ ignore) the appropriate `$schema` value, and interpret the keywords that they
 do support according to that draft.
 
 For example, if a generator that was originally written for draft-04 does not
-support `id`, `exclusiveMinimum`, or `exclusiveMaxium`, then as long as it does
+support `id`, `exclusiveMinimum`, or `exclusiveMaximum`, then as long as it does
 not require a draft-04 `$schema`, it is compatible with draft-06 since those
 are the only keywords that changed.
 
