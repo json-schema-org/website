@@ -267,7 +267,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             th: {
               component: ({ children }) => (
-                <th className='border border-slate-300 dark:text-white p-4 font-semibold text-black'>
+                <th className='border border-slate-300 dark:text-white p-4 dark:bg-slate-900 font-semibold text-black'>
                   {children}
                 </th>
               ),
