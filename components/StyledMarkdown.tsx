@@ -266,7 +266,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             th: {
               component: ({ children }) => (
-                <th className='border border-slate-300 dark:text-white p-4 font-semibold text-black'>
+                <th className='border border-slate-300 p-4 font-semibold text-black'>
                   {children}
                 </th>
               ),
@@ -494,7 +494,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 const fullMarkdown = useContext(FullMarkdownContext);
                 if (!fullMarkdown) return null;
                 return (
-                  <div className='text-blue-500 mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 px-3 rounded-l border-l-blue-400 border-l-[3px]'>
+                  <div className='text-blue-500 mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 pr-3 rounded-l border-l-blue-400 border-l-[3px]'>
                     <TableOfContentMarkdown
                       markdown={fullMarkdown}
                       depth={depth}
@@ -529,8 +529,9 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 text-sm leading-4 text-slate-700 hover:text-blue-500'
+                  className='block cursor-pointer mb-3 text-sm leading-4 ml-[-0.40rem] text-slate-700 font-bold hover:text-blue-500'
                 >
+                  <span className='mr-1'>&#9675;</span>
                   {children}
                 </a>
               );
@@ -542,8 +543,9 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 text-sm leading-4 ml-3 hover:text-blue-500'
+                  className='block cursor-pointer mb-3 font-bold text-sm leading-4 ml-[-0.40rem] font-bold hover:text-blue-500'
                 >
+                  <span className='mr-1'>&#9675;</span>
                   {children}
                 </a>
               );
@@ -553,34 +555,38 @@ export function TableOfContentMarkdown({
           h3:
             depth >= 3
               ? {
-                  component: ({ children }) => {
-                    const slug = slugifyMarkdownHeadline(children);
-                    return (
-                      <a
-                        href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-sm leading-4 ml-7 hover:text-blue-500'
-                      >
-                        {children}
-                      </a>
-                    );
-                  },
-                }
+                component: ({ children }) => {
+                  const slug = slugifyMarkdownHeadline(children);
+                  return (
+                    <a
+                      href={`#${slug}`}
+                      className='block cursor-pointer mb-3 text-sm leading-4 ml-[-0.15rem] hover:text-blue-500'
+                    >
+                      <span className='mr-1'>&#8212;</span>
+                      {children}
+                    </a>
+                  );
+                },
+              }
               : { component: () => null },
           h4:
             depth >= 4
               ? {
-                  component: ({ children }) => {
-                    const slug = slugifyMarkdownHeadline(children);
-                    return (
-                      <a
-                        href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-sm leading-4 ml-10 hover:text-blue-500'
-                      >
-                        {children}
-                      </a>
-                    );
-                  },
-                } /* eslint-enable */
+                component: ({ children }) => {
+                  const slug = slugifyMarkdownHeadline(children);
+                  return (
+                    <a
+                      href={`#${slug}`}
+                      className='block cursor-pointer mb-3 text-sm leading-4 ml-[-0.15rem] hover:text-blue-500'
+                    >
+                      <span className='mr-1'>&#8212;</span>
+                      <span className='ml-[-0.25rem] mr-1'>&#8212;</span>
+                      <span className='ml-[-0.25rem] mr-1'>&#8212;</span>
+                      {children}
+                    </a>
+                  );
+                },
+              } /* eslint-enable */
               : { component: () => null },
           ...hiddenElements(
             'strong',
