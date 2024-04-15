@@ -531,7 +531,7 @@ export function TableOfContentMarkdown({
                   href={`#${slug}`}
                   className='block cursor-pointer mb-3 text-sm leading-4 ml-[-0.40rem] text-slate-700 font-bold hover:text-blue-500'
                 >
-                  <span className='mr-1 text-blue-400'>&#9675;</span>
+                  <span className='mr-1 text-blue-400' style={{ fontSize: '1.5em' }}>&#9679;</span>
                   {children}
                 </a>
               );
@@ -545,7 +545,7 @@ export function TableOfContentMarkdown({
                   href={`#${slug}`}
                   className='block cursor-pointer mb-3 font-bold text-sm leading-4 ml-[-0.40rem] font-bold hover:text-blue-500'
                 >
-                  <span className='mr-1 text-blue-400'>&#9675;</span>
+                  <span className='mr-1 text-blue-400' style={{ fontSize: '1.5em' }}>&#9679;</span>
                   {children}
                 </a>
               );
