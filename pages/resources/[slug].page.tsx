@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import fs from 'fs';
 import yaml from 'js-yaml';
 import { getLayout } from '~/components/Sidebar';
 import Head from 'next/head';
@@ -101,13 +101,10 @@ export default function ResourcePageComponent({ data }: { data: DataProps }) {
 
 const fetchResourceData = async (slug: string) => {
   try {
-    const apiUrl =
-      'https://raw.githubusercontent.com/sourcemeta/awesome-jsonschema/master/data.yaml';
-    const response = await axios.get(apiUrl);
-    const parsedData = yaml.load(response.data);
+    const data = yaml.load(fs.readFileSync('data/resources.yml', 'utf8'));
     return {
       slug,
-      data: parsedData,
+      data: data,
     };
   } catch (error) {
     console.error('Error fetching data');
