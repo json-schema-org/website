@@ -183,18 +183,17 @@ additional items in a tuple beyond what is defined in `prefixItems`. The
 value of the `items` keyword is a schema that all additional items must
 pass in order for the keyword to validate.
 
-[tabs-start "Draft-specific info"]
-
-[tab "Draft 4 - 2019-09"]
+<Infobox label="Draft 4 - 2019-09">
 Before to Draft 2020-12, you would use the `additionalItems`
 keyword to constrain additional items on a tuple. It works the same
 as `items`, only the name has changed.
-[tab "Draft 6 - 2019-09"]
+</Infobox>
+
+<Infobox label="Draft 6 - 2019-09">
 In Draft 6 - 2019-09, the `additionalItems` keyword is ignored if
 there is not a "tuple validation" `items` keyword present in the
 same schema.
-
-[tabs-end]
+</InfoBox>
 
 Here, we\'ll reuse the example schema above, but set `items` to `false`,
 which has the effect of disallowing extra items in the tuple.
