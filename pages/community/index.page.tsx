@@ -467,10 +467,10 @@ export default function communityPages(props: any) {
                     src={blogPosts[0].frontmatter.cover}
                     className='w-full h-[232px]  mb-4'
                   />
-                  <h3 className='mb-4 font-semibold'>
+                  <h3 className='mb-4 font-semibold dark:text-black'>
                     {blogPosts[0].frontmatter.title}
                   </h3>
-                  <div className='mb-4 text-[14px]'>
+                  <div className='mb-4 text-[14px] dark:text-black'>
                     <TextTruncate
                       element='span'
                       line={4}
@@ -485,7 +485,7 @@ export default function communityPages(props: any) {
                       }}
                     />
                     <div className='flex flex-col ml-2'>
-                      <p className='text-sm font-semibold'>
+                      <p className='text-sm font-semibold dark:text-black'>
                         {blogPosts[0].frontmatter.authors[0].name}
                       </p>
                       <div className='text-slate-500 text-sm'>

@@ -49,7 +49,7 @@ const CardBody = ({
       </div>
       <hr className='mb-4 mt-3.5 h-px border-0 bg-gray-400' />
       <p
-        className={`mb-8 mt-5 ${bodyTextSizeClasses[bodyTextSize || 'medium']} `}
+        className={`mb-8 dark:text-black mt-5 ${bodyTextSizeClasses[bodyTextSize || 'medium']} `}
       >
         <TextTruncate element='span' line={3} text={body} />
       </p>
