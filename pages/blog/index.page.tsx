@@ -209,7 +209,10 @@ export default function StaticMarkdownPage({
               key={tag}
               value={tag}
               onClick={handleClick}
-              className='bg-blue-100 hover:bg-blue-200 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm dark:bg-slate-700 dark:text-blue-100'
+              className={`cursor-pointer 
+			          font-semibold inline-block px-3 py-1 4
+			          rounded-full mb-4 mr-4 text-sm 
+			          ${currentFilterTag === tag ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100' : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'}`}
             >
               {tag}
             </button>
