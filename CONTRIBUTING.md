@@ -70,7 +70,7 @@ If you would like to contribute with designs, we encourage you to join `#design`
 
 ### ⌨️ Pull requests
 
-We welcome pull requests for editorial suggestions and for resolving open issues.
+We welcome pull requests for editorial suggestions and resolving open issues.
 
 If your pull request addresses a specific issue, please reference this issue in your pull request description using a [supported descriptor](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword). This helps automatically link and close the issue when the pull request is merged.
 
