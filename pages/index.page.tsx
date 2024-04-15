@@ -159,6 +159,33 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
 
   return arrayDates;
 }
+export function AlgoliaSearch() {
+  useEffect(() => {
+    const customButton = document.querySelector('.herobtn');
+    const docSearchButton = document.querySelector(
+      '.DocSearch-Button',
+    ) as HTMLButtonElement;
+
+    if (customButton && docSearchButton) {
+      customButton.addEventListener('click', () => {
+        docSearchButton.click();
+      });
+    }
+  }, []);
+
+  return (
+    <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white bg-primary mx-auto dark:shadow-2xl cursor-pointer'>
+      <div className='flex flex-row justify-center items-center mr-4'>
+        <DocSearch
+          appId='6ZT4KX2OUI'
+          apiKey='69f76fba13585144f6686622e9c8f2a8'
+          indexName='json-schema'
+        />
+        Search
+      </div>
+    </div>
+  );
+}
 const Home = (props: any) => {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
@@ -222,17 +249,7 @@ const Home = (props: any) => {
               >
                 Join Slack
               </Link>
-
-              <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white bg-primary mx-auto dark:shadow-2xl'>
-                <div className='flex flex-row justify-center items-center mr-4 '>
-                  <DocSearch
-                    appId='6ZT4KX2OUI'
-                    apiKey='69f76fba13585144f6686622e9c8f2a8'
-                    indexName='json-schema'
-                  />
-                  <p>Search</p>
-                </div>
-              </div>
+              <AlgoliaSearch />
             </div>
 
             <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
