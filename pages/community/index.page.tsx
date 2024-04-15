@@ -9,6 +9,7 @@ import readingTime from 'reading-time';
 import Link from 'next/link';
 import TextTruncate from 'react-text-truncate';
 import { GetStaticProps } from 'next';
+import Card from '~/components/Card';
 
 /* eslint-disable */
 import axios from 'axios';
@@ -175,24 +176,17 @@ export default function communityPages(props: any) {
               className='text-center flex justify-center flex-col items-center mt-10 md:mt-0 w-fit h-fit'
               data-testid='Header-hero-heading'
             >
-              <h6 className='bg-gradient-to-r from-startBlue from-1.95% to-endBlue bg-gradient-to-r from-startBlue to-endBlue text-transparent bg-clip-text font-bold font-heading text-heading-xs font-bold tracking-heading'>
-                JSON Schema Community
-              </h6>
               <div className='mt-8' data-testid='Header-heading-1'>
-                <h1 className='font-heading text-heading-md font-bold tracking-heading md:text-heading-xl'>
-                  <span className=' text-[40px] md:text-[60px] block md:-mt-1 leading-[3rem]'>
-                    Welcome to the
-                    <br /> JSON Schema Community
-                  </span>
-                </h1>
+                <h2 className='text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>
+                  Welcome to the
+                  <br /> JSON Schema Community
+                </h2>
               </div>
               <div className='mt-5 w-5/6' data-testid='Header-heading-2'>
-                <h2 className='text-gray-700 text-sm font-heading text-body-md tracking-body font-regular '>
-                  With over 60 million weekly downloads, JSON Schema has a large
-                  and active developer community across the world. Join the
-                  Community to learn, share ideas, ask questions, develop JSON
-                  Schema tooling and build new connections. sharing ideas, and
-                  building connections.
+                <h2 className='text-gray-700 text-sm font-heading dark:text-slate-100 text-body-md tracking-body font-regular '>
+                  Join the Community to learn, share ideas, ask questions, build
+                  JSON Schema tooling, and get involved in the future of the
+                  Spec.
                 </h2>
               </div>
               <div className='mt-8'>
@@ -300,77 +294,42 @@ export default function communityPages(props: any) {
           </div>
         </div>
         <section className='mt-10'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4  w-8/12 sm:w-8/12 md:w-10/12 lg:w-[70%] xl:w-[70%] m-auto'>
-            <div data-test-id='1'>
-              <a href='https://github.com/orgs/json-schema-org/discussions/427'>
-                <div className='p-3 cursor-pointer  w-full  shadow-3xl rounded-[5px] p-[10px] bg-sky-400 max-w-md'>
-                  <div className='p-2 rounded-[10px] bg-white text-center w-min text-xs flex justify-between'>
-                    <span>🚴🏾</span>
-                  </div>
-                  <div>
-                    <h1 className='text-primary-800 font-heading text-heading-md font-bold tracking-heading '>
-                      Roadmap
-                    </h1>
-                  </div>
-                  <div>
-                    <p>
-                      Explore our exciting plans and upcoming milestones. 🚀
-                    </p>
-                  </div>
-                  <div className='text-right w-full flex justify-end hover:text-white'>
-                    <svg className='w-[20px]' viewBox='0 0 32 32'>
-                      <path d='M25,0H7A7,7,0,0,0,0,7V25a7,7,0,0,0,7,7H25a7,7,0,0,0,7-7V7A7,7,0,0,0,25,0Zm5,25a5,5,0,0,1-5,5H7a5,5,0,0,1-5-5V7A5,5,0,0,1,7,2H25a5,5,0,0,1,5,5Z'></path>
-                      <path d='M24,7H14V9h7.59L7.29,23.29l1.41,1.41L23,10.41V18h2V8A1,1,0,0,0,24,7Z'></path>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div data-test-id='2'>
-              <a href='https://github.com/json-schema-org/.github/blob/main/CONTRIBUTING.md'>
-                <div className='p-3 cursor-pointer  w-full  shadow-3xl rounded-[5px] p-[10px] bg-sky-400 max-w-md'>
-                  <div className='p-2 rounded-[10px] bg-white text-center w-min text-xs flex justify-between'>
-                    <span>👨🏻‍💻</span>
-                  </div>
-                  <div>
-                    <h1 className='text-primary-800 font-heading text-heading-md font-bold tracking-heading '>
-                      Contributing
-                    </h1>
-                  </div>
-                  <div>
-                    <p>
-                      We’re looking forward to working with you. Welcome aboard!
-                      🚀
-                    </p>
-                  </div>
-                  <div className='text-right w-full flex justify-end hover:text-white'>
-                    <svg className='w-[20px]' viewBox='0 0 32 32'>
-                      <path d='M25,0H7A7,7,0,0,0,0,7V25a7,7,0,0,0,7,7H25a7,7,0,0,0,7-7V7A7,7,0,0,0,25,0Zm5,25a5,5,0,0,1-5,5H7a5,5,0,0,1-5-5V7A5,5,0,0,1,7,2H25a5,5,0,0,1,5,5Z'></path>
-                      <path d='M24,7H14V9h7.59L7.29,23.29l1.41,1.41L23,10.41V18h2V8A1,1,0,0,0,24,7Z'></path>
-                    </svg>
-                  </div>
-                </div>
-              </a>
-            </div>
+          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
+            <Card
+              key='roadmap'
+              icon='/icons/roadmap.svg'
+              title='Roadmap'
+              body='Explore our exciting plans and upcoming milestones. 🚀'
+              headerSize='large'
+              bodyTextSize='small'
+              link='https://github.com/orgs/json-schema-org/discussions/427'
+            />
+            <Card
+              key='contributing'
+              icon='/icons/contribute.svg'
+              title='Contributing'
+              body='We are looking forward to working with you. Welcome aboard!'
+              headerSize='large'
+              bodyTextSize='small'
+              link='https://github.com/json-schema-org/.github/blob/main/CONTRIBUTING.md'
+            />
           </div>
         </section>
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <div className='z-40 mt-20 mx-auto bg-white w-full md:h-[520px] rounded-lg shadow-xl md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between'>
+          <div className='z-40 mt-20 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between rounded-lg border border-gray-200 bg-white shadow-3xl transition-colors delay-[150ms] hover:bg-slate-100'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main' className='m-auto'>
-                <h2 className='font-heading text-heading-md text-blue-700 font-bold tracking-heading md:text-heading-lg text-[2rem]'>
-                  Thanking our JSON Schema Ambassadors
-                </h2>
-                <h2 className='font-heading text-heading-md font-bold tracking-heading md:text-heading-lg mt-10 text-[1.5rem]'>
-                  Ambassador Programs
+                <h2 className='font-heading text-heading-md text-blue-700 font-bold tracking-heading md:text-heading-lg text-[2rem] text-center'>
+                  Ambassadors Program
                 </h2>
                 <h2 className='font-heading text-gray-700 text-heading-md font-bold tracking-heading md:text-heading-lg text-slate-500 text-sm mt-10'>
-                  Launch OSS community programs that your community is proud to
-                  participate in. Let's build thriving OSS communities together!
+                  The JSON Schema Ambassadors Program recognize the people who
+                  drive adoption, innovation and knowledge sharing in the JSON
+                  Schema community.
                 </h2>
                 <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
                   <a
-                    href='/community/ambassadors'
+                    href='#'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
@@ -382,14 +341,11 @@ export default function communityPages(props: any) {
             <div className='w-full h-fit-content md:w-3/6  flex rounded-r-lg justify-end bg-cover bg-center bg-ambassador' />
           </div>
 
-          <div className='z-40 mt-20 mx-auto bg-white w-full md:h-[520px] rounded-lg shadow-xl md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between'>
+          <div className='z-40 mt-20 rounded-lg border border-gray-200 bg-white shadow-3xl transition-colors delay-[150ms] hover:bg-slate-100 mx-auto w-full md:h-[520px] shadow-xl md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main' className='m-auto'>
-                <h2 className='font-heading text-heading-md text-blue-700 font-bold tracking-heading md:text-heading-lg text-[2rem]'>
-                  Join the JSON Schema Slack Workspace!
-                </h2>
-                <h2 className='font-heading text-heading-md font-bold tracking-heading md:text-heading-lg mt-10 text-[1.5rem]'>
-                  Slack Community
+                <h2 className='font-heading text-heading-md text-blue-700 font-bold tracking-heading md:text-heading-lg text-[2rem] text-center'>
+                  Join the JSON Schema Slack workspace!
                 </h2>
                 <h2 className='font-heading text-gray-700 text-heading-md font-bold tracking-heading md:text-heading-lg text-slate-500 text-sm mt-10'>
                   Join our Slack to ask questions, get feedback on your
@@ -397,7 +353,7 @@ export default function communityPages(props: any) {
                 </h2>
                 <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
                   <a
-                    href='https://json-schema.slack.com/ssb/redirect'
+                    href='/slack'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
@@ -411,14 +367,11 @@ export default function communityPages(props: any) {
         </div>
 
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <div className='z-40 mt-20 bg-white w-full md:h-[520px] rounded-lg shadow-xl md:flex grid grid-cols-1 lg:grid-cols-2 justify-between'>
+          <div className='z-40 mt-20 w-full rounded-lg border border-gray-200 bg-white shadow-3xl transition-colors delay-[150ms] hover:bg-slate-100 shadow-xl md:flex grid grid-cols-1 lg:grid-cols-2 justify-between'>
             <div className='p-4 px-8 grid items-center w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main'>
-                <h2 className='text-blue-700 text-[2rem] font-heading text-heading-md font-bold tracking-heading md:text-heading-lg'>
+                <h2 className='text-blue-700 text-[2rem] font-heading text-heading-md font-bold tracking-heading md:text-heading-lg text-center'>
                   JSON Schema Community Meetings & Events
-                </h2>
-                <h2 className='mt-10 text-[1.5rem] font-heading text-heading-md font-bold tracking-heading md:text-heading-lg '>
-                  Join Meetings
                 </h2>
                 <h2 className='text-slate-500 text-sm mt-10 font-heading text-body-lg tracking-body font-regular'>
                   We hold monthly Office Hours and weekly Open Community Working
@@ -445,41 +398,71 @@ export default function communityPages(props: any) {
                 </div>
               </div>
             </div>
-            <div className='w-fit-content h-fit-content md:w-3/6 flex rounded-r-lg justify-end bg-cover bg-center bg-meeting'></div>
-          </div>
-        </div>
-        <div className='mx-auto mt-20'>
-          <h2 className='text-[2rem] text-center mb-8 text-primary text-[2rem] font-heading text-heading-md font-bold tracking-heading md:text-heading-lg'>
-            Upcoming events
-          </h2>
-          {props.datesInfo.map((event: any, index: any) => (
-            <div
-              key={index}
-              className='mx-auto bg-slate-100 h-[90px] w-full md:w-[550px] rounded-lg flex gap-[10px] items-center p-2 gap-4 mt-2'
-            >
-              <div
-                className={`h-[70px]  w-[70px]  rounded-lg text-center grid items-center bg-index-${index}`}
-              >
-                <p className='text-[2rem]'>{event.day}</p>
-              </div>
-              <div className='h-[70px]  rounded-lg grid items-center px-2'>
-                <p className='leading-7'>
-                  <b className='text-blue-700'>{event.title}</b>
-                  <br />
-                  {event.time}({event.timezone})
-                </p>
+            <div className='w-fit-content h-fit-content py-3 md:w-3/6 flex rounded-r-lg justify-end'>
+              <div className='mx-auto'>
+                <h2 className='text-[2rem] text-center text-primary text-[2rem] font-heading text-heading-md font-bold tracking-heading md:text-heading-lg'>
+                  Upcoming events
+                </h2>
+                {props.datesInfo.map((event: any, index: any) => (
+                  <div
+                    key={index}
+                    className='mx-auto bg-slate-100 h-[90px] w-full md:w-[450px] rounded-lg flex gap-[10px] items-center p-2 gap-4 mt-2'
+                  >
+                    <div
+                      className={`h-[70px]  w-[70px]  rounded-lg text-center grid items-center bg-index-${index}`}
+                    >
+                      <p className='text-[2rem] dark:text-black'>{event.day}</p>
+                    </div>
+                    <div className='h-[70px]  rounded-lg grid items-center px-2'>
+                      <p className='leading-7 text-[12px] dark:text-black'>
+                        <b className='text-blue-700'>{event.title}</b>
+                        <br />
+                        {event.time}({event.timezone})
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
         </div>
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <div className='z-40 mt-20 bg-white w-full md:h-130 rounded-lg shadow-xl md:flex grid grid-cols-1 md:grid-cols-2 justify-between mb-10'>
+          <div className='z-40 mt-20 w-full md:h-130 rounded-lg border border-gray-200 bg-white shadow-3xl transition-colors delay-[150ms] hover:bg-slate-100 md:flex grid grid-cols-1 md:grid-cols-2 justify-between mb-10'>
+            <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
+              <div data-testid='HomeCard-main' className='m-auto'>
+                <h2 className='font-heading text-heading-md text-blue-700 font-bold tracking-heading md:text-heading-lg text-[2rem] text-center'>
+                  Welcome to
+                  <br />
+                  the JSON Schema Blog!
+                </h2>
+                <h2 className='font-heading text-gray-700 text-heading-md font-bold tracking-heading md:text-heading-lg text-slate-500 text-sm mt-10'>
+                  <p>
+                    Want to publish a blog post? Check out the&nbsp;
+                    <a
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      href='https://github.com/json-schema-org/community/blob/main/docs/blog-guidelines.md'
+                      className='underline'
+                    >
+                      guidelines
+                    </a>
+                    &nbsp;and submit yours!
+                  </p>{' '}
+                </h2>
+                <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
+                  <a
+                    href='/blog'
+                    rel='noopener noreferrer'
+                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                  >
+                    Read blog
+                  </a>
+                </div>
+              </div>
+            </div>
             <div className='p-10 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div className='w-full mb-6'>
                 <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                  <h3 className='mb-5 font-semibold pt-1'>
-                    The JSON Schema Blog
-                  </h3>
                   <img
                     src={blogPosts[0].frontmatter.cover}
                     className='w-full h-[232px]  mb-4'
@@ -487,7 +470,7 @@ export default function communityPages(props: any) {
                   <h3 className='mb-4 font-semibold'>
                     {blogPosts[0].frontmatter.title}
                   </h3>
-                  <div className='mb-4'>
+                  <div className='mb-4 text-[14px]'>
                     <TextTruncate
                       element='span'
                       line={4}
@@ -516,16 +499,15 @@ export default function communityPages(props: any) {
                 </Link>
                 <div className='mx-auto '>
                   <a
-                    href='/blog'
+                    href={`/blog/posts/${blogPosts[0].slug}`}
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
                   >
-                    Read Blogs
+                    Read more
                   </a>
                 </div>
               </div>
             </div>
-            <div className='w-full h-fit-content md:w-3/6 flex rounded-r-lg justify-end bg-cover bg-center bg-blog'></div>
           </div>
         </div>
       </div>
