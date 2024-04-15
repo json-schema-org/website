@@ -265,11 +265,9 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 );
               },
             },
-            th: {
+           th: {
               component: ({ children }) => (
-
                 <th className='border border-slate-300 dark:text-white p-4 dark:bg-slate-900 font-semibold text-black'>
-
                   {children}
                 </th>
               ),
@@ -548,13 +546,12 @@ export function TableOfContentMarkdown({
                   href={`#${slug}`}
                   className='block cursor-pointer mb-3 font-bold text-sm leading-4 ml-[-0.40rem] font-bold hover:text-blue-500'
                 >
-                  <span className='mr-1 text-blue-400' style={{ fontSize: '1.5em' }}>&#9679;</span>
+                  <span className='mr-1 text-blue-400' style={{ fontSize: '1.5em' }} >&#9679;</span>
                   {children}
                 </a>
               );
             },
           },
-          /* eslint-disable */
           h3:
             depth >= 3
               ? {
