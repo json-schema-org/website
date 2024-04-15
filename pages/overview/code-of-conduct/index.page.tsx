@@ -5,6 +5,7 @@ import Head from 'next/head';
 import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
+import { DocsHelp } from '~/components/DocsHelp';
 
 export async function getStaticProps() {
   const block = fs.readFileSync(
@@ -28,6 +29,7 @@ export default function Content({ blocks }: { blocks: any[] }) {
         <title>{newTitle}</title>
       </Head>
       <StyledMarkdown markdown={blocks[0]} />
+      <DocsHelp />
     </SectionContext.Provider>
   );
 }
