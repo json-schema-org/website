@@ -6,6 +6,7 @@ import { Headline1 } from '~/components/Headlines';
 import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
+import { DocsHelp } from '~/components/DocsHelp';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/overview/sponsors/_index.md', 'utf-8');
@@ -27,6 +28,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
+      <DocsHelp />
     </SectionContext.Provider>
   );
 }
