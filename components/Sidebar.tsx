@@ -178,7 +178,6 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   }, [typeof window !== 'undefined']);
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
-
       <section>
         <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center  lg:hidden '>
           <div
@@ -369,7 +368,7 @@ export const DocsNav = ({
           className={classnames('ml-6', { hidden: !active.getDocs })}
           id='overview'
         >
-          <DocLink uri='/overview/welcome' label='Welcome' />
+          <DocLink uri='/overview/welcome' label='Welcome' setOpen={setOpen} />
           <DocLink
             uri='/overview/what-is-jsonschema'
             label='What is JSON Schema?'
@@ -380,10 +379,22 @@ export const DocsNav = ({
             label='Sponsors'
             setOpen={setOpen}
           />
-          <DocLink uri='/overview/sponsors' label='Sponsors' />
-          <DocLink uri='/overview/use-cases' label='Use Cases' />
-          <DocLink uri='/overview/case-studies' label='Case Studies' />
-          <DocLink uri='/overview/faq' label='FAQ' />
+          <DocLink
+            uri='/overview/sponsors'
+            label='Sponsors'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/overview/use-cases'
+            label='Use Cases'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/overview/case-studies'
+            label='Case Studies'
+            setOpen={setOpen}
+          />
+          <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
           <DocLink
             uri='/overview/similar-technologies'
             label='Similar Technologies'
@@ -768,7 +779,7 @@ export const DocsNav = ({
           id='resources'
         >
           {resourceRoutes.map(({ uri, label }) => (
-            <DocLink key={uri} uri={uri} label={label} />
+            <DocLink key={uri} uri={uri} label={label} setOpen={setOpen} />
           ))}
         </div>
       </div>
