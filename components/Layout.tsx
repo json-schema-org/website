@@ -36,8 +36,8 @@ export default function Layout({
   );
 
   useEffect(() => {
-    // Check if the URL contains "#community"
-    if (window.location.hash === '#community') {
+    // Check if the URL contains "community"
+    if (window.location.hash === 'community') {
       // Find the anchor element by its ID
       const target = document.getElementById('community');
 
@@ -191,7 +191,7 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/#community'
+        uri='/community'
         label='Community'
         isActive={section === 'community'}
       />
@@ -275,7 +275,7 @@ const MobileNav = () => {
       />
       <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
-        uri='/#community'
+        uri='/community'
         label='Community'
         isActive={section === 'community'}
       />
