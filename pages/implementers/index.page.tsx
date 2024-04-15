@@ -17,10 +17,12 @@ export async function getStaticProps() {
 }
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
+  const markdownFile = '_indexPage';
+
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
-      <DocsHelp />
+      <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
 }
