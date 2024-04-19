@@ -98,7 +98,7 @@ Using the product catalog example, `productId` is a numeric value that uniquely 
 
 To add the `properties` object to the schema:
 
-1. Add the `properties` validation keyword to the end of the (test1)schema:
+1. Add the `properties` validation keyword to the end of the schema:
 
     ```jsonc
     ...
