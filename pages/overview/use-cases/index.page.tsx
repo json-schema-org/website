@@ -7,7 +7,7 @@ import Card from '~/components/Card';
 import data from '~/data/use-cases.json';
 
 export default function Content() {
-  const newTitle = 'Use Cases';
+  const newTitle = 'Real-World Applications of JSON Schema';
 
   return (
     <SectionContext.Provider value='docs'>
