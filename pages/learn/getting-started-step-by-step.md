@@ -576,7 +576,7 @@ With the external schema reference, the overall schema looks like this:
 This section describes how to validate JSON data against the product catalog schema.
 
 This example JSON data matches the product catalog schema:
-
+<!-- 
 ```json
 {
   "productId": 1,
@@ -593,8 +593,8 @@ This example JSON data matches the product catalog schema:
     "longitude": 20.4
   }
 }
-```
+``` -->
 
-To validate this JSON data against the product catalog JSON Schema, you can use any validator of your choice. In addition to command-line and browser tools, validation tools are available in a wide range of languages, including Java, Python, .NET, and many others. To find a validator that’s right for your project, see <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/implementations)</userevent>.
+<!-- To validate this JSON data against the product catalog JSON Schema, you can use any validator of your choice. In addition to command-line and browser tools, validation tools are available in a wide range of languages, including Java, Python, .NET, and many others. To find a validator that’s right for your project, see <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/implementations)</userevent>.
 
-Use the example JSON data as the input data and the product catalog JSON Schema as the schema. Your validation tool compares the data against the schema, and if the data meets all the requirements defined in the schema, validation is successful.
+Use the example JSON data as the input data and the product catalog JSON Schema as the schema. Your validation tool compares the data against the schema, and if the data meets all the requirements defined in the schema, validation is successful. -->
