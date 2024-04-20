@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Getting Started Guide",
+    "default": true,
+    "file": "/data/getting-started-examples/schemas/default.json",
+    "instances": [
+      {
+        "name": "Basic valid instance",
+        "default": true,
+        "file": "/data/getting-started-examples/instances/default.json"
+      }
+    ]
+  }
+]
