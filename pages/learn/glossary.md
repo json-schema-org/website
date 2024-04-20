@@ -149,6 +149,23 @@ The JSON Schema specification includes a number of vocabularies which cover each
 
 In some [dialects](#dialect) of JSON Schema, the `$vocabulary` keyword can be used to include the keywords defined by a vocabulary into the dialect, as well as to indicate whether implementations must specifically recognize the vocabulary in order to be able to process schemas written in the dialect or not.
 
+### Annotation
+
+Annotation is a piece of metadata attached to a piece of code, used to convey additional information about the code like its workings, the algorithm that it internally uses, etc. 
+
+
+Annotations provide supplementary information for developers to express intended usage, constraints, configurations or manage complexity, especially when the JSON Schema's definition gets enormous. 
+
+Different [keywords](#annotation-(keywords)) are defined within JSON Schema to convey various aspects of the schema, making it self-reliant and self-documenting.
+
+### Annotation (Keywords)
+
+Specific "Keys" acting as self-serving documentation for the defined schema by explaining the intended usage or constraints. 
+
+Annotation keywords can be used in any schema or sub-schemas as they don't affect any logical operations for the schema, such as validation, As they are only for the schema's "self-documenting" purposes. 
+
+Using these keywords is optional but recommended, as this makes your schema self-reliant. [Specific annotation keywords](../understanding-json-schema/reference/annotations) might depend on which draft version of the JSON schema you are employing.
+
 #### See also
 
 * [`json-schema-vocabularies`](https://github.com/json-schema-org/json-schema-vocabularies), a repository which collects known third-party JSON Schema vocabularies
