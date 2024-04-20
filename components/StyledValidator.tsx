@@ -1,5 +1,6 @@
 import React from 'react';
 import JsonEditor from './JsonEditor';
+import data from '../data/getting-started-examples.json';
 
 const StyledValidator = () => {
   return (
@@ -14,12 +15,17 @@ const StyledValidator = () => {
             className='p-2 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
             id='Examples'
           >
-            <option
-              value='Getting Started Examples'
-              className='dark:bg-slate-900'
-            >
-              Getting Started Examples
-            </option>
+            {data.map((data, id) => {
+              return (
+                <option
+                  key={id}
+                  value={data.name}
+                  className='dark:bg-slate-900'
+                >
+                  {data.name}
+                </option>
+              );
+            })}
           </select>
         </div>
 
@@ -42,12 +48,17 @@ const StyledValidator = () => {
             className='p-2  dark:bg-slate-900 rounded-md max-sm:text-[12px] '
             id='Examples'
           >
-            <option
-              value='Getting Started Examples'
-              className='dark:bg-slate-900 max-sm:text-[12px]'
-            >
-              Basic valid instance
-            </option>
+            {data.map((data, id) => {
+              return (
+                <option
+                  key={id}
+                  value={data.instances[0].name}
+                  className='dark:bg-slate-900 max-sm:text-[12px]'
+                >
+                  {data.instances[0].name}
+                </option>
+              );
+            })}
           </select>
         </div>
 
