@@ -7,9 +7,9 @@ section: docs
 
 ## dependentRequired[#dependentRequired]
 
-The `dependentRequired` keyword conditionally requires that certain
+The `dependentRequired` [keyword](../../learn/glossary#keyword) conditionally requires that certain
 properties must be present if a given property is present in an object.
-For example, suppose we have a schema representing a customer. If you
+For example, suppose we have a [schema](../../learn/glossary#schema) representing a customer. If you
 have their credit card number, you also want to ensure you have a
 billing address. If you don\'t have their credit card number, a billing
 address would not be required. We represent this dependency of one
@@ -47,7 +47,7 @@ a `billing_address` property must also be present:
   "billing_address": "555 Debtor's Lane"
 }
 ```
-This instance has a `credit_card`, but it's missing a `billing_address`.
+This [instance](../../learn/glossary#instance) has a `credit_card`, but it's missing a `billing_address`.
 
 ```json
 // props { "indent": true, "valid": false }
@@ -127,7 +127,7 @@ Previously to Draft 2019-09, ``dependentRequired`` and
 
 ## dependentSchemas [#dependentSchemas]
 
-The `dependentSchemas` keyword conditionally applies a subschema when a
+The `dependentSchemas` keyword conditionally applies a [subschema](../../learn/glossary#subschema) when a
 given property is present. This schema is applied in the same way
 [allOf](../../understanding-json-schema/reference/combining#allof) applies schemas. Nothing is merged or extended. Both
 schemas apply independently.

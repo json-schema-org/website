@@ -40,7 +40,7 @@ In Swift, JSON can be read using the `JSONDecoder` class.
 ## Draft-specific notes
 
 The JSON Schema standard has been through a number of revisions or
-\"drafts\". The current version is Draft 2020-12, but some older drafts
+[\"drafts\"](../learn/glossary#draft). The current version is Draft 2020-12, but some older drafts
 are still widely used as well.
 
 The text is written to encourage the use of Draft 2020-12 and gives

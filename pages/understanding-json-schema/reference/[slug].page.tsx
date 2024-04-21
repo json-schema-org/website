@@ -26,6 +26,7 @@ export default function StaticMarkdownPage({
   content: any;
 }) {
   const newTitle = 'JSON Schema - ' + frontmatter.title;
+  const markdownFile = '_index';
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
       <Head>
@@ -33,7 +34,7 @@ export default function StaticMarkdownPage({
       </Head>
       <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
       <StyledMarkdown markdown={content} />
-      <DocsHelp />
+      <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
 }

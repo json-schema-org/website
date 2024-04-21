@@ -18,5 +18,6 @@
 /latest/json-schema-core /draft/2020-12/json-schema-core 301
 /latest/json-schema-validation /draft/2020-12/json-schema-validation 301
 /latest/relative-json-pointer /draft/2020-12/relative-json-pointer.html 301
-/slack https://join.slack.com/t/json-schema/shared_invite/zt-2d3itejo7-~oj1PqGs24dLohkeaFBVYw 301
-/slack-redirect https://join.slack.com/t/json-schema/shared_invite/zt-2d3itejo7-~oj1PqGs24dLohkeaFBVYw 301
+/tools /implementations 301
+/slack https://join.slack.com/t/json-schema/shared_invite/zt-2gew5jhhj-WNWmCC8QJ~oHJ4rfNEXddQ 301
+/slack-redirect https://join.slack.com/t/json-schema/shared_invite/zt-2gew5jhhj-WNWmCC8QJ~oHJ4rfNEXddQ 301

@@ -140,8 +140,9 @@ const TabsGroup = ({ markdown }: { markdown: string }) => {
                 className={classnames(
                   'p-4 px-6 text-slate-700 font-medium border-b-2 rounded-t-lg',
                   {
-                    'border-blue-400 text-blue-500 bg-blue-50': isActive,
-                    'border-white/0 cursor-pointer text-slate-700 hover:border-blue-50 hover:bg-blue-50/20':
+                    'border-blue-400 text-blue-500 bg-blue-50 dark:bg-slate-900 dark:text-white':
+                      isActive,
+                    'border-white/0 cursor-pointer dark:text-white text-slate-700 hover:border-blue-50  hover:bg-blue-50/20':
                       !isActive,
                   },
                 )}
@@ -152,7 +153,7 @@ const TabsGroup = ({ markdown }: { markdown: string }) => {
           })}
         </div>
       </div>
-      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-600 dark:to-slate-900'>
+      <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-700/50 dark:to-slate-900/50'>
         <StyledMarkdownBlock markdown={activeTab.markdown} />
       </div>
     </div>
@@ -264,7 +265,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             th: {
               component: ({ children }) => (
-                <th className='border border-slate-300 p-4 font-semibold'>
+                <th className='border border-slate-300 dark:text-white p-4 dark:bg-slate-900 font-semibold text-black'>
                   {children}
                 </th>
               ),
@@ -293,7 +294,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink max-w-[100%] max-w-screen-sm lg:max-w-[800px] xl:max-w-[900px]'>
+                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
                   {/* definitely not the best way to prevent overflowing. found no better way that worked */}
                   <Highlight
                     language={language}
@@ -366,8 +367,6 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     return clonedChild;
                   },
                 );
-                console.log(children);
-                console.log(modifiedChildren);
 
                 return <>{modifiedChildren}</>;
               },
@@ -495,7 +494,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 const fullMarkdown = useContext(FullMarkdownContext);
                 if (!fullMarkdown) return null;
                 return (
-                  <div className='text-blue-500 mt-3 bg-slate-50 pt-6 pb-3 px-3 rounded-l border-l-blue-400 border-l-[3px]'>
+                  <div className='text-blue-500 mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 px-3 rounded-l border-l-blue-400 border-l-[3px]'>
                     <TableOfContentMarkdown
                       markdown={fullMarkdown}
                       depth={depth}
