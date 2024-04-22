@@ -14,6 +14,12 @@ If you encounter a term you wish were defined here, please feel free to [file an
 
 The entries on this page can be linked to via anchor links (e.g. `https://json-schema.org/learn/glossary.html#vocabulary`) when sharing a definition with others.
 
+### compound schema resource
+
+A compound schema resource is a JSON document which has multiple embedded [JSON schema resources](#schema-resource). It is important to note that for a schema to be embeddable it must define a `$id` keyword, which is used to hold its unique identifier. These embedded schema resources collectively define various aspects or features of the overall schema.
+
+Compound schema resource is vital when working with multiple schema resources. By [bundling](../understanding-json-schema/structuring#bundlingbundling) these schema resources into a single schema document, distribution is made easier.
+
 ### dialect
 
 A cohesive collection of [keywords](#keyword) available for use within a schema, often representing a use-case specific single release of the JSON Schema specification.
@@ -106,6 +112,13 @@ Strictly speaking, according to the specification, schemas are themselves [JSON 
 
 In recent [drafts](#draft) of the specification, a schema is either a JSON object or a JSON boolean value.
 
+#### schema resource
+
+A schema resource is a [schema](#schema) which is canonically identified by an absolute URI. This implies all root/parent schemas are schema resources as they can be identified by an absolute URI. 
+
+The URI serves as a canonical identifier for the schema. This allows it to be referenced and reused in other schemas. Consequently, all schema resource must maintain semantic clarity, without which reusability will be difficult. 
+
+
 ### subschema
 
 A [schema](#schema) which is itself contained within a surrounding parent schema.
@@ -117,7 +130,7 @@ For example, the `not` keyword takes a subschema value and inverts its result, s
 Some subschemas may appear in more complex nested locations within a parent schema.
 The `allOf` keyword, for instance, takes an array of multiple subschemas and succeeds whenever all of the subschemas do individually.
 
-Whether something that otherwise *appears* to be a schema (based on its contents) actually *is* a subschema can be misleading at first glance without context or knowlege about its location within the parent schema.
+Whether something that otherwise *appears* to be a schema (based on its contents) actually *is* a subschema can be misleading at first glance without context or knowledge about its location within the parent schema.
 Specifically, in our above example, `{"type": "string"}` was a subschema of a larger schema, but in the schema `{"const": {"type": "string"}}`, it is *not* a subschema.
 Even though as a value it looks the same, the `const` keyword, which compares instances against a specific expected value, does *not* take a subschema as its value, its value is an opaque value with no particular meaning (such that in this schema, the number 12 would be invalid, but the precise instance `{"type": "string"}` is valid).
 Said more plainly, whether a particular value is a subschema or not depends on its precise location within a parent schema, as interpretation of the value depends on the defined behavior of the keyword(s) it lives under.
