@@ -90,83 +90,61 @@ In JSON Schema terminology, `$schema` and `$id` are [schema keywords](https://js
 
 ## Define properties[#define]
 
-This section adds the `properties` keyword. In JSON Schema terms, `properties` is a [validation keyword](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1). When you define `properties`, you create an object where each property represents a key in the JSON data that’s being validated. You can also specify which properties defined in the object are required.
+`Properties` is a [validation keyword](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1) used to define the keys expected in the json document. Here, we expect a JSON document used to define products. The keys expected are the `productId`, `productName`, `price`, and `tags`. These keys would have corresponding values of which the `productId` should have a value of integer type, the `productName` should have a string type value, the `price` key should have a number type value, and the `tags` should have an array as value. These all make up the `Product` object.
 
-### Add the properties object[#properties]
-
-Using the product catalog example, `productId` is a numeric value that uniquely identifies a product. Since this is the canonical identifier for the product, it’s required.
-
-To add the `properties` object to the schema:
-
-1. Add the `properties` validation keyword to the end of the schema:
-
+It is defines a series of property objects. A  `required` key with an array of values that tells which of the properties are required. This key is added anywhere inside the schema object, but outside the `properties` object.
 
 ```jsonc
-...
-  "title": "Product",
-  "description": "A product from Acme's catalog",
-  "type": "object",
-  "properties": {
-    "productId": {}
-  }
+. . .
+
+  "properties": {
+
+    "productId": {},
+
+    "productName": {},
+
+    "price": {},
+
+    "tags": {}
+
+  },
+
+  "required": [ "productId", "productName", "price" ]
 ```
 
-2. Add the `productId` keyword, along with the following schema annotations:
-    * `description`: describes what `productId` is. In this case, it’s the product’s unique identifier.
-    * `type`: defines what kind of data is expected. For this example, since the product identifier is a numeric value, use `integer`.
+### Add necessary information to the property definitions
 
+Add the description and type information to `productId` and `productName` in the `properties` object.
 
 ```jsonc
-...
-  "properties": {
-    "productId": {
-      "description": "The unique identifier for a product",
-      "type": "integer"
-    }
-  }
+. . .
+
+  "properties": {
+
+    "productId": {
+
+      "description":"The unique identifier for the product",
+
+      "type":"integer"
+
+    },
+
+    "productName": {
+
+      "description":"Name of the product",
+
+      "type":"string"
+
+    },
+
+    "price": {},
+
+    "tags": {},
+
+  },
+
+  "required": [ "productId", "productName", "price" ]
 ```
-
-With the new `properties` validation keyword, the overall schema looks like this:
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/product.schema.json",
-  "title": "Product",
-  "description": "A product from Acme's catalog",
-  "type": "object",
-  "properties": {
-    "productId": {
-      "description": "The unique identifier for a product",
-      "type": "integer"
-    }
-  }
-}
-```
-
-The following example adds another required key, `productName`. This value is a string:
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.com/product.schema.json",
-  "title": "Product",
-  "description": "A product from Acme's catalog",
-  "type": "object",
-  "properties": {
-    "productId": {
-      "description": "The unique identifier for a product",
-      "type": "integer"
-    },
-    "productName": {
-      "description": "Name of the product",
-      "type": "string"
-    }
-  }
-}
-```
-
-The `properties` object now includes two keys, `productId` and `productName`. When JSON data is validated against this schema, validation fails for any documents that contain invalid data in either of these fields.
 
 ### Define required properties[#required]
 
@@ -184,7 +162,8 @@ To define a required property:
       "description": "The price of the product",
       "type": "number"
     }
-  }
+  },
+  "required": [ "productId", "productName", "price" ]
 ```
 
 2. Add the `exclusiveMinimum` validation keyword and set the value to zero:
@@ -195,10 +174,11 @@ To define a required property:
     "description": "The price of the product",
     "type": "number",
     "exclusiveMinimum": 0
-  }
+  },
+  "required": [ "productId", "productName", "price" ]
 ```
 
-3. Add the `required` validation keyword to the end of the schema, after the `properties` object. Add `productID`, `productName`, and the new `price` key to the array:
+3. Add the `required` validation keyword to the end of the schema, after the `properties` object. Add `productID`, `productName`, and the new `price` key to the array (which we have done):
 
 
 ```jsonc
@@ -253,7 +233,12 @@ This section describes how to define an optional property. For this example, def
 * All tags must be unique.
 * All tags must be text.
 
-To define an optional property:
+
+```markdown
+<Infobox label="Optional properties"> There is no special way to define optional properties. The only difference between the definitions of optional properties and that of required properties is that the required property is in the required array while the optional is not. </Infobox>
+```
+
+To define property:
 
 1. Inside the `properties` object, add the `tags` keyword. Include the usual schema annotations `description` and `type`, and define `type` as an array:
 
