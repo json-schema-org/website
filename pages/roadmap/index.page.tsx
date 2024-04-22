@@ -1,7 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
 import { getLayout } from '~/components/Sidebar';
-import NewsletterForm from '~/components/Newsletter';
 import { SectionContext } from '~/context';
 import Roadmap from '~/components/Roadmap';
 
