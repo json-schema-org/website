@@ -49,10 +49,10 @@
     - name: jsoncons
       url: https://github.com/danielaparker/jsoncons/blob/master/doc/ref/jsonschema/jsonschema.md
       notes: Header-only library
-      date-draft: []
+      date-draft: [2020-12, 2019-09, 7, 6, 4]
       draft: [7]
       license: Boost Software License 1.0
-      last-updated: "2022-08-31"
+      last-updated: "2024-04-22"
 - name: Clojure
   implementations:
     - name: jinx
