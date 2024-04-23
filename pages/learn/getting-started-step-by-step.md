@@ -100,21 +100,19 @@ To add the `properties` object to the schema:
 
 1. Add the `properties` validation keyword to the end of the schema:
 
-
-```jsonc
-...
-  "title": "Product",
-  "description": "A product from Acme's catalog",
-  "type": "object",
-  "properties": {
-    "productId": {}
-  }
-```
+    ```jsonc
+    ...
+      "title": "Product",
+      "description": "A product from Acme's catalog",
+      "type": "object",
+      "properties": {
+        "productId": {}
+      }
+    ```
 
 2. Add the `productId` keyword, along with the following schema annotations:
     * `description`: describes what `productId` is. In this case, it’s the product’s unique identifier.
     * `type`: defines what kind of data is expected. For this example, since the product identifier is a numeric value, use `integer`.
-
 
 ```jsonc
 ...
@@ -176,31 +174,28 @@ To define a required property:
 
 1. Inside the `properties` object, add the `price` key. Include the usual schema annotations `description` and `type`, where `type` is a number:
 
-
-```jsonc
-  "properties": {
-    ...
-    "price": {
-      "description": "The price of the product",
-      "type": "number"
-    }
-  }
-```
+    ```jsonc
+      "properties": {
+        ...
+        "price": {
+          "description": "The price of the product",
+          "type": "number"
+        }
+      }
+    ```
 
 2. Add the `exclusiveMinimum` validation keyword and set the value to zero:
 
-
-```jsonc
-  "price": {
-    "description": "The price of the product",
-    "type": "number",
-    "exclusiveMinimum": 0
-  }
-```
+    ```jsonc
+      "price": {
+        "description": "The price of the product",
+        "type": "number",
+        "exclusiveMinimum": 0
+      }
+    ```
 
 3. Add the `required` validation keyword to the end of the schema, after the `properties` object. Add `productID`, `productName`, and the new `price` key to the array:
-
-
+    
 ```jsonc
 ...
   "properties": {
@@ -256,51 +251,47 @@ This section describes how to define an optional property. For this example, def
 To define an optional property:
 
 1. Inside the `properties` object, add the `tags` keyword. Include the usual schema annotations `description` and `type`, and define `type` as an array:
-
  
-```jsonc
-...
-  "properties": {
+    ```jsonc
     ...
-    "tags": {
-      "description": "Tags for the product",
-      "type": "array"
-    }
-  }
-```
+      "properties": {
+        ...
+        "tags": {
+          "description": "Tags for the product",
+          "type": "array"
+        }
+      }
+    ```
 
 2. Add a new validation keyword for `items` to define what appears in the array. For example, `string`:
 
-
-```jsonc
-...
-    "tags": {
-      "description": "Tags for the product",
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
-    }
-```
+    ```jsonc
+    ...
+        "tags": {
+          "description": "Tags for the product",
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+    ```
 
 3. To make sure there is at least one item in the array, use the `minItems` validation keyword:
 
-    
-```jsonc
-...
-    "tags": {
-      "description": "Tags for the product",
-      "type": "array",
-      "items": {
-        "type": "string"
-      },
-      "minItems": 1
-    }
-```
+    ```jsonc
+    ...
+        "tags": {
+          "description": "Tags for the product",
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        }
+    ```
 
 4. To make sure that every item in the array is unique, use the `uniqueItems` validation keyword and set it to `true`:
 
-    
 ```jsonc
 ...
     "tags": {
@@ -363,50 +354,45 @@ To create a nested data structure:
 
 1. Inside the `properties` object, create a new key called `dimensions`:
 
-
-```jsonc
-...
-  "properties": {
-  ...
-    "dimensions": {}
-  }
-```
+    ```jsonc
+    ...
+      "properties": {
+      ...
+        "dimensions": {}
+      }
+    ```
 
 2. Define the `type` validation keyword as `object`:
 
-
-```jsonc
-...
-  "dimensions": {
-    "type": "object",
-  }
-```
+    ```jsonc
+    ...
+      "dimensions": {
+        "type": "object",
+      }
+    ```
 
 3. Add the `properties` validation keyword to contain the nested data structure. Inside the new `properties` keyword, add keywords for `length`, `width`, and `height` that all use the `number` type:
 
-
-```jsonc
-...
-  "dimensions": {
-    "type": "object",
-    "properties": {
-      "length": {
-        "type": "number"
-      },
-      "width": {
-        "type": "number"
-      },
-      "height": {
-        "type": "number"
+    ```jsonc
+    ...
+      "dimensions": {
+        "type": "object",
+        "properties": {
+          "length": {
+            "type": "number"
+          },
+          "width": {
+            "type": "number"
+          },
+          "height": {
+            "type": "number"
+          }
+        }
       }
-    }
-  }
-```
+    ```
 
 4. To make each of these properties required, add a `required` validation keyword inside the `dimensions` object:
    
-
-    
 ```jsonc
 ...
   "dimensions": {
@@ -515,17 +501,15 @@ To reference this schema in the product catalog schema:
 
 1. Inside the `properties` object, add a key named `warehouseLocation`:
 
-
-```jsonc
-...
-  "properties": {
-  ...
-    "warehouseLocation": {}
-  }
-```
+    ```jsonc
+    ...
+      "properties": {
+      ...
+        "warehouseLocation": {}
+      }
+    ```
 
 2. To link to the external geographical location schema, add the `$ref` schema keyword and the schema URL:
-
 
 ```jsonc
 ...
