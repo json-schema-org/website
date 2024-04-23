@@ -145,16 +145,14 @@ const getSpecificationPath = [
   '/specification',
 ];
 const getResourcePath = [
-  '/resources/articles',
   '/resources/books',
-  '/resources/articles',
   '/resources/podcasts',
   '/resources/papers',
   '/resources/audios',
+  '/resources/courses',
 ];
 const resourceRoutes = [
   { uri: '/resources/books', label: 'Books' },
-  { uri: '/resources/articles', label: 'Articles' },
   { uri: '/resources/courses', label: 'Courses' },
   { uri: '/resources/videos', label: 'Videos' },
   { uri: '/resources/podcasts', label: 'Podcasts' },
