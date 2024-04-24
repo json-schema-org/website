@@ -165,9 +165,10 @@ Table of Contents provides a structured overview of the main sections or chapter
 This can be used to group multiple tabs under a common name and differentiated by specific labels and content.
 
 ```markdown
-[tabs-start "label"]
-[tab "name"]
+[ tabs-start "label" ]
+[ tab "name" ]
 message to show
+[ tabs-end ]
 ```
 
 #### Example
