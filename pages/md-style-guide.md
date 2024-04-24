@@ -1,183 +1,230 @@
----
-title: Markdown Style Guide
----
-
-Contributors to our Docs and Blog can use any of these custom markdown tags to easily create cool content that provides a better user experience.
-
-<!-- ### 🚀 Custom Markdown Writing Style Guide -->
-
-### **Star**
-
-Adds a star with label along with it. In place of `"label"` text can be added which needs to be shown.
-
-```markdown
-<Star label="label"/>
-```
-
-#### Example
-
-<Star label="label"/>
-
----
-
-### **StarInline**
-
-Adds an inline star with the label along with it. In place of `"label"` text can be added which needs to be shown.
-
-```markdown
- <StarInline label="label"/>
-```
-
-#### Example
-
-<StarInline label="label"/>
-
----
-
-### **Summary**
-
-Summary and details tags both can be used together the text wrapped in the `summary` tag will be shown primarily, whereas the text shown in the `details` tag can be shown when its cliced on the summary text.
-
-```markdown
- <summary> message to show </summary>
-```
-
-#### Example
-
-<summary> message to show </summary>
-
----
-
-### **Details**
-
-Summary and details tags both can be used together the text wrapped in the `summary` tag will be shown primarily, whereas the text shown in the `details` tag can be shown when its cliced on the summary text.
-
-```markdown
-<details> message to show </details>
-```
-
-#### Example
-
-<details> message to show </details>
-
----
-
-### **Bigquote**
-
-Useful to show the text wrapped in it, in a big quotation-like text.
-
-```markdown
-<Bigquote> message to show </Bigquote>
-```
-
-#### Example
-
-<Bigquote> message to show </Bigquote>
-
----
-
-### **Blockquote**
-
-Useful to show the text wrapped in it, in a block quotation-like text.
-
-```markdown
-<blockquote> message to show </blockquote>
-```
-
-#### Example
-
-<blockquote> message to show </blockquote>
-
----
-
-### **Infobox**
-
-Infobox is useful for presenting an information, inside a box. The text written between these tags will be shown.
-
-```markdown
-<Infobox label="label"> message to show. </Infobox>
-```
-
-#### Example
-
-<Infobox label="label"> message to show. </Infobox>
-
----
-
-### **Warning**
-
-Warning is a special type of info box in which text showing any warning can be shown. The text written between these tags will be shown.
-
-```markdown
-<Warning label="label"> message to show. </Warning>
-```
-
-#### Example
-
-<Warning label="label"> message to show. </Warning>
-
----
-
-### **Tip**
-
-Tip is a special type of info box in which text showing a tip can be shown. The text written between these tags will be shown.
-
-```markdown
-<Tip label="label"> message to show. </Tip>
-```
-
-#### Example
-
-<Tip label="label"> message to show. </Tip>
-
----
-
-### **Danger**
-
-Danger is a special type of info box in which text showing any danger can be shown. The text written between these tags will be shown.
-
-```markdown
-<Danger label="label"> message to show. </Danger>
-```
-
-#### Example
-
-<Danger label="label"> message to show. </Danger>
-
----
-
-### **Table of Contents**
-
-Table of Contents provides a structured overview of the main sections or chapters within the current page/document.
-
-```markdown
-<TableOfContent content={content} depth={depth} />
-```
-
-#### Example
-
-<TableOfContent depth={5} />
-
----
-
-### **Tabs Group**
-
-This can be used to group multiple tabs under a common name and differentiated by specific labels and content.
-
-```markdown
-[ tabs-start "label" ]
-[ tab "name" ]
-message to show
-[ tabs-end ]
-```
-
-#### Example
-
-[tabs-start "label"]
-
-[tab "name"]
-message to show
-[tab "name"]
-message to show
-
-[tabs-end]
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .clip-bottom {
+    clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 85%, 100% 0);
+  }
+
+  .clip-both {
+    clip-path: polygon(0 15%, 0 100%, 0% 100%, 100% 85%, 100% 0);
+  }
+
+  .clip-top {
+    clip-path: polygon(0 15%, 0 100%, 0% 100%, 100% 100%, 100% 0);
+  }
+
+  @media (min-width: 320px) and (max-width: 759px) {
+    .clip-bottom {
+      clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 95%, 100% 0);
+    }
+
+    .clip-both {
+      clip-path: polygon(0 05%, 0 100%, 0% 100%, 100% 95%, 100% 0);
+    }
+
+    .clip-top {
+      clip-path: polygon(0 05%, 0 100%, 0% 100%, 100% 100%, 100% 0);
+    }
+  }
+}
+
+.text-stroke-1 {
+  text-shadow: black 0 0 1em;
+}
+
+html {
+  font-family: 'Inter', sans-serif;
+  scroll-padding-top: 100px;
+  scroll-behavior: smooth;
+}
+
+.DocSearch-Button-Keys {
+  display: none !important;
+}
+
+/* .herobtn { */
+  /* background-color: transparent !important; */
+  /* justify-content: center; */
+  /* width: 168px; */
+  /* height: 32px; */
+  /* padding: 8px 8px; */
+  /* margin-right: 10px; */
+  /* display: flex; */
+  /* border: 1px solid #E3E8EE;
+border-radius: 4px; */
+/* } */
+
+/* @media (max-width: 1027px) { */
+  .DocSearch-Button-Container {
+    height: 40px;
+    padding: 0px;
+    border: none;
+  }
+
+  .DocSearch-Button {
+    margin: 0;
+    width: 39px;
+  }
+
+  .DocSearch-Button-Placeholder {
+    display: none;
+  }
+
+  .DocSearch-Search-Icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+
+  /* .herobtn .DocSearch-Button-Container {
+    margin-right: 4px;
+    margin-left: 4px;
+  } */
+/* } */
+
+@media (max-width: 450px) {
+  .DocSearch-Button {
+    margin: 0;
+  }
+}
+
+.DocSearch-Button:active,
+.DocSearch-Button:focus,
+.DocSearch-Button:hover {
+  outline: 0 none transparent !important;
+  border: transparent !important;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/** Style Algolia */
+
+.keygrad{
+  --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8) !important;
+}
+.keyshadow{
+  --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6,inset 0 0 1px 1px #fff,0 1px 2px 1px rgba(30,35,90,0.4) !important;
+}
+.keyshadow[data-theme=dark]{
+  --docsearch-key-shadow: inset 0 -2px 0 0 #ffffff, inset 0 0 1px 1px #ffffff, 0 2px 2px 0 rgba(3, 4, 9, 0.3) !important;
+}
+
+.search-input {
+  flex-grow: 1;
+  box-sizing: border-box;
+  width: 194px;
+  margin: 0 auto;
+  padding: 5px;
+  overflow: visible;
+  font-weight: 500;
+  font-size: 1rem;
+  font-family: inherit;
+  line-height: inherit;
+  display: flex;
+  border-color: white !important;
+  color: white !important;
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 0.25rem;
+  outline: 0;
+  cursor: pointer;
+  transition-timing-function: ease-out;
+  transition-duration: 0.2s;
+  transition-property: border-color, color;
+  -webkit-font-smoothing: antialiased;
+}
+
+.search-input svg {
+  margin-left: 40px;
+}
+
+
+
+.search-input span {
+  margin-left: 15px;
+}
+
+.search-input:hover,
+.search-input:focus {
+  color: white;
+  border-color: white;
+}
+
+.search-input:hover::placeholder,
+.search-input:focus::placeholder {
+  color: white;
+}
+
+.search-input::placeholder {
+  color: white;
+}
+
+.search-hint {
+  position: absolute;
+  top: 7px;
+  right: 19px;
+  padding: 3px 5px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.125em;
+  font-size: 13px;
+  font-family: inherit;
+  pointer-events: none;
+  border-color: white;
+  color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0.25rem;
+  line-height: 14px;
+}
+
+@media (min-width: 50em) {
+  .search-hint {
+    display: flex;
+  }
+}
+
+.navSearch svg {
+  color: black;
+}
+
+.herobtn span {
+  color: white !important;
+  font-weight: 600;
+}
+
+.herobtn svg {
+  color: white !important;
+  width: 20px;
+  height: 20px;
+}
+
+.herobtn span:hover {
+  outline: 0 none transparent;
+}
+
+.anchor {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.anchor #community {
+  position: absolute;
+  left: 0;
+  top: -35px;
+  /* change this value to match the height of the header */
+}
+/* In your CSS file */
+.mt-custom {
+  margin-top: 4.4rem;
+}
+
+
+@layer base{
+  body {
+      @apply dark:bg-slate-800 bg-white;
+  }
+}
