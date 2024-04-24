@@ -53,7 +53,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   // Example usage:
   const remoteICalUrl =
-    'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics'; // Replace with the actual URL
+    'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics'; // Replace with the actual URL
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData) => printEventsForNextFourWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
@@ -528,7 +528,7 @@ const Home = (props: any) => {
                 </div>
 
                 <a
-                  href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com'
+                  href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org&ctz=Europe%2FLondon'
                   className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'
