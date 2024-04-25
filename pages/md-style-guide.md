@@ -143,3 +143,39 @@ Danger is a special type of info box in which text showing any danger can be sho
 #### Example
 
 <Danger label="label"> message to show. </Danger>
+
+---
+
+### **Table of Contents**
+
+Table of Contents provides a structured overview of the main sections or chapters within the current page/document.
+
+```markdown
+<TableOfContent content={content} depth={depth} />
+```
+
+#### Example
+
+<TableOfContent depth={5} />
+
+---
+
+### **Tabs Group**
+
+This can be used to group multiple tabs under a common name and differentiated by specific labels and content.
+
+```markdown
+[ tabs-start "label" ]
+[ tab "name" ]
+message to show
+[ tabs-end ]
+```
+
+#### Example
+
+[tabs-start "label"]
+[tab "name"]
+message to show
+[tab "name"]
+message to show
+[tabs-end]
