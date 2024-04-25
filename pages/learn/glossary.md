@@ -55,6 +55,10 @@ The essence of JSON Hyper-Schema lies in its ability to define links and actions
 
 In other words, JSON Hyper-Schema extends JSON Schema by introducing features for creating hypermedia controls. This facilitates the creation of interactive APIs and ensures compatibility with existing JSON HTTP APIs, maintaining a seamless integration. It adds a layer of interactivity to JSON documents, making it easier to interact with remote JSON resources.
 
+### JSON pointer
+
+JSON Pointer is a format for data exchange between systems, defining a string for accessing and modifying values within a JSON document. By using JSON Pointer, we can precisely reference and retrieve specific values within a JSON document. The [subschema](#subschema) is typically identified via a JSON Pointer, or equivalent syntax, allowing for targeted validation and manipulation of data within the JSON document. 
+
 ### keyword
 
 A property appearing within a [schema](#schema) object.
@@ -136,6 +140,10 @@ The following are considered tools:
 - a UI form generator
 
 Applications which use JSON Schema internally without exposing that functionality in some way, for example, validating configuration files or web requests, are not considered tooling.
+
+### validation result
+
+The validation result in the context of JSON Schema refers to the outcome of applying the entire JSON Schema to the entire instance document. This application should yield a boolean assertion, indicating whether the instance document conforms to the rules and constraints specified in the schema. The validation result signifies whether the instance document passes or fails validation against the [schema](#schema).
 
 ### vocabulary
 
