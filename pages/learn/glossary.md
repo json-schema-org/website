@@ -145,7 +145,7 @@ Applications which use JSON Schema internally without exposing that functionalit
 
 The validation result in the context of JSON Schema refers to the outcome of applying the entire JSON Schema to the entire instance document. This application should yield a boolean assertion, indicating whether the instance document conforms to the rules and constraints specified in the schema. The validation result signifies whether the instance document passes or fails validation against the [schema](#schema).
 
-### See also
+#### See also
 
 [Get started with JSON schema](../blog/posts/get-started-with-json-schema-in-node-js.md)
 
