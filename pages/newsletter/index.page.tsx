@@ -20,7 +20,7 @@ export default function StaticMarkdownPage() {
             wrapperClassName='h-full sm:h-[calc(100vh-312px)] py-[50px] sm:py-0 px-5 sm:px-10 lg:w-full'
           />
           <div className='mt-10'>
-            <h2 className='text-xl'>Previous Newsletter</h2>
+            <h2 className='text-xl'>Previous JSON Schema Newsletter</h2>
             <NewsletterCard newsletterData={data} />
           </div>
         </div>
