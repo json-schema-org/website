@@ -1,0 +1,88 @@
+[
+    {
+      "url": "https://example.com/newsletter-123",
+      "title": "JSON Schema Newsletter #123",
+      "date": "2024-01-01"
+    },
+    {
+      "url": "https://example.com/newsletter-124",
+      "title": "JSON Schema Newsletter #124",
+      "date": "2024-01-08"
+    },
+    {
+      "url": "https://example.com/newsletter-125",
+      "title": "JSON Schema Newsletter #125",
+      "date": "2024-01-15"
+    },
+    {
+      "url": "https://example.com/newsletter-126",
+      "title": "JSON Schema Newsletter #126",
+      "date": "2024-01-22"
+    },
+    {
+      "url": "https://example.com/newsletter-127",
+      "title": "JSON Schema Newsletter #127",
+      "date": "2024-01-29"
+    },
+    {
+      "url": "https://example.com/newsletter-128",
+      "title": "JSON Schema Newsletter #128",
+      "date": "2024-02-05"
+    },
+    {
+      "url": "https://example.com/newsletter-129",
+      "title": "JSON Schema Newsletter #129",
+      "date": "2024-02-12"
+    },
+    {
+      "url": "https://example.com/newsletter-130",
+      "title": "JSON Schema Newsletter #130",
+      "date": "2024-02-19"
+    },
+    {
+      "url": "https://example.com/newsletter-131",
+      "title": "JSON Schema Newsletter #131",
+      "date": "2024-02-26"
+    },
+    {
+      "url": "https://example.com/newsletter-132",
+      "title": "JSON Schema Newsletter #132",
+      "date": "2024-03-04"
+    },
+    {
+      "url": "https://example.com/newsletter-133",
+      "title": "JSON Schema Newsletter #133",
+      "date": "2024-03-11"
+    },
+    {
+      "url": "https://example.com/newsletter-134",
+      "title": "JSON Schema Newsletter #134",
+      "date": "2024-03-18"
+    },
+    {
+      "url": "https://example.com/newsletter-135",
+      "title": "JSON Schema Newsletter #135",
+      "date": "2024-03-25"
+    },
+    {
+      "url": "https://example.com/newsletter-136",
+      "title": "JSON Schema Newsletter #136",
+      "date": "2024-04-01"
+    },
+    {
+      "url": "https://example.com/newsletter-137",
+      "title": "JSON Schema Newsletter #137",
+      "date": "2024-04-08"
+    },
+    {
+      "url": "https://example.com/newsletter-138",
+      "title": "JSON Schema Newsletter #138",
+      "date": "2024-04-15"
+    },
+    {
+      "url": "https://example.com/newsletter-139",
+      "title": "JSON Schema Newsletter #139",
+      "date": "2024-04-22"
+    }
+  ]
+  
