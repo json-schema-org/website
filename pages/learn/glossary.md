@@ -57,7 +57,7 @@ In other words, JSON Hyper-Schema extends JSON Schema by introducing features fo
 
 ### JSON pointer
 
-JSON Pointer is a format for data exchange between systems, defining a string for accessing and modifying values within a JSON document. By using JSON Pointer, we can precisely reference and retrieve specific values within a JSON document. The [subschema](#subschema) is typically identified via a JSON Pointer, or equivalent syntax, allowing for targeted validation and manipulation of data within the JSON document. 
+[JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) is a format for data exchange between systems, defining a string for identifying locations within a JSON document. It provides a means to precisely reference specific parts of the document for retrieval or manipulation. By using JSON Pointer, we can effectively access and modify values within a JSON document. The [subschema](#subschema) is typically identified via a JSON Pointer, or equivalent syntax, allowing for targeted validation and manipulation of data within the JSON document.
 
 ### keyword
 
