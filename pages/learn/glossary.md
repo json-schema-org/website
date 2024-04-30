@@ -57,7 +57,7 @@ In other words, JSON Hyper-Schema extends JSON Schema by introducing features fo
 
 ### JSON pointer
 
-[JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) is a format for data exchange between systems, defining a string for identifying locations within a JSON document. It provides a means to precisely reference specific parts of the JSON document for retrieval or manipulation. The [subschema](#subschema) is typically identified via a JSON Pointer, or equivalent syntax, allowing for targeted validation of data within the JSON document.
+[JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) is a string syntax for identifying a value at a specified location within a JSON document. It serves to precisely reference specific parts of the document for retrieval or manipulation. A subschema is often identified using a JSON Pointer, specifying its location within the containing resource.
 
 ### keyword
 
@@ -147,7 +147,7 @@ The validation result in the context of JSON Schema refers to the outcome of app
 
 #### See also
 
-[Get started with JSON schema](../blog/posts/get-started-with-json-schema-in-node-js.md)
+[Get started with JSON schema](../blog/posts/get-started-with-json-schema-in-node-js.md#creating-a-schema-and-validating-data)
 
 ### vocabulary
 
