@@ -66,9 +66,7 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-Welcome to the place where simplicity meets power. The JSON Schema exists to empower you, help you build more, and break less. It is the fastest and most effective means to enable your JSON data implementations.
-So, jump right in and explore. With JSON Schema by your side, the possibilities are endless.
-Below you will find the pages from our documentation. Welcome aboard!
+Welcome to the place where simplicity meets power. The JSON Schema exists to empower you, help you build more, and break less. It is the fastest and most effective means to enable your JSON data implementations. So, jump right in and explore. With JSON Schema by your side, the possibilities are endless. Below you will find the pages from our documentation. Welcome aboard!
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element: any, index: any) => (
