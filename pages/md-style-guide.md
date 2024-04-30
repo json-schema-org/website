@@ -6,7 +6,7 @@ Contributors to our Docs and Blog can use any of these custom markdown tags to e
 
 <!-- ### 🚀 Custom Markdown Writing Style Guide -->
 
-### **Star**
+## Star
 
 Adds a star with label along with it. In place of `"label"` text can be added which needs to be shown.
 
@@ -14,13 +14,13 @@ Adds a star with label along with it. In place of `"label"` text can be added wh
 <Star label="label"/>
 ```
 
-#### Example
+### Example
 
 <Star label="label"/>
 
 ---
 
-### **StarInline**
+## StarInline
 
 Adds an inline star with the label along with it. In place of `"label"` text can be added which needs to be shown.
 
@@ -28,13 +28,13 @@ Adds an inline star with the label along with it. In place of `"label"` text can
  <StarInline label="label"/>
 ```
 
-#### Example
+### Example
 
 <StarInline label="label"/>
 
 ---
 
-### **Summary**
+## Summary
 
 Summary and details tags both can be used together the text wrapped in the `summary` tag will be shown primarily, whereas the text shown in the `details` tag can be shown when its cliced on the summary text.
 
@@ -42,13 +42,13 @@ Summary and details tags both can be used together the text wrapped in the `summ
  <summary> message to show </summary>
 ```
 
-#### Example
+### Example
 
 <summary> message to show </summary>
 
 ---
 
-### **Details**
+## Details
 
 Summary and details tags both can be used together the text wrapped in the `summary` tag will be shown primarily, whereas the text shown in the `details` tag can be shown when its cliced on the summary text.
 
@@ -56,13 +56,13 @@ Summary and details tags both can be used together the text wrapped in the `summ
 <details> message to show </details>
 ```
 
-#### Example
+### Example
 
 <details> message to show </details>
 
 ---
 
-### **Bigquote**
+## Bigquote
 
 Useful to show the text wrapped in it, in a big quotation-like text.
 
@@ -70,13 +70,13 @@ Useful to show the text wrapped in it, in a big quotation-like text.
 <Bigquote> message to show </Bigquote>
 ```
 
-#### Example
+### Example
 
 <Bigquote> message to show </Bigquote>
 
 ---
 
-### **Blockquote**
+## Blockquote
 
 Useful to show the text wrapped in it, in a block quotation-like text.
 
@@ -84,13 +84,13 @@ Useful to show the text wrapped in it, in a block quotation-like text.
 <blockquote> message to show </blockquote>
 ```
 
-#### Example
+### Example
 
 <blockquote> message to show </blockquote>
 
 ---
 
-### **Infobox**
+## Infobox
 
 Infobox is useful for presenting an information, inside a box. The text written between these tags will be shown.
 
@@ -98,13 +98,13 @@ Infobox is useful for presenting an information, inside a box. The text written 
 <Infobox label="label"> message to show. </Infobox>
 ```
 
-#### Example
+### Example
 
 <Infobox label="label"> message to show. </Infobox>
 
 ---
 
-### **Warning**
+## Warning
 
 Warning is a special type of info box in which text showing any warning can be shown. The text written between these tags will be shown.
 
@@ -112,13 +112,13 @@ Warning is a special type of info box in which text showing any warning can be s
 <Warning label="label"> message to show. </Warning>
 ```
 
-#### Example
+### Example
 
 <Warning label="label"> message to show. </Warning>
 
 ---
 
-### **Tip**
+## Tip
 
 Tip is a special type of info box in which text showing a tip can be shown. The text written between these tags will be shown.
 
@@ -126,13 +126,13 @@ Tip is a special type of info box in which text showing a tip can be shown. The 
 <Tip label="label"> message to show. </Tip>
 ```
 
-#### Example
+### Example
 
 <Tip label="label"> message to show. </Tip>
 
 ---
 
-### **Danger**
+## Danger
 
 Danger is a special type of info box in which text showing any danger can be shown. The text written between these tags will be shown.
 
@@ -140,6 +140,38 @@ Danger is a special type of info box in which text showing any danger can be sho
 <Danger label="label"> message to show. </Danger>
 ```
 
-#### Example
+### Example
 
 <Danger label="label"> message to show. </Danger>
+
+---
+
+## Table of Contents
+
+Table of Contents provides a structured overview of the main sections or chapters within the current page/document.
+
+```markdown
+<TableOfContent content={content} depth={depth} />
+```
+
+---
+
+## Tabs Group
+
+This can be used to group multiple tabs under a common name and differentiated by specific labels and content.
+
+```markdown
+[ tabs-start "label" ]
+[ tab "name" ]
+message to show
+[ tabs-end ]
+```
+
+### Example
+
+[tabs-start "label"]
+[tab "name"]
+message to show
+[tab "name"]
+message to show
+[tabs-end]
