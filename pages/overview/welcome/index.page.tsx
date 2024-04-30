@@ -11,7 +11,7 @@ export default function Welcome() {
     {
       title: 'Overview',
       summary:
-        'Ut minim anim non deserunt veniam. Ex sit eu voluptate labore sunt aute ',
+        'Find everything you need to know about JSON Schema in one convenient place, including; sponsors, use cases, case studies, FAQ, code of conduct, etc. ',
       logo: '/icons/eye.svg',
       links: {
         lang: 'URL1',
@@ -21,7 +21,7 @@ export default function Welcome() {
     {
       title: 'Getting Started',
       summary:
-        'Sit anim eu sunt nisi. Tempor cupidatat voluptate nostrud voluptate deserunt cupidatat dolor magna irure deserunt.',
+        'Here the magic begins! Get your project up and running with our tutorial. The section helps you start your journey toward creating a JSON schema document.',
       logo: '/icons/compass.svg',
       links: {
         lang: 'URL1',
@@ -31,7 +31,7 @@ export default function Welcome() {
     {
       title: 'Reference',
       summary:
-        'Adipisicing minim ex amet occaecat dolore quis nisi voluptate sit.',
+        'Explore the JSON Schema reference. You have access to everything, the definition of common terms used in the JSON Schema (glossary), the schema reference, learning & understanding JSON Schema, and many more.',
       logo: '/icons/book.svg',
       links: {
         lang: 'URL1',
@@ -41,7 +41,7 @@ export default function Welcome() {
     {
       title: 'Specification',
       summary:
-        'Deserunt et fugiat do adipisicing enim in nostrud Lorem anim ut amet enim.',
+        'Allows you to define validation, documentation, hyperlink navigation, and interaction control of JSON data.',
       logo: '/icons/clipboard.svg',
       links: {
         lang: 'URL1',
@@ -51,7 +51,7 @@ export default function Welcome() {
     {
       title: 'Other Resources',
       summary:
-        'Deserunt et fugiat do adipisicing enim in nostrud Lorem anim ut amet enim.',
+        'Explore our different resources, books, articles, courses, videos, podcasts, papers, and we welcome you to enjoy them.',
       logo: '/icons/bookshelf.svg',
       links: {
         lang: 'URL1',
@@ -66,9 +66,9 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        Veniam ea fugiat exercitation laboris non est nulla id pariatur ex. Qui
-        occaecat fugiat sunt exercitation adipisicing culpa reprehenderit
-        consectetur amet in. Qui fugiat amet do eu.
+Welcome to the place where simplicity meets power. The JSON Schema exists to empower you, help you build more, and break less. It is the fastest and most effective means to enable your JSON data implementations.
+So, jump right in and explore. With JSON Schema by your side, the possibilities are endless.
+Below you will find the pages from our documentation. Welcome aboard!
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element: any, index: any) => (
