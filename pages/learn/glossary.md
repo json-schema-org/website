@@ -127,7 +127,7 @@ Subschemas may themselves contain sub-subschemas, though colloquially one genera
 
 ### anchor 
 
-An anchor helps you to identify the location of a subschema within your JSON document. By applying an anchor to a subschema using the `$anchor` property, the subschema becomes identifiable via a plain-name URI string containing the value of the `$anchor` property starting with a `#` character. An example of a plain-name URI is `https://example.com/schemas/vehicle#owners` identifying the `owners` subschema within the `vehicle` JSON document. An anchor is also a shorter alternative to using a JSON Pointer for identifying a subschema. 
+An anchor identifies the location of a subschema within a JSON document. By applying an anchor to a subschema using the `$anchor` keyword, the subschema becomes identifiable via a plain-name URI string containing the value of the `$anchor` property starting with a `#` character. An example of a plain-name URI is `https://example.com/schemas/vehicle#owners` identifying the `owners` subschema within the `vehicle` JSON document. An anchor is also a shorter alternative to using a JSON Pointer for identifying a subschema. 
 
 <!-- TODO: add reference to JSON pointer term as a see more. -->
 ### tooling
