@@ -4,12 +4,12 @@ title: What is JSON Schema?
 ---
 JSON Schema is a declarative language for annotating and validating JSON documents' structure, constraints, and data types. It provides a way to standardize and define expectations for JSON data.
 <br/><br/>
-![How JSON Schema works](/img/what-is-json-schema.png)
+![How JSON Schema works](/img/How-json-schema-works.jpg)
 
 
 ## How does JSON Schema work?
 
-In the world of data exchange, JSON Schema emerges as a powerful tool for defining the structure and rules of your JSON data. It uses keywords to define the properties of your data. These keywords allow you to specify details, including datatypes, required properties that must be present for a valid JSON document, and optional properties that can be included. 
+When it comes to exchanging data, JSON Schema emerges as a powerful standard for defining the structure and rules of your JSON data. It uses keywords to define the properties of your data. These keywords allow you to specify details, including datatypes, required properties that must be present for a valid JSON instance, and optional properties that can be included, enabling a consistent and extensible mechanism to manage JSON data.
 
 Furthermore, you can restrict the length of your data and ensure it adheres to specific formats. JSON Schema empowers you to define minimum and maximum values for numerical data, keeping your numbers within a valid range.
 
