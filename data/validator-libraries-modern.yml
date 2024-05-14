@@ -119,6 +119,13 @@
       draft: [7, 6, 4]
       license: Apache License 2.0
       last-updated: "2022-08-31"
+    - name: jsonschema
+      url: https://github.com/kaptinlin/jsonschema
+      notes: supports output formats, multilingual output
+      date-draft: [2020-12]
+      draft: []
+      license: MIT
+      last-updated: "2024-05-07"
     - name: qri-io/jsonschema
       url: https://github.com/qri-io/jsonschema
       date-draft: [2019-09]
