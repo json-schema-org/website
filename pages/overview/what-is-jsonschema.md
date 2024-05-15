@@ -4,14 +4,16 @@ title: What is JSON Schema?
 ---
 JSON Schema is a declarative language for annotating and validating JSON documents' structure, constraints, and data types. It provides a way to standardize and define expectations for JSON data.
 <br/><br/>
-![How JSON Schema works](/img/How-json-schema-works.jpg)
+![How JSON Schema works](/img/json_schema.svg)
 
 
 ## How does JSON Schema work?
 
-When it comes to exchanging data, JSON Schema emerges as a powerful standard for defining the structure and rules of your JSON data. It uses keywords to define the properties of your data. These keywords allow you to specify details, including datatypes, required properties that must be present for a valid JSON instance, and optional properties that can be included, enabling a consistent and extensible mechanism to manage JSON data.
+When it comes to data exchange, JSON Schema stands out as a powerful standard for defining the structure and rules of JSON data. It uses various [keywords](https://json-schema.org/learn/glossary#keyword) to define the properties of your data.
 
-Furthermore, you can restrict the length of your data and ensure it adheres to specific formats. JSON Schema empowers you to define minimum and maximum values for numerical data, keeping your numbers within a valid range.
+While JSON Schema provides the language, validating a JSON [instance](https://json-schema.org/learn/glossary#instance) against a [schema](https://json-schema.org/learn/glossary#schema) requires a JSON Schema [validator](https://json-schema.org/implementations#tools). The JSON validator checks if the JSON documents conform to the schema.
+
+JSON validators are open-source and commercial tools that implement the JSON Schema specification. They make it very easy to integrate JSON Schema into projects of any size.
 
 ## Benefits of JSON Schema for Developers
 
