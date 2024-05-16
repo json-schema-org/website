@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -33,6 +33,8 @@ export default function Layout({
 
   const router = useRouter();
 
+  const mobileNavRef = useRef<HTMLDivElement>(null);
+
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
     [router.asPath],
@@ -50,6 +52,21 @@ export default function Layout({
       }
     }
   }, []);
+
+  useEffect(() => {
+    const handleCloseNavbar = (event: MouseEvent) => {
+      if (
+        mobileNavRef.current &&
+        (mobileNavRef.current as any).contains(event.target)
+      ) {
+        useStore.setState({ overlayNavigation: null });
+      }
+    };
+
+    document.addEventListener('click', handleCloseNavbar);
+
+    return () => document.removeEventListener('click', handleCloseNavbar);
+  }, [mobileNavRef]);
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
   return (
@@ -87,7 +104,7 @@ export default function Layout({
             </div>
           </header>
           {showMobileNav ? (
-            <div>
+            <div ref={mobileNavRef}>
               <MobileNav />
               {children}
             </div>
@@ -155,10 +172,13 @@ const MainNavigation = () => {
   useEffect(() => {
     const icon = theme === 'dark' ? 'herobtn' : '';
     const menu = theme === 'dark' ? 'bg-white' : 'bg-black';
+    const dataTheme = theme === 'dark' ? 'dark' : 'light';
     const closeMenu =
       theme === 'dark'
         ? 'url("/icons/cancel-dark.svg")'
         : 'url("/icons/cancel.svg")';
+    document.documentElement.setAttribute('data-theme', dataTheme);
+    document.documentElement.setAttribute('class', 'keygrad keyshadow');
 
     setIcon(icon);
     setMenu(menu);
@@ -222,7 +242,7 @@ const MainNavigation = () => {
             style={{
               backgroundImage: closeMenu,
             }}
-            className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
+            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
             onClick={() => useStore.setState({ overlayNavigation: null })}
           />
         )}
@@ -259,7 +279,7 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
+    <div className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -371,6 +391,12 @@ const Footer = () => (
           </a>
         </div>
       </div>
+    </div>
+    <div className='text-white font-normal text-center relative m-0 ml-0 mr-1 px-4'>
+      <p>
+        Copyright © 2024 JSON Schema.&nbsp;
+        <span className='block sm:inline sm:mb-0'>All rights reserved.</span>
+      </p>
     </div>
   </footer>
 );
