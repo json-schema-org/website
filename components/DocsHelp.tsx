@@ -1,8 +1,13 @@
 import { useRouter } from 'next/router';
 import React, { FormEvent, useRef, useState } from 'react';
 
-export function DocsHelp() {
+interface DocsHelpProps {
+  markdownFile?: string;
+}
+
+export function DocsHelp({ markdownFile }: DocsHelpProps) {
   const router = useRouter();
+  const path = encodeURIComponent(router.pathname);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -214,7 +219,27 @@ export function DocsHelp() {
 
           {feedbackStatus === 'feedback' && (
             <div className='my-6 text-[14px]'>
-              <p>Thank you! We received your feedback.</p>
+              <p>
+                Thanks for the feedback! Feel free to join the&nbsp;
+                <a
+                  target='_blank'
+                  rel='noreferrer'
+                  className='underline'
+                  href='https://json-schema.slack.com/archives/C8C4UBXDF'
+                >
+                  #website
+                </a>
+                &nbsp;channel on&nbsp;
+                <a
+                  target='_blank'
+                  rel='noreferrer'
+                  className='underline'
+                  href='https://json-schema.org/slack'
+                >
+                  Slack&nbsp;
+                </a>
+                for further discussion.
+              </p>
             </div>
           )}
 
@@ -250,7 +275,7 @@ export function DocsHelp() {
               target='_blank'
               rel='noreferrer'
               className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
-              href='https://github.com/orgs/json-schema-org/projects/16'
+              href={`https://github.com/json-schema-org/website/blob/main/pages${markdownFile ? (markdownFile === '_indexPage' ? router.asPath + '/_index.md' : router.asPath + '.md') : `/${path}/index.page.tsx`}`}
             >
               <svg
                 className='inline-block select-none align-text-bottom mr-1'
@@ -263,7 +288,7 @@ export function DocsHelp() {
               >
                 <path d='M1.5 3.25a2.25 2.25 0 1 1 3 2.122v5.256a2.251 2.251 0 1 1-1.5 0V5.372A2.25 2.25 0 0 1 1.5 3.25Zm5.677-.177L9.573.677A.25.25 0 0 1 10 .854V2.5h1A2.5 2.5 0 0 1 13.5 5v5.628a2.251 2.251 0 1 1-1.5 0V5a1 1 0 0 0-1-1h-1v1.646a.25.25 0 0 1-.427.177L7.177 3.427a.25.25 0 0 1 0-.354ZM3.75 2.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm0 9.5a.75.75 0 1 0 0 1.5.75.75 0 0 0 0-1.5Zm8.25.75a.75.75 0 1 0 1.5 0 .75.75 0 0 0-1.5 0Z' />
               </svg>
-              Make a contribution
+              Edit this page on Github
             </a>
           </div>
           <div className='my-2 text-[14px]'>

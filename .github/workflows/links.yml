@@ -1,0 +1,83 @@
+name: Link Checker
+
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 1 * *' # Run at midnight on the first of every month
+
+jobs:
+  linkChecker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository  
+        uses: actions/checkout@v4
+
+      - name: Submodule
+        run: git submodule update --init --recursive
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+
+      - name: Serve App Locally
+        run: yarn run dev &
+
+      - name: Wait for App to Start
+        run: sleep 20
+      
+      # This will restore the lychee cache
+      - name: Restore lychee cache
+        uses: actions/cache@v4
+        with:
+          path: .lycheecache
+          key: cache-lychee-${{ github.sha }}
+          restore-keys: cache-lychee-
+
+      # This will run the link checker on all markdown files in the pages directory      
+      - name: Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v1
+        with:
+          args: --base http://localhost:3000  --verbose --no-progress --accept 200,204,429,403  './pages/**/*.md' --cache --max-cache-age 1d  http://localhost:3000 
+          token: ${{secrets.AUTH_TOKEN}}
+            
+      - name: Install Octokit
+        run: yarn add @octokit/core@5.1.0 
+      
+      # This will create an issue with the link checker report if it does not exist, otherwise it will update the existing issue.
+
+      - name: Create Issue
+        if:  env.lychee_exit_code != 0
+        uses: actions/github-script@v7
+        env:
+          AUTH_TOKEN: ${{secrets.AUTH_TOKEN}}
+        with:
+          script: |
+            const { Octokit } = require("@octokit/core");
+            const octokit = new Octokit({ auth: process.env.AUTH_TOKEN });
+            const allIssues = await octokit.request('GET /repos/{owner}/{repo}/issues', {
+              owner: context.repo.owner,
+              repo: context.repo.repo
+            });
+
+            const existingIssue = allIssues.data.find(issue => issue.title === 'Link Checker Report');
+            if (existingIssue) {
+              await octokit.request('PATCH /repos/{owner}/{repo}/issues/{issue_number}', {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: existingIssue.number,
+                body: '## Link Checker Report\n\n' + require('fs').readFileSync('./lychee/out.md', 'utf8')
+              });
+            } else {
+              await octokit.request('POST /repos/{owner}/{repo}/issues', {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: 'Link Checker Report',
+                body: '## Link Checker Report\n\n' + require('fs').readFileSync('./lychee/out.md', 'utf8')
+              });
+            }

@@ -49,7 +49,7 @@ In Swift, "array" is analogous to the `Array` type.
 There are two ways in which arrays are generally used in JSON:
 
 - **List validation:** a sequence of arbitrary length where each item
-    matches the same schema.
+    matches the same [schema](../../learn/glossary#schema).
 - **Tuple validation:** a sequence of fixed length where each item may
     have a different schema. In this usage, the index (or location) of
     each item is meaningful as to how the value is interpreted. (This
@@ -59,7 +59,7 @@ There are two ways in which arrays are generally used in JSON:
 ## Items[#items]
 
 List validation is useful for arrays of arbitrary length where each item
-matches the same schema. For this kind of array, set the `items` keyword
+matches the same schema. For this kind of array, set the `items` [keyword](../../learn/glossary#keyword)
 to a single schema that will be used to validate all of the items in the
 array.
 
@@ -183,18 +183,17 @@ additional items in a tuple beyond what is defined in `prefixItems`. The
 value of the `items` keyword is a schema that all additional items must
 pass in order for the keyword to validate.
 
-[tabs-start "Draft-specific info"]
-
-[tab "Draft 4 - 2019-09"]
+<Infobox label="Draft 4 - 2019-09">
 Before to Draft 2020-12, you would use the `additionalItems`
 keyword to constrain additional items on a tuple. It works the same
 as `items`, only the name has changed.
-[tab "Draft 6 - 2019-09"]
+</Infobox>
+
+<Infobox label="Draft 6 - 2019-09">
 In Draft 6 - 2019-09, the `additionalItems` keyword is ignored if
 there is not a "tuple validation" `items` keyword present in the
 same schema.
-
-[tabs-end]
+</InfoBox>
 
 Here, we\'ll reuse the example schema above, but set `items` to `false`,
 which has the effect of disallowing extra items in the tuple.
@@ -306,8 +305,8 @@ specifies that no extra values should exist.
 ["foo", 42, null]
 ```
 
-Note that `items` doesn't "see inside" any instances of `allOf`,
-`anyOf`, or `oneOf` in the same subschema. So in this next example,
+Note that `items` doesn't "see inside" any [instances](../../learn/glossary#instance) of `allOf`,
+`anyOf`, or `oneOf` in the same [subschema](../../learn/glossary#subschema). So in this next example,
 `items` ignores `allOf` and thus fails to validate.
 
 ```json

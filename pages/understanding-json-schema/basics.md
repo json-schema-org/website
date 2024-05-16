@@ -3,7 +3,7 @@ title: The basics
 section: docs
 ---
 
-In [What is a schema?](../understanding-json-schema/about), we described what a schema is,
+In [What is a schema?](../understanding-json-schema/about), we described what a [schema](../learn/glossary#schema) is,
 and hopefully justified the need for schema languages. Here, we proceed
 to write a simple JSON Schema.
 
@@ -78,7 +78,7 @@ false
 
 Of course, we wouldn\'t be using JSON Schema if we wanted to just accept
 any JSON document. The most common thing to do in a JSON Schema is to
-restrict to a specific type. The `type` keyword is used for that.
+restrict to a specific type. The `type` [keyword](../learn/glossary#keyword) is used for that.
 
 > When this book refers to JSON Schema "keywords", it means the
 "key" part of the key/value pair in an object.  Most of the work
@@ -105,7 +105,7 @@ The `type` keyword is described in more detail in [here](../understanding-json-s
 
 ## Declaring a JSON Schema
 
-It\'s not always easy to tell which draft a JSON Schema is using. You
+It\'s not always easy to tell which [draft](../learn/glossary#draft) a JSON Schema is using. You
 can use the `$schema` keyword to declare which version of the JSON
 Schema specification the schema is written to. See [$schema](../understanding-json-schema/reference/schema#schema)
 for more information. It\'s generally good practice to include it,

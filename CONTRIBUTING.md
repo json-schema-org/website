@@ -72,7 +72,12 @@ If you would like to contribute with designs, we encourage you to join `#design`
 
 We welcome pull requests for editorial suggestions and resolving open issues.
 
-If the pull request would solve a particular issue, reference the issue in the pull request description using a [supported descriptor](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) that will automatically close that issue.
+If your pull request addresses a specific issue, please reference this issue in your pull request description using a [supported descriptor](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword). This helps automatically link and close the issue when the pull request is merged.
+
+We strongly encourage linking every pull request to an existing issue. If no corresponding issue exists, please create one first. This allows the community to discuss the required changes. If you are addressing an existing issue, ensure the scope is clear and consider the following:
+
+- If the issue is several years old, verify its relevance by asking in the comments.
+- Ensure the discussion within the issue has led to a clear, actionable decision.
 
 Generally, pull requests should be made to the `main` branch.
 

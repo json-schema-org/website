@@ -5,7 +5,7 @@ section: docs
 
 <Keywords label="schema composition" />
 
-JSON Schema includes a few keywords for combining schemas together. Note
+JSON Schema includes a few [keywords](../../learn/glossary#keyword) for combining schemas together. Note
 that this doesn\'t necessarily mean combining schemas from multiple
 files or JSON trees, though these facilities help to enable that and are
 described in [Structuring a complex schema](../../understanding-json-schema/structuring). Combining schemas may be as
@@ -19,7 +19,7 @@ JSON Schema keywords.
 
 The keywords used to combine schemas are:
 
-- `allOf`: (AND) Must be valid against *all* of the subschemas
+- `allOf`: (AND) Must be valid against *all* of the [subschemas](../../learn/glossary#subschema)
 - `anyOf`: (OR) Must be valid against *any* of the subschemas
 - `oneOf`: (XOR) Must be valid against *exactly one* of the
     subschemas
@@ -46,7 +46,6 @@ To validate against `allOf`, the given data must be valid against all of the giv
   ]
 }
 ```  
-A snippet of the British royal family tree
 
 ```json
 // props { "indent": true, "valid": true }
@@ -58,7 +57,7 @@ A snippet of the British royal family tree
 ```
 
 > [allOf](#allof) can not be used to \"extend\" a schema to add more
-details to it in the sense of object-oriented inheritance. Instances
+details to it in the sense of object-oriented inheritance. [Instances](../../learn/glossary#instance)
 must independently be valid against \"all of\" the schemas in the
 `allOf`. See the section on [Extending Closed Schemas](../../understanding-json-schema/reference/object#extending) for more
 information.
@@ -79,7 +78,6 @@ To validate against `anyOf`, the given data must be valid against any
   ]
 }
 ```  
-A snippet of the British royal family tree
 
 ```json
 // props { "indent": true, "valid": true }
