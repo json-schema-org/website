@@ -16,6 +16,11 @@ import axios from 'axios';
 import ical from 'node-ical';
 import moment from 'moment-timezone';
 import { useTheme } from 'next-themes';
+
+// apiKey and appId are set in the .env.local file
+const algoliaAppId: string = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
+const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
+
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH);
@@ -177,8 +182,8 @@ export function AlgoliaSearch() {
     <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white bg-primary mx-auto dark:shadow-2xl cursor-pointer'>
       <div className='flex flex-row justify-center items-center mr-4'>
         <DocSearch
-          appId='6ZT4KX2OUI'
-          apiKey='69f76fba13585144f6686622e9c8f2a8'
+          appId={algoliaAppId}
+          apiKey={algoliaApiKey}
           indexName='json-schema'
         />
         Search
