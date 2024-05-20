@@ -89,10 +89,14 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
   );
 };
 const getDocsPath = [
+  '/overview/welcome',
   '/overview/what-is-jsonschema',
   '/overview/sponsors',
+  '/overview/case-studies',
   '/overview/similar-technologies',
+  '/overview/use-cases',
   '/overview/code-of-conduct',
+  '/overview/FAQ',
 ];
 const getStartedPath = [
   '/learn/json-schema-examples',
@@ -139,6 +143,20 @@ const getSpecificationPath = [
   '/draft-06/json-hyper-schema-release-notes',
   '/specification-links',
   '/specification',
+];
+const getResourcePath = [
+  '/resources/books',
+  '/resources/podcasts',
+  '/resources/papers',
+  '/resources/audios',
+  '/resources/courses',
+];
+const resourceRoutes = [
+  { uri: '/resources/books', label: 'Books' },
+  { uri: '/resources/courses', label: 'Courses' },
+  { uri: '/resources/videos', label: 'Videos' },
+  { uri: '/resources/podcasts', label: 'Podcasts' },
+  { uri: '/resources/papers', label: 'Papers' },
 ];
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -214,7 +232,6 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
-
         <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
           <div className='hidden lg:block mt-24'>
             <DocsNav open={open} setOpen={setOpen} />
@@ -246,6 +263,7 @@ export const DocsNav = ({
     getStarted: false,
     getReference: false,
     getSpecification: false,
+    getResources: false,
   });
   useEffect(() => {
     const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
@@ -257,6 +275,8 @@ export const DocsNav = ({
       setActive({ ...active, getReference: true });
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getSpecification: true });
+    } else if (getResourcePath.includes(router.asPath)) {
+      setActive({ ...active, getResources: true });
     }
   }, [router.asPath]);
 
@@ -276,10 +296,15 @@ export const DocsNav = ({
     setActive({ ...active, getSpecification: !active.getSpecification });
   };
 
+  const handleClickResources = () => {
+    setActive({ ...active, getResources: !active.getResources });
+  };
+
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateResources = active.getResources ? 'rotate(180deg)' : 'rotate(0)';
 
   const { theme } = useTheme();
 
@@ -287,6 +312,7 @@ export const DocsNav = ({
   const [reference_icon, setReference_icon] = useState('');
   const [spec_icon, setSpec_icon] = useState('');
   const [overview_icon, setOverview_icon] = useState('');
+  const [resources_icon, setResources_icon] = useState('');
 
   useEffect(() => {
     if (theme === 'dark') {
@@ -294,11 +320,13 @@ export const DocsNav = ({
       setLearn_icon('/icons/compass-dark.svg');
       setReference_icon('/icons/book-dark.svg');
       setSpec_icon('/icons/clipboard-dark.svg');
+      setResources_icon('/icons/bookshelf-dark.svg');
     } else {
       setOverview_icon('/icons/eye.svg');
       setLearn_icon('/icons/compass.svg');
       setReference_icon('/icons/book.svg');
       setSpec_icon('/icons/clipboard.svg');
+      setResources_icon('/icons/bookshelf.svg');
     }
   }, [theme]);
 
@@ -338,6 +366,7 @@ export const DocsNav = ({
           className={classnames('ml-6', { hidden: !active.getDocs })}
           id='overview'
         >
+          <DocLink uri='/overview/welcome' label='Welcome' setOpen={setOpen} />
           <DocLink
             uri='/overview/what-is-jsonschema'
             label='What is JSON Schema?'
@@ -349,13 +378,19 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <DocLink
-            uri='/overview/similar-technologies'
-            label='Similar Technologies'
+            uri='/overview/use-cases'
+            label='Use Cases'
             setOpen={setOpen}
           />
-          <DocLinkBlank
-            uri='https://landscape.json-schema.org'
-            label='Landscape'
+          <DocLink
+            uri='/overview/case-studies'
+            label='Case Studies'
+            setOpen={setOpen}
+          />
+          <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
+          <DocLink
+            uri='/overview/similar-technologies'
+            label='Similar Technologies'
             setOpen={setOpen}
           />
           <DocLink
@@ -695,6 +730,50 @@ export const DocsNav = ({
               setOpen={setOpen}
             />
           </div>
+        </div>
+      </div>
+      {/* Resources */}
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
+        <div
+          className='flex justify-between w-full items-center'
+          onClick={handleClickResources}
+        >
+          <div className='flex  items-center align-middle'>
+            <img
+              src={`${resources_icon}`}
+              alt='eye icon'
+              className='mr-2 w-6'
+            />
+            <SegmentHeadline label='Other Resources' />
+          </div>
+          <svg
+            id='arrow'
+            className='arrow'
+            style={{
+              transform: rotateResources,
+              transition: 'all 0.2s linear',
+            }}
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            height='32'
+            viewBox='0 0 24 24'
+            width='24'
+          >
+            <path
+              clipRule='evenodd'
+              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+              fill='#707070'
+              fillRule='evenodd'
+            />
+          </svg>
+        </div>
+        <div
+          className={classnames('ml-6', { hidden: !active.getResources })}
+          id='resources'
+        >
+          {resourceRoutes.map(({ uri, label }) => (
+            <DocLink key={uri} uri={uri} label={label} setOpen={setOpen} />
+          ))}
         </div>
       </div>
     </div>
