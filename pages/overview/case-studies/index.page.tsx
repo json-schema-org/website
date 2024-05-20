@@ -15,9 +15,7 @@ export default function ContentExample() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        Veniam ea fugiat exercitation laboris non est nulla id pariatur ex. Qui
-        occaecat fugiat sunt exercitation adipisicing culpa reprehenderit
-        consectetur amet in. Qui fugiat amet do eu.
+        Learn how organizations are adopting and benefiting from JSON Schema.
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element, index) => (

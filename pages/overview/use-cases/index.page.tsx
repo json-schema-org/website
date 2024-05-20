@@ -16,12 +16,9 @@ export default function Content() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        Welcome to the land of streamlined data! JSON Schema unlocks incredible
-        potential for all your projects. Explore real-world applications
-        showcasing how this powerful tool simplifies data management, ensures
-        consistency, and fosters seamless data exchange across applications. See
-        how JSON Schema empowers you to build robust data structures, saving
-        time and minimizing errors.
+        Discover everything you can do with JSON Schema. This section presents
+        the most common use cases for JSON Schema, but the possibilities are
+        endless.
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-3 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element, index) => (
