@@ -119,6 +119,7 @@ are the only keywords that changed.
   -  <userevent type='plausible-event-name=activation-click-tool'>[OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator)</userevent> (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI](https://www.openapis.org) document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
 - Kotlin
   -  <userevent type='plausible-event-name=activation-click-tool'>[json-kotlin-schema-codegen](https://github.com/pwall567/json-kotlin-schema-codegen)</userevent> (MIT) - Generates Kotlin data classes, Java classes or TypeScript interfaces from JSON Schema.
+  -  <userevent type='plausible-event-name=activation-click-tool'>[OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator)</userevent> (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI](https://www.openapis.org) document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
 -   Online (web tool)
   -  <userevent type='plausible-event-name=activation-click-tool'>[quicktype.io](https://app.quicktype.io/#l=schema)</userevent> - infer JSON Schema from samples, and generate TypeScript, C++, go, Java, C#, Swift, etc. types from JSON Schema
 -   PHP
