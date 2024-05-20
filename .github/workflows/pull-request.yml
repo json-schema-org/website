@@ -58,7 +58,7 @@ jobs:
           files: |
             .github/**
             .husky/**
-            env.example
+            .env.example
             package.json
             tsconfig.json
             next.config.js
@@ -71,7 +71,7 @@ jobs:
             CODEOWNERS
             LICENSE
             .gitignore
-            .gitsmodules
+            .gitmodules
             .gitattributes
             .eslintrc.js
             .eslintignore
@@ -79,6 +79,7 @@ jobs:
             .prettierrc
             .prettierignore
             .dockerignore
+            makefile
             
       - name: List all changed unauthorized files
         if: steps.changed-unauth-files.outputs.any_changed == 'true' || steps.changed-unauth-files.outputs.any_deleted == 'true'
