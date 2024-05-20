@@ -210,7 +210,7 @@
       date-draft: [2020-12]
       draft: [5]
       license: Apache-2.0
-      last-updated: "2024-01-21"
+      last-updated: "2024-05-20"
 - name: JavaScript
   implementations:
     - name: Hyperjump JSV
@@ -307,6 +307,13 @@
       draft: [7]
       license: MIT
       last-updated: "2023-08-01"
+    - name: OpenAPI JSON Schema Generator
+      notes: Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. JSON schema validation run when validating schemas.
+      url: https://github.com/openapi-json-schema-tools/openapi-json-schema-generator
+      date-draft: [2020-12]
+      draft: [5]
+      license: Apache-2.0
+      last-updated: "2024-05-20"
 - name: Perl
   implementations:
     - name: JSON::Schema::Modern
@@ -387,7 +394,7 @@
       date-draft: [2020-12]
       draft: [5]
       license: Apache-2.0
-      last-updated: "2024-01-21"
+      last-updated: "2024-05-20"
 - name: Ruby
   implementations:
     - name: JSONSchemer
