@@ -295,7 +295,7 @@ must be absolute.
 
 #### Regular Expressions
 
-- `"regex"`: <StarInline label="New in draft 7" /> A regular expression, which should be valid according to
+- `"regex"`: <StarInline label="New in draft 7" /> A regular expression that should be valid according to
   the [ECMA 262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
   [dialect](../../learn/glossary#dialect).
 
