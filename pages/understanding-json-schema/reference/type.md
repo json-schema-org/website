@@ -188,7 +188,7 @@ annotation and does not effect validation.
 
 Optionally, validator [implementations](../../learn/glossary#implementation) can provide a configuration option
 to enable `format` to function as an assertion rather than just an
-annotation. That means that validation will fail if, for example, a
+annotation. That means that validation fails when, for example, a
 value with a `date` format isn\'t in a form that can be parsed as a
 date. This can allow values to be constrained beyond what the other
 tools in JSON Schema, including [Regular Expressions](../../understanding-json-schema/reference/regular_expressions) can
