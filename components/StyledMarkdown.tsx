@@ -592,7 +592,7 @@ export function TableOfContentMarkdown({
                         href={`#${slug}`}
                         className='block cursor-pointer mb-3 text-sm leading-4 ml-[-0.15rem] hover:text-blue-500'
                       >
-                        <span className='mr-1 text-blue-400'>&#8212;</span>
+                        <span className='mr-1 text-blue-400'></span>
                         <span className='ml-[-0.25rem] mr-1 text-blue-400'>
                           &#8212;
                         </span>
