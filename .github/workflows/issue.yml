@@ -1,0 +1,29 @@
+name: Issue Workflow
+
+on:
+  issues:
+    types: ['opened']
+
+jobs:
+    Issue-Labeler:
+        name: Adding Label to issue
+        runs-on: ubuntu-latest
+        steps:
+          - uses: Renato66/auto-label@v2.3.0
+            with:
+                repo-token: ${{ secrets.GITHUB_TOKEN }}
+                ignore-comments: true
+                default-labels: '["Status: Triage"]'
+
+    Issue-Greeting:
+        name: Greeting Message to User
+        runs-on: ubuntu-latest
+        steps:
+            - name: Greeting Message to User
+              uses: actions/first-interaction@v1
+              with:
+                  repo-token: ${{ secrets.GITHUB_TOKEN }}
+                  issue-message: |
+                        Welcome to the [JSON Schema](https://json-schema.org/) Community. We are so excited you are here! Thanks a lot for reporting your first issue!! 🎉🎉  Please make sure to take a look to our [contributors guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md) if you plan on opening a pull request. 
+                        For more details check out [README.md](https://github.com/json-schema-org/website?tab=readme-ov-file#-welcome-to-the-json-schema-website) file.
+                     
