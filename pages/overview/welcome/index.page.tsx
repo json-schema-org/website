@@ -11,7 +11,7 @@ export default function Welcome() {
     {
       title: 'Overview',
       summary:
-        'Find everything you need to know about JSON Schema in one convenient place, including; sponsors, use cases, case studies, FAQ, code of conduct, etc.',
+        'Our Overview provides a high level view of the project, its benefits, the roadmap and other relevant details.',
       logo: '/icons/eye.svg',
       links: {
         lang: 'URL1',
@@ -21,7 +21,7 @@ export default function Welcome() {
     {
       title: 'Getting Started',
       summary:
-        'Here the magic begins! Get your project up and running with our tutorial. The section helps you start your journey toward creating a JSON schema document.',
+        'Our Getting Started guide walks you through the basics of JSON Schema.',
       logo: '/icons/compass.svg',
       links: {
         lang: 'URL1',
@@ -31,7 +31,7 @@ export default function Welcome() {
     {
       title: 'Reference',
       summary:
-        'Explore the JSON Schema reference. You have access to everything, the definition of common terms used in the JSON Schema (glossary), the schema reference, learning & understanding JSON Schema, and many more.',
+        'Our Reference teaches JSON Schema deeply from a beginner to the advanced level.',
       logo: '/icons/book.svg',
       links: {
         lang: 'URL1',
@@ -41,7 +41,7 @@ export default function Welcome() {
     {
       title: 'Specification',
       summary:
-        'Allows you to define validation, documentation, hyperlink navigation, and interaction control of JSON data.',
+        'Our Specification section documents all versions of JSON Schema specification.',
       logo: '/icons/clipboard.svg',
       links: {
         lang: 'URL1',
@@ -66,12 +66,11 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        Welcome to the place where simplicity meets power. The JSON Schema
-        exists to empower you, help you build more, and break less. It is the
-        fastest and most effective means to enable your JSON data
-        implementations. So, jump right in and explore. With JSON Schema by your
-        side, the possibilities are endless. Below you will find the pages from
-        our documentation. Welcome aboard!.
+        JSON Schema is a powerful tool for validating the structure of JSON
+        data. It effectively helps you to annotate and validate the structure,
+        constraints, and data types of your JSON documents. Our goal is to
+        provide a standardized means for you to define the expectations of your
+        JSON data.
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element: any, index: any) => (
