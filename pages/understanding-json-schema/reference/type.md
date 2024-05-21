@@ -284,7 +284,7 @@ must be absolute.
 
 - `"json-pointer"`: <StarInline label="New in draft 6" /> A JSON Pointer, according to
   [RFC6901](https://tools.ietf.org/html/rfc6901). There is more
-  discussion on the use of JSON Pointer within JSON Schema in
+  discussion on using JSON Pointer within JSON Schema in
   [Structuring a complex schema](../../understanding-json-schema/structuring). Note that this should be used only when
   the entire string contains only JSON Pointer content, e.g.
   `/foo/bar`. JSON Pointer URI fragments, e.g. `#/foo/bar/` should use
