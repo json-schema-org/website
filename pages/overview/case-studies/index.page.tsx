@@ -14,7 +14,7 @@ export default function ContentExample() {
         <title>{newTitle}</title>
       </Head>
       <Headline1>{newTitle}</Headline1>
-      <p>
+      <p className='text-[18px]'>
         Learn how organizations are adopting and benefiting from JSON Schema.
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>

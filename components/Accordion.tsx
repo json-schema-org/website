@@ -56,7 +56,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
             activeIndex === index ? 'max-h-96' : 'max-h-20'
           } ${index === items.length - 1 ? 'border-b-2' : ''}`}
         >
-          <div className='flex justify-between items-center p-4 cursor-pointer'>
+          <div className='flex justify-between p-4 pl-2 cursor-pointer'>
             <div className='text-[20px]'>
               <a
                 href={`#${item.id}`}
@@ -69,7 +69,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
               </a>
             </div>
             <div
-              className={`transform transition-transform text-[20px] ${
+              className={`transform transition-transform duration-200 max-h-7 text-[20px] ${
                 activeIndex === index ? 'rotate-45' : ''
               }`}
               onClick={() => handleToggle(index)}
@@ -80,7 +80,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
           {activeIndex === index && (
             <div
               id={`${item.id}`}
-              className='p-2 text-gray-500 dark:text-slate-200'
+              className='p-2 text-gray-500 dark:text-slate-200 pb-4'
             >
               {item.answer}
             </div>
