@@ -14,6 +14,11 @@ export default function Content() {
         <title>{newTitle}</title>
       </Head>
       <Headline1>{newTitle}</Headline1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, totam?
+        Asperiores delectus perspiciatis, reprehenderit, harum quasi unde
+      </p>
+
       <Faq category='general' />
     </SectionContext.Provider>
   );
