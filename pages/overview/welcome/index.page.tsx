@@ -8,7 +8,6 @@ import data from '~/data/welcome.json';
 
 export default function Welcome() {
   const newTitle = 'Welcome';
-
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -16,9 +15,14 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        Veniam ea fugiat exercitation laboris non est nulla id pariatur ex. Qui
-        occaecat fugiat sunt exercitation adipisicing culpa reprehenderit
-        consectetur amet in. Qui fugiat amet do eu.
+        JSON Schema is a powerful standard for validating the structure of JSON
+        data. It effectively helps you to annotate and validate the structure,
+        constraints, and data types of your JSON documents. Our goal is to
+        provide a standardized means for you to define the expectations of your
+        JSON data.
+        <br />
+        <br />
+        <span className='font-bold text-[1.3rem]'>Explore the docs</span>
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element: any, index: any) => (

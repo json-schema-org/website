@@ -1,7 +1,8 @@
 [
   {
     "title": "Overview",
-    "summary": "Ut minim anim non deserunt veniam. Ex sit eu voluptate labore sunt aute ",
+    "summary":
+      "Our Overview provides a high level view of the project, its benefits, the roadmap and other relevant details.",
     "logo": "/icons/eye.svg",
     "links": {
       "lang": "URL1",
@@ -10,7 +11,8 @@
   },
   {
     "title": "Getting Started",
-    "summary": "Sit anim eu sunt nisi. Tempor cupidatat voluptate nostrud voluptate deserunt cupidatat dolor magna irure deserunt.",
+    "summary":
+      "Our Getting Started guide walks you through the basics of JSON Schema.",
     "logo": "/icons/compass.svg",
     "links": {
       "lang": "URL1",
@@ -19,7 +21,8 @@
   },
   {
     "title": "Reference",
-    "summary": "Adipisicing minim ex amet occaecat dolore quis nisi voluptate sit.",
+    "summary":
+      "Our Reference teaches JSON Schema deeply from a beginner to the advanced level.",
     "logo": "/icons/book.svg",
     "links": {
       "lang": "URL1",
@@ -28,20 +31,12 @@
   },
   {
     "title": "Specification",
-    "summary": "Deserunt et fugiat do adipisicing enim in nostrud Lorem anim ut amet enim.",
+    "summary":
+      "Our Specification section documents all versions of JSON Schema specification.",
     "logo": "/icons/clipboard.svg",
     "links": {
       "lang": "URL1",
       "url": "/specification"
-    }
-  },
-  {
-    "title": "Other Resources",
-    "summary": "Deserunt et fugiat do adipisicing enim in nostrud Lorem anim ut amet enim.",
-    "logo": "/icons/bookshelf.svg",
-    "links": {
-      "lang": "URL1",
-      "url": "/resources/books"
     }
   }
 ]
