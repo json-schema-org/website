@@ -414,11 +414,11 @@ export default function communityPages(props: any) {
                 </Link>
                 <div className='mx-auto '>
                   <a
-                    href={`/blog/posts/${blogPosts[0].slug}`}
+                    href='/blog'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
                   >
-                    Read more
+                    Read more posts
                   </a>
                 </div>
               </div>
