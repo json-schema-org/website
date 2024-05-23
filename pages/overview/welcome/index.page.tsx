@@ -51,7 +51,7 @@ export default function Welcome() {
     {
       title: 'Other Resources',
       summary:
-        'Explore our different resources, books, articles, courses, videos, podcasts, and papers, we welcome you to enjoy them.',
+        'Deserunt et fugiat do adipisicing enim in nostrud Lorem anim ut amet enim.',
       logo: '/icons/bookshelf.svg',
       links: {
         lang: 'URL1',
