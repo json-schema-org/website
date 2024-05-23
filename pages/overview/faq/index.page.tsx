@@ -6,7 +6,7 @@ import Faq from '~/components/Faq';
 import { Headline1 } from '~/components/Headlines';
 
 export default function Content() {
-  const newTitle = 'Frequently Asked Questions';
+  const newTitle = 'FAQ';
 
   return (
     <SectionContext.Provider value='docs'>
