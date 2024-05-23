@@ -15,11 +15,10 @@ export default function ContentExample() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p className='text-[18px]'>
-        Learn how organizations are adopting and benefiting from JSON Schema.{' '}
-        <b>
-          Please replace this text with a two to three liner so that we can
-          avoid the layout shifting bug.
-        </b>
+        {/* Please fix below dummy text and make it two to three liner so that we can remove the bug of layout shifting :) */}
+        Learn how organizations are adopting and benefiting from JSON Schema.
+        Please replace this text with a two to three liner so that we can avoid
+        the layout shifting bug.
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element, index) => (
