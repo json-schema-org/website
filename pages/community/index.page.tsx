@@ -161,7 +161,7 @@ export default function communityPages(props: any) {
         <div className='grid grid-cols-1 lg:grid-cols-2 h-auto lg:h-[100vh]'>
           <div className='grid items-center mx-auto mb-[20px] sm:w-[80%] lg:w-auto mt-[100px] '>
             <div
-              className='text-center flex justify-center flex-col items-center mt-10 md:mt-0 w-fit h-fit'
+              className='text-center flex justify-center flex-col items-center mt-10 md:mt-0 w-fit h-fit max-lg:mt-0'
               data-testid='Header-hero-heading'
             >
               <div className='mt-8' data-testid='Header-heading-1'>
@@ -231,7 +231,7 @@ export default function communityPages(props: any) {
           </div>
         </section>
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <div className='z-40 mt-20 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between rounded-lg border border-gray-200 bg-white transition-colors delay-[150ms] hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
+          <div className='z-40 mt-20 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between rounded-lg border border-gray-200 bg-white transition-colors hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main' className='m-auto flex flex-col'>
                 <h2 className=' text-blue-700 font-bold  text-[2rem] text-center'>
@@ -256,7 +256,7 @@ export default function communityPages(props: any) {
             <div className='w-full h-fit-content md:w-3/6 max-sm:w-1/4 flex rounded-r-lg justify-end bg-cover bg-center bg-ambassador' />
           </div>
 
-          <div className='z-40 mt-20 rounded-lg border border-gray-200 bg-white transition-colors delay-[150ms] hover:bg-slate-100 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
+          <div className='z-40 mt-20 rounded-lg border border-gray-200 bg-white transition-colors hover:bg-slate-100 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main' className='m-auto'>
                 <h2 className=' text-blue-700 font-bold text-[2rem] text-center'>
@@ -282,7 +282,7 @@ export default function communityPages(props: any) {
         </div>
 
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <div className='z-40 mt-20 w-full rounded-lg border border-gray-200 bg-white group dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors delay-[150ms] hover:bg-slate-100 md:flex grid grid-cols-1 lg:grid-cols-2 justify-between'>
+          <div className='z-40 mt-20 w-full rounded-lg border border-gray-200 bg-white group dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors hover:bg-slate-100 md:flex grid grid-cols-1 lg:grid-cols-2 justify-between'>
             <div className='p-4 px-8 grid items-center w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main'>
                 <h2 className='text-blue-700 text-[2rem] font-bold  text-center'>
@@ -342,7 +342,7 @@ export default function communityPages(props: any) {
           </div>
         </div>
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
-          <div className='z-40 mt-20 w-full md:h-130 rounded-lg border border-gray-200 bg-white shadow-3xl transition-colors delay-[150ms] hover:bg-slate-100 md:flex grid grid-cols-1 md:grid-cols-2 justify-between mb-10  dark:bg-slate-800 hover:dark:bg-slate-900/30  dark:shadow-2xl dark:shadow-slate-900'>
+          <div className='z-40 mt-20 w-full md:h-130 rounded-lg border border-gray-200 bg-white shadow-3xl transition-colors  hover:bg-slate-100 md:flex grid grid-cols-1 md:grid-cols-2 justify-between mb-10  dark:bg-slate-800 hover:dark:bg-slate-900/30  dark:shadow-2xl dark:shadow-slate-900'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main' className='mx-auto my-20'>
                 <h2 className=' text-blue-700 font-bold text-[2rem] text-center'>
@@ -403,7 +403,7 @@ export default function communityPages(props: any) {
                       <p className='text-sm font-semibold dark:text-white'>
                         {blogPosts[0].frontmatter.authors[0].name}
                       </p>
-                      <div className='text-slate-300 text-sm'>
+                      <div className='dark:text-slate-300 text-sm'>
                         <span>
                           {blogPosts[0].frontmatter.date} &middot;{timeToRead}{' '}
                           min min read
