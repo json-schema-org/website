@@ -66,11 +66,9 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        JSON Schema is a powerful tool for validating the structure of JSON
-        data. It effectively helps you to annotate and validate the structure,
-        constraints, and data types of your JSON documents. Our goal is to
-        provide a standardized means for you to define the expectations of your
-        JSON data.
+        Discover everything you can do with JSON Schema. This section presents
+        the most common use cases for JSON Schema, but the possibilities are
+        endless.
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element: any, index: any) => (
