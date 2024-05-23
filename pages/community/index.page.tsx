@@ -233,7 +233,7 @@ export default function communityPages(props: any) {
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
           <div className='z-40 mt-20 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between rounded-lg border border-gray-200 bg-white transition-colors hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
-              <div data-testid='HomeCard-main' className='m-auto flex flex-col'>
+              <div data-testid='HomeCard-main' className='m-auto'>
                 <h2 className=' text-blue-700 font-bold  text-[2rem] text-center'>
                   Ambassadors Program
                 </h2>
