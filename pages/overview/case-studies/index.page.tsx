@@ -17,7 +17,7 @@ export default function ContentExample() {
       <p className='text-[18px]'>
         Learn how organizations are adopting and benefiting from JSON Schema.
       </p>
-      <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
+      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element, index) => (
           <Card
             key={index}

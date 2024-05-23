@@ -7,7 +7,7 @@ export default function Faq({ category }: { category: string }) {
 
   return (
     <section>
-      <div className='max-w-screen-md mx-auto p-8 pl-0 ml-0'>
+      <div className='max-w-screen-md mx-auto p-8 px-0 ml-0'>
         <h2 className='text-2xl font-bold text-[24px] mb-4'>
           {category.toUpperCase()}
         </h2>

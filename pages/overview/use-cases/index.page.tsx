@@ -20,7 +20,7 @@ export default function Content() {
         the most common use cases for JSON Schema, but the possibilities are
         endless.
       </p>
-      <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-3 gap-6 my-[10px] mx-auto mt-8'>
+      <div className='w-full lg:w-full grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element, index) => (
           <Card
             key={index}

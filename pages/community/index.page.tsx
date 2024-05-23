@@ -41,7 +41,6 @@ export const getStaticProps: GetStaticProps = async () => {
     })
     .slice(0, 5);
 
-  // Function to fetch the remote iCal file
   async function fetchRemoteICalFile(url: string) {
     try {
       const response = await axios.get(url, { method: 'no-cors' });
@@ -166,17 +165,17 @@ export default function communityPages(props: any) {
               data-testid='Header-hero-heading'
             >
               <div className='mt-8' data-testid='Header-heading-1'>
-                <h2 className='text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>
+                <h2 className='text-[2.5rem] max-sm:text-[2rem] font-bold px-4 items-center text-center'>
                   Welcome to the
                   <br />
                   JSON Schema Community
                 </h2>
               </div>
               <div className='mt-5 w-5/6' data-testid='Header-heading-2'>
-                <h2 className='text-gray-700 text-sm font-heading dark:text-slate-100 text-body-md tracking-body font-regular '>
+                <h2 className='text-gray-700 text-xl max-sm:text-[15px] font-heading dark:text-slate-100 text-body-md tracking-body font-regular '>
                   Join the Community to learn, share ideas, ask questions, build
                   JSON Schema tooling, and get involved in the future of the
-                  Spec.
+                  specifications.
                 </h2>
               </div>
               <div className='mt-8'>
@@ -210,23 +209,23 @@ export default function communityPages(props: any) {
           </div>
         </div>
         <section className='mt-10'>
-          <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
+          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
             <Card
               key='roadmap'
               icon='/icons/roadmap.svg'
               title='Roadmap'
               body='Explore our exciting plans and upcoming milestones. 🚀'
               headerSize='large'
-              bodyTextSize='small'
+              bodyTextSize='medium'
               link='https://github.com/orgs/json-schema-org/discussions/427'
             />
             <Card
-              key='contributing'
+              key='contribute'
               icon='/icons/contribute.svg'
-              title='Contributing'
+              title='Contribute'
               body='We are looking forward to working with you. Welcome aboard!'
               headerSize='large'
-              bodyTextSize='small'
+              bodyTextSize='medium'
               link='https://github.com/json-schema-org/.github/blob/main/CONTRIBUTING.md'
             />
           </div>
