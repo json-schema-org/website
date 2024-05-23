@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import Card from '~/components/Card';
+import data from '~/data/welcome.json';
 
 export default function Welcome() {
   const newTitle = 'Welcome';
@@ -48,16 +49,6 @@ export default function Welcome() {
         url: '/specification',
       },
     },
-    {
-      title: 'Other Resources',
-      summary:
-        'Deserunt et fugiat do adipisicing enim in nostrud Lorem anim ut amet enim.',
-      logo: '/icons/bookshelf.svg',
-      links: {
-        lang: 'URL1',
-        url: '/resources/books',
-      },
-    },
   ];
   return (
     <SectionContext.Provider value='docs'>
@@ -70,7 +61,7 @@ export default function Welcome() {
         the most common use cases for JSON Schema, but the possibilities are
         endless.
       </p>
-      <div className='w-full lg:w-full grid grid-cols-1 md:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
+      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element: any, index: any) => (
           <Card
             key={index}
