@@ -96,7 +96,7 @@ const getDocsPath = [
   '/overview/similar-technologies',
   '/overview/use-cases',
   '/overview/code-of-conduct',
-  '/overview/FAQ',
+  '/overview/faq',
 ];
 const getStartedPath = [
   '/learn/json-schema-examples',
