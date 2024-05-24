@@ -15,8 +15,8 @@ export default function Content() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nobis, totam?
-        Asperiores delectus perspiciatis, reprehenderit, harum quasi unde
+        Below you'll find answers to questions we get asked the most about JSON
+        Schema.
       </p>
 
       <Faq category='general' />
