@@ -51,11 +51,11 @@ jobs:
         close-pr-message: 'This pull request did not get any activity in the past 180 days and thus has been closed.'
            
         # Labels to add to stale issues and pull requests.
-        stale-issue-label: 'no-issue-activity'
-        stale-pr-label: 'no-pr-activity'
+        stale-issue-label: 'Status: Stale'
+        stale-pr-label: 'Status: Stale'
         
         # Number of days of inactivity before an issue/PR is marked as stale.
-        days-before-stale: 14
+        days-before-stale: 30
        
         # Number of days of inactivity before an issue/PR is closed.
         days-before-close: 180
