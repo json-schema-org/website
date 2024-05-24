@@ -495,7 +495,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 const fullMarkdown = useContext(FullMarkdownContext);
                 if (!fullMarkdown) return null;
                 return (
-                  <div className='text-blue-500 mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 px-3 rounded-l border-l-blue-400 border-l-[3px]'>
+                  <div className='mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 pr-3 border-dotted border-l-blue-400 border-l-[3px]'>
                     <TableOfContentMarkdown
                       markdown={fullMarkdown}
                       depth={depth}
@@ -530,8 +530,11 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 text-sm leading-4 text-slate-700 hover:text-blue-500'
+                  className='block cursor-pointer mb-3 text-sm leading-4 ml-[-0.40rem] font-bold'
                 >
+                  <span className='mr-1 text-blue-400 text-[1.5em]'>
+                    &#9679;
+                  </span>
                   {children}
                 </a>
               );
@@ -543,8 +546,9 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 text-sm leading-4 ml-3 hover:text-blue-500'
+                  className='block cursor-pointer mb-3 text-sm leading-4 -ml-[7px] font-bold'
                 >
+                  <span className='mr-1 text-blue-400 text-[1em]'>&#9679;</span>
                   {children}
                 </a>
               );
@@ -559,8 +563,15 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-sm leading-4 ml-7 hover:text-blue-500'
+                        className='flex flex-row items-center cursor-pointer mb-3 text-sm leading-4 ml-[-0.15rem]'
                       >
+                        <span className='text-blue-400 text-[0.29em] ml-1'>
+                          &#9679; &#9679; &#9679; &#9679;
+                        </span>
+                        <span className='mr-1 text-blue-400 text-[0.75em]'>
+                          &#9679;
+                        </span>
+
                         {children}
                       </a>
                     );
@@ -575,8 +586,16 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-sm leading-4 ml-10 hover:text-blue-500'
+                        className='flex flex-row items-center cursor-pointer mb-3 text-sm leading-4 ml-[-0.15rem] '
                       >
+                        <span className='text-blue-400 text-[0.35em] ml-1'>
+                          &#9679; &#9679; &#9679; &#9679; &#9679; &#9679;
+                          &#9679; &#9679; &#9679; &#9679; &#9679;
+                        </span>
+                        <span className='mr-1 text-blue-400 text-[0.75em]'>
+                          &#9679;
+                        </span>
+
                         {children}
                       </a>
                     );
