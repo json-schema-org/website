@@ -247,7 +247,7 @@ export default function communityPages(props: any) {
                 <h2 className=' text-blue-700 font-bold  text-[2rem] text-center'>
                   Ambassadors Program
                 </h2>
-                <h2 className=' font-bold text-slate-500 text-base tracking-wide dark:text-white mt-10'>
+                <h2 className='font-bold text-slate-500 text-base tracking-wide dark:text-white mt-10'>
                   The JSON Schema Ambassadors Program recognize the people who
                   drive adoption, innovation and knowledge sharing in the JSON
                   Schema community.
@@ -324,22 +324,22 @@ export default function communityPages(props: any) {
               </div>
             </div>
             <div className='w-fit-content h-fit-content py-3 md:w-3/6 max-lg:mx-3 flex rounded-r-lg justify-end'>
-              <div className='mx-auto'>
+              <div className='mx-auto max-lg:w-full'>
                 <h2 className='text-center dark:text-white text-primary text-[2rem] font-bold '>
                   Upcoming events
                 </h2>
                 {props.datesInfo.map((event: any, index: any) => (
                   <div
                     key={index}
-                    className='mx-auto gap-2 group-hover:bg-white dark:bg-slate-900/50 dark:group-hover:bg-slate-800  bg-slate-100 h-[90px] max-sm:h-auto  w-full rounded-lg flex flex-row justify-between  items-center p-2 mt-2'
+                    className='mx-auto gap-2 group-hover:bg-white dark:bg-slate-900/50 dark:group-hover:bg-slate-800  bg-slate-100 h-[90px] max-md:h-[120px]  max-sm:h-auto  w-full rounded-lg flex flex-row justify-between  items-center p-2 mt-2'
                   >
                     <div
-                      className={`h-[70px] w-1/3  rounded-lg text-center grid items-center bg-index-${index}`}
+                      className={`h-[70px] w-1/3 rounded-lg text-center grid items-center bg-index-${index}`}
                     >
                       <p className='text-[2rem] dark:text-white'>{event.day}</p>
                     </div>
-                    <div className='h-[70px] max-sm:h-auto w-2/3  rounded-lg grid items-center px-2'>
-                      <p className='text-[12px] dark:text-white'>
+                    <div className='h-[70px] max-md:h-[120px]   max-sm:h-auto w-2/3  rounded-lg grid items-center px-2'>
+                      <p className='text-[12px]  dark:text-white'>
                         <b className='text-blue-700'>{event.title}</b>
                         <br />
                         <span>
