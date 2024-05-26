@@ -10,6 +10,7 @@ import Link from 'next/link';
 import TextTruncate from 'react-text-truncate';
 import { GetStaticProps } from 'next';
 import Card from '~/components/Card';
+import Image from 'next/image';
 
 /* eslint-disable */
 import axios from 'axios';
@@ -197,19 +198,28 @@ export default function communityPages(props: any) {
             <div className='grid justify-center mt-[50px] gap-y-[10px]'>
               <div className='grid grid-cols-10 max-sm:grid-cols-7  gap-3'>
                 {imageData.map((avatar, index) => (
-                  <img
-                    key={`${avatar.id}-${index}`}
-                    src={avatar.img}
-                    alt={avatar.alt}
-                    className='w-[35px] sm:w-[40px] md:w-[45px] lg:w-[50px] h-[35px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
-                  />
+                  <Link
+                    href={`https://github.com/${avatar.id}`} // change this to link and update community.json file.
+                    key={index}
+                    target='_blank'
+                  >
+                    <Image
+                      key={`${avatar.id}-${index}`}
+                      src={avatar.img}
+                      alt={avatar.alt}
+                      width={35}
+                      height={35}
+                      title={avatar.alt}
+                      className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
+                    />
+                  </Link>
                 ))}
               </div>
             </div>
           </div>
         </div>
         <section className='mt-10'>
-          <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
+          <div className='flex flex-row justify-between  max-sm:flex-col max-lg:gap-8 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
             <Card
               key='roadmap'
               icon='/icons/roadmap.svg'
@@ -313,7 +323,7 @@ export default function communityPages(props: any) {
                 </div>
               </div>
             </div>
-            <div className='w-fit-content h-fit-content py-3 md:w-3/6 flex rounded-r-lg justify-end'>
+            <div className='w-fit-content h-fit-content py-3 md:w-3/6 max-lg:mx-3 flex rounded-r-lg justify-end'>
               <div className='mx-auto'>
                 <h2 className='text-center dark:text-white text-primary text-[2rem] font-bold '>
                   Upcoming events
@@ -321,18 +331,20 @@ export default function communityPages(props: any) {
                 {props.datesInfo.map((event: any, index: any) => (
                   <div
                     key={index}
-                    className='mx-auto group-hover:bg-white dark:bg-slate-900/50 dark:group-hover:bg-slate-800  bg-slate-100 h-[90px] w-full md:w-[450px] rounded-lg flex gap-4 items-center p-2 mt-2'
+                    className='mx-auto gap-2 group-hover:bg-white dark:bg-slate-900/50 dark:group-hover:bg-slate-800  bg-slate-100 h-[90px] max-sm:h-auto  w-full rounded-lg flex flex-row justify-between  items-center p-2 mt-2'
                   >
                     <div
-                      className={`h-[70px] w-[70px]  rounded-lg text-center grid items-center bg-index-${index}`}
+                      className={`h-[70px] w-1/3  rounded-lg text-center grid items-center bg-index-${index}`}
                     >
                       <p className='text-[2rem] dark:text-white'>{event.day}</p>
                     </div>
-                    <div className='h-[70px]  rounded-lg grid items-center px-2'>
-                      <p className='leading-7 text-[12px] dark:text-white'>
+                    <div className='h-[70px] max-sm:h-auto w-2/3  rounded-lg grid items-center px-2'>
+                      <p className='text-[12px] dark:text-white'>
                         <b className='text-blue-700'>{event.title}</b>
                         <br />
-                        {event.time}({event.timezone})
+                        <span>
+                          {event.time}({event.timezone})
+                        </span>
                       </p>
                     </div>
                   </div>
