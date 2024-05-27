@@ -7,6 +7,7 @@ interface CardProps {
   icon?: string;
   link?: string;
   image?: string;
+  extended?: boolean;
   headerSize?: 'small' | 'medium' | 'large';
   bodyTextSize?: 'small' | 'medium' | 'large';
 }
@@ -17,6 +18,7 @@ const CardBody = ({
   icon,
   link,
   image,
+  extended,
   headerSize,
   bodyTextSize,
 }: CardProps) => {
@@ -51,7 +53,8 @@ const CardBody = ({
       <p
         className={`mb-8 text-black mt-5 dark:text-white  ${bodyTextSizeClasses[bodyTextSize || 'medium']} `}
       >
-        <TextTruncate element='span' line={3} text={body} />
+        {extended && <span>{body}</span>}
+        {!extended && <TextTruncate element='span' line={3} text={body} />}
       </p>
       {link && (
         <p className='absolute bottom-3 right-5 font-medium opacity-0 transition-opacity delay-150 ease-in-out group-hover:opacity-100 text-black dark:text-white '>
@@ -68,6 +71,7 @@ const Card: React.FC<CardProps> = ({
   icon,
   link,
   image,
+  extended,
   headerSize,
   bodyTextSize,
 }) => {
@@ -76,12 +80,30 @@ const Card: React.FC<CardProps> = ({
       {link ? (
         <Link href={link}>
           <CardBody
-            {...{ title, body, icon, link, image, headerSize, bodyTextSize }}
+            {...{
+              title,
+              body,
+              icon,
+              link,
+              image,
+              extended,
+              headerSize,
+              bodyTextSize,
+            }}
           />
         </Link>
       ) : (
         <CardBody
-          {...{ title, body, icon, link, image, headerSize, bodyTextSize }}
+          {...{
+            title,
+            body,
+            icon,
+            link,
+            image,
+            extended,
+            headerSize,
+            bodyTextSize,
+          }}
         />
       )}
     </>
