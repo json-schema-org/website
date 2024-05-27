@@ -3,21 +3,15 @@ title: Creating your first schema
 section: docs
 ---
 
-JSON Schema is a vocabulary that you can use to annotate and validate JSON documents. This tutorial guides you through the process of creating a JSON Schema document, including:
-
-* [Creating a schema definition](#create)
-* [Defining properties](#define)
-* [Nesting data structures](#nest-data)
-* [Adding outside references](#external)
-* [Validating JSON data against the schema](#validate)
+JSON Schema is a vocabulary that you can use to annotate and validate JSON documents. This tutorial guides you through the process of creating a JSON Schema document.
 
 After you create the JSON Schema document, you can validate the example data against your schema using a validator in a language of your choice. See <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/implementations)</userevent> for a current list of supported validators.
 
-For more information about the value JSON Schema can provide, see the full [JSON Schema Specification](https://json-schema.org/specification.html).
+<TableOfContent depth={2} />
 
 <span id="overview"></span>
 
-## Overview [#overview-section]
+## Overview 
 
 The example we use in this guide is a product catalog that stores its data using JSON objects, like the following:
 
@@ -41,7 +35,7 @@ The JSON object is human-readable, but it doesn’t include any context or metad
 
 <span id="intro"></span>
 
-## Introduction to JSON Schema[#intro]
+## Introduction to JSON Schema
 
 The _instance_ is the JSON document that is being validated or described, and the _schema_ is the document that contains the description.
 
@@ -61,7 +55,7 @@ JSON Schema is hypermedia-ready and ideal for annotating your existing JSON-base
 
 <span id="create"></span>
 
-## Create a schema definition[#create]
+## Create a schema definition
 
 To create a basic schema definition, define the following keywords:
 
@@ -88,11 +82,11 @@ In JSON Schema terminology, `$schema` and `$id` are [schema keywords](https://js
 
 <span id="define"></span>
 
-## Define properties[#define]
+## Define properties
 
 This section adds the `properties` keyword. In JSON Schema terms, `properties` is a [validation keyword](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1). When you define `properties`, you create an object where each property represents a key in the JSON data that’s being validated. You can also specify which properties defined in the object are required.
 
-### Add the properties object[#properties]
+### Add the properties object
 
 Using the product catalog example, `productId` is a numeric value that uniquely identifies a product. Since this is the canonical identifier for the product, it’s required.
 
@@ -166,7 +160,7 @@ The following example adds another required key, `productName`. This value is a 
 
 The `properties` object now includes two keys, `productId` and `productName`. When JSON data is validated against this schema, validation fails for any documents that contain invalid data in either of these fields.
 
-### Define required properties[#required]
+### Define required properties
 
 This section describes how to specify that certain properties are required. This example makes the two existing keys required and adds another required key named `price`. The `price` key has a `description` and `type` just like the other keys, but it also specifies a minimum value. Because nothing in the store is free, each product requires a price value that’s above zero. Define this using the `exclusiveMinimum` validation keyword.
 
@@ -239,7 +233,7 @@ With the new `required` keyword and `price` key, the overall schema looks like t
 
 The `exclusiveMinimum` validation keyword is set to zero, which means that only values above zero are considered valid. To include zero as a valid option, you could use the `minimum` validation keyword instead.
 
-### Define optional properties[#optional]
+### Define optional properties
 
 This section describes how to define an optional property. For this example, define a keyword named `tags` using the following criteria:
 
@@ -346,7 +340,7 @@ Because the new keyword is not required, there are no changes to the `required` 
 
 <span id="nest-data"></span>
 
-## Create a nested data structure[#nest-data]
+## Create a nested data structure
 
 The earlier examples describe a flat schema with only one level. This section describes how to use nested data structures in JSON Schema.
 
@@ -468,7 +462,7 @@ The new `required` validation keyword only applies within the scope of the `dime
 
 <span id="external"></span>
 
-## Add an external reference[#external]
+## Add an external reference
 
 This section describes how to reference resources outside of the schema. Sharing schemas across many data structures is a common way to make them easier to use, read, and keep up-to-date. So far, the product catalog schema is self-contained. This section creates a new schema and then references it in the product catalog schema.
 
@@ -577,7 +571,7 @@ With the external schema reference, the overall schema looks like this:
 
 <span id="valiate"></span>
 
-## Validate JSON data against the schema[#validate]
+## Validate JSON data against the schema
 
 This section describes how to validate JSON data against the product catalog schema.
 

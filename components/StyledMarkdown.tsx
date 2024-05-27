@@ -530,7 +530,7 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 max-sm:text-sm text-base leading-4 ml-[-0.40rem] font-bold'
+                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.40rem] font-bold'
                 >
                   <span className='mr-1 text-blue-400 text-[1.5em]'>
                     &#9679;
@@ -546,7 +546,7 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 max-sm:text-sm text-base leading-4 -ml-[9px] max-sm:-ml-[7px] font-bold'
+                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 -ml-[9px] max-sm:-ml-[7px] font-bold'
                 >
                   <span className='mr-1 text-blue-400 text-[1em]'>&#9679;</span>
                   {children}
@@ -563,7 +563,7 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-base leading-4 ml-[-0.15rem]'
+                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.15rem]'
                       >
                         <span className='text-blue-400 text-[0.28em] ml-1 max-sm:w-[18px]'>
                           &#9679; &#9679; &#9679; &#9679;
@@ -586,7 +586,7 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-base leading-4 ml-[-0.15rem]'
+                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.15rem]'
                       >
                         <span className='text-blue-400 text-[0.28em] ml-1 max-sm:w-[48px]'>
                           &#9679; &#9679; &#9679; &#9679; &#9679; &#9679;
