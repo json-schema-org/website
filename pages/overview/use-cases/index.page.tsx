@@ -26,6 +26,7 @@ export default function Content() {
             key={index}
             title={element.title}
             body={element.summary}
+            icon='/icons/bulb2.svg'
             headerSize={'medium'}
             extended={true}
             bodyTextSize={'small'}

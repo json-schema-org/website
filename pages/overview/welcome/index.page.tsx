@@ -30,7 +30,7 @@ export default function Welcome() {
             key={index}
             title={element.title}
             body={element.summary}
-            icon={element.logo}
+            icon={element.icon}
             link={element.links.url}
           />
         ))}

@@ -3,7 +3,7 @@
     "title": "Overview",
     "summary":
       "Our Overview provides a high level view of the project, its benefits, the roadmap and other relevant details.",
-    "logo": "/icons/eye.svg",
+    "icon": "/icons/eye.svg",
     "links": {
       "lang": "URL1",
       "url": "/overview/what-is-jsonschema"
@@ -13,7 +13,7 @@
     "title": "Getting Started",
     "summary":
       "Our Getting Started guide walks you through the basics of JSON Schema.",
-    "logo": "/icons/compass.svg",
+    "icon": "/icons/compass.svg",
     "links": {
       "lang": "URL1",
       "url": "/learn/getting-started-step-by-step"
@@ -23,7 +23,7 @@
     "title": "Reference",
     "summary":
       "Our Reference teaches JSON Schema deeply from a beginner to the advanced level.",
-    "logo": "/icons/book.svg",
+    "icon": "/icons/book.svg",
     "links": {
       "lang": "URL1",
       "url": "/understanding-json-schema"
@@ -33,7 +33,7 @@
     "title": "Specification",
     "summary":
       "Our Specification section documents all versions of JSON Schema specification.",
-    "logo": "/icons/clipboard.svg",
+    "icon": "/icons/clipboard.svg",
     "links": {
       "lang": "URL1",
       "url": "/specification"
