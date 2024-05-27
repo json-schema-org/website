@@ -19,31 +19,38 @@ jobs:
 
   greet-on-first-merge:
     runs-on: ubuntu-latest
-    if: github.event.action == 'closed'
+    permissions:
+      pull-requests: write
+    if: github.event.pull_request.merged == true
     steps:
-    - uses: actions/github-script@v7
+    - name: Check if this is the user's first merged PR
+      id: check_first_pr
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const prAuthor = context.payload.pull_request.user.login;
+          const owner = context.repo.owner;
+          const repo = context.repo.repo;
+
+          const response = await fetch(`https://api.github.com/search/issues?q=repo:${owner}/${repo}+type:pr+state:closed+author:${prAuthor}+is:merged`);
+          const data = await response.json();
+          const mergedCount = data.total_count;
+          
+          console.log(`User ${prAuthor} has ${mergedCount} merged PRs`);
+          core.setOutput('mergedCount', mergedCount);
+
+    - name: Comment on the first merged PR
+      if: steps.check_first_pr.outputs.mergedCount == '1'
+      uses: actions/github-script@v7
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
         script: |
-            const prNumber = context.payload.pull_request.number;
-            const authorLogin = context.payload.pull_request.user.login;
-
-            const firstPR = await github.issues.listForRepo({
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            pull_requests: {
-                state: 'closed',
-                author: authorLogin,
-            },
-            });
-            
-            if (firstPR.data.length === 1) {
-            const greetingMessage = ` Congratulations, @${authorLogin} for your first pull request merge in this repository! 🎉🎉. Thanks for your contribution to JSON Schema! `;
-
-            await github.issues.createComment({
+          const prNumber = context.payload.pull_request.number;
+          const prAuthor = context.payload.pull_request.user.login;
+          const commentBody = `Congratulations, @${prAuthor} for your first pull request merge in this repository! 🎉🎉. Thanks for your contribution to JSON Schema! `;
+           await github.rest.issues.createComment({
+                issue_number: prNumber,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
-                issue_number: prNumber,
-                body: greetingMessage
-            });
-            }
+                body: commentBody
+              })
