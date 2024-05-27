@@ -21,6 +21,14 @@
     "summary": "When a server declares constraints that a submission must meet, there is a need for the user interface to receive these constraints to provide model-driven validation of permissible values, making the form more accessible to the user."
   },
   {
+    "title":"UI Generation",
+    "summary": "JSON Schema can be used to automatically generate user interfaces that adhere to a given schema."
+  },
+  {
+    "title":"Data Serialization",
+    "summary": "Compress JSON data for storage/transmission. For example: <a href='https://jsonbinpack.sourcemeta.com'>https://jsonbinpack.sourcemeta.com</a>"
+  },
+  {
     "title":"Fuzzing, enumeration, and generation",
     "summary": "Security applications need to generate examples of JSON documents within the valid set, and outside the valid set."
   },
@@ -29,8 +37,16 @@
     "summary": "Due to technical limitations, some JSON parsers may only be able to understand a subset of the JSON value space, and it makes sense to validate the value read by the application, instead of the JSON document provided to the JSON parser."
   },
   {
+    "title":"Automated Testing",
+    "summary": "Good definitions of input/output that schemas provide enable contract and property based testing scenarios. For example: <a href='https://schemathesis.readthedocs.io/en/stable/'>https://schemathesis.readthedocs.io/en/stable/</a>"
+  },
+  {
     "title":"Machine-readable profiles of Web resources",
     "summary": "A Web server that offers a JSON document should be able to link to a profile document that describes the meaning of the data in a machine-readable form."
+  },
+  {
+    "title":"Schema Inference",
+    "summary": "This is pretty useful in data science. You may have huge JSON datasets and don't know the structure well. You can use tools that will derive a JSON Schema from the data for you to better understand it and act on it."
   },
   {
     "title":"Hypermedia",
