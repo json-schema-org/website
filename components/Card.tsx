@@ -53,7 +53,7 @@ const CardBody = ({
       <p
         className={`mb-8 text-black mt-5 dark:text-white  ${bodyTextSizeClasses[bodyTextSize || 'medium']} `}
       >
-        {extended && <span>{body}</span>}
+        {extended && <span dangerouslySetInnerHTML={{ __html: body }} />}
         {!extended && <TextTruncate element='span' line={3} text={body} />}
       </p>
       {link && (
