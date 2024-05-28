@@ -393,6 +393,11 @@ export const DocsNav = ({
             label='Similar Technologies'
             setOpen={setOpen}
           />
+          <DocLinkBlank
+            uri='https://landscape.json-schema.org'
+            label='Landscape'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/overview/code-of-conduct'
             label='Code of Conduct'

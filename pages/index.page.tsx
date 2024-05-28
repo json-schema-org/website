@@ -16,6 +16,11 @@ import axios from 'axios';
 import ical from 'node-ical';
 import moment from 'moment-timezone';
 import { useTheme } from 'next-themes';
+
+// apiKey and appId are set in the .env.local file
+const algoliaAppId: string = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
+const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
+
 /* eslint-enable */
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH);
@@ -53,7 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   // Example usage:
   const remoteICalUrl =
-    'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics'; // Replace with the actual URL
+    'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics'; // Replace with the actual URL
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData) => printEventsForNextFourWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
@@ -177,8 +182,8 @@ export function AlgoliaSearch() {
     <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white bg-primary mx-auto dark:shadow-2xl cursor-pointer'>
       <div className='flex flex-row justify-center items-center mr-4'>
         <DocSearch
-          appId='6ZT4KX2OUI'
-          apiKey='69f76fba13585144f6686622e9c8f2a8'
+          appId={algoliaAppId}
+          apiKey={algoliaApiKey}
           indexName='json-schema'
         />
         Search
@@ -528,7 +533,7 @@ const Home = (props: any) => {
                 </div>
 
                 <a
-                  href='https://calendar.google.com/calendar/u/0/embed?src=c_8r4g9r3etmrmt83fm2gljbatos@group.calendar.google.com'
+                  href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org&ctz=Europe%2FLondon'
                   className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'

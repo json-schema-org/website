@@ -17,6 +17,9 @@ type Props = {
   metaTitle?: string;
   whiteBg?: boolean;
 };
+// apiKey and appId are set in the .env.local file
+const algoliaAppId: string = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
+const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
 
 // const responsiveClasses = 'w-screen'
 
@@ -119,8 +122,8 @@ export default function Layout({
 export const Search = () => {
   return (
     <DocSearch
-      appId='6ZT4KX2OUI'
-      apiKey='69f76fba13585144f6686622e9c8f2a8'
+      appId={algoliaAppId}
+      apiKey={algoliaApiKey}
       indexName='json-schema'
     />
   );
