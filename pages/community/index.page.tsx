@@ -213,7 +213,7 @@ export default function communityPages(props: any) {
           </div>
         </div>
         <section className='mt-10'>
-          <div className='flex flex-row justify-between  max-sm:flex-col max-lg:gap-8 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
+          <div className='flex flex-row justify-between gap-4  max-sm:flex-col max-lg:gap-8 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
             <Card
               key='roadmap'
               icon='/icons/roadmap.svg'
