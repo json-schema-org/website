@@ -27,6 +27,7 @@ export default function ContentExample() {
             title={element.title}
             body={element.summary}
             image={element.logo}
+            extended={true}
             link={element.links.url}
           />
         ))}

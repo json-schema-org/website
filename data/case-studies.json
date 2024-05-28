@@ -55,7 +55,7 @@
   },
   {
     "title": "How the W3C Web of Things brings JSON Schema to the Internet of Things",
-    "summary": "Using JSON Schema at the W3C Web of Things to create an interoperability layer so that different IoT platforms, protocols and standards can operate together",
+    "summary": "Using JSON Schema at the W3C Web of Things to create an interoperability layer so that different IoT platforms, protocols and standards can operate together.",
     "logo": "/img/logos/wot-logo.png",
     "links": {
       "lang": "URL1",
