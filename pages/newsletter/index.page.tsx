@@ -6,7 +6,7 @@ import { SectionContext } from '~/context';
 import data from '../../data/newsletter.json';
 import NewsletterCard from '~/components/NewsletterCard';
 
-export default function StaticMarkdownPage () {
+export default function StaticMarkdownPage() {
   const newTitle = 'JSON Schema Newsletter';
   return (
     <SectionContext.Provider value={null}>
