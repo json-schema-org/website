@@ -8,7 +8,7 @@
   {
     "id": 2,
     "question": "How do I create a simple JSON Schema?",
-    "answer": "You create a simple JSON Schema by defining keywords such as 'schema', 'id', 'title', 'description', and 'type', which specify the version, unique identifier, title, and, description of your schema. Then, specify the data type for your schema will validate (e.g., object, array) and define the necessary properties, including their types and constraints. You can also include keywords like; 'properties', 'required', and 'default'. These define the constraints of your JSON document.",
+    "answer": "You can create a simple JSON Schema using a JSON object with properties like 'type', 'properties', and 'required'. These define the data type, properties, and mandatory fields of your JSON document.",
     "category": "general"
   },
   {
