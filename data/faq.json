@@ -2,7 +2,7 @@
   {
     "id": 1,
     "question": "What is JSON Schema?",
-    "answer": "JSON Schema is a specification for defining the structure of JSON data. It provides a standardized way to annotate, describe, and validate JSON data. JSON Schema defines content, structure, data types, and other expected constraints within a JSON document. The key aspects of JSON Schema include defining data structure, validation documentation data contracts, and diverse use cases.",
+    "answer": "JSON Schema is a specification for defining the structure of JSON data. It provides a standardized way to annotate, describe, and validate JSON data. JSON Schema defines content, structure, data types, and other expected constraints within a JSON document.",
     "category": "general"
   },
   {
