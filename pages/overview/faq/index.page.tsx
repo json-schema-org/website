@@ -15,7 +15,8 @@ export default function Content() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        Below you'll find answers to questions we get asked the most about JSON Schema.
+        Below you'll find answers to questions we get asked the most about JSON
+        Schema.
       </p>
 
       <Faq category='general' />
