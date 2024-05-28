@@ -20,7 +20,7 @@
   {
     "id": 4,
     "question": "How can I define default values in a JSON Schema?",
-    "answer": "You can define default values for properties using the 'default' keyword, which provides a fallback value if the property is not present in the JSON document. This feature is useful for simplifying client-side code, generating documentation, creating forms, and mock data for testing, for example, in the schema {'type': 'object', 'properties': {'name': {'type': 'string', 'default': 'John Doe'}, 'age': {'type': 'integer', 'default': 30}}}, the 'name' and 'age' properties will default to 'John Doe' and 30 if not specified.",
+    "answer": "You can use the 'default' keyword to set a default value for a property in your JSON Schema. It provides a fallback value if the property is not present in the JSON document.",
     "category": "general"
   },
   {
