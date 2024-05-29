@@ -2,13 +2,13 @@
   {
     "name": "Getting Started example",
     "default": true,
-    "file": "/data/getting-started-examples/schemas/default.json",
+    "file": "./data/getting-started-examples/schemas/default.json",
     "instances": [
       {
         "name": "Basic valid instance",
         "default": true,
-        "valid": true,        
-        "file": "/data/getting-started-examples/instances/default.json",
+        "valid": true,
+        "file": "./data/getting-started-examples/instances/default.json",
         "details": "This is a valid JSON instance for the provided JSON Schema"
       }
     ]

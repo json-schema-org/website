@@ -1,8 +1,30 @@
 import React from 'react';
-import JsonEditor from './JsonEditor';
-import data from '../data/getting-started-examples.json';
+import JsonEditor from '~/components/JsonEditor';
+import data from '~/data/getting-started-examples.json';
+import fs from 'fs';
 
-const StyledValidator = () => {
+export async function getStaticProps() {
+  const schemaFilepath = data.map((data) => data.file).join('');
+  const instanceFilepath = data.map((data) => data.instances[0].file).join('');
+
+  const schemaData = fs.readFileSync(schemaFilepath, 'utf-8');
+  const instanceData = fs.readFileSync(instanceFilepath, 'utf-8');
+
+  return {
+    props: {
+      schemaData,
+      instanceData,
+    },
+  };
+}
+
+const StyledValidator = ({
+  schemaData,
+  instanceData,
+}: {
+  schemaData: string;
+  instanceData: string;
+}) => {
   return (
     <>
       <div className='flex flex-col'>
@@ -35,7 +57,8 @@ const StyledValidator = () => {
         </p>
 
         <h2 className='text-h5'>JSON Schema</h2>
-        <JsonEditor initialCode={''} />
+
+        <JsonEditor initialCode={schemaData} />
       </div>
 
       <div className='flex flex-col'>
@@ -63,7 +86,7 @@ const StyledValidator = () => {
         </div>
 
         <h2 className='text-h5'>Instance</h2>
-        <JsonEditor initialCode={''} />
+        <JsonEditor initialCode={instanceData} />
       </div>
 
       <h2 className='text-h5'>Result</h2>

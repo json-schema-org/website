@@ -7,7 +7,6 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
-import StyledValidator from '~/components/StyledValidator';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/learn');
@@ -32,7 +31,6 @@ export default function StaticMarkdownPage({
       </Head>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
-      <StyledValidator></StyledValidator>
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
