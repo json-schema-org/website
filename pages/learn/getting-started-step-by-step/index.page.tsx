@@ -3,6 +3,14 @@ import JsonEditor from '~/components/JsonEditor';
 import data from '~/data/getting-started-examples.json';
 import fs from 'fs';
 
+import { getLayout } from '~/components/Sidebar';
+import Head from 'next/head';
+import { Headline1 } from '~/components/Headlines';
+import matter from 'gray-matter';
+import StyledMarkdown from '~/components/StyledMarkdown';
+import { SectionContext } from '~/context';
+import { DocsHelp } from '~/components/DocsHelp';
+
 export async function getStaticProps() {
   const schemaFilepath = data.map((data) => data.file).join('');
   const instanceFilepath = data.map((data) => data.instances[0].file).join('');
@@ -10,23 +18,39 @@ export async function getStaticProps() {
   const schemaData = fs.readFileSync(schemaFilepath, 'utf-8');
   const instanceData = fs.readFileSync(instanceFilepath, 'utf-8');
 
+  const block1 = fs.readFileSync(
+    'pages/learn/getting-started-step-by-step/getting-started-step-by-step.md',
+    'utf-8',
+  );
+  const { content: block1Content } = matter(block1);
   return {
     props: {
       schemaData,
       instanceData,
+      blocks: [block1Content],
     },
   };
 }
 
-const StyledValidator = ({
+export default function StyledValidator({
   schemaData,
   instanceData,
+  blocks,
 }: {
   schemaData: string;
   instanceData: string;
-}) => {
+  blocks: any[];
+}) {
+  const newTitle = 'Creating your first schema'; // replace this
+
   return (
-    <>
+    <SectionContext.Provider value='docs'>
+      <Head>
+        <title>{newTitle}</title>
+      </Head>
+      <Headline1>{newTitle}</Headline1>
+      <StyledMarkdown markdown={blocks[0]} />
+
       <div className='flex flex-col'>
         <div className='flex flex-row justify-between mt-5'>
           <h1 className='text-h4 font-medium max-sm:text-[12px]'>
@@ -100,8 +124,8 @@ const StyledValidator = ({
           Download Example
         </button>
       </div>
-    </>
+      <DocsHelp />
+    </SectionContext.Provider>
   );
-};
-
-export default StyledValidator;
+}
+StyledValidator.getLayout = getLayout;
