@@ -92,7 +92,7 @@ export default function StaticMarkdownPage({
                     },
                   )}
                 </div>
-                <div className='pt-4 pr-4 border-r border-slate-100 hidden lg:block w-full'>
+                <div className='pt-4 pr-4 hidden lg:block w-full'>
                   <div className='uppercase text-xs text-slate-400 mb-4'>
                     on this page
                   </div>
