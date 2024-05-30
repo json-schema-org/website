@@ -1,6 +1,6 @@
 [
   {
-    "name": "Getting Started example",
+    "name": "Getting started example",
     "default": true,
     "file": "./data/getting-started-examples/schemas/default.json",
     "instances": [
