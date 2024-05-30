@@ -251,7 +251,9 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             table: {
               component: ({ children }) => (
-                <table className='table-auto mb-8'>{children}</table>
+                <div className='max-w-[100%] mx-auto mb-8 overflow-auto'>
+                  <table className='table-auto'>{children}</table>
+                </div>
               ),
             },
             thead: {
@@ -487,14 +489,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 );
               },
             },
-
             TableOfContent: {
               component: ({ depth }) => {
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const fullMarkdown = useContext(FullMarkdownContext);
                 if (!fullMarkdown) return null;
                 return (
-                  <div className='text-blue-500 mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 px-3 rounded-l border-l-blue-400 border-l-[3px]'>
+                  <div className='mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 pr-3 border-dotted border-l-blue-400 border-l-[3px]'>
                     <TableOfContentMarkdown
                       markdown={fullMarkdown}
                       depth={depth}
@@ -529,27 +530,51 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 text-sm leading-4 text-slate-700 hover:text-blue-500'
+                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.40rem] font-medium'
                 >
+                  <span className='mr-1 text-blue-400 text-[1.5em]'>
+                    &#9679;
+                  </span>
                   {children}
                 </a>
               );
             },
           },
-          h2: {
-            component: ({ children }) => {
-              const slug = slugifyMarkdownHeadline(children);
-              return (
-                <a
-                  href={`#${slug}`}
-                  className='block cursor-pointer mb-3 text-sm leading-4 ml-3 hover:text-blue-500'
-                >
-                  {children}
-                </a>
-              );
-            },
-          },
+
           /* eslint-disable */
+          h2:
+            depth === 0
+              ? {
+                  component: ({ children }) => {
+                    const slug = slugifyMarkdownHeadline(children);
+                    return (
+                      <a
+                        href={`#${slug}`}
+                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-4 font-medium'
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
+                }
+              : depth >= 2
+                ? {
+                    component: ({ children }) => {
+                      const slug = slugifyMarkdownHeadline(children);
+                      return (
+                        <a
+                          href={`#${slug}`}
+                          className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 -ml-[9px] max-sm:-ml-[7px] font-medium'
+                        >
+                          <span className='mr-1 text-blue-400 text-[1em]'>
+                            &#9679;
+                          </span>
+                          {children}
+                        </a>
+                      );
+                    },
+                  }
+                : { component: () => null },
           h3:
             depth >= 3
               ? {
@@ -558,8 +583,15 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-sm leading-4 ml-7 hover:text-blue-500'
+                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.15rem]'
                       >
+                        <span className='text-blue-400 text-[0.28em] ml-1 max-sm:w-[18px]'>
+                          &#9679; &#9679; &#9679; &#9679;
+                        </span>
+                        <span className='mr-1 text-blue-400 text-[0.75em]'>
+                          &#9679;
+                        </span>
+
                         {children}
                       </a>
                     );
@@ -574,8 +606,16 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-sm leading-4 ml-10 hover:text-blue-500'
+                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.15rem]'
                       >
+                        <span className='text-blue-400 text-[0.28em] ml-1 max-sm:w-[48px]'>
+                          &#9679; &#9679; &#9679; &#9679; &#9679; &#9679;
+                          &#9679; &#9679; &#9679; &#9679; &#9679;
+                        </span>
+                        <span className='mr-1 text-blue-400 text-[0.75em]'>
+                          &#9679;
+                        </span>
+
                         {children}
                       </a>
                     );

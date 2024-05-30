@@ -31,7 +31,7 @@ export default function DarkModeToggle() {
   return (
     <button
       onClick={toggleDarkMode}
-      className='dark-mode-toggle min-w-[2rem] rounded-md dark:hover:bg-gray-700 md:p-1.5 pr-2 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150'
+      className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150'
       disabled={!isClickable}
     >
       <img src={img} alt='Dark Mode' width={25} height={25} />
