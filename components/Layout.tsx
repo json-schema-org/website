@@ -216,7 +216,7 @@ const MainNavigation = () => {
         isActive={section === 'community'}
       />
 
-      <div className='flex items-center max-sm:ml-4 mr-8 md:mr-0 gap-6 md:gap-4 dark:bg-slate-800'>
+      <div className='flex items-center max-sm:ml-4 mr-8 gap-6 md:gap-4 dark:bg-slate-800'>
         <div
           className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
           onClick={() => {
@@ -312,7 +312,7 @@ export const SegmentHeadline = ({ label }: { label: string }) => {
 const Footer = () => (
   <footer
     className={classnames(
-      'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue dark:from-[#002C34] dark:to-[#023e8a] clip-top grid items-center mt-16',
+      'z-10 h-[350px] md:h-[300px] bg-gradient-to-r from-startBlue from-1.95% to-endBlue dark:from-[#002C34] dark:to-[#023e8a] clip-top grid items-center',
     )}
   >
     <div className='max-w-[1400px] mx-auto mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
