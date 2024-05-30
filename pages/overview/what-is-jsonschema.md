@@ -14,7 +14,7 @@ While JSON Schema provides the language, validating a JSON [instance](https://js
 
 JSON validators are open-source and commercial tools that implement the JSON Schema specification. They make it very easy to integrate JSON Schema into projects of any size.
 
-![How JSON Schema works](/img/json_schema.png)
+![How JSON Schema works](/img/json_schema.svg)
 
 ## Benefits of JSON Schema for Developers
 
