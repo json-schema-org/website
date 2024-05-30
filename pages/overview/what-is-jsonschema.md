@@ -2,7 +2,7 @@
 section: docs
 title: What is JSON Schema?
 ---
-JSON Schema is a declarative language for annotating and validating JSON documents' structure, constraints, and data types. It provides a way to standardize and define expectations for JSON data.
+JSON Schema is a declarative language for annotating and validating JSON instances' structure, constraints, and data types. It provides a way to standardize and define expectations for JSON data.
 <br/>
 
 
@@ -14,13 +14,13 @@ While JSON Schema provides the language, validating a JSON [instance](https://js
 
 JSON validators are open-source and commercial tools that implement the JSON Schema specification. They make it very easy to integrate JSON Schema into projects of any size.
 
-![How JSON Schema works](/img/json_schema.svg)
+![How JSON Schema works](/img/json_schema.png)
 
 ## Benefits of JSON Schema for Developers
 
 JSON Schema empowers developers in the following ways:
 
-* **Structured Data Description**: JSON Schema allows developers to describe the structure, constraints, and data types of existing JSON formats.
+* **Structured Data Description**: JSON Schema empower developers to use JSON to describe the structure, constraints, and data types of existing JSON data.
 * **Rule Definition and Enforcement**: By adhering to JSON schema constraints, it becomes easier to exchange structured data between applications as it maintains a consistent pattern.
 * **Produce clear documentation**: JSON Schema supports the creation of machine and human readable documentation.
 * **Extensibility:** JSON Schema offers high adaptability to developers' needs. Custom keywords, formats, and validation rules can be created to tailor schemas according to specific requirements.
@@ -45,7 +45,7 @@ JSON Schema empowers organizations by:
 
 JSON Schema dates back to the [first JSON Schema proposal](https://web.archive.org/web/20071026185150/http://json.com/json-schema-proposal/) submitted by Kris Zyp to [json.com](http://json.com) on October 2nd, 2007.
 
-The current version of JSON Schema is [2020-12](https://json-schema.org/draft/2020-12/release-notes), which represents the latest advancements and has expanded capabilities compared with the previous versions, `draft-04`, `draft-06`, and `draft-07`.
+The newest version of JSON Schema is [2020-12](https://json-schema.org/draft/2020-12/release-notes), which represents the latest advancements and has expanded capabilities compared with the previous versions, `draft-04`, `draft-06`, and `draft-07`.
 
 We recommend using the newest version of JSON Schema and taking advantage of its benefits.
 
