@@ -139,7 +139,7 @@ you control, for example:
 { "$id": "http://yourdomain.com/schemas/myschema.json" }
 ```
 
-The details of `$id` become more apparent when you start [structuring a complex schema](../../understanding-json-schema/structuring#dollarid).
+The details of `$id` become more apparent when you start [structuring a complex schema](../../understanding-json-schema/structuring#id).
 
 <Infobox label="Draft-specific info">
 In Draft 4, `$id` is just `id` (without the dollar-sign).
