@@ -428,7 +428,7 @@ export const DocsNav = ({
       </div>
       {/* Reference */}
 
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white shadow-lg  lg:border-hidden '>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickReference}
