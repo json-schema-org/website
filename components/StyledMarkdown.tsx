@@ -540,21 +540,41 @@ export function TableOfContentMarkdown({
               );
             },
           },
-          h2: {
-            component: ({ children }) => {
-              const slug = slugifyMarkdownHeadline(children);
-              return (
-                <a
-                  href={`#${slug}`}
-                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 -ml-[9px] max-sm:-ml-[7px] font-medium'
-                >
-                  <span className='mr-1 text-blue-400 text-[1em]'>&#9679;</span>
-                  {children}
-                </a>
-              );
-            },
-          },
+
           /* eslint-disable */
+          h2:
+            depth === 0
+              ? {
+                  component: ({ children }) => {
+                    const slug = slugifyMarkdownHeadline(children);
+                    return (
+                      <a
+                        href={`#${slug}`}
+                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-4 font-medium'
+                      >
+                        {children}
+                      </a>
+                    );
+                  },
+                }
+              : depth >= 2
+                ? {
+                    component: ({ children }) => {
+                      const slug = slugifyMarkdownHeadline(children);
+                      return (
+                        <a
+                          href={`#${slug}`}
+                          className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 -ml-[9px] max-sm:-ml-[7px] font-medium'
+                        >
+                          <span className='mr-1 text-blue-400 text-[1em]'>
+                            &#9679;
+                          </span>
+                          {children}
+                        </a>
+                      );
+                    },
+                  }
+                : { component: () => null },
           h3:
             depth >= 3
               ? {
