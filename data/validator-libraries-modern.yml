@@ -476,12 +476,12 @@
       last-updated: "2022-08-31"
     - name: JSON Schema Validator
       url: https://www.jsonschemavalidator.net/
-      date-draft: [2019-09]
+      date-draft: [2020-12, 2019-09]
       draft: [7, 6, 4, 3]
       notes: server-side validation
       built-on:
         name: Json.NET Schema
-      last-updated: "2022-08-31"
+      last-updated: "2024-05-29"
     - name: jsonschema.dev
       url: https://jsonschema.dev
       draft: [7]

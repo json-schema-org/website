@@ -530,7 +530,7 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.40rem] font-bold'
+                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.40rem] font-medium'
                 >
                   <span className='mr-1 text-blue-400 text-[1.5em]'>
                     &#9679;
@@ -540,6 +540,7 @@ export function TableOfContentMarkdown({
               );
             },
           },
+
           /* eslint-disable */
           h2:
             depth === 0
