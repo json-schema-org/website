@@ -18,7 +18,7 @@ jobs:
           cache: "yarn"
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        run: yarn workspaces focus -A
 
       - name: Linting and Formatting checks
         run: yarn run lint
