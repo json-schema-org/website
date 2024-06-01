@@ -13,7 +13,6 @@ import Card from '~/components/Card';
 import Image from 'next/image';
 
 /* eslint-disable */
-import axios from 'axios';
 import ical from 'node-ical';
 import moment from 'moment-timezone';
 
@@ -45,8 +44,12 @@ export const getStaticProps: GetStaticProps = async () => {
 
   async function fetchRemoteICalFile(url: string) {
     try {
-      const response = await axios.get(url, { method: 'no-cors' });
-      return response.data;
+      const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.text();
+      return data;
     } catch (error) {
       console.error('Error fetching iCal file:', error);
       return null;
@@ -55,7 +58,9 @@ export const getStaticProps: GetStaticProps = async () => {
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData) => printEventsForNextFourWeeks(ical.parseICS(icalData)))
+    .then((icalData: any) =>
+      printEventsForNextFourWeeks(ical.parseICS(icalData)),
+    )
     .catch((error) => console.error('Error:', error));
   return {
     props: {
