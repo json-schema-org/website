@@ -195,7 +195,7 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/overview/welcome'
+        uri='/docs'
         label='Docs'
         isActive={section === 'docs'}
       />

@@ -5,9 +5,12 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import data from 'data/case-studies.json';
 import Card from '~/components/Card';
+import { DocsHelp } from '~/components/DocsHelp';
 
 export default function ContentExample() {
   const newTitle = 'Case Studies';
+  const markdownFile = '_indexPage';
+
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -32,6 +35,7 @@ export default function ContentExample() {
           />
         ))}
       </div>
+      <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
 }

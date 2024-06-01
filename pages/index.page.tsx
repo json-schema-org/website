@@ -358,7 +358,7 @@ const Home = (props: any) => {
               Start learning JSON Schema
             </h2>
             <button className='w-[170px] h-[45px] mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out rounded border-2 bg-primary text-white font-semibold dark:border-none'>
-              <a href='/learn/getting-started-step-by-step '>Read the docs</a>
+              <a href='/docs '>Read the docs</a>
             </button>
           </div>
         </section>
