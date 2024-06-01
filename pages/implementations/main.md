@@ -43,6 +43,7 @@ For example, the only incompatibilities between draft-04 and draft-06 involve `e
   -   <userevent type='plausible-event-name=activation-click-tool'>[Json.NET](https://www.newtonsoft.com/jsonschema)</userevent> (AGPL-3.0) - generates schemas from .NET types
   -   <userevent type='plausible-event-name=activation-click-tool'>[NJsonSchema](https://github.com/RSuter/NJsonSchema/)</userevent> - (Ms-PL) - generates schemas from .NET types, see issue [574](https://github.com/RSuter/NJsonSchema/issues/574) for draft-06+ support progress
   -   <userevent type='plausible-event-name=activation-click-tool'>[JsonSchema.Net.Generation](https://github.com/gregsdennis/json-everything)</userevent> (MIT) - generates schemas from .NET types
+  -   <userevent type='plausible-event-name=activation-click-tool'>[LateApexEarlySpeed.Json.Schema](https://github.com/lateapexearlyspeed/Lateapexearlyspeed.JsonSchema)</userevent> (BSD-3-Clause) - generates schemas (draft 2020.12) from fluent builders & .NET types
 -   Go
   -   <userevent type='plausible-event-name=activation-click-tool'>[jsonschema](https://github.com/invopop/jsonschema)</userevent> - (MIT) - generate schemas from Go structs. Supports Draft 2020-12.
 -   PHP
@@ -118,6 +119,7 @@ are the only keywords that changed.
   -  <userevent type='plausible-event-name=activation-click-tool'>[OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator)</userevent> (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI](https://www.openapis.org) document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
 - Kotlin
   -  <userevent type='plausible-event-name=activation-click-tool'>[json-kotlin-schema-codegen](https://github.com/pwall567/json-kotlin-schema-codegen)</userevent> (MIT) - Generates Kotlin data classes, Java classes or TypeScript interfaces from JSON Schema.
+  -  <userevent type='plausible-event-name=activation-click-tool'>[OpenAPI JSON Schema Generator](https://github.com/openapi-json-schema-tools/openapi-json-schema-generator)</userevent> (Apache-2.0) - Allows auto-generation of API client libraries (SDK generation) given an [OpenAPI](https://www.openapis.org) document. This project focuses on making the output 100% compliant with openapi + JSON schema specs. JSON Schema 2020-12, draft-05
 -   Online (web tool)
   -  <userevent type='plausible-event-name=activation-click-tool'>[quicktype.io](https://app.quicktype.io/#l=schema)</userevent> - infer JSON Schema from samples, and generate TypeScript, C++, go, Java, C#, Swift, etc. types from JSON Schema
 -   PHP

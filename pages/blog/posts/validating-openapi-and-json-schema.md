@@ -65,42 +65,33 @@ any dialect you choose to use in your OpenAPI 3.1 documents.
 
 ### Examples
 
-These examples use the [@hyperjump/oas-schema-validator](https://www.npmjs.com/package/@hyperjump/oas-schema-validator)
-to validate OpenAPI documents. It's just an extension of [@hyperjump/json-schema](https://www.npmjs.com/package/@hyperjump/json-schema)
-with support for the OpenAPI 3.1 dialect and all the OpenAPI 3.1 schemas
-pre-packaged. Beware that dynamic references are a new feature of JSON Schema
-and many validators don't yet support them, or have limited support, or have
-bugs.
+These examples use
+[@hyperjump/json-schema](https://www.npmjs.com/package/@hyperjump/json-schema)
+to validate OpenAPI documents. Beware that dynamic references are a relatively
+new feature of JSON Schema and many validators don't yet support them, or have
+limited support, or have bugs.
 
 #### Without schema validation
 ```javascript
-const OasSchema = require("@hyperjump/oas-schema-validator");
-const example = require("./example.openapi.json");
+import { validate } from "@hyperjump/json-schema/openapi-3-1";
 
-(async function () {
-  const schema = await OasSchema.get(
-    "https://spec.openapis.org/oas/3.1/schema"
-  );
-  const validate = await OasSchema.validate(schema);
+const validateOpenApi = await validate("https://spec.openapis.org/oas/3.1/schema");
 
-  const result = validate(example);
-  console.log(result.valid);
-}());
+const example = YAML.parse(await readFile("./example.openapi.json"));
+const result = validateOpenApi(example);
+console.log(result);
 ```
 
 #### With OpenAPI Schema dialect schema validation
 ```javascript
-const OasSchema = require("@hyperjump/oas-schema-validator");
-const example = require("./example.openapi.json");
+import { validate } from "@hyperjump/json-schema/openapi-3-1";
 
 (async function () {
-  const schema = await OasSchema.get(
-    "https://spec.openapis.org/oas/3.1/schema-base"
-  );
-  const validate = await OasSchema.validate(schema);
+  const validateOpenApi = await validate("https://spec.openapis.org/oas/3.1/schema-base");
 
-  const result = validate(example);
-  console.log(result.valid);
+  const example = YAML.parse(await readFile("./example.openapi.json"));
+  const result = validateOpenApi(example);
+  console.log(result);
 }());
 ```
 
@@ -151,7 +142,7 @@ The first step is to include the abstract schema.
 ```yaml
 $schema: 'https://json-schema.org/draft/2020-12/schema'
 
-$ref: 'https://spec.openapis.org/oas/3.1/schema/2021-09-28'
+$ref: 'https://spec.openapis.org/oas/3.1/schema/latest'
 ```
 
 Then we need to add a `$dynamicAnchor` that matches the one in the abstract
@@ -161,7 +152,7 @@ there we can reference the meta schema for the default dialect.
 ```yaml
 $schema: 'https://json-schema.org/draft/2020-12/schema'
 
-$ref: 'https://spec.openapis.org/oas/3.1/schema/2021-09-28'
+$ref: 'https://spec.openapis.org/oas/3.1/schema/latest'
 
 $defs:
   schema:

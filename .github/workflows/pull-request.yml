@@ -44,6 +44,53 @@ jobs:
       - name: Type checking
         run: yarn run typecheck
 
+  Check-Unauthorized-File-Changes:
+    name: Checks if no unauthorized files are changed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Get Changed Unauthorized files
+        id: changed-unauth-files
+        uses: tj-actions/changed-files@v40
+        with:
+          files: |
+            .github/**
+            .husky/**
+            .env.example
+            package.json
+            tsconfig.json
+            next.config.js
+            next-sitemap.config.js
+            next-env.d.ts
+            tailwind.config.js
+            postcss.config.js
+            yarn.lock
+            Dockerfile
+            CODEOWNERS
+            LICENSE
+            .gitignore
+            .gitmodules
+            .gitattributes
+            .eslintrc.js
+            .eslintignore
+            .zshrc
+            .prettierrc
+            .prettierignore
+            .dockerignore
+            makefile
+            
+      - name: List all changed unauthorized files
+        if: steps.changed-unauth-files.outputs.any_changed == 'true' || steps.changed-unauth-files.outputs.any_deleted == 'true'
+        env: 
+          CHANGED_UNAUTH_FILES: ${{ steps.changed-unauth-files.outputs.all_changed_files }}
+        run: |
+          for file in ${CHANGED_UNAUTH_FILES}; do
+            echo "$file is unauthorized to change/delete"
+          done
+          exit 1
+
   build:
     name: Build check
     runs-on: ubuntu-latest

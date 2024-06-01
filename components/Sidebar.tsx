@@ -368,6 +368,11 @@ export const DocsNav = ({
             label='Similar Technologies'
             setOpen={setOpen}
           />
+          <DocLinkBlank
+            uri='https://landscape.json-schema.org'
+            label='Landscape'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/overview/code-of-conduct'
             label='Code of Conduct'
@@ -383,7 +388,7 @@ export const DocsNav = ({
           onClick={handleClickGet}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${learn_icon}`} alt='eye icon' className='mr-2' />
+            <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
             <SegmentHeadline label='Getting Started' />
           </div>
           <svg
@@ -438,13 +443,13 @@ export const DocsNav = ({
       </div>
       {/* Reference */}
 
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white shadow-lg  lg:border-hidden '>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickReference}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${reference_icon}`} alt='eye icon' className='mr-2' />
+            <img src={`${reference_icon}`} alt='book icon' className='mr-2' />
             <SegmentHeadline label='Reference' />
           </div>
           <svg
@@ -627,7 +632,7 @@ export const DocsNav = ({
           onClick={handleClickSpec}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${spec_icon}`} alt='eye icon' className='mr-2' />
+            <img src={`${spec_icon}`} alt='clipboard icon' className='mr-2' />
             <SegmentHeadline label='Specification' />
           </div>
           <svg

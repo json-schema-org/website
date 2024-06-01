@@ -1,0 +1,68 @@
+name: Mark stale issues and pull requests
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'  # Runs every Sunday at midnight
+
+permissions:
+  issues: write
+  pull-requests: write  
+  
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/stale@v8
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+
+        # Message to comment on stale issues.
+        stale-issue-message: | 
+          Hello! :wave: 
+
+          This issue has been automatically marked as stale due to inactivity :sleeping:
+
+          It will be closed in 180 days if no further activity occurs. To keep it active, please add a comment with more details.
+
+          There can be many reasons why a specific issue has no activity. The most probable cause is a lack of time, not a lack of interest.
+
+          Let us figure out together how to push this issue forward. Connect with us through our slack channel : https://json-schema.org/slack
+
+          Thank you for your patience :heart:
+        
+        # Message to comment on stale pull requests.
+        stale-pr-message: |
+          Hello! :wave: 
+
+          This pull request has been automatically marked as stale due to inactivity :sleeping:
+
+          It will be closed in 180 days if no further activity occurs. To keep it active, please add a comment with more details.
+
+          There can be many reasons why a specific pull request has no activity. The most probable cause is a lack of time, not a lack of interest.
+
+          Let us figure out together how to push this pull request forward. Connect with us through our slack channel : https://json-schema.org/slack
+
+          Thank you for your patience :heart:
+        
+        # Message to comment on issues that are about to be closed.
+        close-issue-message: 'This issue did not get any activity in the past 180 days and thus has been closed. Please check if the main branch has fixed it. Please, create a new issue if the issue is not fixed.'
+         
+        # Message to comment on pull requests that are about to be closed.
+        close-pr-message: 'This pull request did not get any activity in the past 180 days and thus has been closed.'
+           
+        # Labels to add to stale issues and pull requests.
+        stale-issue-label: 'Status: Stale'
+        stale-pr-label: 'Status: Stale'
+        
+        # Number of days of inactivity before an issue/PR is marked as stale.
+        days-before-stale: 30
+       
+        # Number of days of inactivity before an issue/PR is closed.
+        days-before-close: 180
+        
+        # Remove the stale label when the issue/PR is updated.
+        remove-stale-when-updated: true
+       
+        # Exempt labels to ignore when checking for stale issues/PRs.
+        exempt-pr-labels: 'Status: On Hold,Status: Blocked'
+        exempt-issue-labels: 'Status: On Hold,Status: Blocked'

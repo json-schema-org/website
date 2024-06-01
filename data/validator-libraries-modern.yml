@@ -49,10 +49,10 @@
     - name: jsoncons
       url: https://github.com/danielaparker/jsoncons/blob/master/doc/ref/jsonschema/jsonschema.md
       notes: Header-only library
-      date-draft: []
-      draft: [7]
+      date-draft: [2020-12, 2019-09]
+      draft: [7, 6, 4]
       license: Boost Software License 1.0
-      last-updated: "2022-08-31"
+      last-updated: "2024-04-22"
 - name: Clojure
   implementations:
     - name: jinx
@@ -119,6 +119,13 @@
       draft: [7, 6, 4]
       license: Apache License 2.0
       last-updated: "2022-08-31"
+    - name: jsonschema
+      url: https://github.com/kaptinlin/jsonschema
+      notes: supports output formats, multilingual output
+      date-draft: [2020-12]
+      draft: []
+      license: MIT
+      last-updated: "2024-05-07"
     - name: qri-io/jsonschema
       url: https://github.com/qri-io/jsonschema
       date-draft: [2019-09]
@@ -203,7 +210,7 @@
       date-draft: [2020-12]
       draft: [5]
       license: Apache-2.0
-      last-updated: "2024-01-21"
+      last-updated: "2024-05-20"
 - name: JavaScript
   implementations:
     - name: Hyperjump JSV
@@ -300,6 +307,13 @@
       draft: [7]
       license: MIT
       last-updated: "2023-08-01"
+    - name: OpenAPI JSON Schema Generator
+      notes: Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. JSON schema validation run when validating schemas.
+      url: https://github.com/openapi-json-schema-tools/openapi-json-schema-generator
+      date-draft: [2020-12]
+      draft: [5]
+      license: Apache-2.0
+      last-updated: "2024-05-20"
 - name: Perl
   implementations:
     - name: JSON::Schema::Modern
@@ -380,7 +394,7 @@
       date-draft: [2020-12]
       draft: [5]
       license: Apache-2.0
-      last-updated: "2024-01-21"
+      last-updated: "2024-05-20"
 - name: Ruby
   implementations:
     - name: JSONSchemer
@@ -462,12 +476,12 @@
       last-updated: "2022-08-31"
     - name: JSON Schema Validator
       url: https://www.jsonschemavalidator.net/
-      date-draft: [2019-09]
+      date-draft: [2020-12, 2019-09]
       draft: [7, 6, 4, 3]
       notes: server-side validation
       built-on:
         name: Json.NET Schema
-      last-updated: "2022-08-31"
+      last-updated: "2024-05-29"
     - name: jsonschema.dev
       url: https://jsonschema.dev
       draft: [7]

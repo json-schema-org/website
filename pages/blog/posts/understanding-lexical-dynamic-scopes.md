@@ -407,6 +407,6 @@ Schema](https://www.oreilly.com/library/view/unifying-business-data/978109814499
 You can also connect with me on
 [LinkedIn](https://www.linkedin.com/in/jviotti/).
 
-***
+
 
 *Image by [Christina Morillo](https://www.pexels.com/@divinetechygirl/) from [Pexels](https://www.pexels.com/photo/man-standing-infront-of-white-board-1181345/).*

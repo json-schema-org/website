@@ -1,0 +1,56 @@
+name: Pull Request Target Workflow
+
+on:
+  pull_request_target:
+    types: [opened, closed] 
+
+    
+jobs:
+  greet-on-first-pr:
+    runs-on: ubuntu-latest
+    if: github.event.action == 'opened'
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        pr-message: > 
+            Welcome to the [JSON Schema](https://json-schema.org/) Community. Thanks a lot for creating your first pull request!! 🎉🎉  We are so excited you are here! We hope this is only the first of many!
+            For more details check out [README.md](https://github.com/json-schema-org/website?tab=readme-ov-file#-welcome-to-the-json-schema-website) file.
+
+  greet-on-first-merge:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    if: github.event.pull_request.merged == true
+    steps:
+    - name: Check if this is the user's first merged PR
+      id: check_first_pr
+      uses: actions/github-script@v7
+      with:
+        script: |
+          const prAuthor = context.payload.pull_request.user.login;
+          const owner = context.repo.owner;
+          const repo = context.repo.repo;
+
+          const response = await fetch(`https://api.github.com/search/issues?q=repo:${owner}/${repo}+type:pr+state:closed+author:${prAuthor}+is:merged`);
+          const data = await response.json();
+          const mergedCount = data.total_count;
+          
+          console.log(`User ${prAuthor} has ${mergedCount} merged PRs`);
+          core.setOutput('mergedCount', mergedCount);
+
+    - name: Comment on the first merged PR
+      if: steps.check_first_pr.outputs.mergedCount == '1'
+      uses: actions/github-script@v7
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const prNumber = context.payload.pull_request.number;
+          const prAuthor = context.payload.pull_request.user.login;
+          const commentBody = `Congratulations, @${prAuthor} for your first pull request merge in this repository! 🎉🎉. Thanks for your contribution to JSON Schema! `;
+           await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: commentBody
+              })
