@@ -12,9 +12,12 @@ import { GetStaticProps } from 'next';
 import Card from '~/components/Card';
 import Image from 'next/image';
 
+/* eslint-disable */
 import axios from 'axios';
 import ical from 'node-ical';
 import moment from 'moment-timezone';
+
+/* eslint-enable */
 
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH);
