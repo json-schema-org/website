@@ -17,7 +17,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
   const files = fs.readdirSync(PATH);
   const blogPosts = files
-    .filter((file) => file.substr(-3) === '.md')
+    .filter((file) => file.endsWith('.md'))
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
       const fullFileName = fs.readFileSync(`${PATH}/${slug}.md`, 'utf-8');
