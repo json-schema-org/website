@@ -4,30 +4,23 @@ import { SectionContext } from '~/context';
 import imageData from '~/data/community.json';
 import fs from 'fs';
 import matter from 'gray-matter';
-const PATH = 'pages/blog/posts';
 import readingTime from 'reading-time';
 import Link from 'next/link';
 import TextTruncate from 'react-text-truncate';
 import { GetStaticProps } from 'next';
 import Card from '~/components/Card';
 import Image from 'next/image';
-
-/* eslint-disable */
 import ical from 'node-ical';
 import moment from 'moment-timezone';
 
-/* eslint-enable */
-
 export const getStaticProps: GetStaticProps = async () => {
+  const PATH = 'pages/blog/posts';
   const files = fs.readdirSync(PATH);
   const blogPosts = files
     .filter((file) => file.substr(-3) === '.md')
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
-      const fullFileName = fs.readFileSync(
-        `pages/blog/posts/${slug}.md`,
-        'utf-8',
-      );
+      const fullFileName = fs.readFileSync(`${PATH}/${slug}.md`, 'utf-8');
       const { data: frontmatter, content } = matter(fullFileName);
       return {
         slug: slug,
