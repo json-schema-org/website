@@ -74,7 +74,6 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day');
 
   for (const event of Object.values(icalData)) {
-
     if (event.type === 'VEVENT') {
       const title = event.summary;
 

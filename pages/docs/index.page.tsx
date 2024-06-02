@@ -39,7 +39,7 @@ export default function Welcome() {
           body='Our Getting Started guide walks you through the basics of JSON Schema.'
           headerSize='medium'
           bodyTextSize='small'
-          link='/understanding-json-schema'
+          link='/learn/getting-started-step-by-step'
         />
         <Card
           icon='/icons/book.svg'
@@ -47,7 +47,7 @@ export default function Welcome() {
           body='Our Reference teaches JSON Schema deeply from a beginner to the advanced level.'
           headerSize='medium'
           bodyTextSize='small'
-          link='/overview/what-is-jsonschema'
+          link='/understanding-json-schema'
         />
         <Card
           icon='/icons/clipboard.svg'
