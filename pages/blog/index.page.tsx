@@ -95,7 +95,10 @@ export default function StaticMarkdownPage({
     if (router.pathname === '/blog') {
       if (router.query.type) {
         // Remove the 'type' query parameter from the URL
-        setParam('type', null);
+        setParam(
+          'type',
+          router.query.type === clickedTag ? undefined : clickedTag,
+        );
       }
       setCurrentFilterTag(clickedTag);
     } else {
