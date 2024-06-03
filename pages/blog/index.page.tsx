@@ -88,6 +88,7 @@ export default function StaticMarkdownPage({
 
   const handleClick = (event: { currentTarget: { value: any } }) => {
     const clickedTag = event.currentTarget.value;
+    setParam('type', clickedTag);
 
     setCurrentFilterTag(clickedTag);
 
