@@ -90,7 +90,11 @@ export default function StaticMarkdownPage({
     const clickedTag = event.currentTarget.value;
     setParam('type', clickedTag);
 
-    setCurrentFilterTag(clickedTag);
+    if (clickedTag === 'All') {
+      setParam('type', null);
+    } else {
+      setCurrentFilterTag(clickedTag);
+    }
 
     // Check if the user is already on the "/blog" page
     if (router.pathname === '/blog') {
