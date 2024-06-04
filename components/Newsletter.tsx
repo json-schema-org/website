@@ -59,7 +59,7 @@ const NewsletterForm: React.FC<NewsletterFormProps> = ({
             onChange={(e: any) => setUsername(e.target.value)}
           />
           <input
-            type='email'
+            type='emails'
             name='EMAIL'
             placeholder='Your Email'
             className={classnames(
