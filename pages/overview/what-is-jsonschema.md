@@ -20,7 +20,7 @@ JSON validators consist of both open-source and commercial tools that implement 
 
 JSON Schema empowers developers in the following ways:
 
-* **Structured Data Description**: JSON Schema empower developers to use JSON to describe the structure, constraints, and data types of existing JSON data.
+* **Structured Data Description**: JSON Schema empowers developers to use JSON to describe the structure, constraints, and data types of existing JSON data.
 * **Rule Definition and Enforcement**: By adhering to JSON schema constraints, it becomes easier to exchange structured data between applications as it maintains a consistent pattern.
 * **Produce clear documentation**: JSON Schema supports the creation of machine and human readable documentation.
 * **Extensibility:** JSON Schema offers high adaptability to developers' needs. Custom keywords, formats, and validation rules can be created to tailor schemas according to specific requirements.
