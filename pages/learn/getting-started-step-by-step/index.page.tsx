@@ -80,7 +80,7 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
 
       <div className='flex flex-col'>
         <div className='flex items-center flex-row justify-between mb-3 '>
-          <h2 className='text-h5 font-semibold'>Instance</h2>
+          <h2 className='text-h5 font-semibold'>JSON Instance</h2>
           <select
             name='Select a JSON Schema Instance'
             className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] '
@@ -91,7 +91,7 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
         <JsonEditor initialCode={'instanceData'} />
       </div>
 
-      <h2 className='text-h5 font-semibold'>Result</h2>
+      <h2 className='text-h5 font-semibold'>Validation Result</h2>
       <div className='flex bg-slate-800 justify-between items-center text-white font-medium flex-row border p-5 rounded-xl'>
         {/* {data.map((data, id) => {
           return (
@@ -107,11 +107,11 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
           );
         })} */}
       </div>
-      <div className='flex justify-end'>
+      {/* <div className='flex justify-end'>
         <button className='px-3 py-2 text-white rounded-md mt-5 bg-startBlue hover:bg-startBlue/90'>
           Download Example
         </button>
-      </div>
+      </div> */}
       <DocsHelp />
     </SectionContext.Provider>
   );
