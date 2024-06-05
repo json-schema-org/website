@@ -1,40 +1,100 @@
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import React from 'react';
 
+function ListItem({
+  children,
+  onClick,
+}: {
+  children: React.ReactNode;
+  onClick: () => void;
+}) {
+  return (
+    <div
+      onClick={onClick}
+      className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-md transition duration-150 flex row gap-2 w-full text-sm'
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function DarkModeToggle() {
-  const { theme, setTheme } = useTheme();
-  const [isDarkMode, setIsDarkMode] = useState(theme === 'dark');
-  const [isClickable, setIsClickable] = useState(true);
-  const [img, setImg] = useState('/icons/moon.svg');
-
-  const toggleDarkMode = () => {
-    if (!isClickable) return;
-
-    setIsClickable(false);
-    const newTheme = isDarkMode ? 'light' : 'dark';
-    setTheme(newTheme);
-    setIsDarkMode(!isDarkMode);
-
-    setTimeout(() => {
-      setIsClickable(true);
-    }, 500);
-  };
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
-    if (!theme) setTheme('light');
+    setIsDarkMode(resolvedTheme === 'dark');
+  }, [theme]);
 
-    const img = theme === 'dark' ? '/icons/sun.svg' : '/icons/moon.svg';
-    setImg(img);
-  }, [theme, setTheme]);
+  const [showSelect, setShowSelect] = useState(false);
+  const activeThemeIcon = useMemo(() => {
+    switch (theme) {
+      case 'system':
+        return '/icons/theme-switch.svg';
+      case 'light':
+        return '/icons/sun.svg';
+      case 'dark':
+        return '/icons/moon.svg';
+    }
+  }, [theme]);
 
   return (
-    <button
-      onClick={toggleDarkMode}
-      className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150'
-      disabled={!isClickable}
-    >
-      <img src={img} alt='Dark Mode' width={25} height={25} />
-    </button>
+    <div className='relative w-10 h-10 dark-mode-toggle-container'>
+      <button
+        onClick={() => setShowSelect(!showSelect)}
+        className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
+      >
+        <img
+          src={activeThemeIcon}
+          alt='Dark Mode'
+          width={25}
+          height={25}
+          style={{
+            // Invert the icon color based on the theme, theme of the light mode is dark
+            filter: isDarkMode || theme === 'light' ? 'invert(1)' : 'invert(0)',
+          }}
+        />
+      </button>
+      <div
+        className='absolute right-0 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max'
+        style={{ display: showSelect ? 'block' : 'none' }}
+        onMouseLeave={() => {
+          setShowSelect(false);
+        }}
+        tabIndex={0}
+      >
+        <ListItem onClick={() => setTheme('system')}>
+          <img
+            src={'/icons/theme-switch.svg'}
+            alt='System theme'
+            width={18}
+            height={18}
+            style={{ filter: isDarkMode ? 'invert(1)' : 'invert(0)' }}
+          />
+          System
+        </ListItem>
+        <ListItem onClick={() => setTheme('light')}>
+          <img
+            src={'/icons/sun.svg'}
+            alt='System theme'
+            width={18}
+            height={18}
+            style={{ filter: isDarkMode ? 'invert(0)' : 'invert(1)' }}
+          />
+          Light
+        </ListItem>
+        <ListItem onClick={() => setTheme('dark')}>
+          <img
+            src={'/icons/moon.svg'}
+            alt='System theme'
+            width={18}
+            height={18}
+            style={{ filter: isDarkMode ? 'invert(1)' : 'invert(0)' }}
+          />
+          Dark
+        </ListItem>
+      </div>
+    </div>
   );
 }
