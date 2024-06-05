@@ -1,0 +1,1117 @@
+toolings:
+  - name: JsonSchema.Net
+    description: 'System.Text.Json-based support for all of your JSON needs.'
+    toolingTypes: ['validator']
+    languages: ['.NET']
+    common:
+      maintainers:
+        - name: 'Greg Dennis'
+          github: 'gregsdennis'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/gregsdennis/json-everything'
+      homepageURL: 'https://json-everything.net'
+      supportedDialects:
+        draft: [6, 7, '2019-09', '2020-12']
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+  - name: Json.NET Schema
+    description: 'Json.NET Schema is a powerful, complete and easy to use JSON Schema framework for .NET'
+    toolingTypes: ['validator', 'code-to-schema']
+    languages: ['.NET']
+    common:
+      maintainers:
+        - name: 'James Newton-King'
+          github: 'JamesNK'
+      license: 'AGPL-3.0-only'
+      repositoryURL: 'https://github.com/JamesNK/Newtonsoft.Json.Schema'
+      homepageURL: 'https://www.newtonsoft.com/jsonschema'
+      supportedDialects:
+        draft: [3, 4, 6, 7, '2019-09']
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+  - name: Corvus.JsonSchema
+    description: 'Support for Json Schema validation and entity generation'
+    toolingTypes: ['validator']
+    languages: ['.NET']
+    common:
+      maintainers:
+        - name: 'Matthew Adams'
+          github: 'mwadams'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/corvus-dotnet/corvus.jsonschema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [6, 7, '2019-09', '2020-12']
+      toolingListingNotes: ''
+      last-updated: '2023-02-14'
+  - name: LateApexEarlySpeed.Json.Schema
+    description: 'Simple and high performance json schema implementation for .Net and related json validation in .Net'
+    toolingTypes: ['validator']
+    languages: ['.NET']
+    common:
+      maintainers:
+        - name: 'LateApexEarlySpeed'
+          github: 'lateapexearlyspeed'
+      license: 'BSD-3-Clause'
+      repositoryURL: 'https://github.com/lateapexearlyspeed/Lateapexearlyspeed.JsonSchema'
+      homepageURL: 'https://www.nuget.org/packages/Lateapexearlyspeed.Json.Schema'
+      supportedDialects:
+        draft: ['2020-12']
+      toolingListingNotes: ''
+      last-updated: '2023-12-13'
+  - name: f5-json-schema
+    description: 'JSON schema validation'
+    toolingTypes: ['validator']
+    languages: ['C++']
+    common:
+      maintainers:
+        - name: 'Kirit Sælensminde'
+          github: 'KayEss'
+      license: 'BSL-1.0'
+      repositoryURL: 'https://github.com/hotkit/json-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+  - name: JSON schema validation for JSON for Modern C++
+    description: 'JSON schema validator for JSON for Modern C++'
+    toolingTypes: ['validator']
+    languages: ['C++']
+    common:
+      maintainers:
+        - name: 'Patrick Boettcher'
+          github: 'pboettch'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/pboettch/json-schema-validator'
+      homepageURL: ''
+      supportedDialects:
+        draft: [7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+  - name: Valijson
+    description: 'Header-only C++ library for JSON Schema validation, with support for many popular parsers'
+    toolingTypes: ['validator']
+    languages: ['C++']
+    common:
+      maintainers:
+        - name: 'Tristan Penman'
+          github: 'tristanpenman'
+      license: 'BSD-2-Clause'
+      repositoryURL: 'https://github.com/tristanpenman/valijson'
+      homepageURL: ''
+      supportedDialects:
+        draft: [7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+  - name: jsoncons
+    description: 'A C++, header-only library for constructing JSON and JSON-like data formats, with JSON Pointer, JSON Patch, JSON Schema, JSONPath, JMESPath, CSV, MessagePack, CBOR, BSON, UBJSON'
+    toolingTypes: ['validator']
+    languages: ['C++']
+    common:
+      maintainers:
+        - name: 'Daniel Parker'
+          github: 'danielaparker'
+      license: 'BSL-1.0'
+      repositoryURL: 'https://github.com/danielaparker/jsoncons'
+      homepageURL: 'https://danielaparker.github.io/jsoncons'
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: 'Header-only library'
+      last-updated: '2024-04-22'
+  - name: jinx
+    description: "jinx is not xml-schema (it's json-schema!)"
+    toolingTypes: ['validator']
+    languages: ['Clojure']
+    common:
+      maintainers:
+        - name: 'Malcolm Sparks'
+          github: 'malcolmsparks'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/juxt/jinx'
+      homepageURL: ''
+      supportedDialects:
+        draft: [7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+  - name: json-schema (luposlip)
+    description: 'Clojure library JSON Schema validation and generation - Draft-07 compatible'
+    toolingTypes: ['validator']
+    languages: ['Clojure']
+    common:
+      maintainers:
+        - name: 'Henrik Mohr'
+          github: 'luposlip'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/luposlip/json-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+  - name: JSON Essentials for COM/ActiveX
+    description: 'JSON Essentials™ for COM/ActiveX is a language independent JSON toolkit for rapid implementation of the most common JSON use cases on the Windows platform'
+    toolingTypes: ['validator']
+    languages: ['COM/ActiveX']
+    common:
+      maintainers:
+        - name: 'Alexander Stoyan'
+          github: ''
+      license: 'Proprietary'
+      repositoryURL: ''
+      homepageURL: 'https://pinery.systems/json-essentials-com/index.html'
+      supportedDialects:
+        draft: [7]
+      toolingListingNotes: 'Language independent, includes JSON DOM parser, REST ready, 4 licensing options for free and business uses. For Windows platform only.'
+      last-updated: '2022-08-31'
+  - name: json-schema (fisxoj)
+    description: 'JSON Schema validation'
+    toolingTypes: ['validator']
+    languages: ['Common Lisp']
+    common:
+      maintainers:
+        - name: 'Matt Novenstern'
+          github: 'fisxoj'
+      license: 'LGPL-2.1-only'
+      repositoryURL: 'https://github.com/fisxoj/json-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09]
+      toolingListingNotes: ''
+      compliance:
+        config:
+          docs: 'https://github.com/fisxoj/json-schema/blob/master/README.rst'
+          instructions: |
+            set `resolve-remote-references` to `nil`
+      last-updated: '2022-08-31'
+  - name: Exonerate
+    description: 'An opinionated JSONSchema compiler for elixir.'
+    toolingTypes: ['validator']
+    languages: ['Elixir']
+    common:
+      maintainers:
+        - name: 'Isaac Yonemoto'
+          github: 'ityonemo'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/E-xyza/Exonerate'
+      homepageURL: 'https://hexdocs.pm/exonerate/Exonerate.html'
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2023-04-04'
+
+  - name: JsonXema
+    description: 'A JSON Schema validator.'
+    toolingTypes: ['validator']
+    languages: ['Elixir']
+    common:
+      maintainers:
+        - name: 'Marcus Kruse'
+          github: 'NickNeck'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/hrzndhrn/json_xema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: JeSSE
+    description: 'jesse (JSon Schema Erlang) is an implementation of a JSON Schema validator for Erlang.'
+    toolingTypes: ['validator']
+    languages: ['Erlang']
+    common:
+      maintainers:
+        - name: 'Sergey Prokhorov'
+          github: 'seriyps'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/for-GET/jesse'
+      homepageURL: ''
+      supportedDialects:
+        draft: [3, 4, 6]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: santhosh-tekuri/jsonschema
+    description: 'JSONSchema (draft 2020-12, draft 2019-09, draft-7, draft-6, draft-4) Validation using Go'
+    toolingTypes: ['validator']
+    languages: ['Go']
+    common:
+      maintainers:
+        - name: 'Santhosh Kumar Tekuri'
+          github: 'santhosh-tekuri'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/santhosh-tekuri/jsonschema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: 'Includes custom keywords, output formats'
+      last-updated: '2022-08-31'
+
+  - name: jsonschema
+    description: 'A powerful Go JSON Schema validator library aligned with the JSON Schema Draft 2020-12.'
+    toolingTypes: ['validator']
+    languages: ['Go']
+    common:
+      maintainers:
+        - name: 'kaptinlin'
+          github: 'kaptinlin'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/kaptinlin/jsonschema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [2020-12]
+      toolingListingNotes: 'Supports output formats, multilingual output'
+      last-updated: '2024-05-07'
+
+  - name: qri-io/jsonschema
+    description: 'Golang implementation of https://json-schema.org drafts 7 & 2019-09'
+    toolingTypes: ['validator']
+    languages: ['Go']
+    common:
+      maintainers:
+        - name: "Brendan O'Brien"
+          github: 'b5'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/qri-io/jsonschema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [7, 2019-09]
+      toolingListingNotes: 'Includes custom validator support, rich error returns'
+      last-updated: '2022-08-31'
+
+  - name: gojsonschema
+    description: 'An implementation of JSON Schema, draft v4 v6 & v7 - Go language'
+    toolingTypes: ['validator']
+    languages: ['Go']
+    common:
+      maintainers:
+        - name: 'xeipuuv'
+          github: 'xeipuuv'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/xeipuuv/gojsonschema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: Vert.x Json Schema
+    description: 'Vert.x Json Schema'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'Julien Viet'
+          github: 'vietj'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/eclipse-vertx/vertx-json-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 7, 2019-09, 2020-12]
+      toolingListingNotes: |
+        Validator for Eclipse Vert.x project JSON types.
+        Includes custom keywords support, custom dialect support, asynchronous validation
+      last-updated: '2022-08-31'
+
+  - name: jsonschemafriend
+    description: 'A JSON Schema loader and validator, delivered as a Java library.'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'Andy Coates'
+          github: 'big-andy-coates'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/jimblackler/jsonschemafriend'
+      homepageURL: ''
+      supportedDialects:
+        draft: [3, 4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: networknet/json-schema-validator
+    description: 'A fast Java JSON schema validator that supports draft V4, V6, V7, V2019-09 and V2020-12'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'Justin Tay'
+          github: 'justin-tay'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/networknt/json-schema-validator'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: 'Support OpenAPI 3.0 with Jackson parser'
+      compliance:
+        config:
+          docs: https://github.com/networknt/json-schema-validator/blob/master/doc/config.md
+          instructions: 'set `handleNullableField` to `false`'
+      last-updated: '2024-02-05'
+
+  - name: erosb/json-sKema
+    description: 'JSON Schema Validator for the JVM, implements draft 2020-12'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'Bence Eros'
+          github: 'erosb'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/erosb/json-sKema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [2020-12]
+      toolingListingNotes: 'Successor of the everit-org/json-schema library'
+      last-updated: '2023-04-10'
+
+  - name: Snow
+    description: 'Snow, a full-featured JSON Schema validator'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'Shawn Silverman'
+          github: 'ssilverman'
+      license: 'AGPL-3.0'
+      repositoryURL: 'https://github.com/ssilverman/snowy-json'
+      homepageURL: ''
+      supportedDialects:
+        draft: [6, 7, 2019-09]
+      toolingListingNotes: 'Uses Maven for the project and Gson under the hood.'
+      last-updated: '2022-08-31'
+
+  - name: everit-org/json-schema
+    description: 'JSON Schema validator for java, based on the org.json API'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'Bence Eros'
+          github: 'erosb'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/everit-org/json-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: Justify
+    description: 'Justify is a JSON validator based on JSON Schema Specification and Jakarta JSON Processing API (JSON-P).'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'leadpony'
+          github: 'leadpony'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/leadpony/justify'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: json-schema (dev.harrel)
+    description: 'JSON schema validation library written in Java'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'harrel56'
+          github: 'harrel56'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/harrel56/json-schema'
+      homepageURL: 'https://harrel.dev/json-schema'
+      supportedDialects:
+        draft: [2019-09, 2020-12]
+      toolingListingNotes: 'JSON library agnostic implementation. Supports custom keywords.'
+      last-updated: '2023-11-12'
+
+  - name: Zuunr JSON
+    description: 'Immutable JSON structure to enable Java applications to utilize JSON Schemas INSIDE Java applications - avoiding extra serialization and deserialization.'
+    toolingTypes: ['validator']
+    languages: ['Java']
+    common:
+      maintainers:
+        - name: 'Niklas Eldberger'
+          github: 'niklas_eldberger'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://bitbucket.org/zuunr/json'
+      homepageURL: ''
+      supportedDialects:
+        draft: [2020-12]
+      toolingListingNotes: 'Immutable JSON representation in Java + validation and filtering based on JSON Schema'
+      last-updated: '2023-09-04'
+
+  - name: OpenAPI JSON Schema Generator
+    description: 'OpenAPI JSON Schema Generator allows auto-generation of API client libraries with a focus on JSON schema given an OpenAPI document'
+    toolingTypes: ['validator', 'code-to-schema', 'documentation']
+    languages: ['Java', 'Kotlin', 'Python']
+    common:
+      maintainers:
+        - name: 'Justin Black'
+          github: 'spacether'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/openapi-json-schema-tools/openapi-json-schema-generator'
+      homepageURL: ''
+      supportedDialects:
+        draft: [5, 2020-12]
+      toolingListingNotes: 'Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. JSON schema validation run when validating schemas.'
+      last-updated: '2024-05-20'
+
+  - name: Hyperjump JSV
+    description: 'JSON Schema Validation, Annotation, and Bundling. Supports Draft 04, 06, 07, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1'
+    toolingTypes: ['validator']
+    languages: ['JavaScript']
+    common:
+      maintainers:
+        - name: 'Jason Desrosiers'
+          github: 'jdesrosiers'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/hyperjump-io/json-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: 'Built for Node.js and browsers. Includes support for custom vocabularies.'
+      last-updated: '2022-08-31'
+
+  - name: '@exodus/schemasafe'
+    description: 'A reasonably safe JSON Schema validator with draft-04/06/07/2019-09/2020-12 support.'
+    toolingTypes: ['validator']
+    languages: ['JavaScript']
+    common:
+      maintainers:
+        - name: 'Nikita Skovoroda'
+          github: 'ChALkeR'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/ExodusMovement/schemasafe'
+      homepageURL: 'https://npmjs.com/@exodus/schemasafe'
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: |
+        For Node.js and browsers, with security and speed being the main focus. Pre-compiles schemas to JS functions.
+        [Supports OpenAPI `discriminator`](https://github.com/ExodusMovement/schemasafe/blob/master/doc/Discriminator-support.md).
+        Default behavior is hardened with additional schema coherence validation.
+      last-updated: '2023-08-29'
+
+  - name: ajv
+    description: ''
+    toolingTypes: ['validator']
+    languages: ['JavaScript']
+    common:
+      maintainers:
+        - name: 'Evgeny Poberezkin'
+          github: 'epoberezkin'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/ajv-validator/ajv'
+      homepageURL: 'https://ajv.js.org/'
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: 'for Node.js and browsers - supports [user-defined keywords](https://github.com/ajv-validator/ajv/blob/master/docs/keywords.md) and [$data reference](https://github.com/json-schema-org/json-schema-spec/issues/51)'
+      compliance:
+        config:
+          docs: https://ajv.js.org/strict-mode.html
+          instructions: 'set option `strict: false`'
+      last-updated: '2022-08-31'
+
+  - name: '@cfworker/json-schema'
+    description: 'A JSON schema validator that will run on Cloudflare workers. Supports drafts 4, 7, 2019-09, and 2020-12.'
+    toolingTypes: ['validator']
+    languages: ['JavaScript']
+    common:
+      maintainers:
+        - name: 'Jeremy Danyow'
+          github: 'jdanyow'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/cfworker/cfworker/blob/master/packages/json-schema/README.md'
+      homepageURL: 'cfworker.dev'
+      supportedDialects:
+        draft: [7, 4, 2019-09, 2020-12]
+      toolingListingNotes: 'Built for Cloudflare workers, browsers, and Node.js'
+      last-updated: '2023-02-28'
+
+  - name: JSON Schema Library
+    description: 'Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation'
+    toolingTypes: ['validator']
+    languages: ['JavaScript']
+    common:
+      maintainers:
+        - name: 'Sascha Goldhofer'
+          github: 'sagold'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/sagold/json-schema-library'
+      homepageURL: ''
+      supportedDialects:
+        draft: [7, 6, 4]
+      toolingListingNotes: 'Built for Node.js and browsers. Customizable json-validator and json-schema utilities for traversal, data generation and validation'
+      last-updated: '2022-08-31'
+
+  - name: djv
+    description: 'Dynamic JSON Schema Validator - Supports draft-04/06'
+    toolingTypes: ['validator']
+    languages: ['JavaScript']
+    common:
+      maintainers:
+        - name: 'Alex Korzhikov'
+          github: 'korzio'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/korzio/djv'
+      homepageURL: 'https://www.npmjs.com/package/djv'
+      supportedDialects:
+        draft: [6, 4]
+      toolingListingNotes: 'for Node.js and browsers'
+      last-updated: '2022-08-31'
+
+  - name: vue-vuelidate-jsonschema
+    description: 'Create vuelidate validation rules based on json schema'
+    toolingTypes: ['validator']
+    languages: ['JavaScript']
+    common:
+      maintainers:
+        - name: 'Martin Hansen'
+          github: 'mokkabonna'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/mokkabonna/vue-vuelidate-jsonschema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [6]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: jema.js
+    description: 'JSON Schema handling / validator'
+    toolingTypes: ['validator']
+    languages: ['JavaScript']
+    common:
+      maintainers:
+        - name: 'Tobias Buschor'
+          github: 'nuxodin'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/nuxodin/jema.js'
+      homepageURL: ''
+      supportedDialects:
+        draft: [2020-12]
+      toolingListingNotes: ''
+      last-updated: '2023-03-28'
+
+  - name: Medeia-validator
+    description: 'Medeia JSON-Schema Validator'
+    toolingTypes: ['validator']
+    languages: ['Kotlin', 'Java']
+    common:
+      maintainers:
+        - name: 'Erwin Bolwidt'
+          github: 'ebolwidt'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/worldturner/medeia-validator'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: 'Streaming validator for Kotlin and Java clients; works with Jackson and Gson'
+      last-updated: '2022-08-31'
+
+  - name: json-kotlin-schema
+    description: 'Kotlin implementation of JSON Schema (Draft 07)'
+    toolingTypes: ['validator']
+    languages: ['Kotlin']
+    common:
+      maintainers:
+        - name: 'Peter Wall'
+          github: 'pwall567'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/pwall567/json-kotlin-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [7, 2019-09]
+      toolingListingNotes: |
+        Kotlin implementation of JSON Schema.
+        (Currently supports most of Draft 7; see the README for details.
+        Full compliance with Draft 7 and later drafts in progress.)
+      last-updated: '2022-08-31'
+
+  - name: json-schema-validator
+    description: 'The JSON schema validation library that works with'
+    toolingTypes: ['validator']
+    languages: ['Kotlin']
+    common:
+      maintainers:
+        - name: 'Oleg Smirnov'
+          github: 'OptimumCode'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/OptimumCode/json-schema-validator'
+      homepageURL: 'https://github.com/Kotlin/kotlinx.serialization'
+      supportedDialects:
+        draft: [7]
+      toolingListingNotes: |
+        Kotlin Muliplatform implementation of JSON schema to validate the JsonElement from kotlinx.serialization-json.
+        The library is 'work in progress' and new features/drafts will be added in the future.
+      last-updated: '2023-08-01'
+
+  - name: JSON::Schema::Modern
+    description: 'Validate data against a schema using a JSON Schema'
+    toolingTypes: ['validator']
+    languages: ['Perl']
+    common:
+      maintainers:
+        - name: 'Karen Etheridge'
+          github: 'karenetheridge'
+      license: 'GPL-1.0+ OR Artistic-1.0'
+      repositoryURL: 'https://github.com/karenetheridge/JSON-Schema-Modern'
+      homepageURL: 'https://metacpan.org/dist/JSON-Schema-Modern'
+      supportedDialects:
+        draft: [7, 2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: JSON::Schema::Tiny
+    description: 'Validate data against a schema, minimally'
+    toolingTypes: ['validator']
+    languages: ['Perl']
+    common:
+      maintainers:
+        - name: 'Karen Etheridge'
+          github: 'karenetheridge'
+      license: 'GPL-1.0+ OR Artistic-1.0'
+      repositoryURL: 'https://github.com/karenetheridge/JSON-Schema-Tiny'
+      homepageURL: 'https://metacpan.org/dist/JSON-Schema-Tiny'
+      supportedDialects:
+        draft: [7, 2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: JSON::Validator
+    description: 'Validate data against a JSON schema'
+    toolingTypes: ['validator']
+    languages: ['Perl']
+    common:
+      maintainers:
+        - name: 'Jan Henning Thorsen'
+          github: 'jhthorsen'
+      license: 'Artistic-2.0'
+      repositoryURL: 'https://github.com/mojolicious/json-validator'
+      homepageURL: 'https://metacpan.org/dist/JSON-Validator'
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: JSONSchema::Validator
+    description: 'JSON Schema and OpenAPI data validator for Perl'
+    toolingTypes: ['validator']
+    languages: ['Perl']
+    common:
+      maintainers:
+        - name: 'Alexey Stavrov'
+          github: 'Logioniz'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/skbkontur/perl-jsonschema-validator'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+  - name: Opis Json Schema
+    description: 'JSON Schema validator for PHP'
+    toolingTypes: ['validator']
+    languages: ['PHP']
+    common:
+      maintainers:
+        - name: 'Sorin Sarca'
+          github: 'sorinsarca'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/opis/json-schema'
+      homepageURL: 'https://github.com/opis/json-schema'
+      supportedDialects:
+        draft: [6, 7, 2019-09, 2020-12]
+      toolingListingNotes: ''
+      compliance:
+        config:
+          docs: https://opis.io/json-schema/2.x/php-loader.html#parser-options
+          instructions: 'set several options to their "vanilla" values'
+      last-updated: '2022-08-31'
+  - name: Swaggest Json Schema
+    description: 'High definition PHP structures with JSON-schema based validation'
+    toolingTypes: ['validator']
+    languages: ['PHP']
+    common:
+      maintainers:
+        - name: 'Viacheslav Poturaev'
+          github: 'vearutop'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/swaggest/php-json-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: jschon
+    description: 'An object-oriented JSON Schema implementation for Python.'
+    toolingTypes: ['validator']
+    languages: ['Python']
+    common:
+      maintainers:
+        - name: 'Mark Joseph'
+          github: 'marksparkza'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/marksparkza/jschon'
+      homepageURL: 'https://jschon.readthedocs.io/'
+      supportedDialects:
+        draft: [2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: jsonschema
+    description: 'An implementation of the JSON Schema specification for Python'
+    toolingTypes: ['validator']
+    languages: ['Python']
+    common:
+      maintainers:
+        - name: 'Julian Berman'
+          github: 'Julian'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/python-jsonschema/jsonschema'
+      homepageURL: 'https://python-jsonschema.readthedocs.io/'
+      supportedDialects:
+        draft: [3, 4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2022-11-09'
+
+  - name: fastjsonschema
+    description: 'Fast JSON schema validator for Python'
+    toolingTypes: ['validator']
+    languages: ['Python']
+    common:
+      maintainers:
+        - name: 'Michal Hořejšek'
+          github: 'horejsek'
+      license: 'BSD-3-Clause'
+      repositoryURL: 'https://github.com/horejsek/python-fastjsonschema'
+      homepageURL: 'https://horejsek.github.io/python-fastjsonschema/'
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: 'Great performance thanks to code generation.'
+      last-updated: '2022-08-31'
+
+  - name: jsonschema-rs
+    description: 'JSON Schema validation library'
+    toolingTypes: ['validator']
+    languages: ['Python', 'Rust']
+    common:
+      maintainers:
+        - name: 'Dmitry Dygalo'
+          github: 'Stranger6667'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/Stranger6667/jsonschema-rs'
+      homepageURL: 'https://docs.rs/jsonschema'
+      supportedDialects:
+        draft: []
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+    overrides:
+      python:
+        repositoryURL: 'https://github.com/Stranger6667/jsonschema-rs/tree/master/bindings/python'
+        supportedDialects:
+          draft: [4, 6, 7]
+        toolingListingNotes: "Python bindings to Rust's jsonschema crate"
+        last-updated: '2022-08-31'
+      rust:
+        supportedDialects:
+          draft: [4, 6, 7, 2019-09, 2020-12]
+        toolingListingNotes: 'Fast due to compiling schema into a validation tree; 2019-09 and 2020-12 are partially supported'
+        last-updated: '2022-08-31'
+
+  - name: JSONSchemer
+    description: 'JSON Schema validator. Supports drafts 4, 6, 7, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1.'
+    toolingTypes: ['validator']
+    languages: ['Ruby']
+    common:
+      maintainers:
+        - name: 'David Harsha'
+          github: 'davishmcclurg'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/davishmcclurg/json_schemer'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2023-08-20'
+
+  - name: JSI
+    description: 'JSI: JSON Schema Instantiation in Ruby'
+    toolingTypes: ['validator']
+    languages: ['Ruby']
+    common:
+      maintainers:
+        - name: 'Ethan'
+          github: 'notEthan'
+      license: 'AGPL-3.0'
+      repositoryURL: 'https://github.com/notEthan/jsi/'
+      homepageURL: 'https://rubydoc.info/gems/jsi'
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: boon
+    description: 'JSONSchema (draft 2020-12, draft 2019-09, draft-7, draft-6, draft-4) Validation in Rust'
+    toolingTypes: ['validator']
+    languages: ['Rust']
+    common:
+      maintainers:
+        - name: 'Santhosh Tekuri'
+          github: 'santhosh-tekuri'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/santhosh-tekuri/boon'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2023-02-22'
+
+  - name: Reactive Core Circe JSON Validator
+    description: 'This is a Scala implementation of a JSON Schema validator based upon the great io.circe Library.'
+    toolingTypes: ['validator']
+    languages: ['Scala']
+    common:
+      maintainers:
+        - name: 'Norbert Schultz'
+          github: 'nob13'
+      license: 'Apache-2.0'
+      repositoryURL: 'https://github.com/reactivecore/rc-circe-json-schema'
+      homepageURL: ''
+      supportedDialects:
+        draft: [2019-09, 2020-12]
+      toolingListingNotes: 'Based on Circe-Library -Early state and API may not be stable. Not yet produciton ready.'
+      last-updated: '2022-08-31'
+
+  - name: DSJSONSchemaValidation
+    description: 'JSON Schema draft 4, 6 and 7 parsing and validation library written in Objective-C.'
+    toolingTypes: ['validator']
+    languages: ['Objective-C']
+    common:
+      maintainers:
+        - name: 'Andrei Podkovyrin'
+          github: 'podkovyrin'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/dashevo/JSONSchemaValidation'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: lua-resty-jsonschema
+    description: 'Pure Lua JSON schema validator for Lua/LuaJIT'
+    toolingTypes: ['validator']
+    languages: ['Lua/LuaJIT']
+    common:
+      maintainers:
+        - name: 'YuanSheng Wang'
+          github: 'membphis'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/iresty/lua-resty-jsonschema'
+      homepageURL: 'https://www.apiseven.com/'
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: Hyperjump JSV (online)
+    description: 'Validate JSON Schema documents online'
+    toolingTypes: ['validator']
+    languages: ['Web (Online)']
+    common:
+      maintainers:
+        - name: 'Jason Desrosiers'
+          github: 'jdesrosiers'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/hyperjump-io/json-schema.hyperjump.io'
+      homepageURL: 'https://json-schema.hyperjump.io'
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: 'Supports multiple schemas and multiple instances; client-side validation'
+      last-updated: '2022-08-31'
+
+  - name: json-everything
+    description: 'System.Text.Json-based support for all of your JSON needs.'
+    toolingTypes: ['validator']
+    languages: ['Web (Online)']
+    common:
+      maintainers:
+        - name: 'Greg Dennis'
+          github: 'gregsdennis'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/gregsdennis/json-everything'
+      homepageURL: 'https://json-everything.net/json-schema'
+      supportedDialects:
+        draft: [6, 7, 2019-09, 2020-12]
+      toolingListingNotes: 'Powered by JsonSchema.Net in Blazor WASM for client-side validation'
+      last-updated: '2022-08-31'
+
+  - name: jschon.dev
+    description: 'JSON Schema web validator built on jschon.'
+    toolingTypes: ['validator']
+    languages: ['Web (Online)']
+    common:
+      maintainers:
+        - name: 'Mark Joseph'
+          github: 'marksparkza'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/marksparkza/jschon.dev'
+      homepageURL: 'https://jschon.dev/'
+      supportedDialects:
+        draft: [2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: JSON Schema Validator
+    description: 'An online, interactive JSON Schema validator. Supports JSON Schema Draft 3, Draft 4, Draft 6, Draft 7, Draft 2019-09 and Draft 2020-12.'
+    toolingTypes: ['validator']
+    languages: ['Web (Online)']
+    common:
+      maintainers:
+        - name: 'James Newton-King'
+          github: 'JamesNK'
+      license: 'AGPL-3.0-only'
+      repositoryURL: 'https://github.com/JamesNK/Newtonsoft.Json.Schema?tab=License-1-ov-file'
+      homepageURL: 'https://www.jsonschemavalidator.net/'
+      supportedDialects:
+        draft: [3, 4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: 'Server-side validation'
+      last-updated: '2024-05-29'
+
+  - name: jsonschema.dev
+    description: 'JSON Schema dev'
+    toolingTypes: ['validator']
+    languages: ['Web (Online)']
+    common:
+      maintainers:
+        - name: 'Ben Hutton'
+          github: 'Relequestual'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/Relequestual/json-schema-dev'
+      homepageURL: 'https://jsonschema.dev'
+      supportedDialects:
+        draft: [7]
+      toolingListingNotes: 'Client-side validation'
+      last-updated: '2022-08-31'
+
+  - name: JSON Schema Lint
+    description: 'JSON Schema Lint'
+    toolingTypes: ['validator']
+    languages: ['Web (Online)']
+    common:
+      maintainers:
+        - name: 'Nick Maynard'
+          github: 'nickcmaynard'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/nickcmaynard/jsonschemalint'
+      homepageURL: 'http://jsonschemalint.com/'
+      supportedDialects:
+        draft: [1, 2, 3, 4, 6, 7]
+      toolingListingNotes: 'Uses JSV for draft-03 and earlier'
+      last-updated: '2022-08-31'
+
+  - name: ExtendsClass's JSON Schema Validator
+    description: 'JSON Schema Validator and Generator'
+    toolingTypes: ['validator']
+    languages: ['Web (Online)']
+    common:
+      maintainers:
+        - name: 'Cyril'
+          github: 'cyrilbois'
+      license: 'Proprietary'
+      repositoryURL: ''
+      homepageURL: 'https://extendsclass.com/json-schema-validator.html'
+      supportedDialects:
+        draft: [7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: valbuddy
+    description: 'JSON Schema and XML/W3C validator tool'
+    toolingTypes: ['validator']
+    languages: ['Command Line']
+    common:
+      maintainers:
+        - name: 'Clemens Uhlenhut'
+          github: 'Clemens-U'
+      license: 'Proprietary'
+      repositoryURL: 'https://github.com/Clemens-U/jsonbuddy'
+      homepageURL: 'https://www.json-buddy.com/json-validator-command-line-tool.htm'
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: ajv-cli
+    description: 'Command-line interface for Ajv JSON Validator'
+    toolingTypes: ['validator']
+    languages: ['Command Line']
+    common:
+      maintainers:
+        - name: 'Evgeny Poberezkin'
+          github: 'epoberezkin'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/ajv-validator/ajv-cli'
+      homepageURL: 'https://www.npmjs.com/package/ajv-cli'
+      supportedDialects:
+        draft: [4, 6, 7, 2019-09, 2020-12]
+      toolingListingNotes: ''
+      compliance:
+        config:
+          docs: https://github.com/ajv-validator/ajv-cli#ajv-options
+          instructions: 'pass `--strict=false`'
+      last-updated: '2022-08-31'
+
+  - name: yajsv
+    description: 'Yet Another JSON Schema Validator [CLI]'
+    toolingTypes: ['validator']
+    languages: ['Command Line']
+    common:
+      maintainers:
+        - name: 'Neil Pankey'
+          github: 'neilpa'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/neilpa/yajsv'
+      homepageURL: ''
+      supportedDialects:
+        draft: [4, 6, 7]
+      toolingListingNotes: ''
+      last-updated: '2022-08-31'
+
+  - name: Polyglottal JSON Schema Validator
+    description: 'A command line JSON Schema validator that supports many file formats. Fork of jessedc/ajv-cli.'
+    toolingTypes: ['validator']
+    languages: ['Command Line']
+    common:
+      maintainers:
+        - name: 'Adam Voss'
+          github: 'adamvoss'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/json-schema-everywhere/pajv'
+      homepageURL: 'https://www.npmjs.com/package/pajv'
+      supportedDialects:
+        draft: [4, 6]
+      toolingListingNotes: 'can be used with YAML and many other formats besides JSON'
+      last-updated: '2022-08-31'
+
+  - name: Validate JSON Action
+    description: 'A Github action for validating JSON.'
+    toolingTypes: ['validator']
+    languages: ['Github Actions']
+    common:
+      maintainers:
+        - name: 'Or Rosenblatt'
+          github: 'OrRosenblatt'
+      license: 'MIT'
+      repositoryURL: 'https://github.com/OrRosenblatt/validate-json-action'
+      homepageURL: ''
+      supportedDialects:
+        draft: [2019-09, 2020-12]
+      toolingListingNotes: ''
+      last-updated: '2023-02-01'
