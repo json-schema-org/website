@@ -72,6 +72,11 @@ export default function Layout({
   return (
     <div className='min-h-screen relative flex flex-col justify-between '>
       <FaviconHead />
+      <script
+        defer
+        data-domain='json-schema.org'
+        src='https://plausible.io/js/script.tagged-events.js'
+      ></script>
       <Head>
         <title>{newTitle}</title>
         <meta name='description' content='JSON Schema' />
