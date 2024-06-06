@@ -107,7 +107,6 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
     },
   ]);
 
-  /* eslint-disable */
   useEffect(() => {
     fetchData().then((data) => setOptions(data));
   }, []);
@@ -115,20 +114,21 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
   const handleChange = async (e: any) => {
     setSelectedSchema(e.target.value);
     const selectedSchemaObj = options.find(
+      // @ts-ignore
       (schema) => schema.file === e.target.value,
     );
 
     if (selectedSchemaObj) {
+      // @ts-ignore
       setInstances(selectedSchemaObj.instances);
       const schemaResponse = await fetch(selectedSchema);
       const schemaData = await schemaResponse.json();
       setFetchedSchema(schemaData);
     } else {
       setInstances([]);
-      setFetchedSchema(null);
+      setFetchedSchema(null!);
     }
   };
-  /* eslint-enable */
 
   return (
     <SectionContext.Provider value='docs'>
