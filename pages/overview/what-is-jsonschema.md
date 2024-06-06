@@ -2,7 +2,7 @@
 section: docs
 title: What is JSON Schema?
 ---
-> JSON Schema is a declarative language for defining structure, constraints, and data types for JSON data.
+> JSON Schema is a declarative language for defining structure and constraints for JSON data.
 <br/>
 
 
@@ -12,7 +12,7 @@ When it comes to data exchange, JSON Schema stands out as a powerful standard fo
 
 While JSON Schema provides the language, validating a JSON [instance](https://json-schema.org/learn/glossary#instance) against a [schema](https://json-schema.org/learn/glossary#schema) requires a JSON Schema [validator](https://json-schema.org/implementations#validators). The JSON validator checks if the JSON documents conform to the schema.
 
-JSON validators consist of both open-source and commercial tools that implement the JSON Schema specification. Such tooling enables easy integration of JSON Schema into projects of any size.
+JSON validators are tools that implement the JSON Schema specification. Such tooling enables easy integration of JSON Schema into projects of any size.
 
 ![How JSON Schema works](/img/json_schema.svg)
 
@@ -20,7 +20,7 @@ JSON validators consist of both open-source and commercial tools that implement 
 
 JSON Schema empowers developers in the following ways:
 
-* **Structured Data Description**: JSON Schema empowers developers to use JSON to describe the structure, constraints, and data types of existing JSON data.
+* **Structured Data Description**: JSON Schema allows developers to describe the structure, constraints, and data types of existing JSON data.
 * **Rule Definition and Enforcement**: By adhering to JSON schema constraints, it becomes easier to exchange structured data between applications as it maintains a consistent pattern.
 * **Produce clear documentation**: JSON Schema supports the creation of machine and human readable documentation.
 * **Extensibility:** JSON Schema offers high adaptability to developers' needs. Custom keywords, formats, and validation rules can be created to tailor schemas according to specific requirements.
@@ -44,7 +44,7 @@ JSON Schema empowers organizations by:
 
 JSON Schema dates back to the [first JSON Schema proposal](https://web.archive.org/web/20071026185150/http://json.com/json-schema-proposal/) submitted by Kris Zyp to [json.com](http://json.com) on October 2nd, 2007.
 
-The newest version of JSON Schema is [2020-12](https://json-schema.org/draft/2020-12/release-notes), which represents the latest advancements and has expanded capabilities compared with the previous versions, `draft-04`, `draft-06`, and `draft-07`.
+The latest version of JSON Schema is [2020-12](https://json-schema.org/latest/release-notes), which represents the latest advancements and has expanded capabilities compared with the previous versions, `draft-04`, `draft-06`, and `draft-07`.
 
 We recommend using the newest version of JSON Schema and taking advantage of its benefits.
 
