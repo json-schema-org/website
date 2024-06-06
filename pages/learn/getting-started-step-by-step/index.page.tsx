@@ -155,6 +155,7 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
           </select>
         </div>
         <div>{selectedSchema}</div>
+        <div>{JSON.stringify(fetchedSchema, null, 2)}</div>
         <JsonEditor
           initialCode={JSON.stringify(fetchedSchema, null, 2)}
         ></JsonEditor>
