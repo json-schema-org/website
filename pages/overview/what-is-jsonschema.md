@@ -2,7 +2,7 @@
 section: docs
 title: What is JSON Schema?
 ---
-JSON Schema is a declarative language for annotating and validating JSON instances' structure, constraints, and data types. It provides a way to standardize and define expectations for JSON data.
+> JSON Schema is a declarative language for defining structure, constraints, and data types for JSON data.
 <br/>
 
 
