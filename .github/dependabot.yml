@@ -1,0 +1,30 @@
+# configuration file for Dependabot 
+version: 2
+updates:
+    # Configuration for yarn package ecosystem
+  - package-ecosystem: "npm"  
+
+    # Directory containing the package manifests (e.g. yarn.lock)
+    directory: "/" 
+
+    # Schedule for dependency updates
+    schedule:
+      interval: "weekly"  
+    
+    # Customize commit messages for dependency updates
+    commit-message:
+      prefix: "chore(deps):"  
+
+    # Configuration for GitHub Actions dependencies
+  - package-ecosystem: "github-actions" 
+
+    # Workflow files stored in the default location of `.github/workflows`. (You don't need to specify `/.github/workflows` for `directory`. You can use `directory: "/"`.)
+    directory: "/" 
+
+    # Schedule for dependency updates
+    schedule:
+      interval: "weekly"
+
+    # Customize commit messages for dependency updates
+    commit-message:
+      prefix: "chore(deps):" 
