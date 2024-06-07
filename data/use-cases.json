@@ -1,0 +1,74 @@
+[
+  {
+    "title": "Structural validation",
+    "summary": "Structural validation refers to the structure that a JSON document is supposed to follow, such as which properties must exist, what types of values are expected where, and what they must look like."
+  },
+  {
+    "title": "Semantic annotation",
+    "summary": "There is a need to annotate values within a JSON document: for machine readability, and for documentation purposes."
+  },
+  {
+    "title": "Domain-specific language",
+    "summary": "Developers may write an application that uses a JSON Schema internally as a domain-specific language, so that the schema is only used inside a single application by a single party. By using a declarative language, the application requirements can be optimized better than a human could do."
+  },
+  {
+    "title": "A common vocabulary",
+    "summary": "A development team maintains two similar applications, but for different platforms, in different languages. The application downloads and reads from a common repository of JSON documents. They want to make sure that both applications accept or reject JSON with identical behavior, so they write a single JSON Schema and deploy it to both applications."
+  },
+  {
+    "title": "Model-Driven UI constraints",
+    "summary": "When a server declares constraints that a submission must meet, there is a need for the user interface to receive these constraints to provide model-driven validation of permissible values, making the form more accessible to the user."
+  },
+  {
+    "title": "UI Generation",
+    "summary": "JSON Schema can be used to automatically generate user interfaces that adhere to a given schema."
+  },
+  {
+    "title": "Data Serialization",
+    "summary": "Compress JSON data for storage/transmission. For example: <a href='https://jsonbinpack.sourcemeta.com' style='text-decoration: underline; font-weight: bold;'>https://jsonbinpack.sourcemeta.com</a>"
+  },
+  {
+    "title": "Fuzzing, enumeration, and generation",
+    "summary": "Security applications need to generate examples of JSON documents within the valid set, and outside the valid set."
+  },
+  {
+    "title": "Partial validation",
+    "summary": "Due to technical limitations, some JSON parsers may only be able to understand a subset of the JSON value space, and it makes sense to validate the value read by the application, instead of the JSON document provided to the JSON parser."
+  },
+  {
+    "title": "Automated Testing",
+    "summary": "Good definitions of input/output that schemas provide enable contract and property based testing scenarios. For example: <a href='https://schemathesis.readthedocs.io/en/stable/' style='text-decoration: underline; font-weight: bold;'>https://schemathesis.readthedocs.io/en/stable/</a>"
+  },
+  {
+    "title": "Machine-readable profiles of Web resources",
+    "summary": "A Web server that offers a JSON document should be able to link to a profile document that describes the meaning of the data in a machine-readable form."
+  },
+  {
+    "title": "Schema Inference",
+    "summary": "This is pretty useful in data science. You may have huge JSON datasets and don't know the structure well. You can use tools that will derive a JSON Schema from the data for you to better understand it and act on it."
+  },
+  {
+    "title": "Hypermedia",
+    "summary": "Generic user-agents must be able to make use of the schema as it evolves, including Web browsers, spiders, and automated tooling. It should support loose coupling (like an HTML homepage); so a schema should be able to change, add, and remove features with minimal breakage for compatible clients."
+  },
+  {
+    "title": "Results and Reporting",
+    "summary": "The party that is providing the schema and input may not be the same party that is performing the validation; in this case, there should be a standard way to abstract away the validator interface, and report the results of a validation operation (validation result, annotations, and errors)."
+  },
+  {
+    "title": "External validation",
+    "summary": "Authors may embed resources of other media types, such as text documents, or base64 or hex-encoded binary documents; and may wish to pass off validation of these documents to another software tool."
+  },
+  {
+    "title": "Intra-document data consistency validation",
+    "summary": "A JSON document may carry relational data that must be internally consistent."
+  },
+  {
+    "title": "Inter-database consistency validation",
+    "summary": "A JSON document may carry relational data that must be verified against outside data sources."
+  },
+  {
+    "title": "Linting",
+    "summary": "Sometimes it's desirable to require formatting that does not impact the application-level meaning of the document, but instead specifies requirements purely for aesthetic or compatibility reasons."
+  }
+]

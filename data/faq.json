@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "question": "What is JSON Schema?",
+    "answer": "JSON Schema is a specification for defining the structure of JSON data. It provides a standardized way to annotate, describe, and validate JSON data. JSON Schema defines content, structure, data types, and other expected constraints within a JSON document.",
+    "category": "general"
+  },
+  {
+    "id": 2,
+    "question": "How do I create a simple JSON Schema?",
+    "answer": "You can create a simple JSON Schema using a JSON object with properties like 'type', 'properties', and 'required'. These define the data type, properties, and mandatory fields of your JSON document.",
+    "category": "general"
+  },
+  {
+    "id": 3,
+    "question": "What is the purpose of 'type' in JSON Schema?",
+    "answer": "The 'type' keyword defines the data type of the schema and guarantees that the validated data complies with the specified type. JSON Schema defines these types; 'string', 'number', 'integer', 'object', 'array', 'boolean', and 'null'. The type keyword primarily functions for data validation, compatibility across systems, and restriction of JSON documents.",
+    "category": "general"
+  },
+  {
+    "id": 4,
+    "question": "How can I define default values in a JSON Schema?",
+    "answer": "You can use the 'default' keyword to set a default value for a property in your JSON Schema. It provides a fallback value if the property is not present in the JSON document.",
+    "category": "general"
+  },
+  {
+    "id": 5,
+    "question": "What is the significance of 'required' in JSON Schema?",
+    "answer": "The 'required' keyword ensures that specific properties must be present in the JSON data being validated. It specifies which properties are mandatory, avoids errors or incomplete processing by guaranteeing the provision of necessary data, and works for form validation, configuration files, schema evolution, etc.",
+    "category": "general"
+  },
+  {
+    "id": 6,
+    "question": "How can I validate a JSON document against a JSON Schema?",
+    "answer": "You can use various tools and libraries, such as AJV (Another JSON Schema Validator), to validate a JSON document against a JSON Schema. It ensures the JSON data adheres to the expected format and constraints defined in the schema.",
+    "category": "general"
+  },
+  {
+    "id": 7,
+    "question": "What is the difference between 'object' and 'array' types in JSON Schema?",
+    "answer": "The object type in JSON Schema represents a collection of key-value pairs, ideal for modeling entities with named properties, like a person with attributes such as name and age. In contrast, the array type represents ordered collections of items suited for sequences of similar elements, such as lists of strings or objects. Understanding these differences helps to describe and validate JSON data structures.",
+    "category": "general"
+  },
+  {
+    "id": 8,
+    "question": "Can I use JSON Schema to describe nested structures?",
+    "answer": "JSON Schema allows for describing nested structures to represent complex, hierarchical data. You can define properties with their own JSON Schema, objects within objects, and arrays within objects or arrays, providing a flexible way to model various data relationships.",
+    "category": "general"
+  }
+]

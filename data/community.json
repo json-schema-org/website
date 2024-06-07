@@ -1,0 +1,302 @@
+[
+  {
+    "id": "item",
+    "img": "./img/avatars/benhutton.webp",
+    "alt": "benhutton"
+  },
+  {
+    "id": "item",
+    "img": "./img/avatars/benjagm.webp",
+    "alt": "benjagm"
+  },
+  {
+    "id": "item",
+    "img": "./img/avatars/gregsdennis.webp",
+    "alt": "gregs"
+  },
+  {
+    "id": "item",
+    "img": "./img/avatars/jasondesrosiers.jpeg",
+    "alt": "jason"
+  },
+  {
+    "id": "item",
+    "img": "./img/avatars/julian.webp",
+    "alt": "julian"
+  },
+  {
+    "id": "item",
+    "img": "./img/contributers/melinda.png",
+    "alt": "melinda"
+  },
+  {
+    "id": "item",
+    "img": "./img/avatars/jviotti.webp",
+    "alt": "jviotti"
+  },
+  {
+    "id": "item",
+    "img": "./img/contributers/musemind.png",
+    "alt": "musemind"
+  },
+  {
+    "id": "item-2",
+    "img": "./img/contributers/akanksha-kushwaha.jpeg",
+    "alt": "aku1310"
+  },
+  {
+    "id": "item-2",
+    "img": "./img/contributers/OlliesWorld.jpeg",
+    "alt": "roni"
+  },
+  {
+    "id": "item-2",
+    "img": "./img/contributers/darhkvoyd.jpeg",
+    "alt": "DV"
+  },
+  {
+    "id": "item-2",
+    "img": "./img/contributers/dhairya.jpeg",
+    "alt": "dhairya"
+  },
+  {
+    "id": "item-2",
+    "img": "./img/contributers/paul-waller.jpeg",
+    "alt": "paul-waller"
+  },
+  {
+    "id": "item-2",
+    "img": "./img/contributers/officeneerajsaini.jpeg",
+    "alt": "neeraj"
+  },
+  {
+    "id": "item-2",
+    "img": "./img/contributers/jeel-rajodiya.jpeg",
+    "alt": "jeel"
+  },
+  {
+    "id": "item-2",
+    "img": "./img/contributers/tamanna-verma.jpeg",
+    "alt": "tamana"
+  },
+  {
+    "id": "item-3",
+    "img": "./img/contributers/mintu-gogoi.jpeg",
+    "alt": "mintu"
+  },
+  {
+    "id": "item-3",
+    "img": "./img/contributers/aditya-sharma.jpeg",
+    "alt": "aditya"
+  },
+  {
+    "id": "item-3",
+    "img": "./img/contributers/satyam-kumar.jpeg",
+    "alt": "satyam"
+  },
+  {
+    "id": "item-3",
+    "img": "./img/contributers/ayush_tiwari.jpeg",
+    "alt": "ayush"
+  },
+  {
+    "id": "item-3",
+    "img": "./img/contributers/sahil_shadwal.jpeg",
+    "alt": "sahil"
+  },
+  {
+    "id": "item-3",
+    "img": "./img/contributers/julian-cataldo.jpeg",
+    "alt": "julian"
+  },
+  {
+    "id": "item-3",
+    "img": "./img/contributers/sandrina.jpeg",
+    "alt": "sandrina"
+  },
+  {
+    "id": "item-3",
+    "img": "./img/contributers/lateapexe.jpeg",
+    "alt": "late"
+  },
+  {
+    "id": "item-4",
+    "img": "./img/contributers/alok-gupta.jpeg",
+    "alt": "alok"
+  },
+  {
+    "id": "item-4",
+    "img": "./img/contributers/michael-sharber.jpeg",
+    "alt": "michael"
+  },
+  {
+    "id": "item-4",
+    "img": "./img/contributers/gabengar.png",
+    "alt": "gabengar"
+  },
+  {
+    "id": "item-4",
+    "img": "./img/contributers/ali_haider.jpeg",
+    "alt": "ali"
+  },
+  {
+    "id": "item-4",
+    "img": "./img/contributers/saksham_mishra.jpeg",
+    "alt": "saksham"
+  },
+  {
+    "id": "item-4",
+    "img": "./img/contributers/sarthak.jpeg",
+    "alt": "sarthak"
+  },
+  {
+    "id": "item-4",
+    "img": "./img/contributers/jayprakash.jpeg",
+    "alt": "jayprakash"
+  },
+  {
+    "id": "item-4",
+    "img": "./img/contributers/vinitpandit.jpeg",
+    "alt": "vinit"
+  },
+  {
+    "id": "item-5",
+    "img": "./img/contributers/dauinh.jpeg",
+    "alt": "linh"
+  },
+  {
+    "id": "item-5",
+    "img": "./img/contributers/kalivtrope.jpeg",
+    "alt": "kalivtrope"
+  },
+  {
+    "id": "item-5",
+    "img": "./img/contributers/adityasingh.jpeg",
+    "alt": "aditya"
+  },
+  {
+    "id": "item-5",
+    "img": "./img/contributers/Maykkkk.jpeg",
+    "alt": "maykkkk"
+  },
+  {
+    "id": "item-5",
+    "img": "./img/contributers/bcherny.jpeg",
+    "alt": "boris"
+  },
+  {
+    "id": "item-5",
+    "img": "./img/contributers/Saumya40-codes.jpeg",
+    "alt": "saumya"
+  },
+  {
+    "id": "item-5",
+    "img": "./img/contributers/prajjwalyd.jpeg",
+    "alt": "prajjwal"
+  },
+  {
+    "id": "item-5",
+    "img": "./img/contributers/abhishek-403.png",
+    "alt": "abhishek"
+  },
+  {
+    "id": "item-6",
+    "img": "./img/contributers/CarstenWickner.jpeg",
+    "alt": "Carsten"
+  },
+  {
+    "id": "item-6",
+    "img": "./img/contributers/kx412764776.jpeg",
+    "alt": "kx412764776"
+  },
+  {
+    "id": "item-6",
+    "img": "./img/contributers/unguul.jpeg",
+    "alt": "unguul"
+  },
+  {
+    "id": "item-6",
+    "img": "./img/contributers/Akshaybagai52.jpeg",
+    "alt": "akshay"
+  },
+  {
+    "id": "item-6",
+    "img": "./img/contributers/Michael-Obele.jpeg",
+    "alt": "michael"
+  },
+  {
+    "id": "item-6",
+    "img": "./img/contributers/karenetheridge.jpeg",
+    "alt": "karene"
+  },
+  {
+    "id": "item-6",
+    "img": "./img/contributers/eddyashton.jpeg",
+    "alt": "eddy"
+  },
+  {
+    "id": "item-6",
+    "img": "./img/contributers/lalitkumawat1m.png",
+    "alt": "lalit"
+  },
+  {
+    "id": "item-7",
+    "img": "./img/contributers/justin-tay.png",
+    "alt": "justin"
+  },
+  {
+    "id": "item-7",
+    "img": "./img/contributers/ThomasAribart.jpeg",
+    "alt": "thomas"
+  },
+  {
+    "id": "item-7",
+    "img": "./img/contributers/Viicos.jpeg",
+    "alt": "viicos"
+  },
+  {
+    "id": "item-7",
+    "img": "./img/contributers/vm-001.png",
+    "alt": "vm-001"
+  },
+  {
+    "id": "item-7",
+    "img": "./img/contributers/big-andy-coates.png",
+    "alt": "big-andy-coates"
+  },
+  {
+    "id": "item-7",
+    "img": "./img/contributers/smoya.jpeg",
+    "alt": "smoya"
+  },
+  {
+    "id": "item-7",
+    "img": "./img/contributers/ota-meshi.jpeg",
+    "alt": "ota-meshi"
+  },
+  {
+    "id": "item-7",
+    "img": "./img/contributers/michaelmior.jpeg",
+    "alt": "michaelmior"
+  },
+  {
+    "id": "item-8",
+    "img": "./img/contributers/maverox.jpeg",
+    "alt": "maverox"
+  },
+  {
+    "id": "item-8",
+    "img": "./img/contributers/kurtmckee.png",
+    "alt": "kurtmckee"
+  },
+  {
+    "id": "item-8",
+    "img": "./img/contributers/Mvishal123.jpeg",
+    "alt": "vishal"
+  },
+  {
+    "id": "item-8",
+    "img": "./img/contributers/SimonDMC.png",
+    "alt": "simon"
+  }
+]
