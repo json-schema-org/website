@@ -79,7 +79,10 @@ const GettingStarted = () => {
       details: 'This is an invalid JSON instance for the provided JSON Schema',
     },
   ]);
-
+  const [details, setDetails] = useState([
+    'This is a valid JSON instance for the provided JSON Schema',
+    true,
+  ]);
   const [fetchedSchema, setFetchedSchema] = useState(intitalSchemaData);
   const [fetchedInstance, setFetchedInstance] = useState({});
 
@@ -88,14 +91,14 @@ const GettingStarted = () => {
   }, []);
 
   const handleSchemaChange = async (e: any) => {
-    const selectedSchemaObj = options.find(
+    const selectedSchema = options.find(
       // @ts-ignore
       (schema) => schema.file === e.target.value,
     );
 
-    if (selectedSchemaObj) {
+    if (selectedSchema) {
       // @ts-ignore
-      setInstances(selectedSchemaObj.instances);
+      setInstances(selectedSchema.instances);
       const schemaResponse = await fetch(e.target.value);
       const schemaData = await schemaResponse.json();
       setFetchedSchema(schemaData);
@@ -106,9 +109,16 @@ const GettingStarted = () => {
   };
 
   const handleInstanceChange = async (e: any) => {
-    const instanceResponse = await fetch(e.target.value);
-    const instanceData = await instanceResponse.json();
-    setFetchedInstance(instanceData);
+    const selectedInstance = instances.find(
+      (instance) => instance.file === e.target.value,
+    );
+
+    if (selectedInstance) {
+      setDetails([selectedInstance.details, selectedInstance.valid]);
+      const instanceResponse = await fetch(e.target.value);
+      const instanceData = await instanceResponse.json();
+      setFetchedInstance(instanceData);
+    }
   };
 
   return (
@@ -209,6 +219,16 @@ const GettingStarted = () => {
           >
             {JSON.stringify(fetchedInstance, null, 2)}
           </Highlight>
+        </div>
+        <h2 className='text-h5 font-semibold'>Instance Result</h2>
+        <div className='flex bg-[#282c34] justify-between items-center text-white font-medium flex-row border p-5 rounded-xl'>
+          <p>{details[0]}</p>
+
+          {details[1] ? (
+            <img src='/icons/green-tick.svg' alt='green tick' />
+          ) : (
+            <img src='/icons/red-cross.svg' alt='red cross' />
+          )}
         </div>
       </div>
     </>
