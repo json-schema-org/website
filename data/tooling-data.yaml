@@ -3,6 +3,7 @@ toolings:
     description: 'System.Text.Json-based support for all of your JSON needs.'
     toolingType: ['validator', 'code-to-schema', 'schema-to-data']
     languages: ['.NET']
+    environment: []
     maintainers:
       - name: 'Greg Dennis'
         github: 'gregsdennis'
@@ -18,6 +19,7 @@ toolings:
     description: 'Json.NET Schema is a powerful, complete and easy to use JSON Schema framework for .NET'
     toolingType: ['validator', 'code-to-schema']
     languages: ['.NET']
+    environment: []
     maintainers:
       - name: 'James Newton-King'
         github: 'JamesNK'
@@ -28,10 +30,12 @@ toolings:
       draft: [3, 4, 6, 7, '2019-09']
     toolingListingNotes: ''
     lastUpdated: '2022-08-31'
+
   - name: Corvus.JsonSchema
     description: 'Support for Json Schema validation and entity generation'
     toolingType: ['validator']
     languages: ['.NET']
+    environment: []
     maintainers:
       - name: 'Matthew Adams'
         github: 'mwadams'
@@ -42,10 +46,12 @@ toolings:
       draft: [6, 7, '2019-09', '2020-12']
     toolingListingNotes: ''
     lastUpdated: '2023-02-14'
+
   - name: LateApexEarlySpeed.Json.Schema
     description: 'Simple and high performance json schema implementation for .Net and related json validation in .Net'
     toolingType: ['validator', 'code-to-schema']
     languages: ['.NET']
+    environment: []
     maintainers:
       - name: 'LateApexEarlySpeed'
         github: 'lateapexearlyspeed'
@@ -56,10 +62,12 @@ toolings:
       draft: ['2020-12']
     toolingListingNotes: ''
     lastUpdated: '2023-12-13'
+
   - name: f5-json-schema
     description: 'JSON schema validation'
     toolingType: ['validator']
     languages: ['C++']
+    environment: []
     maintainers:
       - name: 'Kirit Sælensminde'
         github: 'KayEss'
@@ -70,10 +78,12 @@ toolings:
       draft: [7]
     toolingListingNotes: ''
     lastUpdated: '2022-08-31'
+
   - name: JSON schema validation for JSON for Modern C++
     description: 'JSON schema validator for JSON for Modern C++'
     toolingType: ['validator']
     languages: ['C++']
+    environment: []
     maintainers:
       - name: 'Patrick Boettcher'
         github: 'pboettch'
@@ -84,10 +94,12 @@ toolings:
       draft: [7]
     toolingListingNotes: ''
     lastUpdated: '2022-08-31'
+
   - name: Valijson
     description: 'Header-only C++ library for JSON Schema validation, with support for many popular parsers'
     toolingType: ['validator']
     languages: ['C++']
+    environment: []
     maintainers:
       - name: 'Tristan Penman'
         github: 'tristanpenman'
@@ -98,10 +110,12 @@ toolings:
       draft: [7]
     toolingListingNotes: ''
     lastUpdated: '2022-08-31'
+
   - name: jsoncons
     description: 'A C++, header-only library for constructing JSON and JSON-like data formats, with JSON Pointer, JSON Patch, JSON Schema, JSONPath, JMESPath, CSV, MessagePack, CBOR, BSON, UBJSON'
     toolingType: ['validator']
     languages: ['C++']
+    environment: []
     maintainers:
       - name: 'Daniel Parker'
         github: 'danielaparker'
@@ -112,10 +126,12 @@ toolings:
       draft: [4, 6, 7, 2019-09, 2020-12]
     toolingListingNotes: 'Header-only library'
     lastUpdated: '2024-04-22'
+
   - name: jinx
     description: "jinx is not xml-schema (it's json-schema!)"
     toolingType: ['validator']
     languages: ['Clojure']
+    environment: []
     maintainers:
       - name: 'Malcolm Sparks'
         github: 'malcolmsparks'
@@ -126,10 +142,12 @@ toolings:
       draft: [7]
     toolingListingNotes: ''
     lastUpdated: '2022-08-31'
+
   - name: luposlip/json-schema
     description: 'Clojure library JSON Schema validation and generation - Draft-07 compatible'
     toolingType: ['validator', 'data-to-schema']
     languages: ['Clojure']
+    environment: []
     maintainers:
       - name: 'Henrik Mohr'
         github: 'luposlip'
@@ -140,10 +158,12 @@ toolings:
       draft: [4, 6, 7]
     toolingListingNotes: ''
     lastUpdated: '2022-08-31'
+
   - name: JSON Essentials for COM/ActiveX
     description: 'JSON Essentials™ for COM/ActiveX is a language independent JSON toolkit for rapid implementation of the most common JSON use cases on the Windows platform'
     toolingType: ['validator']
-    languages: ['COM/ActiveX']
+    languages: []
+    environment: ['COM/ActiveX']
     maintainers:
       - name: 'Alexander Stoyan'
         github: ''
@@ -154,10 +174,12 @@ toolings:
       draft: [7]
     toolingListingNotes: 'Language independent, includes JSON DOM parser, REST ready, 4 licensing options for free and business uses. For Windows platform only.'
     lastUpdated: '2022-08-31'
+
   - name: json-schema (fisxoj)
     description: 'JSON Schema validation'
     toolingType: ['validator']
     languages: ['Common Lisp']
+    environment: []
     maintainers:
       - name: 'Matt Novenstern'
         github: 'fisxoj'
@@ -173,10 +195,12 @@ toolings:
         instructions: |
           set `resolve-remote-references` to `nil`
     lastUpdated: '2022-08-31'
+
   - name: Exonerate
     description: 'An opinionated JSONSchema compiler for elixir.'
     toolingType: ['validator']
     languages: ['Elixir']
+    environment: []
     maintainers:
       - name: 'Isaac Yonemoto'
         github: 'ityonemo'
@@ -192,6 +216,7 @@ toolings:
     description: 'A JSON Schema validator.'
     toolingType: ['validator']
     languages: ['Elixir']
+    environment: []
     maintainers:
       - name: 'Marcus Kruse'
         github: 'NickNeck'
@@ -207,6 +232,7 @@ toolings:
     description: 'jesse (JSon Schema Erlang) is an implementation of a JSON Schema validator for Erlang.'
     toolingType: ['validator']
     languages: ['Erlang']
+    environment: []
     maintainers:
       - name: 'Sergey Prokhorov'
         github: 'seriyps'
@@ -222,6 +248,7 @@ toolings:
     description: 'JSONSchema (draft 2020-12, draft 2019-09, draft-7, draft-6, draft-4) Validation using Go'
     toolingType: ['validator']
     languages: ['Go']
+    environment: []
     maintainers:
       - name: 'Santhosh Kumar Tekuri'
         github: 'santhosh-tekuri'
@@ -237,6 +264,7 @@ toolings:
     description: 'A powerful Go JSON Schema validator library aligned with the JSON Schema Draft 2020-12.'
     toolingType: ['validator']
     languages: ['Go']
+    environment: []
     maintainers:
       - name: 'kaptinlin'
         github: 'kaptinlin'
@@ -252,6 +280,7 @@ toolings:
     description: 'Golang implementation of https://json-schema.org drafts 7 & 2019-09'
     toolingType: ['validator']
     languages: ['Go']
+    environment: []
     maintainers:
       - name: "Brendan O'Brien"
         github: 'b5'
@@ -267,6 +296,7 @@ toolings:
     description: 'An implementation of JSON Schema, draft v4 v6 & v7 - Go language'
     toolingType: ['validator']
     languages: ['Go']
+    environment: []
     maintainers:
       - name: 'xeipuuv'
         github: 'xeipuuv'
@@ -282,6 +312,7 @@ toolings:
     description: 'Vert.x Json Schema'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Julien Viet'
         github: 'vietj'
@@ -299,6 +330,7 @@ toolings:
     description: 'A JSON Schema loader and validator, delivered as a Java library.'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Andy Coates'
         github: 'big-andy-coates'
@@ -314,6 +346,7 @@ toolings:
     description: 'A fast Java JSON schema validator that supports draft V4, V6, V7, V2019-09 and V2020-12'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Justin Tay'
         github: 'justin-tay'
@@ -333,6 +366,7 @@ toolings:
     description: 'JSON Schema Validator for the JVM, implements draft 2020-12'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Bence Eros'
         github: 'erosb'
@@ -348,6 +382,7 @@ toolings:
     description: 'Snow, a full-featured JSON Schema validator'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Shawn Silverman'
         github: 'ssilverman'
@@ -363,6 +398,7 @@ toolings:
     description: 'JSON Schema validator for java, based on the org.json API'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Bence Eros'
         github: 'erosb'
@@ -378,6 +414,7 @@ toolings:
     description: 'Justify is a JSON validator based on JSON Schema Specification and Jakarta JSON Processing API (JSON-P).'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'leadpony'
         github: 'leadpony'
@@ -393,6 +430,7 @@ toolings:
     description: 'JSON schema validation library written in Java'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'harrel56'
         github: 'harrel56'
@@ -408,6 +446,7 @@ toolings:
     description: 'Immutable JSON structure to enable Java applications to utilize JSON Schemas INSIDE Java applications - avoiding extra serialization and deserialization.'
     toolingType: ['validator']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Niklas Eldberger'
         github: 'niklas_eldberger'
@@ -424,6 +463,7 @@ toolings:
     toolingType:
       ['validator', 'code-to-schema', 'documentation', 'schema-to-code']
     languages: ['Java', 'Kotlin', 'Python']
+    environment: []
     maintainers:
       - name: 'Justin Black'
         github: 'spacether'
@@ -439,6 +479,7 @@ toolings:
     description: 'JSON Schema Validation, Annotation, and Bundling. Supports Draft 04, 06, 07, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1'
     toolingType: ['validator']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Jason Desrosiers'
         github: 'jdesrosiers'
@@ -454,6 +495,7 @@ toolings:
     description: 'A reasonably safe JSON Schema validator with draft-04/06/07/2019-09/2020-12 support.'
     toolingType: ['validator']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Nikita Skovoroda'
         github: 'ChALkeR'
@@ -469,9 +511,10 @@ toolings:
     lastUpdated: '2023-08-29'
 
   - name: ajv
-    description: ''
+    description: 'The fastest JSON schema Validator.'
     toolingType: ['validator']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Evgeny Poberezkin'
         github: 'epoberezkin'
@@ -491,6 +534,7 @@ toolings:
     description: 'A JSON schema validator that will run on Cloudflare workers. Supports drafts 4, 7, 2019-09, and 2020-12.'
     toolingType: ['validator']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Jeremy Danyow'
         github: 'jdanyow'
@@ -506,6 +550,7 @@ toolings:
     description: 'Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation'
     toolingType: ['validator']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Sascha Goldhofer'
         github: 'sagold'
@@ -521,6 +566,7 @@ toolings:
     description: 'Dynamic JSON Schema Validator - Supports draft-04/06'
     toolingType: ['validator']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Alex Korzhikov'
         github: 'korzio'
@@ -536,6 +582,7 @@ toolings:
     description: 'Create vuelidate validation rules based on json schema'
     toolingType: ['validator']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Martin Hansen'
         github: 'mokkabonna'
@@ -551,6 +598,7 @@ toolings:
     description: 'JSON Schema handling / validator'
     toolingType: ['validator']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Tobias Buschor'
         github: 'nuxodin'
@@ -566,6 +614,7 @@ toolings:
     description: 'Medeia JSON-Schema Validator'
     toolingType: ['validator']
     languages: ['Kotlin', 'Java']
+    environment: []
     maintainers:
       - name: 'Erwin Bolwidt'
         github: 'ebolwidt'
@@ -581,6 +630,7 @@ toolings:
     description: 'Kotlin implementation of JSON Schema (Draft 07)'
     toolingType: ['validator']
     languages: ['Kotlin']
+    environment: []
     maintainers:
       - name: 'Peter Wall'
         github: 'pwall567'
@@ -599,6 +649,7 @@ toolings:
     description: 'The JSON schema validation library that works with'
     toolingType: ['validator']
     languages: ['Kotlin']
+    environment: []
     maintainers:
       - name: 'Oleg Smirnov'
         github: 'OptimumCode'
@@ -616,6 +667,7 @@ toolings:
     description: 'Validate data against a schema using a JSON Schema'
     toolingType: ['validator']
     languages: ['Perl']
+    environment: []
     maintainers:
       - name: 'Karen Etheridge'
         github: 'karenetheridge'
@@ -631,6 +683,7 @@ toolings:
     description: 'Validate data against a schema, minimally'
     toolingType: ['validator']
     languages: ['Perl']
+    environment: []
     maintainers:
       - name: 'Karen Etheridge'
         github: 'karenetheridge'
@@ -646,6 +699,7 @@ toolings:
     description: 'Validate data against a JSON schema'
     toolingType: ['validator']
     languages: ['Perl']
+    environment: []
     maintainers:
       - name: 'Jan Henning Thorsen'
         github: 'jhthorsen'
@@ -661,6 +715,7 @@ toolings:
     description: 'JSON Schema and OpenAPI data validator for Perl'
     toolingType: ['validator']
     languages: ['Perl']
+    environment: []
     maintainers:
       - name: 'Alexey Stavrov'
         github: 'Logioniz'
@@ -671,10 +726,12 @@ toolings:
       draft: [4, 6, 7]
     toolingListingNotes: ''
     lastUpdated: '2022-08-31'
+
   - name: Opis Json Schema
     description: 'JSON Schema validator for PHP'
     toolingType: ['validator']
     languages: ['PHP']
+    environment: []
     maintainers:
       - name: 'Sorin Sarca'
         github: 'sorinsarca'
@@ -689,10 +746,12 @@ toolings:
         docs: https://opis.io/json-schema/2.x/php-loader.html#parser-options
         instructions: 'set several options to their "vanilla" values'
     lastUpdated: '2022-08-31'
+
   - name: Swaggest Json Schema
     description: 'High definition PHP structures with JSON-schema based validation'
     toolingType: ['validator']
     languages: ['PHP']
+    environment: []
     maintainers:
       - name: 'Viacheslav Poturaev'
         github: 'vearutop'
@@ -708,6 +767,7 @@ toolings:
     description: 'An object-oriented JSON Schema implementation for Python.'
     toolingType: ['validator']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Mark Joseph'
         github: 'marksparkza'
@@ -723,6 +783,7 @@ toolings:
     description: 'An implementation of the JSON Schema specification for Python'
     toolingType: ['validator']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Julian Berman'
         github: 'Julian'
@@ -738,6 +799,7 @@ toolings:
     description: 'Fast JSON schema validator for Python'
     toolingType: ['validator']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Michal Hořejšek'
         github: 'horejsek'
@@ -749,10 +811,27 @@ toolings:
     toolingListingNotes: 'Great performance thanks to code generation.'
     lastUpdated: '2022-08-31'
 
+  - name: jsonschema-rs (Python)
+    description: 'JSON Schema validation library'
+    toolingType: ['validator']
+    languages: ['Python']
+    environment: []
+    maintainers:
+      - name: 'Dmitry Dygalo'
+        github: 'Stranger6667'
+    license: 'MIT'
+    repositoryURL: 'https://github.com/Stranger6667/jsonschema-rs/tree/master/bindings/python'
+    homepageURL: ''
+    supportedDialects:
+      draft: [4, 6, 7]
+    toolingListingNotes: "Python bindings to Rust's jsonschema crate"
+    lastUpdated: '2022-08-31'
+
   - name: jsonschema-rs
     description: 'JSON Schema validation library'
     toolingType: ['validator']
-    languages: ['Python', 'Rust']
+    languages: ['Rust']
+    environment: []
     maintainers:
       - name: 'Dmitry Dygalo'
         github: 'Stranger6667'
@@ -760,26 +839,15 @@ toolings:
     repositoryURL: 'https://github.com/Stranger6667/jsonschema-rs'
     homepageURL: 'https://docs.rs/jsonschema'
     supportedDialects:
-      draft: []
-    toolingListingNotes: ''
+      draft: [4, 6, 7, 2019-09, 2020-12]
+    toolingListingNotes: 'Fast due to compiling schema into a validation tree; 2019-09 and 2020-12 are partially supported'
     lastUpdated: '2022-08-31'
-    overrides:
-      python:
-        repositoryURL: 'https://github.com/Stranger6667/jsonschema-rs/tree/master/bindings/python'
-        supportedDialects:
-          draft: [4, 6, 7]
-        toolingListingNotes: "Python bindings to Rust's jsonschema crate"
-        lastUpdated: '2022-08-31'
-      rust:
-        supportedDialects:
-          draft: [4, 6, 7, 2019-09, 2020-12]
-        toolingListingNotes: 'Fast due to compiling schema into a validation tree; 2019-09 and 2020-12 are partially supported'
-        lastUpdated: '2022-08-31'
 
   - name: JSONSchemer
     description: 'JSON Schema validator. Supports drafts 4, 6, 7, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1.'
     toolingType: ['validator']
     languages: ['Ruby']
+    environment: []
     maintainers:
       - name: 'David Harsha'
         github: 'davishmcclurg'
@@ -795,6 +863,7 @@ toolings:
     description: 'JSI: JSON Schema Instantiation in Ruby'
     toolingType: ['validator']
     languages: ['Ruby']
+    environment: []
     maintainers:
       - name: 'Ethan'
         github: 'notEthan'
@@ -810,6 +879,7 @@ toolings:
     description: 'JSONSchema (draft 2020-12, draft 2019-09, draft-7, draft-6, draft-4) Validation in Rust'
     toolingType: ['validator']
     languages: ['Rust']
+    environment: []
     maintainers:
       - name: 'Santhosh Tekuri'
         github: 'santhosh-tekuri'
@@ -825,6 +895,7 @@ toolings:
     description: 'This is a Scala implementation of a JSON Schema validator based upon the great io.circe Library.'
     toolingType: ['validator']
     languages: ['Scala']
+    environment: []
     maintainers:
       - name: 'Norbert Schultz'
         github: 'nob13'
@@ -840,6 +911,7 @@ toolings:
     description: 'JSON Schema draft 4, 6 and 7 parsing and validation library written in Objective-C.'
     toolingType: ['validator']
     languages: ['Objective-C']
+    environment: []
     maintainers:
       - name: 'Andrei Podkovyrin'
         github: 'podkovyrin'
@@ -855,6 +927,7 @@ toolings:
     description: 'Pure Lua JSON schema validator for Lua/LuaJIT'
     toolingType: ['validator']
     languages: ['Lua/LuaJIT']
+    environment: []
     maintainers:
       - name: 'YuanSheng Wang'
         github: 'membphis'
@@ -869,7 +942,8 @@ toolings:
   - name: Hyperjump JSV (online)
     description: 'Validate JSON Schema documents online'
     toolingType: ['validator']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'Jason Desrosiers'
         github: 'jdesrosiers'
@@ -884,7 +958,8 @@ toolings:
   - name: json-everything
     description: 'System.Text.Json-based support for all of your JSON needs.'
     toolingType: ['validator']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'Greg Dennis'
         github: 'gregsdennis'
@@ -899,7 +974,8 @@ toolings:
   - name: jschon.dev
     description: 'JSON Schema web validator built on jschon.'
     toolingType: ['validator']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'Mark Joseph'
         github: 'marksparkza'
@@ -914,7 +990,8 @@ toolings:
   - name: JSON Schema Validator
     description: 'An online, interactive JSON Schema validator. Supports JSON Schema Draft 3, Draft 4, Draft 6, Draft 7, Draft 2019-09 and Draft 2020-12.'
     toolingType: ['validator']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'James Newton-King'
         github: 'JamesNK'
@@ -929,7 +1006,8 @@ toolings:
   - name: jsonschema.dev
     description: 'JSON Schema dev'
     toolingType: ['validator']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'Ben Hutton'
         github: 'Relequestual'
@@ -944,7 +1022,8 @@ toolings:
   - name: JSON Schema Lint
     description: 'JSON Schema Lint'
     toolingType: ['validator']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'Nick Maynard'
         github: 'nickcmaynard'
@@ -959,7 +1038,8 @@ toolings:
   - name: ExtendsClass's JSON Schema Validator
     description: 'JSON Schema Validator and Generator'
     toolingType: ['validator']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'Cyril'
         github: 'cyrilbois'
@@ -974,7 +1054,8 @@ toolings:
   - name: valbuddy
     description: 'JSON Schema and XML/W3C validator tool'
     toolingType: ['validator']
-    languages: ['Command Line']
+    languages: []
+    environment: ['Command Line']
     maintainers:
       - name: 'Clemens Uhlenhut'
         github: 'Clemens-U'
@@ -989,7 +1070,8 @@ toolings:
   - name: ajv-cli
     description: 'Command-line interface for Ajv JSON Validator'
     toolingType: ['validator']
-    languages: ['Command Line']
+    languages: []
+    environment: ['Command Line']
     maintainers:
       - name: 'Evgeny Poberezkin'
         github: 'epoberezkin'
@@ -1008,7 +1090,8 @@ toolings:
   - name: yajsv
     description: 'Yet Another JSON Schema Validator [CLI]'
     toolingType: ['validator']
-    languages: ['Command Line']
+    languages: []
+    environment: ['Command Line']
     maintainers:
       - name: 'Neil Pankey'
         github: 'neilpa'
@@ -1023,7 +1106,8 @@ toolings:
   - name: Polyglottal JSON Schema Validator
     description: 'A command line JSON Schema validator that supports many file formats. Fork of jessedc/ajv-cli.'
     toolingType: ['validator']
-    languages: ['Command Line']
+    languages: []
+    environment: ['Command Line']
     maintainers:
       - name: 'Adam Voss'
         github: 'adamvoss'
@@ -1038,7 +1122,8 @@ toolings:
   - name: Validate JSON Action
     description: 'A Github action for validating JSON.'
     toolingType: ['validator']
-    languages: ['Github Actions']
+    languages: []
+    environment: ['Github Actions']
     maintainers:
       - name: 'Or Rosenblatt'
         github: 'OrRosenblatt'
@@ -1054,6 +1139,7 @@ toolings:
     description: 'An independent benchmark for Node.js JSON-schema validators based on JSON-Schema Test Suite.'
     toolingType: ['benchmarks']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Allan Ebdrup'
         github: 'ebdrup'
@@ -1069,6 +1155,7 @@ toolings:
     description: 'Comparative benchmark for JSON-schema PHP validators using JSON-Schema Test Suite and z-schema/JSCK.'
     toolingType: ['benchmarks']
     languages: ['PHP']
+    environment: []
     maintainers:
       - name: 'Viacheslav Poturaev'
         github: 'vearutop'
@@ -1084,6 +1171,7 @@ toolings:
     description: 'An independent functional and performance comparison of JVM-based validator implementations using JSON-Schema Test Suite and more.'
     toolingType: ['benchmarks']
     languages: ['Java', 'Kotlin', 'Scala']
+    environment: []
     maintainers:
       - name: 'Andy Coates'
         github: 'big-andy-coates'
@@ -1099,6 +1187,7 @@ toolings:
     description: '@cloudflare/doca, part of JSON Schema Tools, provides a set of tools to generate documentation from JSON Schemas, supporting draft-04, -06, -07, and Doca extensions (UI forthcoming).'
     toolingType: ['documentation']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Henry Andrews'
         github: 'handrews'
@@ -1114,6 +1203,7 @@ toolings:
     description: '@adobe/jsonschema2md provides scripts to turn JSON Schema files into readable Markdown documentation, ready for consumption on GitHub or processed using Jekyll or other static site generators. Supports JSON Schema 2019-09 (partial).'
     toolingType: ['documentation']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Tobias Bocanegra'
         github: 'tripodsan'
@@ -1129,6 +1219,7 @@ toolings:
     description: 'FastAPI is an API framework based on Python 3.6+ types that generates OpenAPI 3 schemas, including JSON Schemas for all the models declared.'
     toolingType: ['documentation']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Sebastián Ramírez'
         github: 'tiangolo'
@@ -1144,6 +1235,7 @@ toolings:
     description: '@cloudflare/json-hyper-schema is a utility tool for working with JSON Hyper-Schemas, supporting draft-07, -06, and -04.'
     toolingType: ['LDO-utility']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Henry Andrews'
         github: 'handrews'
@@ -1159,6 +1251,7 @@ toolings:
     description: 'NJsonSchema generates schemas from .NET types. See issue 574 for draft-06+ support progress.'
     toolingType: ['code-to-schema']
     languages: ['.NET']
+    environment: []
     maintainers:
       - name: 'Rico Suter'
         github: 'RicoSuter'
@@ -1174,6 +1267,7 @@ toolings:
     description: 'jsonschema generates schemas from Go structs. Supports Draft 2020-12.'
     toolingType: ['code-to-schema']
     languages: ['Go']
+    environment: []
     maintainers:
       - name: 'Sam Lown'
         github: 'samlown'
@@ -1189,6 +1283,7 @@ toolings:
     description: 'Liform generates schemas from Symfony forms.'
     toolingType: ['code-to-schema']
     languages: ['PHP']
+    environment: []
     maintainers:
       - name: 'Tac Tacelosky'
         github: 'tacman'
@@ -1204,6 +1299,7 @@ toolings:
     description: 'typescript-json-schema generates schemas from TypeScript types.'
     toolingType: ['code-to-schema']
     languages: ['TypeScript']
+    environment: []
     maintainers:
       - name: 'Yousef'
         github: 'YousefED'
@@ -1219,6 +1315,7 @@ toolings:
     description: 'Pydantic generates schemas from Python models based on Python 3.6+ type hints.'
     toolingType: ['code-to-schema']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Samuel Colvin'
         github: 'samuelcolvin'
@@ -1234,6 +1331,7 @@ toolings:
     description: 'msgspec generates schemas from Python type annotations.'
     toolingType: ['code-to-schema']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Jim Crist-Harif'
         github: 'jcrist'
@@ -1249,6 +1347,7 @@ toolings:
     description: 'mashumaro generates schemas from Python type annotations.'
     toolingType: ['code-to-schema']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Alexander Tikhonov'
         github: 'Fatal1ty'
@@ -1264,6 +1363,7 @@ toolings:
     description: 'drf-jsonschema-serializer generates schemas from Django Rest Framework serializers.'
     toolingType: ['code-to-schema']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Sergei Maertens'
         github: 'sergei-maertens'
@@ -1279,6 +1379,7 @@ toolings:
     description: 'jsonschema-generator generates schemas from Java types. Supports Drafts 6, 7, 2019-09, and 2020-12.'
     toolingType: ['code-to-schema']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Carsten Wickner'
         github: 'CarstenWickner'
@@ -1294,6 +1395,7 @@ toolings:
     description: 'scala-jsonschema generates schemas out of Scala case classes.'
     toolingType: ['code-to-schema']
     languages: ['Scala']
+    environment: []
     maintainers:
       - name: 'Andriy Onyshchuk'
         github: 'andyglow'
@@ -1309,6 +1411,7 @@ toolings:
     description: 'Shale generates schema from Ruby models. Supports Draft 2020-12.'
     toolingType: ['code-to-schema', 'schema-to-code']
     languages: ['Ruby']
+    environment: []
     maintainers:
       - name: 'Kamil Giszczak'
         github: 'kgiszczak'
@@ -1324,6 +1427,7 @@ toolings:
     description: 'Schemars generates schema from Rust code. Supports Draft 7.'
     toolingType: ['code-to-schema']
     languages: ['Rust']
+    environment: []
     maintainers:
       - name: 'Graham Esau'
         github: 'GREsau'
@@ -1339,6 +1443,7 @@ toolings:
     description: 'Java library for inferring JSON Schemas from one or multiple JSON samples.'
     toolingType: ['data-to-schema']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'slisaasquatch'
         github: 'slisaasquatch'
@@ -1354,6 +1459,7 @@ toolings:
     description: 'CLI util, Spark Job and Web UI for deriving JSON Schemas out of corpus of JSON instances. See issue 178 for progress towards draft-06+ support.'
     toolingType: ['data-to-schema']
     languages: ['Scala']
+    environment: []
     maintainers:
       - name: 'Anton Parkhomenko'
         github: 'chuwy'
@@ -1369,6 +1475,7 @@ toolings:
     description: 'Command line tool and Spark application for inferring schemas from JSON documents, supports draft 2020-12.'
     toolingType: ['data-to-schema']
     languages: ['Scala']
+    environment: []
     maintainers:
       - name: 'Michael Mior'
         github: 'michaelmior'
@@ -1383,7 +1490,8 @@ toolings:
   - name: jsonschema.net
     description: 'Generates schemas from example data.'
     toolingType: ['data-to-schema']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'Jack Wootton'
         github: 'jackwootton'
@@ -1398,7 +1506,8 @@ toolings:
   - name: Liquid Online Tools
     description: 'Infer JSON Schema from sample JSON data.'
     toolingType: ['data-to-schema']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: ''
         github: ''
@@ -1413,8 +1522,8 @@ toolings:
   - name: quicktype.io
     description: 'Infer JSON Schema from samples, and generate TypeScript, C++, Go, Java, C#, Swift, etc. types from JSON Schema.'
     toolingType: ['data-to-schema', 'schema-to-code']
-    languages:
-      ['Web (Online)', 'TypeScript', 'C++', 'Go', 'Java', 'C#', 'Swift']
+    languages: ['TypeScript', 'C++', 'Go', 'Java', 'C#', 'Swift']
+    environment: ['Web (Online)']
     maintainers:
       - name: 'Sean'
         github: 'inferrinizzard'
@@ -1429,7 +1538,8 @@ toolings:
   - name: Dataspecer
     description: 'Generates JSON Schema (and JSON-LD context) from conceptual model.'
     toolingType: ['model-to-schema']
-    languages: ['Web (Online)']
+    languages: []
+    environment: ['Web (Online)']
     maintainers:
       - name: 'anastasiaakhv'
         github: 'anastasiaakhv'
@@ -1445,6 +1555,7 @@ toolings:
     description: 'Generates TypeScript types from JSON schemas.'
     toolingType: ['schema-to-types']
     languages: ['TypeScript']
+    environment: []
     maintainers:
       - name: 'Thomas Aribart'
         github: 'ThomasAribart'
@@ -1460,6 +1571,7 @@ toolings:
     description: 'JSON Schema to TypeScript type generator used by Amazon, Microsoft, Mozilla, Webpack, and others.'
     toolingType: ['schema-to-types']
     languages: ['TypeScript']
+    environment: []
     maintainers:
       - name: 'Boris Cherny'
         github: 'bcherny'
@@ -1475,6 +1587,7 @@ toolings:
     description: 'Generates an idiomatic dotnet type model from JSON Schema files, supporting all JSON Schema features, including property accessors, enumeration, common string `format`, and JSON document building/modification; over low-level `System.Text.Json` types.'
     toolingType: ['schema-to-code']
     languages: ['.NET']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -1490,6 +1603,7 @@ toolings:
     description: 'Generates Elm types, JSON decoders+encoders, and fuzz tests from one or more JSON Schema files.'
     toolingType: ['schema-to-code']
     languages: ['Elm']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -1505,6 +1619,7 @@ toolings:
     description: 'Generates Go types and helpers from JSON schema files.'
     toolingType: ['schema-to-code']
     languages: ['Go']
+    environment: []
     maintainers:
       - name: 'Simon Ser'
         github: 'emersion'
@@ -1520,6 +1635,7 @@ toolings:
     description: 'Generates JSON schemas from protobuf proto v2 and v3 files.'
     toolingType: ['schema-to-code']
     languages: ['Go']
+    environment: []
     maintainers:
       - name: 'chrusty'
         github: 'chrusty'
@@ -1535,6 +1651,7 @@ toolings:
     description: 'Groovy based generation tasks from JSON schema. Already includes templates/generators for Java Beans, Swagger specification files and PlantUML diagrams.'
     toolingType: ['schema-to-code']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -1550,6 +1667,7 @@ toolings:
     description: 'Generates Java types from JSON Schema (or example JSON) and can annotate those types for data-binding with Jackson 2.x or Gson.'
     toolingType: ['schema-to-code']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Joe Littlejohn'
         github: 'joelittlejohn'
@@ -1565,6 +1683,7 @@ toolings:
     description: 'Generates Java or TypeScript classes from standard JSON Schemas.'
     toolingType: ['schema-to-code']
     languages: ['Java', 'TypeScript']
+    environment: []
     maintainers:
       - name: 'Jim Blackler'
         github: 'jimblackler'
@@ -1580,6 +1699,7 @@ toolings:
     description: 'Generates Kotlin data classes, Java classes or TypeScript interfaces from JSON Schema.'
     toolingType: ['schema-to-code']
     languages: ['Kotlin']
+    environment: []
     maintainers:
       - name: 'Peter Wall'
         github: 'pwall567'
@@ -1595,6 +1715,7 @@ toolings:
     description: 'Generates PHP mapping structures defined by JSON schema using swaggest/json-schema.'
     toolingType: ['schema-to-code']
     languages: ['PHP']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -1610,6 +1731,7 @@ toolings:
     description: 'Parse JSON Schema and OpenAPI files to build a meta model from them. This meta model can be used in Mako templates to generate source code, other schemas or PlantUml.'
     toolingType: ['schema-to-code']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -1625,6 +1747,7 @@ toolings:
     description: 'Generate type-annotated models from JSON Schema documents.'
     toolingType: ['schema-to-code']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Jack Smith'
         github: 'jacksmith15'
@@ -1640,6 +1763,7 @@ toolings:
     description: 'Generates Rust types and serialization code from a JSON schema.'
     toolingType: ['schema-to-code']
     languages: ['Rust']
+    environment: []
     maintainers:
       - name: 'Markus Westerlind'
         github: 'Marwes'
@@ -1655,6 +1779,7 @@ toolings:
     description: 'NPM Package, Web UI, and a CLI to generate Scala case classes from JSON Schema.'
     toolingType: ['schema-to-code']
     languages: ['Scala']
+    environment: []
     maintainers:
       - name: 'Chaitanya Chandurkar'
         github: 'cchandurkar'
@@ -1670,6 +1795,7 @@ toolings:
     description: 'Alpaca provides the easiest way to generate interactive HTML5 forms for web and mobile applications.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Michael Whitman'
         github: 'mibewh'
@@ -1685,6 +1811,7 @@ toolings:
     description: 'Generate forms from a JSON schema, with AngularJS!'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Marcel J Bennett'
         github: 'Anthropic'
@@ -1700,6 +1827,7 @@ toolings:
     description: 'HTML form generation based on JSON Schema'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Eric BREHAULT'
         github: 'ebrehault'
@@ -1715,6 +1843,7 @@ toolings:
     description: 'Angular JSON Schema Form'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Hamza Hamidi'
         github: 'hamzahamidi'
@@ -1730,6 +1859,7 @@ toolings:
     description: 'Angular JSON Schema Form Library'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Andreas Eberhart'
         github: 'aeberhart'
@@ -1745,6 +1875,7 @@ toolings:
     description: 'JSON Schema Based Editor'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'gbisurgi'
         github: 'gbisurgi'
@@ -1760,6 +1891,7 @@ toolings:
     description: 'Build forms from JSON Schema. Easily template-able.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Cyril Chapellier'
         github: 'tchapi'
@@ -1775,6 +1907,7 @@ toolings:
     description: 'JSON Schema to HTML form generator, supporting dynamic subschemas (on the fly resolution)'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Ignacio del Valle Alles'
         github: 'idelvall'
@@ -1790,6 +1923,7 @@ toolings:
     description: 'json-schema-form is a headless UI form library powered by JSON Schemas.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Sandrina Pereira'
         github: 'sandrina-p'
@@ -1805,6 +1939,7 @@ toolings:
     description: 'A Custom Element that auto-generates forms, declaratively. Works with Lit, Solid, Vue, Svelte, React, Astro, vanilla…'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Julian Cataldo'
         github: 'JulianCataldo'
@@ -1820,6 +1955,7 @@ toolings:
     description: 'Customizable JSON Schema-based forms with React, Angular and Vue support out of the box.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Lucas Koehler'
         github: 'lucas-koehler'
@@ -1835,6 +1971,7 @@ toolings:
     description: 'Generate forms from JSON Schema to use with React (& redux-form)'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Nacho Martín'
         github: 'nacmartin'
@@ -1850,6 +1987,7 @@ toolings:
     description: 'A React component for building Web forms from JSON Schema.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Heath C'
         github: 'heath-freenome'
@@ -1865,6 +2003,7 @@ toolings:
     description: 'Universal JSON Schema Form - Currently Support for React - Material UI components for building Web forms from JSON Schema.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Vipin Tanna'
         github: 'vip-git'
@@ -1880,6 +2019,7 @@ toolings:
     description: 'React form based on json schema for form generation and validation'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Steve Hu'
         github: 'stevehu'
@@ -1895,6 +2035,7 @@ toolings:
     description: 'A React component package for generating forms based on (almost) the full power of JSON Schema.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'jamesej'
         github: 'jamesej'
@@ -1910,6 +2051,7 @@ toolings:
     description: 'A React library for building forms from any schema.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Piotr Pośpiech'
         github: 'piotrpospiech'
@@ -1925,6 +2067,7 @@ toolings:
     description: 'Use JSON-Schema with React, generate Forms + UIs with any design system, easy creation of complex custom widgets.'
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Michael Becker'
         github: 'elbakerino'
@@ -1940,6 +2083,7 @@ toolings:
     description: 'Tools to generate test data from JSON schemata with Hypothesis'
     toolingType: ['schema-to-data', 'util-testing']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Zac Hatfield-Dodds'
         github: 'Zac-HD'
@@ -1955,6 +2099,7 @@ toolings:
     description: 'A JSON data generator from JSON Schemas, provided as a Java library.'
     toolingType: ['schema-to-data']
     languages: ['Java']
+    environment: []
     maintainers:
       - name: 'Jim Blackler'
         github: 'jimblackler'
@@ -1970,6 +2115,7 @@ toolings:
     description: 'Tools for dereferencing non-cyclic schemas, bundling referenced schemas into a single file, and other `$ref` processing.'
     toolingType: ['util-general-processing']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: 'BigstickCarpet'
@@ -1985,6 +2131,7 @@ toolings:
     description: 'Exposes tools to work with json-schema, including: data creation from json-schema, `$ref` processing, walk through schemas, etc.'
     toolingType: ['util-general-processing']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Sascha Goldhofer'
         github: 'sagold'
@@ -2000,6 +2147,7 @@ toolings:
     description: "*draft-07, -06, -04, and Cloudflare's Doca extensions* Walks schemas and runs pre- and post-walk callbacks. Can modify schemas in place."
     toolingType: ['util-general-processing']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2015,6 +2163,7 @@ toolings:
     description: 'Tools for working with schemas that handle identifiers and references. Build vocabularies and other JSON Schema based tools.'
     toolingType: ['util-general-processing']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: 'jdesrosiers'
@@ -2030,6 +2179,7 @@ toolings:
     description: 'Utilities using @cloudflare/json-schema-walker for transformations including `allOf` merging and example roll-up.'
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2045,6 +2195,7 @@ toolings:
     description: 'Merge `allOf` properties in JSON Schema.'
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: 'mokkabonna'
@@ -2060,6 +2211,7 @@ toolings:
     description: 'Tool for comparing JSON Schemas.'
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: 'mokkabonna'
@@ -2075,6 +2227,7 @@ toolings:
     description: 'Resolve `allOf` in JSON Schema.'
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Logan Volkers'
         github: 'loganvolkers'
@@ -2090,6 +2243,7 @@ toolings:
     description: 'Create an instance from a JSON Schema.'
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Tom Arad'
         github: 'tomarad'
@@ -2105,6 +2259,7 @@ toolings:
     description: '*JSON Schema 2020-12, 2019-09, draft-07, -06, -04*'
     toolingType: ['util-draft-migration']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2120,6 +2275,7 @@ toolings:
     description: '*draft-04* Draft-06 and -07 planned per README.'
     toolingType: ['util-format-conversion']
     languages: ['OpenAPI']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2135,6 +2291,7 @@ toolings:
     description: '*Draft-07*'
     toolingType: ['util-format-conversion']
     languages: ['OpenAPI']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2150,6 +2307,7 @@ toolings:
     description: 'The reference implementation of orderly: a schema language for JSON.'
     toolingType: ['util-format-conversion']
     languages: ['Orderly']
+    environment: []
     maintainers:
       - name: 'Lloyd Hilaiel'
         github: 'lloyd'
@@ -2165,6 +2323,7 @@ toolings:
     description: '*draft-06, 04*'
     toolingType: ['util-format-conversion']
     languages: ['RAML']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2180,6 +2339,7 @@ toolings:
     description: 'Webpack loader for dereference-able schemas in JSON, JSON5, YAML, or JavaScript.'
     toolingType: ['util-format-conversion']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2195,6 +2355,7 @@ toolings:
     description: 'Back-end for @cloudflare/doca.'
     toolingType: ['util-format-conversion']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2210,6 +2371,7 @@ toolings:
     description: 'Generate from an XSD file a similar JSON Schema structure.'
     toolingType: ['util-format-conversion', 'schema-to-documentation']
     languages: ['XSD']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2225,6 +2387,7 @@ toolings:
     description: 'Plugin for converting an XML Schema (XSD) file to a JSON Schema file.'
     toolingType: ['util-format-conversion']
     languages: ['XSD']
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2240,6 +2403,7 @@ toolings:
     description: 'Graphical JSON Schema editor for draft-06 and draft-7, as well as validation of JSON files based on JSON Schema.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2255,6 +2419,7 @@ toolings:
     description: 'Graphical online JSON Schema editor for draft-06 (minus oneOf, anyOf, allOf, not). The generated schema can be tested immediately via a form that is driven by it.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2270,6 +2435,7 @@ toolings:
     description: 'Visual JSON Schema editor for draft-04, draft-06, draft-07, 2019-09, 2020-12, as well as data modeling tool for NoSQL databases, storage formats, REST APIs, and JSON in RDBMS. Also converts to and from: different draft specifications, DDL, XSD, Swagger, OpenAPI, YAML, Avro, Parquet, Protobuf, and most of the NoSQL script syntaxes. Includes a GUI for Entity-Relationship Diagrams and a Command-Line Interface.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2285,6 +2451,7 @@ toolings:
     description: 'Text and grid-style JSON editor and validator. Complete JSON Schema development environment with JSON Schema analyzer, context sensitive entry-helpers, sample data generation based on JSON Schema and JSON Schema validation debugger: Step through the validation process and set breakpoints. JSON Schema testing tool including schema coverage. Support for draft-4, draft-6, draft-7, 2019-09 and 2020-12.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2300,6 +2467,7 @@ toolings:
     description: 'View, edit, format, and validate JSON online.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2315,6 +2483,7 @@ toolings:
     description: 'Graphical JSON Schema editor for draft-04, draft-06, draft-07 and 2019-09, with split source code and grphical editing. Includes validation of JSON files based on JSON Schema, JSON Sample Generator and JSON Schema Documentation Generator.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2330,6 +2499,7 @@ toolings:
     description: 'JSON Schema editor with a variety of editing features and helper views (Design/Text/Author). Support for validation and editing JSON Schema draft-4, draft-6, and draft-7, 2019-09 (partial), 2020-12 (partial). Validation and editing of JSON files based on JSON Schema.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2345,6 +2515,7 @@ toolings:
     description: 'A modeling tool for JSON Schema and OpenAPI. Key features include: visual JSON schema creation using tree and ERD-like diagrams, support for JSON schema structures including operators and conditions, import of existing schemas from files, creation of detailed HTML reports, export to PDF, script generation, and more.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2360,6 +2531,7 @@ toolings:
     description: 'JSON Schema IDE (text-based and GUI) with support for JSON/YAML linting, which can also be based on JSON Schema rules via Spectral.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2375,6 +2547,7 @@ toolings:
     description: 'Schema driven code completion, hovers and validation for editing JSON files (including schemas).'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2390,6 +2563,7 @@ toolings:
     description: 'Code completion, documentation, and validation for JSON and YAML files using JSON Schema.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2405,6 +2579,7 @@ toolings:
     description: 'Rich JSON edition supporting schema for instantaneous validation and error reporting, completion, documentation.'
     toolingType: ['editors']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2420,6 +2595,7 @@ toolings:
     description: 'Schema viewer. Runs within a Docusaurus web app.'
     toolingType: ['schema-to-documentation']
     languages: []
+    environment: []
     maintainers:
       - name: 'Jacques Yakoub'
         github: 'jy95'
@@ -2435,6 +2611,7 @@ toolings:
     description: 'Generates human friendly markdown documentation from JSON Schema. Includes links between pages based on $ref values.'
     toolingType: ['schema-to-documentation']
     languages: []
+    environment: []
     maintainers:
       - name: 'Tom Collins'
         github: 'tomcollins'
@@ -2450,6 +2627,7 @@ toolings:
     description: 'Svelte-based schema viewer. Runs as a local web app.'
     toolingType: ['schema-to-documentation']
     languages: []
+    environment: []
     maintainers:
       - name: 'Yanick Champoux'
         github: 'yanick'
@@ -2465,6 +2643,7 @@ toolings:
     description: 'Javascript-based schema viewer. Runs as a local web app.'
     toolingType: ['schema-to-documentation']
     languages: []
+    environment: []
     maintainers:
       - name: 'Laurent Bovet'
         github: 'lbovet'
@@ -2480,6 +2659,7 @@ toolings:
     description: 'Generate HTML representation of a schema. Python-based.'
     toolingType: ['schema-to-documentation']
     languages: ['Python']
+    environment: []
     maintainers:
       - name: 'Denis Blanchette'
         github: 'dblanchette'
@@ -2495,6 +2675,7 @@ toolings:
     description: 'Generates Markdown and AsciiDoc.'
     toolingType: ['schema-to-documentation']
     languages: []
+    environment: []
     maintainers:
       - name: 'Gabby Getz'
         github: 'ggetz'
@@ -2510,6 +2691,7 @@ toolings:
     description: 'Validate against common JSON Schemas.'
     toolingType: ['schema-repository']
     languages: []
+    environment: []
     maintainers:
       - name: 'Mads Kristensen'
         github: 'madskristensen'
@@ -2525,6 +2707,7 @@ toolings:
     description: 'Lint/validate/parse json-schema itself, and find typos, missing properties, missing required keys, etc.'
     toolingType: ['linter']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2540,6 +2723,7 @@ toolings:
     description: 'A flexible JSON/YAML linter for creating automated style guides, with baked in support for [OpenAPI v2/v3](https://www.openapis.org) and JSON Schema. Supports draft 4, 6, and 7.'
     toolingType: ['linter']
     languages: []
+    environment: []
     maintainers:
       - name: ''
         github: ''
@@ -2555,6 +2739,7 @@ toolings:
     description: 'Validate Markdown frontmatter YAML against an associated JSON schema with this remark-lint rule plugin.'
     toolingType: ['linter-plugins']
     languages: []
+    environment: []
     maintainers:
       - name: 'Julian Cataldo'
         github: 'JulianCataldo'
@@ -2570,6 +2755,7 @@ toolings:
     description: 'ESLint plugin that validates code using JSON schema and reports violations.'
     toolingType: ['linter-plugins']
     languages: []
+    environment: []
     maintainers:
       - name: 'Yosuke Ota'
         github: 'ota-meshi'
@@ -2585,6 +2771,7 @@ toolings:
     description: 'A JavaScript implementation of JSON hyper-schema.'
     toolingType: ['hyper-schema']
     languages: ['JavaScript']
+    environment: []
     maintainers:
       - name: 'Martin Hansen'
         github: 'mokkabonna'
