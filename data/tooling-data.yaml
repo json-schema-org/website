@@ -4,6 +4,7 @@ toolings:
     toolingType: ['validator', 'code-to-schema', 'schema-to-data']
     languages: ['.NET']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Greg Dennis'
         github: 'gregsdennis'
@@ -20,6 +21,7 @@ toolings:
     toolingType: ['validator', 'code-to-schema']
     languages: ['.NET']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'James Newton-King'
         github: 'JamesNK'
@@ -36,6 +38,7 @@ toolings:
     toolingType: ['validator']
     languages: ['.NET']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Matthew Adams'
         github: 'mwadams'
@@ -52,6 +55,7 @@ toolings:
     toolingType: ['validator', 'code-to-schema']
     languages: ['.NET']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'LateApexEarlySpeed'
         github: 'lateapexearlyspeed'
@@ -68,6 +72,7 @@ toolings:
     toolingType: ['validator']
     languages: ['C++']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Kirit Sælensminde'
         github: 'KayEss'
@@ -84,6 +89,7 @@ toolings:
     toolingType: ['validator']
     languages: ['C++']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Patrick Boettcher'
         github: 'pboettch'
@@ -100,6 +106,7 @@ toolings:
     toolingType: ['validator']
     languages: ['C++']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Tristan Penman'
         github: 'tristanpenman'
@@ -116,6 +123,7 @@ toolings:
     toolingType: ['validator']
     languages: ['C++']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Daniel Parker'
         github: 'danielaparker'
@@ -132,6 +140,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Clojure']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Malcolm Sparks'
         github: 'malcolmsparks'
@@ -148,6 +157,7 @@ toolings:
     toolingType: ['validator', 'data-to-schema']
     languages: ['Clojure']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Henrik Mohr'
         github: 'luposlip'
@@ -164,6 +174,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['COM/ActiveX']
+    dependsOnValidators: []
     maintainers:
       - name: 'Alexander Stoyan'
         github: ''
@@ -180,6 +191,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Common Lisp']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Matt Novenstern'
         github: 'fisxoj'
@@ -201,6 +213,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Elixir']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Isaac Yonemoto'
         github: 'ityonemo'
@@ -217,6 +230,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Elixir']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Marcus Kruse'
         github: 'NickNeck'
@@ -233,6 +247,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Erlang']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Sergey Prokhorov'
         github: 'seriyps'
@@ -249,6 +264,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Go']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Santhosh Kumar Tekuri'
         github: 'santhosh-tekuri'
@@ -265,6 +281,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Go']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'kaptinlin'
         github: 'kaptinlin'
@@ -281,6 +298,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Go']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: "Brendan O'Brien"
         github: 'b5'
@@ -297,6 +315,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Go']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'xeipuuv'
         github: 'xeipuuv'
@@ -313,6 +332,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Julien Viet'
         github: 'vietj'
@@ -331,6 +351,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Andy Coates'
         github: 'big-andy-coates'
@@ -347,6 +368,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Justin Tay'
         github: 'justin-tay'
@@ -367,6 +389,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Bence Eros'
         github: 'erosb'
@@ -383,6 +406,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Shawn Silverman'
         github: 'ssilverman'
@@ -399,6 +423,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Bence Eros'
         github: 'erosb'
@@ -415,6 +440,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'leadpony'
         github: 'leadpony'
@@ -431,6 +457,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'harrel56'
         github: 'harrel56'
@@ -447,6 +474,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Niklas Eldberger'
         github: 'niklas_eldberger'
@@ -464,6 +492,7 @@ toolings:
       ['validator', 'code-to-schema', 'documentation', 'schema-to-code']
     languages: ['Java', 'Kotlin', 'Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Justin Black'
         github: 'spacether'
@@ -480,6 +509,7 @@ toolings:
     toolingType: ['validator']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Jason Desrosiers'
         github: 'jdesrosiers'
@@ -496,6 +526,7 @@ toolings:
     toolingType: ['validator']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Nikita Skovoroda'
         github: 'ChALkeR'
@@ -515,6 +546,7 @@ toolings:
     toolingType: ['validator']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Evgeny Poberezkin'
         github: 'epoberezkin'
@@ -535,6 +567,7 @@ toolings:
     toolingType: ['validator']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Jeremy Danyow'
         github: 'jdanyow'
@@ -551,6 +584,7 @@ toolings:
     toolingType: ['validator']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Sascha Goldhofer'
         github: 'sagold'
@@ -567,6 +601,7 @@ toolings:
     toolingType: ['validator']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Alex Korzhikov'
         github: 'korzio'
@@ -583,6 +618,7 @@ toolings:
     toolingType: ['validator']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Martin Hansen'
         github: 'mokkabonna'
@@ -599,6 +635,7 @@ toolings:
     toolingType: ['validator']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Tobias Buschor'
         github: 'nuxodin'
@@ -615,6 +652,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Kotlin', 'Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Erwin Bolwidt'
         github: 'ebolwidt'
@@ -631,6 +669,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Kotlin']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Peter Wall'
         github: 'pwall567'
@@ -650,6 +689,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Kotlin']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Oleg Smirnov'
         github: 'OptimumCode'
@@ -668,6 +708,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Perl']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Karen Etheridge'
         github: 'karenetheridge'
@@ -684,6 +725,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Perl']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Karen Etheridge'
         github: 'karenetheridge'
@@ -700,6 +742,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Perl']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Jan Henning Thorsen'
         github: 'jhthorsen'
@@ -716,6 +759,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Perl']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Alexey Stavrov'
         github: 'Logioniz'
@@ -732,6 +776,7 @@ toolings:
     toolingType: ['validator']
     languages: ['PHP']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Sorin Sarca'
         github: 'sorinsarca'
@@ -752,6 +797,7 @@ toolings:
     toolingType: ['validator']
     languages: ['PHP']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Viacheslav Poturaev'
         github: 'vearutop'
@@ -768,6 +814,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Mark Joseph'
         github: 'marksparkza'
@@ -784,6 +831,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Julian Berman'
         github: 'Julian'
@@ -800,6 +848,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Michal Hořejšek'
         github: 'horejsek'
@@ -816,6 +865,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Python']
     environment: []
+    dependsOnValidators: ['jsonschema-rs']
     maintainers:
       - name: 'Dmitry Dygalo'
         github: 'Stranger6667'
@@ -832,6 +882,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Rust']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Dmitry Dygalo'
         github: 'Stranger6667'
@@ -848,6 +899,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Ruby']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'David Harsha'
         github: 'davishmcclurg'
@@ -864,6 +916,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Ruby']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Ethan'
         github: 'notEthan'
@@ -880,6 +933,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Rust']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Santhosh Tekuri'
         github: 'santhosh-tekuri'
@@ -896,6 +950,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Scala']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Norbert Schultz'
         github: 'nob13'
@@ -912,6 +967,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Objective-C']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Andrei Podkovyrin'
         github: 'podkovyrin'
@@ -928,6 +984,7 @@ toolings:
     toolingType: ['validator']
     languages: ['Lua/LuaJIT']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'YuanSheng Wang'
         github: 'membphis'
@@ -944,6 +1001,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: ['Hyperjump JSV']
     maintainers:
       - name: 'Jason Desrosiers'
         github: 'jdesrosiers'
@@ -960,6 +1018,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: ['JsonSchema.Net']
     maintainers:
       - name: 'Greg Dennis'
         github: 'gregsdennis'
@@ -976,6 +1035,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: ['jschon']
     maintainers:
       - name: 'Mark Joseph'
         github: 'marksparkza'
@@ -992,6 +1052,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: ['Json.NET Schema']
     maintainers:
       - name: 'James Newton-King'
         github: 'JamesNK'
@@ -1008,6 +1069,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: ['ajv']
     maintainers:
       - name: 'Ben Hutton'
         github: 'Relequestual'
@@ -1024,6 +1086,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: ['ajv']
     maintainers:
       - name: 'Nick Maynard'
         github: 'nickcmaynard'
@@ -1040,6 +1103,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: ['ajv']
     maintainers:
       - name: 'Cyril'
         github: 'cyrilbois'
@@ -1056,6 +1120,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Command Line']
+    dependsOnValidators: []
     maintainers:
       - name: 'Clemens Uhlenhut'
         github: 'Clemens-U'
@@ -1072,6 +1137,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Command Line']
+    dependsOnValidators: ['ajv']
     maintainers:
       - name: 'Evgeny Poberezkin'
         github: 'epoberezkin'
@@ -1092,6 +1158,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Command Line']
+    dependsOnValidators: ['gojsonschema']
     maintainers:
       - name: 'Neil Pankey'
         github: 'neilpa'
@@ -1108,6 +1175,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Command Line']
+    dependsOnValidators: ['ajv']
     maintainers:
       - name: 'Adam Voss'
         github: 'adamvoss'
@@ -1124,6 +1192,7 @@ toolings:
     toolingType: ['validator']
     languages: []
     environment: ['Github Actions']
+    dependsOnValidators: ['ajv']
     maintainers:
       - name: 'Or Rosenblatt'
         github: 'OrRosenblatt'
@@ -1140,6 +1209,7 @@ toolings:
     toolingType: ['benchmarks']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Allan Ebdrup'
         github: 'ebdrup'
@@ -1156,6 +1226,7 @@ toolings:
     toolingType: ['benchmarks']
     languages: ['PHP']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Viacheslav Poturaev'
         github: 'vearutop'
@@ -1172,6 +1243,7 @@ toolings:
     toolingType: ['benchmarks']
     languages: ['Java', 'Kotlin', 'Scala']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Andy Coates'
         github: 'big-andy-coates'
@@ -1188,6 +1260,7 @@ toolings:
     toolingType: ['documentation']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Henry Andrews'
         github: 'handrews'
@@ -1204,6 +1277,7 @@ toolings:
     toolingType: ['documentation']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Tobias Bocanegra'
         github: 'tripodsan'
@@ -1220,6 +1294,7 @@ toolings:
     toolingType: ['documentation']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Sebastián Ramírez'
         github: 'tiangolo'
@@ -1236,6 +1311,7 @@ toolings:
     toolingType: ['LDO-utility']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Henry Andrews'
         github: 'handrews'
@@ -1252,6 +1328,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['.NET']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Rico Suter'
         github: 'RicoSuter'
@@ -1268,6 +1345,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['Go']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Sam Lown'
         github: 'samlown'
@@ -1284,6 +1362,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['PHP']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Tac Tacelosky'
         github: 'tacman'
@@ -1300,6 +1379,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['TypeScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Yousef'
         github: 'YousefED'
@@ -1316,6 +1396,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Samuel Colvin'
         github: 'samuelcolvin'
@@ -1332,6 +1413,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Jim Crist-Harif'
         github: 'jcrist'
@@ -1348,6 +1430,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Alexander Tikhonov'
         github: 'Fatal1ty'
@@ -1364,6 +1447,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Sergei Maertens'
         github: 'sergei-maertens'
@@ -1380,6 +1464,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Carsten Wickner'
         github: 'CarstenWickner'
@@ -1396,6 +1481,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['Scala']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Andriy Onyshchuk'
         github: 'andyglow'
@@ -1412,6 +1498,7 @@ toolings:
     toolingType: ['code-to-schema', 'schema-to-code']
     languages: ['Ruby']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Kamil Giszczak'
         github: 'kgiszczak'
@@ -1428,6 +1515,7 @@ toolings:
     toolingType: ['code-to-schema']
     languages: ['Rust']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Graham Esau'
         github: 'GREsau'
@@ -1444,6 +1532,7 @@ toolings:
     toolingType: ['data-to-schema']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'slisaasquatch'
         github: 'slisaasquatch'
@@ -1460,6 +1549,7 @@ toolings:
     toolingType: ['data-to-schema']
     languages: ['Scala']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Anton Parkhomenko'
         github: 'chuwy'
@@ -1476,6 +1566,7 @@ toolings:
     toolingType: ['data-to-schema']
     languages: ['Scala']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Michael Mior'
         github: 'michaelmior'
@@ -1492,6 +1583,7 @@ toolings:
     toolingType: ['data-to-schema']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: []
     maintainers:
       - name: 'Jack Wootton'
         github: 'jackwootton'
@@ -1508,6 +1600,7 @@ toolings:
     toolingType: ['data-to-schema']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -1524,6 +1617,7 @@ toolings:
     toolingType: ['data-to-schema', 'schema-to-code']
     languages: ['TypeScript', 'C++', 'Go', 'Java', 'C#', 'Swift']
     environment: ['Web (Online)']
+    dependsOnValidators: []
     maintainers:
       - name: 'Sean'
         github: 'inferrinizzard'
@@ -1540,6 +1634,7 @@ toolings:
     toolingType: ['model-to-schema']
     languages: []
     environment: ['Web (Online)']
+    dependsOnValidators: []
     maintainers:
       - name: 'anastasiaakhv'
         github: 'anastasiaakhv'
@@ -1556,6 +1651,7 @@ toolings:
     toolingType: ['schema-to-types']
     languages: ['TypeScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Thomas Aribart'
         github: 'ThomasAribart'
@@ -1572,6 +1668,7 @@ toolings:
     toolingType: ['schema-to-types']
     languages: ['TypeScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Boris Cherny'
         github: 'bcherny'
@@ -1588,6 +1685,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['.NET']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -1604,6 +1702,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Elm']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -1620,6 +1719,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Go']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Simon Ser'
         github: 'emersion'
@@ -1636,6 +1736,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Go']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'chrusty'
         github: 'chrusty'
@@ -1652,6 +1753,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -1668,6 +1770,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Joe Littlejohn'
         github: 'joelittlejohn'
@@ -1684,6 +1787,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Java', 'TypeScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Jim Blackler'
         github: 'jimblackler'
@@ -1700,6 +1804,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Kotlin']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Peter Wall'
         github: 'pwall567'
@@ -1716,6 +1821,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['PHP']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -1732,6 +1838,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -1748,6 +1855,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Jack Smith'
         github: 'jacksmith15'
@@ -1764,6 +1872,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Rust']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Markus Westerlind'
         github: 'Marwes'
@@ -1780,6 +1889,7 @@ toolings:
     toolingType: ['schema-to-code']
     languages: ['Scala']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Chaitanya Chandurkar'
         github: 'cchandurkar'
@@ -1796,6 +1906,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Michael Whitman'
         github: 'mibewh'
@@ -1812,6 +1923,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Marcel J Bennett'
         github: 'Anthropic'
@@ -1828,6 +1940,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Eric BREHAULT'
         github: 'ebrehault'
@@ -1844,6 +1957,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Hamza Hamidi'
         github: 'hamzahamidi'
@@ -1860,6 +1974,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Andreas Eberhart'
         github: 'aeberhart'
@@ -1876,6 +1991,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'gbisurgi'
         github: 'gbisurgi'
@@ -1892,6 +2008,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Cyril Chapellier'
         github: 'tchapi'
@@ -1908,6 +2025,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Ignacio del Valle Alles'
         github: 'idelvall'
@@ -1924,6 +2042,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Sandrina Pereira'
         github: 'sandrina-p'
@@ -1940,6 +2059,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Julian Cataldo'
         github: 'JulianCataldo'
@@ -1956,6 +2076,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Lucas Koehler'
         github: 'lucas-koehler'
@@ -1972,6 +2093,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Nacho Martín'
         github: 'nacmartin'
@@ -1988,6 +2110,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Heath C'
         github: 'heath-freenome'
@@ -2004,6 +2127,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Vipin Tanna'
         github: 'vip-git'
@@ -2020,6 +2144,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Steve Hu'
         github: 'stevehu'
@@ -2036,6 +2161,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'jamesej'
         github: 'jamesej'
@@ -2052,6 +2178,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Piotr Pośpiech'
         github: 'piotrpospiech'
@@ -2068,6 +2195,7 @@ toolings:
     toolingType: ['schema-to-web-UI']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Michael Becker'
         github: 'elbakerino'
@@ -2084,6 +2212,7 @@ toolings:
     toolingType: ['schema-to-data', 'util-testing']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Zac Hatfield-Dodds'
         github: 'Zac-HD'
@@ -2100,6 +2229,7 @@ toolings:
     toolingType: ['schema-to-data']
     languages: ['Java']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Jim Blackler'
         github: 'jimblackler'
@@ -2116,6 +2246,7 @@ toolings:
     toolingType: ['util-general-processing']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: 'BigstickCarpet'
@@ -2132,6 +2263,7 @@ toolings:
     toolingType: ['util-general-processing']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Sascha Goldhofer'
         github: 'sagold'
@@ -2148,6 +2280,7 @@ toolings:
     toolingType: ['util-general-processing']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2164,6 +2297,7 @@ toolings:
     toolingType: ['util-general-processing']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: 'jdesrosiers'
@@ -2180,6 +2314,7 @@ toolings:
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2196,6 +2331,7 @@ toolings:
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: 'mokkabonna'
@@ -2212,6 +2348,7 @@ toolings:
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: 'mokkabonna'
@@ -2228,6 +2365,7 @@ toolings:
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Logan Volkers'
         github: 'loganvolkers'
@@ -2244,6 +2382,7 @@ toolings:
     toolingType: ['util-schema-to-schema']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Tom Arad'
         github: 'tomarad'
@@ -2260,6 +2399,7 @@ toolings:
     toolingType: ['util-draft-migration']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2276,6 +2416,7 @@ toolings:
     toolingType: ['util-format-conversion']
     languages: ['OpenAPI']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2292,6 +2433,7 @@ toolings:
     toolingType: ['util-format-conversion']
     languages: ['OpenAPI']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2308,6 +2450,7 @@ toolings:
     toolingType: ['util-format-conversion']
     languages: ['Orderly']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Lloyd Hilaiel'
         github: 'lloyd'
@@ -2324,6 +2467,7 @@ toolings:
     toolingType: ['util-format-conversion']
     languages: ['RAML']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2340,6 +2484,7 @@ toolings:
     toolingType: ['util-format-conversion']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2356,6 +2501,7 @@ toolings:
     toolingType: ['util-format-conversion']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2372,6 +2518,7 @@ toolings:
     toolingType: ['util-format-conversion', 'schema-to-documentation']
     languages: ['XSD']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2388,6 +2535,7 @@ toolings:
     toolingType: ['util-format-conversion']
     languages: ['XSD']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2404,6 +2552,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2420,6 +2569,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2436,6 +2586,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2452,6 +2603,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2468,6 +2620,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2484,6 +2637,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2500,6 +2654,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2516,6 +2671,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2532,6 +2688,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2548,6 +2705,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2564,6 +2722,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2580,6 +2739,7 @@ toolings:
     toolingType: ['editors']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2596,6 +2756,7 @@ toolings:
     toolingType: ['schema-to-documentation']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Jacques Yakoub'
         github: 'jy95'
@@ -2612,6 +2773,7 @@ toolings:
     toolingType: ['schema-to-documentation']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Tom Collins'
         github: 'tomcollins'
@@ -2628,6 +2790,7 @@ toolings:
     toolingType: ['schema-to-documentation']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Yanick Champoux'
         github: 'yanick'
@@ -2644,6 +2807,7 @@ toolings:
     toolingType: ['schema-to-documentation']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Laurent Bovet'
         github: 'lbovet'
@@ -2660,6 +2824,7 @@ toolings:
     toolingType: ['schema-to-documentation']
     languages: ['Python']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Denis Blanchette'
         github: 'dblanchette'
@@ -2676,6 +2841,7 @@ toolings:
     toolingType: ['schema-to-documentation']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Gabby Getz'
         github: 'ggetz'
@@ -2692,6 +2858,7 @@ toolings:
     toolingType: ['schema-repository']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Mads Kristensen'
         github: 'madskristensen'
@@ -2708,6 +2875,7 @@ toolings:
     toolingType: ['linter']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2724,6 +2892,7 @@ toolings:
     toolingType: ['linter']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: ''
         github: ''
@@ -2740,6 +2909,7 @@ toolings:
     toolingType: ['linter-plugins']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Julian Cataldo'
         github: 'JulianCataldo'
@@ -2756,6 +2926,7 @@ toolings:
     toolingType: ['linter-plugins']
     languages: []
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Yosuke Ota'
         github: 'ota-meshi'
@@ -2772,6 +2943,7 @@ toolings:
     toolingType: ['hyper-schema']
     languages: ['JavaScript']
     environment: []
+    dependsOnValidators: []
     maintainers:
       - name: 'Martin Hansen'
         github: 'mokkabonna'
