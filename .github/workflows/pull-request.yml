@@ -99,7 +99,7 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
         
       - name: Install dependencies
-        run: yarn workspaces focus -A
+        run: yarn install --frozen-lockfile
 
       - name: Build
         run: yarn run build
