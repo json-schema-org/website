@@ -63,10 +63,6 @@ const GettingStarted = () => {
   };
 
   const [options, setOptions] = useState([]);
-  const [fetchedSchema, setFetchedSchema] = useState(intitalSchemaData);
-  const [selectedSchema, setSelectedSchema] = useState(
-    '/getting-started-examples/schemas/default.json',
-  );
   const [instances, setInstances] = useState([
     {
       name: 'Valid instance',
@@ -84,17 +80,14 @@ const GettingStarted = () => {
     },
   ]);
 
-  const [selectedInstance, setSelectedInstance] = useState(
-    '/getting-started-examples/instances/default-ok.json',
-  );
+  const [fetchedSchema, setFetchedSchema] = useState(intitalSchemaData);
   const [fetchedInstance, setFetchedInstance] = useState({});
 
   useEffect(() => {
     fetchData().then((data) => setOptions(data));
   }, []);
 
-  const handleChange = async (e: any) => {
-    setSelectedSchema(e.target.value);
+  const handleSchemaChange = async (e: any) => {
     const selectedSchemaObj = options.find(
       // @ts-ignore
       (schema) => schema.file === e.target.value,
@@ -103,7 +96,7 @@ const GettingStarted = () => {
     if (selectedSchemaObj) {
       // @ts-ignore
       setInstances(selectedSchemaObj.instances);
-      const schemaResponse = await fetch(selectedSchema);
+      const schemaResponse = await fetch(e.target.value);
       const schemaData = await schemaResponse.json();
       setFetchedSchema(schemaData);
     } else {
@@ -113,9 +106,7 @@ const GettingStarted = () => {
   };
 
   const handleInstanceChange = async (e: any) => {
-    setSelectedInstance(e.target.value);
-
-    const instanceResponse = await fetch(selectedInstance);
+    const instanceResponse = await fetch(e.target.value);
     const instanceData = await instanceResponse.json();
     setFetchedInstance(instanceData);
   };
@@ -129,7 +120,7 @@ const GettingStarted = () => {
             name='Select a JSON Schema Validator'
             className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
             id='Examples'
-            onChange={handleChange}
+            onChange={handleSchemaChange}
           >
             {options.map((option: any, id: number) => (
               <option key={id} value={option.file}>
@@ -216,7 +207,7 @@ const GettingStarted = () => {
               className: 'mr-8',
             }}
           >
-            {JSON.stringify(fetchedInstance, null, 2)}{' '}
+            {JSON.stringify(fetchedInstance, null, 2)}
           </Highlight>
         </div>
       </div>
