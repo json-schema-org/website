@@ -53,7 +53,7 @@ jobs:
       
       - name: Get Changed Unauthorized files
         id: changed-unauth-files
-        uses: tj-actions/changed-files@v41
+        uses: tj-actions/changed-files@v44
         with:
           files: |
             .github/**
