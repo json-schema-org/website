@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import JsonEditor from '~/components/JsonEditor';
 import fs from 'fs';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 import { getLayout } from '~/components/Sidebar';
 import Head from 'next/head';
@@ -9,6 +9,7 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import Highlight from 'react-syntax-highlighter';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
@@ -154,11 +155,38 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
             ))}
           </select>
         </div>
-        <div>{selectedSchema}</div>
-        <div>{JSON.stringify(fetchedSchema, null, 2)}</div>
-        <JsonEditor
-          initialCode={JSON.stringify(fetchedSchema, null, 2)}
-        ></JsonEditor>
+
+        <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
+          <Highlight
+            wrapLines={true}
+            wrapLongLines={true}
+            customStyle={{
+              borderRadius: 10,
+              paddingTop: 15,
+              paddingBottom: 10,
+              paddingLeft: 10,
+              marginBottom: 20,
+              maxWidth: '100%',
+            }}
+            lineNumberStyle={{
+              marginRight: 10,
+            }}
+            style={atomOneDark}
+            showLineNumbers
+            startingLineNumber={1}
+            lineProps={() => {
+              const isHighlighted = false;
+              return {
+                className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
+              };
+            }}
+            codeTagProps={{
+              className: 'mr-8',
+            }}
+          >
+            {JSON.stringify(fetchedSchema, null, 2)}
+          </Highlight>
+        </div>
       </div>
 
       <div className='flex flex-col'>
