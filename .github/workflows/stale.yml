@@ -64,5 +64,5 @@ jobs:
         remove-stale-when-updated: true
        
         # Exempt labels to ignore when checking for stale issues/PRs.
-        exempt-pr-labels: 'Status: On Hold,Status: Blocked'
-        exempt-issue-labels: 'Status: On Hold,Status: Blocked'
+        exempt-pr-labels: 'Status: On Hold,Status: Blocked,Status: Do not close'
+        exempt-issue-labels: 'Status: On Hold,Status: Blocked,Status: Do not close'
