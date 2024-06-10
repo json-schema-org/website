@@ -46,8 +46,9 @@ jobs:
 
   Check-Unauthorized-File-Changes:
     name: Checks if no unauthorized files are changed
+    if: ${{github.actor != 'dependabot[bot]'}} 
     runs-on: ubuntu-latest
-    steps:
+    steps: 
       - name: Checkout code
         uses: actions/checkout@v4
       
