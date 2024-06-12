@@ -9,10 +9,10 @@
       last-updated: "2022-08-31"
     - name: Json.NET Schema
       url: https://www.newtonsoft.com/jsonschema
-      date-draft: [2019-09]
+      date-draft: [2020-12, 2019-09]
       draft: [7, 6, 4, 3]
       license: "AGPL-3.0-only"
-      last-updated: "2022-08-31"
+      last-updated: "2024-06-08"
     - name: Corvus.JsonSchema
       url: https://github.com/corvus-dotnet/corvus.jsonschema
       date-draft: [2020-12, 2019-09]
