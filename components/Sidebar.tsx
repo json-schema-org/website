@@ -281,7 +281,7 @@ export const DocsNav = ({
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const [learn_icon, setLearn_icon] = useState('');
   const [reference_icon, setReference_icon] = useState('');
@@ -289,7 +289,7 @@ export const DocsNav = ({
   const [overview_icon, setOverview_icon] = useState('');
 
   useEffect(() => {
-    if (theme === 'dark') {
+    if (resolvedTheme === 'dark') {
       setOverview_icon('/icons/eye-dark.svg');
       setLearn_icon('/icons/compass-dark.svg');
       setReference_icon('/icons/book-dark.svg');
@@ -300,7 +300,7 @@ export const DocsNav = ({
       setReference_icon('/icons/book.svg');
       setSpec_icon('/icons/clipboard.svg');
     }
-  }, [theme]);
+  }, [resolvedTheme]);
 
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
