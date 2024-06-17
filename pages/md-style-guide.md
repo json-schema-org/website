@@ -151,7 +151,7 @@ Danger is a special type of info box in which text showing any danger can be sho
 Table of Contents provides a structured overview of the main sections or chapters within the current page/document.
 
 ```markdown
-<TableOfContent content={content} depth={depth} />
+<tableofcontent content={content} depth={depth} />
 ```
 
 ---
