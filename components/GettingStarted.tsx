@@ -126,7 +126,7 @@ const GettingStarted = () => {
   return (
     <>
       <div className='flex flex-col'>
-        <div className='flex items-center flex-row justify-between mt-5 mb-3 '>
+        <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
           <h2 className='text-h5 font-semibold'>JSON Schema</h2>
           <select
             name='Select a JSON Schema Validator'
@@ -176,7 +176,7 @@ const GettingStarted = () => {
       </div>
 
       <div className='flex flex-col'>
-        <div className='flex items-center flex-row justify-between mt-5 mb-3 '>
+        <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
           <h2 className='text-h5 font-semibold'>JSON Instance</h2>
           <select
             name='Select a JSON Schema Validator'
