@@ -84,7 +84,7 @@ const GettingStarted = () => {
     true,
   ]);
   const [fetchedSchema, setFetchedSchema] = useState(intitalSchemaData);
-  const [fetchedInstance, setFetchedInstance] = useState({});
+  const [fetchedInstance, setFetchedInstance] = useState(instances[0]);
 
   useEffect(() => {
     fetchData().then((data) => setOptions(data));
@@ -118,6 +118,8 @@ const GettingStarted = () => {
       const instanceResponse = await fetch(e.target.value);
       const instanceData = await instanceResponse.json();
       setFetchedInstance(instanceData);
+    } else {
+      setFetchedInstance(null!);
     }
   };
 
