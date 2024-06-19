@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }
   const remoteICalUrl =
-    'https://calendar.google.com/calendar/ical/c_8r4g9r3etmrmt83fm2gljbatos%40group.calendar.google.com/public/basic.ics';
+    'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData: any) =>
       printEventsForNextFourWeeks(ical.parseICS(icalData)),
