@@ -61,7 +61,7 @@ Critically, we expect ambassadors to be aligned with the JSON Schema project's m
 
 ## Recognising our Ambassadors from the community
 
-We easily identified several community members to invite into the Ambassadors Program. The TSC and full time staff spend a LOT of time in our community spaces, so even if we don't always reply or comment, we do notice those who are active and helpful.
+We easily identified several community members to invite into the Ambassadors Program. The TSC and the Community Team spend a LOT of time in our community spaces, so even if we don't always reply or comment, we do notice those who are active and helpful.
 
 When I first started the JSON Schema Slack server, the numbers were very few. Gradually, it grew. The core team answered most of the questions. I recall the feeling when I came back in the morning to find other people had answered questions from the community while I'd been asleep. I've previously [recognised](https://words.benhutton.me/2023-05-23-two-words-big-win) that saying "thank you" can be a big win, but I also know that we can do several magnitudes better.
 
