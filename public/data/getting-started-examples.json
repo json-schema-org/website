@@ -2,21 +2,21 @@
   {
     "name": "Getting started basic schema",
     "default": true,
-    "file": "/getting-started-examples/schemas/default.json",
+    "file": "/data/getting-started-examples/schemas/default.json",
     "instances": [
       {
         "name": "Valid instance",
         "default": true,
         "valid": true,
-        "file": "/getting-started-examples/instances/default-ok.json",
+        "file": "/data/getting-started-examples/instances/default-ok.json",
         "details": "This is a valid JSON instance for the provided JSON Schema"
       },
       {
         "name": "Invalid instance",
         "default": false,
         "valid": false,
-        "file": "/getting-started-examples/instances/default-ko.json",
-        "details": "This is an invalid JSON instance for the provided JSON Schema"
+        "file": "/data/getting-started-examples/instances/default-ko.json",
+        "details": "Invalid: The value of 'price' property must be a number"
       }
     ]
   },
@@ -24,13 +24,13 @@
   {
     "name": "Getting started extended schema",
     "default": false,
-    "file": "/getting-started-examples/schemas/default-extended.json",
+    "file": "/data/getting-started-examples/schemas/default-extended.json",
     "instances": [
       {
         "name": "Valid instance",
         "default": true,
         "valid": true,
-        "file": "/getting-started-examples/instances/default-extended-v.json",
+        "file": "/data/getting-started-examples/instances/default-extended-ok.json",
         "details": "This is a valid JSON instance for the provided JSON Schema"
       }
     ]

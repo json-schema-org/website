@@ -3,14 +3,14 @@ import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Highlight from 'react-syntax-highlighter';
 
 async function fetchData() {
-  const response = await fetch('/getting-started-examples.json');
+  const response = await fetch('/data/getting-started-examples.json');
   const data = await response.json();
   return data;
 }
 
 async function fetchSchemaData() {
   const response = await fetch(
-    '/getting-started-examples/schemas/default.json',
+    '/data/getting-started-examples/schemas/default.json',
   );
   const schemaData = await response.json();
   return schemaData;
@@ -18,7 +18,7 @@ async function fetchSchemaData() {
 
 async function fetchedInstanceData() {
   const response = await fetch(
-    '/getting-started-examples/instances/default-ok.json',
+    '/data/getting-started-examples/instances/default-ok.json',
   );
   const schemaData = await response.json();
   return schemaData;
@@ -31,17 +31,18 @@ const GettingStarted = () => {
       name: 'Valid instance',
       default: true,
       valid: true,
-      file: '/getting-started-examples/instances/default-ok.json',
+      file: '/data/getting-started-examples/instances/default-ok.json',
       details: 'This is a valid JSON instance for the provided JSON Schema',
     },
     {
       name: 'Invalid instance',
       default: false,
       valid: false,
-      file: '/getting-started-examples/instances/default-ko.json',
+      file: '/data/getting-started-examples/instances/default-ko.json',
       details: 'This is an invalid JSON instance for the provided JSON Schema',
     },
   ]);
+
   const [details, setDetails] = useState([
     'This is a valid JSON instance for the provided JSON Schema',
     true,
@@ -94,7 +95,7 @@ const GettingStarted = () => {
     <>
       <div className='flex flex-col'>
         <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-          <h2 className='text-h5 font-semibold'>JSON Schema</h2>
+          <h2 className='text-h5 font-semibold -mb-2'>JSON Schema</h2>
           <select
             name='Select a JSON Schema Validator'
             className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
@@ -144,7 +145,7 @@ const GettingStarted = () => {
 
       <div className='flex flex-col'>
         <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-          <h2 className='text-h5 font-semibold'>JSON Instance</h2>
+          <h2 className='text-h5 font-semibold -mb-2'>JSON Instance</h2>
           <select
             name='Select a JSON Schema Validator'
             className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
