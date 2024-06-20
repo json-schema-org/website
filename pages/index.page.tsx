@@ -280,12 +280,12 @@ const Home = (props: any) => {
               </div>
 
               <p className='text-white mx-4 my-5 dark:text-slate-400'>
-                Please visit the{' '}
+                Please visit the JSON Schema{' '}
                 <a
                   className='underline'
                   href='https://landscape.json-schema.org/'
                 >
-                  JSON Schema Landscape
+                  Landscape
                 </a>{' '}
                 and discover more companies using JSON Schema.
               </p>
