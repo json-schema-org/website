@@ -12,7 +12,7 @@ When it comes to data exchange, JSON Schema stands out as a powerful standard fo
 
 While JSON Schema provides the language, validating a JSON [instance](https://json-schema.org/learn/glossary#instance) against a [schema](https://json-schema.org/learn/glossary#schema) requires a JSON Schema [validator](https://json-schema.org/implementations#validators). The JSON validator checks if the JSON documents conform to the schema.
 
-JSON validators are tools that implement the JSON Schema specification. Such tooling enables easy integration of JSON Schema into projects of any size.
+JSON Schema Validators are tools that implement the JSON Schema specification. Such tooling enables easy integration of JSON Schema into projects of any size.
 
 ![How JSON Schema works](/img/json_schema.svg)
 
