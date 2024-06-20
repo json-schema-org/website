@@ -489,6 +489,15 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 );
               },
             },
+            Regularquote: {
+              component: ({ children }) => {
+                return (
+                  <div className='text-2xl my-5 mx-8 border-gray-300 bg-gray-300 dark:bg-gray-300 p-4 p-t-6 text-center dark:text-slate-800 rounded-xl'>
+                    {children}
+                  </div>
+                );
+              },
+            },
             tableofcontent: {
               component: ({ depth }) => {
                 // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -636,6 +645,7 @@ export function TableOfContentMarkdown({
             'div',
             'figure',
             'Bigquote',
+            'Regularquote',
           ),
         },
       }}

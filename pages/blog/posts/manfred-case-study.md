@@ -19,9 +19,9 @@ excerpt: "Learn how Manfred used JSON Schema to transform the technical recruiti
 ## Challenge
 Manfred started their journey with the ambitious mission of revolutionizing the recruitment landscape by prioritizing total transparency and open data. Traditional recruiting platforms offered limited accessibility to personal data, often providing static, non-actionable PDFs. To establish a unique value proposition, Manfred sought a solution that would empower developers to own their data in a universally understood format—JSON.
 
-<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 p-4 p-t-6 text-center dark:text-slate-800">
+<Regularquote>
   _"While other recruiting platforms rely on capturing your data and then giving it back using inefficient formats like PDF, our approach was completely different. Your data is yours and in JSON, the most used format in the industry." - **David Bonilla** - Founder_
-</div>
+</Regularquote>
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='w-full md:w-full lg:w-3/5 xl:w-3/5 2xl:w-3/5 px-20' src='/img/posts/2024/manfred-case-study/period.webp'/>
@@ -30,9 +30,9 @@ Manfred started their journey with the ambitious mission of revolutionizing the 
 ## Solution
 Recognizing the need for a dynamic and developer-friendly approach, Manfred turned to JSON Schema as the cornerstone of their platform by creating the [MAC](https://github.com/getmanfred/mac), a standard open source format to define and share resumes. By offering developers their data in JSON format and providing the JSON Schema (the MAC) as the map to use it, Manfred transformed the way professionals interacted with their own information. This innovative approach not only differentiated Manfred from competitors but also provided actionable, structured data, fostering a new level of transparency in the recruitment process.
 
-<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 p-4 p-t-6 dark:text-slate-800">
+<Regularquote>
   _"After trying different formats, we realized that by using JSON jointly with JSON Schema we would have the flexibility to be able to do anything." - **David Bonilla** - Founder_
-</div>
+</Regularquote>
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='w-full md:w-full lg:w-3/5 xl:w-3/5 2xl:w-3/5 px-20 pt-10' src='/img/posts/2024/manfred-case-study/MAC_Structure.webp'/>

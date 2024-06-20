@@ -76,6 +76,20 @@ Useful to show the text wrapped in it, in a big quotation-like text.
 
 ---
 
+## Regularquote
+
+Useful to show the text wrapped in it, in a regular-sized quotation-like text.
+
+```markdown
+<Regularquote> message to show </Regularquote>
+```
+
+### Example
+
+<Regularquote> message to show </Regularquote>
+
+---
+
 ## Blockquote
 
 Useful to show the text wrapped in it, in a block quotation-like text.

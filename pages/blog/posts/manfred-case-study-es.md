@@ -33,9 +33,9 @@ Manfred inició su andadura con la ambiciosa misión de revolucionar el panorama
 
 Reconociendo la necesidad de un enfoque developer-friendly, Manfred apostó por JSON Schema como la piedra angular de su plataforma al crear el [MAC](https://github.com/getmanfred/mac), un formato estándar y open source para definir y compartir currículums. Al ofrecer a los desarrolladores sus datos en formato JSON ofreciendo además el JSON Schema (el MAC) como el mapa para usarlo, Manfred transformó la forma en que los profesionales interactuaban con su propia información. Este enfoque innovador no sólo permitió a Manfred diferenciarse de sus competidores, sino que también propició un nuevo nivel de transparencia en los procesos de contratación al ofrecer un enfoque basado en datos estructurados y accionables con enormes capacidades de interoperabilidad.
 
-<div className="text-2xl my-5 mx-8 border-gray-300 dark:bg-gray-900 bg-gray-300 p-4 p-t-6 dark:text-slate-800">
+<Regularquote>
   _"Tras probar diferentes formatos, descubrimos que usando JSON junto a JSON Schema tendríamos la flexibilidad de poder hacer prácticamente cualquier cosa." - **David Bonilla** - Founder_
-</div>
+</Regularquote>
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='w-full md:w-full lg:w-3/5 xl:w-3/5 2xl:w-3/5 px-20 pt-10' src='/img/posts/2024/manfred-case-study/MAC_Structure.webp'/>
@@ -58,9 +58,9 @@ La adopción de JSON Schema tuvo un impacto profundo en la estrategia de Manfred
 
 La adopción de JSON Schema permitió que partners y 3rd parties se integraran con la plataforma de manera más fácil y rápida. La validación e intercambio de información entre Manfred y sus partners se convirtió en un proceso trivial.
 
-<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 dark:bg-gray-900 p-4 p-t-6 text-center mb-20">
+<Regularquote>
   _“Usar JSON Schema demostró ser una decisión clave para que la plataforma fuera lo suficientemente flexible y escalable como para soportar al crecimiento de la Empresa.” - **David Bonilla** - Founder_
-</div>
+</Regularquote>
 
 ## Sobre Manfred
 
