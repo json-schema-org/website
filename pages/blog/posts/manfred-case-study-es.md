@@ -21,7 +21,7 @@ excerpt: "Descubre cómo Manfred ha usado JSON Schema para transformar la indust
 
 Manfred inició su andadura con la ambiciosa misión de revolucionar el panorama de reclutamiento y para ello decidió apostar por la transparencia total y una estrategia Open Data. Las plataformas de reclutamiento tradicionales se han caracterizado por ofrecer un acceso limitado a los datos personales, a menudo proporcionando archivos poco accionables como PDFs. Manfred apostó por ofrecer una propuesta de valor única ofreciendo una solución que empoderara a los desarrolladores para poseer sus datos en el formato de intercambio universal: JSON.
 
-<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 p-4 p-t-6 text-center dark:bg-gray-900">
+<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 p-4 p-t-6 text-center dark:bg-gray-900 dark:text-slate-800">
   _"Mientras que otras plataformas de recruiting se basan en la captura de tus datos para luego entregarlos en formatos poco interoperables como PDF, nuestra propuesta fue completamente diferente. Tus datos son tuyos y en JSON, el estándar de facto." - **David Bonilla** - Founder_
 </div>
 
@@ -33,7 +33,7 @@ Manfred inició su andadura con la ambiciosa misión de revolucionar el panorama
 
 Reconociendo la necesidad de un enfoque developer-friendly, Manfred apostó por JSON Schema como la piedra angular de su plataforma al crear el [MAC](https://github.com/getmanfred/mac), un formato estándar y open source para definir y compartir currículums. Al ofrecer a los desarrolladores sus datos en formato JSON ofreciendo además el JSON Schema (el MAC) como el mapa para usarlo, Manfred transformó la forma en que los profesionales interactuaban con su propia información. Este enfoque innovador no sólo permitió a Manfred diferenciarse de sus competidores, sino que también propició un nuevo nivel de transparencia en los procesos de contratación al ofrecer un enfoque basado en datos estructurados y accionables con enormes capacidades de interoperabilidad.
 
-<div className="text-2xl my-5 mx-8 border-gray-300 dark:bg-gray-900 bg-gray-300 p-4 p-t-6">
+<div className="text-2xl my-5 mx-8 border-gray-300 dark:bg-gray-900 bg-gray-300 p-4 p-t-6 dark:text-slate-800">
   _"Tras probar diferentes formatos, descubrimos que usando JSON junto a JSON Schema tendríamos la flexibilidad de poder hacer prácticamente cualquier cosa." - **David Bonilla** - Founder_
 </div>
 
