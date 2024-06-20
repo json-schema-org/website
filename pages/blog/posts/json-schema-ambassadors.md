@@ -27,7 +27,9 @@ For the past few years, a small team has worked full time on JSON Schema, focusi
 
 We are better placed today than we ever have been to support and empower our existing ambassadors, and build a program which recognizes and supports them to further their efforts. It's always encouraging to see others as excited about JSON Schema as you are.
 
-"The new website, and assorted outreach programmes have started to connect the huge JSON Schema user base, and we've really started to see the benefit in terms of the number of people actively participating." - Matthew Adams - Founder at [Endjin](https://endjin.com) - Candidate Ambassador.
+<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 p-4 p-t-6 text-center">
+  _"The new website, and assorted outreach programmes have started to connect the huge JSON Schema user base, and we've really started to see the benefit in terms of the number of people actively participating." - **Matthew Adams** - Founder at [Endjin](https://endjin.com) - Candidate Ambassador._
+</div>
 
 ## How we benefit, from today
 
@@ -41,7 +43,9 @@ Despite JSON Schema's presence, many still see it as part of another standard. B
 
 As the project thrives, so too does our community. The Ambassadors Program brings several benefits specifically for our community.
 
-"The community is very friendly, welcoming, and extremely smart. I already learnt a LOT by participating in it. I want the JSON Schema ecosystem to grow, as it will likely power my business as a result. The Ambassadors Program is a great opportunity to recognise key contributors and encourage them to continue being involved." - Juan Cruz Viotti - Founder and CTO at [Intelligence.AI](https://intelligence.ai) - Candidate Ambassador
+<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 p-4 p-t-6 text-center">
+  _"The community is very friendly, welcoming, and extremely smart. I already learnt a LOT by participating in it. I want the JSON Schema ecosystem to grow, as it will likely power my business as a result. The Ambassadors Program is a great opportunity to recognise key contributors and encourage them to continue being involved." - **Juan Cruz Viotti** - Founder and CTO at [Intelligence.AI](https://intelligence.ai) - Candidate Ambassador_
+</div>
 
 ### As the Community
 
