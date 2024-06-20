@@ -44,8 +44,8 @@ const GettingStarted = () => {
   ]);
 
   const [details, setDetails] = useState([
-    'This is a valid JSON instance for the provided JSON Schema',
-    true,
+    instances[0].details,
+    instances[0].valid,
   ]);
   const [fetchedSchema, setFetchedSchema] = useState();
   const [fetchedInstance, setFetchedInstance] = useState();
