@@ -30,7 +30,7 @@
         "name": "Valid instance",
         "default": true,
         "valid": true,
-        "file": "/getting-started-examples/instances/default-extended-ok.json",
+        "file": "/getting-started-examples/instances/default-extended-v.json",
         "details": "This is a valid JSON instance for the provided JSON Schema"
       }
     ]

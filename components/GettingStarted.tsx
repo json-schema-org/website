@@ -8,60 +8,23 @@ async function fetchData() {
   return data;
 }
 
-const GettingStarted = () => {
-  const intitalSchemaData = {
-    $schema: 'https://json-schema.org/draft/2020-12/schema',
-    $id: 'https://example.com/product.schema.json',
-    title: 'Product',
-    description: 'A product from Acmes catalog',
-    type: 'object',
-    properties: {
-      productId: {
-        description: 'The unique identifier for a product',
-        type: 'integer',
-      },
-      productName: {
-        description: 'Name of the product',
-        type: 'string',
-      },
-      price: {
-        description: 'The price of the product',
-        type: 'number',
-        exclusiveMinimum: 0,
-      },
-      tags: {
-        description: 'Tags for the product',
-        type: 'array',
-        items: {
-          type: 'string',
-        },
-        minItems: 1,
-        uniqueItems: true,
-      },
-      dimensions: {
-        type: 'object',
-        properties: {
-          length: {
-            type: 'number',
-          },
-          width: {
-            type: 'number',
-          },
-          height: {
-            type: 'number',
-          },
-        },
-        required: ['length', 'width', 'height'],
-      },
-      warehouseLocation: {
-        description:
-          'Coordinates of the warehouse where the product is located.',
-        $ref: 'https://example.com/geographical-location.schema.json',
-      },
-    },
-    required: ['productId', 'productName', 'price'],
-  };
+async function fetchSchemaData() {
+  const response = await fetch(
+    '/getting-started-examples/schemas/default.json',
+  );
+  const schemaData = await response.json();
+  return schemaData;
+}
 
+async function fetchedInstanceData() {
+  const response = await fetch(
+    '/getting-started-examples/instances/default-ok.json',
+  );
+  const schemaData = await response.json();
+  return schemaData;
+}
+
+const GettingStarted = () => {
   const [options, setOptions] = useState([]);
   const [instances, setInstances] = useState([
     {
@@ -83,11 +46,15 @@ const GettingStarted = () => {
     'This is a valid JSON instance for the provided JSON Schema',
     true,
   ]);
-  const [fetchedSchema, setFetchedSchema] = useState(intitalSchemaData);
-  const [fetchedInstance, setFetchedInstance] = useState(instances[0]);
+  const [fetchedSchema, setFetchedSchema] = useState();
+  const [fetchedInstance, setFetchedInstance] = useState();
 
   useEffect(() => {
     fetchData().then((data) => setOptions(data));
+    fetchSchemaData().then((schemaData) => setFetchedSchema(schemaData));
+    fetchedInstanceData().then((instanceData) =>
+      setFetchedInstance(instanceData),
+    );
   }, []);
 
   const handleSchemaChange = async (e: any) => {
@@ -114,10 +81,10 @@ const GettingStarted = () => {
     );
 
     if (selectedInstance) {
-      setDetails([selectedInstance.details, selectedInstance.valid]);
       const instanceResponse = await fetch(e.target.value);
       const instanceData = await instanceResponse.json();
       setFetchedInstance(instanceData);
+      setDetails([selectedInstance.details, selectedInstance.valid]);
     } else {
       setFetchedInstance(null!);
     }
