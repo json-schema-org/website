@@ -71,7 +71,7 @@ There's a swag kit for all accepted into the Ambassadors Program, and I can't wa
 
 ## How to apply today
 
-OK, OK. If you've read all the above, maybe you haven't yet made it to the [Ambassador Program documentation file in our community repo](https://json-schema.org/ambassadors). That would be your next stop if you're thinking about applying to become an ambassador.
+OK, OK. If you've read all the above, maybe you haven't yet made it to the [Ambassador Program documentation](https://json-schema.org/ambassadors) file in our community repo. That would be your next stop if you're thinking about applying to become an ambassador.
 
 We will be looking for existing contributions from individuals who have already been in our community for a while. If you're brand new to JSON Schema, becoming an ambassador is probably not something immediately in your reach, and that's OK. If you have some experience with JSON Schema, go write about it, apply to talk at events and conferences, or make videos. Be part of our community, answer questions. Then your application is much more likely to be accepted.
 
