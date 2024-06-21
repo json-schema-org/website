@@ -53,9 +53,9 @@ The adoption of JSON Schema had a profound impact on Manfred's operations, contr
 ## Key Impact Results
 The adoption of JSON Schema enabled third parties to integrate with Manfred easier and faster. Validation and documentation became trivial, for Manfred and their partners.
 
-<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 p-4 p-t-6 text-center mb-20">
+<Regularquote>
   _“Using JSON Schema proved to be a key decision to provide the platform with the flexibility and scalability to support the Company's growth.” - **David Bonilla** - Founder_
-</div>
+</Regularquote>
 
 ## Manfred - The Company
 In their own words: 

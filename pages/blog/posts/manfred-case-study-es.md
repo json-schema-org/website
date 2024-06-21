@@ -21,9 +21,9 @@ excerpt: "Descubre cómo Manfred ha usado JSON Schema para transformar la indust
 
 Manfred inició su andadura con la ambiciosa misión de revolucionar el panorama de reclutamiento y para ello decidió apostar por la transparencia total y una estrategia Open Data. Las plataformas de reclutamiento tradicionales se han caracterizado por ofrecer un acceso limitado a los datos personales, a menudo proporcionando archivos poco accionables como PDFs. Manfred apostó por ofrecer una propuesta de valor única ofreciendo una solución que empoderara a los desarrolladores para poseer sus datos en el formato de intercambio universal: JSON.
 
-<div className="text-2xl my-5 mx-8 border-gray-300 bg-gray-300 p-4 p-t-6 text-center dark:bg-gray-900 dark:text-slate-800">
+<Regularquote>
   _"Mientras que otras plataformas de recruiting se basan en la captura de tus datos para luego entregarlos en formatos poco interoperables como PDF, nuestra propuesta fue completamente diferente. Tus datos son tuyos y en JSON, el estándar de facto." - **David Bonilla** - Founder_
-</div>
+</Regularquote>
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='w-full md:w-full lg:w-3/5 xl:w-3/5 2xl:w-3/5 px-20' src='/img/posts/2024/manfred-case-study/period.webp'/>
