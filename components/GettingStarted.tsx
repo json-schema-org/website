@@ -5,78 +5,85 @@ import Highlight from 'react-syntax-highlighter';
 async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
   const data = await response.json();
-  return data;
+
+  const defaultSchemaData = data.find((data: any) => data.default === true);
+
+  const schemaResp = await fetch(defaultSchemaData.file);
+  const schemaData = await schemaResp.json();
+
+  const defaultInstanceData = defaultSchemaData.instances.find(
+    (instance: any) => instance.default === true,
+  );
+
+  console.log(defaultInstanceData);
+
+  const instanceResp = await fetch(defaultInstanceData.file);
+  const instanceData = await instanceResp.json();
+
+  return {
+    data,
+    schemaData,
+    instanceData,
+    initialInstance: defaultSchemaData.instances,
+    initialDetails: [defaultInstanceData.details, defaultInstanceData.valid],
+  };
+}
+interface SchemaOption {
+  file: string;
+  instances: InstanceOption[];
 }
 
-async function fetchSchemaData() {
-  const response = await fetch(
-    '/data/getting-started-examples/schemas/default.json',
-  );
-  const schemaData = await response.json();
-  return schemaData;
-}
-
-async function fetchedInstanceData() {
-  const response = await fetch(
-    '/data/getting-started-examples/instances/default-ok.json',
-  );
-  const schemaData = await response.json();
-  return schemaData;
+interface InstanceOption {
+  file: string;
+  details: string;
+  valid: string;
 }
 
 const GettingStarted = () => {
-  const [options, setOptions] = useState([]);
-  const [instances, setInstances] = useState([
-    {
-      name: 'Valid instance',
-      default: true,
-      valid: true,
-      file: '/data/getting-started-examples/instances/default-ok.json',
-      details: 'This is a valid JSON instance for the provided JSON Schema',
-    },
-    {
-      name: 'Invalid instance',
-      default: false,
-      valid: false,
-      file: '/data/getting-started-examples/instances/default-ko.json',
-      details: 'This is an invalid JSON instance for the provided JSON Schema',
-    },
-  ]);
-
-  const [details, setDetails] = useState([
-    instances[0].details,
-    instances[0].valid,
-  ]);
-  const [fetchedSchema, setFetchedSchema] = useState();
-  const [fetchedInstance, setFetchedInstance] = useState();
-
   useEffect(() => {
-    fetchData().then((data) => setOptions(data));
-    fetchSchemaData().then((schemaData) => setFetchedSchema(schemaData));
-    fetchedInstanceData().then((instanceData) =>
-      setFetchedInstance(instanceData),
+    fetchData().then(
+      ({ data, schemaData, instanceData, initialInstance, initialDetails }) => {
+        setOptions(data);
+        setFetchedSchema(schemaData);
+        setFetchedInstance(instanceData);
+        setInstances(initialInstance);
+        setDetails(initialDetails);
+      },
     );
   }, []);
 
-  const handleSchemaChange = async (e: any) => {
+  const [options, setOptions] = useState<SchemaOption[]>([]);
+  const [instances, setInstances] = useState<InstanceOption[]>([]);
+  const [details, setDetails] = useState<string[]>(['', '']);
+
+  const [fetchedSchema, setFetchedSchema] = useState();
+  const [fetchedInstance, setFetchedInstance] = useState();
+
+  const handleSchemaChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
     const selectedSchema = options.find(
-      // @ts-ignore
       (schema) => schema.file === e.target.value,
     );
 
     if (selectedSchema) {
-      // @ts-ignore
-      setInstances(selectedSchema.instances);
       const schemaResponse = await fetch(e.target.value);
       const schemaData = await schemaResponse.json();
       setFetchedSchema(schemaData);
+      setInstances(selectedSchema.instances);
+
+      const instResp = await fetch(selectedSchema.instances[0].file);
+      const instData = await instResp.json();
+      setFetchedInstance(instData);
     } else {
       setInstances([]);
       setFetchedSchema(null!);
     }
   };
 
-  const handleInstanceChange = async (e: any) => {
+  const handleInstanceChange = async (
+    e: React.ChangeEvent<HTMLSelectElement>,
+  ) => {
     const selectedInstance = instances.find(
       (instance) => instance.file === e.target.value,
     );
