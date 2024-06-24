@@ -105,7 +105,7 @@ const GettingStarted = () => {
           <h2 className='text-h5 font-semibold -mb-2'>JSON Schema</h2>
           <select
             name='Select a JSON Schema Validator'
-            className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
+            className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
             id='Examples'
             onChange={handleSchemaChange}
           >
@@ -155,7 +155,7 @@ const GettingStarted = () => {
           <h2 className='text-h5 font-semibold -mb-2'>JSON Instance</h2>
           <select
             name='Select a JSON Schema Validator'
-            className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
+            className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
             id='Examples'
             onChange={handleInstanceChange}
           >
@@ -197,7 +197,7 @@ const GettingStarted = () => {
             {JSON.stringify(fetchedInstance, null, 2)}
           </Highlight>
         </div>
-        <h2 className='text-h5 font-semibold'>Instance Result</h2>
+        <h2 className='text-h5 font-semibold'>Validation Result</h2>
         <div className='flex bg-[#282c34] justify-between items-center text-white font-medium flex-row border p-5 rounded-xl'>
           <p>{details[0]}</p>
 
