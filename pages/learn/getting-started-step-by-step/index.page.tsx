@@ -15,10 +15,15 @@ export async function getStaticProps() {
     'pages/learn/getting-started-step-by-step/getting-started-step-by-step.md',
     'utf-8',
   );
+  const block2 = fs.readFileSync(
+    'pages/learn/getting-started-step-by-step/next-steps.md',
+    'utf-8',
+  );
   const { content: block1Content } = matter(block1);
+  const { content: block2Content } = matter(block2);
   return {
     props: {
-      blocks: [block1Content],
+      blocks: [block1Content, block2Content],
     },
   };
 }
@@ -34,6 +39,7 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
       <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
       <GettingStarted />
+      <StyledMarkdown markdown={blocks[1]} />
       <DocsHelp />
     </SectionContext.Provider>
   );

@@ -102,19 +102,22 @@ const GettingStarted = () => {
     <>
       <div className='flex flex-col'>
         <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-          <h2 className='text-h5 font-semibold -mb-2'>JSON Schema</h2>
-          <select
-            name='Select a JSON Schema Validator'
-            className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
-            id='Examples'
-            onChange={handleSchemaChange}
-          >
-            {options.map((option: any, id: number) => (
-              <option key={id} value={option.file}>
-                {option.name}
-              </option>
-            ))}
-          </select>
+          <h2 className='text-h5 font-semibold mb-1'>JSON Schema</h2>
+          <div className='select-wrap'>
+            <label className='mr-2'>Select a Schema:</label>
+            <select
+              name='Select a JSON Schema Validator'
+              className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
+              id='Examples'
+              onChange={handleSchemaChange}
+            >
+              {options.map((option: any, id: number) => (
+                <option key={id} value={option.file}>
+                  {option.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
 
         <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
@@ -152,19 +155,22 @@ const GettingStarted = () => {
 
       <div className='flex flex-col'>
         <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-          <h2 className='text-h5 font-semibold -mb-2'>JSON Instance</h2>
-          <select
-            name='Select a JSON Schema Validator'
-            className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
-            id='Examples'
-            onChange={handleInstanceChange}
-          >
-            {instances.map((instance: any, id: number) => (
-              <option key={id} value={instance.file}>
-                {instance.name}
-              </option>
-            ))}
-          </select>
+          <h2 className='text-h5 font-semibold mb-1'>JSON Instance</h2>
+          <div className='select-wrap'>
+            <label className='mr-2'>Select an Instance:</label>
+            <select
+              name='Select a JSON Schema Validator'
+              className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
+              id='Examples'
+              onChange={handleInstanceChange}
+            >
+              {instances.map((instance: any, id: number) => (
+                <option key={id} value={instance.file}>
+                  {instance.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
         <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
           <Highlight
