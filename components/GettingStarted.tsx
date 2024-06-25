@@ -102,9 +102,9 @@ const GettingStarted = () => {
     <>
       <div className='flex flex-col'>
         <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-          <h2 className='text-h5 font-semibold mb-1'>JSON Schema</h2>
+          <h2 className='text-h6 font-semibold mb-1'>JSON Schema</h2>
           <div className='select-wrap'>
-            <label className='mr-2'>Select a Schema:</label>
+            <label className='mr-2 max-sm:text-[12px]'>Select a Schema:</label>
             <select
               name='Select a JSON Schema Validator'
               className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
@@ -155,9 +155,11 @@ const GettingStarted = () => {
 
       <div className='flex flex-col'>
         <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-          <h2 className='text-h5 font-semibold mb-1'>JSON Instance</h2>
+          <h2 className='text-h6 font-semibold mb-1'>JSON Instance</h2>
           <div className='select-wrap'>
-            <label className='mr-2'>Select an Instance:</label>
+            <label className='mr-2 max-sm:text-[12px]'>
+              Select an Instance:
+            </label>
             <select
               name='Select a JSON Schema Validator'
               className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
@@ -203,7 +205,7 @@ const GettingStarted = () => {
             {JSON.stringify(fetchedInstance, null, 2)}
           </Highlight>
         </div>
-        <h2 className='text-h5 font-semibold'>Validation Result</h2>
+        <h2 className='text-h6 font-semibold'>Validation Result</h2>
         <div className='flex bg-[#282c34] justify-between items-center text-white font-medium flex-row border p-5 rounded-xl'>
           <p>{details[0]}</p>
 
