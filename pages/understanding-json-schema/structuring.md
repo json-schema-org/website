@@ -566,4 +566,7 @@ In Draft 4-7, a subschema `$id` is just a base URI change and not
    using subschema `$id` must use the same dialect.
 </Infobox>
 
-
+<Infobox label="Draft-specific info">
+In Draft 2020-12,`$id` support for changing dialects in an embedded schema 
+   (using $schema with a different value than the parent schema) was added.   
+</Infobox>
