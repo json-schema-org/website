@@ -164,26 +164,29 @@ const MainNavigation = () => {
   const section = useContext(SectionContext);
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
-  const { theme } = useTheme();
+  const { resolvedTheme, theme } = useTheme();
   const [icon, setIcon] = useState('');
   const [menu, setMenu] = useState('bg-black');
   const [closeMenu, setCLoseMenu] = useState('url("/icons/cancel.svg")');
 
   useEffect(() => {
     const icon = theme === 'dark' ? 'herobtn' : '';
-    const menu = theme === 'dark' ? 'bg-white' : 'bg-black';
-    const dataTheme = theme === 'dark' ? 'dark' : 'light';
+    const menu = resolvedTheme === 'dark' ? 'bg-white' : 'bg-black';
+    const dataTheme = resolvedTheme === 'dark' ? 'dark' : 'light';
     const closeMenu =
-      theme === 'dark'
+      resolvedTheme === 'dark'
         ? 'url("/icons/cancel-dark.svg")'
         : 'url("/icons/cancel.svg")';
     document.documentElement.setAttribute('data-theme', dataTheme);
-    document.documentElement.setAttribute('class', 'keygrad keyshadow');
+    document.documentElement.setAttribute(
+      'class',
+      `keygrad keyshadow ${dataTheme}`,
+    );
 
     setIcon(icon);
     setMenu(menu);
     setCLoseMenu(closeMenu);
-  }, [theme]);
+  }, [theme, resolvedTheme]);
 
   return (
     <div className='flex justify-end md:mr-8 w-full '>
@@ -402,16 +405,16 @@ const Footer = () => (
 );
 
 const Logo = () => {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [imageSrc, setImageSrc] = useState('/img/logos/logo-blue.svg'); // Default to match the server-side render
 
   useEffect(() => {
     const src =
-      theme === 'dark'
+      resolvedTheme === 'dark'
         ? '/img/logos/logo-white.svg'
         : '/img/logos/logo-blue.svg';
     setImageSrc(src);
-  }, [theme]);
+  }, [resolvedTheme]);
 
   return (
     <div>
