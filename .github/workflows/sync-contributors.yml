@@ -1,0 +1,59 @@
+name : Sync Contributors Data
+
+on:
+  schedule: # Run sunday at midnight every week
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+    sync-contributors-data:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout Repository  
+          uses: actions/checkout@v4
+
+        - name: Get Token 
+          uses: actions/create-github-app-token@v1
+          id: get_workflow_token
+          with:
+            app-id: ${{ vars.APP_ID }}
+            private-key: ${{ secrets.PRIVATE_KEY }}
+
+        - name: Fetch Contributors data
+          uses: actions/github-script@v7
+          env:
+            ORGS: ${{ github.repository_owner }}
+            REPO: ${{ github.event.repository.name }}
+          with:
+            github-token: ${{ steps.get_workflow_token.outputs.token }}
+            script: |
+              const fs = require('fs');
+              
+              let data = await github.paginate(github.rest.repos.listContributors, {
+                owner: process.env.ORGS,
+                repo: process.env.REPO,
+                per_page: 100,
+                headers: {
+                  "X-GitHub-Api-Version": "2022-11-28",
+                },
+              });
+              
+              // Filter the data to get only the required fields
+              data = data.map(({ login, id, avatar_url, html_url }) => 
+                ({ login, id, avatar_url, html_url }));
+              
+              // Store the data in a file
+              fs.writeFileSync('community.json', JSON.stringify(data, null, 2));
+            
+        - name: Commit changes
+          env:
+            GITHUB_APP_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+          run: |
+            git config user.name "the-json-schema-bot[bot]"
+            git config user.email "the-json-schema-bot[bot]@users.noreply.github.com"
+            git add community.json
+            git diff --quiet && git diff --staged --quiet || (git commit -m "chore(community): update community.json" && git push "https://x-access-token:${GITHUB_APP_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF#refs/heads/})
+
+
+
+            

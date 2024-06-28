@@ -1,0 +1,100 @@
+name : Sync Project Roadmap Data
+
+on:
+  schedule: # Run sundat at 00:05 every week
+    - cron: '5 0 * * 0'
+  workflow_dispatch:
+
+jobs:
+    sync-roadmap-data:
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout repository
+            uses: actions/checkout@v4
+                  
+          - name: Get Token 
+            uses: actions/create-github-app-token@v1
+            id: get_workflow_token
+            with:
+              app-id: ${{ vars.APP_ID }}
+              private-key: ${{ secrets.PRIVATE_KEY }}
+      
+          # fetch project data and store it in a file
+          - name: Fetch project data
+            env:
+              GH_TOKEN:  ${{ steps.get_workflow_token.outputs.token }} # GitHub App token stored in secrets
+              PROJECT_ID: ${{vars.ROADMAP_PROJECT_ID}} # Project ID
+            run: |
+              gh api graphql -f query='
+              query($PROJECT_ID : ID!) {
+                  node(id: $PROJECT_ID) {
+                  ... on ProjectV2 {
+                      items(first: 20) {
+                      nodes {
+                          id
+                          fieldValues(first: 8) {
+                          nodes {
+                              ... on ProjectV2ItemFieldTextValue {
+                              text
+                              field {
+                                  ... on ProjectV2FieldCommon {
+                                  name
+                                  }
+                              }
+                              }
+                              ... on ProjectV2ItemFieldDateValue {
+                              date
+                              field {
+                                  ... on ProjectV2FieldCommon {
+                                  name
+                                  }
+                              }
+                              }
+                              ... on ProjectV2ItemFieldSingleSelectValue {
+                              name
+                              field {
+                                  ... on ProjectV2FieldCommon {
+                                  name
+                                  }
+                              }
+                              }
+                          }
+                          }
+                          content {
+                          ... on DraftIssue {
+                              title
+                              body
+                          }
+                          ... on Issue {
+                              title
+                              assignees(first: 10) {
+                              nodes {
+                                  login
+                              }
+                              }
+                          }
+                          ... on PullRequest {
+                              title
+                              assignees(first: 10) {
+                              nodes {
+                                  login
+                              }
+                              }
+                          }
+                          }
+                      }
+                      }
+                  }
+                  }
+              }' -f PROJECT_ID=$PROJECT_ID | jq '.data.node.items.nodes' > project_data.json
+          
+          # commit updated project data
+          - name: Commit changes
+            env:
+              GITHUB_APP_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
+            run: |
+              git config user.name "the-json-schema-bot[bot]"
+              git config user.email "the-json-schema-bot[bot]@users.noreply.github.com"
+              git add project_data.json
+              git diff --quiet && git diff --staged --quiet || (git commit -m "chore(project_data): update project_data.json" && git push "https://x-access-token:${GITHUB_APP_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF#refs/heads/})
+
