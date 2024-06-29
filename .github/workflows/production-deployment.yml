@@ -1,44 +1,24 @@
-#################### 🚧 WARNING: READ THIS BEFORE USING THIS FILE 🚧 ####################
-#
-#
-#
-# IF YOU DON'T KNOW WHAT YOU'RE DOING, YOU CAN EASILY LEAK SECRETS BY USING A
-# `pull_request_target` WORKFLOW INSTEAD OF `pull_request`! SERIOUSLY, DO NOT
-# BLINDLY COPY AND PASTE THIS FILE WITHOUT UNDERSTANDING THE FULL IMPLICATIONS
-# OF WHAT YOU'RE DOING! WE HAVE TESTED THIS FOR OUR OWN USE CASES, WHICH ARE
-# NOT NECESSARILY THE SAME AS YOURS! WHILE WE AREN'T EXPOSING ANY OF OUR SECRETS,
-# ONE COULD EASILY DO SO BY MODIFYING OR ADDING A STEP TO THIS WORKFLOW!
-#
-#
-#
-#################### 🚧 WARNING: READ THIS BEFORE USING THIS FILE 🚧 ####################
-
-name: Preview Deployment
+name: Docs Production Deployment
 on:
-    pull_request_target:
+    push:
+        branches:
+            - main
 
-# cancel in-progress runs on new commits to same PR (github.event.number)
-concurrency:
-    group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
-    cancel-in-progress: true
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-    deploy-preview:
+    publish:
+        runs-on: ubuntu-latest
         permissions:
             contents: read
-            pull-requests: write
             deployments: write
-
-        runs-on: ubuntu-latest
-        name: Deploy Preview to Cloudflare Pages
+        name: Publish to Cloudflare Pages
         steps:
             - name: Checkout repository
               uses: actions/checkout@v4
               with:
-                  ref: ${{ github.event.pull_request.head.ref }}
-                  repository: ${{ github.event.pull_request.head.repo.full_name }}
-                  submodules: 'recursive'
-            
+                submodules: 'recursive'
+        
             - name: Get yarn cache directory path
               id: yarn-cache-dir-path
               run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
@@ -65,7 +45,7 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v4
               with:
-               node-version: 20
+                node-version: 20
         
             - name: Install dependencies
               run: yarn install --frozen-lockfile
@@ -74,7 +54,6 @@ jobs:
               run: yarn run build
 
             - name: Deploy to Cloudflare Pages
-              id: cloudflare-pages-deploy
               uses: AdrianGonz97/refined-cf-pages-action@v1
               with:
                   apiToken: ${{ secrets.CF_API_TOKEN }}
@@ -82,4 +61,4 @@ jobs:
                   githubToken: ${{ secrets.GITHUB_TOKEN }}
                   projectName: ${{ vars.CF_PROJECT_NAME }}
                   directory: out
-                  deploymentName: Preview
+                  deploymentName: Production
