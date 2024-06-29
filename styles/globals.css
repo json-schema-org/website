@@ -66,6 +66,8 @@ border-radius: 4px; */
   .DocSearch-Button {
     margin: 0;
     width: 39px;
+    background-color: transparent;
+
   }
 
   .DocSearch-Button-Placeholder {
@@ -87,6 +89,7 @@ border-radius: 4px; */
 @media (max-width: 450px) {
   .DocSearch-Button {
     margin: 0;
+    
   }
 }
 
