@@ -53,6 +53,12 @@
       draft: [7, 6, 4]
       license: Boost Software License 1.0
       last-updated: "2024-04-22"
+    - name: JSON Toolkit
+      url: https://github.com/sourcemeta/jsontoolkit
+      notes: Comes with its own JSON parser
+      draft: [7, 6, 4]
+      license: AGPL-3.0 and commercial
+      last-updated: "2024-06-13"
 - name: Clojure
   implementations:
     - name: jinx
