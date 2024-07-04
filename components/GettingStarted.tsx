@@ -28,6 +28,7 @@ async function fetchData() {
     initialDetails: [defaultInstanceData.details, defaultInstanceData.valid],
   };
 }
+
 interface SchemaOption {
   file: string;
   instances: InstanceOption[];
@@ -48,6 +49,7 @@ const GettingStarted = () => {
         setFetchedInstance(instanceData);
         setInstances(initialInstance);
         setDetails(initialDetails);
+        setSchemaPath(data[0].file);
       },
     );
   }, []);
@@ -55,6 +57,7 @@ const GettingStarted = () => {
   const [options, setOptions] = useState<SchemaOption[]>([]);
   const [instances, setInstances] = useState<InstanceOption[]>([]);
   const [details, setDetails] = useState<string[]>(['', '']);
+  const [schemaPath, setSchemaPath] = useState<string>('');
 
   const [fetchedSchema, setFetchedSchema] = useState();
   const [fetchedInstance, setFetchedInstance] = useState();
@@ -68,10 +71,10 @@ const GettingStarted = () => {
 
     if (selectedSchema) {
       const schemaResponse = await fetch(e.target.value);
-      const schemaData = await schemaResponse.json();
-      setFetchedSchema(schemaData);
+      const schData = await schemaResponse.json();
+      setFetchedSchema(schData);
       setInstances(selectedSchema.instances);
-
+      setSchemaPath(selectedSchema.file);
       const instResp = await fetch(selectedSchema.instances[0].file);
       const instData = await instResp.json();
       setFetchedInstance(instData);
@@ -100,121 +103,136 @@ const GettingStarted = () => {
 
   return (
     <>
-      <div className='flex flex-col'>
-        <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-          <h2 className='text-h6 font-semibold mb-1'>JSON Schema</h2>
-          <div className='select-wrap'>
-            <label className='mr-2 max-sm:text-[12px]'>Select a Schema:</label>
-            <select
-              name='Select a JSON Schema Validator'
-              className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
-              id='Examples'
-              onChange={handleSchemaChange}
+      <div className='relative'>
+        <div className='flex flex-col'>
+          <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
+            <h2 className='text-h6 font-semibold mb-1'>JSON Schema</h2>
+            <div className='select-wrap'>
+              <label className='mr-2 max-sm:text-[12px]'>
+                Select a Schema:
+              </label>
+              <select
+                name='Select a JSON Schema Validator'
+                className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
+                id='Examples'
+                onChange={handleSchemaChange}
+              >
+                {options.map((option: any, id: number) => (
+                  <option key={id} value={option.file}>
+                    {option.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
+            <Highlight
+              wrapLines={true}
+              wrapLongLines={true}
+              customStyle={{
+                borderRadius: 10,
+                paddingTop: 15,
+                paddingBottom: 10,
+                paddingLeft: 10,
+                marginBottom: 20,
+                maxWidth: '100%',
+              }}
+              lineNumberStyle={{
+                marginRight: 10,
+              }}
+              style={atomOneDark}
+              showLineNumbers
+              startingLineNumber={1}
+              lineProps={() => {
+                const isHighlighted = false;
+                return {
+                  className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
+                };
+              }}
+              codeTagProps={{
+                className: 'mr-8',
+              }}
             >
-              {options.map((option: any, id: number) => (
-                <option key={id} value={option.file}>
-                  {option.name}
-                </option>
-              ))}
-            </select>
+              {JSON.stringify(fetchedSchema, null, 2)}
+            </Highlight>
           </div>
         </div>
 
-        <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
-          <Highlight
-            wrapLines={true}
-            wrapLongLines={true}
-            customStyle={{
-              borderRadius: 10,
-              paddingTop: 15,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              marginBottom: 20,
-              maxWidth: '100%',
-            }}
-            lineNumberStyle={{
-              marginRight: 10,
-            }}
-            style={atomOneDark}
-            showLineNumbers
-            startingLineNumber={1}
-            lineProps={() => {
-              const isHighlighted = false;
-              return {
-                className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
-              };
-            }}
-            codeTagProps={{
-              className: 'mr-8',
-            }}
-          >
-            {JSON.stringify(fetchedSchema, null, 2)}
-          </Highlight>
-        </div>
-      </div>
-
-      <div className='flex flex-col'>
-        <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-          <h2 className='text-h6 font-semibold mb-1'>JSON Instance</h2>
-          <div className='select-wrap'>
-            <label className='mr-2 max-sm:text-[12px]'>
-              Select an Instance:
-            </label>
-            <select
-              name='Select a JSON Schema Validator'
-              className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
-              id='Examples'
-              onChange={handleInstanceChange}
+        <div className='flex flex-col'>
+          <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
+            <h2 className='text-h6 font-semibold mb-1'>JSON Instance</h2>
+            <div className='select-wrap'>
+              <label className='mr-2 max-sm:text-[12px]'>
+                Select an Instance:
+              </label>
+              <select
+                name='Select a JSON Schema Validator'
+                className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
+                id='Examples'
+                onChange={handleInstanceChange}
+              >
+                {instances.map((instance: any, id: number) => (
+                  <option key={id} value={instance.file}>
+                    {instance.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
+            <Highlight
+              wrapLines={true}
+              wrapLongLines={true}
+              customStyle={{
+                borderRadius: 10,
+                paddingTop: 15,
+                paddingBottom: 10,
+                paddingLeft: 10,
+                marginBottom: 20,
+                maxWidth: '100%',
+              }}
+              lineNumberStyle={{
+                marginRight: 10,
+              }}
+              style={atomOneDark}
+              showLineNumbers
+              startingLineNumber={1}
+              lineProps={() => {
+                const isHighlighted = false;
+                return {
+                  className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
+                };
+              }}
+              codeTagProps={{
+                className: 'mr-8',
+              }}
             >
-              {instances.map((instance: any, id: number) => (
-                <option key={id} value={instance.file}>
-                  {instance.name}
-                </option>
-              ))}
-            </select>
+              {JSON.stringify(fetchedInstance, null, 2)}
+            </Highlight>
+          </div>
+          <h2 className='text-h6 font-semibold'>Validation Result</h2>
+          <div className='flex bg-[#282c34] justify-between items-center text-white font-medium flex-row border p-5 rounded-xl'>
+            <p>{details[0]}</p>
+
+            {details[1] ? (
+              <img src='/icons/green-tick.svg' alt='green tick' />
+            ) : (
+              <img src='/icons/red-cross.svg' alt='red cross' />
+            )}
           </div>
         </div>
-        <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
-          <Highlight
-            wrapLines={true}
-            wrapLongLines={true}
-            customStyle={{
-              borderRadius: 10,
-              paddingTop: 15,
-              paddingBottom: 10,
-              paddingLeft: 10,
-              marginBottom: 20,
-              maxWidth: '100%',
-            }}
-            lineNumberStyle={{
-              marginRight: 10,
-            }}
-            style={atomOneDark}
-            showLineNumbers
-            startingLineNumber={1}
-            lineProps={() => {
-              const isHighlighted = false;
-              return {
-                className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
-              };
-            }}
-            codeTagProps={{
-              className: 'mr-8',
-            }}
-          >
-            {JSON.stringify(fetchedInstance, null, 2)}
-          </Highlight>
-        </div>
-        <h2 className='text-h6 font-semibold'>Validation Result</h2>
-        <div className='flex bg-[#282c34] justify-between items-center text-white font-medium flex-row border p-5 rounded-xl'>
-          <p>{details[0]}</p>
 
-          {details[1] ? (
-            <img src='/icons/green-tick.svg' alt='green tick' />
-          ) : (
-            <img src='/icons/red-cross.svg' alt='red cross' />
-          )}
-        </div>
+        <button className='absolute right-0 my-4 text-[17px] bg-startBlue text-white px-3 py-1 rounded'>
+          <a
+            rel='noopener noreferrer'
+            target='_blank'
+            href={schemaPath}
+            download={true}
+          >
+            Download
+          </a>
+        </button>
       </div>
     </>
   );
