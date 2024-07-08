@@ -223,7 +223,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               variant='sidebar'
             />
           </div>
-          <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'>
+          <div className='col-span-4 md:col-span-3 lg:mt-20 mx-4 md:mx-0'>
             {children}
           </div>
         </div>
