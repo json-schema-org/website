@@ -200,6 +200,7 @@ const Home = (props: any) => {
   const [vpsserver_logo, setVPSserver_logo] = useState('');
   const [airbnb_logo, setAirbnb_logo] = useState('');
   const [postman_logo, setPostman_logo] = useState('');
+  const [itflashcards_logo, setItflashcards_logo] = useState('');
   const [endjin_logo, setEndjin_logo] = useState('');
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
@@ -215,6 +216,7 @@ const Home = (props: any) => {
       setCommon_room_logo('/img/logos/dark-mode/common-room_white.svg');
       setSlack_logo('/img/logos/dark-mode/slack_white.svg');
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
+      setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -224,6 +226,7 @@ const Home = (props: any) => {
       setCommon_room_logo('/img/logos/supported/common-room.svg');
       setSlack_logo('/img/logos/supported/slack-logo.svg');
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
+      setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
     }
   }, [theme]);
   return (
@@ -662,6 +665,9 @@ const Home = (props: any) => {
               </a>
               <a href='https://www.vpsserver.com/en-us/'>
                 <img src={vpsserver_logo} className=' w-44' />
+              </a>
+              <a href='https://www.itflashcards.com/'>
+                <img src={itflashcards_logo} className=' w-44' />
               </a>
               <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
