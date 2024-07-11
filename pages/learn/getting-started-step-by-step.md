@@ -7,7 +7,7 @@ JSON Schema is a vocabulary that you can use to annotate and validate JSON docum
 
 After you create the JSON Schema document, you can validate the example data against your schema using a validator in a language of your choice. See <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/implementations)</userevent> for a current list of supported validators.
 
-<TableOfContent depth={2} />
+<tableofcontent depth={2} />
 
 <span id="overview"></span>
 

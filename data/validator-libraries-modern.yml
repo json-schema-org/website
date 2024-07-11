@@ -9,10 +9,10 @@
       last-updated: "2022-08-31"
     - name: Json.NET Schema
       url: https://www.newtonsoft.com/jsonschema
-      date-draft: [2019-09]
+      date-draft: [2020-12, 2019-09]
       draft: [7, 6, 4, 3]
       license: "AGPL-3.0-only"
-      last-updated: "2022-08-31"
+      last-updated: "2024-06-08"
     - name: Corvus.JsonSchema
       url: https://github.com/corvus-dotnet/corvus.jsonschema
       date-draft: [2020-12, 2019-09]
@@ -257,7 +257,7 @@
       url: https://github.com/sagold/json-schema-library
       notes: "Built for Node.js and browsers. Customizable json-validator and json-schema utilities for traversal, data generation and validation"
       date-draft: []
-      draft: [7, 6, 4]
+      draft: [2019-09, 7, 6, 4]
       license: MIT
       last-updated: "2022-08-31"
     - name: djv
@@ -543,6 +543,15 @@
       last-updated: "2022-08-31"
       built-on:
         name: ajv
+    - name: Intelligence.AI JSON Schema CLI
+      license: AGPL-3.0
+      url: 'https://github.com/intelligence-ai/jsonschema'
+      last-updated: "2023-06-03"
+      date-draft: [2020-12, 2019-09]
+      draft: [7, 6, 4, 3, 2, 1, 0]
+      notes: Supports formatting, linting, bundling, testing, validating, and more. As an exception, the test and validate commands only support Draft 4, 6, and 7 for now
+      built-on:
+        name: jsontoolkit
 - name: Github Actions
   implementations:
     - name: Validate JSON Action
