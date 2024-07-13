@@ -74,7 +74,6 @@ jobs:
               run: yarn run build
 
             - name: Deploy to Cloudflare Pages
-              id: cloudflare-pages-deploy
               uses: AdrianGonz97/refined-cf-pages-action@v1
               with:
                   apiToken: ${{ secrets.CF_API_TOKEN }}
