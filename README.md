@@ -40,6 +40,22 @@ git submodule init
 git submodule update
 ```
 
+### Setup Enviroment Variables 
+
+ Create a new `.env` file by copying the contents of the `.env.example` into `.env` file. Use this command:
+```
+cp .env.example .env
+```
+This file contains the following environment variables:
+
+| Variable                      | Description                                       |
+| ----------------------------  | ------------------------------------------------- |
+| NEXT_PUBLIC_ALGOLIA_API_KEY   | Algolia API key for search                        |                        
+| NEXT_PUBLIC_ALGOLIA_APP_ID    | Algolia App ID for search                         |                              
+
+To get the Algolia API key and App ID, you need to create an account on Algolia. You can find more information on how to get the API key and App ID [here](https://www.algolia.com/doc/guides/security/api-keys/#create-and-manage-your-api-keys).
+
+
 #### Install dependencies
 
 Install dependencies
