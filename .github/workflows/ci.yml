@@ -1,11 +1,11 @@
-name: PR Workflow
+name: CI
 on:
   pull_request:
     types: [opened, reopened, synchronize]
 
 jobs:
-  linting_and_type-checking:
-    name: Linting, Formatting and Type checking
+  code-quality-checks:
+    name: Code Quality Checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -44,8 +44,8 @@ jobs:
       - name: Type checking
         run: yarn run typecheck
 
-  Check-Unauthorized-File-Changes:
-    name: Checks if no unauthorized files are changed
+  check-unauthorized-file-changes:
+    name: Check Unauthorized File Changes
     if: ${{github.actor != 'dependabot[bot]'}} 
     runs-on: ubuntu-latest
     steps: 
@@ -94,8 +94,8 @@ jobs:
 
   build:
     name: Build check
+    needs: code-quality-checks 
     runs-on: ubuntu-latest
-    needs: linting_and_type-checking 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
