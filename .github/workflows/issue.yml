@@ -9,7 +9,7 @@ jobs:
         name: Adding Label to issue
         runs-on: ubuntu-latest
         steps:
-          - uses: Renato66/auto-label@v2.3.0
+          - uses: Renato66/auto-label@v3.0.0
             with:
                 repo-token: ${{ secrets.GITHUB_TOKEN }}
                 ignore-comments: true

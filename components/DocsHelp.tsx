@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { FormEvent, useRef, useState } from 'react';
+import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 
 interface DocsHelpProps {
   markdownFile?: string;
@@ -275,7 +276,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               target='_blank'
               rel='noreferrer'
               className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
-              href={`https://github.com/json-schema-org/website/blob/main/pages${markdownFile ? (markdownFile === '_indexPage' ? router.asPath + '/_index.md' : router.asPath + '.md') : `/${path}/index.page.tsx`}`}
+              href={`https://github.com/json-schema-org/website/blob/main/pages${markdownFile ? (markdownFile === '_indexPage' ? extractPathWithoutFragment(router.asPath) + '/_index.md' : extractPathWithoutFragment(router.asPath) + '.md') : `/${path}/index.page.tsx`}`}
             >
               <svg
                 className='inline-block select-none align-text-bottom mr-1'

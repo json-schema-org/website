@@ -88,14 +88,22 @@ export default function StaticMarkdownPage({
 
   const handleClick = (event: { currentTarget: { value: any } }) => {
     const clickedTag = event.currentTarget.value;
+    setParam('type', clickedTag);
 
-    setCurrentFilterTag(clickedTag);
+    if (clickedTag === 'All') {
+      setParam('type', null);
+    } else {
+      setCurrentFilterTag(clickedTag);
+    }
 
     // Check if the user is already on the "/blog" page
     if (router.pathname === '/blog') {
       if (router.query.type) {
         // Remove the 'type' query parameter from the URL
-        setParam('type', null);
+        setParam(
+          'type',
+          router.query.type === clickedTag ? undefined : clickedTag,
+        );
       }
       setCurrentFilterTag(clickedTag);
     } else {

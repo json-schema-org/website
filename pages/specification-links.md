@@ -7,7 +7,7 @@ section: docs
 
 You can find the latest released draft on the [Specification](../../specification) page.  The complex numbering and naming system for drafts and meta-schemas is fully explained here as well.
 
-<TableOfContent depth={4} />
+<tableofcontent depth={4} />
 
 ## Understanding draft names and numbers
 
