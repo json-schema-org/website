@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Auto Label Issue
-        uses: Renato66/auto-label@v2.3.0
+        uses: Renato66/auto-label@v3.0.0
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ignore-comments: true

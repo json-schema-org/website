@@ -515,7 +515,7 @@ example bundled into a Compound Schema Document.
 
   "$defs": {
     "address": {
-      "$id": "/schemas/address",
+      "$id": "https://example.com/schemas/customer",
       "$schema": "http://json-schema.org/draft-07/schema#",
 
       "type": "object",
@@ -564,4 +564,9 @@ In Draft 4-7, a subschema `$id` is just a base URI change and not
    considered an independent Schema Resource. Because `$schema` is
    only allowed at the root of a Schema Resource, all schemas bundled
    using subschema `$id` must use the same dialect.
+</Infobox>
+
+<Infobox label="Draft-specific info">
+In Draft 2020-12, support for changing dialects in an embedded schema 
+   (using `$schema` with a different value than the parent schema) was added.   
 </Infobox>
