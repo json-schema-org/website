@@ -194,7 +194,7 @@ export function AlgoliaSearch() {
 const Home = (props: any) => {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const [asyncapi_logo, setAsyncapi_logo] = useState('');
   const [vpsserver_logo, setVPSserver_logo] = useState('');
@@ -207,7 +207,7 @@ const Home = (props: any) => {
   const [slack_logo, setSlack_logo] = useState('');
 
   useEffect(() => {
-    if (theme === 'dark') {
+    if (resolvedTheme === 'dark') {
       setAsyncapi_logo('/img/logos/dark-mode/asyncapi_white.svg');
       setAirbnb_logo('/img/logos/dark-mode/airbnb_white.png');
       setPostman_logo('/img/logos/usedby/postman-white.png');
@@ -228,7 +228,7 @@ const Home = (props: any) => {
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
       setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
     }
-  }, [theme]);
+  }, [resolvedTheme]);
   return (
     <div>
       <div className='flex flex-col items-center'>
