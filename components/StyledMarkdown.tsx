@@ -8,6 +8,7 @@ import Highlight from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Code from '~/components/Code';
 import { FullMarkdownContext } from '~/context';
+import Image from 'next/image';
 
 import {
   Headline1,
@@ -504,12 +505,24 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 const fullMarkdown = useContext(FullMarkdownContext);
                 if (!fullMarkdown) return null;
                 return (
-                  <div className='mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 pr-3 border border-r-0 border-y-0 border-l-blue-400/40 border-l-[2.5px]'>
-                    <TableOfContentMarkdown
-                      markdown={fullMarkdown}
-                      depth={depth}
-                    />
-                  </div>
+                  <>
+                    <div className='flex flex-row gap-2 text-slate-600 dark:text-slate-300 text-h5 max-sm:text-[1rem]  items-center'>
+                      <Image
+                        src={'/icons/toc-menu.svg'}
+                        height={15}
+                        width={15}
+                        alt='menu-icon'
+                        className='max-sm:w-3 max-sm:h-3'
+                      />
+                      <span>Table of Contents</span>
+                    </div>
+                    <div className='mt-2 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 pr-3 border border-r-0 border-y-0 border-l-blue-400/40 border-l-[2.5px]'>
+                      <TableOfContentMarkdown
+                        markdown={fullMarkdown}
+                        depth={depth}
+                      />
+                    </div>
+                  </>
                 );
               },
             },
