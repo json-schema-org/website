@@ -1,4 +1,4 @@
-name: Pull Request Target Workflow
+name: PR Interaction Workflow
 
 on:
   pull_request_target:
