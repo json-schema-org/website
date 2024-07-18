@@ -9,10 +9,10 @@ import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 
 export async function getStaticPaths() {
-  return getStaticMarkdownPaths('pages/overview');
+  return getStaticMarkdownPaths('pages/introduction');
 }
 export async function getStaticProps(args: any) {
-  return getStaticMarkdownProps(args, 'pages/overview');
+  return getStaticMarkdownProps(args, 'pages/introduction');
 }
 
 export default function StaticMarkdownPage({

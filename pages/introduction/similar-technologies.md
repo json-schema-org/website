@@ -1,6 +1,6 @@
 ---
 section: docs
-title: Similar Technologies
+title: Similar technologies
 ---
 
 While we think that JSON Schema has a unique value proposition, we'd like to provide visibility to other technologies that share similar goals:

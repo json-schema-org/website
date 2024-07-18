@@ -89,17 +89,13 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
   );
 };
 const getDocsPath = [
-  '/overview/what-is-jsonschema',
-  '/overview/sponsors',
-  '/overview/similar-technologies',
-  '/overview/code-of-conduct',
+  '/introduction/about',
+  '/introduction/similar-technologies',
+  '/introduction/what-is-jsonschema',
+  '/introduction/getting-started-step-by-step',
 ];
-const getStartedPath = [
-  '/learn/json-schema-examples',
-  '/learn/file-system',
-  '/learn/miscellaneous-examples',
-  '/learn/getting-started-step-by-step',
-];
+const getConceptsPath = ['/concepts/glossary'];
+
 const getReferencePath = [
   '/understanding-json-schema',
   '/understanding-json-schema/basics',
@@ -125,7 +121,6 @@ const getReferencePath = [
   '/understanding-json-schema/reference/type',
   '/understanding-json-schema/reference/generic',
   '/understanding-json-schema/reference',
-  '/learn/glossary',
   '/implementers',
   '/implementers/interfaces',
 ];
@@ -139,6 +134,20 @@ const getSpecificationPath = [
   '/draft-06/json-hyper-schema-release-notes',
   '/specification-links',
   '/specification',
+];
+
+const getCommunityPath = [
+  '/community-and-contributing/code-of-conduct',
+  '/community-and-contributing/sponsors',
+  '/community-and-contributing/contributing-to-jsonschema',
+  '/community-and-contributing',
+];
+
+const getResourcesPath = [
+  '/resources/file-system',
+  '/resources/json-schema-examples',
+  '/resources/miscellaneous-examples',
+  '/resources',
 ];
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
@@ -170,10 +179,10 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             }}
           >
             {getDocsPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white  ml-12'>Overview</h3>
+              <h3 className='text-white  ml-12'>Introduction</h3>
             )}
-            {getStartedPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Getting Started</h3>
+            {getConceptsPath.includes(pathWtihoutFragment) && (
+              <h3 className='text-white ml-12'>Concepts</h3>
             )}
 
             {getReferencePath.includes(pathWtihoutFragment) && (
@@ -182,6 +191,12 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
 
             {getSpecificationPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Specification</h3>
+            )}
+            {getCommunityPath.includes(pathWtihoutFragment) && (
+              <h3 className='text-white ml-12'>Community and contributing</h3>
+            )}
+            {getResourcesPath.includes(pathWtihoutFragment) && (
+              <h3 className='text-white ml-12'>Resources</h3>
             )}
 
             {router.pathname === null && (
@@ -243,20 +258,26 @@ export const DocsNav = ({
   /* eslint-disable no-constant-condition */
   const [active, setActive] = useState({
     getDocs: false,
-    getStarted: false,
+    getConcepts: false,
     getReference: false,
     getSpecification: false,
+    getCommunity: false,
+    getResources: false,
   });
   useEffect(() => {
     const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
     if (getDocsPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getDocs: true });
-    } else if (getStartedPath.includes(pathWtihoutFragment)) {
-      setActive({ ...active, getStarted: true });
+    } else if (getConceptsPath.includes(pathWtihoutFragment)) {
+      setActive({ ...active, getConcepts: true });
     } else if (getReferencePath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getReference: true });
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getSpecification: true });
+    } else if (getCommunityPath.includes(pathWtihoutFragment)) {
+      setActive({ ...active, getCommunity: true });
+    } else if (getResourcesPath.includes(pathWtihoutFragment)) {
+      setActive({ ...active, getResources: true });
     }
   }, [router.asPath]);
 
@@ -264,8 +285,8 @@ export const DocsNav = ({
     setActive({ ...active, getDocs: !active.getDocs });
   };
 
-  const handleClickGet = () => {
-    setActive({ ...active, getStarted: !active.getStarted });
+  const handleClickCon = () => {
+    setActive({ ...active, getConcepts: !active.getConcepts });
   };
 
   const handleClickReference = () => {
@@ -276,10 +297,20 @@ export const DocsNav = ({
     setActive({ ...active, getSpecification: !active.getSpecification });
   };
 
+  const handleClickComm = () => {
+    setActive({ ...active, getCommunity: !active.getCommunity });
+  };
+
+  const handleClickResource = () => {
+    setActive({ ...active, getResources: !active.getResources });
+  };
+
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
-  const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateC = active.getConcepts ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateComm = active.getCommunity ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateRes = active.getResources ? 'rotate(180deg)' : 'rotate(0)';
 
   const { theme } = useTheme();
 
@@ -311,7 +342,7 @@ export const DocsNav = ({
         >
           <div className='flex  items-center align-middle'>
             <img src={`${overview_icon}`} alt='eye icon' className='mr-2' />
-            <SegmentHeadline label='Overview' />
+            <SegmentHeadline label='Introduction' />
           </div>
           <svg
             style={{
@@ -336,21 +367,21 @@ export const DocsNav = ({
         </div>
         <div
           className={classnames('ml-6', { hidden: !active.getDocs })}
-          id='overview'
+          id='introduction'
         >
           <DocLink
-            uri='/overview/what-is-jsonschema'
+            uri='/introduction/about'
+            label='What is a schema?'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/introduction/what-is-jsonschema'
             label='What is JSON Schema?'
             setOpen={setOpen}
           />
           <DocLink
-            uri='/overview/sponsors'
-            label='Sponsors'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/overview/similar-technologies'
-            label='Similar Technologies'
+            uri='/introduction/getting-started-step-by-step'
+            label='Creating your first schema'
             setOpen={setOpen}
           />
           <DocLinkBlank
@@ -359,26 +390,26 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <DocLink
-            uri='/overview/code-of-conduct'
-            label='Code of Conduct'
+            uri='/introduction/similar-technologies'
+            label='Similar technologies'
             setOpen={setOpen}
           />
         </div>
       </div>
-      {/* Get Started */}
 
+      {/* Concepts */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
-          onClick={handleClickGet}
+          onClick={handleClickCon}
         >
           <div className='flex  items-center align-middle'>
             <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
-            <SegmentHeadline label='Getting Started' />
+            <SegmentHeadline label='Concepts' />
           </div>
           <svg
             style={{
-              transform: rotateG,
+              transform: rotateC,
               transition: 'all 0.2s linear',
               cursor: 'pointer',
             }}
@@ -398,34 +429,19 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getStarted })}
-          id='getStarted'
+          className={classnames('ml-6', { hidden: !active.getConcepts })}
+          id='concepts'
         >
-          <DocLink
-            uri='/learn/getting-started-step-by-step'
-            label='Creating your first schema'
-            setOpen={setOpen}
-          />
-          <SegmentSubtitle label='Examples' />
           <div className='pl-4 pb-1 pt-1'>
             <DocLink
-              uri='/learn/miscellaneous-examples'
-              label='Miscellaneous examples'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/learn/file-system'
-              label='Modelling a file system'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/learn/json-schema-examples'
-              label='Other examples'
+              uri='/concepts/glossary'
+              label='JSON Schema glossary'
               setOpen={setOpen}
             />
           </div>
         </div>
       </div>
+
       {/* Reference */}
 
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
@@ -463,16 +479,6 @@ export const DocsNav = ({
           id='reference'
         >
           <DocLink
-            uri='/learn/glossary'
-            label='JSON Schema Glossary'
-            setOpen={setOpen}
-          />
-          <DocLinkBlank
-            uri='https://www.learnjsonschema.com/'
-            label='Learn JSON Schema'
-            setOpen={setOpen}
-          />
-          <DocLink
             uri='/understanding-json-schema'
             label='Understanding JSON Schema'
             setOpen={setOpen}
@@ -481,11 +487,6 @@ export const DocsNav = ({
             <DocLink
               uri='/understanding-json-schema/conventions'
               label='Conventions used'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/understanding-json-schema/about'
-              label='What is a schema?'
               setOpen={setOpen}
             />
             <DocLink
@@ -609,6 +610,7 @@ export const DocsNav = ({
           </div>
         </div>
       </div>
+
       {/* Specification */}
 
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
@@ -642,6 +644,7 @@ export const DocsNav = ({
             />
           </svg>
         </div>
+
         <div
           className={classnames('ml-6', { hidden: !active.getSpecification })}
           id='specification'
@@ -692,6 +695,131 @@ export const DocsNav = ({
             <DocLink
               uri='/draft-06/json-hyper-schema-release-notes'
               label='draft-06 notes'
+              setOpen={setOpen}
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Resources */}
+
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
+        <div
+          className='flex justify-between w-full items-center'
+          onClick={handleClickResource}
+        >
+          <div className='flex  items-center align-middle'>
+            <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
+            <SegmentHeadline label='Resources' />
+          </div>
+          <svg
+            style={{
+              transform: rotateRes,
+              transition: 'all 0.2s linear',
+              cursor: 'pointer',
+            }}
+            id='arrow'
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            height='32'
+            viewBox='0 0 24 24'
+            width='24'
+          >
+            <path
+              clipRule='evenodd'
+              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+              fill='#707070'
+              fillRule='evenodd'
+            />
+          </svg>
+        </div>
+        <div
+          className={classnames('ml-6', { hidden: !active.getResources })}
+          id='resources'
+        >
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink uri='/resources' label='Overview' setOpen={setOpen} />
+            <DocLinkBlank
+              uri='https://www.learnjsonschema.com/'
+              label='Learn JSON Schema'
+              setOpen={setOpen}
+            />
+            <SegmentSubtitle label='Examples' />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink
+                uri='/resources/miscellaneous-examples'
+                label='Miscellaneous examples'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/resources/file-system'
+                label='Modelling a file system'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/resources/json-schema-examples'
+                label='Other examples'
+                setOpen={setOpen}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Community and Contributing */}
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
+        <div
+          className='flex justify-between w-full items-center'
+          onClick={handleClickComm}
+        >
+          <div className='flex  items-center align-middle'>
+            <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
+            <SegmentHeadline label='Community and Contributing' />
+          </div>
+          <svg
+            style={{
+              transform: rotateComm,
+              transition: 'all 0.2s linear',
+              cursor: 'pointer',
+            }}
+            id='arrow'
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            height='32'
+            viewBox='0 0 24 24'
+            width='24'
+          >
+            <path
+              clipRule='evenodd'
+              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+              fill='#707070'
+              fillRule='evenodd'
+            />
+          </svg>
+        </div>
+        <div
+          className={classnames('ml-6', { hidden: !active.getCommunity })}
+          id='community'
+        >
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink
+              uri='/community-and-contributing'
+              label='Overview'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/community-and-contributing/code-of-conduct'
+              label='Code of Conduct'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/community-and-contributing/contributing-to-jsonschema'
+              label='Contributing to the JSON Schema project'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/community-and-contributing/sponsors'
+              label='Sponsors'
               setOpen={setOpen}
             />
           </div>

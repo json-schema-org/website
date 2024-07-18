@@ -195,7 +195,7 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/learn/getting-started-step-by-step'
+        uri='/introduction/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
       />
@@ -286,7 +286,7 @@ const MobileNav = () => {
         isActive={section === 'specification'}
       />
       <MainNavLink
-        uri='/learn/getting-started-step-by-step'
+        uri='/introduction/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
       />
