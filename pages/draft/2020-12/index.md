@@ -1,16 +1,16 @@
 ---
-title: Draft 2020-12
+title: 'Draft 2020-12'
+Published: '16 June 2022'
 type: docs
-specification: "https://json-schema.org/draft/2020-12/json-schema-core.html"
-Authors:
+authors:
   - Austin Wright
   - Henry Andrews
   - Ben Hutton
   - Greg Dennis
-Published: 16 June 2022
-Metaschema: https://json-schema.org/draft/2020-12/schema
-Implementations: https://bowtie.report/#/dialects/draft2020-12
-Status: Stable
+Metaschema: 'https://json-schema.org/draft/2020-12/schema'
+Implementations: 'https://bowtie.report/#/dialects/draft2020-12'
+Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
+Status: 'Stable'
 ---
 
 ### Introduction
