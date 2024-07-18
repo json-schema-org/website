@@ -662,17 +662,17 @@ export const DocsNav = ({
               setOpen={setOpen}
             />
             <DocLink
-              uri='/draft-07/json-hyper-schema-release-notes'
+              uri='/draft-07/'
               label='draft-07'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/draft-06/json-hyper-schema-release-notes'
+              uri='/draft-06/'
               label='draft-06'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/draft/2019-09/release-notes#hyper-schema-vocabulary'
+              uri='/draft-05/'
               label='draft-05'
               setOpen={setOpen}
             />
@@ -685,12 +685,12 @@ export const DocsNav = ({
           />
 
           <DocLink
-            uri='/draft/2020-12/release-notes'
+            uri='/migration'
             label='Migration'
             setOpen={setOpen}
           />
           <DocLink
-            uri='/draft/2020-12/release-notes'
+            uri='/release-notes'
             label='Release Notes'
             setOpen={setOpen}
           />

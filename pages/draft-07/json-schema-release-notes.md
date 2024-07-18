@@ -1,29 +1,3 @@
----
-title: Draft-07 Release Notes
-section: docs
----
-
-### Access all data connected to Draft-07
-
-- Core: [draft-handrews-json-schema-01](https://json-schema.org/draft-07/draft-handrews-json-schema-01.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-01.html#rfc.appendix.B))
-- Validation: [draft-handrews-json-schema-validation-01](https://json-schema.org/draft-07/draft-handrews-json-schema-validation-01.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-validation-01.html#rfc.appendix.B))
-- Hyper-Schema: [draft-handrews-json-schema-hyperschema-01](https://json-schema.org/draft-07/draft-handrews-json-schema-hyperschema-01.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-hyperschema-01.html#rfc.appendix.B))
-- [JSON Schema meta-schema](https://json-schema.org/draft-07/schema)
-- [JSON Hyper-Schema meta-schema](https://json-schema.org/draft-07/hyper-schema)
-- [JSON Hyper-Schema Link Description Object meta-schema](https://json-schema.org/draft-07/links)
-- [JSON Hyper-Schema recommended output schema](https://json-schema.org/draft-07/hyper-schema-output)
-- Relative JSON Pointer: [draft-handrews-relative-json-pointer-01](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01#appendix-B))
-- Published: 19-March-2018
-
-#### Obsolete Draft 7 Documents
-
-_These were updated without changing functionality or meta-schemas due to a few errors and unclear sections._
-
-- Core: [draft-handrews-json-schema-00](https://json-schema.org/draft-07/draft-handrews-json-schema-00.pdf) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-00.pdf#appendix-B))
-- Validation: [draft-handrews-json-schema-validation-00](https://json-schema.org/draft-07/draft-handrews-json-schema-validation-00.pdf) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-validation-00.pdf#appendix-B))
-- Hyper-Schema: [draft-handrews-json-schema-hyperschema-00](https://json-schema.org/draft-07/draft-handrews-json-schema-hyperschema-00.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-hyperschema-00.html#rfc.appendix.B))
-- Relative JSON Pointer: [draft-handrews-relative-json-pointer-00](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-00#appendix-B))
-
 ### Draft-07 Release Note
 
 For the Core and Validation specifications, draft-07 is a relatively
@@ -43,7 +17,7 @@ more clearly than before.
   - [Linking Instances and Schemas](#linking-instances-and-schemas)
   - [Instance Media Type](#instance-media-type)
 
-### Keywords
+#### Keywords
 
 - No keywords changed behavior
 - No keywords were removed
@@ -60,7 +34,7 @@ more clearly than before.
 
 Note that the `"content*"` keywords do not _require_ validation.
 
-### Formats
+#### Formats
 
 Numerous formats were added, clarified, or restored from older drafts.
 
@@ -82,7 +56,7 @@ consideration. If added as extension formats, they SHOULD be implemented
 in a way that is compatible with their use in the RFC to ensure future
 compatibility.
 
-### Classification of Keywords
+#### Classification of Keywords
 
 While it does not have a direct impact on the validation process, this set
 of drafts classifies keywords by their behavior. The names of these
@@ -96,7 +70,7 @@ to know:
 Note that `definitions` does not fit any of these categories, nor do the
 dollar-prefixed Core keywords.
 
-### Collecting Annotation Values
+#### Collecting Annotation Values
 
 [Annotation keywords](../../draft-07/json-schema-validation.html#rfc.section.10) (formerly
 called [metadata keywords](../../draft-06/json-schema-validation.html#rfc.section.7)
@@ -111,14 +85,14 @@ approprite keywords:
 - `readOnly` and `writeOnly` should be logically ORed
 - `examples` should be flattened into a single collected array
 
-### JSON Schema in Hypermedia Environments
+#### JSON Schema in Hypermedia Environments
 
 These changes are not relevant to many Validation use cases, and are more
 of interest to Hyper-Schema users. However, even without Hyper-Schema,
 if you are accessing instance documents over HTTP or through other hypermedia
 environments, you may find this section useful.
 
-#### Linking Instances and Schemas
+##### Linking Instances and Schemas
 
 After discussions with the author of the "profile" specification, we concluded
 that its use for JSON Schema was not correct. The new guidance for
@@ -134,7 +108,7 @@ to link instances to schemas is:
 "schema", like "profile" in past drafts, can also be used as a
 [media type parameter](../../draft-07/json-schema-core.html#rfc.section.11.2).
 
-#### Instance Media Type
+##### Instance Media Type
 
 Changes in the section are more relevant to JSON Hyper-Schema than to
 Validation, but as they are part of the core specification, they are

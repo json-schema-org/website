@@ -7,7 +7,7 @@ Authors:
   - Henry Andrews
   - Ben Hutton
   - Greg Dennis
-Published: 16 June 2022
+Published: 17-September-2019
 Metaschema: https://json-schema.org/draft/2020-12/schema
 Implementations: https://bowtie.report/#/dialects/draft2020-12
 Status: Stable
