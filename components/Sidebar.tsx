@@ -666,13 +666,13 @@ export const DocsNav = ({
 
           <DocLink uri='/migration' label='Migration' setOpen={setOpen} />
           <DocLink
-            uri='/release-notes'
+            uri='/release-note'
             label='Release Notes'
             setOpen={setOpen}
           />
 
           <DocLink
-            uri='/draft/2020-12/release-notes'
+            uri='/json-hyper-schema'
             label='JSON Hyper-Schema'
             setOpen={setOpen}
           />

@@ -15,7 +15,17 @@ Status: 'Stable'
 
 ### Introduction
 
-[Placeholder text]
+The JSON Schema Draft 2020-12 is a comprehensive update to the previous [draft 2019-09](draft/2019-09), addressing feedback and implementation experiences. This draft introduces features to simplify creating and validating JSON schemas.
+
+Here's an overview of updates to Draft 2020-12;
+
+- **Redesigned Array and Tuple Keywords**: The `items` and `additionalItems` keywords have been replaced by `prefixItems` and `items`.
+- **Dynamic References**: The introduction of `$dynamicRef` and `$dynamicAnchor` replaces the older `$recursiveRef` and `$recursiveAnchor`.
+- **Contains and UnevaluatedItems**: Specifies how the `contains` keyword affects the `unevaluatedItems` keyword.
+- **Regular Expressions**: Now expected to support Unicode characters, addressing inconsistencies in previous drafts.
+- **Media Type Changes**: Drops the schema media type parameter.
+- **Embedded Schemas and Bundling**: Provides guidance on bundling schemas into a Compound Schema Document.
+- **Vocabulary Changes**: Separates the `format` vocabulary into `format-annotation` and `format-assertion`.
 
 ### Access all data connected to Draft 2020-12
 
