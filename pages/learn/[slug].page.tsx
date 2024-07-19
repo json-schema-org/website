@@ -32,7 +32,7 @@ export default function StaticMarkdownPage({
       </Head>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
-      <NextPrevButton />
+      <NextPrevButton prev={frontmatter.prev} next={frontmatter.next} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
