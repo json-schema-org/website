@@ -136,11 +136,11 @@ const getSpecificationPath = [
   '/specification',
 ];
 
-const getCommunityPath = [
-  '/community-and-contributing/code-of-conduct',
-  '/community-and-contributing/sponsors',
-  '/community-and-contributing/contributing-to-jsonschema',
-  '/community-and-contributing',
+const getContributionsPath = [
+  '/contributions/code-of-conduct',
+  '/contributions/sponsors',
+  '/contributions/contributing-to-jsonschema',
+  '/contributions',
 ];
 
 const getResourcesPath = [
@@ -192,8 +192,8 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             {getSpecificationPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Specification</h3>
             )}
-            {getCommunityPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Community and contributing</h3>
+            {getContributionsPath.includes(pathWtihoutFragment) && (
+              <h3 className='text-white ml-12'>Contributions</h3>
             )}
             {getResourcesPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Resources</h3>
@@ -261,7 +261,7 @@ export const DocsNav = ({
     getConcepts: false,
     getReference: false,
     getSpecification: false,
-    getCommunity: false,
+    getContributions: false,
     getResources: false,
   });
   useEffect(() => {
@@ -274,8 +274,8 @@ export const DocsNav = ({
       setActive({ ...active, getReference: true });
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getSpecification: true });
-    } else if (getCommunityPath.includes(pathWtihoutFragment)) {
-      setActive({ ...active, getCommunity: true });
+    } else if (getContributionsPath.includes(pathWtihoutFragment)) {
+      setActive({ ...active, getContributions: true });
     } else if (getResourcesPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getResources: true });
     }
@@ -297,8 +297,8 @@ export const DocsNav = ({
     setActive({ ...active, getSpecification: !active.getSpecification });
   };
 
-  const handleClickComm = () => {
-    setActive({ ...active, getCommunity: !active.getCommunity });
+  const handleClickCont = () => {
+    setActive({ ...active, getContributions: !active.getContributions });
   };
 
   const handleClickResource = () => {
@@ -309,7 +309,7 @@ export const DocsNav = ({
   const rotateC = active.getConcepts ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
-  const rotateComm = active.getCommunity ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateCont = active.getContributions ? 'rotate(180deg)' : 'rotate(0)';
   const rotateRes = active.getResources ? 'rotate(180deg)' : 'rotate(0)';
 
   const { theme } = useTheme();
@@ -766,19 +766,19 @@ export const DocsNav = ({
         </div>
       </div>
 
-      {/* Community and Contributing */}
+      {/* Contributions */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
-          onClick={handleClickComm}
+          onClick={handleClickCont}
         >
           <div className='flex  items-center align-middle'>
             <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
-            <SegmentHeadline label='Community and Contributing' />
+            <SegmentHeadline label='Contributions' />
           </div>
           <svg
             style={{
-              transform: rotateComm,
+              transform: rotateCont,
               transition: 'all 0.2s linear',
               cursor: 'pointer',
             }}
@@ -798,27 +798,25 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getCommunity })}
-          id='community'
+          className={classnames('ml-6', { hidden: !active.getContributions })}
+          id='contributions'
         >
           <div className='pl-4 pb-1 pt-1'>
             <DocLink
-              uri='/community-and-contributing'
-              label='Overview'
-              setOpen={setOpen}
+              uri='/contributions' label='Overview' setOpen={setOpen}
             />
             <DocLink
-              uri='/community-and-contributing/code-of-conduct'
+              uri='/contributions/code-of-conduct'
               label='Code of Conduct'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/community-and-contributing/contributing-to-jsonschema'
-              label='Contributing to the JSON Schema project'
+              uri='/contributions/contributions'
+              label='Contributing to the JSON Schema documentation'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/community-and-contributing/sponsors'
+              uri='/contributions/sponsors'
               label='Sponsors'
               setOpen={setOpen}
             />

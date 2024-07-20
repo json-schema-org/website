@@ -1,11 +1,11 @@
 ---
-title: Contributing to the JSON Schema project
+title: Contributing to the JSON Schema documentation
 section: docs
 ---
 
 ## Welcome
 
-Welcome to the JSON Schema Contributing Guide, and thank you for your interest. Before working on any contributions, we kindly ask you to [read our Code of Conduct](../community-and-contributing/code-of-conduct). 
+Welcome to the JSON Schema Contributing Guide, and thank you for your interest. Before working on any contributions, we kindly ask you to [read our Code of Conduct](../contributions/code-of-conduct). 
 
 If you would like to contribute to the project, check out the following list of contributions that we accept:
 

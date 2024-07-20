@@ -2,37 +2,35 @@ import React from 'react';
 import { getLayout } from '~/components/Sidebar';
 import fs from 'fs';
 import Head from 'next/head';
-import { Headline1 } from '~/components/Headlines';
 import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 
 export async function getStaticProps() {
-  const block1 = fs.readFileSync(
-    'pages/community-and-contributing/sponsors/_index.md',
+  const block = fs.readFileSync(
+    'pages/contributions/code-of-conduct/_index.md',
     'utf-8',
   );
-  const { content: block1Content } = matter(block1);
+  const { content: blockContent } = matter(block);
   return {
     props: {
-      blocks: [block1Content],
+      blocks: [blockContent],
     },
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: any[] }) {
-  const newTitle = 'Sponsors';
+export default function Content({ blocks }: { blocks: any[] }) {
+  const newTitle = 'Code of Conduct';
 
   return (
     <SectionContext.Provider value='docs'>
       <Head>
         <title>{newTitle}</title>
       </Head>
-      <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
       <DocsHelp />
     </SectionContext.Provider>
   );
 }
-ContentExample.getLayout = getLayout;
+Content.getLayout = getLayout;
