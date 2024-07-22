@@ -8,7 +8,7 @@ import { type JSONSchemaTool } from '../JSONSchemaTool';
 
 export interface Preferences {
   query: string;
-  groupBy: 'none' | 'toolingTypes' | 'languages' | 'environments';
+  groupBy: 'none' | 'toolingTypes' | 'languages';
   sortBy: 'name' | 'license';
   sortOrder: 'ascending' | 'descending';
   licenses: string[];
@@ -143,21 +143,21 @@ const groupTools = (
   const groupedTools: GroupedTools = {};
   let numberOfTools = 0;
 
-  if (groupBy === 'none') {
+  if (groupBy === 'languages' || groupBy === 'toolingTypes') {
+    tools.forEach((tool) => {
+      const groups = tool[groupBy] || [];
+      if (groups.length > 0) {
+        groups.forEach((group) => {
+          if (!groupedTools[group]) groupedTools[group] = [];
+          groupedTools[group].push(tool);
+        });
+        numberOfTools++;
+      }
+    });
+  } else {
     groupedTools['none'] = tools;
     return [groupedTools, tools.length];
   }
-
-  tools.forEach((tool) => {
-    const groups = tool[groupBy] || [];
-    if (groups.length > 0) {
-      groups.forEach((group) => {
-        if (!groupedTools[group]) groupedTools[group] = [];
-        groupedTools[group].push(tool);
-      });
-      numberOfTools++;
-    }
-  });
 
   const sortedGroupedTools = Object.keys(groupedTools)
     .sort((a, b) => {
