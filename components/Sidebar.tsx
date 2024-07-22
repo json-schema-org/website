@@ -802,9 +802,7 @@ export const DocsNav = ({
           id='contributions'
         >
           <div className='pl-4 pb-1 pt-1'>
-            <DocLink
-              uri='/contributions' label='Overview' setOpen={setOpen}
-            />
+            <DocLink uri='/contributions' label='Overview' setOpen={setOpen} />
             <DocLink
               uri='/contributions/code-of-conduct'
               label='Code of Conduct'

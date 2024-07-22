@@ -7,9 +7,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 import { SectionContext } from '~/context';
 
 export async function getStaticProps() {
-  const block1 = fs.readFileSync(
-    'pages/contributions/_index.md', 'utf-8'
-  );
+  const block1 = fs.readFileSync('pages/contributions/_index.md', 'utf-8');
   const { content: block1Content } = matter(block1);
   return {
     props: {
