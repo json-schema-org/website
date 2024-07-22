@@ -1,21 +1,21 @@
 ---
-title: Draft 07
+title: 'Draft 07'
+Published: '19-March-2018'
 type: docs
-specification: "https://json-schema.org/draft/2020-12/json-schema-core.html"
-Authors:
+authors:
   - Austin Wright
   - Henry Andrews
   - Ben Hutton
   - Greg Dennis
-Published: 19-March-2018
-Metaschema: https://json-schema.org/draft/2020-12/schema
-Implementations: https://bowtie.report/#/dialects/draft2020-12
-Status: Stable
+Metaschema: 'https://json-schema.org/draft/2020-12/schema'
+Implementations: 'https://bowtie.report/#/dialects/draft2020-12'
+Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
+Status: 'Stable'
 ---
 
 ### Introduction
 
-[Placeholder text]
+The JSON Schema Draft-07 introduces various updates to enhance the functionality of JSON Schemas in contrast to maintaining backward compatibility with Draft-06.
 
 ### Access all data connected to draft 07
 

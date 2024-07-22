@@ -2,7 +2,7 @@
 title: Draft-05
 type: docs
 Specification: https://json-schema.org/draft/2020-12/json-schema-core.html
-Authors:
+authors:
   - Austin Wright
   - Henry Andrews
   - Ben Hutton
@@ -12,10 +12,6 @@ Metaschema: https://json-schema.org/draft/2020-12/schema
 Implementations: https://bowtie.report/#/dialects/draft2020-12
 Status: Stable
 ---
-
-### Introduction
-
-[Placeholder text]
 
 ### Access all data connected to draft 05
 

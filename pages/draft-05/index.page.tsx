@@ -33,10 +33,17 @@ export default function ImplementationsPages({
   return (
     <SectionContext.Provider value={null}>
       <div className='w-5/6 mx-auto mt-40 dark:text-slate-200'>
-        <h1>{frontmatter.title}</h1>
-        <h1>{frontmatter.type}</h1>
-        <h2>{frontmatter.Specification}</h2>
-
+        {/* META DATA TESTING */}
+        <div className='text-lg text-purple-600 font-bold'>
+          <h1>{frontmatter.title}</h1>
+          <h1>{frontmatter.Published}</h1>
+          <h1>{frontmatter.type}</h1>
+          <h1>{frontmatter.authors}</h1>
+          <h1>{frontmatter.Metaschema}</h1>
+          <h1>{frontmatter.Implementations}</h1>
+          <h1>{frontmatter.Specification}</h1>
+          <h1>{frontmatter.Status}</h1>
+        </div>
         <StyledMarkdown markdown={blocks.index} />
         <StyledMarkdown markdown={blocks.body} />
       </div>

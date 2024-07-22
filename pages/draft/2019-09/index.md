@@ -2,7 +2,7 @@
 title: Draft 2019-09
 section: docs
 Specification: https://json-schema.org/draft/2020-12/json-schema-core.html
-Authors:
+authors:
   - Austin Wright
   - Henry Andrews
   - Ben Hutton
@@ -15,7 +15,9 @@ Status: Stable
 
 ### Introduction
 
-[Placeholder text]
+The JSON Schema Draft 2019-09 introduces updates and changes to improve the reliability of JSON Schema specifications. This draft builds upon previous versions.
+
+One significant update is the shift to HTTPS for all meta-schema URIs. While the URIs remain accessible over HTTP due to certain limitations, the recommended standard is now firmly HTTPS.
 
 ### Access all data connected to draft 2019-09
 

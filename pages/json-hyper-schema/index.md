@@ -1,4 +1,6 @@
 ---
+title: JSON Hyper-Schema
+type: docs
 ---
 
 - JSON Hyper-Schema
