@@ -14,6 +14,14 @@ const DocTable = ({ frontmatter }: any) => {
                 {frontmatter.Specification}
               </td>
             </tr>
+            <tr className='hover:bg-slate-950'>
+              <td className='border border-slate-500 p-2 text-center'>
+                Published
+              </td>
+              <td className='border border-slate-500 p-2'>
+                {frontmatter.Published}
+              </td>
+            </tr>
             <tr className='hover:bg-slate-950 '>
               <td className='border border-slate-500 p-2 text-center'>
                 Authors
