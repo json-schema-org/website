@@ -13,8 +13,16 @@ export async function getStaticProps() {
     'pages/draft-07/json-schema-release-notes.md',
     'utf-8',
   );
+  const hyperSchema = fs.readFileSync(
+    'pages/draft-07/json-hyper-schema-release-notes.md',
+    'utf-8',
+  );
+  const readme = fs.readFileSync('pages/draft-07/readme.md', 'utf-8');
+
   const { content: indexContent, data: indexData } = matter(index);
   const { content: bodyContent } = matter(main);
+  const { content: hyperSchemaContent } = matter(hyperSchema);
+  const { content: readmeContent } = matter(readme);
 
   const frontmatter = { ...indexData };
   return {
@@ -22,6 +30,8 @@ export async function getStaticProps() {
       blocks: {
         index: indexContent,
         body: bodyContent,
+        hyperSchema: hyperSchemaContent,
+        readme: readmeContent,
       },
       frontmatter,
     },
@@ -42,6 +52,8 @@ export default function ImplementationsPages({
         <DocTable frontmatter={frontmatter} />
         <StyledMarkdown markdown={blocks.index} />
         <StyledMarkdown markdown={blocks.body} />
+        <StyledMarkdown markdown={blocks.hyperSchema} />
+        <StyledMarkdown markdown={blocks.readme} />
       </div>
     </SectionContext.Provider>
   );
