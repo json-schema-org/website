@@ -8,7 +8,7 @@ import DocTable from '~/components/DocTable';
 import { Headline1 } from '~/components/Headlines';
 
 export async function getStaticProps() {
-  const index = fs.readFileSync('pages/draft-06/index.md', 'utf-8');
+  const index = fs.readFileSync('pages/draft-07/index.md', 'utf-8');
   const main = fs.readFileSync(
     'pages/draft-07/json-schema-release-notes.md',
     'utf-8',
