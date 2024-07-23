@@ -1,14 +1,10 @@
 ---
-title: Draft-06
+title: 'Draft-06'
+Published: '21-April-2017'
 type: docs
-Specification: https://json-schema.org/draft/2020-12/json-schema-core.html
-authors:
-  - Austin Wright
-  - Henry Andrews
-  - Ben Hutton
-  - Greg Dennis
-Published: 21-April-2017
+authors: ['Austin Wright', 'Henry Andrews', 'Ben Hutton', 'Greg Dennis']
 Metaschema: https://json-schema.org/draft/2020-12/schema
+Specification: https://json-schema.org/draft/2020-12/json-schema-core.html
 Implementations: https://bowtie.report/#/dialects/draft2020-12
 Status: Stable
 ---

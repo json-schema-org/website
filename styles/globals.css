@@ -45,40 +45,39 @@ html {
 }
 
 /* .herobtn { */
-  /* background-color: transparent !important; */
-  /* justify-content: center; */
-  /* width: 168px; */
-  /* height: 32px; */
-  /* padding: 8px 8px; */
-  /* margin-right: 10px; */
-  /* display: flex; */
-  /* border: 1px solid #E3E8EE;
+/* background-color: transparent !important; */
+/* justify-content: center; */
+/* width: 168px; */
+/* height: 32px; */
+/* padding: 8px 8px; */
+/* margin-right: 10px; */
+/* display: flex; */
+/* border: 1px solid #E3E8EE;
 border-radius: 4px; */
 /* } */
 
 /* @media (max-width: 1027px) { */
-  .DocSearch-Button-Container {
-    height: 40px;
-    padding: 0px;
-    border: none;
-  }
+.DocSearch-Button-Container {
+  height: 40px;
+  padding: 0px;
+  border: none;
+}
 
-  .DocSearch-Button {
-    margin: 0;
-    width: 39px;
-  }
+.DocSearch-Button {
+  margin: 0;
+  width: 39px;
+}
 
-  .DocSearch-Button-Placeholder {
-    display: none;
-  }
+.DocSearch-Button-Placeholder {
+  display: none;
+}
 
-  .DocSearch-Search-Icon {
-    width: 20px;
-    height: 20px;
-  }
-  
+.DocSearch-Search-Icon {
+  width: 20px;
+  height: 20px;
+}
 
-  /* .herobtn .DocSearch-Button-Container {
+/* .herobtn .DocSearch-Button-Container {
     margin-right: 4px;
     margin-left: 4px;
   } */
@@ -101,14 +100,20 @@ border-radius: 4px; */
 
 /** Style Algolia */
 
-.keygrad{
-  --docsearch-key-gradient: linear-gradient(-225deg, #d5dbe4, #f8f8f8) !important;
+.keygrad {
+  --docsearch-key-gradient: linear-gradient(
+    -225deg,
+    #d5dbe4,
+    #f8f8f8
+  ) !important;
 }
-.keyshadow{
-  --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6,inset 0 0 1px 1px #fff,0 1px 2px 1px rgba(30,35,90,0.4) !important;
+.keyshadow {
+  --docsearch-key-shadow: inset 0 -2px 0 0 #cdcde6, inset 0 0 1px 1px #fff,
+    0 1px 2px 1px rgba(30, 35, 90, 0.4) !important;
 }
-.keyshadow[data-theme=dark]{
-  --docsearch-key-shadow: inset 0 -2px 0 0 #ffffff, inset 0 0 1px 1px #ffffff, 0 2px 2px 0 rgba(3, 4, 9, 0.3) !important;
+.keyshadow[data-theme='dark'] {
+  --docsearch-key-shadow: inset 0 -2px 0 0 #ffffff, inset 0 0 1px 1px #ffffff,
+    0 2px 2px 0 rgba(3, 4, 9, 0.3) !important;
 }
 
 .search-input {
@@ -139,8 +144,6 @@ border-radius: 4px; */
 .search-input svg {
   margin-left: 40px;
 }
-
-
 
 .search-input span {
   margin-left: 15px;
@@ -222,10 +225,8 @@ border-radius: 4px; */
   margin-top: 4.4rem;
 }
 
-
-@layer base{
+@layer base {
   body {
-      @apply dark:bg-slate-800 bg-white;
+    @apply dark:bg-slate-800 bg-white;
   }
 }
-
