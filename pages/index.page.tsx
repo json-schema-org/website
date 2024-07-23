@@ -201,6 +201,8 @@ const Home = (props: any) => {
   const [airbnb_logo, setAirbnb_logo] = useState('');
   const [postman_logo, setPostman_logo] = useState('');
   const [itflashcards_logo, setItflashcards_logo] = useState('');
+  const [route4me_logo, setRoute4me_logo] = useState('');
+  const [n8n_logo, setN8n_logo] = useState('');
   const [endjin_logo, setEndjin_logo] = useState('');
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
@@ -216,7 +218,9 @@ const Home = (props: any) => {
       setCommon_room_logo('/img/logos/dark-mode/common-room_white.svg');
       setSlack_logo('/img/logos/dark-mode/slack_white.svg');
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
-      setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
+      setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
+      setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
+      setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -227,6 +231,8 @@ const Home = (props: any) => {
       setSlack_logo('/img/logos/supported/slack-logo.svg');
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
       setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
+      setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
+      setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -668,6 +674,12 @@ const Home = (props: any) => {
               </a>
               <a href='https://www.itflashcards.com/'>
                 <img src={itflashcards_logo} className=' w-44' />
+              </a>
+              <a href='https://www.route4me.com/'>
+                <img src={route4me_logo} className=' w-44' />
+              </a>
+              <a href='https://n8n.io/'>
+                <img src={n8n_logo} className=' w-44' />
               </a>
               <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
