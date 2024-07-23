@@ -1,15 +1,11 @@
 ---
-title: 'Draft 07'
+title: 'Draft-07'
 Published: '19-March-2018'
 type: docs
-authors:
-  - Austin Wright
-  - Henry Andrews
-  - Ben Hutton
-  - Greg Dennis
+authors: ['Austin Wright', 'Henry Andrews', 'Ben Hutton', 'Greg Dennis']
 Metaschema: 'https://json-schema.org/draft/2020-12/schema'
+Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
 Implementations: 'https://bowtie.report/#/dialects/draft2020-12'
-Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
 Status: 'Stable'
 ---
 
