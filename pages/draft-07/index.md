@@ -1,7 +1,7 @@
 ---
 title: 'Draft-07'
-type: docs
 Published: '19-March-2018'
+type: docs
 authors: ['Austin Wright', 'Henry Andrews', 'Ben Hutton', 'Greg Dennis']
 Metaschema: 'https://json-schema.org/draft/2020-12/schema'
 Implementations: 'https://bowtie.report/#/dialects/draft2020-12'
