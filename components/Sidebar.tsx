@@ -660,54 +660,35 @@ export const DocsNav = ({
           id='specification'
         >
           <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
+
+          <SegmentSubtitle label='Versions' />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink uri='/draft/2020-12' label='2020-12' setOpen={setOpen} />
+
+            <DocLink uri='/draft/2019-09' label='2019-09' setOpen={setOpen} />
+            <DocLink uri='/draft-07/' label='draft-07' setOpen={setOpen} />
+            <DocLink uri='/draft-06/' label='draft-06' setOpen={setOpen} />
+            <DocLink uri='/draft-05/' label='draft-05' setOpen={setOpen} />
+          </div>
+
           <DocLink
             uri='/specification-links'
             label='Specification Links'
             setOpen={setOpen}
           />
+
+          <DocLink uri='/migration' label='Migration' setOpen={setOpen} />
           <DocLink
-            uri='/draft/2020-12/release-notes'
-            label='2020-12 notes'
+            uri='/release-note'
+            label='Release Notes'
             setOpen={setOpen}
           />
+
           <DocLink
-            uri='/draft/2019-09/release-notes'
-            label='2019-09 notes'
+            uri='/json-hyper-schema'
+            label='JSON Hyper-Schema'
             setOpen={setOpen}
           />
-          <DocLink
-            uri='/draft-07/json-schema-release-notes'
-            label='draft-07 notes'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/draft-06/json-schema-release-notes'
-            label='draft-06 notes'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/draft-05/readme'
-            label='draft-05 notes'
-            setOpen={setOpen}
-          />
-          <SegmentSubtitle label='JSON Hyper-Schema' />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink
-              uri='/draft/2019-09/release-notes#hyper-schema-vocabulary'
-              label='2019-09 notes'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/draft-07/json-hyper-schema-release-notes'
-              label='draft-07 notes'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/draft-06/json-hyper-schema-release-notes'
-              label='draft-06 notes'
-              setOpen={setOpen}
-            />
-          </div>
         </div>
       </div>
     </div>
