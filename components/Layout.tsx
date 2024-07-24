@@ -41,8 +41,8 @@ export default function Layout({
   );
 
   useEffect(() => {
-    // Check if the URL contains "#community"
-    if (window.location.hash === '#community') {
+    // Check if the URL contains "community"
+    if (window.location.hash === 'community') {
       // Find the anchor element by its ID
       const target = document.getElementById('community');
 
@@ -198,7 +198,7 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/learn/getting-started-step-by-step'
+        uri='/docs'
         label='Docs'
         isActive={section === 'docs'}
       />
@@ -217,12 +217,12 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/#community'
+        uri='/community'
         label='Community'
         isActive={section === 'community'}
       />
 
-      <div className='flex items-center max-sm:ml-4 mr-8  gap-6 md:gap-4 dark:bg-slate-800'>
+      <div className='flex items-center max-sm:ml-4 mr-8 gap-6 md:gap-4 dark:bg-slate-800'>
         <div
           className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
           onClick={() => {
@@ -301,7 +301,7 @@ const MobileNav = () => {
       />
       <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
-        uri='/#community'
+        uri='/community'
         label='Community'
         isActive={section === 'community'}
       />
