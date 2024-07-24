@@ -4,9 +4,11 @@ import Head from 'next/head';
 import { SectionContext } from '~/context';
 import Faq from '~/components/Faq';
 import { Headline1 } from '~/components/Headlines';
+import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Content() {
   const newTitle = 'FAQ';
+  const markdownFile = '_indexPage';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -18,8 +20,8 @@ export default function Content() {
         Below you'll find answers to questions we get asked the most about JSON
         Schema.
       </p>
-
       <Faq category='general' />
+      <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
 }
