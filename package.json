@@ -15,7 +15,8 @@
     "typecheck": "tsc --pretty --noEmit",
     "format:fix": "prettier --write \"**/*.{ts,tsx,json,scss,css}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,scss,css}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "cy:open": "cypress open"
   },
   "engines": {
     "node": "^20.0.0"
@@ -58,10 +59,12 @@
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.10.0",
     "autoprefixer": "^10.4.16",
+    "cypress": "^13.13.1",
     "eslint": "8.53.0",
     "eslint-config-next": "14.2.3",
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-cypress": "^3.4.0",
     "eslint-plugin-import": "^2.29.0",
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-node": "^11.1.0",
