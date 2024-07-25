@@ -81,7 +81,6 @@ border-radius: 4px; */
     margin-right: 4px;
     margin-left: 4px;
   } */
-/* } */
 
 @media (max-width: 450px) {
   .DocSearch-Button {
@@ -223,6 +222,48 @@ border-radius: 4px; */
 /* In your CSS file */
 .mt-custom {
   margin-top: 4.4rem;
+}
+
+
+.top-12 {
+  top: 48px;
+}
+
+.bg-ambassador {
+  background-image: url(/img/community/ambassadors.png);
+}
+
+.bg-slack {
+  background-image: url(/img/home-page/slack.png);
+  background-size: 100% 100%;
+}
+
+.bg-meeting {
+  background-image: url(/img/event/meet.png);
+}
+
+.bg-blog {
+  background-image: url(/img/event/Json-Schema-Blog.png);
+}
+
+.bg-index-0 {
+  background-color: #a5b4fc8a;
+}
+
+.bg-index-1 {
+  background-color: #fca5a582;
+}
+
+.bg-index-2 {
+  background-color: #fdbb7483;
+}
+
+.bg-index-3 {
+  background-color: #86efad85;
+}
+
+.bg-index-4 {
+  background-color: #fddf4784;
 }
 
 @layer base {
