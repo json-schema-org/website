@@ -4,9 +4,7 @@ Published: '16 June 2022'
 type: docs
 authors: ['Austin Wright', 'Henry Andrews', 'Ben Hutton', 'Greg Dennis']
 Metaschema: 'https://json-schema.org/draft/2020-12/schema'
-Implementations: 'https://bowtie.report/#/dialects/draft2020-12'
 Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
-Status: 'Stable'
 ---
 
 ### Introduction
@@ -23,7 +21,7 @@ Here's an overview of updates to Draft 2020-12;
 - **Embedded Schemas and Bundling**: Provides guidance on bundling schemas into a Compound Schema Document.
 - **Vocabulary Changes**: Separates the `format` vocabulary into `format-annotation` and `format-assertion`.
 
-### Access all data connected to Draft 2020-12
+### Draft 2020-12 Documents
 
 - Specifications
   - Core: [draft-bhutton-json-schema-01](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-01.html) ([changes](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-01.html#appendix-G))

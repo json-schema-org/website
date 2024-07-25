@@ -5,15 +5,13 @@ type: docs
 authors: ['Austin Wright', 'Henry Andrews', 'Ben Hutton', 'Greg Dennis']
 Metaschema: 'https://json-schema.org/draft/2020-12/schema'
 Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
-Implementations: 'https://bowtie.report/#/dialects/draft2020-12'
-Status: 'Stable'
 ---
 
 ### Introduction
 
 The JSON Schema Draft-07 introduces various updates to enhance the functionality of JSON Schemas in contrast to maintaining backward compatibility with Draft-06.
 
-### Access all data connected to draft 07
+### Draft-07 Documents
 
 - Core: [draft-handrews-json-schema-01](https://json-schema.org/draft-07/draft-handrews-json-schema-01.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-01.html#rfc.appendix.B))
 - Validation: [draft-handrews-json-schema-validation-01](https://json-schema.org/draft-07/draft-handrews-json-schema-validation-01.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-validation-01.html#rfc.appendix.B))

@@ -9,8 +9,6 @@ authors:
   - Greg Dennis
 Published: 17-September-2019
 Metaschema: https://json-schema.org/draft/2020-12/schema
-Implementations: https://bowtie.report/#/dialects/draft2020-12
-Status: Stable
 ---
 
 ### Introduction
@@ -19,7 +17,7 @@ The JSON Schema Draft 2019-09 introduces updates and changes to improve the reli
 
 One significant update is the shift to HTTPS for all meta-schema URIs. While the URIs remain accessible over HTTP due to certain limitations, the recommended standard is now firmly HTTPS.
 
-### Access all data connected to draft 2019-09
+### Draft 2019-09 Documents
 
 **\*NOTE:** All meta-schema URIs now use `https://`. While currently also available over plain HTTP due to the limitations of GitHub pages and the need to keep prior drafts available over HTTP, only the HTTPS URIs should be used.\*
 

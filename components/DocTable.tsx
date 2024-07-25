@@ -8,7 +8,7 @@ const DocTable = ({ frontmatter }: any) => {
         <table className='table-auto border-collapse w-full bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300'>
           <tbody>
             <tr className='dark:hover:bg-slate-950 hover:bg-slate-300'>
-              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center'>
+              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center font-semibold'>
                 Specification
               </td>
               <td className='border border-slate-400 dark:border-slate-500 p-2'>
@@ -23,7 +23,7 @@ const DocTable = ({ frontmatter }: any) => {
               </td>
             </tr>
             <tr className='dark:hover:bg-slate-950 hover:bg-slate-300'>
-              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center'>
+              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center font-semibold'>
                 Published
               </td>
               <td className='border border-slate-400 dark:border-slate-500 p-2'>
@@ -31,7 +31,7 @@ const DocTable = ({ frontmatter }: any) => {
               </td>
             </tr>
             <tr className='dark:hover:bg-slate-950 hover:bg-slate-300 '>
-              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center'>
+              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center font-semibold'>
                 Authors
               </td>
               <td className='border border-slate-400 dark:border-slate-500 p-2'>
@@ -41,7 +41,7 @@ const DocTable = ({ frontmatter }: any) => {
               </td>
             </tr>
             <tr className='dark:hover:bg-slate-950 hover:bg-slate-300'>
-              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center'>
+              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center font-semibold'>
                 Metaschema
               </td>
               <td className='border border-slate-400 dark:border-slate-500 p-2 '>
@@ -51,20 +51,6 @@ const DocTable = ({ frontmatter }: any) => {
                   target='_blank'
                 >
                   {frontmatter.Metaschema}
-                </Link>
-              </td>
-            </tr>
-            <tr className='dark:hover:bg-slate-950 hover:bg-slate-300 '>
-              <td className='border border-slate-400 dark:border-slate-500 p-2 text-center'>
-                Implementations
-              </td>
-              <td className='border border-slate-400 dark:border-slate-500 p-2'>
-                <Link
-                  href={frontmatter.Implementations}
-                  className='text-linkBlue'
-                  target='_blank'
-                >
-                  {frontmatter.Implementations}
                 </Link>
               </td>
             </tr>

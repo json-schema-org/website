@@ -6,7 +6,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 
 export async function getStaticProps() {
-  const index = fs.readFileSync('pages/release-note/index.md', 'utf-8');
+  const index = fs.readFileSync('pages/release-notes/index.md', 'utf-8');
   // const main = fs.readFileSync('pages/draft-05/release-notes.md', 'utf-8');
   const { content: indexContent, data: indexData } = matter(index);
   //  const { content: bodyContent } = matter(main);

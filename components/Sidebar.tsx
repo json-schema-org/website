@@ -133,14 +133,15 @@ const getReferencePath = [
   '/implementers/interfaces',
 ];
 const getSpecificationPath = [
-  '/draft/2020-12/release-notes',
-  '/draft/2019-09/release-notes',
-  '/draft-07/json-schema-release-notes',
-  '/draft-06/json-schema-release-notes',
-  '/draft-05/readme',
-  '/draft-07/json-hyper-schema-release-notes',
-  '/draft-06/json-hyper-schema-release-notes',
+  '/draft/2020-12/',
+  '/draft/2019-09/',
+  '/draft-07/',
+  '/draft-06/',
+  '/draft-05/',
   '/specification-links',
+  '/migration',
+  '/release-notes',
+  '/json-hyper-schema',
   '/specification',
 ];
 
