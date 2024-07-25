@@ -41,8 +41,8 @@ export default function Layout({
   );
 
   useEffect(() => {
-    // Check if the URL contains "#community"
-    if (window.location.hash === '#community') {
+    // Check if the URL contains "community"
+    if (window.location.hash === 'community') {
       // Find the anchor element by its ID
       const target = document.getElementById('community');
 
@@ -164,26 +164,29 @@ const MainNavigation = () => {
   const section = useContext(SectionContext);
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
-  const { theme } = useTheme();
+  const { resolvedTheme, theme } = useTheme();
   const [icon, setIcon] = useState('');
   const [menu, setMenu] = useState('bg-black');
   const [closeMenu, setCLoseMenu] = useState('url("/icons/cancel.svg")');
 
   useEffect(() => {
     const icon = theme === 'dark' ? 'herobtn' : '';
-    const menu = theme === 'dark' ? 'bg-white' : 'bg-black';
-    const dataTheme = theme === 'dark' ? 'dark' : 'light';
+    const menu = resolvedTheme === 'dark' ? 'bg-white' : 'bg-black';
+    const dataTheme = resolvedTheme === 'dark' ? 'dark' : 'light';
     const closeMenu =
-      theme === 'dark'
+      resolvedTheme === 'dark'
         ? 'url("/icons/cancel-dark.svg")'
         : 'url("/icons/cancel.svg")';
     document.documentElement.setAttribute('data-theme', dataTheme);
-    document.documentElement.setAttribute('class', 'keygrad keyshadow');
+    document.documentElement.setAttribute(
+      'class',
+      `keygrad keyshadow ${dataTheme}`,
+    );
 
     setIcon(icon);
     setMenu(menu);
     setCLoseMenu(closeMenu);
-  }, [theme]);
+  }, [theme, resolvedTheme]);
 
   return (
     <div className='flex justify-end md:mr-8 w-full '>
@@ -214,12 +217,12 @@ const MainNavigation = () => {
       />
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/#community'
+        uri='/community'
         label='Community'
         isActive={section === 'community'}
       />
 
-      <div className='flex items-center max-sm:ml-4 mr-8  gap-6 md:gap-4 dark:bg-slate-800'>
+      <div className='flex items-center max-sm:ml-4 mr-8 gap-6 md:gap-4 dark:bg-slate-800'>
         <div
           className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
           onClick={() => {
@@ -298,7 +301,7 @@ const MobileNav = () => {
       />
       <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
-        uri='/#community'
+        uri='/community'
         label='Community'
         isActive={section === 'community'}
       />
@@ -402,16 +405,16 @@ const Footer = () => (
 );
 
 const Logo = () => {
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const [imageSrc, setImageSrc] = useState('/img/logos/logo-blue.svg'); // Default to match the server-side render
 
   useEffect(() => {
     const src =
-      theme === 'dark'
+      resolvedTheme === 'dark'
         ? '/img/logos/logo-white.svg'
         : '/img/logos/logo-blue.svg';
     setImageSrc(src);
-  }, [theme]);
+  }, [resolvedTheme]);
 
   return (
     <div>
