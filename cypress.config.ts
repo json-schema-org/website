@@ -7,11 +7,17 @@ export default defineConfig({
       bundler: 'webpack',
     },
     specPattern: 'cypress/components/**/*.cy.{js,jsx,ts,tsx}',
+    setupNodeEvents(on, config) {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      require('@cypress/code-coverage/task')(on, config);
+      return config;
+    },
   },
-
   e2e: {
-    setupNodeEvents() {
-      // implement node event listeners here
+    setupNodeEvents(on, config) {
+      // eslint-disable-next-line @typescript-eslint/no-var-requires
+      require('@cypress/code-coverage/task')(on, config);
+      return config;
     },
   },
 });

@@ -10,6 +10,8 @@
 
 # testing
 /coverage
+/.nyc_output
+coverage.json
 
 # next.js
 /.next/
