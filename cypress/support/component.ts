@@ -17,6 +17,7 @@
 import './commands';
 import '@cypress/code-coverage/support';
 import { mount } from 'cypress/react18';
+import '../../styles/globals.css';
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.

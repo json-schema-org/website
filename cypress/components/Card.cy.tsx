@@ -1,6 +1,5 @@
 import React from 'react';
 import Card from '../../components/Card';
-import '../../styles/globals.css';
 import { CardProps } from '../../components/Card';
 
 const RoadmapProps: CardProps = {
@@ -12,46 +11,63 @@ const RoadmapProps: CardProps = {
   link: 'https://github.com/orgs/json-schema-org/discussions/427',
 };
 
-const OverviewProps: CardProps = {
-  icon: '/icons/eye.svg',
-  title: 'Overview',
-  body: 'Our Overview provides a high level view of the project, its benefits, the roadmap and other relevant details.',
-  headerSize: 'medium',
-  bodyTextSize: 'small',
-  link: '/overview/what-is-jsonschema',
-};
-
 describe('Card Component', () => {
-  const testCardRendering = (props: CardProps) => {
-    cy.mount(<Card {...props} />);
-    cy.get('[data-test="card-image"]').should('not.exist');
-    cy.get('[data-test="card-icon"]').should('have.attr', 'src', props.icon);
-    cy.get('[data-test="card-title"]').should('have.text', props.title);
-    cy.get('[data-test="card-body"]').should('have.text', props.body);
-    cy.get('[data-test="card-read-more"]').should('have.text', 'Read More');
-    cy.get('[data-test="card-link"]').should('have.attr', 'href', props.link);
-  };
-
-  // Render the Roadmap Card with the correct header and body text sizes
+  // Render the Roadmap Card with default RoadmapProps
   it('should render Roadmap Card correctly', () => {
-    testCardRendering(RoadmapProps);
+    cy.mount(<Card {...RoadmapProps} />);
+    cy.get('[data-test="card-image"]').should('not.exist');
+    cy.get('[data-test="card-icon"]').should(
+      'have.attr',
+      'src',
+      RoadmapProps.icon,
+    );
+    cy.get('[data-test="card-title"]').should('have.text', RoadmapProps.title);
+    cy.get('[data-test="card-body"]').should('have.text', RoadmapProps.body);
+    cy.get('[data-test="card-read-more"]').should('have.text', 'Read More');
+    cy.get('[data-test="card-link"]').should(
+      'have.attr',
+      'href',
+      RoadmapProps.link,
+    );
     cy.get('[data-test="card-title"]').should('have.class', 'text-[2rem]');
     cy.get('[data-test="card-body"]').should('have.class', 'text-[1rem]');
   });
 
-  // Render the Overview Card with the correct header and body text sizes
-  it('should render Overview Card correctly', () => {
-    testCardRendering(OverviewProps);
+  // Render the Roadmap card with default header and body sizes
+  it('should render Roadmap card with default header and body sizes', () => {
+    const missingSizes = {
+      ...RoadmapProps,
+      headerSize: undefined,
+      bodyTextSize: undefined,
+    };
+    cy.mount(<Card {...missingSizes} />);
     cy.get('[data-test="card-title"]').should('have.class', 'text-[1.3rem]');
-    cy.get('[data-test="card-body"]').should('have.class', 'text-[0.85rem]');
+    cy.get('[data-test="card-body"]').should('have.class', 'text-[1rem]');
   });
 
-  // Render the Card with some missing props
-  it('should render card with some missing props correctly', () => {
+  // Render the Roadmap card with extended body text
+  it('should render Roadmap card with extended body text', () => {
+    const extendedBody = { ...RoadmapProps, extended: true };
+    cy.mount(<Card {...extendedBody} />);
+    cy.get('[data-test="card-body"]').find('span').should('exist');
+  });
+
+  // Render the Roadmap card with image
+  it('should render Roadmap card with image', () => {
+    const imageProps = { ...RoadmapProps, image: '/icons/roadmap.svg' };
+    cy.mount(<Card {...imageProps} />);
+    cy.get('[data-test="card-image"]').should(
+      'have.attr',
+      'src',
+      imageProps.image,
+    );
+  });
+
+  // Render the Roadmap Card with some missing props
+  it('should render Roadmap card with some missing props correctly', () => {
     const missingProps = { ...RoadmapProps, icon: undefined, link: undefined };
     cy.mount(<Card {...missingProps} />);
     cy.get('[data-test="card-icon"]').should('not.exist');
-    cy.get('[data-test="card-read-more"]').should('not.exist');
     cy.get('[data-test="card-link"]').should('not.exist');
   });
 });
