@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Highlight from 'react-syntax-highlighter';
+import JSZip from 'jszip';
+import { saveAs } from 'file-saver';
 
 async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
@@ -14,8 +16,6 @@ async function fetchData() {
   const defaultInstanceData = defaultSchemaData.instances.find(
     (instance: any) => instance.default === true,
   );
-
-  console.log(defaultInstanceData);
 
   const instanceResp = await fetch(defaultInstanceData.file);
   const instanceData = await instanceResp.json();
@@ -42,23 +42,28 @@ interface InstanceOption {
 
 const GettingStarted = () => {
   useEffect(() => {
-    fetchData().then(
-      ({ data, schemaData, instanceData, initialInstance, initialDetails }) => {
-        setOptions(data);
-        setFetchedSchema(schemaData);
-        setFetchedInstance(instanceData);
-        setInstances(initialInstance);
-        setDetails(initialDetails);
-        setSchemaPath(data[0].file);
-      },
-    );
+    fetchData()
+      .then(
+        ({
+          data,
+          schemaData,
+          instanceData,
+          initialInstance,
+          initialDetails,
+        }) => {
+          setOptions(data);
+          setFetchedSchema(schemaData);
+          setFetchedInstance(instanceData);
+          setInstances(initialInstance);
+          setDetails(initialDetails);
+        },
+      )
+      .catch((e) => console.log('Error: ', e));
   }, []);
 
   const [options, setOptions] = useState<SchemaOption[]>([]);
   const [instances, setInstances] = useState<InstanceOption[]>([]);
   const [details, setDetails] = useState<string[]>(['', '']);
-  const [schemaPath, setSchemaPath] = useState<string>('');
-
   const [fetchedSchema, setFetchedSchema] = useState();
   const [fetchedInstance, setFetchedInstance] = useState();
 
@@ -72,9 +77,10 @@ const GettingStarted = () => {
     if (selectedSchema) {
       const schemaResponse = await fetch(e.target.value);
       const schData = await schemaResponse.json();
+
       setFetchedSchema(schData);
       setInstances(selectedSchema.instances);
-      setSchemaPath(selectedSchema.file);
+
       const instResp = await fetch(selectedSchema.instances[0].file);
       const instData = await instResp.json();
       setFetchedInstance(instData);
@@ -89,15 +95,30 @@ const GettingStarted = () => {
   ) => {
     const selectedInstance = instances.find(
       (instance) => instance.file === e.target.value,
-    );
+    ) as InstanceOption;
 
     if (selectedInstance) {
       const instanceResponse = await fetch(e.target.value);
       const instanceData = await instanceResponse.json();
+
       setFetchedInstance(instanceData);
       setDetails([selectedInstance.details, selectedInstance.valid]);
     } else {
-      setFetchedInstance(null!);
+      setFetchedInstance(undefined);
+    }
+  };
+
+  const createZip = async () => {
+    try {
+      const zip = new JSZip();
+      zip.file('schema.json', JSON.stringify(fetchedSchema, null, 2));
+      zip.file('instance.json', JSON.stringify(fetchedInstance, null, 2));
+
+      zip.generateAsync({ type: 'blob' }).then((content) => {
+        saveAs(content, 'getting-started-examples.zip');
+      });
+    } catch (e) {
+      console.log('Error zipping files', e);
     }
   };
 
@@ -223,15 +244,11 @@ const GettingStarted = () => {
           </div>
         </div>
 
-        <button className='absolute right-0 my-4 text-[17px] bg-startBlue text-white px-3 py-1 rounded'>
-          <a
-            rel='noopener noreferrer'
-            target='_blank'
-            href={schemaPath}
-            download={true}
-          >
-            Download
-          </a>
+        <button
+          className='absolute right-0 my-4 text-[17px] bg-startBlue text-white px-3 py-1 rounded'
+          onClick={createZip}
+        >
+          Download
         </button>
       </div>
     </>
