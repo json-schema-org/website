@@ -91,8 +91,11 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
 const getDocsPath = [
   '/overview/what-is-jsonschema',
   '/overview/sponsors',
+  '/overview/case-studies',
   '/overview/similar-technologies',
+  '/overview/use-cases',
   '/overview/code-of-conduct',
+  '/overview/faq',
 ];
 const getStartedPath = [
   '/learn/json-schema-examples',
@@ -140,6 +143,7 @@ const getSpecificationPath = [
   '/specification-links',
   '/specification',
 ];
+
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -214,7 +218,6 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
-
         <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
           <div className='hidden lg:block mt-24'>
             <DocsNav open={open} setOpen={setOpen} />
@@ -281,15 +284,14 @@ export const DocsNav = ({
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
 
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const [learn_icon, setLearn_icon] = useState('');
   const [reference_icon, setReference_icon] = useState('');
   const [spec_icon, setSpec_icon] = useState('');
   const [overview_icon, setOverview_icon] = useState('');
-
   useEffect(() => {
-    if (theme === 'dark') {
+    if (resolvedTheme === 'dark') {
       setOverview_icon('/icons/eye-dark.svg');
       setLearn_icon('/icons/compass-dark.svg');
       setReference_icon('/icons/book-dark.svg');
@@ -300,7 +302,7 @@ export const DocsNav = ({
       setReference_icon('/icons/book.svg');
       setSpec_icon('/icons/clipboard.svg');
     }
-  }, [theme]);
+  }, [resolvedTheme]);
 
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
@@ -348,6 +350,17 @@ export const DocsNav = ({
             label='Sponsors'
             setOpen={setOpen}
           />
+          <DocLink
+            uri='/overview/use-cases'
+            label='Use Cases'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/overview/case-studies'
+            label='Case Studies'
+            setOpen={setOpen}
+          />
+          <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
           <DocLink
             uri='/overview/similar-technologies'
             label='Similar Technologies'

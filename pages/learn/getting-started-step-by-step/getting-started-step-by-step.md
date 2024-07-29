@@ -363,7 +363,7 @@ To create a nested data structure:
     ```jsonc
     ...
       "dimensions": {
-        "type": "object",
+        "type": "object"
       }
 ```
 

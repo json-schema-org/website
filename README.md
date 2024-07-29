@@ -40,6 +40,19 @@ git submodule init
 git submodule update
 ```
 
+### Setup Enviroment Variables 
+
+1. Create a new `.env` file by copying the contents of the `.env.example` into `.env` file. Use this command:
+```
+cp .env.example .env
+```
+2. Open .env and fill in your actual values for each variable.
+
+3. Save the file.
+
+4. Ensure .env is in your .gitignore.
+
+
 #### Install dependencies
 
 Install dependencies
