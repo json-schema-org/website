@@ -515,7 +515,7 @@ example bundled into a Compound Schema Document.
 
   "$defs": {
     "address": {
-      "$id": "https://example.com/schemas/customer",
+      "$id": "https://example.com/schemas/address",
       "$schema": "http://json-schema.org/draft-07/schema#",
 
       "type": "object",
