@@ -1,0 +1,84 @@
+#################### 🚧 WARNING: READ THIS BEFORE USING THIS FILE 🚧 ####################
+#
+#
+#
+# IF YOU DON'T KNOW WHAT YOU'RE DOING, YOU CAN EASILY LEAK SECRETS BY USING A
+# `pull_request_target` WORKFLOW INSTEAD OF `pull_request`! SERIOUSLY, DO NOT
+# BLINDLY COPY AND PASTE THIS FILE WITHOUT UNDERSTANDING THE FULL IMPLICATIONS
+# OF WHAT YOU'RE DOING! WE HAVE TESTED THIS FOR OUR OWN USE CASES, WHICH ARE
+# NOT NECESSARILY THE SAME AS YOURS! WHILE WE AREN'T EXPOSING ANY OF OUR SECRETS,
+# ONE COULD EASILY DO SO BY MODIFYING OR ADDING A STEP TO THIS WORKFLOW!
+#
+#
+#
+#################### 🚧 WARNING: READ THIS BEFORE USING THIS FILE 🚧 ####################
+
+name: Preview Deployment
+on:
+    pull_request_target:
+
+# cancel in-progress runs on new commits to same PR (github.event.number)
+concurrency:
+    group: ${{ github.workflow }}-${{ github.event.number || github.sha }}
+    cancel-in-progress: true
+
+jobs:
+    deploy-preview:
+        permissions:
+            contents: read
+            pull-requests: write
+            deployments: write
+
+        runs-on: ubuntu-latest
+        name: Deploy Preview to Cloudflare Pages
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+              with:
+                  ref: ${{ github.event.pull_request.head.ref }}
+                  repository: ${{ github.event.pull_request.head.repo.full_name }}
+                  submodules: 'recursive'
+            
+            - name: Get yarn cache directory path
+              id: yarn-cache-dir-path
+              run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+        
+            - name: Cache Node dependencies
+              uses: actions/cache@v4
+              id: yarn-cache
+              with:
+                path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+                restore-keys: |
+                    ${{ runner.os }}-yarn-
+            
+            - name: Cache Next Build
+              uses: actions/cache@v4
+              with:
+                path: |
+                    ${{ steps.yarn-cache-dir-path.outputs.dir }}
+                    ${{ github.workspace }}/.next/cache
+                key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+                restore-keys: |
+                    ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+                
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+               node-version: 20
+        
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
+
+            - name: Build Site
+              run: yarn run build
+
+            - name: Deploy to Cloudflare Pages
+              uses: AdrianGonz97/refined-cf-pages-action@v1
+              with:
+                  apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+                  accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                  githubToken: ${{ secrets.GITHUB_TOKEN }}
+                  projectName: ${{ vars.CF_PROJECT_NAME }}
+                  directory: out
+                  deploymentName: Preview
