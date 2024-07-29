@@ -1,0 +1,11 @@
+{
+  "$id": "https://example.com/enumerated-values.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Enumerated Values",
+  "type": "object",
+  "properties": {
+    "data": {
+      "enum": [42, true, "hello", null, [1, 2, 3]]
+    }
+  }
+}
