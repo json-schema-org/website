@@ -72,12 +72,15 @@ jobs:
 
             - name: Build Site
               run: yarn run build
+              env:
+                NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
+                NEXT_PUBLIC_ALGOLIA_API_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_API_KEY }}
 
             - name: Deploy to Cloudflare Pages
               uses: AdrianGonz97/refined-cf-pages-action@v1
               with:
-                  apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-                  accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+                  apiToken: ${{ secrets.CF_API_TOKEN }}
+                  accountId: ${{ secrets.CF_ACCOUNT_ID }}
                   githubToken: ${{ secrets.GITHUB_TOKEN }}
                   projectName: ${{ vars.CF_PROJECT_NAME }}
                   directory: out
