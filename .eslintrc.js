@@ -3,6 +3,7 @@ module.exports = {
     es2021: true,
     node: true,
     browser: true,
+    "cypress/globals": true
   },
   settings: {
     react: {
@@ -16,6 +17,7 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:@next/next/recommended',
     'plugin:prettier/recommended',
+    'plugin:cypress/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -25,7 +27,7 @@ module.exports = {
     ecmaVersion: 12,
     sourceType: 'module',
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'prettier', 'cypress'],
   rules: {
     'array-bracket-spacing': ['error', 'never'],
     'object-curly-spacing': ['error', 'always'],
