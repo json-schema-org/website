@@ -3,6 +3,7 @@ import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Highlight from 'react-syntax-highlighter';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
+import Image from 'next/image';
 
 async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
@@ -237,9 +238,19 @@ const GettingStarted = () => {
             <p>{details[0]}</p>
 
             {details[1] ? (
-              <img src='/icons/green-tick.svg' alt='green tick' />
+              <Image
+                src='/icons/green-tick.svg'
+                alt='green tick'
+                width={20}
+                height={20}
+              />
             ) : (
-              <img src='/icons/red-cross.svg' alt='red cross' />
+              <Image
+                src='/icons/red-cross.svg'
+                alt='red cross'
+                width={20}
+                height={20}
+              />
             )}
           </div>
         </div>

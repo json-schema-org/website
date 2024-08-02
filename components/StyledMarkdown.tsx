@@ -378,7 +378,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ label }) => {
                 return (
                   <div className='flex flex-row items-center text-blue-500 text-lg font-semibold mb-6 mt-10'>
-                    <img src='/icons/star.svg' className='h-5 w-5 mr-2 mb-1' />
+                    <Image
+                      src='/icons/star.svg'
+                      alt='star icon'
+                      className='w-5 mr-2 mb-1'
+                    />
                     {label}
                   </div>
                 );
@@ -388,7 +392,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ label }) => {
                 return (
                   <div className='inline-flex flex-row items-center text-blue-500 font-semibold'>
-                    <img src='/icons/star.svg' className='h-3 w-3 mr-1' />
+                    <Image
+                      src='/icons/star.svg'
+                      alt='star icon'
+                      className='h-3 w-3 mr-1'
+                    />
                     {label}
                   </div>
                 );
@@ -404,7 +412,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/info-yellow.svg'
                         className='h-7 w-7 mr-3'
                         alt=''
@@ -425,7 +433,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded dark:bg-slate-900 dark:text-slate-300 text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/info-blue.svg'
                         className='h-7 w-7 mr-3'
                         alt=''
@@ -446,7 +454,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-green-50 px-6 py-4 border border-green-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/bulb.svg'
                         className='h-7 w-7 mr-3'
                         alt=''
@@ -467,7 +475,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-red-50 px-6 py-4 border border-red-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/warning.svg'
                         className='h-7 w-7 mr-3'
                         alt=''

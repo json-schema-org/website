@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import TextTruncate from 'react-text-truncate';
+
 export interface CardProps {
   title: string;
   body: string;
@@ -36,13 +38,18 @@ const CardBody = ({
     <div className='group relative h-full w-full rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30'>
       <div className='flex justify-center '>
         {image && (
-          <img src={image} className='h-32 p-2' data-test='card-image' />
+          <Image
+            src={image}
+            alt={title}
+            className='h-32 p-2'
+            data-test='card-image'
+          />
         )}
       </div>
       <div className='flex flex-row items-start mb-6'>
         {icon && (
           <span className='mr-6 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg border bg-blue-200 px-3 text-gray-900 dark:text-white'>
-            <img
+            <Image
               src={icon}
               alt={title}
               className='h-full w-full'

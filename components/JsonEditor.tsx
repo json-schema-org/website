@@ -5,6 +5,7 @@ import classnames from 'classnames';
 import getPartsOfJson, { SyntaxPart } from '~/lib/getPartsOfJson';
 import jsonSchemaReferences from './jsonSchemaLinks';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import { FullMarkdownContext } from '~/context';
 import getScopesOfParsedJsonSchema, {
   JsonSchemaPathWithScope,
@@ -279,21 +280,28 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
               setTimeout(() => setCopied(false), 2000);
             }}
           >
-            <img
+            <Image
               src='/icons/copy.svg'
+              alt='Copy to clipboard'
               title='Copy to clipboard'
               className={`opacity-50 hover:opacity-90 duration-150 ${copied ? 'hidden' : ''}`}
-            ></img>
-            <img
+            />
+            <Image
               src='/icons/copied.svg'
+              alt='Copied!'
               title='Copied!'
               className={copied ? '' : 'hidden'}
-            ></img>
+            />
           </div>
           <div className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
             {isJsonSchema ? (
               <>
-                <img src='/logo-white.svg' className='h-4 mr-1.5' /> schema
+                <Image
+                  src='/logo-white.svg'
+                  alt='Logo'
+                  className='h-4 mr-1.5'
+                />
+                schema
               </>
             ) : (
               <>data</>
@@ -421,13 +429,21 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
 
         {validation === 'invalid' && (
           <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'>
-            <img src='/icons/x-mark.svg' className='h-4 w-4 mr-2' />
+            <Image
+              src='/icons/x-mark.svg'
+              alt='X mark icon'
+              className='h-4 w-4 mr-2'
+            />
             not compliant to schema
           </div>
         )}
         {validation === 'valid' && (
           <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-slate-500/30 text-sm'>
-            <img src='/icons/checkmark.svg' className='h-5 w-5 mr-2' />
+            <Image
+              src='/icons/checkmark.svg'
+              alt='Checkmark icon'
+              className='h-5 w-5 mr-2'
+            />
             compliant to schema
           </div>
         )}

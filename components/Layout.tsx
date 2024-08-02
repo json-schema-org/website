@@ -10,6 +10,7 @@ import { useTheme } from 'next-themes';
 import DarkModeToggle from './DarkModeToggle';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import ScrollButton from './ScrollButton';
+import Image from 'next/image';
 
 type Props = {
   children: React.ReactNode;
@@ -323,7 +324,11 @@ const Footer = () => (
   >
     <div className='max-w-[1400px] mx-auto mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
-        <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
+        <Image
+          src='/img/logos/logo-white.svg'
+          alt='Logo'
+          className='w-[150px] mb-6'
+        />
         <div className='flex flex-col text-center sm:text-left'>
           <a
             href='https://opencollective.com/json-schema'
@@ -344,8 +349,9 @@ const Footer = () => (
             href='https://json-schema.org/slack'
             className='flex items-center text-white'
           >
-            <img
+            <Image
               src='/img/logos/slack_logo_small-white.svg'
+              alt='Slack Logo'
               className='w-4 h-4 mr-2'
             />
             Slack
@@ -356,7 +362,11 @@ const Footer = () => (
             href='https://twitter.com/jsonschema'
             className='flex items-center text-white'
           >
-            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
+            <Image
+              src='/img/logos/x-twitter.svg'
+              alt='Twitter logo'
+              className='w-4 h-4 mr-2'
+            />
             Twitter
           </a>
         </div>
@@ -365,8 +375,9 @@ const Footer = () => (
             href='https://linkedin.com/company/jsonschema/'
             className='flex items-center text-white'
           >
-            <img
+            <Image
               src='/img/logos/icons8-linkedin-2.svg'
+              alt='LinkedIn Icon'
               className='w-4 h-4 mr-2'
             />
             LinkedIn
@@ -377,7 +388,11 @@ const Footer = () => (
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
             className='flex items-center text-white'
           >
-            <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
+            <Image
+              src='/img/logos/icons8-youtube.svg'
+              alt='YouTube logo'
+              className='w-4 h-4 mr-2'
+            />
             Youtube
           </a>
         </div>
@@ -386,8 +401,9 @@ const Footer = () => (
             href='https://github.com/json-schema-org'
             className='flex items-center text-white'
           >
-            <img
+            <Image
               src='/img/logos/github_logo-white.svg'
+              alt='GitHub logo'
               className='w-4 h-4 mr-2'
             />
             GitHub
@@ -419,7 +435,11 @@ const Logo = () => {
   return (
     <div>
       <Link href='/' className=''>
-        <img src={imageSrc} className='h-12 mr-2 ' />
+        <Image
+          src={imageSrc}
+          alt='Description of the image'
+          className='h-12 mr-2'
+        />
       </Link>
     </div>
   );

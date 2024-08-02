@@ -1,5 +1,6 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 import React from 'react';
 
 function ListItem({
@@ -46,7 +47,7 @@ export default function DarkModeToggle() {
         onClick={() => setShowSelect(!showSelect)}
         className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
       >
-        <img
+        <Image
           src={activeThemeIcon}
           alt='Dark Mode'
           width={25}
@@ -66,8 +67,8 @@ export default function DarkModeToggle() {
         tabIndex={0}
       >
         <ListItem onClick={() => setTheme('system')}>
-          <img
-            src={'/icons/theme-switch.svg'}
+          <Image
+            src='/icons/theme-switch.svg'
             alt='System theme'
             width={18}
             height={18}
@@ -76,8 +77,8 @@ export default function DarkModeToggle() {
           System
         </ListItem>
         <ListItem onClick={() => setTheme('light')}>
-          <img
-            src={'/icons/sun.svg'}
+          <Image
+            src='/icons/sun.svg'
             alt='System theme'
             width={18}
             height={18}
@@ -86,8 +87,8 @@ export default function DarkModeToggle() {
           Light
         </ListItem>
         <ListItem onClick={() => setTheme('dark')}>
-          <img
-            src={'/icons/moon.svg'}
+          <Image
+            src='/icons/moon.svg'
             alt='System theme'
             width={18}
             height={18}
