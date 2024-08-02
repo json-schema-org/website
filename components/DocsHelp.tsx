@@ -20,7 +20,6 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
     const formData = new FormData(feedbackFormRef.current!);
     formData.append('page', router.asPath);
     setIsSubmitting(true);
-
     try {
       const response = await fetch(
         'https://feedback-collector.json-schema.workers.dev/submit',
@@ -148,26 +147,123 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
                 {isFormOpen && (
                   <div>
                     <div className='mb-4'>
-                      <p>
-                        <label
-                          className='mb-1 block'
-                          htmlFor='feedback-comment'
-                        >
-                          <span className='font-bold text-[14px] block'>
-                            Let us know your Feedback
-                          </span>
-                          <span className='float-right text-[#7d8590] text-[14px] block'>
-                            Optional
-                          </span>
-                        </label>
-                      </p>
-                      <textarea
-                        className='py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid border-[#aaaaaa] rounded-md w-full overflow-hidden'
-                        name='feedback-comment'
-                        id='feedback-comment'
-                      />
+                      <div className='mb-4'>
+                        <p>
+                          <label className='mb-1 block'>
+                            <span className='font-bold text-[14px] block'>
+                              Could you find what you were looking for?
+                            </span>
+                          </label>
+                        </p>
+                        <div className='flex gap-3'>
+                          <label className='flex items-center'>
+                            <input
+                              type='radio'
+                              name='feedback-search'
+                              value='Yes'
+                              className='mr-2'
+                            />
+                            Yes
+                          </label>
+                          <label className='flex items-center'>
+                            <input
+                              type='radio'
+                              name='feedback-search'
+                              value='No'
+                              className='mr-2'
+                            />
+                            No
+                          </label>
+                        </div>
+                      </div>
+                      <div className='mb-4'>
+                        <p>
+                          <label className='mb-1 block'>
+                            <span className='font-bold text-[14px] block'>
+                              Was it accurate?
+                            </span>
+                          </label>
+                        </p>
+                        <div className='flex gap-3'>
+                          <label className='flex items-center'>
+                            <input
+                              type='radio'
+                              name='feedback-accuracy'
+                              value='Yes'
+                              className='mr-2'
+                            />
+                            Yes
+                          </label>
+                          <label className='flex items-center'>
+                            <input
+                              type='radio'
+                              name='feedback-accuracy'
+                              value='No'
+                              className='mr-2'
+                            />
+                            No
+                          </label>
+                        </div>
+                      </div>
+                      <div className='mb-4'>
+                        <p>
+                          <label className='mb-1 block'>
+                            <span className='font-bold text-[14px] block'>
+                              Was it relevant?
+                            </span>
+                          </label>
+                        </p>
+                        <div className='flex gap-3'>
+                          <label className='flex items-center'>
+                            <input
+                              type='radio'
+                              name='feedback-relevant'
+                              value='Yes'
+                              className='mr-2'
+                            />
+                            Yes
+                          </label>
+                          <label className='flex items-center'>
+                            <input
+                              type='radio'
+                              name='feedback-relevant'
+                              value='No'
+                              className='mr-2'
+                            />
+                            No
+                          </label>
+                        </div>
+                      </div>
+                      <div className='mb-4'>
+                        <p>
+                          <label className='mb-1 block'>
+                            <span className='font-bold text-[14px] block'>
+                              Was it easy to understand?
+                            </span>
+                          </label>
+                        </p>
+                        <div className='flex gap-3'>
+                          <label className='flex items-center'>
+                            <input
+                              type='radio'
+                              name='feedback-understand'
+                              value='Yes'
+                              className='mr-2'
+                            />
+                            Yes
+                          </label>
+                          <label className='flex items-center'>
+                            <input
+                              type='radio'
+                              name='feedback-understand'
+                              value='No'
+                              className='mr-2'
+                            />
+                            No
+                          </label>
+                        </div>
+                      </div>
                     </div>
-
                     <div className='flex justify-start items-center mt-1 text-[14px]'>
                       <button
                         type='submit'
