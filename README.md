@@ -52,6 +52,68 @@ cp .env.example .env
 
 4. Ensure .env is in your .gitignore.
 
+### Setup Corepack
+
+This project uses modern Yarn (yarn@4.4.0), which requires Corepack for proper setup and management of package managers. Corepack is a tool that comes with Node.js 14.19.0 and later, allowing for consistent package manager versions across your project.
+
+#### What is Corepack?
+
+Corepack is an experimental tool to help with managing versions of your package managers. It exposes binary proxies for each supported package manager that, when called, will identify whatever package manager is configured for the current project, download it if needed, and finally run it.
+
+
+#### Installing Corepack
+
+If you're using Node.js version 14.19.0 or later, Corepack is included but might need to be enabled. For Node.js 16.10 or later, Corepack is available by default but might still need to be enabled.
+
+To enable Corepack, run:
+
+```bash
+corepack enable
+```
+
+If you're using an older version of Node.js or if the above command doesn't work, you can install Corepack globally using npm:
+
+```bash
+npm install -g corepack
+```
+
+#### Using Corepack with This Project
+
+Once Corepack is enabled or installed, it will automatically use the correct version of Yarn specified in the project's `package.json` file. You don't need to manually install Yarn.
+
+To use Yarn commands, simply run them as usual:
+
+```bash
+yarn install
+yarn run build
+yarn run dev
+```
+
+Corepack will ensure that the correct version of Yarn is used for these commands.
+
+#### Updating Yarn Version
+
+If you need to update the Yarn version used in the project:
+
+1. Update the `packageManager` field in `package.json`:
+   ```json
+   {
+     "packageManager": "yarn@x.y.z"
+   }
+   ```
+2. Run `yarn set version x.y.z` to update the local Yarn version.
+
+#### Troubleshooting
+
+If you encounter any issues with Yarn commands, try running:
+
+```bash
+corepack prepare
+```
+
+This will ensure that the correct version of Yarn is downloaded and prepared for use.
+
+For more information about Corepack, refer to the [official Node.js documentation](https://nodejs.org/api/corepack.html).
 
 #### Install dependencies
 
