@@ -13,39 +13,57 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-    
-      - name: Cache Node dependencies
-        uses: actions/cache@v4
-        id: yarn-cache
-        with:
-          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      
-      - if: ${{ steps.yarn-cache.outputs.cache-hit != 'true' }}
-        name: List the state of node modules
-        continue-on-error: true
-        run: yarn list
 
+      - name: Corepack enable 
+        run: corepack enable
+        
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: 'yarn'
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
+        run: yarn install --immutable
 
       - name: Linting and Formatting checks
         run: yarn run lint
 
       - name: Type checking
         run: yarn run typecheck
+
+  testing-and-coverage:
+    name: Testing and Coverage
+    needs: [code-quality-checks]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
+
+      - name: Install dependencies
+        run: yarn install --immutable
+
+      - name: Run development server
+        run: yarn run dev &
+
+      - name: Run tests and generate coverage report
+        run: yarn run test:coverage:all
+
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v4.5.0
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          name: ${{ env.CODECOV_UNIQUE_NAME }}
+          verbose: true
+          fail_ci_if_error: true
 
   check-unauthorized-file-changes:
     name: Check Unauthorized File Changes
@@ -94,36 +112,3 @@ jobs:
             echo "$file is unauthorized to change/delete"
           done
           exit 1
-
-  testing-and-coverage:
-    name: Testing and Coverage
-    needs: [code-quality-checks]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'yarn'
-
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Run development server
-        run: yarn run dev &
-
-      - name: Run tests and generate coverage report
-        run: yarn run test:coverage:all
-
-      - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          name: ${{ env.CODECOV_UNIQUE_NAME }}
-          verbose: true
-          fail_ci_if_error: true

@@ -13,9 +13,11 @@ jobs:
     steps:
       - name: Checkout Repository  
         uses: actions/checkout@v4
+        with:
+          submodules: 'recursive'
 
-      - name: Submodule
-        run: git submodule update --init --recursive
+      - name: Corepack enable
+        run: corepack enable
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -30,8 +32,8 @@ jobs:
           private-key: ${{ secrets.PRIVATE_KEY }}
 
       - name: Install Dependencies
-        run: yarn install --frozen-lockfile
-
+        run: yarn install --immutable
+        
       - name: Serve App Locally
         run: yarn run dev &
 
