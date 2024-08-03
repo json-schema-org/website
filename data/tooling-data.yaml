@@ -901,6 +901,8 @@
   supportedDialects:
     draft: [6, 7, 2019-09, 2020-12]
   toolingListingNotes: 'Powered by JsonSchema.Net in Blazor WASM for client-side validation'
+  landscape:
+    logo: 'json-everything.svg'
   lastUpdated: '2022-08-31'
 
 - name: jschon.dev

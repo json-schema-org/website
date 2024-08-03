@@ -5,27 +5,32 @@ import React, {
   useRef,
   useState,
 } from 'react';
+import { useTheme } from 'next-themes';
+
+import FilterIcon from '~/public/icons/filter.svg';
+
 import DropdownMenu from './ui/DropdownMenu';
 import SearchBar from './SearchBar';
 import Checkbox from './ui/Checkbox';
-import { type UniqueValuesPerField } from '../lib/getUniqueValuesPerField';
 import toTitleCase from '../lib/toTitleCase';
-import { useTheme } from 'next-themes';
-import { Preferences } from '../hooks/usePreferences';
+import type { Transform } from '../hooks/useToolsTransform';
+import type { FilterCriteriaFields } from '../index.page';
+
+interface SidebarProps {
+  filterCriteria: Record<FilterCriteriaFields, string[]>;
+  transform: Transform;
+  setTransform: Dispatch<SetStateAction<Transform>>;
+  resetTransform: () => void;
+  setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
+}
 
 export default function Sidebar({
-  uniqueValuesPerField,
-  preferences,
-  setPreferences,
-  resetPreferences,
+  filterCriteria,
+  transform,
+  setTransform,
+  resetTransform,
   setIsSidebarOpen,
-}: {
-  uniqueValuesPerField: UniqueValuesPerField;
-  preferences: Preferences;
-  setPreferences: Dispatch<SetStateAction<Preferences>>;
-  resetPreferences: () => void;
-  setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
-}) {
+}: SidebarProps) {
   const filterFormRef = useRef<HTMLFormElement>(null);
   const [filterIcon, setFilterIcon] = useState('');
   const { theme } = useTheme();
@@ -43,43 +48,40 @@ export default function Sidebar({
     if (!filterFormRef.current) return;
     const formData = new FormData(filterFormRef.current);
 
-    setPreferences((prev) => {
-      const updatedPreferences: Preferences = {
-        query: (formData.get('query') as Preferences['query']) || '',
-        groupBy: prev.groupBy || 'toolingTypes',
-        sortBy: prev.sortBy || 'name',
-        sortOrder: prev.sortOrder || 'ascending',
-        languages: formData.getAll('languages').map((value) => value as string),
-        licenses: formData.getAll('licenses').map((value) => value as string),
-        drafts: formData
-          .getAll('drafts')
-          .map((value) => value) as Preferences['drafts'],
-        toolingTypes: formData
-          .getAll('toolingTypes')
-          .map((value) => value as string),
-      };
-      return updatedPreferences;
-    });
+    setTransform((prev) => ({
+      query: (formData.get('query') as Transform['query']) || '',
+      sortBy: prev.sortBy || 'name',
+      sortOrder: prev.sortOrder || 'ascending',
+      groupBy: prev.groupBy || 'toolingTypes',
+      languages: formData.getAll('languages').map((value) => value as string),
+      licenses: formData.getAll('licenses').map((value) => value as string),
+      drafts: formData
+        .getAll('drafts')
+        .map((value) => value) as Transform['drafts'],
+      toolingTypes: formData
+        .getAll('toolingTypes')
+        .map((value) => value as string),
+    }));
     setIsSidebarOpen((prev) => (prev ? false : prev));
   };
 
   const resetHandler = () => {
     if (!filterFormRef.current) return;
     filterFormRef.current.reset();
-    resetPreferences();
+    resetTransform();
     setIsSidebarOpen((prev) => (prev ? false : prev));
   };
 
   return (
     <div className='pb-4 top-12 mx-auto lg:ml-4 lg:mt-8 w-4/5 h-fit'>
       <form onSubmit={submitHandler} ref={filterFormRef} className='w-full'>
-        <SearchBar preferences={preferences} />
+        <SearchBar transform={transform} />
         <DropdownMenu
           label='Languages'
           iconSrc={filterIcon}
           iconAlt='Filter Icon'
         >
-          {uniqueValuesPerField.languages?.map((uniqueValue) => (
+          {filterCriteria.languages?.map((uniqueValue) => (
             <Checkbox
               key={uniqueValue}
               label={uniqueValue}
@@ -89,7 +91,7 @@ export default function Sidebar({
           ))}
         </DropdownMenu>
         <DropdownMenu label='Drafts' iconSrc={filterIcon} iconAlt='Filter Icon'>
-          {uniqueValuesPerField.drafts?.map((uniqueValue) => (
+          {filterCriteria.drafts?.map((uniqueValue) => (
             <Checkbox
               key={uniqueValue}
               label={uniqueValue}
@@ -103,7 +105,7 @@ export default function Sidebar({
           iconSrc={filterIcon}
           iconAlt='Filter Icon'
         >
-          {uniqueValuesPerField.toolingTypes?.map((uniqueValue) => (
+          {filterCriteria.toolingTypes?.map((uniqueValue) => (
             <Checkbox
               key={uniqueValue}
               label={toTitleCase(uniqueValue, '-')}
@@ -117,7 +119,7 @@ export default function Sidebar({
           iconSrc={filterIcon}
           iconAlt='Filter Icon'
         >
-          {uniqueValuesPerField.licenses?.map((uniqueValue) => (
+          {filterCriteria.licenses?.map((uniqueValue) => (
             <Checkbox
               key={uniqueValue}
               label={uniqueValue}
@@ -126,7 +128,7 @@ export default function Sidebar({
             />
           ))}
         </DropdownMenu>
-        <div className='w-full flex items-center justify-between mt-4'>
+        <div className='w-full flex items-center justify-between mt-4 gap-2'>
           <button
             type='submit'
             className='bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none'

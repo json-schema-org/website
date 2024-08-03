@@ -1,43 +1,66 @@
 import React, { useState } from 'react';
 import fs from 'fs';
+import Link from 'next/link';
 import Head from 'next/head';
 import yaml from 'js-yaml';
 
 import { SectionContext } from '~/context';
+import { Headline1 } from '~/components/Headlines';
 import { getLayout } from '~/components/SiteLayout';
 import { DRAFT_ORDER } from '~/lib/config';
-import { Headline1 } from '~/components/Headlines';
 
+import GroupByMenu from './components/GroupByMenu';
 import Sidebar from './components/Sidebar';
 import ToolingTable from './components/ToolingTable/ToolingTable';
-import GroupBySelector from './components/GroupBySelector';
-import usePreferences from './hooks/usePreferences';
+import useToolsTransform from './hooks/useToolsTransform';
+import getDistinctEntries from './lib/getDistinctEntries';
+import type { BowtieEntry, JSONSchemaTool } from './JSONSchemaTool';
 
-import { type JSONSchemaTool } from './JSONSchemaTool';
-import getUniqueValuesPerField, {
-  UniqueValuesPerField,
-} from './lib/getUniqueValuesPerField';
-import Link from 'next/link';
+export type FilterCriteriaFields =
+  | 'languages'
+  | 'drafts'
+  | 'toolingTypes'
+  | 'licenses';
 
 export async function getStaticProps() {
   const toolingData = yaml.load(
     fs.readFileSync('data/tooling-data.yaml', 'utf-8'),
   ) as JSONSchemaTool[];
 
-  const uniqueValuesPerField = {
-    languages: getUniqueValuesPerField(toolingData, '$..languages[*]'),
-    drafts: getUniqueValuesPerField(
+  const res = await fetch(
+    'http://bowtie.report/api/v1/json-schema-org/implementations',
+  );
+
+  const bowtieReport = await res.json();
+
+  toolingData.forEach((tool) => {
+    const bowtieEntry: BowtieEntry = bowtieReport[tool.source];
+
+    if (bowtieEntry) {
+      tool.bowtie = {
+        badges: {
+          supported_versions: bowtieEntry.badges_urls.supported_versions,
+          compliance: bowtieEntry.badges_urls.compliance,
+        },
+        identifier: bowtieEntry.id,
+      };
+    }
+  });
+
+  const filterCriteria = {
+    languages: getDistinctEntries(toolingData, '$..languages[*]'),
+    drafts: getDistinctEntries<JSONSchemaTool[], number | string>(
       toolingData,
       '$..supportedDialects.draft[*]',
       [1, 2, 3],
     ),
-    toolingTypes: getUniqueValuesPerField(toolingData, '$..toolingTypes[*]'),
-    licenses: getUniqueValuesPerField(toolingData, '$..license'),
+    toolingTypes: getDistinctEntries(toolingData, '$..toolingTypes[*]'),
+    licenses: getDistinctEntries(toolingData, '$..license'),
   };
 
-  uniqueValuesPerField.drafts?.sort((a, b) => {
-    const aIndex = DRAFT_ORDER.map(String).indexOf(a);
-    const bIndex = DRAFT_ORDER.map(String).indexOf(b);
+  filterCriteria.drafts?.sort((a, b) => {
+    const aIndex = DRAFT_ORDER.map(String).indexOf(a.toString());
+    const bIndex = DRAFT_ORDER.map(String).indexOf(b.toString());
 
     if (aIndex === -1 && bIndex === -1) {
       return 0;
@@ -53,27 +76,29 @@ export async function getStaticProps() {
   return {
     props: {
       toolingData,
-      uniqueValuesPerField,
+      filterCriteria,
     },
   };
 }
 
+interface ToolingPageProps {
+  toolingData: JSONSchemaTool[];
+  filterCriteria: Record<FilterCriteriaFields, string[]>;
+}
+
 export default function ToolingPage({
   toolingData,
-  uniqueValuesPerField,
-}: {
-  toolingData: JSONSchemaTool[];
-  uniqueValuesPerField: UniqueValuesPerField;
-}) {
+  filterCriteria,
+}: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const {
-    preferredTools,
     numberOfTools,
-    preferences,
-    setPreferences,
-    resetPreferences,
-  } = usePreferences(toolingData);
+    toolsByGroup,
+    transform,
+    setTransform,
+    resetTransform,
+  } = useToolsTransform(toolingData);
 
   return (
     <SectionContext.Provider value='tools'>
@@ -119,10 +144,10 @@ export default function ToolingPage({
               </div>
             </div>
             <Sidebar
-              uniqueValuesPerField={uniqueValuesPerField}
-              preferences={preferences}
-              setPreferences={setPreferences}
-              resetPreferences={resetPreferences}
+              filterCriteria={filterCriteria}
+              transform={transform}
+              setTransform={setTransform}
+              resetTransform={resetTransform}
               setIsSidebarOpen={setIsSidebarOpen}
             />
           </div>
@@ -143,7 +168,7 @@ export default function ToolingPage({
               <div className='flex items-center justify-center gap-2 w-1/2'>
                 <Link
                   className='flex-none max-w-full'
-                  href='https://github.com/json-schema-org/website/issues/'
+                  href='https://github.com/json-schema-org/website/issues/new?assignees=&labels=Status%3A+Triage&template=adding-your-tooling.yml'
                   target='_blank'
                   rel='noreferrer'
                 >
@@ -176,14 +201,11 @@ export default function ToolingPage({
                 </p>
               </div>
             </div>
-            <GroupBySelector
-              preferences={preferences}
-              setPreferences={setPreferences}
-            />
+            <GroupByMenu transform={transform} setTransform={setTransform} />
             <ToolingTable
-              groupedTools={preferredTools}
-              preferences={preferences}
-              setPreferences={setPreferences}
+              toolsByGroup={toolsByGroup}
+              transform={transform}
+              setTransform={setTransform}
             />
           </main>
         </div>

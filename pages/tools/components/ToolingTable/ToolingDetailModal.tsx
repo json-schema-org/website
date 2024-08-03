@@ -42,13 +42,23 @@ export default function ToolingDetailModal({
             </svg>
           </button>
         </div>
-        <div className='mt-4'>
-          <h2 className='text-h1mobile md:text-h4 font-bold '>{tool.name}</h2>
-          {tool.description && (
-            <p className='text-gray-600 dark:text-slate-300 mt-1 text-base'>
-              {tool.description}
-            </p>
+        <div className='mt-4 flex flex-row items-center justify-start gap-2'>
+          {tool.landscape?.logo && (
+            <div className='p-2 flex flex-row items-center dark:bg-white rounded-md flex-none'>
+              <img
+                src={`img/tools/logos/${tool.landscape?.logo}`}
+                className='h-[48px] w-[48px]'
+              />
+            </div>
           )}
+          <div>
+            <h2 className='text-h4 font-bold'>{tool.name}</h2>
+            {tool.description && (
+              <p className='text-gray-600 dark:text-slate-300 mt-1 text-sm md:text-base'>
+                {tool.description}
+              </p>
+            )}
+          </div>
         </div>
         <div className='flex flex-col md:flex-row mt-6'>
           <div className='w-full md:w-1/2 md:pr-4'>
@@ -172,7 +182,7 @@ export default function ToolingDetailModal({
                 <h3 className='text-lg font-semibold'>Supported Dialects</h3>
                 {tool.supportedDialects.draft && (
                   <div className='mt-2'>
-                    <h4 className='font-semibold'>Draft:</h4>
+                    <h4 className='text-[14px] font-semibold'>Draft:</h4>
                     <ul className='list-disc list-inside'>
                       {tool.supportedDialects.draft.map((draft) => (
                         <Badge key={draft}>{draft}</Badge>
@@ -182,7 +192,7 @@ export default function ToolingDetailModal({
                 )}
                 {tool.supportedDialects.additional && (
                   <div className='mt-2'>
-                    <h4 className='font-semibold'>Additional:</h4>
+                    <h4 className='text-[14px] font-semibold'>Additional:</h4>
                     <ul className='list-disc list-inside'>
                       {tool.supportedDialects.additional.map(
                         (additional, index) => (
@@ -204,12 +214,39 @@ export default function ToolingDetailModal({
                 )}
               </div>
             )}
+            {tool.bowtie?.badges && (
+              <div className='mt-4'>
+                <h3 className='text-lg font-semibold'>Bowtie Report</h3>
+                {tool.bowtie.badges.supported_versions && (
+                  <div className='mt-2'>
+                    <h4 className='text-[14px] font-semibold'>
+                      Supported Versions:
+                    </h4>
+                    <BowtieReportBadge
+                      uri={tool.bowtie.badges.supported_versions}
+                    />
+                  </div>
+                )}
+                {tool.bowtie.badges.compliance && (
+                  <div className='mt-2'>
+                    <h4 className='text-[14px] font-semibold'>Compliance:</h4>
+                    {Object.values(tool.bowtie.badges.compliance).map(
+                      (badgeURI) => {
+                        return (
+                          <BowtieReportBadge key={badgeURI} uri={badgeURI} />
+                        );
+                      },
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
             {tool.toolingTypes && (
               <div className='mt-4'>
                 <h3 className='text-lg font-semibold'>Tooling Types</h3>
                 <ul className='list-disc list-inside'>
-                  {tool.toolingTypes.map((type, index) => (
-                    <li key={index}>{toTitleCase(type, '-')}</li>
+                  {tool.toolingTypes.map((type) => (
+                    <Badge key={type}>{toTitleCase(type, '-')}</Badge>
                   ))}
                 </ul>
               </div>
@@ -218,8 +255,8 @@ export default function ToolingDetailModal({
               <div className='mt-4'>
                 <h3 className='text-lg font-semibold'>Languages</h3>
                 <ul className='list-disc list-inside'>
-                  {tool.languages.map((language, index) => (
-                    <li key={index}>{language}</li>
+                  {tool.languages.map((language) => (
+                    <Badge key={language}>{language}</Badge>
                   ))}
                 </ul>
               </div>
@@ -228,8 +265,8 @@ export default function ToolingDetailModal({
               <div className='mt-4'>
                 <h3 className='text-lg font-semibold'>Environments</h3>
                 <ul className='list-disc list-inside'>
-                  {tool.environments.map((environment, index) => (
-                    <li key={index}>{environment}</li>
+                  {tool.environments.map((environment) => (
+                    <Badge key={environment}>{environment}</Badge>
                   ))}
                 </ul>
               </div>
@@ -258,15 +295,15 @@ export default function ToolingDetailModal({
                 </ul>
               </div>
             )}
-            {tool.landscape && (
+            {tool.landscape?.optOut && (
               <div className='mt-4'>
                 <h3 className='text-lg font-semibold'>Landscape</h3>
-                {tool.landscape.logo && (
+                {/* {tool.landscape.logo && (
                   <div className='mt-2'>
                     <h4 className='font-semibold'>Logo:</h4>
                     <p>{tool.landscape.logo}</p>
                   </div>
-                )}
+                )} */}
                 {tool.landscape.optOut !== undefined && (
                   <div className='mt-2'>
                     <h4 className='font-semibold'>Opt-Out:</h4>
@@ -281,3 +318,12 @@ export default function ToolingDetailModal({
     </div>
   );
 }
+
+const BowtieReportBadge = ({ uri }: { uri: string }) => {
+  return (
+    <img
+      className='my-1'
+      src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
+    />
+  );
+};

@@ -21,6 +21,7 @@ export interface JSONSchemaTool {
   };
   bowtie?: {
     identifier: string;
+    badges: BowtieEntry['badges_urls'];
   };
   toolingListingNotes?: string;
   compliance?: {
@@ -41,4 +42,19 @@ export interface Person {
   email?: string;
   username: string;
   platform: 'github' | 'gitlab' | 'bitbucket' | string;
+}
+
+export interface BowtieEntry {
+  id: string;
+  dialects: Array<string>;
+  badges_urls: {
+    supported_versions: string;
+    compliance: {
+      [dialectURI: string]: string;
+    };
+  };
+}
+
+export interface BowtieReport {
+  [source: string]: BowtieEntry;
 }

@@ -6,7 +6,7 @@ import React, {
   useState,
 } from 'react';
 import TableColumnHeader from './TableColumnHeader';
-import { Preferences } from '../../hooks/usePreferences';
+import type { Filters } from '../../hooks/useFilterTools';
 
 const TableSortableColumnHeader = ({
   className,
@@ -16,9 +16,9 @@ const TableSortableColumnHeader = ({
   children,
 }: {
   className: string;
-  sortBy: Preferences['sortBy'];
-  preferences: Preferences;
-  setPreferences: Dispatch<SetStateAction<Preferences>>;
+  sortBy: Filters['sortBy'];
+  preferences: Filters;
+  setPreferences: Dispatch<SetStateAction<Filters>>;
   children: ReactNode;
 }) => {
   const [isSortedBy, setIsSortedBy] = useState(preferences.sortBy === sortBy);

@@ -1,0 +1,164 @@
+name: Add JSON Schema Tool
+description: Submit your tool to be added to the JSON Schema ecosystem.
+title: "Add [Tool Name] to JSON Schema Ecosystem"
+labels: ["Status: Triage"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: "Tool Name"
+      description: "Please provide the name of your tool."
+      placeholder: "Enter the tool name"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "Tool Description"
+      description: "Provide a brief description of your tool."
+      placeholder: "Enter a brief description of the tool"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: toolingTypes
+    attributes:
+      label: "Tooling Types"
+      description: "Select the categories of tooling that best describe your project."
+      options:
+        - label: "validator"
+        - label: "hyper-schema"
+        - label: "benchmarks"
+        - label: "documentation"
+        - label: "LDO-utility"
+        - label: "code-to-schema"
+        - label: "data-to-schema"
+        - label: "model-to-schema"
+        - label: "schema-to-types"
+        - label: "schema-to-code"
+        - label: "schema-to-web-UI"
+        - label: "schema-to-data"
+        - label: "util-general-processing"
+        - label: "util-schema-to-schema"
+        - label: "util-draft-migration"
+        - label: "util-format-conversion"
+        - label: "util-testing"
+        - label: "editor"
+        - label: "editor-plugins"
+        - label: "schema-repository"
+        - label: "linter"
+        - label: "linter-plugins"
+    validations:
+      required: true
+
+  - type: textarea
+    id: languages
+    attributes:
+      label: "Languages"
+      description: "List the languages your tool is built in or supports."
+      placeholder: "Enter the languages"
+
+  - type: textarea
+    id: environments
+    attributes:
+      label: "Environments"
+      description: "List the platforms or environments in which your tool operates."
+      placeholder: "Enter the environments"
+
+  - type: textarea
+    id: dependsOnValidators
+    attributes:
+      label: "Dependencies on Validators"
+      description: "If your tool depends on other validators, please provide their URLs."
+      placeholder: "Enter URLs of dependent validators"
+
+  - type: textarea
+    id: creators
+    attributes:
+      label: "Creators"
+      description: "Provide information about the creators or authors of the project."
+      placeholder: "Provide information about the creators or authors of the project. Include their username and platform."
+
+  - type: textarea
+    id: maintainers
+    attributes:
+      label: "Maintainers"
+      description: "Provide information about the maintainers or authors of the project."
+      placeholder: "Provide information about the maintianer or authors of the project. Include their username and platform."
+
+  - type: input
+    id: license
+    attributes:
+      label: "License"
+      description: "Specify the license under which your project is distributed."
+      placeholder: "Enter the license"
+    validations:
+      required: true
+
+  - type: input
+    id: source
+    attributes:
+      label: "Source Repository URL"
+      description: "Provide the URL of your project's repository."
+      placeholder: "Enter the source URL"
+    validations:
+      required: true
+
+  - type: input
+    id: homepage
+    attributes:
+      label: "Homepage URL"
+      description: "Provide the URL of your project's homepage."
+      placeholder: "Enter the homepage URL"
+
+  - type: checkboxes
+    id: supportedDialects
+    attributes:
+      label: "Supported Dialects"
+      description: "List the supported JSON Schema dialects. Use the draft version identifiers from the list below."
+      options:
+        - label: "1"
+        - label: "2"
+        - label: "3"
+        - label: "4"
+        - label: "5"
+        - label: "6"
+        - label: "7"
+        - label: "2019-09"
+        - label: "2020-12"
+
+  - type: textarea
+    id: additionalDialects
+    attributes:
+      label: "Additional Dialects"
+      description: "If there are additional dialects supported, provide their name and source URL."
+      placeholder: "Enter the additional dialects."
+
+  - type: input
+    id: bowtieIdentifier
+    attributes:
+      label: "Bowtie Compliance Testing"
+      description: "If your tool is tested by Bowtie, provide the Bowtie identifier."
+      placeholder: "Enter the Bowtie identifier"
+
+  - type: textarea
+    id: toolingListingNotes
+    attributes:
+      label: "Tooling Listing Notes"
+      description: "Add any notes about the tooling which will appear in the tooling listing on the website."
+      placeholder: "Enter the tooling listing notes."
+
+  - type: textarea
+    id: compliance
+    attributes:
+      label: "Compliance"
+      description: "Provide details on what must be done to make the implementation the most compliant that it can be."
+      placeholder: "Enter the compliance details."
+
+  - type: textarea
+    id: landscape
+    attributes:
+      label: "Landscape Information"
+      description: "Provide additional information for the JSON Schema landscape diagram. Such as your logo or link to your logo. If you want to optOut of the landscape."
+      placeholder: "Enter the landscape information and preferences."
