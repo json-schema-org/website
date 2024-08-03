@@ -2,6 +2,9 @@ name: CI
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+  push:
+    branches:
+      - main
 
 env:
   CODECOV_UNIQUE_NAME: CODECOV_UNIQUE_NAME-${{ github.run_id }}-${{ github.run_number }}
@@ -42,6 +45,9 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Corepack enable
+        run: corepack enable
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -64,10 +70,10 @@ jobs:
           name: ${{ env.CODECOV_UNIQUE_NAME }}
           verbose: true
           fail_ci_if_error: true
-
+          
   check-unauthorized-file-changes:
     name: Check Unauthorized File Changes
-    if: ${{github.actor != 'dependabot[bot]'}} 
+    if: ${{github.actor != 'dependabot[bot]'}} && ${{github.event_name == 'pull_request'}}
     runs-on: ubuntu-latest
     steps: 
       - name: Checkout code
