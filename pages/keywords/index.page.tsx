@@ -27,52 +27,48 @@ export default function StaticMarkdownPage({ datas }: { datas: any }) {
         <title>JSON Schema - Keywords</title>
       </Head>
       {datas.map((data: any, index: number) => (
-        <>
-          <Headline1 key={index}> {data.title}</Headline1>
+        <div key={index}>
+          <Headline1> {data.title}</Headline1>
           <p className='text-slate-600 block leading-7 dark:text-slate-300'>
             {data.description}
           </p>
+
           <div>
             {data.categorys.map((category: any, index: number) => (
-              <>
-                <div key={index}>
-                  <Headline3> {category.name}</Headline3>
-                </div>
+              <div key={index}>
+                <Headline3> {category.name}</Headline3>
                 <table className='table-auto border-collapse w-full bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300'>
                   <tbody>
                     {category.keywords.map((keyword: any) => (
-                      <>
-                        <tr
-                          key={index}
-                          className='dark:hover:bg-slate-950 hover:bg-slate-300'
-                        >
-                          <td className='border text-center border-slate-400 dark:border-slate-500 p-2'>
-                            {keyword.name}
-                          </td>
-                          <td className='border border-slate-400 dark:border-slate-500 p-2 '>
-                            {keyword.links.map((link: any) => (
-                              <>
-                                <Link
-                                  href={link}
-                                  className='text-linkBlue hover:text-blue-700'
-                                  target='_blank'
-                                >
-                                  <p className='m-1  text-[14px] tracking-wider'>
-                                    {link}
-                                  </p>
-                                </Link>
-                              </>
-                            ))}
-                          </td>
-                        </tr>
-                      </>
+                      <tr
+                        key={index}
+                        className='dark:hover:bg-slate-950 hover:bg-slate-300'
+                      >
+                        <td className='border text-center border-slate-400 dark:border-slate-500 p-2'>
+                          {keyword.name}
+                        </td>
+                        <td className='border border-slate-400 dark:border-slate-500 p-2 '>
+                          {keyword.links.map((link: any, index: number) => (
+                            <Link
+                              href={link}
+                              key={index}
+                              className='text-linkBlue hover:text-blue-700'
+                              target='_blank'
+                            >
+                              <p className='m-1  text-[14px] tracking-wider'>
+                                {link}
+                              </p>
+                            </Link>
+                          ))}
+                        </td>
+                      </tr>
                     ))}
                   </tbody>
-                </table>
-              </>
+                </table>{' '}
+              </div>
             ))}
           </div>
-        </>
+        </div>
       ))}
 
       <DocsHelp markdownFile={markdownFile} />
