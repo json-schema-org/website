@@ -436,6 +436,7 @@ export const DocsNav = ({
               label='Other examples'
               setOpen={setOpen}
             />
+            <DocLink uri='/keywords' label='Keywords' setOpen={setOpen} />
           </div>
         </div>
       </div>

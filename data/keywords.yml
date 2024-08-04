@@ -1,0 +1,248 @@
+- title: JSON Schema Keywords
+  description: >-
+    JSON Schema keywords are the building blocks of JSON Schema. They are used
+    to define the structure of a JSON document
+  categorys:
+    - name: Core
+      keywords:
+        - name: $anchor
+          links:
+            - 'https://json-schema.org/learn/json-schema-examples#ecommerce-system'
+            - 'https://json-schema.org/understanding-json-schema/structuring#anchor'
+            - 'https://www.learnjsonschema.com/2020-12/core/anchor'
+        - name: $comment
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/comments#comments'
+            - 'https://www.learnjsonschema.com/2020-12/core/comment'
+        - name: $defs
+          links:
+            - 'https://json-schema.org/learn/miscellaneous-examples'
+            - 'https://json-schema.org/understanding-json-schema/structuring#defs'
+            - 'https://www.learnjsonschema.com/2020-12/core/defs'
+        - name: $dynamicAnchor
+          links:
+            - 'https://www.learnjsonschema.com/2020-12/core/dynamicanchor'
+        - name: $dynamicRef
+          links:
+            - 'https://www.learnjsonschema.com/2020-12/core/dynamicref'
+        - name: $id
+          links:
+            - 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+            - 'https://json-schema.org/understanding-json-schema/basics#declaring-a-unique-identifier'
+            - 'https://www.learnjsonschema.com/2020-12/core/id'
+        - name: $ref
+          links:
+            - 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+            - 'https://json-schema.org/understanding-json-schema/basics#declaring-a-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+            - 'https://json-schema.org/understanding-json-schema/structuring#id'
+            - 'https://www.learnjsonschema.com/2020-12/core/ref'
+        - name: $schema
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/schema'
+            - 'https://www.learnjsonschema.com/2020-12/core/schema'
+        - name: $vocabulary
+          links:
+            - 'https://www.learnjsonschema.com/2020-12/core/vocabulary'
+    - name: Applicator
+      keywords:
+        - name: additionalProperties
+          links:
+            - 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/object#additionalproperties'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/additionalproperties'
+        - name: allOf
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+            - 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/allof'
+        - name: anyOf
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+            - 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/anyof'
+        - name: contains
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/array#contains'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/contains'
+        - name: else
+          links:
+            - 'https://json-schema.org/learn/miscellaneous-examples'
+            - 'https://json-schema.org/understanding-json-schema/reference/conditionals#ifthenelse'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/else'
+        - name: if
+          links:
+            - 'https://json-schema.org/learn/miscellaneous-examples'
+            - 'https://json-schema.org/understanding-json-schema/reference/conditionals#ifthenelse'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/if'
+        - name: items
+          links:
+            - 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/array#items'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/items'
+        - name: not
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/not'
+        - name: oneOf
+          links:
+            - 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+            - 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/oneof'
+        - name: patternProperties
+          links:
+            - 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/object#patternProperties'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/patternproperties'
+        - name: prefixitems
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/array#tupleValidation'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/prefixitems'
+        - name: properties
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/object#properties'
+            - 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/properties'
+        - name: propertynames
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/object#propertyNames'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/propertynames'
+        - name: then
+          links:
+            - 'https://json-schema.org/learn/miscellaneous-examples'
+            - 'https://json-schema.org/understanding-json-schema/reference/conditionals#ifthenelse'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/then'
+    - name: Validation
+      keywords:
+        - name: const
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/const#constant-values'
+            - 'https://www.learnjsonschema.com/2020-12/validation/const'
+        - name: dependentRequired
+          links:
+            - 'https://json-schema.org/learn/miscellaneous-examples'
+            - 'https://json-schema.org/understanding-json-schema/reference/conditionals#applying-subschemas-conditionally'
+            - 'https://www.learnjsonschema.com/2020-12/validation/dependentrequired'
+        - name: dependentSchemas
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/conditionals#dependentSchemas'
+            - 'https://www.learnjsonschema.com/2020-12/applicator/dependentschemas'
+        - name: enum
+          links:
+            - 'https://json-schema.org/learn/miscellaneous-examples'
+            - 'https://json-schema.org/understanding-json-schema/reference/enum#enumerated-values'
+            - 'https://www.learnjsonschema.com/2020-12/validation/enum'
+        - name: exclusiveMaximum
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/numeric#range'
+            - 'https://www.learnjsonschema.com/2020-12/validation/exclusivemaximum'
+        - name: exclusiveMinimum
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/numeric#range'
+            - 'https://www.learnjsonschema.com/2020-12/validation/exclusiveminimum'
+        - name: maxContains
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/array#mincontains-maxcontains'
+            - 'https://www.learnjsonschema.com/2020-12/validation/maxcontains'
+        - name: maximum
+          links:
+            - 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/numeric#range'
+            - 'https://www.learnjsonschema.com/2020-12/validation/maximum'
+        - name: minitems
+          links:
+            - 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/array#length'
+            - 'https://www.learnjsonschema.com/2020-12/validation/minitems'
+        - name: minLength
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/string#length'
+            - 'https://www.learnjsonschema.com/2020-12/validation/minitems'
+            - 'https://www.learnjsonschema.com/2020-12/validation/minLength'
+        - name: minProperties
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/object#size'
+            - 'https://json-schema.org/draft/2020-12/json-schema-validation#name-minproperties'
+            - 'https://www.learnjsonschema.com/2020-12/validation/minProperties'
+        - name: multipleOf
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/numeric#multiples'
+            - 'https://www.learnjsonschema.com/2020-12/validation/multipleof'
+        - name: pattern
+          links:
+            - 'https://json-schema.org/learn/miscellaneous-examples'
+            - 'https://json-schema.org/understanding-json-schema/reference/string#regexp'
+            - 'https://www.learnjsonschema.com/2020-12/validation/pattern'
+        - name: required
+          links:
+            - 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/object#extending'
+            - 'https://www.learnjsonschema.com/2020-12/validation/required'
+        - name: type
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/type'
+            - 'https://json-schema.org/understanding-json-schema/basics#the-type-keyword'
+            - 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+            - 'https://www.learnjsonschema.com/2020-12/validation/type'
+        - name: uniqueItems
+          links:
+            - 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+            - 'https://json-schema.org/understanding-json-schema/reference/array#uniqueItems'
+            - 'https://www.learnjsonschema.com/2020-12/validation/uniqueitems'
+    - name: Content
+      keywords:
+        - name: contentEncoding
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/non_json_data#contentencoding'
+            - 'https://www.learnjsonschema.com/2020-12/content/contentencoding'
+        - name: contentMediaType
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/non_json_data#contentmediatype'
+            - 'https://www.learnjsonschema.com/2020-12/content/contentmediatype'
+        - name: contentschema
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/non_json_data#contentschema'
+            - 'https://www.learnjsonschema.com/2020-12/content/contentschema'
+    - name: Meta Data
+      keywords:
+        - name: default
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/annotations'
+            - 'https://www.learnjsonschema.com/2020-12/meta-data/default'
+        - name: deprecated
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/annotations'
+            - 'https://www.learnjsonschema.com/2020-12/meta-data/deprecated'
+        - name: description
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/annotations'
+            - 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+            - 'https://www.learnjsonschema.com/2020-12/meta-data/description'
+        - name: examples
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/annotations'
+            - 'https://www.learnjsonschema.com/2020-12/meta-data/examples'
+        - name: readOnly
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/annotations'
+            - 'https://www.learnjsonschema.com/2020-12/meta-data/readonly'
+        - name: title
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/annotations'
+            - 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+            - 'https://www.learnjsonschema.com/2020-12/meta-data/title'
+        - name: writeOnly
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/annotations'
+            - 'https://www.learnjsonschema.com/2020-12/meta-data/writeonly'
+    - name: Unevaluated
+      keywords:
+        - name: unevaluateditems
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+            - 'https://www.learnjsonschema.com/2020-12/unevaluated/unevaluateditems'
+        - name: unevaluatedproperties
+          links:
+            - 'https://json-schema.org/understanding-json-schema/reference/object#unevaluatedproperties'
+            - 'https://www.learnjsonschema.com/2020-12/unevaluated/unevaluatedproperties'
