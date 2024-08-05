@@ -9,11 +9,10 @@ so keywords used for other purposes (`readOnly` and `media`) have been
 
 The [new draft](../../draft-07/json-schema-hypermedia.html) has been completely rewritten
 for clarity and accessibility, so it is best to simply approach it as a new
-proposal. We hope to add tutorial material at some point, but that is
-outside of the scope of release notes.
+proposal.
 
 However, if you wish to migrate from an earlier draft, this page is a guide
-to the key _changes_. The additions, which are much more numerous,
+to the key changes. The additions, which are much more numerous,
 should be learned directly from the new specification until we can provide
 tutorials.
 

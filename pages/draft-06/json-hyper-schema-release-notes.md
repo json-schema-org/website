@@ -4,15 +4,15 @@ Release notes for migrating from draft-luff-json-hyper-schema-00 (draft-04) to d
 
 <div className="text-red-500 text-2xl mb-1"><b>NOTE</b>: draft-07 has been released</div>
 
-The [migration notes for draft-07](../draft-07/json-hyper-schema-release-notes) give a much more straightforward overview of migrating from draft-04 to draft-07 by skipping the complicated intermediate states of draft-05 and draft-06. This page has been retained for historical interest, but it is not recommened for those who just want to get going with the latest draft.
+The [migration notes for draft-07](../draft-07/json-hyper-schema-release-notes) give a much more straightforward overview of migrating from draft-04 to draft-07 by skipping the complicated intermediate states of draft-05 and draft-06. This page has been retained for historical interest, but it is not recommened for those who only want to get going with the latest draft.
 
-**For implementors:** We recommend just implementing draft-07, and not draft-06 or earlier.
+**For implementors:** We recommend only implementing draft-07, and not draft-06 or earlier.
 
 - [Q: What are the incompatible changes between draft-04 and draft-06?](#q:-what-are-the-incompatible-changes-between-draft-04-and-draft-06)
   - [Changes from draft-04 to draft-05](#changes-from-draft-04-to-draft-05)
   - [Changes from draft-05 to draft-06](#changes-from-draft-05-to-draft-06)
   - [Proper use of "targetSchema"](#proper-use-of)
-- [Q: Why were several major changes made to Hyper-Schema just before draft-06’s publication?](#q:-why-were-several-major-changes-made-to-hyper-schema-just-before-draft-06's-publication)
+- [Q: Why were several major changes made to Hyper-Schema before draft-06’s publication?](#q:-why-were-several-major-changes-made-to-hyper-schema-just-before-draft-06's-publication)
 - [Q: Why doesn’t the spec mention or behave like HTML anymore?](#q:-why-doesn't-the-spec-mention-or-behave-like-html-anymore)
   - [Splitting "schema"](#splitting)
   - [Removing "method"](#removing)
@@ -52,7 +52,7 @@ While we knew that there were still major gaps in draft-06, we felt that it was 
 
 ##### Proper use of `"targetSchema"`
 
-While `"targetSchema"` did not change its meaning in either recent draft, it has been widely misinterpreted. So it may feel like a change to use it as specified.
+Although 'targetSchema' has kept its meaning, its interpretation has varied. Therefore, using it as intended might feel like a modification
 
 Due to draft-04 emphasizing individual HTTP methods as `"method"` values, many users interpreted `"targetSchema"` as a hint of the response to the method in `"method"`. This was never correct; all drafts define this keyword as describing the representation of the target resource, which appears as a response to HTTP GET, but may or may not appear in other responses.
 
@@ -93,9 +93,7 @@ Several URI schemes and namespaces, such as the [UUID namespace in the `urn:` sc
 
 And of course, there are ways to detect this at runtime such as HTTP's `"Allow"` response header, or attempting a method and handling a `405 Method Not Allowed` error accordingly.
 
-#### Q: No, really. How do I _explicitly_ indicate which HTTP methods are supported on a link?
-
-A: The [`"targetHints"` proposal](https://github.com/json-schema-org/json-schema-spec/issues/296) is part of draft-07, so using it as an extension to draft-06 is an option, but we recommend simply using draft-07 at this point.
+If you need to explicitly indicate which HTTP methods are supported, you can use 'targetHints' from draft-07 as an extension to draft-06.
 
 #### Q: If `"targetSchema"` is not the response, how do I describe responses?
 

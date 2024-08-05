@@ -34,7 +34,7 @@ export default function ImplementationsPages({
   return (
     <SectionContext.Provider value={null}>
       <div className='w-5/6 mx-auto mt-40 dark:text-slate-200'>
-      <Headline1>{frontmatter.title}</Headline1>
+        <Headline1>{frontmatter.title}</Headline1>
         <h1>{frontmatter.type}</h1>
         <h2>{frontmatter.Specification}</h2>
 
