@@ -63,7 +63,7 @@
     "@types/react-syntax-highlighter": "^15.5.13",
     "@types/react-text-truncate": "^0.14.1",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
-    "@typescript-eslint/parser": "^6.10.0",
+    "@typescript-eslint/parser": "^6.21.0",
     "autoprefixer": "^10.4.16",
     "babel-plugin-istanbul": "^7.0.0",
     "cypress": "^13.13.1",
