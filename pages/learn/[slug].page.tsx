@@ -9,6 +9,9 @@ import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import { TableOfContentMarkdown } from '~/components/StyledMarkdown';
 
+import NextPrevButton from '~/components/NextPrevButton';
+
+
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/learn');
 }
@@ -48,6 +51,9 @@ export default function StaticMarkdownPage({
           </div>
         </div>
       </div>
+      <Headline1>{frontmatter.title}</Headline1>
+      <StyledMarkdown markdown={content} />
+      <NextPrevButton prev={frontmatter.prev} next={frontmatter.next} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
