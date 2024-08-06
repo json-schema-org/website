@@ -11,7 +11,6 @@ import { TableOfContentMarkdown } from '~/components/StyledMarkdown';
 
 import NextPrevButton from '~/components/NextPrevButton';
 
-
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/learn');
 }
