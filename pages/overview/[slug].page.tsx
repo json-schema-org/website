@@ -49,8 +49,6 @@ export default function StaticMarkdownPage({
           </div>
         </div>
       </div>
-      <Headline2>{frontmatter.title}</Headline2>
-      <StyledMarkdown markdown={content} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
