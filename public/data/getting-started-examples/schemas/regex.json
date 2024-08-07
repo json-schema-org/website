@@ -3,8 +3,8 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Regular Expression Pattern",
   "type": "object",
-    "properties": {
-      "code": {
+  "properties": {
+    "code": {
       "type": "string",
       "pattern": "^[A-Z]{3}-\\d{3}$"
     }
