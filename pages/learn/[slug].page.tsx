@@ -32,27 +32,28 @@ export default function StaticMarkdownPage({
       <Head>
         <title>{newTitle}</title>
       </Head>
-      <div className='flex flex-row gap-4 lg:w-2/3'>
-        <div className='flex gap-4 flex-col  max-sm:w-full'>
-          <Headline2>{frontmatter.title}</Headline2>
+      <div>
+        <div className='flex flex-row gap-4'>
+          <div className='flex gap-4 flex-col max-sm:w-full lg:w-2/3'>
+            <Headline2>{frontmatter.title}</Headline2>
 
-          <div className='lg:mr-4'>
-            <StyledMarkdown markdown={content} />
-          </div>
-        </div>
-
-        <div className='relative '>
-          <div className='p-4 fixed mt-[55px] lg:block '>
-            <div className='uppercase text-xs text-slate-400 mb-4 '>
-              on this page
+            <div className='lg:mr-4'>
+              <StyledMarkdown markdown={content} />
             </div>
-            <TableOfContentMarkdown markdown={content} depth={0} />
+          </div>
+
+          <div className='relative'>
+            <div className='p-4 fixed h-1/2 mt-[55px] lg:block '>
+              <div className='uppercase text-xs text-slate-400 mb-4 '>
+                on this page
+              </div>
+              <TableOfContentMarkdown markdown={content} depth={0} />
+            </div>
           </div>
         </div>
+        <NextPrevButton prev={frontmatter.prev} next={frontmatter.next} />
       </div>
-      <Headline1>{frontmatter.title}</Headline1>
-      <StyledMarkdown markdown={content} />
-      <NextPrevButton prev={frontmatter.prev} next={frontmatter.next} />
+
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

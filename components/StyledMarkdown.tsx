@@ -572,7 +572,7 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-4 font-medium'
+                        className='block cursor-pointer mb-3 text-slate-600 text-[14px] dark:text-slate-300 leading-4 font-medium'
                       >
                         {children}
                       </a>
