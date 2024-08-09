@@ -552,10 +552,10 @@
     - name: Intelligence.AI JSON Schema CLI
       license: AGPL-3.0
       url: 'https://github.com/intelligence-ai/jsonschema'
-      last-updated: "2023-06-03"
+      last-updated: "2024-08-08"
       date-draft: [2020-12, 2019-09]
       draft: [7, 6, 4, 3, 2, 1, 0]
-      notes: Supports formatting, linting, bundling, testing, validating, and more. As an exception, the test and validate commands only support Draft 4, 6, and 7 for now
+      notes: Supports formatting, linting, bundling, testing, validating, and more. As an exception, the test and validate commands only support Draft 4, 6, 7, and 2019-09 for now
       built-on:
         name: jsontoolkit
 - name: Github Actions
