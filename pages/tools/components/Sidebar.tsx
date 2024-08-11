@@ -1,17 +1,8 @@
-import React, {
-  Dispatch,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
-import { useTheme } from 'next-themes';
-
+import React, { Dispatch, SetStateAction, useRef } from 'react';
 import FilterIcon from '~/public/icons/filter.svg';
-
 import DropdownMenu from './ui/DropdownMenu';
-import SearchBar from './SearchBar';
 import Checkbox from './ui/Checkbox';
+import SearchBar from './SearchBar';
 import toTitleCase from '../lib/toTitleCase';
 import type { Transform } from '../hooks/useToolsTransform';
 import type { FilterCriteriaFields } from '../index.page';
@@ -32,22 +23,18 @@ export default function Sidebar({
   setIsSidebarOpen,
 }: SidebarProps) {
   const filterFormRef = useRef<HTMLFormElement>(null);
-  const [filterIcon, setFilterIcon] = useState('');
-  const { theme } = useTheme();
 
-  useEffect(() => {
-    if (theme === 'dark') {
-      setFilterIcon('/icons/filter-dark.svg');
-    } else {
-      setFilterIcon('/icons/filter.svg');
-    }
-  }, [theme]);
+  const filters = [
+    { label: 'Languages', accessorKey: 'languages' },
+    { label: 'Drafts', accessorKey: 'drafts' },
+    { label: 'Tooling Types', accessorKey: 'toolingTypes' },
+    { label: 'License', accessorKey: 'licenses' },
+  ];
 
-  const submitHandler = (e: React.FormEvent) => {
+  const applyFilters = (e: React.FormEvent) => {
     e.preventDefault();
     if (!filterFormRef.current) return;
     const formData = new FormData(filterFormRef.current);
-
     setTransform((prev) => ({
       query: (formData.get('query') as Transform['query']) || '',
       sortBy: prev.sortBy || 'name',
@@ -62,72 +49,42 @@ export default function Sidebar({
         .getAll('toolingTypes')
         .map((value) => value as string),
     }));
-    setIsSidebarOpen((prev) => (prev ? false : prev));
+    setIsSidebarOpen((prev) => !prev);
   };
 
-  const resetHandler = () => {
-    if (!filterFormRef.current) return;
-    filterFormRef.current.reset();
+  const clearFilters = () => {
+    if (filterFormRef.current) {
+      filterFormRef.current.reset();
+    }
     resetTransform();
-    setIsSidebarOpen((prev) => (prev ? false : prev));
+    setIsSidebarOpen((prev) => !prev);
   };
 
   return (
     <div className='pb-4 top-12 mx-auto lg:ml-4 lg:mt-8 w-4/5 h-fit'>
-      <form onSubmit={submitHandler} ref={filterFormRef} className='w-full'>
+      <form onSubmit={applyFilters} ref={filterFormRef} className='w-full'>
         <SearchBar transform={transform} />
-        <DropdownMenu
-          label='Languages'
-          iconSrc={filterIcon}
-          iconAlt='Filter Icon'
-        >
-          {filterCriteria.languages?.map((uniqueValue) => (
-            <Checkbox
-              key={uniqueValue}
-              label={uniqueValue}
-              value={uniqueValue}
-              name='languages'
-            />
-          ))}
-        </DropdownMenu>
-        <DropdownMenu label='Drafts' iconSrc={filterIcon} iconAlt='Filter Icon'>
-          {filterCriteria.drafts?.map((uniqueValue) => (
-            <Checkbox
-              key={uniqueValue}
-              label={uniqueValue}
-              value={uniqueValue}
-              name='drafts'
-            />
-          ))}
-        </DropdownMenu>
-        <DropdownMenu
-          label='Tooling Types'
-          iconSrc={filterIcon}
-          iconAlt='Filter Icon'
-        >
-          {filterCriteria.toolingTypes?.map((uniqueValue) => (
-            <Checkbox
-              key={uniqueValue}
-              label={toTitleCase(uniqueValue, '-')}
-              value={uniqueValue}
-              name='toolingTypes'
-            />
-          ))}
-        </DropdownMenu>
-        <DropdownMenu
-          label='License'
-          iconSrc={filterIcon}
-          iconAlt='Filter Icon'
-        >
-          {filterCriteria.licenses?.map((uniqueValue) => (
-            <Checkbox
-              key={uniqueValue}
-              label={uniqueValue}
-              value={uniqueValue}
-              name='licenses'
-            />
-          ))}
-        </DropdownMenu>
+        {filters.map(({ label, accessorKey }) => {
+          return (
+            <DropdownMenu key={accessorKey} label={label} icon={<FilterIcon />}>
+              {filterCriteria[accessorKey as FilterCriteriaFields]?.map(
+                (filterOption) => (
+                  <Checkbox
+                    key={filterOption}
+                    label={
+                      label === 'Tooling Types'
+                        ? toTitleCase(filterOption, '-')
+                        : filterOption
+                    }
+                    value={filterOption}
+                    name={accessorKey}
+                  />
+                ),
+              )}
+            </DropdownMenu>
+          );
+        })}
+
         <div className='w-full flex items-center justify-between mt-4 gap-2'>
           <button
             type='submit'
@@ -138,7 +95,7 @@ export default function Sidebar({
           <button
             type='button'
             className='bg-slate-200 dark:bg-slate-900 text-gray-700 dark:text-slate-200 px-4 py-2 rounded hover:bg-slate-300 focus:outline-none'
-            onClick={resetHandler}
+            onClick={clearFilters}
           >
             Clear Filters
           </button>

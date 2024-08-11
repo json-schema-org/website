@@ -1,18 +1,23 @@
 import classnames from 'classnames';
 import { useRouter } from 'next/router';
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, {
+  type ReactElement,
+  type ReactNode,
+  useEffect,
+  useState,
+} from 'react';
+
+interface DropdownMenuProps {
+  children: ReactNode;
+  label: string;
+  icon: ReactElement;
+}
 
 export default function DropdownMenu({
   children,
   label,
-  iconSrc,
-  iconAlt,
-}: {
-  children: ReactNode;
-  label: string;
-  iconSrc: string;
-  iconAlt: string;
-}) {
+  icon,
+}: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
 
@@ -28,7 +33,9 @@ export default function DropdownMenu({
           setIsDropdownOpen((prev) => !prev);
         }}
       >
-        <img src={iconSrc} alt={iconAlt} className='mr-2' />
+        {React.cloneElement(icon, {
+          className: 'mr-2',
+        })}
         <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto'>
           {label}
         </div>

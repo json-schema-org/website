@@ -1,18 +1,22 @@
-import React, { Dispatch, SetStateAction, useState } from 'react';
+import React, {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useState,
+} from 'react';
 
 import { Headline2 } from '~/components/Headlines';
 import CancelIcon from '~/public/icons/cancel.svg';
 import OutLinkIcon from '~/public/icons/outlink.svg';
 
-import toTitleCase from '../../lib/toTitleCase';
-import type { GroupedTools, Transform } from '../../hooks/useToolsTransform';
-import type { JSONSchemaTool } from '../../JSONSchemaTool';
-import Badge from '../ui/Badge';
+import toTitleCase from '../lib/toTitleCase';
+import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
+import type { JSONSchemaTool } from '../JSONSchemaTool';
+import Badge from './ui/Badge';
 
-import TableColumnHeader from './TableColumnHeader';
-import TableSortableColumnHeader from './TableSortableColumnHeader';
-import TableCell from './TableCell';
 import ToolingDetailModal from './ToolingDetailModal';
+import classnames from 'classnames';
 
 interface ToolingTableProps {
   toolsByGroup: GroupedTools;
@@ -37,32 +41,6 @@ const ToolingTable = ({
     setSelectedTool(null);
   };
 
-  const columnWidths = {
-    allPresent: {
-      name: 'w-[25%]',
-      toolingType: 'w-[20%]',
-      languages: 'w-[20%]',
-      drafts: 'w-[15%]',
-      license: 'w-[10%]',
-      bowtie: 'w-[10%]',
-    },
-    oneAbsent: {
-      name: 'w-[30%]',
-      toolingType: 'w-[25%]',
-      languages: 'w-[25%]',
-      drafts: 'w-[20%]',
-      license: 'w-[15%]',
-      bowtie: 'w-[10%]',
-    },
-  };
-
-  const currentWidths =
-    transform.groupBy === 'toolingTypes'
-      ? columnWidths.oneAbsent
-      : transform.groupBy === 'languages'
-        ? columnWidths.oneAbsent
-        : columnWidths.allPresent;
-
   return (
     <>
       {groups.map((group) => (
@@ -80,34 +58,24 @@ const ToolingTable = ({
                     sortBy='name'
                     preferences={transform}
                     setPreferences={setTransform}
-                    className={currentWidths.name}
                   >
                     Name
                   </TableSortableColumnHeader>
                   {transform.groupBy !== 'toolingTypes' && (
-                    <TableColumnHeader className={currentWidths.toolingType}>
-                      Tooling Type
-                    </TableColumnHeader>
+                    <TableHeader>Tooling Type</TableHeader>
                   )}
                   {transform.groupBy !== 'languages' && (
-                    <TableColumnHeader className={currentWidths.languages}>
-                      Languages
-                    </TableColumnHeader>
+                    <TableHeader>Languages</TableHeader>
                   )}
-                  <TableColumnHeader className={currentWidths.drafts}>
-                    Drafts
-                  </TableColumnHeader>
+                  <TableHeader>Drafts</TableHeader>
                   <TableSortableColumnHeader
                     sortBy='license'
                     preferences={transform}
                     setPreferences={setTransform}
-                    className={currentWidths.license}
                   >
                     License
                   </TableSortableColumnHeader>
-                  <TableColumnHeader className={currentWidths.bowtie}>
-                    Bowtie
-                  </TableColumnHeader>
+                  <TableHeader>Bowtie</TableHeader>
                 </tr>
               </thead>
               <tbody>
@@ -117,30 +85,24 @@ const ToolingTable = ({
                     className='hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
                     onClick={() => openModal(tool)}
                   >
-                    <TableCell className={currentWidths.name}>
-                      {tool.name}
-                    </TableCell>
+                    <TableCell>{tool.name}</TableCell>
                     {transform.groupBy !== 'toolingTypes' && (
-                      <TableCell className={currentWidths.toolingType}>
+                      <TableCell>
                         {tool.toolingTypes
                           ?.map((type) => toTitleCase(type, '-'))
                           .join(', ')}
                       </TableCell>
                     )}
                     {transform.groupBy !== 'languages' && (
-                      <TableCell className={currentWidths.languages}>
-                        {tool.languages?.join(', ')}
-                      </TableCell>
+                      <TableCell>{tool.languages?.join(', ')}</TableCell>
                     )}
-                    <TableCell className={currentWidths.drafts}>
+                    <TableCell>
                       {tool.supportedDialects?.draft?.map((draft) => {
                         return <Badge key={draft}>{draft}</Badge>;
                       })}
                     </TableCell>
-                    <TableCell className={currentWidths.license}>
-                      {tool.license}
-                    </TableCell>
-                    <TableCell className={`${currentWidths.bowtie} h-[1px]`}>
+                    <TableCell>{tool.license}</TableCell>
+                    <TableCell>
                       <div className='flex justify-center items-center h-full'>
                         {tool.bowtie?.identifier ? (
                           <a
@@ -170,4 +132,111 @@ const ToolingTable = ({
   );
 };
 
+const TableCell = ({
+  children,
+  attributes: propAttributes,
+}: {
+  children: ReactNode | ReactNode[];
+  attributes?: Record<string, any>;
+}) => {
+  return (
+    <td
+      {...propAttributes}
+      className={classnames(
+        propAttributes?.className,
+        'px-4 py-2 border-b border-gray-200 lg:break-all',
+      )}
+    >
+      {children}
+    </td>
+  );
+};
+
+const TableHeader = ({
+  children,
+  attributes: propAttributes,
+}: {
+  children: ReactNode | ReactNode[];
+  attributes?: Record<string, any>;
+}) => {
+  return (
+    <th
+      {...propAttributes}
+      className={classnames(
+        propAttributes?.className,
+        'px-4 py-2 border-b border-gray-200 text-center',
+      )}
+    >
+      {children}
+    </th>
+  );
+};
+
+const TableSortableColumnHeader = ({
+  sortBy,
+  preferences,
+  setPreferences,
+  children,
+  attributes: propAttributes,
+}: {
+  sortBy: Transform['sortBy'];
+  preferences: Transform;
+  setPreferences: Dispatch<SetStateAction<Transform>>;
+  children: ReactNode;
+  attributes?: Record<string, any>;
+}) => {
+  const [isSortedBy, setIsSortedBy] = useState(preferences.sortBy === sortBy);
+
+  useEffect(() => {
+    setIsSortedBy(preferences.sortBy === sortBy);
+  }, [preferences.sortBy]);
+
+  const sortByColumn = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setPreferences((prevPreferences) => {
+      const newSortOrder =
+        prevPreferences.sortBy === sortBy
+          ? prevPreferences.sortOrder === 'descending'
+            ? 'ascending'
+            : 'descending'
+          : 'ascending';
+      return {
+        ...prevPreferences,
+        sortBy,
+        sortOrder: newSortOrder,
+      };
+    });
+
+    setIsSortedBy(true);
+  };
+
+  const rotateClass = preferences.sortOrder === 'ascending' ? 'rotate-180' : '';
+
+  return (
+    <TableHeader attributes={propAttributes}>
+      <button
+        className='flex items-center focus:outline-none'
+        onClick={sortByColumn}
+      >
+        {children}
+        {isSortedBy && (
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            viewBox='0 0 24 24'
+            stroke='currentColor'
+            className={`w-4 h-4 ml-1 transform ${rotateClass}`}
+          >
+            <path
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth='2'
+              d='M5 15l7-7 7 7'
+            />
+          </svg>
+        )}
+      </button>
+    </TableHeader>
+  );
+};
 export default ToolingTable;

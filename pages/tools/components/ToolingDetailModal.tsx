@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 
-import Badge from '../ui/Badge';
-import type { JSONSchemaTool } from '../../JSONSchemaTool';
-import toTitleCase from '../../lib/toTitleCase';
+import Badge from './ui/Badge';
+import type { JSONSchemaTool } from '../JSONSchemaTool';
+import toTitleCase from '../lib/toTitleCase';
 
 export default function ToolingDetailModal({
   tool,

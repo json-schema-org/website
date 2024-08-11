@@ -11,7 +11,7 @@ import { DRAFT_ORDER } from '~/lib/config';
 
 import GroupByMenu from './components/GroupByMenu';
 import Sidebar from './components/Sidebar';
-import ToolingTable from './components/ToolingTable/ToolingTable';
+import ToolingTable from './components/ToolingTable';
 import useToolsTransform from './hooks/useToolsTransform';
 import getDistinctEntries from './lib/getDistinctEntries';
 import type { BowtieEntry, JSONSchemaTool } from './JSONSchemaTool';
