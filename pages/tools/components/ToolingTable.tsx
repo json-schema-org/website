@@ -53,7 +53,7 @@ const ToolingTable = ({
           <div className='overflow-x-auto'>
             <table className='min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
               <thead>
-                <tr className='flex w-full'>
+                <tr className='flex w-full min-w-[976px]'>
                   <TableSortableColumnHeader
                     sortBy='name'
                     transform={transform}
