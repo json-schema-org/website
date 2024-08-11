@@ -20,20 +20,26 @@ export async function getStaticProps() {
 }
 
 interface DataObject {
+  name: string;
+  vocabulary: string[];
+  learnjsonschemalink: string;
+  links: LinkObject[];
+}
+
+interface LinkObject {
+  url: string;
   title: string;
-  description: string;
-  categorys: CategoryObject[];
 }
 
-interface CategoryObject {
-  name: string;
-  keywords: KeywordObject[];
-}
+// interface CategoryObject {
+//   name: string;
+//   keywords: KeywordObject[];
+// }
 
-interface KeywordObject {
-  name: string;
-  links: string[];
-}
+// interface KeywordObject {
+//   name: string;
+//   links: string[];
+// }
 
 export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
   const markdownFile = '_index';
@@ -42,50 +48,41 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
       <Head>
         <title>JSON Schema - Keywords</title>
       </Head>
-      {datas.map((data: DataObject, index: number) => (
-        <div key={index}>
-          <Headline1> {data.title}</Headline1>
-          <p className='text-slate-600 block leading-7 dark:text-slate-300'>
-            {data.description}
-          </p>
+      <Headline1>JSON Schema Keywords</Headline1>
+      <p className='text-slate-600 block leading-7 dark:text-slate-300'>
+        JSON Schema keywords are the building blocks of JSON Schema. They are
+        used to define the structure of a JSON document
+      </p>
 
-          <div>
-            {data.categorys.map((category, index: number) => (
-              <div key={index}>
-                <Headline3> {category.name}</Headline3>
-                <table className='table-auto border-collapse w-full bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300'>
-                  <tbody>
-                    {category.keywords.map((keyword, index: number) => (
-                      <tr
-                        key={index}
-                        className='dark:hover:bg-slate-950 hover:bg-slate-300'
-                      >
-                        <td className='border text-center border-slate-400 dark:border-slate-500 p-2'>
-                          {keyword.name}
-                        </td>
-                        <td className='border border-slate-400 dark:border-slate-500 p-2 '>
-                          {keyword.links.map((link, index: number) => (
-                            <Link
-                              href={link}
-                              key={index}
-                              className='text-linkBlue hover:text-blue-700'
-                              target='_blank'
-                            >
-                              <p className='m-1  text-[14px] tracking-wider'>
-                                {link}
-                              </p>
-                            </Link>
-                          ))}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>{' '}
-              </div>
-            ))}
+      <div className='mt-8'>
+        {datas.map((data: DataObject, index: number) => (
+          <div key={index} className='mt-8'>
+            <Headline3>{data.name}</Headline3>
+            <p className='text-slate-600 block leading-7 dark:text-slate-300'>
+              {data.vocabulary.join(', ')}
+            </p>
+            <Link
+              href={data.learnjsonschemalink}
+              className='text-blue-500 hover:underline'
+            >
+              {data.learnjsonschemalink}
+              Learn JSON Schema
+            </Link>
+            <ul className='mt-4'>
+              {data.links.map((link: LinkObject, index: number) => (
+                <li key={index}>
+                  <Link
+                    href={link.url}
+                    className='text-blue-500 hover:underline'
+                  >
+                    {link.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
 
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
