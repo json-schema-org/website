@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 
+import CancelIcon from '~/public/icons/cancel.svg';
+
 import Badge from './ui/Badge';
 import type { JSONSchemaTool } from '../JSONSchemaTool';
 import toTitleCase from '../lib/toTitleCase';
@@ -28,18 +30,12 @@ export default function ToolingDetailModal({
         className='bg-white dark:bg-slate-800 rounded-lg p-8 max-w-full lg:max-w-4xl w-10/12 lg:w-full relative top-8 z-50 max-h-[80vh] overflow-y-auto'
         style={{ overflowWrap: 'anywhere' }}
       >
-        <div className='flex justify-end absolute top-0 right-0 mt-4 mr-4'>
+        <div className='flex justify-end absolute top-0 right-0 mt-6 mr-6'>
           <button
             onClick={onClose}
             className='text-gray-500 hover:text-gray-700'
           >
-            <svg
-              className='h-6 w-6 fill-current'
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 24 24'
-            >
-              <path d='M6.293 7.293a1 1 0 011.414 0L12 10.586l4.293-4.293a1 1 0 111.414 1.414L13.414 12l4.293 4.293a1 1 0 01-1.414 1.414L12 13.414l-4.293 4.293a1 1 0 01-1.414-1.414L10.586 12 6.293 7.707a1 1 0 010-1.414z' />
-            </svg>
+            <CancelIcon className='fill-current stroke-current w-3 h-3' />
           </button>
         </div>
         <div className='mt-4 flex flex-row items-center justify-start gap-2'>
@@ -63,7 +59,7 @@ export default function ToolingDetailModal({
         <div className='columns-1 md:columns-2 gap-6 mt-6'>
           <div>
             {tool.source && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Source</h3>
                 <a
                   href={tool.source}
@@ -76,7 +72,7 @@ export default function ToolingDetailModal({
             )}
 
             {tool.homepage && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Homepage</h3>
                 <a
                   href={tool.homepage}
@@ -89,14 +85,14 @@ export default function ToolingDetailModal({
             )}
 
             {tool.license && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>License</h3>
                 <p>{tool.license}</p>
               </div>
             )}
 
             {tool.compliance && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Compliance</h3>
                 {tool.compliance.config && (
                   <div>
@@ -124,14 +120,14 @@ export default function ToolingDetailModal({
             )}
 
             {tool.toolingListingNotes && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Tooling Listing Notes</h3>
                 <p>{tool.toolingListingNotes}</p>
               </div>
             )}
 
             {tool.creators && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Creators</h3>
                 <ul className='list-disc list-inside'>
                   {tool.creators.map((creator, index) => (
@@ -157,9 +153,9 @@ export default function ToolingDetailModal({
             )}
 
             {tool.maintainers && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Maintainers</h3>
-                <ul className='list-disc list-inside'>
+                <ul className='list-none list-inside'>
                   {tool.maintainers.map((maintainer, index) => (
                     <li key={index}>
                       <span>{maintainer.name ? maintainer.name : 'N.A.'}</span>
@@ -183,12 +179,12 @@ export default function ToolingDetailModal({
             )}
 
             {tool.supportedDialects && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Supported Dialects</h3>
                 {tool.supportedDialects.draft && (
                   <div>
                     <h4 className='text-[14px] font-semibold'>Draft:</h4>
-                    <ul className='list-disc list-inside'>
+                    <ul className='list-none list-inside'>
                       {tool.supportedDialects.draft.map((draft) => (
                         <Badge key={draft}>{draft}</Badge>
                       ))}
@@ -198,7 +194,7 @@ export default function ToolingDetailModal({
                 {tool.supportedDialects.additional && (
                   <div>
                     <h4 className='text-[14px] font-semibold'>Additional:</h4>
-                    <ul className='list-disc list-inside'>
+                    <ul className='list-none list-inside'>
                       {tool.supportedDialects.additional.map(
                         (additional, index) => (
                           <li key={index}>
@@ -221,7 +217,7 @@ export default function ToolingDetailModal({
             )}
 
             {tool.bowtie?.badges && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Report</h3>
                 {tool.bowtie.badges.supported_versions && (
                   <div>
@@ -247,9 +243,9 @@ export default function ToolingDetailModal({
             )}
 
             {tool.toolingTypes && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Tooling Types</h3>
-                <ul className='list-disc list-inside'>
+                <ul className='list-none list-inside'>
                   {tool.toolingTypes.map((type) => (
                     <Badge key={type}>{toTitleCase(type, '-')}</Badge>
                   ))}
@@ -258,9 +254,9 @@ export default function ToolingDetailModal({
             )}
 
             {tool.languages && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Languages</h3>
-                <ul className='list-disc list-inside'>
+                <ul className='list-none list-inside'>
                   {tool.languages.map((language) => (
                     <Badge key={language}>{language}</Badge>
                   ))}
@@ -269,9 +265,9 @@ export default function ToolingDetailModal({
             )}
 
             {tool.environments && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Environments</h3>
-                <ul className='list-disc list-inside'>
+                <ul className='list-none list-inside'>
                   {tool.environments.map((environment) => (
                     <Badge key={environment}>{environment}</Badge>
                   ))}
@@ -280,16 +276,16 @@ export default function ToolingDetailModal({
             )}
 
             {tool.bowtie && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Identifier</h3>
                 <p>{tool.bowtie.identifier}</p>
               </div>
             )}
 
             {tool.dependsOnValidators && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Depends On Validators</h3>
-                <ul className='list-disc list-inside'>
+                <ul className='list-none list-inside'>
                   {tool.dependsOnValidators.map((validator, index) => (
                     <li key={index}>
                       <a
@@ -306,7 +302,7 @@ export default function ToolingDetailModal({
             )}
 
             {tool.landscape?.optOut && (
-              <div className='break-inside-avoid mb-6'>
+              <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Landscape</h3>
                 {tool.landscape.optOut !== undefined && (
                   <div>
