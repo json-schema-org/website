@@ -60,10 +60,10 @@ export default function ToolingDetailModal({
             )}
           </div>
         </div>
-        <div className='flex flex-col md:flex-row mt-6'>
-          <div className='w-full md:w-1/2 md:pr-4'>
+        <div className='columns-1 md:columns-2 gap-6 mt-6'>
+          <div>
             {tool.source && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Source</h3>
                 <a
                   href={tool.source}
@@ -74,8 +74,9 @@ export default function ToolingDetailModal({
                 </a>
               </div>
             )}
+
             {tool.homepage && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Homepage</h3>
                 <a
                   href={tool.homepage}
@@ -86,19 +87,21 @@ export default function ToolingDetailModal({
                 </a>
               </div>
             )}
+
             {tool.license && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>License</h3>
                 <p>{tool.license}</p>
               </div>
             )}
+
             {tool.compliance && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Compliance</h3>
                 {tool.compliance.config && (
                   <div>
                     {tool.compliance.config.docs && (
-                      <div className='mt-2'>
+                      <div>
                         <h4 className='font-semibold'>Docs:</h4>
                         <a
                           href={tool.compliance.config.docs}
@@ -110,7 +113,7 @@ export default function ToolingDetailModal({
                       </div>
                     )}
                     {tool.compliance.config.instructions && (
-                      <div className='mt-2'>
+                      <div>
                         <h4 className='font-semibold'>Instructions:</h4>
                         <p>{tool.compliance.config.instructions}</p>
                       </div>
@@ -119,14 +122,16 @@ export default function ToolingDetailModal({
                 )}
               </div>
             )}
+
             {tool.toolingListingNotes && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Tooling Listing Notes</h3>
                 <p>{tool.toolingListingNotes}</p>
               </div>
             )}
+
             {tool.creators && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Creators</h3>
                 <ul className='list-disc list-inside'>
                   {tool.creators.map((creator, index) => (
@@ -150,8 +155,9 @@ export default function ToolingDetailModal({
                 </ul>
               </div>
             )}
+
             {tool.maintainers && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Maintainers</h3>
                 <ul className='list-disc list-inside'>
                   {tool.maintainers.map((maintainer, index) => (
@@ -175,13 +181,12 @@ export default function ToolingDetailModal({
                 </ul>
               </div>
             )}
-          </div>
-          <div className='w-full md:w-1/2 md:pl-4'>
+
             {tool.supportedDialects && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Supported Dialects</h3>
                 {tool.supportedDialects.draft && (
-                  <div className='mt-2'>
+                  <div>
                     <h4 className='text-[14px] font-semibold'>Draft:</h4>
                     <ul className='list-disc list-inside'>
                       {tool.supportedDialects.draft.map((draft) => (
@@ -191,7 +196,7 @@ export default function ToolingDetailModal({
                   </div>
                 )}
                 {tool.supportedDialects.additional && (
-                  <div className='mt-2'>
+                  <div>
                     <h4 className='text-[14px] font-semibold'>Additional:</h4>
                     <ul className='list-disc list-inside'>
                       {tool.supportedDialects.additional.map(
@@ -214,11 +219,12 @@ export default function ToolingDetailModal({
                 )}
               </div>
             )}
+
             {tool.bowtie?.badges && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Bowtie Report</h3>
                 {tool.bowtie.badges.supported_versions && (
-                  <div className='mt-2'>
+                  <div>
                     <h4 className='text-[14px] font-semibold'>
                       Supported Versions:
                     </h4>
@@ -228,21 +234,20 @@ export default function ToolingDetailModal({
                   </div>
                 )}
                 {tool.bowtie.badges.compliance && (
-                  <div className='mt-2'>
+                  <div>
                     <h4 className='text-[14px] font-semibold'>Compliance:</h4>
                     {Object.values(tool.bowtie.badges.compliance).map(
-                      (badgeURI) => {
-                        return (
-                          <BowtieReportBadge key={badgeURI} uri={badgeURI} />
-                        );
-                      },
+                      (badgeURI) => (
+                        <BowtieReportBadge key={badgeURI} uri={badgeURI} />
+                      ),
                     )}
                   </div>
                 )}
               </div>
             )}
+
             {tool.toolingTypes && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Tooling Types</h3>
                 <ul className='list-disc list-inside'>
                   {tool.toolingTypes.map((type) => (
@@ -251,8 +256,9 @@ export default function ToolingDetailModal({
                 </ul>
               </div>
             )}
+
             {tool.languages && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Languages</h3>
                 <ul className='list-disc list-inside'>
                   {tool.languages.map((language) => (
@@ -261,8 +267,9 @@ export default function ToolingDetailModal({
                 </ul>
               </div>
             )}
+
             {tool.environments && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Environments</h3>
                 <ul className='list-disc list-inside'>
                   {tool.environments.map((environment) => (
@@ -271,14 +278,16 @@ export default function ToolingDetailModal({
                 </ul>
               </div>
             )}
+
             {tool.bowtie && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Bowtie Identifier</h3>
                 <p>{tool.bowtie.identifier}</p>
               </div>
             )}
+
             {tool.dependsOnValidators && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Depends On Validators</h3>
                 <ul className='list-disc list-inside'>
                   {tool.dependsOnValidators.map((validator, index) => (
@@ -295,17 +304,12 @@ export default function ToolingDetailModal({
                 </ul>
               </div>
             )}
+
             {tool.landscape?.optOut && (
-              <div className='mt-4'>
+              <div className='break-inside-avoid mb-6'>
                 <h3 className='text-lg font-semibold'>Landscape</h3>
-                {/* {tool.landscape.logo && (
-                  <div className='mt-2'>
-                    <h4 className='font-semibold'>Logo:</h4>
-                    <p>{tool.landscape.logo}</p>
-                  </div>
-                )} */}
                 {tool.landscape.optOut !== undefined && (
-                  <div className='mt-2'>
+                  <div>
                     <h4 className='font-semibold'>Opt-Out:</h4>
                     <p>{tool.landscape.optOut ? 'Yes' : 'No'}</p>
                   </div>
