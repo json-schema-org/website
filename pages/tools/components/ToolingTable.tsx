@@ -53,29 +53,55 @@ const ToolingTable = ({
           <div className='overflow-x-auto'>
             <table className='min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
               <thead>
-                <tr>
+                <tr className='flex w-full'>
                   <TableSortableColumnHeader
                     sortBy='name'
                     transform={transform}
                     setTransform={setTransform}
+                    attributes={{
+                      style: { flexBasis: '240px', flexShrink: 0, flexGrow: 0 },
+                    }}
                   >
                     Name
                   </TableSortableColumnHeader>
                   {transform.groupBy !== 'toolingTypes' && (
-                    <TableColumnHeader>Tooling Type</TableColumnHeader>
+                    <TableColumnHeader
+                      attributes={{
+                        style: { flexBasis: '15%', flexShrink: 0, flexGrow: 0 },
+                      }}
+                    >
+                      Tooling Type
+                    </TableColumnHeader>
                   )}
                   {transform.groupBy !== 'languages' && (
-                    <TableColumnHeader>Languages</TableColumnHeader>
+                    <TableColumnHeader
+                      attributes={{ style: { flexBasis: '15%' } }}
+                    >
+                      Languages
+                    </TableColumnHeader>
                   )}
-                  <TableColumnHeader>Drafts</TableColumnHeader>
+                  <TableColumnHeader
+                    attributes={{
+                      className: '!px-0',
+                      style: { flexBasis: '20%', flexGrow: 1 },
+                    }}
+                  >
+                    Drafts
+                  </TableColumnHeader>
                   <TableSortableColumnHeader
                     sortBy='license'
                     transform={transform}
                     setTransform={setTransform}
+                    attributes={{ style: { flexBasis: '15%' } }}
                   >
                     License
                   </TableSortableColumnHeader>
-                  <TableColumnHeader attributes={{ className: 'text-center' }}>
+                  <TableColumnHeader
+                    attributes={{
+                      className: 'text-center !px-0',
+                      style: { flexBasis: '70px', flexShrink: 0, flexGrow: 0 },
+                    }}
+                  >
                     Bowtie
                   </TableColumnHeader>
                 </tr>
@@ -84,28 +110,65 @@ const ToolingTable = ({
                 {toolsByGroup[group].map((tool: JSONSchemaTool, index) => (
                   <tr
                     key={index}
-                    className='hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
+                    className='flex w-full hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
                     onClick={() => openModal(tool)}
                   >
-                    <TableCell>{tool.name}</TableCell>
+                    <TableCell
+                      attributes={{
+                        className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : ''}`,
+                        style: {
+                          flexBasis: '240px',
+                          flexShrink: 0,
+                          flexGrow: 0,
+                        },
+                      }}
+                    >
+                      {tool.name}
+                    </TableCell>
                     {transform.groupBy !== 'toolingTypes' && (
-                      <TableCell>
+                      <TableCell
+                        attributes={{
+                          style: { flexBasis: '15%' },
+                        }}
+                      >
                         {tool.toolingTypes
                           ?.map((type) => toTitleCase(type, '-'))
                           .join(', ')}
                       </TableCell>
                     )}
                     {transform.groupBy !== 'languages' && (
-                      <TableCell>{tool.languages?.join(', ')}</TableCell>
+                      <TableCell
+                        attributes={{
+                          style: { flexBasis: '15%' },
+                        }}
+                      >
+                        {tool.languages?.join(', ')}
+                      </TableCell>
                     )}
-                    <TableCell>
+                    <TableCell
+                      attributes={{
+                        className: '!block !px-0',
+                        style: { flexBasis: '20%', flexGrow: 1 },
+                      }}
+                    >
                       {tool.supportedDialects?.draft?.map((draft) => {
                         return <Badge key={draft}>{draft}</Badge>;
                       })}
                     </TableCell>
-                    <TableCell>{tool.license}</TableCell>
-                    <TableCell>
-                      <div className='flex justify-center items-center h-full'>
+                    <TableCell attributes={{ style: { flexBasis: '15%' } }}>
+                      {tool.license}
+                    </TableCell>
+                    <TableCell
+                      attributes={{
+                        className: 'text-center !px-0',
+                        style: {
+                          flexBasis: '70px',
+                          flexShrink: 0,
+                          flexGrow: 0,
+                        },
+                      }}
+                    >
+                      <div className='flex justify-center items-center h-full m-auto'>
                         {tool.bowtie?.identifier ? (
                           <a
                             className='flex justify-center items-center h-full'
@@ -116,9 +179,7 @@ const ToolingTable = ({
                             <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                           </a>
                         ) : (
-                          <>
-                            <CancelIcon className='fill-current stroke-current w-4 h-4' />
-                          </>
+                          <CancelIcon className='fill-current stroke-current w-4 h-4' />
                         )}
                       </div>
                     </TableCell>
@@ -148,7 +209,7 @@ const TableColumnHeader = ({
       {...propAttributes}
       className={classnames(
         propAttributes?.className,
-        'px-4 py-2 border-b border-gray-200',
+        'px-2 py-2 flex items-center border-b border-gray-200',
       )}
     >
       {children}
@@ -236,7 +297,7 @@ const TableCell = ({
       {...propAttributes}
       className={classnames(
         propAttributes?.className,
-        'px-4 py-2 border-b border-gray-200 lg:break-all',
+        'flex items-center w-full px-2 py-2 border-b border-gray-200 lg:break-words',
       )}
     >
       {children}
