@@ -55,15 +55,29 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
   useEffect(() => {
     if (!router.isReady) return;
 
+    const parseArrayParam = (
+      param: string | string[] | undefined,
+    ): string[] => {
+      if (Array.isArray(param)) {
+        return param;
+      }
+      if (typeof param === 'string') {
+        return param.split(',').filter(Boolean);
+      }
+      return [];
+    };
+
     const updatedTransform = {
       query: (query.query as Transform['query']) || '',
       sortBy: (query.sortBy as Transform['sortBy']) || 'name',
       sortOrder: (query.sortOrder as Transform['sortOrder']) || 'ascending',
       groupBy: (query.groupBy as Transform['groupBy']) || 'toolingTypes',
-      languages: (query.languages as Transform['languages']) || [],
-      licenses: (query.licenses as Transform['licenses']) || [],
-      drafts: (query.drafts as Transform['drafts']) || [],
-      toolingTypes: (query.toolingTypes as Transform['toolingTypes']) || [],
+      languages: parseArrayParam(query.languages) as Transform['languages'],
+      licenses: parseArrayParam(query.licenses) as Transform['licenses'],
+      drafts: parseArrayParam(query.drafts) as Transform['drafts'],
+      toolingTypes: parseArrayParam(
+        query.toolingTypes,
+      ) as Transform['toolingTypes'],
     };
 
     const queryString = buildQueryString(updatedTransform);

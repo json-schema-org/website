@@ -65,6 +65,7 @@ export default function Sidebar({
       <form onSubmit={applyFilters} ref={filterFormRef} className='w-full'>
         <SearchBar transform={transform} />
         {filters.map(({ label, accessorKey }) => {
+          const checkedValues = transform[accessorKey as keyof Transform] || [];
           return (
             <DropdownMenu key={accessorKey} label={label} icon={<FilterIcon />}>
               {filterCriteria[accessorKey as FilterCriteriaFields]?.map(
@@ -78,6 +79,7 @@ export default function Sidebar({
                     }
                     value={filterOption}
                     name={accessorKey}
+                    checked={checkedValues.includes(filterOption)}
                   />
                 ),
               )}
