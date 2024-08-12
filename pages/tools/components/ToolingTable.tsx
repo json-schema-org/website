@@ -98,14 +98,17 @@ const ToolingTable = ({
                   >
                     License
                   </TableSortableColumnHeader>
-                  <TableColumnHeader
+                  <TableSortableColumnHeader
+                    sortBy='bowtie'
+                    transform={transform}
+                    setTransform={setTransform}
                     attributes={{
                       className: 'text-center !px-0',
                       style: { flexBasis: '70px', flexShrink: 0, flexGrow: 0 },
                     }}
                   >
                     Bowtie
-                  </TableColumnHeader>
+                  </TableSortableColumnHeader>
                 </tr>
               </thead>
               <tbody>

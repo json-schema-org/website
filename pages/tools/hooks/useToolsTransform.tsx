@@ -7,7 +7,7 @@ import type { JSONSchemaTool } from '../JSONSchemaTool';
 
 export interface Transform {
   query: string;
-  sortBy: 'name' | 'license';
+  sortBy: 'name' | 'license' | 'bowtie';
   sortOrder: 'ascending' | 'descending';
   groupBy: 'none' | 'toolingTypes' | 'languages';
   licenses: string[];
@@ -212,14 +212,35 @@ const sortTools = (
   transform: Transform,
 ): JSONSchemaTool[] => {
   return tools.slice().sort((a, b) => {
-    const aValue =
-      transform.sortBy === 'name'
-        ? a.name.toLowerCase()
-        : (a.license || '').toLowerCase();
-    const bValue =
-      transform.sortBy === 'name'
-        ? b.name.toLowerCase()
-        : (b.license || '').toLowerCase();
+    let aValue: string | undefined;
+    let bValue: string | undefined;
+
+    if (transform.sortBy === 'name') {
+      aValue = a.name.toLowerCase();
+      bValue = b.name.toLowerCase();
+    } else if (transform.sortBy === 'license') {
+      aValue = (a.license || '').toLowerCase();
+      bValue = (b.license || '').toLowerCase();
+    } else if (transform.sortBy === 'bowtie') {
+      const aHasIdentifier = Boolean(a.bowtie?.identifier);
+      const bHasIdentifier = Boolean(b.bowtie?.identifier);
+
+      if (transform.sortOrder === 'ascending') {
+        if (aHasIdentifier && !bHasIdentifier) return -1;
+        if (!aHasIdentifier && bHasIdentifier) return 1;
+      } else {
+        if (aHasIdentifier && !bHasIdentifier) return 1;
+        if (!aHasIdentifier && bHasIdentifier) return -1;
+      }
+
+      aValue = (a.bowtie?.identifier || '').toLowerCase();
+      bValue = (b.bowtie?.identifier || '').toLowerCase();
+    }
+
+    if (aValue === undefined || bValue === undefined) {
+      return 0;
+    }
+
     return transform.sortOrder === 'ascending'
       ? aValue.localeCompare(bValue)
       : bValue.localeCompare(aValue);
