@@ -46,40 +46,44 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
       </p>
 
       <div className='mt-8'>
-        {datas.map((data: DataObject, index: number) => (
-          <div key={index} className='mt-8'>
-            <Headline3>{data.name}</Headline3>
-            <p className='capitalize text-[20px] text-slate-600 block leading-7 dark:text-slate-300'>
-              {data.vocabulary.join(', ')}
-            </p>
-            <ul className='mt-3'>
-              {data.links?.map((link: LinkObject, index: number) => (
-                <li key={index}>
-                  <Link
-                    href={link.url}
-                    className='text-blue-500 text-[18px] hover:underline'
-                  >
-                    {link.title}
-                  </Link>
+        {datas
+          .sort((a: DataObject, b: DataObject) => a.name.localeCompare(b.name))
+          .map((data: DataObject, index: number) => (
+            <div key={index} className='mt-8'>
+              <Headline3>{data.name}</Headline3>
+              <p className='capitalize text-[20px] text-slate-600 block leading-7 dark:text-slate-300'>
+                {data.vocabulary.join(', ')}
+              </p>
+              <ul className='mt-3 list-disc text-blue-500'>
+                {data.links?.map((link: LinkObject, index: number) => (
+                  <li key={index}>
+                    <Link
+                      href={link.url}
+                      className='text-[18px] hover:underline'
+                    >
+                      {link.title}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+              <Link
+                href={data.learnjsonschemalink}
+                className=' text-blue-500 hover:underline'
+              >
+                <li>
+                  <span className='mt-2 flex text-[18px] flex-row gap-2 items-center'>
+                    Learn JSON Schema
+                    <Image
+                      src={'/icons/external-link.svg'}
+                      height={18}
+                      width={18}
+                      alt='external link'
+                    />
+                  </span>
                 </li>
-              ))}
-            </ul>
-            <Link
-              href={data.learnjsonschemalink}
-              className=' text-blue-500 hover:underline'
-            >
-              <span className='mt-2 flex text-[18px] flex-row gap-2 items-center'>
-                Learn JSON Schema
-                <Image
-                  src={'/icons/external-link.svg'}
-                  height={18}
-                  width={18}
-                  alt='external link'
-                />
-              </span>
-            </Link>
-          </div>
-        ))}
+              </Link>
+            </div>
+          ))}
       </div>
 
       <DocsHelp markdownFile={markdownFile} />

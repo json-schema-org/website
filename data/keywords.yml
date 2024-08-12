@@ -225,15 +225,13 @@
       title: Length
 - name: minLength
   vocabulary: [Validation]
-  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minLength'
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minlength/'
   links:
     - url: 'https://json-schema.org/understanding-json-schema/reference/string#length'
       title: Length
-    - url: 'https://www.learnjsonschema.com/2020-12/validation/minitems'
-      title: Minitems
 - name: minProperties
   vocabulary: [Validation]
-  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minProperties'
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minproperties'
   links:
     - url: 'https://json-schema.org/understanding-json-schema/reference/object#size'
       title: Size
