@@ -98,6 +98,7 @@ const getDocsPath = [
   '/overview/faq',
 ];
 const getStartedPath = [
+  '/learn',
   '/learn/json-schema-examples',
   '/learn/file-system',
   '/learn/miscellaneous-examples',
@@ -414,9 +415,15 @@ export const DocsNav = ({
           className={classnames('ml-6', { hidden: !active.getStarted })}
           id='getStarted'
         >
+          <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
           <DocLink
             uri='/learn/getting-started-step-by-step'
             label='Creating your first schema'
+            setOpen={setOpen}
+          />
+          <DocLinkBlank
+            uri='https://tour.json-schema.org/'
+            label='Tour of JSON Schema'
             setOpen={setOpen}
           />
           <SegmentSubtitle label='Examples' />
