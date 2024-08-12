@@ -6,6 +6,7 @@ import SearchBar from './SearchBar';
 import toTitleCase from '../lib/toTitleCase';
 import type { Transform } from '../hooks/useToolsTransform';
 import type { FilterCriteriaFields } from '../index.page';
+import { postAnalytics } from '../lib/postAnalytics';
 
 interface SidebarProps {
   filterCriteria: Record<FilterCriteriaFields, string[]>;
@@ -35,20 +36,24 @@ export default function Sidebar({
     e.preventDefault();
     if (!filterFormRef.current) return;
     const formData = new FormData(filterFormRef.current);
-    setTransform((prev) => ({
-      query: (formData.get('query') as Transform['query']) || '',
-      sortBy: prev.sortBy || 'name',
-      sortOrder: prev.sortOrder || 'ascending',
-      groupBy: prev.groupBy || 'toolingTypes',
-      languages: formData.getAll('languages').map((value) => value as string),
-      licenses: formData.getAll('licenses').map((value) => value as string),
-      drafts: formData
-        .getAll('drafts')
-        .map((value) => value) as Transform['drafts'],
-      toolingTypes: formData
-        .getAll('toolingTypes')
-        .map((value) => value as string),
-    }));
+    setTransform((prev) => {
+      const newTransform = {
+        query: (formData.get('query') as Transform['query']) || '',
+        sortBy: prev.sortBy || 'name',
+        sortOrder: prev.sortOrder || 'ascending',
+        groupBy: prev.groupBy || 'toolingTypes',
+        languages: formData.getAll('languages').map((value) => value as string),
+        licenses: formData.getAll('licenses').map((value) => value as string),
+        drafts: formData
+          .getAll('drafts')
+          .map((value) => value) as Transform['drafts'],
+        toolingTypes: formData
+          .getAll('toolingTypes')
+          .map((value) => value as string),
+      };
+      postAnalytics('query', newTransform);
+      return newTransform;
+    });
     setIsSidebarOpen((prev) => !prev);
   };
 

@@ -17,6 +17,7 @@ import Badge from './ui/Badge';
 
 import ToolingDetailModal from './ToolingDetailModal';
 import classnames from 'classnames';
+import { postAnalytics } from '../lib/postAnalytics';
 
 interface ToolingTableProps {
   toolsByGroup: GroupedTools;
@@ -35,6 +36,7 @@ const ToolingTable = ({
 
   const openModal = (tool: JSONSchemaTool) => {
     setSelectedTool(tool);
+    postAnalytics('about', tool);
   };
 
   const closeModal = () => {
