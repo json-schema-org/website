@@ -6691,7 +6691,7 @@ __metadata:
     webpack: "npm:^5.93.0"
     yarn: "npm:1.22.19"
     zero-fill: "npm:^2.2.4"
-    zustand: "npm:^4.0.0-rc.1"
+    zustand: "npm:^4.5.4"
   languageName: unknown
   linkType: soft
 
@@ -10265,14 +10265,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zustand@npm:^4.0.0-rc.1":
-  version: 4.4.7
-  resolution: "zustand@npm:4.4.7"
+"zustand@npm:^4.5.4":
+  version: 4.5.4
+  resolution: "zustand@npm:4.5.4"
   dependencies:
     use-sync-external-store: "npm:1.2.0"
   peerDependencies:
     "@types/react": ">=16.8"
-    immer: ">=9.0"
+    immer: ">=9.0.6"
     react: ">=16.8"
   peerDependenciesMeta:
     "@types/react":
@@ -10281,6 +10281,6 @@ __metadata:
       optional: true
     react:
       optional: true
-  checksum: 10c0/de507f09eb79039d74d282df6ffac6c7fb6b840ca3620b0392bcbe3f9049902802db5448b4002e6fcb32f903f7ec1aea14602049eb2a3a8410bfea7186d72fb7
+  checksum: 10c0/479af491ffa1f1eb2c38b3ba25dc4e14339e8b35a60033d3f6c165b22f8be8163f7e1370015ded9c6e28548cd25af84a73fb40b5fad0bd7882d16ddd5ed613c6
   languageName: node
   linkType: hard
