@@ -36,7 +36,19 @@ const ToolingTable = ({
 
   const openModal = (tool: JSONSchemaTool) => {
     setSelectedTool(tool);
-    postAnalytics('about', tool);
+    postAnalytics({
+      eventType: 'about',
+      eventPayload: {
+        name: tool.name,
+        toolingTypes: tool.toolingTypes,
+        languages: tool.languages,
+        environments: tool.environments,
+        license: tool.license,
+        source: tool.source,
+        homepage: tool.homepage,
+        supportedDialects: tool.supportedDialects,
+      },
+    });
   };
 
   const closeModal = () => {

@@ -1,18 +1,33 @@
 import type { JSONSchemaTool } from '../JSONSchemaTool';
 import type { Transform } from '../hooks/useToolsTransform';
 
-type AnalyticsEvent = 'query' | 'about';
+interface AnalyticsQueryParams {
+  eventType: 'query';
+  eventPayload: Transform;
+}
 
-interface AnalyticsQueryPayload extends Transform {}
+interface AnalyticsAboutParams {
+  eventType: 'about';
+  eventPayload: AnalyticsAboutPayload;
+}
 
-interface AnalyticsAboutPayload extends JSONSchemaTool {}
+interface AnalyticsAboutPayload {
+  name: JSONSchemaTool['name'];
+  toolingTypes: JSONSchemaTool['toolingTypes'];
+  languages: JSONSchemaTool['languages'];
+  environments: JSONSchemaTool['environments'];
+  license: JSONSchemaTool['license'];
+  source: JSONSchemaTool['source'];
+  homepage: JSONSchemaTool['homepage'];
+  supportedDialects: JSONSchemaTool['supportedDialects'];
+}
 
-type AnalyticsPayload = AnalyticsQueryPayload | AnalyticsAboutPayload;
+type AnalyticsParams = AnalyticsQueryParams | AnalyticsAboutParams;
 
-export async function postAnalytics(
-  eventType: AnalyticsEvent,
-  eventPayload: AnalyticsPayload,
-) {
+export async function postAnalytics({
+  eventType,
+  eventPayload,
+}: AnalyticsParams) {
   try {
     const deviceType = /Mobi/.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
 

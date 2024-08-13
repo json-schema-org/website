@@ -51,7 +51,7 @@ export default function Sidebar({
           .getAll('toolingTypes')
           .map((value) => value as string),
       };
-      postAnalytics('query', newTransform);
+      postAnalytics({ eventType: 'query', eventPayload: newTransform });
       return newTransform;
     });
     setIsSidebarOpen((prev) => !prev);
@@ -73,8 +73,9 @@ export default function Sidebar({
           const checkedValues = transform[accessorKey as keyof Transform] || [];
           return (
             <DropdownMenu key={accessorKey} label={label} icon={<FilterIcon />}>
-              {filterCriteria[accessorKey as FilterCriteriaFields]?.map(
-                (filterOption) => (
+              {filterCriteria[accessorKey as FilterCriteriaFields]
+                ?.map(String)
+                .map((filterOption) => (
                   <Checkbox
                     key={filterOption}
                     label={
@@ -86,8 +87,7 @@ export default function Sidebar({
                     name={accessorKey}
                     checked={checkedValues.includes(filterOption)}
                   />
-                ),
-              )}
+                ))}
             </DropdownMenu>
           );
         })}

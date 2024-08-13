@@ -121,7 +121,7 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
 
     router.push(`/tools?${queryString}`, undefined, { shallow: true });
 
-    setTransform(initialTransform);
+    updateTransform(initialTransform);
     window.scrollTo(0, 0);
   };
 
