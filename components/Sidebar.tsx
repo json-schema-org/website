@@ -436,7 +436,6 @@ export const DocsNav = ({
               label='Other examples'
               setOpen={setOpen}
             />
-            <DocLink uri='/keywords' label='Keywords' setOpen={setOpen} />
           </div>
         </div>
       </div>
@@ -492,6 +491,11 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <div className='pl-4 pb-1 pt-1'>
+            <DocLink
+              uri='/understanding-json-schema/keywords'
+              label='Keywords'
+              setOpen={setOpen}
+            />
             <DocLink
               uri='/understanding-json-schema/conventions'
               label='Conventions used'
