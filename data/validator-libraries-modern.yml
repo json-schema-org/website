@@ -512,6 +512,14 @@
       built-on:
         name: ajv
       last-updated: "2022-08-31"
+    - name: Harrel.dev
+      url: https://harrel.dev/json-schema
+      date-draft: [2020-12, 2019-09]
+      draft: [7]
+      notes: Server-side validation. Uses json-schema (dev.harrel) Java implementation.
+      built-on:
+        name: json-schema (dev.harrel)
+      last-updated: "2024-08-14"
 - name: Command Line
   implementations:
     - name: valbuddy
