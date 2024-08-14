@@ -39,7 +39,7 @@ export default function Welcome() {
           body='Our Getting Started guide walks you through the basics of JSON Schema.'
           headerSize='medium'
           bodyTextSize='small'
-          link='/learn/getting-started-step-by-step'
+          link='/learn'
         />
         <Card
           icon='/icons/book.svg'

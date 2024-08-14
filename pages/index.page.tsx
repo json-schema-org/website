@@ -257,7 +257,7 @@ const Home = (props: any) => {
 
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
               <Link
-                href='/learn/getting-started-step-by-step'
+                href='/learn'
                 className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
                 Getting started
