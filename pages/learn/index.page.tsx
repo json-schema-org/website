@@ -32,7 +32,7 @@ export default function Welcome() {
         />
         <Card
           title='Tour of JSON Schema'
-          body='An interactive introduction to JSON Schema. Each section concludes with a few exercises so you can practice what you have learned.'
+          body='An interactive introduction to JSON Schema. Each lesson concludes with an exercise, so you can practice what you have learned.'
           headerSize='medium'
           bodyTextSize='small'
           extended={true}
