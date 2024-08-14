@@ -17,8 +17,6 @@ interface AnalyticsAboutPayload {
   languages: JSONSchemaTool['languages'];
   environments: JSONSchemaTool['environments'];
   license: JSONSchemaTool['license'];
-  source: JSONSchemaTool['source'];
-  homepage: JSONSchemaTool['homepage'];
   supportedDialects: JSONSchemaTool['supportedDialects'];
 }
 

@@ -44,8 +44,6 @@ const ToolingTable = ({
         languages: tool.languages,
         environments: tool.environments,
         license: tool.license,
-        source: tool.source,
-        homepage: tool.homepage,
         supportedDialects: tool.supportedDialects,
       },
     });

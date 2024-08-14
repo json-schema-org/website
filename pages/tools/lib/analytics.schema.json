@@ -105,16 +105,6 @@
                 "type": "string"
               }
             },
-            "source": {
-              "description": "The URL of the project's repository",
-              "type": "string",
-              "format": "uri"
-            },
-            "homepage": {
-              "description": "The URL of the project's homepage",
-              "type": "string",
-              "format": "uri"
-            },
             "supportedDialects": {
               "description": "The declared supported dialects of JSON Schema. This includes draft version identifiers.",
               "type": "object",
