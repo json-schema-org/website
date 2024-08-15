@@ -71,11 +71,19 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
   };
 
   return (
-    <section className='mt-10 mb-4 text-gray-600 dark:text-white'>
-      <h2 className='text-[24px] font-semibold'>Need Help?</h2>
+    <section
+      className='mt-10 mb-4 text-gray-600 dark:text-white'
+      data-test='docs-help'
+    >
+      <h2 className='text-[24px] font-semibold' data-test='need-help-heading'>
+        Need Help?
+      </h2>
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 pt-10 border-t border-gray-600'>
         <div>
-          <h3 className='text-xl font-semibold mb-3'>
+          <h3
+            className='text-xl font-semibold mb-3'
+            data-test='feedback-main-heading'
+          >
             Did you find these docs helpful?
           </h3>
 
@@ -85,6 +93,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
                 className='flex flex-col'
                 onSubmit={createFeedbackHandler}
                 ref={feedbackFormRef}
+                data-test='feedback-form'
               >
                 <div className='mb-6'>
                   <input
@@ -101,6 +110,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
                     onClick={() => {
                       setIsFormOpen(true);
                     }}
+                    data-test='feedback-survey-yes-button'
                   >
                     <svg
                       className='inline-block select-none overflow-visible'
@@ -129,6 +139,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
                     onClick={() => {
                       setIsFormOpen(true);
                     }}
+                    data-test='feedback-survey-no-button'
                   >
                     <svg
                       className='inline-block select-none overflow-visible'
@@ -148,7 +159,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
                 {isFormOpen && (
                   <div>
                     <div className='mb-4'>
-                      <p>
+                      <p data-test='feedback-form-comment'>
                         <label
                           className='mb-1 block'
                           htmlFor='feedback-comment'
@@ -165,6 +176,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
                         className='py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid border-[#aaaaaa] rounded-md w-full overflow-hidden'
                         name='feedback-comment'
                         id='feedback-comment'
+                        data-test='feedback-form-input'
                       />
                     </div>
 
@@ -173,6 +185,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
                         type='submit'
                         className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200 dark:hover:bg-gray-600'}`}
                         disabled={isSubmitting}
+                        data-test='feedback-submit-button'
                       >
                         <svg
                           className='inline-block select-none align-text-bottom mr-1'
@@ -196,6 +209,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
                         className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200 dark:hover:bg-gray-600'}`}
                         disabled={isSubmitting}
                         onClick={createGitHubIssueHandler}
+                        data-test='create-github-issue-button'
                       >
                         <svg
                           className='inline-block select-none align-text-bottom mr-1'
@@ -220,7 +234,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
 
           {feedbackStatus === 'feedback' && (
             <div className='my-6 text-[14px]'>
-              <p>
+              <p data-test='feedback-form-success-message'>
                 Thanks for the feedback! Feel free to join the&nbsp;
                 <a
                   target='_blank'
@@ -246,7 +260,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
 
           {feedbackStatus === 'github_issue' && (
             <div className='my-6 text-[14px]'>
-              <p>
+              <p data-test='feedback-form-github-success-message'>
                 Thanks for creating an issue! Let's continue the discussion
                 there!
               </p>
@@ -255,18 +269,21 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
 
           {error && (
             <div className='my-6 text-[14px]'>
-              <p>{error}</p>
+              <p data-test='feedback-form-error-message'>{error}</p>
             </div>
           )}
         </div>
 
         <div>
-          <h3 className='text-xl font-semibold mb-3'>
+          <h3
+            className='text-xl font-semibold mb-3'
+            data-test='contribute-docs-heading'
+          >
             Help us make our docs great!
           </h3>
 
           <div className='my-6 text-[14px]'>
-            <p>
+            <p data-test='contribute-docs-description'>
               At JSON Schema, we value docs contributions as much as every other
               type of contribution!
             </p>
@@ -277,6 +294,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               rel='noreferrer'
               className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
               href={`https://github.com/json-schema-org/website/blob/main/pages${markdownFile ? (markdownFile === '_indexPage' ? extractPathWithoutFragment(router.asPath) + '/_index.md' : extractPathWithoutFragment(router.asPath) + '.md') : `/${path}/index.page.tsx`}`}
+              data-test='edit-on-github-link'
             >
               <svg
                 className='inline-block select-none align-text-bottom mr-1'
@@ -298,6 +316,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               rel='noreferrer'
               className='underline'
               href='https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md'
+              data-test='learn-to-contribute-link'
             >
               <svg
                 className='inline-block select-none align-text-bottom mr-1'
@@ -319,10 +338,15 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
         </div>
 
         <div>
-          <h3 className='text-xl font-semibold mb-3'>Still Need Help?</h3>
+          <h3
+            className='text-xl font-semibold mb-3'
+            data-test='additional-help-heading'
+          >
+            Still Need Help?
+          </h3>
 
           <div className='my-6 text-[14px]'>
-            <p>
+            <p data-test='additional-help-description'>
               Learning JSON Schema is often confusing, but don't worry, we are
               here to help!.
             </p>
@@ -333,6 +357,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               rel='noreferrer'
               className='underline'
               href='https://github.com/orgs/json-schema-org/discussions/new?category=q-a'
+              data-test='ask-on-github-link'
             >
               <svg
                 className='inline-block select-none align-text-bottom mr-1'
@@ -354,6 +379,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               rel='noreferrer'
               className='underline'
               href='https://json-schema.org/slack'
+              data-test='ask-on-slack-link'
             >
               <svg
                 className='inline-block select-none align-text-bottom mr-1'
