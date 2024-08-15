@@ -40,7 +40,7 @@ git submodule init
 git submodule update
 ```
 
-### Setup Enviroment Variables 
+### Setup Environment Variables 
 
 1. Create a new `.env` file by copying the contents of the `.env.example` into `.env` file. Use this command:
 ```
