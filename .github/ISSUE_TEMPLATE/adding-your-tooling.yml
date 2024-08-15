@@ -1,6 +1,6 @@
-name: Add JSON Schema Tool
-description: Submit your tool to be added to the JSON Schema ecosystem.
-title: "Add [Tool Name] to JSON Schema Ecosystem"
+name: Add or Modify JSON Schema Tool
+description: Submit your tool to be added or updated in the JSON Schema ecosystem.
+title: "Add or Modify [Tool Name] in JSON Schema Ecosystem"
 labels: ["Status: Triage"]
 body:
   - type: input
@@ -18,6 +18,17 @@ body:
       label: "Tool Description"
       description: "Provide a brief description of your tool."
       placeholder: "Enter a brief description of the tool"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: actionType
+    attributes:
+      label: "Action Type"
+      description: "Select whether you want to add a new tool or modify an existing one."
+      options:
+        - label: "Add Tool"
+        - label: "Modify Tool"
     validations:
       required: true
 
@@ -85,7 +96,7 @@ body:
     attributes:
       label: "Maintainers"
       description: "Provide information about the maintainers or authors of the project."
-      placeholder: "Provide information about the maintianer or authors of the project. Include their username and platform."
+      placeholder: "Provide information about the maintainers or authors of the project. Include their username and platform."
 
   - type: input
     id: license
@@ -160,5 +171,5 @@ body:
     id: landscape
     attributes:
       label: "Landscape Information"
-      description: "Provide additional information for the JSON Schema landscape diagram. Such as your logo or link to your logo. If you want to optOut of the landscape."
+      description: "Provide additional information for the JSON Schema landscape diagram, such as your logo or a link to your logo. Indicate if you want to opt-out of the landscape."
       placeholder: "Enter the landscape information and preferences."

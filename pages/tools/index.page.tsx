@@ -178,8 +178,8 @@ export default function ToolingPage({
                   />
                 </Link>
                 <p className='hidden lg:block text-slate-600 dark:text-slate-300'>
-                  Raise an issue and we'll add your tool to the data we use to
-                  build this website
+                  Raise an issue to get your tool added or updated in the
+                  tooling table.
                 </p>
               </div>
 
