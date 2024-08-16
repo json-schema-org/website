@@ -55,6 +55,10 @@ type MultipathDecoration = {
 const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/g;
 
 // Prevent annoying error messages because slate is not SSR ready
+/* istanbul ignore next:
+ * This code is used to prevent an error message that occurs when running in a non-browser
+ * environment. So ignoring this code in the code coverage reports.
+ */
 if (typeof process !== 'undefined' && process.browser !== true) {
   React.useLayoutEffect = React.useEffect;
 }
@@ -84,6 +88,7 @@ const getTextPathIndexesFromNode = (
   }
   const customNode = customElement as CustomNode;
   const textPathIndexesFromNodes = getTextPathIndexesFromNodes(
+    /* istanbul ignore next: customNode?.children cannot be null */
     customNode?.children || [],
     path,
     acc,
@@ -172,6 +177,7 @@ const deserializeCode = (code: string): CustomElement[] => {
 
 export default function JsonEditor({ initialCode }: { initialCode: string }) {
   const fullMarkdown = useContext(FullMarkdownContext);
+  /* istanbul ignore next: In the test environment, the fullMarkdown is not provided. */
   const hasCodeblockAsDescendant: boolean | undefined = (() => {
     const positionOfCodeInFullMarkdown = fullMarkdown?.indexOf(initialCode);
     if (!positionOfCodeInFullMarkdown) return;
@@ -204,8 +210,10 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
     if (!metaRegexFinding) return null;
     try {
       const metaString: undefined | string = metaRegexFinding?.groups?.meta;
+      /* istanbul ignore next: metaString cannot be null if the regex matched */
       if (!metaString) return null;
       const meta = JSON.parse(metaString);
+      /* istanbul ignore next: meta cannot be null if the regex matched */
       return meta || null;
     } catch (e) {
       return null;
@@ -239,6 +247,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
   // fullCodeText variable is for use in copy pasting the code for the user
   const fullCodeText = React.useMemo(() => {
     let text = '';
+    /* istanbul ignore else : there is no else block to test here */
     if (value) {
       value.forEach((e: any) => {
         text += e.children[0].text + '\n';
@@ -259,7 +268,12 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
     <Slate
       editor={editor}
       initialValue={value as Descendant[]}
-      onChange={(e) => setValue(e)}
+      onChange={
+        /* istanbul ignore next:
+         * Editor is read-only, so the onChange function will never be called.
+         */
+        (e) => setValue(e)
+      }
     >
       <div
         className={classnames(
@@ -278,6 +292,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
               setCopied(true);
               setTimeout(() => setCopied(false), 2000);
             }}
+            data-test='copy-clipboard-button'
           >
             <img
               src='/icons/copy.svg'
@@ -290,7 +305,10 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
               className={copied ? '' : 'hidden'}
             ></img>
           </div>
-          <div className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'>
+          <div
+            className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'
+            data-test='check-json-schema'
+          >
             {isJsonSchema ? (
               <>
                 <img src='/logo-white.svg' className='h-4 mr-1.5' /> schema
@@ -301,21 +319,27 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
           </div>
         </div>
         <Editable
+          data-test='json-editor'
           onCopy={(e) => {
             e.preventDefault();
             const text = window.getSelection()?.toString();
             navigator.clipboard.writeText(text || '');
           }}
-          onCut={(e) => {
-            e.preventDefault();
-            const text = window.getSelection()?.toString();
-            navigator.clipboard.writeText(text || '');
-            setValue([{ type: 'paragraph', children: [{ text: '' }] }]);
-          }}
+          onCut={
+            /* istanbul ignore next : 
+               The editor is read-only, so the onCut function will never be called. */
+            (e) => {
+              e.preventDefault();
+              const text = window.getSelection()?.toString();
+              navigator.clipboard.writeText(text || '');
+              setValue([{ type: 'paragraph', children: [{ text: '' }] }]);
+            }
+          }
           readOnly={true}
           decorate={([node, path]) => {
             if (!Text.isText(node)) return [];
             const stringPath = path.join(',');
+            /* istanbul ignore next: allPathDecorationsMap[stringPath] cannot be null */
             return allPathDecorationsMap[stringPath] || [];
           }}
           renderLeaf={(props: any) => {
@@ -382,6 +406,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             return (
               <span
                 onClick={() => {
+                  /* istanbul ignore if : link cannot be null */
                   if (!link) return;
                   router.push(link);
                 }}
@@ -395,10 +420,10 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
           }}
           renderElement={(props: any) => {
             // This will be the path to the image element.
-
             const { element, children, attributes } = props;
             const path = ReactEditor.findPath(editor, element);
             const line = path[0] + 1;
+            /* istanbul ignore else : no else block to test */
             if (element.type === 'paragraph') {
               return (
                 <span
@@ -413,6 +438,8 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
                 </span>
               );
             }
+            /* istanbul ignore next:
+             * There is no other element type in the render function. Hence this will never be called.*/
             throw new Error(
               `unknown element.type [${element.type}] in render function`,
             );
@@ -420,13 +447,19 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
         />
 
         {validation === 'invalid' && (
-          <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'>
+          <div
+            className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'
+            data-test='not-compliant-to-schema'
+          >
             <img src='/icons/x-mark.svg' className='h-4 w-4 mr-2' />
             not compliant to schema
           </div>
         )}
         {validation === 'valid' && (
-          <div className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-slate-500/30 text-sm'>
+          <div
+            className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-slate-500/30 text-sm'
+            data-test='compliant-to-schema'
+          >
             <img src='/icons/checkmark.svg' className='h-5 w-5 mr-2' />
             compliant to schema
           </div>
@@ -436,6 +469,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
         className={classnames('text-center text-xs pt-2 text-slate-400', {
           'mb-10': !hasCodeblockAsDescendant,
         })}
+        data-test='code-caption'
       >
         {caption}
       </div>

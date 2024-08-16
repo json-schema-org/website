@@ -117,7 +117,8 @@ describe('DocsHelp Component', () => {
       },
     ).as('feedback');
 
-    // click on yes button and check if feedback form is visible
+    /* click on yes button and check if feedback form is visible 
+       Note: checking both yes and no button to cover both scenarios */
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM_NO_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
@@ -136,7 +137,7 @@ describe('DocsHelp Component', () => {
   });
 
   /* test feedback form functionality when status code is 500
-    Note: This is when server returns an error response | eg: INTERNAL SERVER ERROR */
+    Note: This is case when server returns an error response | eg: INTERNAL SERVER ERROR */
   it('should handle API error response', () => {
     // check if clicking on yes button should show feedback form
     cy.intercept(
@@ -166,7 +167,7 @@ describe('DocsHelp Component', () => {
   });
 
   /* test feedback form functionality when network error occurs
-    Note: This is when network error occurs while sending request to server | eg: NO INTERNET CONNECTION */
+    Note: This is case when network error occurs while sending request to server | eg: NO INTERNET CONNECTION */
   it('should handle network error', () => {
     // check if clicking on yes button should show feedback form
     cy.intercept(

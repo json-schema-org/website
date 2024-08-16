@@ -34,6 +34,8 @@ const jsonSchemaReferences: Record<string, Record<string, string>> = {
     '"string"': '/understanding-json-schema/reference/string',
     '"object"': '/understanding-json-schema/reference/object',
     '"number"': '/understanding-json-schema/reference/numeric#number',
+    '"array"': '/understanding-json-schema/reference/array',
+    '"boolean"': '/understanding-json-schema/reference/boolean',
   },
 };
 
