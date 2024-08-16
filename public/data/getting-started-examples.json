@@ -1,0 +1,83 @@
+[
+  {
+    "name": "Getting started basic schema",
+    "default": true,
+    "file": "/data/getting-started-examples/schemas/default.json",
+    "instances": [
+      {
+        "name": "Valid instance",
+        "default": true,
+        "valid": true,
+        "file": "/data/getting-started-examples/instances/default-ok.json",
+        "details": "This is a valid JSON instance for the provided JSON Schema"
+      },
+      {
+        "name": "Invalid instance",
+        "default": false,
+        "valid": false,
+        "file": "/data/getting-started-examples/instances/default-ko.json",
+        "details": "Invalid: The value of 'price' property must be a number"
+      }
+    ]
+  },
+
+  {
+    "name": "Getting started extended schema",
+    "default": false,
+    "file": "/data/getting-started-examples/schemas/default-extended.json",
+    "instances": [
+      {
+        "name": "Valid instance",
+        "default": true,
+        "valid": true,
+        "file": "/data/getting-started-examples/instances/default-extended-ok.json",
+        "details": "This is a valid JSON instance for the provided JSON Schema"
+      }
+    ]
+  },
+
+  {
+    "name": "Enumerated values schema",
+    "default": false,
+    "file": "/data/getting-started-examples/schemas/enumerated.json",
+    "instances": [
+      {
+        "name": "Valid instance",
+        "default": true,
+        "valid": true,
+        "file": "/data/getting-started-examples/instances/enumerated-ok.json",
+        "details": "This is a valid JSON instance for the provided JSON Schema"
+      }
+    ]
+  },
+
+  {
+    "name": "Regular expression schema",
+    "default": false,
+    "file": "/data/getting-started-examples/schemas/regex.json",
+    "instances": [
+      {
+        "name": "Valid instance",
+        "default": true,
+        "valid": true,
+        "file": "/data/getting-started-examples/instances/regex-ok.json",
+        "details": "This is a valid JSON instance for the provided JSON Schema"
+      }
+    ]
+  },
+
+  {
+    "name": "Conditional validation with if-else schema",
+    "default": false,
+    "file": "/data/getting-started-examples/schemas/conditional.json",
+    "instances": [
+      {
+        "name": "Valid instance",
+        "default": true,
+        "valid": true,
+        "file": "/data/getting-started-examples/instances/conditional-ok.json",
+        "details": "This is a valid JSON instance for the provided JSON Schema"
+      }
+    ]
+  }
+]

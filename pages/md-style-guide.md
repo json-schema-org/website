@@ -76,6 +76,20 @@ Useful to show the text wrapped in it, in a big quotation-like text.
 
 ---
 
+## Regularquote
+
+Useful to show the text wrapped in it, in a regular-sized quotation-like text.
+
+```markdown
+<Regularquote> message to show </Regularquote>
+```
+
+### Example
+
+<Regularquote> message to show </Regularquote>
+
+---
+
 ## Blockquote
 
 Useful to show the text wrapped in it, in a block quotation-like text.
@@ -151,7 +165,7 @@ Danger is a special type of info box in which text showing any danger can be sho
 Table of Contents provides a structured overview of the main sections or chapters within the current page/document.
 
 ```markdown
-<TableOfContent content={content} depth={depth} />
+<tableofcontent content={content} depth={depth} />
 ```
 
 ---

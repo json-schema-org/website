@@ -12,7 +12,6 @@ import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
 
 /* eslint-disable */
-import axios from 'axios';
 import ical from 'node-ical';
 import moment from 'moment-timezone';
 import { useTheme } from 'next-themes';
@@ -49,8 +48,12 @@ export const getStaticProps: GetStaticProps = async () => {
   // Function to fetch the remote iCal file
   async function fetchRemoteICalFile(url: string) {
     try {
-      const response = await axios.get(url, { method: 'no-cors' });
-      return response.data;
+      const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.text();
+      return data;
     } catch (error) {
       console.error('Error fetching iCal file:', error);
       return null;
@@ -60,7 +63,9 @@ export const getStaticProps: GetStaticProps = async () => {
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics'; // Replace with the actual URL
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData) => printEventsForNextFourWeeks(ical.parseICS(icalData)))
+    .then((icalData: any) =>
+      printEventsForNextFourWeeks(ical.parseICS(icalData)),
+    )
     .catch((error) => console.error('Error:', error));
   // console.log('this is fetched data', datesInfo)
   return {
@@ -194,19 +199,22 @@ export function AlgoliaSearch() {
 const Home = (props: any) => {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
 
   const [asyncapi_logo, setAsyncapi_logo] = useState('');
   const [vpsserver_logo, setVPSserver_logo] = useState('');
   const [airbnb_logo, setAirbnb_logo] = useState('');
   const [postman_logo, setPostman_logo] = useState('');
+  const [itflashcards_logo, setItflashcards_logo] = useState('');
+  const [route4me_logo, setRoute4me_logo] = useState('');
+  const [n8n_logo, setN8n_logo] = useState('');
   const [endjin_logo, setEndjin_logo] = useState('');
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
   const [slack_logo, setSlack_logo] = useState('');
 
   useEffect(() => {
-    if (theme === 'dark') {
+    if (resolvedTheme === 'dark') {
       setAsyncapi_logo('/img/logos/dark-mode/asyncapi_white.svg');
       setAirbnb_logo('/img/logos/dark-mode/airbnb_white.png');
       setPostman_logo('/img/logos/usedby/postman-white.png');
@@ -215,6 +223,9 @@ const Home = (props: any) => {
       setCommon_room_logo('/img/logos/dark-mode/common-room_white.svg');
       setSlack_logo('/img/logos/dark-mode/slack_white.svg');
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
+      setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
+      setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
+      setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -224,8 +235,11 @@ const Home = (props: any) => {
       setCommon_room_logo('/img/logos/supported/common-room.svg');
       setSlack_logo('/img/logos/supported/slack-logo.svg');
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
+      setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
+      setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
+      setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
     }
-  }, [theme]);
+  }, [resolvedTheme]);
   return (
     <div>
       <div className='flex flex-col items-center'>
@@ -243,7 +257,7 @@ const Home = (props: any) => {
 
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
               <Link
-                href='/learn/getting-started-step-by-step'
+                href='/learn'
                 className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
                 Getting started
@@ -280,12 +294,12 @@ const Home = (props: any) => {
               </div>
 
               <p className='text-white mx-4 my-5 dark:text-slate-400'>
-                Please visit the official list of{' '}
+                Please visit the JSON Schema{' '}
                 <a
                   className='underline'
-                  href='https://github.com/json-schema-org/community/blob/main/ADOPTERS.md'
+                  href='https://landscape.json-schema.org/'
                 >
-                  adopters
+                  Landscape
                 </a>{' '}
                 and discover more companies using JSON Schema.
               </p>
@@ -358,7 +372,7 @@ const Home = (props: any) => {
               Start learning JSON Schema
             </h2>
             <button className='w-[170px] h-[45px] mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out rounded border-2 bg-primary text-white font-semibold dark:border-none'>
-              <a href='/learn/getting-started-step-by-step '>Read the docs</a>
+              <a href='/docs '>Read the docs</a>
             </button>
           </div>
         </section>
@@ -662,6 +676,15 @@ const Home = (props: any) => {
               </a>
               <a href='https://www.vpsserver.com/en-us/'>
                 <img src={vpsserver_logo} className=' w-44' />
+              </a>
+              <a href='https://www.itflashcards.com/'>
+                <img src={itflashcards_logo} className=' w-44' />
+              </a>
+              <a href='https://www.route4me.com/'>
+                <img src={route4me_logo} className=' w-44' />
+              </a>
+              <a href='https://n8n.io/'>
+                <img src={n8n_logo} className=' w-44' />
               </a>
               <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg

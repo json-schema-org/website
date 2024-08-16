@@ -245,6 +245,7 @@ the utility, and decided on a case-by-case basis.
 - <userevent type='plausible-event-name=activation-click-tool'>[json-schema-for-humans](https://pypi.org/project/json-schema-for-humans/)</userevent> - Generate HTML representation of a schema. Python-based. Supports draft-7.
 - <userevent type='plausible-event-name=activation-click-tool'>[oXygen JSON Schema Documentation](https://www.oxygenxml.com/json_converter.html#generate-json-schema-documentation)</userevent> - Generate JSON Schema documentation in HTML format including diagrams.
 - <userevent type='plausible-event-name=activation-click-tool'>[wetzel](https://github.com/CesiumGS/wetzel)</userevent> - Generates Markdown and AsciiDoc. With some limitations, supports draft-3, draft-4, draft-7, and 2020-12.
+- <userevent type='plausible-event-name=activation-click-tool'>[jsonschema-markdown](https://github.com/elisiariocouto/jsonschema-markdown)</userevent> - Generate Markdown documentation of a schema. Can be used as a CLI or as a Python library.
 
 ## Schema Repositories
 

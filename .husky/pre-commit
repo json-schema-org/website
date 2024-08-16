@@ -1,6 +1,3 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
 echo 'Performing code styling, testing, and building processes before committing'
 
 # Check ESLint Standards

@@ -9,10 +9,10 @@
       last-updated: "2022-08-31"
     - name: Json.NET Schema
       url: https://www.newtonsoft.com/jsonschema
-      date-draft: [2019-09]
+      date-draft: [2020-12, 2019-09]
       draft: [7, 6, 4, 3]
       license: "AGPL-3.0-only"
-      last-updated: "2022-08-31"
+      last-updated: "2024-06-08"
     - name: Corvus.JsonSchema
       url: https://github.com/corvus-dotnet/corvus.jsonschema
       date-draft: [2020-12, 2019-09]
@@ -53,6 +53,13 @@
       draft: [7, 6, 4]
       license: Boost Software License 1.0
       last-updated: "2024-04-22"
+    - name: JSON Toolkit
+      url: https://github.com/sourcemeta/jsontoolkit
+      notes: Comes with its own JSON parser
+      date-draft: [2020-12, 2019-09]
+      draft: [7, 6, 4]
+      license: AGPL-3.0 and commercial
+      last-updated: "2024-06-13"
 - name: Clojure
   implementations:
     - name: jinx
@@ -196,8 +203,9 @@
       url: https://github.com/harrel56/json-schema
       notes: JSON library agnostic implementation. Supports custom keywords.
       date-draft: [ 2020-12, 2019-09 ]
+      draft: [ 7 ]
       license: MIT
-      last-updated: "2023-11-12"
+      last-updated: "2024-08-14"
     - name: Zuunr JSON
       url: https://bitbucket.org/zuunr/json
       notes: Immutable JSON representation in Java + validation and filtering based on JSON Schema
@@ -505,6 +513,14 @@
       built-on:
         name: ajv
       last-updated: "2022-08-31"
+    - name: Harrel.dev
+      url: https://harrel.dev/json-schema
+      date-draft: [2020-12, 2019-09]
+      draft: [7]
+      notes: Server-side validation. Uses json-schema (dev.harrel) Java implementation.
+      built-on:
+        name: json-schema (dev.harrel)
+      last-updated: "2024-08-14"
 - name: Command Line
   implementations:
     - name: valbuddy
@@ -543,6 +559,15 @@
       last-updated: "2022-08-31"
       built-on:
         name: ajv
+    - name: Intelligence.AI JSON Schema CLI
+      license: AGPL-3.0
+      url: 'https://github.com/intelligence-ai/jsonschema'
+      last-updated: "2024-08-08"
+      date-draft: [2020-12, 2019-09]
+      draft: [7, 6, 4, 3, 2, 1, 0]
+      notes: Supports formatting, linting, bundling, testing, validating, and more. As an exception, validation is not supported on Draft 3 and older
+      built-on:
+        name: jsontoolkit
 - name: Github Actions
   implementations:
     - name: Validate JSON Action

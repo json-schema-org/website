@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Link from 'next/link';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
@@ -8,6 +8,7 @@ import Highlight from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Code from '~/components/Code';
 import { FullMarkdownContext } from '~/context';
+import Image from 'next/image';
 
 import {
   Headline1,
@@ -489,18 +490,39 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 );
               },
             },
-            TableOfContent: {
+            Regularquote: {
+              component: ({ children }) => {
+                return (
+                  <div className='text-2xl my-5 mx-8 border-gray-300 bg-gray-300 dark:bg-gray-300 p-4 p-t-6 text-center dark:text-slate-800 rounded-xl'>
+                    {children}
+                  </div>
+                );
+              },
+            },
+            tableofcontent: {
               component: ({ depth }) => {
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const fullMarkdown = useContext(FullMarkdownContext);
                 if (!fullMarkdown) return null;
                 return (
-                  <div className='mt-3 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 pr-3 border-dotted border-l-blue-400 border-l-[3px]'>
-                    <TableOfContentMarkdown
-                      markdown={fullMarkdown}
-                      depth={depth}
-                    />
-                  </div>
+                  <>
+                    <div className='flex flex-row gap-2 text-slate-600 dark:text-slate-300 text-h5 max-sm:text-[1rem]  items-center'>
+                      <Image
+                        src={'/icons/toc-menu.svg'}
+                        height={15}
+                        width={15}
+                        alt='menu-icon'
+                        className='max-sm:w-3 max-sm:h-3'
+                      />
+                      <span>Table of Contents</span>
+                    </div>
+                    <div className='mt-2 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 pr-3 border border-r-0 border-y-0 border-l-blue-400/40 border-l-[2.5px]'>
+                      <TableOfContentMarkdown
+                        markdown={fullMarkdown}
+                        depth={depth}
+                      />
+                    </div>
+                  </>
                 );
               },
             },
@@ -532,7 +554,7 @@ export function TableOfContentMarkdown({
                   href={`#${slug}`}
                   className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.40rem] font-medium'
                 >
-                  <span className='mr-1 text-blue-400 text-[1.5em]'>
+                  <span className='mr-1 text-blue-400/90 text-[1em] flex justify-center items-center'>
                     &#9679;
                   </span>
                   {children}
@@ -561,12 +583,22 @@ export function TableOfContentMarkdown({
                 ? {
                     component: ({ children }) => {
                       const slug = slugifyMarkdownHeadline(children);
+                      const [isChrome, setIsChrome] = useState(false);
+
+                      useEffect(() => {
+                        const chromeCheck =
+                          /Chrome/.test(navigator.userAgent) &&
+                          /Google Inc/.test(navigator.vendor);
+                        setIsChrome(chromeCheck);
+                      }, []);
+
                       return (
+                        // chromeClass
                         <a
                           href={`#${slug}`}
-                          className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 -ml-[9px] max-sm:-ml-[7px] font-medium'
+                          className={`block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ] max-sm:-ml-[6px] font-medium ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`}
                         >
-                          <span className='mr-1 text-blue-400 text-[1em]'>
+                          <span className='mr-1 text-blue-400 text-[0.7em]'>
                             &#9679;
                           </span>
                           {children}
@@ -583,12 +615,12 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.15rem]'
+                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]'
                       >
-                        <span className='text-blue-400 text-[0.28em] ml-1 max-sm:w-[18px]'>
-                          &#9679; &#9679; &#9679; &#9679;
+                        <span className='text-blue-400/40 font-extrabold text-[0.8em] max-sm:text-[1.2em] ml-1'>
+                          &mdash;&mdash;
                         </span>
-                        <span className='mr-1 text-blue-400 text-[0.75em]'>
+                        <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
                           &#9679;
                         </span>
 
@@ -606,13 +638,12 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.15rem]'
+                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem] '
                       >
-                        <span className='text-blue-400 text-[0.28em] ml-1 max-sm:w-[48px]'>
-                          &#9679; &#9679; &#9679; &#9679; &#9679; &#9679;
-                          &#9679; &#9679; &#9679; &#9679; &#9679;
+                        <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
+                          &mdash;&mdash;&mdash;&mdash;
                         </span>
-                        <span className='mr-1 text-blue-400 text-[0.75em]'>
+                        <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
                           &#9679;
                         </span>
 
@@ -636,6 +667,7 @@ export function TableOfContentMarkdown({
             'div',
             'figure',
             'Bigquote',
+            'Regularquote',
           ),
         },
       }}
