@@ -203,8 +203,9 @@
       url: https://github.com/harrel56/json-schema
       notes: JSON library agnostic implementation. Supports custom keywords.
       date-draft: [ 2020-12, 2019-09 ]
+      draft: [ 7 ]
       license: MIT
-      last-updated: "2023-11-12"
+      last-updated: "2024-08-14"
     - name: Zuunr JSON
       url: https://bitbucket.org/zuunr/json
       notes: Immutable JSON representation in Java + validation and filtering based on JSON Schema
@@ -512,6 +513,14 @@
       built-on:
         name: ajv
       last-updated: "2022-08-31"
+    - name: Harrel.dev
+      url: https://harrel.dev/json-schema
+      date-draft: [2020-12, 2019-09]
+      draft: [7]
+      notes: Server-side validation. Uses json-schema (dev.harrel) Java implementation.
+      built-on:
+        name: json-schema (dev.harrel)
+      last-updated: "2024-08-14"
 - name: Command Line
   implementations:
     - name: valbuddy
