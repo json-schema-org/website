@@ -4,7 +4,7 @@ section: implementers
 ---
 
 JSON Schema is extremely widely used and nearly equally widely implemented.
-There are implementations of JSON Schema validation for [over 20 languages](https://json-schema.org/implementations.html) or environments.
+There are implementations of JSON Schema validation for [over 20 languages](https://json-schema.org/tools) or environments.
 This prevalence is fantastic for user choice -- as someone wishing to use JSON Schema you can be almost certain you'll find an implementation suitable for your target environment.
 
 But when it comes to community support, it can be challenging to know how to perform various JSON Schema operations in a particular library or implementation, as each may have slightly differing (or more than slightly differing) APIs.
@@ -75,7 +75,7 @@ Consider a division function on floats, represented as `x / y`.
 We will write the type of this function as `Float → Float → Float <!> DivideByZeroError`, where the interpretation of this signature is that the function takes 2 floats and returns a float, but the `<!>` signals it may also propagate a `DivideByZeroError` (in this case when the function is asked to divide by zero).
 
 The specific manifestation of `DivideByZeroError` will depend on the programming language.
-In a language with exceptions, this function may raise a `DivideByZeroError`-equivalent as an exception, which must or may be handled by the caller. 
+In a language with exceptions, this function may raise a `DivideByZeroError`-equivalent as an exception, which must or may be handled by the caller.
 In a language with option types, the "correct" type signature may really be wrapped in an `Option` type which represents the division by zero case (so the "true" signature in such a language would be `Option[Float → Float → Float]`).
 In a language with wrapper return types, the true type signature may be `Result<Float, DivideByZeroError>` where the returned value must be inspected to ensure it contains a successful result, and where the divide by zero error is instead a possible error value.
 In a language with a convention to return "junk" values, the true type may be precisely `Float → Float → Float` where some arbitrary float value is
