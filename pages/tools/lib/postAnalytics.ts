@@ -29,18 +29,21 @@ export async function postAnalytics({
   try {
     const deviceType = /Mobi/.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
 
-    const response = await fetch('', {
-      redirect: 'follow',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'text/plain;charset=utf-8',
+    const response = await fetch(
+      'https://script.google.com/macros/s/AKfycbyKimeFeIfrY8OH2waWajATg-21cdC6PlzZ4iJTsETNQA6854jkQSAyMVv6lDKzCUSs/exec',
+      {
+        redirect: 'follow',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8',
+        },
+        body: JSON.stringify({
+          deviceType,
+          event: eventType,
+          payload: eventPayload,
+        }),
       },
-      body: JSON.stringify({
-        deviceType,
-        event: eventType,
-        payload: eventPayload,
-      }),
-    });
+    );
 
     if (!response.ok) {
       console.error('Error posting analytics event:', response.statusText);
