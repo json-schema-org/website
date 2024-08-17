@@ -32,7 +32,7 @@ export default function ToolingDetailModal({
     const fetchBowtieReport = async () => {
       try {
         const res = await fetch(
-          'http://bowtie.report/api/v1/json-schema-org/implementations',
+          'https://bowtie.report/api/v1/json-schema-org/implementations',
         );
         const bowtieReport: BowtieReport = await res.json();
 
