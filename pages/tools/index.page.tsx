@@ -156,7 +156,7 @@ export default function ToolingPage({
             className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 ${isSidebarOpen ? 'hidden lg:block' : ''}`}
           >
             <Headline1>JSON Schema Tooling</Headline1>
-            <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
+            <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
               Toolings below are written in different languages, and support
               part, or all, of at least one recent version of the specification.
             </p>
@@ -174,10 +174,10 @@ export default function ToolingPage({
                 >
                   <img
                     src='/img/tools/adding_your_tool.png'
-                    className='rounded-sm h-[76px]'
+                    className='rounded-sm h-[68px]'
                   />
                 </Link>
-                <p className='hidden lg:block text-slate-600 dark:text-slate-300'>
+                <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
                   Raise an issue to get your tool added or updated in the
                   tooling table.
                 </p>
@@ -192,12 +192,12 @@ export default function ToolingPage({
                 >
                   <img
                     src='/img/tools/try_bowtie.png'
-                    className='rounded-sm h-[76px]'
+                    className='rounded-sm h-[68px]'
                   />
                 </Link>
-                <p className='hidden lg:block text-slate-600 dark:text-slate-300'>
-                  Bowtie is a meta-validator for JSON Schema, coordinating and
-                  reporting results from other validators.
+                <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
+                  Bowtie is a meta-validator for JSON Schema implementations and
+                  it provides compliance reports.
                 </p>
               </div>
             </div>
