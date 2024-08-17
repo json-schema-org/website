@@ -14,7 +14,7 @@ import Sidebar from './components/Sidebar';
 import ToolingTable from './components/ToolingTable';
 import useToolsTransform from './hooks/useToolsTransform';
 import getDistinctEntries from './lib/getDistinctEntries';
-import type { BowtieEntry, JSONSchemaTool } from './JSONSchemaTool';
+import type { JSONSchemaTool } from './JSONSchemaTool';
 
 export type FilterCriteriaFields =
   | 'languages'
@@ -26,26 +26,6 @@ export async function getStaticProps() {
   const toolingData = yaml.load(
     fs.readFileSync('data/tooling-data.yaml', 'utf-8'),
   ) as JSONSchemaTool[];
-
-  const res = await fetch(
-    'http://bowtie.report/api/v1/json-schema-org/implementations',
-  );
-
-  const bowtieReport = await res.json();
-
-  toolingData.forEach((tool) => {
-    const bowtieEntry: BowtieEntry = bowtieReport[tool.source];
-
-    if (bowtieEntry) {
-      tool.bowtie = {
-        badges: {
-          supported_versions: bowtieEntry.badges_urls.supported_versions,
-          compliance: bowtieEntry.badges_urls.compliance,
-        },
-        identifier: bowtieEntry.id,
-      };
-    }
-  });
 
   const filterCriteria = {
     languages: getDistinctEntries(toolingData, '$..languages[*]'),

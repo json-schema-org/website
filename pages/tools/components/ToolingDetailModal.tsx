@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import CancelIcon from '~/public/icons/cancel.svg';
 
 import Badge from './ui/Badge';
-import type { JSONSchemaTool } from '../JSONSchemaTool';
+import type {
+  BowtieEntry,
+  BowtieReport,
+  JSONSchemaTool,
+} from '../JSONSchemaTool';
 import toTitleCase from '../lib/toTitleCase';
 
 export default function ToolingDetailModal({
@@ -13,12 +17,34 @@ export default function ToolingDetailModal({
   tool: JSONSchemaTool;
   onClose: () => void;
 }) {
+  const [bowtieEntry, setBowtieEntry] = useState<
+    BowtieEntry | 'loading' | null
+  >('loading');
+
   useEffect(() => {
     document.body.classList.add('no-scroll');
     return () => {
       document.body.classList.remove('no-scroll');
     };
   }, []);
+
+  useEffect(() => {
+    const fetchBowtieReport = async () => {
+      try {
+        const res = await fetch(
+          'http://bowtie.report/api/v1/json-schema-org/implementations',
+        );
+        const bowtieReport: BowtieReport = await res.json();
+
+        setBowtieEntry(bowtieReport[tool.source] || null);
+      } catch (error) {
+        console.error('Error fetching Bowtie report:', error);
+        setBowtieEntry(null);
+      }
+    };
+
+    fetchBowtieReport();
+  }, [tool.source]);
 
   return (
     <div className='fixed inset-0 flex items-center justify-center z-50 overflow-x-hidden'>
@@ -216,30 +242,38 @@ export default function ToolingDetailModal({
               </div>
             )}
 
-            {tool.bowtie?.badges && (
-              <div className='break-inside-avoid mb-4'>
-                <h3 className='text-lg font-semibold'>Bowtie Report</h3>
-                {tool.bowtie.badges.supported_versions && (
-                  <div>
-                    <h4 className='text-[14px] font-semibold'>
-                      Supported Versions:
-                    </h4>
-                    <BowtieReportBadge
-                      uri={tool.bowtie.badges.supported_versions}
-                    />
-                  </div>
-                )}
-                {tool.bowtie.badges.compliance && (
-                  <div>
-                    <h4 className='text-[14px] font-semibold'>Compliance:</h4>
-                    {Object.values(tool.bowtie.badges.compliance).map(
-                      (badgeURI) => (
-                        <BowtieReportBadge key={badgeURI} uri={badgeURI} />
-                      ),
-                    )}
-                  </div>
-                )}
+            {bowtieEntry === 'loading' ? (
+              <div className='text-center mb-4'>
+                <p className='text-gray-600 dark:text-slate-300 text-left'>
+                  Crunching the latest Bowtie report for you...
+                </p>
               </div>
+            ) : (
+              bowtieEntry && (
+                <div className='break-inside-avoid mb-4'>
+                  <h3 className='text-lg font-semibold'>Bowtie Report</h3>
+                  {bowtieEntry.badges_urls.supported_versions && (
+                    <div>
+                      <h4 className='text-[14px] font-semibold'>
+                        Supported Versions:
+                      </h4>
+                      <BowtieReportBadge
+                        uri={bowtieEntry.badges_urls.supported_versions}
+                      />
+                    </div>
+                  )}
+                  {bowtieEntry.badges_urls.compliance && (
+                    <div>
+                      <h4 className='text-[14px] font-semibold'>Compliance:</h4>
+                      {Object.values(bowtieEntry.badges_urls.compliance).map(
+                        (badgeURI) => (
+                          <BowtieReportBadge key={badgeURI} uri={badgeURI} />
+                        ),
+                      )}
+                    </div>
+                  )}
+                </div>
+              )
             )}
 
             {tool.toolingTypes && (
@@ -320,10 +354,28 @@ export default function ToolingDetailModal({
 }
 
 const BowtieReportBadge = ({ uri }: { uri: string }) => {
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   return (
-    <img
-      className='my-1'
-      src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
-    />
+    <div className='my-1'>
+      {loading && !error && (
+        <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-32 rounded-md'></div>
+      )}
+      <img
+        src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
+        onLoad={() => setLoading(false)}
+        onError={() => {
+          setLoading(false);
+          setError(true);
+        }}
+        style={{ display: loading ? 'none' : 'block' }}
+        alt='Bowtie Badge'
+        className='my-1'
+      />
+      {error && (
+        <div className='text-red-500 text-sm mt-1'>Failed to load badge</div>
+      )}
+    </div>
   );
 };

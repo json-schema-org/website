@@ -21,7 +21,6 @@ export interface JSONSchemaTool {
   };
   bowtie?: {
     identifier: string;
-    badges: BowtieEntry['badges_urls'];
   };
   toolingListingNotes?: string;
   compliance?: {
