@@ -27,6 +27,23 @@ export async function getStaticProps() {
     fs.readFileSync('data/tooling-data.yaml', 'utf-8'),
   ) as JSONSchemaTool[];
 
+  toolingData.forEach((tool) => {
+    tool.supportedDialects?.draft?.sort((a, b) => {
+      const aIndex = DRAFT_ORDER.map(String).indexOf(a.toString());
+      const bIndex = DRAFT_ORDER.map(String).indexOf(b.toString());
+
+      if (aIndex === -1 && bIndex === -1) {
+        return 0;
+      } else if (aIndex === -1) {
+        return 1;
+      } else if (bIndex === -1) {
+        return -1;
+      }
+
+      return bIndex - aIndex;
+    });
+  });
+
   const filterCriteria = {
     languages: getDistinctEntries(toolingData, '$..languages[*]'),
     drafts: getDistinctEntries<JSONSchemaTool[], number | string>(
