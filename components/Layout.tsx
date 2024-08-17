@@ -294,11 +294,7 @@ const MobileNav = () => {
         isActive={section === 'docs'}
       />
 
-      <MainNavLink
-        uri='/tools'
-        label='Tools'
-        isActive={section === 'tools'}
-      />
+      <MainNavLink uri='/tools' label='Tools' isActive={section === 'tools'} />
       <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
         uri='/community'
