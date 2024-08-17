@@ -3,7 +3,10 @@ import React from 'react';
 export const Remember = () => {
   return (
     <div className='flex mt-7 flex-col rounded-md shadow-md border border-gray-200 p-4 mt-2'>
-      <h3 className='flex text-h5mobile md:text-h5 font-semibold border-b pb-3'>
+      <h3
+        className='flex text-h5mobile md:text-h5 font-semibold border-b pb-3'
+        data-test='remember-heading'
+      >
         <svg
           xmlns='http://www.w3.org/2000/svg'
           width='32'
@@ -16,15 +19,21 @@ export const Remember = () => {
         </svg>{' '}
         Remember
       </h3>
-      <span className='inline-block mt-2 ml-2 font-medium antialiased font-semibold'>
+      <span
+        className='inline-block mt-2 ml-2 font-medium antialiased font-semibold'
+        data-test='contribute-docs-span'
+      >
         Contribute to the JSON Schema Docs
       </span>
-      <div className='mt-2 mb-2'>
+      <div className='mt-2 mb-2' data-test='contribute-docs-div'>
         Code isn't the only way to contribute to OSS; Docs are extremely import
         for the JSON Schema Ecosystem. At JSON Schema, We value Docs
         contributions as much as every other type of contribution!
       </div>
-      <span className='inline-block mt-3 ml-2 font-medium antialiased font-semibold'>
+      <span
+        className='inline-block mt-3 ml-2 font-medium antialiased font-semibold'
+        data-test='get-started-span'
+      >
         To get started as a Docs contributor:
       </span>
       <div className='mt-2 mb-2'>
@@ -70,10 +79,13 @@ export const Remember = () => {
           </li>
         </ol>
       </div>
-      <span className='inline-block ml-2 font-medium antialiased font-semibold'>
+      <span
+        className='inline-block ml-2 font-medium antialiased font-semibold'
+        data-test='contribute-docs-questions-span'
+      >
         Docs contributor questions?
       </span>
-      <div className='mt-2 mb-2'>
+      <div className='mt-2 mb-2' data-test='contribute-docs-questions-div'>
         Do you have a documentation contributor question? Please leave a comment
         in the issue or PR or join the <code>#contribute</code> or{' '}
         <code>#documentation</code> channels on{' '}
