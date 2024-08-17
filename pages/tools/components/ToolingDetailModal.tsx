@@ -360,7 +360,7 @@ const BowtieReportBadge = ({ uri }: { uri: string }) => {
   return (
     <div className='my-1'>
       {loading && !error && (
-        <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-32 rounded-md'></div>
+        <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-[180px] rounded-md'></div>
       )}
       <img
         src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
