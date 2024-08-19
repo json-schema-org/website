@@ -2,7 +2,7 @@
 title: 'Draft-05'
 Published: '21-April-2017'
 type: docs
-authors: ['Austin Wright', 'Henry Andrews', 'Ben Hutton', 'Greg Dennis']
+authors: ['Austin Wright']
 Metaschema: 'https://json-schema.org/draft/2020-12/schema'
 Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
 ---
