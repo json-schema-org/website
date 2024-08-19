@@ -105,6 +105,7 @@ const getStartedPath = [
 ];
 const getReferencePath = [
   '/understanding-json-schema',
+  '/understanding-json-schema/keywords',
   '/understanding-json-schema/basics',
   '/understanding-json-schema/conventions',
   '/understanding-json-schema/about',
@@ -480,6 +481,11 @@ export const DocsNav = ({
             label='JSON Schema Glossary'
             setOpen={setOpen}
           />
+          <DocLink
+            uri='/understanding-json-schema/keywords'
+            label='JSON Schema Keywords'
+            setOpen={setOpen}
+          />
           <DocLinkBlank
             uri='https://www.learnjsonschema.com/'
             label='Learn JSON Schema'
@@ -491,11 +497,6 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <div className='pl-4 pb-1 pt-1'>
-            <DocLink
-              uri='/understanding-json-schema/keywords'
-              label='Keywords'
-              setOpen={setOpen}
-            />
             <DocLink
               uri='/understanding-json-schema/conventions'
               label='Conventions used'

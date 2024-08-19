@@ -11,7 +11,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 export async function getStaticProps() {
-  const datas = yaml.load(fs.readFileSync('data/keywords.yml', 'utf-8'));
+  const datas = yaml.load(
+    fs.readFileSync('data/keywords.yml', 'utf-8'),
+  ) as DataObject[];
+
+  // Sort the data alphabetically by the 'name' keyword
+  datas.sort((a, b) => a.name.localeCompare(b.name));
 
   return {
     props: {
@@ -41,10 +46,13 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
       </Head>
       <Headline1>JSON Schema Keywords</Headline1>
       <p className='text-slate-600 block leading-7 dark:text-slate-300'>
-        JSON Schema keywords are the building blocks of JSON Schema. They are
-        used to define the structure of a JSON document
+        JSON Schema keywords are the building blocks of JSON Schema and they are
+        used to define the structure of a JSON document.
       </p>
-
+      <p className='text-slate-600 block leading-7 dark:text-slate-300 pt-4'>
+        Find below the list of JSON Schema Keywords and their links to the JSON
+        Schema docs:
+      </p>
       <div className='mt-4'>
         {datas
           .sort((a: DataObject, b: DataObject) => a.name.localeCompare(b.name))
