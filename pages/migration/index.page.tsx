@@ -32,15 +32,11 @@ export default function ImplementationsPages({
 }) {
   return (
     <SectionContext.Provider value={null}>
-      <div className='w-5/6 mx-auto mt-40 dark:text-slate-200'>
-        <h1>{frontmatter.title}</h1>
-        <h1>{frontmatter.type}</h1>
-        <h2>{frontmatter.Specification}</h2>
-
+      <div className='w-5/6 mx-auto dark:text-slate-200'>
+        <Headline1>{frontmatter.title}</Headline1>
         <StyledMarkdown markdown={blocks.index} />
         <StyledMarkdown markdown={blocks.body} />
       </div>
-    </SectionContext.Provider>
   );
 }
 ImplementationsPages.getLayout = getLayout;
