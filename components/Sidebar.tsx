@@ -680,7 +680,7 @@ export const DocsNav = ({
 
           <DocLink uri='/migration' label='Migration' setOpen={setOpen} />
           <DocLink
-            uri='/release-note'
+            uri='/release-notes'
             label='Release Notes'
             setOpen={setOpen}
           />
