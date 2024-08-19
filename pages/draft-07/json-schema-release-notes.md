@@ -1,4 +1,4 @@
-### Draft-07 Release Note
+### Draft-07 Release Notes
 
 For the Core and Validation specifications, draft-07 is a relatively
 minor update. In terms of validation keywords and outcomes, it is fully
