@@ -61,7 +61,7 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
                         width={20}
                         className='mt-3'
                         alt='external link'
-                        title='Learn JSON Schema'
+                        title='See at Learn JSON Schema'
                       />
                     </Link>
                   </div>
