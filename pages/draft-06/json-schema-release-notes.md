@@ -1,4 +1,4 @@
-### Draft-06 release note
+### Draft-06 release notes
 
 Release notes for migrating from zyp-04 and fge-00 (draft-04) to wright-01 (draft-06).
 
