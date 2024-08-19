@@ -136,6 +136,7 @@ const ToolingTable = ({
                           flexShrink: 0,
                           flexGrow: 0,
                         },
+                        title: 'See details',
                       }}
                     >
                       {tool.name}
@@ -190,6 +191,7 @@ const ToolingTable = ({
                             href={`https://bowtie.report/#/implementations/${tool.bowtie?.identifier}`}
                             target='blank'
                             onClick={(event) => event.stopPropagation()}
+                            title='See at Bowtie'
                           >
                             <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                           </a>
@@ -314,6 +316,7 @@ const TableCell = ({
         propAttributes?.className,
         'flex items-center w-full px-2 py-2 border-b border-gray-200 lg:break-words',
       )}
+      title={propAttributes?.title || 'See details'}
     >
       {children}
     </td>
