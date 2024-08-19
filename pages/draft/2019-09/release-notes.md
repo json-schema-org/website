@@ -1,4 +1,4 @@
-### Draft 2019-09 Release Note
+### Draft 2019-09 Release Notes
 
 For the vast majority of schema authors, we hope that these changes are minimally disruptive.
 
