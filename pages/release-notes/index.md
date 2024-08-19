@@ -1,4 +1,9 @@
-### Release notes for all drafts
+---
+title: Release notes
+type: docs
+---
+
+Find below the Release Notes of all JSON Schema drafts:
 
 - [Draft 2020-12 release notes](draft/2020-12#draft-2020-12-release-notes)
 - [Draft 2019-09 release notes](draft/2019-09#draft-2019-09-release-note)
