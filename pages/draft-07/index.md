@@ -3,8 +3,8 @@ title: 'Draft-07'
 Published: '19-March-2018'
 type: docs
 authors: ['Austin Wright', 'Henry Andrews']
-Metaschema: 'https://json-schema.org/draft/2020-12/schema'
-Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
+Metaschema: 'https://json-schema.org/draft-07/schema'
+Specification: 'https://json-schema.org/draft-07/draft-handrews-json-schema-01.html'
 ---
 
 ### Introduction

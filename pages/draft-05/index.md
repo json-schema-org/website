@@ -1,10 +1,10 @@
 ---
 title: 'Draft-05'
-Published: '21-April-2017'
+Published: '13-October-2016'
 type: docs
 authors: ['Austin Wright']
-Metaschema: 'https://json-schema.org/draft/2020-12/schema'
-Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
+Metaschema: 'https://json-schema.org/draft-04/schema'
+Specification: 'https://json-schema.org/draft-05/draft-wright-json-schema-00.pdf'
 ---
 
 ### Draft-05 Documents

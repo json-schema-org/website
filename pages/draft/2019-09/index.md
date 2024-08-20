@@ -1,14 +1,14 @@
 ---
 title: Draft 2019-09
 section: docs
-Specification: https://json-schema.org/draft/2020-12/json-schema-core.html
+Specification: https://json-schema.org/draft/2019-09/draft-handrews-json-schema-02.html
 authors:
   - Austin Wright
   - Henry Andrews
   - Ben Hutton
   - Greg Dennis
 Published: 17-September-2019
-Metaschema: https://json-schema.org/draft/2020-12/schema
+Metaschema: https://json-schema.org/draft/2019-09/schema
 ---
 
 ### Introduction
