@@ -70,6 +70,7 @@ const Headline = ({
       propAttributes?.className,
     ),
     onClick: handleHeadingClick,
+    'data-test': 'headline',
   };
   const childredWithoutFragment = filterFragment(children);
   return (

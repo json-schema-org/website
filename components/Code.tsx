@@ -12,6 +12,7 @@ export default function Code({ children }: { children: any }) {
         'bg-amber-200': blockContext === BlockContextValue.Information,
         'text-white': blockContext === BlockContextValue.CodeBlock,
       })}
+      data-test='code'
     >
       {children}
     </code>

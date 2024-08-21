@@ -51,10 +51,11 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
     <div>
       {items.map((item, index) => (
         <div
-          key={item.id || index}
+          key={item.id}
           className={`overflow-hidden transition-max-height border-t-2 ${
             activeIndex === index ? 'max-h-96' : 'max-h-20'
           } ${index === items.length - 1 ? 'border-b-2' : ''}`}
+          data-test={`accordion-item-${item.id}`}
         >
           <div className='flex justify-between p-4 pl-2 cursor-pointer'>
             <div className='text-[20px]'>
@@ -64,6 +65,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
                   e.preventDefault();
                   handleLinkClick(item.id);
                 }}
+                data-test={`accordion-question-${item.id}`}
               >
                 {item.question}
               </a>
@@ -73,6 +75,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
                 activeIndex === index ? 'rotate-45' : ''
               }`}
               onClick={() => handleToggle(index)}
+              data-test={`accordion-toggle-${item.id}`}
             >
               &#43;
             </div>
@@ -81,6 +84,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
             <div
               id={`${item.id}`}
               className='p-2 text-gray-500 dark:text-slate-200 pb-4'
+              data-test={`accordion-answer-${item.id}`}
             >
               {item.answer}
             </div>
