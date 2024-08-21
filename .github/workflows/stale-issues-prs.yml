@@ -55,7 +55,7 @@ jobs:
         stale-pr-label: 'Status: Stale'
         
         # Number of days of inactivity before an issue/PR is marked as stale.
-        days-before-stale: 30
+        days-before-stale: 180
        
         # Number of days of inactivity before an issue/PR is closed.
         days-before-close: 180
