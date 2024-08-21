@@ -12,6 +12,8 @@
   supportedDialects:
     draft: [6, 7, '2019-09', '2020-12']
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'dotnet-jsonschema-net'
 
 - name: Json.NET Schema
   description: 'Json.NET Schema is a powerful, complete and easy to use JSON Schema framework for .NET'
@@ -41,6 +43,8 @@
   supportedDialects:
     draft: [6, 7, '2019-09', '2020-12']
   lastUpdated: '2023-02-14'
+  bowtie:
+    identifier: 'dotnet-corvus-jsonschema'
 
 - name: LateApexEarlySpeed.Json.Schema
   description: 'Simple and high performance json schema implementation for .Net and related json validation in .Net'
@@ -98,6 +102,8 @@
   supportedDialects:
     draft: [7]
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'cpp-valijson'
 
 - name: jsoncons
   description: 'A C++, header-only library for constructing JSON and JSON-like data formats, with JSON Pointer, JSON Patch, JSON Schema, JSONPath, JMESPath, CSV, MessagePack, CBOR, BSON, UBJSON'
@@ -142,6 +148,8 @@
   supportedDialects:
     draft: [4, 6, 7]
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'clojure-json-schema'
 
 - name: JSON Essentials for COM/ActiveX
   description: 'JSON Essentials™ for COM/ActiveX is a language independent JSON toolkit for rapid implementation of the most common JSON use cases on the Windows platform'
@@ -232,6 +240,8 @@
     draft: [4, 6, 7, 2019-09, 2020-12]
   toolingListingNotes: 'Includes custom keywords, output formats'
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'go-jsonschema'
 
 - name: jsonschema
   description: 'A powerful Go JSON Schema validator library aligned with the JSON Schema Draft 2020-12.'
@@ -276,6 +286,8 @@
   supportedDialects:
     draft: [4, 6, 7]
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'go-gojsonschema'
 
 - name: Vert.x Json Schema
   description: 'Vert.x Json Schema'
@@ -307,6 +319,8 @@
   supportedDialects:
     draft: [3, 4, 6, 7, 2019-09, 2020-12]
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'java-jsonschemafriend'
 
 - name: networknet/json-schema-validator
   description: 'A fast Java JSON schema validator that supports draft V4, V6, V7, V2019-09 and V2020-12'
@@ -400,6 +414,8 @@
     draft: [2019-09, 2020-12]
   toolingListingNotes: 'JSON library agnostic implementation. Supports custom keywords.'
   lastUpdated: '2023-11-12'
+  bowtie:
+    identifier: 'java-json-schema'
 
 - name: Zuunr JSON
   description: 'Immutable JSON structure to enable Java applications to utilize JSON Schemas INSIDE Java applications - avoiding extra serialization and deserialization.'
@@ -446,6 +462,8 @@
     draft: [4, 6, 7, 2019-09, 2020-12]
   toolingListingNotes: 'Built for Node.js and browsers. Includes support for custom vocabularies.'
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'js-hyperjump'
 
 - name: '@exodus/schemasafe'
   description: 'A reasonably safe JSON Schema validator with draft-04/06/07/2019-09/2020-12 support.'
@@ -465,6 +483,8 @@
     [Supports OpenAPI `discriminator`](https://github.com/ExodusMovement/schemasafe/blob/master/doc/Discriminator-support.md).
     Default behavior is hardened with additional schema coherence validation.
   lastUpdated: '2023-08-29'
+  bowtie:
+    identifier: 'js-schemasafe'
 
 - name: ajv
   description: 'The fastest JSON schema Validator.'
@@ -485,6 +505,8 @@
       docs: https://ajv.js.org/strict-mode.html
       instructions: 'set option `strict: false`'
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'js-ajv'
 
 - name: '@cfworker/json-schema'
   description: 'A JSON schema validator that will run on Cloudflare workers. Supports drafts 4, 7, 2019-09, and 2020-12.'
@@ -611,6 +633,8 @@
     Kotlin Muliplatform implementation of JSON schema to validate the JsonElement from kotlinx.serialization-json.
     The library is 'work in progress' and new features/drafts will be added in the future.
   lastUpdated: '2023-08-01'
+  bowtie:
+    identifier: 'kotlin-kmp-json-schema-validator'
 
 - name: JSON::Schema::Modern
   description: 'Validate data against a schema using a JSON Schema'
@@ -689,6 +713,8 @@
       docs: https://opis.io/json-schema/2.x/php-loader.html#parser-options
       instructions: 'set several options to their "vanilla" values'
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'php-opis-json-schema'
 
 - name: Swaggest Json Schema
   description: 'High definition PHP structures with JSON-schema based validation'
@@ -718,6 +744,8 @@
   supportedDialects:
     draft: [2019-09, 2020-12]
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'python-jschon'
 
 - name: jsonschema
   description: 'An implementation of the JSON Schema specification for Python'
@@ -733,6 +761,8 @@
   supportedDialects:
     draft: [3, 4, 6, 7, 2019-09, 2020-12]
   lastUpdated: '2022-11-09'
+  bowtie:
+    identifier: 'python-jsonschema'
 
 - name: fastjsonschema
   description: 'Fast JSON schema validator for Python'
@@ -749,6 +779,8 @@
     draft: [4, 6, 7]
   toolingListingNotes: 'Great performance thanks to code generation.'
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'python-fastjsonschema'
 
 - name: jsonschema-rs (Python)
   description: 'JSON Schema validation library'
@@ -781,6 +813,8 @@
     draft: [4, 6, 7, 2019-09, 2020-12]
   toolingListingNotes: 'Fast due to compiling schema into a validation tree; 2019-09 and 2020-12 are partially supported'
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'rust-jsonschema'
 
 - name: JSONSchemer
   description: 'JSON Schema validator. Supports drafts 4, 6, 7, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1.'
@@ -795,6 +829,8 @@
   supportedDialects:
     draft: [4, 6, 7, 2019-09, 2020-12]
   lastUpdated: '2023-08-20'
+  bowtie:
+    identifier: 'ruby-json_schemer'
 
 - name: JSI
   description: 'JSI: JSON Schema Instantiation in Ruby'
@@ -824,6 +860,8 @@
   supportedDialects:
     draft: [4, 6, 7, 2019-09, 2020-12]
   lastUpdated: '2023-02-22'
+  bowtie:
+    identifier: 'rust-boon'
 
 - name: Reactive Core Circe JSON Validator
   description: 'This is a Scala implementation of a JSON Schema validator based upon the great io.circe Library.'
@@ -839,6 +877,8 @@
     draft: [2019-09, 2020-12]
   toolingListingNotes: 'Based on Circe-Library -Early state and API may not be stable. Not yet produciton ready.'
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'scala-rc-circe-json-validator'
 
 - name: DSJSONSchemaValidation
   description: 'JSON Schema draft 4, 6 and 7 parsing and validation library written in Objective-C.'
@@ -901,7 +941,11 @@
   supportedDialects:
     draft: [6, 7, 2019-09, 2020-12]
   toolingListingNotes: 'Powered by JsonSchema.Net in Blazor WASM for client-side validation'
+  landscape:
+    logo: 'json-everything.svg'
   lastUpdated: '2022-08-31'
+  bowtie:
+    identifier: 'dotnet-jsonschema-net'
 
 - name: jschon.dev
   description: 'JSON Schema web validator built on jschon.'

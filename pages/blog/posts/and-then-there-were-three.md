@@ -64,7 +64,7 @@ And now, I'm extremely excited to announce that I'm joining Postman Open Technol
 
 To start with the specification, the output format will continue to be a primary focus for me.  Earlier this year, I opened a [discussion](https://github.com/orgs/json-schema-org/discussions/63) on potential improvements.  I think that we're in a good place, and I need to start creating PRs that move the current language in the specification to the new design.
 
-I'm not sure yet what implementor support will look like, but based on our [implementations page](https://json-schema.org/implementations.html), it seems that many of them haven't updated to supporting 2020-12 yet.  Outreach is probably the best place to start here.  We need to find out the status of each of these projects.  Are they still maintained?  Do they _intend_ to stay up-to-date with the specification?  Do they need help?  Answering these questions will be the first step.
+I'm not sure yet what implementor support will look like, but based on our [implementations page](https://json-schema.org/tools), it seems that many of them haven't updated to supporting 2020-12 yet.  Outreach is probably the best place to start here.  We need to find out the status of each of these projects.  Are they still maintained?  Do they _intend_ to stay up-to-date with the specification?  Do they need help?  Answering these questions will be the first step.
 
 And finally adjacent tooling.  I'm really excited about this part because it will highlight for me how JSON Schema is being used in the real world, thereby _validating_ (ha!) its usefulness.
 

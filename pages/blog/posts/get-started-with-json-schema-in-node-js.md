@@ -167,7 +167,7 @@ We can use Ajv as a standalone library or we can integrate it with the framework
 
 When we combine JSON Schema and Ajv, we have a flexible solution for implementing validation in our Node.js applications:
 
-- **Learn once, use everywhere.** The JSON Schema specification is cross-platform, and there are [validation libraries](/implementations) available for every popular programming language. We're not locked into a library, framework or language. Once we've learnt the fundamentals of JSON Schema, we can use it everywhere.
+- **Learn once, use everywhere.** The JSON Schema specification is cross-platform, and there are [validation libraries](/tools) available for every popular programming language. We're not locked into a library, framework or language. Once we've learnt the fundamentals of JSON Schema, we can use it everywhere.
 - **Portability.** Because JSON Schema is cross-platform, even if we decide to rewrite our applications in another framework or language, we can take our schemas with us.
 - **Speed**. Under the hood, Ajv compiles our JSON schemas into JavaScript code. This improves the performance of repeated validation of data against a schema. For example, schemas can be compiled by Ajv when our Node.js application starts. HTTP request data which the application receives can then be validated against the pre-compiled schemas.
 - **Active and supportive community**. There's an active community of folks on Slack who are happy to help out (the [JSON Schema website](https://json-schema.org/) has a link you can use to join).

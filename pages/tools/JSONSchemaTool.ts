@@ -42,3 +42,18 @@ export interface Person {
   username: string;
   platform: 'github' | 'gitlab' | 'bitbucket' | string;
 }
+
+export interface BowtieEntry {
+  id: string;
+  dialects: Array<string>;
+  badges_urls: {
+    supported_versions: string;
+    compliance: {
+      [dialectURI: string]: string;
+    };
+  };
+}
+
+export interface BowtieReport {
+  [source: string]: BowtieEntry;
+}

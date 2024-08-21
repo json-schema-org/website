@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import type { Preferences } from '../hooks/usePreferences';
+import type { Transform } from '../hooks/useToolsTransform';
 
-const SearchBar = ({ preferences }: { preferences: Preferences }) => {
-  const [query, setQuery] = useState(preferences.query);
+const SearchBar = ({ transform }: { transform: Transform }) => {
+  const [query, setQuery] = useState(transform.query);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
   };
 
   useEffect(() => {
-    setQuery(preferences.query);
-  }, [preferences.query]);
+    setQuery(transform.query);
+  }, [transform.query]);
 
   return (
     <div className='w-full max-w-md mx-auto my-6 lg:my-auto'>

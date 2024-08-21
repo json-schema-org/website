@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JSON Schema Tooling Analytics",
+  "description": "Schema for JSON Schema Tooling analytics events.",
+  "type": "object",
+  "properties": {
+    "event": {
+      "description": "The type of event.",
+      "type": "string",
+      "enum": ["query", "about"]
+    },
+    "deviceType": {
+      "description": "The type of device from which the event is being sent.",
+      "type": "string",
+      "enum": ["Desktop", "Mobile"]
+    },
+    "payload": {
+      "description": "The data specific to the event type.",
+      "type": "object",
+      "oneOf": [
+        {
+          "description": "Payload for 'query' event.",
+          "properties": {
+            "query": {
+              "description": "The search query string.",
+              "type": "string"
+            },
+            "groupBy": {
+              "description": "The field by which the results are grouped.",
+              "type": "string",
+              "enum": ["none", "toolingTypes", "languages"]
+            },
+            "sortBy": {
+              "description": "The field by which the results are sorted.",
+              "type": "string",
+              "enum": ["name", "license", "bowtie"]
+            },
+            "sortOrder": {
+              "description": "The order in which results are sorted.",
+              "type": "string",
+              "enum": ["ascending", "descending"]
+            },
+            "languages": {
+              "description": "The languages selected for filtering.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "licenses": {
+              "description": "The licenses selected for filtering.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "drafts": {
+              "description": "The drafts selected for filtering.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "toolingTypes": {
+              "description": "The tooling types selected for filtering.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        {
+          "description": "Payload for 'about' event.",
+          "properties": {
+            "name": {
+              "description": "The name of the project.",
+              "type": "string"
+            },
+            "toolingTypes": {
+              "description": "The categories of tooling for the project.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "languages": {
+              "description": "The language or languages a tool is built in. In the case of a validator, this will likely be the language it is written in. In the case of a conversion or transformation tool, these are the languages that are supported in some capacity.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "environments": {
+              "description": "The platforms or environments in which the tool or library is designed to operate. This field is optional and should be included when the tool or library is specific to a certain platform or environment.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "license": {
+              "description": "The license under which the project is distributed. SPDX expressions only.",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "supportedDialects": {
+              "description": "The declared supported dialects of JSON Schema. This includes draft version identifiers.",
+              "type": "object",
+              "properties": {
+                "draft": {
+                  "description": "An array of dialects of JSON Schema.",
+                  "type": "array",
+                  "items": {
+                    "enum": [1, 2, 3, 4, 5, 6, 7, "2019-09", "2020-12"]
+                  }
+                },
+                "additional": {
+                  "description": "Additional Dialects that are supported beyond the ones defined by the JSON Schema project, such as the OpenAPI Dialect.",
+                  "type": "array",
+                  "items": {
+                    "description": "Individual JSON Schema Dialect items",
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "homepage": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "source": {
+                        "type": "string",
+                        "format": "uri"
+                      }
+                    },
+                    "required": ["name", "source"],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "additionalProperties": false
+            }
+          }
+        }
+      ]
+    }
+  },
+  "required": ["event", "deviceType", "payload"],
+  "additionalProperties": false
+}

@@ -5,15 +5,15 @@ section: docs
 
 JSON Schema is a vocabulary that you can use to annotate and validate JSON documents. This tutorial guides you through the process of creating a JSON Schema.
 
-After creating your JSON Schema, you can then validate example data against your schema by using a validator in a language of your choice. Please, visit <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/implementations#validators)</userevent> and select the validator that better suit your needs.
+After creating your JSON Schema, you can then validate example data against your schema by using a validator in a language of your choice. Please, visit <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/tools#validators)</userevent> and select the validator that better suit your needs.
 
-If you already know how to create JSON Schemas and you are looking for different JSON Schema use cases like schema generation, code generation, documentation, UI generation or JSON Schema processing or conversion, please visit <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/implementations)</userevent> and explore the amazing tooling available in the JSON Schema Ecosystem.
+If you already know how to create JSON Schemas and you are looking for different JSON Schema use cases like schema generation, code generation, documentation, UI generation or JSON Schema processing or conversion, please visit <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/tools)</userevent> and explore the amazing tooling available in the JSON Schema Ecosystem.
 
 <tableofcontent depth={2} />
 
 <span id="overview"></span>
 
-## Overview 
+## Overview
 
 The example we use in this guide is a product catalog that stores its data using JSON objects, like the following:
 
@@ -388,7 +388,7 @@ To create a nested data structure:
 ```
 
 4. To make each of these properties required, add a `required` validation keyword inside the `dimensions` object:
-   
+
     ```jsonc
     ...
       "dimensions": {
@@ -575,11 +575,10 @@ With the external schema reference, the overall schema looks like this:
 
 ## Validate JSON data against the schema
 
-Now that you have your JSON Schema is time to validate [JSON data](https://json-schema.org/learn/glossary#instance) against it using a <userevent type='plausible-event-name=activation-explore-tools'>[JSON Schema Validator](https://json-schema.org/implementations#validators)</userevent>. 
+Now that you have your JSON Schema is time to validate [JSON data](https://json-schema.org/learn/glossary#instance) against it using a <userevent type='plausible-event-name=activation-explore-tools'>[JSON Schema Validator](https://json-schema.org/tools#validators)</userevent>. 
 
 A Validator is a tool that implements the JSON Schema specification. All validators works in a similar way: they take a JSON Schema and a JSON Instance as input and they returns the validation result as output.
 
 ![How JSON Schema works](https://json-schema.org/img/json_schema.svg)
 
-To try it yourself, please visit <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/implementations#validators)</userevent> and select the validator that better suit your needs, our use the editors available below to explore the different Schemas and Instances and see the different validation results. 
-
+To try it yourself, please visit <userevent type='plausible-event-name=activation-explore-tools'>[Tools](https://json-schema.org/tools#validators)</userevent> and select the validator that better suit your needs, our use the editors available below to explore the different Schemas and Instances and see the different validation results. 

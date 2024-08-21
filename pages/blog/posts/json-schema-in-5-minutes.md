@@ -231,7 +231,7 @@ Here are some places you may find helpful moving forward:
 - [Weekly Office Hours (Tuesday, 15:00 UTC)](https://github.com/json-schema-org/community/discussions/34)
 - [Open Community Slack Server](/slack)
 - [Community GitHub Discussions](https://github.com/json-schema-org/community/discussions)
-- [List of implementations](/implementations)
+- [List of implementations](/tools)
 - [Human-friendly documentation for understanding JSON Schema](/understanding-json-schema)
 - [JSON Schema live playground (ajv) for draft-07 with shareable links](https://jsonschema.dev)
 - [JSON Schema live playground (hyperjump validator) for all drafts (from draft-04)](https://json-schema.hyperjump.io)

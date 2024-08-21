@@ -43,7 +43,7 @@ There's prior art in doing this sort of thing.
 The [JSONPath Comparison project](https://cburgmer.github.io/json-path-comparison/) does this extremely well for [JSONPath](https://github.com/ietf-wg-jsonpath/draft-ietf-jsonpath-base), and [Nicolas Seriot's "Parsing JSON is a Minefield"](https://seriot.ch/projects/parsing_json.html) is a fantastic example for JSON itself.
 Bowtie attempts to bring these ideas to JSON Schema.
 
-From the existing [list of JSON Schema implementations](https://json-schema.org/implementations.html#validators), Bowtie already [supports](https://github.com/orgs/bowtie-json-schema/packages) *12* implementations across *9* programming languages, allowing anyone to run any of these implementations and see what they have to say about schemas and instances.
+From the existing [list of JSON Schema implementations](https://json-schema.org/tools#validators), Bowtie already [supports](https://github.com/orgs/bowtie-json-schema/packages) *12* implementations across *9* programming languages, allowing anyone to run any of these implementations and see what they have to say about schemas and instances.
 
 It ships with a [command line program](https://docs.bowtie.report/en/stable/cli/) but perhaps more excitingly, ongoing automated runs of this CLI have been set up, such that Bowtie emits a [report across all of its supported implementations](https://bowtie.report).
 
@@ -136,7 +136,7 @@ If you don't see activity on one, feel free to leave a comment if you begin to w
 #### I Want to Learn About a New Implementation or Programming Language
 
 This is possibly the most "fun" thing to work on, or at least I quite enjoyed doing it.
-Pick an implementation Bowtie doesn't already support from the [list of implementations](https://json-schema.org/implementations.html#validators) and follow the [tutorial for writing a harness](https://bowtie-json-schema.readthedocs.io/en/latest/implementers/) which will guide you through what Bowtie expects from a harness.
+Pick an implementation Bowtie doesn't already support from the [list of implementations](https://json-schema.org/tools#validators) and follow the [tutorial for writing a harness](https://bowtie-json-schema.readthedocs.io/en/latest/implementers/) which will guide you through what Bowtie expects from a harness.
 If there are gaps in the tutorial, do raise them or ping me!
 But this can be a nice way to play with a simple program in a language you haven't used before, as well as a way to learn a JSON Schema implementation which may have made different choices than one you're already familiar with.
 
