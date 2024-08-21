@@ -1,0 +1,460 @@
+- name: $anchor
+  vocabulary: [core]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/anchor'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/structuring#anchor'
+      title: Structuring a complex schema ($anchor)
+    - url: 'https://json-schema.org/learn/json-schema-examples#ecommerce-system'
+      title: Ecommerce system example
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#anchor'
+      title: Draft 2020-12
+- name: $comment
+  vocabulary: [core]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/comment'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/comments#comments'
+      title: Generic Keyowrds ($comment)
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-comments-with-comment'
+      title: Draft 2020-12
+- name: $defs
+  vocabulary: [core]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/defs'
+  links:
+    - url: 'https://json-schema.org/learn/miscellaneous-examples'
+      title: Miscellaneous examples
+    - url: 'https://json-schema.org/understanding-json-schema/structuring#defs'
+      title: Structuring a complex schema ($defs)
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-schema-re-use-with-defs'
+      title: Draft 2020-12
+- name: $dynamicAnchor
+  vocabulary: [core]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/dynamicanchor'
+  links:
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-example-of-recursive-schema'
+      title: Draft 2020-12
+- name: $dynamicRef
+  vocabulary: [core]
+  learnjsonschemalink: 'https://json-schema.org/draft/2020-12/json-schema-core#dynamic-ref'
+  links:
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-example-of-recursive-schema'
+      title: Draft 2020-12
+- name: $id
+  vocabulary: [core]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/id'
+  links:
+    - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+      title: Create a schema defination
+    - url: 'https://json-schema.org/understanding-json-schema/basics#declaring-a-unique-identifier'
+      title: Declaring a unique identifer
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-the-id-keyword'
+      title: Draft 2020-12
+- name: $ref
+  vocabulary: [core]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/ref'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/basics#declaring-a-json-schema'
+      title: Declaring a JSON Schema
+    - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+      title: Create a schema defination
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+      title: Unevaluated Items
+    - url: 'https://json-schema.org/understanding-json-schema/structuring#dollarref'
+      title: Structuring a complex schema ($ref)
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#ref'
+      title: Draft 2020-12
+- name: $schema
+  vocabulary: [core]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/schema'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/schema'
+      title: Declaring a dialect ($schema)
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-the-schema-keyword'
+      title: Draft 2020-12
+- name: $vocabulary
+  vocabulary: [core]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/vocabulary'
+  links:
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-the-vocabulary-keyword'
+      title: Draft 2020-12
+- name: additionalProperties
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/additionalproperties'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#additionalproperties'
+      title: Additional Properties
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-additionalproperties'
+      title: Draft 2020-12
+- name: allOf
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/allof'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+      title: Unevaluated Items
+    - url: 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
+      title: Schema Composition
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-allof'
+      title: Draft 2020-12
+- name: anyOf
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/anyof'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+      title: Unevaluated Items
+    - url: 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
+      title: Schema Composition
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-anyof'
+      title: Draft 2020-12
+- name: contains
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/contains'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#contains'
+      title: Contains
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-contains'
+      title: Draft 2020-12
+- name: else
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/else'
+  links:
+    - url: 'https://json-schema.org/learn/miscellaneous-examples'
+      title: Miscellaneous Examples
+    - url: 'https://json-schema.org/understanding-json-schema/reference/conditionals#ifthenelse'
+      title: If-Then-Else
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-else'
+      title: Draft 2020-12
+- name: if
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/if'
+  links:
+    - url: 'https://json-schema.org/learn/miscellaneous-examples'
+      title: Miscellaneous Examples
+    - url: 'https://json-schema.org/understanding-json-schema/reference/conditionals#ifthenelse'
+      title: If-Then-Else
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-if'
+      title: Draft 2020-12
+- name: items
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/items'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#items'
+      title: Items
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-items'
+      title: Draft 2020-12
+- name: not
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/not'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
+      title: Schema Compositon
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-not'
+      title: Draft 2020-12
+- name: oneOf
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/oneof'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+      title: Unevaluted Items
+    - url: 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
+      title: Schema Compositon
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-oneof'
+      title: Draft 2020-12
+- name: patternProperties
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/patternproperties'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#patternProperties'
+      title: Pattern Properties
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-patternproperties'
+      title: Draft 2020-12
+- name: prefixitems
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/prefixitems'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#tupleValidation'
+      title: Tuple Validation
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-prefixitems'
+      title: Draft 2020-12
+- name: properties
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/properties'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#properties'
+      title: Properties
+    - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+      title: Schema Defination
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-properties'
+      title: Draft 2020-12
+- name: propertynames
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/propertynames'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#propertyNames'
+      title: Property names
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-propertynames'
+      title: Draft 2020-12
+- name: then
+  vocabulary: [Applicator]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/then'
+  links:
+    - url: 'https://json-schema.org/learn/miscellaneous-examples'
+      title: Miscellaneous Examples
+    - url: 'https://json-schema.org/understanding-json-schema/reference/conditionals#ifthenelse'
+      title: If-Then-Else
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-then'
+      title: Draft 2020-12
+- name: const
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/const'
+  links:
+    - url: 'https://json-schema.org/learn/miscellaneous-examples'
+      title: Miscellaneous Examples
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-const'
+      title: Draft 2020-12
+- name: dependentRequired
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/dependentrequired'
+  links:
+    - url: 'https://json-schema.org/learn/miscellaneous-examples'
+      title: Miscellaneous Examples
+    - url: 'https://json-schema.org/understanding-json-schema/reference/conditionals#applying-subschemas-conditionally'
+      title: Applying Subschemas Conditionally
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-dependentrequired'
+      title: Draft 2020-12
+- name: dependentSchemas
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/dependentschemas'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/conditionals#dependentSchemas'
+      title: Dependent Schemas
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-dependentschemas'
+      title: Draft 2020-12
+- name: enum
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/enum'
+  links:
+    - url: 'https://json-schema.org/learn/miscellaneous-examples'
+      title: Miscellaneous Examples
+    - url: 'https://json-schema.org/understanding-json-schema/reference/enum#enumerated-values'
+      title: Enumerated Values
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-enum'
+      title: Draft 2020-12
+- name: exclusiveMaximum
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/exclusivemaximum'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/numeric#range'
+      title: Range
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-exclusivemaximum'
+      title: Draft 2020-12
+- name: exclusiveMinimum
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/exclusiveminimum'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/numeric#range'
+      title: Range
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-exclusiveminimum'
+      title: Draft 2020-12
+- name: maxContains
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxcontains'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#mincontains-maxcontains'
+      title: Mincontains / Maxcontains
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxcontains'
+      title: Draft 2020-12
+- name: maximum
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maximum'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/numeric#range'
+      title: Range
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maximum'
+      title: Draft 2020-12
+- name: minitems
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minitems'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#length'
+      title: Length
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-minitems'
+      title: Draft 2020-12
+- name: minLength
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minlength/'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/string#length'
+      title: Length
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-minlength'
+      title: Draft 2020-12
+- name: minProperties
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minproperties'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#size'
+      title: Size
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-minproperties'
+      title: minProperties
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-minproperties'
+      title: Draft 2020-12
+- name: multipleOf
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/multipleof'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/numeric#multiples'
+      title: Multiples
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-multipleof'
+      title: Draft 2020-12
+- name: pattern
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/pattern'
+  links:
+    - url: 'https://json-schema.org/learn/miscellaneous-examples'
+      title: Miscellaneous Examples
+    - url: 'https://json-schema.org/understanding-json-schema/reference/string#regexp'
+      title: Regular Expressions
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-pattern'
+      title: Draft 2020-12
+- name: required
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/required'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#extending'
+      title: Extending Closed Schemas
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-required'
+      title: Draft 2020-12
+- name: type
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/type'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/type'
+      title: Type-specific keywords
+    - url: 'https://json-schema.org/understanding-json-schema/basics#the-type-keyword'
+      title: The type keyword
+    - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+      title: Create a Schema Defination
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-type'
+      title: Draft 2020-12
+- name: uniqueItems
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/uniqueitems'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#uniqueItems'
+      title: Uniqueness
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-uniqueitems'
+      title: Draft 2020-12
+- name: contentEncoding
+  vocabulary: [Content]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/content/contentencoding'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/non_json_data#contentencoding'
+      title: contentEncoding
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-contentencoding'
+      title: Draft 2020-12
+- name: contentMediaType
+  vocabulary: [Content]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/content/contentmediatype'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/non_json_data#contentmediatype'
+      title: contentMediaType
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-contentmediatype'
+      title: Draft 2020-12
+- name: contentschema
+  vocabulary: [Content]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/content/contentschema'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/non_json_data#contentschema'
+      title: contentschema
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-contentschema'
+      title: Draft 2020-12
+- name: default
+  vocabulary: [Meta Data]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/meta-data/default'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/annotations'
+      title: Annotations
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-default'
+      title: Draft 2020-12
+- name: deprecated
+  vocabulary: [Meta Data]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/meta-data/deprecated'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/annotations'
+      title: Annotations
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-deprecated'
+      title: Draft 2020-12
+- name: description
+  vocabulary: [Meta Data]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/meta-data/description'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/annotations'
+      title: Annotations
+    - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+      title: Create a schema definition
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-title-and-description'
+      title: Draft 2020-12
+- name: examples
+  vocabulary: [Meta Data]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/meta-data/examples'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/annotations'
+      title: Annotations
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-examples'
+      title: Draft 2020-12
+- name: readOnly
+  vocabulary: [Meta Data]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/meta-data/readonly'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/annotations'
+      title: Annotations
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-readonly-and-writeonly'
+      title: Draft 2020-12
+- name: title
+  vocabulary: [Meta Data]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/meta-data/title'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/annotations'
+      title: Annotations
+    - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
+      title: Create a schema definition
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-title-and-description'
+      title: Draft 2020-12
+- name: writeOnly
+  vocabulary: [Meta Data]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/meta-data/writeonly'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/annotations'
+      title: Annotations
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-readonly-and-writeonly'
+      title: Draft 2020-12
+- name: unevaluateditems
+  vocabulary: [Unevaluated]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/unevaluated/unevaluateditems'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
+      title: Unevaluated Items
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-unevaluateditems'
+      title: Draft 2020-12
+- name: unevaluatedproperties
+  vocabulary: [Unevaluated]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/unevaluated/unevaluatedproperties'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#unevaluatedproperties'
+      title: Unevaluated Properties
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-unevaluatedproperties'
+      title: Draft 2020-12
