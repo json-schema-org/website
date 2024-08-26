@@ -3156,14 +3156,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:1.4.0":
-  version: 1.4.0
-  resolution: "axios@npm:1.4.0"
+"axios@npm:1.6.7":
+  version: 1.6.7
+  resolution: "axios@npm:1.6.7"
   dependencies:
-    follow-redirects: "npm:^1.15.0"
+    follow-redirects: "npm:^1.15.4"
     form-data: "npm:^4.0.0"
     proxy-from-env: "npm:^1.1.0"
-  checksum: 10c0/a925a07590b0ec1d4daf28cd27890f930daab980371558deb3b883af174b881da09e5ba2cb8393a648fda5859e39934982d0b8b092fe89fc84cb6c80a70a1910
+  checksum: 10c0/131bf8e62eee48ca4bd84e6101f211961bf6a21a33b95e5dfb3983d5a2fe50d9fffde0b57668d7ce6f65063d3dc10f2212cbcb554f75cfca99da1c73b210358d
   languageName: node
   linkType: hard
 
@@ -5200,7 +5200,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"follow-redirects@npm:^1.15.0, follow-redirects@npm:^1.15.6":
+"follow-redirects@npm:^1.15.4, follow-redirects@npm:^1.15.6":
   version: 1.15.6
   resolution: "follow-redirects@npm:1.15.6"
   peerDependenciesMeta:
@@ -6660,7 +6660,7 @@ __metadata:
     next: "npm:14.2.5"
     next-sitemap: "npm:^4.2.3"
     next-themes: "npm:^0.3.0"
-    node-ical: "npm:0.16.1"
+    node-ical: "npm:0.18.0"
     nyc: "npm:^17.0.0"
     postcss: "npm:^8.4.41"
     prettier: "npm:3.3.3"
@@ -7008,13 +7008,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"luxon@npm:^1.21.3":
-  version: 1.28.1
-  resolution: "luxon@npm:1.28.1"
-  checksum: 10c0/5c561ce4364bb2301ca5811c74d11a9e087f82164109c7997dc8f0959e64d51259d8e630914dca2edc6702525ce5ab066a4b85caa19d04be71f10e79ffe2bc84
-  languageName: node
-  linkType: hard
-
 "make-dir@npm:^3.0.0, make-dir@npm:^3.0.2":
   version: 3.1.0
   resolution: "make-dir@npm:3.1.0"
@@ -7245,12 +7238,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"moment-timezone@npm:^0.5.31":
-  version: 0.5.43
-  resolution: "moment-timezone@npm:0.5.43"
+"moment-timezone@npm:^0.5.44":
+  version: 0.5.45
+  resolution: "moment-timezone@npm:0.5.45"
   dependencies:
     moment: "npm:^2.29.4"
-  checksum: 10c0/6f42174e01398d135883fb45aa820e57f34b25aab5ea6c50998139d06f975ee4457275b5e331466b14bff4d830e681c267f9cc462f445eb9c2b84d04add829f6
+  checksum: 10c0/7497f23c4b8c875dbf07c03f9a1253f79edaeedc29d5732e36bfd3c5577e25aed1924fbd84cbb713ce1920dbe822be0e21bd487851a7d13907226f289a5e568b
   languageName: node
   linkType: hard
 
@@ -7421,15 +7414,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-ical@npm:0.16.1":
-  version: 0.16.1
-  resolution: "node-ical@npm:0.16.1"
+"node-ical@npm:0.18.0":
+  version: 0.18.0
+  resolution: "node-ical@npm:0.18.0"
   dependencies:
-    axios: "npm:1.4.0"
-    moment-timezone: "npm:^0.5.31"
-    rrule: "npm:2.6.4"
+    axios: "npm:1.6.7"
+    moment-timezone: "npm:^0.5.44"
+    rrule: "npm:2.8.1"
     uuid: "npm:^9.0.0"
-  checksum: 10c0/3bad842a9788a1b774849759d8d711e19920e4a3dfdd13ede36fac49972896d43cc8888c49ef9c9c09864f1c51f60566153c15746b2bb2491725067bae4fb8a3
+  checksum: 10c0/23753c195df6466776a3b3cb713dbc50c754bc6e705e5342be92475146cdc426ec0c2cb056a3da482bf854a64889313e9347111158efd53aeb9d5fd4b7b3ea0b
   languageName: node
   linkType: hard
 
@@ -8579,16 +8572,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rrule@npm:2.6.4":
-  version: 2.6.4
-  resolution: "rrule@npm:2.6.4"
+"rrule@npm:2.8.1":
+  version: 2.8.1
+  resolution: "rrule@npm:2.8.1"
   dependencies:
-    luxon: "npm:^1.21.3"
-    tslib: "npm:^1.10.0"
-  dependenciesMeta:
-    luxon:
-      optional: true
-  checksum: 10c0/0f19a2b26fad9316c243fd8f8b8e3e172dae870ce31d52a438ec86de0c84095c0718cbb023cf088f51ffb89a52faa41ed1cd421cc795dff31ee29020348b5ad9
+    tslib: "npm:^2.4.0"
+  checksum: 10c0/c9350620bbd57d0cdf99320b576121a2d7ed579fda4ae50891e2779c7dfd6dc7b174b558b6598adefb1f0e053549dc977740e1a265f77dcf0827aaeea60b45e7
   languageName: node
   linkType: hard
 
@@ -9548,13 +9537,6 @@ __metadata:
     minimist: "npm:^1.2.6"
     strip-bom: "npm:^3.0.0"
   checksum: 10c0/fdc92bb7b18b31c0e76f8ec4f98d07236b09590fd6578e587ad024792c8b2235d65125a8fd007fa47a84400f84ceccbf33f24e5198d953249e7204f4cef3517c
-  languageName: node
-  linkType: hard
-
-"tslib@npm:^1.10.0":
-  version: 1.14.1
-  resolution: "tslib@npm:1.14.1"
-  checksum: 10c0/69ae09c49eea644bc5ebe1bca4fa4cc2c82b7b3e02f43b84bd891504edf66dbc6b2ec0eef31a957042de2269139e4acff911e6d186a258fb14069cd7f6febce2
   languageName: node
   linkType: hard
 
