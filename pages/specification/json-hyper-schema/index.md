@@ -4,9 +4,14 @@ title: JSON Hyper-Schema
 
 ### Introduction
 
-JSON Hyper-Schema enables the definition of hyperlinks within JSON documents. It allows schemas to describe JSON data's structure and validation rules and provides information about navigating and interacting with the data.
+JSON Hyper-Schema is an extension of JSON Schema that allows for the definition of hypermedia-driven APIs. The hyper-schema vocabulary shows how to annotate JSON documents with hypermedia controls by enabling the description of links and actions that can be executed on JSON data. Consecutively, it helps provide a more interactive and dynamic representation of JSON data. It also enhances API discoverability using the description features of actions and links within the JSON documents.
 
-A typical use case of the hyper-schema is working with hypermedia APIs, where the JSON responses include links to other resources, much like HTML does with hyperlinks.
+JSON Hyper-Schema seamlessly integrates with existing JSON HTTP APIs and offers functionalities to describe complex resource relationships, facilitate client-side validation, and promote better interaction patterns. It makes APIs more intuitive, self-descriptive, and efficient, particularly in RESTful architectures.
+
+In essence:
+
+- JSON Hyper-Schema is helpful in complex APIs where clients need to define and explicitly understand the relationships between resources and actions, especially when navigating resources without prior knowledge of the API structure.
+- It helps create more discoverable and self-documenting APIs, making it easier for clients to interact with them.
 
 ### Hyper Schema Documents
 
@@ -14,6 +19,7 @@ A typical use case of the hyper-schema is working with hypermedia APIs, where th
 - Relative JSON Pointer: [relative-json-pointer.xml](https://github.com/json-schema-org/json-schema-spec/blob/master/relative-json-pointer.xml)
 
 **Other documents:**
+
 - [JSON Schema meta-schema](https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json)
 - [JSON Hyper-Schema meta-schema](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/hyper-schema.json)
 - [JSON Hyper-Schema Link Description Object meta-schema](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/links.json)
