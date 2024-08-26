@@ -133,16 +133,17 @@ const getReferencePath = [
   '/implementers/interfaces',
 ];
 const getSpecificationPath = [
-  '/draft/2020-12/',
-  '/draft/2019-09/',
-  '/draft-07/',
-  '/draft-06/',
-  '/draft-05/',
+  '/draft/2020-12',
+  '/draft/2019-09',
+  '/draft-07',
+  '/draft-06',
+  '/draft-05',
   '/specification-links',
-  '/migration',
-  '/release-notes',
-  '/json-hyper-schema',
+  '/specification/migration',
+  '/specification/release-notes',
+  '/specification/json-hyper-schema',
   '/specification',
+  '/specification-links',
 ];
 
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
@@ -667,9 +668,9 @@ export const DocsNav = ({
             <DocLink uri='/draft/2020-12' label='2020-12' setOpen={setOpen} />
 
             <DocLink uri='/draft/2019-09' label='2019-09' setOpen={setOpen} />
-            <DocLink uri='/draft-07/' label='draft-07' setOpen={setOpen} />
-            <DocLink uri='/draft-06/' label='draft-06' setOpen={setOpen} />
-            <DocLink uri='/draft-05/' label='draft-05' setOpen={setOpen} />
+            <DocLink uri='/draft-07' label='draft-07' setOpen={setOpen} />
+            <DocLink uri='/draft-06' label='draft-06' setOpen={setOpen} />
+            <DocLink uri='/draft-05' label='draft-05' setOpen={setOpen} />
           </div>
 
           <DocLink
@@ -678,15 +679,19 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
 
-          <DocLink uri='/migration' label='Migration' setOpen={setOpen} />
           <DocLink
-            uri='/release-notes'
+            uri='/specification/migration'
+            label='Migration'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/specification/release-notes'
             label='Release Notes'
             setOpen={setOpen}
           />
 
           <DocLink
-            uri='/json-hyper-schema'
+            uri='/specification/json-hyper-schema'
             label='JSON Hyper-Schema'
             setOpen={setOpen}
           />

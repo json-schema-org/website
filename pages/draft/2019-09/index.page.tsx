@@ -6,6 +6,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import DocTable from '~/components/DocTable';
 import { Headline1 } from '~/components/Headlines';
+import { DocsHelp } from '~/components/DocsHelp';
 
 export async function getStaticProps() {
   const index = fs.readFileSync('pages/draft/2019-09/index.md', 'utf-8');
@@ -34,12 +35,11 @@ export default function ImplementationsPages({
 }) {
   return (
     <SectionContext.Provider value={null}>
-      <div className='w-5/6 mx-auto dark:text-slate-200'>
-        <Headline1>{frontmatter.title}</Headline1>
-        <DocTable frontmatter={frontmatter} />
-        <StyledMarkdown markdown={blocks.index} />
-        <StyledMarkdown markdown={blocks.body} />
-      </div>
+      <Headline1>{frontmatter.title}</Headline1>
+      <DocTable frontmatter={frontmatter} />
+      <StyledMarkdown markdown={blocks.index} />
+      <StyledMarkdown markdown={blocks.body} />
+      <DocsHelp />
     </SectionContext.Provider>
   );
 }
