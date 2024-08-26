@@ -1624,14 +1624,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/code-coverage@npm:^3.12.44":
-  version: 3.12.44
-  resolution: "@cypress/code-coverage@npm:3.12.44"
+"@cypress/code-coverage@npm:^3.12.45":
+  version: 3.12.45
+  resolution: "@cypress/code-coverage@npm:3.12.45"
   dependencies:
     "@cypress/webpack-preprocessor": "npm:^6.0.0"
     chalk: "npm:4.1.2"
     dayjs: "npm:1.11.12"
-    debug: "npm:4.3.5"
+    debug: "npm:4.3.6"
     execa: "npm:4.1.0"
     globby: "npm:11.1.0"
     istanbul-lib-coverage: "npm:^3.0.0"
@@ -1643,7 +1643,7 @@ __metadata:
     babel-loader: ^8.3 || ^9
     cypress: "*"
     webpack: ^4 || ^5
-  checksum: 10c0/6f6915c7d1840ac306f3344ce27d9391f7629f7a48b5ad305d14050cc67a6e9ac4f533a7b7cfda50717b36eef3970da48ed62ecb162169ddeb9fd8483d7c1c0a
+  checksum: 10c0/09c25a67d3afae3a5bbc5eb49d6f0b9c150138dce87d748cc33a9760c08b4548f3b466611096760704d67290fc5c50e0ada230e4dad30393ac0261483ff98148
   languageName: node
   linkType: hard
 
@@ -3967,7 +3967,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4":
+"debug@npm:4, debug@npm:4.3.6":
   version: 4.3.6
   resolution: "debug@npm:4.3.6"
   dependencies:
@@ -3979,7 +3979,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4.3.5, debug@npm:^4.1.0, debug@npm:^4.3.1":
+"debug@npm:^3.1.0, debug@npm:^3.2.7":
+  version: 3.2.7
+  resolution: "debug@npm:3.2.7"
+  dependencies:
+    ms: "npm:^2.1.1"
+  checksum: 10c0/37d96ae42cbc71c14844d2ae3ba55adf462ec89fd3a999459dec3833944cd999af6007ff29c780f1c61153bcaaf2c842d1e4ce1ec621e4fc4923244942e4a02a
+  languageName: node
+  linkType: hard
+
+"debug@npm:^4.1.0, debug@npm:^4.3.1":
   version: 4.3.5
   resolution: "debug@npm:4.3.5"
   dependencies:
@@ -3988,15 +3997,6 @@ __metadata:
     supports-color:
       optional: true
   checksum: 10c0/082c375a2bdc4f4469c99f325ff458adad62a3fc2c482d59923c260cb08152f34e2659f72b3767db8bb2f21ca81a60a42d1019605a412132d7b9f59363a005cc
-  languageName: node
-  linkType: hard
-
-"debug@npm:^3.1.0, debug@npm:^3.2.7":
-  version: 3.2.7
-  resolution: "debug@npm:3.2.7"
-  dependencies:
-    ms: "npm:^2.1.1"
-  checksum: 10c0/37d96ae42cbc71c14844d2ae3ba55adf462ec89fd3a999459dec3833944cd999af6007ff29c780f1c61153bcaaf2c842d1e4ce1ec621e4fc4923244942e4a02a
   languageName: node
   linkType: hard
 
@@ -6618,7 +6618,7 @@ __metadata:
   dependencies:
     "@babel/core": "npm:^7.25.2"
     "@babel/preset-env": "npm:^7.25.3"
-    "@cypress/code-coverage": "npm:^3.12.44"
+    "@cypress/code-coverage": "npm:^3.12.45"
     "@docsearch/react": "npm:3.6.1"
     "@next/eslint-plugin-next": "npm:^14.0.1"
     "@types/babel__core": "npm:^7"
