@@ -517,7 +517,7 @@
       platform: 'github'
   license: 'MIT'
   source: 'https://github.com/cfworker/cfworker/blob/master/packages/json-schema/README.md'
-  homepage: 'cfworker.dev'
+  homepage: 'https://cfworker.dev'
   supportedDialects:
     draft: [7, 4, 2019-09, 2020-12]
   toolingListingNotes: 'Built for Cloudflare workers, browsers, and Node.js'
@@ -1933,8 +1933,8 @@
   toolingTypes: ['util-general-processing']
   languages: ['JavaScript']
   maintainers:
-    username: 'BigstickCarpet'
-    platform: 'github'
+    - username: 'BigstickCarpet'
+      platform: 'github'
   license: 'MIT'
   source: 'https://github.com/BigstickCarpet/json-schema-ref-parser'
 
@@ -1963,8 +1963,8 @@
   toolingTypes: ['util-general-processing']
   languages: ['JavaScript']
   maintainers:
-    username: 'jdesrosiers'
-    platform: 'github'
+    - username: 'jdesrosiers'
+      platform: 'github'
   license: 'MIT'
   source: 'https://github.com/jdesrosiers/json-schema-core'
 
@@ -1980,8 +1980,8 @@
   toolingTypes: ['util-schema-to-schema']
   languages: ['JavaScript']
   maintainers:
-    username: 'mokkabonna'
-    platform: 'github'
+    - username: 'mokkabonna'
+      platform: 'github'
   license: 'MIT'
   source: 'https://github.com/mokkabonna/json-schema-merge-allof'
 
@@ -1990,8 +1990,8 @@
   toolingTypes: ['util-schema-to-schema']
   languages: ['JavaScript']
   maintainers:
-    username: 'mokkabonna'
-    platform: 'github'
+    - username: 'mokkabonna'
+      platform: 'github'
   license: 'MIT'
   source: 'https://github.com/mokkabonna/json-schema-compare'
 
