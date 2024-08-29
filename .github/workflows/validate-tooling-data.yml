@@ -19,13 +19,16 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Corepack enable
+        run: corepack enable
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install ajv ajv-formats js-yaml
+        run: yarn add ajv ajv-formats js-yaml
 
       - name: Validate tooling-data.yaml
         run: |
