@@ -1,0 +1,285 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JSON Schema Tooling Data Document",
+  "description": "This is a schema which represents the JSON Schema Tooling Data Document",
+  "$defs": {
+    "persons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "The persons name, should they wish to provide it",
+            "type": "string"
+          },
+          "email": {
+            "description": ""
+          },
+          "username": {
+            "description": "The persons username on the platform where the user exists",
+            "type": "string"
+          },
+          "platform": {
+            "type": "string",
+            "anyOf": [
+              {
+                "enum": ["github", "gitlab", "bitbucket"]
+              },
+              {
+                "description": "A string value not yet included in the list of platforms"
+              }
+            ]
+          },
+          "additionalProperties": false
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "description": "The name of the project",
+        "type": "string"
+      },
+      "description": {
+        "description": "A brief description of the project",
+        "$comment": "If this is omitted and description is already defined on GitHub or GitLab for the repository, we will use that information.",
+        "type": "string"
+      },
+      "toolingTypes": {
+        "description": "The categories of tooling for the project",
+        "type": "array",
+        "uniqueItems": true,
+        "items": {
+          "description": "One of the categories of tooling of the project",
+          "type": "string",
+          "enum": [
+            "validator",
+            "hyper-schema",
+            "benchmarks",
+            "documentation",
+            "LDO-utility",
+            "code-to-schema",
+            "data-to-schema",
+            "model-to-schema",
+            "schema-to-types",
+            "schema-to-code",
+            "schema-to-web-UI",
+            "schema-to-data",
+            "util-general-processing",
+            "util-schema-to-schema",
+            "util-draft-migration",
+            "util-format-conversion",
+            "util-testing",
+            "editor",
+            "editor-plugins",
+            "schema-repository",
+            "linter",
+            "linter-plugins"
+          ]
+        }
+      },
+      "languages": {
+        "description": "The language or languages a tool is built in. In the case of a validator, this will likely be the language it is written in. In the case of a conversion or transformation tool, these are the languages that are supported in some capacity.",
+        "type": "array",
+        "items": {
+          "description": "Individual language name, from the list unless not included.",
+          "type": "string",
+          "anyOf": [
+            {
+              "enum": [
+                [
+                  "Common Lisp",
+                  "Rust",
+                  "Elm",
+                  ".NET",
+                  "PHP",
+                  "Clojure",
+                  "Python",
+                  "XSD",
+                  "Scala",
+                  "Orderly",
+                  "Kotlin",
+                  "Elixir",
+                  "RAML",
+                  "Erlang",
+                  "Java",
+                  "Lua/LuaJIT",
+                  "OpenAPI",
+                  "Perl",
+                  "TypeScript",
+                  "Ruby",
+                  "Objective-C",
+                  "Swift",
+                  "C#",
+                  "Go",
+                  "C++",
+                  "JavaScript"
+                ]
+              ]
+            },
+            {
+              "description": "A string value not yet included in the list of languages"
+            }
+          ]
+        }
+      },
+      "environments": {
+        "description": "The platforms or environments in which the tool or library is designed to operate. This field is optional and should be included when the tool or library is specific to a certain platform or environment.",
+        "type": "array",
+        "items": {
+          "type": "string",
+          "anyOf": [
+            {
+              "enum": [
+                "Web (Online)",
+                "GitHub Actions",
+                "Command Line",
+                "COM/ActiveX"
+              ]
+            },
+            {
+              "description": "A string value not yet included in the list of environments"
+            }
+          ]
+        }
+      },
+      "dependsOnValidators": {
+        "description": "Documents if the tool is the primary validator provider or depends on another tool",
+        "type": "array",
+        "items": {
+          "description": "One of the tools that this tool depends upon",
+          "$comment": "This should be the source URL. The source URL should already be known to the ecosystem repository in some way.",
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "creators": {
+        "description": "The creators or authors of the project",
+        "$ref": "#/$defs/persons"
+      },
+      "maintainers": {
+        "description": "The maintainers of the project",
+        "$ref": "#/$defs/persons"
+      },
+      "license": {
+        "description": "The license under which the project is distributed. SPDX expressions or a URL.",
+        "$comment": "Schemastore package.json schema uses enum to assist in auto complete. Could be worth doing the same.",
+        "type": "string"
+      },
+      "source": {
+        "description": "The URL of the project's repository",
+        "type": "string",
+        "format": "uri"
+      },
+      "homepage": {
+        "description": "The URL of the project's homepage",
+        "type": "string",
+        "format": "uri"
+      },
+      "documentation": {
+        "$comment": "This is reserved for future use",
+        "type": "object"
+      },
+      "supportedDialects": {
+        "description": "The declared supported dialects of JSON Schema. This includes draft version identifiers.",
+        "type": "object",
+        "properties": {
+          "draft": {
+            "description": "An array of dialects of JSON Schema.",
+            "type": "array",
+            "items": {
+              "enum": [1, 2, 3, 4, 5, 6, 7, "2019-09", "2020-12"]
+            }
+          },
+          "additional": {
+            "description": "Additional Dialects that are supported beyond the ones defined by the JSON Schema project, such as the OpenAPI Dialect.",
+            "type": "array",
+            "items": {
+              "description": "Individual JSON Schema Dialect items",
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "homepage": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "source": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              },
+              "required": ["name", "source"],
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "bowtie": {
+        "description": "Information related to compliance testing by Bowtie - https://bowtie.report - Presence of this property implies the tool is being tested in Bowtie",
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "description": "The identifier used for the tool in Bowtie, including the language.",
+            "examples": ["dotnet-jsonschema-net", "js-ajv"]
+          }
+        },
+        "required": ["identifier"],
+        "additionalProperties": false
+      },
+      "toolingListingNotes": {
+        "description": "Notes about the tooling which will appear in the tooling listing on the website.",
+        "type": "string"
+      },
+      "compliance": {
+        "description": "Details on what must be done to make the implementation the most compliant that it can be. This is displayed on the website with the tooling details",
+        "type": "object",
+        "properties": {
+          "config": {
+            "type": "object",
+            "properties": {
+              "docs": {
+                "description": "A URL which links to the documentation which explains how to follow the given instructions.",
+                "type": "string"
+              },
+              "instructions": {
+                "description": "Instructions on how to make the implementation the most compliant.",
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "landscape": {
+        "description": "Additional information that should be used when generating the JSON Schema landscape diagram - https://github.com/json-schema-org/landscape",
+        "type": "object",
+        "properties": {
+          "logo": {
+            "description": "The filename of the logo to use for the JSON Schema landscape diagram - Must be included in the landscape repo under the logos directory, and in SVG format.",
+            "type": "string"
+          },
+          "optOut": {
+            "description": "Set this value to a boolean `true` value if you do not wish to be included in the JSON Schema Landscape. If you do, we would like to hear why.",
+            "type": "boolean",
+            "default": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "lastUpdated": {
+        "description": "The date when the tool was most recently updated. The date should be in the format YYYY-MM-DD, representing the year, month, and day of the update.",
+        "type": "string",
+        "format": "date"
+      }
+    },
+    "required": ["name", "toolingTypes"],
+    "additionalProperties": false
+  }
+}

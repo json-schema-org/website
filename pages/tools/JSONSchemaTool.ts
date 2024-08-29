@@ -8,7 +8,7 @@ export interface JSONSchemaTool {
   creators?: Person[];
   maintainers?: Person[];
   license?: string;
-  source: string;
+  source?: string;
   homepage?: string;
   documentation?: object;
   supportedDialects?: {
@@ -39,8 +39,8 @@ export interface JSONSchemaTool {
 export interface Person {
   name?: string;
   email?: string;
-  username: string;
-  platform: 'github' | 'gitlab' | 'bitbucket' | string;
+  username?: string;
+  platform?: 'github' | 'gitlab' | 'bitbucket' | string;
 }
 
 export interface BowtieEntry {
