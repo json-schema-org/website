@@ -27,8 +27,8 @@
   source: 'https://github.com/JamesNK/Newtonsoft.Json.Schema'
   homepage: 'https://www.newtonsoft.com/jsonschema'
   supportedDialects:
-    draft: [3, 4, 6, 7, '2019-09']
-  lastUpdated: '2022-08-31'
+    draft: [3, 4, 6, 7, '2019-09', '2020-12']
+  lastUpdated: '2024-06-08'
 
 - name: Corvus.JsonSchema
   description: 'Support for Json Schema validation and entity generation'
@@ -400,7 +400,7 @@
   lastUpdated: '2022-08-31'
 
 - name: json-schema (dev.harrel)
-  description: 'JSON schema validation library written in Java'
+  description: 'JSON schema validation library written in Java. It can be used with all major JSON libraries (Jackson, GSON, JSON.org and more) and is open for customizations.'
   toolingTypes: ['validator']
   languages: ['Java']
   maintainers:
@@ -411,9 +411,8 @@
   source: 'https://github.com/harrel56/json-schema'
   homepage: 'https://harrel.dev/json-schema'
   supportedDialects:
-    draft: [2019-09, 2020-12]
-  toolingListingNotes: 'JSON library agnostic implementation. Supports custom keywords.'
-  lastUpdated: '2023-11-12'
+    draft: [7, 2019-09, 2020-12]
+  lastUpdated: '2024-08-14'
   bowtie:
     identifier: 'java-json-schema'
 
@@ -478,10 +477,10 @@
   homepage: 'https://npmjs.com/@exodus/schemasafe'
   supportedDialects:
     draft: [4, 6, 7, 2019-09, 2020-12]
-  toolingListingNotes: |
-    For Node.js and browsers, with security and speed being the main focus. Pre-compiles schemas to JS functions.
+  toolingListingNotes:
+    'For Node.js and browsers, with security and speed being the main focus. Pre-compiles schemas to JS functions.
     [Supports OpenAPI `discriminator`](https://github.com/ExodusMovement/schemasafe/blob/master/doc/Discriminator-support.md).
-    Default behavior is hardened with additional schema coherence validation.
+    Default behavior is hardened with additional schema coherence validation.'
   lastUpdated: '2023-08-29'
   bowtie:
     identifier: 'js-schemasafe'
@@ -535,7 +534,7 @@
   license: 'MIT'
   source: 'https://github.com/sagold/json-schema-library'
   supportedDialects:
-    draft: [7, 6, 4]
+    draft: [7, 6, 4, 2019-09]
   toolingListingNotes: 'Built for Node.js and browsers. Customizable json-validator and json-schema utilities for traversal, data generation and validation'
   lastUpdated: '2022-08-31'
 
@@ -1096,6 +1095,22 @@
   toolingListingNotes: 'can be used with YAML and many other formats besides JSON'
   lastUpdated: '2022-08-31'
 
+- name: Sourcemeta JSON Schema CLI
+  description: The CLI for working with JSON Schema. Covers formatting, linting, testing, bundling, and more for both local development and CI/CD pipelines
+  toolingTypes: ['validator']
+  environments: ['Command Line']
+  dependsOnValidators: ['https://github.com/sourcemeta/jsontoolkit']
+  maintainers:
+    - name: 'Juan Cruz Viotti'
+      username: 'jviotti'
+      platform: 'github'
+  license: 'AGPL-3.0'
+  source: 'https://github.com/sourcemeta/jsonschema'
+  supportedDialects:
+    draft: [7, 6, 4, 3, 2, 1, 0, 2019-09, 2020-12]
+  toolingListingNotes: 'Supports formatting, linting, bundling, testing, validating, and more. As an exception, validation is not supported on Draft 3 and older'
+  lastUpdated: '2024-08-08'
+
 - name: Validate JSON Action
   description: 'A Github action for validating JSON.'
   toolingTypes: ['validator']
@@ -1456,6 +1471,21 @@
   supportedDialects:
     draft: [6]
   lastUpdated: '2024-05-31'
+
+- name: JSON Toolkit
+  description: 'JSON Toolkit is a swiss-army knife library for expressive JSON programming in modern C++'
+  toolingTypes: ['validator', 'util-general-processing']
+  languages: ['C++']
+  maintainers:
+    - name: 'Juan Cruz Viotti'
+      username: 'jviotti'
+      platform: 'github'
+  license: 'AGPL-3.0 and Commercial'
+  source: 'https://github.com/sourcemeta/jsontoolkit'
+  supportedDialects:
+    draft: [4, 6, 7, '2019-09', '2020-12']
+  toolingListingNotes: 'Comes with its own JSON parser'
+  lastUpdated: '2024-06-13'
 
 - name: Dataspecer
   description: 'Generates JSON Schema (and JSON-LD context) from conceptual model.'
@@ -2218,6 +2248,17 @@
   supportedDialects:
     draft: [3, 4, 7, 2020-12]
   toolingListingNotes: 'With some limitations, supports draft-3, draft-4, draft-7, and 2020-12.'
+
+- name: jsonschema-markdown
+  description: 'Generate markdown documentation based on a JSON Schema document'
+  toolingTypes: ['documentation']
+  maintainers:
+    - name: 'Elisiário Couto'
+      username: 'elisiariocouto'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/elisiariocouto/jsonschema-markdown'
+  toolingListingNotes: 'Can be used as a CLI or as a Python library.'
 
 - name: SchemaStore.org
   description: 'Validate against common JSON Schemas.'
