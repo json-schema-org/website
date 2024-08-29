@@ -29,21 +29,25 @@ export default function ToolingDetailModal({
   }, []);
 
   useEffect(() => {
-    const fetchBowtieReport = async () => {
-      try {
-        const res = await fetch(
-          'https://bowtie.report/api/v1/json-schema-org/implementations',
-        );
-        const bowtieReport: BowtieReport = await res.json();
+    if (tool.source) {
+      const fetchBowtieReport = async () => {
+        try {
+          const res = await fetch(
+            'https://bowtie.report/api/v1/json-schema-org/implementations',
+          );
+          const bowtieReport: BowtieReport = await res.json();
 
-        setBowtieEntry(bowtieReport[tool.source] || null);
-      } catch (error) {
-        console.error('Error fetching Bowtie report:', error);
-        setBowtieEntry(null);
-      }
-    };
+          setBowtieEntry(bowtieReport[tool.source!] || null);
+        } catch (error) {
+          console.error('Error fetching Bowtie report:', error);
+          setBowtieEntry(null);
+        }
+      };
 
-    fetchBowtieReport();
+      fetchBowtieReport();
+    } else {
+      setBowtieEntry(null);
+    }
   }, [tool.source]);
 
   return (
