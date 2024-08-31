@@ -77,6 +77,8 @@ For example, the only incompatibilities between draft-04 and draft-06 involve `e
   -   <userevent type='plausible-event-name=activation-click-tool'>[jsonschema.net](https://www.jsonschema.net/)</userevent> - generates schemas from example data
   -   <userevent type='plausible-event-name=activation-click-tool'>[Liquid Online Tools](https://www.liquid-technologies.com/online-json-to-schema-converter)</userevent> - infer JSON Schema from sample JSON data
   -   <userevent type='plausible-event-name=activation-click-tool'>[quicktype.io](https://app.quicktype.io/#l=schema)</userevent> - infer JSON Schema from samples, and generate TypeScript, C++, go, Java, C#, Swift, etc. types from JSON Schema
+-   Helm
+  -   <userevent type='plausible-event-name=activation-click-tool'>[dadav/helm-schema](https://github.com/dadav/helm-schema)</userevent> (MIT) - generate _values.schema.json_ from Helm _values.yaml_; compatible with [helm-docs](https://github.com/norwoodj/helm-docs) comments
 
 ### From model
 
