@@ -48,16 +48,16 @@
     "html_url": "https://github.com/DhairyaMajmudar"
   },
   {
-    "login": "Julian",
-    "id": 329822,
-    "avatar_url": "https://avatars.githubusercontent.com/u/329822?v=4",
-    "html_url": "https://github.com/Julian"
-  },
-  {
     "login": "gregsdennis",
     "id": 2676804,
     "avatar_url": "https://avatars.githubusercontent.com/u/2676804?v=4",
     "html_url": "https://github.com/gregsdennis"
+  },
+  {
+    "login": "Julian",
+    "id": 329822,
+    "avatar_url": "https://avatars.githubusercontent.com/u/329822?v=4",
+    "html_url": "https://github.com/Julian"
   },
   {
     "login": "jdesrosiers",
@@ -66,16 +66,16 @@
     "html_url": "https://github.com/jdesrosiers"
   },
   {
-    "login": "aialok",
-    "id": 66772290,
-    "avatar_url": "https://avatars.githubusercontent.com/u/66772290?v=4",
-    "html_url": "https://github.com/aialok"
-  },
-  {
     "login": "DarhkVoyd",
     "id": 77478658,
     "avatar_url": "https://avatars.githubusercontent.com/u/77478658?v=4",
     "html_url": "https://github.com/DarhkVoyd"
+  },
+  {
+    "login": "aialok",
+    "id": 66772290,
+    "avatar_url": "https://avatars.githubusercontent.com/u/66772290?v=4",
+    "html_url": "https://github.com/aialok"
   },
   {
     "login": "JeelRajodiya",
@@ -90,16 +90,16 @@
     "html_url": "https://github.com/PaulWaller"
   },
   {
-    "login": "starlightknown",
-    "id": 74637789,
-    "avatar_url": "https://avatars.githubusercontent.com/u/74637789?v=4",
-    "html_url": "https://github.com/starlightknown"
-  },
-  {
     "login": "TamannaVerma99",
     "id": 96949249,
     "avatar_url": "https://avatars.githubusercontent.com/u/96949249?v=4",
     "html_url": "https://github.com/TamannaVerma99"
+  },
+  {
+    "login": "starlightknown",
+    "id": 74637789,
+    "avatar_url": "https://avatars.githubusercontent.com/u/74637789?v=4",
+    "html_url": "https://github.com/starlightknown"
   },
   {
     "login": "VivekJaiswal18",
@@ -166,6 +166,12 @@
     "id": 84335414,
     "avatar_url": "https://avatars.githubusercontent.com/u/84335414?v=4",
     "html_url": "https://github.com/ayushtiwari110"
+  },
+  {
+    "login": "the-json-schema-bot[bot]",
+    "id": 171232837,
+    "avatar_url": "https://avatars.githubusercontent.com/in/909251?v=4",
+    "html_url": "https://github.com/apps/the-json-schema-bot"
   },
   {
     "login": "Sanket-0510",
