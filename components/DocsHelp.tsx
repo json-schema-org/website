@@ -18,15 +18,23 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
     const formData = new FormData(feedbackFormRef.current!);
-    formData.append('page', router.asPath);
+    formData.append('feedback-page', router.asPath);
     setIsSubmitting(true);
 
     try {
       const response = await fetch(
-        'https://feedback-collector.json-schema.workers.dev/submit',
+        'https://script.google.com/macros/s/AKfycby8c_NEFS5SLT4ibv5DuCE2BYzcxfFuAuqY8bX_Q5eEF9_hHW0p3nYP7ugmlL17KD4/exec',
         {
+          redirect: 'follow',
           method: 'POST',
-          body: formData,
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8',
+          },
+          body: JSON.stringify({
+            feedbackPage: formData.get('feedback-page'),
+            feedbackVote: formData.get('feedback-vote'),
+            feedbackComment: formData.get('feedback-comment'),
+          }),
         },
       );
 
