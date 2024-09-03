@@ -1,0 +1,573 @@
+[
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHJWGE",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Strategy for engaging implementers",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Ecosystem",
+          "field": {
+            "name": "Category"
+          }
+        },
+        {
+          "name": "Medium",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "High",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "In Progress",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Strategy for engaging implementers",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "Relequestual"
+          },
+          {
+            "login": "benjagm"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHJWH0",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Complete the new version of the Spec",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Specification",
+          "field": {
+            "name": "Category"
+          }
+        },
+        {
+          "name": "High",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "High",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "In Progress",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Complete the new version of the Spec",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "jdesrosiers"
+          },
+          {
+            "login": "Relequestual"
+          },
+          {
+            "login": "gregsdennis"
+          },
+          {
+            "login": "benjagm"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHWFHc",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Complete OpenJSF onboard",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Medium",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "Medium-high",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "Paused",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "name": "Operations",
+          "field": {
+            "name": "Category"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Complete OpenJSF onboard",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "Relequestual"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHJWPU",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Research of existing implementations by language",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Ecosystem",
+          "field": {
+            "name": "Category"
+          }
+        },
+        {
+          "name": "Low",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "High",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "In Progress",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Research of existing implementations by language",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "Julian"
+          },
+          {
+            "login": "benjagm"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHJWSI",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Report on projects financial sustainability requirements",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Operations",
+          "field": {
+            "name": "Category"
+          }
+        },
+        {
+          "name": "Low-medium",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "Low-medium",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "Planned",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Report on projects financial sustainability requirements",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "Julian"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHJZP0",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Implement and scale the new governance model",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Low",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "Medium",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "In Progress",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "name": "Operations",
+          "field": {
+            "name": "Category"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Implement and scale the new governance model",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "Relequestual"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHJZUk",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Enhance public communications strategy",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Low",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "Medium",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "Deferred",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "name": "Communications",
+          "field": {
+            "name": "Category"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Enhance public communications strategy",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "Relequestual"
+          },
+          {
+            "login": "benjagm"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHJV10",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Identify a list of critical interfaces that implementations should have and empower implementers with better resources",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Ecosystem",
+          "field": {
+            "name": "Category"
+          }
+        },
+        {
+          "name": "Low",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "High",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "Done",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Identify a list of critical interfaces that implementations should have and empower implementers with better resources",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "Julian"
+          },
+          {
+            "login": "gregsdennis"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHdNFs",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Complete and publish the new website",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "Low",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "High",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "Done",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "name": "User Experience",
+          "field": {
+            "name": "Category"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Complete and publish the new website",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "benjagm"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgK4C9o",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Define the JSON Schema Documentation Strategy",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "High",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "Medium",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "Done",
+          "field": {
+            "name": "Status"
+          }
+        },
+        {
+          "name": "User Experience",
+          "field": {
+            "name": "Category"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Define the JSON Schema Documentation Strategy",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "benjagm"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "id": "PVTI_lADOAMaoXc4ARJVmzgHJWDE",
+    "fieldValues": {
+      "nodes": [
+        {},
+        {},
+        {},
+        {
+          "text": "Refine the contributor journey",
+          "field": {
+            "name": "Title"
+          }
+        },
+        {
+          "name": "User Experience",
+          "field": {
+            "name": "Category"
+          }
+        },
+        {
+          "name": "High",
+          "field": {
+            "name": "Effort"
+          }
+        },
+        {
+          "name": "Medium-high",
+          "field": {
+            "name": "Impact"
+          }
+        },
+        {
+          "name": "Done",
+          "field": {
+            "name": "Status"
+          }
+        }
+      ]
+    },
+    "content": {
+      "title": "Refine the contributor journey",
+      "assignees": {
+        "nodes": [
+          {
+            "login": "benjagm"
+          }
+        ]
+      }
+    }
+  }
+]

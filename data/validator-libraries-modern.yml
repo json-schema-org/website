@@ -230,10 +230,9 @@
       last-updated: "2022-08-31"
     - name: "@exodus/schemasafe"
       url: https://github.com/ExodusMovement/schemasafe
-      notes: |
-        For Node.js and browsers, with security and speed being the main focus. Pre-compiles schemas to JS functions.
+      notes: "For Node.js and browsers, with security and speed being the main focus. Pre-compiles schemas to JS functions.
         [Supports OpenAPI `discriminator`](https://github.com/ExodusMovement/schemasafe/blob/master/doc/Discriminator-support.md).
-        Default behavior is hardened with additional schema coherence validation.
+        Default behavior is hardened with additional schema coherence validation."
       date-draft: [2020-12, 2019-09]
       draft: [7, 6, 4]
       license: MIT
@@ -568,6 +567,15 @@
       notes: Supports formatting, linting, bundling, testing, validating, and more. As an exception, validation is not supported on Draft 3 and older
       built-on:
         name: jsontoolkit
+    - name: v8r
+      license: MIT
+      url: https://github.com/chris48s/v8r
+      last-updated: "2024-08-23"
+      date-draft: [2020-12, 2019-09]
+      draft: [7, 6, 4]
+      notes: Uses [Schema Store](https://www.schemastore.org/) to detect a suitable schema for your input files based on the filename
+      built-on:
+        name: ajv
 - name: Github Actions
   implementations:
     - name: Validate JSON Action

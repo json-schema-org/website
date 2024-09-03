@@ -14,6 +14,7 @@ export default function ScrollButton() {
     window.addEventListener('scroll', handleScroll);
 
     // Cleanup function to remove the event listener when the component unmounts
+    /* istanbul ignore next : can't test cleanup function */
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -31,6 +32,7 @@ export default function ScrollButton() {
           onClick={scrollUp}
           className='rounded-full transition-transform hover:-translate-y-2 duration-150 ease-in-out shadow-lg bg-white flex items-center justify-center'
           aria-label='Scroll to top'
+          data-test='scroll-button'
         >
           {/* Ensure the image is in your public/img directory */}
           <Image

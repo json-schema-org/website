@@ -90,11 +90,41 @@ jobs:
           
           # commit updated project data
           - name: Commit changes
-            env:
-              GITHUB_APP_TOKEN: ${{ steps.get_workflow_token.outputs.token }}
             run: |
               git config user.name "the-json-schema-bot[bot]"
               git config user.email "the-json-schema-bot[bot]@users.noreply.github.com"
               git add project_data.json
-              git diff --quiet && git diff --staged --quiet || (git commit -m "chore(project_data): update project_data.json" && git push "https://x-access-token:${GITHUB_APP_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:${GITHUB_REF#refs/heads/})
+              git diff --quiet && git diff --staged --quiet || (git commit -m "chore(project_data): update project_data.json")
 
+          # create a pull request
+          - name: Create Pull Request
+            id: cpr
+            uses: peter-evans/create-pull-request@v6
+            with:
+              token: ${{ steps.get_workflow_token.outputs.token }}
+              title: 'chore(project_data): update project_data.json'
+              body: 'This PR updates the project_data.json file with the latest project data.'
+              branch: 'update-project-data'
+              base: 'main'
+              author: 'the-json-schema-bot <the-json-schema-bot[bot]@users.noreply.github.com>'
+              branch-suffix: timestamp
+              labels: 'sync-project-data'
+              assignees: 'the-json-schema-bot'
+              draft: false
+              signoff: true
+              add-paths: 'project_data.json'
+
+          # Approving with github bot token because one cannot approve their own PRs
+          - name: Auto Approve
+            if: steps.cpr.outputs.pull-request-operation == 'created'
+            run: gh pr review --approve "${{ steps.cpr.outputs.pull-request-number }}"
+            env:
+              GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+
+          - name: Auto Merge PR
+            if: steps.cpr.outputs.pull-request-operation == 'created'
+            uses:  peter-evans/enable-pull-request-automerge@v3
+            with:
+              pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+              merge-method: 'squash'
+              token: ${{ steps.get_workflow_token.outputs.token }}
