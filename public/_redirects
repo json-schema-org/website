@@ -42,7 +42,7 @@
 /implementations#benchmarks /tools?#benchmarks
 /implementations#api-documentation /tools?#documentation
 /implementations#documentation-generators /tools?#documentation
-/implementations#link-description-object-utilities tools?#ldo-utility
+/implementations#link-description-object-utilities /tools?#ldo-utility
 /implementations#schema-generators /tools?groupBy=none&toolingTypes=code-to-schema%2Cdata-to-schema%2Cmodel-to-schema
 /implementations#from-code /tools#code-to-schema
 /implementations#from-data /tools#data-to-schema
