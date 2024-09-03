@@ -110,14 +110,14 @@ describe('DocsHelp Component', () => {
     // mocking the feedback api call
     cy.intercept(
       'POST',
-      'https://feedback-collector.json-schema.workers.dev/submit',
+      'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
       {
         statusCode: 200,
         body: { success: true },
       },
     ).as('feedback');
 
-    /* click on yes button and check if feedback form is visible 
+    /* click on yes button and check if feedback form is visible
        Note: checking both yes and no button to cover both scenarios */
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM_NO_BUTTON).click();
@@ -142,7 +142,7 @@ describe('DocsHelp Component', () => {
     // check if clicking on yes button should show feedback form
     cy.intercept(
       'POST',
-      'https://feedback-collector.json-schema.workers.dev/submit',
+      'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
       {
         statusCode: 500,
         body: { error: 'Internal Server Error' },
@@ -172,7 +172,7 @@ describe('DocsHelp Component', () => {
     // check if clicking on yes button should show feedback form
     cy.intercept(
       'POST',
-      'https://feedback-collector.json-schema.workers.dev/submit',
+      'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
       {
         forceNetworkError: true,
       },
