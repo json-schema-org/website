@@ -17,7 +17,7 @@
     "format:check": "prettier --check \"**/*.{ts,tsx,scss,css}\"",
     "prepare": "husky",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run",
+    "cypress:run:all": "cypress run && cypress run --component",
     "test:coverage:e2e": "cypress run --env coverage=true",
     "test:coverage:component": "cypress run --component --env coverage=true",
     "test:coverage:all": "yarn test:coverage:e2e && yarn test:coverage:component && nyc merge .nyc_output coverage.json && nyc report --reporter=html --reporter=text"
