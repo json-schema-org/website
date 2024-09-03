@@ -23,7 +23,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
 
     try {
       const response = await fetch(
-        'https://script.google.com/macros/s/AKfycby8c_NEFS5SLT4ibv5DuCE2BYzcxfFuAuqY8bX_Q5eEF9_hHW0p3nYP7ugmlL17KD4/exec',
+        'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
         {
           redirect: 'follow',
           method: 'POST',
