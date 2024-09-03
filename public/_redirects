@@ -21,49 +21,49 @@
 /latest/release-notes /draft/2020-12/release-notes
 /implementations /tools 301
 /implementations#tools /tools#json-schema-tooling 301
-/implementations#validators-.net /tools?groupBy=languages#.net
-/implementations#validators-c++ /tools?groupBy=languages#c++
-/implementations#validators-clojure /tools?groupBy=languages#clojure
-/implementations#validators-common-lisp /tools?groupBy=languages#common-lisp
-/implementations#validators-elixir /tools?groupBy=languages#elixir
-/implementations#validators-erlang /tools?groupBy=languages#erlang
-/implementations#validators-go /tools?groupBy=languages#go
-/implementations#validators-java /tools?groupBy=languages#java
-/implementations#validators-javascript /tools?groupBy=languages#javascript
-/implementations#validators-kotlin /tools?groupBy=languages#kotlin
-/implementations#validators-lualuajit /tools?groupBy=languages#lualuajit
-/implementations#validators-objective-c /tools?groupBy=languages#objective-c
-/implementations#validators-perl /tools?groupBy=languages#perl
-/implementations#validators-php /tools?groupBy=languages#php
-/implementations#validators-python /tools?groupBy=languages#python
-/implementations#validators-ruby /tools?groupBy=languages#ruby
-/implementations#validators-rust /tools?groupBy=languages#rust
-/implementations#validators-scala /tools?groupBy=languages#scala
-/implementations#benchmarks /tools?#benchmarks
-/implementations#api-documentation /tools?#documentation
-/implementations#documentation-generators /tools?#documentation
-/implementations#link-description-object-utilities /tools?#ldo-utility
-/implementations#schema-generators /tools?groupBy=none&toolingTypes=code-to-schema%2Cdata-to-schema%2Cmodel-to-schema
-/implementations#from-code /tools#code-to-schema
-/implementations#from-data /tools#data-to-schema
-/implementations#from-model /tools#model-to-schema
-/implementations#generators-from-schemas /tools?groupBy=none&toolingTypes=schema-to-data%2Cschema-to-code%2Cschema-to-types%2Cschema-to-web-UI
-/implementations#type-generation /tools#schema-to-types
-/implementations#code-generation /tools#schema-to-code
-/implementations#web-ui-generation /tools#schema-to-web-ui
-/implementations#data-from-schemas /tools#schema-to-data
-/implementations#utilities /tools?groupBy=none&toolingTypes=util-general-processing%2Cutil-testing%2Cutil-schema-to-schema%2Cutil-draft-migration%2Cutil-format-conversion
-/implementations#general-processing /tools#util-general-processing
-/implementations#schema-to-schema /tools#util-schema-to-schema
-/implementations#schema-draft-migration /tools#util-draft-migration
-/implementations#format-converters /tools#util-format-conversion
-/implementations#testing /tools#util-testing
-/implementations#editors /tools#editor
-/implementations#schema-repositories /tools#schema-repositories
-/implementations#schema-linter /tools#linter
-/implementations#linter-plugins /tools#linter-plugins
-/implementations#hyper-schema /tools#hyper-schema
-/implementations#hyper-libaries-javascript /tools?groupBy=languages&toolingTypes=hyper-schema#javascript
+/implementations#validators-.net /tools?groupBy=languages#.net 301
+/implementations#validators-c++ /tools?groupBy=languages#c++ 301
+/implementations#validators-clojure /tools?groupBy=languages#clojure 301
+/implementations#validators-common-lisp /tools?groupBy=languages#common-lisp 301
+/implementations#validators-elixir /tools?groupBy=languages#elixir 301
+/implementations#validators-erlang /tools?groupBy=languages#erlang 301
+/implementations#validators-go /tools?groupBy=languages#go 301
+/implementations#validators-java /tools?groupBy=languages#java 301
+/implementations#validators-javascript /tools?groupBy=languages#javascript 301
+/implementations#validators-kotlin /tools?groupBy=languages#kotlin 301
+/implementations#validators-lualuajit /tools?groupBy=languages#lualuajit 301
+/implementations#validators-objective-c /tools?groupBy=languages#objective-c 301
+/implementations#validators-perl /tools?groupBy=languages#perl 301
+/implementations#validators-php /tools?groupBy=languages#php 301
+/implementations#validators-python /tools?groupBy=languages#python 301
+/implementations#validators-ruby /tools?groupBy=languages#ruby 301
+/implementations#validators-rust /tools?groupBy=languages#rust 301
+/implementations#validators-scala /tools?groupBy=languages#scala 301
+/implementations#benchmarks /tools?#benchmarks 301
+/implementations#api-documentation /tools?#documentation 301
+/implementations#documentation-generators /tools?#documentation 301
+/implementations#link-description-object-utilities /tools?#ldo-utility 301
+/implementations#schema-generators /tools?groupBy=none&toolingTypes=code-to-schema%2Cdata-to-schema%2Cmodel-to-schema 301
+/implementations#from-code /tools#code-to-schema 301
+/implementations#from-data /tools#data-to-schema 301
+/implementations#from-model /tools#model-to-schema 301
+/implementations#generators-from-schemas /tools?groupBy=none&toolingTypes=schema-to-data%2Cschema-to-code%2Cschema-to-types%2Cschema-to-web-UI 301
+/implementations#type-generation /tools#schema-to-types 301
+/implementations#code-generation /tools#schema-to-code 301
+/implementations#web-ui-generation /tools#schema-to-web-ui 301
+/implementations#data-from-schemas /tools#schema-to-data 301
+/implementations#utilities /tools?groupBy=none&toolingTypes=util-general-processing%2Cutil-testing%2Cutil-schema-to-schema%2Cutil-draft-migration%2Cutil-format-conversion 301
+/implementations#general-processing /tools#util-general-processing 301
+/implementations#schema-to-schema /tools#util-schema-to-schema 301
+/implementations#schema-draft-migration /tools#util-draft-migration 301
+/implementations#format-converters /tools#util-format-conversion 301
+/implementations#testing /tools#util-testing 301
+/implementations#editors /tools#editor 301
+/implementations#schema-repositories /tools#schema-repositories 301
+/implementations#schema-linter /tools#linter 301
+/implementations#linter-plugins /tools#linter-plugins 301
+/implementations#hyper-schema /tools#hyper-schema 301
+/implementations#hyper-libaries-javascript /tools?groupBy=languages&toolingTypes=hyper-schema#javascript 301
 /slack https://join.slack.com/t/json-schema/shared_invite/zt-2n5bzzgx3-ro3V0mnnzUoaguILLosT2A 301
 /slack-redirect https://join.slack.com/t/json-schema/shared_invite/zt-2n5bzzgx3-ro3V0mnnzUoaguILLosT2A 301
 /ambassadors https://github.com/json-schema-org/community/tree/main/programs/ambassadors 301
