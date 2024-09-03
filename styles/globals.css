@@ -274,3 +274,18 @@ border-radius: 4px; */
 .no-scroll {
   overflow: hidden;
 }
+
+.tools-dropdown-menu::-webkit-scrollbar {
+  width: 0.5rem;
+  height: 5px;
+}
+
+.tools-dropdown-menu::-webkit-scrollbar-track {
+  background: white;
+  border-radius: 8px;
+}
+
+.tools-dropdown-menu::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 8px;
+}

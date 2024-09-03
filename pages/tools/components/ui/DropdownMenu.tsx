@@ -63,6 +63,7 @@ export default function DropdownMenu({
 
       <div
         className={classnames(
+          'tools-dropdown-menu',
           'ml-0 mt-4 overflow-x-hidden overscroll-y-auto max-h-80',
           { hidden: !isDropdownOpen },
         )}
