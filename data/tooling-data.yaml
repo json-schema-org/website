@@ -1097,7 +1097,7 @@
 
 - name: Sourcemeta JSON Schema CLI
   description: The CLI for working with JSON Schema. Covers formatting, linting, testing, bundling, and more for both local development and CI/CD pipelines
-  toolingTypes: ['validator', 'util-general-processing', 'utils-testing', 'linter']
+  toolingTypes: ['validator', 'util-general-processing', 'util-testing', 'linter']
   environments: ['Command Line']
   dependsOnValidators: ['https://github.com/sourcemeta/jsontoolkit']
   maintainers:
