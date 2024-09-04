@@ -98,7 +98,7 @@ const ToolingTable = ({
                       style: { flexBasis: '20%', flexGrow: 1 },
                     }}
                   >
-                    Drafts
+                    Dialects
                   </TableColumnHeader>
                   <TableSortableColumnHeader
                     sortBy='license'

@@ -214,7 +214,6 @@ export default function ToolingDetailModal({
                 <h3 className='text-lg font-semibold'>Supported Dialects</h3>
                 {tool.supportedDialects.draft && (
                   <div>
-                    <h4 className='text-[14px] font-semibold'>Draft:</h4>
                     <ul className='list-none list-inside'>
                       {tool.supportedDialects.draft.map((draft) => (
                         <Badge key={draft}>{draft}</Badge>
