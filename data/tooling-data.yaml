@@ -1,6 +1,6 @@
 - name: JsonSchema.Net
   description: 'System.Text.Json-based support for all of your JSON needs.'
-  toolingTypes: ['validator', 'code-to-schema', 'schema-to-data']
+  toolingTypes: ['validator', 'code-to-schema', 'schema-to-data', 'annotations', 'bundler']
   languages: ['.NET']
   maintainers:
     - name: 'Greg Dennis'
@@ -447,9 +447,9 @@
   toolingListingNotes: 'Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. JSON schema validation run when validating schemas.'
   lastUpdated: '2024-05-20'
 
-- name: Hyperjump JSV
+- name: '@hyperjump/json-schema'
   description: 'JSON Schema Validation, Annotation, and Bundling. Supports Draft 04, 06, 07, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations', 'bundler']
   languages: ['JavaScript']
   maintainers:
     - name: 'Jason Desrosiers'
@@ -460,7 +460,7 @@
   supportedDialects:
     draft: [4, 6, 7, 2019-09, 2020-12]
   toolingListingNotes: 'Built for Node.js and browsers. Includes support for custom vocabularies.'
-  lastUpdated: '2022-08-31'
+  lastUpdated: '2024-09-04'
   bowtie:
     identifier: 'js-hyperjump'
 
@@ -1097,7 +1097,7 @@
 
 - name: Sourcemeta JSON Schema CLI
   description: The CLI for working with JSON Schema. Covers formatting, linting, testing, bundling, and more for both local development and CI/CD pipelines
-  toolingTypes: ['validator', 'util-general-processing', 'util-testing', 'linter']
+  toolingTypes: ['validator', 'util-general-processing', 'util-testing', 'linter', 'bundler']
   environments: ['Command Line']
   dependsOnValidators: ['https://github.com/sourcemeta/jsontoolkit']
   maintainers:
