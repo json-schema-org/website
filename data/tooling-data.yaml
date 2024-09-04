@@ -1459,7 +1459,7 @@
 - name: quicktype.io
   description: 'Infer JSON Schema from samples, and generate TypeScript, C++, Go, Java, C#, Swift, etc. types from JSON Schema.'
   toolingTypes: ['data-to-schema', 'schema-to-code']
-  languages: ['TypeScript', 'C++', 'Go', 'Java', 'C#', 'Swift']
+  languages: ['TypeScript', 'C++', 'Go', 'Java', 'C#', 'Swift', 'JavaScript']
   environments: ['Web (Online)']
   maintainers:
     - name: 'Sean'
