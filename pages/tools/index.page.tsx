@@ -71,6 +71,14 @@ export async function getStaticProps() {
     return aIndex - bIndex;
   });
 
+  (Object.keys(filterCriteria) as FilterCriteriaFields[]).forEach((key) => {
+    if (key !== 'drafts' && Array.isArray(filterCriteria[key])) {
+      (filterCriteria[key] as (string | number)[]).sort((a, b) =>
+        a.toString().localeCompare(b.toString()),
+      );
+    }
+  });
+
   return {
     props: {
       toolingData,
