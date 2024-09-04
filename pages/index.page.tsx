@@ -395,7 +395,7 @@ const Home = (props: any) => {
               amazing Community.
             </p>
             <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out h-[45px] rounded border-2 bg-primary text-white dark:border-none'>
-              <a href='/implementations/'>Explore</a>
+              <a href='/tools/'>Explore</a>
             </button>
           </div>
         </section>

@@ -1,0 +1,61 @@
+name: Validate Tooling Data
+
+on:
+  push:
+    paths:
+      - data/tooling-data.yaml
+    branches:
+      - main
+  pull_request:
+    paths:
+      - data/tooling-data.yaml
+  workflow_dispatch:
+
+jobs:
+  validate-tooling-data:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Corepack enable
+        run: corepack enable
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: yarn add ajv ajv-formats js-yaml
+
+      - name: Validate tooling-data.yaml
+        run: |
+          node -e "
+          const Ajv = require('ajv/dist/2020');
+          const addFormats = require('ajv-formats');
+          const path = require('path');
+          const fs = require('fs');
+          const yaml = require('js-yaml');
+          const dataDir = path.join(process.env.GITHUB_WORKSPACE, 'data');
+          const schemaPath = path.join(dataDir, 'tooling-data.schema.json');
+          const dataPath = path.join(dataDir, 'tooling-data.yaml');
+
+          try {
+            const schema = JSON.parse(fs.readFileSync(schemaPath, 'utf-8'));
+            const data = yaml.load(fs.readFileSync(dataPath, 'utf-8'));
+            const ajv = new Ajv({ allErrors: true });
+            addFormats(ajv);
+            const validate = ajv.compile(schema);
+            const valid = validate(data);
+            if (!valid) {
+              console.error('Validation failed:', validate.errors);
+              process.exit(1);
+            } else {
+              console.log('tooling-data.yaml is valid.');
+            }
+          } catch (error) {
+            console.error('Error validating tooling-data.yaml:', error);
+            process.exit(1);
+          }"

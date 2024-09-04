@@ -10,7 +10,7 @@ title: What is JSON Schema?
 
 When it comes to data exchange, JSON Schema stands out as a powerful standard for defining the structure and rules of JSON data. It uses a set of [keywords](https://json-schema.org/learn/glossary#keyword) to define the properties of your data.
 
-While JSON Schema provides the language, validating a JSON [instance](https://json-schema.org/learn/glossary#instance) against a [schema](https://json-schema.org/learn/glossary#schema) requires a JSON Schema [validator](https://json-schema.org/implementations#validators). The JSON validator checks if the JSON documents conform to the schema.
+While JSON Schema provides the language, validating a JSON [instance](https://json-schema.org/learn/glossary#instance) against a [schema](https://json-schema.org/learn/glossary#schema) requires a JSON Schema [validator](https://json-schema.org/tools#validators). The JSON validator checks if the JSON documents conform to the schema.
 
 JSON Schema Validators are tools that implement the JSON Schema specification. Such tooling enables easy integration of JSON Schema into projects of any size.
 

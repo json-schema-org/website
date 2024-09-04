@@ -10,8 +10,7 @@ on:
     branches:
       - main
     paths:
-      - data/*.yml
-      - pages/implementations/main.md
+      - data/tooling-data.yaml
 
 jobs:
   comment:

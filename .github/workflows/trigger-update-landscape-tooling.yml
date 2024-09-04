@@ -1,0 +1,33 @@
+name: Trigger Update Landscape Tooling Workflow
+
+on:
+  push:
+    paths:
+      - data/tooling-data.yaml
+    branches:
+      - main
+  workflow_dispatch:
+
+
+jobs:
+  trigger-workflow:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create workflow token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ vars.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: Trigger update landscape repository workflow
+        env:
+          AUTH_TOKEN: ${{ steps.app-token.output.token }}
+        run: |
+          curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: Bearer $AUTH_TOKEN" \
+            https://api.github.com/repos/json-schema-org/landscape/actions/workflows/update-landscape-tooling.yml/dispatches \
+            -d '{"ref":"main"}'
