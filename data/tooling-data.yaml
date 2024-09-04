@@ -1715,6 +1715,29 @@
   homepage: 'https://hamzahamidi.github.io/ajsf'
   lastUpdated: '2022-08-27'
 
+- name: JSON Schema Tree
+  toolingTypes: ['schema-to-web-UI']
+  languages: ['Typescript']
+  maintainers:
+    - name: 'Stoplight'
+      username: 'stoplightio'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/stoplightio/json-schema-tree'
+  lastUpdated: '2024-01-23'
+
+- name: JSON Schema Viewer
+  description: 'A JSON Schema viewer React component'
+  toolingTypes: ['schema-to-web-UI']
+  languages: ['Typescript']
+  maintainers:
+    - name: 'Stoplight'
+      username: 'stoplightio'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/stoplightio/json-schema-viewer'
+  lastUpdated: '2024-06-17'
+
 - name: Dashjoin JSON Schema Form
   description: 'Angular JSON Schema Form Library'
   toolingTypes: ['schema-to-web-UI']
