@@ -1097,7 +1097,7 @@
 
 - name: Sourcemeta JSON Schema CLI
   description: The CLI for working with JSON Schema. Covers formatting, linting, testing, bundling, and more for both local development and CI/CD pipelines
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'util-general-processing', 'utils-testing', 'linter']
   environments: ['Command Line']
   dependsOnValidators: ['https://github.com/sourcemeta/jsontoolkit']
   maintainers:
@@ -1107,7 +1107,7 @@
   license: 'AGPL-3.0'
   source: 'https://github.com/sourcemeta/jsonschema'
   supportedDialects:
-    draft: [1, 2, 3, 4, 5, 6, 7, 2019-09, 2020-12]
+    draft: [0, 1, 2, 3, 4, 6, 7, 2019-09, 2020-12]
   toolingListingNotes: 'Supports formatting, linting, bundling, testing, validating, and more. As an exception, validation is not supported on Draft 3 and older'
   lastUpdated: '2024-08-08'
 
@@ -1486,6 +1486,8 @@
     draft: [4, 6, 7, '2019-09', '2020-12']
   toolingListingNotes: 'Comes with its own JSON parser'
   lastUpdated: '2024-06-13'
+  bowtie:
+    identifier: 'cpp-jsontoolkit'
 
 - name: Dataspecer
   description: 'Generates JSON Schema (and JSON-LD context) from conceptual model.'
