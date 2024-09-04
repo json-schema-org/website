@@ -265,6 +265,8 @@ const groupTools = (
 } => {
   const toolingTypesOrder = [
     'validator',
+    'annotations',
+    'bundler',
     'hyper-schema',
     'benchmarks',
     'documentation',
