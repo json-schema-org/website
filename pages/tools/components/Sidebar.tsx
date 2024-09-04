@@ -26,9 +26,9 @@ export default function Sidebar({
   const filterFormRef = useRef<HTMLFormElement>(null);
 
   const filters = [
-    { label: 'Languages', accessorKey: 'languages' },
-    { label: 'Drafts', accessorKey: 'drafts' },
-    { label: 'Tooling Types', accessorKey: 'toolingTypes' },
+    { label: 'Language', accessorKey: 'languages' },
+    { label: 'Dialect', accessorKey: 'drafts' },
+    { label: 'Tooling Type', accessorKey: 'toolingTypes' },
     { label: 'License', accessorKey: 'licenses' },
   ];
 
