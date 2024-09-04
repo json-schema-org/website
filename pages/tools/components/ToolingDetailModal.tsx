@@ -9,6 +9,7 @@ import type {
   JSONSchemaTool,
 } from '../JSONSchemaTool';
 import toTitleCase from '../lib/toTitleCase';
+import Link from 'next/link';
 
 export default function ToolingDetailModal({
   tool,
@@ -276,6 +277,13 @@ export default function ToolingDetailModal({
                       )}
                     </div>
                   )}
+                  <Link
+                    className='text-[14px] underline italic'
+                    href={`https://bowtie.report/#/implementations/${tool.bowtie?.identifier}`}
+                    target='_blank'
+                  >
+                    View detailed report
+                  </Link>
                 </div>
               )
             )}

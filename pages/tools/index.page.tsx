@@ -5,6 +5,7 @@ import Head from 'next/head';
 import yaml from 'js-yaml';
 
 import { SectionContext } from '~/context';
+import { DocsHelp } from '~/components/DocsHelp';
 import { Headline1 } from '~/components/Headlines';
 import { getLayout } from '~/components/SiteLayout';
 import { DRAFT_ORDER } from '~/lib/config';
@@ -204,6 +205,8 @@ export default function ToolingPage({
               transform={transform}
               setTransform={setTransform}
             />
+
+            <DocsHelp />
           </main>
         </div>
       </div>
