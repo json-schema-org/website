@@ -79,7 +79,7 @@ export default function Sidebar({
                   <Checkbox
                     key={filterOption}
                     label={
-                      label === 'Tooling Types'
+                      accessorKey === 'toolingTypes'
                         ? toTitleCase(filterOption, '-')
                         : filterOption
                     }
