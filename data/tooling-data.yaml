@@ -2308,6 +2308,19 @@
   source: 'https://github.com/ota-meshi/eslint-plugin-json-schema-validator'
   homepage: 'https://ota-meshi.github.io/eslint-plugin-json-schema-validator/'
 
+- name: Core API Hyper-Schema codec
+  description: 'A JavaScript implementation of JSON hyper-schema.'
+  toolingTypes: ['hyper-schema']
+  languages: ['Python']
+  maintainers:
+    - name: 'Tom Christie'
+      username: 'tomchristie'
+      platform: 'github'
+  license: 'BSD-2-Clause'
+  source: 'https://github.com/core-api/python-jsonhyperschema-codec'
+  supportedDialects:
+    draft: [4]
+
 - name: mokkabonna/json-hyper-schema
   description: 'A JavaScript implementation of JSON hyper-schema.'
   toolingTypes: ['hyper-schema']
