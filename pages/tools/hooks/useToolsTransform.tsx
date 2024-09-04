@@ -90,6 +90,15 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
     setTransform(updatedTransform);
   }, [router.isReady]);
 
+  useEffect(() => {
+    if (!router.isReady) return;
+    const { query } = router;
+
+    if (Object.keys(query).length === 0) {
+      resetTransform();
+    }
+  }, [router]);
+
   const updateTransform = (update: TransformUpdate) => {
     setTransform((prevTransform) => {
       const newTransform =
