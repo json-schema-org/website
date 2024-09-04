@@ -8,7 +8,7 @@ import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import { Headline1 } from '~/components/Headlines';
 import { getLayout } from '~/components/SiteLayout';
-import { DRAFT_ORDER } from '~/lib/config';
+import { DRAFT_ORDER, JSONSchemaDraft } from '~/lib/config';
 
 import GroupByMenu from './components/GroupByMenu';
 import Sidebar from './components/Sidebar';
@@ -30,8 +30,8 @@ export async function getStaticProps() {
 
   toolingData.forEach((tool) => {
     tool.supportedDialects?.draft?.sort((a, b) => {
-      const aIndex = DRAFT_ORDER.map(String).indexOf(a.toString());
-      const bIndex = DRAFT_ORDER.map(String).indexOf(b.toString());
+      const aIndex = DRAFT_ORDER.indexOf(a);
+      const bIndex = DRAFT_ORDER.indexOf(b);
 
       if (aIndex === -1 && bIndex === -1) {
         return 0;
@@ -47,18 +47,19 @@ export async function getStaticProps() {
 
   const filterCriteria = {
     languages: getDistinctEntries(toolingData, '$..languages[*]'),
-    drafts: getDistinctEntries<JSONSchemaTool[], number | string>(
-      toolingData,
-      '$..supportedDialects.draft[*]',
-      [1, 2, 3],
-    ),
+    drafts: getDistinctEntries(toolingData, '$..supportedDialects.draft[*]', [
+      '0',
+      '1',
+      '2',
+      '3',
+    ]) as JSONSchemaDraft[],
     toolingTypes: getDistinctEntries(toolingData, '$..toolingTypes[*]'),
     licenses: getDistinctEntries(toolingData, '$..license'),
   };
 
-  filterCriteria.drafts?.sort((a, b) => {
-    const aIndex = DRAFT_ORDER.map(String).indexOf(a.toString());
-    const bIndex = DRAFT_ORDER.map(String).indexOf(b.toString());
+  filterCriteria.drafts.sort((a, b) => {
+    const aIndex = DRAFT_ORDER.indexOf(a);
+    const bIndex = DRAFT_ORDER.indexOf(b);
 
     if (aIndex === -1 && bIndex === -1) {
       return 0;
@@ -68,7 +69,7 @@ export async function getStaticProps() {
       return -1;
     }
 
-    return aIndex - bIndex;
+    return bIndex - aIndex;
   });
 
   (Object.keys(filterCriteria) as FilterCriteriaFields[]).forEach((key) => {
