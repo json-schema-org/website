@@ -15,11 +15,11 @@ const GroupByMenu = ({ transform, setTransform }: GroupByMenuProps) => {
       accessorKey: 'none',
     },
     {
-      label: 'Tooling Types',
+      label: 'Tooling Type',
       accessorKey: 'toolingTypes',
     },
     {
-      label: 'Languages',
+      label: 'Language',
       accessorKey: 'languages',
     },
   ];
