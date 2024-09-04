@@ -908,8 +908,8 @@
     draft: [4, 6, 7]
   lastUpdated: '2022-08-31'
 
-- name: Hyperjump JSV (online)
-  description: 'Validate JSON Schema documents online'
+- name: json-schema.hyperjump.io
+  description: 'Validate JSON Schema documents online using @hyperjump/json-schema'
   toolingTypes: ['validator']
   environments: ['Web (Online)']
   dependsOnValidators: ['https://github.com/hyperjump-io/json-schema']
