@@ -69,7 +69,7 @@ export async function getStaticProps() {
       return -1;
     }
 
-    return bIndex - aIndex;
+    return aIndex - bIndex;
   });
 
   (Object.keys(filterCriteria) as FilterCriteriaFields[]).forEach((key) => {
