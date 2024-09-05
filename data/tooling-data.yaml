@@ -1723,6 +1723,8 @@
       username: 'stoplightio'
       platform: 'github'
   license: 'Apache-2.0'
+  supportedDialects:
+    draft: [4]
   source: 'https://github.com/stoplightio/json-schema-tree'
   lastUpdated: '2024-01-23'
 
@@ -1735,6 +1737,8 @@
       username: 'stoplightio'
       platform: 'github'
   license: 'Apache-2.0'
+  supportedDialects:
+    draft: [4]
   source: 'https://github.com/stoplightio/json-schema-viewer'
   lastUpdated: '2024-06-17'
 
