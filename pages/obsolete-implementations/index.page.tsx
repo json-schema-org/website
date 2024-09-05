@@ -182,8 +182,8 @@ function ImplementationTable({
                             <td className='w-1/4 pl-3 sm:pl-6 pb-2 pt-2'>
                               {allDrafts
                                 ?.sort((a, b) =>
-                                  DRAFT_ORDER.indexOf(a) <
-                                  DRAFT_ORDER.indexOf(b)
+                                  DRAFT_ORDER.indexOf(a.toString()) <
+                                  DRAFT_ORDER.indexOf(b.toString())
                                     ? -1
                                     : 1,
                                 )

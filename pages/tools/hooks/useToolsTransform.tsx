@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import Fuse from 'fuse.js';
 
-import { DRAFT_ORDER } from '~/lib/config';
+import { type JSONSchemaDraft } from '~/lib/config';
 import type { JSONSchemaTool } from '../JSONSchemaTool';
 
 export interface Transform {
@@ -12,7 +12,7 @@ export interface Transform {
   groupBy: 'none' | 'toolingTypes' | 'languages';
   licenses: string[];
   languages: string[];
-  drafts: `${(typeof DRAFT_ORDER)[number]}`[];
+  drafts: JSONSchemaDraft[];
   toolingTypes: string[];
 }
 
@@ -183,7 +183,7 @@ const filterTools = (
     languages: lowerCaseArray(transform.languages),
     licenses: lowerCaseArray(transform.licenses),
     toolingTypes: lowerCaseArray(transform.toolingTypes),
-    drafts: transform.drafts.map(String),
+    drafts: transform.drafts,
   };
 
   return tools.filter((tool) => {
@@ -207,7 +207,7 @@ const filterTools = (
     const matchesDraft =
       !lowerCaseTransform.drafts.length ||
       (tool.supportedDialects?.draft || []).some((draft) =>
-        lowerCaseTransform.drafts.includes(String(draft)),
+        lowerCaseTransform.drafts.includes(draft),
       );
 
     return (
@@ -265,6 +265,8 @@ const groupTools = (
 } => {
   const toolingTypesOrder = [
     'validator',
+    'annotations',
+    'bundler',
     'hyper-schema',
     'benchmarks',
     'documentation',

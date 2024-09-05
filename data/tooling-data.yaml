@@ -1,6 +1,7 @@
 - name: JsonSchema.Net
   description: 'System.Text.Json-based support for all of your JSON needs.'
-  toolingTypes: ['validator', 'code-to-schema', 'schema-to-data']
+  toolingTypes:
+    ['validator', 'code-to-schema', 'schema-to-data', 'annotations', 'bundler']
   languages: ['.NET']
   maintainers:
     - name: 'Greg Dennis'
@@ -10,7 +11,7 @@
   source: 'https://github.com/gregsdennis/json-everything'
   homepage: 'https://json-everything.net'
   supportedDialects:
-    draft: [6, 7, '2019-09', '2020-12']
+    draft: ['6', '7', '2019-09', '2020-12']
   lastUpdated: '2022-08-31'
   bowtie:
     identifier: 'dotnet-jsonschema-net'
@@ -27,7 +28,7 @@
   source: 'https://github.com/JamesNK/Newtonsoft.Json.Schema'
   homepage: 'https://www.newtonsoft.com/jsonschema'
   supportedDialects:
-    draft: [3, 4, 6, 7, '2019-09', '2020-12']
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-06-08'
 
 - name: Corvus.JsonSchema
@@ -41,7 +42,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/corvus-dotnet/corvus.jsonschema'
   supportedDialects:
-    draft: [6, 7, '2019-09', '2020-12']
+    draft: ['6', '7', '2019-09', '2020-12']
   lastUpdated: '2023-02-14'
   bowtie:
     identifier: 'dotnet-corvus-jsonschema'
@@ -72,7 +73,7 @@
   license: 'BSL-1.0'
   source: 'https://github.com/hotkit/json-schema'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   lastUpdated: '2022-08-31'
 
 - name: JSON schema validation for JSON for Modern C++
@@ -86,7 +87,7 @@
   license: 'MIT'
   source: 'https://github.com/pboettch/json-schema-validator'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   lastUpdated: '2022-08-31'
 
 - name: Valijson
@@ -100,7 +101,7 @@
   license: 'BSD-2-Clause'
   source: 'https://github.com/tristanpenman/valijson'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   lastUpdated: '2022-08-31'
   bowtie:
     identifier: 'cpp-valijson'
@@ -117,7 +118,7 @@
   source: 'https://github.com/danielaparker/jsoncons'
   homepage: 'https://danielaparker.github.io/jsoncons'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Header-only library'
   lastUpdated: '2024-04-22'
 
@@ -132,7 +133,7 @@
   license: 'MIT'
   source: 'https://github.com/juxt/jinx'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   lastUpdated: '2022-08-31'
 
 - name: luposlip/json-schema
@@ -146,7 +147,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/luposlip/json-schema'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
   bowtie:
     identifier: 'clojure-json-schema'
@@ -160,7 +161,7 @@
   license: 'Proprietary'
   homepage: 'https://pinery.systems/json-essentials-com/index.html'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   toolingListingNotes: 'Language independent, includes JSON DOM parser, REST ready, 4 licensing options for free and business uses. For Windows platform only.'
   lastUpdated: '2022-08-31'
 
@@ -175,7 +176,7 @@
   license: 'LGPL-2.1-only'
   source: 'https://github.com/fisxoj/json-schema'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09]
+    draft: ['4', '6', '7', '2019-09']
   compliance:
     config:
       docs: 'https://github.com/fisxoj/json-schema/blob/master/README.rst'
@@ -195,7 +196,7 @@
   source: 'https://github.com/E-xyza/Exonerate'
   homepage: 'https://hexdocs.pm/exonerate/Exonerate.html'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2023-04-04'
 
 - name: JsonXema
@@ -209,7 +210,7 @@
   license: 'MIT'
   source: 'https://github.com/hrzndhrn/json_xema'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: JeSSE
@@ -223,7 +224,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/for-GET/jesse'
   supportedDialects:
-    draft: [3, 4, 6]
+    draft: ['3', '4', '6']
   lastUpdated: '2022-08-31'
 
 - name: santhosh-tekuri/jsonschema
@@ -237,7 +238,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/santhosh-tekuri/jsonschema'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Includes custom keywords, output formats'
   lastUpdated: '2022-08-31'
   bowtie:
@@ -254,7 +255,7 @@
   license: 'MIT'
   source: 'https://github.com/kaptinlin/jsonschema'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2020-12']
   toolingListingNotes: 'Supports output formats, multilingual output'
   lastUpdated: '2024-05-07'
 
@@ -269,7 +270,7 @@
   license: 'MIT'
   source: 'https://github.com/qri-io/jsonschema'
   supportedDialects:
-    draft: [7, 2019-09]
+    draft: ['7', '2019-09']
   toolingListingNotes: 'Includes custom validator support, rich error returns'
   lastUpdated: '2022-08-31'
 
@@ -284,7 +285,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/xeipuuv/gojsonschema'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
   bowtie:
     identifier: 'go-gojsonschema'
@@ -300,7 +301,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/eclipse-vertx/vertx-json-schema'
   supportedDialects:
-    draft: [4, 7, 2019-09, 2020-12]
+    draft: ['4', '7', '2019-09', '2020-12']
   toolingListingNotes: |
     Validator for Eclipse Vert.x project JSON types.
     Includes custom keywords support, custom dialect support, asynchronous validation
@@ -317,7 +318,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/jimblackler/jsonschemafriend'
   supportedDialects:
-    draft: [3, 4, 6, 7, 2019-09, 2020-12]
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2022-08-31'
   bowtie:
     identifier: 'java-jsonschemafriend'
@@ -333,7 +334,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/networknt/json-schema-validator'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Support OpenAPI 3.0 with Jackson parser'
   compliance:
     config:
@@ -352,7 +353,7 @@
   license: 'MIT'
   source: 'https://github.com/erosb/json-sKema'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2019-09']
   toolingListingNotes: 'Successor of the everit-org/json-schema library'
   lastUpdated: '2023-04-10'
 
@@ -367,7 +368,7 @@
   license: 'AGPL-3.0-only'
   source: 'https://github.com/ssilverman/snowy-json'
   supportedDialects:
-    draft: [6, 7, 2019-09]
+    draft: ['6', '7', '2019-09']
   toolingListingNotes: 'Uses Maven for the project and Gson under the hood.'
   lastUpdated: '2022-08-31'
 
@@ -382,7 +383,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/everit-org/json-schema'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: Justify
@@ -396,7 +397,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/leadpony/justify'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: json-schema (dev.harrel)
@@ -411,7 +412,7 @@
   source: 'https://github.com/harrel56/json-schema'
   homepage: 'https://harrel.dev/json-schema'
   supportedDialects:
-    draft: [7, 2019-09, 2020-12]
+    draft: ['7', '2019-09', '2020-12']
   lastUpdated: '2024-08-14'
   bowtie:
     identifier: 'java-json-schema'
@@ -427,7 +428,7 @@
   license: 'Apache-2.0'
   source: 'https://bitbucket.org/zuunr/json'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2020-12']
   toolingListingNotes: 'Immutable JSON representation in Java + validation and filtering based on JSON Schema'
   lastUpdated: '2023-09-04'
 
@@ -443,13 +444,13 @@
   license: 'Apache-2.0'
   source: 'https://github.com/openapi-json-schema-tools/openapi-json-schema-generator'
   supportedDialects:
-    draft: [5, 2020-12]
+    draft: ['5', '2020-12']
   toolingListingNotes: 'Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. JSON schema validation run when validating schemas.'
   lastUpdated: '2024-05-20'
 
-- name: Hyperjump JSV
+- name: '@hyperjump/json-schema'
   description: 'JSON Schema Validation, Annotation, and Bundling. Supports Draft 04, 06, 07, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations', 'bundler', 'util-general-processing']
   languages: ['JavaScript']
   maintainers:
     - name: 'Jason Desrosiers'
@@ -458,9 +459,9 @@
   license: 'MIT'
   source: 'https://github.com/hyperjump-io/json-schema'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Built for Node.js and browsers. Includes support for custom vocabularies.'
-  lastUpdated: '2022-08-31'
+  lastUpdated: '2024-09-04'
   bowtie:
     identifier: 'js-hyperjump'
 
@@ -476,7 +477,7 @@
   source: 'https://github.com/ExodusMovement/schemasafe'
   homepage: 'https://npmjs.com/@exodus/schemasafe'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes:
     'For Node.js and browsers, with security and speed being the main focus. Pre-compiles schemas to JS functions.
     [Supports OpenAPI `discriminator`](https://github.com/ExodusMovement/schemasafe/blob/master/doc/Discriminator-support.md).
@@ -497,7 +498,7 @@
   source: 'https://github.com/ajv-validator/ajv'
   homepage: 'https://ajv.js.org/'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'for Node.js and browsers - supports [user-defined keywords](https://github.com/ajv-validator/ajv/blob/master/docs/keywords.md) and [$data reference](https://github.com/json-schema-org/json-schema-spec/issues/51)'
   compliance:
     config:
@@ -519,7 +520,7 @@
   source: 'https://github.com/cfworker/cfworker/blob/master/packages/json-schema/README.md'
   homepage: 'https://cfworker.dev'
   supportedDialects:
-    draft: [7, 4, 2019-09, 2020-12]
+    draft: ['7', '4', '2019-09', '2020-12']
   toolingListingNotes: 'Built for Cloudflare workers, browsers, and Node.js'
   lastUpdated: '2023-02-28'
 
@@ -534,7 +535,7 @@
   license: 'MIT'
   source: 'https://github.com/sagold/json-schema-library'
   supportedDialects:
-    draft: [7, 6, 4, 2019-09]
+    draft: ['7', '6', '4', '2019-09']
   toolingListingNotes: 'Built for Node.js and browsers. Customizable json-validator and json-schema utilities for traversal, data generation and validation'
   lastUpdated: '2022-08-31'
 
@@ -550,7 +551,7 @@
   source: 'https://github.com/korzio/djv'
   homepage: 'https://www.npmjs.com/package/djv'
   supportedDialects:
-    draft: [6, 4]
+    draft: ['6', '4']
   toolingListingNotes: 'for Node.js and browsers'
   lastUpdated: '2022-08-31'
 
@@ -565,7 +566,7 @@
   license: 'MIT'
   source: 'https://github.com/mokkabonna/vue-vuelidate-jsonschema'
   supportedDialects:
-    draft: [6]
+    draft: ['6']
   lastUpdated: '2022-08-31'
 
 - name: jema.js
@@ -579,7 +580,7 @@
   license: 'MIT'
   source: 'https://github.com/nuxodin/jema.js'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2020-12']
   lastUpdated: '2023-03-28'
 
 - name: Medeia-validator
@@ -593,7 +594,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/worldturner/medeia-validator'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   toolingListingNotes: 'Streaming validator for Kotlin and Java clients; works with Jackson and Gson'
   lastUpdated: '2022-08-31'
 
@@ -608,7 +609,7 @@
   license: 'MIT'
   source: 'https://github.com/pwall567/json-kotlin-schema'
   supportedDialects:
-    draft: [7, 2019-09]
+    draft: ['7', '2019-09']
   toolingListingNotes: |
     Kotlin implementation of JSON Schema.
     (Currently supports most of Draft 7; see the README for details.
@@ -627,7 +628,7 @@
   source: 'https://github.com/OptimumCode/json-schema-validator'
   homepage: 'https://github.com/Kotlin/kotlinx.serialization'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   toolingListingNotes: |
     Kotlin Muliplatform implementation of JSON schema to validate the JsonElement from kotlinx.serialization-json.
     The library is 'work in progress' and new features/drafts will be added in the future.
@@ -647,7 +648,7 @@
   source: 'https://github.com/karenetheridge/JSON-Schema-Modern'
   homepage: 'https://metacpan.org/dist/JSON-Schema-Modern'
   supportedDialects:
-    draft: [7, 2019-09, 2020-12]
+    draft: ['7', '2019-09', '2020-12']
   lastUpdated: '2022-08-31'
 
 - name: JSON::Schema::Tiny
@@ -662,7 +663,7 @@
   source: 'https://github.com/karenetheridge/JSON-Schema-Tiny'
   homepage: 'https://metacpan.org/dist/JSON-Schema-Tiny'
   supportedDialects:
-    draft: [7, 2019-09, 2020-12]
+    draft: ['7', '2019-09', '2020-12']
   lastUpdated: '2022-08-31'
 
 - name: JSON::Validator
@@ -677,7 +678,7 @@
   source: 'https://github.com/mojolicious/json-validator'
   homepage: 'https://metacpan.org/dist/JSON-Validator'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09]
+    draft: ['4', '6', '7', '2019-09']
   lastUpdated: '2022-08-31'
 
 - name: JSONSchema::Validator
@@ -691,7 +692,7 @@
   license: 'MIT'
   source: 'https://github.com/skbkontur/perl-jsonschema-validator'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: Opis Json Schema
@@ -706,7 +707,7 @@
   source: 'https://github.com/opis/json-schema'
   homepage: 'https://github.com/opis/json-schema'
   supportedDialects:
-    draft: [6, 7, 2019-09, 2020-12]
+    draft: ['6', '7', '2019-09', '2020-12']
   compliance:
     config:
       docs: https://opis.io/json-schema/2.x/php-loader.html#parser-options
@@ -726,7 +727,7 @@
   license: 'MIT'
   source: 'https://github.com/swaggest/php-json-schema'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: jschon
@@ -741,7 +742,7 @@
   source: 'https://github.com/marksparkza/jschon'
   homepage: 'https://jschon.readthedocs.io/'
   supportedDialects:
-    draft: [2019-09, 2020-12]
+    draft: ['2019-09', '2020-12']
   lastUpdated: '2022-08-31'
   bowtie:
     identifier: 'python-jschon'
@@ -758,7 +759,7 @@
   source: 'https://github.com/python-jsonschema/jsonschema'
   homepage: 'https://python-jsonschema.readthedocs.io/'
   supportedDialects:
-    draft: [3, 4, 6, 7, 2019-09, 2020-12]
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2022-11-09'
   bowtie:
     identifier: 'python-jsonschema'
@@ -775,7 +776,7 @@
   source: 'https://github.com/horejsek/python-fastjsonschema'
   homepage: 'https://horejsek.github.io/python-fastjsonschema/'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   toolingListingNotes: 'Great performance thanks to code generation.'
   lastUpdated: '2022-08-31'
   bowtie:
@@ -793,7 +794,7 @@
   license: 'MIT'
   source: 'https://github.com/Stranger6667/jsonschema-rs/tree/master/bindings/python'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   toolingListingNotes: "Python bindings to Rust's jsonschema crate"
   lastUpdated: '2022-08-31'
 
@@ -809,7 +810,7 @@
   source: 'https://github.com/Stranger6667/jsonschema-rs'
   homepage: 'https://docs.rs/jsonschema'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Fast due to compiling schema into a validation tree; 2019-09 and 2020-12 are partially supported'
   lastUpdated: '2022-08-31'
   bowtie:
@@ -826,7 +827,7 @@
   license: 'MIT'
   source: 'https://github.com/davishmcclurg/json_schemer'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2023-08-20'
   bowtie:
     identifier: 'ruby-json_schemer'
@@ -843,7 +844,7 @@
   source: 'https://github.com/notEthan/jsi/'
   homepage: 'https://rubydoc.info/gems/jsi'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: boon
@@ -857,7 +858,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/santhosh-tekuri/boon'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2023-02-22'
   bowtie:
     identifier: 'rust-boon'
@@ -873,7 +874,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/reactivecore/rc-circe-json-schema'
   supportedDialects:
-    draft: [2019-09, 2020-12]
+    draft: ['2019-09', '2020-12']
   toolingListingNotes: 'Based on Circe-Library -Early state and API may not be stable. Not yet produciton ready.'
   lastUpdated: '2022-08-31'
   bowtie:
@@ -890,7 +891,7 @@
   license: 'MIT'
   source: 'https://github.com/dashevo/JSONSchemaValidation'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: lua-resty-jsonschema
@@ -905,11 +906,11 @@
   source: 'https://github.com/iresty/lua-resty-jsonschema'
   homepage: 'https://www.apiseven.com/'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
-- name: Hyperjump JSV (online)
-  description: 'Validate JSON Schema documents online'
+- name: json-schema.hyperjump.io
+  description: 'Validate JSON Schema documents online using @hyperjump/json-schema'
   toolingTypes: ['validator']
   environments: ['Web (Online)']
   dependsOnValidators: ['https://github.com/hyperjump-io/json-schema']
@@ -921,7 +922,7 @@
   source: 'https://github.com/hyperjump-io/json-schema.hyperjump.io'
   homepage: 'https://json-schema.hyperjump.io'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Supports multiple schemas and multiple instances; client-side validation'
   lastUpdated: '2022-08-31'
 
@@ -938,7 +939,7 @@
   source: 'https://github.com/gregsdennis/json-everything'
   homepage: 'https://json-everything.net/json-schema'
   supportedDialects:
-    draft: [6, 7, 2019-09, 2020-12]
+    draft: ['6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Powered by JsonSchema.Net in Blazor WASM for client-side validation'
   landscape:
     logo: 'json-everything.svg'
@@ -959,7 +960,7 @@
   source: 'https://github.com/marksparkza/jschon.dev'
   homepage: 'https://jschon.dev/'
   supportedDialects:
-    draft: [2019-09, 2020-12]
+    draft: ['2019-09', '2020-12']
   lastUpdated: '2022-08-31'
 
 - name: JSON Schema Validator
@@ -975,7 +976,7 @@
   source: 'https://github.com/JamesNK/Newtonsoft.Json.Schema?tab=License-1-ov-file'
   homepage: 'https://www.jsonschemavalidator.net/'
   supportedDialects:
-    draft: [3, 4, 6, 7, 2019-09, 2020-12]
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Server-side validation'
   lastUpdated: '2024-05-29'
 
@@ -992,7 +993,7 @@
   source: 'https://github.com/Relequestual/json-schema-dev'
   homepage: 'https://jsonschema.dev'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   toolingListingNotes: 'Client-side validation'
   lastUpdated: '2022-08-31'
 
@@ -1009,7 +1010,7 @@
   source: 'https://github.com/nickcmaynard/jsonschemalint'
   homepage: 'http://jsonschemalint.com/'
   supportedDialects:
-    draft: [1, 2, 3, 4, 6, 7]
+    draft: ['1', '2', '3', '4', '6', '7']
   toolingListingNotes: 'Uses JSV for draft-03 and earlier'
   lastUpdated: '2022-08-31'
 
@@ -1025,7 +1026,7 @@
   license: 'Proprietary'
   homepage: 'https://extendsclass.com/json-schema-validator.html'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   lastUpdated: '2022-08-31'
 
 - name: valbuddy
@@ -1040,7 +1041,7 @@
   source: 'https://github.com/Clemens-U/jsonbuddy'
   homepage: 'https://www.json-buddy.com/json-validator-command-line-tool.htm'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: ajv-cli
@@ -1056,7 +1057,7 @@
   source: 'https://github.com/ajv-validator/ajv-cli'
   homepage: 'https://www.npmjs.com/package/ajv-cli'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   compliance:
     config:
       docs: https://github.com/ajv-validator/ajv-cli#ajv-options
@@ -1075,7 +1076,7 @@
   license: 'MIT'
   source: 'https://github.com/neilpa/yajsv'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
 - name: Polyglottal JSON Schema Validator
@@ -1091,13 +1092,20 @@
   source: 'https://github.com/json-schema-everywhere/pajv'
   homepage: 'https://www.npmjs.com/package/pajv'
   supportedDialects:
-    draft: [4, 6]
+    draft: ['4', '6']
   toolingListingNotes: 'can be used with YAML and many other formats besides JSON'
   lastUpdated: '2022-08-31'
 
 - name: Sourcemeta JSON Schema CLI
   description: The CLI for working with JSON Schema. Covers formatting, linting, testing, bundling, and more for both local development and CI/CD pipelines
-  toolingTypes: ['validator']
+  toolingTypes:
+    [
+      'validator',
+      'util-general-processing',
+      'util-testing',
+      'linter',
+      'bundler',
+    ]
   environments: ['Command Line']
   dependsOnValidators: ['https://github.com/sourcemeta/jsontoolkit']
   maintainers:
@@ -1107,7 +1115,7 @@
   license: 'AGPL-3.0'
   source: 'https://github.com/sourcemeta/jsonschema'
   supportedDialects:
-    draft: [1, 2, 3, 4, 5, 6, 7, 2019-09, 2020-12]
+    draft: ['0', '1', '2', '3', '4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Supports formatting, linting, bundling, testing, validating, and more. As an exception, validation is not supported on Draft 3 and older'
   lastUpdated: '2024-08-08'
 
@@ -1123,7 +1131,7 @@
   license: 'MIT'
   source: 'https://github.com/OrRosenblatt/validate-json-action'
   supportedDialects:
-    draft: [2019-09, 2020-12]
+    draft: ['2019-09', '2020-12']
   lastUpdated: '2020-04-12'
 
 - name: json-schema-benchmark
@@ -1137,7 +1145,7 @@
   license: 'MIT'
   source: 'https://github.com/ebdrup/json-schema-benchmark'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2020-11-30'
 
 - name: php-json-schema-bench
@@ -1151,7 +1159,7 @@
   license: 'MIT'
   source: 'https://github.com/swaggest/php-json-schema-bench'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2020-01-19'
 
 - name: json-schema-validation-comparison
@@ -1166,7 +1174,7 @@
   source: 'https://github.com/creek-service/json-schema-validation-comparison'
   homepage: 'https://www.creekservice.org/json-schema-validation-comparison/'
   supportedDialects:
-    draft: [3, 4, 6, 7, 2019-09, 2020-12]
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-03-18'
 
 - name: '@cloudflare/doca'
@@ -1180,7 +1188,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/doca'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   toolingListingNotes: 'UI forthcoming'
   lastUpdated: '2018-09-24'
 
@@ -1195,7 +1203,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/adobe/jsonschema2md'
   supportedDialects:
-    draft: [2019-09]
+    draft: ['2019-09']
   toolingListingNotes: 'Partial support for JSON Schema 2019-09'
   lastUpdated: '2024-06-04'
 
@@ -1223,7 +1231,7 @@
   license: 'BSD-3-Clause'
   source: 'https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-hyper-schema'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2018-09-24'
 
 - name: NJsonSchema
@@ -1238,7 +1246,7 @@
   source: 'https://github.com/RSuter/NJsonSchema/'
   homepage: 'http://njsonschema.org/'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-03-28'
 
 - name: jsonschema
@@ -1252,7 +1260,7 @@
   license: 'MIT'
   source: 'https://github.com/invopop/jsonschema'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2020-12']
   lastUpdated: '2024-02-19'
 
 - name: Liform
@@ -1341,7 +1349,7 @@
   source: 'https://github.com/victools/jsonschema-generator'
   homepage: 'https://victools.github.io/jsonschema-generator'
   supportedDialects:
-    draft: [6, 7, 2019-09, 2020-12]
+    draft: ['6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-03-29'
 
 - name: scala-jsonschema
@@ -1355,7 +1363,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/andyglow/scala-jsonschema'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-04-05'
 
 - name: Shale
@@ -1370,7 +1378,7 @@
   source: 'https://github.com/kgiszczak/shale'
   homepage: 'https://shalerb.org/'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2020-12']
   lastUpdated: '2024-05-17'
 
 - name: Schemars
@@ -1385,7 +1393,7 @@
   source: 'https://github.com/GREsau/schemars'
   homepage: 'https://graham.cool/schemars/'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   lastUpdated: '2024-06-05'
 
 - name: json-schema-inferrer
@@ -1399,7 +1407,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/saasquatch/json-schema-inferrer'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-01-05'
 
 - name: Schema Guru
@@ -1414,7 +1422,7 @@
   source: 'https://github.com/snowplow/schema-guru'
   homepage: 'http://snowplowanalytics.com/'
   supportedDialects:
-    draft: [6, 7, 2019-09, 2020-12]
+    draft: ['6', '7', '2019-09', '2020-12']
   lastUpdated: '2016-05-14'
 
 - name: JSONoid
@@ -1429,7 +1437,7 @@
   source: 'https://github.com/michaelmior/jsonoid-discovery/'
   homepage: 'https://dataunitylab.github.io/jsonoid-discovery/'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2020-12']
   lastUpdated: '2024-05-20'
 
 - name: jsonschema.net
@@ -1444,7 +1452,7 @@
   source: 'https://github.com/jsonsystems/public'
   homepage: 'https://www.jsonschema.net/'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09]
+    draft: ['4', '6', '7', '2019-09']
   lastUpdated: '2022-04-25'
 
 - name: Liquid Online Tools
@@ -1454,7 +1462,7 @@
   license: 'Proprietary'
   homepage: 'https://www.liquid-technologies.com/online-json-to-schema-converter'
   supportedDialects:
-    draft: [4]
+    draft: ['4']
 
 - name: quicktype.io
   description: 'Infer JSON Schema from samples, and generate TypeScript, C++, Go, Java, C#, Swift, etc. types from JSON Schema.'
@@ -1469,7 +1477,7 @@
   source: 'https://github.com/glideapps/quicktype'
   homepage: 'https://app.quicktype.io/#l=schema'
   supportedDialects:
-    draft: [6]
+    draft: ['6']
   lastUpdated: '2024-05-31'
 
 - name: JSON Toolkit
@@ -1483,9 +1491,11 @@
   license: 'AGPL-3.0 and Commercial'
   source: 'https://github.com/sourcemeta/jsontoolkit'
   supportedDialects:
-    draft: [4, 6, 7, '2019-09', '2020-12']
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Comes with its own JSON parser'
   lastUpdated: '2024-06-13'
+  bowtie:
+    identifier: 'cpp-jsontoolkit'
 
 - name: Dataspecer
   description: 'Generates JSON Schema (and JSON-LD context) from conceptual model.'
@@ -1499,7 +1509,7 @@
   source: 'https://github.com/mff-uk/dataspecer'
   homepage: 'https://dataspecer.com'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2020-12']
   lastUpdated: '2024-06-02'
 
 - name: json-schema-to-ts
@@ -1531,7 +1541,7 @@
   license: 'Apache-2.0'
   homepage: 'https://www.nuget.org/packages/Corvus.Json.JsonSchema.TypeGeneratorTool/'
   supportedDialects:
-    draft: [6, 7, 2019-09, 2020-12]
+    draft: ['6', '7', '2019-09', '2020-12']
 
 - name: json-schema-to-elm
   description: 'Generates Elm types, JSON decoders+encoders, and fuzz tests from one or more JSON Schema files.'
@@ -1540,7 +1550,7 @@
   license: 'MIT'
   source: 'https://github.com/dragonwasrobot/json-schema-to-elm'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
 
 - name: go-jsonschema
   description: 'Generates Go types and helpers from JSON schema files.'
@@ -1553,7 +1563,7 @@
   license: 'MIT'
   source: 'https://git.sr.ht/~emersion/go-jsonschema'
   supportedDialects:
-    draft: [2020-12]
+    draft: ['2020-12']
 
 - name: protoc-gen-jsonschema
   description: 'Generates JSON schemas from protobuf proto v2 and v3 files.'
@@ -1584,7 +1594,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/joelittlejohn/jsonschema2pojo'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
 
 - name: jsonschematypes
   description: 'Generates Java or TypeScript classes from standard JSON Schemas.'
@@ -1597,7 +1607,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/jimblackler/jsonschematypes'
   supportedDialects:
-    draft: [3, 4, 6, 7, 2019-09]
+    draft: ['3', '4', '6', '7', '2019-09']
 
 - name: json-kotlin-schema-codegen
   description: 'Generates Kotlin data classes, Java classes or TypeScript interfaces from JSON Schema.'
@@ -1617,7 +1627,7 @@
   license: 'MIT'
   source: 'https://github.com/swaggest/php-code-builder'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
 
 - name: yacg
   description: 'Parse JSON Schema and OpenAPI files to build a meta model from them. This meta model can be used in Mako templates to generate source code, other schemas or PlantUml.'
@@ -1648,7 +1658,7 @@
   license: 'MIT'
   source: 'https://github.com/Marwes/schemafy'
   supportedDialects:
-    draft: [4]
+    draft: ['4']
 
 - name: json-schema-to-case-class
   description: 'NPM Package, Web UI, and a CLI to generate Scala case classes from JSON Schema.'
@@ -1662,7 +1672,7 @@
   source: 'https://github.com/cchandurkar/json-schema-to-case-class'
   homepage: 'https://cchandurkar.github.io/json-schema-to-case-class'
   supportedDialects:
-    draft: [3, 4, 6, 7, 2019-09]
+    draft: ['3', '4', '6', '7', '2019-09']
 
 - name: Alpaca Forms
   description: 'Alpaca provides the easiest way to generate interactive HTML5 forms for web and mobile applications.'
@@ -1724,7 +1734,7 @@
       platform: 'github'
   license: 'Apache-2.0'
   supportedDialects:
-    draft: [4]
+    draft: ['4']
   source: 'https://github.com/stoplightio/json-schema-tree'
   lastUpdated: '2024-01-23'
 
@@ -1738,7 +1748,7 @@
       platform: 'github'
   license: 'Apache-2.0'
   supportedDialects:
-    draft: [4]
+    draft: ['4']
   source: 'https://github.com/stoplightio/json-schema-viewer'
   lastUpdated: '2024-06-17'
 
@@ -1754,7 +1764,7 @@
   source: 'https://github.com/dashjoin/json-schema-form'
   homepage: 'https://dashjoin.github.io/'
   supportedDialects:
-    draft: [6]
+    draft: ['6']
   lastUpdated: '2024-05-14'
 
 - name: JSON Editor
@@ -1768,7 +1778,7 @@
   license: 'MIT'
   source: 'https://github.com/json-editor/json-editor'
   supportedDialects:
-    draft: [3, 4]
+    draft: ['3', '4']
   lastUpdated: '2024-05-17'
 
 - name: JSON Form (joshfire)
@@ -1923,7 +1933,7 @@
   source: 'https://github.com/ui-schema/ui-schema'
   homepage: 'https://ui-schema.bemit.codes/'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09]
+    draft: ['4', '6', '7', '2019-09']
   lastUpdated: '2023-02-03'
 
 - name: hypothesis-jsonschema
@@ -1938,7 +1948,7 @@
   source: 'https://github.com/Zac-HD/hypothesis-jsonschema'
   homepage: 'https://pypi.org/project/hypothesis-jsonschema/'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2024-03-03'
 
 - name: jsongenerator
@@ -1952,7 +1962,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/jimblackler/jsongenerator'
   supportedDialects:
-    draft: [3, 4, 6, 7, 2019-09]
+    draft: ['3', '4', '6', '7', '2019-09']
   lastUpdated: '2023-10-05'
 
 - name: json-schema-ref-parser
@@ -1983,17 +1993,7 @@
   license: 'BSD-3-Clause'
   source: 'https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-schema-walker'
   supportedDialects:
-    draft: [4, 6, 7]
-
-- name: '@hyperjump/json-schema-core'
-  description: 'Tools for working with schemas that handle identifiers and references. Build vocabularies and other JSON Schema based tools.'
-  toolingTypes: ['util-general-processing']
-  languages: ['JavaScript']
-  maintainers:
-    - username: 'jdesrosiers'
-      platform: 'github'
-  license: 'MIT'
-  source: 'https://github.com/jdesrosiers/json-schema-core'
+    draft: ['4', '6', '7']
 
 - name: '@cloudflare/json-schema-transform'
   description: 'Utilities using @cloudflare/json-schema-walker for transformations including `allOf` merging and example roll-up.'
@@ -2050,7 +2050,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/sourcemeta/alterschema'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
 
 - name: JSON Schema to OpenAPI Schema
   description: '*draft-04* Draft-06 and -07 planned per README.'
@@ -2059,7 +2059,7 @@
   license: 'MIT'
   source: 'https://github.com/wework/json-schema-to-openapi-schema'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
 
 - name: OpenAPI specification to JSON Schema
   description: '*Draft-07*'
@@ -2068,7 +2068,7 @@
   license: 'MIT'
   source: 'https://github.com/instrumenta/openapi2jsonschema'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
 
 - name: Orderly
   description: 'The reference implementation of orderly: a schema language for JSON.'
@@ -2088,7 +2088,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/raml-org/ramldt2jsonschema'
   supportedDialects:
-    draft: [4, 6]
+    draft: ['4', '6']
 
 - name: '@cloudflare/json-schema-ref-loader'
   description: 'Webpack loader for dereference-able schemas in JSON, JSON5, YAML, or JavaScript.'
@@ -2105,7 +2105,7 @@
   license: 'BSD-3-Clause'
   source: 'https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-schema-apidoc-loader'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
 
 - name: Oxygen XSL JSON Tools
   description: 'Generate from an XSD file a similar JSON Schema structure.'
@@ -2124,63 +2124,63 @@
   toolingTypes: ['editor']
   homepage: 'https://www.altova.com/xmlspy-xml-editor#json_schema'
   supportedDialects:
-    draft: [6, 7]
+    draft: ['6', '7']
 
 - name: Dashjoin JSON Schema editor
   description: 'Graphical online JSON Schema editor for draft-06 (minus oneOf, anyOf, allOf, not). The generated schema can be tested immediately via a form that is driven by it.'
   toolingTypes: ['editor']
   homepage: 'https://dashjoin.github.io/#/schema'
   supportedDialects:
-    draft: [6]
+    draft: ['6']
 
 - name: Hackolade Studio
   description: 'Visual JSON Schema editor for draft-04, draft-06, draft-07, 2019-09, 2020-12, as well as data modeling tool for NoSQL databases, storage formats, REST APIs, and JSON in RDBMS. Also converts to and from: different draft specifications, DDL, XSD, Swagger, OpenAPI, YAML, Avro, Parquet, Protobuf, and most of the NoSQL script syntaxes. Includes a GUI for Entity-Relationship Diagrams and a Command-Line Interface.'
   toolingTypes: ['editor']
   homepage: 'https://hackolade.com/help/JSONSchemaEditor.html'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
 
 - name: JSONBuddy
   description: 'Text and grid-style JSON editor and validator. Complete JSON Schema development environment with JSON Schema analyzer, context sensitive entry-helpers, sample data generation based on JSON Schema and JSON Schema validation debugger: Step through the validation process and set breakpoints. JSON Schema testing tool including schema coverage. Support for draft-4, draft-6, draft-7, 2019-09 and 2020-12.'
   toolingTypes: ['editor']
   homepage: 'https://www.json-buddy.com/'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
 
 - name: JSONEditor Online
   description: 'View, edit, format, and validate JSON online.'
   toolingTypes: ['editor']
   homepage: 'https://jsoneditoronline.org/'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
 
 - name: Liquid JSON Schema Editor
   description: 'Graphical JSON Schema editor for draft-04, draft-06, draft-07 and 2019-09, with split source code and grphical editing. Includes validation of JSON files based on JSON Schema, JSON Sample Generator and JSON Schema Documentation Generator.'
   toolingTypes: ['editor']
   homepage: 'https://www.liquid-technologies.com/json-schema-editor'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09]
+    draft: ['4', '6', '7', '2019-09']
 
 - name: Oxygen JSON Schema Editor
   description: 'JSON Schema editor with a variety of editing features and helper views (Design/Text/Author). Support for validation and editing JSON Schema draft-4, draft-6, and draft-7, 2019-09 (partial), 2020-12 (partial). Validation and editing of JSON files based on JSON Schema.'
   toolingTypes: ['editor']
   homepage: 'https://www.oxygenxml.com/xml_developer/json_schema_editor.html'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
 
 - name: Perseid Modeler
   description: 'A modeling tool for JSON Schema and OpenAPI. Key features include: visual JSON schema creation using tree and ERD-like diagrams, support for JSON schema structures including operators and conditions, import of existing schemas from files, creation of detailed HTML reports, export to PDF, script generation, and more.'
   toolingTypes: ['editor']
   source: 'https://www.datensen.com/data-modeling/perseid-modeler-for-json-schema.html'
   supportedDialects:
-    draft: [4, 6, 7, 2019-09, 2020-12]
+    draft: ['4', '6', '7', '2019-09', '2020-12']
 
 - name: Stoplight Studio
   description: 'JSON Schema IDE (text-based and GUI) with support for JSON/YAML linting, which can also be based on JSON Schema rules via Spectral.'
   toolingTypes: ['editor']
   homepage: 'https://stoplight.io/'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
 
 - name: Visual Studio Code
   description: 'Schema driven code completion, hovers and validation for editing JSON files (including schemas).'
@@ -2192,7 +2192,7 @@
   toolingTypes: ['editor']
   homepage: 'https://www.jetbrains.com/products.html?fromMenu#type=ide'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
 
 - name: Eclipse IDE
   description: 'Rich JSON edition supporting schema for instantaneous validation and error reporting, completion, documentation.'
@@ -2209,7 +2209,7 @@
   license: 'AGPL-3.0-only'
   source: 'https://github.com/jy95/docusaurus-json-schema-plugin'
   supportedDialects:
-    draft: [7, 2019-09, 2020-12]
+    draft: ['7', '2019-09', '2020-12']
 
 - name: json-schema-static-docs
   description: 'Generates human friendly markdown documentation from JSON Schema. Includes links between pages based on $ref values.'
@@ -2222,7 +2222,7 @@
   source: 'https://github.com/tomcollins/json-schema-static-docs'
   homepage: 'https://tomcollins.github.io/json-schema-static-docs/'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
 
 - name: jsonschematic
   description: 'Svelte-based schema viewer. Runs as a local web app.'
@@ -2235,7 +2235,7 @@
   source: 'https://github.com/yanick/jsonschematic/'
   homepage: 'https://yanick.github.io/jsonschematic/'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
 
 - name: docson
   description: 'Javascript-based schema viewer. Runs as a local web app.'
@@ -2247,7 +2247,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/lbovet/docson'
   supportedDialects:
-    draft: [4]
+    draft: ['4']
 
 - name: json-schema-for-humans
   description: 'Generate HTML representation of a schema. Python-based.'
@@ -2261,7 +2261,7 @@
   source: 'https://github.com/coveooss/json-schema-for-humans'
   homepage: 'https://pypi.org/project/json-schema-for-humans/'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
 
 - name: wetzel
   description: 'Generates Markdown and AsciiDoc.'
@@ -2273,7 +2273,7 @@
   license: 'Apache-2.0'
   source: 'https://github.com/CesiumGS/wetzel'
   supportedDialects:
-    draft: [3, 4, 7, 2020-12]
+    draft: ['3', '4', '7', '2020-12']
   toolingListingNotes: 'With some limitations, supports draft-3, draft-4, draft-7, and 2020-12.'
 
 - name: jsonschema-markdown
@@ -2303,7 +2303,7 @@
   toolingTypes: ['linter']
   homepage: 'https://www.json-schema-linter.com/'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
 
 - name: Stoplight Spectral
   description: 'A flexible JSON/YAML linter for creating automated style guides, with baked in support for [OpenAPI v2/v3](https://www.openapis.org) and JSON Schema. Supports draft 4, 6, and 7.'
@@ -2312,7 +2312,7 @@
   source: 'https://github.com/stoplightio/spectral'
   homepage: 'https://stoplight.io/open-source/spectral'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
 
 - name: remark-lint-frontmatter-schema
   description: 'Validate Markdown frontmatter YAML against an associated JSON schema with this remark-lint rule plugin.'
@@ -2346,7 +2346,7 @@
   license: 'BSD-2-Clause'
   source: 'https://github.com/core-api/python-jsonhyperschema-codec'
   supportedDialects:
-    draft: [4]
+    draft: ['4']
 
 - name: mokkabonna/json-hyper-schema
   description: 'A JavaScript implementation of JSON hyper-schema.'
@@ -2359,7 +2359,7 @@
   license: 'MIT'
   source: 'https://github.com/mokkabonna/json-hyper-schema'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   lastUpdated: '2022-08-31'
 
 - name: dadav/helm-schema
@@ -2373,7 +2373,7 @@
   license: 'MIT'
   source: 'https://github.com/dadav/helm-schema'
   supportedDialects:
-    draft: [7]
+    draft: ['7']
   lastUpdated: '2024-09-03'
 
 - name: v8r
@@ -2388,5 +2388,5 @@
   license: 'MIT'
   source: 'https://github.com/chris48s/v8r'
   supportedDialects:
-    draft: [4, 6, 7]
+    draft: ['4', '6', '7']
   lastUpdated: '2024-09-03'
