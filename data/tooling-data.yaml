@@ -449,7 +449,7 @@
 
 - name: '@hyperjump/json-schema'
   description: 'JSON Schema Validation, Annotation, and Bundling. Supports Draft 04, 06, 07, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1'
-  toolingTypes: ['validator', 'annotations', 'bundler']
+  toolingTypes: ['validator', 'annotations', 'bundler', 'util-general-processing']
   languages: ['JavaScript']
   maintainers:
     - name: 'Jason Desrosiers'
@@ -1959,16 +1959,6 @@
   source: 'https://github.com/cloudflare/json-schema-tools/tree/master/workspaces/json-schema-walker'
   supportedDialects:
     draft: [4, 6, 7]
-
-- name: '@hyperjump/json-schema-core'
-  description: 'Tools for working with schemas that handle identifiers and references. Build vocabularies and other JSON Schema based tools.'
-  toolingTypes: ['util-general-processing']
-  languages: ['JavaScript']
-  maintainers:
-    - username: 'jdesrosiers'
-      platform: 'github'
-  license: 'MIT'
-  source: 'https://github.com/jdesrosiers/json-schema-core'
 
 - name: '@cloudflare/json-schema-transform'
   description: 'Utilities using @cloudflare/json-schema-walker for transformations including `allOf` merging and example roll-up.'
