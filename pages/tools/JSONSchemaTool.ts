@@ -1,3 +1,5 @@
+import type { JSONSchemaDraft } from '~/lib/config';
+
 export interface JSONSchemaTool {
   name: string;
   description?: string;
@@ -12,7 +14,7 @@ export interface JSONSchemaTool {
   homepage?: string;
   documentation?: object;
   supportedDialects?: {
-    draft?: (number | string)[];
+    draft?: JSONSchemaDraft[];
     additional?: {
       name: string;
       homepage?: string;
