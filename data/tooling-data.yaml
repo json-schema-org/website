@@ -1725,7 +1725,7 @@
   homepage: 'https://hamzahamidi.github.io/ajsf'
   lastUpdated: '2022-08-27'
 
-- name: JSON Schema Tree
+- name: Stoplight JSON Schema Tree
   toolingTypes: ['schema-to-web-UI']
   languages: ['Typescript']
   maintainers:
@@ -1738,7 +1738,7 @@
   source: 'https://github.com/stoplightio/json-schema-tree'
   lastUpdated: '2024-01-23'
 
-- name: JSON Schema Viewer
+- name: Stoplight JSON Schema Viewer
   description: 'A JSON Schema viewer React component'
   toolingTypes: ['schema-to-web-UI']
   languages: ['Typescript']
