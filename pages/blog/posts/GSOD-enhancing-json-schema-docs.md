@@ -6,7 +6,7 @@ tags:
   - Documentation
   - Community
 type: Documentation
-cover: img\posts\2024\GSOD-enhancing-json-schema-docs\JSON-website-cover.jpg
+cover: public\img\posts\2024\GSOD-enhancing-json-schema-docs\JSON-Schema-cover.png
 authors:
   - name: Blessing Ene Anyebe
     link: https://www.linkedin.com/in/anyebe-blessing-ene-kwennb/
