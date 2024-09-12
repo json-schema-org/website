@@ -1512,6 +1512,7 @@
     draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'It uses the Ajv JSON Schema Validator as its core engine.'
   lastUpdated: '2024-07-03'
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv']
 
 - name: Dataspecer
   description: 'Generates JSON Schema (and JSON-LD context) from conceptual model.'
