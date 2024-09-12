@@ -1499,7 +1499,7 @@
 
 - name: cypress-ajv-schema-validator
   description: 'Cypress plugin that validates API responses against Plain JSON schemas, and whole Swagger and OpenAPI documents using the Ajv JSON Schema validator. It provides a user-friendly view of validated data, highlighting each validation error and the exact reason for the mismatch. Seamless integration, fast and lightweight.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'util-testing']
   languages: ['Javascript']
   maintainers:
     - name: 'Sebastian Clavijo Suero'
