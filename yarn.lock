@@ -2062,12 +2062,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/eslint-plugin-next@npm:14.2.3, @next/eslint-plugin-next@npm:^14.0.1":
+"@next/eslint-plugin-next@npm:14.2.3":
   version: 14.2.3
   resolution: "@next/eslint-plugin-next@npm:14.2.3"
   dependencies:
     glob: "npm:10.3.10"
   checksum: 10c0/de9af2c7465cce4eb4cb50654aa2548d4d2af788c8992d02e2b863b1bf4f99e3b6604d1f0775f8e50aca6a53cf30d51f4ac56810d1625d401548267ca5f1d883
+  languageName: node
+  linkType: hard
+
+"@next/eslint-plugin-next@npm:^14.2.11":
+  version: 14.2.11
+  resolution: "@next/eslint-plugin-next@npm:14.2.11"
+  dependencies:
+    glob: "npm:10.3.10"
+  checksum: 10c0/786dfd0700f4cc3197b692d94f1b0cc69f2beccc0a595b16c41d0d840224cc082133227749f3a60c1cadc2e0c660cad7d237e23b34362e9e30f9aaef5307979f
   languageName: node
   linkType: hard
 
@@ -7129,7 +7138,7 @@ __metadata:
     "@babel/preset-env": "npm:^7.25.3"
     "@cypress/code-coverage": "npm:^3.12.46"
     "@docsearch/react": "npm:3.6.1"
-    "@next/eslint-plugin-next": "npm:^14.0.1"
+    "@next/eslint-plugin-next": "npm:^14.2.11"
     "@svgr/webpack": "npm:^8.1.0"
     "@types/babel__core": "npm:^7"
     "@types/babel__preset-env": "npm:^7"

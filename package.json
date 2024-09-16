@@ -60,7 +60,7 @@
     "@babel/core": "^7.25.2",
     "@babel/preset-env": "^7.25.3",
     "@cypress/code-coverage": "^3.12.46",
-    "@next/eslint-plugin-next": "^14.0.1",
+    "@next/eslint-plugin-next": "^14.2.11",
     "@svgr/webpack": "^8.1.0",
     "@types/babel__core": "^7",
     "@types/babel__preset-env": "^7",
