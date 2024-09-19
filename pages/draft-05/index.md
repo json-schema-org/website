@@ -1,6 +1,6 @@
 ---
 title: 'Draft-05'
-Published: '13-October-2016'
+Published: '13 October 2016'
 type: docs
 authors: ['Austin Wright']
 Metaschema: 'https://json-schema.org/draft-04/schema'

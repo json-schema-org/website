@@ -1,6 +1,6 @@
 ---
 title: 'Draft-07'
-Published: '19-March-2018'
+Published: '19 March 2018'
 type: docs
 authors: ['Austin Wright', 'Henry Andrews']
 Metaschema: 'https://json-schema.org/draft-07/schema'

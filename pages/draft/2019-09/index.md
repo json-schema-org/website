@@ -7,7 +7,7 @@ authors:
   - Henry Andrews
   - Ben Hutton
   - Greg Dennis
-Published: 17-September-2019
+Published: 17 September 2019
 Metaschema: https://json-schema.org/draft/2019-09/schema
 ---
 
