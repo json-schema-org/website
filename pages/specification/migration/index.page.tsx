@@ -10,7 +10,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
-    'pages/specification/migration/intro.md',
+    'pages/specification/migration/_index.md',
     'utf-8',
   );
   // const main = fs.readFileSync('pages/draft-05/release-notes.md', 'utf-8');
@@ -36,6 +36,7 @@ export default function ImplementationsPages({
   blocks: any;
   frontmatter: any;
 }) {
+  const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
@@ -71,7 +72,7 @@ export default function ImplementationsPages({
           link='/draft-06#draft-06-release-notes'
         />
       </div>
-      <DocsHelp />
+      <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
 }

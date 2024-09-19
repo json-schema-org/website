@@ -5,10 +5,11 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { Headline1 } from '~/components/Headlines';
+import { DocsHelp } from '~/components/DocsHelp';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
-    'pages/specification/json-hyper-schema/index.md',
+    'pages/specification/json-hyper-schema/_index.md',
     'utf-8',
   );
   // const main = fs.readFileSync('pages/draft-05/release-notes.md', 'utf-8');
@@ -34,6 +35,7 @@ export default function ImplementationsPages({
   blocks: any;
   frontmatter: any;
 }) {
+  const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
@@ -42,6 +44,7 @@ export default function ImplementationsPages({
 
       <StyledMarkdown markdown={blocks.index} />
       <StyledMarkdown markdown={blocks.body} />
+      <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
 }
