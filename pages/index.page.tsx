@@ -505,8 +505,9 @@ const Home = (props: any) => {
                 </h3>
                 <p className='mb-4 dark:text-slate-300'>
                   We hold monthly Office Hours and Open Community Working
-                  Meetings. Office Hours are every first Tuesday of the month and by appointment. Open Community Working Meetings
-                  are every third Monday of the month at 12:00 PT.
+                  Meetings. Office Hours are every first Tuesday of the month
+                  and by appointment. Open Community Working Meetings are every
+                  third Monday of the month at 12:00 PT.
                 </p>
                 <div className=''>
                   <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'>
