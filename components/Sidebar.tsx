@@ -8,6 +8,7 @@ import { SegmentHeadline } from './Layout';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import CarbonAds from './CarbonsAds';
 import { useTheme } from 'next-themes';
+import ExternalLinkIcon from '../public/icons/external-link-black.svg';
 
 const DocLink = ({
   uri,
@@ -74,25 +75,16 @@ const DocLinkBlank = ({
       onClick={() => {
         if (onClick) onClick();
         setOpen(false);
-}}
+      }}
       style={{
         position: 'relative',
         paddingRight: '1.25em',
       }}
     >
       {label}
-      <span
-        style={{
-          position: 'absolute',
-          content: '',
-          display: 'inline-block',
-          width: '1em',
-          height: '1em',
-          marginLeft: '0.25em',
-          backgroundSize: '100%',
-          backgroundImage: `url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewbox='0 0 12.2 12.2' width='14' height='14'%3E%3Cpath d='M5.7 0v1.5h4L4.5 6.7l1 1.1 5.3-5.2v3.9h1.4V0z'/%3E%3Cpath fill='none' d='M3.4 6.7l3-2.9H1.5v7h7V5.9l-3 2.9z'/%3E%3Cpath d='M8.5 5.9v4.9h-7v-7h4.9l1.5-1.6H0v10h10V4.4z'/%3E%3C/svg%3E\")`,
-        }}
-        />
+      <ExternalLinkIcon
+        style={{ marginLeft: '0.25em', width: '1em', height: '1em' }}
+      />
     </Link>
   );
 };
