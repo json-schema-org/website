@@ -29,6 +29,7 @@ export default function Sidebar({
     { label: 'Language', accessorKey: 'languages' },
     { label: 'Dialect', accessorKey: 'drafts' },
     { label: 'Tooling Type', accessorKey: 'toolingTypes' },
+    { label: 'Environment', accessorKey: 'environments' },
     { label: 'License', accessorKey: 'licenses' },
   ];
 
@@ -49,6 +50,9 @@ export default function Sidebar({
           .map((value) => value) as Transform['drafts'],
         toolingTypes: formData
           .getAll('toolingTypes')
+          .map((value) => value as string),
+        environments: formData
+          .getAll('environments')
           .map((value) => value as string),
       };
       postAnalytics({ eventType: 'query', eventPayload: newTransform });
