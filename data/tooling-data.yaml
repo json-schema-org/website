@@ -1497,6 +1497,23 @@
   bowtie:
     identifier: 'cpp-jsontoolkit'
 
+- name: cypress-ajv-schema-validator
+  description: 'Cypress plugin that validates API responses against Plain JSON schemas, and whole Swagger and OpenAPI documents using the Ajv JSON Schema validator. It provides a user-friendly view of validated data, highlighting each validation error and the exact reason for the mismatch. Seamless integration, fast and lightweight.'
+  toolingTypes: ['validator', 'util-testing']
+  languages: ['Javascript']
+  maintainers:
+    - name: 'Sebastian Clavijo Suero'
+      username: 'sclavijosuero'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/sclavijosuero/cypress-ajv-schema-validator'
+  homepage: 'https://github.com/sclavijosuero/cypress-ajv-schema-validator/blob/main/README.md'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'It uses the Ajv JSON Schema Validator as its core engine.'
+  lastUpdated: '2024-07-03'
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv']
+
 - name: Dataspecer
   description: 'Generates JSON Schema (and JSON-LD context) from conceptual model.'
   toolingTypes: ['model-to-schema']

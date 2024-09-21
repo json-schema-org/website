@@ -60,16 +60,16 @@
     "html_url": "https://github.com/jdesrosiers"
   },
   {
-    "login": "gregsdennis",
-    "id": 2676804,
-    "avatar_url": "https://avatars.githubusercontent.com/u/2676804?v=4",
-    "html_url": "https://github.com/gregsdennis"
-  },
-  {
     "login": "Julian",
     "id": 329822,
     "avatar_url": "https://avatars.githubusercontent.com/u/329822?v=4",
     "html_url": "https://github.com/Julian"
+  },
+  {
+    "login": "gregsdennis",
+    "id": 2676804,
+    "avatar_url": "https://avatars.githubusercontent.com/u/2676804?v=4",
+    "html_url": "https://github.com/gregsdennis"
   },
   {
     "login": "aialok",
@@ -114,34 +114,16 @@
     "html_url": "https://github.com/spacether"
   },
   {
-    "login": "Sahil-Shadwal",
-    "id": 119167601,
-    "avatar_url": "https://avatars.githubusercontent.com/u/119167601?v=4",
-    "html_url": "https://github.com/Sahil-Shadwal"
-  },
-  {
     "login": "officeneerajsaini",
     "id": 118799941,
     "avatar_url": "https://avatars.githubusercontent.com/u/118799941?v=4",
     "html_url": "https://github.com/officeneerajsaini"
   },
   {
-    "login": "divyaxdv",
-    "id": 95571773,
-    "avatar_url": "https://avatars.githubusercontent.com/u/95571773?v=4",
-    "html_url": "https://github.com/divyaxdv"
-  },
-  {
-    "login": "Dule-martins",
-    "id": 33032530,
-    "avatar_url": "https://avatars.githubusercontent.com/u/33032530?v=4",
-    "html_url": "https://github.com/Dule-martins"
-  },
-  {
-    "login": "Gmin2",
-    "id": 127925465,
-    "avatar_url": "https://avatars.githubusercontent.com/u/127925465?v=4",
-    "html_url": "https://github.com/Gmin2"
+    "login": "Sahil-Shadwal",
+    "id": 119167601,
+    "avatar_url": "https://avatars.githubusercontent.com/u/119167601?v=4",
+    "html_url": "https://github.com/Sahil-Shadwal"
   },
   {
     "login": "the-json-schema-bot[bot]",
@@ -150,10 +132,34 @@
     "html_url": "https://github.com/apps/the-json-schema-bot"
   },
   {
+    "login": "divyaxdv",
+    "id": 95571773,
+    "avatar_url": "https://avatars.githubusercontent.com/u/95571773?v=4",
+    "html_url": "https://github.com/divyaxdv"
+  },
+  {
     "login": "Adity20",
     "id": 119804372,
     "avatar_url": "https://avatars.githubusercontent.com/u/119804372?v=4",
     "html_url": "https://github.com/Adity20"
+  },
+  {
+    "login": "Gmin2",
+    "id": 127925465,
+    "avatar_url": "https://avatars.githubusercontent.com/u/127925465?v=4",
+    "html_url": "https://github.com/Gmin2"
+  },
+  {
+    "login": "Dule-martins",
+    "id": 33032530,
+    "avatar_url": "https://avatars.githubusercontent.com/u/33032530?v=4",
+    "html_url": "https://github.com/Dule-martins"
+  },
+  {
+    "login": "ayushtiwari110",
+    "id": 84335414,
+    "avatar_url": "https://avatars.githubusercontent.com/u/84335414?v=4",
+    "html_url": "https://github.com/ayushtiwari110"
   },
   {
     "login": "JulianCataldo",
@@ -166,12 +172,6 @@
     "id": 72254037,
     "avatar_url": "https://avatars.githubusercontent.com/u/72254037?v=4",
     "html_url": "https://github.com/lateapexearlyspeed"
-  },
-  {
-    "login": "ayushtiwari110",
-    "id": 84335414,
-    "avatar_url": "https://avatars.githubusercontent.com/u/84335414?v=4",
-    "html_url": "https://github.com/ayushtiwari110"
   },
   {
     "login": "Sanket-0510",
