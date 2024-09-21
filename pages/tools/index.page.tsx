@@ -16,6 +16,7 @@ import ToolingTable from './components/ToolingTable';
 import useToolsTransform from './hooks/useToolsTransform';
 import getDistinctEntries from './lib/getDistinctEntries';
 import type { JSONSchemaTool } from './JSONSchemaTool';
+import Image from 'next/image';
 
 export type FilterCriteriaFields =
   | 'languages'
@@ -179,9 +180,12 @@ export default function ToolingPage({
                   target='_blank'
                   rel='noreferrer'
                 >
-                  <img
+                  <Image
                     src='/img/tools/adding_your_tool.png'
                     className='rounded-sm h-[68px]'
+                    alt={''}
+                    width={200}
+                    height={68}
                   />
                 </Link>
                 <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
@@ -197,9 +201,12 @@ export default function ToolingPage({
                   target='_blank'
                   rel='noreferrer'
                 >
-                  <img
+                  <Image
                     src='/img/tools/try_bowtie.png'
                     className='rounded-sm h-[68px]'
+                    alt={''}
+                    width={200}
+                    height={68}
                   />
                 </Link>
                 <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>

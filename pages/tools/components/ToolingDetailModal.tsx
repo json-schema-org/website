@@ -10,6 +10,7 @@ import type {
 } from '../JSONSchemaTool';
 import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function ToolingDetailModal({
   tool,
@@ -72,9 +73,12 @@ export default function ToolingDetailModal({
         <div className='mt-4 flex flex-row items-center justify-start gap-2'>
           {tool.landscape?.logo && (
             <div className='p-2 flex flex-row items-center dark:bg-white rounded-md flex-none'>
-              <img
-                src={`img/tools/logos/${tool.landscape?.logo}`}
+              <Image
+                src={`/img/tools/logos/${tool.landscape?.logo}`}
                 className='h-[48px] w-[48px]'
+                alt={''} // Providing a meaningful alt text
+                width={48} // You should explicitly define width
+                height={48} // and height for the image optimization
               />
             </div>
           )}
@@ -373,7 +377,7 @@ const BowtieReportBadge = ({ uri }: { uri: string }) => {
       {loading && !error && (
         <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-[176px] rounded-md'></div>
       )}
-      <img
+      <Image
         src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
         onLoad={() => setLoading(false)}
         onError={() => {
