@@ -381,9 +381,10 @@ export default function communityPages(props: any) {
             <div className='p-10 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left '>
               <div className='w-full mb-6 '>
                 <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                  <img
+                  <Image
                     src={blogPosts[0].frontmatter.cover}
                     className='w-full h-[232px]  mb-4'
+                    alt={''}
                   />
                   <h3 className='mb-4 font-semibold dark:text-white'>
                     {blogPosts[0].frontmatter.title}

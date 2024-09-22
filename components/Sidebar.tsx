@@ -8,6 +8,7 @@ import { SegmentHeadline } from './Layout';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import CarbonAds from './CarbonsAds';
 import { useTheme } from 'next-themes';
+import Image from 'next/image';
 
 const DocLink = ({
   uri,
@@ -314,7 +315,7 @@ export const DocsNav = ({
           onClick={handleClickDoc}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${overview_icon}`} alt='eye icon' className='mr-2' />
+            <Image src={`${overview_icon}`} alt='eye icon' className='mr-2' />
             <SegmentHeadline label='Overview' />
           </div>
           <svg
@@ -388,7 +389,7 @@ export const DocsNav = ({
           onClick={handleClickGet}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
+            <Image src={`${learn_icon}`} alt='compass icon' className='mr-2' />
             <SegmentHeadline label='Getting Started' />
           </div>
           <svg
@@ -455,7 +456,7 @@ export const DocsNav = ({
           onClick={handleClickReference}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${reference_icon}`} alt='book icon' className='mr-2' />
+            <Image src={`${reference_icon}`} alt='book icon' className='mr-2' />
             <SegmentHeadline label='Reference' />
           </div>
           <svg
@@ -643,7 +644,7 @@ export const DocsNav = ({
           onClick={handleClickSpec}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${spec_icon}`} alt='clipboard icon' className='mr-2' />
+            <Image src={`${spec_icon}`} alt='clipboard icon' className='mr-2' />
             <SegmentHeadline label='Specification' />
           </div>
           <svg
