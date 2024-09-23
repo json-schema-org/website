@@ -8,6 +8,7 @@ import { SegmentHeadline } from './Layout';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import CarbonAds from './CarbonsAds';
 import { useTheme } from 'next-themes';
+import ExternalLinkIcon from '../public/icons/external-link-black.svg';
 
 const DocLink = ({
   uri,
@@ -64,7 +65,7 @@ const DocLinkBlank = ({
   return (
     <Link
       href={uri}
-      className={classnames('text-sm block  py-1 pl-2', {
+      className={classnames('flex text-sm block  py-1 pl-2', {
         'font-medium': !isActive,
         'text-primary text-bold border-l-2 border-l-primary font-semibold':
           isActive,
@@ -75,12 +76,18 @@ const DocLinkBlank = ({
         if (onClick) onClick();
         setOpen(false);
       }}
+      style={{
+        position: 'relative',
+        paddingRight: '1.25em',
+      }}
     >
       {label}
+      <ExternalLinkIcon
+        style={{ marginLeft: '0.25em', width: '1em', height: '1em' }}
+      />
     </Link>
   );
 };
-
 const SegmentSubtitle = ({ label }: { label: string }) => {
   return (
     <div className='text-sm italic text-slate-900 dark:text-slate-400 mt-2 mb-2'>
