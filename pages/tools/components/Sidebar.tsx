@@ -27,9 +27,9 @@ export default function Sidebar({
 
   const filters = [
     { label: 'Language', accessorKey: 'languages' },
-    { label: 'Dialect', accessorKey: 'drafts' },
     { label: 'Tooling Type', accessorKey: 'toolingTypes' },
     { label: 'Environment', accessorKey: 'environments' },
+    { label: 'Dialect', accessorKey: 'drafts' },
     { label: 'License', accessorKey: 'licenses' },
   ];
 
