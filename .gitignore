@@ -60,3 +60,7 @@ yarn-error.log*
 !.yarn/sdks
 !.yarn/versions
 
+#local file
+.env
+/node_modules
+
