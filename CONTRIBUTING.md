@@ -58,11 +58,7 @@ To publish a case study, we encourage you to join `#adopters` channel in our [Sl
 
 ### 📋 Improving the Documentation
 
-If you would like to join the efforts to improve the JSON Schema Documentation, we encourage you to check our [documentation board](https://github.com/orgs/json-schema-org/projects/16) to get a sense of the pending issues and who is doing what. Join the discussion on the [issue #421](https:[Slack workspace](https://json-schema.org/slack) so you can see the long term vision for our docs and stay updated.
-
-If you would like to work on an existing issue, express your interest in a comment and tag @benjagm for visibility. 
-
-If you would like to propose changes, create an issue and use the _Documentation template_ to describe the changes you're proposing. After that, you can self-assign the issue or leave it for someone else to work on it. 
+Want to contribute to improving the JSON Schema documentation? We have documented processes and style guidelines in separate guides. We invite you to read both documents, as they will help you get started and create consistent documentation.  
 
 ### 📋 Improving the Website
 
