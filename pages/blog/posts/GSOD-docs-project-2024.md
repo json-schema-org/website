@@ -6,9 +6,21 @@ tags:
   - Documentation
   - Community
 type: Documentation
-cover: /img/posts/2024/GSOD-cover/JSON-Schema-cover.png
+cover: /img/posts/2024/GSOD-docs-project-2024/JSON-Schema-cover.png
 authors:
-  - name: GSOD Team
+  - name: Blessing Ene Anyebe
+    photo: /img/avatars/blessing.webp
+    byline: Technical Writter Google Season of Docs
+  - name: Valeria Hernandez
+    photo: /img/avatars/valeria.webp
+    byline: Technical Writter Google Season of Docs
+  - name: Dhairya Amrish Majmudar 
+    photo: /img/avatars/dhairya.webp
+    byline: Software Engineer Google Season of Docs
+  - name: Benjamin Granados
+    photo: /img/avatars/benjagm.webp
+    byline: Community Manager
+
 excerpt: 'An announcement blog post to share the JSON Schema documentation efforts from the GSOD team.'
 ---
 
@@ -37,3 +49,5 @@ Our documentation efforts are expanding daily, and your contributions can improv
 Our docs meetings are held every Tuesday at 3:00 PM UTC. You're welcome to join the #gsod24 channel in the JSON Schema [Slack workspace](https://json-schema.org/slack) and send us a message with your email address so we can add you to the meeting.
 
 Thank you for your interest in the JSON Schema documentation project. We look forward to your contributions and seeing how these improvements will benefit the wider developer community.
+
+The JSON Schema's Google Season of Docs Team.
