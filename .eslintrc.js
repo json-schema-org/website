@@ -3,7 +3,7 @@ module.exports = {
     es2021: true,
     node: true,
     browser: true,
-    "cypress/globals": true
+    'cypress/globals': true,
   },
   settings: {
     react: {
@@ -34,7 +34,10 @@ module.exports = {
 
     'react/jsx-curly-spacing': ['error', { when: 'never', children: true }],
     indent: ['error', 2, { SwitchCase: 1 }],
-    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
+    'linebreak-style': [
+      'error',
+      process.platform === 'win32' ? 'windows' : 'unix',
+    ],
     quotes: ['error', 'single'],
 
     'jsx-quotes': ['error', 'prefer-single'],
@@ -53,7 +56,8 @@ module.exports = {
     'keyword-spacing': ['error', { before: true, after: true }],
     'comma-spacing': ['error', { before: false, after: true }],
     'key-spacing': ['error', { beforeColon: false, afterColon: true }],
-    '@next/next/no-img-element': 'off',
+    // Change this rule from 'off' to 'error'
+    '@next/next/no-img-element': 'error',
     'no-multi-spaces': 'error',
     'space-infix-ops': 'error',
     'space-before-blocks': 'error',

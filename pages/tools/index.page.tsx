@@ -9,6 +9,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 import { Headline1 } from '~/components/Headlines';
 import { getLayout } from '~/components/SiteLayout';
 import { DRAFT_ORDER, JSONSchemaDraft } from '~/lib/config';
+import Image from 'next/image';
 
 import GroupByMenu from './components/GroupByMenu';
 import Sidebar from './components/Sidebar';
@@ -179,9 +180,10 @@ export default function ToolingPage({
                   target='_blank'
                   rel='noreferrer'
                 >
-                  <img
+                  <Image
                     src='/img/tools/adding_your_tool.png'
                     className='rounded-sm h-[68px]'
+                    alt={''}
                   />
                 </Link>
                 <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
@@ -197,9 +199,10 @@ export default function ToolingPage({
                   target='_blank'
                   rel='noreferrer'
                 >
-                  <img
+                  <Image
                     src='/img/tools/try_bowtie.png'
                     className='rounded-sm h-[68px]'
+                    alt={''}
                   />
                 </Link>
                 <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>

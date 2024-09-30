@@ -10,6 +10,7 @@ import TextTruncate from 'react-text-truncate';
 
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
+import Image from 'next/image';
 
 /* eslint-disable */
 import ical from 'node-ical';
@@ -206,7 +207,7 @@ const Home = (props: any) => {
   const [airbnb_logo, setAirbnb_logo] = useState('');
   const [postman_logo, setPostman_logo] = useState('');
   const [itflashcards_logo, setItflashcards_logo] = useState('');
-  const [route4me_logo, setRoute4me_logo] = useState('');
+  // const [route4me_logo, setRoute4me_logo] = useState('');
   const [n8n_logo, setN8n_logo] = useState('');
   const [endjin_logo, setEndjin_logo] = useState('');
   const [llc_logo, setLlc_logo] = useState('');
@@ -224,7 +225,7 @@ const Home = (props: any) => {
       setSlack_logo('/img/logos/dark-mode/slack_white.svg');
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
       setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
-      setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
+      // setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
@@ -236,7 +237,7 @@ const Home = (props: any) => {
       setSlack_logo('/img/logos/supported/slack-logo.svg');
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
       setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
-      setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
+      // setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
     }
   }, [resolvedTheme]);
@@ -275,21 +276,34 @@ const Home = (props: any) => {
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
-                <img
+                <Image
                   src='/img/logos/usedby/zapier-logo_white.png'
                   className='w-40 mx-auto'
+                  width={160} // 40 * 4 = 160px
+                  height={50} // Adjust this to the correct aspect ratio of your image
+                  alt='Zapier logo' // Alt text for accessibility
                 />
-                <img
+
+                <Image
                   src='/img/logos/usedby/microsoft-white.png'
                   className='w-40 mx-auto'
+                  width={160}
+                  height={50}
+                  alt={''}
                 />
-                <img
+                <Image
                   src='/img/logos/usedby/postman-white.png'
                   className='w-40 mx-auto'
+                  width={160}
+                  height={50}
+                  alt={''}
                 />
-                <img
+                <Image
                   src='/img/logos/usedby/github-white.png'
                   className='w-40 mx-auto'
+                  width={160}
+                  height={50}
+                  alt={''}
                 />
               </div>
 
@@ -379,10 +393,14 @@ const Home = (props: any) => {
 
         {/* SidebySide section*/}
         <section className='max-w-[1400px] w-full lg:flex lg:gap-20 my-16 '>
-          <img
+          <Image
             src='/img/home-page/community-illustration.svg'
+            width={600} // Use a default width that fits within your design
+            height={400} // Adjust this based on the aspect ratio of your image
             className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]'
+            alt='Community illustration' // Alt text for accessibility
           />
+
           <div className='w-5/6 md:w-3/5 mx-auto mt-12'>
             <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4 dark:text-slate-200'>
               Explore the JSON Schema Ecosystem
@@ -421,11 +439,20 @@ const Home = (props: any) => {
               <Link href='https://json-schema.org/slack'>
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
-                  <img src='/img/logos/Slack-mark.svg' className='w-8 h-8' />
+                  <Image
+                    src='/img/logos/Slack-mark.svg'
+                    className='w-8 h-8'
+                    width={32}
+                    height={32}
+                    alt={''}
+                  />
                 </h3>
-                <img
+                <Image
                   src='/img/home-page/slack-json-schema.png'
                   className='w-full mb-4'
+                  width={600}
+                  height={400}
+                  alt={''}
                 />
                 {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
                 <p className='mb-4 dark:text-slate-300'>
@@ -438,9 +465,12 @@ const Home = (props: any) => {
                   href='https://json-schema.org/slack'
                   className='flex items-center '
                 >
-                  <img
+                  <Image
                     src='/img/logos/slack_logo_small-white.svg'
                     className='w-4 h-4 mr-2 '
+                    width={16}
+                    height={16}
+                    alt={''}
                   />
                   Join Slack
                 </a>
@@ -452,10 +482,14 @@ const Home = (props: any) => {
                 <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
                   The JSON Schema Blog
                 </h3>
-                <img
+                <Image
                   src={blogPosts[0].frontmatter.cover}
-                  className='w-full h-[232px]  mb-4'
+                  width={600} // Adjust this based on the desired display size
+                  height={232} // Corresponds to your specified height
+                  className='w-full h-[232px] mb-4'
+                  alt='Blog post cover' // Add meaningful alt text for accessibility
                 />
+
                 <h3 className='mb-4 font-semibold dark:text-slate-300'>
                   {' '}
                   {blogPosts[0].frontmatter.title}
@@ -660,31 +694,94 @@ const Home = (props: any) => {
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
               <a href=' https://www.asyncapi.com/'>
-                <img src={asyncapi_logo} className=' w-44' />
+                <Image
+                  src={asyncapi_logo}
+                  layout='responsive'
+                  width={176} // Corresponds to 'w-44' in Tailwind (44 * 4 = 176px)
+                  height={100} // Set this based on the aspect ratio, or use a specific value
+                  className='w-44'
+                  alt='AsyncAPI logo' // Add alt text for accessibility
+                />
               </a>
               <a href='https://www.airbnb.com/'>
-                <img src={airbnb_logo} className=' w-44' />
+                <Image
+                  src={airbnb_logo}
+                  layout='responsive' // Allows the image to maintain its aspect ratio
+                  width={176} // Original width based on 'w-44' (44 * 4 = 176px)
+                  height={100} // Original height, adjust as necessary
+                  className='w-44' // You can still apply Tailwind classes
+                  alt='Airbnb logo' // Add alt text for accessibility
+                />
               </a>
               <a href='https://www.postman.com/'>
-                <img src={postman_logo} className=' w-44' />
+                <Image
+                  src={postman_logo}
+                  layout='responsive' // Maintains aspect ratio while resizing
+                  width={176} // Corresponds to 'w-44' in Tailwind (44 * 4 = 176px)
+                  height={100} // Adjust this based on the logo's aspect ratio
+                  className='w-44' // Tailwind class for width
+                  alt='Postman logo' // Add meaningful alt text for accessibility
+                />
               </a>
               <a href='https://endjin.com/'>
-                <img src={endjin_logo} className=' w-44' />
+                <Image
+                  src={endjin_logo}
+                  layout='responsive' // Maintains aspect ratio while resizing
+                  width={176} // Corresponds to 'w-44' in Tailwind (44 * 4 = 176px)
+                  height={100} // Adjust this based on the logo's aspect ratio
+                  className='w-44' // Tailwind class for width
+                  alt='Endjin logo' // Add meaningful alt text for accessibility
+                />
               </a>
               <a href='https://www.llc.org/'>
-                <img src={llc_logo} className=' w-44' />
+                <Image
+                  src={llc_logo}
+                  layout='responsive' // Allows the image to maintain its aspect ratio
+                  width={176} // Corresponds to 'w-44' in Tailwind (44 * 4 = 176px)
+                  height={100} // Adjust this based on the logo's actual aspect ratio
+                  className='w-44' // Tailwind class for width
+                  alt='LLC logo' // Add meaningful alt text for accessibility
+                />
               </a>
               <a href='https://www.vpsserver.com/en-us/'>
-                <img src={vpsserver_logo} className=' w-44' />
+                <Image
+                  src={vpsserver_logo}
+                  layout='responsive' // Maintains the aspect ratio while resizing
+                  width={176} // Corresponds to 'w-44' in Tailwind (44 * 4 = 176px)
+                  height={100} // Adjust based on the logo's actual aspect ratio
+                  className='w-44' // Tailwind class for width
+                  alt='VPS Server logo' // Add meaningful alt text for accessibility
+                />
               </a>
               <a href='https://www.itflashcards.com/'>
-                <img src={itflashcards_logo} className=' w-44' />
+                <Image
+                  src={itflashcards_logo}
+                  layout='responsive' // Maintains the aspect ratio while resizing
+                  width={176} // Corresponds to 'w-44' in Tailwind (44 * 4 = 176px)
+                  height={100} // Adjust based on the logo's actual aspect ratio
+                  className='w-44' // Tailwind class for width
+                  alt='IT Flashcards logo' // Add meaningful alt text for accessibility
+                />
               </a>
               <a href='https://www.route4me.com/'>
-                <img src={route4me_logo} className=' w-44' />
+                <Image
+                  src={itflashcards_logo}
+                  layout='responsive' // Maintains aspect ratio while resizing
+                  width={176} // Corresponds to 'w-44' in Tailwind (44 * 4 = 176px)
+                  height={100} // Adjust based on the logo's actual aspect ratio
+                  className='w-44' // Tailwind class for width
+                  alt='IT Flashcards logo' // Add meaningful alt text for accessibility
+                />
               </a>
               <a href='https://n8n.io/'>
-                <img src={n8n_logo} className=' w-44' />
+                <Image
+                  src={n8n_logo}
+                  layout='responsive' // Maintains the aspect ratio while resizing
+                  width={176} // Corresponds to 'w-44' in Tailwind (44 * 4 = 176px)
+                  height={100} // Adjust based on the logo's actual aspect ratio
+                  className='w-44' // Tailwind class for width
+                  alt='n8n logo' // Add meaningful alt text for accessibility
+                />
               </a>
               <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
@@ -731,10 +828,24 @@ const Home = (props: any) => {
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-              <img src={common_room_logo} className='w-48 md:w-56' />
+              <Image
+                src={common_room_logo}
+                layout='responsive' // Maintains the aspect ratio while resizing
+                width={192} // Corresponds to 'w-48' in Tailwind (48 * 4 = 192px)
+                height={100} // Adjust based on the logo's actual aspect ratio
+                className='w-48 md:w-56' // Tailwind classes for width
+                alt='Common Room logo' // Add meaningful alt text for accessibility
+              />
             </a>
             <a href='https://json-schema.org/slack'>
-              <img src={slack_logo} className='w-24 md:w-32' />
+              <Image
+                src={slack_logo}
+                layout='responsive' // Maintains the aspect ratio while resizing
+                width={96} // Corresponds to 'w-24' in Tailwind (24 * 4 = 96px)
+                height={96} // Adjust this based on the logo's aspect ratio
+                className='w-24 md:w-32' // Tailwind classes for different widths
+                alt='Slack logo' // Add meaningful alt text for accessibility
+              />
             </a>
           </div>{' '}
         </section>
