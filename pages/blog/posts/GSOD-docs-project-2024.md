@@ -6,7 +6,7 @@ tags:
   - Documentation
   - Community
 type: Documentation
-cover: /img/posts/2024/GSOD-docs-project-2024/JSON-Schema-cover.png
+cover: /img/posts/2024/GSOD-docs-project-2024/duy-pham.webp
 authors:
   - name: Blessing Ene Anyebe
     photo: /img/avatars/blessing.webp
@@ -60,4 +60,7 @@ Our docs meeting is held bi-weekly every Tuesday at 3:00 PM (UTC). You're welcom
 
 We appreciate your interest in the JSON Schema documentation project and look forward to your contributions and their benefits to the wider developer community.
 
-The JSON Schema's Google Season of Docs Team.
+**The JSON Schema's Google Season of Docs Team.**
+
+Photo by <a href="https://unsplash.com/@miinyuii?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Duy Pham</a> on <a href="https://unsplash.com/photos/people-holding-shoulders-sitting-on-wall-Cecb0_8Hx-o?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
+  
