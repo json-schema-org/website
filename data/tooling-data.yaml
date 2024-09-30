@@ -523,6 +523,8 @@
     draft: ['7', '4', '2019-09', '2020-12']
   toolingListingNotes: 'Built for Cloudflare workers, browsers, and Node.js'
   lastUpdated: '2023-02-28'
+  bowtie:
+    identifier: 'js-json-schema'
 
 - name: JSON Schema Library
   description: 'Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation'
