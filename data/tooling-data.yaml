@@ -2424,11 +2424,11 @@
       platform: 'github'
     - name: 'Jordi Boggiano'
       username: 'Seldaek'
-      paltform: 'github'
+      platform: 'github' 
     - name: 'Danny van der Sluijs'
       username: 'DannyvdSluijs'
       platform: 'github'
-  licence: 'MIT'
+  license: 'MIT'
   source: 'https://github.com/jsonrainbow/json-schema'
   homepage: 'https://github.com/jsonrainbow/json-schema'
   supportedDialects:
