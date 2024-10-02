@@ -23,3 +23,8 @@
 /slack https://join.slack.com/t/json-schema/shared_invite/zt-2n5bzzgx3-ro3V0mnnzUoaguILLosT2A 301
 /slack-redirect https://join.slack.com/t/json-schema/shared_invite/zt-2n5bzzgx3-ro3V0mnnzUoaguILLosT2A 301
 /ambassadors https://github.com/json-schema-org/community/tree/main/programs/ambassadors 301
+/draft/2020-12/release-notes /draft/2020-12#draft-2020-12-release-notes 301
+/draft/2019-09/release-notes /draft/2019-09#draft-2019-09-release-notes 301
+/draft-07/json-schema-release-notes /draft-07#draft-07-release-notes 301
+/draft-06/json-schema-release-notes /draft-06#draft-06-release-notes 301
+/draft-05/readme /draft-05#explanation-for-lack-of-draft-05-meta-schemas 301
