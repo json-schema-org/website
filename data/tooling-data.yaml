@@ -2414,7 +2414,7 @@
   description: 'A PHP Implementation for validating JSON Structures against a given Schema with support for Schemas of Draft-3 or Draft-4.'
   toolingTypes: ['validator']
   languages: ['PHP']
-  environments: ['PHP >= 7.2']
+  toolingListingNotes: ['PHP >= 7.2']
   maintainers:
     - name: 'Erayd'
       username: 'erayd'
