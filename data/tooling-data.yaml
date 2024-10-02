@@ -2434,7 +2434,7 @@
   supportedDialects:
     draft: ['3', '4']
   landscape:
-    logo: 'https://avatars.githubusercontent.com/u/170307068?s=200&v=4'
+    logo: 'justinrainbow-json-schema.png'
   bowtie:
     identifier: 'php-justinrainbow-json-schema'
   lastUpdated: '2024-10-01'
