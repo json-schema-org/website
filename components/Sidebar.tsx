@@ -65,7 +65,7 @@ const DocLinkBlank = ({
   return (
     <Link
       href={uri}
-      className={classnames('flex text-sm block  py-1 pl-2', {
+      className={classnames('flex text-sm py-1 pl-2', {
         'font-medium': !isActive,
         'text-primary text-bold border-l-2 border-l-primary font-semibold':
           isActive,
@@ -82,9 +82,16 @@ const DocLinkBlank = ({
       }}
     >
       {label}
-      <ExternalLinkIcon
-        style={{ marginLeft: '0.25em', width: '1em', height: '1em' }}
-      />
+      <span className='dark:invert flex justify-center items-center'>
+        <ExternalLinkIcon
+          style={{
+            marginLeft: '0.25em',
+            width: '1em',
+            height: '1em',
+          }}
+        />
+      </span>
+
     </Link>
   );
 };
@@ -142,17 +149,15 @@ const getReferencePath = [
   '/implementers/interfaces',
 ];
 const getSpecificationPath = [
-  '/draft/2020-12',
-  '/draft/2019-09',
-  '/draft-07',
-  '/draft-06',
-  '/draft-05',
+  '/draft/2020-12/release-notes',
+  '/draft/2019-09/release-notes',
+  '/draft-07/json-schema-release-notes',
+  '/draft-06/json-schema-release-notes',
+  '/draft-05/readme',
+  '/draft-07/json-hyper-schema-release-notes',
+  '/draft-06/json-hyper-schema-release-notes',
   '/specification-links',
-  '/specification/migration',
-  '/specification/release-notes',
-  '/specification/json-hyper-schema',
   '/specification',
-  '/specification-links',
 ];
 
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
@@ -682,39 +687,54 @@ export const DocsNav = ({
           id='specification'
         >
           <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
-
-          <SegmentSubtitle label='Versions' />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/draft/2020-12' label='2020-12' setOpen={setOpen} />
-
-            <DocLink uri='/draft/2019-09' label='2019-09' setOpen={setOpen} />
-            <DocLink uri='/draft-07' label='draft-07' setOpen={setOpen} />
-            <DocLink uri='/draft-06' label='draft-06' setOpen={setOpen} />
-            <DocLink uri='/draft-05' label='draft-05' setOpen={setOpen} />
-          </div>
-
           <DocLink
             uri='/specification-links'
             label='Specification Links'
             setOpen={setOpen}
           />
-
           <DocLink
-            uri='/specification/migration'
-            label='Migration'
+            uri='/draft/2020-12/release-notes'
+            label='2020-12 notes'
             setOpen={setOpen}
           />
           <DocLink
-            uri='/specification/release-notes'
-            label='Release Notes'
+            uri='/draft/2019-09/release-notes'
+            label='2019-09 notes'
             setOpen={setOpen}
           />
-
           <DocLink
-            uri='/specification/json-hyper-schema'
-            label='JSON Hyper-Schema'
+            uri='/draft-07/json-schema-release-notes'
+            label='draft-07 notes'
             setOpen={setOpen}
           />
+          <DocLink
+            uri='/draft-06/json-schema-release-notes'
+            label='draft-06 notes'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/draft-05/readme'
+            label='draft-05 notes'
+            setOpen={setOpen}
+          />
+          <SegmentSubtitle label='JSON Hyper-Schema' />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink
+              uri='/draft/2019-09/release-notes#hyper-schema-vocabulary'
+              label='2019-09 notes'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/draft-07/json-hyper-schema-release-notes'
+              label='draft-07 notes'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/draft-06/json-hyper-schema-release-notes'
+              label='draft-06 notes'
+              setOpen={setOpen}
+            />
+          </div>
         </div>
       </div>
     </div>
