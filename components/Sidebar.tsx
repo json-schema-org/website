@@ -82,9 +82,15 @@ const DocLinkBlank = ({
       }}
     >
       {label}
-      <ExternalLinkIcon
-        style={{ marginLeft: '0.25em', width: '1em', height: '1em' }}
-      />
+      <span className='dark:invert flex justify-center items-center'>
+        <ExternalLinkIcon
+          style={{
+            marginLeft: '0.25em',
+            width: '1em',
+            height: '1em',
+          }}
+        />
+      </span>
     </Link>
   );
 };
