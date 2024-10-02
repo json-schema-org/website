@@ -128,6 +128,12 @@ Said more plainly, whether a particular value is a subschema or not depends on i
 
 Subschemas may themselves contain sub-subschemas, though colloquially one generally uses the term "subschema" regardless of the level of nesting, further clarifying which larger schema is the parent schema whenever needed.
 
+
+### anchor 
+
+An anchor identifies the location of a subschema within a JSON document. By applying an anchor to a subschema using the `$anchor` keyword, the subschema becomes identifiable via a plain-name URI string containing the value of the `$anchor` property starting with a `#` character. An example of a plain-name URI is `https://example.com/schemas/vehicle#owners` identifying the `owners` subschema within the `vehicle` JSON document. An anchor is also a shorter alternative to using a JSON Pointer for identifying a subschema. 
+
+<!-- TODO: add reference to JSON pointer term as a see more. -->
 ### tooling
 
 A JSON Schema tool (or colloquially "tooling") is any software application or library for working with or evaluating schemas in some way.
