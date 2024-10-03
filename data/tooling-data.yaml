@@ -353,9 +353,9 @@
   license: 'MIT'
   source: 'https://github.com/erosb/json-sKema'
   supportedDialects:
-    draft: ['2019-09']
+    draft: ['2020-12']
   toolingListingNotes: 'Successor of the everit-org/json-schema library'
-  lastUpdated: '2023-04-10'
+  lastUpdated: '2024-09-21'
 
 - name: Snow
   description: 'Snow, a full-featured JSON Schema validator'
