@@ -10,7 +10,7 @@ import TextTruncate from 'react-text-truncate';
 
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
-
+import Image from 'next/image';
 /* eslint-disable */
 import ical from 'node-ical';
 import moment from 'moment-timezone';
@@ -275,21 +275,33 @@ const Home = (props: any) => {
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
-                <img
+                <Image
                   src='/img/logos/usedby/zapier-logo_white.png'
                   className='w-40 mx-auto'
+                  alt={''}
+                  height={40}
+                  width={160}
                 />
-                <img
+                <Image
                   src='/img/logos/usedby/microsoft-white.png'
                   className='w-40 mx-auto'
+                  alt={''}
+                  height={40}
+                  width={160}
                 />
-                <img
+                <Image
                   src='/img/logos/usedby/postman-white.png'
                   className='w-40 mx-auto'
+                  alt={''}
+                  height={40}
+                  width={160}
                 />
-                <img
+                <Image
                   src='/img/logos/usedby/github-white.png'
                   className='w-40 mx-auto'
+                  alt={''}
+                  height={40}
+                  width={160}
                 />
               </div>
 
@@ -379,9 +391,12 @@ const Home = (props: any) => {
 
         {/* SidebySide section*/}
         <section className='max-w-[1400px] w-full lg:flex lg:gap-20 my-16 '>
-          <img
+          <Image
             src='/img/home-page/community-illustration.svg'
             className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]'
+            alt={''}
+            height={600}
+            width={800}
           />
           <div className='w-5/6 md:w-3/5 mx-auto mt-12'>
             <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4 dark:text-slate-200'>
@@ -421,11 +436,20 @@ const Home = (props: any) => {
               <Link href='https://json-schema.org/slack'>
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
-                  <img src='/img/logos/Slack-mark.svg' className='w-8 h-8' />
+                  <Image
+                    src='/img/logos/Slack-mark.svg'
+                    className='w-8 h-8'
+                    alt={''}
+                    height={32}
+                    width={32}
+                  />
                 </h3>
-                <img
+                <Image
                   src='/img/home-page/slack-json-schema.png'
                   className='w-full mb-4'
+                  alt={''}
+                  height={500}
+                  width={300}
                 />
                 {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
                 <p className='mb-4 dark:text-slate-300'>
@@ -438,9 +462,12 @@ const Home = (props: any) => {
                   href='https://json-schema.org/slack'
                   className='flex items-center '
                 >
-                  <img
+                  <Image
                     src='/img/logos/slack_logo_small-white.svg'
                     className='w-4 h-4 mr-2 '
+                    width={16}
+                    height={16}
+                    alt={''}
                   />
                   Join Slack
                 </a>
@@ -452,9 +479,12 @@ const Home = (props: any) => {
                 <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
                   The JSON Schema Blog
                 </h3>
-                <img
+                <Image
                   src={blogPosts[0].frontmatter.cover}
                   className='w-full h-[232px]  mb-4'
+                  width={600}
+                  height={232}
+                  alt={''}
                 />
                 <h3 className='mb-4 font-semibold dark:text-slate-300'>
                   {' '}
@@ -660,31 +690,85 @@ const Home = (props: any) => {
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
               <a href=' https://www.asyncapi.com/'>
-                <img src={asyncapi_logo} className=' w-44' />
+                <Image
+                  src={asyncapi_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <a href='https://www.airbnb.com/'>
-                <img src={airbnb_logo} className=' w-44' />
+                <Image
+                  src={airbnb_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <a href='https://www.postman.com/'>
-                <img src={postman_logo} className=' w-44' />
+                <Image
+                  src={postman_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <a href='https://endjin.com/'>
-                <img src={endjin_logo} className=' w-44' />
+                <Image
+                  src={endjin_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <a href='https://www.llc.org/'>
-                <img src={llc_logo} className=' w-44' />
+                <Image
+                  src={llc_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <a href='https://www.vpsserver.com/en-us/'>
-                <img src={vpsserver_logo} className=' w-44' />
+                <Image
+                  src={vpsserver_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <a href='https://www.itflashcards.com/'>
-                <img src={itflashcards_logo} className=' w-44' />
+                <Image
+                  src={itflashcards_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <a href='https://www.route4me.com/'>
-                <img src={route4me_logo} className=' w-44' />
+                <Image
+                  src={route4me_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <a href='https://n8n.io/'>
-                <img src={n8n_logo} className=' w-44' />
+                <Image
+                  src={n8n_logo}
+                  className=' w-44'
+                  width={176}
+                  height={100}
+                  alt={''}
+                />
               </a>
               <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
@@ -731,10 +815,22 @@ const Home = (props: any) => {
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-              <img src={common_room_logo} className='w-48 md:w-56' />
+              <Image
+                src={common_room_logo}
+                className='w-48 md:w-56'
+                width={192}
+                height={100}
+                alt={''}
+              />
             </a>
             <a href='https://json-schema.org/slack'>
-              <img src={slack_logo} className='w-24 md:w-32' />
+              <Image
+                src={slack_logo}
+                className='w-24 md:w-32'
+                width={96}
+                height={100}
+                alt={''}
+              />
             </a>
           </div>{' '}
         </section>
