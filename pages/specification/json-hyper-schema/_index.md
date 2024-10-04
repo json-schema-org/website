@@ -13,18 +13,17 @@ In essence:
 - JSON Hyper-Schema is helpful in complex APIs where clients need to define and explicitly understand the relationships between resources and actions, especially when navigating resources without prior knowledge of the API structure.
 - It helps create more discoverable and self-documenting APIs, making it easier for clients to interact with them.
 
-### Hyper Schema Documents
+### Hyper Schema Specification
 
-- Hyper-Schema: [jsonschema-hyperschema.xml](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/jsonschema-hyperschema.xml)
-- Relative JSON Pointer: [relative-json-pointer.xml](https://github.com/json-schema-org/json-schema-spec/blob/master/relative-json-pointer.xml)
+- Hyper-Schema: [draft-handrews-json-schema-hyperschema-02](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html)
+- Relative JSON Pointer: [draft-bhutton-relative-json-pointer-00](https://datatracker.ietf.org/doc/html/draft-bhutton-relative-json-pointer-00.html)
 
-**Other documents:**
+**Schemas:**
 
-- [JSON Schema meta-schema](https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json)
-- [JSON Hyper-Schema meta-schema](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/hyper-schema.json)
-- [JSON Hyper-Schema Link Description Object meta-schema](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/links.json)
-- [JSON Schema Vocabulary meta-schemas](https://github.com/json-schema-org/json-hyperschema-spec/tree/main/meta/)
-- [JSON Schema Output schemas and examples](https://github.com/json-schema-org/json-hyperschema-spec/tree/main/output/)
+- [JSON Hyper-Schema meta-schema](/draft/2020-12/hyper-schema)
+- [JSON Hyper-Schema vocabulary schema](/draft/2020-12/meta/hyper-schema)
+- [JSON Hyper-Schema Link Description Object meta-schema](/draft/2020-12/links)
+- [JSON Schema Output schemas and examples](/draft/2019-09/output/hyper-schema)
 
 ### Release Notes
 
