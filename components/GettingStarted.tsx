@@ -135,7 +135,7 @@ const GettingStarted = () => {
               </label>
               <select
                 name='Select a JSON Schema Validator'
-                className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
+                className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
                 id='Examples'
                 onChange={handleSchemaChange}
               >
@@ -190,7 +190,7 @@ const GettingStarted = () => {
               </label>
               <select
                 name='Select a JSON Schema Validator'
-                className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px] plausible-event-name==activation-explore-tools'
+                className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
                 id='Examples'
                 onChange={handleInstanceChange}
               >
