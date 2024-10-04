@@ -2409,3 +2409,32 @@
   supportedDialects:
     draft: ['4', '6', '7']
   lastUpdated: '2024-09-03'
+
+- name: justinrainbow/json-schema
+  description: 'A PHP Implementation for validating JSON Structures against a given Schema with support for Schemas of Draft-3 or Draft-4.'
+  toolingTypes: ['validator']
+  languages: ['PHP']
+  toolingListingNotes: 'PHP >= 7.2'
+  maintainers:
+    - name: 'Erayd'
+      username: 'erayd'
+      platform: 'github'
+    - name: 'David Porter'
+      username: 'bighappyface'
+      platform: 'github'
+    - name: 'Jordi Boggiano'
+      username: 'Seldaek'
+      platform: 'github' 
+    - name: 'Danny van der Sluijs'
+      username: 'DannyvdSluijs'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/jsonrainbow/json-schema'
+  homepage: 'https://github.com/jsonrainbow/json-schema'
+  supportedDialects:
+    draft: ['3', '4']
+  landscape:
+    logo: 'justinrainbow-json-schema.png'
+  bowtie:
+    identifier: 'php-justinrainbow-json-schema'
+  lastUpdated: '2024-10-01'
