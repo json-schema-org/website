@@ -16,9 +16,9 @@ export default function ContentExample() {
   const imgUrl = (src: string): string => {
     if (
       resolvedTheme === 'dark' &&
-      (src.includes('github') || src.includes('6river'))
+      ['github', '6river'].some((str) => src.includes(str))
     ) {
-      return src.replace(/\.(png|svg)$/, '_white.$1');
+      return src.replace(/\.(svg)$/, '-white.$1');
     }
     return src;
   };
