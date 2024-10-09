@@ -48,28 +48,28 @@ export default function ImplementationsPages({
           body='Draft 2020-12 release notes.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft/2020-12#draft-2020-12-release-notes'
+          link='/draft/2020-12/release-notes'
         />
         <Card
           title='Draft 2019-09'
           body='Draft 2019-09 release notes.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft/2019-09#draft-2019-09-release-notes'
+          link='/draft/2019-09/release-notes'
         />
         <Card
           title='Draft 07'
           body='Draft 07 release notes.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft-07#draft-07-release-notes'
+          link='/draft-07/json-schema-release-notes'
         />
         <Card
           title='Draft 06'
           body='Draft 06 release notes.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft-06#draft-06-release-notes'
+          link='/draft-06/json-schema-release-notes'
         />
         <Card
           title='Draft 05'
