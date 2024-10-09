@@ -231,21 +231,23 @@ const ToolingTable = ({
                           },
                         }}
                       >
-                        <div className='flex justify-center items-center h-full m-auto'>
-                          {bowtieData ? (
-                            <a
-                              className='flex justify-center items-center h-full'
-                              href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
-                              target='blank'
-                              onClick={(event) => event.stopPropagation()}
-                              title='See at Bowtie'
-                            >
-                              <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
-                            </a>
-                          ) : (
-                            <CancelIcon className='fill-current stroke-current w-4 h-4' />
-                          )}
-                        </div>
+                        {bowtieReport && (
+                          <div className='flex justify-center items-center h-full m-auto'>
+                            {bowtieData ? (
+                              <a
+                                className='flex justify-center items-center h-full'
+                                href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                                target='blank'
+                                onClick={(event) => event.stopPropagation()}
+                                title='See at Bowtie'
+                              >
+                                <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                              </a>
+                            ) : (
+                              <CancelIcon className='fill-current stroke-current w-4 h-4' />
+                            )}
+                          </div>
+                        )}
                       </TableCell>
                     </tr>
                   );
