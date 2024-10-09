@@ -236,18 +236,6 @@
         },
         "additionalProperties": false
       },
-      "bowtie": {
-        "description": "Information related to compliance testing by Bowtie - https://bowtie.report - Presence of this property implies the tool is being tested in Bowtie",
-        "type": "object",
-        "properties": {
-          "identifier": {
-            "description": "The identifier used for the tool in Bowtie, including the language.",
-            "examples": ["dotnet-jsonschema-net", "js-ajv"]
-          }
-        },
-        "required": ["identifier"],
-        "additionalProperties": false
-      },
       "toolingListingNotes": {
         "description": "Notes about the tooling which will appear in the tooling listing on the website.",
         "type": "string"
