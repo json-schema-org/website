@@ -184,7 +184,7 @@ export default function ToolingPage({
                 >
                   <Image
                     src='/img/tools/adding_your_tool.png'
-                    className='rounded-sm h-[68px]'
+                    className='rounded-sm '
                     height={68}
                     width={100}
                     alt={''}
@@ -205,7 +205,7 @@ export default function ToolingPage({
                 >
                   <Image
                     src='/img/tools/try_bowtie.png'
-                    className='rounded-sm h-[68px]'
+                    className='rounded-sm '
                     height={68}
                     width={100}
                     alt={''}
