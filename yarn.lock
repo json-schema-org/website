@@ -7207,7 +7207,7 @@ __metadata:
     tailwindcss: "npm:^3.3.5"
     typescript: "npm:5.2.2"
     webpack: "npm:^5.93.0"
-    yarn: "npm:1.22.19"
+    yarn: "npm:1.22.22"
     zero-fill: "npm:^2.2.4"
     zustand: "npm:^4.5.4"
   languageName: unknown
@@ -10891,13 +10891,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"yarn@npm:1.22.19":
-  version: 1.22.19
-  resolution: "yarn@npm:1.22.19"
+"yarn@npm:1.22.22":
+  version: 1.22.22
+  resolution: "yarn@npm:1.22.22"
   bin:
     yarn: bin/yarn.js
     yarnpkg: bin/yarn.js
-  checksum: 10c0/a6f9cdf67cca7e11141a18ffc1736a24dd569885b2ec0838982fcf21e5138840c66d9ebfc1846b0b35bc7b415cb985c65d79fb43aa1721b865e4f60c5569062a
+  checksum: 10c0/8c77198c93d7542e7f4e131c63b66de357b7076ecfbcfe709ec0d674115c2dd9edaa45196e5510e6e9366d368707a802579e3402071002e1c9d9a99d491478de
   languageName: node
   linkType: hard
 
