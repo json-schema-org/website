@@ -2537,12 +2537,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-text-truncate@npm:^0.14.1":
-  version: 0.14.4
-  resolution: "@types/react-text-truncate@npm:0.14.4"
+"@types/react-text-truncate@npm:^0.19.0":
+  version: 0.19.0
+  resolution: "@types/react-text-truncate@npm:0.19.0"
   dependencies:
     "@types/react": "npm:*"
-  checksum: 10c0/423675e7c0fee22b13571dfaa1a092dde280b5bec915adbc71385d83a6f5aabf89bcf0b94fb5989eb53cec1060f7b270f7005453c65e0eacf2f431e0ec31853f
+  checksum: 10c0/53ada3bb8a7ae579236ed1c3862b727f0aa96521a45c17c1b83e302a09d755ac8a9bda216f70a465ea6c51891f5f0b0e0055678d5aea8c719eeee0949d30dd35
   languageName: node
   linkType: hard
 
@@ -7158,7 +7158,7 @@ __metadata:
     "@types/node": "npm:^22.4.2"
     "@types/react": "npm:18.3.5"
     "@types/react-syntax-highlighter": "npm:^15.5.13"
-    "@types/react-text-truncate": "npm:^0.14.1"
+    "@types/react-text-truncate": "npm:^0.19.0"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
     autoprefixer: "npm:^10.4.20"
