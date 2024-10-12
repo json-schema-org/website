@@ -2,13 +2,13 @@
 title: JSON Schema documentation style guide
 ---
 
-# JSON Schema style guide
+# JSON Schema documentation style guide
 
-Welcome to the JSON Schema! This guide is intended for use by project contributors. It provides guidelines for the text-formatting conventions of our documentation. The purpose of this style guide is to create consistency throughout our documentation, so make sure to read and follow it carefully.
+Welcome to JSON Schema! This guide is intended for project contributors and provides guidelines for the text-formatting conventions of our documentation. The purpose of this style guide is to create consistency throughout our documentation, so make sure to read and follow it carefully.
 
 ## Our preferred style guide 
 
-We use the [Google developer documentation style guide](https://developers.google.com/style) as our default guide. For a quick summary, see the [Google style guide highlights](https://developers.google.com/style/highlights). This document describes customizations to the Google developers style guide sepcific to the JSON Schema documentation. 
+We use the [Google developer documentation style guide](https://developers.google.com/style) as our default guide. For a quick summary, see the [Google style guide highlights](https://developers.google.com/style/highlights). This document describes customizations to the Google developers style guide specific to the JSON Schema documentation. 
 
 The JSON Schema documentation uses American spelling and our preferred dictionary is the
 [American Heritage Dictionary](https://ahdictionary.com/). 
