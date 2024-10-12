@@ -93,7 +93,7 @@
     "prettier": "3.3.3",
     "tailwindcss": "^3.3.5",
     "typescript": "5.2.2",
-    "webpack": "^5.93.0"
+    "webpack": "^5.94.0"
   },
   "babel": {
     "presets": [
