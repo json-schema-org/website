@@ -86,15 +86,15 @@ jobs:
                       }
                   }
                   }
-              }' -f PROJECT_ID=$PROJECT_ID | jq '.data.node.items.nodes' > project_data.json
+              }' -f PROJECT_ID=$PROJECT_ID | jq '.data.node.items.nodes' > data/roadmap.json
           
           # commit updated project data
           - name: Commit changes
             run: |
               git config user.name "the-json-schema-bot[bot]"
               git config user.email "the-json-schema-bot[bot]@users.noreply.github.com"
-              git add project_data.json
-              git diff --quiet && git diff --staged --quiet || (git commit -m "chore(project_data): update project_data.json")
+              git add data/roadmap.json
+              git diff --quiet && git diff --staged --quiet || (git commit -m "chore(roadmap): update roadmap.json")
 
           # create a pull request
           - name: Create Pull Request
@@ -102,8 +102,8 @@ jobs:
             uses: peter-evans/create-pull-request@v7
             with:
               token: ${{ steps.get_workflow_token.outputs.token }}
-              title: 'chore(project_data): update project_data.json'
-              body: 'This PR updates the project_data.json file with the latest project data.'
+              title: 'chore(roadmap): update roadmap.json'
+              body: 'This PR updates the roadmap.json file with the latest project data.'
               branch: 'update-project-data'
               base: 'main'
               author: 'the-json-schema-bot <the-json-schema-bot[bot]@users.noreply.github.com>'
@@ -112,7 +112,7 @@ jobs:
               assignees: 'the-json-schema-bot'
               draft: false
               signoff: true
-              add-paths: 'project_data.json'
+              add-paths: 'data/roadmap.json'
 
           # Approving with github bot token because one cannot approve their own PRs
           - name: Auto Approve
