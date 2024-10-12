@@ -54,7 +54,7 @@ Are you new to the JSON Schema community? Help us review pull requests. Reviewin
 
 To work on an existing issue, go to the [JSON Schema docs board](https://github.com/orgs/json-schema-org/projects/16) and check all the open issues.  
 
-If the issue you select has no assignees, you can claim the issue by assigning it to yourself and tag @benjagm in the comments to let us know you'll be working on it. 
+If the issue you select has no assignees, you can claim the issue by assigning it to yourself and tag @json-schema-org/docs-team in the comments to let us know you'll be working on it. 
 
 If the issue you select has already an assignee, write a comment expressing your interest in collaborating with them. The JSON Schema respects the order in which people claim issues, therefore, you will have to check if the assignee is accepting collaborations.
 
@@ -66,7 +66,7 @@ To propose modifications to our documentation that do not have an issue in the [
 
 ## Create a Pull Request
 
-To submit your work to review by the community, open a draft pull request to the `main` upstream branch, and add the issue your pull request solves. Add @benjagm as a reviewer of your pull request, and let us know in the #documentation Slack channel your pull request is ready for review. 
+To submit your work to review by the community, open a draft pull request to the `main` upstream branch, and add the issue your pull request solves. Add @json-schema-org/docs-team as a reviewer of your pull request, and let us know in the #documentation Slack channel your pull request is ready for review. 
 
 The reviewers might ask for additional changes. When they approve your pull request, you can merge your changes into `main` and your contribution to the project will be complete!
 
