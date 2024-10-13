@@ -29,7 +29,6 @@ const impactColors = {
   Unknown: 'bg-gray-600 text-white dark:bg-gray-500',
 };
 
-
 export default function Roadmap() {
   const date = new Date().getFullYear();
   return (
@@ -100,14 +99,18 @@ export default function Roadmap() {
                         <div className='flex items-center justify-between text-sm'>
                           <span
                             className={`px-2 py-1 rounded ${
-                              effortColors[effort as keyof typeof effortColors] || effortColors['Unknown']
+                              effortColors[
+                                effort as keyof typeof effortColors
+                              ] || effortColors['Unknown']
                             }`}
                           >
                             Effort: {effort}
                           </span>
                           <span
                             className={`px-2 py-1 rounded ${
-                              impactColors[impact as keyof typeof impactColors] || impactColors['Unknown']
+                              impactColors[
+                                impact as keyof typeof impactColors
+                              ] || impactColors['Unknown']
                             }`}
                           >
                             Impact: {impact}
@@ -116,7 +119,8 @@ export default function Roadmap() {
                       </div>
                       <div
                         className={`px-6 py-3 ${
-                          statusColors[status as keyof typeof statusColors] || statusColors['Unknown']
+                          statusColors[status as keyof typeof statusColors] ||
+                          statusColors['Unknown']
                         }`}
                       >
                         <span className='text-sm font-semibold text-white uppercase'>
