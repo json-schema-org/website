@@ -218,7 +218,7 @@ export default function communityPages(props: any) {
               body='Explore our exciting plans and upcoming milestones. 🚀'
               headerSize='large'
               bodyTextSize='medium'
-              link='/roadmap'
+              link='/overview/roadmap'
             />
             <Card
               key='contribute'
