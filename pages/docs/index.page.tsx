@@ -7,7 +7,6 @@ import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Welcome() {
-
   const newTitle = 'Welcome';
   return (
     <SectionContext.Provider value='docs'>
