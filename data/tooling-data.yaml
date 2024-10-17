@@ -1483,8 +1483,23 @@
   lastUpdated: '2024-05-31'
 
 - name: JSON Toolkit
-  description: 'JSON Toolkit is a swiss-army knife library for expressive JSON programming in modern C++'
-  toolingTypes: ['validator', 'util-general-processing']
+  description: 'JSON Toolkit is a swiss-army knife library for expressive JSON programming in modern C++, and it comes with various JSON Schema foundational utilities, like bundling, analyzing references, and more'
+  toolingTypes: ['util-general-processing']
+  languages: ['C++']
+  maintainers:
+    - name: 'Juan Cruz Viotti'
+      username: 'jviotti'
+      platform: 'github'
+  license: 'AGPL-3.0 and Commercial'
+  source: 'https://github.com/sourcemeta/jsontoolkit'
+  supportedDialects:
+    draft: ['0', '1', '2', '3', '4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Comes with its own JSON parser'
+  lastUpdated: '2024-10-15'
+
+- name: Blaze
+  description: 'Blaze is an ultra high-performance JSON Schema validator built on the JSON Toolkit library'
+  toolingTypes: ['validator']
   languages: ['C++']
   maintainers:
     - name: 'Juan Cruz Viotti'
@@ -1494,7 +1509,6 @@
   source: 'https://github.com/sourcemeta/blaze'
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
-  toolingListingNotes: 'Comes with its own JSON parser'
   lastUpdated: '2024-10-15'
   bowtie:
     identifier: 'cpp-blaze'
