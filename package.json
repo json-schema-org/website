@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "dev-c": "rm -rf .next && rm -rf node_modules && yarn && yarn dev",
-    "build": "next build",
+    "build": "next build && next export",
     "postbuild": "next-sitemap --config next-sitemap.config.js",
     "start": "serve out",
     "export": "next export",
