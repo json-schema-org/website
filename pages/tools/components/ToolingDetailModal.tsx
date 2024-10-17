@@ -3,11 +3,7 @@ import React, { useEffect, useState } from 'react';
 import CancelIcon from '~/public/icons/cancel.svg';
 
 import Badge from './ui/Badge';
-import type {
-  BowtieEntry,
-  BowtieReport,
-  JSONSchemaTool,
-} from '../JSONSchemaTool';
+import type { JSONSchemaTool } from '../JSONSchemaTool';
 import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 
@@ -18,38 +14,12 @@ export default function ToolingDetailModal({
   tool: JSONSchemaTool;
   onClose: () => void;
 }) {
-  const [bowtieEntry, setBowtieEntry] = useState<
-    BowtieEntry | 'loading' | null
-  >('loading');
-
   useEffect(() => {
     document.body.classList.add('no-scroll');
     return () => {
       document.body.classList.remove('no-scroll');
     };
   }, []);
-
-  useEffect(() => {
-    if (tool.source) {
-      const fetchBowtieReport = async () => {
-        try {
-          const res = await fetch(
-            'https://bowtie.report/api/v1/json-schema-org/implementations',
-          );
-          const bowtieReport: BowtieReport = await res.json();
-
-          setBowtieEntry(bowtieReport[tool.source!] || null);
-        } catch (error) {
-          console.error('Error fetching Bowtie report:', error);
-          setBowtieEntry(null);
-        }
-      };
-
-      fetchBowtieReport();
-    } else {
-      setBowtieEntry(null);
-    }
-  }, [tool.source]);
 
   return (
     <div className='fixed inset-0 flex items-center justify-center z-50 overflow-x-hidden'>
@@ -246,45 +216,37 @@ export default function ToolingDetailModal({
               </div>
             )}
 
-            {bowtieEntry === 'loading' ? (
-              <div className='text-center mb-4'>
-                <p className='text-gray-600 dark:text-slate-300 text-left'>
-                  Crunching the latest Bowtie report for you...
-                </p>
+            {tool.bowtie && (
+              <div className='break-inside-avoid mb-4'>
+                <h3 className='text-lg font-semibold'>Bowtie Report</h3>
+                {tool.bowtie.badges_urls.supported_versions && (
+                  <div>
+                    <h4 className='text-[14px] font-semibold'>
+                      Supported Versions:
+                    </h4>
+                    <BowtieReportBadge
+                      uri={tool.bowtie.badges_urls.supported_versions}
+                    />
+                  </div>
+                )}
+                {tool.bowtie.badges_urls.compliance && (
+                  <div>
+                    <h4 className='text-[14px] font-semibold'>Compliance:</h4>
+                    {Object.values(tool.bowtie.badges_urls.compliance).map(
+                      (badgeURI) => (
+                        <BowtieReportBadge key={badgeURI} uri={badgeURI} />
+                      ),
+                    )}
+                  </div>
+                )}
+                <Link
+                  className='text-[14px] underline italic'
+                  href={`https://bowtie.report/#/implementations/${tool.bowtie.id}`}
+                  target='_blank'
+                >
+                  View detailed report
+                </Link>
               </div>
-            ) : (
-              bowtieEntry && (
-                <div className='break-inside-avoid mb-4'>
-                  <h3 className='text-lg font-semibold'>Bowtie Report</h3>
-                  {bowtieEntry.badges_urls.supported_versions && (
-                    <div>
-                      <h4 className='text-[14px] font-semibold'>
-                        Supported Versions:
-                      </h4>
-                      <BowtieReportBadge
-                        uri={bowtieEntry.badges_urls.supported_versions}
-                      />
-                    </div>
-                  )}
-                  {bowtieEntry.badges_urls.compliance && (
-                    <div>
-                      <h4 className='text-[14px] font-semibold'>Compliance:</h4>
-                      {Object.values(bowtieEntry.badges_urls.compliance).map(
-                        (badgeURI) => (
-                          <BowtieReportBadge key={badgeURI} uri={badgeURI} />
-                        ),
-                      )}
-                    </div>
-                  )}
-                  <Link
-                    className='text-[14px] underline italic'
-                    href={`https://bowtie.report/#/implementations/${tool.bowtie?.identifier}`}
-                    target='_blank'
-                  >
-                    View detailed report
-                  </Link>
-                </div>
-              )
             )}
 
             {tool.toolingTypes && (
@@ -323,7 +285,7 @@ export default function ToolingDetailModal({
             {tool.bowtie && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Identifier</h3>
-                <p>{tool.bowtie.identifier}</p>
+                <p>{tool.bowtie.id}</p>
               </div>
             )}
 
