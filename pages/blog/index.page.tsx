@@ -327,11 +327,11 @@ export default function StaticMarkdownPage({
                           <div
                             className={`
                               flex 
-                              ${frontmatter.authors.length > 2 ? 'flex-wrap' : 'flex-col'} 
+                              flex-col
                               items-start
                             `}
                           >
-                            <div className='text-sm font-semibold w-full'>
+                            <div className='text-sm font-semibold'>
                               {frontmatter.authors.length > 2 ? (
                                 <>
                                   {frontmatter.authors
