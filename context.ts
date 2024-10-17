@@ -19,6 +19,7 @@ export const SectionContext = React.createContext<
   | 'overview'
   | 'getting-started'
   | 'reference'
+  | 'roadmap'
 >(null);
 export const BlockContext = React.createContext<BlockContextValue | null>(null);
 export const FullMarkdownContext = React.createContext<string | null>(null);

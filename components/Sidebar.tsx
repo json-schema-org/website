@@ -109,6 +109,7 @@ const getDocsPath = [
   '/overview/use-cases',
   '/overview/code-of-conduct',
   '/overview/faq',
+  'overview/roadmap',
 ];
 const getStartedPath = [
   '/learn',
@@ -393,6 +394,7 @@ export const DocsNav = ({
             label='Code of Conduct'
             setOpen={setOpen}
           />
+          <DocLink uri='/overview/roadmap' label='Roadmap' setOpen={setOpen} />
         </div>
       </div>
       {/* Get Started */}

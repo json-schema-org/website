@@ -218,7 +218,7 @@ export default function communityPages(props: any) {
               body='Explore our exciting plans and upcoming milestones. 🚀'
               headerSize='large'
               bodyTextSize='medium'
-              link='https://github.com/orgs/json-schema-org/discussions/427'
+              link='/overview/roadmap'
             />
             <Card
               key='contribute'
