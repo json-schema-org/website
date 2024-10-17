@@ -286,14 +286,34 @@ export default function StaticMarkdownPage({
                             />
                           </div>
                         </div>
-                        <div className='flex flex-row items-center'>
-                          <div className='flex flex-row pl-2 mr-2'>
+                        <div
+                          className={`
+                            flex 
+                            flex-row
+                            items-center
+                          `}
+                        >
+                          <div
+                            className={`
+                              flex 
+                              flex-row 
+                              pl-2 
+                              mr-2
+                            `}
+                          >
                             {(frontmatter.authors || []).map(
                               (author: any, index: number) => {
                                 return (
                                   <div
                                     key={index}
-                                    className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                                    className={`bg-slate-50 
+                                      ${frontmatter.authors.length > 2 ? 'h-[32px] w-[32px]' : 'h-[44px] w-[44px]'} 
+                                      rounded-full 
+                                      -ml-3 
+                                      bg-cover 
+                                      bg-center 
+                                      border-2 
+                                      border-white`}
                                     style={{
                                       backgroundImage: `url(${author.photo})`,
                                       zIndex: 10 - index,
@@ -304,11 +324,37 @@ export default function StaticMarkdownPage({
                             )}
                           </div>
 
-                          <div className='flex flex-col items-start'>
-                            <div className='text-sm font-semibold'>
-                              {frontmatter.authors
-                                .map((author: any) => author.name)
-                                .join(' & ')}
+                          <div
+                            className={`
+                              flex 
+                              ${frontmatter.authors.length > 2 ? 'flex-wrap' : 'flex-col'} 
+                              items-start
+                            `}
+                          >
+                            <div className='text-sm font-semibold w-full'>
+                              {frontmatter.authors.length > 2 ? (
+                                <>
+                                  {frontmatter.authors
+                                    .slice(0, 2)
+                                    .map((author: any, index: number) => (
+                                      <span key={author.name}>
+                                        {author.name}
+                                        {index === 0 && ' & '}
+                                      </span>
+                                    ))}
+                                  {'...'}
+                                </>
+                              ) : (
+                                frontmatter.authors.map(
+                                  (author: any, index: number) => (
+                                    <span key={author.name}>
+                                      {author.name}
+                                      {index < frontmatter.authors.length - 1 &&
+                                        ' & '}
+                                    </span>
+                                  ),
+                                )
+                              )}
                             </div>
 
                             <div className='text-slate-500 text-sm dark:text-slate-300'>
