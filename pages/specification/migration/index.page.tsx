@@ -48,28 +48,28 @@ export default function ImplementationsPages({
           body='Details for migrations from Draft 2019-09 to 2020-12.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft/2020-12#draft-2020-12-release-notes'
+          link='/draft/2020-12/release-notes'
         />
         <Card
           title='Draft-07 to Draft 2019-09'
           body='Details for migrations from Draft-07 to 2019-09.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft/2019-09#draft-2019-09-release-notes'
+          link='/draft/2019-09/release-notes'
         />
         <Card
           title='Draft-06 to Draft-07'
           body='Details for migrations from Draft-6 to Draft-07.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft-07#draft-07-release-notes'
+          link='/draft-07/json-schema-release-notes'
         />
         <Card
           title='Draft-05 to Draft-06'
           body='Details for migrations from Draft-05 to Draft-06.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft-06#draft-06-release-notes'
+          link='/draft-06/json-schema-release-notes'
         />
       </div>
       <DocsHelp markdownFile={markdownFile} />

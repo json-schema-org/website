@@ -51,7 +51,7 @@ jobs:
       # This will run the link checker on all markdown files in the pages directory      
       - name: Link Checker
         id: lychee
-        uses: lycheeverse/lychee-action@v1
+        uses: lycheeverse/lychee-action@v2
         with:
           args: --base https://json-schema.org  --verbose --no-progress --accept 200,204,429,403  './pages/**/*.md' --cache --max-cache-age 1d  https://json-schema.org 
           token: ${{secrets.GITHUB_TOKEN}}

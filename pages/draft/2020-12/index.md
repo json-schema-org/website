@@ -52,3 +52,7 @@ _These were updated without changing functionality or meta-schemas due to a few 
 
 - Core: [draft-bhutton-json-schema-00](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-00.html) ([changes](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-00.html#rfc.appendix.G))
 - Validation: [draft-bhutton-json-schema-validation-00](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00.html) ([changes](https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00.html#rfc.appendix.C))
+
+### Release Notes
+
+- [Draft 2020-12 Release Notes](../draft/2020-12/release-notes)

@@ -15,18 +15,18 @@ In essence:
 
 ### Hyper Schema Specification
 
-- Hyper-Schema: [draft-handrews-json-schema-hyperschema-02](/draft/2019-09/draft-handrews-json-schema-hyperschema-02.html)
+- Hyper-Schema: [draft-handrews-json-schema-hyperschema-02](../draft/2019-09/json-schema-hypermedia.html)
 - Relative JSON Pointer: [draft-bhutton-relative-json-pointer-00](https://datatracker.ietf.org/doc/html/draft-bhutton-relative-json-pointer-00.html)
 
 **Schemas:**
 
-- [JSON Hyper-Schema meta-schema](/draft/2020-12/hyper-schema)
-- [JSON Hyper-Schema vocabulary schema](/draft/2020-12/meta/hyper-schema)
-- [JSON Hyper-Schema Link Description Object meta-schema](/draft/2020-12/links)
-- [JSON Schema Output schemas and examples](/draft/2019-09/output/hyper-schema)
+- [JSON Hyper-Schema meta-schema](../draft/2020-12/hyper-schema)
+- [JSON Hyper-Schema vocabulary schema](../draft/2020-12/meta/hyper-schema)
+- [JSON Hyper-Schema Link Description Object meta-schema](../draft/2020-12/links)
+- [JSON Schema Output schemas and examples](../draft/2019-09/output/hyper-schema)
 
 ### Release Notes
 
-- [Draft-07 to 2019-09](../draft/2019-09#hyper-schema-vocabulary)
-- [Draft-04 to Draft-07](../draft-07#json-hyper-schema-draft-07-release-notes)
-- [Draft-04 to Draft-06](../draft-06#json-hyper-schema-draft-06-release-notes)
+- [Draft-07 to 2019-09](../draft/2019-09/release-notes#hyper-schema-vocabulary)
+- [Draft-04 to Draft-07](../draft-07/json-hyper-schema-release-notes)
+- [Draft-04 to Draft-06](../draft-06/json-hyper-schema-release-notes)
