@@ -307,7 +307,7 @@ export default function StaticMarkdownPage({
                                   <div
                                     key={index}
                                     className={`bg-slate-50 
-                                      ${frontmatter.authors.length > 2 ? 'h-[32px] w-[32px]' : 'h-[44px] w-[44px]'} 
+                                      ${frontmatter.authors.length > 2 ? 'h-8 w-8' : 'h-11 w-11'} 
                                       rounded-full 
                                       -ml-3 
                                       bg-cover 
