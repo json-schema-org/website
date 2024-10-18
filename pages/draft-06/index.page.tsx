@@ -10,29 +10,14 @@ import { DocsHelp } from '~/components/DocsHelp';
 
 export async function getStaticProps() {
   const index = fs.readFileSync('pages/draft-06/index.md', 'utf-8');
-  const main = fs.readFileSync(
-    'pages/draft-06/json-schema-release-notes.md',
-    'utf-8',
-  );
-  const hyperSchema = fs.readFileSync(
-    'pages/draft-06/json-hyper-schema-release-notes.md',
-    'utf-8',
-  );
-  const readme = fs.readFileSync('pages/draft-06/readme.md', 'utf-8');
 
   const { content: indexContent, data: indexData } = matter(index);
-  const { content: bodyContent } = matter(main);
-  const { content: hyperSchemaContent } = matter(hyperSchema);
-  const { content: readmeContent } = matter(readme);
 
   const frontmatter = { ...indexData };
   return {
     props: {
       blocks: {
         index: indexContent,
-        body: bodyContent,
-        hyperSchema: hyperSchemaContent,
-        readme: readmeContent,
       },
       frontmatter,
     },
@@ -51,9 +36,6 @@ export default function ImplementationsPages({
       <Headline1>{frontmatter.title}</Headline1>
       <DocTable frontmatter={frontmatter} />
       <StyledMarkdown markdown={blocks.index} />
-      <StyledMarkdown markdown={blocks.body} />
-      <StyledMarkdown markdown={blocks.hyperSchema} />
-      <StyledMarkdown markdown={blocks.readme} />
       <DocsHelp />
     </SectionContext.Provider>
   );

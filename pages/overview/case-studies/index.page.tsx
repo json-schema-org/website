@@ -6,10 +6,22 @@ import { SectionContext } from '~/context';
 import data from 'data/case-studies.json';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
+import { useTheme } from 'next-themes';
 
 export default function ContentExample() {
   const newTitle = 'Case Studies';
   const markdownFile = '_indexPage';
+  const { resolvedTheme } = useTheme();
+
+  const imgUrl = (src: string): string => {
+    if (
+      resolvedTheme === 'dark' &&
+      ['github', '6river'].some((str) => src.includes(str))
+    ) {
+      return src.replace(/\.(svg)$/, '-white.$1');
+    }
+    return src;
+  };
 
   return (
     <SectionContext.Provider value='docs'>
@@ -23,13 +35,13 @@ export default function ContentExample() {
         Please replace this text with a two to three liner so that we can avoid
         the layout shifting bug.
       </p>
-      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
+      <div className='mx-auto my-[10px] mt-8 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:w-full'>
         {data.map((element, index) => (
           <Card
             key={index}
             title={element.title}
             body={element.summary}
-            image={element.logo}
+            image={imgUrl(element.logo)}
             extended={true}
             link={element.links.url}
           />

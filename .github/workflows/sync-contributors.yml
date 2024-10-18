@@ -43,22 +43,22 @@ jobs:
                 ({ login, id, avatar_url, html_url }));
               
               // Store the data in a file
-              fs.writeFileSync('community.json', JSON.stringify(data, null, 2));
+              fs.writeFileSync('data/roadmap.json', JSON.stringify(data, null, 2));
             
         - name: Commit changes
           run: |
             git config user.name "the-json-schema-bot[bot]"
             git config user.email "the-json-schema-bot[bot]@users.noreply.github.com"
-            git add community.json
-            git diff --quiet && git diff --staged --quiet || (git commit -m "chore(community): update community.json")
+            git add data/community-users.json
+            git diff --quiet && git diff --staged --quiet || (git commit -m "chore(community-users): update communit-users.json")
         
         - name: Create Pull Request
           id: cpr
           uses: peter-evans/create-pull-request@v7
           with:
             token: ${{ steps.get_workflow_token.outputs.token }}
-            title: 'chore(community): update community.json'
-            body: 'This PR updates the community.json file with the latest contributors data.'
+            title: 'chore(community-users): update community-users.json'
+            body: 'This PR updates the community-users.json file with the latest contributors data.'
             branch: 'update-contributors'
             base: 'main'
             author: 'the-json-schema-bot <the-json-schema-bot[bot]@users.noreply.github.com>'
@@ -67,7 +67,7 @@ jobs:
             assignees: 'the-json-schema-bot'
             draft: false
             signoff: true
-            add-paths: 'community.json'
+            add-paths: 'data/community-users.json'
           
         # Approving with github bot token because one cannot approve their own PRs
         - name: Auto Approve
