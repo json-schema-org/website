@@ -83,7 +83,7 @@ export default function Roadmap() {
                       <h2 className='text-2xl font-bold mb-3'>
                         {item.content.title}
                       </h2>
-                     
+
                       <div className='flex flex-wrap items-center gap-2 text-sm'>
                         <span
                           className={`px-2 py-1 rounded whitespace-nowrap ${
