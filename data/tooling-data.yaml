@@ -1467,8 +1467,6 @@
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-10-15'
-  bowtie:
-    identifier: 'cpp-blaze'
 
 - name: cypress-ajv-schema-validator
   description: 'Cypress plugin that validates API responses against Plain JSON schemas, and whole Swagger and OpenAPI documents using the Ajv JSON Schema validator. It provides a user-friendly view of validated data, highlighting each validation error and the exact reason for the mismatch. Seamless integration, fast and lightweight.'
@@ -2406,8 +2404,6 @@
     draft: ['3', '4']
   landscape:
     logo: 'justinrainbow-json-schema.png'
-  bowtie:
-    identifier: 'php-justinrainbow-json-schema'
   lastUpdated: '2024-10-01'
 
 
