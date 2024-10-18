@@ -8,7 +8,17 @@ import { SectionContext } from '~/context';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 
-export async function getStaticProps() {
+interface StaticProps {
+  blocks: {
+    index: string;
+    body?: string;
+  };
+  frontmatter: {
+    title: string;
+  };
+}
+
+export async function getStaticProps(): Promise<{ props: StaticProps }> {
   const index = fs.readFileSync(
     'pages/specification/release-notes/_index.md',
     'utf-8',
@@ -17,7 +27,7 @@ export async function getStaticProps() {
   const { content: indexContent, data: indexData } = matter(index);
   //  const { content: bodyContent } = matter(main);
 
-  const frontmatter = { ...indexData };
+  const frontmatter = { ...indexData, title: indexData.title || '' };
   return {
     props: {
       blocks: {
@@ -29,58 +39,77 @@ export async function getStaticProps() {
   };
 }
 
+interface CardProps {
+  title: string;
+  body: string;
+  headerSize: 'small';
+  bodyTextSize: 'small';
+  link: string;
+}
+
+const releaseNotes: CardProps[] = [
+  {
+    title: 'Draft 2020-12',
+    body: 'Draft 2020-12 release notes.',
+    headerSize: 'small',
+    bodyTextSize: 'small',
+    link: '/draft/2020-12/release-notes',
+  },
+  {
+    title: 'Draft 2019-09',
+    body: 'Draft 2019-09 release notes.',
+    headerSize: 'small',
+    bodyTextSize: 'small',
+    link: '/draft/2019-09/release-notes',
+  },
+  {
+    title: 'Draft 07',
+    body: 'Draft 07 release notes.',
+    headerSize: 'small',
+    bodyTextSize: 'small',
+    link: '/draft-07/json-schema-release-notes',
+  },
+  {
+    title: 'Draft 06',
+    body: 'Draft 06 release notes.',
+    headerSize: 'small',
+    bodyTextSize: 'small',
+    link: '/draft-06/json-schema-release-notes',
+  },
+  {
+    title: 'Draft 05',
+    body: 'Draft 05 release notes.',
+    headerSize: 'small',
+    bodyTextSize: 'small',
+    link: '/draft-05#explanation-for-lack-of-draft-05-meta-schema',
+  },
+];
+
 export default function ImplementationsPages({
   blocks,
   frontmatter,
-}: {
-  blocks: any;
-  frontmatter: any;
-}) {
+}: StaticProps) {
   const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={blocks.index} />
-      <StyledMarkdown markdown={blocks.body} />
+      {blocks.body && <StyledMarkdown markdown={blocks.body} />}
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
-        <Card
-          title='Draft 2020-12'
-          body='Draft 2020-12 release notes.'
-          headerSize='small'
-          bodyTextSize='small'
-          link='/draft/2020-12/release-notes'
-        />
-        <Card
-          title='Draft 2019-09'
-          body='Draft 2019-09 release notes.'
-          headerSize='small'
-          bodyTextSize='small'
-          link='/draft/2019-09/release-notes'
-        />
-        <Card
-          title='Draft 07'
-          body='Draft 07 release notes.'
-          headerSize='small'
-          bodyTextSize='small'
-          link='/draft-07/json-schema-release-notes'
-        />
-        <Card
-          title='Draft 06'
-          body='Draft 06 release notes.'
-          headerSize='small'
-          bodyTextSize='small'
-          link='/draft-06/json-schema-release-notes'
-        />
-        <Card
-          title='Draft 05'
-          body='Draft 05 release notes.'
-          headerSize='small'
-          bodyTextSize='small'
-          link='/draft-05#explanation-for-lack-of-draft-05-meta-schema'
-        />
+        {releaseNotes.map((note, index) => (
+          <Card
+            key={index}
+            title={note.title}
+            body={note.body}
+            headerSize={note.headerSize}
+            bodyTextSize={note.bodyTextSize}
+            link={note.link}
+          />
+        ))}
       </div>
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
 }
+
 ImplementationsPages.getLayout = getLayout;

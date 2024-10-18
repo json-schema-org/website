@@ -24,13 +24,23 @@ export async function getStaticProps() {
   };
 }
 
+interface ImplementationsPagesProps {
+  blocks: {
+    index: string;
+  };
+  frontmatter: {
+    title: string;
+    Specification: string;
+    Published: string;
+    authors: string[];
+    Metaschema: string;
+  };
+}
+
 export default function ImplementationsPages({
   blocks,
   frontmatter,
-}: {
-  blocks: any;
-  frontmatter: any;
-}) {
+}: ImplementationsPagesProps) {
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>

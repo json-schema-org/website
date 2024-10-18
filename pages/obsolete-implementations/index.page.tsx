@@ -34,9 +34,11 @@ export async function getStaticProps() {
     'pages/obsolete-implementations/main2.md',
     'utf-8',
   );
+
   const { content: introContent } = matter(intro);
   const { content: mainContent } = matter(main);
   const { content: main2Content } = matter(main2);
+
   return {
     props: {
       blocks: {
@@ -50,17 +52,23 @@ export async function getStaticProps() {
   };
 }
 
-type ImplementationByLanguage = { name: string };
+type ImplementationByLanguage = { name: string; implementations: any[] };
+
+interface ImplementationsPagesProps {
+  blocks: {
+    intro: string;
+    main: string;
+    main2: string;
+  };
+  validators: ImplementationByLanguage[];
+  hyperLibaries: ImplementationByLanguage[];
+}
 
 export default function ImplementationsPages({
   blocks,
   validators,
   hyperLibaries,
-}: {
-  blocks: any;
-  validators: ImplementationByLanguage[];
-  hyperLibaries: ImplementationByLanguage[];
-}) {
+}: ImplementationsPagesProps) {
   return (
     <SectionContext.Provider value='tools'>
       <div className='w-5/6 mx-auto mt-12 dark:text-slate-200'>
@@ -81,44 +89,44 @@ export default function ImplementationsPages({
     </SectionContext.Provider>
   );
 }
+
 ImplementationsPages.getLayout = getLayout;
+
+interface ImplementationTableProps {
+  implementationsByLanguage: ImplementationByLanguage[];
+  prefix: string;
+}
+
 function ImplementationTable({
   implementationsByLanguage,
   prefix,
-}: {
-  implementationsByLanguage: any;
-  prefix: string;
-}) {
+}: ImplementationTableProps) {
   const router = useRouter();
+
   return (
     <>
-      <div className='flex-row flex-wrap  grid dark:bg-slate-700  grid-cols-3 text-sm md:grid-cols-5 md:text-base lg:grid-cols-6'>
-        {implementationsByLanguage.map(
-          (implementationByLanguage: any, index: number) => {
-            const slug =
-              prefix +
-              slugify(implementationByLanguage.name, {
-                lower: true,
-                trim: true,
-              });
-            const isActive = router.query.language === slug;
-            return (
-              <a
-                key={index}
-                href={`#${slug}`}
-                className={classnames(
-                  'text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
-                  {
-                    'bg-blue-800': isActive,
-                    'bg-blue-500 hover:bg-blue-600': !isActive,
-                  },
-                )}
-              >
-                {implementationByLanguage.name}
-              </a>
-            );
-          },
-        )}
+      <div className='flex-row flex-wrap grid dark:bg-slate-700 grid-cols-3 text-sm md:grid-cols-5 md:text-base lg:grid-cols-6'>
+        {implementationsByLanguage.map((implementationByLanguage, index) => {
+          const slug =
+            prefix +
+            slugify(implementationByLanguage.name, { lower: true, trim: true });
+          const isActive = router.query.language === slug;
+          return (
+            <a
+              key={index}
+              href={`#${slug}`}
+              className={classnames(
+                'text-white rounded p-3 cursor-pointer flex items-center justify-center m-1',
+                {
+                  'bg-blue-800': isActive,
+                  'bg-blue-500 hover:bg-blue-600': !isActive,
+                },
+              )}
+            >
+              {implementationByLanguage.name}
+            </a>
+          );
+        })}
       </div>
       <div className='bg-blue-50 rounded-xl py-2 sm:p-6 p-6 mt-4 pb-6 pt-0.5 dark:bg-slate-900 overflow-x-auto'>
         <table>
@@ -138,7 +146,7 @@ function ImplementationTable({
           </thead>
           <tbody>
             {implementationsByLanguage.map(
-              (implementationByLanguage: any, index: number) => {
+              (implementationByLanguage, index) => {
                 const slug =
                   prefix +
                   slugify(implementationByLanguage.name, {
@@ -158,7 +166,7 @@ function ImplementationTable({
                       </td>
                     </tr>
                     {implementationByLanguage.implementations.map(
-                      (implementation: any, index: number) => {
+                      (implementation, index) => {
                         const allDrafts = [
                           ...(implementation['date-draft'] || []),
                           ...(implementation['draft'] || []),
@@ -166,7 +174,7 @@ function ImplementationTable({
                         return (
                           <tr
                             key={index}
-                            className='pl-4 list-disc list-inside pl-2 separation-line'
+                            className='pl-4 list-disc list-inside separation-line'
                           >
                             <td className='text-sm sm:text-base'>
                               <a
@@ -181,13 +189,12 @@ function ImplementationTable({
                             </td>
                             <td className='w-1/4 pl-3 sm:pl-6 pb-2 pt-2'>
                               {allDrafts
-                                ?.sort((a, b) =>
-                                  DRAFT_ORDER.indexOf(a.toString()) <
-                                  DRAFT_ORDER.indexOf(b.toString())
-                                    ? -1
-                                    : 1,
+                                .sort(
+                                  (a, b) =>
+                                    DRAFT_ORDER.indexOf(a.toString()) -
+                                    DRAFT_ORDER.indexOf(b.toString()),
                                 )
-                                ?.map((draft: string | number) => (
+                                .map((draft) => (
                                   <span
                                     className='bg-blue-400 dark:bg-blue-600 inline-block mr-1 mb-1 text-white rounded px-1 text-sm sm:text-base'
                                     key={draft}

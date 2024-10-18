@@ -16,25 +16,32 @@ export async function getStaticProps() {
   const { content: indexContent, data: indexData } = matter(index);
   //  const { content: bodyContent } = matter(main);
 
-  const frontmatter = { ...indexData };
   return {
     props: {
       blocks: {
         index: indexContent,
         //      body: bodyContent,
       },
-      frontmatter,
+      frontmatter: indexData,
     },
+  };
+}
+
+interface ImplementationsPagesProps {
+  blocks: {
+    index: string;
+  };
+  frontmatter: {
+    title: string;
+    type: string;
+    Specification: string;
   };
 }
 
 export default function ImplementationsPages({
   blocks,
   frontmatter,
-}: {
-  blocks: any;
-  frontmatter: any;
-}) {
+}: ImplementationsPagesProps) {
   const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value={null}>
@@ -43,7 +50,6 @@ export default function ImplementationsPages({
       <h2>{frontmatter.Specification}</h2>
 
       <StyledMarkdown markdown={blocks.index} />
-      <StyledMarkdown markdown={blocks.body} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

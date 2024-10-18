@@ -19,7 +19,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: any[] }) {
+export default function ContentExample({ blocks }: { blocks: string[] }) {
   const markdownFile = '_indexPage';
 
   return (

@@ -10,7 +10,11 @@ import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import GettingStarted from '~/components/GettingStarted';
 
-export async function getStaticProps() {
+interface StaticProps {
+  blocks: string[];
+}
+
+export async function getStaticProps(): Promise<{ props: StaticProps }> {
   const block1 = fs.readFileSync(
     'pages/learn/getting-started-step-by-step/getting-started-step-by-step.md',
     'utf-8',
@@ -28,7 +32,11 @@ export async function getStaticProps() {
   };
 }
 
-export default function StyledValidator({ blocks }: { blocks: any[] }) {
+interface StyledValidatorProps {
+  blocks: string[];
+}
+
+export default function StyledValidator({ blocks }: StyledValidatorProps) {
   const newTitle = 'Creating your first schema';
 
   return (
@@ -44,4 +52,5 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
     </SectionContext.Provider>
   );
 }
+
 StyledValidator.getLayout = getLayout;

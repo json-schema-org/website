@@ -4,9 +4,19 @@ import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import { useRouter } from 'next/router';
 import { HOST } from '~/lib/config';
 
+// Custom data type for attributes
+type Attributes = {
+  slug?: string;
+  className?: string;
+  onClick?: () => void;
+  id?: string;
+  'data-test'?: string;
+};
+
+// Update HeadlineProps type definition
 type HeadlineProps = {
   children: string | React.ReactNode[];
-  attributes?: Record<string, any>;
+  attributes?: Attributes;
 };
 
 export const Headline1 = ({ children, attributes }: HeadlineProps) => (
@@ -37,12 +47,12 @@ const Headline = ({
 }: {
   children: string | React.ReactNode[];
   Tag: React.FunctionComponent<TagProps>;
-  attributes?: Record<string, any>;
+  attributes?: Attributes;
 }) => {
   const router = useRouter();
   const [isActive, setIsActive] = useState<boolean>(false);
   const asPath = router.asPath;
-  const slug = slugifyMarkdownHeadline(children as any[]);
+  const slug = slugifyMarkdownHeadline(children as string[]);
 
   useEffect(() => {
     const hashIndex = asPath.indexOf('#');
@@ -72,6 +82,7 @@ const Headline = ({
     onClick: handleHeadingClick,
     'data-test': 'headline',
   };
+
   const childredWithoutFragment = filterFragment(children);
   return (
     <Tag attributes={attributes}>
@@ -92,7 +103,7 @@ const filterFragment = (children: string | React.ReactNode[]) => {
   });
 };
 
-type TagProps = { children: React.ReactNode; attributes: Record<string, any> };
+type TagProps = { children: React.ReactNode; attributes: Attributes };
 
 const Headline1Tag = ({ children, attributes }: TagProps) => (
   <h1

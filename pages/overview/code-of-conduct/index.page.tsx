@@ -20,7 +20,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Content({ blocks }: { blocks: any[] }) {
+export default function Content({ blocks }: { blocks: string[] }) {
   const newTitle = 'Code of Conduct';
 
   return (
