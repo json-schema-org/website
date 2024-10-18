@@ -40,8 +40,8 @@ const CardBody = ({
           <Image
             src={image}
             alt={title}
-            width={128} // Corresponds to h-32 (128px)
-            height={128} // Corresponds to h-32 (128px)
+            width={128} 
+            height={128} 
             className='h-32 p-2'
             data-test='card-image'
           />
@@ -53,8 +53,8 @@ const CardBody = ({
             <Image
               src={icon}
               alt={title}
-              width={56} // Corresponds to w-14 (56px)
-              height={56} // Corresponds to h-14 (56px)
+              width={56} 
+              height={56}
               className='h-full w-full'
               data-test='card-icon'
             />
