@@ -17,6 +17,11 @@ type Props = {
   metaTitle?: string;
   whiteBg?: boolean;
 };
+
+type StoreState = {
+  overlayNavigation: string | null;
+};
+
 // apiKey and appId are set in the .env.local file
 const algoliaAppId: string = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
 const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
@@ -29,7 +34,9 @@ export default function Layout({
   metaTitle,
   whiteBg,
 }: Props) {
-  const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
+  const showMobileNav = useStore(
+    (s: StoreState) => s.overlayNavigation === 'docs',
+  );
 
   const router = useRouter();
 
@@ -57,7 +64,7 @@ export default function Layout({
     const handleCloseNavbar = (event: MouseEvent) => {
       if (
         mobileNavRef.current &&
-        (mobileNavRef.current as any).contains(event.target)
+        mobileNavRef.current.contains(event.target as Node)
       ) {
         useStore.setState({ overlayNavigation: null });
       }
@@ -124,18 +131,16 @@ export const Search = () => {
     />
   );
 };
-/* eslint-disable @typescript-eslint/no-unused-vars */
-const MainNavLink = ({
-  uri,
-  label,
-  className,
-  isActive,
-}: {
+
+type MainNavLinkProps = {
   uri: string;
   label: string;
-  isActive: boolean;
   className?: string;
-}) => {
+  isActive: boolean;
+};
+
+/* eslint-disable @typescript-eslint/no-unused-vars */
+const MainNavLink = ({ uri, label, className, isActive }: MainNavLinkProps) => {
   const router = useRouter();
   return (
     <Link
@@ -158,7 +163,9 @@ const MainNavLink = ({
 
 const MainNavigation = () => {
   const section = useContext(SectionContext);
-  const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
+  const showMobileNav = useStore(
+    (s: StoreState) => s.overlayNavigation === 'docs',
+  );
 
   const { resolvedTheme, theme } = useTheme();
   const [icon, setIcon] = useState('');

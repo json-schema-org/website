@@ -11,16 +11,34 @@ import { DocsHelp } from '~/components/DocsHelp';
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/learn');
 }
-export async function getStaticProps(args: any) {
+
+export async function getStaticProps(args: { params: { slug: string } }) {
   return getStaticMarkdownProps(args, 'pages/learn');
+}
+
+interface Frontmatter {
+  title: string;
+  section?:
+    | 'learn'
+    | 'docs'
+    | 'implementers'
+    | 'tools'
+    | 'implementations'
+    | 'blog'
+    | 'community'
+    | 'specification'
+    | 'overview'
+    | 'getting-started'
+    | 'reference'
+    | null;
 }
 
 export default function StaticMarkdownPage({
   frontmatter,
   content,
 }: {
-  frontmatter: any;
-  content: any;
+  frontmatter: Frontmatter;
+  content: string;
 }) {
   const markdownFile = '_index';
   const newTitle = 'JSON Schema - ' + frontmatter.title;
@@ -35,4 +53,5 @@ export default function StaticMarkdownPage({
     </SectionContext.Provider>
   );
 }
+
 StaticMarkdownPage.getLayout = getLayout;

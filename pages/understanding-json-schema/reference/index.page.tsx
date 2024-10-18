@@ -19,7 +19,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: any[] }) {
+export default function ContentExample({ blocks }: { blocks: string[] }) {
   const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value='docs'>
@@ -28,4 +28,5 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
     </SectionContext.Provider>
   );
 }
+
 ContentExample.getLayout = getLayout;

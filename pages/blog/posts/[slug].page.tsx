@@ -16,17 +16,39 @@ import CarbonAds from '~/components/CarbonsAds';
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
 }
-export async function getStaticProps(args: any) {
+
+interface StaticPropsArgs {
+  params: {
+    slug: string;
+  };
+}
+
+export async function getStaticProps(args: StaticPropsArgs) {
   return getStaticMarkdownProps(args, 'pages/blog/posts');
+}
+
+interface Author {
+  name: string;
+  twitter?: string;
+  photo: string;
+}
+
+interface Frontmatter {
+  title: string;
+  date: string;
+  cover: string;
+  authors: Author[];
+}
+
+interface StaticMarkdownPageProps {
+  frontmatter: Frontmatter;
+  content: string;
 }
 
 export default function StaticMarkdownPage({
   frontmatter,
   content,
-}: {
-  frontmatter: any;
-  content: any;
-}) {
+}: StaticMarkdownPageProps) {
   const date = new Date(frontmatter.date);
   const timeToRead = Math.ceil(readingTime(content).minutes);
 
@@ -64,34 +86,30 @@ export default function StaticMarkdownPage({
                   Go back to blog
                 </Link>
                 <div className='pt-4 lg:border-t border-none lg:border-r border-slate-100'>
-                  {(frontmatter.authors || []).map(
-                    (author: any, index: number) => {
-                      return (
-                        <div
-                          key={index}
-                          className='flex flex-row items-center mb-3 w-full'
-                        >
-                          <div
-                            className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center'
-                            style={{ backgroundImage: `url(${author.photo})` }}
-                          />
-                          <div>
-                            <div className='text-sm font-semibold pl-2'>
-                              {author.name}
-                            </div>
-                            {author.twitter && (
-                              <a
-                                className='block text-sm text-blue-500 font-medium'
-                                href={`https://twitter.com/${author.twitter}`}
-                              >
-                                @{author.twitter}
-                              </a>
-                            )}
-                          </div>
+                  {(frontmatter.authors || []).map((author, index) => (
+                    <div
+                      key={index}
+                      className='flex flex-row items-center mb-3 w-full'
+                    >
+                      <div
+                        className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center'
+                        style={{ backgroundImage: `url(${author.photo})` }}
+                      />
+                      <div>
+                        <div className='text-sm font-semibold pl-2'>
+                          {author.name}
                         </div>
-                      );
-                    },
-                  )}
+                        {author.twitter && (
+                          <a
+                            className='block text-sm text-blue-500 font-medium'
+                            href={`https://twitter.com/${author.twitter}`}
+                          >
+                            @{author.twitter}
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
                 <div className='pt-4 pr-4 hidden lg:block w-full'>
                   <div className='uppercase text-xs text-slate-400 mb-4'>

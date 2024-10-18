@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, ReactNode } from 'react';
 import classnames from 'classnames';
 import { BlockContext, BlockContextValue } from '~/context';
 
-export default function Code({ children }: { children: any }) {
+export default function Code({ children }: { children: ReactNode }) {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   const blockContext = useContext(BlockContext);
   return (
