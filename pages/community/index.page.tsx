@@ -49,11 +49,9 @@ export const getStaticProps: GetStaticProps = async () => {
     }
   }
   const remoteICalUrl =
-    'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
+    'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) =>
-      printEventsForNextFourWeeks(ical.parseICS(icalData)),
-    )
+    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
   return {
     props: {
@@ -63,7 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
+function printEventsForNextWeeks(icalData: { [x: string]: any }) {
   const arrayDates = [];
   if (!icalData) {
     console.error('iCal data is empty or invalid.');
@@ -71,7 +69,7 @@ function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
   }
 
   const today = moment().startOf('day');
-  const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day');
+  const nextFourWeeksEnd = moment().add(12, 'weeks').endOf('day');
 
   for (const event of Object.values(icalData)) {
     if (event.type === 'VEVENT') {

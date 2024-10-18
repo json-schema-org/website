@@ -7,8 +7,6 @@ import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Welcome() {
-  const markdownFile = '_indexPage';
-
   const newTitle = 'Welcome';
   return (
     <SectionContext.Provider value='docs'>
@@ -58,7 +56,7 @@ export default function Welcome() {
           link='/specification'
         />
       </div>
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp />
     </SectionContext.Provider>
   );
 }
