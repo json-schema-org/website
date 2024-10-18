@@ -3,91 +3,81 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,md}',
     './components/**/*.{js,ts,jsx,tsx,md}',
   ],
-  darkMode: "class",
+  darkMode: 'class',
   safelist: [
-    "bg-yellow-600",
-    "text-white",
-    "dark:bg-yellow-500",
-    "bg-purple-600",
-    "dark:bg-purple-500",
-    "bg-blue-600",
-    "dark:bg-blue-500",
-    "bg-orange-600",
-    "dark:bg-orange-500",
-    "bg-pink-600",
-    "dark:bg-pink-500",
-    "bg-gray-600",
-    "dark:bg-gray-500",
-    "bg-green-600",
-    "dark:bg-green-500",
-    "bg-red-600",
-    "bg-blue-600",
-    "bg-emerald-600",
-    "dark:bg-emerald-500",
-    "bg-orange-600",
-    "from-blue-300",
-    "to-purple-400",
-    "dark:from-blue-400",
-    "dark:to-purple-500",
-    "from-blue-400",
-    "to-purple-500",
-    "dark:from-blue-500",
-    "dark:to-purple-600",
-    "bg-white",
-    "dark:bg-gray-800",
-    "border-gray-200",
-    "dark:border-gray-700",
-    "text-gray-900",
-    "dark:text-white",
-    "text-gray-600",
-    "dark:text-gray-400"
+    'bg-green-600',
+    'bg-purple-600',
+    'bg-blue-600',
+    'bg-red-600',
+    'bg-gray-600',
+    'text-white',
+    'dark:bg-green-500',
+    'dark:bg-purple-500',
+    'dark:bg-blue-500',
+    'dark:bg-red-500',
+    'dark:bg-gray-500',
+    'bg-yellow-600',
+    'dark:bg-yellow-500',
+    'bg-white',
+    'dark:bg-gray-800',
+    'text-gray-900',
+    'dark:text-white',
+    'border-gray-200',
+    'dark:border-gray-700',
+    'rounded-full',
+    'rounded-lg',
+    'overflow-hidden',
+    'shadow-lg',
+    'transform',
+    '-translate-y-2',
+    'rotate-45',
+    '-translate-x-2',
   ],
   theme: {
     screens: {
-      'sm': '640px',
+      sm: '640px',
       // => @media (min-width: 640px) { ... }
 
-      'md': '768px',
+      md: '768px',
       // => @media (min-width: 768px) { ... }
 
-      'lg': '1024px',
+      lg: '1024px',
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1280px',
+      xl: '1280px',
       // => @media (min-width: 1280px) { ... }
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
-      'ab1':'890px'
-
+      ab1: '890px',
     },
     fontFamily: {
-      'sans': ['Inter', 'ui-sans-serif', 'system-ui'],
-      'serif': ['ui-serif', 'Georgia'],
-      'mono': ['JetBrains Mono', 'monospace']
+      sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+      serif: ['ui-serif', 'Georgia'],
+      mono: ['JetBrains Mono', 'monospace'],
     },
     fontSize: {
       sm: '0.8rem',
       base: '16px',
       xl: '20px',
-      'h5': '20px',
-      'h4': '25px',
-      'h3': '35px',
-      'h2': '45px',
-      'h1': '60px',
-      'h1mobile': '35px',
-      'h2mobile': '28px',
-      'h3mobile': '25px',
-      'h4mobile': '22px',
-      'h5mobile': '20px'
+      h5: '20px',
+      h4: '25px',
+      h3: '35px',
+      h2: '45px',
+      h1: '60px',
+      h1mobile: '35px',
+      h2mobile: '28px',
+      h3mobile: '25px',
+      h4mobile: '22px',
+      h5mobile: '20px',
     },
-   
+
     extend: {
       backgroundImage: {
-        'gradient-radial': 'linear-gradient(72.68deg, #002CC4 28.97%, #5468FF 145.47%)',
+        'gradient-radial':
+          'linear-gradient(72.68deg, #002CC4 28.97%, #5468FF 145.47%)',
       },
       colors: {
-     
         white: '#ffffff',
         black: '#000000',
         primary: '#002CC4',
@@ -95,27 +85,27 @@ module.exports = {
         btnGold: '#AB9700',
         startBlue: '#002CC4',
         endBlue: '#5468FF',
-        linkBlue: '#3B82F6'
+        linkBlue: '#3B82F6',
       },
       gradientColorStopPositions: {
         33: '145.47%',
       },
       lineHeight: {
-        'base': '24px',
-        'header': '74px',
+        base: '24px',
+        header: '74px',
       },
       boxShadow: {
         '3xl': ' 0px 0px 20px 5px rgba(0, 0, 0, 0.05)',
         '4xl': [
           '0 35px 35px rgba(0, 0, 0, 0.25)',
-          '0 45px 65px rgba(0, 0, 0, 0.15)'
+          '0 45px 65px rgba(0, 0, 0, 0.15)',
         ],
-        'xl': ' 0px 6px 10px -4px rgba(0, 0, 0, 0.25);'
-      }
-    }
+        xl: ' 0px 6px 10px -4px rgba(0, 0, 0, 0.25);',
+      },
+    },
   },
   plugins: [],
-}
+};
 
 /*
   FONT WEIGHT
