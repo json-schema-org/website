@@ -320,7 +320,7 @@ const Footer = () => (
           src='/img/logos/logo-white.svg'
           width={150}
           height={100}
-          alt={''}
+          alt={'logo-white'}
           className='mb-6'
         />
         <div className='flex flex-col text-center sm:text-left'>
@@ -345,10 +345,10 @@ const Footer = () => (
           >
             <Image
               src='/img/logos/slack_logo_small-white.svg'
-              width={16} // Corresponds to 'w-4' in Tailwind
-              height={16} // Corresponds to 'h-4' in Tailwind
+              width={16}
+              height={16}
               className='w-4 h-4 mr-2'
-              alt='' // Empty alt is fine, but consider adding a meaningful description for accessibility
+              alt='slack_logo_small_white'
             />
             Slack
           </a>
@@ -360,10 +360,10 @@ const Footer = () => (
           >
             <Image
               src='/img/logos/x-twitter.svg'
-              width={16} // Corresponds to 'w-4' in Tailwind (4 * 4 = 16px)
-              height={16} // Corresponds to 'h-4' in Tailwind
+              width={16}
+              height={16}
               className='w-4 h-4 mr-2'
-              alt='Twitter logo' // Consider adding an alt for accessibility
+              alt='Twitter logo'
             />
             Twitter
           </a>
@@ -375,10 +375,10 @@ const Footer = () => (
           >
             <Image
               src='/img/logos/icons8-linkedin-2.svg'
-              width={16} // Corresponds to 'w-4' in Tailwind (4 * 4 = 16px)
-              height={16} // Corresponds to 'h-4' in Tailwind
+              width={16}
+              height={16}
               className='w-4 h-4 mr-2'
-              alt='LinkedIn logo' // Always good to have alt text for accessibility
+              alt='LinkedIn logo'
             />
             LinkedIn
           </a>
@@ -390,10 +390,10 @@ const Footer = () => (
           >
             <Image
               src='/img/logos/icons8-youtube.svg'
-              width={16} // Corresponds to 'w-4' in Tailwind (4 * 4 = 16px)
-              height={16} // Corresponds to 'h-4' in Tailwind
+              width={16}
+              height={16}
               className='w-4 h-4 mr-2'
-              alt='YouTube logo' // Consider adding alt text for accessibility
+              alt='YouTube logo'
             />
             Youtube
           </a>
@@ -405,10 +405,10 @@ const Footer = () => (
           >
             <Image
               src='/img/logos/github_logo-white.svg'
-              width={16} // Corresponds to 'w-4' in Tailwind (4 * 4 = 16px)
-              height={16} // Corresponds to 'h-4' in Tailwind
+              width={16}
+              height={16}
               className='w-4 h-4 mr-2'
-              alt='GitHub logo' // Adding alt text for accessibility
+              alt='GitHub logo'
             />
             GitHub
           </a>
@@ -426,7 +426,7 @@ const Footer = () => (
 
 const Logo = () => {
   const { resolvedTheme } = useTheme();
-  const [imageSrc, setImageSrc] = useState('/img/logos/logo-blue.svg'); // Default to match the server-side render
+  const [imageSrc, setImageSrc] = useState('/img/logos/logo-blue.svg');
 
   useEffect(() => {
     const src =
@@ -441,10 +441,10 @@ const Logo = () => {
       <Link href='/' className=''>
         <Image
           src={imageSrc}
-          width={170} // You can set an appropriate width based on the desired size
-          height={48} // Matches 'h-12' in Tailwind (12 * 4 = 48px)
+          width={170}
+          height={48}
           className='h-12 mr-2'
-          alt='Dynamic image' // Consider adding alt text for accessibility
+          alt='Dynamic image'
         />
       </Link>
     </div>
