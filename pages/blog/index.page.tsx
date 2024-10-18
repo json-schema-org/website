@@ -12,6 +12,12 @@ import { useRouter } from 'next/router';
 import useSetUrlParam from '~/lib/useSetUrlParam';
 import { SectionContext } from '~/context';
 
+type Author = {
+  name: string;
+  photo?: string;
+  link?: string;
+  byline?: string;
+};
 export type blogCategories =
   | 'All'
   | 'Community'
@@ -302,7 +308,7 @@ export default function StaticMarkdownPage({
                             `}
                           >
                             {(frontmatter.authors || []).map(
-                              (author: any, index: number) => {
+                              (author: Author, index: number) => {
                                 return (
                                   <div
                                     key={index}
@@ -336,7 +342,7 @@ export default function StaticMarkdownPage({
                                 <>
                                   {frontmatter.authors
                                     .slice(0, 2)
-                                    .map((author: any, index: number) => (
+                                    .map((author: Author, index: number) => (
                                       <span key={author.name}>
                                         {author.name}
                                         {index === 0 && ' & '}
@@ -346,7 +352,7 @@ export default function StaticMarkdownPage({
                                 </>
                               ) : (
                                 frontmatter.authors.map(
-                                  (author: any, index: number) => (
+                                  (author: Author, index: number) => (
                                     <span key={author.name}>
                                       {author.name}
                                       {index < frontmatter.authors.length - 1 &&
