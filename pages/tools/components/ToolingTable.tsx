@@ -12,7 +12,7 @@ import OutLinkIcon from '~/public/icons/outlink.svg';
 
 import toTitleCase from '../lib/toTitleCase';
 import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
-import type { JSONSchemaTool } from '../JSONSchemaTool';
+import type { BowtieReport, JSONSchemaTool } from '../JSONSchemaTool';
 import Badge from './ui/Badge';
 
 import ToolingDetailModal from './ToolingDetailModal';
@@ -31,6 +31,48 @@ const ToolingTable = ({
   setTransform,
 }: ToolingTableProps) => {
   const [selectedTool, setSelectedTool] = useState<JSONSchemaTool | null>(null);
+  const [bowtieReport, setBowtieReport] = useState<BowtieReport | null>(null);
+
+  useEffect(() => {
+    const fetchBowtieReport = async () => {
+      try {
+        const res = await fetch(
+          'https://bowtie.report/api/v1/json-schema-org/implementations',
+        );
+        const bowtieReport: BowtieReport = await res.json();
+        setBowtieReport(bowtieReport);
+      } catch (error) {
+        console.error('Error fetching Bowtie report:', error);
+        setBowtieReport(null);
+      }
+    };
+
+    fetchBowtieReport();
+  }, []);
+
+  const getBowtieData = (tool: JSONSchemaTool) => {
+    if (!bowtieReport || !tool.source) return null;
+
+    const cleanedSource = tool.source.replace(/^www\./, '').replace(/\/$/, '');
+
+    const exactMatch = bowtieReport[cleanedSource];
+    if (exactMatch) {
+      return exactMatch;
+    }
+
+    const rootUrlRegex = /^(https?:\/\/[^/]+\/[^/]+\/[^/]+)/;
+
+    const match = cleanedSource.match(rootUrlRegex);
+    if (match) {
+      const rootUri = match[1];
+      const rootMatch = bowtieReport[rootUri];
+      if (rootMatch) {
+        return rootMatch;
+      }
+    }
+
+    return null;
+  };
 
   const groups = Object.keys(toolsByGroup);
 
@@ -122,86 +164,94 @@ const ToolingTable = ({
                 </tr>
               </thead>
               <tbody>
-                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => (
-                  <tr
-                    key={index}
-                    className='flex w-full hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
-                    onClick={() => openModal(tool)}
-                  >
-                    <TableCell
-                      attributes={{
-                        className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : ''}`,
-                        style: {
-                          flexBasis: '240px',
-                          flexShrink: 0,
-                          flexGrow: 0,
-                        },
-                        title: 'See details',
-                      }}
+                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
+                  const bowtieData = getBowtieData(tool);
+                  if (bowtieData) {
+                    tool.bowtie = bowtieData;
+                  }
+                  return (
+                    <tr
+                      key={index}
+                      className='flex w-full hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
+                      onClick={() => openModal(tool)}
                     >
-                      {tool.name}
-                    </TableCell>
-                    {transform.groupBy !== 'toolingTypes' && (
                       <TableCell
                         attributes={{
-                          style: { flexBasis: '15%' },
+                          className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : ''}`,
+                          style: {
+                            flexBasis: '240px',
+                            flexShrink: 0,
+                            flexGrow: 0,
+                          },
+                          title: 'See details',
                         }}
                       >
-                        {tool.toolingTypes
-                          ?.map((type) => toTitleCase(type, '-'))
-                          .join(', ')}
+                        {tool.name}
                       </TableCell>
-                    )}
-                    {transform.groupBy !== 'languages' && (
+                      {transform.groupBy !== 'toolingTypes' && (
+                        <TableCell
+                          attributes={{
+                            style: { flexBasis: '15%' },
+                          }}
+                        >
+                          {tool.toolingTypes
+                            ?.map((type) => toTitleCase(type, '-'))
+                            .join(', ')}
+                        </TableCell>
+                      )}
+                      {transform.groupBy !== 'languages' && (
+                        <TableCell
+                          attributes={{
+                            style: { flexBasis: '15%' },
+                          }}
+                        >
+                          {tool.languages?.join(', ')}
+                        </TableCell>
+                      )}
                       <TableCell
                         attributes={{
-                          style: { flexBasis: '15%' },
+                          className: '!block !px-0',
+                          style: { flexBasis: '20%', flexGrow: 1 },
                         }}
                       >
-                        {tool.languages?.join(', ')}
+                        {tool.supportedDialects?.draft?.map((draft) => {
+                          return <Badge key={draft}>{draft}</Badge>;
+                        })}
                       </TableCell>
-                    )}
-                    <TableCell
-                      attributes={{
-                        className: '!block !px-0',
-                        style: { flexBasis: '20%', flexGrow: 1 },
-                      }}
-                    >
-                      {tool.supportedDialects?.draft?.map((draft) => {
-                        return <Badge key={draft}>{draft}</Badge>;
-                      })}
-                    </TableCell>
-                    <TableCell attributes={{ style: { flexBasis: '15%' } }}>
-                      {tool.license}
-                    </TableCell>
-                    <TableCell
-                      attributes={{
-                        className: 'text-center !px-0',
-                        style: {
-                          flexBasis: '70px',
-                          flexShrink: 0,
-                          flexGrow: 0,
-                        },
-                      }}
-                    >
-                      <div className='flex justify-center items-center h-full m-auto'>
-                        {tool.bowtie?.identifier ? (
-                          <a
-                            className='flex justify-center items-center h-full'
-                            href={`https://bowtie.report/#/implementations/${tool.bowtie?.identifier}`}
-                            target='blank'
-                            onClick={(event) => event.stopPropagation()}
-                            title='See at Bowtie'
-                          >
-                            <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
-                          </a>
-                        ) : (
-                          <CancelIcon className='fill-current stroke-current w-4 h-4' />
+                      <TableCell attributes={{ style: { flexBasis: '15%' } }}>
+                        {tool.license}
+                      </TableCell>
+                      <TableCell
+                        attributes={{
+                          className: 'text-center !px-0',
+                          style: {
+                            flexBasis: '70px',
+                            flexShrink: 0,
+                            flexGrow: 0,
+                          },
+                        }}
+                      >
+                        {bowtieReport && (
+                          <div className='flex justify-center items-center h-full m-auto'>
+                            {bowtieData ? (
+                              <a
+                                className='flex justify-center items-center h-full'
+                                href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                                target='blank'
+                                onClick={(event) => event.stopPropagation()}
+                                title='See at Bowtie'
+                              >
+                                <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                              </a>
+                            ) : (
+                              <CancelIcon className='fill-current stroke-current w-4 h-4' />
+                            )}
+                          </div>
                         )}
-                      </div>
-                    </TableCell>
-                  </tr>
-                ))}
+                      </TableCell>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           </div>
