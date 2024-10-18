@@ -28,7 +28,6 @@ type Element = {
 function transformMarkdownLinks(markdown: string): string {
   const linkDefinitions: Record<string, string> = {};
 
-  // Extract and remove link definitions
   markdown = markdown.replace(
     /^\[([^\]]+)\]:\s*(.+)$/gm,
     (_, key: string, value: string) => {
@@ -37,7 +36,6 @@ function transformMarkdownLinks(markdown: string): string {
     },
   );
 
-  // Replace reference-style links with inline links
   return markdown.replace(
     /\[([^\]]+)\]\[([^\]]*)\]/g,
     (_, text: string, id: string) => {
@@ -45,7 +43,7 @@ function transformMarkdownLinks(markdown: string): string {
       if (link) {
         return `[${text}](${link})`;
       }
-      return _; // Return the original string if no link is found
+      return _;
     },
   );
 }
@@ -195,16 +193,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ children, href, title, className }) => {
                 if (!href) return children;
 
-                // Check if the existing className starts with 'plausible-event-name'
                 const additionalClass =
                   className && className.startsWith('plausible-event-name')
                     ? className
                     : '';
 
-                // Define the base className
                 const baseClassName = 'text-blue-500 hover:text-blue-600';
 
-                // Combine the base className with the additionalClass if it exists
                 const combinedClassName =
                   `${baseClassName} ${additionalClass}`.trim();
 
@@ -214,16 +209,12 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       as={href}
                       href='/'
                       title={title}
-                      className={combinedClassName} // Use the combined className
+                      className={combinedClassName}
                     >
                       {children}
                     </Link>
                   ) : (
-                    <a
-                      href={href}
-                      title={title}
-                      className={combinedClassName} // Use the combined className
-                    >
+                    <a href={href} title={title} className={combinedClassName}>
                       {children}
                     </a>
                   );
@@ -298,7 +289,6 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
 
               return (
                 <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
-                  {/* definitely not the best way to prevent overflowing. found no better way that worked */}
                   <Highlight
                     language={language}
                     wrapLines={true}
@@ -357,13 +347,10 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             },
             userevent: {
               component: ({ children, type }) => {
-                // Use React.Children.map to iterate over each child element
                 const modifiedChildren = React.Children.map(
                   children,
                   (child) => {
-                    // Clone each child element
                     const clonedChild = React.cloneElement(child, {
-                      // Append the type class to the existing className
                       className: classnames(child.props.className, type),
                     });
 
@@ -378,7 +365,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ label }) => {
                 return (
                   <div className='flex flex-row items-center text-blue-500 text-lg font-semibold mb-6 mt-10'>
-                    <img src='/icons/star.svg' className='h-5 w-5 mr-2 mb-1' />
+                    <Image
+                      src='/icons/star.svg'
+                      className='h-5 w-5 mr-2 mb-1'
+                      width={20}
+                      height={20}
+                      alt={'icon-star'}
+                    />
                     {label}
                   </div>
                 );
@@ -388,7 +381,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ label }) => {
                 return (
                   <div className='inline-flex flex-row items-center text-blue-500 font-semibold'>
-                    <img src='/icons/star.svg' className='h-3 w-3 mr-1' />
+                    <Image
+                      src='/icons/star.svg'
+                      width={12}
+                      height={12}
+                      className='h-3 w-3 mr-1'
+                      alt={''}
+                    />
                     {label}
                   </div>
                 );
@@ -404,9 +403,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/info-yellow.svg'
                         className='h-7 w-7 mr-3'
+                        width={28}
+                        height={28}
                         alt=''
                       />
                       <div className='font'>{children}</div>
@@ -425,9 +426,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded dark:bg-slate-900 dark:text-slate-300 text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/info-blue.svg'
                         className='h-7 w-7 mr-3'
+                        width={28}
+                        height={28}
                         alt=''
                       />
                       <div className='font'>{children}</div>
@@ -446,9 +449,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-green-50 px-6 py-4 border border-green-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/bulb.svg'
                         className='h-7 w-7 mr-3'
+                        width={28}
+                        height={28}
                         alt=''
                       />
                       <div className='font'>{children}</div>
@@ -467,9 +472,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-red-50 px-6 py-4 border border-red-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/warning.svg'
                         className='h-7 w-7 mr-3'
+                        width={28}
+                        height={28}
                         alt=''
                       />
                       <div className='font'>{children}</div>
