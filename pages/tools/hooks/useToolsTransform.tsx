@@ -249,8 +249,8 @@ const sortTools = (
       aValue = (a.license || '').toLowerCase();
       bValue = (b.license || '').toLowerCase();
     } else if (transform.sortBy === 'bowtie') {
-      const aHasIdentifier = Boolean(a.bowtie?.identifier);
-      const bHasIdentifier = Boolean(b.bowtie?.identifier);
+      const aHasIdentifier = Boolean(a.bowtie?.id);
+      const bHasIdentifier = Boolean(b.bowtie?.id);
 
       if (transform.sortOrder === 'ascending') {
         if (aHasIdentifier && !bHasIdentifier) return -1;
@@ -260,8 +260,8 @@ const sortTools = (
         if (!aHasIdentifier && bHasIdentifier) return -1;
       }
 
-      aValue = (a.bowtie?.identifier || '').toLowerCase();
-      bValue = (b.bowtie?.identifier || '').toLowerCase();
+      aValue = (a.bowtie?.id || '').toLowerCase();
+      bValue = (b.bowtie?.id || '').toLowerCase();
     }
 
     if (aValue === undefined || bValue === undefined) {
