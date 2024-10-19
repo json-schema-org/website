@@ -4,6 +4,28 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,md}',
   ],
   darkMode: "class",
+  safelist: [
+    'flex',
+    'flex-row',
+    'items-center',
+    'pl-2',
+    'mr-2',
+    'h-8',
+    'h-11',
+    'w-8',
+    'w-11',
+    'rounded-full',
+    'bg-cover',
+    'bg-center',
+    'border-2',
+    'border-white',
+    '-ml-3',
+    'text-sm',
+    'font-semibold',
+    'text-slate-500',
+    'dark:text-slate-300',
+    // Add other dynamic classes if needed
+  ],
   theme: {
     screens: {
       'sm': '640px',
@@ -20,7 +42,7 @@ module.exports = {
 
       '2xl': '1536px',
       // => @media (min-width: 1536px) { ... }
-      'ab1':'890px'
+      'ab1': '890px'
 
     },
     fontFamily: {
@@ -43,13 +65,13 @@ module.exports = {
       'h4mobile': '22px',
       'h5mobile': '20px'
     },
-   
+
     extend: {
       backgroundImage: {
         'gradient-radial': 'linear-gradient(72.68deg, #002CC4 28.97%, #5468FF 145.47%)',
       },
       colors: {
-     
+
         white: '#ffffff',
         black: '#000000',
         primary: '#002CC4',
