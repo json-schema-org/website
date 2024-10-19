@@ -42,7 +42,7 @@ export default function Roadmap() {
         <title>{newTitle}</title>
       </Head>
       <Headline1>{newTitle}</Headline1>
-      <div className='text-md '>
+      <div className='text-md'>
         Our "Roadmap" section displays our key objectives for the long term.
         While this roadmap provides a detailed outlook for the near future,
         please note that it might be subject to change. In fact, we are
@@ -72,7 +72,7 @@ export default function Roadmap() {
                   (node) => node.field?.name === 'Category',
                 )?.name || 'Uncategorized';
               const effort =
-                item.fieldValues.nodes.find( 
+                item.fieldValues.nodes.find(
                   (node) => node.field?.name === 'Effort',
                 )?.name || 'Unknown';
               const impact =
@@ -80,13 +80,23 @@ export default function Roadmap() {
                   (node) => node.field?.name === 'Impact',
                 )?.name || 'Unknown';
 
+              const effortClass =
+                effortColors[effort as keyof typeof effortColors] ||
+                effortColors['Unknown'];
+              const impactClass =
+                impactColors[impact as keyof typeof impactColors] ||
+                impactColors['Unknown'];
+              const statusClass =
+                statusColors[status as keyof typeof statusColors] ||
+                statusColors['Unknown'];
+
               return (
                 <div key={item.id} className='relative z-10 mb-12 pl-8'>
                   <div className='absolute -left-4 top-6 w-8 h-8 bg-blue-600 rounded-full z-10 flex items-center justify-center'>
                     <div className='w-4 h-4 bg-white dark:bg-gray-800 rounded-full'></div>
                   </div>
 
-                  <div className='bg-white dark:bg-gray-800 relative z-10  w-full rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg'>
+                  <div className='bg-white dark:bg-gray-800 relative z-10 w-full rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg'>
                     <div className='p-6'>
                       <span className='inline-block px-3 py-1 text-sm font-semibold text-white bg-blue-600 rounded-full mb-4'>
                         {category}
@@ -97,29 +107,18 @@ export default function Roadmap() {
 
                       <div className='flex flex-wrap items-center gap-2 text-sm'>
                         <span
-                          className={`px-2 py-1 rounded whitespace-nowrap ${
-                            effortColors[effort as keyof typeof effortColors] ||
-                            effortColors['Unknown']
-                          }`}
+                          className={`px-2 py-1 rounded whitespace-nowrap ${effortClass}`}
                         >
                           Effort: {effort}
                         </span>
                         <span
-                          className={`px-2 py-1 rounded whitespace-nowrap ${
-                            impactColors[impact as keyof typeof impactColors] ||
-                            impactColors['Unknown']
-                          }`}
+                          className={`px-2 py-1 rounded whitespace-nowrap ${impactClass}`}
                         >
                           Impact: {impact}
                         </span>
                       </div>
                     </div>
-                    <div
-                      className={`px-6 py-3 ${
-                        statusColors[status as keyof typeof statusColors] ||
-                        statusColors['Unknown']
-                      }`}
-                    >
+                    <div className={`px-6 py-3 ${statusClass}`}>
                       <span className='text-sm font-semibold text-white uppercase'>
                         {status}
                       </span>
