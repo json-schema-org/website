@@ -6,6 +6,10 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { DocsHelp } from '~/components/DocsHelp';
 import { SectionContext } from '~/context';
 
+interface ContentExampleProps {
+  blocks: string[];
+}
+
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
     'pages/understanding-json-schema/_index.md',
@@ -19,7 +23,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: string[] }) {
+export default function ContentExample({ blocks }: ContentExampleProps) {
   const markdownFile = '_indexPage';
 
   return (

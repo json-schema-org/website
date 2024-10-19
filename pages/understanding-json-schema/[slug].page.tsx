@@ -8,12 +8,10 @@ import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 import { SectionContext } from '~/context';
 
-export async function getStaticPaths() {
-  return getStaticMarkdownPaths('pages/understanding-json-schema');
-}
-
-export async function getStaticProps(args: { params: { slug: string } }) {
-  return getStaticMarkdownProps(args, 'pages/understanding-json-schema');
+interface StaticPropsArgs {
+  params: {
+    slug: string;
+  };
 }
 
 interface Frontmatter {
@@ -36,6 +34,14 @@ interface Frontmatter {
 interface StaticMarkdownPageProps {
   frontmatter: Frontmatter;
   content: string;
+}
+
+export async function getStaticPaths() {
+  return getStaticMarkdownPaths('pages/understanding-json-schema');
+}
+
+export async function getStaticProps(args: StaticPropsArgs) {
+  return getStaticMarkdownProps(args, 'pages/understanding-json-schema');
 }
 
 export default function StaticMarkdownPage({

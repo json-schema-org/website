@@ -14,6 +14,18 @@ import { DRAFT_ORDER } from '~/lib/config';
 // @ts-ignore
 import zeroFill from 'zero-fill';
 
+type ImplementationByLanguage = { name: string; implementations: any[] };
+
+interface ImplementationsPagesProps {
+  blocks: {
+    intro: string;
+    main: string;
+    main2: string;
+  };
+  validators: ImplementationByLanguage[];
+  hyperLibaries: ImplementationByLanguage[];
+}
+
 export async function getStaticProps() {
   const validators = yaml.load(
     fs.readFileSync('data/validator-libraries-obsolete.yml', 'utf-8'),
@@ -50,18 +62,6 @@ export async function getStaticProps() {
       hyperLibaries,
     },
   };
-}
-
-type ImplementationByLanguage = { name: string; implementations: any[] };
-
-interface ImplementationsPagesProps {
-  blocks: {
-    intro: string;
-    main: string;
-    main2: string;
-  };
-  validators: ImplementationByLanguage[];
-  hyperLibaries: ImplementationByLanguage[];
 }
 
 export default function ImplementationsPages({

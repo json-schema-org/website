@@ -18,6 +18,14 @@ interface StaticProps {
   };
 }
 
+interface CardProps {
+  title: string;
+  body: string;
+  headerSize: 'small';
+  bodyTextSize: 'small';
+  link: string;
+}
+
 export async function getStaticProps(): Promise<{ props: StaticProps }> {
   const index = fs.readFileSync(
     'pages/specification/release-notes/_index.md',
@@ -37,14 +45,6 @@ export async function getStaticProps(): Promise<{ props: StaticProps }> {
       frontmatter,
     },
   };
-}
-
-interface CardProps {
-  title: string;
-  body: string;
-  headerSize: 'small';
-  bodyTextSize: 'small';
-  link: string;
 }
 
 const releaseNotes: CardProps[] = [
@@ -94,7 +94,7 @@ export default function ImplementationsPages({
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={blocks.index} />
-      {blocks.body && <StyledMarkdown markdown={blocks.body} />}
+      <StyledMarkdown markdown={blocks.body} />
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {releaseNotes.map((note, index) => (
           <Card

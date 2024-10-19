@@ -4,7 +4,6 @@ import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import { useRouter } from 'next/router';
 import { HOST } from '~/lib/config';
 
-// Custom data type for attributes
 type Attributes = {
   slug?: string;
   className?: string;
@@ -13,9 +12,14 @@ type Attributes = {
   'data-test'?: string;
 };
 
-// Update HeadlineProps type definition
 type HeadlineProps = {
   children: string | React.ReactNode[];
+  attributes?: Attributes;
+};
+
+type HeadlineTagProps = {
+  children: string | React.ReactNode[];
+  Tag: React.FunctionComponent<TagProps>;
   attributes?: Attributes;
 };
 
@@ -44,11 +48,7 @@ const Headline = ({
   children,
   Tag,
   attributes: propAttributes,
-}: {
-  children: string | React.ReactNode[];
-  Tag: React.FunctionComponent<TagProps>;
-  attributes?: Attributes;
-}) => {
+}: HeadlineTagProps) => {
   const router = useRouter();
   const [isActive, setIsActive] = useState<boolean>(false);
   const asPath = router.asPath;

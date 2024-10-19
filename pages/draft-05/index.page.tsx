@@ -8,6 +8,21 @@ import DocTable from '~/components/DocTable';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface ImplementationsPagesProps {
+  blocks: {
+    index: string;
+    body: string;
+  };
+  frontmatter: {
+    title: string;
+    type: string;
+    Specification: string;
+    Published: string;
+    authors: string[];
+    Metaschema: string;
+  };
+}
+
 export async function getStaticProps() {
   const index = fs.readFileSync('pages/draft-05/index.md', 'utf-8');
   const main = fs.readFileSync('pages/draft-05/release-notes.md', 'utf-8');
@@ -23,21 +38,6 @@ export async function getStaticProps() {
       },
       frontmatter,
     },
-  };
-}
-
-interface ImplementationsPagesProps {
-  blocks: {
-    index: string;
-    body: string;
-  };
-  frontmatter: {
-    title: string;
-    type: string;
-    Specification: string;
-    Published: string;
-    authors: string[];
-    Metaschema: string;
   };
 }
 

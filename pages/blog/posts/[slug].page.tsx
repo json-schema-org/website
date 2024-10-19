@@ -13,20 +13,6 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import CarbonAds from '~/components/CarbonsAds';
 
-export async function getStaticPaths() {
-  return getStaticMarkdownPaths('pages/blog/posts');
-}
-
-interface StaticPropsArgs {
-  params: {
-    slug: string;
-  };
-}
-
-export async function getStaticProps(args: StaticPropsArgs) {
-  return getStaticMarkdownProps(args, 'pages/blog/posts');
-}
-
 interface Author {
   name: string;
   twitter?: string;
@@ -43,6 +29,20 @@ interface Frontmatter {
 interface StaticMarkdownPageProps {
   frontmatter: Frontmatter;
   content: string;
+}
+
+interface StaticPropsArgs {
+  params: {
+    slug: string;
+  };
+}
+
+export async function getStaticPaths() {
+  return getStaticMarkdownPaths('pages/blog/posts');
+}
+
+export async function getStaticProps(args: StaticPropsArgs) {
+  return getStaticMarkdownProps(args, 'pages/blog/posts');
 }
 
 export default function StaticMarkdownPage({

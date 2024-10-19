@@ -8,6 +8,10 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface ContentExampleProps {
+  blocks: string[];
+}
+
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/overview/sponsors/_index.md', 'utf-8');
   const { content: block1Content } = matter(block1);
@@ -18,7 +22,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: string[] }) {
+export default function ContentExample({ blocks }: ContentExampleProps) {
   const newTitle = 'Sponsors';
 
   return (

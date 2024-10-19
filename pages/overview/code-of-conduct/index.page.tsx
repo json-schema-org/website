@@ -7,6 +7,10 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface ContentProps {
+  blocks: string[];
+}
+
 export async function getStaticProps() {
   const block = fs.readFileSync(
     'pages/overview/code-of-conduct/_index.md',
@@ -20,7 +24,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Content({ blocks }: { blocks: string[] }) {
+export default function Content({ blocks }: ContentProps) {
   const newTitle = 'Code of Conduct';
 
   return (

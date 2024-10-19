@@ -8,20 +8,6 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 
-export async function getStaticPaths() {
-  return getStaticMarkdownPaths('pages/draft-07');
-}
-
-interface StaticPropsArgs {
-  params: {
-    slug: string;
-  };
-}
-
-export async function getStaticProps(args: StaticPropsArgs) {
-  return getStaticMarkdownProps(args, 'pages/draft-07');
-}
-
 interface Frontmatter {
   title: string;
   section?:
@@ -42,6 +28,20 @@ interface Frontmatter {
 interface StaticMarkdownPageProps {
   frontmatter: Frontmatter;
   content: string;
+}
+
+interface StaticPropsArgs {
+  params: {
+    slug: string;
+  };
+}
+
+export async function getStaticPaths() {
+  return getStaticMarkdownPaths('pages/draft-07');
+}
+
+export async function getStaticProps(args: StaticPropsArgs) {
+  return getStaticMarkdownProps(args, 'pages/draft-07');
 }
 
 export default function StaticMarkdownPage({

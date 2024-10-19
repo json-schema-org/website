@@ -7,6 +7,17 @@ import { SectionContext } from '~/context';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface ImplementationsPagesProps {
+  blocks: {
+    index: string;
+  };
+  frontmatter: {
+    title: string;
+    type: string;
+    Specification: string;
+  };
+}
+
 export async function getStaticProps() {
   const index = fs.readFileSync(
     'pages/specification/json-hyper-schema/_index.md',
@@ -16,25 +27,15 @@ export async function getStaticProps() {
   const { content: indexContent, data: indexData } = matter(index);
   //  const { content: bodyContent } = matter(main);
 
+  const frontmatter = { ...indexData };
   return {
     props: {
       blocks: {
         index: indexContent,
         //      body: bodyContent,
       },
-      frontmatter: indexData,
+      frontmatter,
     },
-  };
-}
-
-interface ImplementationsPagesProps {
-  blocks: {
-    index: string;
-  };
-  frontmatter: {
-    title: string;
-    type: string;
-    Specification: string;
   };
 }
 

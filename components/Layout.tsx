@@ -22,6 +22,13 @@ type StoreState = {
   overlayNavigation: string | null;
 };
 
+type MainNavLinkProps = {
+  uri: string;
+  label: string;
+  className?: string;
+  isActive: boolean;
+};
+
 // apiKey and appId are set in the .env.local file
 const algoliaAppId: string = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
 const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
@@ -132,15 +139,8 @@ export const Search = () => {
   );
 };
 
-type MainNavLinkProps = {
-  uri: string;
-  label: string;
-  className?: string;
-  isActive: boolean;
-};
-
 /* eslint-disable @typescript-eslint/no-unused-vars */
-const MainNavLink = ({ uri, label, className, isActive }: MainNavLinkProps) => {
+const MainNavLink = ({ uri, label, className }: MainNavLinkProps) => {
   const router = useRouter();
   return (
     <Link

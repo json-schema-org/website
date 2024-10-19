@@ -14,6 +14,10 @@ interface StaticProps {
   blocks: string[];
 }
 
+interface StyledValidatorProps {
+  blocks: string[];
+}
+
 export async function getStaticProps(): Promise<{ props: StaticProps }> {
   const block1 = fs.readFileSync(
     'pages/learn/getting-started-step-by-step/getting-started-step-by-step.md',
@@ -30,10 +34,6 @@ export async function getStaticProps(): Promise<{ props: StaticProps }> {
       blocks: [block1Content, block2Content],
     },
   };
-}
-
-interface StyledValidatorProps {
-  blocks: string[];
 }
 
 export default function StyledValidator({ blocks }: StyledValidatorProps) {

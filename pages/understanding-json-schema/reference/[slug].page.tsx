@@ -8,15 +8,10 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 
-export async function getStaticPaths() {
-  return getStaticMarkdownPaths('pages/understanding-json-schema/reference');
-}
-
-export async function getStaticProps(args: { params: { slug: string } }) {
-  return getStaticMarkdownProps(
-    args,
-    'pages/understanding-json-schema/reference',
-  );
+interface StaticPropsArgs {
+  params: {
+    slug: string;
+  };
 }
 
 interface Frontmatter {
@@ -39,6 +34,17 @@ interface Frontmatter {
 interface StaticMarkdownPageProps {
   frontmatter: Frontmatter;
   content: string;
+}
+
+export async function getStaticPaths() {
+  return getStaticMarkdownPaths('pages/understanding-json-schema/reference');
+}
+
+export async function getStaticProps(args: StaticPropsArgs) {
+  return getStaticMarkdownProps(
+    args,
+    'pages/understanding-json-schema/reference',
+  );
 }
 
 export default function StaticMarkdownPage({

@@ -8,6 +8,16 @@ import { SectionContext } from '~/context';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface ImplementationsPagesProps {
+  blocks: {
+    index: string;
+    body: string;
+  };
+  frontmatter: {
+    title: string;
+  };
+}
+
 export async function getStaticProps() {
   const index = fs.readFileSync(
     'pages/specification/migration/_index.md',
@@ -17,23 +27,15 @@ export async function getStaticProps() {
   const { content: indexContent, data: indexData } = matter(index);
   //  const { content: bodyContent } = matter(main);
 
+  const frontmatter = { ...indexData };
   return {
     props: {
       blocks: {
         index: indexContent,
         //      body: bodyContent,
       },
-      frontmatter: indexData,
+      frontmatter,
     },
-  };
-}
-
-interface ImplementationsPagesProps {
-  blocks: {
-    index: string;
-  };
-  frontmatter: {
-    title: string;
   };
 }
 
@@ -47,6 +49,7 @@ export default function ImplementationsPages({
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={blocks.index} />
+      <StyledMarkdown markdown={blocks.body} />
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         <Card
           title='Draft 2019-09 to Draft 2020-12'
