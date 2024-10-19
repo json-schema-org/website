@@ -33,25 +33,34 @@ const impactColors = {
 };
 
 export default function Roadmap() {
-  const newTitle = 'Roadmap';
+  const newTitle = 'JSON Schema Roadmap';
   const markdownFile = '_indexPage';
-  const date = new Date().getFullYear();
 
   return (
     <SectionContext.Provider value='docs'>
       <Head>
         <title>{newTitle}</title>
       </Head>
-      <Headline1>
-        {newTitle} {date}
-      </Headline1>
-      <p>
-        Our "Roadmap" section displays our key objectives for the long term. While this roadmap provides a detailed outlook for the near future, please note that it might be subject to change. In fact, we are currently [discussing](https://github.com/orgs/json-schema-org/discussions/813) the new priorities for the next 24-month cycle, which will lead to relevant changes. Please consider joining the discussion to become an active part of JSON Schema's future!
-      </p>
+      <Headline1>{newTitle}</Headline1>
+      <div className='text-md '>
+        Our "Roadmap" section displays our key objectives for the long term.
+        While this roadmap provides a detailed outlook for the near future,
+        please note that it might be subject to change. In fact, we are
+        currently{' '}
+        <a
+          className='text-blue-600 underline'
+          href='https://github.com/orgs/json-schema-org/discussions/813'
+        >
+          discussing
+        </a>{' '}
+        the new priorities for the next 24-month cycle, which will lead to
+        relevant changes. Please consider joining the discussion to become an
+        active part of JSON Schema's future!
+      </div>
       <div className='text-gray-900 dark:text-white'>
-        <div className='container mt-20 mx-auto px-4'>
+        <div className='container mt-14 mx-auto px-4'>
           <div className='relative'>
-            <div className='absolute left-4 top-0 bottom-0 w-0.5 bg-blue-600'></div>
+            <div className='absolute left-0 top-0 bottom-0 w-0.5 bg-blue-600'></div>
 
             {roadmap.map((item) => {
               const status =
@@ -63,7 +72,7 @@ export default function Roadmap() {
                   (node) => node.field?.name === 'Category',
                 )?.name || 'Uncategorized';
               const effort =
-                item.fieldValues.nodes.find(
+                item.fieldValues.nodes.find( 
                   (node) => node.field?.name === 'Effort',
                 )?.name || 'Unknown';
               const impact =
@@ -73,11 +82,11 @@ export default function Roadmap() {
 
               return (
                 <div key={item.id} className='relative z-10 mb-12 pl-8'>
-                  <div className='absolute left-0 top-6 w-8 h-8 bg-blue-600 rounded-full z-10 flex items-center justify-center'>
+                  <div className='absolute -left-4 top-6 w-8 h-8 bg-blue-600 rounded-full z-10 flex items-center justify-center'>
                     <div className='w-4 h-4 bg-white dark:bg-gray-800 rounded-full'></div>
                   </div>
 
-                  <div className='bg-white dark:bg-gray-800 relative z-10 mx-2 w-full rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg'>
+                  <div className='bg-white dark:bg-gray-800 relative z-10  w-full rounded-lg overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg'>
                     <div className='p-6'>
                       <span className='inline-block px-3 py-1 text-sm font-semibold text-white bg-blue-600 rounded-full mb-4'>
                         {category}
