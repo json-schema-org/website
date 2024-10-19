@@ -1,5 +1,5 @@
 ---
-title: "Type-specific keywords"
+title: 'Type-specific keywords'
 section: docs
 ---
 
@@ -8,13 +8,13 @@ type for a schema.
 
 At its core, JSON Schema defines the following basic types:
 
-* [string](../../understanding-json-schema/reference/string)
-* [number](../../understanding-json-schema/reference/numeric#number)
-* [integer](../../understanding-json-schema/reference/numeric#integer)
-* [object](../../understanding-json-schema/reference/object)
-* [array](../../understanding-json-schema/reference/array)
-* [boolean](../../understanding-json-schema/reference/boolean)
-* [null](../../understanding-json-schema/reference/null)
+- [string](../../understanding-json-schema/reference/string)
+- [number](../../understanding-json-schema/reference/numeric#number)
+- [integer](../../understanding-json-schema/reference/numeric#integer)
+- [object](../../understanding-json-schema/reference/object)
+- [array](../../understanding-json-schema/reference/array)
+- [boolean](../../understanding-json-schema/reference/boolean)
+- [null](../../understanding-json-schema/reference/null)
 
 These types have analogs in most programming languages, though they may
 go by different names.
@@ -26,14 +26,14 @@ go by different names.
 The following table maps from the names of JSON types to their
 analogous types in Python:
 
-| JSON    | Python       |
-|---------|--------------|
-| string  | string *1    |
-| number  | int/float *2 |
-| object  | dict         |
-| array   | list         |
-| boolean | bool         |
-| null    | None         |
+| JSON    | Python        |
+| ------- | ------------- |
+| string  | string \*1    |
+| number  | int/float \*2 |
+| object  | dict          |
+| array   | list          |
+| boolean | bool          |
+| null    | None          |
 
 #### Footnotes
 
@@ -50,9 +50,9 @@ The following table maps from the names of JSON types to their
 analogous types in Ruby:
 
 | JSON    | Ruby                 |
-|---------|----------------------|
+| ------- | -------------------- |
 | string  | String               |
-| number  | Integer/Float *3     |
+| number  | Integer/Float \*3    |
 | object  | Hash                 |
 | array   | Array                |
 | boolean | TrueClass/FalseClass |
@@ -69,7 +69,7 @@ The following table maps from the names of JSON types to
 their analogous types in Objective-C:
 
 | JSON    | Perl                                             |
-|---------|--------------------------------------------------|
+| ------- | ------------------------------------------------ |
 | string  | scalar (SV)                                      |
 | number  | scalar (NV or IV), or Math::BigNum, Math::BigInt |
 | object  | reftype=HASH                                     |
@@ -83,13 +83,13 @@ The following table maps from the names of JavaScript types to
 their analogous types in Objective-C:
 
 | JSON    | Objective-C  |
-|---------|--------------|
+| ------- | ------------ |
 | string  | NSString     |
 | number  | NSNumber     |
 | object  | NSDictionary |
 | array   | NSArray      |
 | boolean | NSNumber     |
-|         | [#4]_        |
+|         | [#4]\_       |
 | null    | NSNull       |
 
 #### Footnotes
@@ -104,10 +104,10 @@ The following table maps from the names of JavaScript types to
 their analogous types in Swift:
 
 | JSON    | Swift      |
-|---------|------------|
+| ------- | ---------- |
 | string  | String     |
 | number  | Int/Double |
-|         | [#5]_      |
+|         | [#5]\_     |
 | object  | Dictionary |
 | array   | Array      |
 | boolean | Bool       |
@@ -116,18 +116,18 @@ their analogous types in Swift:
 #### Footnotes
 
 [#5] While JavaScript does not have separate types for integer and
-floating-point, Swift ``JSONDecoder`` throws an error on attempt
-to decode ``Int`` from a non-integer number in JSON.
+floating-point, Swift `JSONDecoder` throws an error on attempt
+to decode `Int` from a non-integer number in JSON.
 
 [tabs-end]
 
 The `type` keyword may either be a string or an array:
 
--   If it\'s a string, it is the name of one of the basic types above.
--   If it is an array, it must be an array of strings, where each string
-    is the name of one of the basic types, and each element is unique.
-    In this case, the JSON snippet is valid if it matches *any* of the
-    given types.
+- If it\'s a string, it is the name of one of the basic types above.
+- If it is an array, it must be an array of strings, where each string
+  is the name of one of the basic types, and each element is unique.
+  In this case, the JSON snippet is valid if it matches _any_ of the
+  given types.
 
 Here is a simple example of using the `type` keyword:
 
@@ -140,6 +140,7 @@ Here is a simple example of using the `type` keyword:
 // props { "indent": true, "valid": true }
 42
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 42.0
@@ -157,14 +158,17 @@ structured data types:
 // props { "isSchema": true }
 { "type": ["number", "string"] }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 42
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "Life, the universe, and everything"
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 ["Life", "the universe", "and everything"]

@@ -14,7 +14,7 @@ authors:
   - name: Valeria Hernandez
     photo: /img/avatars/valeria.webp
     byline: Technical Writter Google Season of Docs
-  - name: Dhairya Amrish Majmudar 
+  - name: Dhairya Amrish Majmudar
     photo: /img/avatars/dhairya.webp
     byline: Software Engineer Google Season of Docs
   - name: Benjamin Granados
@@ -33,20 +33,20 @@ The main goal of JSON Schema's [documentation project](https://github.com/orgs/j
 
 ## The GSoD project accomplishments
 
-Since May, the team ([Valeria Hernandez](https://www.linkedin.com/in/valeriahhdez/), [Blessing Ene Anyebe](https://www.linkedin.com/in/anyebe-blessing-ene-kwennb/), [Dhairya Amrish Majmudar](https://www.linkedin.com/in/dhairya-majmudar/), and [Benjamin Granados](https://www.linkedin.com/in/benjagranados/)) has been working hard to achieve these goals. On the part of documentation, we have completed the following: 
+Since May, the team ([Valeria Hernandez](https://www.linkedin.com/in/valeriahhdez/), [Blessing Ene Anyebe](https://www.linkedin.com/in/anyebe-blessing-ene-kwennb/), [Dhairya Amrish Majmudar](https://www.linkedin.com/in/dhairya-majmudar/), and [Benjamin Granados](https://www.linkedin.com/in/benjagranados/)) has been working hard to achieve these goals. On the part of documentation, we have completed the following:
 
 - Conducted a thorough content audit
 - Mapped out the [developer experience journey](<(https://www.figma.com/board/TRjQUw33K93y8RlJMSRkJs/JSON-dev-journey?node-id=0-1&t=gYkdGtHk2sKrCQM0-0)>)
 - Implemented the [keywords page](https://json-schema.org/understanding-json-schema/keywords)
 - Restructured the [specification docs](https://github.com/json-schema-org/website/pull/823)
 
-The team has also introduced changes to the website, like a table of contents and a [Next-Previous](https://github.com/json-schema-org/website/pull/807) component that aim to improve content scannability and navigation. 
+The team has also introduced changes to the website, like a table of contents and a [Next-Previous](https://github.com/json-schema-org/website/pull/807) component that aim to improve content scannability and navigation.
 
 ## The road ahead
 
-So, what's pending? We're currently working on the [JSON Hyper-Schema](https://github.com/json-schema-org/website/issues/896) and [Migration pages](https://github.com/json-schema-org/website/issues/897), which are part of the specification docs. 
+So, what's pending? We're currently working on the [JSON Hyper-Schema](https://github.com/json-schema-org/website/issues/896) and [Migration pages](https://github.com/json-schema-org/website/issues/897), which are part of the specification docs.
 
-We're also documenting [guidelines for docs contributions and text formatting](https://github.com/json-schema-org/website/pull/902), documenting missing keywords (see issues [951](https://github.com/json-schema-org/website/issues/951), [952](https://github.com/json-schema-org/website/issues/952), and [961](https://github.com/json-schema-org/website/issues/961)), and writing step-by-step guides (see issues [180](https://github.com/json-schema-org/website/issues/180), [950](https://github.com/json-schema-org/website/issues/950), and [954](https://github.com/json-schema-org/website/issues/954)). 
+We're also documenting [guidelines for docs contributions and text formatting](https://github.com/json-schema-org/website/pull/902), documenting missing keywords (see issues [951](https://github.com/json-schema-org/website/issues/951), [952](https://github.com/json-schema-org/website/issues/952), and [961](https://github.com/json-schema-org/website/issues/961)), and writing step-by-step guides (see issues [180](https://github.com/json-schema-org/website/issues/180), [950](https://github.com/json-schema-org/website/issues/950), and [954](https://github.com/json-schema-org/website/issues/954)).
 
 ## Conclusion
 
@@ -63,4 +63,3 @@ We appreciate your interest in the JSON Schema documentation project and look fo
 **The JSON Schema's Google Season of Docs Team.**
 
 Photo by <a href="https://unsplash.com/@miinyuii?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Duy Pham</a> on <a href="https://unsplash.com/photos/people-holding-shoulders-sitting-on-wall-Cecb0_8Hx-o?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-  

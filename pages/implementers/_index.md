@@ -1,9 +1,8 @@
 ---
-title: "For Implementers"
+title: 'For Implementers'
 section: docs
 ---
 
-For Implementers
-=========================
+# For Implementers
 
 Welcome to the **Implementers** section! The place for implementation maintainers' Docs.

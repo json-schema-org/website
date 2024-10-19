@@ -1,5 +1,5 @@
 ---
-title: "Constant values"
+title: 'Constant values'
 section: docs
 ---
 
@@ -20,10 +20,12 @@ export reasons:
   }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "country": "United States of America" }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 { "country": "Canada" }

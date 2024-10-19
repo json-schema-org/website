@@ -21,17 +21,17 @@ The example we use in this guide is a product catalog that stores its data using
 {
   "productId": 1,
   "productName": "A green door",
-  "price": 12.50,
-  "tags": [ "home", "green" ]
+  "price": 12.5,
+  "tags": ["home", "green"]
 }
 ```
 
 Each product in the catalog has:
 
-* `productId`: an identifier for the product
-* `productName`: the product name
-* `price`: the cost to the consumer
-* `tags`: an optional array of identifying tags
+- `productId`: an identifier for the product
+- `productName`: the product name
+- `price`: the cost to the consumer
+- `tags`: an optional array of identifying tags
 
 The JSON object is human-readable, but it doesn’t include any context or metadata. There’s no way to tell from looking at the object what the keys mean or what the possible inputs are. JSON Schema is a standard for providing answers to these questions. In this guide, you will create a JSON Schema document that describes the structure, constraints, and data types for a set of JSON data.
 
@@ -61,10 +61,10 @@ JSON Schema is hypermedia-ready and ideal for annotating your existing JSON-base
 
 To create a basic schema definition, define the following keywords:
 
-* `$schema`: specifies which draft of the JSON Schema standard the schema adheres to.
-* `$id`: sets a URI for the schema. You can use this unique URI to refer to elements of the schema from inside the same document or from external JSON documents.
-* `title` and `description`: state the intent of the schema. These keywords don’t add any constraints to the data being validated.
-* `type`: defines the first constraint on the JSON data. In the product catalog example below, this keyword specifies that the data must be a JSON object.
+- `$schema`: specifies which draft of the JSON Schema standard the schema adheres to.
+- `$id`: sets a URI for the schema. You can use this unique URI to refer to elements of the schema from inside the same document or from external JSON documents.
+- `title` and `description`: state the intent of the schema. These keywords don’t add any constraints to the data being validated.
+- `type`: defines the first constraint on the JSON data. In the product catalog example below, this keyword specifies that the data must be a JSON object.
 
 For example:
 
@@ -96,29 +96,30 @@ To add the `properties` object to the schema:
 
 1. Add the `properties` validation keyword to the end of the schema:
 
-    ```jsonc
-    ...
-      "title": "Product",
-      "description": "A product from Acme's catalog",
-      "type": "object",
-      "properties": {
-        "productId": {}
-      }
-    ```
+   ```jsonc
+   ...
+     "title": "Product",
+     "description": "A product from Acme's catalog",
+     "type": "object",
+     "properties": {
+       "productId": {}
+     }
+   ```
 
 2. Add the `productId` keyword, along with the following schema annotations:
-    * `description`: describes what `productId` is. In this case, it’s the product’s unique identifier.
-    * `type`: defines what kind of data is expected. For this example, since the product identifier is a numeric value, use `integer`.
 
-      ```jsonc
-      ...
-        "properties": {
-          "productId": {
-            "description": "The unique identifier for a product",
-            "type": "integer"
-          }
-        }
-      ```
+   - `description`: describes what `productId` is. In this case, it’s the product’s unique identifier.
+   - `type`: defines what kind of data is expected. For this example, since the product identifier is a numeric value, use `integer`.
+
+     ```jsonc
+     ...
+       "properties": {
+         "productId": {
+           "description": "The unique identifier for a product",
+           "type": "integer"
+         }
+       }
+     ```
 
 With the new `properties` validation keyword, the overall schema looks like this:
 
@@ -170,15 +171,17 @@ To define a required property:
 
 1. Inside the `properties` object, add the `price` key. Include the usual schema annotations `description` and `type`, where `type` is a number:
 
-    ```jsonc
-      "properties": {
-        ...
-        "price": {
-          "description": "The price of the product",
-          "type": "number"
-        }
-      }
-```
+   ```jsonc
+     "properties": {
+       ...
+       "price": {
+         "description": "The price of the product",
+         "type": "number"
+       }
+     }
+   ```
+
+````
 
 2. Add the `exclusiveMinimum` validation keyword and set the value to zero:
 
@@ -231,7 +234,7 @@ With the new `required` keyword and `price` key, the overall schema looks like t
   },
   "required": [ "productId", "productName", "price" ]
 }
-```
+````
 
 The `exclusiveMinimum` validation keyword is set to zero, which means that only values above zero are considered valid. To include zero as a valid option, you could use the `minimum` validation keyword instead.
 
@@ -239,67 +242,67 @@ The `exclusiveMinimum` validation keyword is set to zero, which means that only 
 
 This section describes how to define an optional property. For this example, define a keyword named `tags` using the following criteria:
 
-* The `tags` keyword is optional.
-* If `tags` is included, it must contain at least one item.
-* All tags must be unique.
-* All tags must be text.
+- The `tags` keyword is optional.
+- If `tags` is included, it must contain at least one item.
+- All tags must be unique.
+- All tags must be text.
 
 To define an optional property:
 
 1. Inside the `properties` object, add the `tags` keyword. Include the usual schema annotations `description` and `type`, and define `type` as an array:
 
-    ```jsonc
-    ...
-      "properties": {
-        ...
-        "tags": {
-          "description": "Tags for the product",
-          "type": "array"
-        }
-      }
-    ```
+   ```jsonc
+   ...
+     "properties": {
+       ...
+       "tags": {
+         "description": "Tags for the product",
+         "type": "array"
+       }
+     }
+   ```
 
 2. Add a new validation keyword for `items` to define what appears in the array. For example, `string`:
 
-    ```jsonc
-    ...
-        "tags": {
-          "description": "Tags for the product",
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
-    ```
+   ```jsonc
+   ...
+       "tags": {
+         "description": "Tags for the product",
+         "type": "array",
+         "items": {
+           "type": "string"
+         }
+       }
+   ```
 
 3. To make sure there is at least one item in the array, use the `minItems` validation keyword:
 
-    ```jsonc
-    ...
-        "tags": {
-          "description": "Tags for the product",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1
-        }
-    ```
+   ```jsonc
+   ...
+       "tags": {
+         "description": "Tags for the product",
+         "type": "array",
+         "items": {
+           "type": "string"
+         },
+         "minItems": 1
+       }
+   ```
 
 4. To make sure that every item in the array is unique, use the `uniqueItems` validation keyword and set it to `true`:
 
-    ```jsonc
-    ...
-        "tags": {
-          "description": "Tags for the product",
-          "type": "array",
-          "items": {
-            "type": "string"
-          },
-          "minItems": 1,
-          "uniqueItems": true
-        }
-    ```
+   ```jsonc
+   ...
+       "tags": {
+         "description": "Tags for the product",
+         "type": "array",
+         "items": {
+           "type": "string"
+         },
+         "minItems": 1,
+         "uniqueItems": true
+       }
+   ```
 
 With the new `tags` keyword, the overall schema looks like this:
 
@@ -334,7 +337,7 @@ With the new `tags` keyword, the overall schema looks like this:
       "uniqueItems": true
     }
   },
-  "required": [ "productId", "productName", "price" ]
+  "required": ["productId", "productName", "price"]
 }
 ```
 
@@ -350,22 +353,24 @@ To create a nested data structure:
 
 1. Inside the `properties` object, create a new key called `dimensions`:
 
-    ```jsonc
-    ...
-      "properties": {
-      ...
-        "dimensions": {}
-      }
-    ```
+   ```jsonc
+   ...
+     "properties": {
+     ...
+       "dimensions": {}
+     }
+   ```
 
 2. Define the `type` validation keyword as `object`:
 
-    ```jsonc
-    ...
-      "dimensions": {
-        "type": "object"
-      }
-```
+   ```jsonc
+   ...
+     "dimensions": {
+       "type": "object"
+     }
+   ```
+
+````
 
 3. Add the `properties` validation keyword to contain the nested data structure. Inside the new `properties` keyword, add keywords for `length`, `width`, and `height` that all use the `number` type:
 
@@ -385,28 +390,28 @@ To create a nested data structure:
           }
         }
       }
-```
+````
 
 4. To make each of these properties required, add a `required` validation keyword inside the `dimensions` object:
 
-    ```jsonc
-    ...
-      "dimensions": {
-        "type": "object",
-        "properties": {
-          "length": {
-            "type": "number"
-          },
-          "width": {
-            "type": "number"
-          },
-          "height": {
-            "type": "number"
-          }
-        },
-        "required": [ "length", "width", "height" ]
-    }
-    ```
+   ```jsonc
+   ...
+     "dimensions": {
+       "type": "object",
+       "properties": {
+         "length": {
+           "type": "number"
+         },
+         "width": {
+           "type": "number"
+         },
+         "height": {
+           "type": "number"
+         }
+       },
+       "required": [ "length", "width", "height" ]
+   }
+   ```
 
 Using the new nested data structures, the overall schema looks like this:
 
@@ -453,10 +458,10 @@ Using the new nested data structures, the overall schema looks like this:
           "type": "number"
         }
       },
-      "required": [ "length", "width", "height" ]
+      "required": ["length", "width", "height"]
     }
   },
-  "required": [ "productId", "productName", "price" ]
+  "required": ["productId", "productName", "price"]
 }
 ```
 
@@ -476,7 +481,7 @@ The following schema validates a geographical location:
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Longitude and Latitude",
   "description": "A geographical coordinate on a planet (most commonly Earth).",
-  "required": [ "latitude", "longitude" ],
+  "required": ["latitude", "longitude"],
   "type": "object",
   "properties": {
     "latitude": {
@@ -497,23 +502,23 @@ To reference this schema in the product catalog schema:
 
 1. Inside the `properties` object, add a key named `warehouseLocation`:
 
-    ```jsonc
-    ...
-      "properties": {
-      ...
-        "warehouseLocation": {}
-      }
-    ```
+   ```jsonc
+   ...
+     "properties": {
+     ...
+       "warehouseLocation": {}
+     }
+   ```
 
 2. To link to the external geographical location schema, add the `$ref` schema keyword and the schema URL:
 
-    ```jsonc
-    ...
-      "warehouseLocation": {
-        "description": "Coordinates of the warehouse where the product is located.",
-        "$ref": "https://example.com/geographical-location.schema.json"
-      }
-    ```
+   ```jsonc
+   ...
+     "warehouseLocation": {
+       "description": "Coordinates of the warehouse where the product is located.",
+       "$ref": "https://example.com/geographical-location.schema.json"
+     }
+   ```
 
 With the external schema reference, the overall schema looks like this:
 
@@ -560,14 +565,14 @@ With the external schema reference, the overall schema looks like this:
           "type": "number"
         }
       },
-      "required": [ "length", "width", "height" ]
+      "required": ["length", "width", "height"]
     },
     "warehouseLocation": {
       "description": "Coordinates of the warehouse where the product is located.",
       "$ref": "https://example.com/geographical-location.schema.json"
     }
   },
-  "required": [ "productId", "productName", "price" ]
+  "required": ["productId", "productName", "price"]
 }
 ```
 
@@ -575,10 +580,10 @@ With the external schema reference, the overall schema looks like this:
 
 ## Validate JSON data against the schema
 
-Now that you have your JSON Schema is time to validate [JSON data](https://json-schema.org/learn/glossary#instance) against it using a [JSON Schema Validator](https://json-schema.org/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=validator). 
+Now that you have your JSON Schema is time to validate [JSON data](https://json-schema.org/learn/glossary#instance) against it using a [JSON Schema Validator](https://json-schema.org/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=validator).
 
 A Validator is a tool that implements the JSON Schema specification. All validators works in a similar way: they take a JSON Schema and a JSON Instance as input and they returns the validation result as output.
 
 ![How JSON Schema works](https://json-schema.org/img/json_schema.svg)
 
-To try it yourself, please visit [Tools](https://json-schema.org/tools#validators) and select the validator that better suit your needs, our use the editors available below to explore the different Schemas and Instances and see the different validation results. 
+To try it yourself, please visit [Tools](https://json-schema.org/tools#validators) and select the validator that better suit your needs, our use the editors available below to explore the different Schemas and Instances and see the different validation results.

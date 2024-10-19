@@ -18,15 +18,15 @@ In this page, you will find miscellaneous examples illustrating different uses c
 
 This example provides a typical minimum you are likely to see in JSON Schema. It contains:
 
-* [`$id`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.1) keyword
-* [`$schema`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.1.1) keyword
-* [`title`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1) annotation keyword
-* [`type`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.1.1) instance data model
-* [`properties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1) validation keyword
-* Three keys: `firstName`, `lastName` and `age` each with their own:
-  * [`description`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1) annotation keyword.
-  * `type` instance data model (see above).
-* [`minimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.2.4) validation keyword on the `age` key.
+- [`$id`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.1) keyword
+- [`$schema`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.1.1) keyword
+- [`title`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1) annotation keyword
+- [`type`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.1.1) instance data model
+- [`properties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1) validation keyword
+- Three keys: `firstName`, `lastName` and `age` each with their own:
+  - [`description`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1) annotation keyword.
+  - `type` instance data model (see above).
+- [`minimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.2.4) validation keyword on the `age` key.
 
 ```json
 {
@@ -64,28 +64,27 @@ This example provides a typical minimum you are likely to see in JSON Schema. It
 
 In the data example, we provide values for the `firstName`, `lastName`, and `age` properties. The values match the defined schema, where `firstName` is a string, `lastName` is a string, and `age` is an integer greater than or equal to zero.
 
-
 ## Arrays of things
 
 Arrays are fundamental structures in JSON -- here we demonstrate a couple of ways they can be described:
 
-* An array of string values.
-* An array of objects.
+- An array of string values.
+- An array of objects.
 
 We also introduce the following with this example:
 
-* [`$defs`](https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.2.4) keyword
-* [`$ref`](https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.2.3.1) keyword
+- [`$defs`](https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.2.4) keyword
+- [`$ref`](https://json-schema.org/draft/2020-12/json-schema-core.html#rfc.section.8.2.3.1) keyword
 
 For the `fruits` property:
 
-* `type` is set to "array" to indicate it's an array.
-* `items` describes the items within the array. In this case, they should be of type "string".
+- `type` is set to "array" to indicate it's an array.
+- `items` describes the items within the array. In this case, they should be of type "string".
 
 For the `vegetables` property:
 
-* `type` is also set to "array" to indicate it's an array.
-* `items` references the `$defs/veggie` definition, indicating that the items in the array should conform to the "veggie" schema defined in the `$defs` section.
+- `type` is also set to "array" to indicate it's an array.
+- `items` references the `$defs/veggie` definition, indicating that the items in the array should conform to the "veggie" schema defined in the `$defs` section.
 
 ```json
 {
@@ -109,7 +108,7 @@ For the `vegetables` property:
   "$defs": {
     "veggie": {
       "type": "object",
-      "required": [ "veggieName", "veggieLike" ],
+      "required": ["veggieName", "veggieLike"],
       "properties": {
         "veggieName": {
           "type": "string",
@@ -129,7 +128,7 @@ For the `vegetables` property:
 
 ```json
 {
-  "fruits": [ "apple", "orange", "pear" ],
+  "fruits": ["apple", "orange", "pear"],
   "vegetables": [
     {
       "veggieName": "potato",
@@ -144,7 +143,6 @@ For the `vegetables` property:
 ```
 
 The data example shows the usage of arrays. The `fruits` property contains an array of strings, while the `vegetables` property contains an array of objects, each adhering to the "veggie" schema definition.
-
 
 ## Enumerated values
 
@@ -174,7 +172,6 @@ This example introduces the `enum` validation keyword which is used with an arra
 
 The provided data adheres to the schema by using the exact values specified in the enum array: `[1, 2, 3]`.
 
-
 ## Regular expression pattern
 
 This example introduces the [pattern](https://json-schema.org/draft/2020-12/json-schema-core.html#name-regular-expressions) keyword and defines an object with a property called `code` that must match a specific regular expression pattern: `^[A-Z]{3}-\d{3}$`. The pattern here requires three uppercase letters followed by a hyphen and three digits.
@@ -203,7 +200,6 @@ This example introduces the [pattern](https://json-schema.org/draft/2020-12/json
 ```
 
 The provided data, "ABC-123", satisfies this pattern defined in the schema.
-
 
 ## Complex object with nested properties
 
@@ -271,7 +267,6 @@ The schema below represents a complex object with various properties including `
 
 The provided data conforms to the schema by including values for the required properties and ensuring the `age` is an integer greater than or equal to zero. The `address` object contains all the necessary properties, and the `hobbies` property is an array of strings.
 
-
 ## Conditional validation with dependentRequired
 
 In this example, the `dependentRequired` keyword is used to specify that the property `bar` is required when the property `foo` is present. The schema enforces the condition that if `foo` exists, then `bar` must also be present.
@@ -308,8 +303,7 @@ In this example, the `dependentRequired` keyword is used to specify that the pro
 As per the schema, when the `foo` property is present (`true`), the `bar` property becomes required. The `bar` property is provided with the value "Hello World", satisfying the requirement of being a string and ensuring compliance with the `dependentRequired` condition.
 
 ```json
-{
-}
+{}
 ```
 
 Since both `foo` and `bar` are missing, the instance is still valid and in compliance with the `dependentRequired` condition as well.
@@ -320,15 +314,14 @@ Since both `foo` and `bar` are missing, the instance is still valid and in compl
 }
 ```
 
-The above schema is invalid, since the `foo` property is present, but `bar` is not, which invalidates the condition of the `dependentRequired` keyword. 
-
+The above schema is invalid, since the `foo` property is present, but `bar` is not, which invalidates the condition of the `dependentRequired` keyword.
 
 ## Conditional validation with dependentSchemas
 
-The given schema showcases the use of the `dependentSchemas` keyword. It allows defining a subschema that must be satisfied if a certain property is present. 
+The given schema showcases the use of the `dependentSchemas` keyword. It allows defining a subschema that must be satisfied if a certain property is present.
 
-* In this example, the schema defines an object with two properties: `foo` and `propertiesCount`. The `foo` property is of boolean type, while the `propertiesCount` property is of integer type with a minimum value of 0.
-* According to the subschema, when the `foo` property is present, the `propertiesCount` property becomes required, and must be an integer with a minimum value of 7.
+- In this example, the schema defines an object with two properties: `foo` and `propertiesCount`. The `foo` property is of boolean type, while the `propertiesCount` property is of integer type with a minimum value of 0.
+- According to the subschema, when the `foo` property is present, the `propertiesCount` property becomes required, and must be an integer with a minimum value of 7.
 
 ```json
 {
@@ -384,8 +377,7 @@ In the above data, `propertiesCount` is 5 but since `foo` is missing, `propertie
 }
 ```
 
-In this, we have `foo` as true, but `propertiesCount` is 5, and in the schema, `propertiesCount` is set to have minimum 7 as the input according to the `dependentSchemas`. Hence, this is an invalid instance. 
-
+In this, we have `foo` as true, but `propertiesCount` is 5, and in the schema, `propertiesCount` is set to have minimum 7 as the input according to the `dependentSchemas`. Hence, this is an invalid instance.
 
 ## Conditional validation with if-else
 
@@ -394,10 +386,12 @@ In this schema, we have two properties: `isMember` and `membershipNumber`. The c
 Here's how the validation works in this example:
 
 If the value of `isMember` is true:
-* The `then` block is applied, which specifies that the `membershipNumber` property should be a string with a minimum length of 10 and a maximum length of 10.
+
+- The `then` block is applied, which specifies that the `membershipNumber` property should be a string with a minimum length of 10 and a maximum length of 10.
 
 If the value of `isMember` is anything other than true:
-* The `else` block is applied, which specifies that the `membershipNumber` property can be any string.
+
+- The `else` block is applied, which specifies that the `membershipNumber` property can be any string.
 
 ```json
 {
@@ -439,7 +433,6 @@ If the value of `isMember` is anything other than true:
     }
   }
 }
-
 ```
 
 **Data**

@@ -35,7 +35,7 @@ export default function ImplementationsPages({
       <Headline1>{frontmatter.title}</Headline1>
       <DocTable frontmatter={frontmatter} />
       <StyledMarkdown markdown={blocks.index} />
-      <DocsHelp markdownFile='indexmd'/>
+      <DocsHelp markdownFile='indexmd' />
     </SectionContext.Provider>
   );
 }

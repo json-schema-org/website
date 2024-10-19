@@ -1,13 +1,13 @@
 ---
-title: "How the W3C Web of Things brings JSON Schema to the Internet of Things"
-date: "2022-11-01"
+title: 'How the W3C Web of Things brings JSON Schema to the Internet of Things'
+date: '2022-11-01'
 type: Case Study
 cover: /img/posts/2022/w3c-wot-case-study/cover.webp
 authors:
   - name: Juan Cruz Viotti
     photo: /img/avatars/jviotti.webp
     twitter: jviottidc
-excerpt: "Using JSON Schema at the W3C Web of Things to create an interoperability layer so that different IoT platforms, protocols and standards can operate together"
+excerpt: 'Using JSON Schema at the W3C Web of Things to create an interoperability layer so that different IoT platforms, protocols and standards can operate together'
 language: en
 ---
 
@@ -40,7 +40,7 @@ multi-protocol manner.
 
 The W3C Web of Things specifications are on board with JSON Schema since Draft
 4, and even the first draft versions already catered to data models of Internet
-of Things devices.  "Currently, we are on JSON Schema Draft 7 and expect to
+of Things devices. "Currently, we are on JSON Schema Draft 7 and expect to
 move to JSON Schema
 [2020-12](https://json-schema.org/specification-links.html#understanding-draft-names-and-numbers)
 or a newer one when starting our new charter in February 2023," said Ege
@@ -51,7 +51,7 @@ Postman's support to the community gives us even more confidence on it,"
 continued Ege Korkan.
 
 JSON Schema is delivering exciting features, and more importantly these
-features are becoming more and more consistent across implementations.  For
+features are becoming more and more consistent across implementations. For
 example, Ege Korkan added, "JSON Schema vocabularies are very promising and we
 plan to explore them further in conjunction with Semantic Web technologies."
 
@@ -84,7 +84,7 @@ Descriptions.
 ## Key Impact Results
 
 The ultimate metric of success for a standard like the W3C Web of Things is
-adoption, and community adoption is not something you can just "engineer".  Ege
+adoption, and community adoption is not something you can just "engineer". Ege
 Korkan commented, "since we adopt JSON Schema, developers who are familiar
 with it have a smaller learning curve when learning the W3C Web of Things
 standard."
@@ -105,7 +105,7 @@ different Internet of Things platforms, protocols and standards can operate
 together.
 
 The work started as a discussion in the Web of Things Community Group in
-2013-2014.  It proceeded to become an Interest Group in 2015 that
+2013-2014. It proceeded to become an Interest Group in 2015 that
 collected the use cases and defined the standards to be worked on. Since 2016,
 the working group is working on different standards on the Web of Things with
 the first publications of the Thing Description and Architecture
@@ -114,7 +114,7 @@ year.
 
 At the time of this writing, the Working Group consists of 96 participants
 representing 36 organizations and the Interest Group consists of 131
-participants representing 48 organizations. 
+participants representing 48 organizations.
 
 ![W3C Web of Things Examples](/img/posts/2022/w3c-wot-case-study/wot-examples.webp)
 
