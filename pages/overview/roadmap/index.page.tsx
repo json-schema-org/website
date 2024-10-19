@@ -45,7 +45,9 @@ export default function Roadmap() {
       <Headline1>
         {newTitle} {date}
       </Headline1>
-
+      <p>
+        Our "Roadmap" section displays our key objectives for the long term. While this roadmap provides a detailed outlook for the near future, please note that it might be subject to change. In fact, we are currently [discussing](https://github.com/orgs/json-schema-org/discussions/813) the new priorities for the next 24-month cycle, which will lead to relevant changes. Please consider joining the discussion to become an active part of JSON Schema's future!
+      </p>
       <div className='text-gray-900 dark:text-white'>
         <div className='container mt-20 mx-auto px-4'>
           <div className='relative'>
