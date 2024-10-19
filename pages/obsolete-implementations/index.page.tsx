@@ -14,7 +14,19 @@ import { DRAFT_ORDER } from '~/lib/config';
 // @ts-ignore
 import zeroFill from 'zero-fill';
 
-type ImplementationByLanguage = { name: string; implementations: any[] };
+type Implementation = {
+  name: string;
+  url: string;
+  notes: string;
+  'date-draft'?: (string | number)[];
+  draft?: (string | number)[];
+  license: string;
+};
+
+type ImplementationByLanguage = {
+  name: string;
+  implementations: Implementation[];
+};
 
 interface ImplementationsPagesProps {
   blocks: {
@@ -191,8 +203,12 @@ function ImplementationTable({
                               {allDrafts
                                 .sort(
                                   (a, b) =>
-                                    DRAFT_ORDER.indexOf(a.toString()) -
-                                    DRAFT_ORDER.indexOf(b.toString()),
+                                    DRAFT_ORDER.indexOf(
+                                      a as (typeof DRAFT_ORDER)[number],
+                                    ) -
+                                    DRAFT_ORDER.indexOf(
+                                      b as (typeof DRAFT_ORDER)[number],
+                                    ),
                                 )
                                 .map((draft) => (
                                   <span

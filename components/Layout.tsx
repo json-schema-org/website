@@ -139,7 +139,6 @@ export const Search = () => {
   );
 };
 
-/* eslint-disable @typescript-eslint/no-unused-vars */
 const MainNavLink = ({ uri, label, className }: MainNavLinkProps) => {
   const router = useRouter();
   return (

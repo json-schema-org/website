@@ -23,6 +23,8 @@ type HeadlineTagProps = {
   attributes?: Attributes;
 };
 
+type TagProps = { children: React.ReactNode; attributes: Attributes };
+
 export const Headline1 = ({ children, attributes }: HeadlineProps) => (
   <Headline Tag={Headline1Tag} attributes={attributes}>
     {children}
@@ -102,8 +104,6 @@ const filterFragment = (children: string | React.ReactNode[]) => {
     return child.replace(/\[#(\w|-|_)*\]/g, '');
   });
 };
-
-type TagProps = { children: React.ReactNode; attributes: Attributes };
 
 const Headline1Tag = ({ children, attributes }: TagProps) => (
   <h1
