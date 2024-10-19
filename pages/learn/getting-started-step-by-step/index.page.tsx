@@ -30,6 +30,7 @@ export async function getStaticProps() {
 
 export default function StyledValidator({ blocks }: { blocks: any[] }) {
   const newTitle = 'Creating your first schema';
+  const markdownFile = '_indexPage';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -40,7 +41,7 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
       <StyledMarkdown markdown={blocks[0]} />
       <GettingStarted />
       <StyledMarkdown markdown={blocks[1]} />
-      <DocsHelp />
+      <DocsHelp markdownFile={markdownFile}/>
     </SectionContext.Provider>
   );
 }
