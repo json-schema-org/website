@@ -10,7 +10,6 @@ import { useTheme } from 'next-themes';
 
 export default function ContentExample() {
   const newTitle = 'Case Studies';
-  const markdownFile = '_indexPage';
   const { resolvedTheme } = useTheme();
 
   const imgUrl = (src: string): string => {
@@ -47,7 +46,7 @@ export default function ContentExample() {
           />
         ))}
       </div>
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp markdownFile='_indexPage' />
     </SectionContext.Provider>
   );
 }

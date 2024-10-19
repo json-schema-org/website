@@ -38,7 +38,7 @@ interface LinkObject {
 }
 
 export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
-  const markdownFile = '_index';
+  const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value={null}>
       <Head>
