@@ -109,7 +109,7 @@ const getDocsPath = [
   '/overview/use-cases',
   '/overview/code-of-conduct',
   '/overview/faq',
-  'overview/roadmap',
+  '/overview/roadmap',
 ];
 const getStartedPath = [
   '/learn',
