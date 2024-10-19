@@ -9,7 +9,7 @@ import slugify from 'slugify';
 import { useRouter } from 'next/router';
 import classnames from 'classnames';
 import { SectionContext } from '~/context';
-import { DRAFT_ORDER } from '~/lib/config';
+import { DRAFT_ORDER, JSONSchemaDraft } from '~/lib/config';
 
 // @ts-ignore
 import zeroFill from 'zero-fill';
@@ -203,12 +203,8 @@ function ImplementationTable({
                               {allDrafts
                                 .sort(
                                   (a, b) =>
-                                    DRAFT_ORDER.indexOf(
-                                      a as (typeof DRAFT_ORDER)[number],
-                                    ) -
-                                    DRAFT_ORDER.indexOf(
-                                      b as (typeof DRAFT_ORDER)[number],
-                                    ),
+                                    DRAFT_ORDER.indexOf(a as JSONSchemaDraft) -
+                                    DRAFT_ORDER.indexOf(b as JSONSchemaDraft),
                                 )
                                 .map((draft) => (
                                   <span
