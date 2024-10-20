@@ -8,12 +8,21 @@ interface DocsHelpProps {
 
 export function DocsHelp({ markdownFile }: DocsHelpProps) {
   const router = useRouter();
-  const path = encodeURIComponent(router.pathname);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const feedbackFormRef = useRef<HTMLFormElement>(null);
+  let gitredirect = '';
+  if (markdownFile === '_indexPage') {
+    gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/index.page.tsx'}`;
+  } else if (markdownFile === '_indexmd') {
+    gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/_index.md'}`;
+  } else if (markdownFile === 'indexmd') {
+    gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/index.md'}`;
+  } else {
+    gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '.md'}`;
+  }
 
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
@@ -301,7 +310,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               target='_blank'
               rel='noreferrer'
               className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
-              href={`https://github.com/json-schema-org/website/blob/main/pages${markdownFile ? (markdownFile === '_indexPage' ? extractPathWithoutFragment(router.asPath) + '/_index.md' : extractPathWithoutFragment(router.asPath) + '.md') : `/${path}/index.page.tsx`}`}
+              href={gitredirect}
               data-test='edit-on-github-link'
             >
               <svg
