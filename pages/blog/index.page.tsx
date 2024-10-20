@@ -309,17 +309,23 @@ export default function StaticMarkdownPage({
                           >
                             {(frontmatter.authors || []).map(
                               (author: Author, index: number) => {
+                                const sizeClass =
+                                  frontmatter.authors.length > 2
+                                    ? 'h-8 w-8'
+                                    : 'h-11 w-11';
                                 return (
                                   <div
                                     key={index}
-                                    className={`bg-slate-50 
-                                      ${frontmatter.authors.length > 2 ? 'h-8 w-8' : 'h-11 w-11'} 
-                                      rounded-full 
-                                      -ml-3 
-                                      bg-cover 
-                                      bg-center 
-                                      border-2 
-                                      border-white`}
+                                    className={[
+                                      'bg-slate-50',
+                                      sizeClass,
+                                      'rounded-full',
+                                      '-ml-3',
+                                      'bg-cover',
+                                      'bg-center',
+                                      'border-2',
+                                      'border-white',
+                                    ].join(' ')}
                                     style={{
                                       backgroundImage: `url(${author.photo})`,
                                       zIndex: 10 - index,
