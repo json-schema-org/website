@@ -36,7 +36,7 @@ export default function ImplementationsPages({
   blocks: any;
   frontmatter: any;
 }) {
-  const markdownFile = '_indexPage';
+  const markdownFile = '_indexmd';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>

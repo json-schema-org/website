@@ -18,7 +18,7 @@ export async function getStaticProps() {
 }
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
-  const markdownFile = '_indexPage';
+  const markdownFile = '_indexmd';
 
   return (
     <SectionContext.Provider value='docs'>
