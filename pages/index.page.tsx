@@ -699,7 +699,10 @@ const Home = (props: any) => {
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <a className='text-sm md:text-base' href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
+                <a
+                  className='text-sm md:text-base'
+                  href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+                >
                   Your logo here
                 </a>
               </button>
