@@ -684,7 +684,7 @@ const Home = (props: any) => {
               <a href='https://n8n.io/'>
                 <img src={n8n_logo} className=' w-44' />
               </a>
-              <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='h-6 w-6'
@@ -699,7 +699,7 @@ const Home = (props: any) => {
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <a className='text-sm md:text-base' href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
+                <a href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
                   Your logo here
                 </a>
               </button>
