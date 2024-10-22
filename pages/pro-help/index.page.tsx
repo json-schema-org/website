@@ -26,12 +26,26 @@ interface Contractor {
   links: ContractorLink[];
 }
 
-export default function ProHelp() {
-  const newTitle = 'Need hands-on help with JSON Schema?';
+export async function getStaticProps() {
   const contractorData = JSON.parse(
     fs.readFileSync('_includes/community/programs/contractors/contractors.json', 'utf-8'),
   ) as Contractor[];
 
+  return {
+    props: {
+      contractorData
+    },
+  };
+}
+
+interface ProHelpPageProps {
+  contractorData: Contractor[];
+}
+
+export default function ProHelp({
+  contractorData,
+}: ProHelpPageProps) {
+  const newTitle = 'Need pro help with JSON Schema?';
   console.log(contractorData);
 
   return (
@@ -43,16 +57,22 @@ export default function ProHelp() {
         className='max-w-screen-xl block px-4 sm:px-6 lg:px-8 mt-12 mx-auto w-full'
         data-testid='pro-help'
       >
-        <div className='mt-12'>
+        <br/>
+        <div className='mt-6'>
           <Headline1>{newTitle}</Headline1>
           <p>
-            Whether you need custom training, personalized advice, or custom JSON Schema solutions, some members of the JSON Schema Technical Steering Committee and Ambassadors programs offer pro services beyond community support.
+            Whether you need training, personalized advice, or custom JSON Schema solutions, some members of the JSON Schema Technical Steering Committee and Ambassadors programs offer pro services beyond community support. Don't hesitate in reaching out to discuss further.
             <br />
             <br />
             <span className='font-bold text-[1.3rem]'>Available Members</span>
           </p>
-          <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8 mb-8'>
-            XXXX
+          <div className='w-full lg:w-full my-[10px] mx-auto mt-8 mb-8'>
+            {contractorData.map((contractor) => (
+              <div>
+                <h1>{contractor.name}</h1>
+                <p>{contractor.bio}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
