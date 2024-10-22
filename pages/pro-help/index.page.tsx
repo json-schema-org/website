@@ -61,18 +61,45 @@ export default function ProHelp({
         <div className='mt-6'>
           <Headline1>{newTitle}</Headline1>
           <p>
-            Whether you need training, personalized advice, or custom JSON Schema solutions, some members of the JSON Schema Technical Steering Committee and Ambassadors programs offer pro services beyond community support. Don't hesitate in reaching out to discuss further.
+            Whether you need training, personalized advice, or custom JSON Schema solutions, some members of the JSON Schema Technical Steering Committee (TSC) and Ambassadors programs offer pro services beyond community support. Don't hesitate in reaching out to discuss further.
             <br />
             <br />
             <span className='font-bold text-[1.3rem]'>Available Members</span>
           </p>
           <div className='w-full lg:w-full my-[10px] mx-auto mt-8 mb-8'>
             {contractorData.map((contractor) => (
-              <div>
-                <h1>{contractor.name}</h1>
-                <p>{contractor.bio}</p>
+              <div className='border border-solid border-gray-300 px-5 py-3'>
+                <h1 className='text-xl mb-3'>
+                  {contractor.name}
+                  <span className='ms-4 border border-gray-300 text-lg uppercase bg-zinc-200 px-3 py-1'>{contractor.type}</span>
+                </h1>
+                <div>
+                  {contractor.website && <a className="text-sm underline me-4" href={contractor.website}>{contractor.website}</a>}
+                  {contractor.linkedin && <a className="text-sm underline me-4" href={`https://www.linkedin.com/in/${contractor.linkedin}`}>{`https://www.linkedin.com/in/${contractor.linkedin}`}</a>}
+                  {contractor.github && <a className="text-sm underline me-4" href={`https://github.com/${contractor.github}`}>{`https://github.com/${contractor.github}`}</a>}
+                </div>
+                <div className='flex mt-3'>
+                  <div className='me-4'>
+                    <img src={`https://github.com/${contractor.github}.png`} className='border border-gray-400' />
+                    <a href={`mailto:${contractor.email}`} className="text-center mt-3 mb-2 block px-4 py-1 text-sm text-blue-700 font-semibold border border-blue-700 hover:text-white hover:bg-blue-700 hover:border-transparent focus:outline-none focus:ring-2 focus:ring-blue-700 focus:ring-offset-2">Reach out</a>
+                  </div>
+                  <div className='text-sm'>
+                    <p>{contractor.bio}</p>
+                    <p className='my-3 font-bold'>Previous work and relevant links</p>
+                    <ul className='list-disc ms-4'>
+                      {contractor.links.map((link) => (
+                        <li className='my-2'>
+                          <a className='underline' href={link.url}>{link.title}</a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
             ))}
+            <br/>
+            <br/>
+            <br/>
           </div>
         </div>
       </div>
