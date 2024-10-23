@@ -2406,4 +2406,17 @@
     logo: 'justinrainbow-json-schema.png'
   lastUpdated: '2024-10-01'
 
-
+- name: JSONSchema.jl
+  description: 'JSON Schema validation package for Julia'
+  toolingTypes: ['validator']
+  languages: ['Julia']
+  maintainers:
+    - name: 'Frédéric Testard'
+      username: 'fredo-dedup'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/fredo-dedup/JSONSchema.jl'
+  homepage: 'https://github.com/fredo-dedup/JSONSchema.jl'
+  supportedDialects:
+    draft: ['4', '6', '7']
+  lastUpdated: '2024-08-23'
