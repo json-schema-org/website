@@ -61,7 +61,7 @@ To publish a case study, we encourage you to join `#adopters` channel in our [Sl
 
 ### 📋 Improving the Documentation
 
-Want to help us improve the JSON Schema documentation? Check out our Contributing guide for docs and Style guide. These documents will give you the basics of our processes to get you started and text-formatting guidelines to create consistent documentation for JSON Schema. 
+Want to help us improve the JSON Schema documentation? Check out our [docs Contributing guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING-docs.md) for docs and Style guide. These documents will give you the basics of our processes to get you started and text-formatting guidelines to create consistent documentation for JSON Schema. 
 
 ### 🌐 Improving the Website
 
