@@ -1,6 +1,6 @@
-# JSON Schema documentation contributing guide 
+# Docs Contributing Guide
 
-This guide describes the workflow to contribute to the JSON Schema technical documentation. If you would like to contribute to other aspects of the JSON Schema website, like writing blog articles or publishing a case study, please read the website's [Contributing Guide](/website/CONTRIBUTING.md) for more details. 
+This guide describes the workflow to contribute to the JSON Schema technical documentation. If you would like to contribute to other aspects of the JSON Schema website, like writing blog articles or publishing a case study, please read the website's [Contributing Guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md) for more details. 
 
 ## Welcome
 Thank you for helping us improve our documentation.
@@ -13,22 +13,22 @@ To contribute to the JSON Schema documentation you will need to complete the fol
 1. [Create a GitHub account](https://docs.github.com/en/get-started/start-your-journey/creating-an-account-on-github), if you don't have one already.
 2. Read our [Code of Conduct](https://json-schema.org/overview/code-of-conduct).
 3. [Install the JSON Schema website](https://github.com/json-schema-org/website/blob/main/INSTALLATION.md) on your computer.
-4. Read our style guide. 
+4. Read our [style guide](https://json-schema.org/md-style-guide). 
 
 ## Community engagement
 To stay updated with news about the JSON Schema project and its documentation, engage with our team, ask questions, and discuss ideas, please join our [Slack workspace](https://json-schema.org/slack). We particularly recommend the following channels:
 
-- #documentation: Discussions related to the JSON Schema documentation.
+- `#documentation`: Discussions related to the JSON Schema documentation.
 
-- #website: Discussions related to our website.
+- `#website`: Discussions related to our website.
 
-- #introductions: Self-introductions and connecting with other members of the community.
+- `#introductions`: Self-introductions and connecting with other members of the community.
 
-- #community-announcements: Events and updates related to the JSON Schema project.
+- `#community-announcements`: Events and updates related to the JSON Schema project.
 
-- #anouncements: Important announcement from the JSON Schema organization.
+- `#anouncements`: Important announcement from the JSON Schema organization.
 
-- #stack-overflow: Stack overflow questions tagged with JSON Schema.
+- `#stack-overflow`: Stack overflow questions tagged with JSON Schema.
   
 ## Best practices
 
