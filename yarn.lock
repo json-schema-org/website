@@ -7163,7 +7163,7 @@ __metadata:
     file-saver: "npm:^2.0.5"
     fuse.js: "npm:^7.0.0"
     gray-matter: "npm:^4.0.3"
-    husky: "npm:^9.1.6"
+    husky: "npm:^9.1.5"
     js-yaml: "npm:^4.1.0"
     jsonpath: "npm:^1.1.1"
     jszip: "npm:^3.10.1"
