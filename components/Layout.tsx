@@ -148,7 +148,7 @@ const MainNavLink = ({
         //     ? 'text-primary hover:text-primary'
         //     : 'text-slate-600 hover:text-primary'
         // }`,
-        `${extractPathWithoutFragment(router.asPath) === uri ? ' dark:text-[#0064FF] text-primary  dark:hover:text-[#0064FF] text hover:text-primary' : 'text-slate-600 hover:text-primary dark:hover:text-[#0064FF]'}`,
+        `${extractPathWithoutFragment(router.asPath) === uri ? ' dark:text-[#0064FF] text-primary  dark:hover:text-[#0064FF] text hover:text-primary' : 'text-slate-600 hover:text-primary dark:hover:text-[#0064FF] '}`,
       )}
     >
       {label}
