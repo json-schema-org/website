@@ -364,6 +364,11 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <DocLink
+            uri='/overview/roadmap'
+            label='Roadmap'
+            setOpen={setOpen}
+          />
+          <DocLink
             uri='/overview/sponsors'
             label='Sponsors'
             setOpen={setOpen}
@@ -394,7 +399,6 @@ export const DocsNav = ({
             label='Code of Conduct'
             setOpen={setOpen}
           />
-          <DocLink uri='/overview/roadmap' label='Roadmap' setOpen={setOpen} />
         </div>
       </div>
       {/* Get Started */}
