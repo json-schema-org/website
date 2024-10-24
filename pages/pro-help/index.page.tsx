@@ -60,12 +60,11 @@ export default function ProHelp({
         <br/>
         <div className='mt-6'>
           <Headline1>{newTitle}</Headline1>
-          <p>
-            Whether you need training, personalized advice, or custom JSON Schema solutions, some members of the JSON Schema Technical Steering Committee (TSC) and Ambassadors programs offer pro services beyond community support. Don't hesitate in reaching out to discuss further.
-            <br />
-            <br />
-            <span className='font-bold text-[1.3rem]'>Available Members</span>
-          </p>
+          <p>Whether you need training, personalized advice, or custom JSON Schema solutions, some members of the JSON Schema Technical Steering Committee (TSC) and Ambassadors programs offer pro services beyond community support. Don't hesitate in reaching out to discuss further.</p>
+          <br />
+          <p className='italic'>Hiring our top contributors also helps funding the JSON Schema open-source organization, and as a consequence, the specifications that build on top of it, such as <a href="https://www.openapis.org" className='underline'>OpenAPI</a>, <a href="https://www.asyncapi.com" className='underline'>AsyncAPI</a>, <a href="https://raml.org" className='underline'>RAML</a>, <a href="https://www.w3.org/WoT/" className='underline'>W3C WoT</a>, and many more.</p>
+          <br />
+          <span className='font-bold text-[1.3rem]'>Available Members</span>
           <div className='w-full lg:w-full my-[10px] mx-auto mt-8 mb-8'>
             {contractorData.map((contractor) => (
               <div className='border border-solid border-gray-300 px-5 py-3'>
