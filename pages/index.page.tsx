@@ -586,15 +586,13 @@ const Home = (props: any) => {
                 className='border-b border-black'
               >
                 sponsor
-              </a>{' '}
-              or a{' '}
+              </a>, a{' '}
               <a
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
                 className='border-b border-black '
               >
                 backer
-              </a>
-              .
+              </a>{ ' ' } or hiring our <a href='/pro-help' className='border-b border-black'>pro services</a>.
             </p>
             <p className='w-5/6 lg:w-3/5 mx-auto'>
               <a
