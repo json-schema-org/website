@@ -475,7 +475,7 @@ const Home = (props: any) => {
                           className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                           style={{
                             backgroundImage: `url(${author.photo})`,
-                            zIndex: 10 - index, // Adding this to prevent overlap issues
+                            zIndex: 10 - index,
                           }}
                         />
                       );
