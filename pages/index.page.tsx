@@ -145,8 +145,11 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
   }
 
   // Sort the array based on parsedStartDate
-  arrayDates.sort((x, y) => new Date(x.parsedStartDate).getTime() - new Date(y.parsedStartDate).getTime());
-
+  arrayDates.sort(
+    (x, y) =>
+      new Date(x.parsedStartDate).getTime() -
+      new Date(y.parsedStartDate).getTime(),
+  );
   return arrayDates;
 }
 export function AlgoliaSearch() {
