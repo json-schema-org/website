@@ -363,11 +363,7 @@ export const DocsNav = ({
             label='What is JSON Schema?'
             setOpen={setOpen}
           />
-          <DocLink
-            uri='/overview/roadmap'
-            label='Roadmap'
-            setOpen={setOpen}
-          />
+          <DocLink uri='/overview/roadmap' label='Roadmap' setOpen={setOpen} />
           <DocLink
             uri='/overview/sponsors'
             label='Sponsors'
