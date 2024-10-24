@@ -8,20 +8,46 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface Frontmatter {
+  title: string;
+  section?:
+    | 'learn'
+    | 'docs'
+    | 'implementers'
+    | 'tools'
+    | 'implementations'
+    | 'blog'
+    | 'community'
+    | 'specification'
+    | 'overview'
+    | 'getting-started'
+    | 'reference'
+    | null;
+}
+
+interface StaticMarkdownPageProps {
+  frontmatter: Frontmatter;
+  content: string;
+}
+
+interface StaticPropsArgs {
+  params: {
+    slug: string;
+  };
+}
+
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/draft-06');
 }
-export async function getStaticProps(args: any) {
+
+export async function getStaticProps(args: StaticPropsArgs) {
   return getStaticMarkdownProps(args, 'pages/draft-06');
 }
 
 export default function StaticMarkdownPage({
   frontmatter,
   content,
-}: {
-  frontmatter: any;
-  content: any;
-}) {
+}: StaticMarkdownPageProps) {
   const markdownFile = '_index';
   const newTitle = 'JSON Schema - ' + frontmatter.title;
 

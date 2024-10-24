@@ -7,6 +7,17 @@ import { SectionContext } from '~/context';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface ImplementationsPagesProps {
+  blocks: {
+    index: string;
+  };
+  frontmatter: {
+    title: string;
+    type: string;
+    Specification: string;
+  };
+}
+
 export async function getStaticProps() {
   const index = fs.readFileSync(
     'pages/specification/json-hyper-schema/_index.md',
@@ -31,10 +42,7 @@ export async function getStaticProps() {
 export default function ImplementationsPages({
   blocks,
   frontmatter,
-}: {
-  blocks: any;
-  frontmatter: any;
-}) {
+}: ImplementationsPagesProps) {
   const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value={null}>
@@ -43,7 +51,6 @@ export default function ImplementationsPages({
       <h2>{frontmatter.Specification}</h2>
 
       <StyledMarkdown markdown={blocks.index} />
-      <StyledMarkdown markdown={blocks.body} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

@@ -1,7 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 
-const DocTable = ({ frontmatter }: any) => {
+type Frontmatter = {
+  Specification: string;
+  Published: string;
+  authors: string[];
+  Metaschema: string;
+};
+
+const DocTable = ({ frontmatter }: { frontmatter: Frontmatter }) => {
   return (
     <>
       <div className='max-w-full mx-auto overflow-auto'>
@@ -30,21 +37,21 @@ const DocTable = ({ frontmatter }: any) => {
                 {frontmatter.Published}
               </td>
             </tr>
-            <tr className='dark:hover:bg-slate-950 hover:bg-slate-300 '>
+            <tr className='dark:hover:bg-slate-950 hover:bg-slate-300'>
               <td className='border border-slate-400 dark:border-slate-500 p-2 text-center font-semibold'>
                 Authors
               </td>
               <td className='border border-slate-400 dark:border-slate-500 p-2'>
-                {frontmatter.authors.map((author: string, index: number) => {
-                  return <div key={index}>{author}</div>;
-                })}
+                {frontmatter.authors.map((author, index) => (
+                  <div key={index}>{author}</div>
+                ))}
               </td>
             </tr>
             <tr className='dark:hover:bg-slate-950 hover:bg-slate-300'>
               <td className='border border-slate-400 dark:border-slate-500 p-2 text-center font-semibold'>
                 Metaschema
               </td>
-              <td className='border border-slate-400 dark:border-slate-500 p-2 '>
+              <td className='border border-slate-400 dark:border-slate-500 p-2'>
                 <Link
                   href={frontmatter.Metaschema}
                   className='text-linkBlue'
