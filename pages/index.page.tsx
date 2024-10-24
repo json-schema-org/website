@@ -110,7 +110,7 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
 
           // Check if the event falls within the next 12 weeks
           if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-            const utcDate = startDate.subtract(5.5,'hours'); // Already in UTC
+            const utcDate = startDate.subtract(5.5, 'hours'); // Already in UTC
 
             const time = utcDate.format('MMMM Do YYYY, h:mm a');
             const day = utcDate.format('D');
@@ -127,7 +127,7 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
       } else {
         // Simple case - no recurrences
         if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-          const utcDate = startDate.subtract(5.5,'hours'); // Already in UTC
+          const utcDate = startDate.subtract(5.5, 'hours'); // Already in UTC
 
           const time = utcDate.format('MMMM Do YYYY, h:mm a');
           const day = utcDate.format('D');
