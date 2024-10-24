@@ -98,7 +98,11 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
 
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event
       if (event.rrule) {
-        const dates = event.rrule.between(today.toDate(), nextFourWeeksEnd.toDate(), true);
+        const dates = event.rrule.between(
+          today.toDate(),
+          nextFourWeeksEnd.toDate(),
+          true,
+        );
 
         // Loop through the set of date entries
         for (const date of dates) {
