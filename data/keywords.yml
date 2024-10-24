@@ -280,6 +280,16 @@
       title: Range
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maximum'
       title: Draft 2020-12
+- name: maxProperties
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxproperties'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#size'
+      title: Size
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxproperties'
+      title: maxProperties
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxproperties'
+      title: Draft 2020-12
 - name: minitems
   vocabulary: [Validation]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minitems'
