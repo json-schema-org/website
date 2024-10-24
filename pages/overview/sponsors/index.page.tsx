@@ -28,7 +28,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
-      <DocsHelp />
+      <DocsHelp markdownFile='_indexmd' />
     </SectionContext.Provider>
   );
 }
