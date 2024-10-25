@@ -7,7 +7,7 @@ section: docs
 
 Migrations are like version control for your system, allowing your team to define and share the schema progressions. If you have ever had to figure out when a keyword was introduced and how it behaved, you've faced the problem that migration guides solve.
 
-If you're moving from one Draft to another, learn how to use our migration guides and tooling ([alterschema](https://alterschema.sourcemeta.com/)) to bring your work with you.
+If you're moving from one Draft to another, learn how to use our migration guides and tooling ([AlterSchema](https://alterschema.sourcemeta.com/)) to bring your work with you.
 
 ### Keywords Overview
 
