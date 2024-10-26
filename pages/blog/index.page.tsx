@@ -302,16 +302,24 @@ export default function StaticMarkdownPage({
                           <div className='flex flex-row pl-2 mr-2'>
                             {(frontmatter.authors || []).map(
                               (author: Author, index: number) => {
-                                const isMultipleAuthors =
-                                  frontmatter.authors.length > 2;
-                                const sizeClass = isMultipleAuthors
-                                  ? 'h-8 w-8'
-                                  : 'h-11 w-11';
+                                const sizeClass =
+                                  frontmatter.authors.length > 2
+                                    ? 'h-8 w-8'
+                                    : 'h-11 w-11';
 
                                 return (
                                   <div
                                     key={index}
-                                    className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${sizeClass}`}
+                                    className={[
+                                      'bg-slate-50',
+                                      sizeClass,
+                                      'rounded-full',
+                                      '-ml-3',
+                                      'bg-cover',
+                                      'bg-center',
+                                      'border-2',
+                                      'border-white',
+                                    ].join(' ')}
                                     style={{
                                       backgroundImage: `url(${author.photo})`,
                                       zIndex: 10 - index,
