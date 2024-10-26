@@ -4,19 +4,6 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx,md}',
   ],
   darkMode: 'class',
-  safelist: [
-    'w-8',
-    'h-11',
-    'w-11',
-    'bg-slate-50',
-    'rounded-full',
-    '-ml-3',
-    'bg-cover',
-    'bg-center',
-    'border-2',
-    'border-white',
-    'h-8',
-  ],
   theme: {
     screens: {
       sm: '640px',
