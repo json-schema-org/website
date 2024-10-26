@@ -316,16 +316,7 @@ export default function StaticMarkdownPage({
                                 return (
                                   <div
                                     key={index}
-                                    className={[
-                                      'bg-slate-50',
-                                      sizeClass,
-                                      'rounded-full',
-                                      '-ml-3',
-                                      'bg-cover',
-                                      'bg-center',
-                                      'border-2',
-                                      'border-white',
-                                    ].join(' ')}
+                                    className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${sizeClass}`}
                                     style={{
                                       backgroundImage: `url(${author.photo})`,
                                       zIndex: 10 - index,

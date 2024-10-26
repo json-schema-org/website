@@ -3,22 +3,6 @@ module.exports = {
     './pages/**/*.{js,ts,jsx,tsx,md}',
     './components/**/*.{js,ts,jsx,tsx,md}',
   ],
-<<<<<<< HEAD
-=======
-  safelist: [
-    'h-8',
-    'w-8', // smaller avatar sizes
-    'h-11',
-    'w-11', // larger avatar sizes
-    'bg-slate-50',
-    'rounded-full',
-    '-ml-3',
-    'bg-cover',
-    'bg-center',
-    'border-2',
-    'border-white',
-  ],
->>>>>>> 944a1db (Changing the tailwindconfig file)
   darkMode: 'class',
   theme: {
     screens: {
