@@ -174,7 +174,7 @@
       title: Pattern Properties
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-patternproperties'
       title: Draft 2020-12
-- name: prefixitems
+- name: prefixItems
   vocabulary: [Applicator]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/prefixitems'
   links:
@@ -192,7 +192,7 @@
       title: Schema Defination
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-properties'
       title: Draft 2020-12
-- name: propertynames
+- name: propertyNames
   vocabulary: [Applicator]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/propertynames'
   links:
@@ -280,7 +280,17 @@
       title: Range
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maximum'
       title: Draft 2020-12
-- name: minitems
+- name: maxProperties
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxproperties'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/object#size'
+      title: Size
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxproperties'
+      title: maxProperties
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxproperties'
+      title: Draft 2020-12
+- name: minItems
   vocabulary: [Validation]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minitems'
   links:
@@ -374,7 +384,7 @@
       title: contentMediaType
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-contentmediatype'
       title: Draft 2020-12
-- name: contentschema
+- name: contentSchema
   vocabulary: [Content]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/content/contentschema'
   links:
@@ -442,7 +452,7 @@
       title: Annotations
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-readonly-and-writeonly'
       title: Draft 2020-12
-- name: unevaluateditems
+- name: unevaluatedItems
   vocabulary: [Unevaluated]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/unevaluated/unevaluateditems'
   links:
@@ -450,7 +460,7 @@
       title: Unevaluated Items
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-unevaluateditems'
       title: Draft 2020-12
-- name: unevaluatedproperties
+- name: unevaluatedProperties
   vocabulary: [Unevaluated]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/unevaluated/unevaluatedproperties'
   links:

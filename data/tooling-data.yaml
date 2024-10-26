@@ -2406,4 +2406,32 @@
     logo: 'justinrainbow-json-schema.png'
   lastUpdated: '2024-10-01'
 
+- name: JSONSchema.jl
+  description: 'JSON Schema validation package for Julia'
+  toolingTypes: ['validator']
+  languages: ['Julia']
+  maintainers:
+    - name: 'Frédéric Testard'
+      username: 'fredo-dedup'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/fredo-dedup/JSONSchema.jl'
+  homepage: 'https://github.com/fredo-dedup/JSONSchema.jl'
+  supportedDialects:
+    draft: ['4', '6', '7']
+  lastUpdated: '2024-08-23'
 
+- name: Svelte JSON Schema Form
+  description: 'Svelte 5 library for creating forms based on JSON Schema.'
+  toolingTypes: ['schema-to-web-UI']
+  languages: ['TypeScript']
+  maintainers:
+    - name: 'Roman Krasilnikov'
+      username: 'x0k'
+      platform: 'github'
+  license: '(MIT AND Apache-2.0)'
+  source: 'https://github.com/x0k/svelte-jsonschema-form'
+  homepage: 'https://x0k.github.io/svelte-jsonschema-form/'
+  supportedDialects:
+    draft: ['7']
+  lastUpdated: '2024-10-24'
