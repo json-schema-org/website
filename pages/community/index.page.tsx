@@ -384,7 +384,7 @@ export default function communityPages(props: any) {
                     className='w-full h-[232px]  mb-4'
                     height={232}
                     width={400}
-                    alt={''}
+                    alt={blogPosts[0].frontmatter.title}
                   />
                   <h3 className='mb-4 font-semibold dark:text-white'>
                     {blogPosts[0].frontmatter.title}

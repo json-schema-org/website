@@ -320,7 +320,7 @@ const Footer = () => (
           src='/img/logos/logo-white.svg'
           width={150}
           height={100}
-          alt={'logo-white'}
+          alt='logo-white'
           className='mb-6'
         />
         <div className='flex flex-col text-center sm:text-left'>
@@ -348,7 +348,7 @@ const Footer = () => (
               width={16}
               height={16}
               className='w-4 h-4 mr-2'
-              alt='slack_logo_small_white'
+              alt='Slack logo'
             />
             Slack
           </a>

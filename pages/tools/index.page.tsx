@@ -187,7 +187,7 @@ export default function ToolingPage({
                     className='rounded-sm '
                     height={68}
                     width={100}
-                    alt={''}
+                    alt='adding your tool'
                   />
                 </Link>
                 <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
@@ -208,7 +208,7 @@ export default function ToolingPage({
                     className='rounded-sm '
                     height={68}
                     width={100}
-                    alt={''}
+                    alt='try bowtie'
                   />
                 </Link>
                 <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>

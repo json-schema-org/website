@@ -148,8 +148,8 @@ export default function StaticMarkdownPage({
             <div className='absolute w-full h-full dark:bg-[#282d6a]'>
               <Image
                 src={recentBlog[0].frontmatter.cover}
-                width={800} // replace with your desired width
-                height={450} // replace with your desired height based on the aspect ratio
+                width={800}
+                height={450}
                 className='object-cover w-full h-full opacity-70'
                 alt='hero image example'
               />
@@ -216,7 +216,7 @@ export default function StaticMarkdownPage({
               <Image
                 src='/icons/rss.svg'
                 className='rounded h-5 w-5 mr-2'
-                alt={''}
+                alt='rss'
                 height={20}
                 width={20}
               />

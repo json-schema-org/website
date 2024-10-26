@@ -63,10 +63,10 @@ export default function StaticMarkdownPage({
                 >
                   <Image
                     src='/icons/left-arrow.svg'
-                    width={16} // Corresponds to 'w-4' in Tailwind (4 * 4 = 16px)
-                    height={16} // Corresponds to 'h-4' in Tailwind
+                    width={16}
+                    height={16}
                     className='h-4 w-4 mr-2'
-                    alt='Left arrow icon' // Add meaningful alt text for accessibility
+                    alt='Left arrow icon'
                   />
                   Go back to blog
                 </Link>

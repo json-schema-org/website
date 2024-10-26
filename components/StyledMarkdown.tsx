@@ -370,7 +370,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       className='h-5 w-5 mr-2 mb-1'
                       width={20}
                       height={20}
-                      alt={'icon-star'}
+                      alt='icon-star'
                     />
                     {label}
                   </div>
@@ -386,7 +386,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       width={12}
                       height={12}
                       className='h-3 w-3 mr-1'
-                      alt={''}
+                      alt='star'
                     />
                     {label}
                   </div>
@@ -408,7 +408,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                         className='h-7 w-7 mr-3'
                         width={28}
                         height={28}
-                        alt=''
+                        alt='info yellow'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -431,7 +431,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                         className='h-7 w-7 mr-3'
                         width={28}
                         height={28}
-                        alt=''
+                        alt='info blue'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -454,7 +454,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                         className='h-7 w-7 mr-3'
                         width={28}
                         height={28}
-                        alt=''
+                        alt='bulb'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -477,7 +477,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                         className='h-7 w-7 mr-3'
                         width={28}
                         height={28}
-                        alt=''
+                        alt='warning'
                       />
                       <div className='font'>{children}</div>
                     </div>
