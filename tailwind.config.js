@@ -76,6 +76,16 @@ module.exports = {
     },
   },
   plugins: [],
+  safelist: [
+    'bg-slate-50',
+    'h-8',
+    'h-11',
+    'w-8',
+    'w-11',
+    'rounded-full',
+    'border-2',
+    'border-white',
+  ],
 };
 
 /*
