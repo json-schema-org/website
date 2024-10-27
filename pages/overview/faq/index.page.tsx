@@ -8,7 +8,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Content() {
   const newTitle = 'FAQ';
-  const markdownFile = '_indexPage';
+  const markdownFile = 'tsx';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -21,7 +21,7 @@ export default function Content() {
         Schema.
       </p>
       <Faq category='general' />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp FileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

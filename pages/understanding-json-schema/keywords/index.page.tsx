@@ -38,7 +38,7 @@ interface LinkObject {
 }
 
 export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
-  const markdownFile = '_indexPage';
+  const markdownFile = 'tsx';
   return (
     <SectionContext.Provider value={null}>
       <Head>
@@ -87,7 +87,7 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
           )}
       </div>
 
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp FileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

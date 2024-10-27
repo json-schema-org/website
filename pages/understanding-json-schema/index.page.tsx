@@ -25,7 +25,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp FileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

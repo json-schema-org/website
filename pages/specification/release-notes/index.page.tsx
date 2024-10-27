@@ -79,7 +79,7 @@ export default function ImplementationsPages({
           link='/draft-05#explanation-for-lack-of-draft-05-meta-schema'
         />
       </div>
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp FileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }
