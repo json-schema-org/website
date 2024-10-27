@@ -23,10 +23,10 @@ describe('DocsHelp Component', () => {
   // Note: we are not using the mockRouter in this test file, but it is required to mock the router in the component file
 
   beforeEach(() => {
-    const markdownFile = '_index';
+    const markdownFile = '_md';
     mockRouter = mockNextRouter();
     cy.viewport(1200, 800);
-    cy.mount(<DocsHelp markdownFile={markdownFile} />);
+    cy.mount(<DocsHelp FileRenderType={markdownFile} />);
   });
 
   // should render the component correctly
@@ -241,8 +241,8 @@ describe('DocsHelp Component', () => {
     /* Note: Already checking with _index markdown file in the first test case */
 
     // render with _indexPage markdown file
-    const markdownFile = '_indexPage';
-    cy.mount(<DocsHelp markdownFile={markdownFile} />);
+    const markdownFile = 'tsx';
+    cy.mount(<DocsHelp FileRenderType={markdownFile} />);
     cy.get(DOCS_HELP).should('exist');
 
     // render without any markdown file
