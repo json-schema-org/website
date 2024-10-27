@@ -216,7 +216,7 @@ export default function communityPages(props: any) {
               body='Explore our exciting plans and upcoming milestones. 🚀'
               headerSize='large'
               bodyTextSize='medium'
-              link='https://github.com/orgs/json-schema-org/discussions/427'
+              link='/overview/roadmap'
             />
             <Card
               key='contribute'
@@ -394,15 +394,41 @@ export default function communityPages(props: any) {
                     />
                   </div>
                   <div className='flex ml-2 mb-2 '>
-                    <div
-                      className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                      style={{
-                        backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})`,
-                      }}
-                    />
+                    {(blogPosts[0].frontmatter.authors || []).map(
+                      (author: any, index: number) => {
+                        return (
+                          <div
+                            key={index}
+                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                            style={{
+                              backgroundImage: `url(${author.photo})`,
+                              zIndex: 10 - index,
+                            }}
+                          />
+                        );
+                      },
+                    )}
                     <div className='flex flex-col ml-2'>
                       <p className='text-sm font-semibold dark:text-white'>
-                        {blogPosts[0].frontmatter.authors[0].name}
+                        {blogPosts[0].frontmatter.authors.length > 2 ? (
+                          <>
+                            {blogPosts[0].frontmatter.authors
+                              .slice(0, 2)
+                              .map((author: any, index: number) => (
+                                <span key={author.name}>
+                                  {author.name}
+                                  {index === 0 && ' & '}
+                                </span>
+                              ))}
+                            {'...'}
+                          </>
+                        ) : (
+                          blogPosts[0].frontmatter.authors.map(
+                            (author: any) => (
+                              <span key={author.name}>{author.name}</span>
+                            ),
+                          )
+                        )}
                       </p>
                       <div className='dark:text-slate-300 text-sm'>
                         <span>

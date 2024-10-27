@@ -467,16 +467,41 @@ const Home = (props: any) => {
                 </div>
 
                 <div className='flex ml-2 mb-2 '>
-                  <div
-                    className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                    style={{
-                      backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})`,
-                    }}
-                  />
+                  {(blogPosts[0].frontmatter.authors || []).map(
+                    (author: any, index: number) => {
+                      return (
+                        <div
+                          key={index}
+                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                          style={{
+                            backgroundImage: `url(${author.photo})`,
+                            zIndex: 10 - index,
+                          }}
+                        />
+                      );
+                    },
+                  )}
                   <div className='flex flex-col ml-2'>
                     <p className='text-sm font-semibold dark:text-slate-300'>
-                      {blogPosts[0].frontmatter.authors[0].name}
+                      {blogPosts[0].frontmatter.authors.length > 2 ? (
+                        <>
+                          {blogPosts[0].frontmatter.authors
+                            .slice(0, 2)
+                            .map((author: any, index: number) => (
+                              <span key={author.name}>
+                                {author.name}
+                                {index === 0 && ' & '}
+                              </span>
+                            ))}
+                          {'...'}
+                        </>
+                      ) : (
+                        blogPosts[0].frontmatter.authors.map((author: any) => (
+                          <span key={author.name}>{author.name}</span>
+                        ))
+                      )}
                     </p>
+
                     <div className='text-slate-500 text-sm dark:text-slate-300'>
                       <span>
                         {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
@@ -684,7 +709,7 @@ const Home = (props: any) => {
               <a href='https://n8n.io/'>
                 <img src={n8n_logo} className=' w-44' />
               </a>
-              <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='h-6 w-6'
@@ -699,7 +724,10 @@ const Home = (props: any) => {
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <a href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
+                <a
+                  className='text-sm md:text-base'
+                  href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+                >
                   Your logo here
                 </a>
               </button>
