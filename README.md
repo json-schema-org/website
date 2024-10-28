@@ -20,7 +20,7 @@
 </p>
 
 # 👋 Welcome to the JSON Schema website
-This repository contains the source code of JSON Schema NextJS app:
+This repository contains the source code of JSON Schema website:
 
 * Powered by Next.js,
 * Uses the Tailwind CSS framework,
