@@ -634,7 +634,12 @@ const Home = (props: any) => {
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Gold Sponsors
             </h3>
-            <a href="https://opencollective.com/json-schema#category-CONTRIBUTE" target="_blank" className='w-[310px] h-[180px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+            <a
+              href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+              target='_blank'
+              rel='noreferrer'
+              className='w-[310px] h-[180px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -649,16 +654,17 @@ const Home = (props: any) => {
                   d='M12 4v16m8-8H4'
                 />
               </svg>
-              <p
-                className='block'
-              >
-                Your logo here
-              </p>
+              <p className='block'>Your logo here</p>
             </a>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
             </h3>
-            <a href="https://opencollective.com/json-schema#category-CONTRIBUTE" target='_blank' className='w-[200px] h-[120px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+            <a
+              href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+              target='_blank'
+              rel='noreferrer'
+              className='w-[200px] h-[120px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -673,9 +679,7 @@ const Home = (props: any) => {
                   d='M12 4v16m8-8H4'
                 />
               </svg>
-              <p>
-                Your logo here
-              </p>
+              <p>Your logo here</p>
             </a>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
@@ -705,10 +709,12 @@ const Home = (props: any) => {
               <a href='https://www.route4me.com/'>
                 <img src={route4me_logo} className=' w-44' />
               </a>
-              <a href='https://n8n.io/'>
-                <img src={n8n_logo} className=' w-44' />
-              </a>
-              <a href="https://opencollective.com/json-schema#category-CONTRIBUTE" target='_blank' className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <a
+                href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+                target='_blank'
+                rel='noreferrer'
+                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='h-6 w-6'
@@ -723,11 +729,7 @@ const Home = (props: any) => {
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <p
-                  className='text-sm md:text-base'
-                >
-                  Your logo here
-                </p>
+                <p className='text-sm md:text-base'>Your logo here</p>
               </a>
             </div>
           </div>
