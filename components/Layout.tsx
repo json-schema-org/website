@@ -348,8 +348,7 @@ const Footer = () => (
             href='https://x.com/jsonschema'
             className='flex items-center text-white'
           >
-            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
-            X
+            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />X
           </a>
         </div>
         <div className=''>
