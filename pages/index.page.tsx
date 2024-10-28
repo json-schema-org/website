@@ -205,7 +205,6 @@ const Home = (props: any) => {
   const [postman_logo, setPostman_logo] = useState('');
   const [itflashcards_logo, setItflashcards_logo] = useState('');
   const [route4me_logo, setRoute4me_logo] = useState('');
-  const [n8n_logo, setN8n_logo] = useState('');
   const [endjin_logo, setEndjin_logo] = useState('');
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
@@ -223,7 +222,6 @@ const Home = (props: any) => {
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
       setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
-      setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -235,7 +233,6 @@ const Home = (props: any) => {
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
       setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
-      setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
     }
   }, [resolvedTheme]);
   return (
