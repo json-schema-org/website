@@ -19,6 +19,7 @@ export const SectionContext = React.createContext<
   | 'overview'
   | 'getting-started'
   | 'reference'
+  | 'roadmap'
   | 'pro-help'
 >(null);
 export const BlockContext = React.createContext<BlockContextValue | null>(null);

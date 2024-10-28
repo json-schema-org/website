@@ -109,6 +109,7 @@ const getDocsPath = [
   '/overview/use-cases',
   '/overview/code-of-conduct',
   '/overview/faq',
+  '/overview/roadmap',
 ];
 const getStartedPath = [
   '/learn',
@@ -362,6 +363,7 @@ export const DocsNav = ({
             label='What is JSON Schema?'
             setOpen={setOpen}
           />
+          <DocLink uri='/overview/roadmap' label='Roadmap' setOpen={setOpen} />
           <DocLink
             uri='/overview/sponsors'
             label='Sponsors'

@@ -54,7 +54,7 @@
     "slugify": "^1.6.5",
     "yarn": "1.22.22",
     "zero-fill": "^2.2.4",
-    "zustand": "^4.5.4"
+    "zustand": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
