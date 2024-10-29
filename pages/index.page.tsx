@@ -685,13 +685,25 @@ const Home = (props: any) => {
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
-              <a href=' https://www.asyncapi.com/' target='_blank' rel='noreferrer'>
+              <a
+                href=' https://www.asyncapi.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={asyncapi_logo} className=' w-44' />
               </a>
-              <a href='https://www.airbnb.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://www.airbnb.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={airbnb_logo} className=' w-44' />
               </a>
-              <a href='https://www.postman.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://www.postman.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={postman_logo} className=' w-44' />
               </a>
               <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
@@ -700,13 +712,25 @@ const Home = (props: any) => {
               <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
                 <img src={llc_logo} className=' w-44' />
               </a>
-              <a href='https://www.vpsserver.com/en-us/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://www.vpsserver.com/en-us/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={vpsserver_logo} className=' w-44' />
               </a>
-              <a href='https://www.itflashcards.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://www.itflashcards.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={itflashcards_logo} className=' w-44' />
               </a>
-              <a href='https://www.route4me.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://www.route4me.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={route4me_logo} className=' w-44' />
               </a>
               <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
