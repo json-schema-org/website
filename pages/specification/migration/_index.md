@@ -16,7 +16,7 @@ Here is a comprehensive overview to get you going.
 | All Keywords            | Specification | Draft introduction | Removed | Changed                        |
 | ----------------------- | ------------- | ------------------ | ------- | ------------------------------ |
 | `$anchor`               | Core          | 2019-09            | No      | No (updated in 2020)           |
-| `$comment`              | Core          | 07                 | Yes     | -                              |
+| `$comment`              | Core          | 07                 | No     |                                |
 | `$id`                   | Core          | 06                 | No      | Replaced `id`                  |
 | `$defs`                 | Core          | 2019-09            | No      | Replaced `definitions`         |
 | `$dynamicAnchor`        | Core          | 2020-12            | No      | Replaced `$recursiveAnchor`    |
