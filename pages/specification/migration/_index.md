@@ -23,7 +23,8 @@ Here is a comprehensive overview to get you going.
 | `$dynamicRef`           | Core          | 2020-12            | No      | Replaced `$recursiveRef`       |
 | `$recursiveAnchor`      | Core          | 2019-09            | No      | Replaced by `$dynamicAnchor`   |
 | `$recursiveRef`         | Core          | 2019-09            | No      | Replaced by `$dynamicRef`      |
-| `$ref`                  | Core          | 2019-09            | No      | No                             |
+| `$ref` (legacy)         | Core          | 03                 | 2019-09 | Replaced by `$ref`             |
+| `$ref`                  | Core          | 2019-09            | No      | Replaced `$ref` (legacy)       |
 | `$schema`               | Core          | 02                 | No      | No                             |
 | `$vocabualry`           | Core          | 2019-09            | No      | No                             |
 | `additionalItems`       | Core          | 03                 | No      | No                             |
