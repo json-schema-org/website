@@ -27,7 +27,7 @@ Here is a comprehensive overview to get you going.
 | `$ref`                  | Core          | 2019-09            | No      | Replaced `$ref` (legacy)       |
 | `$schema`               | Core          | 03                 | No      | No                             |
 | `$vocabulary`           | Core          | 2019-09            | No      | No                             |
-| `additionalItems`       | Core          | 03                 | No      | No                             |
+| `additionalItems`       | Core          | 03                 | 2020-12 | Replaced by `items`            |
 | `allOf`                 | Core          | 04                 | No      | No                             |
 | `anyOf`                 | Core          | 04                 | No      | No                             |
 | `const`                 | Validation    | 06                 | No      | No                             |
