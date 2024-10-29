@@ -72,7 +72,8 @@ Here is a comprehensive overview to get you going.
 | `requires`              | Core          | 01                 | 03      | Replaced by `dependencies`     |
 | `title`                 | Validation    | 01                 | No      | No                             |
 | `then`                  | Core          | 07                 | No      | No                             |
-| `type`                  | Validation    | 02                 | No      | No                             |
+| `type` (legacy)         | Core          | 01                 | 04      | Replaced by `type`             |
+| `type`                  | Validation    | 04                 | No      | Replaced `type` (legacy)       |
 | `unevaluatedItems`      | Core          | 2019-09            | No      | No                             |
 | `unevaluatedProperties` | Core          | 2019-09            | No      | No                             |
 | `uniqueItems`           | Core          | 02                 | Yes     | No                             |
