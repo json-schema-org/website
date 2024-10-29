@@ -52,7 +52,8 @@ Here is a comprehensive overview to get you going.
 | `format`                | Validation    | 02                 | No      | -                              |
 | `id`                    | Core          | 04                 | No      | Replaced by `$id`              |
 | `if`                    | Core          | 07                 | No      | No                             |
-| `items`                 | Core          | 2019-09            | No      | Replaced by `prefixItems`      |
+| `items` (legacy)        | Core          | 01                 | 2020-12 | Replaced by `prefixItems`                       |
+| `items`                 | Core          | 2020-12            | No      | Replaced `additionalItems` and `items` (legacy) |
 | `maxContains`           | Validation    | 2019-09            | No      | No                             |
 | `maxProperties`         | Validation    | 04                 | No      | No                             |
 | `maximumCanEqual`       | Validation    | 02                 | No      | Replaced by `exclusiveMaximum` |
