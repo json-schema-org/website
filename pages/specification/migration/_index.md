@@ -58,8 +58,8 @@ Here is a comprehensive overview to get you going.
 | `items`                 | Core          | 2020-12            | No      | Replaced `additionalItems` and `items` (legacy) |
 | `maxContains`           | Validation    | 2019-09            | No      | No                             |
 | `maxProperties`         | Validation    | 04                 | No      | No                             |
-| `maximumCanEqual`       | Validation    | 02                 | No      | Replaced by `exclusiveMaximum` |
-| `minimumCanEqual`       | Validation    | 02                 | No      | Replaced by `exclusiveMinimum` |
+| `maximumCanEqual`       | Validation    | 01                 | 03      | Replaced by `exclusiveMaximum` |
+| `minimumCanEqual`       | Validation    | 01                 | 03      | Replaced by `exclusiveMinimum` |
 | `minContains`           | Validation    | 2019-09            | No      | No                             |
 | `minProperties`         | Validation    | 04                 | No      | No                             |
 | `multipleOf`            | Validation    | 04                 | No      | Replaced `divisibleBy`         |
