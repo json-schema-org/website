@@ -32,8 +32,10 @@ Here is a comprehensive overview to get you going.
 | `anyOf`                 | Core          | 04                 | No      | No                             |
 | `const`                 | Validation    | 06                 | No      | No                             |
 | `contains`              | Core          | 06                 | No      | No                             |
-| `contentEncoding`       | Validation    | 07                 | No      | No                             |
-| `contentMediaType`      | Validation    | 07                 | No      | No                             |
+| `contentEncoding` (legacy) | Core          | 01                 | 04      | Replaced by `media`.`binaryEncoding`                 |
+| `media`                    | Validation    | 04                 | 07      | Replaced `conentEncoding` (legacy) and replaced by `contentEncoding` and `contentMediaType` |
+| `contentEncoding`          | Validation    | 07                 | No      | Replaced `media`.`binaryEncoding`                    |
+| `contentMediaType`         | Validation    | 07                 | No      | Replaced `media`.`type`                              |
 | `contentSchema`         | Validation    | 2019-09            | No      | No                             |
 | `definitions`           | Validation    | 04                 | No      | Replaced by` $defs`            |
 | `default`               | Validation    | 01                 | No      | No                             |
