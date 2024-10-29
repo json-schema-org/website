@@ -36,7 +36,7 @@ export default function Content() {
           />
         ))}
       </div>
-      <NextPrevButton prevLabel={"Sponsors"} prevURL={"http://localhost:3000/overview/sponsors"} nextLabel={"Case Studies"} nextURL={"http://localhost:3000/overview/case-studies"} />
+      <NextPrevButton prevLabel={"Sponsors"} prevURL={"https://json-schema.org/overview/sponsors"} nextLabel={"Case Studies"} nextURL={"https://json-schema.org/overview/case-studies"} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

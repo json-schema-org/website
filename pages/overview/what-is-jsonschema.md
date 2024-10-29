@@ -3,10 +3,10 @@ section: docs
 title: What is JSON Schema?
 prev: 
   label: ''
-  url: 'http://localhost:3000/overview/code-of-conduct'
+  url: 'https://json-schema.org/overview/code-of-conduct'
 next: 
   label: Roadmap
-  url: 'http://localhost:3000/overview/roadmap'
+  url: 'https://json-schema.org/overview/roadmap'
 ---
 > JSON Schema is a declarative language for defining structure and constraints for JSON data.
 <br/>

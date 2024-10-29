@@ -49,7 +49,7 @@ export default function ContentExample() {
           />
         ))}
       </div>
-      <NextPrevButton prevLabel={"Use Cases"} prevURL={"http://localhost:3000/overview/use-cases"} nextLabel={"FAQs"} nextURL={"http://localhost:3000/overview/faq"} />
+      <NextPrevButton prevLabel={"Use Cases"} prevURL={"https://json-schema.org/overview/use-cases"} nextLabel={"FAQs"} nextURL={"https://json-schema.org/overview/faq"} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

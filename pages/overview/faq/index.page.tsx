@@ -22,7 +22,7 @@ export default function Content() {
         Schema.
       </p>
       <Faq category='general' />
-      <NextPrevButton prevLabel={"Case Studies"} prevURL={"http://localhost:3000/overview/case-studies"} nextLabel={"Similar Technologies"} nextURL={"http://localhost:3000/overview/similar-technologies"} />
+      <NextPrevButton prevLabel={"Case Studies"} prevURL={"https://json-schema.org/overview/case-studies"} nextLabel={"Similar Technologies"} nextURL={"https://json-schema.org/overview/similar-technologies"} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
