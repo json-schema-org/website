@@ -39,9 +39,9 @@ Here is a comprehensive overview to get you going.
 | `contentSchema`         | Validation    | 2019-09            | No      | No                             |
 | `definitions`           | Validation    | 04                 | No      | Replaced by` $defs`            |
 | `default`               | Validation    | 01                 | No      | No                             |
-| `dependencies`          | Core          | 03                 | No      | No                             |
-| `dependentRequired`     | Validation    | 2019-09            | No      | No                             |
-| `dependentSchemas`      | Core          | 2019-09            | No      | Replaced `dependencies`        |
+| `dependencies`          | Validation    | 03                 | 2019-09  | Replaced `requires` and replaced by `dependentSchemas` and `dependentRequired` |
+| `dependentRequired`     | Validation    | 2019-09            | No      | Partially replaced `dependencies`                      |
+| `dependentSchemas`      | Core          | 2019-09            | No      | Partially replaced `dependencies`                      |
 | `deprecated`            | Validation    | 2019-09            | No      | No                             |
 | `disallow`              | Validation    | 03                 | Yes     | No                             |
 | `divisibleBy`           | Validation    | 02                 | No      | Replaced by `multipleOf`       |
