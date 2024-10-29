@@ -29,7 +29,12 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
-      <NextPrevButton prevLabel={"Roadmap"} prevURL={"https://json-schema.org/overview/roadmap"} nextLabel={"Use Cases"} nextURL={"https://json-schema.org/overview/use-cases"} />
+      <NextPrevButton
+        prevLabel='Roadmap'
+        prevURL='/overview/roadmap'
+        nextLabel='Use Cases'
+        nextURL='/overview/use-cases'
+      />
       <DocsHelp />
     </SectionContext.Provider>
   );

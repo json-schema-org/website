@@ -9,7 +9,6 @@ import { DocsHelp } from '~/components/DocsHelp';
 import { useTheme } from 'next-themes';
 import NextPrevButton from '~/components/NextPrevButton';
 
-
 export default function ContentExample() {
   const newTitle = 'Case Studies';
   const markdownFile = '_indexPage';
@@ -49,7 +48,12 @@ export default function ContentExample() {
           />
         ))}
       </div>
-      <NextPrevButton prevLabel={"Use Cases"} prevURL={"https://json-schema.org/overview/use-cases"} nextLabel={"FAQs"} nextURL={"https://json-schema.org/overview/faq"} />
+      <NextPrevButton
+        prevLabel='Use Cases'
+        prevURL='/overview/use-cases'
+        nextLabel='FAQs'
+        nextURL='/overview/faq'
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

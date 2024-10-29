@@ -3,10 +3,10 @@ section: docs
 title: Similar Technologies
 prev: 
   label: FAQs
-  url: 'https://json-schema.org/overview/faq'
+  url: '/overview/faq'
 next: 
   label: Code of Conduct
-  url: 'https://json-schema.org/overview/code-of-conduct'
+  url: '/overview/code-of-conduct'
 ---
 
 While we think that JSON Schema has a unique value proposition, we'd like to provide visibility to other technologies that share similar goals:
