@@ -48,8 +48,10 @@ Here is a comprehensive overview to get you going.
 | `else`                  | Core          | 07                 | No      | No                             |
 | `enum`                  | Validation    | 01                 | No      | No                             |
 | `examples`              | Validation    | 06                 | No      | No                             |
-| `exclusiveMaximum`      | Validation    | 03                 | No      | Replaced `maximumCanEqual`     |
-| `exclusiveMinimum`      | Validation    | 03                 | No      | Replaced `minimumCanEqual`     |
+| `exclusiveMaximum` (legacy) | Validation    | 03                 | 06      | Replaced `maximumCanEqual`           |
+| `exclusiveMaximum`          | Validation    | 06                 | No      | Replaced `exclusiveMaximum` (legacy) |
+| `exclusiveMinimum` (legacy) | Validation    | 03                 | 06      | Replaced `minimumCanEqual`           |
+| `exclusiveMinimum`          | Validation    | 06                 | No      | Replaced `exclusiveMinimum` (legacy) |
 | `extends`               | Validation    | 03                 | Yes     | No                             |
 | `format`                | Validation    | 02                 | No      | -                              |
 | `id`                    | Core          | 04                 | No      | Replaced by `$id`              |
