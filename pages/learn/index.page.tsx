@@ -39,7 +39,7 @@ export default function Welcome() {
           link='https://tour.json-schema.org/'
         />
       </div>
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

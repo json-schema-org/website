@@ -72,7 +72,7 @@ export default function ImplementationsPages({
           link='/draft-06/json-schema-release-notes'
         />
       </div>
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

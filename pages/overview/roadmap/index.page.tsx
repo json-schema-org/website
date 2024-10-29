@@ -130,7 +130,7 @@ export default function Roadmap() {
           </div>
         </div>
       </div>
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

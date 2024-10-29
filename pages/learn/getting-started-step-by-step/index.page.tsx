@@ -40,7 +40,7 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
       <StyledMarkdown markdown={blocks[0]} />
       <GettingStarted />
       <StyledMarkdown markdown={blocks[1]} />
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

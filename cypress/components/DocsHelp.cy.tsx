@@ -26,7 +26,7 @@ describe('DocsHelp Component', () => {
     const markdownFile = '_md';
     mockRouter = mockNextRouter();
     cy.viewport(1200, 800);
-    cy.mount(<DocsHelp FileRenderType={markdownFile} />);
+    cy.mount(<DocsHelp fileRenderType={markdownFile} />);
   });
 
   // should render the component correctly
@@ -242,7 +242,7 @@ describe('DocsHelp Component', () => {
 
     // render with _indexPage markdown file
     const markdownFile = 'tsx';
-    cy.mount(<DocsHelp FileRenderType={markdownFile} />);
+    cy.mount(<DocsHelp fileRenderType={markdownFile} />);
     cy.get(DOCS_HELP).should('exist');
 
     // render without any markdown file

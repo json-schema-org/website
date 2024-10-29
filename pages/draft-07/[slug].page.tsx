@@ -32,7 +32,7 @@ export default function StaticMarkdownPage({
       </Head>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

@@ -21,7 +21,7 @@ export default function Content() {
         Schema.
       </p>
       <Faq category='general' />
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

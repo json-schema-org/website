@@ -28,7 +28,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

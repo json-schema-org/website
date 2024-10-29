@@ -35,7 +35,7 @@ export default function Content() {
           />
         ))}
       </div>
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

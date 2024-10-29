@@ -57,7 +57,7 @@ export default function Welcome() {
           link='/specification'
         />
       </div>
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

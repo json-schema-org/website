@@ -44,7 +44,7 @@ export default function ImplementationsPages({
 
       <StyledMarkdown markdown={blocks.index} />
       <StyledMarkdown markdown={blocks.body} />
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

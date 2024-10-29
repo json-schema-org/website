@@ -45,7 +45,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
           />
         </div>
       </section>
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

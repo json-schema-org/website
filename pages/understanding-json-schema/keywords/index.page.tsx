@@ -87,7 +87,7 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
           )}
       </div>
 
-      <DocsHelp FileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={markdownFile} />
     </SectionContext.Provider>
   );
 }

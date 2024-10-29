@@ -3,10 +3,10 @@ import React, { FormEvent, useRef, useState } from 'react';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 
 interface DocsHelpProps {
-  FileRenderType?: '_indexmd' | 'indexmd' | 'tsx' | '_md';
+  fileRenderType?: '_indexmd' | 'indexmd' | 'tsx' | '_md';
 }
 
-export function DocsHelp({ FileRenderType }: DocsHelpProps) {
+export function DocsHelp({ fileRenderType }: DocsHelpProps) {
   const router = useRouter();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState('');
@@ -14,11 +14,11 @@ export function DocsHelp({ FileRenderType }: DocsHelpProps) {
   const [error, setError] = useState('');
   const feedbackFormRef = useRef<HTMLFormElement>(null);
   let gitredirect = '';
-  if (FileRenderType === 'tsx') {
+  if (fileRenderType === 'tsx') {
     gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/index.page.tsx'}`;
-  } else if (FileRenderType === '_indexmd') {
+  } else if (fileRenderType === '_indexmd') {
     gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/_index.md'}`;
-  } else if (FileRenderType === 'indexmd') {
+  } else if (fileRenderType === 'indexmd') {
     gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/index.md'}`;
   } else {
     gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '.md'}`;
