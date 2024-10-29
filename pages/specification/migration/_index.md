@@ -75,7 +75,7 @@ Here is a comprehensive overview to get you going.
 | `type`                  | Validation    | 02                 | No      | No                             |
 | `unevaluatedItems`      | Core          | 2019-09            | No      | No                             |
 | `unevaluatedProperties` | Core          | 2019-09            | No      | No                             |
-| `uniqueItems`           | Assertion     | 02                 | Yes     | No                             |
+| `uniqueItems`           | Core          | 02                 | Yes     | No                             |
 | `writeOnly`             | Validation    | 07                 | No      | No                             |
 
 For a detailed read-through about all the changes see each Draft migration guide.
