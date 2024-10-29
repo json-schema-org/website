@@ -43,7 +43,7 @@ Here is a comprehensive overview to get you going.
 | `dependentRequired`     | Validation    | 2019-09            | No      | Partially replaced `dependencies`                      |
 | `dependentSchemas`      | Core          | 2019-09            | No      | Partially replaced `dependencies`                      |
 | `deprecated`            | Validation    | 2019-09            | No      | No                             |
-| `disallow`              | Validation    | 03                 | Yes     | No                             |
+| `disallow`              | Core          | 01                 | 04      | Replaced by `not`              |
 | `divisibleBy`           | Validation    | 02                 | No      | Replaced by `multipleOf`       |
 | `else`                  | Core          | 07                 | No      | No                             |
 | `enum`                  | Validation    | 01                 | No      | No                             |
