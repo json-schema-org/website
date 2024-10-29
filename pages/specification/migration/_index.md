@@ -69,7 +69,7 @@ Here is a comprehensive overview to get you going.
 | `propertyNames`         | Core          | 06                 | No      | No                             |
 | `readOnly`              | Validation    | 01                 | No      | No                             |
 | `required`              | Validation    | 03                 | No      | No                             |
-| `requires`              | Validation    | 02                 | Yes     | -                              |
+| `requires`              | Core          | 01                 | 03      | Replaced by `dependencies`     |
 | `title`                 | Validation    | 01                 | No      | No                             |
 | `then`                  | Core          | 07                 | No      | No                             |
 | `type`                  | Validation    | 02                 | No      | No                             |
