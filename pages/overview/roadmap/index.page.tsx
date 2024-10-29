@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import roadmap from '~/data/roadmap.json';
+import NextPrevButton from '~/components/NextPrevButton';
 
 const statusColors = {
   'In Progress': 'bg-green-600 text-white dark:bg-green-500',
@@ -130,6 +131,7 @@ export default function Roadmap() {
           </div>
         </div>
       </div>
+      <NextPrevButton prevLabel={"What is JSON Schema"} prevURL={"http://localhost:3000/overview/what-is-jsonschema"} nextLabel={"Sponsors"} nextURL={"http://localhost:3000/overview/sponsors"} />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
