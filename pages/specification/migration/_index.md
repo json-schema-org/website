@@ -25,7 +25,7 @@ Here is a comprehensive overview to get you going.
 | `$recursiveRef`         | Core          | 2019-09            | No      | Replaced by `$dynamicRef`      |
 | `$ref` (legacy)         | Core          | 03                 | 2019-09 | Replaced by `$ref`             |
 | `$ref`                  | Core          | 2019-09            | No      | Replaced `$ref` (legacy)       |
-| `$schema`               | Core          | 02                 | No      | No                             |
+| `$schema`               | Core          | 03                 | No      | No                             |
 | `$vocabualry`           | Core          | 2019-09            | No      | No                             |
 | `additionalItems`       | Core          | 03                 | No      | No                             |
 | `allOf`                 | Core          | 04                 | No      | No                             |
