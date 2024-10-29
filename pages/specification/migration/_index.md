@@ -67,7 +67,7 @@ Here is a comprehensive overview to get you going.
 | `patternProperties`     | Core          | 03                 | No      | No                             |
 | `prefixItems`           | Core          | 2020-12            | No      | Replaced `items`               |
 | `propertyNames`         | Core          | 06                 | No      | No                             |
-| `readOnly`              | Validation    | 07                 | No      | No                             |
+| `readOnly`              | Validation    | 01                 | No      | No                             |
 | `required`              | Validation    | 03                 | No      | No                             |
 | `requires`              | Validation    | 02                 | Yes     | -                              |
 | `title`                 | Validation    | 01                 | No      | No                             |
