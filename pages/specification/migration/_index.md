@@ -37,7 +37,7 @@ Here is a comprehensive overview to get you going.
 | `contentEncoding`          | Validation    | 07                 | No      | Replaced `media`.`binaryEncoding`                    |
 | `contentMediaType`         | Validation    | 07                 | No      | Replaced `media`.`type`                              |
 | `contentSchema`         | Validation    | 2019-09            | No      | No                             |
-| `definitions`           | Validation    | 04                 | No      | Replaced by` $defs`            |
+| `definitions`           | Validation    | 04                 | 2019-09 | Replaced by` $defs`            |
 | `default`               | Validation    | 01                 | No      | No                             |
 | `dependencies`          | Validation    | 03                 | 2019-09  | Replaced `requires` and replaced by `dependentSchemas` and `dependentRequired` |
 | `dependentRequired`     | Validation    | 2019-09            | No      | Partially replaced `dependencies`                      |
