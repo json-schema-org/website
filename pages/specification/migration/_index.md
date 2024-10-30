@@ -67,7 +67,7 @@ Here is a comprehensive overview to get you going.
 | `multipleOf`            | Validation    | 04                 | No      | Replaced `divisibleBy`         |
 | `not`                   | Core          | 04                 | No      | No                             |
 | `oneOf`                 | Core          | 04                 | No      | No                             |
-| `optional`              | Validation    | 02                 | No      | Replaced by `required`         |
+| `optional`              | Core          | 02                 | No      | Replaced by `required`         |
 | `pattern`               | Core          | 03                 | No      | No                             |
 | `patternProperties`     | Core          | 03                 | No      | No                             |
 | `prefixItems`           | Core          | 2020-12            | No      | Replaced `items`               |
