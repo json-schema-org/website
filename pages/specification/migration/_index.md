@@ -52,7 +52,7 @@ Here is a comprehensive overview to get you going.
 | `exclusiveMaximum`          | Validation    | 06                 | No      | Replaced `exclusiveMaximum` (legacy) |
 | `exclusiveMinimum` (legacy) | Validation    | 03                 | 06      | Replaced `minimumCanEqual`           |
 | `exclusiveMinimum`          | Validation    | 06                 | No      | Replaced `exclusiveMinimum` (legacy) |
-| `extends`               | Validation    | 03                 | Yes     | No                             |
+| `extends`               | Core          | 01                 | 04      | Replaced by `allOf`            |
 | `format`                | Validation    | 02                 | No      | -                              |
 | `id`                    | Core          | 04                 | No      | Replaced by `$id`              |
 | `if`                    | Core          | 07                 | No      | No                             |
