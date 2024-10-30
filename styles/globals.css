@@ -290,8 +290,8 @@ border-radius: 4px; */
   border-radius: 8px;
 }
 .scrollbar-hidden {
-  scrollbar-width: none; /* Firefox */
+  scrollbar-width: none; 
 }
 .scrollbar-hidden::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
+  display: none;
 }
