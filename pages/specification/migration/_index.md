@@ -54,7 +54,7 @@ Here is a comprehensive overview to get you going.
 | `exclusiveMinimum`          | Validation    | 06                 | No      | Replaced `exclusiveMinimum` (legacy) |
 | `extends`               | Core          | 01                 | 04      | Replaced by `allOf`            |
 | `format`                | Validation    | 01                 | No      | -                              |
-| `id`                    | Core          | 04                 | No      | Replaced by `$id`              |
+| `id`                    | Core          | 03                 | 06      | Replaced by `$id`              |
 | `if`                    | Core          | 07                 | No      | No                             |
 | `items` (legacy)        | Core          | 01                 | 2020-12 | Replaced by `prefixItems`                       |
 | `items`                 | Core          | 2020-12            | No      | Replaced `additionalItems` and `items` (legacy) |
