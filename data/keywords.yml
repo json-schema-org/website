@@ -408,8 +408,6 @@
   vocabulary: [Format Annotation]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/format-annotation/format/'
   links:
-    - url: 'https://www.learnjsonschema.com/2020-12/format-assertion/'
-      title: Format Assertion
     - url: 'https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.7.2.1'
       title: Draft 2020-12
 - name: contentEncoding
@@ -516,7 +514,5 @@
   vocabulary: [Format Assertion]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/format-assertion/format/'
   links:
-    - url: 'https://www.learnjsonschema.com/2020-12/format-annotation/'
-      title: Format Annotation
     - url: 'https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.7.2.2'
       title: Draft 2020-12
