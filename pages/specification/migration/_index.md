@@ -68,7 +68,7 @@ Here is a comprehensive overview to get you going.
 | `not`                   | Core          | 04                 | No      | No                             |
 | `oneOf`                 | Core          | 04                 | No      | No                             |
 | `optional`              | Core          | 02                 | No      | Replaced by `required`         |
-| `pattern`               | Core          | 03                 | No      | No                             |
+| `pattern`               | Core          | 01                 | No      | No                             |
 | `patternProperties`     | Core          | 03                 | No      | No                             |
 | `prefixItems`           | Core          | 2020-12            | No      | Replaced `items`               |
 | `propertyNames`         | Core          | 06                 | No      | No                             |
