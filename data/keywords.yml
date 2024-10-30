@@ -284,8 +284,6 @@
   vocabulary: [Validation]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxitems/'
   links:
-    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
-      title: Modeling a file system with JSON Schema
     - url: 'https://json-schema.org/undersstanding-json-schema/reference/string#length'
       title: Length
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxitems'
