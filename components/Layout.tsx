@@ -142,13 +142,13 @@ const MainNavLink = ({
       href={uri}
       className={classnames(
         className,
-        'font-semibold p-2 md:p-4 dark:text-white',
+        'font-semibold p-2 md:p-4',
         // `${
         //   router.asPath === uri
         //     ? 'text-primary hover:text-primary'
         //     : 'text-slate-600 hover:text-primary'
         // }`,
-        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary dark:text-primary hover:text-primary dark:hover:text-primary' : 'text-slate-600 hover:text-primary dark:hover:text-primary'}`,
+        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary dark:text-primary hover:text-primary dark:hover:text-primary' : 'text-slate-600 dark:text-white hover:text-primary dark:hover:text-primary'}`,
       )}
     >
       {label}
