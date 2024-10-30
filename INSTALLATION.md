@@ -40,7 +40,10 @@ Use the following tools to set up the project:
 
 Node.js v20.9.0+
 
-### Cloning the repository
+### Fork the repository and clone it
+```
+git clone https://github.com/your-username/your-repo-name.git
+```
 This project uses git submodules, so you will need to run the following commands to fully clone the repo.
 ```
 git submodule init
@@ -53,11 +56,14 @@ git submodule update
 ```
 cp .env.example .env
 ```
-2. Open .env and fill in your actual values for each variable.
 
-3. Save the file.
+2.Go to [Algolia](https://www.algolia.com/), sign up for an account, create a new application, then go to Settings → API Keys to find your Application ID for(`NEXT_PUBLIC_ALGOLIA_APP_ID`) and Search API Key (`NEXT_PUBLIC_ALGOLIA_API_KEY`) - do not use the Admin API Key.
 
-4. Ensure .env is in your .gitignore.
+3. Open .env and fill in your actual values for each variable.
+
+4. Save the file.
+
+5. Ensure .env is in your .gitignore.
 
 ### Corepack Configuration
 
