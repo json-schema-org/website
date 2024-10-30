@@ -285,28 +285,28 @@ const Home = (props: any) => {
                     <Image
                       src='/img/logos/usedby/zapier-logo_white.png'
                       className='w-40 mx-auto'
-                      alt={''}
+                      alt='zapier'
                       height={40}
                       width={160}
                     />
                     <Image
                       src='/img/logos/usedby/microsoft-white.png'
                       className='w-40 mx-auto'
-                      alt={''}
+                      alt='microsoft'
                       height={40}
                       width={160}
                     />
                     <Image
                       src='/img/logos/usedby/postman-white.png'
                       className='w-40 mx-auto'
-                      alt={''}
+                      alt='postman'
                       height={40}
                       width={160}
                     />
                     <Image
                       src='/img/logos/usedby/github-white.png'
                       className='w-40 mx-auto'
-                      alt={''}
+                      alt='github'
                       height={40}
                       width={160}
                     />
@@ -405,7 +405,7 @@ const Home = (props: any) => {
               <Image
                 src='/img/home-page/community-illustration.svg'
                 className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]'
-                alt={''}
+                alt='community'
                 height={600}
                 width={800}
               />
@@ -454,7 +454,7 @@ const Home = (props: any) => {
                       <Image
                         src='/img/logos/Slack-mark.svg'
                         className='w-8 h-8'
-                        alt={''}
+                        alt='slack'
                         height={32}
                         width={32}
                       />
@@ -466,7 +466,7 @@ const Home = (props: any) => {
                     <Image
                       src='/img/home-page/slack-json-schema.png'
                       className='w-full mb-4'
-                      alt={''}
+                      alt='slack-json-schema'
                       height={500}
                       width={300}
                     />
@@ -491,7 +491,7 @@ const Home = (props: any) => {
                         className='w-4 h-4 mr-2 '
                         width={16}
                         height={16}
-                        alt={''}
+                        alt='slack'
                       />
                     </>
                   )}
@@ -512,7 +512,7 @@ const Home = (props: any) => {
                       className='w-full h-[232px]  mb-4'
                       width={600}
                       height={232}
-                      alt={''}
+                      alt='blog'
                     />
                   </>
                 )}
@@ -752,7 +752,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='asyncapi'
                     />
                   </>
                 )}
@@ -765,7 +765,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='airbnb'
                     />
                   </>
                 )}
@@ -778,7 +778,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='postman'
                     />
                   </>
                 )}
@@ -791,7 +791,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='endjin'
                     />
                   </>
                 )}
@@ -804,7 +804,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='llc'
                     />
                   </>
                 )}
@@ -817,7 +817,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='vpsserver'
                     />
                   </>
                 )}
@@ -830,7 +830,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='itflashcards'
                     />
                   </>
                 )}
@@ -843,7 +843,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='route4me'
                     />
                   </>
                 )}
@@ -856,7 +856,7 @@ const Home = (props: any) => {
                       className=' w-44'
                       width={176}
                       height={100}
-                      alt={''}
+                      alt='n8n'
                     />
                   </>
                 )}
@@ -916,7 +916,7 @@ const Home = (props: any) => {
                     className='w-48 md:w-56'
                     width={192}
                     height={100}
-                    alt={''}
+                    alt='common_room'
                   />
                 </>
               )}
@@ -929,7 +929,7 @@ const Home = (props: any) => {
                     className='w-24 md:w-32'
                     width={96}
                     height={100}
-                    alt={''}
+                    alt='slack'
                   />
                 </>
               )}
