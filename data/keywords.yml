@@ -284,7 +284,7 @@
   vocabulary: [Validation]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxitems/'
   links:
-    - url: 'https://json-schema.org/undersstanding-json-schema/reference/string#length'
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#length'
       title: Length
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxitems'
       title: Draft 2020-12
@@ -408,6 +408,8 @@
   links:
     - url: 'https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.7.2.1'
       title: Draft 2020-12
+    - url: 'https://www.learnjsonschema.com/2020-12/format-annotation/'
+      title: Format Annotation
 - name: contentEncoding
   vocabulary: [Content]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/content/contentencoding'
@@ -514,3 +516,5 @@
   links:
     - url: 'https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.7.2.2'
       title: Draft 2020-12
+    - url: 'https://www.learnjsonschema.com/2020-12/format-assertion/'
+      title: Format Assertion
