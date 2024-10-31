@@ -48,7 +48,7 @@ The acceptable values are:
  
 If not specified, the encoding is the same as the containing JSON document.
 
-For modern usage, there are two main scenarios:
+There are two main scenarios:
 
 1. **Same encoding as JSON document**: Leave `contentEncoding` unspecified and include the content in a string as-is. This is suitable for text-based content types (e.g., `text/html`, `application/xml`) and assumes UTF-8 encoding in most cases.
 2. **Binary data**: Set `contentEncoding` to `base64` and encode the content using Base64. This is appropriate for binary content types such as images (`image/png`) or audio files (`audio/mpeg`).
