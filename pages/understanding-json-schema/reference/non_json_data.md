@@ -15,7 +15,7 @@ JSON schema has a set of [keywords](../../learn/glossary#keyword) to describe an
 
 The `contentMediaType` keyword specifies the media type of the content of a string, as described in [RFC 2046](https://tools.ietf.org/html/rfc2046). The Internet Assigned Numbers Authority (IANA) has officially registered [a comprehensive list of media types](http://www.iana.org/assignments/media-types/media-types.xhtml), but the set of supported types depends on the application and operating system. Mozilla Developer Network maintains a [shorter list of media types that are important for the web](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types)
 
-**Example:** 
+### Example 
 
 The following schema specifies a string containing an HTML file using the document's default encoding.
 
@@ -50,7 +50,7 @@ There are two main scenarios:
 2. **Binary data**: Set `contentEncoding` to `base64` and encode the content using Base64. This is appropriate for binary content types such as images (`image/png`) or audio files (`audio/mpeg`).
 
 
-**Example:**
+### Example
 
 The following schema indicates that a string contains a PNG file and is encoded using Base64:
 
@@ -105,7 +105,7 @@ This process ensures that the non-JSON content is properly encoded for transmiss
 
 The value of `contentSchema` must be a valid JSON schema that you can use to define the structure and constraints of the content. It is used in conjunction with `contentMediaType` when the instance is a string. If `contentMediaType` is absent, the value of `contentSchema` is ignored. 
 
-### Full example
+## Full example
 
 The following schema indicates that a string contains a JSON object encoded using Base64:
 
