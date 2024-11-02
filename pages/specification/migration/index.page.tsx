@@ -59,7 +59,7 @@ export default function ImplementationsPages({
         />
         <Card
           title='Draft-06 to Draft-07'
-          body='Details for migrations from Draft-6 to Draft-07.'
+          body='Details for migrations from Draft-06 to Draft-07.'
           headerSize='small'
           bodyTextSize='small'
           link='/draft-07/json-schema-release-notes'
@@ -67,6 +67,27 @@ export default function ImplementationsPages({
         <Card
           title='Draft-05 to Draft-06'
           body='Details for migrations from Draft-05 to Draft-06.'
+          headerSize='small'
+          bodyTextSize='small'
+          link='/draft-06/json-schema-release-notes'
+        />
+        <Card
+          title='Draft-04 to Draft-05'
+          body='Details for migrations from Draft-04 to Draft-05.'
+          headerSize='small'
+          bodyTextSize='small'
+          link='/draft-06/json-schema-release-notes'
+        />
+        <Card
+          title='Draft-03 to Draft-04'
+          body='Details for migrations from Draft-03 to Draft-04.'
+          headerSize='small'
+          bodyTextSize='small'
+          link='/draft-06/json-schema-release-notes'
+        />
+        <Card
+          title='Draft-02 to Draft-03'
+          body='Details for migrations from Draft-02 to Draft-03.'
           headerSize='small'
           bodyTextSize='small'
           link='/draft-06/json-schema-release-notes'
