@@ -49,6 +49,8 @@ git submodule update
 
 ### Setting Up Environment Variables
 
+This step is optional. Need to mention whom it is required.
+
 1. Create a new `.env` file by copying the contents of the `.env.example` into `.env` file. Use this command:
 ```
 cp .env.example .env
