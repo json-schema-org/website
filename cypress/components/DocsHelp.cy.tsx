@@ -1,6 +1,5 @@
 import React from 'react';
 import { DocsHelp } from '~/components/DocsHelp';
-import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
 
 // DocsHelp Data Test IDs
 const DOCS_HELP = '[data-test="docs-help"]';
@@ -10,19 +9,18 @@ const FEEDBACK_FORM_NO_BUTTON = '[data-test="feedback-survey-no-button"]';
 const FEEDBACK_FORM_INPUT = '[data-test="feedback-form-input"]';
 const FEEDBACK_FORM_SUBMIT_BUTTON = '[data-test="feedback-submit-button"]';
 const CREATE_GITHUB_ISSUE_BUTTON = '[data-test="create-github-issue-button"]';
-const FEEDBACK_FORM_SUCCESS_MESSAGE = '[data-test="feedback-form-success-message"]';
+const FEEDBACK_FORM_SUCCESS_MESSAGE =
+  '[data-test="feedback-form-success-message"]';
 const FEEDBACK_ERROR_MESSAGE = '[data-test="feedback-form-error-message"]';
-const FEEDBACK_FORM_GITHUB_SUCCESS_MESSAGE = '[data-test="feedback-form-github-success-message"]';
+const FEEDBACK_FORM_GITHUB_SUCCESS_MESSAGE =
+  '[data-test="feedback-form-github-success-message"]';
 
 // DocsHelp Component
 describe('DocsHelp Component', () => {
-  let mockRouter: MockRouter;
+  const extractPathWithoutFragment = (path: any) => path.split('#')[0];
 
   beforeEach(() => {
-    const markdownFile = '_md';
-    mockRouter = mockNextRouter();
     cy.viewport(1200, 800);
-    cy.mount(<DocsHelp fileRenderType={markdownFile} />);
   });
 
   it('should render the component correctly', () => {
@@ -52,7 +50,11 @@ describe('DocsHelp Component', () => {
 
     cy.get('[data-test="learn-to-contribute-link"]')
       .should('have.prop', 'tagName', 'A')
-      .and('have.attr', 'href', 'https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md')
+      .and(
+        'have.attr',
+        'href',
+        'https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md',
+      )
       .and('contain.text', 'Learn how to contribute');
 
     cy.get('[data-test="additional-help-heading"]')
@@ -61,11 +63,15 @@ describe('DocsHelp Component', () => {
 
     cy.get('[data-test="additional-help-description"]')
       .should('have.prop', 'tagName', 'P')
-      .and('contain.text', "Learning JSON Schema is often confusing");
+      .and('contain.text', 'Learning JSON Schema is often confusing');
 
     cy.get('[data-test="ask-on-github-link"]')
       .should('have.prop', 'tagName', 'A')
-      .and('have.attr', 'href', 'https://github.com/orgs/json-schema-org/discussions/new?category=q-a')
+      .and(
+        'have.attr',
+        'href',
+        'https://github.com/orgs/json-schema-org/discussions/new?category=q-a',
+      )
       .and('contain.text', 'Ask the community on GitHub');
 
     cy.get('[data-test="ask-on-slack-link"]')
@@ -78,7 +84,7 @@ describe('DocsHelp Component', () => {
     cy.intercept(
       'POST',
       'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
-      { statusCode: 200, body: { success: true } }
+      { statusCode: 200, body: { success: true } },
     ).as('feedback');
 
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
@@ -98,7 +104,7 @@ describe('DocsHelp Component', () => {
     cy.intercept(
       'POST',
       'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
-      { statusCode: 500, body: { error: 'Internal Server Error' } }
+      { statusCode: 500, body: { error: 'Internal Server Error' } },
     ).as('feedback');
 
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
@@ -116,7 +122,7 @@ describe('DocsHelp Component', () => {
     cy.intercept(
       'POST',
       'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
-      { forceNetworkError: true }
+      { forceNetworkError: true },
     ).as('feedback');
 
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
@@ -140,7 +146,7 @@ describe('DocsHelp Component', () => {
 
     cy.get(FEEDBACK_FORM_GITHUB_SUCCESS_MESSAGE)
       .should('have.prop', 'tagName', 'P')
-      .and('contain.text', "Thanks for creating an issue!");
+      .and('contain.text', 'Thanks for creating an issue!');
   });
 
   it('should handle error while opening GitHub issue page', () => {
@@ -157,12 +163,36 @@ describe('DocsHelp Component', () => {
       .should('have.prop', 'tagName', 'P')
       .and('contain.text', 'An error occurred. Please try again later.');
   });
+  it('should render component with different markdown files and validate gitredirect', () => {
+    const fileRenderTypes: ('tsx' | 'indexmd' | '_indexmd' | '_md')[] = [
+      'tsx',
+      '_indexmd',
+      'indexmd',
+      '_md',
+    ];
 
-  it('should render component with different markdown files', () => {
-    const markdownFile = 'tsx';
-    cy.mount(<DocsHelp fileRenderType={markdownFile} />);
-    cy.get(DOCS_HELP).should('exist');
+    fileRenderTypes.forEach((type) => {
+      let expectedGitRedirect = '';
 
-    cy.mount(<DocsHelp />);
+      if (type === 'tsx') {
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '/index.page.tsx'}`;
+      } else if (type === '_indexmd') {
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '/_index.md'}`;
+      } else if (type === 'indexmd') {
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '/index.md'}`;
+      } else {
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '.md'}`;
+      }
+
+      // Mounting the component with the current fileRenderType
+      cy.mount(<DocsHelp fileRenderType={type} />);
+
+      // Validating the 'Edit this page on Github' link
+      cy.get('[data-test="edit-on-github-link"]').should(
+        'have.attr',
+        'href',
+        expectedGitRedirect,
+      );
+    });
   });
 });
