@@ -24,7 +24,7 @@ describe('DocsHelp Component', () => {
   });
 
   it('should render the component correctly', () => {
-    cy.mount(<DocsHelp/>)
+    cy.mount(<DocsHelp />);
     cy.get(DOCS_HELP).should('exist');
 
     cy.get('[data-test="need-help-heading"]')
