@@ -2,8 +2,6 @@
 title: JSON Schema documentation style guide
 ---
 
-# JSON Schema documentation style guide
-
 Welcome to JSON Schema! This guide is intended for project contributors and provides guidelines for the text-formatting conventions of our documentation. The purpose of this style guide is to create consistency throughout our documentation, so make sure to read and follow it carefully.
 
 ## Our preferred style guide 
