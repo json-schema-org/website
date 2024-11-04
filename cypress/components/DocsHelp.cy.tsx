@@ -24,6 +24,7 @@ describe('DocsHelp Component', () => {
   });
 
   it('should render the component correctly', () => {
+    cy.mount(<DocsHelp/>)
     cy.get(DOCS_HELP).should('exist');
 
     cy.get('[data-test="need-help-heading"]')
@@ -184,10 +185,8 @@ describe('DocsHelp Component', () => {
         expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '.md'}`;
       }
 
-      // Mounting the component with the current fileRenderType
       cy.mount(<DocsHelp fileRenderType={type} />);
 
-      // Validating the 'Edit this page on Github' link
       cy.get('[data-test="edit-on-github-link"]').should(
         'have.attr',
         'href',
