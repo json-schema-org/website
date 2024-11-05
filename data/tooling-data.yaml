@@ -2435,3 +2435,29 @@
   supportedDialects:
     draft: ['7']
   lastUpdated: '2024-10-24'
+
+- name: Jsonary
+  description: 'Quickly assemble clients for JSON-based APIs (powered by JSON Schema)'
+  toolingTypes: ['hyper-schema']
+  languages: ['Javascript']
+  license: 'MIT'
+  source: 'https://github.com/jsonary-js/jsonary'
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+  lastUpdated: '2015-05-08'
+
+- name: Core API Hyper-Schema codec
+  description: 'A JSON Hyperschema codec for Core API.'
+  toolingTypes: ['hyper-schema']
+  languages: ['Python']
+  maintainers:
+    - name: 'Tom Christie'
+      username: 'tomchristie'
+      platform: 'github'
+  license: 'BSD-2-Clause'
+  source: 'https://github.com/core-api/python-jsonhyperschema-codec'
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+  lastUpdated: '2018-02-27'
