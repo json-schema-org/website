@@ -121,7 +121,7 @@
                   "C#",
                   "Go",
                   "C++",
-                  "JavaScript", 
+                  "JavaScript",
                   "Julia"
                 ]
               ]
@@ -280,6 +280,11 @@
         "description": "The date when the tool was most recently updated. The date should be in the format YYYY-MM-DD, representing the year, month, and day of the update.",
         "type": "string",
         "format": "date"
+      },
+      "status": {
+        "description": "Current status of the project, indicating its phase of development or maintenance.",
+        "type": "string",
+        "enum": ["active", "obsolete"]
       }
     },
     "required": ["name", "toolingTypes"],
