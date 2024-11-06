@@ -632,7 +632,7 @@ const Home = (props: any) => {
               Gold Sponsors
             </h3>
             <a
-              href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+              href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
               className='w-[310px] h-[180px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
@@ -657,7 +657,7 @@ const Home = (props: any) => {
               Silver Sponsors
             </h3>
             <a
-              href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+              href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
               className='w-[200px] h-[120px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
@@ -707,7 +707,7 @@ const Home = (props: any) => {
                 <img src={route4me_logo} className=' w-44' />
               </a>
               <a
-                href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+                href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
                 className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
