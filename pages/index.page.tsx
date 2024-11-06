@@ -205,7 +205,6 @@ const Home = (props: any) => {
   const [postman_logo, setPostman_logo] = useState('');
   const [itflashcards_logo, setItflashcards_logo] = useState('');
   const [route4me_logo, setRoute4me_logo] = useState('');
-  const [n8n_logo, setN8n_logo] = useState('');
   const [endjin_logo, setEndjin_logo] = useState('');
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
@@ -223,7 +222,6 @@ const Home = (props: any) => {
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
       setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
-      setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -235,7 +233,6 @@ const Home = (props: any) => {
       setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
       setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
-      setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -634,7 +631,12 @@ const Home = (props: any) => {
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Gold Sponsors
             </h3>
-            <button className='w-[310px] h-[180px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+            <a
+              href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
+              target='_blank'
+              rel='noreferrer'
+              className='w-[310px] h-[180px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -649,17 +651,17 @@ const Home = (props: any) => {
                   d='M12 4v16m8-8H4'
                 />
               </svg>
-              <a
-                href='https://opencollective.com/json-schema#category-CONTRIBUTE'
-                className='block'
-              >
-                Your logo here
-              </a>
-            </button>
+              <p className='block'>Your logo here</p>
+            </a>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
             </h3>
-            <button className='w-[200px] h-[120px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+            <a
+              href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
+              target='_blank'
+              rel='noreferrer'
+              className='w-[200px] h-[120px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -674,10 +676,8 @@ const Home = (props: any) => {
                   d='M12 4v16m8-8H4'
                 />
               </svg>
-              <a href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
-                Your logo here
-              </a>
-            </button>
+              <p>Your logo here</p>
+            </a>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
             </h3>
@@ -706,10 +706,12 @@ const Home = (props: any) => {
               <a href='https://www.route4me.com/'>
                 <img src={route4me_logo} className=' w-44' />
               </a>
-              <a href='https://n8n.io/'>
-                <img src={n8n_logo} className=' w-44' />
-              </a>
-              <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <a
+                href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
+                target='_blank'
+                rel='noreferrer'
+                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='h-6 w-6'
@@ -724,13 +726,8 @@ const Home = (props: any) => {
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <a
-                  className='text-sm md:text-base'
-                  href='https://opencollective.com/json-schema#category-CONTRIBUTE'
-                >
-                  Your logo here
-                </a>
-              </button>
+                <p className='text-sm md:text-base'>Your logo here</p>
+              </a>
             </div>
           </div>
         </section>
