@@ -2461,3 +2461,358 @@
     draft: ['4']
   status: 'obsolete'
   lastUpdated: '2018-02-27'
+
+- name: NJsonSchema
+  description: 'JSON Schema reader, generator and validator for .NET'
+  toolingTypes: [validator]
+  languages: ['.NET']
+  license: 'Ms-PL'
+  source: http://NJsonSchema.org
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: Manatee.Json
+  toolingTypes: ['validator']
+  languages: ['.NET']
+  license: MIT
+  source: https://github.com/gregsdennis/Manatee.Json
+  supportedDialects:
+    draft: ['4', '6', '7']
+  status: 'obsolete'
+
+- name: WJElement
+  toolingTypes: ['validator']
+  languages: ['C']
+  license: 'AGPL-3.0'
+  source: https://github.com/netmail-open/wjelement
+  supportedDialects:
+    draft: ['3', '4']
+  toolingListingNotes: 'Draft-06+ progress: issue 17'
+  status: 'obsolete'
+
+- name: wjelement-cpp
+  toolingTypes: ['validator']
+  languages: ['C++']
+  license: 'AGPL-3.0'
+  source: https://github.com/petehug/wjelement-cpp
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: Header-only C++ library for JSON Schema validation
+  toolingTypes: ['validator']
+  languages: ['C++']
+  license: BSD-2-Clause
+  source: https://github.com/tristanpenman/valijson
+  supportedDialects:
+    draft: ['3', '4']
+  status: 'obsolete'
+
+- name: Modern C++ JSON schema validator
+  toolingTypes: ['validator']
+  languages: ['C++']
+  license: MIT
+  source: https://github.com/pboettch/json-schema-validator
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'based on JSON for Modern C++'
+  status: 'obsolete'
+
+- name: scjsv
+  toolingTypes: ['validator']
+  languages: ['Clojure']
+  license: 'EPL-1.0'
+  source: https://github.com/metosin/scjsv
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: '(wrapper for java-json-tools/json-schema-validator)'
+  status: 'obsolete'
+
+- name: json-schema validator
+  toolingTypes: ['validator']
+  languages: ['Clojure']
+  license: MIT
+  source: https://github.com/tatut/json-schema
+  supportedDialects:
+    draft: ['3', '4']
+  status: 'obsolete'
+
+- name: JSCK
+  toolingTypes: ['validator']
+  languages: ['CoffeeScript']
+  license: MIT
+  source: https://github.com/pandastrike/jsck
+  supportedDialects:
+    draft: ['3', '4']
+  status: 'obsolete'
+
+- name: json_schema
+  toolingTypes: ['validator']
+  languages: ['Dart']
+  license: 'BSL-1.0'
+  source: https://github.com/patefacio/json_schema
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: Elixir JSON Schema validator
+  toolingTypes: ['validator']
+  languages: ['Elixir']
+  license: MIT
+  source: https://github.com/jonasschmidt/ex_json_schema
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'Draft-06+ progress: issue 24; branch multi-draft-support'
+  status: 'obsolete'
+
+- name: validate-json
+  toolingTypes: ['validator']
+  languages: ['Go']
+  license: GPL-2.0
+  source: https://github.com/cesanta/validate-json
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: hjsonschema
+  toolingTypes: ['validator']
+  languages: ['Haskell']
+  license: MIT
+  source: https://github.com/seagreen/hjsonschema
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: json-schema-validator
+  toolingTypes: ['validator']
+  languages: ['Java']
+  license: 'LGPL-3.0'
+  source: https://github.com/java-json-tools/json-schema-validator
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: jsonschema
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: MIT
+  source: https://github.com/tdegrunt/jsonschema
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'for Node.js'
+  status: 'obsolete'
+
+- name: tv4
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: http://geraintluff.github.com/tv4/
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: is-my-json-valid
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: https://github.com/mafintosh/is-my-json-valid
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: JaySchema
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'BSD-3-Clause'
+  source: https://github.com/natesilva/jayschema
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'for Node.js'
+  status: 'obsolete'
+
+- name: z-schema
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: https://github.com/zaggino/z-schema
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'for Node.js'
+  status: 'obsolete'
+
+- name: direct-schema
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'BSD-3-Clause'
+  source: http://github.com/IreneKnapp/direct-schema
+  supportedDialects:
+    draft: ['3']
+  status: 'obsolete'
+
+- name: JSV
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'BSD-3-Clause'
+  source: http://github.com/garycourt/JSV
+  supportedDialects:
+    draft: ['1', '2', '3']
+  status: 'obsolete'
+
+- name: json-schema
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'BSD-3-Clause'
+  source: https://github.com/kriszyp/json-schema
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'part of the [Persevere](http://github.com/kriszyp/json-schema) project'
+  status: 'obsolete'
+
+- name: schema.js
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: https://github.com/akidee/schema.js
+  supportedDialects:
+    draft: ['2']
+  status: 'obsolete'
+
+- name: json-gate
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: https://github.com/oferei/json-gate
+  supportedDialects:
+    draft: ['3']
+  status: 'obsolete'
+
+- name: JSEN
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: https://github.com/bugventure/jsen
+  supportedDialects:
+    draft: ['3']
+  toolingListingNotes: 'for Node.js'
+  status: 'obsolete'
+
+- name: Skeemas
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: https://github.com/ericgj/json-schema-valid
+  supportedDialects:
+    draft: ['3', '4']
+  status: 'obsolete'
+
+- name: Jassi
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'GPL-3.0'
+  source: https://github.com/iclanzan/jassi
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: json-schema-valid
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: https://github.com/ericgj/json-schema-valid
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: jsv4-php
+  toolingTypes: ['validator']
+  languages: ['PHP']
+  license: 'MIT'
+  source: https://github.com/geraintluff/jsv4-php
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: JVal
+  toolingTypes: ['validator']
+  languages: ['PHP']
+  license: 'MIT'
+  source: https://github.com/stefk/jval
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: JSON Guard
+  toolingTypes: ['validator']
+  languages: ['PHP']
+  license: 'MIT'
+  source: https://github.com/thephpleague/json-guard
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: JSV::Validator
+  toolingTypes: ['validator']
+  languages: ['Perl']
+  license: MIT
+  source: https://metacpan.org/module/JSV::Validator
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: postgres-json-schema
+  toolingTypes: ['validator']
+  languages: ['PostgreSQL']
+  license: 'PostgreSQL'
+  source: https://github.com/gavinwahl/postgres-json-schema
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'PL/pgSQL implementation, no remote (http) references'
+  status: 'obsolete'
+
+- name: json_schema
+  toolingTypes: ['validator']
+  languages: ['Ruby']
+  license: MIT
+  source: https://github.com/brandur/json_schema
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'Schema parser and validator, with hyper-schema support'
+  status: 'obsolete'
+
+- name: json-schema
+  toolingTypes: ['validator']
+  languages: ['Ruby']
+  license: MIT
+  source: https://github.com/hoxworth/json-schema
+  supportedDialects:
+    draft: ['1', '2', '3', '4']
+  status: 'obsolete'
+
+- name: valico
+  toolingTypes: ['validator']
+  languages: ['Rust']
+  license: MIT
+  source: https://github.com/rustless/valico
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
+
+- name: json-schema-parser
+  toolingTypes: ['validator']
+  languages: ['Scala']
+  license: Apache-2.0
+  source: https://github.com/VoxSupplyChain/json-schema-parser
+  supportedDialects:
+    draft: ['4']
+  toolingListingNotes: 'Schema parser and validator'
+  status: 'obsolete'
+
+- name: JSONSchema
+  toolingTypes: ['validator']
+  languages: ['Swift']
+  license: BSD-3-Clause
+  source: https://github.com/kylef/JSONSchema.swift
+  supportedDialects:
+    draft: ['4']
+  status: 'obsolete'
