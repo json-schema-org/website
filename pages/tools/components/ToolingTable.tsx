@@ -18,6 +18,7 @@ import Badge from './ui/Badge';
 import ToolingDetailModal from './ToolingDetailModal';
 import classnames from 'classnames';
 import { postAnalytics } from '../lib/postAnalytics';
+import Tag from './ui/Tag';
 
 interface ToolingTableProps {
   toolsByGroup: GroupedTools;
@@ -177,16 +178,19 @@ const ToolingTable = ({
                     >
                       <TableCell
                         attributes={{
-                          className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : ''}`,
+                          className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : ''} gap-x-2 gap-y-1`,
                           style: {
                             flexBasis: '240px',
-                            flexShrink: 0,
+                            flexShrink: 1,
                             flexGrow: 0,
                           },
                           title: 'See details',
                         }}
                       >
                         {tool.name}
+                        {tool.status === 'obsolete' && (
+                          <Tag intent='error'>{tool.status}</Tag>
+                        )}
                       </TableCell>
                       {transform.groupBy !== 'toolingTypes' && (
                         <TableCell
@@ -364,7 +368,7 @@ const TableCell = ({
       {...propAttributes}
       className={classnames(
         propAttributes?.className,
-        'flex items-center w-full px-2 py-2 border-b border-gray-200 lg:break-words',
+        'flex items-center w-full px-2 py-2 border-b border-gray-200 lg:break-words flex-wrap',
       )}
       title={propAttributes?.title || 'See details'}
     >
