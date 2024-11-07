@@ -2817,3 +2817,220 @@
   supportedDialects:
     draft: ['4']
   status: 'obsolete'
+
+- name: 'JSL'
+  description: 'a Python DSL for defining JSON Schemas'
+  toolingTypes: [code-to-schema]
+  languages: ['Python']
+  license: 'BSD-3-Clause'
+  source: 'https://github.com/aromanovich/jsl'
+  status: 'obsolete'
+
+- name: 'json-schema-generator'
+  description: 'Node.js library usable both as a CLI util and as a Node module'
+  toolingTypes: [code-to-schema]
+  languages: ['JavaScript']
+  license: 'MIT'
+  source: 'https://github.com/krg7880/json-schema-generator'
+  status: 'obsolete'
+
+- name: 'Typson'
+  toolingTypes: ['code-to-schema']
+  languages: ['TypeScript']
+  source: 'https://github.com/lbovet/typson'
+  license: 'Apache-2.0'
+  status: 'obsolete'
+
+- name: 'JSON Schema Generator'
+  description: 'Free extension'
+  toolingTypes: ['code-to-schema', 'editor-plugin']
+  homepage: 'https://visualstudiogallery.msdn.microsoft.com/b4515ef8-a518-41ca-b48c-bb1fd4e6faf7'
+  status: 'obsolete'
+
+- name: 'API-Add-In'
+  description: 'Sparx EA extension for exporting JSON Schema from UML models'
+  toolingTypes: ['code-to-schema']
+  source: 'https://github.com/bayeslife/api-add-in'
+  status: 'obsolete'
+
+- name: 'json-schema-generator'
+  description: 'JSON-Schema + fake data generators'
+  toolingTypes: ['schema-to-data']
+  languages: ['JavaScript']
+  source: 'https://github.com/json-schema-faker'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'DJsonSchema'
+  description: 'JSON Schema reader and code generator for Delphi'
+  toolingTypes: ['schema-to-code']
+  languages: ['Delphi']
+  source: 'https://github.com/schlothauer-wauer/DJsonSchema'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'aeson-schema'
+  description: 'Generates code for a parser'
+  toolingTypes: ['schema-to-code']
+  languages: ['Haskell']
+  source: 'https://github.com/Fuuzetsu/aeson-schema'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'autoparse'
+  toolingTypes: ['schema-to-code']
+  languages: ['Ruby']
+  source: 'https://github.com/google/autoparse'
+  license: 'Apache-2.0'
+  status: 'obsolete'
+
+- name: 'json-schema-codegen'
+  description: 'Tool and SBT plugin for generating Scala, TypeScript models and parsers from JSON-Schema definitions, supports draft 4'
+  toolingTypes: ['schema-to-code']
+  languages: ['Scala']
+  source: 'https://github.com/VoxSupplyChain/json-schema-codegen'
+  license: 'Apache-2.0'
+  status: 'obsolete'
+
+- name: 'Argus'
+  description: 'Macros for building models from JSON Schemas'
+  toolingTypes: ['schema-to-code']
+  languages: ['Scala']
+  source: 'https://github.com/aishfenton/argus'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'Bric-à-brac'
+  description: 'Generates idiomatic swift structs and parser/serializer from JSON schemas'
+  toolingTypes: ['schema-to-code']
+  languages: ['Swift']
+  source: 'https://github.com/glimpseio/BricBrac'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'gojsonschema'
+  description: 'Golang package for generating Golang structs, support for Draft 4. [Demo](http://json.golang.chinazt.cc)'
+  toolingTypes: ['schema-to-code']
+  languages: ['Go']
+  source: 'https://github.com/andy-zhangtao/gojsonschema'
+  homepage: 'http://json.golang.chinazt.cc'
+  license: 'Apache-2.0'
+  status: 'obsolete'
+
+- name: 'JSON Editor'
+  toolingTypes: ['schema-to-web-UI']
+  languages: ['JavaScript']
+  source: 'https://github.com/jdorn/json-editor'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'JSONForms'
+  description: 'Developed by EclipseSource'
+  toolingTypes: ['schema-to-web-UI']
+  languages: ['JavaScript']
+  homepage: 'https://jsonforms.io'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'Jsonary'
+  toolingTypes: ['schema-to-web-UI']
+  languages: ['JavaScript']
+  homepage: 'https://jsonary.com/'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'Metawidget'
+  toolingTypes: ['schema-to-web-UI']
+  languages: ['JavaScript']
+  homepage: 'https://metawidget.org/'
+  license: 'LGPL-2.1'
+  status: 'obsolete'
+
+- name: 'pure-form webcomponent'
+  toolingTypes: ['schema-to-web-UI']
+  languages: ['JavaScript']
+  source: 'https://github.com/john-doherty/pure-form'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'Liquid XML Studio 2016'
+  description: 'Graphical JSON schema editor for draft 4, context-sensitive IntelliSense for JSON documents'
+  toolingTypes: ['editor']
+  homepage: 'https://www.liquid-technologies.com/json-schema-editor'
+  status: 'obsolete'
+
+- name: 'ReSharper 2016.1'
+  description: 'Code completion, inspections, and quick fixes for JSON schema in Visual Studio 2010 - 2015, including support for JSON Path and regular expressions for schema editing. Supports draft-4'
+  toolingTypes: ['editor']
+  homepage: 'https://www.jetbrains.com/resharper/'
+  status: 'obsolete'
+
+- name: 'Visual Studio 2013'
+  description: 'Auto-completion and tooltips based on JSON schema draft 3 and draft 4'
+  toolingTypes: ['editor']
+  homepage: 'http://www.visualstudio.com/'
+  status: 'obsolete'
+
+- name: 'JSON Schema Editor'
+  description: 'An intuitive editor for JSON schema online'
+  toolingTypes: ['editor']
+  homepage: 'https://json-schema-editor.tangramjs.com'
+  status: 'obsolete'
+
+- name: 'JSON Editor (Tangram)'
+  description: 'An online, schema-aware editor for JSON document'
+  toolingTypes: ['editor']
+  homepage: 'https://json-editor.tangramjs.com'
+  status: 'obsolete'
+
+- name: 'JSON Schema Compatibility'
+  description: 'Converts draft 3 to draft 4'
+  toolingTypes: ['util-draft-migration']
+  languages: ['JavaScript']
+  source: 'https://github.com/geraintluff/json-schema-compatability'
+  license: 'CC0-1.0'
+  status: 'obsolete'
+
+- name: 'Matic'
+  toolingTypes: ['documentation']
+  languages: ['JavaScript']
+  source: 'https://github.com/mattyod/matic'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'Docson'
+  toolingTypes: ['documentation']
+  languages: ['JavaScript']
+  source: 'https://github.com/lbovet/docson'
+  license: 'Apache-2.0'
+  status: 'obsolete'
+
+- name: 'doca'
+  description: 'See @cloudflare/doca for draft-06+ support'
+  toolingTypes: ['documentation']
+  languages: ['JavaScript']
+  source: 'https://github.com/cloudflare/doca/'
+  license: 'BSD-2-Clause'
+  status: 'obsolete'
+
+- name: 'prmd'
+  toolingTypes: ['documentation']
+  languages: ['JavaScript']
+  source: 'https://github.com/interagent/prmd'
+  license: 'MIT'
+  status: 'obsolete'
+
+- name: 'Dojo'
+  description: 'Supports some aspects of JSON Schema'
+  toolingTypes: ['util-general-processing']
+  languages: ['JavaScript']
+  homepage: 'https://www.dojotoolkit.org/'
+  license: 'AFL-2.1 OR BSD-3-Clause'
+  status: 'obsolete'
+
+- name: 'JSON Schema Random'
+  toolingTypes: ['schema-to-data']
+  languages: ['JavaScript']
+  source: 'https://github.com/andreineculau/json-schema-random'
+  license: 'Apache-2.0'
+  status: 'obsolete'
