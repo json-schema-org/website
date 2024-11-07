@@ -1106,7 +1106,7 @@
   supportedDialects:
     draft: ['4', '6', '7']
   lastUpdated: '2020-11-30'
-  status: 'outdated'
+  status: 'obsolete'
 
 - name: php-json-schema-bench
   description: 'Comparative benchmark for JSON-schema PHP validators using JSON-Schema Test Suite and z-schema/JSCK.'
@@ -2843,7 +2843,7 @@
 
 - name: 'JSON Schema Generator'
   description: 'Free extension'
-  toolingTypes: ['code-to-schema', 'editor-plugin']
+  toolingTypes: ['code-to-schema', 'editor-plugins']
   homepage: 'https://visualstudiogallery.msdn.microsoft.com/b4515ef8-a518-41ca-b48c-bb1fd4e6faf7'
   status: 'obsolete'
 
