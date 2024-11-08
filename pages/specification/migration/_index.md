@@ -9,6 +9,8 @@ As your schemas evolve over time, so does JSON Schema specification. This guide 
 
 Learn how to use our migration guides and tooling ([AlterSchema](https://alterschema.sourcemeta.com/)) to bring your work with you.
 
+Alterschema is a tool designed to facilitate the automatic migration and transformation of JSON schemas as specifications evolve. It helps simplify schema maintenance, supports backward compatibility, and streamlines schema adjustment across versions. [Read more about using AlterSchema](https://github.com/sourcemeta/alterschema?tab=readme-ov-file).
+
 ### Keywords Overview
 
 This table provides an overview of keyword changes and removals in JSON Schema specifications from Draft 01 to the latest draft.
