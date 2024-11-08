@@ -32,7 +32,7 @@ It's a small contribution to the project with a big impact to encourage and grow
 
 ## Ready to join?
 
-You can add your Company using this [Adopter form](https://forms.gle/vyFskw1RshJ55LY46) or following [these simple steps](https://github.com/json-schema-org/community/blob/main/ADOPTERS.md#how-to-add-your-company).
+You can add your Company using this [Adopter form](https://forms.gle/HNZs4vt49GWPPGQq5) or following [these simple steps](https://github.com/json-schema-org/community/blob/main/ADOPTERS.md#how-to-add-your-company).
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <a href='https://forms.gle/vyFskw1RshJ55LY46'>
