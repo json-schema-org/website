@@ -27,7 +27,7 @@ export default async function generateRssFeed(blogPosts: any) {
     const authors: Author[] = post.frontmatter.authors.map(
       (author: any): Author => {
         const link = author.twitter
-          ? `https://twitter.com/${author.twitter}`
+          ? `https://x.com/${author.twitter}`
           : undefined;
         return {
           name: author.name,
