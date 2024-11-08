@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
-    "@babel/preset-env": "^7.25.3",
+    "@babel/preset-env": "^7.26.0",
     "@cypress/code-coverage": "^3.13.2",
     "@next/eslint-plugin-next": "^14.0.1",
     "@svgr/webpack": "^8.1.0",
