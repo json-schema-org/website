@@ -83,8 +83,8 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
   }
 
   // Calculate the range of dates for the next 12 weeks from today
-  const today = moment.utc().startOf('day'); // Use UTC for today
-  const nextFourWeeksEnd = moment.utc().add(12, 'weeks').endOf('day'); // Use UTC for the end date
+  const today = moment().startOf('day');
+  const nextTwelveWeeksEnd = moment().add(12, 'weeks').endOf('day');
 
   // Loop through the events in the iCal data
   for (const k in icalData) {
@@ -93,26 +93,42 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
     if (event.type === 'VEVENT') {
       const title = event.summary;
 
-      // Parse the start date in UTC
-      const startDate = moment.utc(event.start);
+      const timezoneL = moment.tz.guess(); // Default to UTC if timezone information is not provided
 
-      // Complicated case - if an RRULE exists, handle multiple recurrences of the event
-      if (event.rrule) {
+      const startDate = moment.tz(event.start, timezoneL);
+
+      // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
+      if (event.rrule !== undefined) {
+
         const dates = event.rrule.between(
           today.toDate(),
-          nextFourWeeksEnd.toDate(),
+          nextTwelveWeeksEnd.toDate(),
           true,
         );
 
-        // Loop through the set of date entries
+        // Loop through the set of date entries to see which recurrences should be printed.
         for (const date of dates) {
-          const startDate = moment.utc(date); // Use UTC directly
+          const startDate = moment.tz(date, timezoneL);
+          const eventtimezone = event.start.tz;
+          const owntimezone = moment.tz.guess();
+          const eventOffset = moment.tz(eventtimezone).utcOffset();
+          const localOffset = moment.tz(owntimezone).utcOffset();
+          const offsetDifference = (localOffset - eventOffset);
 
-          // Check if the event falls within the next 12 weeks
-          if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-            const utcDate = startDate.subtract(5.5, 'hours'); // Already in UTC
 
-            const time = utcDate.format('MMMM Do YYYY, h:mm a');
+          // Check if the event falls within the next 4 weeks from today
+          if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
+            const dateTimezone = moment.tz.zone(event.start.tz);
+            let offset;
+            if (dateTimezone && offsetDifference)
+              offset = offsetDifference - dateTimezone.utcOffset(date);
+
+            const newDate = moment(date).subtract(offset, 'minutes').toDate();
+
+            const start = moment(newDate);
+            const utcDate = start.utc();
+
+            const time = utcDate.format('MMMM Do YYYY, HH:mm');
             const day = utcDate.format('D');
             const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
             arrayDates.push({
@@ -125,11 +141,11 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
           }
         }
       } else {
-        // Simple case - no recurrences
-        if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-          const utcDate = startDate.subtract(5.5, 'hours'); // Already in UTC
+        // Simple case - no recurrences, just print out the calendar event.
+        if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
+          const utcDate = startDate.utc();
 
-          const time = utcDate.format('MMMM Do YYYY, h:mm a');
+          const time = utcDate.format('MMMM Do YYYY, HH:mm');
           const day = utcDate.format('D');
           const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
           arrayDates.push({
@@ -144,14 +160,17 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
     }
   }
 
-  // Sort the array based on parsedStartDate
   arrayDates.sort(
     (x, y) =>
       new Date(x.parsedStartDate).getTime() -
       new Date(y.parsedStartDate).getTime(),
   );
+
   return arrayDates;
 }
+
+
+
 export function AlgoliaSearch() {
   useEffect(() => {
     const customButton = document.querySelector('.herobtn');
