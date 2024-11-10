@@ -112,8 +112,7 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
           const owntimezone = moment.tz.guess();
           const eventOffset = moment.tz(eventtimezone).utcOffset();
           const localOffset = moment.tz(owntimezone).utcOffset();
-          const offsetDifference =localOffset - eventOffset;;
-
+          const offsetDifference = localOffset - eventOffset;
 
           // Check if the event falls within the next 4 weeks from today
           if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
