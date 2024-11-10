@@ -6,7 +6,7 @@ cover: /img/posts/2023/new-website/cover.webp
 authors:
   - name: Benjamin Granados
     photo: /img/avatars/benjagm.webp
-    link: https://www.twitter.com/benjagm
+    link: https://www.x.com/benjagm
 excerpt: "We are so pleased to announce the launch of our new website!"
 ---
 

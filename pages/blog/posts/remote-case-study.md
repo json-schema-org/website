@@ -6,7 +6,7 @@ cover: /img/posts/2023/remote-case-study/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://www.twitter.com/relequestual
+    link: https://www.x.com/relequestual
 excerpt: "Using JSON Schema at Remote was the first step to solving data validation and form generation problems across all levels at Remote."
 ---
 
