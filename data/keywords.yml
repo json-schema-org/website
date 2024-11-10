@@ -174,7 +174,7 @@
       title: Pattern Properties
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-patternproperties'
       title: Draft 2020-12
-- name: prefixitems
+- name: prefixItems
   vocabulary: [Applicator]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/prefixitems'
   links:
@@ -192,7 +192,7 @@
       title: Schema Defination
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-properties'
       title: Draft 2020-12
-- name: propertynames
+- name: propertyNames
   vocabulary: [Applicator]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/propertynames'
   links:
@@ -280,6 +280,22 @@
       title: Range
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maximum'
       title: Draft 2020-12
+- name: maxItems
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxitems/'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#length'
+      title: Length
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxitems'
+      title: Draft 2020-12
+- name: maxLength
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxlength'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/string#length'
+      title: Length
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxlength'
+      title: Draft 2020-12
 - name: maxProperties
   vocabulary: [Validation]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxproperties'
@@ -290,7 +306,25 @@
       title: maxProperties
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxproperties'
       title: Draft 2020-12
-- name: minitems
+- name: minContains
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/mincontains'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#mincontains-maxcontains'
+      title: Mincontains / Maxcontains
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-mincontains'
+      title: Draft 2020-12
+- name: minimum
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minimum'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/numeric#range'
+      title: Range
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-minimum'
+      title: Draft 2020-12
+- name: minItems
   vocabulary: [Validation]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minitems'
   links:
@@ -368,6 +402,14 @@
       title: Uniqueness
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-uniqueitems'
       title: Draft 2020-12
+- name: format
+  vocabulary: [Format Annotation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/format-annotation/format/'
+  links:
+    - url: 'https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.7.2.1'
+      title: Draft 2020-12
+    - url: 'https://www.learnjsonschema.com/2020-12/format-annotation/'
+      title: Format Annotation
 - name: contentEncoding
   vocabulary: [Content]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/content/contentencoding'
@@ -384,7 +426,7 @@
       title: contentMediaType
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-contentmediatype'
       title: Draft 2020-12
-- name: contentschema
+- name: contentSchema
   vocabulary: [Content]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/content/contentschema'
   links:
@@ -452,7 +494,7 @@
       title: Annotations
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-readonly-and-writeonly'
       title: Draft 2020-12
-- name: unevaluateditems
+- name: unevaluatedItems
   vocabulary: [Unevaluated]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/unevaluated/unevaluateditems'
   links:
@@ -460,7 +502,7 @@
       title: Unevaluated Items
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-unevaluateditems'
       title: Draft 2020-12
-- name: unevaluatedproperties
+- name: unevaluatedProperties
   vocabulary: [Unevaluated]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/unevaluated/unevaluatedproperties'
   links:
@@ -468,3 +510,11 @@
       title: Unevaluated Properties
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-unevaluatedproperties'
       title: Draft 2020-12
+- name: format
+  vocabulary: [Format Assertion]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/format-assertion/format/'
+  links:
+    - url: 'https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.7.2.2'
+      title: Draft 2020-12
+    - url: 'https://www.learnjsonschema.com/2020-12/format-assertion/'
+      title: Format Assertion

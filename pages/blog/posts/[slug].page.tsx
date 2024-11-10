@@ -82,7 +82,7 @@ export default function StaticMarkdownPage({
                             {author.twitter && (
                               <a
                                 className='block text-sm text-blue-500 font-medium'
-                                href={`https://twitter.com/${author.twitter}`}
+                                href={`https://x.com/${author.twitter}`}
                               >
                                 @{author.twitter}
                               </a>
