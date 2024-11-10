@@ -99,7 +99,6 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
 
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
-
         const dates = event.rrule.between(
           today.toDate(),
           nextTwelveWeeksEnd.toDate(),
@@ -113,7 +112,7 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
           const owntimezone = moment.tz.guess();
           const eventOffset = moment.tz(eventtimezone).utcOffset();
           const localOffset = moment.tz(owntimezone).utcOffset();
-          const offsetDifference = (localOffset - eventOffset);
+          const offsetDifference =localOffset - eventOffset;;
 
 
           // Check if the event falls within the next 4 weeks from today
@@ -168,8 +167,6 @@ function printEventsForNextWeeks(icalData: { [x: string]: any }) {
 
   return arrayDates;
 }
-
-
 
 export function AlgoliaSearch() {
   useEffect(() => {
