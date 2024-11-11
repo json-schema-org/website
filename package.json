@@ -38,7 +38,7 @@
     "js-yaml": "^4.1.0",
     "jsonpath": "^1.1.1",
     "jszip": "^3.10.1",
-    "markdown-to-jsx": "^7.4.7",
+    "markdown-to-jsx": "^7.5.0",
     "moment": "2.29.4",
     "next": "14.2.14",
     "next-sitemap": "^4.2.3",

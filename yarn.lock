@@ -8254,7 +8254,7 @@ __metadata:
     js-yaml: "npm:^4.1.0"
     jsonpath: "npm:^1.1.1"
     jszip: "npm:^3.10.1"
-    markdown-to-jsx: "npm:^7.4.7"
+    markdown-to-jsx: "npm:^7.5.0"
     moment: "npm:2.29.4"
     next: "npm:14.2.14"
     next-sitemap: "npm:^4.2.3"
@@ -8675,12 +8675,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"markdown-to-jsx@npm:^7.4.7":
-  version: 7.4.7
-  resolution: "markdown-to-jsx@npm:7.4.7"
+"markdown-to-jsx@npm:^7.5.0":
+  version: 7.5.0
+  resolution: "markdown-to-jsx@npm:7.5.0"
   peerDependencies:
     react: ">= 0.14.0"
-  checksum: 10c0/7dab3e2c8d7374c45e6ca34fd12b40453533a5b89749eff3359975b1d296c553ff7675f56be7c9d1fb3b97b7b7d143d1b3237137d5c262322e0534eea72e2800
+  checksum: 10c0/88213e64afd41d6934fbb70bcea0e2ef1f9553db1ba4c6f423b17d6e9c2b99c82b0fcbed29036dd5b91704b170803d1fae730ab40ae27af5c7994e2717686ebc
   languageName: node
   linkType: hard
 
