@@ -76,7 +76,14 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 // Function to filter and print events for the next weeks from today
 function printEventsForNextWeeks(icalData: { [key: string]: any }) {
-  const arrayDates: Array<{ title: string; time: string; day: string; timezone: string; parsedStartDate: string }> = [];
+  const arrayDates: Array<{
+    title: string;
+    time: string;
+    day: string;
+    timezone: string;
+    parsedStartDate: string;
+  }> = [];
+  
   if (!icalData) {
     console.error('iCal data is empty or invalid.');
     return;
@@ -93,16 +100,22 @@ function printEventsForNextWeeks(icalData: { [key: string]: any }) {
       const startDate = moment.tz(event.start, timezoneL);
 
       if (event.rrule) {
-        processRecurringEvent(event, today, nextTwelveWeeksEnd, title, arrayDates, timezoneL);
+        processRecurringEvent(
+          event,
+          today,
+          nextTwelveWeeksEnd,
+          title,
+          arrayDates,
+          timezoneL
+        );
       } else if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
         arrayDates.push(createEventObject(startDate, title));
       }
     }
   }
 
-  arrayDates.sort(
-    (x, y) =>
-      new Date(x.parsedStartDate).getTime() - new Date(y.parsedStartDate).getTime()
+  arrayDates.sort((x, y) => 
+    new Date(x.parsedStartDate).getTime() - new Date(y.parsedStartDate).getTime()
   );
 
   return arrayDates;
@@ -113,7 +126,13 @@ function processRecurringEvent(
   today: moment.Moment,
   nextTwelveWeeksEnd: moment.Moment,
   title: string,
-  arrayDates: Array<{ title: string; time: string; day: string; timezone: string; parsedStartDate: string }>,
+  arrayDates: Array<{
+    title: string;
+    time: string;
+    day: string;
+    timezone: string;
+    parsedStartDate: string;
+  }>,
   timezoneL: string
 ) {
   const dates = event.rrule.between(today.toDate(), nextTwelveWeeksEnd.toDate(), true);
@@ -141,7 +160,7 @@ function createEventObject(startDate: moment.Moment, title: string) {
     time: utcDate.format('MMMM Do YYYY, HH:mm'),
     day: utcDate.format('D'),
     timezone: 'UTC',
-    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss')
+    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss'),
   };
 }
 
@@ -153,7 +172,7 @@ function createEventObjectWithOffset(date: Date, offset: number, title: string) 
     time: utcDate.format('MMMM Do YYYY, HH:mm'),
     day: utcDate.format('D'),
     timezone: 'UTC',
-    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss')
+    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss'),
   };
 }
 
