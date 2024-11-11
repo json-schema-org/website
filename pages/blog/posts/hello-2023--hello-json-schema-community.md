@@ -14,7 +14,7 @@ authors:
 excerpt: "I am excited to announce that I am joining as Developer Advocate with a focus on serving the Community"
 ---
 
-Since Ben Hutton joined Postman to work full-time on JSON Schema [the past year](https://blog.postman.com/ben-hutton-joins-postman-to-lead-json-schema-strategy/), other top contributors like Jason Desrosiers, Julian Berman, and Greg Dennis have joined, and now all are full-time supporting JSON Schema. So today, I am excited to announce that I am joining as Developer Advocate with a focus on serving the Community, nurturing relationships with other organizations, launching programs to support and grow the Community, and increasing awareness through content, public speaking, and discussions in Twitter, Linkedin, Stackoverflow or Reddit.
+Since Ben Hutton joined Postman to work full-time on JSON Schema [the past year](https://blog.postman.com/ben-hutton-joins-postman-to-lead-json-schema-strategy/), other top contributors like Jason Desrosiers, Julian Berman, and Greg Dennis have joined, and now all are full-time supporting JSON Schema. So today, I am excited to announce that I am joining as Developer Advocate with a focus on serving the Community, nurturing relationships with other organizations, launching programs to support and grow the Community, and increasing awareness through content, public speaking, and discussions in X, Linkedin, Stackoverflow or Reddit.
 
 ## Who is this guy?
 
@@ -35,7 +35,7 @@ If you like to know more about me, check out [this intro post](https://www.twili
 2023 will be a fantastic year for JSON Schema, and I am excited to be part of this journey with all of you! I can't wait to start connecting with you in the upcoming [working meetings](https://github.com/json-schema-org/community/discussions/35), in [Slack](https://json-schema.org/slack), and [Github](https://github.com/orgs/json-schema-org/discussions).
 
 >* Email: benjamin.granados@postman.com
->* Twitter: [@benjagm](https://www.twitter.com/benjagm)
+>* Twitter: [@benjagm](https://www.x.com/benjagm)
 >* Linkedin: [benjagranados](https://www.linkedin.com/in/benjagranados/)
 >* Github: [benjagm](https://github.com/benjagm)
 
