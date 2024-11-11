@@ -61,96 +61,86 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-function printEventsForNextWeeks(icalData: { [x: string]: any }) {
-  const arrayDates = [];
+function printEventsForNextWeeks(icalData: { [key: string]: any }) {
+  const arrayDates: Array<{ title: string; time: string; day: string; timezone: string; parsedStartDate: string }> = [];
   if (!icalData) {
     console.error('iCal data is empty or invalid.');
     return;
   }
 
-  // Calculate the range of dates for the next 12 weeks from today
   const today = moment().startOf('day');
   const nextTwelveWeeksEnd = moment().add(12, 'weeks').endOf('day');
+  const timezoneL = moment.tz.guess();
 
-  // Loop through the events in the iCal data
   for (const k in icalData) {
     const event = icalData[k];
-
     if (event.type === 'VEVENT') {
       const title = event.summary;
-
-      const timezoneL = moment.tz.guess(); // Default to UTC if timezone information is not provided
-
       const startDate = moment.tz(event.start, timezoneL);
 
-      // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
-      if (event.rrule !== undefined) {
-        const dates = event.rrule.between(
-          today.toDate(),
-          nextTwelveWeeksEnd.toDate(),
-          true,
-        );
-
-        // Loop through the set of date entries to see which recurrences should be printed.
-        for (const date of dates) {
-          const startDate = moment.tz(date, timezoneL);
-          const eventtimezone = event.start.tz;
-          const owntimezone = moment.tz.guess();
-          const eventOffset = moment.tz(eventtimezone).utcOffset();
-          const localOffset = moment.tz(owntimezone).utcOffset();
-          const offsetDifference = localOffset - eventOffset;
-
-          // Check if the event falls within the next 4 weeks from today
-          if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
-            const dateTimezone = moment.tz.zone(event.start.tz);
-            let offset;
-            if (dateTimezone && offsetDifference)
-              offset = offsetDifference - dateTimezone.utcOffset(date);
-
-            const newDate = moment(date).subtract(offset, 'minutes').toDate();
-
-            const start = moment(newDate);
-            const utcDate = start.utc();
-
-            const time = utcDate.format('MMMM Do YYYY, HH:mm');
-            const day = utcDate.format('D');
-            const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
-            arrayDates.push({
-              title,
-              time,
-              day,
-              timezone: 'UTC',
-              parsedStartDate,
-            });
-          }
-        }
-      } else {
-        // Simple case - no recurrences, just print out the calendar event.
-        if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
-          const utcDate = startDate.utc();
-
-          const time = utcDate.format('MMMM Do YYYY, HH:mm');
-          const day = utcDate.format('D');
-          const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
-          arrayDates.push({
-            title,
-            time,
-            day,
-            timezone: 'UTC',
-            parsedStartDate,
-          });
-        }
+      if (event.rrule) {
+        processRecurringEvent(event, today, nextTwelveWeeksEnd, title, arrayDates, timezoneL);
+      } else if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
+        arrayDates.push(createEventObject(startDate, title));
       }
     }
   }
 
   arrayDates.sort(
     (x, y) =>
-      new Date(x.parsedStartDate).getTime() -
-      new Date(y.parsedStartDate).getTime(),
+      new Date(x.parsedStartDate).getTime() - new Date(y.parsedStartDate).getTime()
   );
 
   return arrayDates;
+}
+
+function processRecurringEvent(
+  event: { rrule: any; start: { tz: string } },
+  today: moment.Moment,
+  nextTwelveWeeksEnd: moment.Moment,
+  title: string,
+  arrayDates: Array<{ title: string; time: string; day: string; timezone: string; parsedStartDate: string }>,
+  timezoneL: string
+) {
+  const dates = event.rrule.between(today.toDate(), nextTwelveWeeksEnd.toDate(), true);
+  const eventOffset = moment.tz(event.start.tz).utcOffset();
+  const localOffset = moment.tz(timezoneL).utcOffset();
+  const offsetDifference = localOffset - eventOffset;
+
+  for (const date of dates) {
+    const startDate = moment.tz(date, timezoneL);
+    if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
+      const dateTimezone = moment.tz.zone(event.start.tz);
+      let offset = offsetDifference;
+      if (dateTimezone) {
+        offset -= dateTimezone.utcOffset(date);
+      }
+      arrayDates.push(createEventObjectWithOffset(date, offset, title));
+    }
+  }
+}
+
+function createEventObject(startDate: moment.Moment, title: string) {
+  const utcDate = startDate.utc();
+  return {
+    title,
+    time: utcDate.format('MMMM Do YYYY, HH:mm'),
+    day: utcDate.format('D'),
+    timezone: 'UTC',
+    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss')
+  };
+}
+
+function createEventObjectWithOffset(date: Date, offset: number, title: string) {
+  const adjustedDate = moment(date).subtract(offset, 'minutes').toDate();
+  const utcDate = moment(adjustedDate).utc();
+  return {
+    title,
+    time: utcDate.format('MMMM Do YYYY, HH:mm'),
+    day: utcDate.format('D'),
+    timezone: 'UTC',
+    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss')
+  };
 }
 
 export default function communityPages(props: any) {
