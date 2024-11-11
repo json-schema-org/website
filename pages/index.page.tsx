@@ -119,7 +119,7 @@ function printEventsForNextWeeks(icalData: { [key: string]: any }) {
   arrayDates.sort(
     (x, y) =>
       new Date(x.parsedStartDate).getTime() -
-      new Date(y.parsedStartDate).getTime()
+      new Date(y.parsedStartDate).getTime(),
   );
 
   return arrayDates;
@@ -142,7 +142,7 @@ function processRecurringEvent(
   const dates = event.rrule.between(
     today.toDate(),
     nextTwelveWeeksEnd.toDate(),
-    true
+    true,
   );
   const eventOffset = moment.tz(event.start.tz).utcOffset();
   const localOffset = moment.tz(timezoneL).utcOffset();
@@ -150,10 +150,7 @@ function processRecurringEvent(
 
   for (const date of dates) {
     const startDate = moment.tz(date, timezoneL);
-    if (startDate.isBetween(
-      today,
-      nextTwelveWeeksEnd,
-      undefined, '[]')
+    if (startDate.isBetween(today,nextTwelveWeeksEnd,undefined, '[]')
     ) {
       const dateTimezone = moment.tz.zone(event.start.tz);
       let offset = offsetDifference;
@@ -179,7 +176,7 @@ function createEventObject(startDate: moment.Moment, title: string) {
 function createEventObjectWithOffset(
   date: Date,
   offset: number,
-  title: string
+  title: string,
 ) {
   const adjustedDate = moment(date).subtract(offset, 'minutes').toDate();
   const utcDate = moment(adjustedDate).utc();
