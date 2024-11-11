@@ -69,7 +69,7 @@ function printEventsForNextWeeks(icalData: { [key: string]: any }) {
     timezone: string;
     parsedStartDate: string;
   }> = [];
-  
+
   if (!icalData) {
     console.error('iCal data is empty or invalid.');
     return;
@@ -92,16 +92,20 @@ function printEventsForNextWeeks(icalData: { [key: string]: any }) {
           nextTwelveWeeksEnd,
           title,
           arrayDates,
-          timezoneL
+          timezoneL,
         );
-      } else if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
+      } else if (
+        startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')
+      ) {
         arrayDates.push(createEventObject(startDate, title));
       }
     }
   }
 
-  arrayDates.sort((x, y) => 
-    new Date(x.parsedStartDate).getTime() - new Date(y.parsedStartDate).getTime()
+  arrayDates.sort(
+    (x, y) =>
+      new Date(x.parsedStartDate).getTime() -
+      new Date(y.parsedStartDate).getTime()
   );
 
   return arrayDates;
@@ -119,9 +123,13 @@ function processRecurringEvent(
     timezone: string;
     parsedStartDate: string;
   }>,
-  timezoneL: string
+  timezoneL: string,
 ) {
-  const dates = event.rrule.between(today.toDate(), nextTwelveWeeksEnd.toDate(), true);
+  const dates = event.rrule.between(
+    today.toDate(),
+    nextTwelveWeeksEnd.toDate(),
+    true
+  );
   const eventOffset = moment.tz(event.start.tz).utcOffset();
   const localOffset = moment.tz(timezoneL).utcOffset();
   const offsetDifference = localOffset - eventOffset;
@@ -150,7 +158,11 @@ function createEventObject(startDate: moment.Moment, title: string) {
   };
 }
 
-function createEventObjectWithOffset(date: Date, offset: number, title: string) {
+function createEventObjectWithOffset(
+  date: Date,
+  offset: number,
+  title: string
+) {
   const adjustedDate = moment(date).subtract(offset, 'minutes').toDate();
   const utcDate = moment(adjustedDate).utc();
   return {
