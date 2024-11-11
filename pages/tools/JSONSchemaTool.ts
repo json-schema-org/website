@@ -34,6 +34,7 @@ export interface JSONSchemaTool {
     optOut?: boolean;
   };
   lastUpdated?: string;
+  status?: 'obsolete';
 }
 
 export interface Person {
