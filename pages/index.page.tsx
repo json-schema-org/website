@@ -150,7 +150,7 @@ function processRecurringEvent(
 
   for (const date of dates) {
     const startDate = moment.tz(date, timezoneL);
-    if (startDate.isBetween(today,nextTwelveWeeksEnd,undefined, '[]')
+    if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')
     ) {
       const dateTimezone = moment.tz.zone(event.start.tz);
       let offset = offsetDifference;
