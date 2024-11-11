@@ -28,7 +28,7 @@ This repository contains the source code of JSON Schema website:
 
 ## Setting up Project
 
-Please refer to [INSTALLATION.md](./INSTALLATION.md) for instructions on how to set up the project on your machine.
+Please refer to [INSTALLATION.md](./INSTALLATION.md) for instructions on how to set up the project for local development.
 
 ## Project structure
 
