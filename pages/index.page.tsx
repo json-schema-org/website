@@ -30,6 +30,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
       const fullFileName = fs.readFileSync(`pages/blog/posts/${slug}.md`,
+
         'utf-8',
       );
       const { data: frontmatter, content } = matter(fullFileName);
