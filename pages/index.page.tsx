@@ -7,7 +7,10 @@ const PATH = 'pages/blog/posts';
 import readingTime from 'reading-time';
 import Link from 'next/link';
 import TextTruncate from 'react-text-truncate';
-import { fetchRemoteICalFile, printEventsForNextWeeks } from '../lib/calendarUtils';
+import {
+  fetchRemoteICalFile,
+  printEventsForNextWeeks,
+} from '../lib/calendarUtils';
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
 
@@ -26,7 +29,9 @@ export const getStaticProps: GetStaticProps = async () => {
     .filter((file) => file.substr(-3) === '.md')
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
-      const fullFileName = fs.readFileSync(`pages/blog/posts/${slug}.md`, 'utf-8');
+      const fullFileName = fs.readFileSync(`pages/blog/posts/${slug}.md`,
+        'utf-8',
+      );
       const { data: frontmatter, content } = matter(fullFileName);
       return {
         slug,
@@ -34,7 +39,11 @@ export const getStaticProps: GetStaticProps = async () => {
         content,
       };
     })
-    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
+    .sort(
+      (a, b) =>
+        new Date(b.frontmatter.date).getTime() -
+        new Date(a.frontmatter.date).getTime(),
+    )
     .slice(0, 5);
   // Example usage:
   const remoteICalUrl =

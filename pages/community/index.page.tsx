@@ -11,7 +11,10 @@ import { GetStaticProps } from 'next';
 import Card from '~/components/Card';
 import Image from 'next/image';
 import ical from 'node-ical';
-import { fetchRemoteICalFile, printEventsForNextWeeks } from '../../lib/calendarUtils';
+import {
+  fetchRemoteICalFile,
+  printEventsForNextWeeks,
+} from '../../lib/calendarUtils';
 
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
