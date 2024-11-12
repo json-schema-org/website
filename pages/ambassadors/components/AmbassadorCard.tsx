@@ -41,7 +41,7 @@ const getSocialMediaUrl = (
     mastodon: 'https://mastodon.social/',
     linkedin: 'https://www.linkedin.com/in/',
   };
-  return username ? baseUrls[platform] + username : null;
+  return username ? baseUrls[platform] + username : undefined;
 };
 
 // Social media icon component with proper typing
