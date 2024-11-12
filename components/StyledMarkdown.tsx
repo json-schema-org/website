@@ -191,6 +191,15 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </p>
               ),
             },
+
+            AdditionalInfoDiv: {
+              component: ({children}) => (
+                <div className='bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-slate-700'>
+                  {children}
+                </div>
+              ),
+            },
+
             a: {
               component: ({ children, href, title, className }) => {
                 if (!href) return children;
