@@ -7,13 +7,12 @@ const PATH = 'pages/blog/posts';
 import readingTime from 'reading-time';
 import Link from 'next/link';
 import TextTruncate from 'react-text-truncate';
-
+import { fetchRemoteICalFile, printEventsForNextWeeks } from '../lib/calendarUtils';
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
 
 /* eslint-disable */
 import ical from 'node-ical';
-import moment from 'moment-timezone';
 import { useTheme } from 'next-themes';
 
 // apiKey and appId are set in the .env.local file
@@ -27,38 +26,16 @@ export const getStaticProps: GetStaticProps = async () => {
     .filter((file) => file.substr(-3) === '.md')
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
-      const fullFileName = fs.readFileSync(
-        `pages/blog/posts/${slug}.md`,
-        'utf-8',
-      );
+      const fullFileName = fs.readFileSync(`pages/blog/posts/${slug}.md`, 'utf-8');
       const { data: frontmatter, content } = matter(fullFileName);
       return {
-        slug: slug,
+        slug,
         frontmatter,
         content,
       };
     })
-    .sort((a, b) => {
-      const dateA = new Date(a.frontmatter.date).getTime();
-      const dateB = new Date(b.frontmatter.date).getTime();
-      return dateA < dateB ? 1 : -1;
-    })
+    .sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime())
     .slice(0, 5);
-
-  // Function to fetch the remote iCal file
-  async function fetchRemoteICalFile(url: string) {
-    try {
-      const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.text();
-      return data;
-    } catch (error) {
-      console.error('Error fetching iCal file:', error);
-      return null;
-    }
-  }
   // Example usage:
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics'; // Replace with the actual URL
@@ -74,119 +51,6 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-// Function to filter and print events for the next weeks from today
-function printEventsForNextWeeks(icalData: { [key: string]: any }) {
-  const arrayDates: Array<{
-    title: string;
-    time: string;
-    day: string;
-    timezone: string;
-    parsedStartDate: string;
-  }> = [];
-
-  if (!icalData) {
-    console.error('iCal data is empty or invalid.');
-    return;
-  }
-
-  const today = moment().startOf('day');
-  const nextTwelveWeeksEnd = moment().add(12, 'weeks').endOf('day');
-  const timezoneL = moment.tz.guess();
-
-  for (const k in icalData) {
-    const event = icalData[k];
-    if (event.type === 'VEVENT') {
-      const title = event.summary;
-      const startDate = moment.tz(event.start, timezoneL);
-
-      if (event.rrule) {
-        processRecurringEvent(
-          event,
-          today,
-          nextTwelveWeeksEnd,
-          title,
-          arrayDates,
-          timezoneL,
-        );
-      } else if (
-        startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')
-      ) {
-        arrayDates.push(createEventObject(startDate, title));
-      }
-    }
-  }
-
-  arrayDates.sort(
-    (x, y) =>
-      new Date(x.parsedStartDate).getTime() -
-      new Date(y.parsedStartDate).getTime(),
-  );
-
-  return arrayDates;
-}
-
-function processRecurringEvent(
-  event: { rrule: any; start: { tz: string } },
-  today: moment.Moment,
-  nextTwelveWeeksEnd: moment.Moment,
-  title: string,
-  arrayDates: Array<{
-    title: string;
-    time: string;
-    day: string;
-    timezone: string;
-    parsedStartDate: string;
-  }>,
-  timezoneL: string,
-) {
-  const dates = event.rrule.between(
-    today.toDate(),
-    nextTwelveWeeksEnd.toDate(),
-    true,
-  );
-  const eventOffset = moment.tz(event.start.tz).utcOffset();
-  const localOffset = moment.tz(timezoneL).utcOffset();
-  const offsetDifference = localOffset - eventOffset;
-
-  for (const date of dates) {
-    const startDate = moment.tz(date, timezoneL);
-    if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
-      const dateTimezone = moment.tz.zone(event.start.tz);
-      let offset = offsetDifference;
-      if (dateTimezone) {
-        offset -= dateTimezone.utcOffset(date);
-      }
-      arrayDates.push(createEventObjectWithOffset(date, offset, title));
-    }
-  }
-}
-
-function createEventObject(startDate: moment.Moment, title: string) {
-  const utcDate = startDate.utc();
-  return {
-    title,
-    time: utcDate.format('MMMM Do YYYY, HH:mm'),
-    day: utcDate.format('D'),
-    timezone: 'UTC',
-    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss'),
-  };
-}
-
-function createEventObjectWithOffset(
-  date: Date,
-  offset: number,
-  title: string,
-) {
-  const adjustedDate = moment(date).subtract(offset, 'minutes').toDate();
-  const utcDate = moment(adjustedDate).utc();
-  return {
-    title,
-    time: utcDate.format('MMMM Do YYYY, HH:mm'),
-    day: utcDate.format('D'),
-    timezone: 'UTC',
-    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss'),
-  };
-}
 
 export function AlgoliaSearch() {
   useEffect(() => {

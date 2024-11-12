@@ -11,7 +11,7 @@ import { GetStaticProps } from 'next';
 import Card from '~/components/Card';
 import Image from 'next/image';
 import ical from 'node-ical';
-import moment from 'moment-timezone';
+import { fetchRemoteICalFile, printEventsForNextWeeks } from '../../lib/calendarUtils';
 
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
@@ -35,19 +35,6 @@ export const getStaticProps: GetStaticProps = async () => {
     })
     .slice(0, 5);
 
-  async function fetchRemoteICalFile(url: string) {
-    try {
-      const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.text();
-      return data;
-    } catch (error) {
-      console.error('Error fetching iCal file:', error);
-      return null;
-    }
-  }
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
@@ -61,118 +48,6 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-function printEventsForNextWeeks(icalData: { [key: string]: any }) {
-  const arrayDates: Array<{
-    title: string;
-    time: string;
-    day: string;
-    timezone: string;
-    parsedStartDate: string;
-  }> = [];
-
-  if (!icalData) {
-    console.error('iCal data is empty or invalid.');
-    return;
-  }
-
-  const today = moment().startOf('day');
-  const nextTwelveWeeksEnd = moment().add(12, 'weeks').endOf('day');
-  const timezoneL = moment.tz.guess();
-
-  for (const k in icalData) {
-    const event = icalData[k];
-    if (event.type === 'VEVENT') {
-      const title = event.summary;
-      const startDate = moment.tz(event.start, timezoneL);
-
-      if (event.rrule) {
-        processRecurringEvent(
-          event,
-          today,
-          nextTwelveWeeksEnd,
-          title,
-          arrayDates,
-          timezoneL,
-        );
-      } else if (
-        startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')
-      ) {
-        arrayDates.push(createEventObject(startDate, title));
-      }
-    }
-  }
-
-  arrayDates.sort(
-    (x, y) =>
-      new Date(x.parsedStartDate).getTime() -
-      new Date(y.parsedStartDate).getTime(),
-  );
-
-  return arrayDates;
-}
-
-function processRecurringEvent(
-  event: { rrule: any; start: { tz: string } },
-  today: moment.Moment,
-  nextTwelveWeeksEnd: moment.Moment,
-  title: string,
-  arrayDates: Array<{
-    title: string;
-    time: string;
-    day: string;
-    timezone: string;
-    parsedStartDate: string;
-  }>,
-  timezoneL: string,
-) {
-  const dates = event.rrule.between(
-    today.toDate(),
-    nextTwelveWeeksEnd.toDate(),
-    true,
-  );
-  const eventOffset = moment.tz(event.start.tz).utcOffset();
-  const localOffset = moment.tz(timezoneL).utcOffset();
-  const offsetDifference = localOffset - eventOffset;
-
-  for (const date of dates) {
-    const startDate = moment.tz(date, timezoneL);
-    if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
-      const dateTimezone = moment.tz.zone(event.start.tz);
-      let offset = offsetDifference;
-      if (dateTimezone) {
-        offset -= dateTimezone.utcOffset(date);
-      }
-      arrayDates.push(createEventObjectWithOffset(date, offset, title));
-    }
-  }
-}
-
-function createEventObject(startDate: moment.Moment, title: string) {
-  const utcDate = startDate.utc();
-  return {
-    title,
-    time: utcDate.format('MMMM Do YYYY, HH:mm'),
-    day: utcDate.format('D'),
-    timezone: 'UTC',
-    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss'),
-  };
-}
-
-function createEventObjectWithOffset(
-  date: Date,
-  offset: number,
-  title: string,
-) {
-  const adjustedDate = moment(date).subtract(offset, 'minutes').toDate();
-  const utcDate = moment(adjustedDate).utc();
-  return {
-    title,
-    time: utcDate.format('MMMM Do YYYY, HH:mm'),
-    day: utcDate.format('D'),
-    timezone: 'UTC',
-    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss'),
-  };
-}
 
 export default function communityPages(props: any) {
   const blogPosts = props.blogPosts;
