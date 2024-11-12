@@ -1,6 +1,62 @@
 ---
-title: Draft 03 to Draft 04
+title: Migrating from Draft 03 to Draft 04
 section: docs
 ---
 
-3-4
+### Introduction
+
+The migration from Draft 3 to Draft 4 of JSON Schema introduces changes in how schemas are defined and validated. Draft 4, published on January 31, 2013, introduced new keywords and revised the behaviours of existing ones, making schemas more flexible and powerful. This guide will help you adapt your JSON Schemas to align with Draft 4 requirements, covering keyword changes, vocabulary updates, and behavioural modifications.
+
+### Keyword changelog
+
+Below is a summary table highlighting keyword changes between Draft 3 and Draft 4.
+
+| Keyword (Draft 3) | Keyword (Draft 4) | Specification | Vocabulary Kind | Behavior Details                                                                                                                                                       |
+| ----------------- | ----------------- | ------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$schema`         | `$schema`         | Core          | Identifier      | Change in the dialect (Uses the latest Draft4 dialect)                                                                                                                 |
+| `type`            | `type`            | Validation    | Assertion       | This change no longer accepts the `any` type, restricting instances to the seven core primitive types only.                                                            |
+| `disallow`        | removed           | Validation    | -               | The `disallow` keyword was removed, eliminating the ability to specify types or schemas that an instance must not match.                                               |
+| `required`        | `required`        | Validation    | Assertion       | The `required` keyword shifted from being a boolean within each property to a standalone keyword that takes an array of required property names outside of properties. |
+| `divisibleBy`     | `multipleOf`      | Validation    | Assertion       | `divisibleBy` was renamed to `multipleOf`, with a stricter requirement that its value must be greater than 0.                                                          |
+| `extends`         | removed           | Validation    | -               | The `extends` keyword was removed; allOf was added as a new keyword to achieve similar functionality.                                                                  |
+| `format`          | `format`          | Validation    | Annotation      | The `format` section was reworked to make support optional, removed phone, style, and color, renamed ip-address to ipv4, and added references for all attributes.      |
+| `dependencies`    | `dependencies`    | Core          | -               | The `dependencies` member values were changed to require an array, eliminating the use of single strings.                                                              |
+| `ref` (legacy)    | `ref` (legacy)    | Core          | Applicator      | -                                                                                                                                                                      |
+| Not present       | `allOf`           | Core          | Applicator      | -                                                                                                                                                                      |
+| Not present       | `anyOff`          | Core          | Applicator      | -                                                                                                                                                                      |
+| Not present       | `definitions`     | Validation    | -               | -                                                                                                                                                                      |
+| Not present       | `maxProperties`   | Validation    | Assertion       | -                                                                                                                                                                      |
+| Not present       | `minProperties`   | Validation    | Assertion       | -                                                                                                                                                                      |
+| Not present       | `not`             | Core          | -               | -                                                                                                                                                                      |
+| Not present       | `oneOf`           | Core          | Applicator      | -                                                                                                                                                                      |
+
+> DISCLAIMER: We do not cover migration from Draft 01. But the `type` (legacy) was first introduced in Draft 01 and was later replaced by an upgraded `type` in Draft 4.
+
+> `ref` (legacy) was introduced in Draft 03 and updated with few functionalities in Draft 4. It also got changed in Draft 06 and was fully replaced in 2019-09.
+
+### Tutorial
+
+This tutorial walks you through key steps and considerations to help you successfully migrate your JSON schemas from Draft 3 to Draft 4.
+
+#### Step 1: Review Core Changes
+
+Start by familiarizing yourself with the updates in the [Draft 4 Core schema specification](https://json-schema.org/draft-04/draft-zyp-json-schema-04.html). Note the revised `type`, `properties`, and `$ref` keywords, which might affect your schemas if you rely on polymorphic types or cross-schema references.
+
+#### Step 2: Update Validation Keywords
+
+Draft 4 has introduced new keywords such as `required`, `dependencies`, `anyOf`, `allOf`, and `patternProperties`. Review each of these additions, and update your schemas to use these keywords if relevant. For instance:
+
+- If you have properties that must always be present, use `required` to define these properties explicitly.
+- For schemas that contain nested dependencies, consider restructuring them using `dependencies` to improve schema maintainability.
+
+#### Step 3: Refactor $ref Usage
+
+References in Draft 4 (`$ref`) are more standardized, which enhances schema modularity and reusability. If your schema relies on definitions within or across schemas, make sure the `$ref` keyword is used consistently as per Draft 4’s enhanced JSON Reference guidelines.
+
+#### Step 4: Validate Your Updated Schemas
+
+Test your updated schemas using a JSON Schema validator compatible with Draft 4 ([Another JSON Validator](https://ajv.js.org/) (AJV)). Pay particular attention to behaviours of `type`, `properties`, and new combinatory keywords (`allOf`, `anyOf`), as validation behaviour may differ from Draft 3.
+
+#### Step 5: Test in Your Application Context
+
+After the schema updates, integrate them into your application and test the end-to-end functionality. Ensure that the new schema definitions meet your data requirements and interact appropriately with application code, especially in cases involving complex validation rules and nested references.
