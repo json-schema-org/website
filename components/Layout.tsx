@@ -345,11 +345,10 @@ const Footer = () => (
         </div>
         <div className=''>
           <a
-            href='https://twitter.com/jsonschema'
+            href='https://x.com/jsonschema'
             className='flex items-center text-white'
           >
-            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
-            Twitter
+            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />X
           </a>
         </div>
         <div className=''>

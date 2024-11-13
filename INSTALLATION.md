@@ -49,6 +49,8 @@ git submodule update
 
 ### Setting Up Environment Variables
 
+This step is optional. Environment variables are not required to run the website on your local development server.
+
 1. Create a new `.env` file by copying the contents of the `.env.example` into `.env` file. Use this command:
 ```
 cp .env.example .env
