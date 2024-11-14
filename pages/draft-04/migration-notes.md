@@ -5,34 +5,44 @@ section: docs
 
 ### Introduction
 
-The migration from Draft 3 to Draft 4 of JSON Schema introduces changes in how schemas are defined and validated. Draft 4, published on January 31, 2013, introduced new keywords and revised the behaviours of existing ones, making schemas more flexible and powerful. This guide will help you adapt your JSON Schemas to align with Draft 4 requirements, covering keyword changes, vocabulary updates, and behavioural modifications.
+The migration from Draft 3 to Draft 4 of JSON Schema introduces changes in how schemas are defined and validated. Draft 4, published on January 31, 2013, introduced new keywords and revised the behaviours of existing ones.
+
+This guide will help you adapt your JSON Schemas to align with Draft 4 requirements, covering keyword changes, updates, and behavioural modifications.
 
 ### Keyword changelog
 
 Below is a summary table highlighting keyword changes between Draft 3 and Draft 4.
 
-| Keyword (Draft 3) | Keyword (Draft 4) | Specification | Vocabulary Kind | Behavior Details                                                                                                                                                       |
-| ----------------- | ----------------- | ------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `$schema`         | `$schema`         | Core          | Identifier      | Change in the dialect (Uses the latest Draft4 dialect)                                                                                                                 |
-| `type`            | `type`            | Validation    | Assertion       | This change no longer accepts the `any` type, restricting instances to the seven core primitive types only.                                                            |
-| `disallow`        | removed           | Validation    | -               | The `disallow` keyword was removed, eliminating the ability to specify types or schemas that an instance must not match.                                               |
-| `required`        | `required`        | Validation    | Assertion       | The `required` keyword shifted from being a boolean within each property to a standalone keyword that takes an array of required property names outside of properties. |
-| `divisibleBy`     | `multipleOf`      | Validation    | Assertion       | `divisibleBy` was renamed to `multipleOf`, with a stricter requirement that its value must be greater than 0.                                                          |
-| `extends`         | removed           | Validation    | -               | The `extends` keyword was removed; allOf was added as a new keyword to achieve similar functionality.                                                                  |
-| `format`          | `format`          | Validation    | Annotation      | The `format` section was reworked to make support optional, removed phone, style, and color, renamed ip-address to ipv4, and added references for all attributes.      |
-| `dependencies`    | `dependencies`    | Core          | -               | The `dependencies` member values were changed to require an array, eliminating the use of single strings.                                                              |
-| `ref` (legacy)    | `ref` (legacy)    | Core          | Applicator      | -                                                                                                                                                                      |
-| Not present       | `allOf`           | Core          | Applicator      | -                                                                                                                                                                      |
-| Not present       | `anyOff`          | Core          | Applicator      | -                                                                                                                                                                      |
-| Not present       | `definitions`     | Validation    | -               | -                                                                                                                                                                      |
-| Not present       | `maxProperties`   | Validation    | Assertion       | -                                                                                                                                                                      |
-| Not present       | `minProperties`   | Validation    | Assertion       | -                                                                                                                                                                      |
-| Not present       | `not`             | Core          | -               | -                                                                                                                                                                      |
-| Not present       | `oneOf`           | Core          | Applicator      | -                                                                                                                                                                      |
+| Keyword (Draft 3) | Keyword (Draft 4) | Specification | Keyword type      | Behavior Details                                                                                                                                                       |
+| ----------------- | ----------------- | ------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `$schema`         | `$schema`         | Core          | Identifier        | Change in the dialect (Uses the latest Draft4 dialect)                                                                                                                 |
+| `type`            | `type`            | Validation    | Assertion         | This change no longer accepts the `any` type, restricting instances to the seven core primitive types only.                                                            |
+| `disallow`        | removed           | Validation    | Applicator        | The `disallow` keyword was removed, eliminating the ability to specify types or schemas that an instance must not match.                                               |
+| `required`        | `required`        | Validation    | Assertion         | The `required` keyword shifted from being a boolean within each property to a standalone keyword that takes an array of required property names outside of properties. |
+| `divisibleBy`     | `multipleOf`      | Validation    | Assertion         | `divisibleBy` was renamed to `multipleOf`, with a stricter requirement that its value must be greater than 0.                                                          |
+| `extends`         | removed           | Validation    | Applicator        | The `extends` keyword was removed; allOf was added as a new keyword to achieve similar functionality.                                                                  |
+| `format`          | `format`          | Validation    | Annotation        | -                                                                                                                                                                      |
+| `dependencies`    | `dependencies`    | Core          | Assertion         | The `dependencies` member values were changed to require an array, eliminating the use of single strings.                                                              |
+| `ref` (legacy)    | `ref` (legacy)    | Core          | Applicator        | -                                                                                                                                                                      |
+| Not present       | `allOf`           | Core          | Applicator        | -                                                                                                                                                                      |
+| Not present       | `anyOff`          | Core          | Applicator        | -                                                                                                                                                                      |
+| Not present       | `definitions`     | Validation    | Reserved Location | -                                                                                                                                                                      |
+| Not present       | `maxProperties`   | Validation    | Assertion         | -                                                                                                                                                                      |
+| Not present       | `minProperties`   | Validation    | Assertion         | -                                                                                                                                                                      |
+| Not present       | `not`             | Core          | Applicator        | -                                                                                                                                                                      |
+| Not present       | `oneOf`           | Core          | Applicator        | -                                                                                                                                                                      |
 
-> DISCLAIMER: We do not cover migration from Draft 01. But the `type` (legacy) was first introduced in Draft 01 and was later replaced by an upgraded `type` in Draft 4.
+<Infobox label="Note"> Starting with Draft 4, schema identifiers that use an empty URI "" or a fragment-only URI "#" are no longer allowed.
 
-> `ref` (legacy) was introduced in Draft 03 and updated with few functionalities in Draft 4. It also got changed in Draft 06 and was fully replaced in 2019-09.
+In Draft 3, these identifiers were considered valid:
+
+```
+id: ""
+id: "#"
+```
+
+However, this format is now prohibited from Draft 4 onwards.
+</Infobox>
 
 ### Tutorial
 
