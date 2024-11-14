@@ -4,9 +4,10 @@ import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 
 interface DocsHelpProps {
   markdownFile?: string;
+  isVisible: boolean
 }
 
-export function DocsHelp({ markdownFile }: DocsHelpProps) {
+export function DocsHelp({ markdownFile,isVisible=true}: DocsHelpProps) {
   const router = useRouter();
   const path = encodeURIComponent(router.pathname);
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -296,7 +297,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               type of contribution!
             </p>
           </div>
-          <div className='my-4 text-[14px]'>
+          {isVisible ? (<div className='my-4 text-[14px]'>
             <a
               target='_blank'
               rel='noreferrer'
@@ -317,7 +318,7 @@ export function DocsHelp({ markdownFile }: DocsHelpProps) {
               </svg>
               Edit this page on Github
             </a>
-          </div>
+          </div>): null}
           <div className='my-2 text-[14px]'>
             <a
               target='_blank'

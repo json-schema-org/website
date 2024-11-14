@@ -217,7 +217,7 @@ export default function ToolingPage({
               setTransform={setTransform}
             />
 
-            <DocsHelp />
+            <DocsHelp isVisible={false}/>
           </main>
         </div>
       </div>
