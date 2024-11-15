@@ -747,7 +747,6 @@ const Home = (props: any) => {
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
-
               <a href=' https://www.asyncapi.com/'>
                 {isClient && (
                   <>
@@ -864,6 +863,7 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
+              </a>
 
               <a
                 href=' https://www.asyncapi.com/'
@@ -915,17 +915,15 @@ const Home = (props: any) => {
               </a>
               <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
                 <img src={n8n_logo} className=' w-44' />
-
               </a>
               <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
                 <Image
-                 src={ccopter_logo}
-                 alt="Copter Logo"
-                 width={176} // Adjust width based on your needs
-                 height={44} // Adjust height based on your needs
-                 className="w-44"
-                 />
-
+                  src={ccopter_logo}
+                  alt='Copter Logo'
+                  width={176} // Adjust width based on your needs
+                  height={44} // Adjust height based on your needs
+                  className='w-44'
+                />
               </a>
               <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
