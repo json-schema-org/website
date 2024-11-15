@@ -358,7 +358,6 @@ const Footer = () => (
             href='https://x.com/jsonschema'
             className='flex items-center text-white'
           >
-
             <Image
               src='/img/logos/x-twitter.svg'
               width={16}
@@ -367,17 +366,14 @@ const Footer = () => (
               alt='Twitter logo'
             />
             Twitter
-
             <Image
-             src="/img/logos/x-twitter.svg"
-             alt="X logo"
-             width={16}
-             height={16}
-             className="mr-2"
-             />
-             X
-
-
+              src='/img/logos/x-twitter.svg'
+              alt='X logo'
+              width={16}
+              height={16}
+              className='mr-2'
+            />
+            X
           </a>
         </div>
         <div className=''>
