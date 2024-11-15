@@ -44,6 +44,10 @@ id: "#"
 However, this format is now prohibited from Draft 4 onwards.
 </Infobox>
 
+<Infobox label="Note">
+Before Draft 3, the JSON Schema only included the Core specification, which outlined the foundational elements for schema structure. With Draft 4, the specification expanded to incorporate Validation, establishing rules for data format, structure, and type requirements. This addition enabled schema authors to define and enforce validation constraints directly within their schemas, making it easier for implementers to ensure data integrity and compatibility as schemas evolved.
+</Infobox>
+
 ### Tutorial
 
 This tutorial walks you through key steps and considerations to help you successfully migrate your JSON schemas from Draft 3 to Draft 4.
