@@ -6,7 +6,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 If you don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation:
 - Star the project on Github
-- Post on Twitter or Linkedin about JSON Schema `#jsonschema
+- Post on X or Linkedin about JSON Schema `#jsonschema
 
 ## Table of Contents
 

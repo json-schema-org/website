@@ -210,6 +210,7 @@ const Home = (props: any) => {
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
   const [slack_logo, setSlack_logo] = useState('');
+  const [ccopter_logo, setCCopter_logo] = useState('');
 
   const [isClient, setIsClient] = useState(false);
 
@@ -231,6 +232,7 @@ const Home = (props: any) => {
       setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
+      setCCopter_logo('/img/logos/sponsors/copycopter-white.png');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -243,6 +245,7 @@ const Home = (props: any) => {
       setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
+      setCCopter_logo('/img/logos/sponsors/copycopter.png');
     }
   }, [resolvedTheme]);
   return (
@@ -744,6 +747,7 @@ const Home = (props: any) => {
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
+
               <a href=' https://www.asyncapi.com/'>
                 {isClient && (
                   <>
@@ -860,6 +864,68 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
+
+              <a
+                href=' https://www.asyncapi.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img src={asyncapi_logo} className=' w-44' />
+              </a>
+              <a
+                href='https://www.airbnb.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img src={airbnb_logo} className=' w-44' />
+              </a>
+              <a
+                href='https://www.postman.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img src={postman_logo} className=' w-44' />
+              </a>
+              <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
+                <img src={endjin_logo} className=' w-44' />
+              </a>
+              <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
+                <img src={llc_logo} className=' w-44' />
+              </a>
+              <a
+                href='https://www.vpsserver.com/en-us/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img src={vpsserver_logo} className=' w-44' />
+              </a>
+              <a
+                href='https://www.itflashcards.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img src={itflashcards_logo} className=' w-44' />
+              </a>
+              <a
+                href='https://www.route4me.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img src={route4me_logo} className=' w-44' />
+              </a>
+              <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
+                <img src={n8n_logo} className=' w-44' />
+
+              </a>
+              <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
+                <Image
+                 src={ccopter_logo}
+                 alt="Copter Logo"
+                 width={176} // Adjust width based on your needs
+                 height={44} // Adjust height based on your needs
+                 className="w-44"
+                 />
+
               </a>
               <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
