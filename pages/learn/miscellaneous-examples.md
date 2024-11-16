@@ -3,7 +3,7 @@ section: docs
 title: Miscellaneous Examples
 next: 
   label: Modelling a file system
-  url: '/learn/file-system'
+  url: /learn/file-system
 ---
 
 In this page, you will find miscellaneous examples illustrating different uses cases to help you get the most out of your JSON Schemas. Each example comes with accompanying JSON data and explanation.
