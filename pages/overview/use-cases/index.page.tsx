@@ -6,7 +6,7 @@ import { Headline1 } from '~/components/Headlines';
 import Card from '~/components/Card';
 import data from '~/data/use-cases.json';
 import { DocsHelp } from '~/components/DocsHelp';
-import NextPrevButton from '~/components/NextPrevButton';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Content() {
   const newTitle = 'Use Cases';

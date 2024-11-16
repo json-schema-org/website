@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import roadmap from '~/data/roadmap.json';
-import NextPrevButton from '~/components/NextPrevButton';
+import NextPrevButton from '~/components/NavigationButtons';
 
 const statusColors = {
   'In Progress': 'bg-green-600 text-white dark:bg-green-500',

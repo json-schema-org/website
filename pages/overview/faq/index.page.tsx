@@ -5,7 +5,7 @@ import { SectionContext } from '~/context';
 import Faq from '~/components/Faq';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
-import NextPrevButton from '~/components/NextPrevButton';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Content() {
   const newTitle = 'FAQ';

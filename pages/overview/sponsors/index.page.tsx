@@ -7,7 +7,7 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
-import NextPrevButton from '~/components/NextPrevButton';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/overview/sponsors/_index.md', 'utf-8');

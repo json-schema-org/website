@@ -1,9 +1,6 @@
 ---
 section: docs
 title: What is JSON Schema?
-prev: 
-  label: 'Code of Conduct'
-  url: '/overview/code-of-conduct'
 next: 
   label: Roadmap
   url: '/overview/roadmap'
