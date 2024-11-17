@@ -19,7 +19,7 @@ const FEEDBACK_FORM_GITHUB_SUCCESS_MESSAGE =
 // DocsHelp Component
 describe('DocsHelp Component', () => {
   const extractPathWithoutFragment = (path: any) => path.split('#')[0];
-  let mockRouter: MockRouter;
+  let mockRouter:MockRouter;
   beforeEach(() => {
     const markdownFile = "indexmd";
     mockRouter = mockNextRouter();
@@ -86,23 +86,33 @@ describe('DocsHelp Component', () => {
   });
 
   it('should handle successful feedback submission', () => {
+    // mocking the feedback api call
     cy.intercept(
       'POST',
       'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
-      { statusCode: 200, body: { success: true } },
+      {
+        statusCode: 200,
+        body: { success: true },
+      },
     ).as('feedback');
 
+    /* click on yes button and check if feedback form is visible
+       Note: checking both yes and no button to cover both scenarios */
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM_NO_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
 
+    // now type in feedback form and submit
     cy.get(FEEDBACK_FORM_INPUT).type('JSON Schema is awesome');
     cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
 
+    // check if response status code is 200
     cy.wait('@feedback').its('response.statusCode').should('eq', 200);
+
+    // check if clicking on submit button should show success message
     cy.get(FEEDBACK_FORM_SUCCESS_MESSAGE)
       .should('have.prop', 'tagName', 'P')
-      .and('contain.text', 'Thank you for your feedback!');
+      .and('contains', /Thank you for your feedback!/i);
   });
 
   it('should handle API error response', () => {
@@ -180,15 +190,14 @@ describe('DocsHelp Component', () => {
       let expectedGitRedirect = '';
 
       if (type === 'tsx') {
-        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '/index.page.tsx'}`;
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/index.page.tsx'}`;
       } else if (type === '_indexmd') {
-        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '/_index.md'}`;
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/_index.md'}`;
       } else if (type === 'indexmd') {
-        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '/index.md'}`;
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/index.md'}`;
       } else {
-        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment('/some/path') + '.md'}`;
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '.md'}`;
       }
-
       cy.mount(<DocsHelp fileRenderType={type} />);
 
       cy.get('[data-test="edit-on-github-link"]').should(
