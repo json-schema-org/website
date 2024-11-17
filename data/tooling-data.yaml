@@ -625,8 +625,8 @@
   source: 'https://github.com/karenetheridge/JSON-Schema-Modern'
   homepage: 'https://metacpan.org/dist/JSON-Schema-Modern'
   supportedDialects:
-    draft: ['7', '2019-09', '2020-12']
-  lastUpdated: '2022-08-31'
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  lastUpdated: '2024-11-08'
 
 - name: JSON::Schema::Tiny
   description: 'Validate data against a schema, minimally'

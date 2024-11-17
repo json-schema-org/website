@@ -8,7 +8,7 @@ cover: /img/posts/2022/fundamentals-part-1/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://www.twitter.com/relequestual
+    link: https://www.x.com/relequestual
     byline: JSON Schema Specification Lead @Postman
 excerpt: "We explore the fundamental JSON Schema concepts: Applicability, Subschemas, and Assertion Boolean Logic - Everyone needs good fundamentals."
 ---
@@ -394,7 +394,7 @@ When you apply the second subschema in `oneOf` to the instance, there are no con
 
 We can use the same approach as before to make sure our subschemas have sufficient constraints. <a href="https://jsonschema.dev/s/Cbcss" target="_blank">Give it a try</a>, and see if you can manage to make the validation work as expected.
 
-The link is pre-loaded with your starting Schema and instance. Let me know if you get stuck via <a href="/slack" target="_blank">Slack</a> or <a href="https://www.twitter.com/relequestual" target="_blank">Twitter</a>.
+The link is pre-loaded with your starting Schema and instance. Let me know if you get stuck via <a href="/slack" target="_blank">Slack</a> or <a href="https://www.x.com/relequestual" target="_blank">X</a>.
 
 # In summary
 
@@ -412,7 +412,7 @@ I've really enjoyed being able to share the first of our fundamentals series wit
 
 You can find all of the example instances and schemas in the <a href="https://github.com/Relequestual/json-schema-fundamentals" target="_blank">JSON Schema Fundamentals repo</a>.
 
-All feedback is welcome. If you have questions or comments, you can find me on the <a href="/slack" target="_blank">JSON Schema Slack</a> or reach out to me on Twitter <a href="https://www.twitter.com/relequestual" target="_blank">@relequestual</a>.
+All feedback is welcome. If you have questions or comments, you can find me on the <a href="/slack" target="_blank">JSON Schema Slack</a> or reach out to me on X<a href="https://www.x.com/relequestual" target="_blank">@relequestual</a>.
 
 # Useful links and further reading
 

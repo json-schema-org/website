@@ -280,6 +280,22 @@
       title: Range
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maximum'
       title: Draft 2020-12
+- name: maxItems
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxitems/'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#length'
+      title: Length
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxitems'
+      title: Draft 2020-12
+- name: maxLength
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxlength'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/string#length'
+      title: Length
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxlength'
+      title: Draft 2020-12
 - name: maxProperties
   vocabulary: [Validation]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/maxproperties'
@@ -289,6 +305,24 @@
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxproperties'
       title: maxProperties
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-maxproperties'
+      title: Draft 2020-12
+- name: minContains
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/mincontains'
+  links:
+    - url: 'https://json-schema.org/understanding-json-schema/reference/array#mincontains-maxcontains'
+      title: Mincontains / Maxcontains
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-mincontains'
+      title: Draft 2020-12
+- name: minimum
+  vocabulary: [Validation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/validation/minimum'
+  links:
+    - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
+      title: Modeling a file system with JSON Schema
+    - url: 'https://json-schema.org/understanding-json-schema/reference/numeric#range'
+      title: Range
+    - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-minimum'
       title: Draft 2020-12
 - name: minItems
   vocabulary: [Validation]
@@ -368,6 +402,14 @@
       title: Uniqueness
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-uniqueitems'
       title: Draft 2020-12
+- name: format
+  vocabulary: [Format Annotation]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/format-annotation/format/'
+  links:
+    - url: 'https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.7.2.1'
+      title: Draft 2020-12
+    - url: 'https://www.learnjsonschema.com/2020-12/format-annotation/'
+      title: Format Annotation
 - name: contentEncoding
   vocabulary: [Content]
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/content/contentencoding'
@@ -468,3 +510,11 @@
       title: Unevaluated Properties
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-unevaluatedproperties'
       title: Draft 2020-12
+- name: format
+  vocabulary: [Format Assertion]
+  learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/format-assertion/format/'
+  links:
+    - url: 'https://json-schema.org/draft/2020-12/draft-bhutton-json-schema-validation-00#rfc.section.7.2.2'
+      title: Draft 2020-12
+    - url: 'https://www.learnjsonschema.com/2020-12/format-assertion/'
+      title: Format Assertion

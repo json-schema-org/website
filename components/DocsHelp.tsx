@@ -8,7 +8,7 @@ interface DocsHelpProps {
 
 export function DocsHelp({ fileRenderType }: DocsHelpProps) {
   const router = useRouter();
-  console.log(router.asPath)
+  console.log(router.asPath);
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);

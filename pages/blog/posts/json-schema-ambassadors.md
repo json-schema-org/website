@@ -8,7 +8,7 @@ cover: /img/posts/2024/json-schema-ambassadors/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://www.twitter.com/relequestual
+    link: https://www.x.com/relequestual
     byline: JSON Schema Specification Lead @Postman
 excerpt: 'Just what is a JSON Schema Ambassador? And how can I help? Keep reading!'
 ---
