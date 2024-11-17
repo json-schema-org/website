@@ -1,5 +1,6 @@
 import React from 'react';
 import { DocsHelp } from '~/components/DocsHelp';
+import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
 
 // DocsHelp Data Test IDs
 const DOCS_HELP = '[data-test="docs-help"]';
@@ -18,9 +19,12 @@ const FEEDBACK_FORM_GITHUB_SUCCESS_MESSAGE =
 // DocsHelp Component
 describe('DocsHelp Component', () => {
   const extractPathWithoutFragment = (path: any) => path.split('#')[0];
-
+  let mockRouter: MockRouter;
   beforeEach(() => {
+    const markdownFile = "indexmd";
+    mockRouter = mockNextRouter();
     cy.viewport(1200, 800);
+    cy.mount(<DocsHelp fileRenderType={markdownFile}/>)
   });
 
   it('should render the component correctly', () => {
