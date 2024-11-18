@@ -365,7 +365,7 @@ export const DocsNav = ({
               width={22}
               className='mr-2'
             />
-            <SegmentHeadline label='Overview' />
+            <SegmentHeadline label='Introduction' />
           </div>
           <svg
             style={{
@@ -568,6 +568,11 @@ export const DocsNav = ({
           id='Guides'
         >
           <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
+          <DocLink
+            uri='/learn/getting-started-step-by-step'
+            label='Create your first schema'
+            setOpen={setOpen}
+          />
           <DocLinkBlank
             uri='https://tour.json-schema.org/'
             label='Tour of JSON Schema'

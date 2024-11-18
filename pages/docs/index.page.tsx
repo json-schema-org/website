@@ -37,7 +37,7 @@ export default function Welcome() {
         <Card
           icon='/icons/compass.svg'
           title='Basics'
-          body='New to JSON Schema? Learn the basics of schema design.'
+          body='New to JSON Schema? Learn the basics of data validation and schema design.'
           headerSize='medium'
           bodyTextSize='small'
           link='/learn'
@@ -53,7 +53,7 @@ export default function Welcome() {
         <Card
           icon='/icons/clipboard.svg'
           title='Specification'
-          body='Understand the evolution of JSON Schema through draft specifications.'
+          body='Understand the evolution of JSON Schema through its drafts'
           headerSize='medium'
           bodyTextSize='small'
           link='/specification'
