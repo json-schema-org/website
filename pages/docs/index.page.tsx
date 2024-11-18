@@ -25,16 +25,16 @@ export default function Welcome() {
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         <Card
           icon='/icons/eye.svg'
-          title='Overview'
-          body='Our Overview provides a high level view of the project, its benefits, the roadmap and other relevant details.'
+          title='Introduction'
+          body='Discover the JSON Schema initiative: its purpose and role in data validation.'
           headerSize='medium'
           bodyTextSize='small'
           link='/overview/what-is-jsonschema'
         />
         <Card
           icon='/icons/compass.svg'
-          title='Getting Started'
-          body='Our Getting Started guide walks you through the basics of JSON Schema.'
+          title='Basics'
+          body='New to JSON Schema? Learn the basics of data validation and schema design.'
           headerSize='medium'
           bodyTextSize='small'
           link='/learn'
@@ -42,7 +42,7 @@ export default function Welcome() {
         <Card
           icon='/icons/book.svg'
           title='Reference'
-          body='Our Reference teaches JSON Schema deeply from a beginner to the advanced level.'
+          body='Dive deeper into JSON Schema: explore keywords and their usage.'
           headerSize='medium'
           bodyTextSize='small'
           link='/understanding-json-schema'
@@ -50,7 +50,7 @@ export default function Welcome() {
         <Card
           icon='/icons/clipboard.svg'
           title='Specification'
-          body='Our Specification section documents all versions of JSON Schema specification.'
+          body='Understand the evolution of JSON Schema through its drafts'
           headerSize='medium'
           bodyTextSize='small'
           link='/specification'
