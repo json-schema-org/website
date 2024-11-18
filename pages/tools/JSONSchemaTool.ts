@@ -21,9 +21,7 @@ export interface JSONSchemaTool {
       source: string;
     }[];
   };
-  bowtie?: {
-    identifier: string;
-  };
+  bowtie?: BowtieData;
   toolingListingNotes?: string;
   compliance?: {
     config?: {
@@ -45,7 +43,7 @@ export interface Person {
   platform?: 'github' | 'gitlab' | 'bitbucket' | string;
 }
 
-export interface BowtieEntry {
+export interface BowtieData {
   id: string;
   dialects: Array<string>;
   badges_urls: {
@@ -57,5 +55,5 @@ export interface BowtieEntry {
 }
 
 export interface BowtieReport {
-  [source: string]: BowtieEntry;
+  [source: string]: BowtieData;
 }

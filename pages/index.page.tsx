@@ -61,11 +61,9 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   // Example usage:
   const remoteICalUrl =
-    'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics'; // Replace with the actual URL
+    'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics'; // Replace with the actual URL
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) =>
-      printEventsForNextFourWeeks(ical.parseICS(icalData)),
-    )
+    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
   // console.log('this is fetched data', datesInfo)
   return {
@@ -76,17 +74,17 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-// Function to filter and print events for the next 4 weeks from today
-function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
+// Function to filter and print events for the next weeks from today
+function printEventsForNextWeeks(icalData: { [x: string]: any }) {
   const arrayDates = [];
   if (!icalData) {
     console.error('iCal data is empty or invalid.');
     return;
   }
 
-  // Calculate the range of dates for the next 4 weeks from today
+  // Calculate the range of dates for the next 12 weeks from today
   const today = moment().startOf('day');
-  const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day');
+  const nextFourWeeksEnd = moment().add(12, 'weeks').endOf('day');
 
   // Loop through the events in the iCal data
   for (const k in icalData) {
@@ -212,6 +210,7 @@ const Home = (props: any) => {
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
   const [slack_logo, setSlack_logo] = useState('');
+  const [ccopter_logo, setCCopter_logo] = useState('');
 
   useEffect(() => {
     if (resolvedTheme === 'dark') {
@@ -226,6 +225,7 @@ const Home = (props: any) => {
       setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
+      setCCopter_logo('/img/logos/sponsors/copycopter-white.png');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -238,6 +238,7 @@ const Home = (props: any) => {
       setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
+      setCCopter_logo('/img/logos/sponsors/copycopter.png');
     }
   }, [resolvedTheme]);
   return (
@@ -469,16 +470,41 @@ const Home = (props: any) => {
                 </div>
 
                 <div className='flex ml-2 mb-2 '>
-                  <div
-                    className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                    style={{
-                      backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})`,
-                    }}
-                  />
+                  {(blogPosts[0].frontmatter.authors || []).map(
+                    (author: any, index: number) => {
+                      return (
+                        <div
+                          key={index}
+                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                          style={{
+                            backgroundImage: `url(${author.photo})`,
+                            zIndex: 10 - index,
+                          }}
+                        />
+                      );
+                    },
+                  )}
                   <div className='flex flex-col ml-2'>
                     <p className='text-sm font-semibold dark:text-slate-300'>
-                      {blogPosts[0].frontmatter.authors[0].name}
+                      {blogPosts[0].frontmatter.authors.length > 2 ? (
+                        <>
+                          {blogPosts[0].frontmatter.authors
+                            .slice(0, 2)
+                            .map((author: any, index: number) => (
+                              <span key={author.name}>
+                                {author.name}
+                                {index === 0 && ' & '}
+                              </span>
+                            ))}
+                          {'...'}
+                        </>
+                      ) : (
+                        blogPosts[0].frontmatter.authors.map((author: any) => (
+                          <span key={author.name}>{author.name}</span>
+                        ))
+                      )}
                     </p>
+
                     <div className='text-slate-500 text-sm dark:text-slate-300'>
                       <span>
                         {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
@@ -547,7 +573,7 @@ const Home = (props: any) => {
                 </div>
 
                 <a
-                  href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org&ctz=Europe%2FLondon'
+                  href='https://calendar.google.com/calendar/embed?src=json.schema.community%40gmail.com&ctz=Europe%2FLondon'
                   className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -659,34 +685,61 @@ const Home = (props: any) => {
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
-              <a href=' https://www.asyncapi.com/'>
+              <a
+                href=' https://www.asyncapi.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={asyncapi_logo} className=' w-44' />
               </a>
-              <a href='https://www.airbnb.com/'>
+              <a
+                href='https://www.airbnb.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={airbnb_logo} className=' w-44' />
               </a>
-              <a href='https://www.postman.com/'>
+              <a
+                href='https://www.postman.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={postman_logo} className=' w-44' />
               </a>
-              <a href='https://endjin.com/'>
+              <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
                 <img src={endjin_logo} className=' w-44' />
               </a>
-              <a href='https://www.llc.org/'>
+              <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
                 <img src={llc_logo} className=' w-44' />
               </a>
-              <a href='https://www.vpsserver.com/en-us/'>
+              <a
+                href='https://www.vpsserver.com/en-us/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={vpsserver_logo} className=' w-44' />
               </a>
-              <a href='https://www.itflashcards.com/'>
+              <a
+                href='https://www.itflashcards.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={itflashcards_logo} className=' w-44' />
               </a>
-              <a href='https://www.route4me.com/'>
+              <a
+                href='https://www.route4me.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={route4me_logo} className=' w-44' />
               </a>
-              <a href='https://n8n.io/'>
+              <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
                 <img src={n8n_logo} className=' w-44' />
               </a>
-              <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
+                <img src={ccopter_logo} className=' w-44' />
+              </a>
+              <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='h-6 w-6'
@@ -701,7 +754,10 @@ const Home = (props: any) => {
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <a href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
+                <a
+                  className='text-sm md:text-base'
+                  href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+                >
                   Your logo here
                 </a>
               </button>

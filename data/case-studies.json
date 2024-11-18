@@ -2,7 +2,7 @@
   {
     "title": "How JSON Schema Was an Obvious Choice at GitHub",
     "summary": "At GitHub's Docs Engineering team, while shipping releases to production 20 times per day or more, JSON Schema is critical in increasing confidence in changes to data, content and APIs.",
-    "logo": "/img/logos/github-logo.png",
+    "logo": "/img/logos/github-logo.svg",
     "links": {
       "lang": "URL1",
       "url": "/blog/posts/github-case-study"

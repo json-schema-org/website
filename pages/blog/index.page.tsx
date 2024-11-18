@@ -12,6 +12,12 @@ import { useRouter } from 'next/router';
 import useSetUrlParam from '~/lib/useSetUrlParam';
 import { SectionContext } from '~/context';
 
+type Author = {
+  name: string;
+  photo?: string;
+  link?: string;
+  byline?: string;
+};
 export type blogCategories =
   | 'All'
   | 'Community'
@@ -286,14 +292,40 @@ export default function StaticMarkdownPage({
                             />
                           </div>
                         </div>
-                        <div className='flex flex-row items-center'>
-                          <div className='flex flex-row pl-2 mr-2'>
+                        <div
+                          className={`
+                            flex 
+                            flex-row
+                            items-center
+                          `}
+                        >
+                          <div
+                            className={`
+                              flex 
+                              flex-row 
+                              pl-2 
+                              mr-2
+                            `}
+                          >
                             {(frontmatter.authors || []).map(
-                              (author: any, index: number) => {
+                              (author: Author, index: number) => {
+                                const sizeClass =
+                                  frontmatter.authors.length > 2
+                                    ? 'h-8 w-8'
+                                    : 'h-11 w-11';
                                 return (
                                   <div
                                     key={index}
-                                    className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                                    className={[
+                                      'bg-slate-50',
+                                      sizeClass,
+                                      'rounded-full',
+                                      '-ml-3',
+                                      'bg-cover',
+                                      'bg-center',
+                                      'border-2',
+                                      'border-white',
+                                    ].join(' ')}
                                     style={{
                                       backgroundImage: `url(${author.photo})`,
                                       zIndex: 10 - index,
@@ -304,11 +336,37 @@ export default function StaticMarkdownPage({
                             )}
                           </div>
 
-                          <div className='flex flex-col items-start'>
+                          <div
+                            className={`
+                              flex 
+                              flex-col
+                              items-start
+                            `}
+                          >
                             <div className='text-sm font-semibold'>
-                              {frontmatter.authors
-                                .map((author: any) => author.name)
-                                .join(' & ')}
+                              {frontmatter.authors.length > 2 ? (
+                                <>
+                                  {frontmatter.authors
+                                    .slice(0, 2)
+                                    .map((author: Author, index: number) => (
+                                      <span key={author.name}>
+                                        {author.name}
+                                        {index === 0 && ' & '}
+                                      </span>
+                                    ))}
+                                  {'...'}
+                                </>
+                              ) : (
+                                frontmatter.authors.map(
+                                  (author: Author, index: number) => (
+                                    <span key={author.name}>
+                                      {author.name}
+                                      {index < frontmatter.authors.length - 1 &&
+                                        ' & '}
+                                    </span>
+                                  ),
+                                )
+                              )}
                             </div>
 
                             <div className='text-slate-500 text-sm dark:text-slate-300'>
