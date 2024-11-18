@@ -324,6 +324,7 @@ export const DocsNav = ({
 
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
+      {/* Introduction */}
       <div className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
@@ -331,7 +332,7 @@ export const DocsNav = ({
         >
           <div className='flex  items-center align-middle'>
             <img src={`${overview_icon}`} alt='eye icon' className='mr-2' />
-            <SegmentHeadline label='Overview' />
+            <SegmentHeadline label='Introduction' />
           </div>
           <svg
             style={{
@@ -376,13 +377,13 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/overview/case-studies'
-            label='Case Studies'
+            label='Case studies'
             setOpen={setOpen}
           />
           <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
           <DocLink
             uri='/overview/similar-technologies'
-            label='Similar Technologies'
+            label='Similar technologies'
             setOpen={setOpen}
           />
           <DocLinkBlank
@@ -392,7 +393,7 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/overview/code-of-conduct'
-            label='Code of Conduct'
+            label='Code of conduct'
             setOpen={setOpen}
           />
         </div>
@@ -406,7 +407,7 @@ export const DocsNav = ({
         >
           <div className='flex  items-center align-middle'>
             <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
-            <SegmentHeadline label='Getting Started' />
+            <SegmentHeadline label='Basics' />
           </div>
           <svg
             style={{
@@ -436,7 +437,7 @@ export const DocsNav = ({
           <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
           <DocLink
             uri='/learn/getting-started-step-by-step'
-            label='Creating your first schema'
+            label='Create your first schema'
             setOpen={setOpen}
           />
           <DocLinkBlank
@@ -502,12 +503,12 @@ export const DocsNav = ({
         >
           <DocLink
             uri='/learn/glossary'
-            label='JSON Schema Glossary'
+            label='Common JSON Schema terms'
             setOpen={setOpen}
           />
           <DocLink
             uri='/understanding-json-schema/keywords'
-            label='JSON Schema Keywords'
+            label='JSON Schema keywords'
             setOpen={setOpen}
           />
           <DocLinkBlank
@@ -618,23 +619,23 @@ export const DocsNav = ({
               />
               <DocLink
                 uri='/understanding-json-schema/reference/combining'
-                label='Schema Composition'
+                label='Schema combination'
                 setOpen={setOpen}
               />
               <DocLink
                 uri='/understanding-json-schema/reference/conditionals'
-                label='Applying Subschemas Conditionally'
+                label='Conditional subschemas'
                 setOpen={setOpen}
               />
               <DocLink
                 uri='/understanding-json-schema/reference/schema'
-                label='Declaring a Dialect'
+                label='Dialect and vocabulary declaration'
                 setOpen={setOpen}
               />
             </div>
             <DocLink
               uri='/understanding-json-schema/structuring'
-              label='Structuring a complex schema'
+              label='Complex schema structure'
               setOpen={setOpen}
             />
           </div>
@@ -646,7 +647,7 @@ export const DocsNav = ({
           <div className='pl-4 pb-1 pt-1'>
             <DocLink
               uri='/implementers/interfaces'
-              label='Common Interfaces across Implementations'
+              label='Common interfaces across implementations'
               setOpen={setOpen}
             />
           </div>
@@ -703,7 +704,7 @@ export const DocsNav = ({
 
           <DocLink
             uri='/specification-links'
-            label='Specification Links'
+            label='Specification links'
             setOpen={setOpen}
           />
 
@@ -714,7 +715,7 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/specification/release-notes'
-            label='Release Notes'
+            label='Release notes'
             setOpen={setOpen}
           />
 
