@@ -42,7 +42,7 @@ In Swift, "string" is analogous to the ``String`` type.
 42
 ```
 
-## Length[#length]
+## Length
 
 The length of a string can be constrained using the `minLength` and
 `maxLength` [keywords](../../learn/glossary#keyword). For both keywords, the value must be a
@@ -73,7 +73,7 @@ non-negative number.
 "ABCD"
 ```
 
-## Regular Expressions[#regexp]
+## Regular Expressions
 
 The `pattern` keyword is used to restrict a string to a particular
 regular expression. The regular expression syntax is the one defined in
@@ -116,7 +116,7 @@ with an optional area code:
 "(800)FLOWERS"
 ```
 
-## Format[#format]
+## Format
 
 The `format` keyword allows for basic semantic identification of certain
 kinds of string values that are commonly used. For example, because JSON
@@ -146,7 +146,7 @@ exchanging the JSON documents also exchange information about the custom
 format types. A JSON Schema validator will ignore any format type that
 it does not understand.
 
-### Built-in formats[#built-in-formats]
+### Built-in formats
 
 The following is the list of formats specified in the JSON Schema
 specification.

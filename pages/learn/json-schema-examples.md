@@ -5,17 +5,6 @@ title: JSON Schema examples
 
 In this page, you will find examples illustrating different use cases to help you get the most out of your JSON Schemas. These examples cover a wide range of scenarios, and each example comes with accompanying JSON data and explanation, showcasing how JSON Schemas can be applied to various domains. You can modify these examples to suit your specific needs, as this is just one of the many ways you can utilize JSON Schemas.
 
-- [Address](#address)
-- [Blog post](#blog-post)
-- [Calendar](#calendar)
-- [Device Type](#device-type)
-- [Ecommerce System](#ecommerce-system)
-- [Geographical location](#geographical-location)
-- [Health record](#health-record)
-- [Job posting](#job-posting)
-- [Movie](#movie)
-- [User profile](#user-profile)
-
 
 ## Address
 

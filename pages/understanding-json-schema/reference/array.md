@@ -56,7 +56,7 @@ There are two ways in which arrays are generally used in JSON:
     usage is often given a whole separate type in some programming
     languages, such as Python\'s `tuple`).
 
-## Items[#items]
+## Items
 
 List validation is useful for arrays of arbitrary length where each item
 matches the same schema. For this kind of array, set the `items` [keyword](../../learn/glossary#keyword)
@@ -94,7 +94,7 @@ The empty array is always valid:
 
 <Keywords label="single: array; tuple validation" />
 
-## Tuple validation[#tupleValidation]
+## Tuple validation
 
 Tuple validation is useful when the array is a collection of items where
 each has a different schema and the ordinal index of each item is
@@ -176,7 +176,7 @@ And, by default, it's also okay to add additional items to end:
 
 <Keywords label="single: array; tuple validation; items single: items" />
 
-### Additional Items[#additionalitems]
+### Additional Items
 
 The `items` keyword can be used to control whether it\'s valid to have
 additional items in a tuple beyond what is defined in `prefixItems`. The
@@ -261,7 +261,7 @@ Extra string items are ok ...
 
 <Keywords label="single: array; tuple validation; unevaluatedItems single: unevaluatedItems" />
 
-## Unevaluated Items[#unevaluateditems]
+## Unevaluated Items
 
 <Star label="New in draft 2019-09" />
 
@@ -392,7 +392,7 @@ items and reference `my-tuple#extended` when you need three items.
 
 <Keywords label="single: array; contains single: contains" />
 
-## Contains[#contains]
+## Contains
 
 <Star label="New in draft 6" />
 
@@ -470,7 +470,7 @@ Fails `maxContains`
 
 <Keywords label="single: array; length single: minItems single: maxItems" />
 
-## Length[#length]
+## Length
 
 The length of the array can be specified using the `minItems` and
 `maxItems` keywords. The value of each keyword must be a non-negative
@@ -507,7 +507,7 @@ number. These keywords work whether doing [list validation](#items) or [tuple-va
 
 <Keywords label="single: array; uniqueness single: uniqueItems" />
 
-## Uniqueness[#uniqueItems]
+## Uniqueness
 
 A schema can ensure that each of the items in an array is unique. Simply
 set the `uniqueItems` keyword to `true`.
