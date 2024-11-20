@@ -7,7 +7,7 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
-import { TableOfContentMarkdown } from '~/components/StyledMarkdown'; // Import TOC component
+import { TableOfContentMarkdown } from '~/components/StyledMarkdown'; 
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages');
@@ -42,7 +42,7 @@ export default function StaticMarkdownPage({
             <div className="uppercase text-xs text-slate-400 mb-4">
               On this page
             </div>
-            <TableOfContentMarkdown markdown={content} depth={0} />
+            <TableOfContentMarkdown markdown={content} depth={3} />
           </div>
         </div>
       </div>
