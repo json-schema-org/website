@@ -67,7 +67,7 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `multipleOf`            | Validation    | 04                 | No      | Replaced `divisibleBy`                                                                       |
 | `not`                   | Core          | 04                 | No      | No                                                                                           |
 | `oneOf`                 | Core          | 04                 | No      | No                                                                                           |
-| `optional`              | Core          | 02                 | Yes     | Replaced by `required`                                                                       |
+| `optional`              | Core          | 02                 | 03      | Replaced by `required`                                                                       |
 | `pattern`               | Core          | 01                 | No      | No                                                                                           |
 | `patternProperties`     | Core          | 03                 | No      | No                                                                                           |
 | `prefixItems`           | Core          | 2020-12            | No      | Replaced `items`                                                                             |
