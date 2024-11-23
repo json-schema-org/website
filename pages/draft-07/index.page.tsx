@@ -8,6 +8,19 @@ import DocTable from '~/components/DocTable';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface ImplementationsPagesProps {
+  blocks: {
+    index: string;
+  };
+  frontmatter: {
+    title: string;
+    Specification: string;
+    Published: string;
+    authors: string[];
+    Metaschema: string;
+  };
+}
+
 export async function getStaticProps() {
   const index = fs.readFileSync('pages/draft-07/index.md', 'utf-8');
 
@@ -27,10 +40,7 @@ export async function getStaticProps() {
 export default function ImplementationsPages({
   blocks,
   frontmatter,
-}: {
-  blocks: any;
-  frontmatter: any;
-}) {
+}: ImplementationsPagesProps) {
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>

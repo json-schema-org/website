@@ -25,6 +25,28 @@ interface ToolingTableProps {
   setTransform: Dispatch<SetStateAction<Transform>>;
 }
 
+interface TableCellAttributes
+  extends React.HTMLAttributes<HTMLTableCellElement> {
+  style?: React.CSSProperties;
+  title?: string;
+}
+
+interface TableColumnHeaderProps {
+  children: ReactNode | ReactNode[];
+  attributes?: React.ThHTMLAttributes<HTMLTableCellElement>;
+}
+
+interface TableSortableColumnHeaderProps extends TableColumnHeaderProps {
+  sortBy: Transform['sortBy'];
+  transform: Transform;
+  setTransform: Dispatch<SetStateAction<Transform>>;
+}
+
+interface TableCellProps {
+  children: ReactNode | ReactNode[];
+  attributes?: TableCellAttributes;
+}
+
 const ToolingTable = ({
   toolsByGroup,
   transform,
@@ -267,10 +289,7 @@ const ToolingTable = ({
 const TableColumnHeader = ({
   children,
   attributes: propAttributes,
-}: {
-  children: ReactNode | ReactNode[];
-  attributes?: Record<string, any>;
-}) => {
+}: TableColumnHeaderProps) => {
   return (
     <th
       {...propAttributes}
@@ -290,13 +309,7 @@ const TableSortableColumnHeader = ({
   setTransform,
   children,
   attributes: propAttributes,
-}: {
-  sortBy: Transform['sortBy'];
-  transform: Transform;
-  setTransform: Dispatch<SetStateAction<Transform>>;
-  children: ReactNode;
-  attributes?: Record<string, any>;
-}) => {
+}: TableSortableColumnHeaderProps) => {
   const [isSortedBy, setIsSortedBy] = useState(transform.sortBy === sortBy);
 
   useEffect(() => {
@@ -355,10 +368,7 @@ const TableSortableColumnHeader = ({
 const TableCell = ({
   children,
   attributes: propAttributes,
-}: {
-  children: ReactNode | ReactNode[];
-  attributes?: Record<string, any>;
-}) => {
+}: TableCellProps) => {
   return (
     <td
       {...propAttributes}
