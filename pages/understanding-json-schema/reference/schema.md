@@ -11,7 +11,7 @@ provides ways to describe your own custom dialects.
 
 <Keywords label="single: \$schema single: schema; keyword" />
 
-## $schema[#schema]
+## $schema
 
 The `$schema` keyword is used to declare which dialect of JSON Schema
 the schema was written for. The value of the `$schema` keyword is also

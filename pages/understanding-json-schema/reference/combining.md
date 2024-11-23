@@ -33,7 +33,7 @@ In addition, there is:
 
 <Keywords label="single: allOf single: schema composition; allOf" />
 
-## allOf[#allOf]
+## allOf
 
 To validate against `allOf`, the given data must be valid against all of the given subschemas.
 
@@ -64,7 +64,7 @@ information.
 
 <Keywords label="single: anyOf single: schema composition; anyOf" />
 
-## anyOf[#anyOf]
+## anyOf
 
 To validate against `anyOf`, the given data must be valid against any
 (one or more) of the given subschemas.
@@ -98,7 +98,7 @@ To validate against `anyOf`, the given data must be valid against any
 
 <Keywords label="single: oneOf single: schema composition; oneOf" />
 
-## oneOf [#oneOf]
+## oneOf 
 
 To validate against `oneOf`, the given data must be valid against
 exactly one of the given subschemas.
@@ -166,9 +166,9 @@ a string:
 
 <Keywords label="single: not single: schema composition; subschema independence" />
 
-## Properties of Schema Composition[#composition]
+## Properties of Schema Composition
 
-### Illogical Schemas [#illogicalschemas]
+### Illogical Schemas 
 
 Note that it\'s quite easy to create schemas that are logical
 impossibilities with these keywords. The following example creates a
@@ -193,7 +193,7 @@ both a string and a number at the same time):
 -1
 ```
 
-### Factoring Schemas [#factoringschemas]
+### Factoring Schemas
 
 Note that it\'s possible to \"factor\" out the common parts of the
 subschemas. The following two schemas are equivalent.

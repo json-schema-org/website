@@ -5,14 +5,6 @@ title: Miscellaneous Examples
 
 In this page, you will find miscellaneous examples illustrating different uses cases to help you get the most out of your JSON Schemas. Each example comes with accompanying JSON data and explanation.
 
-- [A typical minimum schema](#basic)
-- [Arrays of things](#arrays-of-things)
-- [Enumerated values](#enumerated-values)
-- [Regular expression pattern](#regular-expression-pattern)
-- [Complex object with nested properties](#complex-object-with-nested-properties)
-- [Conditional validation with dependentRequired](#conditional-validation-with-dependentrequired)
-- [Conditional validation with dependentSchemas](#conditional-validation-with-dependentschemas)
-- [Conditional validation with if-else](#conditional-validation-with-if-else)
 
 ## Basic
 

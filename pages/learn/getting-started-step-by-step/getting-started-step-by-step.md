@@ -9,7 +9,6 @@ After creating your JSON Schema, you can then validate example data against your
 
 If you already know how to create JSON Schemas and you are looking for different JSON Schema use cases like schema generation, code generation, documentation, UI generation or JSON Schema processing or conversion, please visit [Tools](https://json-schema.org/tools) and explore the amazing tooling available in the JSON Schema Ecosystem.
 
-<tableofcontent depth={2} />
 
 <span id="overview"></span>
 
