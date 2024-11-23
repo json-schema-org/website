@@ -27,6 +27,12 @@ export async function postAnalytics({
   eventPayload,
 }: AnalyticsParams) {
   try {
+
+    if (process.env.NODE_ENV !== 'production') {
+      console.log('Analytics event is disabled in development mode.');
+      return;
+    }
+
     const deviceType = /Mobi/.test(navigator.userAgent) ? 'Mobile' : 'Desktop';
 
     const response = await fetch(
