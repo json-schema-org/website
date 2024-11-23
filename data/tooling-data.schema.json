@@ -121,7 +121,8 @@
                   "C#",
                   "Go",
                   "C++",
-                  "JavaScript"
+                  "JavaScript", 
+                  "Julia"
                 ]
               ]
             },

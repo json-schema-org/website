@@ -6,7 +6,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 If you don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation:
 - Star the project on Github
-- Post on Twitter or Linkedin about JSON Schema `#jsonschema
+- Post on X or Linkedin about JSON Schema `#jsonschema
 
 ## Table of Contents
 
@@ -61,7 +61,7 @@ To publish a case study, we encourage you to join `#adopters` channel in our [Sl
 
 ### 📋 Improving the Documentation
 
-If you would like to join the efforts to improve the JSON Schema Documentation, we encourage you to check our [documentation board](https://github.com/orgs/json-schema-org/projects/16) to get a sense of the pending issues and who is doing what. We encourage you to join the discussion on the [issue #421](https://github.com/json-schema-org/community/issues/421) so you can see the long term vision for our docs. We also invite you to join the discussion in `#documentation` channel in our  [Slack workspace](https://json-schema.org/slack).
+Want to help us improve the JSON Schema documentation? Check out our [docs Contributing guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING-docs.md) for docs and Style guide. These documents will give you the basics of our processes to get you started and text-formatting guidelines to create consistent documentation for JSON Schema. 
 
 ### 🌐 Improving the Website
 
