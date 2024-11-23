@@ -86,7 +86,6 @@ export default function StaticMarkdownPage({
                   Go back to blog
                 </Link>
                 <div className='pt-4 lg:border-t border-none lg:border-r border-slate-100'>
-
                   {(frontmatter.authors || []).map((author, index) => (
                     <div
                       key={index}
@@ -99,16 +98,6 @@ export default function StaticMarkdownPage({
                       <div>
                         <div className='text-sm font-semibold pl-2'>
                           {author.name}
-                            </div>
-                            {author.twitter && (
-                              <a
-                                className='block text-sm text-blue-500 font-medium'
-                                href={`https://x.com/${author.twitter}`}
-                              >
-                                @{author.twitter}
-                              </a>
-                            )}
-                          </div>
                         </div>
                         {author.twitter && (
                           <a
