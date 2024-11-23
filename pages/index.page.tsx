@@ -211,6 +211,7 @@ const Home = (props: any) => {
   const [common_room_logo, setCommon_room_logo] = useState('');
   const [slack_logo, setSlack_logo] = useState('');
   const [ccopter_logo, setCCopter_logo] = useState('');
+  const [octue_logo, setOctue_logo] = useState('');
 
   useEffect(() => {
     if (resolvedTheme === 'dark') {
@@ -226,6 +227,7 @@ const Home = (props: any) => {
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
       setCCopter_logo('/img/logos/sponsors/copycopter-white.png');
+      setOctue_logo('/img/logos/sponsors/octue-white.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -239,6 +241,7 @@ const Home = (props: any) => {
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
       setCCopter_logo('/img/logos/sponsors/copycopter.png');
+      setOctue_logo('/img/logos/sponsors/octue-black.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -738,6 +741,9 @@ const Home = (props: any) => {
               </a>
               <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
                 <img src={ccopter_logo} className=' w-44' />
+              </a>
+              <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
+                <img src={octue_logo} className=' w-44' />
               </a>
               <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
