@@ -20,11 +20,11 @@ export async function getStaticProps() {
 }
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
-  const markdownFile = 'tsx';
+  const fileRenderType = 'tsx';
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
-      <DocsHelp fileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

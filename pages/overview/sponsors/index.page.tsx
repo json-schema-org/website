@@ -20,7 +20,7 @@ export async function getStaticProps() {
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
   const newTitle = 'Sponsors';
-  const markdownFile = '_indexmd';
+  const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -28,7 +28,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
-      <DocsHelp fileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

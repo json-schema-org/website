@@ -18,7 +18,7 @@ export async function getStaticProps() {
 }
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
-  const markdownFile = '_indexmd';
+  const fileRenderType = '_indexmd';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -45,7 +45,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
           />
         </div>
       </section>
-      <DocsHelp fileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

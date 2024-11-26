@@ -21,10 +21,10 @@ describe('DocsHelp Component', () => {
   const extractPathWithoutFragment = (path: any) => path.split('#')[0];
   let mockRouter: MockRouter;
   beforeEach(() => {
-    const markdownFile = 'indexmd';
+    const fileRenderType = 'indexmd';
     mockRouter = mockNextRouter();
     cy.viewport(1200, 800);
-    cy.mount(<DocsHelp fileRenderType={markdownFile} />);
+    cy.mount(<DocsHelp fileRenderType={fileRenderType} />);
   });
 
   it('should render the component correctly', () => {

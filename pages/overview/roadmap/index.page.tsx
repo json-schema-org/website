@@ -34,7 +34,7 @@ const impactColors = {
 
 export default function Roadmap() {
   const newTitle = 'JSON Schema Roadmap';
-  const markdownFile = 'tsx';
+  const fileRenderType = 'tsx';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -130,7 +130,7 @@ export default function Roadmap() {
           </div>
         </div>
       </div>
-      <DocsHelp fileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

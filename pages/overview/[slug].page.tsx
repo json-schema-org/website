@@ -22,7 +22,7 @@ export default function StaticMarkdownPage({
   frontmatter: any;
   content: any;
 }) {
-  const markdownFile = '_md';
+  const fileRenderType = '_md';
   const newTitle = 'JSON Schema - ' + frontmatter.title;
 
   return (
@@ -32,7 +32,7 @@ export default function StaticMarkdownPage({
       </Head>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
-      <DocsHelp fileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

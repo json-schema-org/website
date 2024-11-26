@@ -7,7 +7,7 @@ import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Welcome() {
-  const markdownFile = 'tsx';
+  const fileRenderType = 'tsx';
 
   const newTitle = 'Getting Started';
   return (
@@ -39,7 +39,7 @@ export default function Welcome() {
           link='https://tour.json-schema.org/'
         />
       </div>
-      <DocsHelp fileRenderType={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
