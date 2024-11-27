@@ -75,6 +75,7 @@ keyword | change | notes
 [`dependentSchemas` (split from `dependencies`)](../../draft/2019-09/json-schema-core.html#rfc.section.9.2.2.4) | **split** | This is the schema form of `dependencies`; note that the standard meta-schema still reserves `dependencies` for backwards compatibility
 [`unevaluatedItems`](../../draft/2019-09/json-schema-core.html#rfc.section.9.3.1.3) | **new** | Similar to `additionalItems`, but can "see" into subschemas and across references
 [`unevaluatedProperties`](../../draft/2019-09/json-schema-core.html#rfc.section.9.3.2.4) | **new** | Similar to `additionalProperties`, but can "see" into subschemas and across references
+[`allOf`](../../draft/2019-09/json-schema-core.html#rfc.section.9.2.2) | **added to validation** | An if condition and an allOf property in a branch must not alter an if condition in another branch
 
 The other applicator vocabulary keywords are `items`, `additionalItems`, `properties`, `patternProperties`, `additionalProperties`, `anyOf`, `allOf`, `oneOf`, `not`, `if`, `then`, `else`.
 
