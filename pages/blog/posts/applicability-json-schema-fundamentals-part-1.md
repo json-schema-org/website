@@ -30,14 +30,14 @@ The validation process for JSON Schema begins with applying the whole JSON Schem
 
 A JSON Schema may be a Boolean or an Object. In the introductory article mentioned above, we noted how a Boolean Schema of `true` or `false` resulted in the same assertion result (true and false respectivly) regardless of the instance data. We also noted how the equivalent Object Schemas were `{ }` and `{ "not": { } }` respectively. (The `not` keyword inverts the assertion result.)
 
-<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200">
   <p className="font-bold"><svg className="w-6 h-6 mr-2 float-left mt-0" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" /></svg>Vocabulary check</p>
   <p>An "assertion" is a statement of fact. This is used in reference to the result of testing in Computing. The test might be called "X is 1". If the test passes, the assertion is true!</p>
 </div>
 
 When we talk about the whole Schema in terms of application, we usually refer to it as the "root Schema". This is because the other Schemas which are applied to specific instance locations are different, and we call them "subschemas". Differentiating between the root Schema and subschemas allows us to communicate with clarity which JSON Schema we're talking about, and when to use the Schema as part of the validation process.
 
-<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200">
   <p>The following examples assume to be using JSON Schema 2020-12. Where there are things you should know about previous versions (or drafts) of JSON Schema, it will be highlighted.</p>
 </div>
 
@@ -134,7 +134,7 @@ Luckily, picking this up with our Schema is simple. The `additionalProperties` k
 
 The value of `additionalProperties` is not just a Boolean, but a Schema. This subschema value is applied to all values of the instance object that are not defined in the `properties` object in our example. You could use `additionalProperties` to allow additional properties, but constrain their values to be a String.
 
-<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200">
   <p>There is a little simplification here to help us understand the concept we're looking to learn. If you want to dig a little deeper, check out our <a href="https://json-schema.org/understanding-json-schema/reference/object.html#additional-properties" target="_blank">learning resources on `additionalProperties`</a>.</p>
 </div>
 
@@ -177,7 +177,7 @@ Note, `type` takes an Array of types. It may be that your instance is allowed to
 
 ## Validating Arrays
 
-<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200">
   <p>In this introduction, we're only going to be covering how things work for JSON Schema 2020-12. If you're using a previous version, including "draft-7" or prior, you will likely benefit from digging a little deeper into the <a href="https://json-schema.org/understanding-json-schema/reference/array.html" target="_blank">learning resources for Array validation.</a></p>
 </div>
 
@@ -231,7 +231,7 @@ This sounds simple, but let's look at some examples.
   "allOf": [ true, false, true]
 }
 ```
-<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700">
+<div className="bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200">
   <p><span className="font-bold">Remember:</span> A Boolean is a valid schema that always produces the assertion result of its value, regardless of the instance data.</p>
 </div>
 
