@@ -192,14 +192,18 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               ),
             },
             div: {
-              component: ({ children, ...props }) => {
-                // Check if the div has the id 'special-div'
+              component: ({
+                children,
+                ...props
+              }: {
+                children: React.ReactNode;
+                id?: string;
+                className?: string;
+              }) => {
                 const isSpecialDiv = props.id === 'special-div';
 
-                // Get the existing className from props
                 const existingClassName = props.className || '';
 
-                // Add dark mode styles only if it's the special div
                 const classNames = isSpecialDiv
                   ? `${existingClassName} border-l-4 border-blue-500 px-4 py-1 text-blue-700 dark:border-blue-400 dark:text-blue-200`
                   : existingClassName;
