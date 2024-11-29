@@ -191,6 +191,26 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </p>
               ),
             },
+            div: {
+              component: ({ children, ...props }) => {
+                // Check if the div has the id 'special-div'
+                const isSpecialDiv = props.id === 'special-div';
+
+                // Get the existing className from props
+                const existingClassName = props.className || '';
+
+                // Add dark mode styles only if it's the special div
+                const classNames = isSpecialDiv
+                  ? `${existingClassName} border-l-4 border-blue-500 px-4 py-1 text-blue-700 dark:border-blue-400 dark:text-blue-200`
+                  : existingClassName;
+
+                return (
+                  <div id={props.id} className={classNames}>
+                    {children}
+                  </div>
+                );
+              },
+            },
             a: {
               component: ({ children, href, title, className }) => {
                 if (!href) return children;
