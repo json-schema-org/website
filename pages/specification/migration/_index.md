@@ -55,7 +55,7 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `format`                | Validation    | 01                 | No      | Modified in 04, 06, 07, 2019-09, and 2020-12                                   |
 | `id`                    | Core          | 03                 | 06      | Replaced by `$id`                                                              |
 | `if`                    | Core          | 07                 | No      | No                                                                             |
-| `items`                 | Core          | 2020-12            | No      | No                                                                             |
+| `items`                 | Core          | 01                 | No      | Changed in 2020-12                                                            |
 | `maxContains`           | Validation    | 2019-09            | No      | No                                                                             |
 | `maxDecimals`           | Validation    | 01                 | Yes     | Replaced by `divisibleBy`                                                      |
 | `maxProperties`         | Validation    | 04                 | No      | No                                                                             |
