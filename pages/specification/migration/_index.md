@@ -78,7 +78,7 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `requires`              | Core          | 01                 | 03      | Replaced by `dependencies`                                                     |
 | `title`                 | Validation    | 01                 | No      | No                                                                             |
 | `then`                  | Core          | 07                 | No      | No                                                                             |
-| `type`                  | Validation    | 01                 | No      | Modified in 01                                                                 |
+| `type`                  | Validation    | 01                 | No      | Modified in 04                                                                 |
 | `unevaluatedItems`      | Core          | 2019-09            | No      | No                                                                             |
 | `unevaluatedProperties` | Core          | 2019-09            | No      | No                                                                             |
 | `uniqueItems`           | Validation    | 02                 | No      | No                                                                             |
