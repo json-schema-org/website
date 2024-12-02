@@ -25,7 +25,7 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `$dynamicRef`           | Core          | 2020-12            | No      | Replaced `$recursiveRef`                                                       |
 | `$recursiveAnchor`      | Core          | 2019-09            | 2020-12 | Replaced by `$dynamicAnchor`                                                   |
 | `$recursiveRef`         | Core          | 2019-09            | 2020-12 | Replaced by `$dynamicRef`                                                      |
-| `$ref`                  | Core          | 2019-09            | No      | Modified in 2019-09                                                            |
+| `$ref`                  | Core          | 03                 | No      | Modified in 2019-09                                                            |
 | `$schema`               | Core          | 03                 | No      | No                                                                             |
 | `$vocabulary`           | Core          | 2019-09            | No      | No                                                                             |
 | `additionalItems`       | Core          | 03                 | 2020-12 | Replaced by `items`                                                            |
