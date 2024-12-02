@@ -43,6 +43,6 @@ Draft 3 introduces new validation keywords that improve flexibility in schema de
 
 #### Step 3: Refactor $ref Usage
 
-Draft 3 introduces a more standardized usage of `$ref`, which allows you to reference external schemas using **URIs**. This improves schema modularity and enables better reuse of schema definitions.
+Draft 3 introduces `$ref`, which allows you to reference external schemas using **URIs**. This improves schema modularity and enables better reuse of schema definitions.
 
 Validate and test your updated schemas manually, or with your preferred tool.
