@@ -49,8 +49,8 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `else`                  | Core          | 07                 | No      | No                                                                             |
 | `enum`                  | Validation    | 01                 | No      | No                                                                             |
 | `examples`              | Validation    | 06                 | No      | No                                                                             |
-| `exclusiveMaximum`      | Validation    | 06                 | No      | Modified                                                                       |
-| `exclusiveMinimum`      | Validation    | 06                 | No      | Modified                                                                       |
+| `exclusiveMaximum`      | Validation    | 03                 | No      | Modified in 04                                                                |
+| `exclusiveMinimum`      | Validation    | 03                 | No      | Modified in 04                                                                |
 | `extends`               | Core          | 01                 | 04      | Replaced by `allOf`                                                            |
 | `format`                | Validation    | 01                 | No      | Modified in 04, 06, 07, 2019-09, and 2020-12                                   |
 | `id`                    | Core          | 03                 | 06      | Replaced by `$id`                                                              |
