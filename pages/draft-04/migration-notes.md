@@ -51,7 +51,7 @@ For example:
 
 This feature was in Draft-03 but changed in later versions of JSON Schema, where `type` is limited to simpler values like strings or arrays of strings.
 
-The `allof` keyword has now replaced the previous type schema functionality.
+The `allOf` keyword has now replaced the previous type schema functionality.
 
 <Infobox label="Note"> Starting with Draft 4, schema identifiers that use an empty URI "" or a fragment-only URI "#" are no longer allowed.
 
