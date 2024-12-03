@@ -7,7 +7,6 @@ import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Welcome() {
-
   const newTitle = 'Getting Started';
   return (
     <SectionContext.Provider value='learn'>
@@ -38,7 +37,7 @@ export default function Welcome() {
           link='https://tour.json-schema.org/'
         />
       </div>
-      <DocsHelp/>
+      <DocsHelp />
     </SectionContext.Provider>
   );
 }
