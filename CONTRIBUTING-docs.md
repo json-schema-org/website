@@ -64,11 +64,11 @@ After you have been assigned to an issue, fork the [json-schema-org/website](htt
 
 To propose modifications to our documentation that do not have an issue in the [documentation board](https://github.com/orgs/json-schema-org/projects/16), you can [create a GitHub issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue#creating-an-issue-from-a-repository) and use the *Documentation* template to describe the changes. After that, you can decide whether you want to work on the changes yourself or let someone else claim the issue. If you decide to work on the issue, assign it to yourself and commit the changes to a new branch. 
 
-###Writing Tests
+### Writing Tests
 
 To ensure the quality and consistency of our documentation, we encourage contributors to write and update tests as part of their contributions. Below is a quick guide to writing tests:
 
-###Guidelines for Writing Tests
+### Guidelines for Writing Tests
 
 1.Understand the Scope: Identify the purpose of the test and the specific functionality it should validate.
 
@@ -90,7 +90,7 @@ To ensure the quality and consistency of our documentation, we encourage contrib
 
 5.Iterate and Refactor: Optimize your test cases for readability and maintainability. Avoid duplicating test logic when possible.
 
-###Resources
+### Resources
 
 For additional guidance on writing effective tests, refer to these resources:
 
@@ -100,7 +100,7 @@ For additional guidance on writing effective tests, refer to these resources:
 
 -`Effective Test Cases` - Testrail
 
-###Submitting Your Tests
+### Submitting Your Tests
 
  When submitting a pull request that includes tests:
 
