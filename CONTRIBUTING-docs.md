@@ -113,11 +113,11 @@ If you encounter test problems, open an issue describing the issue and steps to 
 
 For additional guidance on writing effective tests, refer to these resources:
 
-- `How to Write Test Cases` - Coursera
+- `[How to Write Test Cases](https://www.coursera.org/articles/how-to-write-test-cases)` - Coursera
 
-- `Manual Test Cases` - Testrail
+- `[Manual Test Cases](https://www.testrail.com/blog/manual-test-cases/)` - Testrail
 
-- `Effective Test Cases` - Testrail
+- `[Effective Test Cases](https://www.testrail.com/blog/effective-test-cases-templates/)` - Testrail
 
 ### Submitting Your Tests
 
