@@ -100,7 +100,10 @@ To ensure the quality and consistency of our documentation, we encourage contrib
 
 Running Tests
 
-Run all tests before submitting a pull request:
+## Run all tests before submitting a pull request:
+ ```
+   yarn cypress:run:all
+ ```
 
 ### Reporting Test Issues
 
