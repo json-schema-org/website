@@ -64,6 +64,52 @@ After you have been assigned to an issue, fork the [json-schema-org/website](htt
 
 To propose modifications to our documentation that do not have an issue in the [documentation board](https://github.com/orgs/json-schema-org/projects/16), you can [create a GitHub issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue#creating-an-issue-from-a-repository) and use the *Documentation* template to describe the changes. After that, you can decide whether you want to work on the changes yourself or let someone else claim the issue. If you decide to work on the issue, assign it to yourself and commit the changes to a new branch. 
 
+###Writing Tests
+
+To ensure the quality and consistency of our documentation, we encourage contributors to write and update tests as part of their contributions. Below is a quick guide to writing tests:
+
+###Guidelines for Writing Tests
+
+1.Understand the Scope: Identify the purpose of the test and the specific functionality it should validate.
+
+-`For new features, write tests that cover all potential scenarios`.
+
+-`For bug fixes, include regression tests to prevent reoccurrence`.
+
+2.Structure Your Test Cases: A well-structured test includes the following:
+
+-`Title`: A concise name describing the purpose of the test.
+
+-`Steps`: A clear sequence of actions to execute.
+
+-`Expected Results`: The outcomes that confirm the functionality works as intended.
+
+3.Use Consistent Naming Conventions: Follow the naming conventions already established in the project. Use meaningful names for test files and methods.
+
+4.Run Existing Tests: Before adding new tests, ensure all current tests pass. This helps confirm a stable baseline.
+
+5.Iterate and Refactor: Optimize your test cases for readability and maintainability. Avoid duplicating test logic when possible.
+
+###Resources
+
+For additional guidance on writing effective tests, refer to these resources:
+
+-`How to Write Test Cases` - Coursera
+
+-`Manual Test Cases` - Testrail
+
+-`Effective Test Cases` - Testrail
+
+###Submitting Your Tests
+
+ When submitting a pull request that includes tests:
+
+-`Ensure the test results are included in the pull request description.`
+
+-`Highlight any areas of concern or cases where additional review is needed.`
+
+-`Tag @json-schema-org/docs-team for assistance if required.`
+
 ## Create a Pull Request
 
 To submit your work to review by the community, open a draft pull request to the `main` upstream branch, and add the issue your pull request solves. Add @json-schema-org/docs-team as a reviewer of your pull request, and let us know in the #documentation Slack channel your pull request is ready for review. 
