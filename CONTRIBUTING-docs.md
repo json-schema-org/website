@@ -70,13 +70,13 @@ To ensure the quality and consistency of our documentation, we encourage contrib
 
 ### Guidelines for Writing Tests
 
-1.Understand the Scope: Identify the purpose of the test and the specific functionality it should validate.
+1. Understand the Scope: Identify the purpose of the test and the specific functionality it should validate.
 
 - `For new features, write tests that cover all potential scenarios`.
 
 - `For bug fixes, include regression tests to prevent reoccurrence`.
 
-2.Structure Your Test Cases: A well-structured test includes the following:
+2. Structure Your Test Cases: A well-structured test includes the following:
 
 - `Title`: A concise name describing the purpose of the test.
 
@@ -84,11 +84,27 @@ To ensure the quality and consistency of our documentation, we encourage contrib
 
 - `Expected Results`: The outcomes that confirm the functionality works as intended.
 
-3.Use Consistent Naming Conventions: Follow the naming conventions already established in the project. Use meaningful names for test files and methods.
+3. Use Consistent Naming Conventions: Follow the naming conventions already established in the project. Use meaningful names for test files and methods.
 
-4.Run Existing Tests: Before adding new tests, ensure all current tests pass. This helps confirm a stable baseline.
+4. Run Existing Tests: Before adding new tests, ensure all current tests pass. This helps confirm a stable baseline.
 
-5.Iterate and Refactor: Optimize your test cases for readability and maintainability. Avoid duplicating test logic when possible.
+5. Iterate and Refactor: Optimize your test cases for readability and maintainability. Avoid duplicating test logic when possible.
+
+### Writing Tests with Cypress
+
+- `Component Tests`: Add tests for new components in cypress/components.
+
+- `E2E Tests`: Add tests for new features or bug fixes in cypress/e2e.
+
+- `Enhance Existing Tests`: Improve coverage and robustness of existing tests.
+
+Running Tests
+
+Run all tests before submitting a pull request:
+
+### Reporting Test Issues
+
+If you encounter test problems, open an issue describing the issue and steps to reproduce it.
 
 ### Resources
 
