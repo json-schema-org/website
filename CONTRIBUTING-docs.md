@@ -72,9 +72,9 @@ To ensure the quality and consistency of our documentation, we encourage contrib
 
 1.Understand the Scope: Identify the purpose of the test and the specific functionality it should validate.
 
--`For new features, write tests that cover all potential scenarios`.
+- `For new features, write tests that cover all potential scenarios`.
 
--`For bug fixes, include regression tests to prevent reoccurrence`.
+- `For bug fixes, include regression tests to prevent reoccurrence`.
 
 2.Structure Your Test Cases: A well-structured test includes the following:
 
