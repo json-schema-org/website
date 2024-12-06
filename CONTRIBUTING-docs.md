@@ -78,11 +78,11 @@ To ensure the quality and consistency of our documentation, we encourage contrib
 
 2.Structure Your Test Cases: A well-structured test includes the following:
 
--`Title`: A concise name describing the purpose of the test.
+- `Title`: A concise name describing the purpose of the test.
 
--`Steps`: A clear sequence of actions to execute.
+- `Steps`: A clear sequence of actions to execute.
 
--`Expected Results`: The outcomes that confirm the functionality works as intended.
+- `Expected Results`: The outcomes that confirm the functionality works as intended.
 
 3.Use Consistent Naming Conventions: Follow the naming conventions already established in the project. Use meaningful names for test files and methods.
 
@@ -94,21 +94,21 @@ To ensure the quality and consistency of our documentation, we encourage contrib
 
 For additional guidance on writing effective tests, refer to these resources:
 
--`How to Write Test Cases` - Coursera
+- `How to Write Test Cases` - Coursera
 
--`Manual Test Cases` - Testrail
+- `Manual Test Cases` - Testrail
 
--`Effective Test Cases` - Testrail
+- `Effective Test Cases` - Testrail
 
 ### Submitting Your Tests
 
  When submitting a pull request that includes tests:
 
--`Ensure the test results are included in the pull request description.`
+- `Ensure the test results are included in the pull request description.`
 
--`Highlight any areas of concern or cases where additional review is needed.`
+- `Highlight any areas of concern or cases where additional review is needed.`
 
--`Tag @json-schema-org/docs-team for assistance if required.`
+- `Tag @json-schema-org/docs-team for assistance if required.`
 
 ## Create a Pull Request
 
