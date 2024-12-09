@@ -279,22 +279,25 @@ const Home = (props: any) => {
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
-                <img
+                <a href='https://zapier.com/' target='_blank'><img
                   src='/img/logos/usedby/zapier-logo_white.png'
                   className='w-40 mx-auto'
-                />
-                <img
+                /></a>
+                <a href='https://www.microsoft.com/' target='_blank'><img
                   src='/img/logos/usedby/microsoft-white.png'
                   className='w-40 mx-auto'
                 />
-                <img
+                </a>
+                <a href='https://www.postman.com/' target='_blank'><img
                   src='/img/logos/usedby/postman-white.png'
                   className='w-40 mx-auto'
                 />
-                <img
+                </a>
+                <a href='https://github.com/' target='_blank'><img
                   src='/img/logos/usedby/github-white.png'
                   className='w-40 mx-auto'
                 />
+                </a>
               </div>
 
               <p className='text-white mx-4 my-5 dark:text-slate-400'>
@@ -640,7 +643,12 @@ const Home = (props: any) => {
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Gold Sponsors
             </h3>
-            <button className='w-[310px] h-[180px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+            <a
+              href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
+              target='_blank'
+              rel='noreferrer'
+              className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -655,17 +663,17 @@ const Home = (props: any) => {
                   d='M12 4v16m8-8H4'
                 />
               </svg>
-              <a
-                href='https://opencollective.com/json-schema#category-CONTRIBUTE'
-                className='block'
-              >
-                Your logo here
-              </a>
-            </button>
+              <p className='block'>Your logo here</p>
+            </a>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
             </h3>
-            <button className='w-[200px] h-[120px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+            <a
+              href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
+              target='_blank'
+              rel='noreferrer'
+              className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 className='h-6 w-6'
@@ -680,10 +688,8 @@ const Home = (props: any) => {
                   d='M12 4v16m8-8H4'
                 />
               </svg>
-              <a href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
-                Your logo here
-              </a>
-            </button>
+              <p>Your logo here</p>
+            </a>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
             </h3>
@@ -745,7 +751,12 @@ const Home = (props: any) => {
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
                 <img src={octue_logo} className=' w-44' />
               </a>
-              <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <a
+                href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
+                target='_blank'
+                rel='noreferrer'
+                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='h-6 w-6'
@@ -760,13 +771,8 @@ const Home = (props: any) => {
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <a
-                  className='text-sm md:text-base'
-                  href='https://opencollective.com/json-schema#category-CONTRIBUTE'
-                >
-                  Your logo here
-                </a>
-              </button>
+                <p className='text-sm md:text-base'>Your logo here</p>
+              </a>
             </div>
           </div>
         </section>
