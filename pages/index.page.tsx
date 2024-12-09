@@ -613,26 +613,26 @@ const Home = (props: any) => {
             <p className='w-5/6 lg:w-3/5 mx-auto dark:text-slate-300'>
               If you ❤️ JSON Schema consider becoming a{' '}
               <a
-          href='https://json-schema.org/overview/sponsors'
-          className='border-b border-black'
+                href='https://json-schema.org/overview/sponsors'
+                className='border-b border-black'
               >
-          sponsor
+                sponsor
               </a>{' '}
               or a{' '}
               <a
-          href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
-          className='border-b border-black '
+                href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
+                className='border-b border-black '
               >
-          backer
+                backer
               </a>
               .
             </p>
             <p className='w-5/6 lg:w-3/5 mx-auto'>
               <a
-          href='https://opencollective.com/json-schema'
-          className='border-b border-black'
+                href='https://opencollective.com/json-schema'
+                className='border-b border-black'
               >
-          Support us!
+                Support us!
               </a>
             </p>
           </div>
@@ -646,23 +646,21 @@ const Home = (props: any) => {
               rel='noreferrer'
               className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
             >
-              <svg 
-          xmlns='http://www.w3.org/2000/svg'
-          className='h-6 w-6'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'
+              <svg
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
               >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={2}
-            d='M12 4v16m8-8H4'
-          />
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M12 4v16m8-8H4'
+                />
               </svg>
-              <p className='block'>
-          Your logo here
-              </p>
+              <p className='block'>Your logo here</p>
             </a>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
@@ -674,107 +672,103 @@ const Home = (props: any) => {
               className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
             >
               <svg
-          xmlns='http://www.w3.org/2000/svg'
-          className='h-6 w-6'
-          fill='none'
-          viewBox='0 0 24 24'
-          stroke='currentColor'
+                xmlns='http://www.w3.org/2000/svg'
+                className='h-6 w-6'
+                fill='none'
+                viewBox='0 0 24 24'
+                stroke='currentColor'
               >
-          <path
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={2}
-            d='M12 4v16m8-8H4'
-          />
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M12 4v16m8-8H4'
+                />
               </svg>
-              <p>
-          Your logo here
-              </p>
+              <p>Your logo here</p>
             </a>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
               <a
-          href=' https://www.asyncapi.com/'
-          target='_blank'
-          rel='noreferrer'
+                href=' https://www.asyncapi.com/'
+                target='_blank'
+                rel='noreferrer'
               >
-          <img src={asyncapi_logo} className=' w-44' />
+                <img src={asyncapi_logo} className=' w-44' />
               </a>
               <a
-          href='https://www.airbnb.com/'
-          target='_blank'
-          rel='noreferrer'
+                href='https://www.airbnb.com/'
+                target='_blank'
+                rel='noreferrer'
               >
-          <img src={airbnb_logo} className=' w-44' />
+                <img src={airbnb_logo} className=' w-44' />
               </a>
               <a
-          href='https://www.postman.com/'
-          target='_blank'
-          rel='noreferrer'
+                href='https://www.postman.com/'
+                target='_blank'
+                rel='noreferrer'
               >
-          <img src={postman_logo} className=' w-44' />
+                <img src={postman_logo} className=' w-44' />
               </a>
               <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
-          <img src={endjin_logo} className=' w-44' />
+                <img src={endjin_logo} className=' w-44' />
               </a>
               <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
-          <img src={llc_logo} className=' w-44' />
+                <img src={llc_logo} className=' w-44' />
               </a>
               <a
-          href='https://www.vpsserver.com/en-us/'
-          target='_blank'
-          rel='noreferrer'
+                href='https://www.vpsserver.com/en-us/'
+                target='_blank'
+                rel='noreferrer'
               >
-          <img src={vpsserver_logo} className=' w-44' />
+                <img src={vpsserver_logo} className=' w-44' />
               </a>
               <a
-          href='https://www.itflashcards.com/'
-          target='_blank'
-          rel='noreferrer'
+                href='https://www.itflashcards.com/'
+                target='_blank'
+                rel='noreferrer'
               >
-          <img src={itflashcards_logo} className=' w-44' />
+                <img src={itflashcards_logo} className=' w-44' />
               </a>
               <a
-          href='https://www.route4me.com/'
-          target='_blank'
-          rel='noreferrer'
+                href='https://www.route4me.com/'
+                target='_blank'
+                rel='noreferrer'
               >
-          <img src={route4me_logo} className=' w-44' />
+                <img src={route4me_logo} className=' w-44' />
               </a>
               <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
-          <img src={n8n_logo} className=' w-44' />
+                <img src={n8n_logo} className=' w-44' />
               </a>
               <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
-          <img src={ccopter_logo} className=' w-44' />
+                <img src={ccopter_logo} className=' w-44' />
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-          <img src={octue_logo} className=' w-44' />
+                <img src={octue_logo} className=' w-44' />
               </a>
               <a
-          href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
-          target='_blank'
-          rel='noreferrer'
-          className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+                href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
+                target='_blank'
+                rel='noreferrer'
+                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
               >
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            className='h-6 w-6'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={2}
-              d='M12 4v16m8-8H4'
-            />
-          </svg>
-          <p className='text-sm md:text-base'>
-            Your logo here
-          </p>
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-6 w-6'
+                  fill='none'
+                  viewBox='0 0 24 24'
+                  stroke='currentColor'
+                >
+                  <path
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                    strokeWidth={2}
+                    d='M12 4v16m8-8H4'
+                  />
+                </svg>
+                <p className='text-sm md:text-base'>Your logo here</p>
               </a>
             </div>
           </div>
