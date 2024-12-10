@@ -748,7 +748,11 @@ const Home = (props: any) => {
               <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
                 <img src={ccopter_logo} className=' w-44' />
               </a>
-              <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://www.octue.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={octue_logo} className=' w-44' />
               </a>
               <a href='https://www.apideck.com/' target='_blank' rel='noreferrer'>
