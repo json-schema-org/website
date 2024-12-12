@@ -104,39 +104,39 @@ To ensure consistent and effective testing of website components, follow these g
 
 1. **Understand the Requirements**:
 
-       - Review the functionality and design requirements for the component.
+    - Review the functionality and design requirements for the component.
 
-       - Refer to the provided resources to understand effective test case design:
+    - Refer to the provided resources to understand effective test case design:
 
-           - [How to write test cases](https://www.coursera.org/articles/how-to-write-test-cases)
+        - [How to write test cases](https://www.coursera.org/articles/how-to-write-test-cases)
 
-           - [Manual test cases](https://www.testrail.com/blog/manual-test-cases/)
+        - [Manual test cases](https://www.testrail.com/blog/manual-test-cases/)
 
-           - [Effective test cases](https://www.testrail.com/blog/effective-test-cases-templates/)
+        - [Effective test cases](https://www.testrail.com/blog/effective-test-cases-templates/)
 
 2. **Write Comprehensive Test Cases**:
 
-       - Ensure each test case has a clear objective, preconditions, test steps, and expected results.
+     - Ensure each test case has a clear objective, preconditions, test steps, and expected results.
 
-       - Include positive, negative, and edge case scenarios.
+     - Include positive, negative, and edge case scenarios.
 
 3. **Automate Where Possible**:
 
-       - Write automated tests using Cypress for components and E2E flows.
+     - Write automated tests using Cypress for components and E2E flows.
 
-       - Ensure test scripts are reusable and modular.
+     - Ensure test scripts are reusable and modular.
 
 4. **Review and Update**:
 
-       - Regularly review test cases to align with changes in component functionality or design.
+     - Regularly review test cases to align with changes in component functionality or design.
 
-       - Update outdated or redundant test cases to maintain relevance.
+     - Update outdated or redundant test cases to maintain relevance.
 
 5. **Collaborate with the Team**:
 
-       - Seek feedback on test cases and scripts from other contributors.
+     - Seek feedback on test cases and scripts from other contributors.
 
-       - Discuss edge cases and complex scenarios in the #testing channel in our Slack workspace.
+     - Discuss edge cases and complex scenarios in the #testing channel in our Slack workspace.
 
 Following these guidelines will help ensure high-quality testing and contribute to a robust and reliable website.
 
