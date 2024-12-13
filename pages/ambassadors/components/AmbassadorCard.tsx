@@ -139,7 +139,9 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
           <p className='text-gray-500 dark:text-slate-100 mb-1'>{title}</p>
         )}
         {bio && (
-          <p className='text-gray-700 dark:text-slate-100 text-sm mb-4'>{bio}</p>
+          <p className='text-gray-700 dark:text-slate-100 text-sm mb-4'>
+            {bio}
+          </p>
         )}
         {(company || country) && (
           <p className='text-gray-500 dark:text-slate-100 mb-4'>
