@@ -7,13 +7,15 @@ const PATH = 'pages/blog/posts';
 import readingTime from 'reading-time';
 import Link from 'next/link';
 import TextTruncate from 'react-text-truncate';
-
+import {
+  fetchRemoteICalFile,
+  printEventsForNextWeeks,
+} from '../lib/calendarUtils';
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
 
 /* eslint-disable */
 import ical from 'node-ical';
-import moment from 'moment-timezone';
 import { useTheme } from 'next-themes';
 
 // apiKey and appId are set in the .env.local file
@@ -33,32 +35,17 @@ export const getStaticProps: GetStaticProps = async () => {
       );
       const { data: frontmatter, content } = matter(fullFileName);
       return {
-        slug: slug,
+        slug,
         frontmatter,
         content,
       };
     })
-    .sort((a, b) => {
-      const dateA = new Date(a.frontmatter.date).getTime();
-      const dateB = new Date(b.frontmatter.date).getTime();
-      return dateA < dateB ? 1 : -1;
-    })
+    .sort(
+      (a, b) =>
+        new Date(b.frontmatter.date).getTime() -
+        new Date(a.frontmatter.date).getTime(),
+    )
     .slice(0, 5);
-
-  // Function to fetch the remote iCal file
-  async function fetchRemoteICalFile(url: string) {
-    try {
-      const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.text();
-      return data;
-    } catch (error) {
-      console.error('Error fetching iCal file:', error);
-      return null;
-    }
-  }
   // Example usage:
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics'; // Replace with the actual URL
@@ -74,99 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-// Function to filter and print events for the next weeks from today
-function printEventsForNextWeeks(icalData: { [x: string]: any }) {
-  const arrayDates = [];
-  if (!icalData) {
-    console.error('iCal data is empty or invalid.');
-    return;
-  }
 
-  // Calculate the range of dates for the next 12 weeks from today
-  const today = moment().startOf('day');
-  const nextFourWeeksEnd = moment().add(12, 'weeks').endOf('day');
-
-  // Loop through the events in the iCal data
-  for (const k in icalData) {
-    const event = icalData[k];
-
-    if (event.type === 'VEVENT') {
-      const title = event.summary;
-
-      const timezoneL = moment.tz.guess(); // Default to UTC if timezone information is not provided
-      const startDate = moment.tz(event.start, timezoneL);
-
-      // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
-      if (event.rrule !== undefined) {
-        // For recurring events, get the set of event start dates that fall within the range
-        // of dates we're looking for.
-        const dates = event.rrule.between(
-          today.toDate(),
-          nextFourWeeksEnd.toDate(),
-          true,
-        );
-
-        // Loop through the set of date entries to see which recurrences should be printed.
-        for (const date of dates) {
-          const startDate = moment.tz(date, timezoneL);
-
-          // Check if the event falls within the next 4 weeks from today
-          if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-            const dateTimezone = moment.tz.zone(event.start.tz);
-            const localTimezone = moment.tz.guess();
-            const tz =
-              event.rrule.origOptions.tzid === localTimezone
-                ? event.rrule.origOptions.tzid
-                : localTimezone;
-            const timezone = moment.tz.zone(tz);
-            let offset;
-            if (timezone && dateTimezone)
-              offset = timezone.utcOffset(date) - dateTimezone.utcOffset(date);
-            const newDate = moment(date).add(offset, 'minutes').toDate();
-
-            const start = moment(newDate);
-            const utcDate = start.utc();
-
-            const time = utcDate.format('MMMM Do YYYY, h:mm a');
-            const day = utcDate.format('D');
-            const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
-            arrayDates.push({
-              title,
-              time,
-              day,
-              timezone: 'UTC',
-              parsedStartDate,
-            });
-          }
-        }
-      } else {
-        // Simple case - no recurrences, just print out the calendar event.
-        if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-          const utcDate = startDate.utc();
-
-          const time = utcDate.format('MMMM Do YYYY, h:mm a');
-          const day = utcDate.format('D');
-          const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss');
-          arrayDates.push({
-            title,
-            time,
-            day,
-            timezone: 'UTC',
-            parsedStartDate,
-          });
-        }
-      }
-    }
-  }
-
-  arrayDates.sort(
-    (x, y) =>
-      new Date(x.parsedStartDate).getTime() -
-      new Date(y.parsedStartDate).getTime(),
-  );
-
-  return arrayDates;
-}
 export function AlgoliaSearch() {
   useEffect(() => {
     const customButton = document.querySelector('.herobtn');
@@ -212,6 +107,7 @@ const Home = (props: any) => {
   const [slack_logo, setSlack_logo] = useState('');
   const [ccopter_logo, setCCopter_logo] = useState('');
   const [octue_logo, setOctue_logo] = useState('');
+  const [apideck_logo, setApideck_logo] = useState('');
 
   useEffect(() => {
     if (resolvedTheme === 'dark') {
@@ -228,6 +124,7 @@ const Home = (props: any) => {
       setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
       setCCopter_logo('/img/logos/sponsors/copycopter-white.png');
       setOctue_logo('/img/logos/sponsors/octue-white.svg');
+      setApideck_logo('/img/logos/sponsors/apideck-white.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -242,6 +139,7 @@ const Home = (props: any) => {
       setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
       setCCopter_logo('/img/logos/sponsors/copycopter.png');
       setOctue_logo('/img/logos/sponsors/octue-black.svg');
+      setApideck_logo('/img/logos/sponsors/apideck.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -747,6 +645,13 @@ const Home = (props: any) => {
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
                 <img src={octue_logo} className=' w-44' />
+              </a>
+              <a
+                href='https://www.apideck.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img src={apideck_logo} className=' w-44' />
               </a>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
