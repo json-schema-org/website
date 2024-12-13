@@ -205,7 +205,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     id={props.id}
                     className={
                       props.id === 'special-div'
-                        ? `bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200 ${props.className}`
+                        ? 'bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200'
                         : `${props.className}`
                     }
                   >
