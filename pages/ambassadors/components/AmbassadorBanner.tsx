@@ -4,7 +4,7 @@ import React from 'react';
 const AmbassadorBanner: React.FC = () => {
   return (
     <div className='flex justify-center mx-4 md:mx-10 my-8 w-full'>
-      <div className='bg-gray-100 dark:bg-gray-800 h-auto w-full md:w-5/6 lg:w-2/3 xl:w-1/2 py-8 px-6 text-center mt-8 rounded-3xl shadow-lg border-2 border-gray-200'>
+      <div className='group relative h-auto w-full md:w-5/6 lg:w-2/3 xl:w-1/2 rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30'>
         <h3 className='text-2xl font-bold mb-2 text-gray-800 dark:text-slate-100'>
           Become a JSON Schema Ambassador
         </h3>
