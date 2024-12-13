@@ -200,20 +200,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 id?: string;
                 className?: string;
               }) => {
-                const isSpecialDiv = props.id === 'special-div';
-
-                const existingClassName = props.className || '';
-
-                const specialClassNames =
-                  'bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200';
-
                 return (
                   <div
                     id={props.id}
                     className={
-                      isSpecialDiv
-                        ? `${specialClassNames} ${existingClassName}`
-                        : `${existingClassName}`
+                      props.id === 'special-div'
+                        ? `bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200 ${props.className}`
+                        : `${props.className}`
                     }
                   >
                     {children}
