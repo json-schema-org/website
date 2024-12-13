@@ -290,16 +290,12 @@ const MobileNav = () => {
         isActive={section === 'docs'}
       />
 
-      <MainNavLink 
-        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments=' 
-        label='Tools' 
-        isActive={section === 'tools'} 
+      <MainNavLink
+        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
+        label='Tools'
+        isActive={section === 'tools'}
       />
-      <MainNavLink 
-        uri='/blog' 
-        label='Blog' 
-        isActive={section === 'blog'} 
-      />
+      <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
         uri='/community'
         label='Community'
