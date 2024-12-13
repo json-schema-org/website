@@ -29,7 +29,7 @@ const AmbassadorList: React.FC<AmbassadorListProps> = ({ ambassadorList }) => {
           <h2 className='text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-3'>
             {link.title}
           </h2>
-          <p className='text-sm md:text-base text-gray-700 dark:text-gray-100 leading-relaxed'>
+          <p className='text-sm md:text-base text-gray-700 dark:text-slate-100 leading-relaxed'>
             {link.details}
           </p>
         </li>

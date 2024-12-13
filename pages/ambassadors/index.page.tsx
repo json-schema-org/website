@@ -34,7 +34,7 @@ export default function communityPages() {
             >
               Become a JSON Schema Ambassador
             </h1>
-            <p className='mt-5 text-slate-500 text-lg text-gray-700 dark:text-gray-100'>
+            <p className='mt-5 text-slate-500 text-lg text-gray-700 dark:text-slate-100'>
               The JSON Schema Ambassadors Program recognizes the people who
               drive adoption, innovation, and knowledge sharing in the JSON
               Schema community.
