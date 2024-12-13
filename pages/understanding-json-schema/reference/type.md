@@ -194,7 +194,7 @@ It should be noted that `format` is not limited because it only defines a specif
 
 #### Dates and Times
 
-Dates and times are represented in [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). This is a subset of the date format also commonly known as [ISO8601 format](https://www.iso.org/iso-8601-date-and-time-format.html).
+Dates and times are represented in [RFC 3339, section 5.6](https://tools.ietf.org/html/rfc3339#section-5.6). RFC 3339 is a specification from the Internet Engineering Task Force (IETF).
 
 - `"date-time"`: Date and time together, for example, `2018-11-13T20:20:39+00:00`.
 - `"time"`: <StarInline label="New in draft 7" /> Time, for example, `20:20:39+00:00`.
