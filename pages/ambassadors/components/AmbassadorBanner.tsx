@@ -8,7 +8,7 @@ const AmbassadorBanner: React.FC = () => {
         <h3 className='text-2xl font-bold mb-2 text-gray-800 dark:text-gray-100'>
           Become a JSON Schema Ambassador
         </h3>
-        <p className='text-gray-600 dark:text-gray-300 mb-6'>
+        <p className='text-gray-600 dark:text-gray-100 mb-6'>
           The JSON Schema Ambassador program is now open for applications! If
           you're selected, you'll join JSON Schema's mission of helping
           community members all over the world build the future of JSON Schema.

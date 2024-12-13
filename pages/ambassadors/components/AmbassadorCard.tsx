@@ -136,13 +136,13 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
           {name}
         </h3>
         {title && (
-          <p className='text-gray-500 dark:text-gray-300 mb-1'>{title}</p>
+          <p className='text-gray-500 dark:text-gray-100 mb-1'>{title}</p>
         )}
         {bio && (
-          <p className='text-gray-700 dark:text-gray-400 text-sm mb-4'>{bio}</p>
+          <p className='text-gray-700 dark:text-gray-100 text-sm mb-4'>{bio}</p>
         )}
         {(company || country) && (
-          <p className='text-gray-500 dark:text-gray-300 mb-4'>
+          <p className='text-gray-500 dark:text-gray-100 mb-4'>
             {company}
             {company && country && ', '}
             {country}
@@ -172,7 +172,7 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
         {contributions.length > 0 && (
           <button
             onClick={() => setShowContributions(!showContributions)}
-            className={`w-full bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-400 text-white font-semibold py-2 px-4 rounded transition-all duration-300 transform ${
+            className={`w-full bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-400 text-white dark:text-gray-100 font-semibold py-2 px-4 rounded transition-all duration-300 transform ${
               showContributions ? 'rotate' : ''
             }`}
           >
@@ -186,7 +186,7 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
             <h4 className='text-lg font-semibold mb-2 text-gray-900 dark:text-white'>
               Contributions
             </h4>
-            <ul className='text-gray-600 dark:text-gray-300 text-sm'>
+            <ul className='text-gray-600 dark:text-gray-100 text-sm'>
               {contributions.map((contribution, index) => (
                 <li key={index} className='mb-2'>
                   <strong>{contribution.title}</strong>
