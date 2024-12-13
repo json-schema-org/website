@@ -16,13 +16,13 @@ const AmbassadorBanner: React.FC = () => {
         <div className='flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-5'>
           <Link
             href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-an-json-schema-ambassador'
-            className='bg-blue-700 dark:bg-blue-600 text-white px-6 py-3 rounded-md shadow hover:bg-blue-500 dark:hover:bg-blue-400 transition'
+            className='inline-block px-6 py-3 bg-blue-600 text-white font-semibold text-center rounded hover:bg-blue-700 transition duration-300'
           >
             Become Ambassador
           </Link>
           <Link
             href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors'
-            className='bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white px-6 py-3 rounded-md shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition'
+            className='inline-block bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white px-6 py-3 rounded-md shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition'
           >
             Learn More
           </Link>
