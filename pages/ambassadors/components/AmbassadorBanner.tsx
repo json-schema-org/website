@@ -22,7 +22,7 @@ const AmbassadorBanner: React.FC = () => {
           </Link>
           <Link
             href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors'
-            className='bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-slate-100 px-6 py-3 rounded-md shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition'
+            className='bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white px-6 py-3 rounded-md shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition'
           >
             Learn More
           </Link>
