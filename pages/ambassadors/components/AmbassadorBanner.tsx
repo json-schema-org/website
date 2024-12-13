@@ -13,7 +13,7 @@ const AmbassadorBanner: React.FC = () => {
           you're selected, you'll join JSON Schema's mission of helping
           community members all over the world build the future of JSON Schema.
         </p>
-        <div className='flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-5'>
+        <div className='w-full lg:w-full grid grid-cols-2 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
           <Link
             href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-an-json-schema-ambassador'
             className='inline-block px-6 py-3 bg-blue-600 text-white font-semibold text-center rounded hover:bg-blue-700 transition duration-300'
@@ -22,7 +22,7 @@ const AmbassadorBanner: React.FC = () => {
           </Link>
           <Link
             href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors'
-            className='inline-block bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white px-6 py-3 rounded-md shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition'
+            className='inline-block bg-gray-300 dark:bg-gray-700 text-gray-700 text-center dark:text-white px-6 py-3 rounded-md shadow hover:bg-gray-400 dark:hover:bg-gray-600 transition'
           >
             Learn More
           </Link>
