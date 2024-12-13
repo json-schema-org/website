@@ -204,9 +204,23 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
 
                 const existingClassName = props.className || '';
 
+                const specialClasses = [
+                  'bg-blue-200',
+                  'border-l-4',
+                  'border-blue-500',
+                  'px-4',
+                  'py-1',
+                  'relative',
+                  'text-blue-700',
+                  'dark:bg-blue-900',
+                  'dark:border-blue-400',
+                  'dark:text-blue-200',
+                ].join(' ');
+
                 const classNames = isSpecialDiv
-                  ? 'bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200'
+                  ? specialClasses
                   : existingClassName;
+
                 return (
                   <div id={props.id} className={classNames}>
                     {children}
@@ -214,6 +228,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 );
               },
             },
+
             a: {
               component: ({ children, href, title, className }) => {
                 if (!href) return children;
