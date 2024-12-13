@@ -7,7 +7,7 @@ authors:
   - name: Benjamin Granados
     photo: /img/avatars/benjagm.webp
     twitter: benjagm
-    byline: DevRel & Community Program Manager @Postman
+    byline: Community Manager
   - name: Yeray Darias
     photo: /img/avatars/yeray.webp
     twitter: ydarias

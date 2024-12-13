@@ -23,12 +23,22 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
+            const { data: pullRequests } = await github.rest.pulls.list({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              body: process.env.NEW_TOOL_MESSAGE,
-            })
+              state: 'all'
+            });
+
+            const userPRs = pullRequests.filter(pr => pr.user.login === context.actor);
+
+            if (userPRs.length === 0) {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: process.env.NEW_TOOL_MESSAGE,
+              })
+            }
         env:
           NEW_TOOL_MESSAGE: |
             Hey there 👋!

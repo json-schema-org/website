@@ -121,7 +121,8 @@
                   "C#",
                   "Go",
                   "C++",
-                  "JavaScript"
+                  "JavaScript", 
+                  "Julia"
                 ]
               ]
             },
@@ -234,18 +235,6 @@
             }
           }
         },
-        "additionalProperties": false
-      },
-      "bowtie": {
-        "description": "Information related to compliance testing by Bowtie - https://bowtie.report - Presence of this property implies the tool is being tested in Bowtie",
-        "type": "object",
-        "properties": {
-          "identifier": {
-            "description": "The identifier used for the tool in Bowtie, including the language.",
-            "examples": ["dotnet-jsonschema-net", "js-ajv"]
-          }
-        },
-        "required": ["identifier"],
         "additionalProperties": false
       },
       "toolingListingNotes": {

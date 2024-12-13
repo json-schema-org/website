@@ -14,6 +14,7 @@ export interface Transform {
   languages: string[];
   drafts: JSONSchemaDraft[];
   toolingTypes: string[];
+  environments: string[];
 }
 
 export type TransformUpdate =
@@ -34,6 +35,7 @@ const buildQueryString = (transform: Transform) => {
     languages: transform.languages.join(','),
     drafts: transform.drafts.join(','),
     toolingTypes: transform.toolingTypes.join(','),
+    environments: transform.environments.join(','),
   }).toString();
 };
 
@@ -50,6 +52,7 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
     licenses: [],
     drafts: [],
     toolingTypes: [],
+    environments: [],
   });
 
   useEffect(() => {
@@ -78,6 +81,9 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       toolingTypes: parseArrayParam(
         query.toolingTypes,
       ) as Transform['toolingTypes'],
+      environments: parseArrayParam(
+        query.environments,
+      ) as Transform['environments'],
     };
 
     const queryString = buildQueryString(updatedTransform);
@@ -124,6 +130,7 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       licenses: [],
       drafts: [],
       toolingTypes: [],
+      environments: [],
     };
 
     const queryString = buildQueryString(initialTransform);
@@ -183,6 +190,7 @@ const filterTools = (
     languages: lowerCaseArray(transform.languages),
     licenses: lowerCaseArray(transform.licenses),
     toolingTypes: lowerCaseArray(transform.toolingTypes),
+    environments: lowerCaseArray(transform.environments),
     drafts: transform.drafts,
   };
 
@@ -204,6 +212,12 @@ const filterTools = (
         lowerCaseTransform.toolingTypes.includes(type.toLowerCase()),
       );
 
+    const matchesEnvironment =
+      !lowerCaseTransform.environments.length ||
+      (tool.environments || []).some((environment) =>
+        lowerCaseTransform.environments.includes(environment.toLowerCase()),
+      );
+
     const matchesDraft =
       !lowerCaseTransform.drafts.length ||
       (tool.supportedDialects?.draft || []).some((draft) =>
@@ -211,7 +225,11 @@ const filterTools = (
       );
 
     return (
-      matchesLanguage && matchesLicense && matchesToolingType && matchesDraft
+      matchesLanguage &&
+      matchesLicense &&
+      matchesToolingType &&
+      matchesEnvironment &&
+      matchesDraft
     );
   });
 };
@@ -231,8 +249,8 @@ const sortTools = (
       aValue = (a.license || '').toLowerCase();
       bValue = (b.license || '').toLowerCase();
     } else if (transform.sortBy === 'bowtie') {
-      const aHasIdentifier = Boolean(a.bowtie?.identifier);
-      const bHasIdentifier = Boolean(b.bowtie?.identifier);
+      const aHasIdentifier = Boolean(a.bowtie?.id);
+      const bHasIdentifier = Boolean(b.bowtie?.id);
 
       if (transform.sortOrder === 'ascending') {
         if (aHasIdentifier && !bHasIdentifier) return -1;
@@ -242,8 +260,8 @@ const sortTools = (
         if (!aHasIdentifier && bHasIdentifier) return -1;
       }
 
-      aValue = (a.bowtie?.identifier || '').toLowerCase();
-      bValue = (b.bowtie?.identifier || '').toLowerCase();
+      aValue = (a.bowtie?.id || '').toLowerCase();
+      bValue = (b.bowtie?.id || '').toLowerCase();
     }
 
     if (aValue === undefined || bValue === undefined) {

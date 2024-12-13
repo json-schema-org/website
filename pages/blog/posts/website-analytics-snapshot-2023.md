@@ -6,7 +6,7 @@ cover: /img/posts/2023/website-analytics-snapshot-2023/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://www.twitter.com/relequestual
+    link: https://www.x.com/relequestual
 excerpt: "See what we discovered when looking at over 50 million requests to the JSON Schema org domain from the last 7 days"
 ---
 
@@ -64,7 +64,7 @@ Remember, we previously published JSON Hyper Schema in addition to our core offe
 
 Where are these requests for Hyper Schema meta-schemas coming from? While the physical location is uninteresting, we can look at the user agent provided. The top two, which covers 7.5 million requests, doesn't really help… `python-requests`. At most, we can see that version 2.27 and 2.28 are roughly in equal use. After that, we jump down to 635k requests, from something identifying as `neptune-client`. Curiosity piqued!
 
-They call it an "Experiment tracking tool and model registry". This is to do with Machine Learning (ML) Ops (MLOps), built for data scientists and ML engineers. I know very little about ML, so I asked my colleague to share his take on the Neptune.ai service, who knows vastly more about this space…
+They call it an "Experiment tracking tool and model registry". This is to do with Machine Learning (ML) Ops (MLOps), built for data scientists and ML engineers. I know very little about ML, so I asked my colleague to share his take on the [Neptune.ai](https://neptune.ai/) service, who knows vastly more about this space…
 
 "Piece of software that, when you tweak something about a machine learning model, let's you run some calculations that tell you how your changes affect how good the model is" - [Julian Berman](https://mastodon.social/@JulianWasTaken)
 

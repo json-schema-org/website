@@ -21,7 +21,8 @@ export type FilterCriteriaFields =
   | 'languages'
   | 'drafts'
   | 'toolingTypes'
-  | 'licenses';
+  | 'licenses'
+  | 'environments';
 
 export async function getStaticProps() {
   const toolingData = yaml.load(
@@ -55,6 +56,7 @@ export async function getStaticProps() {
     ]) as JSONSchemaDraft[],
     toolingTypes: getDistinctEntries(toolingData, '$..toolingTypes[*]'),
     licenses: getDistinctEntries(toolingData, '$..license'),
+    environments: getDistinctEntries(toolingData, '$..environments[*]'),
   };
 
   filterCriteria.drafts.sort((a, b) => {

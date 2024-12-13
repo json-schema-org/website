@@ -5,6 +5,7 @@ import { getLayout } from '~/components/SiteLayout';
 import StyledMarkdown, {
   TableOfContentMarkdown,
 } from '~/components/StyledMarkdown';
+
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths';
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import readingTime from 'reading-time';
@@ -34,7 +35,7 @@ export default function StaticMarkdownPage({
       <Head>
         <title>{frontmatter.title}</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16 dark:bg-slate-800 dark:slate-700'>
+      <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16 dark:bg-slate-800 dark:slate-700 px-4'>
         <div className='flex flex-col pt-6'>
           {frontmatter.date && (
             <div className='text-center text-sm text-slate-500 mt-16'>
@@ -51,8 +52,8 @@ export default function StaticMarkdownPage({
             {frontmatter.title || 'NO TITLE!'}
           </Headline1>
         </div>
-        <div className='relative flex flex-col lg:flex-row'>
-          <div className='flex ml-10 mr-10 lg:w-1/4'>
+        <div className='relative flex flex-col lg:flex-row w-full'>
+          <div className='flex lg:w-1/4 w-full'>
             <div className='block -mt-2 w-full'>
               <div className='sticky top-[90px] overflow-y-auto h-auto pt-4 w-full items-center lg:items-start flex justify-between flex-row lg:flex-col'>
                 <Link
@@ -81,7 +82,7 @@ export default function StaticMarkdownPage({
                             {author.twitter && (
                               <a
                                 className='block text-sm text-blue-500 font-medium'
-                                href={`https://twitter.com/${author.twitter}`}
+                                href={`https://x.com/${author.twitter}`}
                               >
                                 @{author.twitter}
                               </a>
@@ -102,7 +103,7 @@ export default function StaticMarkdownPage({
               </div>
             </div>
           </div>
-          <div className='flex-1 ml-7 mr-7 lg:w-3/4'>
+          <div className='flex-1 lg:w-3/4 w-full'>
             <div
               className='bg-slate-50 h-[500px] w-full rounded-lg bg-cover mb-10 bg-center'
               style={{ backgroundImage: `url(${frontmatter.cover})` }}

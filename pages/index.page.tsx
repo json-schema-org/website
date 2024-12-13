@@ -7,13 +7,15 @@ const PATH = 'pages/blog/posts';
 import readingTime from 'reading-time';
 import Link from 'next/link';
 import TextTruncate from 'react-text-truncate';
-
+import {
+  fetchRemoteICalFile,
+  printEventsForNextWeeks,
+} from '../lib/calendarUtils';
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
 
 /* eslint-disable */
 import ical from 'node-ical';
-import moment from 'moment-timezone';
 import { useTheme } from 'next-themes';
 
 // apiKey and appId are set in the .env.local file
@@ -33,39 +35,22 @@ export const getStaticProps: GetStaticProps = async () => {
       );
       const { data: frontmatter, content } = matter(fullFileName);
       return {
-        slug: slug,
+        slug,
         frontmatter,
         content,
       };
     })
-    .sort((a, b) => {
-      const dateA = new Date(a.frontmatter.date).getTime();
-      const dateB = new Date(b.frontmatter.date).getTime();
-      return dateA < dateB ? 1 : -1;
-    })
+    .sort(
+      (a, b) =>
+        new Date(b.frontmatter.date).getTime() -
+        new Date(a.frontmatter.date).getTime(),
+    )
     .slice(0, 5);
-
-  // Function to fetch the remote iCal file
-  async function fetchRemoteICalFile(url: string) {
-    try {
-      const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.text();
-      return data;
-    } catch (error) {
-      console.error('Error fetching iCal file:', error);
-      return null;
-    }
-  }
   // Example usage:
   const remoteICalUrl =
-    'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics'; // Replace with the actual URL
+    'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics'; // Replace with the actual URL
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) =>
-      printEventsForNextFourWeeks(ical.parseICS(icalData)),
-    )
+    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
   // console.log('this is fetched data', datesInfo)
   return {
@@ -76,99 +61,7 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-// Function to filter and print events for the next 4 weeks from today
-function printEventsForNextFourWeeks(icalData: { [x: string]: any }) {
-  const arrayDates = [];
-  if (!icalData) {
-    console.error('iCal data is empty or invalid.');
-    return;
-  }
 
-  // Calculate the range of dates for the next 4 weeks from today
-  const today = moment().startOf('day');
-  const nextFourWeeksEnd = moment().add(4, 'weeks').endOf('day');
-
-  // Loop through the events in the iCal data
-  for (const k in icalData) {
-    const event = icalData[k];
-
-    if (event.type === 'VEVENT') {
-      const title = event.summary;
-
-      const timezoneL = moment.tz.guess(); // Default to UTC if timezone information is not provided
-      const startDate = moment.tz(event.start, timezoneL);
-
-      // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
-      if (event.rrule !== undefined) {
-        // For recurring events, get the set of event start dates that fall within the range
-        // of dates we're looking for.
-        const dates = event.rrule.between(
-          today.toDate(),
-          nextFourWeeksEnd.toDate(),
-          true,
-        );
-
-        // Loop through the set of date entries to see which recurrences should be printed.
-        for (const date of dates) {
-          const startDate = moment.tz(date, timezoneL);
-
-          // Check if the event falls within the next 4 weeks from today
-          if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-            const dateTimezone = moment.tz.zone(event.start.tz);
-            const localTimezone = moment.tz.guess();
-            const tz =
-              event.rrule.origOptions.tzid === localTimezone
-                ? event.rrule.origOptions.tzid
-                : localTimezone;
-            const timezone = moment.tz.zone(tz);
-            let offset;
-            if (timezone && dateTimezone)
-              offset = timezone.utcOffset(date) - dateTimezone.utcOffset(date);
-            const newDate = moment(date).add(offset, 'minutes').toDate();
-
-            const start = moment(newDate);
-            const utcDate = start.utc();
-
-            const time = utcDate.format('MMMM Do YYYY, h:mm a');
-            const day = utcDate.format('D');
-            const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
-            arrayDates.push({
-              title,
-              time,
-              day,
-              timezone: 'UTC',
-              parsedStartDate,
-            });
-          }
-        }
-      } else {
-        // Simple case - no recurrences, just print out the calendar event.
-        if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-          const utcDate = startDate.utc();
-
-          const time = utcDate.format('MMMM Do YYYY, h:mm a');
-          const day = utcDate.format('D');
-          const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss');
-          arrayDates.push({
-            title,
-            time,
-            day,
-            timezone: 'UTC',
-            parsedStartDate,
-          });
-        }
-      }
-    }
-  }
-
-  arrayDates.sort(
-    (x, y) =>
-      new Date(x.parsedStartDate).getTime() -
-      new Date(y.parsedStartDate).getTime(),
-  );
-
-  return arrayDates;
-}
 export function AlgoliaSearch() {
   useEffect(() => {
     const customButton = document.querySelector('.herobtn');
@@ -212,6 +105,9 @@ const Home = (props: any) => {
   const [llc_logo, setLlc_logo] = useState('');
   const [common_room_logo, setCommon_room_logo] = useState('');
   const [slack_logo, setSlack_logo] = useState('');
+  const [ccopter_logo, setCCopter_logo] = useState('');
+  const [octue_logo, setOctue_logo] = useState('');
+  const [apideck_logo, setApideck_logo] = useState('');
 
   useEffect(() => {
     if (resolvedTheme === 'dark') {
@@ -226,6 +122,9 @@ const Home = (props: any) => {
       setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
+      setCCopter_logo('/img/logos/sponsors/copycopter-white.png');
+      setOctue_logo('/img/logos/sponsors/octue-white.svg');
+      setApideck_logo('/img/logos/sponsors/apideck-white.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -238,6 +137,9 @@ const Home = (props: any) => {
       setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
       setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
       setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
+      setCCopter_logo('/img/logos/sponsors/copycopter.png');
+      setOctue_logo('/img/logos/sponsors/octue-black.svg');
+      setApideck_logo('/img/logos/sponsors/apideck.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -469,16 +371,41 @@ const Home = (props: any) => {
                 </div>
 
                 <div className='flex ml-2 mb-2 '>
-                  <div
-                    className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                    style={{
-                      backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})`,
-                    }}
-                  />
+                  {(blogPosts[0].frontmatter.authors || []).map(
+                    (author: any, index: number) => {
+                      return (
+                        <div
+                          key={index}
+                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                          style={{
+                            backgroundImage: `url(${author.photo})`,
+                            zIndex: 10 - index,
+                          }}
+                        />
+                      );
+                    },
+                  )}
                   <div className='flex flex-col ml-2'>
                     <p className='text-sm font-semibold dark:text-slate-300'>
-                      {blogPosts[0].frontmatter.authors[0].name}
+                      {blogPosts[0].frontmatter.authors.length > 2 ? (
+                        <>
+                          {blogPosts[0].frontmatter.authors
+                            .slice(0, 2)
+                            .map((author: any, index: number) => (
+                              <span key={author.name}>
+                                {author.name}
+                                {index === 0 && ' & '}
+                              </span>
+                            ))}
+                          {'...'}
+                        </>
+                      ) : (
+                        blogPosts[0].frontmatter.authors.map((author: any) => (
+                          <span key={author.name}>{author.name}</span>
+                        ))
+                      )}
                     </p>
+
                     <div className='text-slate-500 text-sm dark:text-slate-300'>
                       <span>
                         {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
@@ -547,7 +474,7 @@ const Home = (props: any) => {
                 </div>
 
                 <a
-                  href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org&ctz=Europe%2FLondon'
+                  href='https://calendar.google.com/calendar/embed?src=json.schema.community%40gmail.com&ctz=Europe%2FLondon'
                   className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -659,34 +586,71 @@ const Home = (props: any) => {
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
-              <a href=' https://www.asyncapi.com/'>
+              <a
+                href=' https://www.asyncapi.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={asyncapi_logo} className=' w-44' />
               </a>
-              <a href='https://www.airbnb.com/'>
+              <a
+                href='https://www.airbnb.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={airbnb_logo} className=' w-44' />
               </a>
-              <a href='https://www.postman.com/'>
+              <a
+                href='https://www.postman.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={postman_logo} className=' w-44' />
               </a>
-              <a href='https://endjin.com/'>
+              <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
                 <img src={endjin_logo} className=' w-44' />
               </a>
-              <a href='https://www.llc.org/'>
+              <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
                 <img src={llc_logo} className=' w-44' />
               </a>
-              <a href='https://www.vpsserver.com/en-us/'>
+              <a
+                href='https://www.vpsserver.com/en-us/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={vpsserver_logo} className=' w-44' />
               </a>
-              <a href='https://www.itflashcards.com/'>
+              <a
+                href='https://www.itflashcards.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={itflashcards_logo} className=' w-44' />
               </a>
-              <a href='https://www.route4me.com/'>
+              <a
+                href='https://www.route4me.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={route4me_logo} className=' w-44' />
               </a>
-              <a href='https://n8n.io/'>
+              <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
                 <img src={n8n_logo} className=' w-44' />
               </a>
-              <button className='w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
+              <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
+                <img src={ccopter_logo} className=' w-44' />
+              </a>
+              <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
+                <img src={octue_logo} className=' w-44' />
+              </a>
+              <a
+                href='https://www.apideck.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img src={apideck_logo} className=' w-44' />
+              </a>
+              <button className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg border-2 border-dotted bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'>
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
                   className='h-6 w-6'
@@ -701,7 +665,10 @@ const Home = (props: any) => {
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <a href='https://opencollective.com/json-schema#category-CONTRIBUTE'>
+                <a
+                  className='text-sm md:text-base'
+                  href='https://opencollective.com/json-schema#category-CONTRIBUTE'
+                >
                   Your logo here
                 </a>
               </button>
