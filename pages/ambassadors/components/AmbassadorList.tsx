@@ -14,7 +14,7 @@ interface AmbassadorListProps {
 
 const AmbassadorList: React.FC<AmbassadorListProps> = ({ ambassadorList }) => {
   return (
-    <ul className='mt-10 grid grid-cols-1 gap-8 px-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'>
+    <ul className='mt-10 grid grid-cols-1 gap-8 px-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3'>
       {ambassadorList.contents.map((link) => (
         <li
           key={link.title}
