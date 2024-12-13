@@ -152,7 +152,7 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
         )}
 
         {/* Social Media Links */}
-        <div className='flex justify-center space-x-4 mb-4'>
+        <div className='flex justify-center mb-4'>
           {socialPlatforms.map((platform) => {
             const username = ambassador[platform];
             return username ? (
@@ -161,7 +161,7 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
                 href={getSocialMediaUrl(platform, username)}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='transition-colors duration-200'
+                className='transition-colors duration-200 mr-4'
                 aria-label={`${name}'s ${platform} profile`}
               >
                 <SocialIcon platform={platform} />
