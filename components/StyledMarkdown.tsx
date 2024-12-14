@@ -678,7 +678,7 @@ export function TableOfContentMarkdown({
             'figure',
             'Bigquote',
             'Regularquote',
-            'specialBox'
+            'specialBox',
           ),
         },
       }}
