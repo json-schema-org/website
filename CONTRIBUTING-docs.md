@@ -64,6 +64,22 @@ After you have been assigned to an issue, fork the [json-schema-org/website](htt
 
 To propose modifications to our documentation that do not have an issue in the [documentation board](https://github.com/orgs/json-schema-org/projects/16), you can [create a GitHub issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/creating-an-issue#creating-an-issue-from-a-repository) and use the *Documentation* template to describe the changes. After that, you can decide whether you want to work on the changes yourself or let someone else claim the issue. If you decide to work on the issue, assign it to yourself and commit the changes to a new branch. 
 
+## Add metadata to newly created markdown files
+Metadata helps organize content and maintain consistency across all pages in the documentation. It also provides key information about the file, such as its title, author, and the last updated date.
+
+When contributing to the documentation, it is essential to include metadata in every new markdown file. Metadata is critical for successfully building and rendering the file locally. Without it, the file may fail to render correctly or cause errors in the documentation system.
+
+### Example of metadata in a new markdown file
+Every new `.md` file should start with a YAML front matter block. Here's an example:
+---
+    title: "Your Page Title"
+    section: "docs"  # Can be used to categorize the content
+    date: "YYYY-MM-DD"  # Optional: Date when the page was created or last updated
+    author: "Your Name"  # Optional: Your name if you're the author
+    tags: ["tag1", "tag2"]  # Optional: Tags to categorize the page
+---
+To add the front matter metadata, copy and paste the example above at the top of your .md file and replace the details with the information of your document.
+
 ## Create a Pull Request
 
 To submit your work to review by the community, open a draft pull request to the `main` upstream branch, and add the issue your pull request solves. Add @json-schema-org/docs-team as a reviewer of your pull request, and let us know in the #documentation Slack channel your pull request is ready for review. 
