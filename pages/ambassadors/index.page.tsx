@@ -89,7 +89,7 @@ export default function communityPages() {
         </section>
         <div className=' flex justify-center container m-auto p-auto'>
           <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {ambassadorData.map((ambassador, index) => (
+            {ambassadorData.map((ambassador: any, index: any) => (
               <AmbassadorCard key={index} ambassador={ambassador} />
             ))}
           </div>
