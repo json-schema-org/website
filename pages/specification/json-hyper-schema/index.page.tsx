@@ -6,7 +6,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
-import { TableOfContentMarkdown } from '~/components/StyledMarkdown'; 
+import { TableOfContentMarkdown } from '~/components/StyledMarkdown';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
@@ -39,8 +39,8 @@ export default function ImplementationsPages({
   const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value={null}>
-      <div className="flex pt-4">
-        <div className="w-full pr-5">
+      <div className='flex pt-4'>
+        <div className='w-full pr-5'>
           <Headline1>{frontmatter.title}</Headline1>
           <h1>{frontmatter.type}</h1>
           <h2>{frontmatter.Specification}</h2>
@@ -48,15 +48,14 @@ export default function ImplementationsPages({
           <StyledMarkdown markdown={blocks.body} />
           <DocsHelp markdownFile={markdownFile} />
         </div>
-        <div className="w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden">
-          <div className="h-full overflow-y-auto scrollbar-hidden pl-5">
-            <div className="uppercase text-xs text-slate-400 mb-4">
+        <div className='w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
+          <div className='h-full overflow-y-auto scrollbar-hidden pl-5'>
+            <div className='uppercase text-xs text-slate-400 mb-4'>
               On this page
             </div>
             <TableOfContentMarkdown markdown={blocks.index} depth={3} />
           </div>
         </div>
-
       </div>
     </SectionContext.Provider>
   );
