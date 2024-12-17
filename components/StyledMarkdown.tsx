@@ -680,7 +680,6 @@ const hiddenElements = (...elements: string[]) => {
     };
   }, {});
 };
-
 const checkHasContent = (reactNode: React.ReactChild) => {
   if (!reactNode) return false;
   if (typeof reactNode === 'string' || typeof reactNode === 'number')
