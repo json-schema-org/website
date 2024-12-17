@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-// import { Github, Twitter, Linkedin } from 'lucide-react';
 
-// Define the types for the `ambassador` prop
 interface Contribution {
   title: string;
-  date?: { month: string; year: number };
+  date?: {
+    month: string;
+    year: number;
+  };
   link: string;
   type: string;
 }
@@ -24,18 +25,13 @@ interface Ambassador {
   contributions?: Contribution[];
 }
 
-interface AmbassadorCardProps {
-  ambassador: Ambassador;
-}
+type SocialIcons = 'github' | 'twitter' | 'mastodon' | 'linkedin';
 
-type SocialPlatform = 'github' | 'twitter' | 'mastodon' | 'linkedin';
-
-// Utility function to generate full URLs for social media
 const getSocialMediaUrl = (
-  platform: SocialPlatform,
+  platform: SocialIcons,
   username: string | undefined,
 ) => {
-  const baseUrls: Record<SocialPlatform, string> = {
+  const baseUrls: Record<SocialIcons, string> = {
     github: 'https://github.com/',
     twitter: 'https://twitter.com/',
     mastodon: 'https://mastodon.social/',
@@ -44,9 +40,8 @@ const getSocialMediaUrl = (
   return username ? baseUrls[platform] + username : undefined;
 };
 
-// Social media icon component with proper typing
-const SocialIcon: React.FC<{ platform: SocialPlatform }> = ({ platform }) => {
-  const icons: Record<SocialPlatform, JSX.Element> = {
+const SocialIcon = ({ platform }: { platform: SocialIcons }) => {
+  const icons: Record<SocialIcons, JSX.Element> = {
     github: (
       <svg
         className='w-7 h-7 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
@@ -70,11 +65,24 @@ const SocialIcon: React.FC<{ platform: SocialPlatform }> = ({ platform }) => {
     linkedin: (
       <svg
         className='w-7 h-7 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-        viewBox='0 0 24 24'
+        viewBox='0 0 310 310'
         fill='currentColor'
         xmlns='http://www.w3.org/2000/svg'
       >
-        <path d='M22.225 0H1.771C.792 0 0 .775 0 1.729V22.27c0 .955.793 1.729 1.771 1.729h20.451c.978 0 1.778-.775 1.778-1.729V1.729C24 .774 23.203 0 22.225 0zM7.113 20.452H3.56V8.997h3.552v11.455zm-1.78-13.044a2.073 2.073 0 1 1 0-4.145 2.073 2.073 0 0 1 0 4.145zm15.34 13.044h-3.552v-5.697c0-1.357-.027-3.1-1.892-3.1-1.892 0-2.182 1.48-2.182 3.003v5.794H10.84V8.997h3.412v1.568h.049c.474-.896 1.637-1.84 3.37-1.84 3.604 0 4.268 2.371 4.268 5.451v6.276h-.002z' />
+        <path
+          d='M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73
+		C77.16,101.969,74.922,99.73,72.16,99.73z'
+        />
+        <path
+          d='M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4
+		c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z'
+        />
+        <path
+          d='M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599
+		c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319
+		c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995
+		C310,145.43,300.549,94.761,230.454,94.761z'
+        />
       </svg>
     ),
     mastodon: (
@@ -91,7 +99,7 @@ const SocialIcon: React.FC<{ platform: SocialPlatform }> = ({ platform }) => {
   return icons[platform];
 };
 
-const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
+const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
   const [showContributions, setShowContributions] = useState(false);
   const [imgSrc, setImgSrc] = useState(
     ambassador.img || '/api/placeholder/400/320',
@@ -106,8 +114,7 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
     contributions = [],
   } = ambassador;
 
-  // Available social platforms with proper typing
-  const socialPlatforms: SocialPlatform[] = [
+  const SocialIconss: SocialIcons[] = [
     'github',
     'twitter',
     'mastodon',
@@ -116,7 +123,6 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
 
   return (
     <div className='relative max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 transition-all duration-300 h-fit'>
-      {/* Black Borders */}
       <div className='absolute top-0 right-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
       <div className='absolute bottom-100 right-0 w-20 h-1 bg-black dark:bg-gray-400'></div>
       <div className='absolute bottom-0 left-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
@@ -151,9 +157,8 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
           </p>
         )}
 
-        {/* Social Media Links */}
         <div className='flex justify-center mb-4'>
-          {socialPlatforms.map((platform) => {
+          {SocialIconss.map((platform) => {
             const username = ambassador[platform];
             return username ? (
               <a
@@ -170,7 +175,6 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
           })}
         </div>
 
-        {/* Button to Show/Hide Contributions */}
         {contributions.length > 0 && (
           <button
             onClick={() => setShowContributions(!showContributions)}
@@ -182,7 +186,6 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
           </button>
         )}
 
-        {/* Contributions Section (Toggled) */}
         {showContributions && contributions.length > 0 && (
           <div className='mt-4'>
             <h4 className='text-lg font-semibold mb-2 text-gray-900 dark:text-white'>
