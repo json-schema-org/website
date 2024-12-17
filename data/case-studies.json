@@ -61,5 +61,14 @@
       "lang": "URL1",
       "url": "/blog/posts/w3c-wot-case-study"
     }
+  },
+  {
+    "title": "JSON Schema deduplicated complex logic and validation at Cookpad",
+    "summary": "Learn how Cookpad used JSON Schema to reduce incomplete input of newly registered items from 10% to 0% .",
+    "logo": "/img/logos/cookpad-logo.png",
+    "links": {
+      "lang": "URL1",
+      "url": "/blog/posts/cookpad-case-study-en"
+    }
   }
 ]
