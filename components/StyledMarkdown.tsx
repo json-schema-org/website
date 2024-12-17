@@ -366,7 +366,6 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       // Append the type class to the existing className
                       className: classnames(child.props.className, type),
                     });
-
                     return clonedChild;
                   },
                 );
