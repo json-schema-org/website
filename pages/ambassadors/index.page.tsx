@@ -4,7 +4,7 @@ import { SectionContext } from '~/context';
 
 import ambassadorsBanner from '../../public/img/community/ambassadors.png';
 import AmbassadorBanner from './components/AmbassadorBanner';
-import ambassadorData from '../../data/ambassadors.json';
+import ambassadorData from '../../_includes/community/programs/ambassadors/ambassadors.json';
 import AmbassadorCard from './components/AmbassadorCard';
 import ambassadorList from '../../data/ambassador_lists.json';
 
