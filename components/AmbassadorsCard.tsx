@@ -34,7 +34,7 @@ const getSocialMediaUrl = (
   const baseUrls: Record<SocialIcons, string> = {
     github: 'https://github.com/',
     twitter: 'https://twitter.com/',
-    mastodon: 'https://mastodon.social/',
+    mastodon: 'https://fosstodon.org/',
     linkedin: 'https://www.linkedin.com/in/',
   };
   return username ? baseUrls[platform] + username : undefined;
