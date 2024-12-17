@@ -36,7 +36,7 @@ export default function ImplementationsPages({
   blocks: any;
   frontmatter: any;
 }) {
-  const markdownFile = '_indexPage';
+  const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
@@ -79,7 +79,7 @@ export default function ImplementationsPages({
           link='/draft-05#explanation-for-lack-of-draft-05-meta-schema'
         />
       </div>
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

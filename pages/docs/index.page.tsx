@@ -8,6 +8,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Welcome() {
   const newTitle = 'Welcome';
+  const fileRenderType = 'tsx';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -56,7 +57,7 @@ export default function Welcome() {
           link='/specification'
         />
       </div>
-      <DocsHelp />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
