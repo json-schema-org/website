@@ -17,8 +17,10 @@ export default function Welcome() {
       <Headline1>{newTitle}</Headline1>
       <p>
         JSON Schema is a declarative language for annotating and validating JSON
-        documents' structure, constraints, and data types. It provides a way to
+        documents' structure, constraints, and data types. It helps you
         standardize and define expectations for JSON data.
+        <br />
+        Our documentation will guide you through the basics and beyond of defining and validating JSON data. 
         <br />
         <br />
         <span className='font-bold text-[1.3rem]'>Explore the docs</span>
@@ -35,7 +37,7 @@ export default function Welcome() {
         <Card
           icon='/icons/compass.svg'
           title='Basics'
-          body='New to JSON Schema? Learn the basics of data validation and schema design.'
+          body='New to JSON Schema? Learn the basics of schema design.'
           headerSize='medium'
           bodyTextSize='small'
           link='/learn'
@@ -51,7 +53,7 @@ export default function Welcome() {
         <Card
           icon='/icons/clipboard.svg'
           title='Specification'
-          body='Understand the evolution of JSON Schema through its drafts'
+          body='Understand the evolution of JSON Schema through draft specifications.'
           headerSize='medium'
           bodyTextSize='small'
           link='/specification'
