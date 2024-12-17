@@ -11,7 +11,7 @@ interface Contribution {
   type: string;
 }
 
-interface Ambassador {
+export interface Ambassador {
   img?: string;
   name?: string;
   title?: string;

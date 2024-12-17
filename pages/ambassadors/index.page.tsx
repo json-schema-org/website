@@ -9,7 +9,7 @@ import ambassadorsBanner from '~/public/img/community/ambassadors.png';
 import Image from 'next/image';
 
 import AmbassadorBanner from '~/components/AmbassadorsBanner';
-import AmbassadorCard from '~/components/AmbassadorsCard';
+import AmbassadorCard, { type Ambassador } from '~/components/AmbassadorsCard';
 import AmbassadorList from '~/components/AmbassadorsList';
 
 export default function ambassadorPages() {
@@ -87,7 +87,7 @@ export default function ambassadorPages() {
         </section>
         <div className=' flex justify-center container m-auto p-auto'>
           <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {ambassadorData.map((ambassador, index: number) => (
+            {ambassadorData.map((ambassador: Ambassador, index: number) => (
               <AmbassadorCard key={index} ambassador={ambassador} />
             ))}
           </div>
