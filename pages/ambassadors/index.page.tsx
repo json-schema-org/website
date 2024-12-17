@@ -2,17 +2,35 @@ import React from 'react';
 import { getLayout } from '~/components/SiteLayout';
 import { SectionContext } from '~/context';
 
-import ambassadorData from '~/data/ambassadors.json';
 import ambassadorList from '~/data/ambassadors-contributions.json';
 import ambassadorsBanner from '~/public/img/community/ambassadors.png';
 
 import Image from 'next/image';
 
+import fs from 'fs';
+
 import AmbassadorBanner from '~/components/AmbassadorsBanner';
 import AmbassadorCard, { type Ambassador } from '~/components/AmbassadorsCard';
 import AmbassadorList from '~/components/AmbassadorsList';
 
-export default function ambassadorPages() {
+export async function getStaticProps() {
+  const ambassadorData = fs.readFileSync(
+    '_includes/community/programs/ambassadors/ambassadors.json',
+    'utf-8',
+  );
+
+  return {
+    props: {
+      ambassadorData,
+    },
+  };
+}
+
+export default function ambassadorPages({
+  ambassadorData,
+}: {
+  ambassadorData: any;
+}) {
   return (
     <SectionContext.Provider value='ambassador'>
       <div
@@ -87,9 +105,11 @@ export default function ambassadorPages() {
         </section>
         <div className=' flex justify-center container m-auto p-auto'>
           <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {ambassadorData.map((ambassador: Ambassador, index: number) => (
-              <AmbassadorCard key={index} ambassador={ambassador} />
-            ))}
+            {JSON.parse(ambassadorData).map(
+              (ambassador: Ambassador, index: number) => (
+                <AmbassadorCard key={index} ambassador={ambassador} />
+              ),
+            )}
           </div>
         </div>
         <div className='flex justify-center p-auto'>
