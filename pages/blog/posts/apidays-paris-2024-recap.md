@@ -10,7 +10,7 @@ authors:
     photo: /img/avatars/valeria.webp
     twitter: valeriahhdez
     byline: Technical writer
-excerpt: "API Days Paris 2023 has been an amazing experience for JSON Schema"
+excerpt: "API Days Paris 2024 has been an amazing experience for JSON Schema"
 ---
 ## Introduction
 [APIdays Paris](https://www.apidays.global/paris/), the flagship event of the APIdays family, returned this year with a focus on "The Future API Stack for Mass Innovation." This annual gathering of API enthusiasts, developers, and industry leaders brought together experts to discuss the latest trends and best practices in API design, API development, and API management.
