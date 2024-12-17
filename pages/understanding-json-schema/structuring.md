@@ -1,27 +1,17 @@
 ---
-title: "Structuring a complex schema"
+title: "Modular JSON Schema combination"
 section: docs
 ---
 
 <Keywords label="single: single: structure" />
 
-* [Schema Identification](#schema-identification)
-* [Base URI](#base-uri)
-* [$ref](#dollarref)
-* [$id](#id)
-* [$defs](#defs)
-* [Recursion](#recursion)
-* [Extending Recursive Schemas](#extending-recursive-schemas)
-* [Bundling](#bundling)
+## Introduction
 
 When writing computer programs of even moderate complexity, it\'s
 commonly accepted that \"structuring\" the program into reusable
-functions is better than copying-and-pasting duplicate bits of code
-everywhere they are used. Likewise in JSON Schema, for anything but the
-most trivial schema, it\'s really useful to structure the schema into
-parts that can be reused in a number of places. This chapter will
-present the tools available for reusing and structuring schemas as well
-as some practical examples that use those tools.
+functions is better than duplicating code. Similarly, in JSON Schema, structuring your schema into reusable components is highly beneficial for anything beyond the most trivial cases. 
+
+Here, you will learn about the keywords used to combine JSON schemas modularly and see examples of their application.
 
 <Keywords label="single: schema identification single: structuring; schema identification" />
 
