@@ -5,14 +5,113 @@ import { SectionContext } from '~/context';
 import ambassadorsBanner from '../../public/img/community/ambassadors.png';
 import AmbassadorBanner from './components/AmbassadorBanner';
 import ambassadorData from '../../data/ambassadors.json';
-import AmbassadorCard from './components/AmbassadorCard';
 import ambassadorList from '../../data/ambassador_lists.json';
-
+import AmbassadorCard from './components/AmbassadorCard';
+import AmbassadorList from './components/AmbassadorList';
 import Image from 'next/image';
 
-import AmbassadorList from './components/AmbassadorList';
+interface Contribution {
+  type:
+    | 'article'
+    | 'talk'
+    | 'adopter'
+    | 'case study'
+    | 'video'
+    | 'other'
+    | 'book'
+    | 'paper'
+    | 'initiative'
+    | 'project'
+    | 'working group'
+    | 'community';
+  title: string;
+  date: {
+    year: number;
+    month:
+      | 'January'
+      | 'February'
+      | 'March'
+      | 'April'
+      | 'May'
+      | 'June'
+      | 'July'
+      | 'August'
+      | 'September'
+      | 'October'
+      | 'November'
+      | 'December';
+  };
+  link: string;
+}
 
-export default function communityPages() {
+interface DateObject {
+  year: number;
+  month:
+    | 'January'
+    | 'February'
+    | 'March'
+    | 'April'
+    | 'May'
+    | 'June'
+    | 'July'
+    | 'August'
+    | 'September'
+    | 'October'
+    | 'November'
+    | 'December';
+}
+
+interface Ambassador {
+  name: string;
+  img: string;
+  bio: string;
+  title: string;
+  github: string;
+  twitter?: string;
+  mastodon?: string;
+  linkedin?: string;
+  company: string;
+  country: string;
+  contributions: Contribution[];
+  startedOn: DateObject;
+  lastReviewedOn?: DateObject;
+}
+
+// Transform or validate data
+function validateAmbassadorData(data: any[]): Ambassador[] {
+  return data.map((item) => ({
+    ...item,
+    contributions: item.contributions.map((contribution: any) => ({
+      ...contribution,
+      type: validateContributionType(contribution.type),
+    })),
+  }));
+}
+
+function validateContributionType(type: string): Contribution['type'] {
+  const allowedTypes: Contribution['type'][] = [
+    'article',
+    'talk',
+    'adopter',
+    'case study',
+    'video',
+    'other',
+    'book',
+    'paper',
+    'initiative',
+    'project',
+    'working group',
+    'community',
+  ];
+  return allowedTypes.includes(type as Contribution['type'])
+    ? (type as Contribution['type'])
+    : 'other'; // Default to 'other' if invalid
+}
+
+const validatedAmbassadorData: Ambassador[] =
+  validateAmbassadorData(ambassadorData);
+
+export default function CommunityPages() {
   return (
     <SectionContext.Provider value='community'>
       <div
@@ -46,7 +145,7 @@ export default function communityPages() {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                Become an JSON Ambassador
+                Become a JSON Ambassador
               </a>
             </div>
           </div>
@@ -87,11 +186,13 @@ export default function communityPages() {
             </p>
           </h2>
         </section>
-        <div className=' flex justify-center container m-auto p-auto'>
+        <div className='flex justify-center container m-auto p-auto'>
           <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {ambassadorData.map((ambassador, index) => (
-              <AmbassadorCard key={index} ambassador={ambassador} />
-            ))}
+            {validatedAmbassadorData.map(
+              (ambassador: Ambassador, index: number) => (
+                <AmbassadorCard key={index} ambassador={ambassador} />
+              ),
+            )}
           </div>
         </div>
         <div className='flex justify-center p-auto'>
@@ -102,4 +203,4 @@ export default function communityPages() {
   );
 }
 
-communityPages.getLayout = getLayout;
+CommunityPages.getLayout = getLayout;
