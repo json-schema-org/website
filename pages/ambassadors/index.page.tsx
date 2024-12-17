@@ -14,10 +14,7 @@ import AmbassadorCard, { type Ambassador } from '~/components/AmbassadorsCard';
 import AmbassadorList from '~/components/AmbassadorsList';
 
 export async function getStaticProps() {
-  const ambassadorData = fs.readFileSync(
-    '_includes/community/programs/ambassadors/ambassadors.json',
-    'utf-8',
-  );
+  const ambassadorData = fs.readFileSync('data/ambassadors.json', 'utf-8');
 
   return {
     props: {
