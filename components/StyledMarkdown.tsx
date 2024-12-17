@@ -554,7 +554,6 @@ export function TableOfContentMarkdown({
                   href={`#${slug}`}
                   className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6 font-medium'
                 >
-      
                   {children}
                 </a>
               );
