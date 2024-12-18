@@ -20,7 +20,7 @@ Continuing our successful partnership with [AsyncAPI](https://www.asyncapi.com/e
 
 ## The first JSON Schema conference
 
-The inaugural [JSON Schema conference track](https://conference.json-schema.org/) at APIdays Paris 2024 was a resounding success. As part of the larger conference theme "The Future API Stack for Mass Innovation," the track showcased JSON Schema's crucial role in modern API development and data contract design. 
+The inaugural [JSON Schema conference track](https://conference.json-schema.org/) at apidays Paris 2024 was a resounding success. As part of the larger conference theme "The Future API Stack for Mass Innovation," the track showcased JSON Schema's crucial role in modern API development and data contract design. 
 
 <figure className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='max-w-400 px-20' src='/img/posts/2024/apidays-paris-2024-recap/json-schema-team.jpg' alt="Five people standing at a booth labeled 'Standards'. They are smiling and looking at the camera. From left to right, their names are Benjamin Granados, Thomas Clark, Andreas Eberhart, Juan Cruz Viotti, and Ben Hutton."/>
