@@ -71,9 +71,9 @@ export default function communityPages() {
               JSON Schema Ambassador Contributions
             </h1>
             <p className='mt-5 text-lg text-gray-700 dark:text-slate-100'>
-              Ambassadors are passionate about JSON Schema. They share
-              their interest, expertise, and excitement within their communities
-              to help others build better software.
+              Ambassadors are passionate about JSON Schema. They share their
+              interest, expertise, and excitement within their communities to
+              help others build better software.
             </p>
           </div>
         </div>
