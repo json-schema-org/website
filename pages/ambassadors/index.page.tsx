@@ -42,11 +42,11 @@ export default function communityPages() {
             <div data-testid='Ambassadors-button'>
               <a
                 className='mt-10 inline-block px-6 py-3 bg-blue-600 text-white font-semibold text-center rounded hover:bg-blue-700 transition duration-300'
-                href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-an-json-schema-ambassador'
+                href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-a-json-schema-ambassador'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                Become an JSON Ambassador
+                Become a JSON Schema Ambassador
               </a>
             </div>
           </div>
@@ -68,12 +68,12 @@ export default function communityPages() {
             data-testid='Ambassadors-contributions'
           >
             <h1 className='text-h3 font-bold text-gray-900 dark:text-white'>
-              JSON Ambassador Contributions
+              JSON Schema Ambassador Contributions
             </h1>
             <p className='mt-5 text-lg text-gray-700 dark:text-slate-100'>
-              JSON Ambassadors are passionate about JSON Schema. They share
-              their interest, expertise, and excitement within their communities
-              to help others build better software.
+              Ambassadors are passionate about JSON Schema. They share their
+              interest, expertise, and excitement within their communities to
+              help others build better software.
             </p>
           </div>
         </div>
@@ -81,7 +81,7 @@ export default function communityPages() {
 
         <section className='flex align-middle justify-center p-auto m-auto mt-16'>
           <h2 className='text-h3 font-bold text-gray-900 dark:text-white text-center'>
-            Join These JSON Ambassadors <br />
+            Join These JSON Schema Ambassadors <br />
             <p className='text-h5 font-sans font-light text-gray-700 dark:text-slate-100'>
               Learn and share knowledge with community members.
             </p>
