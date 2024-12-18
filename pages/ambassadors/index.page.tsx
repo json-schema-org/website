@@ -6,7 +6,7 @@ import ambassadorsBanner from '../../public/img/community/ambassadors.png';
 import AmbassadorBanner from './components/AmbassadorBanner';
 import ambassadorData from '../../data/ambassadors.json';
 import AmbassadorCard from './components/AmbassadorCard';
-import ambassadorList from '../../data/ambassador_lists.json'
+import ambassadorList from '../../data/ambassador_lists.json';
 
 import Image from 'next/image';
 
@@ -16,7 +16,7 @@ type Ambassador = {
   name: string;
   bio: string;
   twitter?: string;
-  mastodon?: string; 
+  mastodon?: string;
   country: string;
 };
 
@@ -26,11 +26,6 @@ type AmbassadorLink = {
   details: string;
 };
 
-type AmbassadorListProps = {
-  ambassadorList: {
-    contents: AmbassadorLink[];
-  };
-};
 
 export default function communityPages() {
   return (
@@ -109,7 +104,7 @@ export default function communityPages() {
         </section>
         <div className=' flex justify-center container m-auto p-auto'>
           <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {ambassadorData.map((ambassador : Ambassador, index : number) => (
+            {ambassadorData.map((ambassador: Ambassador, index: number) => (
               <AmbassadorCard key={index} ambassador={ambassador} />
             ))}
           </div>
