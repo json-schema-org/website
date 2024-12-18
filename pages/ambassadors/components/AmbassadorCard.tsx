@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-// import { Github, Twitter, Linkedin } from 'lucide-react';
 
-// Define the types for the `ambassador` prop
 interface Contribution {
   title: string;
   date?: { month: string; year: number };
@@ -10,7 +8,7 @@ interface Contribution {
   type: string;
 }
 
-interface Ambassador {
+export interface Ambassador {
   img?: string;
   name?: string;
   title?: string;
@@ -24,37 +22,46 @@ interface Ambassador {
   contributions?: Contribution[];
 }
 
-interface AmbassadorCardProps {
-  ambassador: Ambassador;
-}
-
-type SocialPlatform = 'github' | 'twitter' | 'mastodon' | 'linkedin';
+type SocialIcons = 'github' | 'twitter' | 'mastodon' | 'linkedin';
 
 // Utility function to generate full URLs for social media
 const getSocialMediaUrl = (
-  platform: SocialPlatform,
+  platform: SocialIcons,
   username: string | undefined,
 ) => {
-  const baseUrls: Record<SocialPlatform, string> = {
+  const baseUrls: Record<SocialIcons, string> = {
     github: 'https://github.com/',
     twitter: 'https://twitter.com/',
-    mastodon: 'https://mastodon.social/',
+    mastodon: 'https://foostodon.org/',
     linkedin: 'https://www.linkedin.com/in/',
   };
   return username ? baseUrls[platform] + username : undefined;
 };
 
 // Social media icon component with proper typing
-const SocialIcon: React.FC<{ platform: SocialPlatform }> = ({ platform }) => {
-  const icons: Record<SocialPlatform, JSX.Element> = {
+const SocialIcon = ({ platform }: { platform: SocialIcons }) => {
+  const icons: Record<SocialIcons, JSX.Element> = {
     github: (
       <svg
         className='w-7 h-7 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-        viewBox='0 0 24 24'
+        viewBox='0 0 310 310'
         fill='currentColor'
         xmlns='http://www.w3.org/2000/svg'
       >
-        <path d='M12 0C5.373 0 0 5.373 0 12c0 5.304 3.438 9.8 8.207 11.387.6.113.82-.26.82-.577 0-.287-.01-1.049-.016-2.06-3.338.726-4.043-1.609-4.043-1.609-.546-1.387-1.333-1.756-1.333-1.756-1.09-.746.084-.73.084-.73 1.205.084 1.84 1.238 1.84 1.238 1.07 1.834 2.81 1.303 3.492.997.108-.774.42-1.303.763-1.603-2.665-.304-5.467-1.332-5.467-5.93 0-1.31.469-2.381 1.236-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.302 1.23A11.503 11.503 0 0 1 12 6.802c1.018.004 2.046.137 3.003.403 2.293-1.552 3.3-1.23 3.3-1.23.654 1.653.242 2.873.118 3.176.77.839 1.236 1.91 1.236 3.22 0 4.61-2.804 5.624-5.474 5.921.43.37.816 1.102.816 2.221 0 1.606-.014 2.901-.014 3.293 0 .32.216.694.824.576C20.566 21.796 24 17.3 24 12 24 5.373 18.627 0 12 0z' />
+      <path
+          d='M72.16,99.73H9.927c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5H72.16c2.762,0,5-2.238,5-5V104.73
+		C77.16,101.969,74.922,99.73,72.16,99.73z'
+        />
+        <path
+          d='M41.066,0.341C18.422,0.341,0,18.743,0,41.362C0,63.991,18.422,82.4,41.066,82.4
+		c22.626,0,41.033-18.41,41.033-41.038C82.1,18.743,63.692,0.341,41.066,0.341z'
+        />
+        <path
+          d='M230.454,94.761c-24.995,0-43.472,10.745-54.679,22.954V104.73c0-2.761-2.238-5-5-5h-59.599
+		c-2.762,0-5,2.239-5,5v199.928c0,2.762,2.238,5,5,5h62.097c2.762,0,5-2.238,5-5v-98.918c0-33.333,9.054-46.319,32.29-46.319
+		c25.306,0,27.317,20.818,27.317,48.034v97.204c0,2.762,2.238,5,5,5H305c2.762,0,5-2.238,5-5V194.995
+		C310,145.43,300.549,94.761,230.454,94.761z'
+        />
       </svg>
     ),
     twitter: (
@@ -91,7 +98,7 @@ const SocialIcon: React.FC<{ platform: SocialPlatform }> = ({ platform }) => {
   return icons[platform];
 };
 
-const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
+const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
   const [showContributions, setShowContributions] = useState(false);
   const [imgSrc, setImgSrc] = useState(
     ambassador.img || '/api/placeholder/400/320',
@@ -107,7 +114,7 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
   } = ambassador;
 
   // Available social platforms with proper typing
-  const socialPlatforms: SocialPlatform[] = [
+  const SocialIconss: SocialIcons[] = [
     'github',
     'twitter',
     'mastodon',
@@ -153,7 +160,7 @@ const AmbassadorCard: React.FC<AmbassadorCardProps> = ({ ambassador }) => {
 
         {/* Social Media Links */}
         <div className='flex justify-center mb-4'>
-          {socialPlatforms.map((platform) => {
+          {SocialIconss.map((platform) => {
             const username = ambassador[platform];
             return username ? (
               <a

@@ -1,20 +1,34 @@
 import React from 'react';
 import { getLayout } from '~/components/SiteLayout';
 import { SectionContext } from '~/context';
-
-import ambassadorsBanner from '../../public/img/community/ambassadors.png';
-import AmbassadorBanner from './components/AmbassadorBanner';
-import ambassadorData from '../../data/ambassadors.json';
-import AmbassadorCard from './components/AmbassadorCard';
-import ambassadorList from '../../data/ambassador_lists.json';
+import ambassadorList from "../../data/ambassador_lists.json"
+import ambassadorsBanner from '~/public/img/community/ambassadors.png';
 
 import Image from 'next/image';
 
-import AmbassadorList from './components/AmbassadorList';
+import fs from "fs"
 
-export default function communityPages() {
+import AmbassadorBanner from '../ambassadors/components/AmbassadorBanner';
+import AmbassadorCard, { type Ambassador } from '../ambassadors/components/AmbassadorCard';
+import AmbassadorList from '../ambassadors/components/AmbassadorList';
+
+export async function getStaticProps() {
+  const ambassadorData = fs.readFileSync('data/ambassadors.json', 'utf-8');
+
+  return {
+    props: {
+      ambassadorData,
+    },
+  };
+}
+
+export default function ambassadorPages({
+  ambassadorData,
+}: {
+  ambassadorData: any;
+}) {
   return (
-    <SectionContext.Provider value='community'>
+    <SectionContext.Provider value='ambassador'>
       <div
         className='max-w-screen-xl block px-4 sm:px-6 lg:px-8 mx-auto w-full'
         data-testid='Container-main'
@@ -34,7 +48,7 @@ export default function communityPages() {
             >
               Become a JSON Schema Ambassador
             </h1>
-            <p className='mt-5 text-slate-500 text-lg text-gray-700 dark:text-slate-100'>
+            <p className='mt-5 text-slate-700 text-lg  dark:text-slate-100'>
               The JSON Schema Ambassadors Program recognizes the people who
               drive adoption, innovation, and knowledge sharing in the JSON
               Schema community.
@@ -89,9 +103,11 @@ export default function communityPages() {
         </section>
         <div className=' flex justify-center container m-auto p-auto'>
           <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
-            {ambassadorData.map((ambassador, index) => (
-              <AmbassadorCard key={index} ambassador={ambassador} />
-            ))}
+            {JSON.parse(ambassadorData).map(
+                (ambassador: Ambassador, index: number) => (
+                  <AmbassadorCard key={index} ambassador={ambassador} />
+                ),
+              )}
           </div>
         </div>
         <div className='flex justify-center p-auto'>
@@ -102,4 +118,4 @@ export default function communityPages() {
   );
 }
 
-communityPages.getLayout = getLayout;
+ambassadorPages.getLayout = getLayout;

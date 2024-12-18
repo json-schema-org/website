@@ -13,7 +13,6 @@ export async function getStaticProps() {
   const main = fs.readFileSync('pages/draft-05/release-notes.md', 'utf-8');
   const { content: indexContent, data: indexData } = matter(index);
   const { content: bodyContent } = matter(main);
-
   const frontmatter = { ...indexData };
   return {
     props: {
@@ -33,13 +32,14 @@ export default function ImplementationsPages({
   blocks: any;
   frontmatter: any;
 }) {
+  const fileRenderType = 'indexmd';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
       <DocTable frontmatter={frontmatter} />
       <StyledMarkdown markdown={blocks.index} />
       <StyledMarkdown markdown={blocks.body} />
-      <DocsHelp />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
