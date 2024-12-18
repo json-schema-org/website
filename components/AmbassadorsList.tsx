@@ -1,18 +1,18 @@
 import React from 'react';
 
-interface AmbassadorLink {
+interface AmbassadorsLink {
   title: string;
   icon: string;
   details: string;
 }
 
-interface AmbassadorListProps {
+interface AmbassadorsListProps {
   ambassadorList: {
-    contents: AmbassadorLink[];
+    contents: AmbassadorsLink[];
   };
 }
 
-const AmbassadorList: React.FC<AmbassadorListProps> = ({ ambassadorList }) => {
+const AmbassadorList = ({ ambassadorList }: AmbassadorsListProps) => {
   return (
     <ul className='mt-10 grid grid-cols-1 gap-8 px-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3'>
       {ambassadorList.contents.map((link) => (
