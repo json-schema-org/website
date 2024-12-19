@@ -552,11 +552,8 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.40rem] font-medium'
+                  className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
                 >
-                  <span className='mr-1 text-blue-400/90 text-[1em] flex justify-center items-center'>
-                    &#9679;
-                  </span>
                   {children}
                 </a>
               );
@@ -572,7 +569,7 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-4 font-medium'
+                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
                       >
                         {children}
                       </a>
