@@ -122,6 +122,7 @@ const getReferencePath = [
   '/understanding-json-schema',
   '/understanding-json-schema/keywords',
   '/understanding-json-schema/basics',
+  '/understanding-json-schema/introduction',
   '/understanding-json-schema/conventions',
   '/understanding-json-schema/about',
   '/understanding-json-schema/credits',
@@ -524,6 +525,11 @@ export const DocsNav = ({
             <DocLink
               uri='/understanding-json-schema/conventions'
               label='Conventions used'
+              setOpen={setOpen}
+            />
+             <DocLink
+              uri='/understanding-json-schema/introduction'
+              label='Introduction'
               setOpen={setOpen}
             />
             <DocLink
