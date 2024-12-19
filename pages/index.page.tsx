@@ -13,7 +13,7 @@ import {
 } from '../lib/calendarUtils';
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
-
+import Image from 'next/image';
 /* eslint-disable */
 import ical from 'node-ical';
 import { useTheme } from 'next-themes';
@@ -109,6 +109,13 @@ const Home = (props: any) => {
   const [octue_logo, setOctue_logo] = useState('');
   const [apideck_logo, setApideck_logo] = useState('');
 
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Ensure the component is only rendered client-side
+    setIsClient(true);
+  }, []);
+
   useEffect(() => {
     if (resolvedTheme === 'dark') {
       setAsyncapi_logo('/img/logos/dark-mode/asyncapi_white.svg');
@@ -177,22 +184,38 @@ const Home = (props: any) => {
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
-                <img
-                  src='/img/logos/usedby/zapier-logo_white.png'
-                  className='w-40 mx-auto'
-                />
-                <img
-                  src='/img/logos/usedby/microsoft-white.png'
-                  className='w-40 mx-auto'
-                />
-                <img
-                  src='/img/logos/usedby/postman-white.png'
-                  className='w-40 mx-auto'
-                />
-                <img
-                  src='/img/logos/usedby/github-white.png'
-                  className='w-40 mx-auto'
-                />
+                {isClient && (
+                  <>
+                    <Image
+                      src='/img/logos/usedby/zapier-logo_white.png'
+                      className='w-40 mx-auto'
+                      alt='zapier'
+                      height={40}
+                      width={160}
+                    />
+                    <Image
+                      src='/img/logos/usedby/microsoft-white.png'
+                      className='w-40 mx-auto'
+                      alt='microsoft'
+                      height={40}
+                      width={160}
+                    />
+                    <Image
+                      src='/img/logos/usedby/postman-white.png'
+                      className='w-40 mx-auto'
+                      alt='postman'
+                      height={40}
+                      width={160}
+                    />
+                    <Image
+                      src='/img/logos/usedby/github-white.png'
+                      className='w-40 mx-auto'
+                      alt='github'
+                      height={40}
+                      width={160}
+                    />
+                  </>
+                )}
               </div>
 
               <p className='text-white mx-4 my-5 dark:text-slate-400'>
@@ -281,10 +304,17 @@ const Home = (props: any) => {
 
         {/* SidebySide section*/}
         <section className='max-w-[1400px] w-full lg:flex lg:gap-20 my-16 '>
-          <img
-            src='/img/home-page/community-illustration.svg'
-            className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]'
-          />
+          {isClient && (
+            <>
+              <Image
+                src='/img/home-page/community-illustration.svg'
+                className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]'
+                alt='community'
+                height={600}
+                width={800}
+              />
+            </>
+          )}
           <div className='w-5/6 md:w-3/5 mx-auto mt-12'>
             <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4 dark:text-slate-200'>
               Explore the JSON Schema Ecosystem
@@ -323,12 +353,30 @@ const Home = (props: any) => {
               <Link href='https://json-schema.org/slack'>
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
-                  <img src='/img/logos/Slack-mark.svg' className='w-8 h-8' />
+                  {isClient && (
+                    <>
+                      <Image
+                        src='/img/logos/Slack-mark.svg'
+                        className='w-8 h-8'
+                        alt='slack'
+                        height={32}
+                        width={32}
+                      />
+                    </>
+                  )}
                 </h3>
-                <img
-                  src='/img/home-page/slack-json-schema.png'
-                  className='w-full mb-4'
-                />
+                {isClient && (
+                  <>
+                    <Image
+                      src='/img/home-page/slack-json-schema.png'
+                      className='w-full mb-4'
+                      alt='slack-json-schema'
+                      height={500}
+                      width={300}
+                    />
+                  </>
+                )}
+
                 {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
                 <p className='mb-4 dark:text-slate-300'>
                   Join our Slack to ask questions, get feedback on your
@@ -340,10 +388,17 @@ const Home = (props: any) => {
                   href='https://json-schema.org/slack'
                   className='flex items-center '
                 >
-                  <img
-                    src='/img/logos/slack_logo_small-white.svg'
-                    className='w-4 h-4 mr-2 '
-                  />
+                  {isClient && (
+                    <>
+                      <Image
+                        src='/img/logos/slack_logo_small-white.svg'
+                        className='w-4 h-4 mr-2 '
+                        width={16}
+                        height={16}
+                        alt='slack'
+                      />
+                    </>
+                  )}
                   Join Slack
                 </a>
               </button>
@@ -354,10 +409,17 @@ const Home = (props: any) => {
                 <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
                   The JSON Schema Blog
                 </h3>
-                <img
-                  src={blogPosts[0].frontmatter.cover}
-                  className='w-full h-[232px]  mb-4'
-                />
+                {isClient && (
+                  <>
+                    <Image
+                      src={blogPosts[0].frontmatter.cover}
+                      className='w-full h-[232px]  mb-4'
+                      width={600}
+                      height={232}
+                      alt='blog'
+                    />
+                  </>
+                )}
                 <h3 className='mb-4 font-semibold dark:text-slate-300'>
                   {' '}
                   {blogPosts[0].frontmatter.title}
@@ -589,6 +651,124 @@ const Home = (props: any) => {
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
+              <a href=' https://www.asyncapi.com/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={asyncapi_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='asyncapi'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://www.airbnb.com/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={airbnb_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='airbnb'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://www.postman.com/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={postman_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='postman'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://endjin.com/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={endjin_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='endjin'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://www.llc.org/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={llc_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='llc'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://www.vpsserver.com/en-us/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={vpsserver_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='vpsserver'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://www.itflashcards.com/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={itflashcards_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='itflashcards'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://www.route4me.com/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={route4me_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='route4me'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://n8n.io/'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={n8n_logo}
+                      className=' w-44'
+                      width={176}
+                      height={100}
+                      alt='n8n'
+                    />
+                  </>
+                )}
+              </a>
+
               <a
                 href=' https://www.asyncapi.com/'
                 target='_blank'
@@ -641,7 +821,13 @@ const Home = (props: any) => {
                 <img src={n8n_logo} className=' w-44' />
               </a>
               <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
-                <img src={ccopter_logo} className=' w-44' />
+                <Image
+                  src={ccopter_logo}
+                  alt='Copter Logo'
+                  width={176} // Adjust width based on your needs
+                  height={44} // Adjust height based on your needs
+                  className='w-44'
+                />
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
                 <img src={octue_logo} className=' w-44' />
@@ -701,10 +887,30 @@ const Home = (props: any) => {
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-              <img src={common_room_logo} className='w-48 md:w-56' />
+              {isClient && (
+                <>
+                  <Image
+                    src={common_room_logo}
+                    className='w-48 md:w-56'
+                    width={192}
+                    height={100}
+                    alt='common_room'
+                  />
+                </>
+              )}
             </a>
             <a href='https://json-schema.org/slack'>
-              <img src={slack_logo} className='w-24 md:w-32' />
+              {isClient && (
+                <>
+                  <Image
+                    src={slack_logo}
+                    className='w-24 md:w-32'
+                    width={96}
+                    height={100}
+                    alt='slack'
+                  />
+                </>
+              )}
             </a>
           </div>{' '}
         </section>
