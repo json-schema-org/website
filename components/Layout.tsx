@@ -142,13 +142,13 @@ const MainNavLink = ({
       href={uri}
       className={classnames(
         className,
-        'font-semibold p-2 md:p-4 dark:text-slate-300',
+        'font-semibold p-2 md:p-4',
         // `${
         //   router.asPath === uri
         //     ? 'text-primary hover:text-primary'
         //     : 'text-slate-600 hover:text-primary'
         // }`,
-        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
+        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary dark:text-white dark:underline hover:text-primary' : 'text-slate-600 dark:text-white hover:text-primary dark:hover:underline'}`,
       )}
     >
       {label}
@@ -201,7 +201,7 @@ const MainNavigation = () => {
 
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/tools'
+        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
         label='Tools'
         isActive={section === 'tools'}
       />
@@ -290,7 +290,11 @@ const MobileNav = () => {
         isActive={section === 'docs'}
       />
 
-      <MainNavLink uri='/tools' label='Tools' isActive={section === 'tools'} />
+      <MainNavLink
+        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
+        label='Tools'
+        isActive={section === 'tools'}
+      />
       <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
         uri='/community'
