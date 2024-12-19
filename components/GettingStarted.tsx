@@ -4,18 +4,53 @@ import Highlight from 'react-syntax-highlighter';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 
+interface SchemaOption {
+  file: string;
+  name: string;
+  instances: InstanceOption[];
+  default?: boolean;
+}
+
+interface InstanceOption {
+  file: string;
+  details: string;
+  valid: string;
+  name: string;
+  default?: boolean;
+}
+
+interface SchemaData {
+  id: string;
+  title: string;
+  description: string;
+}
+
+interface InstanceData {
+  id: string;
+  title: string;
+  description: string;
+}
+
 async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
-  const data = await response.json();
+  const data: SchemaOption[] = await response.json();
 
-  const defaultSchemaData = data.find((data: any) => data.default === true);
+  const defaultSchemaData = data.find((schema) => schema.default === true);
+
+  if (!defaultSchemaData) {
+    throw new Error('Default schema not found');
+  }
 
   const schemaResp = await fetch(defaultSchemaData.file);
   const schemaData = await schemaResp.json();
 
   const defaultInstanceData = defaultSchemaData.instances.find(
-    (instance: any) => instance.default === true,
+    (instance) => instance.default === true,
   );
+
+  if (!defaultInstanceData) {
+    throw new Error('Default instance not found');
+  }
 
   const instanceResp = await fetch(defaultInstanceData.file);
   const instanceData = await instanceResp.json();
@@ -27,17 +62,6 @@ async function fetchData() {
     initialInstance: defaultSchemaData.instances,
     initialDetails: [defaultInstanceData.details, defaultInstanceData.valid],
   };
-}
-
-interface SchemaOption {
-  file: string;
-  instances: InstanceOption[];
-}
-
-interface InstanceOption {
-  file: string;
-  details: string;
-  valid: string;
 }
 
 const GettingStarted = () => {
@@ -64,8 +88,10 @@ const GettingStarted = () => {
   const [options, setOptions] = useState<SchemaOption[]>([]);
   const [instances, setInstances] = useState<InstanceOption[]>([]);
   const [details, setDetails] = useState<string[]>(['', '']);
-  const [fetchedSchema, setFetchedSchema] = useState();
-  const [fetchedInstance, setFetchedInstance] = useState();
+  const [fetchedSchema, setFetchedSchema] = useState<SchemaData | null>(null);
+  const [fetchedInstance, setFetchedInstance] = useState<InstanceData | null>(
+    null,
+  );
 
   const handleSchemaChange = async (
     e: React.ChangeEvent<HTMLSelectElement>,
@@ -86,7 +112,7 @@ const GettingStarted = () => {
       setFetchedInstance(instData);
     } else {
       setInstances([]);
-      setFetchedSchema(null!);
+      setFetchedSchema(null);
     }
   };
 
@@ -104,7 +130,7 @@ const GettingStarted = () => {
       setFetchedInstance(instanceData);
       setDetails([selectedInstance.details, selectedInstance.valid]);
     } else {
-      setFetchedInstance(undefined);
+      setFetchedInstance(null);
     }
   };
 
@@ -125,6 +151,7 @@ const GettingStarted = () => {
   return (
     <>
       <div className='relative'>
+        {/* Schema Select and Display */}
         <div className='flex flex-col'>
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
             <h2 className='text-h6 font-semibold mb-1'>JSON Schema</h2>
@@ -138,7 +165,7 @@ const GettingStarted = () => {
                 id='Examples'
                 onChange={handleSchemaChange}
               >
-                {options.map((option: any, id: number) => (
+                {options.map((option, id) => (
                   <option key={id} value={option.file}>
                     {option.name}
                   </option>
@@ -180,6 +207,7 @@ const GettingStarted = () => {
           </div>
         </div>
 
+        {/* Instance Select and Display */}
         <div className='flex flex-col'>
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
             <h2 className='text-h6 font-semibold mb-1'>JSON Instance</h2>
@@ -193,7 +221,7 @@ const GettingStarted = () => {
                 id='Examples'
                 onChange={handleInstanceChange}
               >
-                {instances.map((instance: any, id: number) => (
+                {instances.map((instance, id) => (
                   <option key={id} value={instance.file}>
                     {instance.name}
                   </option>
@@ -244,6 +272,7 @@ const GettingStarted = () => {
           </div>
         </div>
 
+        {/* Download Button */}
         <button
           className='absolute right-0 my-4 text-[17px] bg-startBlue text-white px-3 py-1 rounded'
           onClick={createZip}

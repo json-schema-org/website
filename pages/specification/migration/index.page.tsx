@@ -8,6 +8,16 @@ import { SectionContext } from '~/context';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 
+interface ImplementationsPagesProps {
+  blocks: {
+    index: string;
+    body: string;
+  };
+  frontmatter: {
+    title: string;
+  };
+}
+
 export async function getStaticProps() {
   const index = fs.readFileSync(
     'pages/specification/migration/_index.md',
@@ -32,11 +42,9 @@ export async function getStaticProps() {
 export default function ImplementationsPages({
   blocks,
   frontmatter,
-}: {
-  blocks: any;
-  frontmatter: any;
-}) {
+}: ImplementationsPagesProps) {
   const markdownFile = '_indexPage';
+
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
@@ -76,4 +84,5 @@ export default function ImplementationsPages({
     </SectionContext.Provider>
   );
 }
+
 ImplementationsPages.getLayout = getLayout;
