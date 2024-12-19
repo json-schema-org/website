@@ -64,7 +64,7 @@
   },
   {
     "title": "JSON Schema deduplicated complex logic and validation at Cookpad",
-    "summary": "Learn how Cookpad used JSON Schema to reduce incomplete input of newly registered items from 10% to 0% .",
+    "summary": "Learn how Cookpad used JSON Schema to reduce incomplete input of newly registered items from 10% to 0%.",
     "logo": "/img/logos/cookpad-logo.png",
     "links": {
       "lang": "URL1",
