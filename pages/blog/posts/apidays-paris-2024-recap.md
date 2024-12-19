@@ -1,6 +1,6 @@
 ---
 title: "JSON Schema conference: A milestone event at Apidays Paris 2024"
-date: "2024-12-17"
+date: "2024-12-19"
 tags:
   - News
 type: Community
@@ -26,6 +26,7 @@ The inaugural [JSON Schema conference track](https://conference.json-schema.org/
     <img className='max-w-400 px-20' src='/img/posts/2024/apidays-paris-2024-recap/json-schema-team.jpg' alt="Five people standing at a booth labeled 'Standards'. They are smiling and looking at the camera. From left to right, their names are Benjamin Granados, Thomas Clark, Andreas Eberhart, Juan Cruz Viotti, and Ben Hutton."/>
     <figcaption class="text-center text-gray-600 text-sm">Community members at the standards booth shared with AsyncAPI, OpenAPI, and GraphQL. From left to right: Benjamin Granados (community manager), Thomas Clark (Octue CEO), Andreas Eberhart (JSON Schema ambassador), Juan Cruz Viotti (TSC member), and Ben Hutton (TSC member).</figcaption>
 </figure>
+<br>
 
 [Ten comprehensive presentations](https://conference.json-schema.org/sessions/) spanned the spectrum of JSON Schema applications, from foundational concepts to cutting-edge implementations. The list of talks included:
 
