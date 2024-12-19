@@ -53,6 +53,9 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
+      - name: Remove Next.js build cache 
+        run: rm -rf .next/cache
+
       - name: Build Site
         run: yarn run build
         env:
