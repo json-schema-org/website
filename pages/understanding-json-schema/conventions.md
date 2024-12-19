@@ -70,9 +70,6 @@ isn\'t valid.
 > These examples are tested automatically whenever the book is
 built, so hopefully they are not just helpful, but also correct!
 
-These examples are tested automatically whenever the book is built, so
-hopefully they are not just helpful, but also correct!
-
 For example, here\'s a snippet illustrating how to use the `number` type:
 
 ```json
