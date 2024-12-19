@@ -36,7 +36,7 @@
 	branch = 2020-12
 [submodule "_includes/community"]
 	path = _includes/community
-	url = https://github.com/Pavankumar07s/community.git
+	url = https://github.com/json-schema-org/community.git
 [submodule "_includes/dot-github"]
 	path = _includes/dot-github
 	url = https://github.com/json-schema-org/.github.git
