@@ -261,5 +261,5 @@ describe('DocsHelp Component', () => {
         expectedGitRedirect,
       );
     });
-  })
+  });
 });

@@ -5,8 +5,7 @@ import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 interface DocsHelpProps {
   fileRenderType?: '_indexmd' | 'indexmd' | 'tsx' | '_md';
 }
-
-export function DocsHelp({ fileRenderType  }: DocsHelpProps) {
+export function DocsHelp({ fileRenderType }: DocsHelpProps) {
   const router = useRouter();
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [feedbackStatus, setFeedbackStatus] = useState('');

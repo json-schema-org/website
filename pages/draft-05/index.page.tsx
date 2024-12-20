@@ -32,9 +32,7 @@ export default function ImplementationsPages({
 }: {
   blocks: any;
   frontmatter: any;
-}) 
-
-{
+}) {
   const fileRenderType = 'indexmd';
   return (
     <SectionContext.Provider value={null}>

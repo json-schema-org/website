@@ -57,7 +57,7 @@ export default function Welcome() {
           link='/specification'
         />
       </div>
-      <DocsHelp fileRenderType={fileRenderType}/>
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
