@@ -117,9 +117,11 @@ Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged
 
 Contributors to our Docs or our Blog can have a look at the [custom markdown style guide](https://json-schema.org/md-style-guide) with a list of useful markdown tags providing tools to easily create cool content that provides a better user experience.
 
-## Triage
+## Triage and claiming an issue
 
-Please check the [triage process](https://github.com/json-schema-org/.github/blob/main/TRIAGE.md) to learn how we review and label incoming issues . 
+Please check the [triage process](https://github.com/json-schema-org/.github/blob/main/TRIAGE.md) to learn how we review and label incoming issues. 
+
+To claim an issue, leave a comment in the conversation thread for a project maintainer to review your request. You can begin working on the changes after you have been assigned to the issue. The JSON Schema project follows a first-come, first-served policy for issue claims, ensuring that issues are addressed in the order they are claimed.
 
 ## Feedback
 
