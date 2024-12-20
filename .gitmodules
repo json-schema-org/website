@@ -40,3 +40,6 @@
 [submodule "_includes/dot-github"]
 	path = _includes/dot-github
 	url = https://github.com/json-schema-org/.github.git
+[submodule "community"]
+	path = community
+	url = https://github.com/json-schema-org/community.git
