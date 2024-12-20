@@ -191,6 +191,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </p>
               ),
             },
+            specialBox: {
+              component: ({ children }) => {
+                return (
+                  <div className='bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200'>
+                    {children}
+                  </div>
+                );
+              },
+            },
+
             a: {
               component: ({ children, href, title, className }) => {
                 if (!href) return children;
@@ -665,6 +675,7 @@ export function TableOfContentMarkdown({
             'figure',
             'Bigquote',
             'Regularquote',
+            'specialBox',
           ),
         },
       }}
