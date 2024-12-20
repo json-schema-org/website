@@ -137,6 +137,8 @@ const MainNavLink = ({
   className?: string;
 }) => {
   const router = useRouter();
+  const isActiveNav = extractPathWithoutFragment(router.asPath) === uri;
+
   return (
     <Link
       href={uri}
@@ -148,7 +150,13 @@ const MainNavLink = ({
         //     ? 'text-primary hover:text-primary'
         //     : 'text-slate-600 hover:text-primary'
         // }`,
-        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary dark:text-white dark:underline hover:text-primary' : 'text-slate-600 dark:text-white hover:text-primary dark:hover:underline'}`,
+        // `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary dark:text-white dark:underline hover:text-primary' : 'text-slate-600 dark:text-white hover:text-primary dark:hover:underline'}`,
+        {
+          'text-primary dark:text-white dark:underline hover:text-primary':
+            isActiveNav,
+          'text-slate-600 dark:text-white hover:text-primary dark:hover:underline':
+            !isActiveNav,
+        },
       )}
     >
       {label}
