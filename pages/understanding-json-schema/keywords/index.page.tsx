@@ -46,11 +46,12 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
       </Head>
       <Headline1>JSON Schema Keywords</Headline1>
       <p className='text-slate-600 block leading-7 dark:text-slate-300'>
-        Keywords are the building blocks of JSON Schema and they are
-        used to define the structure of a JSON document.
+        Keywords are the building blocks of JSON Schema and they are used to
+        define the structure of a JSON document.
       </p>
       <p className='text-slate-600 block leading-7 dark:text-slate-300 pt-4'>
-      Below is a list of JSON Schema keywords with links to their respective documentation.
+        Below is a list of JSON Schema keywords with links to their respective
+        documentation.
       </p>
       <div className='mt-4'>
         {datas

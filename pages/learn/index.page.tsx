@@ -9,7 +9,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 export default function Welcome() {
   const markdownFile = '_indexPage';
 
-  const newTitle = 'Getting Started';
+  const newTitle = 'Get Started';
   return (
     <SectionContext.Provider value='learn'>
       <Head>
@@ -17,26 +17,42 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        New to JSON Schema and don't know where to start?
-        <br />
+        New to JSON Schema and don't know where to start? Explore our learning
+        resources and get started with JSON Schema.
         <br />
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         <Card
-          title='Creating your first Schema'
-          body='Our Getting Started guide walks you through the basics of JSON Schema.'
+          title='JSON Schema basics'
+          body='Learn what JSON Schema is, essential keywords, and the basics of data validation'
+          headerSize='medium'
+          bodyTextSize='small'
+          extended={true}
+          link='/understanding-json-schema/basics'
+        />
+        <Card
+          title='Create your first schema'
+          body='Follow our step by step guide and create your first JSON Schema'
           headerSize='medium'
           bodyTextSize='small'
           extended={true}
           link='/learn/getting-started-step-by-step'
         />
         <Card
-          title='Tour of JSON Schema'
-          body='An interactive introduction to JSON Schema. Each lesson concludes with an exercise, so you can practice what you have learned.'
+          title='JSON Schema common terms'
+          body='Explore a curated glossary of common terms used in the JSON Schema ecosystem'
           headerSize='medium'
           bodyTextSize='small'
           extended={true}
-          link='https://tour.json-schema.org/'
+          link='/learn/glossary'
+        />
+        <Card
+          title='Schema examples'
+          body='Browse real-world JSON Schema examples across different domains, with detailed annotations.'
+          headerSize='medium'
+          bodyTextSize='small'
+          extended={true}
+          link='/learn/miscellaneous-examples'
         />
       </div>
       <DocsHelp markdownFile={markdownFile} />
