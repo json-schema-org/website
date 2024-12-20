@@ -35,16 +35,6 @@ jobs:
           restore-keys: |
               ${{ runner.os }}-yarn-
       
-      - name: Cache Next Build
-        uses: actions/cache@v4
-        with:
-          path: |
-              ${{ steps.yarn-cache-dir-path.outputs.dir }}
-              ${{ github.workspace }}/.next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
-          restore-keys: |
-              ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
-          
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
@@ -52,9 +42,6 @@ jobs:
   
       - name: Install dependencies
         run: yarn install --immutable
-
-      - name: Remove Next.js build cache 
-        run: rm -rf .next/cache
 
       - name: Build Site
         run: yarn run build
