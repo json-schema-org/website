@@ -22,14 +22,14 @@ export async function getStaticProps() {
 
 export default function Content({ blocks }: { blocks: any[] }) {
   const newTitle = 'Code of Conduct';
-
+  const fileRenderType = 'tsx';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
         <title>{newTitle}</title>
       </Head>
       <StyledMarkdown markdown={blocks[0]} />
-      <DocsHelp />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
