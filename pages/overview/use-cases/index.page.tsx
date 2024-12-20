@@ -9,7 +9,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Content() {
   const newTitle = 'Use Cases';
-  const markdownFile = '_indexPage';
+  const fileRenderType = 'tsx';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -35,7 +35,7 @@ export default function Content() {
           />
         ))}
       </div>
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

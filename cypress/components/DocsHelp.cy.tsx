@@ -20,29 +20,31 @@ const FEEDBACK_FORM_GITHUB_SUCCESS_MESSAGE =
 describe('DocsHelp Component', () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let mockRouter: MockRouter;
+  const extractPathWithoutFragment = (path: any) => path.split('#')[0];
   // Note: we are not using the mockRouter in this test file, but it is required to mock the router in the component file
 
   beforeEach(() => {
-    const markdownFile = '_index';
+    const fileRenderType = 'indexmd';
     mockRouter = mockNextRouter();
     cy.viewport(1200, 800);
-    cy.mount(<DocsHelp markdownFile={markdownFile} />);
+    cy.mount(<DocsHelp fileRenderType={fileRenderType} />);
   });
 
   // should render the component correctly
   it('should render the component correctly', () => {
     // Check if the main component wrapper is present
+    cy.mount(<DocsHelp />);
     cy.get(DOCS_HELP).should('exist');
 
     // "Need Help?" header
     cy.get('[data-test="need-help-heading"]')
       .should('have.prop', 'tagName', 'H2')
-      .and('contains', /Need Help?/i);
+      .and('contain.text', 'Need Help?');
 
     // Main feedback question
     cy.get('[data-test="feedback-main-heading"]')
       .should('have.prop', 'tagName', 'H3')
-      .and('contains', /Did you find these docs helpful?/i);
+      .and('contain.text', 'Did you find these docs helpful?');
 
     // Feedback form element
     cy.get(FEEDBACK_FORM).should('have.prop', 'tagName', 'FORM');
@@ -50,20 +52,17 @@ describe('DocsHelp Component', () => {
     // "Help us improve" section header
     cy.get('[data-test="contribute-docs-heading"]')
       .should('have.prop', 'tagName', 'H3')
-      .and('contains', /Help us make our docs great!/i);
+      .and('contain.text', 'Help us make our docs great!');
 
     // Contribution encouragement text
     cy.get('[data-test="contribute-docs-description"]')
       .should('have.prop', 'tagName', 'P')
-      .and(
-        'contains',
-        /At JSON Schema, we value docs contributions as much as every other type of contribution!/i,
-      );
+      .and('contain.text', 'At JSON Schema, we value docs contributions');
 
     // "Edit on GitHub" link
     cy.get('[data-test="edit-on-github-link"]')
       .should('have.prop', 'tagName', 'A')
-      .and('contains', /Edit this page on Github/i);
+      .and('contain.text', 'Edit this page on Github');
 
     // "Learn to contribute" link
     cy.get('[data-test="learn-to-contribute-link"]')
@@ -73,20 +72,17 @@ describe('DocsHelp Component', () => {
         'href',
         'https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md',
       )
-      .and('contains', /Learn how to contribute/i);
+      .and('contain.text', 'Learn how to contribute');
 
     // "Still Need Help?" section header
     cy.get('[data-test="additional-help-heading"]')
       .should('have.prop', 'tagName', 'H3')
-      .and('contains', /Still Need Help?/i);
+      .and('contain.text', 'Still Need Help?');
 
     // Additional help description
     cy.get('[data-test="additional-help-description"]')
       .should('have.prop', 'tagName', 'P')
-      .should(
-        'contains',
-        /Learning JSON Schema is often confusing, but don't worry, we are here to help!./i,
-      );
+      .and('contain.text', 'Learning JSON Schema is often confusing');
 
     // GitHub community link
     cy.get('[ data-test="ask-on-github-link"]')
@@ -96,7 +92,7 @@ describe('DocsHelp Component', () => {
         'href',
         'https://github.com/orgs/json-schema-org/discussions/new?category=q-a',
       )
-      .and('contains', /Ask the community on GitHub/i);
+      .and('contain.text', 'Ask the community on GitHub');
 
     // Slack community link
     cy.get('[data-test="ask-on-slack-link"]')
@@ -237,15 +233,33 @@ describe('DocsHelp Component', () => {
   });
 
   // This test is to check component render correctly with different markdown files
-  it('should render component with different markdown files', () => {
-    /* Note: Already checking with _index markdown file in the first test case */
+  it('should render component with different markdown files and validate gitredirect', () => {
+    const fileRenderTypes: ('tsx' | 'indexmd' | '_indexmd' | '_md')[] = [
+      'tsx',
+      '_indexmd',
+      'indexmd',
+      '_md',
+    ];
 
-    // render with _indexPage markdown file
-    const markdownFile = '_indexPage';
-    cy.mount(<DocsHelp markdownFile={markdownFile} />);
-    cy.get(DOCS_HELP).should('exist');
+    fileRenderTypes.forEach((type) => {
+      let expectedGitRedirect = '';
 
-    // render without any markdown file
-    cy.mount(<DocsHelp />);
-  });
+      if (type === 'tsx') {
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/index.page.tsx'}`;
+      } else if (type === '_indexmd') {
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/_index.md'}`;
+      } else if (type === 'indexmd') {
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/index.md'}`;
+      } else {
+        expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '.md'}`;
+      }
+      cy.mount(<DocsHelp fileRenderType={type} />);
+
+      cy.get('[data-test="edit-on-github-link"]').should(
+        'have.attr',
+        'href',
+        expectedGitRedirect,
+      );
+    });
+  })
 });
