@@ -32,7 +32,6 @@ A JSON Schema may be a Boolean or an Object. In the introductory article mention
 <specialBox>
   <p className="font-bold"><svg className="w-6 h-6 mr-2 float-left mt-0" xmlns="https://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z" clipRule="evenodd" /></svg>Vocabulary check</p>
   <p>An "assertion" is a statement of fact. This is used in reference to the result of testing in Computing. The test might be called "X is 1". If the test passes, the assertion is true!</p>
-</div>
 </specialBox>
 
 When we talk about the whole Schema in terms of application, we usually refer to it as the "root Schema". This is because the other Schemas which are applied to specific instance locations are different, and we call them "subschemas". Differentiating between the root Schema and subschemas allows us to communicate with clarity which JSON Schema we're talking about, and when to use the Schema as part of the validation process.
