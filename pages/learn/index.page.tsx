@@ -33,7 +33,15 @@ export default function Welcome() {
         />
         <Card
           title='Tour of JSON Schema'
-          body='An interactive introduction to JSON Schema. Each lesson concludes with an exercise, so you can practice what you have learned.'
+          body='Master JSON Schema through engaging lessons and hands-on exercises. Complete the course to earn your JSON Schema certification and prove your expertise.'
+          headerSize='medium'
+          bodyTextSize='small'
+          extended={true}
+          link='https://tour.json-schema.org/'
+        />
+        <Card
+          title='JSON Schema Glossary'
+          body='Explore a curated glossary of common terms used in the JSON Schema ecosystem'
           headerSize='medium'
           bodyTextSize='small'
           extended={true}

@@ -507,6 +507,11 @@ export const DocsNav = ({
             label='Create your first schema'
             setOpen={setOpen}
           />
+          <DocLinkBlank
+            uri='https://tour.json-schema.org/'
+            label='Tour of JSON Schema'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/learn/glossary'
             label='JSON Schema common terms'
@@ -567,19 +572,23 @@ export const DocsNav = ({
           className={classnames('ml-6', { hidden: !active.getStarted })}
           id='Guides'
         >
-          <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
+          <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
           <DocLink
-            uri='/learn/getting-started-step-by-step'
-            label='Create your first schema'
+            uri='/implementers'
+            label='For implementers'
             setOpen={setOpen}
           />
-          <DocLinkBlank
-            uri='https://tour.json-schema.org/'
-            label='Tour of JSON Schema'
-            setOpen={setOpen}
-          />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink
+              uri='/implementers/interfaces'
+              label='Common interfaces across implementations'
+              setOpen={setOpen}
+            />
+          </div>
+          {/*Closing div tag: for implementers*/}
         </div>
-      </div> {/* Closing div: Guides */}
+      </div>{' '}
+      {/* Closing div: Guides */}
       {/* Reference */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
         <div

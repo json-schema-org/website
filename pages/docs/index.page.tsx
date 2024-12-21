@@ -43,9 +43,17 @@ export default function Welcome() {
           link='/learn'
         />
         <Card
+          icon='/icons/grad-cap.svg'
+          title='Guides'
+          body='Master advanced skills such as validation with our hands-on guides.'
+          headerSize='medium'
+          bodyTextSize='small'
+          link='/learn/guides'
+        />
+        <Card
           icon='/icons/book.svg'
           title='Reference'
-          body='Dive deeper into JSON Schema: explore keywords and their usage.'
+          body='Dive deeper into JSON Schema keywords with our clear explanations and usage examples.'
           headerSize='medium'
           bodyTextSize='small'
           link='/understanding-json-schema'
