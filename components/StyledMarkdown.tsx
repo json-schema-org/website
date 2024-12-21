@@ -191,6 +191,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </p>
               ),
             },
+            specialBox: {
+              component: ({ children }) => {
+                return (
+                  <div className='bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200'>
+                    {children}
+                  </div>
+                );
+              },
+            },
+
             a: {
               component: ({ children, href, title, className }) => {
                 if (!href) return children;
@@ -552,7 +562,7 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.40rem] font-medium'
+                  className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
                 >
                   {children}
                 </a>
@@ -593,7 +603,7 @@ export function TableOfContentMarkdown({
                       // chromeClass
                       <a
                         href={`#${slug}`}
-                        className={`block cursor-pointer mb-3 ml-2 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ] max-sm:-ml-[6px] font-medium ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`}
+                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
                       >
 
                         {children}
@@ -650,6 +660,7 @@ export function TableOfContentMarkdown({
             'figure',
             'Bigquote',
             'Regularquote',
+            'specialBox',
           ),
         },
       }}
