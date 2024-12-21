@@ -54,7 +54,11 @@ export default function Sidebar({
         environments: formData
           .getAll('environments')
           .map((value) => value as string),
-      };
+        showObsolete:
+          (formData.get('showObsolete') as string) === 'showObsolete'
+            ? 'true'
+            : 'false',
+      } satisfies Transform;
       postAnalytics({ eventType: 'query', eventPayload: newTransform });
       return newTransform;
     });
@@ -95,6 +99,12 @@ export default function Sidebar({
             </DropdownMenu>
           );
         })}
+        <Checkbox
+          label='Show obsolete'
+          value='showObsolete'
+          name='showObsolete'
+          checked={transform['showObsolete'] === 'true'}
+        />
 
         <div className='w-full flex items-center justify-between mt-4 gap-2'>
           <button
