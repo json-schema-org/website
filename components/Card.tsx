@@ -36,7 +36,7 @@ const CardBody = ({
     <div className='group relative h-full w-full rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30'>
       <div className='flex justify-center '>
         {image && (
-          <img src={image} className='h-32 p-2' data-test='card-image' />
+          <img src={image} className='h-32 p-2 object-contain' data-test='card-image' />
         )}
       </div>
       <div className='flex flex-row items-start mb-6'>
