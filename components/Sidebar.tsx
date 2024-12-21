@@ -527,7 +527,7 @@ export const DocsNav = ({
               label='Conventions used'
               setOpen={setOpen}
             />
-             <DocLink
+            <DocLink
               uri='/understanding-json-schema/introduction'
               label='Introduction'
               setOpen={setOpen}
