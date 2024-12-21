@@ -464,6 +464,11 @@ export const DocsNav = ({
             label='Create your first schema'
             setOpen={setOpen}
           />
+          <DocLinkBlank
+            uri='https://tour.json-schema.org/'
+            label='Tour of JSON Schema'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/learn/glossary'
             label='JSON Schema common terms'
@@ -526,11 +531,6 @@ export const DocsNav = ({
           id='Guides'
         >
           <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
-          <DocLinkBlank
-            uri='https://tour.json-schema.org/'
-            label='Tour of JSON Schema'
-            setOpen={setOpen}
-          />
         </div>
       </div>{' '}
       {/* Closing div: Guides */}

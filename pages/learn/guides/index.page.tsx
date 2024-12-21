@@ -17,20 +17,10 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-        Learn to build, combine, and validate schemas through hands-on
-        exercises.
+        Documentation coming soon!
         <br />
       </p>
-      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
-        <Card
-          title='Tour of JSON Schema'
-          body='Master JSON Schema through engaging lessons and hands-on exercises. Complete the course to earn your JSON Schema certification and prove your expertise.'
-          headerSize='medium'
-          bodyTextSize='small'
-          extended={true}
-          link='https://tour.json-schema.org/'
-        />
-      </div>
+      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'></div>
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
