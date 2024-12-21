@@ -4,10 +4,26 @@ import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import { useRouter } from 'next/router';
 import { HOST } from '~/lib/config';
 
+type Attributes = {
+  slug?: string;
+  className?: string;
+  onClick?: () => void;
+  id?: string;
+  'data-test'?: string;
+};
+
 type HeadlineProps = {
   children: string | React.ReactNode[];
-  attributes?: Record<string, any>;
+  attributes?: Attributes;
 };
+
+type HeadlineTagProps = {
+  children: string | React.ReactNode[];
+  Tag: React.FunctionComponent<TagProps>;
+  attributes?: Attributes;
+};
+
+type TagProps = { children: React.ReactNode; attributes: Attributes };
 
 export const Headline1 = ({ children, attributes }: HeadlineProps) => (
   <Headline Tag={Headline1Tag} attributes={attributes}>
@@ -34,15 +50,11 @@ const Headline = ({
   children,
   Tag,
   attributes: propAttributes,
-}: {
-  children: string | React.ReactNode[];
-  Tag: React.FunctionComponent<TagProps>;
-  attributes?: Record<string, any>;
-}) => {
+}: HeadlineTagProps) => {
   const router = useRouter();
   const [isActive, setIsActive] = useState<boolean>(false);
   const asPath = router.asPath;
-  const slug = slugifyMarkdownHeadline(children as any[]);
+  const slug = slugifyMarkdownHeadline(children as string[]);
 
   useEffect(() => {
     const hashIndex = asPath.indexOf('#');
@@ -72,6 +84,7 @@ const Headline = ({
     onClick: handleHeadingClick,
     'data-test': 'headline',
   };
+
   const childredWithoutFragment = filterFragment(children);
   return (
     <Tag attributes={attributes}>
@@ -91,8 +104,6 @@ const filterFragment = (children: string | React.ReactNode[]) => {
     return child.replace(/\[#(\w|-|_)*\]/g, '');
   });
 };
-
-type TagProps = { children: React.ReactNode; attributes: Record<string, any> };
 
 const Headline1Tag = ({ children, attributes }: TagProps) => (
   <h1
