@@ -7,6 +7,7 @@ import type { JSONSchemaTool } from '../JSONSchemaTool';
 import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 import Image from 'next/image';
+import Tag from './ui/Tag';
 
 export default function ToolingDetailModal({
   tool,
@@ -53,7 +54,12 @@ export default function ToolingDetailModal({
             </div>
           )}
           <div>
-            <h2 className='text-h4 font-bold'>{tool.name}</h2>
+            <h2 className='text-h4 font-bold flex items-center gap-x-2'>
+              {tool.name}
+              {tool.status === 'obsolete' && (
+                <Tag intent='error'>{tool.status}</Tag>
+              )}
+            </h2>
             {tool.description && (
               <p className='text-gray-600 dark:text-slate-300 mt-1 text-sm md:text-base'>
                 {tool.description}
