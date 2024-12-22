@@ -1,7 +1,7 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import React from 'react';
-import Image from 'next/image'
+import Image from 'next/image';
 
 function ListItem({
   children,
@@ -53,7 +53,7 @@ export default function DarkModeToggle() {
         className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
         data-test='dark-mode-toggle'
       >
-       <Image
+        <Image
           src={activeThemeIcon}
           alt='Dark Mode'
           width={25}
@@ -78,7 +78,7 @@ export default function DarkModeToggle() {
           onClick={() => setTheme('system')}
           data-test='select-system-theme'
         >
-         <Image
+          <Image
             src={'/icons/theme-switch.svg'}
             alt='System theme'
             width={18}
@@ -104,7 +104,7 @@ export default function DarkModeToggle() {
           onClick={() => setTheme('dark')}
           data-test='select-dark-theme'
         >
-         <Image
+          <Image
             src={'/icons/moon.svg'}
             alt='System theme'
             width={18}

@@ -330,7 +330,7 @@ export const DocsNav = ({
           onClick={handleClickDoc}
         >
           <div className='flex  items-center align-middle'>
-          <Image
+            <Image
               src={`${overview_icon}`}
               alt='eye icon'
               height={20}
@@ -411,7 +411,7 @@ export const DocsNav = ({
           onClick={handleClickGet}
         >
           <div className='flex  items-center align-middle'>
-          <Image
+            <Image
               src={`${learn_icon}`}
               alt='compass icon'
               height={20}
@@ -484,7 +484,7 @@ export const DocsNav = ({
           onClick={handleClickReference}
         >
           <div className='flex  items-center align-middle'>
-          <Image
+            <Image
               src={`${reference_icon}`}
               alt='book icon'
               height={20}
@@ -678,7 +678,7 @@ export const DocsNav = ({
           onClick={handleClickSpec}
         >
           <div className='flex  items-center align-middle'>
-          <Image
+            <Image
               src={`${spec_icon}`}
               alt='clipboard icon'
               height={20}

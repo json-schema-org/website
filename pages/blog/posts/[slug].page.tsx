@@ -67,7 +67,7 @@ export default function StaticMarkdownPage({
                     height={16}
                     className='h-4 w-4 mr-2'
                     alt='Left arrow icon'
-                  /> 
+                  />
                   Go back to blog
                 </Link>
                 <div className='pt-4 lg:border-t border-none lg:border-r border-slate-100'>
