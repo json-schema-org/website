@@ -239,19 +239,19 @@ const GettingStarted = () => {
 
             {details[1] ? (
               <Image
-              src='/icons/green-tick.svg'
-              alt='green tick'
-              width={24}
-              height={24}
-            />
-           ) : (
-            <Image
-            src='/icons/red-cross.svg'
-            alt='red cross'
-            width={24}
-            height={24}
-          />
-           )}
+                src='/icons/green-tick.svg'
+                alt='green tick'
+                width={24}
+                height={24}
+              />
+            ) : (
+              <Image
+                src='/icons/red-cross.svg'
+                alt='red cross'
+                width={24}
+                height={24}
+              />
+            )}
           </div>
         </div>
 

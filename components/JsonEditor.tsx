@@ -295,7 +295,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             }}
             data-test='copy-clipboard-button'
           >
-           <Image
+            <Image
               src='/icons/copy.svg'
               alt='Copy icon'
               title='Copy to clipboard'
@@ -324,7 +324,8 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
                   width={16}
                   height={16}
                   className='h-4 mr-1.5'
-                /> schema
+                />{' '}
+                schema
               </>
             ) : (
               <>data</>
@@ -464,7 +465,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'
             data-test='not-compliant-to-schema'
           >
-             <Image
+            <Image
               src='/icons/x-mark.svg'
               alt='Error icon'
               width={16}

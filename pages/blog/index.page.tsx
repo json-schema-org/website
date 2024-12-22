@@ -146,7 +146,7 @@ export default function StaticMarkdownPage({
         {recentBlog[0] && (
           <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]'>
-            <Image
+              <Image
                 src={recentBlog[0].frontmatter.cover}
                 width={800}
                 height={450}
@@ -213,7 +213,7 @@ export default function StaticMarkdownPage({
               href='/rss/feed.xml'
               className='flex items-center text-blue-500 hover:text-blue-600 cursor-pointer'
             >
-                <Image
+              <Image
                 src='/icons/rss.svg'
                 className='rounded h-5 w-5 mr-2'
                 alt='rss'

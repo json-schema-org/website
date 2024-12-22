@@ -38,19 +38,19 @@ const CardBody = ({
       <div className='flex justify-center '>
         {image && (
           <Image
-          src={image}
-          alt={title}
-          width={128}
-          height={128}
-          className='h-32 p-2'
-          data-test='card-image'
-        />
-          )}
+            src={image}
+            alt={title}
+            width={128}
+            height={128}
+            className='h-32 p-2'
+            data-test='card-image'
+          />
+        )}
       </div>
       <div className='flex flex-row items-start mb-6'>
         {icon && (
           <span className='mr-6 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg border bg-blue-200 px-3 text-gray-900 dark:text-white'>
-             <Image
+            <Image
               src={icon}
               alt={title}
               width={56}

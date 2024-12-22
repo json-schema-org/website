@@ -328,7 +328,7 @@ const Footer = () => (
   >
     <div className='max-w-[1400px] mx-auto mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
-      <Image
+        <Image
           src='/img/logos/logo-white.svg'
           width={150}
           height={100}
@@ -355,7 +355,7 @@ const Footer = () => (
             href='https://json-schema.org/slack'
             className='flex items-center text-white'
           >
-           <Image
+            <Image
               src='/img/logos/slack_logo_small-white.svg'
               width={16}
               height={16}
@@ -370,13 +370,14 @@ const Footer = () => (
             href='https://x.com/jsonschema'
             className='flex items-center text-white'
           >
-           <Image
+            <Image
               src='/img/logos/x-twitter.svg'
               width={16}
               height={16}
               className='w-4 h-4 mr-2'
               alt='X logo'
-            /> X
+            />{' '}
+            X
           </a>
         </div>
         <div className=''>
@@ -384,7 +385,7 @@ const Footer = () => (
             href='https://linkedin.com/company/jsonschema/'
             className='flex items-center text-white'
           >
-           <Image
+            <Image
               src='/img/logos/icons8-linkedin-2.svg'
               width={16}
               height={16}
@@ -406,7 +407,7 @@ const Footer = () => (
               className='w-4 h-4 mr-2'
               alt='YouTube logo'
             />
-             Youtube
+            Youtube
           </a>
         </div>
         <div className=''>
@@ -414,7 +415,7 @@ const Footer = () => (
             href='https://github.com/json-schema-org'
             className='flex items-center text-white'
           >
-             <Image
+            <Image
               src='/img/logos/github_logo-white.svg'
               width={16}
               height={16}
@@ -450,7 +451,7 @@ const Logo = () => {
   return (
     <div>
       <Link href='/' className=''>
-      <Image
+        <Image
           src={imageSrc}
           width={170}
           height={48}

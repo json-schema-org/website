@@ -183,7 +183,7 @@ const Home = (props: any) => {
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
-              {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src='/img/logos/usedby/zapier-logo_white.png'
@@ -303,7 +303,7 @@ const Home = (props: any) => {
 
         {/* SidebySide section*/}
         <section className='max-w-[1400px] w-full lg:flex lg:gap-20 my-16 '>
-        {isClient && (
+          {isClient && (
             <>
               <Image
                 src='/img/home-page/community-illustration.svg'
@@ -363,8 +363,8 @@ const Home = (props: any) => {
                       />
                     </>
                   )}
-                  </h3>
-                  {isClient && (
+                </h3>
+                {isClient && (
                   <>
                     <Image
                       src='/img/home-page/slack-json-schema.png'
@@ -387,7 +387,7 @@ const Home = (props: any) => {
                   href='https://json-schema.org/slack'
                   className='flex items-center '
                 >
-                 {isClient && (
+                  {isClient && (
                     <>
                       <Image
                         src='/img/logos/slack_logo_small-white.svg'
@@ -655,7 +655,7 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-               {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={asyncapi_logo}
@@ -672,7 +672,7 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-               {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={airbnb_logo}
@@ -689,7 +689,7 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-               {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={postman_logo}
@@ -702,7 +702,7 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
-              {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={endjin_logo}
@@ -715,7 +715,7 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
-              {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={llc_logo}
@@ -732,7 +732,7 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-               {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={vpsserver_logo}
@@ -766,7 +766,7 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-               {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={route4me_logo}
@@ -779,7 +779,7 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
-              {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={n8n_logo}
@@ -792,7 +792,7 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
-              {isClient && (
+                {isClient && (
                   <>
                     <Image
                       src={ccopter_logo}
@@ -862,31 +862,30 @@ const Home = (props: any) => {
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-            {isClient && (
-                  <>
-                    <Image
-                      src={common_room_logo}
-                      className='w-48'
-                      width={192}
-                      height={224}
-                      alt='n8n'
-                    />
-                  </>
-                )}
-             
+              {isClient && (
+                <>
+                  <Image
+                    src={common_room_logo}
+                    className='w-48'
+                    width={192}
+                    height={224}
+                    alt='n8n'
+                  />
+                </>
+              )}
             </a>
             <a href='https://json-schema.org/slack'>
-            {isClient && (
-                  <>
-                    <Image
-                      src={slack_logo}
-                      className=' w-24'
-                      width={96}
-                      height={128}
-                      alt='slack'
-                    />
-                  </>
-                )}
+              {isClient && (
+                <>
+                  <Image
+                    src={slack_logo}
+                    className=' w-24'
+                    width={96}
+                    height={128}
+                    alt='slack'
+                  />
+                </>
+              )}
             </a>
           </div>{' '}
         </section>
