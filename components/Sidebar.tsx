@@ -334,7 +334,7 @@ export const DocsNav = ({
               src={`${overview_icon}`}
               alt='eye icon'
               height={20}
-              width={20}
+              width={22}
               className='mr-2'
             />
             <SegmentHeadline label='Overview' />
