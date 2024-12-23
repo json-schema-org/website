@@ -4,7 +4,7 @@ import Link from 'next/link';
 const DocTable = ({ frontmatter }: any) => {
   return (
     <>
-      <div className='max-w-full mx-auto overflow-auto rounded-lg shadow-lg border-2 border-blue-600'> {/* Outer blue border */}
+      <div className='max-w-full mx-auto overflow-auto rounded-lg shadow-lg border-2 border-blue-600'>
         <div className='h-14 bg-blue-600 text-white flex items-center p-6 font-semibold text-xl'>
           <h5>Specification Details</h5>
         </div>
