@@ -4,8 +4,8 @@ import Link from 'next/link';
 const DocTable = ({ frontmatter }: any) => {
   return (
     <>
-      <div className='max-w-full mx-auto overflow-auto rounded-lg shadow-lg border-2 border-blue-600'>
-        <div className='h-14 bg-blue-600 text-white flex items-center p-6 font-semibold text-xl'>
+      <div className='max-w-full mx-auto overflow-auto rounded-lg shadow-lg border-2 border-primary'>
+        <div className='h-14 bg-primary text-white flex items-center p-6 font-semibold text-xl'>
           <h5>Specification Details</h5>
         </div>
         <table className='table-auto w-full bg-slate-200 dark:bg-slate-900 text-slate-700 dark:text-slate-300'>
