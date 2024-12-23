@@ -866,7 +866,7 @@ const Home = (props: any) => {
                 <>
                   <Image
                     src={common_room_logo}
-                    className='w-48'
+                    className='w-48 md:w-56'
                     width={192}
                     height={224}
                     alt='n8n'
@@ -879,7 +879,7 @@ const Home = (props: any) => {
                 <>
                   <Image
                     src={slack_logo}
-                    className=' w-24'
+                    className=' w-24 md:w-32'
                     width={96}
                     height={128}
                     alt='slack'
