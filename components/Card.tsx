@@ -40,9 +40,9 @@ const CardBody = ({
           <Image
             src={image}
             alt={title}
-            width={128}
+            width={384}
             height={128}
-            className='h-32 p-2'
+            className='h-32 p-2 object-contain'
             data-test='card-image'
           />
         )}
