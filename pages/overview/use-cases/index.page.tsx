@@ -6,6 +6,7 @@ import { Headline1 } from '~/components/Headlines';
 import Card from '~/components/Card';
 import data from '~/data/use-cases.json';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Content() {
   const newTitle = 'Use Cases';
@@ -35,6 +36,12 @@ export default function Content() {
           />
         ))}
       </div>
+      <NextPrevButton
+        prevLabel='Sponsors'
+        prevURL='/overview/sponsors'
+        nextLabel='Case Studies'
+        nextURL='/overview/case-studies'
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

@@ -5,6 +5,7 @@ import { SectionContext } from '~/context';
 import Faq from '~/components/Faq';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Content() {
   const newTitle = 'FAQ';
@@ -21,6 +22,12 @@ export default function Content() {
         Schema.
       </p>
       <Faq category='general' />
+      <NextPrevButton
+        prevLabel='Case Studies'
+        prevURL='/overview/case-studies'
+        nextLabel='Similar Technologies'
+        nextURL='/overview/similar-technologies'
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

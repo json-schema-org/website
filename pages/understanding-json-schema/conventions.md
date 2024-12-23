@@ -1,6 +1,12 @@
 ---
 section: docs
 title: "Conventions used in this documentation"
+prev: 
+  label: Understanding JSON Schema
+  url: /understanding-json-schema
+next: 
+  label: What is a Schema?
+  url: /understanding-json-schema/about
 ---
 
 ## Language-specific notes

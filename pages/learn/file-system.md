@@ -1,6 +1,12 @@
 ---
 section: docs
 title: Modeling a file system with JSON Schema
+prev: 
+  label: Miscellaneous examples
+  url: /learn/miscellaneous-examples
+next: 
+  label: Other examples
+  url: /learn/json-schema-examples
 ---
 
 In this step-by-step guide you will learn how to design a JSON Schema that mirrors the structure of an `/etc/fstab` file. 

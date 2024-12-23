@@ -1,6 +1,12 @@
 ---
 title: "Understanding JSON Schema"
 section: docs
+prev: 
+  label: JSON Schema Keywords
+  url: /understanding-json-schema/keywords
+next: 
+  label: Conventions
+  url: /understanding-json-schema/conventions
 ---
 
 Understanding JSON Schema

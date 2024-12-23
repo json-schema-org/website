@@ -1,6 +1,12 @@
 ---
 title: "Regular Expressions"
 section: docs
+prev: 
+  label: String
+  url: /understanding-json-schema/reference/string
+next: 
+  label: Numeric types
+  url: /understanding-json-schema/reference/numeric
 ---
 
 <Keywords label="regular expressions" />

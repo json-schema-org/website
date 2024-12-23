@@ -7,6 +7,7 @@ import data from 'data/case-studies.json';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 import { useTheme } from 'next-themes';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export default function ContentExample() {
   const newTitle = 'Case Studies';
@@ -47,6 +48,12 @@ export default function ContentExample() {
           />
         ))}
       </div>
+      <NextPrevButton
+        prevLabel='Use Cases'
+        prevURL='/overview/use-cases'
+        nextLabel='FAQ'
+        nextURL='/overview/faq'
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

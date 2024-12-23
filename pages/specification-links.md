@@ -1,6 +1,12 @@
 ---
 title: Specification Links
 section: docs
+prev: 
+  label: Specification
+  url: /specification
+next: 
+  label: Migration
+  url: /specification/migration
 ---
 
 <!-- Links on this page should be immutable - none of them should go to `/latest`, etc. -->
