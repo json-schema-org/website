@@ -5,6 +5,7 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN apk add --update git && \
+    corepack enable && \
     git init && \
     git submodule init && \
     git submodule update && \
