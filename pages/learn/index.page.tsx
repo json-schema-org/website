@@ -40,11 +40,11 @@ export default function Welcome() {
           link='https://tour.json-schema.org/'
         />
       </div>
-      <NextPrevButton 
-        prevLabel = 'Code of Conduct'
-        prevURL = '/overview/code-of-conduct'
-        nextLabel = 'Creating your first Schema'
-        nextURL = '/learn/getting-started-step-by-step'
+      <NextPrevButton
+        prevLabel='Code of Conduct'
+        prevURL='/overview/code-of-conduct'
+        nextLabel='Creating your first Schema'
+        nextURL='/learn/getting-started-step-by-step'
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>

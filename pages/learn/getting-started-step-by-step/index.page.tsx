@@ -47,7 +47,7 @@ export default function StyledValidator({
       <StyledMarkdown markdown={blocks[0]} />
       <GettingStarted />
       <StyledMarkdown markdown={blocks[1]} />
-      <NextPrevButton 
+      <NextPrevButton
         prevLabel='Overview'
         prevURL='/learn'
         nextLabel='Miscellaneous examples'

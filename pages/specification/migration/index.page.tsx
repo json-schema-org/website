@@ -73,11 +73,11 @@ export default function ImplementationsPages({
           link='/draft-06/json-schema-release-notes'
         />
       </div>
-      <NextPrevButton 
-        prevLabel = {frontmatter?.prev?.label}
-        prevURL =  {frontmatter?.prev?.url}
-        nextLabel = {frontmatter?.next?.label}
-        nextURL = {frontmatter?.next?.url}
+      <NextPrevButton
+        prevLabel={frontmatter?.prev?.label}
+        prevURL={frontmatter?.prev?.url}
+        nextLabel={frontmatter?.next?.label}
+        nextURL={frontmatter?.next?.url}
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>

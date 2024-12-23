@@ -53,10 +53,10 @@ export default function ContentExample({
         </div>
       </section>
       <NextPrevButton
-        prevLabel = 'Structuring a complex schema'
-        prevURL =  '/understanding-json-schema/structuring'
-        nextLabel = 'Common Interfaces across Implementations'
-        nextURL = '/implementers/interfaces'
+        prevLabel='Structuring a complex schema'
+        prevURL='/understanding-json-schema/structuring'
+        nextLabel='Common Interfaces across Implementations'
+        nextURL='/implementers/interfaces'
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>

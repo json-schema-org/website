@@ -45,11 +45,11 @@ export default function ImplementationsPages({
 
       <StyledMarkdown markdown={blocks.index} />
       <StyledMarkdown markdown={blocks.body} />
-      <NextPrevButton 
-        prevLabel = {frontmatter?.prev?.label}
-        prevURL =  {frontmatter?.prev?.url}
-        nextLabel = {frontmatter?.next?.label}
-        nextURL = {frontmatter?.next?.url}
+      <NextPrevButton
+        prevLabel={frontmatter?.prev?.label}
+        prevURL={frontmatter?.prev?.url}
+        nextLabel={frontmatter?.next?.label}
+        nextURL={frontmatter?.next?.url}
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>

@@ -38,7 +38,7 @@ interface LinkObject {
   title: string;
 }
 
-export default function StaticMarkdownPage({ datas }: { datas: DataObject[]}) {
+export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
   const markdownFile = '_index';
   return (
     <SectionContext.Provider value={null}>
@@ -87,11 +87,11 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[]}) {
               ),
           )}
       </div>
-      <NextPrevButton 
-        prevLabel = 'JSON Schema Glossary'
-        prevURL =  '/learn/glossary'
-        nextLabel = 'Understanding JSON Schema'
-        nextURL = '/understanding-json-schema'
+      <NextPrevButton
+        prevLabel='JSON Schema Glossary'
+        prevURL='/learn/glossary'
+        nextLabel='Understanding JSON Schema'
+        nextURL='/understanding-json-schema'
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>

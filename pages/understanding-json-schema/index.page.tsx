@@ -32,11 +32,11 @@ export default function ContentExample({
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
-      <NextPrevButton 
-        prevLabel = 'JSON Schema Keywords'
-        prevURL =  '/understanding-json-schema/keywords'
-        nextLabel = 'Conventions used'
-        nextURL = '/understanding-json-schema/conventions'
+      <NextPrevButton
+        prevLabel='JSON Schema Keywords'
+        prevURL='/understanding-json-schema/keywords'
+        nextLabel='Conventions used'
+        nextURL='/understanding-json-schema/conventions'
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>

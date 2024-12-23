@@ -131,11 +131,11 @@ export default function Roadmap() {
           </div>
         </div>
       </div>
-      <NextPrevButton 
-        prevLabel = 'What is JSON Schema?'
-        prevURL = '/overview/what-is-jsonschema'
-        nextLabel = 'Sponsors'
-        nextURL = '/overview/sponsors'
+      <NextPrevButton
+        prevLabel='What is JSON Schema?'
+        prevURL='/overview/what-is-jsonschema'
+        nextLabel='Sponsors'
+        nextURL='/overview/sponsors'
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
