@@ -328,7 +328,7 @@ const Home = (props: any) => {
               <Link href='https://json-schema.org/slack'>
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
-                  <img src='/img/logos/Slack-mark.svg' className='w-8 h-8' alt='Slack icon'/>
+                  <img src='/img/logos/Slack-mark.svg' className='w-8 h-8' alt='Slack icon' />
                 </h3>
                 <img
                   src='/img/home-page/slack-json-schema.png'
@@ -609,34 +609,34 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-                <img src={airbnb_logo} className=' w-44' alt='Airbnb logo'/>
+                <img src={airbnb_logo} className=' w-44' alt='Airbnb logo' />
               </a>
               <a
                 href='https://www.postman.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img src={postman_logo} className=' w-44' alt='Postman logo'/>
+                <img src={postman_logo} className=' w-44' alt='Postman logo' />
               </a>
               <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
-                <img src={endjin_logo} className=' w-44' alt='Endjin logo'/>
+                <img src={endjin_logo} className=' w-44' alt='Endjin logo' />
               </a>
               <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
-                <img src={llc_logo} className=' w-44' alt='LLC logo'/>
+                <img src={llc_logo} className=' w-44' alt='LLC logo' />
               </a>
               <a
                 href='https://www.vpsserver.com/en-us/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img src={vpsserver_logo} className=' w-44' alt='VPS Server logo'/>
+                <img src={vpsserver_logo} className=' w-44' alt='VPS Server logo' />
               </a>
               <a
                 href='https://www.itflashcards.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img src={itflashcards_logo} className=' w-44' alt='IT flascard logo'/>
+                <img src={itflashcards_logo} className=' w-44' alt='IT flascard logo' />
               </a>
               <a
                 href='https://www.route4me.com/'
@@ -646,20 +646,20 @@ const Home = (props: any) => {
                 <img src={route4me_logo} className=' w-44' alt='Route4Me logo' />
               </a>
               <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
-                <img src={n8n_logo} className=' w-44' alt='n8n logo'/>
+                <img src={n8n_logo} className=' w-44' alt='n8n logo' />
               </a>
               <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
-                <img src={ccopter_logo} className=' w-44' alt='copyCopter logo'/>
+                <img src={ccopter_logo} className=' w-44' alt='copyCopter logo' />
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <img src={octue_logo} className=' w-44' alt='octue logo'/>
+                <img src={octue_logo} className=' w-44' alt='octue logo' />
               </a>
               <a
                 href='https://www.apideck.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img src={apideck_logo} className=' w-44' alt='apieck logo'/>
+                <img src={apideck_logo} className=' w-44' alt='apieck logo' />
               </a>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
@@ -709,7 +709,7 @@ const Home = (props: any) => {
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-              <img src={common_room_logo} className='w-48 md:w-56' alt='common room logo'/>
+              <img src={common_room_logo} className='w-48 md:w-56' alt='common room logo' />
             </a>
             <a href='https://json-schema.org/slack'>
               <img src={slack_logo} className='w-24 md:w-32' alt='Slack logo' />
