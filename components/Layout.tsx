@@ -327,7 +327,7 @@ const Footer = () => (
   >
     <div className='max-w-[1400px] mx-auto mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
-        <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' alt='JSON Schema logo'/>
+        <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' alt='JSON Schema logo' />
         <div className='flex flex-col text-center sm:text-left'>
           <a
             href='https://opencollective.com/json-schema'
@@ -361,7 +361,7 @@ const Footer = () => (
             href='https://x.com/jsonschema'
             className='flex items-center text-white'
           >
-            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' alt='x-twitter icon'/>X
+            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' alt='x-twitter icon' />X
           </a>
         </div>
         <div className=''>
@@ -382,7 +382,7 @@ const Footer = () => (
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
             className='flex items-center text-white'
           >
-            <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' alt='youtube icon'/>
+            <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' alt='youtube icon' />
             Youtube
           </a>
         </div>
@@ -425,7 +425,7 @@ const Logo = () => {
   return (
     <div>
       <Link href='/' className=''>
-        <img src={imageSrc} className='h-12 mr-2 ' alt='JSON Schema logo'/>
+        <img src={imageSrc} className='h-12 mr-2 ' alt='JSON Schema logo '/>
       </Link>
     </div>
   );
