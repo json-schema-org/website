@@ -425,7 +425,7 @@ const Logo = () => {
   return (
     <div>
       <Link href='/' className=''>
-        <img src={imageSrc} className='h-12 mr-2 ' alt='JSON Schema logo' />
+        <img src={imageSrc} className='h-12 mr-2 ' alt='JSON Schema logo'/>
       </Link>
     </div>
   );
