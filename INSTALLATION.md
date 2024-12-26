@@ -4,41 +4,31 @@ This guide provides step-by-step instructions for installing the JSON Schema Web
 
 ## Table of Contents
 
-- [JSON Schema Website: Installation and Development Guide](#json-schema-website-installation-and-development-guide)
-  - [Table of Contents](#table-of-contents)
-  - [Setting up Project](#setting-up-project)
-  - [Configuration](#configuration)
-    - [Requirements](#requirements)
-    - [Cloning the repository](#cloning-the-repository)
-    - [Setting Up Environment Variables](#setting-up-environment-variables)
-    - [Corepack Configuration](#corepack-configuration)
-      - [What is Corepack?](#what-is-corepack)
-      - [Installing Corepack](#installing-corepack)
-      - [Using Corepack with This Project](#using-corepack-with-this-project)
-      - [Updating Yarn Version](#updating-yarn-version)
-      - [Troubleshooting](#troubleshooting)
-  - [Post-Configuration Steps](#post-configuration-steps)
-    - [Installing Dependencies](#installing-dependencies)
-    - [Running the Development Server](#running-the-development-server)
-    - [Building Static Files](#building-static-files)
-  - [Testing](#testing)
-    - [Running Tests](#running-tests)
-      - [Opening Cypress Test Runner](#opening-cypress-test-runner)
-      - [Running All Tests Headlessly](#running-all-tests-headlessly)
-    - [Test Coverage](#test-coverage)
-      - [E2E Test Coverage](#e2e-test-coverage)
-      - [Component Test Coverage](#component-test-coverage)
-      - [Full Test Coverage](#full-test-coverage)
-    - [Writing Tests](#writing-tests)
-  - [Code Quality](#code-quality)
-    - [Formatting](#formatting)
-    - [Linting](#linting)
-    - [Husky for git hooks](#husky-for-git-hooks)
-      - [pre-commit hook](#pre-commit-hook)
-    - [Run locally using Docker](#run-locally-using-docker)
-      - [Prerequisites:](#prerequisites)
-      - [Windows Users Steps:](#windows-users-steps)
-      - [Mac/Linux Users Steps:](#maclinux-users-steps)
+1. [Setting Up the Project](#setting-up-the-project)
+   - [Requirements](#requirements)
+   - [Cloning the Repository](#cloning-the-repository)
+   - [Setting Up Environment Variables](#setting-up-environment-variables)
+2. [Corepack Configuration](#corepack-configuration)
+   - [What is Corepack?](#what-is-corepack)
+   - [Installing Corepack](#installing-corepack)
+   - [Using Corepack with This Project](#using-corepack-with-this-project)
+   - [Updating Yarn Version](#updating-yarn-version)
+   - [Troubleshooting](#troubleshooting)
+3. [Post-Configuration Steps](#post-configuration-steps)
+   - [Installing Dependencies](#installing-dependencies)
+   - [Running the Development Server](#running-the-development-server)
+   - [Building Static Files](#building-static-files)
+4. [Testing](#testing)
+   - [Running Tests](#running-tests)
+   - [Test Coverage](#test-coverage)
+   - [Writing Tests](#writing-tests)
+5. [Code Quality](#code-quality)
+   - [Formatting](#formatting)
+   - [Linting](#linting)
+   - [Husky for Git Hooks](#husky-for-git-hooks)
+6. [Run locally using Docker](#docker-deployment)
+   - [Prerequisites](#prerequisites)
+   - [Steps](#steps)
 
 
 ## Setting up Project
@@ -284,25 +274,7 @@ If you are a Docker lover, you have the option to use it following these instruc
 
 After cloning repository to your local, perform the following steps from the root of the repository.
 
-#### Windows Users Steps:
-1. Build the Docker image:
-    ```bash
-      docker build -t app .
-    ```
-
-2. Install dependencies inside the container:
-    ```bash
-      docker run --rm -it -v "${PWD}:/app" app sh -c "yarn install"
-    ```
-
-3. Start the container:
-    ```bash
-      docker run --rm -it -v "${PWD}:/app" -p 3000:3000 app
-    ```
-
-Note: ${PWD} refers to the current working directory on your system. This ensures that your local project folder is mounted to the /app directory inside the container.
-
-#### Mac/Linux Users Steps:
+#### Steps:
 1. Build the Docker image:
     ```bash
       make install
