@@ -539,8 +539,8 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     <div className='flex flex-row gap-2 text-slate-600 dark:text-slate-300 text-h5 max-sm:text-[1rem]  items-center'>
                       <Image
                         src={'/icons/toc-menu.svg'}
-                        height={15}
-                        width={15}
+                        height={'15'}
+                        width={'15'}
                         alt='menu-icon'
                         className='max-sm:w-3 max-sm:h-3'
                       />
