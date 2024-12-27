@@ -3034,3 +3034,16 @@
   source: 'https://github.com/andreineculau/json-schema-random'
   license: 'Apache-2.0'
   status: 'obsolete'
+
+- name: protoc-gen-jsonschema
+  description: 'JsonSchema generator plugin for Google Protocol Buffers'
+  toolingTypes: ['model-to-schema']
+  languages: ['Protocol Buffers']
+  maintainers:
+    - name: 'Uanid'
+      username: 'uanid'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/pubg/protoc-gen-jsonschema'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
