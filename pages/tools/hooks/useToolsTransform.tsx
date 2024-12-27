@@ -15,6 +15,7 @@ export interface Transform {
   drafts: JSONSchemaDraft[];
   toolingTypes: string[];
   environments: string[];
+  showObsolete: 'true' | 'false';
 }
 
 export type TransformUpdate =
@@ -36,6 +37,7 @@ const buildQueryString = (transform: Transform) => {
     drafts: transform.drafts.join(','),
     toolingTypes: transform.toolingTypes.join(','),
     environments: transform.environments.join(','),
+    showObsolete: transform.showObsolete,
   }).toString();
 };
 
@@ -53,6 +55,7 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
     drafts: [],
     toolingTypes: [],
     environments: [],
+    showObsolete: 'false',
   });
 
   useEffect(() => {
@@ -84,7 +87,9 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       environments: parseArrayParam(
         query.environments,
       ) as Transform['environments'],
-    };
+      showObsolete:
+        (query.showObsolete as Transform['showObsolete']) || 'false',
+    } satisfies Transform;
 
     const queryString = buildQueryString(updatedTransform);
     const hash = window.location.hash;
@@ -131,6 +136,7 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       drafts: [],
       toolingTypes: [],
       environments: [],
+      showObsolete: 'false',
     };
 
     const queryString = buildQueryString(initialTransform);
@@ -186,52 +192,47 @@ const filterTools = (
   tools: JSONSchemaTool[],
   transform: Transform,
 ): JSONSchemaTool[] => {
-  const lowerCaseTransform = {
-    languages: lowerCaseArray(transform.languages),
-    licenses: lowerCaseArray(transform.licenses),
-    toolingTypes: lowerCaseArray(transform.toolingTypes),
-    environments: lowerCaseArray(transform.environments),
-    drafts: transform.drafts,
-  };
+  const filteredTools = tools.filter((tool) => {
+    if (transform.showObsolete === 'false' && tool.status === 'obsolete')
+      return false;
 
-  return tools.filter((tool) => {
-    const matchesLanguage =
-      !lowerCaseTransform.languages.length ||
-      (tool.languages || []).some((lang) =>
-        lowerCaseTransform.languages.includes(lang.toLowerCase()),
-      );
-
-    const matchesLicense =
-      !lowerCaseTransform.licenses.length ||
-      (tool.license &&
-        lowerCaseTransform.licenses.includes(tool.license.toLowerCase()));
-
-    const matchesToolingType =
-      !lowerCaseTransform.toolingTypes.length ||
-      (tool.toolingTypes || []).some((type) =>
-        lowerCaseTransform.toolingTypes.includes(type.toLowerCase()),
-      );
-
-    const matchesEnvironment =
-      !lowerCaseTransform.environments.length ||
-      (tool.environments || []).some((environment) =>
-        lowerCaseTransform.environments.includes(environment.toLowerCase()),
-      );
-
-    const matchesDraft =
-      !lowerCaseTransform.drafts.length ||
-      (tool.supportedDialects?.draft || []).some((draft) =>
-        lowerCaseTransform.drafts.includes(draft),
-      );
+    const lowerCaseTransform = {
+      languages: lowerCaseArray(transform.languages),
+      licenses: lowerCaseArray(transform.licenses),
+      toolingTypes: lowerCaseArray(transform.toolingTypes),
+      environments: lowerCaseArray(transform.environments),
+      drafts: transform.drafts,
+    };
 
     return (
-      matchesLanguage &&
-      matchesLicense &&
-      matchesToolingType &&
-      matchesEnvironment &&
-      matchesDraft
+      // Matches Languages
+      (!lowerCaseTransform.languages.length ||
+        (tool.languages || []).some((lang) =>
+          lowerCaseTransform.languages.includes(lang.toLowerCase()),
+        )) &&
+      // Matches Tooling Types
+      (!lowerCaseTransform.toolingTypes.length ||
+        (tool.toolingTypes || []).some((type) =>
+          lowerCaseTransform.toolingTypes.includes(type.toLowerCase()),
+        )) &&
+      // Matches Environment
+      (!lowerCaseTransform.environments.length ||
+        (tool.environments || []).some((environment) =>
+          lowerCaseTransform.environments.includes(environment.toLowerCase()),
+        )) &&
+      // Matches Dialect
+      (!lowerCaseTransform.drafts.length ||
+        (tool.supportedDialects?.draft || []).some((draft) =>
+          lowerCaseTransform.drafts.includes(draft),
+        )) &&
+      // Matches License
+      (!lowerCaseTransform.licenses.length ||
+        (tool.license &&
+          lowerCaseTransform.licenses.includes(tool.license.toLowerCase())))
     );
   });
+
+  return filteredTools;
 };
 
 const sortTools = (
