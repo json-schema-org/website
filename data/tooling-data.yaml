@@ -3047,3 +3047,21 @@
   source: 'https://github.com/pubg/protoc-gen-jsonschema'
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
+
+- name: 'JSON Schema Editor'
+  description: >-
+    The JSON Schema Editor provides an easy UI for building JSON schemas.
+    It allows users to convert their schemas into formats like SQL, GraphQL, and Protocol Buffers.
+    It can also generate sample data that conforms to the JSON schema.
+  toolingTypes: 
+    - 'editor'
+    - 'util-format-conversion'
+    - 'util-schema-to-schema'
+  source: 'https://github.com/Clarabase/json-schema-editor'
+  homepage: 'https://json-schema-editor.onrender.com/'
+  supportedDialects:
+    draft: ['2020-12']
+  maintainers:
+    - name: 'RobClarabase'
+      username: 'robclarabase'
+      platform: 'github'
