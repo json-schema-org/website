@@ -7,7 +7,10 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+
 import { TableOfContentMarkdown } from '~/components/StyledMarkdown';
+import NextPrevButton from '~/components/NavigationButtons';
+
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/overview');
 }
@@ -27,6 +30,7 @@ export default function StaticMarkdownPage({
 
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
+
       <div className='flex pt-4'>
         <div className='w-full pr-5'>
           <Head>
@@ -34,6 +38,12 @@ export default function StaticMarkdownPage({
           </Head>
           <Headline1>{frontmatter.title}</Headline1>
           <StyledMarkdown markdown={content} />
+          <NextPrevButton
+           prevLabel={frontmatter.prev?.label}
+           prevURL={frontmatter.prev?.url}
+           nextLabel={frontmatter.next.label}
+           nextURL={frontmatter.next.url}
+            />
           <DocsHelp markdownFile={markdownFile} />
         </div>
         <div className='w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
