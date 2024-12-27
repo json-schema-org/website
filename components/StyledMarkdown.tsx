@@ -390,9 +390,9 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                   <div className='flex flex-row items-center text-blue-500 text-lg font-semibold mb-6 mt-10'>
                     <Image
                       src='/icons/star.svg'
-                      width={12}
-                      height={12}
-                      className='h-5 w-5 mr-2 mb-1'
+                      width={20}
+                      height={20}
+                      className='mr-2 mb-1'
                       alt='star'
                     />
                     {label}
@@ -406,9 +406,9 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                   <div className='inline-flex flex-row items-center text-blue-500 font-semibold'>
                     <Image
                       src='/icons/info-yellow.svg'
-                      className='h-3 w-3 mr-1'
-                      width={28}
-                      height={28}
+                      className='mr-1'
+                      width={12}
+                      height={12}
                       alt='info yellow'
                     />
                     {label}
