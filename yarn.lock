@@ -3630,13 +3630,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:18.3.5":
-  version: 18.3.5
-  resolution: "@types/react@npm:18.3.5"
+"@types/react@npm:19.0.2":
+  version: 19.0.2
+  resolution: "@types/react@npm:19.0.2"
   dependencies:
-    "@types/prop-types": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10c0/548b1d3d7c2f0242fbfdbbd658731b4ce69a134be072fa83e6ab516f2840402a3f20e3e7f72e95133b23d4880ef24a6d864050dc8e1f7c68f39fa87ca8445917
+  checksum: 10c0/8992f39701fcf1bf893ef8f94a56196445667baf08fe4f6050a14e229a17aad3265ad3efc01595ff3b4d5d5c69da885f9aa4ff80f164a613018734efcff1eb8f
   languageName: node
   linkType: hard
 
@@ -8300,7 +8299,7 @@ __metadata:
     "@types/js-yaml": "npm:^4.0.5"
     "@types/jsonpath": "npm:^0.2.4"
     "@types/node": "npm:^22.4.2"
-    "@types/react": "npm:18.3.5"
+    "@types/react": "npm:19.0.2"
     "@types/react-syntax-highlighter": "npm:^15.5.13"
     "@types/react-text-truncate": "npm:^0.19.0"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
@@ -8340,7 +8339,7 @@ __metadata:
     nyc: "npm:^17.1.0"
     postcss: "npm:^8.4.41"
     prettier: "npm:3.3.3"
-    react: "npm:18.3.1"
+    react: "npm:19.0.0"
     react-dom: "npm:18.3.1"
     react-syntax-highlighter: "npm:^15.6.1"
     react-text-truncate: "npm:^0.19.0"
@@ -10037,12 +10036,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:18.3.1":
-  version: 18.3.1
-  resolution: "react@npm:18.3.1"
-  dependencies:
-    loose-envify: "npm:^1.1.0"
-  checksum: 10c0/283e8c5efcf37802c9d1ce767f302dd569dd97a70d9bb8c7be79a789b9902451e0d16334b05d73299b20f048cbc3c7d288bbbde10b701fa194e2089c237dbea3
+"react@npm:19.0.0":
+  version: 19.0.0
+  resolution: "react@npm:19.0.0"
+  checksum: 10c0/9cad8f103e8e3a16d15cb18a0d8115d8bd9f9e1ce3420310aea381eb42aa0a4f812cf047bb5441349257a05fba8a291515691e3cb51267279b2d2c3253f38471
   languageName: node
   linkType: hard
 
