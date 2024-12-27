@@ -3042,7 +3042,7 @@
     It may also be used for schema analysis via `getParent()` and `getChildren()` methods.
   toolingTypes: ['validator']
   languages: ['Java 17']
-  dependencies: ['JSON-P 1.1 API']
+  dependsOnValidators: ['JSON-P 1.1 API']
   maintainers:
     - name: 'Dmitry Repchevsky'
       username: 'Dmitry Repchevsky'
@@ -3051,4 +3051,10 @@
   source: 'https://github.com/elixir-europe/java-json-schema-validator'
   supportedDialects:
     draft: ['1', '2', '3', '4', '5', '6', '7', '2019-09', '2020-12']
+  compliance:
+    config:
+      docs: 'https://github.com/elixir-europe/java-json-schema-validator?tab=readme-ov-file#java-json-schema-validation-library-based-on-jsonp-v11-json-parser' # Replace with the actual documentation URL.
+      instructions:
+        'Refactor the schema parsing logic to support `$vocabulary` and ensure all string formats
+        required by the latest JSON Schema specifications are implemented.'
   lastUpdated: '2024-10-01'
