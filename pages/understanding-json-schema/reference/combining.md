@@ -1,6 +1,12 @@
 ---
 title: "Schema Composition"
 section: docs
+prev: 
+  label: 'Media: string-encoding non-JSON data'
+  url: /understanding-json-schema/reference/non_json_data
+next: 
+  label: Applying Subschemas Conditionally
+  url: /understanding-json-schema/reference/conditionals
 ---
 
 <Keywords label="schema composition" />

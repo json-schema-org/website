@@ -1,6 +1,9 @@
 ---
 section: docs
 title: Miscellaneous Examples
+prev : 
+  label: Creating your first Schema
+  url: /learn/getting-started-step-by-step
 next: 
   label: Modelling a file system
   url: /learn/file-system
