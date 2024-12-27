@@ -6,6 +6,7 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const block = fs.readFileSync(
@@ -20,7 +21,13 @@ export async function getStaticProps() {
   };
 }
 
-export default function Content({ blocks }: { blocks: any[] }) {
+export default function Content({
+  blocks,
+}: {
+  blocks: any[];
+  frontmatter: any;
+  content: any;
+}) {
   const newTitle = 'Code of Conduct';
   const fileRenderType = 'tsx';
   return (
@@ -29,6 +36,12 @@ export default function Content({ blocks }: { blocks: any[] }) {
         <title>{newTitle}</title>
       </Head>
       <StyledMarkdown markdown={blocks[0]} />
+      <NextPrevButton
+        prevLabel='Similar-Technologies'
+        prevURL='/overview/similar-technologies'
+        nextLabel='What is JSON Schema'
+        nextURL='/overview/what-is-jsonschema'
+      />
       <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
