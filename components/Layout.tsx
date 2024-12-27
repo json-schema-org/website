@@ -359,7 +359,7 @@ const Footer = () => (
               src='/img/logos/slack_logo_small-white.svg'
               width={16}
               height={16}
-              className='w-4 h-4 mr-2'
+              className=' mr-2'
               alt='Slack logo'
             />
             Slack
@@ -374,7 +374,7 @@ const Footer = () => (
               src='/img/logos/x-twitter.svg'
               width={16}
               height={16}
-              className='w-4 h-4 mr-2'
+              className=' mr-2'
               alt='X logo'
             />{' '}
             X
@@ -389,7 +389,7 @@ const Footer = () => (
               src='/img/logos/icons8-linkedin-2.svg'
               width={16}
               height={16}
-              className='w-4 h-4 mr-2'
+              className=' mr-2'
               alt='LinkedIn logo'
             />
             LinkedIn
@@ -404,7 +404,7 @@ const Footer = () => (
               src='/img/logos/icons8-youtube.svg'
               width={16}
               height={16}
-              className='w-4 h-4 mr-2'
+              className='mr-2'
               alt='YouTube logo'
             />
             Youtube
@@ -419,7 +419,7 @@ const Footer = () => (
               src='/img/logos/github_logo-white.svg'
               width={16}
               height={16}
-              className='w-4 h-4 mr-2'
+              className='mr-2'
               alt='GitHub logo'
             />
             GitHub
@@ -455,7 +455,7 @@ const Logo = () => {
           src={imageSrc}
           width={170}
           height={48}
-          className='h-12 mr-2'
+          className='mr-2'
           alt='Dynamic image'
         />
       </Link>
