@@ -1745,12 +1745,9 @@ li > p:last-of-type {
                         A numeric instance is valid only if division by this keyword's value results in
                         an integer.<a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
 <p id="section-6.2.1-2">
-                        Limitations:Using a floating-point value for 'multipleOf' may lead to inconsistent validation results due to binary precision issues.
-                         Consider using scaled integers instead.<a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
-<p id="section-6.2.1-2">
-                       Solution: Avoid using floating-point numbers with 'multipleOf' due to potential precision issues. For example, use scaled integers (e.g., represent $4.02 as 402 and 'multipleOf' as 1).
-                       If using floating point then use Floating-point-friendly numbers (like 0.05) as it will reduce the chance of 
-                       precision issues but are still less reliable than integers.<a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
+                        To ensure consistent validation:
+                        - Use scaled integers (e.g., represent $4.02 as 402 with 'multipleOf: 1')
+                        - If floating-point values are necessary, use binary-friendly numbers (e.g., 0.5, 0.25, 0.125)</p><a href="#section-6.2.1-2" class="pilcrow">¶</a></p>
 </section>
 <section id="section-6.2.2">
           <h4 id="name-maximum">
