@@ -119,25 +119,84 @@ To ensure consistent and effective testing of website components, follow these g
      - Ensure each test case has a clear objective, preconditions, test steps, and expected results.
 
      - Include positive, negative, and edge case scenarios.
+     - Example
+       ```
+       Test Case ID: TC001
+       Title: Verify the login functionality with valid credentials
+       Objective: Ensure that users can log in with correct credentials
+       Preconditions: User has a valid account
+       Test Steps:
+       1. Navigate to the login page.
+       2. Enter valid username and password.
+       3. Click the "Login" button.
+       Expected Result: User is redirected to the dashboard page.
+     ```
 
 3. **Automate Where Possible**:
 
      - Write automated tests using Cypress for components and E2E flows.
 
-     - Ensure test scripts are reusable and modular.
+     - Setup Steps:
 
+       - Install Cypress:``` npm install cypress --save-dev ```
+
+       - Open Cypress Test Runner: ``` npx cypress open ```
+
+       - Create test files in the `cypress/components`.
+         
+     - Example Automated Test:
+       ```
+       describe('Login Functionality', () => {
+         it('should log in successfully with valid credentials', () => {
+           cy.visit('/login');
+           cy.get('#username').type('testuser');
+           cy.get('#password').type('securepassword');
+           cy.get('#login-button').click();
+           cy.url().should('include', '/dashboard');
+           });
+         });
+      ```
 4. **Review and Update**:
 
      - Regularly review test cases to align with changes in component functionality or design.
-
-     - Update outdated or redundant test cases to maintain relevance.
+     - Use version control to track updates to test cases and scripts.
+     - Identify and remove outdated or redundant test cases.
 
 5. **Collaborate with the Team**:
 
      - Seek feedback on test cases and scripts from other contributors.
-
      - Discuss edge cases and complex scenarios in the #testing channel in our Slack workspace.
+6. **Testing Best Practices**:
+    - Ensure tests are:
+      - Isolated: Avoid dependencies between test cases.
+      - Repeatable: Tests should produce the same results irrespective of the test environment.
+      - Fast: Optimize tests to run efficiently.
+    - Use mocking and stubbing to handle external dependencies (e.g., API calls):
+       ```
+       cy.intercept('POST', '/api/login', { statusCode: 200, body: { token: 'fakeToken' } });
+       ```
+     - Integrate tests into CI/CD pipelines (e.g., GitHub Actions, Jenkins) to ensure tests run on every pull request:
+        ```
+        name: CI
 
+       on:
+        pull_request:
+        branches:
+         - main
+
+       jobs:
+        cypress-run:
+         runs-on: ubuntu-latest
+         steps:
+          - uses: actions/checkout@v2
+          - name: Set up Node.js
+            uses: actions/setup-node@v2
+            with:
+            node-version: 16
+          - run: npm install
+          - run: npx cypress run
+        ```
+      
 Following these guidelines will help ensure high-quality testing and contribute to a robust and reliable website.
 
 ### ⌨️ Pull requests
