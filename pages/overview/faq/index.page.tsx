@@ -21,6 +21,7 @@ export default function Content() {
         Below you'll find answers to questions we get asked the most about JSON
         Schema.
       </p>
+
       <Faq category='general' />
       <NextPrevButton
         prevLabel='Case Studies'

@@ -7,6 +7,9 @@ prev:
 next: 
   label: JSON Scehma Glossary
   url: /learn/glossary
+=======
+  label: Miscellaneous examples
+  url: /learn/miscellaneous-examples
 ---
 
 In this page, you will find examples illustrating different use cases to help you get the most out of your JSON Schemas. These examples cover a wide range of scenarios, and each example comes with accompanying JSON data and explanation, showcasing how JSON Schemas can be applied to various domains. You can modify these examples to suit your specific needs, as this is just one of the many ways you can utilize JSON Schemas.

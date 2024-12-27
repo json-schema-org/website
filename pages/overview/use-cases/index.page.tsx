@@ -20,8 +20,8 @@ export default function Content() {
       <Headline1>{newTitle}</Headline1>
       <p>
         Discover everything you can do with JSON Schema. This section presents
-        the most common use cases for JSON Schema, but but there may be many
-        more applications waiting to be discovered.
+        the most common use cases for JSON Schema, but there may be many more
+        applications waiting to be discovered.
       </p>
       <div className='w-full lg:w-full grid grid-cols-2 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         {data.map((element, index) => (
@@ -30,9 +30,9 @@ export default function Content() {
             title={element.title}
             body={element.summary}
             icon='/icons/bulb2.svg'
-            headerSize={'medium'}
-            extended={true}
-            bodyTextSize={'small'}
+            headerSize='medium'
+            extended
+            bodyTextSize='small'
           />
         ))}
       </div>

@@ -18,6 +18,14 @@ next:
 2) Add the component to the typescript page:
 import NextPrevButton from '~/components/NextPrevButton';
 3) Add the component to the body of the page:
+=======
+
+2) Add the component to the typescript page:
+
+import NextPrevButton from '~/components/NextPrevButton';
+
+3) Add the component to the body of the page:
+
 <NextPrevButton prevLabel={frontmatter.prev.label} prevURL={frontmatter.prev.url} nextLabel={frontmatter.next.label} nextURL={frontmatter.next.url} />
 */
 

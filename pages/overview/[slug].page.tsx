@@ -38,6 +38,11 @@ export default function StaticMarkdownPage({
         prevURL={frontmatter?.prev?.url}
         nextLabel={frontmatter.next?.label}
         nextURL={frontmatter.next?.url}
+=======
+        prevLabel={frontmatter.prev?.label}
+        prevURL={frontmatter.prev?.url}
+        nextLabel={frontmatter.next.label}
+        nextURL={frontmatter.next.url}
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>

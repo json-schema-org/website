@@ -52,6 +52,8 @@ export default function ContentExample() {
         prevLabel='Use Cases'
         prevURL='/overview/use-cases'
         nextLabel='FAQ'
+=======
+        nextLabel='FAQs'
         nextURL='/overview/faq'
       />
       <DocsHelp markdownFile={markdownFile} />

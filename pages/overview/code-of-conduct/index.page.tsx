@@ -41,6 +41,9 @@ export default function Content({
         prevURL='/overview/similar-technologies'
         nextLabel='Getting Started'
         nextURL='/learn'
+=======
+        nextLabel='What is JSON Schema'
+        nextURL='/overview/what-is-jsonschema'
       />
       <DocsHelp />
     </SectionContext.Provider>

@@ -133,6 +133,8 @@ export default function Roadmap() {
       </div>
       <NextPrevButton
         prevLabel='What is JSON Schema?'
+=======
+        prevLabel='What is JSON Schema'
         prevURL='/overview/what-is-jsonschema'
         nextLabel='Sponsors'
         nextURL='/overview/sponsors'
