@@ -3035,6 +3035,7 @@
   license: 'Apache-2.0'
   status: 'obsolete'
 
+
 - name: JSON Schema Editor
   description: The JSON schema editor provides an easy UI for building JSON Schema. In addition, users can convert their json schema into SQL, GraphQL, and Protocol Buffers formats. Lastly this tool allows users to generate sample data that conforms to the json schema they have defined
   toolingTypes:
@@ -3048,3 +3049,17 @@
     - name: 'RobClarabase'
       username: 'robclarabase'
       platform: 'github'
+
+- name: protoc-gen-jsonschema
+  description: 'JsonSchema generator plugin for Google Protocol Buffers'
+  toolingTypes: ['model-to-schema']
+  languages: ['Protocol Buffers']
+  maintainers:
+    - name: 'Uanid'
+      username: 'uanid'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/pubg/protoc-gen-jsonschema'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+
