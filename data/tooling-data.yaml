@@ -3047,3 +3047,17 @@
   source: 'https://github.com/pubg/protoc-gen-jsonschema'
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
+
+- name: swift-json-schema
+  description: 'swift-json-schema support generating JSON schema using Swift result builders or from Swift types directly using macros.'
+  environments: ['macOS', 'iOS', 'tvOS', 'watchOS', 'visionOS', 'Linux']
+  toolingTypes: ['validator', 'code-to-schema', 'model-to-schema']
+  languages: ['Swift']
+  maintainers:
+    - name: 'Austin Evans'
+      username: 'ajevans99'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/ajevans99/swift-json-schema'
+  supportedDialects:
+    draft: ['2020-12']
