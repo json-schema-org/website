@@ -8,7 +8,7 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 
-import { TableOfContentMarkdown } from '~/components/StyledMarkdown';
+import { TableOfContentMarkdown } from '~/components/TOC';
 import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticPaths() {
@@ -46,14 +46,7 @@ export default function StaticMarkdownPage({
             />
           <DocsHelp markdownFile={markdownFile} />
         </div>
-        <div className='w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
-          <div className='h-full overflow-y-auto scrollbar-hidden pl-5'>
-            <div className='uppercase text-xs text-slate-400 mb-4'>
-              On this page
-            </div>
-            <TableOfContentMarkdown markdown={content} depth={0} />
-          </div>
-        </div>
+        <TableOfContentMarkdown markdown={content} depth={0} />
       </div>
     </SectionContext.Provider>
   );

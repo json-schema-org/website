@@ -7,7 +7,7 @@ import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths';
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
-import { TableOfContentMarkdown } from '~/components/StyledMarkdown';
+import { TableOfContentMarkdown } from '~/components/TOC';
 
 const stripHtmlTags = (markdown: string) => {
   const htmlTagRegex = /<\/?[^>]+(>|$)/g;
@@ -49,14 +49,7 @@ export default function StaticMarkdownPage({
           <StyledMarkdown markdown={sanitizedContent} />
           <DocsHelp markdownFile={markdownFile} />
         </div>
-        <div className='w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
-          <div className='h-full overflow-y-auto scrollbar-hidden pl-5'>
-            <div className='uppercase text-xs text-slate-400 mb-4'>
-              On this page
-            </div>
-            <TableOfContentMarkdown markdown={sanitizedContent} depth={3} />
-          </div>
-        </div>
+        <TableOfContentMarkdown markdown={sanitizedContent} depth={3} />
       </div>
     </SectionContext.Provider>
   );

@@ -5,7 +5,7 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { DocsHelp } from '~/components/DocsHelp';
 import { SectionContext } from '~/context';
-import { TableOfContentMarkdown } from '~/components/StyledMarkdown';
+import { TableOfContentMarkdown } from '~/components/TOC';
 
 // Function to remove all HTML tags
 const stripHtmlTags = (markdown: string) => {
@@ -38,14 +38,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
           <StyledMarkdown markdown={sanitizedContent} />
           <DocsHelp markdownFile={markdownFile} />
         </div>
-        <div className='w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
-          <div className='h-full overflow-y-auto scrollbar-hidden pl-5'>
-            <div className='uppercase text-xs text-slate-400 mb-4'>
-              On this page
-            </div>
-            <TableOfContentMarkdown markdown={sanitizedContent} depth={3} />
-          </div>
-        </div>
+        <TableOfContentMarkdown markdown={sanitizedContent} depth={3} />
       </div>
     </SectionContext.Provider>
   );

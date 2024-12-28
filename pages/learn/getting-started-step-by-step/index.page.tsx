@@ -9,7 +9,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import GettingStarted from '~/components/GettingStarted';
-import { TableOfContentMarkdown } from '~/components/StyledMarkdown';
+import { TableOfContentMarkdown } from '~/components/TOC';
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
     'pages/learn/getting-started-step-by-step/getting-started-step-by-step.md',
@@ -44,14 +44,7 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
           <DocsHelp />
         </div>
 
-        <div className='w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
-          <div className='h-full overflow-y-auto scrollbar-hidden pl-5'>
-            <div className='uppercase text-xs text-slate-400 mb-4'>
-              On this page
-            </div>
-            <TableOfContentMarkdown markdown={blocks.join('\n')} depth={2} />
-          </div>
-        </div>
+        <TableOfContentMarkdown markdown={blocks.join('\n')} depth={2} />
       </div>
     </SectionContext.Provider>
   );

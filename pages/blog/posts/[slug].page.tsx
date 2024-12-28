@@ -2,17 +2,16 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getLayout } from '~/components/SiteLayout';
-import StyledMarkdown, {
-  TableOfContentMarkdown,
-} from '~/components/StyledMarkdown';
-
+import StyledMarkdown from '~/components/StyledMarkdown';
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths';
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import readingTime from 'reading-time';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import CarbonAds from '~/components/CarbonsAds';
-
+import {
+  TableOfContentMarkdown,
+} from '~/components/TOC';
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
 }
@@ -93,11 +92,8 @@ export default function StaticMarkdownPage({
                     },
                   )}
                 </div>
-                <div className='pt-4 pr-4 hidden lg:block w-full'>
-                  <div className='uppercase text-xs text-slate-400 mb-4'>
-                    on this page
-                  </div>
-                  <TableOfContentMarkdown markdown={content} depth={0} />
+                <div className="">
+                <TableOfContentMarkdown markdown={content} depth={3} />
                 </div>
                 <CarbonAds variant='sidebar' />
               </div>

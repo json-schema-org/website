@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Link from 'next/link';
-import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import JsonEditor from '~/components/JsonEditor';
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp';
 import Highlight from 'react-syntax-highlighter';
@@ -9,6 +8,7 @@ import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Code from '~/components/Code';
 import { FullMarkdownContext } from '~/context';
 import Image from 'next/image';
+import { TableOfContentMarkdown } from './TOC';
 
 import {
   Headline1,
@@ -545,139 +545,6 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
   );
 };
 
-export function TableOfContentMarkdown({
-  markdown,
-  depth = 2,
-}: {
-  markdown: string;
-  depth?: number;
-}) {
-  return (
-    <Markdown
-      options={{
-        overrides: {
-          h1: {
-            component: ({ children }) => {
-              const slug = slugifyMarkdownHeadline(children);
-              return (
-                <a
-                  href={`#${slug}`}
-                  className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
-                >
-                  {children}
-                </a>
-              );
-            },
-          },
-
-          /* eslint-disable */
-          h2:
-            depth === 0
-              ? {
-                component: ({ children }) => {
-                  const slug = slugifyMarkdownHeadline(children);
-                  return (
-                    <a
-                      href={`#${slug}`}
-                      className='block cursor-pointer mb-3 ml- text-slate-600 hover:text-primary active:text-primary  dark:text-slate-300 leading-4 font-medium'
-                    >
-                      {children}
-                    </a>
-                  );
-                },
-              }
-              : depth >= 2
-                ? {
-                  component: ({ children }) => {
-                    const slug = slugifyMarkdownHeadline(children);
-                    const [isChrome, setIsChrome] = useState(false);
-
-                    useEffect(() => {
-                      const chromeCheck =
-                        /Chrome/.test(navigator.userAgent) &&
-                        /Google Inc/.test(navigator.vendor);
-                      setIsChrome(chromeCheck);
-                    }, []);
-
-                    return (
-                      // chromeClass
-                      <a
-                        href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
-                      >
-
-                        {children}
-                      </a>
-                    );
-                  },
-                }
-                : { component: () => null },
-          h3:
-            depth >= 3
-              ? {
-                component: ({ children }) => {
-                  const slug = slugifyMarkdownHeadline(children);
-                  return (
-                    <a
-                      href={`#${slug}`}
-                      className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-4'
-                    >
-
-                      {children}
-                    </a>
-                  );
-                },
-              }
-              : { component: () => null },
-          h4:
-            depth <= 4
-              ? {
-                component: ({ children }) => {
-                  const slug = slugifyMarkdownHeadline(children);
-                  return (
-                    <a
-                      href={`#${slug}`}
-                      className='flex flex-row  items-center cursor-pointer mb-3  max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-8 '
-                    >
-                      {children}
-                    </a>
-                  );
-                },
-              } /* eslint-enable */
-              : { component: () => null },
-          ...hiddenElements(
-            'strong',
-            'p',
-            'a',
-            'ul',
-            'li',
-            'table',
-            'code',
-            'pre',
-            'blockquote',
-            'span',
-            'div',
-            'figure',
-            'Bigquote',
-            'Regularquote',
-            'specialBox',
-          ),
-        },
-      }}
-    >
-      {markdown}
-    </Markdown>
-  );
-}
-
-const hiddenElements = (...elements: string[]) => {
-  return elements.reduce((acc, element) => {
-    return {
-      ...acc,
-      [element]: { component: () => null },
-    };
-  }, {});
-};
 
 const checkHasContent = (reactNode: React.ReactChild) => {
   if (!reactNode) return false;
