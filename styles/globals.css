@@ -265,6 +265,10 @@ border-radius: 4px; */
   background-color: #fddf4784;
 }
 
+.bg-index-5 {
+  background-color: #773cff84;
+}
+
 @layer base {
   body {
     @apply dark:bg-slate-800 bg-white;
