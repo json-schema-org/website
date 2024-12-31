@@ -3037,12 +3037,11 @@
 
 - name: Jaronuinga
   description: >
-    Jaronuinga is a simple JSON Schema validator written in Java. It is based on JSONP 1.1 and has no other dependencies.
+    Jaronuinga is a simple JSON Schema validator written in Java 17. It is based on JSONP 1.1 and has no other dependencies.
     The library's primary purpose is to intercept the parsing process for additional custom analysis (e.g., verifying "foreign keys" on data submission).
     It may also be used for schema analysis via `getParent()` and `getChildren()` methods.
   toolingTypes: ['validator']
-  languages: ['Java 17']
-  dependsOnValidators: ['https://javaee.github.io/jsonp/']
+  languages: ['Java']
   maintainers:
     - name: 'Dmitry Repchevsky'
       username: 'Dmitry Repchevsky'
@@ -3050,10 +3049,5 @@
   license: 'LGPL 2.1 or later'
   source: 'https://github.com/elixir-europe/java-json-schema-validator'
   supportedDialects:
-    draft: ['1', '2', '3', '4', '5', '6', '7', '2019-09', '2020-12']
-  compliance:
-    config:
-      instructions:
-        'Refactor the schema parsing logic to support `$vocabulary` and ensure all string formats
-        required by the latest JSON Schema specifications are implemented.'
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-10-01'
