@@ -29,7 +29,7 @@ export default function Content({
   content: any;
 }) {
   const newTitle = 'Code of Conduct';
-  const fileRenderType = 'tsx';
+  const fileRenderType = 'code_of_conduct';
   return (
     <SectionContext.Provider value='docs'>
       <Head>

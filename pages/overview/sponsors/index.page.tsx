@@ -21,7 +21,7 @@ export async function getStaticProps() {
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
   const newTitle = 'Sponsors';
-  const fileRenderType = '_indexmd';
+  const fileRenderType = 'sponsors';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
