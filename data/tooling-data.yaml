@@ -3047,3 +3047,19 @@
   source: 'https://github.com/pubg/protoc-gen-jsonschema'
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
+
+- name: 'Liquid JSON Schema Editor'
+  description: 'Graphical JSON Schema editor for draft-04, draft-06, draft-07, 2019-09 and 2020-12, with split source code and graphical editing. Includes validation of JSON files based on JSON Schema, JSON Sample Generator and JSON Schema Documentation Generator.'
+  toolingTypes: ['validator', 'documentation', 'editor']
+  languages: ['C#', '.NET']
+  environments: ['Microsoft Windows']
+  maintainers:
+    - name: 'Liquid Technologies Ltd'
+      platform: 'other'
+  creators:
+    - name: 'Liquid Technologies Ltd'
+      platform: 'other'
+  homepage: 'https://www.liquid-technologies.com/json-schema-editor'
+  license: 'Proprietary and Freeware'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
