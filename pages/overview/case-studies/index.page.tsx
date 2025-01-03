@@ -31,7 +31,8 @@ export default function ContentExample() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p className='text-[18px]'>
-        Learn how organizations are adopting JSON Schema to improve data management, ensure consistency, and streamline workflows across systems.
+        Learn how organizations are adopting JSON Schema to improve data
+        management, ensure consistency, and streamline workflows across systems.
       </p>
       <div className='mx-auto my-[10px] mt-8 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:w-full'>
         {data.map((element, index) => (
