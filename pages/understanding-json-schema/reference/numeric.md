@@ -162,7 +162,7 @@ The multiple can be a floating point number:
 4.021
 ```
 
-<Infobox label="Note"> The JSON Specification allows an arbitrary implementation of the `multipleOf` keyword and is not constrained by the floating-point behavior of most programming languages. In contrast, most programming languages adhere to the IEEE754 standard for floating-point numbers, which can result in discrepancies between validation according to the JSON Specification and the behavior in programming languages. </Infobox>
+<Infobox label="Note"> The JSON Schema Specification defines numerical precision independently of the IEEE 754 standard. This means developers do not need to worry about the typical limitations of floating-point arithmetic, such as precision loss or representation errors, which are common in most programming languages. </Infobox>
 
 <Keywords label="single: number; range single: maximum single: exclusiveMaximum single: minimum single: exclusiveMinimum" />
 
