@@ -1,6 +1,6 @@
 ---
 title: "Moving Toward a Stable Spec"
-date: "2024-01-05"
+date: "2025-01-05"
 tags:
   - specification
   - stable
