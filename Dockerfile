@@ -27,12 +27,6 @@ RUN apk add --update git && \
     apk del git curl && \
     rm -rf /var/cache/apk/*
 
-RUN if [ ! -f .env ]; then \
-    cp .env.example .env && rm -rf .env.example; \
-    else \
-    rm -rf .env.example; \
-    fi
-
 EXPOSE 3000
 
 CMD ["yarn", "dev"]
