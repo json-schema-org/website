@@ -28,7 +28,6 @@ export default function StaticMarkdownPage({
   const newTitle = 'JSON Schema - ' + frontmatter.title;
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
-
       <div className='flex pt-4'>
         <div className='w-full pr-5'>
           <Head>
@@ -37,11 +36,11 @@ export default function StaticMarkdownPage({
           <Headline1>{frontmatter.title}</Headline1>
           <StyledMarkdown markdown={content} />
           <NextPrevButton
-           prevLabel={frontmatter?.prev?.label}
-           prevURL={frontmatter?.prev?.url}
-           nextLabel={frontmatter?.next?.label}
-           nextURL={frontmatter?.next?.url}
-           />
+            prevLabel={frontmatter?.prev?.label}
+            prevURL={frontmatter?.prev?.url}
+            nextLabel={frontmatter?.next?.label}
+            nextURL={frontmatter?.next?.url}
+          />
           <DocsHelp markdownFile={markdownFile} />
         </div>
         <TableOfContentMarkdown markdown={content} depth={3} />

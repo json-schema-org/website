@@ -24,7 +24,11 @@ const hiddenElements = (...elements: string[]) => {
 };
 
 // HeadingLink component to render each heading with a link
-const HeadingLink: React.FC<{ children: React.ReactNode; level: number; isActive: boolean }> = ({ children, level, isActive }) => {
+const HeadingLink: React.FC<{
+  level: number;
+  isActive: boolean;
+  children: React.ReactNode;
+}> = ({ level, isActive, children }) => {
   const text = getTextFromChildren(children); // Get the plain text for slug
   const slug = slugifyMarkdownHeadline(text); // Generate slug from text
   const paddingClass = `pl-${level * 2}`; // Adjust padding based on heading level
@@ -45,7 +49,10 @@ interface TableOfContentMarkdownProps {
   depth?: number;
 }
 
-export const TableOfContentMarkdown: React.FC<TableOfContentMarkdownProps> = ({ markdown, depth = 2 }) => {
+export const TableOfContentMarkdown: React.FC<TableOfContentMarkdownProps> = ({
+  markdown,
+  depth = 2,
+}) => {
   const [activeSlug, setActiveSlug] = useState<string | null>(null);
 
   useEffect(() => {
@@ -69,34 +76,98 @@ export const TableOfContentMarkdown: React.FC<TableOfContentMarkdownProps> = ({ 
   }, []);
 
   return (
-    <div className="w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden">
-      <div className="h-full overflow-y-auto scrollbar-hidden pl-5">
-        <div className="uppercase text-xs text-slate-400 mb-4">On this page</div>
+    <div className='w-2/5 lg:block mt-10 hidden sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
+      <div className='h-full overflow-y-auto scrollbar-hidden pl-5'>
+        <div className='uppercase text-xs text-slate-400 mb-4'>
+          On this page
+        </div>
         <Markdown
           options={{
             overrides: {
               h1: {
                 component: ({ children }) => (
-                  <HeadingLink children={children} level={0} isActive={activeSlug === slugifyMarkdownHeadline(getTextFromChildren(children))} />
+                  <HeadingLink
+                    level={0}
+                    isActive={
+                      activeSlug ===
+                      slugifyMarkdownHeadline(getTextFromChildren(children))
+                    }
+                  >
+                    {children}
+                  </HeadingLink>
                 ),
               },
               h2: {
-                component: depth >= 3 ? ({ children }) => (
-                  <HeadingLink children={children} level={0} isActive={activeSlug === slugifyMarkdownHeadline(getTextFromChildren(children))} />
-                ) : () => null,
+                component:
+                  depth >= 3
+                    ? ({ children }) => (
+                        <HeadingLink
+                          level={0}
+                          isActive={
+                            activeSlug ===
+                            slugifyMarkdownHeadline(
+                              getTextFromChildren(children),
+                            )
+                          }
+                        >
+                          {children}
+                        </HeadingLink>
+                      )
+                    : () => null,
               },
               h3: {
-                component: depth >= 3 ? ({ children }) => (
-                  <HeadingLink children={children} level={1} isActive={activeSlug === slugifyMarkdownHeadline(getTextFromChildren(children))} />
-                ) : () => null,
+                component:
+                  depth >= 3
+                    ? ({ children }) => (
+                        <HeadingLink
+                          level={1}
+                          isActive={
+                            activeSlug ===
+                            slugifyMarkdownHeadline(
+                              getTextFromChildren(children),
+                            )
+                          }
+                        >
+                          {children}
+                        </HeadingLink>
+                      )
+                    : () => null,
               },
               h4: {
-                component: depth >= 3 ? ({ children }) => (
-                  <HeadingLink children={children} level={2} isActive={activeSlug === slugifyMarkdownHeadline(getTextFromChildren(children))} />
-                ) : () => null,
+                component:
+                  depth >= 3
+                    ? ({ children }) => (
+                        <HeadingLink
+                          level={2}
+                          isActive={
+                            activeSlug ===
+                            slugifyMarkdownHeadline(
+                              getTextFromChildren(children),
+                            )
+                          }
+                        >
+                          {children}
+                        </HeadingLink>
+                      )
+                    : () => null,
               },
-            
-              ...hiddenElements('strong', 'p', 'a', 'ul', 'li', 'table', 'code', 'pre', 'blockquote', 'span', 'div', 'figure', 'Bigquote', 'Regularquote', 'specialBox'),
+              ...hiddenElements(
+                'strong',
+                'p',
+                'a',
+                'ul',
+                'li',
+                'table',
+                'code',
+                'pre',
+                'blockquote',
+                'span',
+                'div',
+                'figure',
+                'Bigquote',
+                'Regularquote',
+                'specialBox',
+              ),
             },
           }}
         >
@@ -107,16 +178,18 @@ export const TableOfContentMarkdown: React.FC<TableOfContentMarkdownProps> = ({ 
   );
 };
 
-export const TableOfContentLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const TableOfContentLayout: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   return (
-    <div className="max-w-[1400px] mx-auto flex flex-col items-center">
-      <section className="relative">
+    <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
+      <section className='relative'>
         {/* TOC on the left */}
-        <div className="w-2/5 lg:block mt-10 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden">
+        <div className='w-2/5 lg:block mt-10 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
           <TableOfContentMarkdown markdown={String(children)} depth={2} />
         </div>
         {/* Main content on the right */}
-        <div className="col-span-4 md:col-span-3 lg:mt-20 mx-4 md:mx-0">
+        <div className='col-span-4 md:col-span-3 lg:mt-20 mx-4 md:mx-0'>
           {children}
         </div>
       </section>

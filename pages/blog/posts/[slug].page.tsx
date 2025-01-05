@@ -9,9 +9,7 @@ import readingTime from 'reading-time';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import CarbonAds from '~/components/CarbonsAds';
-import {
-  TableOfContentMarkdown,
-} from '~/components/TOC';
+import { TableOfContentMarkdown } from '~/components/TOC';
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
 }
@@ -92,8 +90,8 @@ export default function StaticMarkdownPage({
                     },
                   )}
                 </div>
-                <div className="">
-                <TableOfContentMarkdown markdown={content} depth={3} />
+                <div className=''>
+                  <TableOfContentMarkdown markdown={content} depth={3} />
                 </div>
                 <CarbonAds variant='sidebar' />
               </div>

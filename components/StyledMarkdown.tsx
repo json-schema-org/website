@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Link from 'next/link';
 import JsonEditor from '~/components/JsonEditor';
@@ -544,7 +544,6 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
     </FullMarkdownContext.Provider>
   );
 };
-
 
 const checkHasContent = (reactNode: React.ReactChild) => {
   if (!reactNode) return false;
