@@ -24,7 +24,7 @@ In a [previous post](./json-schema-joins-the-openjsf), we announced that we were
 
 When we last published a specification, we were still part of the IETF, and we used their [Internet-Draft Publication Process](https://authors.ietf.org/en/rfc-publication-process).  This meant that our documents were required to retain the "draft" moniker, even though we considered them fully fledged and ready for use in production systems.  Publishing independently, we're no longer bound by this requirement, however it does mean that we can no longer rely on the IETF document publishing infrastructure.  We have to build our own.
 
-The foundation of our production process is built on several ideals, and I'll cover the major ones in the next few sections.  By focusing on these pillars, we can ensure a safe and easy upgrade path for our users.
+The foundation of our publication process is built on several ideals, and I'll cover the major ones in the next few sections.  By focusing on these pillars, we can ensure a safe and easy upgrade path for our users.
 
 ### Minimize Backward-Incompatible Changes Between Releases
 
