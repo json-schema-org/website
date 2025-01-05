@@ -26,7 +26,7 @@ export default function DropdownMenu({
   }, [router]);
 
   return (
-    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
+    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer'>
       <div
         className='w-full flex justify-between items-center align-middle'
         onClick={() => {
