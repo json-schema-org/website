@@ -3,7 +3,6 @@ import { getLayout } from '~/components/Sidebar';
 import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
-import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 
 export default function Welcome() {
