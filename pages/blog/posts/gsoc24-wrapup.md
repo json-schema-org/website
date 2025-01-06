@@ -82,7 +82,7 @@ The project addresses the challenges of maintaining software compatibility acros
 * Mentors: [Matthew Adams (Endjin)](https://github.com/mwadams), [Greg Dennis](https://github.com/gregsdennis)
 * [Idea on Github](https://github.com/json-schema-org/community/issues/614)
 
-The project focu ses on creating a source generator that integrates seamlessly with [Corvus.JsonSchema](https://github.com/corvus-dotnet/corvus.jsonschema). This tool will automatically generate code from JSON Schema files within a .NET project at compile time, streamlining the development process. The ultimate goal is to foster collaboration and consistency across software development teams using diverse technology stacks by establishing JSON Schema as a unified source of truth for data modeling. This ensures that generated code adheres to a standardized data structure, improving efficiency and alignment within organizations.
+The project focuses on creating a source generator that integrates seamlessly with [Corvus.JsonSchema](https://github.com/corvus-dotnet/corvus.jsonschema). This tool will automatically generate code from JSON Schema files within a .NET project at compile time, streamlining the development process. The ultimate goal is to foster collaboration and consistency across software development teams using diverse technology stacks by establishing JSON Schema as a unified source of truth for data modeling. This ensures that generated code adheres to a standardized data structure, improving efficiency and alignment within organizations.
 
 ### 8. A Tour of JSON Schema
 
