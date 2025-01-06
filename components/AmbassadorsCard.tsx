@@ -114,7 +114,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
     contributions = [],
   } = ambassador;
 
-  const SocialIconss: SocialIcons[] = [
+  const SocialIcons: SocialIcons[] = [
     'github',
     'twitter',
     'mastodon',
@@ -158,7 +158,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
         )}
 
         <div className='flex justify-center mb-4 mt-auto'>
-          {SocialIconss.map((platform) => {
+          {SocialIcons.map((platform) => {
             const username = ambassador[platform];
             return username ? (
               <a
