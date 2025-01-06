@@ -122,7 +122,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
   ];
 
   return (
-    <div className='relative max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 transition-all duration-300 h-fit'>
+    <div className='relative flex flex-col max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 h-full'>
       <div className='absolute top-0 right-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
       <div className='absolute bottom-100 right-0 w-20 h-1 bg-black dark:bg-gray-400'></div>
       <div className='absolute bottom-0 left-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
@@ -137,7 +137,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
         onError={() => setImgSrc(`/img/ambassadors/${name}.jpg`)}
       />
 
-      <div className='p-6'>
+      <div className='flex flex-col flex-grow p-6'>
         <h3 className='text-xl font-semibold mb-2 text-gray-900 dark:text-white'>
           {name}
         </h3>
@@ -157,7 +157,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
           </p>
         )}
 
-        <div className='flex justify-center mb-4'>
+        <div className='flex justify-center mb-4 mt-auto'>
           {SocialIconss.map((platform) => {
             const username = ambassador[platform];
             return username ? (
