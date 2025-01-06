@@ -95,6 +95,21 @@ We value contributions to our testing efforts. Here are ways you can help improv
 
 5. **Reporting Test Issues**: If you find inconsistencies or problems with our tests, please open an issue describing the problem and how to reproduce it.
 
+6. **Guidelines for Writing Tests for Website Components**: When contributing to the JSON Schema website, testing is a crucial part of ensuring that components work as intended. Below are some guidelines for writing effective tests for website components:
+
+   - **Understand the Component**: Clearly define the purpose and expected behavior of the component before writing tests. This will help ensure that tests cover all the necessary scenarios.
+
+   - **Write Descriptive Test Cases**: Use descriptive test names that clearly explain what each test does. This makes it easier for others to understand the purpose of the test.
+
+   - **Test Edge Cases**: Include tests for boundary conditions, unexpected inputs, and error scenarios. This ensures robustness and reliability of the components.
+
+   - **Follow Project Standards**: Adhere to the testing patterns and conventions used within the repository. Consistency is key to maintaining a clean and understandable codebase.
+
+   - **Refer to Resources**: If you're new to writing tests or need guidance, the following resources might be helpful:
+      - [How to Write Test Cases - Coursera](https://www.coursera.org/)
+       - [Manual Test Cases - Testrail](https://www.testrail.com/)
+      - [Effective Test Cases - Testrail](https://www.testrail.com/)
+
 For more details on our testing setup and how to run tests, please refer to the Testing section in our [INSTALLATION.md](./INSTALLATION.md#testing) file.
 
 
