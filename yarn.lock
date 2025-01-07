@@ -4548,6 +4548,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"axios@npm:^1.7.7":
+  version: 1.7.9
+  resolution: "axios@npm:1.7.9"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/b7a41e24b59fee5f0f26c1fc844b45b17442832eb3a0fb42dd4f1430eb4abc571fe168e67913e8a1d91c993232bd1d1ab03e20e4d1fee8c6147649b576fc1b0b
+  languageName: node
+  linkType: hard
+
 "axobject-query@npm:^3.2.1":
   version: 3.2.1
   resolution: "axobject-query@npm:3.2.1"
@@ -8336,7 +8347,7 @@ __metadata:
     next: "npm:14.2.14"
     next-sitemap: "npm:^4.2.3"
     next-themes: "npm:^0.3.0"
-    node-ical: "npm:0.19.0"
+    node-ical: "npm:0.20.1"
     nyc: "npm:^17.1.0"
     postcss: "npm:^8.4.41"
     prettier: "npm:3.3.3"
@@ -9151,15 +9162,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-ical@npm:0.19.0":
-  version: 0.19.0
-  resolution: "node-ical@npm:0.19.0"
+"node-ical@npm:0.20.1":
+  version: 0.20.1
+  resolution: "node-ical@npm:0.20.1"
   dependencies:
-    axios: "npm:1.7.7"
+    axios: "npm:^1.7.7"
     moment-timezone: "npm:^0.5.45"
     rrule: "npm:2.8.1"
     uuid: "npm:^10.0.0"
-  checksum: 10c0/15788f5a658eccb0b3ec7e692f8e882612a5e55926ab7d55e4540bdb88963e548f35388486a2d95e75caa939db840560ff4a159db46ffa509ec35df40c62b12c
+  checksum: 10c0/3e95ece63f0420f96b611913e0134660120bf2e87da8b1afbc73b6db2cbe2ad20d9b76ad912fa80b20923c64f0002869d98edaa53d143aa5989d223ff12ef621
   languageName: node
   linkType: hard
 
