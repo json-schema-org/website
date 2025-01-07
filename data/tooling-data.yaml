@@ -3047,7 +3047,18 @@
   source: 'https://github.com/pubg/protoc-gen-jsonschema'
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
-
+- name: 'JSON Schema Editor'
+  description: 'The JSON schema editor provides an easy UI for building JSON Schema. In addition, users can convert their json schema into SQL, GraphQL, and Protocol Buffers formats. Lastly this tool allows users to generate sample data that conforms to the json schema they have defined.'
+  toolingTypes: ['editor']
+  maintainers:
+    - name: 'robclarabase'
+      username: 'robclarabase'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/Clarabase/json-schema-editor'
+  homepage: 'https://json-schema-editor.onrender.com/'
+  supportedDialects:
+    draft: ['2020-12'] 
 - name: JSV
   description: 'A generic JSON Schema validator for Elixir'
   environments: ['Linux', 'MacOS', 'Windows','Embedded platform']
