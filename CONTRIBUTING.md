@@ -110,6 +110,7 @@ We strongly encourage linking every pull request to an existing issue. If no cor
 - Ensure the discussion within the issue has led to a clear, actionable decision.
 
 Before submitting a PR, please make sure:
+- The PR has a linked issue.
 - The related Issue has already completed the [triage process](https://github.com/json-schema-org/.github/blob/main/TRIAGE.md) and has the label `Status Accepted` or `Status Available`.
 - You are assigned to work on this issue by a Maintainer or the Triage Team. Submitting a PR without getting assigned to the Issue may lead to the PR to get closed.
 
