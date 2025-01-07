@@ -9,6 +9,7 @@ import { Headline1, Headline4 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 import Link from 'next/link';
 import Image from 'next/image';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const datas = yaml.load(
@@ -86,7 +87,12 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
               ),
           )}
       </div>
-
+      <NextPrevButton
+        prevLabel='JSON Schema Glossary'
+        prevURL='/learn/glossary'
+        nextLabel='Understanding JSON Schema'
+        nextURL='/understanding-json-schema'
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

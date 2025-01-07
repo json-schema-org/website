@@ -39,8 +39,8 @@ export default function Content({
       <NextPrevButton
         prevLabel='Similar-Technologies'
         prevURL='/overview/similar-technologies'
-        nextLabel='What is JSON Schema'
-        nextURL='/overview/what-is-jsonschema'
+        nextLabel='Getting Started'
+        nextURL='/learn'
       />
       <DocsHelp />
     </SectionContext.Provider>

@@ -1,6 +1,12 @@
 ---
 title: "Constant values"
 section: docs
+prev: 
+  label: Enumerated values
+  url: /understanding-json-schema/reference/enum
+next: 
+  label: 'Media: string-encoding non-JSON data'
+  url: /understanding-json-schema/reference/non_json_data
 ---
 
 <Star label="New in draft 6" />

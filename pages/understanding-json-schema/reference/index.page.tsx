@@ -5,6 +5,7 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
@@ -19,11 +20,23 @@ export async function getStaticProps() {
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: any[] }) {
+export default function ContentExample({
+  blocks,
+}: {
+  blocks: any[];
+  frontmatter: any;
+  content: any;
+}) {
   const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
+      <NextPrevButton
+        prevLabel='The basics'
+        prevURL='/understanding-json-schema/basics'
+        nextLabel='Type-specific keywords'
+        nextURL='/understanding-json-schema/reference/type'
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
