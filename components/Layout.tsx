@@ -225,12 +225,6 @@ const MainNavigation = () => {
         label='Community'
         isActive={section === 'community'}
       />
-      <MainNavLink
-        className='hidden lg:block hover:underline'
-        uri='/pro-help'
-        label='Pro Help'
-        isActive={section === 'pro-help'}
-      />
 
       <div className='flex items-center max-sm:ml-4 mr-8 gap-6 md:gap-4 dark:bg-slate-800'>
         <div
