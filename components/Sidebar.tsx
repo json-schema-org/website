@@ -355,7 +355,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getDocs })}
+          className={classnames(
+            'ml-6', 
+            'transition-all duration-500 ease-in-out', 
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getDocs,
+              'max-h-80 opacity-100': active.getDocs
+            }
+          )}
           id='overview'
         >
           <DocLink
@@ -430,7 +437,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getStarted })}
+         className={classnames(
+            'ml-6', 
+            'transition-all duration-500 ease-in-out', 
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getStarted,
+              'max-h-80 opacity-100': active.getStarted
+            }
+          )}
           id='getStarted'
         >
           <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
@@ -497,7 +511,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getReference })}
+          className={classnames(
+            'ml-6', 
+            'transition-all duration-500 ease-in-out', 
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getReference,
+              'max-h-80 overflow-y-auto opacity-100': active.getReference
+            }
+          )}
           id='reference'
         >
           <DocLink
@@ -686,7 +707,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getSpecification })}
+          className={classnames(
+            'ml-6', 
+            'transition-all duration-500 ease-in-out', 
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getSpecification,
+              'max-h-80 opacity-100': active.getSpecification
+            }
+          )}
           id='specification'
         >
           <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
