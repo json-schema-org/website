@@ -1,6 +1,12 @@
 ---
 title: "boolean"
 section: docs
+prev: 
+  label: Array
+  url: /understanding-json-schema/reference/array
+next: 
+  label: 'Null'
+  url: /understanding-json-schema/reference/null
 ---
 
 <Keywords label="single: boolean" />

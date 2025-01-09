@@ -4,7 +4,7 @@ This guide provides step-by-step instructions for installing the JSON Schema Web
 
 ## Table of Contents
 
-1. [Setting Up the Project](#setting-up-the-project)
+1. [Setting Up the Project](#setting-up-project)
    - [Requirements](#requirements)
    - [Cloning the Repository](#cloning-the-repository)
    - [Setting Up Environment Variables](#setting-up-environment-variables)

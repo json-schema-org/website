@@ -7,6 +7,7 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 import { SectionContext } from '~/context';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/understanding-json-schema');
@@ -31,6 +32,12 @@ export default function StaticMarkdownPage({
       </Head>
       <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
       <StyledMarkdown markdown={content} />
+      <NextPrevButton
+        prevLabel={frontmatter?.prev?.label}
+        prevURL={frontmatter?.prev?.url}
+        nextLabel={frontmatter?.next?.label}
+        nextURL={frontmatter?.next?.url}
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
