@@ -366,21 +366,30 @@ const getPartsOfArrayContent = (
     const length = match.index - arrayPayloadIndex;
     const payload = serializedJson.substr(arrayPayloadIndex, length);
 
-    //ToDo filter brackets in strings
+    const stringMatches = getFindResultsByGlobalRegExp(payload, regexString);
+    let filteredPayload = payload;
+
+    // Replace content of strings with placeholders to avoid counting brackets inside them
+    stringMatches.forEach((stringMatch) => {
+      const stringContent = stringMatch.match;
+      const placeholder = '_'.repeat(stringContent.length);
+      filteredPayload = filteredPayload.replace(stringContent, placeholder);
+    });
+
     const countOpenCurlyBracketsInPayload = getFindResultsByGlobalRegExp(
-      payload,
+      filteredPayload,
       /\{/g,
     ).length;
     const countClosedCurlyBracketsInPayload = getFindResultsByGlobalRegExp(
-      payload,
+      filteredPayload,
       /\}/g,
     ).length;
     const countOpenSquaredBracketsInPayload = getFindResultsByGlobalRegExp(
-      payload,
+      filteredPayload,
       /\[/g,
     ).length;
     const countClosedSquaredBracketsInPayload = getFindResultsByGlobalRegExp(
-      payload,
+      filteredPayload,
       /\]/g,
     ).length;
     const openCurlyBrackets =
