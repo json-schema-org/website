@@ -192,11 +192,11 @@ Optionally, validator [implementations](../../learn/glossary#implementation) can
 
 > Implementations may provide validation for only a subset of the built-in formats or do partial validation for a given format. For example, some implementations may consider a string an email if it contains an `@`, while others might perform additional checks for other aspects of a well-formed email address.
 
-The JSON Schema specification has a bias toward networking-related formats, likely due to its roots in web technologies. However, custom formats may also be used if the parties exchanging the JSON documents share information about the custom format types. A JSON Schema validator will ignore any format type it does not understand.
+The JSON Schema specification has a bias toward networking-related formats due to its roots in web technologies. However, custom formats may also be used if the parties exchanging the JSON documents share information about the custom format types. A JSON Schema validator will ignore any format type it does not understand.
 
 ### Built-in Formats
 
-It should be noted that `format` is not limited because it only defines a specific set of valid values for formats. Users may define their own custom keywords to work with any specific data type, such as `integer`, `double`, `float`, etc. Below, we cover the commonly used `string` formats specified in the JSON Schema specification.
+It should be noted that `format` is not limited to a specific set of valid values or types. Users may define their own custom keywords including ones that work with JSON data types other than `string`, such as `number`. Below, we cover the formats specified in the JSON Schema specification.
 
 #### Dates and Times
 
