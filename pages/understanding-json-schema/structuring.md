@@ -1,6 +1,12 @@
 ---
 title: "Structuring a complex schema"
 section: docs
+prev: 
+  label: Declaring a dialect
+  url: /understanding-json-schema/reference/schema
+next: 
+  label: For Implementers
+  url: /implementers
 ---
 
 <Keywords label="single: single: structure" />
