@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit', // Enable JIT mode
   content: [
     './pages/**/*.{js,ts,jsx,tsx,md}',
     './components/**/*.{js,ts,jsx,tsx,md}',

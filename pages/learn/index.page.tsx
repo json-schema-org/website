@@ -5,6 +5,7 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Welcome() {
   const markdownFile = '_indexPage';
@@ -39,6 +40,12 @@ export default function Welcome() {
           link='https://tour.json-schema.org/'
         />
       </div>
+      <NextPrevButton
+        prevLabel='Code of Conduct'
+        prevURL='/overview/code-of-conduct'
+        nextLabel='Creating your first Schema'
+        nextURL='/learn/getting-started-step-by-step'
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

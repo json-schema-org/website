@@ -1,0 +1,56 @@
+{
+  "contents": [
+    {
+      "title": "Written content",
+      "details": "Write guides, step-by-step tutorials, community documentation, JSON Schema blog posts, and beyond.",
+      "icon": "/img/ambassadors/illustrations/content.png"
+    },
+    {
+      "title": "Podcasts and Videos",
+      "details": "Produce educational videos, podcasts or livestreams speaking about JSON Schema.",
+      "icon": "/img/ambassadors/illustrations/video.png"
+    },
+    {
+      "title": "Give talks",
+      "details": "Speak at meetups and conferences; we'll help with slides, abstract submissions, and travel budget.",
+      "icon": "/img/ambassadors/illustrations/speaker.png"
+    },
+    {
+      "title": "JSON Schema Contributions",
+      "details": "Collaborate with the JSON Schema community via diverse contributions and improvements.",
+      "icon": "/img/ambassadors/illustrations/contributing.png"
+    },
+    {
+      "title": "Ecosystem Impact",
+      "details": "Promote JSON Schema adoption in other ecosystems.",
+      "icon": "/img/ambassadors/illustrations/ecosystem.png"
+    },
+    {
+      "title": "Gather Case Studies",
+      "details": "Collaborate in the production of case-studies.",
+      "icon": "/img/ambassadors/illustrations/case-studies.png"
+    }
+  ],
+  "tokens": [
+    {
+      "emoji": "🗺️",
+      "title": "Travel",
+      "details": "Ambassadors are provided free entry to JSON conferences."
+    },
+    {
+      "emoji": "🌟",
+      "title": "Recognition",
+      "details": "Ambassadors receive community-wide recognition."
+    },
+    {
+      "emoji": "🎁",
+      "title": "Special Swags",
+      "details": "Community members recognize you by gifting you exclusive JSON Ambassador swag."
+    },
+    {
+      "emoji": "🧰",
+      "title": "Workshop Swags",
+      "details": "Ambassadors are gifted swag from JSON conferences and workshops."
+    }
+  ]
+}

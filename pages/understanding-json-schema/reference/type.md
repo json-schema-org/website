@@ -1,6 +1,12 @@
 ---
 title: "Type-specific keywords"
 section: docs
+prev: 
+  label: JSON Schema Reference
+  url: /understanding-json-schema/reference
+next: 
+  label: Generic Keywords
+  url: /understanding-json-schema/reference/generic
 ---
 
 The `type` [keyword](../../learn/glossary#keyword) is fundamental to JSON Schema. It specifies the data

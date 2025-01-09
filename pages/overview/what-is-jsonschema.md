@@ -1,6 +1,9 @@
 ---
 section: docs
 title: What is JSON Schema?
+next: 
+  label: Roadmap
+  url: '/overview/roadmap'
 ---
 > JSON Schema is a declarative language for defining structure and constraints for JSON data.
 <br/>

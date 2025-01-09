@@ -1,6 +1,12 @@
 ---
 section: docs
 title: "Conventions used in this documentation"
+prev: 
+  label: Understanding JSON Schema
+  url: /understanding-json-schema
+next: 
+  label: What is a Schema?
+  url: /understanding-json-schema/about
 ---
 
 ## Language-specific notes
@@ -69,9 +75,6 @@ isn\'t valid.
 
 > These examples are tested automatically whenever the book is
 built, so hopefully they are not just helpful, but also correct!
-
-These examples are tested automatically whenever the book is built, so
-hopefully they are not just helpful, but also correct!
 
 For example, here\'s a snippet illustrating how to use the `number` type:
 

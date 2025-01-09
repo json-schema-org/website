@@ -7,6 +7,7 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
@@ -42,7 +43,7 @@ export default function ImplementationsPages({
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={blocks.index} />
       <StyledMarkdown markdown={blocks.body} />
-      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
+      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8 mb-4'>
         <Card
           title='Draft 2019-09 to Draft 2020-12'
           body='Details for migrations from Draft 2019-09 to 2020-12.'
@@ -72,6 +73,12 @@ export default function ImplementationsPages({
           link='/draft-06/json-schema-release-notes'
         />
       </div>
+      <NextPrevButton
+        prevLabel={frontmatter?.prev?.label}
+        prevURL={frontmatter?.prev?.url}
+        nextLabel={frontmatter?.next?.label}
+        nextURL={frontmatter?.next?.url}
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );
