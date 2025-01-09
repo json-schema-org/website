@@ -356,12 +356,12 @@ export const DocsNav = ({
         </div>
         <div
           className={classnames(
-            'ml-6', 
-            'transition-all duration-500 ease-in-out', 
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getDocs,
-              'max-h-80 opacity-100': active.getDocs
-            }
+              'max-h-80 opacity-100': active.getDocs,
+            },
           )}
           id='overview'
         >
@@ -437,13 +437,13 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-         className={classnames(
-            'ml-6', 
-            'transition-all duration-500 ease-in-out', 
+          className={classnames(
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getStarted,
-              'max-h-80 opacity-100': active.getStarted
-            }
+              'max-h-80 opacity-100': active.getStarted,
+            },
           )}
           id='getStarted'
         >
@@ -512,12 +512,12 @@ export const DocsNav = ({
         </div>
         <div
           className={classnames(
-            'ml-6', 
-            'transition-all duration-500 ease-in-out', 
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getReference,
-              'max-h-80 overflow-y-auto opacity-100': active.getReference
-            }
+              'max-h-80 overflow-y-auto opacity-100': active.getReference,
+            },
           )}
           id='reference'
         >
@@ -708,12 +708,12 @@ export const DocsNav = ({
         </div>
         <div
           className={classnames(
-            'ml-6', 
-            'transition-all duration-500 ease-in-out', 
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getSpecification,
-              'max-h-80 opacity-100': active.getSpecification
-            }
+              'max-h-80 opacity-100': active.getSpecification,
+            },
           )}
           id='specification'
         >

@@ -67,8 +67,8 @@ export default function DropdownMenu({
           'ml-0 mt-0 overflow-hidden transition-all duration-500 ease-in-out',
           {
             'max-h-0 opacity-0 invisible': !isDropdownOpen,
-            'max-h-80 overflow-y-auto opacity-100 visible': isDropdownOpen
-          }
+            'max-h-80 overflow-y-auto opacity-100 visible': isDropdownOpen,
+          },
         )}
       >
         {children}
