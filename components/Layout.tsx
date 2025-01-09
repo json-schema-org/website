@@ -400,7 +400,7 @@ const Footer = () => (
     </div>
     <div className='text-white font-normal text-center relative m-0 ml-0 mr-1 px-4'>
       <p>
-        Copyright &copy; 2025 JSON Schema.&nbsp;
+        Copyright &copy; {new Date().getFullYear()} JSON Schema.&nbsp;
         <span className='block sm:inline sm:mb-0'>All rights reserved.</span>
       </p>
     </div>
