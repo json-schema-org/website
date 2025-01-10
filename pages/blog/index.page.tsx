@@ -159,7 +159,7 @@ export default function StaticMarkdownPage({
                 <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
-                <div className='flex ml-2 mb-2 '>
+                <div className='flex ml-2 gap-2 mb-2 items-center justify-start'>
                   <div
                     className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                     style={{
@@ -171,7 +171,7 @@ export default function StaticMarkdownPage({
                     <p className='text-sm font-semibold text-stroke-1'>
                       {recentBlog[0].frontmatter.authors[0].name}
                     </p>
-                    <div className='mb-6 text-sm  text-stroke-1'>
+                    <div className='text-sm  text-stroke-1'>
                       <span>
                         {recentBlog[0].frontmatter.date} &middot; {timeToRead}{' '}
                         min read
