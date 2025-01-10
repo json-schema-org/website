@@ -97,7 +97,13 @@ export default function Sidebar({
             <DropdownMenu
               key={accessorKey}
               label={label}
-              icon={IconComponent && <IconComponent />}
+              icon={
+                IconComponent && (
+                  <div className='icon-wrapper pr-4'>
+                    <IconComponent />
+                  </div>
+                )
+              }
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)

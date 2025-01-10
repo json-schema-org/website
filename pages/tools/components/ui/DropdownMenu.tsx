@@ -34,7 +34,7 @@ export default function DropdownMenu({
         }}
       >
         {React.cloneElement(icon, {
-          className: 'mr-2',
+          className: 'mr-2 ml-2',
         })}
         <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto'>
           {label}
