@@ -524,7 +524,10 @@ const Home = (props: any) => {
                 backer
               </a>{' '}
               or hiring our{' '}
-              <a href='/pro-help' className='border-b border-black dark:border-white'>
+              <a
+                href='/pro-help'
+                className='border-b border-black dark:border-white'
+              >
                 pro services
               </a>
               .
