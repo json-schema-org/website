@@ -1,6 +1,12 @@
 ---
 title: "Regular Expressions"
 section: docs
+prev: 
+  label: String
+  url: /understanding-json-schema/reference/string
+next: 
+  label: Numeric types
+  url: /understanding-json-schema/reference/numeric
 ---
 
 <Keywords label="regular expressions" />
@@ -85,14 +91,17 @@ The following example checks that the string starts with `{{` and ends with `}}`
 and that it also allows multiline strings.
 
 ```json
-   {
-      "type": "string",
-      "pattern": "^\\{\\{(.|[\\r\\n])*\\}\\}$",
-   }
+// props { "isSchema": true }
+{
+  "type": "string",
+  "pattern": "^\\{\\{(.|[\\r\\n])*\\}\\}$",
+}
 ```
 ```json
-   "{{ foo\nbar }}"
+// props { "indent": true, "valid": true }
+"{{ foo\nbar }}"
 ```
 ```json
-   "{ foo }"
+// props { "indent": true, "valid": false }
+"{ foo }"
 ```

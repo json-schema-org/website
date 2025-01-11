@@ -6,6 +6,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { DocsHelp } from '~/components/DocsHelp';
 import { SectionContext } from '~/context';
 import Card from '~/components/Card';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/implementers/_index.md', 'utf-8');
@@ -17,13 +18,19 @@ export async function getStaticProps() {
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: any[] }) {
+export default function ContentExample({
+  blocks,
+}: {
+  blocks: any[];
+  frontmatter: any;
+  content: any;
+}) {
   const markdownFile = '_indexPage';
 
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
-      <section className='mt-10'>
+      <section className='my-10'>
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
           <Card
             key='common-interfaces'
@@ -45,6 +52,12 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
           />
         </div>
       </section>
+      <NextPrevButton
+        prevLabel='Structuring a complex schema'
+        prevURL='/understanding-json-schema/structuring'
+        nextLabel='Common Interfaces across Implementations'
+        nextURL='/implementers/interfaces'
+      />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
   );

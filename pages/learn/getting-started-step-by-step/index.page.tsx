@@ -9,6 +9,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import GettingStarted from '~/components/GettingStarted';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
@@ -28,7 +29,13 @@ export async function getStaticProps() {
   };
 }
 
-export default function StyledValidator({ blocks }: { blocks: any[] }) {
+export default function StyledValidator({
+  blocks,
+}: {
+  blocks: any[];
+  frontmatter: any;
+  content: any;
+}) {
   const newTitle = 'Creating your first schema';
 
   return (
@@ -40,6 +47,12 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
       <StyledMarkdown markdown={blocks[0]} />
       <GettingStarted />
       <StyledMarkdown markdown={blocks[1]} />
+      <NextPrevButton
+        prevLabel='Overview'
+        prevURL='/learn'
+        nextLabel='Miscellaneous examples'
+        nextURL='/learn/miscellaneous-examples'
+      />
       <DocsHelp />
     </SectionContext.Provider>
   );

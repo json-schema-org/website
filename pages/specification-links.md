@@ -1,6 +1,12 @@
 ---
 title: Specification Links
 section: docs
+prev: 
+  label: Specification
+  url: /specification
+next: 
+  label: Migration
+  url: /specification/migration
 ---
 
 <!-- Links on this page should be immutable - none of them should go to `/latest`, etc. -->
@@ -498,8 +504,8 @@ The next unreleased draft is a work in progress.  You can [give feedback and get
 
 The specification links here link to the raw sources.  We do not provide rendered [work-in-progress](work-in-progress) drafts except near the very end of a publication cycle, during the final review period.
 
- - Core: [jsonschema-core.md](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-core.md)
- - Validation: [jsonschema-validation.md](https://github.com/json-schema-org/json-schema-spec/blob/main/jsonschema-validation.md)
+ - Core: [jsonschema-core.md](https://github.com/json-schema-org/json-schema-spec/blob/main/specs/jsonschema-core.md)
+ - Validation: [jsonschema-validation.md](https://github.com/json-schema-org/json-schema-spec/blob/main/specs/jsonschema-validation.md)
  - Hyper-Schema: [jsonschema-hyperschema.xml](https://github.com/json-schema-org/json-hyperschema-spec/blob/main/jsonschema-hyperschema.xml)
 - Relative JSON Pointer: [relative-json-pointer.xml](https://github.com/json-schema-org/json-schema-spec/blob/master/relative-json-pointer.xml)
 - [JSON Schema meta-schema](https://github.com/json-schema-org/json-schema-spec/blob/master/schema.json)
