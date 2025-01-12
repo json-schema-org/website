@@ -75,7 +75,6 @@ export default function StaticMarkdownPage({
   filterTag: any;
 }) {
   const router = useRouter();
-  const setParam = useSetUrlParam();
   const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(
     filterTag || 'All',
   );
