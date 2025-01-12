@@ -262,7 +262,7 @@ export default function StaticMarkdownPage({
                                     `/blog?type=${frontmatter.type}`,
                                   );
                                 }
-			      }}
+                              }}
                             >
                               {frontmatter.type || 'Unknown Type'}
                             </div>
