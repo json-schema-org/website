@@ -255,10 +255,18 @@ export default function StaticMarkdownPage({
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                setParam('type', frontmatter.type);
-                              }}
+
+                                if (frontmatter.type) {
+                                  setCurrentFilterTag(frontmatter.type);
+                                  history.replaceState(
+                                    null,
+                                    '',
+                                    `/blog?type=${frontmatter.type}`,
+                                  );
+                                }
+			      }}
                             >
-                              {frontmatter.type}
+                              {frontmatter.type || 'Unknown Type'}
                             </div>
                           </div>
                           <div className='text-lg font-semibold'>
