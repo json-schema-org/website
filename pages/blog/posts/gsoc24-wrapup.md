@@ -9,7 +9,7 @@ authors:
   - name: Onyedikachi Hope Amaechi-Okorie
     photo: /img/avatars/onyedikachi.jpg
     link: https://www.linkedin.com/in/amaechihope/
-    byline: Community Manager
+    byline: Community and Developer Relations Manager 
 excerpt: "Discover the projects, mentors, and contributors that shaped Google Summer of Code (GSoC) 2024!"
 ---
 
