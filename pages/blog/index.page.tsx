@@ -9,7 +9,6 @@ const PATH = 'pages/blog/posts';
 import TextTruncate from 'react-text-truncate';
 import generateRssFeed from './generateRssFeed';
 import { useRouter } from 'next/router';
-import useSetUrlParam from '~/lib/useSetUrlParam';
 import { SectionContext } from '~/context';
 
 type Author = {
