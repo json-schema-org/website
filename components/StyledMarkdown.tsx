@@ -309,18 +309,18 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               return (
                 <div className='overflow-x-auto rounded-lg bg-gray-800 text-white'>
                   <Highlight
-                    language={language.replace('language-', '')}
+                    language={language}
                     style={atomOneDark}
                     showLineNumbers
                     lineNumberStyle={{
                       color: '#888',
-                      fontSize: '12px',
+                      fontSize: '16px',
                       paddingRight: '10px',
                     }}
                     customStyle={{
                       padding: '12px',
                       fontFamily: 'monospace',
-                      fontSize: '14px',
+                      fontSize: '16px',
                     }}
                     codeTagProps={{
                       style: {
