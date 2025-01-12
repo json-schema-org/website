@@ -3,7 +3,7 @@ module.exports = {
     es2021: true,
     node: true,
     browser: true,
-    "cypress/globals": true
+    'cypress/globals': true,
   },
   settings: {
     react: {
@@ -34,7 +34,10 @@ module.exports = {
 
     'react/jsx-curly-spacing': ['error', { when: 'never', children: true }],
     indent: ['error', 2, { SwitchCase: 1 }],
-    'linebreak-style': ['error', process.platform === 'win32' ? 'windows' : 'unix'],
+    'linebreak-style': [
+      'error',
+      process.platform === 'win32' ? 'windows' : 'unix',
+    ],
     quotes: ['error', 'single'],
 
     'jsx-quotes': ['error', 'prefer-single'],
