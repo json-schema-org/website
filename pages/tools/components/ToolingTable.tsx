@@ -77,7 +77,12 @@ const ToolingTable = ({
 
   const groups = Object.keys(toolsByGroup);
 
-  if (groups.length === 0 || (groups.length === 1 && groups[0] === 'none' && toolsByGroup['none'].length === 0)) {
+  if (
+    groups.length === 0 ||
+    (groups.length === 1 &&
+      groups[0] === 'none' &&
+      toolsByGroup['none'].length === 0)
+  ) {
     return (
       <section className='mb-12 text-left'>
         <div className='overflow-x-auto'>
