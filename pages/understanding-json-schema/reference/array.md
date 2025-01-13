@@ -1,6 +1,12 @@
 ---
 title: "array"
 section: docs
+prev: 
+  label: Object
+  url: /understanding-json-schema/reference/object
+next: 
+  label: Boolean
+  url: /understanding-json-schema/reference/boolean
 ---
 
 <Keywords label="single: array" />

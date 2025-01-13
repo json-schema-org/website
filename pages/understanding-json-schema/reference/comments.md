@@ -1,6 +1,12 @@
 ---
 title: "Comments"
 section: docs
+prev: 
+  label: Annotations
+  url: /understanding-json-schema/reference/annotations
+next: 
+  label: Enumerated values
+  url: /understanding-json-schema/reference/enum
 ---
 
 <Star label="New in draft 7" />

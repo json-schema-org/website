@@ -1,6 +1,12 @@
 ---
 title: "Generic keywords"
 section: docs
+prev: 
+  label: Type Specific Keywords
+  url: /understanding-json-schema/reference/type
+next: 
+  label: 'Media : string-encoding non-JSON data'
+  url: /understanding-json-schema/reference/non_json_data
 ---
 
 * [Annotations](../../understanding-json-schema/reference/annotations)

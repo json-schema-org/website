@@ -1,6 +1,12 @@
 ---
 title: Common Interfaces across JSON Schema Implementations
 section: implementers
+prev: 
+  label: For Implementers
+  url: /implementers
+next: 
+  label: Specification
+  url: /specification
 ---
 
 JSON Schema is extremely widely used and nearly equally widely implemented.
