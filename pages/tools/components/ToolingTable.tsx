@@ -77,6 +77,24 @@ const ToolingTable = ({
 
   const groups = Object.keys(toolsByGroup);
 
+  if (groups.length === 0 || (groups.length === 1 && groups[0] === 'none' && toolsByGroup['none'].length === 0)) {
+    return (
+      <section className='mb-12 text-left'>
+        <div className='overflow-x-auto'>
+          <table className='min-w-full bg-slate-800 border border-gray-200'>
+            <tbody>
+              <tr>
+                <td className='px-6 py-16 text-center text-slate-300 text-lg'>
+                  No results found
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    );
+  }
+
   const openModal = (tool: JSONSchemaTool) => {
     setSelectedTool(tool);
     postAnalytics({
