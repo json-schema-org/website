@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 interface ContractorLink {
   title: string;
@@ -208,6 +209,12 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
             <br />
           </div>
         </div>
+        <NextPrevButton
+          prevLabel='FAQ'
+          prevURL='/overview/faq'
+          nextLabel='Similar Technologies'
+          nextURL='/overview/similar-technologies'
+        />
         <DocsHelp />
       </div>
     </SectionContext.Provider>
