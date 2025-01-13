@@ -1,6 +1,6 @@
 ---
 title: "Moving Toward a Stable Spec"
-date: "2025-01-05"
+date: "2025-01-13"
 tags:
   - specification
   - stable
@@ -22,7 +22,7 @@ In this post I'll be providing an update on specification development and our ne
 
 In a [previous post](./json-schema-joins-the-openjsf), we announced that we were no longer publishing our specifications through the IETF.  At the time, the intent was to join the OpenJS Foundation, however for multiple reasons, the onboarding process was not able to be completed.  As such, currently we are independent.  In the future, we may again seek to join a foundation (we may even try OpenJS again), but for now, independence seems to be the best place for us.
 
-When we last published a specification, and we used the IETF's [Internet-Draft Publication Process](https://authors.ietf.org/en/rfc-publication-process).  This meant that our documents were required to retain the "draft" moniker, even though we considered them fully fledged and ready for use in production systems.  Publishing independently, we're no longer bound by this requirement, however it does mean that we can no longer rely on the IETF document publishing infrastructure.  We have to build our own.
+When we last published a specification, we used the IETF's [Internet-Draft Publication Process](https://authors.ietf.org/en/rfc-publication-process).  This meant that our documents were required to retain the "draft" moniker, even though we considered them fully fledged and ready for use in production systems.  Publishing independently, we're no longer bound by this requirement, however it does mean that we can no longer rely on the IETF document publishing infrastructure.  We have to build our own.
 
 The foundation of our publication process is built on several ideals, and I'll cover the major ones in the next few sections.  By focusing on these pillars, we can ensure a safe and easy upgrade path for our users as the specification continues to evolve.
 
@@ -79,7 +79,7 @@ First, the incompatibilities:
 
 Additionally, but not breaking:
 
-- The recommended output format introduced in Draft 2019-09 has been extracted to its own specification.  The two driving factors for this decision were that different output formats could be more beneficial to different consumers and having the output versioned separately from the specification would more easily allow then to evolve independently.
+- The recommended output format introduced in Draft 2019-09 has been extracted to its own specification.  The two driving factors for this decision were that different output formats could be more beneficial to different consumers and having the output versioned separately from the specification would more easily allow them to evolve independently.
 - Many keyword interaction behaviors were defined by the annotations that were produced at various levels of evaluation.  This led to some confusion and unnecessary requirements, so we've loosened the language around this to allow tooling to figure out how they want to implement the behavior rather than prescribing a particular approach.
 - General clean-up and clarifications to more accurately define behavior.
 
