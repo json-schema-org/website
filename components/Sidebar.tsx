@@ -380,7 +380,11 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
-          <DocLink uri='/overview/pro-help' label='Pro Help' setOpen={setOpen} />
+          <DocLink
+            uri='/overview/pro-help'
+            label='Pro Help'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/overview/similar-technologies'
             label='Similar Technologies'
