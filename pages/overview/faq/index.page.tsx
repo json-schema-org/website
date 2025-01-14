@@ -26,8 +26,8 @@ export default function Content() {
       <NextPrevButton
         prevLabel='Case Studies'
         prevURL='/overview/case-studies'
-        nextLabel='Similar Technologies'
-        nextURL='/overview/similar-technologies'
+        nextLabel='Pro Help'
+        nextURL='/overview/pro-help'
       />
       <DocsHelp markdownFile={markdownFile} />
     </SectionContext.Provider>
