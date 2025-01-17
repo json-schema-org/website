@@ -3047,3 +3047,62 @@
   source: 'https://github.com/pubg/protoc-gen-jsonschema'
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
+
+- name: swift-json-schema
+  description: 'swift-json-schema support generating JSON schema using Swift result builders or from Swift types directly using macros.'
+  environments: ['macOS', 'iOS', 'tvOS', 'watchOS', 'visionOS', 'Linux']
+  toolingTypes: ['validator', 'code-to-schema', 'model-to-schema']
+  languages: ['Swift']
+  maintainers:
+    - name: 'Austin Evans'
+      username: 'ajevans99'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/ajevans99/swift-json-schema'
+  supportedDialects:
+    draft: ['2020-12']
+
+- name: 'Liquid JSON Schema Editor'
+  description: 'Graphical JSON Schema editor for draft-04, draft-06, draft-07, 2019-09 and 2020-12, with split source code and graphical editing. Includes validation of JSON files based on JSON Schema, JSON Sample Generator and JSON Schema Documentation Generator.'
+  toolingTypes: ['validator', 'documentation', 'editor']
+  languages: ['C#', '.NET']
+  environments: ['Microsoft Windows']
+  maintainers:
+    - name: 'Liquid Technologies Ltd'
+      platform: 'other'
+  creators:
+    - name: 'Liquid Technologies Ltd'
+      platform: 'other'
+  homepage: 'https://www.liquid-technologies.com/json-schema-editor'
+  license: 'Proprietary and Freeware'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+
+- name: 'JSON Schema Editor'
+  description: 'The JSON schema editor provides an easy UI for building JSON Schema. In addition, users can convert their json schema into SQL, GraphQL, and Protocol Buffers formats. Lastly this tool allows users to generate sample data that conforms to the json schema they have defined.'
+  toolingTypes: ['editor']
+  maintainers:
+    - name: 'robclarabase'
+      username: 'robclarabase'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/Clarabase/json-schema-editor'
+  homepage: 'https://json-schema-editor.onrender.com/'
+  supportedDialects:
+    draft: ['2020-12']
+
+- name: JSV
+  description: 'A generic JSON Schema validator for Elixir'
+  environments: ['Linux', 'MacOS', 'Windows','Embedded platform']
+  toolingTypes: ['validator']
+  languages: ['Elixir', 'Erlang']
+  maintainers:
+    - name: 'Ludovic Demblans'
+      username: 'lud'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/lud/jsv'
+  homepage: 'https://hex.pm/packages/jsv'
+  supportedDialects:
+    draft: ['2020-12', '7']
+  toolingListingNotes: 'JSON Schema Validation for Elixir according to the latest specifications. Supports compile-time schema builds, custom dialects and custom formats.'

@@ -1,6 +1,12 @@
 ---
 title: Specification [#section]
 section: docs
+prev: 
+  label: Common Interfaces across Implementations
+  url: /implementers/interfaces
+next: 
+  label: Specification Links
+  url: /specification-links
 ---
 
 The current version is *2020-12*!
