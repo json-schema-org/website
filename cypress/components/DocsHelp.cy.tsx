@@ -262,5 +262,12 @@ describe('DocsHelp Component', () => {
         expectedGitRedirect,
       );
     });
+    const customLink = 'https://example.com/custom-docs';
+    cy.mount(<DocsHelp fileRenderType={customLink} />);
+    cy.get('[data-test="edit-on-github-link"]').should(
+      'have.attr',
+      'href',
+      customLink,
+    );
   });
 });
