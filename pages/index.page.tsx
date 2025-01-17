@@ -108,6 +108,8 @@ const Home = (props: any) => {
   const [ccopter_logo, setCCopter_logo] = useState('');
   const [octue_logo, setOctue_logo] = useState('');
   const [apideck_logo, setApideck_logo] = useState('');
+  const [rxdb_logo, setRxdb_logo] = useState('');
+  const [wda_logo, setWDA_logo] = useState('');
 
   useEffect(() => {
     if (resolvedTheme === 'dark') {
@@ -125,6 +127,8 @@ const Home = (props: any) => {
       setCCopter_logo('/img/logos/sponsors/copycopter-white.png');
       setOctue_logo('/img/logos/sponsors/octue-white.svg');
       setApideck_logo('/img/logos/sponsors/apideck-white.svg');
+      setRxdb_logo('/img/logos/sponsors/rxdb.svg');
+      setWDA_logo('/img/logos/sponsors/wda-dark.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -140,6 +144,8 @@ const Home = (props: any) => {
       setCCopter_logo('/img/logos/sponsors/copycopter.png');
       setOctue_logo('/img/logos/sponsors/octue-black.svg');
       setApideck_logo('/img/logos/sponsors/apideck.svg');
+      setRxdb_logo('/img/logos/sponsors/rxdb.svg');
+      setWDA_logo('/img/logos/sponsors/wda.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -655,7 +661,30 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-                <img src={apideck_logo} className=' w-44' />
+                <img
+                  src={apideck_logo}
+                  className=' w-44'
+                  alt='The Realtime Unified API
+for Accounting integrations'
+                />
+              </a>
+              <a href='https://rxdb.info/' target='_blank' rel='noreferrer'>
+                <img
+                  src={rxdb_logo}
+                  className=' w-44'
+                  alt='The local Database for JavaScript Applications'
+                />
+              </a>
+              <a
+                href='https://topagency.webflow.io'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={wda_logo}
+                  className=' w-44'
+                  alt='best website design agencies'
+                />
               </a>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
