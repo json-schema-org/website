@@ -234,30 +234,23 @@ describe('DocsHelp Component', () => {
 
   // This test is to check component render correctly with different markdown files
   it('should render component with different markdown files and validate gitredirect', () => {
-    const fileRenderTypes: (
-      | 'tsx'
-      | 'indexmd'
-      | '_indexmd'
-      | '_md'
-      | 'sponsors'
-      | 'code_of_conduct'
-    )[] = ['tsx', '_indexmd', 'indexmd', '_md', 'sponsors', 'code_of_conduct'];
+    const fileRenderTypes: ('tsx' | 'indexmd' | '_indexmd' | '_md')[] = [
+      'tsx',
+      '_indexmd',
+      'indexmd',
+      '_md',
+    ];
 
     fileRenderTypes.forEach((type) => {
       let expectedGitRedirect = '';
-
-      if (type === 'tsx') {
+      if (typeof type === 'string' && type.startsWith('https://')) {
+        expectedGitRedirect = type;
+      } else if (type === 'tsx') {
         expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/index.page.tsx'}`;
       } else if (type === '_indexmd') {
         expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/_index.md'}`;
       } else if (type === 'indexmd') {
         expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '/index.md'}`;
-      } else if (type === 'sponsors') {
-        expectedGitRedirect =
-          'https://github.com/json-schema-org/community/blob/main/programs/sponsors/sponsors.md';
-      } else if (type === 'code_of_conduct') {
-        expectedGitRedirect =
-          'https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md';
       } else {
         expectedGitRedirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(mockRouter.asPath) + '.md'}`;
       }

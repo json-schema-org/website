@@ -3,13 +3,7 @@ import React, { FormEvent, useRef, useState } from 'react';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 
 interface DocsHelpProps {
-  fileRenderType?:
-    | '_indexmd'
-    | 'indexmd'
-    | 'tsx'
-    | '_md'
-    | 'sponsors'
-    | 'code_of_conduct';
+  fileRenderType?: '_indexmd' | 'indexmd' | 'tsx' | '_md' | string;
 }
 export function DocsHelp({ fileRenderType }: DocsHelpProps) {
   const router = useRouter();
@@ -19,18 +13,17 @@ export function DocsHelp({ fileRenderType }: DocsHelpProps) {
   const [error, setError] = useState('');
   const feedbackFormRef = useRef<HTMLFormElement>(null);
   let gitredirect = '';
-  if (fileRenderType === 'tsx') {
+  if (
+    typeof fileRenderType === 'string' &&
+    fileRenderType.startsWith('https://')
+  ) {
+    gitredirect = fileRenderType;
+  } else if (fileRenderType === 'tsx') {
     gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/index.page.tsx'}`;
   } else if (fileRenderType === '_indexmd') {
     gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/_index.md'}`;
   } else if (fileRenderType === 'indexmd') {
     gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '/index.md'}`;
-  } else if (fileRenderType === 'sponsors') {
-    gitredirect =
-      'https://github.com/json-schema-org/community/blob/main/programs/sponsors/sponsors.md';
-  } else if (fileRenderType === 'code_of_conduct') {
-    gitredirect =
-      'https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md';
   } else {
     gitredirect = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath) + '.md'}`;
   }

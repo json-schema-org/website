@@ -17,9 +17,6 @@ export async function getStaticProps() {
     },
   };
 }
-
-export default function ContentExample({ blocks }: { blocks: any[] }) {
-  const fileRenderType = '_indexmd';
 export default function ContentExample({
   blocks,
 }: {
@@ -27,7 +24,7 @@ export default function ContentExample({
   frontmatter: any;
   content: any;
 }) {
-
+  const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
