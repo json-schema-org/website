@@ -1,19 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  async redirects() {
-    return [
-      {
-        source: '/slack',
-        destination: 'https://join.slack.com/t/json-schema/shared_invite/zt-2ued3v79g-Tk_aI32ZdW~ST0EWpGBwNQ',
-        permanent: false,
-      },
-      {
-        source: '/slack-redirect',
-        destination: 'https://join.slack.com/t/json-schema/shared_invite/zt-2ued3v79g-Tk_aI32ZdW~ST0EWpGBwNQ',
-        permanent: false,
-      }
-    ];
-  },
   reactStrictMode: true,
   output: 'export',
   pageExtensions: ['page.tsx'],

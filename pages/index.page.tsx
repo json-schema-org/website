@@ -165,10 +165,10 @@ const Home = (props: any) => {
                 Getting started
               </Link>
               <a
-                href="/slack"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl"
+                href='https://join.slack.com/t/json-schema/shared_invite/zt-2ued3v79g-Tk_aI32ZdW~ST0EWpGBwNQ'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
                 Join Slack
               </a>
