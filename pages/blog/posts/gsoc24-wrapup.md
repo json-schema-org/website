@@ -1,6 +1,6 @@
 ---
 title: "Celebrating JSON Schema’s Google Summer of Code 2024 Journey"
-date: "2025-01-06"
+date: "2025-01-17"
 tags:
   - News
 type: Community
