@@ -270,4 +270,14 @@ describe('DocsHelp Component', () => {
       customLink,
     );
   });
+  // Check if the "Edit on GitHub" link is present when showEditOption is true
+  it('should render the "Edit on GitHub" link when showEditOption is true', () => {
+    cy.mount(<DocsHelp fileRenderType='indexmd' showEditOption={true} />);
+    cy.get('[data-test="edit-on-github-link"]').should('exist');
+  });
+  // Check if the "Edit on GitHub" link is not present when showEditOption is false
+  it('should not render the "Edit on GitHub" link when showEditOption is false', () => {
+    cy.mount(<DocsHelp fileRenderType='indexmd' showEditOption={false} />);
+    cy.get('[data-test="edit-on-github-link"]').should('not.exist');
+  });
 });
