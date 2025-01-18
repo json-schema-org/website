@@ -125,14 +125,14 @@ const ToolingTable = ({
                         style: { flexBasis: '15%', flexShrink: 0, flexGrow: 0 },
                       }}
                     >
-                      Tooling Type
+                      Language
                     </TableColumnHeader>
                   )}
                   {transform.groupBy !== 'languages' && (
                     <TableColumnHeader
                       attributes={{ style: { flexBasis: '15%' } }}
                     >
-                      Languages
+                      Tooling Type
                     </TableColumnHeader>
                   )}
                   <TableColumnHeader
@@ -192,15 +192,14 @@ const ToolingTable = ({
                           <Tag intent='error'>{tool.status}</Tag>
                         )}
                       </TableCell>
+
                       {transform.groupBy !== 'toolingTypes' && (
                         <TableCell
                           attributes={{
                             style: { flexBasis: '15%' },
                           }}
                         >
-                          {tool.toolingTypes
-                            ?.map((type) => toTitleCase(type, '-'))
-                            .join(', ')}
+                          {tool.languages?.join(', ')}
                         </TableCell>
                       )}
                       {transform.groupBy !== 'languages' && (
@@ -209,7 +208,9 @@ const ToolingTable = ({
                             style: { flexBasis: '15%' },
                           }}
                         >
-                          {tool.languages?.join(', ')}
+                          {tool.toolingTypes
+                            ?.map((type) => toTitleCase(type, '-'))
+                            .join(', ')}
                         </TableCell>
                       )}
                       <TableCell
