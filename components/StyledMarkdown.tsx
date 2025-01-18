@@ -388,7 +388,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ label }) => {
                 return (
                   <div className='flex flex-row items-center text-blue-500 text-lg font-semibold mb-6 mt-10'>
-                    <img src='/icons/star.svg' className='h-5 w-5 mr-2 mb-1' />
+                    <Image
+                      src='/icons/star.svg'
+                      width={20}
+                      height={20}
+                      className='mr-2 mb-1'
+                      alt='star'
+                    />
                     {label}
                   </div>
                 );
@@ -398,7 +404,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ label }) => {
                 return (
                   <div className='inline-flex flex-row items-center text-blue-500 font-semibold'>
-                    <img src='/icons/star.svg' className='h-3 w-3 mr-1' />
+                    <Image
+                      src='/icons/info-yellow.svg'
+                      className='mr-1'
+                      width={12}
+                      height={12}
+                      alt='info yellow'
+                    />
                     {label}
                   </div>
                 );
@@ -414,10 +426,12 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/info-yellow.svg'
                         className='h-7 w-7 mr-3'
-                        alt=''
+                        width={28}
+                        height={28}
+                        alt='info yellow'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -435,10 +449,12 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded dark:bg-slate-900 dark:text-slate-300 text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/info-blue.svg'
-                        className='h-7 w-7 mr-3'
-                        alt=''
+                        className='mr-3'
+                        width={28}
+                        height={28}
+                        alt='info blue'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -456,10 +472,12 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-green-50 px-6 py-4 border border-green-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/bulb.svg'
-                        className='h-7 w-7 mr-3'
-                        alt=''
+                        className='mr-3'
+                        width={28}
+                        height={28}
+                        alt='bulb'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -477,10 +495,12 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-red-50 px-6 py-4 border border-red-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/warning.svg'
-                        className='h-7 w-7 mr-3'
-                        alt=''
+                        className='mr-3'
+                        width={28}
+                        height={28}
+                        alt='warning'
                       />
                       <div className='font'>{children}</div>
                     </div>

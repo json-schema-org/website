@@ -12,6 +12,7 @@ import readingTime from 'reading-time';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import CarbonAds from '~/components/CarbonsAds';
+import Image from 'next/image';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
@@ -60,7 +61,13 @@ export default function StaticMarkdownPage({
                   href='/blog'
                   className='font-semibold text-sm pb-0 lg:pb-5 text-slate-700 dark:text-slate-300 dark:hover:text-slate-100 hover:text-slate-800 inline-flex flex-row items-center'
                 >
-                  <img src='/icons/left-arrow.svg' className='h-4 w-4 mr-2' />{' '}
+                  <Image
+                    src='/icons/left-arrow.svg'
+                    width={16}
+                    height={16}
+                    className='h-4 w-4 mr-2'
+                    alt='Left arrow icon'
+                  />
                   Go back to blog
                 </Link>
                 <div className='pt-4 lg:border-t border-none lg:border-r border-slate-100'>
