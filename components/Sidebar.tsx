@@ -181,7 +181,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
-        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center  lg:hidden '>
+        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden '>
           <div
             className='z-[150] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
             onMouseDown={(e) => e.stopPropagation()}
@@ -197,15 +197,12 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             {getStartedPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Getting Started</h3>
             )}
-
             {getReferencePath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Reference</h3>
             )}
-
             {getSpecificationPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Specification</h3>
             )}
-
             {router.pathname === null && (
               <h3 className='text-white ml-12'>Docs</h3>
             )}
@@ -232,17 +229,19 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
         <div
           className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}
         >
-          <div className='flex flex-col  dark:bg-slate-900'>
+          <div className='flex flex-col dark:bg-slate-900'>
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
         <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
-          <div className='hidden lg:block mt-24'>
-            <DocsNav open={open} setOpen={setOpen} />
-            <CarbonAds
-              className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
-              variant='sidebar'
-            />
+          <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
+            <div className='h-full overflow-y-auto scrollbar-hidden'>
+              <DocsNav open={open} setOpen={setOpen} />
+              <CarbonAds
+                className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
+                variant='sidebar'
+              />
+            </div>
           </div>
           <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'>
             {children}
