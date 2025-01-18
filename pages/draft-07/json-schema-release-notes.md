@@ -26,8 +26,8 @@ more clearly than before.
 * No keywords were removed
 * Some keywords were moved from Hyper-Schema, and two of those were renamed
 
-keyword | change | notes
----- | ---- | ----
+| keyword | change | notes
+| ---- | ---- | ----
 [`"$comment"`](../../draft-07/json-schema-core.html#rfc.section.9) | added to Core | Intended for notes to schema maintainers, as opposed to [`"description"`](../../draft-07/json-schema-validation.html#rfc.section.10.1) which is suitable for display to end users
 [`"if"`, `"then"`, `"else"`](../../draft-07/json-schema-validation.html#rfc.section.6.6) | added to Validation | explicit conditional schema evaluation 
 [`"readOnly"`](../../draft-07/json-schema-validation.html#rfc.section.10.3) | moved from Hyper-Schema to Validation | not limited to hypermedia environments
@@ -41,8 +41,8 @@ Note that the `"content*"` keywords do not _require_ validation.
 
 Numerous formats were added, clarified, or restored from older drafts.
 
-format | change | notes
----- | ---- | ----
+| format | change | notes
+| ---- | ---- | ----
 [`"iri"`](../../draft-07/json-schema-validation.html#rfc.section.7.3.5) | added | I18N equivalent of `"uri"`
 [`"iri-reference"`](../../draft-07/json-schema-validation.html#rfc.section.7.3.5) | added | I18N equivalent of `"uri-reference"`
 [`"uri-template"`](../../draft-07/json-schema-validation.html#rfc.section.7.3.6) | noted IRI support | There is no separate IRI Template standard
@@ -102,8 +102,8 @@ that its use for JSON Schema was not correct.  The new guidance for
 [what relations to use](../../draft-07/json-schema-core.html#rfc.section.11.1)
 to link instances to schemas is:
 
-link relation | change | notes
----- | ---- | ----
+| link relation | change | notes
+| ---- | ---- | ----
 "describedBy" | no change | network-accessible URL
 "profile" | removed; use "schema" | opaque identifying URI
 "schema" | added | opaque identifying URI
