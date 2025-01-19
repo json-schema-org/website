@@ -68,6 +68,21 @@ describe('DarkModeToggle Component', () => {
     });
   });
 
+  // Test closing the menu when clicking outside
+  it('should close the menu when clicking outside', () => {
+    // Click on the toggle button to open the menu
+    cy.get(TOGGLE_BUTTON).click();
+
+    // Check if the menu is open
+    cy.get(THEME_DROPDOWN).should('have.css', 'display', 'block');
+
+    // Simulate clicking outside the dropdown
+    cy.get('body').click(0, 0); // Click at the top-left corner of the body
+
+    // Check if the menu is closed
+    cy.get(THEME_DROPDOWN).should('have.css', 'display', 'none');
+  });
+
   // Test Theme Selection Functionality
   describe('Theme Selection', () => {
     const themes = [
