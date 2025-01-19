@@ -579,19 +579,22 @@ const Home = (props: any) => {
               If you ❤️ JSON Schema consider becoming a{' '}
               <a
                 href='https://json-schema.org/overview/sponsors'
-                className='border-b border-black'
+                className='border-b border-black dark:border-white'
               >
                 sponsor
               </a>
               , a{' '}
               <a
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
-                className='border-b border-black '
+                className='border-b border-black dark:border-white'
               >
                 backer
               </a>{' '}
               or hiring our{' '}
-              <a href='/pro-help' className='border-b border-black'>
+              <a
+                href='/pro-help'
+                className='border-b border-black dark:border-white'
+              >
                 pro services
               </a>
               .
@@ -599,7 +602,7 @@ const Home = (props: any) => {
             <p className='w-5/6 lg:w-3/5 mx-auto'>
               <a
                 href='https://opencollective.com/json-schema'
-                className='border-b border-black'
+                className='border-b border-black dark:border-white'
               >
                 Support us!
               </a>
@@ -886,7 +889,7 @@ for Accounting integrations'
               <br />
               <a
                 href='mailto:info@json-schema.org'
-                className='border-b border-black'
+                className='border-b border-black dark:border-white'
               >
                 Email us
               </a>{' '}
