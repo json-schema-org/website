@@ -89,6 +89,7 @@ export default function DarkModeToggle() {
         />
       </button>
       <div
+        onMouseLeave={() => setShowSelect(false)}
         className={`absolute right-0 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max ${
           showSelect ? 'block' : 'hidden'
         }`}
