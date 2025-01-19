@@ -3128,7 +3128,6 @@
   description: 'The tool supports static type inference for schema definitions and ensures validation based on the JSON-Schema-test-suite.'
   toolingTypes: ['validator']
   languages: ['TypeScript']
-  environments: ['Web (Online)']
   maintainers:
     - name: 'Beom-Ku Jung'
       username: 'imhonglu'
