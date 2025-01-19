@@ -1,5 +1,5 @@
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 
@@ -46,8 +46,30 @@ export default function DarkModeToggle() {
     }
   }, [theme, resolvedTheme]);
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowSelect(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className='relative w-10 h-10 dark-mode-toggle-container'>
+    <div
+      ref={dropdownRef}
+      className='relative w-10 h-10 dark-mode-toggle-container'
+    >
       <button
         onClick={() => setShowSelect(!showSelect)}
         className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
