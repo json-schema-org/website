@@ -3123,3 +3123,19 @@
   supportedDialects:
     draft: ['2020-12', '7']
   toolingListingNotes: 'JSON Schema Validation for Elixir according to the latest specifications. Supports compile-time schema builds, custom dialects and custom formats.'
+
+- name: '@imhonglu/json-schema'
+  description: 'The tool supports static type inference for schema definitions and ensures validation based on the JSON-Schema-test-suite.'
+  toolingTypes: ['validator']
+  languages: ['TypeScript']
+  environments: ['Web (Online)']
+  maintainers:
+    - name: 'Beom-Ku Jung'
+      username: 'imhonglu'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/imhonglu/new-wheels/tree/main/libs/json-schema'
+  homepage: 'https://github.com/imhonglu/new-wheels/tree/main/libs/json-schema'
+  supportedDialects:
+    draft: ['2020-12']
+  toolingListingNotes: 'Built for Node.js and browsers, it supports static type inference for schema definitions.'
