@@ -162,7 +162,6 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
   </tr>
   <tr>
     <td>
-
 ```jsonc
 // tree schema, extensible
 {
@@ -189,7 +188,6 @@ Here's how you would covert a schema using `$recursiveRef` to use `$dynamicRef`.
 ```
   </td>
     <td>
-
 ```jsonc
 // tree schema, extensible
 {

@@ -9,7 +9,7 @@ import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import CarbonAds from './CarbonsAds';
 import { useTheme } from 'next-themes';
 import ExternalLinkIcon from '../public/icons/external-link-black.svg';
-
+import Image from 'next/image';
 const DocLink = ({
   uri,
   label,
@@ -181,7 +181,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
-        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center  lg:hidden '>
+        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden '>
           <div
             className='z-[150] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
             onMouseDown={(e) => e.stopPropagation()}
@@ -197,15 +197,12 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             {getStartedPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Getting Started</h3>
             )}
-
             {getReferencePath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Reference</h3>
             )}
-
             {getSpecificationPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Specification</h3>
             )}
-
             {router.pathname === null && (
               <h3 className='text-white ml-12'>Docs</h3>
             )}
@@ -232,17 +229,19 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
         <div
           className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}
         >
-          <div className='flex flex-col  dark:bg-slate-900'>
+          <div className='flex flex-col dark:bg-slate-900'>
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
         <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
-          <div className='hidden lg:block mt-24'>
-            <DocsNav open={open} setOpen={setOpen} />
-            <CarbonAds
-              className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
-              variant='sidebar'
-            />
+          <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
+            <div className='h-full overflow-y-auto scrollbar-hidden'>
+              <DocsNav open={open} setOpen={setOpen} />
+              <CarbonAds
+                className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
+                variant='sidebar'
+              />
+            </div>
           </div>
           <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'>
             {children}
@@ -330,7 +329,13 @@ export const DocsNav = ({
           onClick={handleClickDoc}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${overview_icon}`} alt='eye icon' className='mr-2' />
+            <Image
+              src={`${overview_icon}`}
+              alt='eye icon'
+              height={20}
+              width={22}
+              className='mr-2'
+            />
             <SegmentHeadline label='Overview' />
           </div>
           <svg
@@ -355,7 +360,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getDocs })}
+          className={classnames(
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getDocs,
+              'max-h-80 opacity-100': active.getDocs,
+            },
+          )}
           id='overview'
         >
           <DocLink
@@ -406,7 +418,13 @@ export const DocsNav = ({
           onClick={handleClickGet}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
+            <Image
+              src={`${learn_icon}`}
+              alt='compass icon'
+              height={20}
+              width={20}
+              className='mr-2'
+            />
             <SegmentHeadline label='Getting Started' />
           </div>
           <svg
@@ -431,7 +449,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getStarted })}
+          className={classnames(
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getStarted,
+              'max-h-80 opacity-100': active.getStarted,
+            },
+          )}
           id='getStarted'
         >
           <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
@@ -473,7 +498,13 @@ export const DocsNav = ({
           onClick={handleClickReference}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${reference_icon}`} alt='book icon' className='mr-2' />
+            <Image
+              src={`${reference_icon}`}
+              alt='book icon'
+              height={20}
+              width={20}
+              className='mr-2'
+            />
             <SegmentHeadline label='Reference' />
           </div>
           <svg
@@ -498,7 +529,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getReference })}
+          className={classnames(
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getReference,
+              'max-h-80 overflow-y-auto opacity-100': active.getReference,
+            },
+          )}
           id='reference'
         >
           <DocLink
@@ -661,7 +699,13 @@ export const DocsNav = ({
           onClick={handleClickSpec}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${spec_icon}`} alt='clipboard icon' className='mr-2' />
+            <Image
+              src={`${spec_icon}`}
+              alt='clipboard icon'
+              height={20}
+              width={20}
+              className='mr-2'
+            />
             <SegmentHeadline label='Specification' />
           </div>
           <svg
@@ -687,7 +731,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getSpecification })}
+          className={classnames(
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getSpecification,
+              'max-h-80 opacity-100': active.getSpecification,
+            },
+          )}
           id='specification'
         >
           <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
