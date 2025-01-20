@@ -37,8 +37,8 @@ export default function NextPrevButton({
       {prevURL && prevLabel ? (
         <div className='h-auto w-1/2'>
           <div
-            className='cursor-pointer rounded border border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:hover:shadow-2xl dark:drop-shadow-lg 
-          lg:text-left'
+            className='cursor-pointer rounded border border-gray-200 bg-slate-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-500 hover:shadow-xl dark:bg-slate-900 dark:shadow-xl dark:hover:shadow-2xl dark:drop-shadow-lg 
+          sm:text-left'
           >
             <Link href={prevURL}>
               <div className='text-primary dark:text-slate-300 flex flex-row gap-5 text-[18px]'>
@@ -65,9 +65,9 @@ export default function NextPrevButton({
 
       {nextURL && nextLabel ? (
         <div className='h-auto w-1/2'>
-          <div className='h-full cursor-pointer rounded border border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:drop-shadow-lg dark:hover:shadow-2xl lg:text-right'>
+          <div className='h-full cursor-pointer rounded border border-gray-200 bg-slate-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-500 hover:shadow-xl dark:bg-slate-900 dark:shadow-xl dark:drop-shadow-lg dark:hover:shadow-2xl sm:text-right'>
             <Link href={nextURL}>
-              <div className='text-primary  dark:text-slate-300 flex flex-row-reverse gap-5 text-[18px]'>
+              <div className='text-primary dark:text-slate-300 flex flex-row-reverse gap-5 text-[18px]'>
                 <Image
                   src={'/icons/arrow.svg'}
                   height={10}
