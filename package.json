@@ -40,7 +40,7 @@
     "jszip": "^3.10.1",
     "markdown-to-jsx": "^7.7.3",
     "moment": "2.30.1",
-    "next": "14.2.14",
+    "next": "15.1.5",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.3.0",
     "node-ical": "0.20.1",
