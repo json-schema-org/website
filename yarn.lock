@@ -8357,7 +8357,7 @@ __metadata:
     react-text-truncate: "npm:^0.19.0"
     reading-time: "npm:^1.5.0"
     slate: "npm:^0.112.0"
-    slate-react: "npm:^0.108.0"
+    slate-react: "npm:^0.112.0"
     slugify: "npm:^1.6.5"
     tailwindcss: "npm:^3.3.5"
     typescript: "npm:5.7.2"
@@ -10724,9 +10724,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"slate-react@npm:^0.108.0":
-  version: 0.108.0
-  resolution: "slate-react@npm:0.108.0"
+"slate-react@npm:^0.112.0":
+  version: 0.112.0
+  resolution: "slate-react@npm:0.112.0"
   dependencies:
     "@juggle/resize-observer": "npm:^3.4.0"
     direction: "npm:^1.0.4"
@@ -10739,7 +10739,8 @@ __metadata:
     react: ">=18.2.0"
     react-dom: ">=18.2.0"
     slate: ">=0.99.0"
-  checksum: 10c0/8c5aedf3d82842b504f448cdc632cf1725dcca6657a41f46f97906c886a53bf4e30d18ced9088cb664af41c5087dd8451fae206fce1dc3a248a7dc8800dd226c
+    slate-dom: ">=0.110.2"
+  checksum: 10c0/2d9b88e68f9b6dd17a82551f0e68d30a80e42919076e057c7cb5d512a975ad8f641f575ea20cb64cd498016b23ffb467bb447946b88feee24c703777ef0ba79b
   languageName: node
   linkType: hard
 
