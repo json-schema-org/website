@@ -64,6 +64,7 @@ function isValidCategory(category: any): category is blogCategories {
     'Engineering',
     'Update',
     'Opinion',
+    'Documentation',
   ].includes(category);
 }
 
