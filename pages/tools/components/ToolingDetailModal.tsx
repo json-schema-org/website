@@ -8,6 +8,7 @@ import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 import Image from 'next/image';
 import Tag from './ui/Tag';
+import Markdown from 'markdown-to-jsx';
 
 export default function ToolingDetailModal({
   tool,
@@ -133,7 +134,9 @@ export default function ToolingDetailModal({
             {tool.toolingListingNotes && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Tooling Listing Notes</h3>
-                <p>{tool.toolingListingNotes}</p>
+                <div className='prose dark:prose-invert'>
+                  <Markdown>{tool.toolingListingNotes}</Markdown>
+                </div>
               </div>
             )}
 
