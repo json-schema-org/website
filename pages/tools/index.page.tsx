@@ -167,7 +167,7 @@ export default function ToolingPage({
           </div>
 
           <main
-            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 ${isSidebarOpen ? 'hidden lg:block' : ''}`} 
+            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 ${isSidebarOpen ? 'hidden lg:block' : ''}`}
             style={{ marginLeft: '19rem' }}
           >
             <Headline1>JSON Schema Tooling</Headline1>
