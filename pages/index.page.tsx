@@ -6,13 +6,10 @@ import matter from 'gray-matter';
 const PATH = 'pages/blog/posts';
 import readingTime from 'reading-time';
 import Link from 'next/link';
-import TextTruncate from 'react-text-truncate';
-import Image from 'next/image';
 import {
   fetchRemoteICalFile,
   printEventsForNextWeeks,
 } from '../lib/calendarUtils';
-import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
 
 /* eslint-disable */
@@ -107,16 +104,9 @@ const Home = (props: any) => {
   const [common_room_logo, setCommon_room_logo] = useState('');
   const [slack_logo, setSlack_logo] = useState('');
   const [ccopter_logo, setCCopter_logo] = useState('');
-  const [isClient, setIsClient] = useState(false);
   const [octue_logo, setOctue_logo] = useState('');
   const [apideck_logo, setApideck_logo] = useState('');
-  const [rxdb_logo, setRxdb_logo] = useState('');
-  const [wda_logo, setWDA_logo] = useState('');
 
-  useEffect(() => {
-    // Ensure the component is only rendered client-side
-    setIsClient(true);
-  }, []);
   useEffect(() => {
     if (resolvedTheme === 'dark') {
       setAsyncapi_logo('/img/logos/dark-mode/asyncapi_white.svg');
@@ -133,8 +123,6 @@ const Home = (props: any) => {
       setCCopter_logo('/img/logos/sponsors/copycopter-white.png');
       setOctue_logo('/img/logos/sponsors/octue-white.svg');
       setApideck_logo('/img/logos/sponsors/apideck-white.svg');
-      setRxdb_logo('/img/logos/sponsors/rxdb.svg');
-      setWDA_logo('/img/logos/sponsors/wda-dark.svg');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -150,8 +138,6 @@ const Home = (props: any) => {
       setCCopter_logo('/img/logos/sponsors/copycopter.png');
       setOctue_logo('/img/logos/sponsors/octue-black.svg');
       setApideck_logo('/img/logos/sponsors/apideck.svg');
-      setRxdb_logo('/img/logos/sponsors/rxdb.svg');
-      setWDA_logo('/img/logos/sponsors/wda.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -189,38 +175,22 @@ const Home = (props: any) => {
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
-                {isClient && (
-                  <>
-                    <Image
-                      src='/img/logos/usedby/zapier-logo_white.png'
-                      className='w-40 mx-auto'
-                      alt='zapier'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/microsoft-white.png'
-                      className='w-40 mx-auto'
-                      alt='microsoft'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/postman-white.png'
-                      className='w-40 mx-auto'
-                      alt='postman'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/github-white.png'
-                      className='w-40 mx-auto'
-                      alt='github'
-                      height={40}
-                      width={160}
-                    />
-                  </>
-                )}
+                <img
+                  src='/img/logos/usedby/zapier-logo_white.png'
+                  className='w-40 mx-auto'
+                />
+                <img
+                  src='/img/logos/usedby/microsoft-white.png'
+                  className='w-40 mx-auto'
+                />
+                <img
+                  src='/img/logos/usedby/postman-white.png'
+                  className='w-40 mx-auto'
+                />
+                <img
+                  src='/img/logos/usedby/github-white.png'
+                  className='w-40 mx-auto'
+                />
               </div>
 
               <p className='text-white mx-4 my-5 dark:text-slate-400'>
@@ -309,17 +279,10 @@ const Home = (props: any) => {
 
         {/* SidebySide section*/}
         <section className='max-w-[1400px] w-full lg:flex lg:gap-20 my-16 '>
-          {isClient && (
-            <>
-              <Image
-                src='/img/home-page/community-illustration.svg'
-                className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]'
-                alt='community'
-                height={600}
-                width={800}
-              />
-            </>
-          )}
+          <img
+            src='/img/home-page/community-illustration.svg'
+            className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]'
+          />
           <div className='w-5/6 md:w-3/5 mx-auto mt-12'>
             <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4 dark:text-slate-200'>
               Explore the JSON Schema Ecosystem
@@ -353,148 +316,123 @@ const Home = (props: any) => {
               build new connections.
             </p>
           </div>
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
+          <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-[85%]'>
+            <div className='w-full mb-6 dark:shadow-2xl'>
               <Link href='https://json-schema.org/slack'>
-                <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
-                  Join the JSON Schema Slack Workspace!
-                  {isClient && (
-                    <>
-                      <Image
-                        src='/img/logos/Slack-mark.svg'
-                        className='w-8 h-8'
-                        alt='slack'
-                        height={32}
-                        width={32}
-                      />
-                    </>
-                  )}
-                </h3>
-                {isClient && (
-                  <>
-                    <Image
-                      src='/img/home-page/slack-json-schema.png'
-                      className='w-full mb-4'
-                      alt='slack-json-schema'
-                      height={500}
-                      width={300}
+                <div className='p-2 py-8 border rounded-md hover:scale-105 duration-200'>
+                  <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
+                    Join the JSON Schema Slack Workspace!
+                    <img
+                      src='/img/logos/Slack-mark.svg'
+                      className='w-12 h-12'
                     />
-                  </>
-                )}
-
-                {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-                <p className='mb-4 dark:text-slate-300'>
-                  Join our Slack to ask questions, get feedback on your
-                  projects, and connect with +5000 practitioners and experts.
-                </p>
+                  </h3>
+                  <img
+                    src='/img/home-page/slack-json-schema.png'
+                    className='w-full rounded-md'
+                  />
+                </div>
               </Link>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'>
+              {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
+              <p className='my-4 dark:text-slate-300'>
+                Join our Slack to ask questions, get feedback on your projects,
+                and connect with +5000 practitioners and experts. Simply say
+                hello 👋, you're welcome to join us.
+              </p>
+              <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center  dark:border-none'>
                 <a
                   href='https://json-schema.org/slack'
                   className='flex items-center '
                 >
-                  {isClient && (
-                    <>
-                      <Image
-                        src='/img/logos/slack_logo_small-white.svg'
-                        className='w-4 h-4 mr-2 '
-                        width={16}
-                        height={16}
-                        alt='slack'
-                      />
-                    </>
-                  )}
+                  <img
+                    src='/img/logos/slack_logo_small-white.svg'
+                    className='w-4 h-4 mr-2 '
+                  />
                   Join Slack
                 </a>
               </button>
             </div>
             {/* BlogPost Data */}
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
+            <div className='w-full mb-6 dark:shadow-2xl'>
               <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
-                  The JSON Schema Blog
-                </h3>
-                {isClient && (
-                  <>
-                    <Image
-                      src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px]  mb-4'
-                      width={600}
-                      height={232}
-                      alt='blog'
-                    />
-                  </>
-                )}
-                <h3 className='mb-4 font-semibold dark:text-slate-300'>
-                  {' '}
-                  {blogPosts[0].frontmatter.title}
-                </h3>
-                <div className='mb-4'>
-                  <TextTruncate
-                    element='span'
-                    line={4}
-                    text={blogPosts[0].frontmatter.excerpt}
+                <div className='p-2 border rounded-md hover:scale-105 duration-200'>
+                  <h3 className='mb-4 font-semibold pt-1 dark:text-slate-200'>
+                    Latest blog post
+                  </h3>
+                  <img
+                    src={blogPosts[0].frontmatter.cover}
+                    className='w-full rounded-md h-[170px]  mb-2'
                   />
-                </div>
+                  <h3 className='mb-2 font-semibold dark:text-slate-300'>
+                    {' '}
+                    {blogPosts[0].frontmatter.title}
+                  </h3>
+                  <div className='flex ml-2 mb-2 '>
+                    {(blogPosts[0].frontmatter.authors || []).map(
+                      (author: any, index: number) => {
+                        return (
+                          <div
+                            key={index}
+                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                            style={{
+                              backgroundImage: `url(${author.photo})`,
+                              zIndex: 10 - index,
+                            }}
+                          />
+                        );
+                      },
+                    )}
+                    <div className='flex flex-col ml-2'>
+                      <p className='text-sm font-semibold dark:text-slate-300'>
+                        {blogPosts[0].frontmatter.authors.length > 2 ? (
+                          <>
+                            {blogPosts[0].frontmatter.authors
+                              .slice(0, 2)
+                              .map((author: any, index: number) => (
+                                <span key={author.name}>
+                                  {author.name}
+                                  {index === 0 && ' & '}
+                                </span>
+                              ))}
+                            {'...'}
+                          </>
+                        ) : (
+                          blogPosts[0].frontmatter.authors.map(
+                            (author: any) => (
+                              <span key={author.name}>{author.name}</span>
+                            ),
+                          )
+                        )}
+                      </p>
 
-                <div className='flex ml-2 mb-2 '>
-                  {(blogPosts[0].frontmatter.authors || []).map(
-                    (author: any, index: number) => {
-                      return (
-                        <div
-                          key={index}
-                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                          style={{
-                            backgroundImage: `url(${author.photo})`,
-                            zIndex: 10 - index,
-                          }}
-                        />
-                      );
-                    },
-                  )}
-                  <div className='flex flex-col ml-2'>
-                    <p className='text-sm font-semibold dark:text-slate-300'>
-                      {blogPosts[0].frontmatter.authors.length > 2 ? (
-                        <>
-                          {blogPosts[0].frontmatter.authors
-                            .slice(0, 2)
-                            .map((author: any, index: number) => (
-                              <span key={author.name}>
-                                {author.name}
-                                {index === 0 && ' & '}
-                              </span>
-                            ))}
-                          {'...'}
-                        </>
-                      ) : (
-                        blogPosts[0].frontmatter.authors.map((author: any) => (
-                          <span key={author.name}>{author.name}</span>
-                        ))
-                      )}
-                    </p>
-
-                    <div className='text-slate-500 text-sm dark:text-slate-300'>
-                      <span>
-                        {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
-                        min read
-                      </span>
+                      <div className='text-slate-500 text-sm dark:text-slate-300'>
+                        <span>
+                          {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
+                          min read
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </Link>
+              <div className='my-4'>
+                Explore our blogs. Their, you'll get latest information about
+                our blogs, articles, announcements. Let's get upto date with the
+                recent activities in the organization.
+              </div>
 
               <div>
                 <Link
                   href={`/blog/posts/${blogPosts[0].slug}`}
-                  className=' w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center pt-1 semi-bold flex items-center justify-center mx-auto dark:border-none'
+                  className=' w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center semi-bold flex items-center justify-center dark:border-none'
                 >
-                  Read more{' '}
+                  Read all blogs{' '}
                 </Link>
               </div>
             </div>
             <div>
-              <div className='p-4 md:w-full mb-6 mr-4 dark:shadow-2xl'>
-                <h3 className='mb-2 font-semibold dark:text-slate-200'>
+              <div className='p-3 border rounded-md hover:scale-105 duration-200'>
+                <h3 className='mb-4 mt-2 font-semibold dark:text-slate-200'>
                   JSON Schema Community Meetings & Events
                 </h3>
                 <p className='mb-4 dark:text-slate-300'>
@@ -504,29 +442,49 @@ const Home = (props: any) => {
                   third Monday of the month at 12:00 PT.
                 </p>
                 <div className=''>
-                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'>
+                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] mb-4 flex items-center justify-center dark:border-none'>
                     <a href='https://github.com/orgs/json-schema-org/discussions/35'>
                       Open Community Working Meetings
                     </a>
                   </button>
-                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] flex items-center justify-center mx-auto dark:border-none'>
+                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] flex items-center justify-center dark:border-none'>
                     <a href='https://github.com/orgs/json-schema-org/discussions/34/'>
                       Office Hours
                     </a>
                   </button>
                 </div>
               </div>
-              <div className='p-2'>
+              <div className='p-2 border rounded-md hover:scale-105 duration-200 mt-6'>
                 <div>
-                  <Headline4>Upcoming events</Headline4>
+                  <h2 className='text-h5 mb-4 mt-2 font-semibold dark:text-slate-200'>
+                    Upcoming events
+                  </h2>
                   <div>
                     <ul>
                       {props.datesInfo.map((event: any, index: any) => (
                         <li key={index}>
-                          <div className='flex mb-4'>
-                            <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
-                              {event.day}
-                            </p>
+                          <div className='flex mb-4 items-center gap-2'>
+                            <div className='h-12 overflow-hidden w-12 rounded-xl border border-gray-200 flex flex-col'>
+                              <div className='w-full h-5 bg-red-600'>
+                                <p className='text-sm text-center font-semibold text-white my-auto'>
+                                  {new Date(
+                                    event.time.replace(
+                                      /(\d+)(th|st|nd|rd)/,
+                                      '$1',
+                                    ),
+                                  )
+                                    .toLocaleDateString('en-US', {
+                                      weekday: 'short',
+                                    })
+                                    .toUpperCase()}
+                                </p>
+                              </div>
+                              <p className='h-7 text-center text-black'>
+                                {String(event.day).padStart(2, '0')}{' '}
+                              </p>
+                            </div>
+
+                            <div className='w-[1px] h-[25px] bg-gray-300'></div>
                             <div className='text-sm'>
                               <p>{event.title}</p>
                               <p>
@@ -542,7 +500,7 @@ const Home = (props: any) => {
 
                 <a
                   href='https://calendar.google.com/calendar/embed?src=json.schema.community%40gmail.com&ctz=Europe%2FLondon'
-                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
+                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -579,22 +537,19 @@ const Home = (props: any) => {
               If you ❤️ JSON Schema consider becoming a{' '}
               <a
                 href='https://json-schema.org/overview/sponsors'
-                className='border-b border-black dark:border-white'
+                className='border-b border-black'
               >
                 sponsor
               </a>
               , a{' '}
               <a
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
-                className='border-b border-black dark:border-white'
+                className='border-b border-black '
               >
                 backer
               </a>{' '}
               or hiring our{' '}
-              <a
-                href='/pro-help'
-                className='border-b border-black dark:border-white'
-              >
+              <a href='/pro-help' className='border-b border-black'>
                 pro services
               </a>
               .
@@ -602,7 +557,7 @@ const Home = (props: any) => {
             <p className='w-5/6 lg:w-3/5 mx-auto'>
               <a
                 href='https://opencollective.com/json-schema'
-                className='border-b border-black dark:border-white'
+                className='border-b border-black'
               >
                 Support us!
               </a>
@@ -668,154 +623,54 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-                {isClient && (
-                  <>
-                    <Image
-                      src={asyncapi_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='asyncapi'
-                    />
-                  </>
-                )}
+                <img src={asyncapi_logo} className=' w-44' />
               </a>
               <a
                 href='https://www.airbnb.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                {isClient && (
-                  <>
-                    <Image
-                      src={airbnb_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='airbnb'
-                    />
-                  </>
-                )}
+                <img src={airbnb_logo} className=' w-44' />
               </a>
               <a
                 href='https://www.postman.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                {isClient && (
-                  <>
-                    <Image
-                      src={postman_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='postman'
-                    />
-                  </>
-                )}
+                <img src={postman_logo} className=' w-44' />
               </a>
               <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
-                {isClient && (
-                  <>
-                    <Image
-                      src={endjin_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='endjin'
-                    />
-                  </>
-                )}
+                <img src={endjin_logo} className=' w-44' />
               </a>
               <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
-                {isClient && (
-                  <>
-                    <Image
-                      src={llc_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='llc'
-                    />
-                  </>
-                )}
+                <img src={llc_logo} className=' w-44' />
               </a>
               <a
                 href='https://www.vpsserver.com/en-us/'
                 target='_blank'
                 rel='noreferrer'
               >
-                {isClient && (
-                  <>
-                    <Image
-                      src={vpsserver_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='vpsserver'
-                    />
-                  </>
-                )}
+                <img src={vpsserver_logo} className=' w-44' />
               </a>
               <a
                 href='https://www.itflashcards.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                {isClient && (
-                  <>
-                    <Image
-                      src={itflashcards_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='itflashcards'
-                    />
-                  </>
-                )}
+                <img src={itflashcards_logo} className=' w-44' />
               </a>
               <a
                 href='https://www.route4me.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                {isClient && (
-                  <>
-                    <Image
-                      src={route4me_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='route4me'
-                    />
-                  </>
-                )}
+                <img src={route4me_logo} className=' w-44' />
               </a>
               <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
-                {isClient && (
-                  <>
-                    <Image
-                      src={n8n_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='n8n'
-                    />
-                  </>
-                )}
+                <img src={n8n_logo} className=' w-44' />
               </a>
               <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
-                {isClient && (
-                  <>
-                    <Image
-                      src={ccopter_logo}
-                      className=' w-44'
-                      width={176}
-                      height={100}
-                      alt='ccopter'
-                    />
-                  </>
-                )}
+                <img src={ccopter_logo} className=' w-44' />
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
                 <img src={octue_logo} className=' w-44' />
@@ -825,30 +680,7 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
-                  src={apideck_logo}
-                  className=' w-44'
-                  alt='The Realtime Unified API
-for Accounting integrations'
-                />
-              </a>
-              <a href='https://rxdb.info/' target='_blank' rel='noreferrer'>
-                <img
-                  src={rxdb_logo}
-                  className=' w-44'
-                  alt='The local Database for JavaScript Applications'
-                />
-              </a>
-              <a
-                href='https://topagency.webflow.io'
-                target='_blank'
-                rel='noreferrer'
-              >
-                <img
-                  src={wda_logo}
-                  className=' w-44'
-                  alt='best website design agencies'
-                />
+                <img src={apideck_logo} className=' w-44' />
               </a>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
@@ -889,7 +721,7 @@ for Accounting integrations'
               <br />
               <a
                 href='mailto:info@json-schema.org'
-                className='border-b border-black dark:border-white'
+                className='border-b border-black'
               >
                 Email us
               </a>{' '}
@@ -898,30 +730,10 @@ for Accounting integrations'
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
             <a href='https://www.commonroom.io'>
-              {isClient && (
-                <>
-                  <Image
-                    src={common_room_logo}
-                    className='w-48 md:w-56'
-                    width={192}
-                    height={224}
-                    alt='n8n'
-                  />
-                </>
-              )}
+              <img src={common_room_logo} className='w-48 md:w-56' />
             </a>
             <a href='https://json-schema.org/slack'>
-              {isClient && (
-                <>
-                  <Image
-                    src={slack_logo}
-                    className=' w-24 md:w-32'
-                    width={96}
-                    height={128}
-                    alt='slack'
-                  />
-                </>
-              )}
+              <img src={slack_logo} className='w-24 md:w-32' />
             </a>
           </div>{' '}
         </section>
