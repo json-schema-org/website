@@ -1285,6 +1285,21 @@
   source: 'https://github.com/Fatal1ty/mashumaro'
   lastUpdated: '2024-04-30'
 
+- name: Micronaut JSON Schema
+  description: 'Generates JSON Schema from Java classes, supporting the Micronaut framework.'
+  toolingTypes: ['code-to-schema']
+  languages: ['Java']
+  maintainers:
+    - name: 'Micronaut Team'
+      username: 'micronaut-projects'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/micronaut-projects/micronaut-json-schema'
+  homepage: 'https://micronaut.io'
+  supportedDialects:
+    draft: ['2020-12']
+  lastUpdated: '2025-01-22'
+
 - name: drf-jsonschema-serializer
   description: 'drf-jsonschema-serializer generates schemas from Django Rest Framework serializers.'
   toolingTypes: ['code-to-schema']
