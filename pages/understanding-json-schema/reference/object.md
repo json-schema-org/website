@@ -1,6 +1,12 @@
 ---
 title: "object"
 section: docs
+prev: 
+  label: Numeric Types
+  url: /understanding-json-schema/reference/numeric
+next: 
+  label: Array
+  url: /understanding-json-schema/reference/array
 ---
 
 <Keywords label="single: object" />

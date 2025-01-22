@@ -10,6 +10,8 @@ import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import GettingStarted from '~/components/GettingStarted';
 import { TableOfContentMarkdown } from '~/components/TOC';
+import NextPrevButton from '~/components/NavigationButtons';
+
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
     'pages/learn/getting-started-step-by-step/getting-started-step-by-step.md',
@@ -27,7 +29,14 @@ export async function getStaticProps() {
     },
   };
 }
-export default function StyledValidator({ blocks }: { blocks: any[] }) {
+
+export default function StyledValidator({
+  blocks,
+}: {
+  blocks: any[];
+  frontmatter: any;
+  content: any;
+}) {
   const newTitle = 'Creating your first schema';
 
   return (
@@ -40,12 +49,19 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
           <Headline1>{newTitle}</Headline1>
           <StyledMarkdown markdown={blocks[0]} />
           <GettingStarted />
-          <StyledMarkdown markdown={blocks[1]} />
+           <StyledMarkdown markdown={blocks[1]} />
+      <NextPrevButton
+        prevLabel='Overview'
+        prevURL='/learn'
+        nextLabel='Miscellaneous examples'
+        nextURL='/learn/miscellaneous-examples'
+      />
           <DocsHelp />
         </div>
 
         <TableOfContentMarkdown markdown={blocks.join('\n')} depth={2} />
       </div>
+
     </SectionContext.Provider>
   );
 }

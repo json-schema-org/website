@@ -1,6 +1,12 @@
 ---
 title: "Numeric types"
 section: docs
+prev: 
+  label: Regular Expressions
+  url: /understanding-json-schema/reference/regular_expressions
+next: 
+  label: Object
+  url: /understanding-json-schema/reference/object
 ---
 
 <Keywords label="single: integer single: number single: types; numeric" />

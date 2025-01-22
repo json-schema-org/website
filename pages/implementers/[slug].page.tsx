@@ -8,6 +8,7 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import { TableOfContentMarkdown } from '~/components/TOC';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/implementers');
@@ -34,10 +35,17 @@ export default function StaticMarkdownPage({
           </Head>
           <Headline1>{frontmatter.title}</Headline1>
           <StyledMarkdown markdown={content} />
+           <NextPrevButton
+        prevLabel={frontmatter?.prev?.label}
+        prevURL={frontmatter?.prev?.url}
+        nextLabel={frontmatter?.next?.label}
+        nextURL={frontmatter?.next?.url}
+      />
           <DocsHelp markdownFile={markdownFile} />
         </div>
         <TableOfContentMarkdown markdown={content} depth={3} />
       </div>
+
     </SectionContext.Provider>
   );
 }

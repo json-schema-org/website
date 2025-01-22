@@ -1,6 +1,12 @@
 ---
 title: The basics
 section: docs
+prev: 
+  label: What is a Schema?
+  url: /understanding-json-schema/about
+next: 
+  label: JSON Schema reference
+  url: /understanding-json-schema/reference
 ---
 
 In [What is a schema?](../understanding-json-schema/about), we described what a [schema](../learn/glossary#schema) is,

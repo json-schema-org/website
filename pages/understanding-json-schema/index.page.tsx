@@ -13,6 +13,8 @@ const stripHtmlTags = (markdown: string) => {
   const htmlTagRegex = /<\/?[^>]+(>|$)/g;
   return markdown.replace(htmlTagRegex, '');
 };
+import NextPrevButton from '~/components/NavigationButtons';
+
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
@@ -27,7 +29,13 @@ export async function getStaticProps() {
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: any[] }) {
+export default function ContentExample({
+  blocks,
+}: {
+  blocks: any[];
+  frontmatter: any;
+  content: any;
+}) {
   const markdownFile = '_indexPage';
 
   const sanitizedContent = stripHtmlTags(blocks[0]);
@@ -36,10 +44,17 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       <div className='flex pt-4'>
         <div className='w-full pr-5'>
           <StyledMarkdown markdown={sanitizedContent} />
+      <NextPrevButton
+        prevLabel='JSON Schema Keywords'
+        prevURL='/understanding-json-schema/keywords'
+        nextLabel='Conventions used'
+        nextURL='/understanding-json-schema/conventions'
+      />
           <DocsHelp markdownFile={markdownFile} />
         </div>
         <TableOfContentMarkdown markdown={sanitizedContent} depth={3} />
       </div>
+
     </SectionContext.Provider>
   );
 }

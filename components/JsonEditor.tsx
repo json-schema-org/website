@@ -6,6 +6,7 @@ import getPartsOfJson, { SyntaxPart } from '~/lib/getPartsOfJson';
 import jsonSchemaReferences from './jsonSchemaLinks';
 import { useRouter } from 'next/router';
 import { FullMarkdownContext } from '~/context';
+import Image from 'next/image';
 import getScopesOfParsedJsonSchema, {
   JsonSchemaPathWithScope,
   JsonSchemaScope,
@@ -294,16 +295,22 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             }}
             data-test='copy-clipboard-button'
           >
-            <img
+            <Image
               src='/icons/copy.svg'
+              alt='Copy icon'
               title='Copy to clipboard'
+              width={20}
+              height={20}
               className={`opacity-50 hover:opacity-90 duration-150 ${copied ? 'hidden' : ''}`}
-            ></img>
-            <img
+            />
+            <Image
               src='/icons/copied.svg'
+              alt='Copied icon'
+              width={20}
+              height={20}
               title='Copied!'
               className={copied ? '' : 'hidden'}
-            ></img>
+            />
           </div>
           <div
             className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'
@@ -311,7 +318,14 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
           >
             {isJsonSchema ? (
               <>
-                <img src='/logo-white.svg' className='h-4 mr-1.5' /> schema
+                <Image
+                  src='/logo-white.svg'
+                  alt=' logo-white'
+                  width={16}
+                  height={16}
+                  className=' mr-1.5'
+                />{' '}
+                schema
               </>
             ) : (
               <>data</>
@@ -451,7 +465,13 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'
             data-test='not-compliant-to-schema'
           >
-            <img src='/icons/x-mark.svg' className='h-4 w-4 mr-2' />
+            <Image
+              src='/icons/x-mark.svg'
+              alt='Error icon'
+              width={16}
+              height={16}
+              className=' mr-2'
+            />
             not compliant to schema
           </div>
         )}
@@ -460,7 +480,13 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-slate-500/30 text-sm'
             data-test='compliant-to-schema'
           >
-            <img src='/icons/checkmark.svg' className='h-5 w-5 mr-2' />
+            <Image
+              src='/icons/checkmark.svg'
+              alt='Checkmark icon'
+              width={20}
+              height={20}
+              className='mr-2'
+            />
             compliant to schema
           </div>
         )}

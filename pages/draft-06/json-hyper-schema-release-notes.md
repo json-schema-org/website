@@ -31,8 +31,8 @@ While we knew that there were still major gaps in draft-06, we felt that it was 
 
 #### Changes from draft-04 to draft-05
 
-keyword | change | consequence
----- | ---- | ----
+| keyword | change | consequence
+| ---- | ---- | ----
 `"base"` | replaces looking up the nearest "self" link to determine the base URI for `"href"` | if you were relying on "self" links to change the base, set `"base"` explicitly
 `"rel"` | "full" relation removed | use ["item"](https://github.com/json-schema-org/json-schema-spec/issues/295)
 `"rel"` | "instances" and "create" relations removed | use ["collection"](https://github.com/json-schema-org/json-schema-spec/issues/295)
@@ -43,8 +43,8 @@ keyword | change | consequence
 
 #### Changes from draft-05 to draft-06
 
-keyword | change | consequence
----- | ---- | ----
+| keyword | change | consequence
+| ---- | ---- | ----
 `"method"` | *removed* | for HTTP method proposals, see issues [#73](https://github.com/json-schema-org/json-schema-spec/issues/73) and [#296](https://github.com/json-schema-org/json-schema-spec/issues/296) (use either `"method"` or `"allow"` as an extension keyword if needed); indication of how to use `"schema"` and `"encType"` no longer necessary
 `"schema"` | *removed* | use `"hrefSchema"`, `"submissionSchema"`,  or `"targetSchema"` |
 `"encType"` | *removed* | use `"submissionEncType"` for request bodies; no longer needed for URI query strings

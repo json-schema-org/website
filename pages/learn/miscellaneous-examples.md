@@ -1,12 +1,15 @@
 ---
 section: docs
 title: Miscellaneous Examples
+prev : 
+  label: Creating your first Schema
+  url: /learn/getting-started-step-by-step
 next: 
   label: Modelling a file system
   url: /learn/file-system
 ---
 
-In this page, you will find miscellaneous examples illustrating different uses cases to help you get the most out of your JSON Schemas. Each example comes with accompanying JSON data and explanation.
+In this page, you will find miscellaneous examples illustrating different use cases to help you get the most out of your JSON Schemas. Each example comes with accompanying JSON data and explanation.
 
 
 ## Basic
