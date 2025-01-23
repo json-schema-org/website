@@ -13,7 +13,7 @@
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/comment'
   links:
     - url: 'https://json-schema.org/understanding-json-schema/reference/comments#comments'
-      title: Generic Keyowrds ($comment)
+      title: Generic Keywords ($comment)
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-comments-with-comment'
       title: Draft 2020-12
 - name: $defs
@@ -43,9 +43,9 @@
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/core/id'
   links:
     - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
-      title: Create a schema defination
+      title: Create a schema definition
     - url: 'https://json-schema.org/understanding-json-schema/basics#declaring-a-unique-identifier'
-      title: Declaring a unique identifer
+      title: Declaring a unique identifier
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-the-id-keyword'
       title: Draft 2020-12
 - name: $ref
@@ -55,7 +55,7 @@
     - url: 'https://json-schema.org/understanding-json-schema/basics#declaring-a-json-schema'
       title: Declaring a JSON Schema
     - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
-      title: Create a schema defination
+      title: Create a schema definition
     - url: 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
       title: Unevaluated Items
     - url: 'https://json-schema.org/understanding-json-schema/structuring#dollarref'
@@ -149,7 +149,7 @@
   learnjsonschemalink: 'https://www.learnjsonschema.com/2020-12/applicator/not'
   links:
     - url: 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
-      title: Schema Compositon
+      title: Schema Composition
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-not'
       title: Draft 2020-12
 - name: oneOf
@@ -159,9 +159,9 @@
     - url: 'https://json-schema.org/learn/file-system#modeling-a-file-system-with-json-schema'
       title: Modeling a file system with JSON Schema
     - url: 'https://json-schema.org/understanding-json-schema/reference/array#unevaluateditems'
-      title: Unevaluted Items
+      title: Unevaluated Items
     - url: 'https://json-schema.org/understanding-json-schema/reference/combining#schema-composition'
-      title: Schema Compositon
+      title: Schema Composition
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-oneof'
       title: Draft 2020-12
 - name: patternProperties
@@ -189,7 +189,7 @@
     - url: 'https://json-schema.org/understanding-json-schema/reference/object#properties'
       title: Properties
     - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
-      title: Schema Defination
+      title: Schema Definition
     - url: 'https://json-schema.org/draft/2020-12/json-schema-core#name-properties'
       title: Draft 2020-12
 - name: propertyNames
@@ -389,7 +389,7 @@
     - url: 'https://json-schema.org/understanding-json-schema/basics#the-type-keyword'
       title: The type keyword
     - url: 'https://json-schema.org/learn/getting-started-step-by-step#create-a-schema-definition'
-      title: Create a Schema Defination
+      title: Create a Schema Definition
     - url: 'https://json-schema.org/draft/2020-12/json-schema-validation#name-type'
       title: Draft 2020-12
 - name: uniqueItems

@@ -66,6 +66,7 @@ border-radius: 4px; */
 .DocSearch-Button {
   margin: 0;
   width: 39px;
+  background: none;
 }
 
 .DocSearch-Button-Placeholder {
@@ -292,4 +293,10 @@ border-radius: 4px; */
 .tools-dropdown-menu::-webkit-scrollbar-thumb {
   background: grey;
   border-radius: 8px;
+}
+.scrollbar-hidden {
+  scrollbar-width: none; 
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
 }

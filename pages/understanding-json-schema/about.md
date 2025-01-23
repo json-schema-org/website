@@ -1,6 +1,12 @@
 ---
 title: "What is a schema?"
 section: "docs"
+prev: 
+  label: Conventions used
+  url: /understanding-json-schema/conventions
+next: 
+  label: The basics
+  url: /understanding-json-schema/basics
 ---
 
 If you\'ve ever used XML Schema, RelaxNG or ASN.1 you probably already

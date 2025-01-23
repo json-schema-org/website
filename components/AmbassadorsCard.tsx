@@ -55,11 +55,11 @@ const SocialIcon = ({ platform }: { platform: SocialIcons }) => {
     twitter: (
       <svg
         className='w-7 h-7 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100'
-        viewBox='0 0 24 24'
+        viewBox='0 0 20 16'
         fill='currentColor'
         xmlns='http://www.w3.org/2000/svg'
       >
-        <path d='M23.954 4.569c-.885.389-1.83.654-2.825.775a4.932 4.932 0 0 0 2.163-2.723 9.85 9.85 0 0 1-3.127 1.195 4.916 4.916 0 0 0-8.374 4.482A13.936 13.936 0 0 1 1.64 3.161 4.916 4.916 0 0 0 3.195 9.86a4.897 4.897 0 0 1-2.229-.616v.061a4.919 4.919 0 0 0 3.946 4.827 4.897 4.897 0 0 1-2.224.085 4.923 4.923 0 0 0 4.604 3.42A9.869 9.869 0 0 1 .977 19.569a13.94 13.94 0 0 0 7.548 2.211c9.056 0 14.012-7.497 14.012-13.986 0-.213-.005-.425-.015-.636A9.936 9.936 0 0 0 24 4.59a9.94 9.94 0 0 1-2.046.561z' />
+        <path d='M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z' />
       </svg>
     ),
     linkedin: (
@@ -114,7 +114,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
     contributions = [],
   } = ambassador;
 
-  const SocialIconss: SocialIcons[] = [
+  const SocialIcons: SocialIcons[] = [
     'github',
     'twitter',
     'mastodon',
@@ -122,7 +122,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
   ];
 
   return (
-    <div className='relative max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 transition-all duration-300 h-fit'>
+    <div className='relative flex flex-col max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 h-full'>
       <div className='absolute top-0 right-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
       <div className='absolute bottom-100 right-0 w-20 h-1 bg-black dark:bg-gray-400'></div>
       <div className='absolute bottom-0 left-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
@@ -137,7 +137,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
         onError={() => setImgSrc(`/img/ambassadors/${name}.jpg`)}
       />
 
-      <div className='p-6'>
+      <div className='flex flex-col flex-grow p-6'>
         <h3 className='text-xl font-semibold mb-2 text-gray-900 dark:text-white'>
           {name}
         </h3>
@@ -157,8 +157,8 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
           </p>
         )}
 
-        <div className='flex justify-center mb-4'>
-          {SocialIconss.map((platform) => {
+        <div className='flex justify-center mb-4 mt-auto'>
+          {SocialIcons.map((platform) => {
             const username = ambassador[platform];
             return username ? (
               <a
