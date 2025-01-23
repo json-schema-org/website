@@ -11,6 +11,7 @@ import toTitleCase from '../lib/toTitleCase';
 import type { Transform } from '../hooks/useToolsTransform';
 import type { FilterCriteriaFields } from '../index.page';
 import { postAnalytics } from '../lib/postAnalytics';
+import { useTheme } from 'next-themes';
 
 const filterIcons = {
   languages: LanguageIcon,
