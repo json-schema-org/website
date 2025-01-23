@@ -161,6 +161,7 @@ const Home = (props: any) => {
         <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom w-full dark:bg-[linear-gradient(72.68deg,_#002C34_28.97%,_#5468FF_145.47%)]'>
           <div className='max-w-[1400px] text-center mx-auto mt-24 lg:mt-40'>
             <h1 className='lg:leading-header text-h1mobile lg:text-h1 font-semibold text-white text-center px-1 md:px-0 dark:text-slate-200'>
+            Build more. Break less. Empower others.
             </h1>
 
             <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 dark:text-slate-300'>
@@ -173,6 +174,7 @@ const Home = (props: any) => {
                 href='/learn'
                 className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
+                Getting started
               </Link>
               <Link
                 href='/slack'
