@@ -269,6 +269,12 @@ export const DocsNav = ({
   });
   useEffect(() => {
     const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+    setActive({
+      getDocs: false,
+      getStarted: false,
+      getReference: false,
+      getSpecification: false,
+    });
     if (getDocsPath.includes(pathWtihoutFragment)) {
       setActive({ ...active, getDocs: true });
     } else if (getStartedPath.includes(pathWtihoutFragment)) {
@@ -279,7 +285,7 @@ export const DocsNav = ({
       setActive({ ...active, getSpecification: true });
     }
   }, [router.asPath]);
-
+ 
   const handleClickDoc = () => {
     setActive({ ...active, getDocs: !active.getDocs });
   };
