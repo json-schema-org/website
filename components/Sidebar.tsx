@@ -285,7 +285,7 @@ export const DocsNav = ({
       setActive({ ...active, getSpecification: true });
     }
   }, [router.asPath]);
- 
+
   const handleClickDoc = () => {
     setActive({ ...active, getDocs: !active.getDocs });
   };
