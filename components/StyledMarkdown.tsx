@@ -313,7 +313,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     style={atomOneDark}
                     showLineNumbers
                     lineNumberStyle={{
-                      color: '#888',
+                      color: '#64748B',
                       fontSize: '16px',
                       paddingRight: '10px',
                     }}
