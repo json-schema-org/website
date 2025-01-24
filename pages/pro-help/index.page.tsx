@@ -93,7 +93,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
           <div className='w-full lg:w-full my-[10px] mx-auto mt-8 mb-8'>
             {contractorData.map((contractor) => (
               <div
-                className='border border-solid border-gray-300 px-5 py-3'
+                className='border border-solid border-gray-300 px-5 py-3 my-4'
                 key={contractor.github}
               >
                 <h1 className='text-xl mb-3 font-semibold'>
@@ -176,7 +176,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                   <div className='me-4 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:gap-2'>
                     <img
                       src={`https://github.com/${contractor.github}.png`}
-                      className='border border-gray-400 max-sm:w-44'
+                      className='border border-gray-400 max-sm:w-44 w-44'
                     />
                     <a
                       href={`mailto:${contractor.email}`}
@@ -185,8 +185,8 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                       Reach out
                     </a>
                   </div>
-                  <div className='text-sm'>
-                    <p>{contractor.bio}</p>
+                  <div className='text-sm w-full'>
+                    <p className='text-justify'>{contractor.bio}</p>
                     <p className='my-3 font-bold'>
                       Previous work and relevant links
                     </p>
