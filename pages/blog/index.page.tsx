@@ -134,14 +134,14 @@ export default function StaticMarkdownPage({
               />
             </div>
             <div className='absolute text-white w-full h-full mt-custom ml-14'>
-              <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm'>
+              <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm '>
                 {recentBlog[0].frontmatter.type}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
                 <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
-                <div className='flex ml-2 mb-2'>
+                <div className='flex ml-2 mb-2 '>
                   <div
                     className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                     style={{
@@ -240,6 +240,7 @@ export default function StaticMarkdownPage({
             })
             .map((blogPost: any) => {
               const { frontmatter, content } = blogPost;
+              const date = new Date(frontmatter.date);
               const timeToRead = Math.ceil(readingTime(content).minutes);
 
               return (
@@ -326,16 +327,16 @@ export default function StaticMarkdownPage({
                             </span>
                             <span className='text-blue-600 dark:text-blue-400 font-medium flex items-center group-hover:translate-x-1 transition-transform duration-300'>
                               Read More
-                              <svg
-                                className='ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300'
-                                fill='none'
-                                stroke='currentColor'
+                              <svg 
+                                className='ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300' 
+                                fill='none' 
+                                stroke='currentColor' 
                                 viewBox='0 0 24 24'
                               >
-                                <path
-                                  strokeLinecap='round'
-                                  strokeLinejoin='round'
-                                  strokeWidth={2}
+                                <path 
+                                  strokeLinecap='round' 
+                                  strokeLinejoin='round' 
+                                  strokeWidth={2} 
                                   d='M9 5l7 7-7 7'
                                 />
                               </svg>
