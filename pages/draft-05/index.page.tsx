@@ -7,19 +7,17 @@ import { SectionContext } from '~/context';
 import DocTable from '~/components/DocTable';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
+import { TableOfContentMarkdown } from '~/components/TOC';
 
 export async function getStaticProps() {
-  const index = fs.readFileSync('pages/draft-05/index.md', 'utf-8');
-  const main = fs.readFileSync('pages/draft-05/release-notes.md', 'utf-8');
+  const index = fs.readFileSync('pages/draft/2020-12/index.md', 'utf-8');
   const { content: indexContent, data: indexData } = matter(index);
-  const { content: bodyContent } = matter(main);
 
   const frontmatter = { ...indexData };
   return {
     props: {
       blocks: {
         index: indexContent,
-        body: bodyContent,
       },
       frontmatter,
     },
@@ -35,12 +33,17 @@ export default function ImplementationsPages({
 }) {
   return (
     <SectionContext.Provider value={null}>
-      <Headline1>{frontmatter.title}</Headline1>
-      <DocTable frontmatter={frontmatter} />
-      <StyledMarkdown markdown={blocks.index} />
-      <StyledMarkdown markdown={blocks.body} />
-      <DocsHelp />
+      <div className='flex pt-4'>
+        <div className='w-full pr-5'>
+          <Headline1>{frontmatter.title}</Headline1>
+          <DocTable frontmatter={frontmatter} />
+          <StyledMarkdown markdown={blocks.index} />
+          <DocsHelp />
+        </div>
+        <TableOfContentMarkdown markdown={blocks.index} depth={3} />
+      </div>
     </SectionContext.Provider>
   );
 }
+
 ImplementationsPages.getLayout = getLayout;

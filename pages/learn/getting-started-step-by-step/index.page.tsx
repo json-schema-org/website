@@ -9,6 +9,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import GettingStarted from '~/components/GettingStarted';
+import { TableOfContentMarkdown } from '~/components/TOC';
 import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
@@ -40,21 +41,29 @@ export default function StyledValidator({
 
   return (
     <SectionContext.Provider value='docs'>
-      <Head>
-        <title>{newTitle}</title>
-      </Head>
-      <Headline1>{newTitle}</Headline1>
-      <StyledMarkdown markdown={blocks[0]} />
-      <GettingStarted />
-      <StyledMarkdown markdown={blocks[1]} />
+      <div className='flex'>
+        <div className='w-full pr-5'>
+          <Head>
+            <title>{newTitle}</title>
+          </Head>
+          <Headline1>{newTitle}</Headline1>
+          <StyledMarkdown markdown={blocks[0]} />
+          <GettingStarted />
+           <StyledMarkdown markdown={blocks[1]} />
       <NextPrevButton
         prevLabel='Overview'
         prevURL='/learn'
         nextLabel='Miscellaneous examples'
         nextURL='/learn/miscellaneous-examples'
       />
-      <DocsHelp />
+          <DocsHelp />
+        </div>
+
+        <TableOfContentMarkdown markdown={blocks.join('\n')} depth={2} />
+      </div>
+
     </SectionContext.Provider>
   );
 }
+
 StyledValidator.getLayout = getLayout;

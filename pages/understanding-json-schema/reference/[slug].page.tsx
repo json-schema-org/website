@@ -7,11 +7,18 @@ import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths';
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import { TableOfContentMarkdown } from '~/components/TOC';
+
+const stripHtmlTags = (markdown: string) => {
+  const htmlTagRegex = /<\/?[^>]+(>|$)/g;
+  return markdown.replace(htmlTagRegex, ''); // Remove HTML tags
+};
 import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/understanding-json-schema/reference');
 }
+
 export async function getStaticProps(args: any) {
   return getStaticMarkdownProps(
     args,
@@ -28,21 +35,31 @@ export default function StaticMarkdownPage({
 }) {
   const newTitle = 'JSON Schema - ' + frontmatter.title;
   const markdownFile = '_index';
+
+  const sanitizedContent = stripHtmlTags(content);
+  console.log('sanitizedContent', sanitizedContent);
+
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
-      <Head>
-        <title>{newTitle}</title>
-      </Head>
-      <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
-      <StyledMarkdown markdown={content} />
-      <NextPrevButton
+      <div className='flex pt-4'>
+        <div className='w-full pr-5'>
+          <Head>
+            <title>{newTitle}</title>
+          </Head>
+          <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
+          <StyledMarkdown markdown={sanitizedContent} />
+            <NextPrevButton
         prevLabel={frontmatter?.prev?.label}
         prevURL={frontmatter?.prev?.url}
         nextLabel={frontmatter?.next?.label}
         nextURL={frontmatter?.next?.url}
       />
-      <DocsHelp markdownFile={markdownFile} />
+          <DocsHelp markdownFile={markdownFile} />
+        </div>
+        <TableOfContentMarkdown markdown={sanitizedContent} depth={3} />
+      </div>
     </SectionContext.Provider>
   );
 }
+
 StaticMarkdownPage.getLayout = getLayout;

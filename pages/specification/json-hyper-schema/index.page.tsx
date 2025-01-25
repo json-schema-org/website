@@ -6,8 +6,8 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
+import { TableOfContentMarkdown } from '~/components/TOC';
 import NextPrevButton from '~/components/NavigationButtons';
-
 export async function getStaticProps() {
   const index = fs.readFileSync(
     'pages/specification/json-hyper-schema/_index.md',
@@ -39,19 +39,23 @@ export default function ImplementationsPages({
   const markdownFile = '_indexPage';
   return (
     <SectionContext.Provider value={null}>
-      <Headline1>{frontmatter.title}</Headline1>
-      <h1>{frontmatter.type}</h1>
-      <h2>{frontmatter.Specification}</h2>
-
-      <StyledMarkdown markdown={blocks.index} />
-      <StyledMarkdown markdown={blocks.body} />
-      <NextPrevButton
+      <div className='flex pt-4'>
+        <div className='w-full pr-5'>
+          <Headline1>{frontmatter.title}</Headline1>
+          <h1>{frontmatter.type}</h1>
+          <h2>{frontmatter.Specification}</h2>
+          <StyledMarkdown markdown={blocks.index} />
+          <StyledMarkdown markdown={blocks.body} />
+          <NextPrevButton
         prevLabel={frontmatter?.prev?.label}
         prevURL={frontmatter?.prev?.url}
         nextLabel={frontmatter?.next?.label}
         nextURL={frontmatter?.next?.url}
       />
-      <DocsHelp markdownFile={markdownFile} />
+          <DocsHelp markdownFile={markdownFile} />
+        </div>
+        <TableOfContentMarkdown markdown={blocks.index} depth={3} />
+      </div> 
     </SectionContext.Provider>
   );
 }

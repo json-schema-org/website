@@ -11,15 +11,6 @@ next:
 
 <Keywords label="single: single: structure" />
 
-* [Schema Identification](#schema-identification)
-* [Base URI](#base-uri)
-* [$ref](#dollarref)
-* [$id](#id)
-* [$defs](#defs)
-* [Recursion](#recursion)
-* [Extending Recursive Schemas](#extending-recursive-schemas)
-* [Bundling](#bundling)
-
 When writing computer programs of even moderate complexity, it\'s
 commonly accepted that \"structuring\" the program into reusable
 functions is better than copying-and-pasting duplicate bits of code
@@ -94,7 +85,7 @@ very familiar.
 
 <Keywords label="single: retrieval URI single: structuring; base URI; retrieval URI" />
 
-### Retrieval URI[#retrieval-uri]
+### Retrieval URI
 
 The URI used to fetch a schema is known as the \"retrieval URI\". It\'s
 often possible to pass an anonymous schema to an implementation in which
@@ -121,7 +112,7 @@ The base URI for this schema is the same as the retrieval URI, `https://example.
 
 <Keywords label="single: \$id single: structuring; base URI; \$id" />
 
-## $id[#id]
+## $id
 
 You can set the base URI by using the `$id` [keyword](../learn/glossary#keyword) at the root of the
 schema. The value of `$id` is a URI-reference without a fragment that
@@ -198,7 +189,7 @@ The base URI of the following schema will always be
 
 <Keywords label="single: JSON Pointer, single: structuring; subschema identification; JSON Pointer" />
 
-### JSON Pointer[#json-pointer]
+### JSON Pointer
 
 In addition to identifying a schema document, you can also identify
 subschemas. The most common way to do that is to use a [JSON
@@ -231,7 +222,7 @@ identifies the highlighted subschema in the following schema.
 
 <Keywords label="single: \$anchor single: structuring; subschema identification; \$anchor" />
 
-### \$anchor[#anchor]
+### \$anchor
 
 A less common way to identify a subschema is to create a named anchor in
 the schema using the `$anchor` keyword and using that name in the URI
@@ -354,7 +345,7 @@ therefore can\'t be used to retrieve the address schema.
 
 <Keywords label="single: \$defs single: structuring; \$defs" />
 
-## \$defs[#defs]
+## \$defs
 
 Sometimes we have small subschemas that are only intended for use in the
 current schema and it doesn\'t make sense to define them as separate
@@ -469,7 +460,7 @@ Documentation Coming Soon
 
 <Keywords label="single: bundling single: \$id single: structuring; bundling; \$id" />
 
-## Bundling[#bundling]
+## Bundling
 
 Working with multiple schema documents is convenient for development,
 but it\'s often more convenient for distribution to bundle all of your

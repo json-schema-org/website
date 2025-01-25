@@ -7,6 +7,14 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 import { SectionContext } from '~/context';
+import { TableOfContentMarkdown } from '~/components/TOC';
+
+// Function to remove all HTML tags
+const stripHtmlTags = (markdown: string) => {
+  // Regular expression to remove all HTML tags
+  const htmlTagRegex = /<\/?[^>]+(>|$)/g;
+  return markdown.replace(htmlTagRegex, '');
+};
 import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticPaths() {
@@ -25,20 +33,26 @@ export default function StaticMarkdownPage({
 }) {
   const markdownFile = '_index';
   const newTitle = 'JSON Schema - ' + frontmatter.title;
+  const sanitizedContent = stripHtmlTags(content);
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
-      <Head>
-        <title>{newTitle}</title>
-      </Head>
-      <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
-      <StyledMarkdown markdown={content} />
-      <NextPrevButton
+      <div className='flex pt-4'>
+        <div className='w-full pr-5'>
+          <Head>
+            <title>{newTitle}</title>
+          </Head>
+          <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
+          <StyledMarkdown markdown={sanitizedContent} />
+          <NextPrevButton
         prevLabel={frontmatter?.prev?.label}
         prevURL={frontmatter?.prev?.url}
         nextLabel={frontmatter?.next?.label}
         nextURL={frontmatter?.next?.url}
       />
-      <DocsHelp markdownFile={markdownFile} />
+          <DocsHelp markdownFile={markdownFile} />
+        </div>
+        <TableOfContentMarkdown markdown={sanitizedContent} depth={3} />
+      </div>
     </SectionContext.Provider>
   );
 }

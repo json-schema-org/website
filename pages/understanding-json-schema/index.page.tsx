@@ -5,7 +5,16 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { DocsHelp } from '~/components/DocsHelp';
 import { SectionContext } from '~/context';
+import { TableOfContentMarkdown } from '~/components/TOC';
+
+// Function to remove all HTML tags
+const stripHtmlTags = (markdown: string) => {
+  // Regular expression to remove all HTML tags
+  const htmlTagRegex = /<\/?[^>]+(>|$)/g;
+  return markdown.replace(htmlTagRegex, '');
+};
 import NextPrevButton from '~/components/NavigationButtons';
+
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
@@ -29,16 +38,23 @@ export default function ContentExample({
 }) {
   const markdownFile = '_indexPage';
 
+  const sanitizedContent = stripHtmlTags(blocks[0]);
   return (
     <SectionContext.Provider value='docs'>
-      <StyledMarkdown markdown={blocks[0]} />
+      <div className='flex pt-4'>
+        <div className='w-full pr-5'>
+          <StyledMarkdown markdown={sanitizedContent} />
       <NextPrevButton
         prevLabel='JSON Schema Keywords'
         prevURL='/understanding-json-schema/keywords'
         nextLabel='Conventions used'
         nextURL='/understanding-json-schema/conventions'
       />
-      <DocsHelp markdownFile={markdownFile} />
+          <DocsHelp markdownFile={markdownFile} />
+        </div>
+        <TableOfContentMarkdown markdown={sanitizedContent} depth={3} />
+      </div>
+
     </SectionContext.Provider>
   );
 }

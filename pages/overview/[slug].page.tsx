@@ -7,6 +7,8 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+
+import { TableOfContentMarkdown } from '~/components/TOC';
 import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticPaths() {
@@ -28,19 +30,25 @@ export default function StaticMarkdownPage({
 
   return (
     <SectionContext.Provider value={frontmatter.section || null}>
-      <Head>
-        <title>{newTitle}</title>
-      </Head>
-      <Headline1>{frontmatter.title}</Headline1>
-      <StyledMarkdown markdown={content} />
-      <NextPrevButton
-        prevLabel={frontmatter.prev?.label}
-        prevURL={frontmatter.prev?.url}
-        nextLabel={frontmatter.next.label}
-        nextURL={frontmatter.next.url}
-      />
-      <DocsHelp markdownFile={markdownFile} />
+      <div className='flex pt-4'>
+        <div className='w-full pr-5'>
+          <Head>
+            <title>{newTitle}</title>
+          </Head>
+          <Headline1>{frontmatter.title}</Headline1>
+          <StyledMarkdown markdown={content} />
+          <NextPrevButton
+            prevLabel={frontmatter.prev?.label}
+            prevURL={frontmatter.prev?.url}
+            nextLabel={frontmatter.next.label}
+            nextURL={frontmatter.next.url}
+          />
+          <DocsHelp markdownFile={markdownFile} />
+        </div>
+        <TableOfContentMarkdown markdown={content} depth={0} />
+      </div>
     </SectionContext.Provider>
   );
 }
+
 StaticMarkdownPage.getLayout = getLayout;

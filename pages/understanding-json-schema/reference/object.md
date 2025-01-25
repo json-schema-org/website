@@ -149,7 +149,7 @@ By default, providing additional properties is valid:
 { "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue", "direction": "NW" }
 ```
 
-## Pattern Properties [#patternProperties]
+## Pattern Properties
 
 Sometimes you want to say that, given a particular kind of property
 name, the value should match a particular schema. That\'s where
@@ -207,7 +207,7 @@ This is a key that doesn't match any of the regular expressions:
 { "keyword": "value" }
 ```
 
-## Additional Properties [#additionalproperties]
+## Additional Properties
 
 The `additionalProperties` keyword is used to control the handling of
 extra stuff, that is, properties whose names are not listed in the
@@ -319,7 +319,7 @@ It must be a string:
 { "keyword": 42 }
 ```
 
-### Extending Closed Schemas[#extending]
+### Extending Closed Schemas
 
 It\'s important to note that `additionalProperties` only recognizes
 properties declared in the same [subschema](../../learn/glossary#subschema) as itself. So,
@@ -429,7 +429,7 @@ necessary properties and the schema works as expected. Keep reading to
 see how the `unevaluatedProperties` keyword solves this problem without
 needing to redeclare properties.
 
-## Unevaluated Properties [#unevaluatedproperties]
+## Unevaluated Properties
 
 <Star label="New in draft 2019-09" />
 
@@ -544,7 +544,7 @@ as \"evaluated\" properties if the \"type\" of the address is
 
 <Keywords label="single: object; required properties single: required" />
 
-## Required Properties[#required]
+## Required Properties
 
 By default, the properties defined by the `properties` keyword are not
 required. However, one can provide a list of required properties using
@@ -616,7 +616,7 @@ In JSON a property with value `null` is not equivalent to the property not being
 
 <Keywords label="single: object; property names single: propertyNames" />
 
-## Property names [#propertyNames]
+## Property names
 
 <Star label="New in draft 6" />
 
@@ -659,7 +659,7 @@ schema given to `propertyNames` is always at least:
 
 <Keywords label="single: object; size single: minProperties single: maxProperties" />
 
-## Size[#size]
+## Size
 
 The number of properties on an object can be restricted using the
 `minProperties` and `maxProperties` keywords. Each of these must be a

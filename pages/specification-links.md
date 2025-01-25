@@ -13,7 +13,6 @@ next:
 
 You can find the latest released draft on the [Specification](../../specification) page.  The complex numbering and naming system for drafts and meta-schemas is fully explained here as well.
 
-<tableofcontent depth={4} />
 
 ## Understanding draft names and numbers
 

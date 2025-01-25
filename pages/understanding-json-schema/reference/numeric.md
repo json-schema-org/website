@@ -17,7 +17,7 @@ They share the same validation [keywords](../../learn/glossary#keyword).
 > JSON has no standard way to represent complex numbers, so there is no
 way to test for them in JSON Schema.
 
-## integer[#integer]
+## integer
 
 The `integer` type is used for integral numbers. JSON does not have
 distinct types for integers and floating-point values. Therefore, the
@@ -69,7 +69,7 @@ Numbers as strings are rejected:
 "42"
 ```
 
-## number[#number]
+## number
 
 The `number` type is used for any numeric type, either integers or
 floating point numbers.
@@ -171,7 +171,7 @@ The multiple can be a floating point number:
 
 <Keywords label="single: number; range single: maximum single: exclusiveMaximum single: minimum single: exclusiveMinimum" />
 
-## Range[#range]
+## Range
 
 Ranges of numbers are specified using a combination of the `minimum` and
 `maximum` keywords, (or `exclusiveMinimum` and `exclusiveMaximum` for

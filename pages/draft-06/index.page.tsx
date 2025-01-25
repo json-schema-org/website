@@ -7,7 +7,7 @@ import { SectionContext } from '~/context';
 import DocTable from '~/components/DocTable';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
-
+import { TableOfContentMarkdown } from '~/components/TOC';
 export async function getStaticProps() {
   const index = fs.readFileSync('pages/draft-06/index.md', 'utf-8');
 
@@ -33,10 +33,15 @@ export default function ImplementationsPages({
 }) {
   return (
     <SectionContext.Provider value={null}>
-      <Headline1>{frontmatter.title}</Headline1>
-      <DocTable frontmatter={frontmatter} />
-      <StyledMarkdown markdown={blocks.index} />
-      <DocsHelp />
+      <div className='flex pt-4'>
+        <div className='w-full pr-5'>
+          <Headline1>{frontmatter.title}</Headline1>
+          <DocTable frontmatter={frontmatter} />
+          <StyledMarkdown markdown={blocks.index} />
+          <DocsHelp />
+        </div>
+        <TableOfContentMarkdown markdown={blocks.index} depth={3} />
+      </div>
     </SectionContext.Provider>
   );
 }

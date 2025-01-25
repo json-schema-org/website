@@ -11,7 +11,7 @@ next:
 
 <Keywords label="single: conditionals; dependentRequired single: property dependentRequired" />
 
-## dependentRequired[#dependentRequired]
+## dependentRequired
 
 The `dependentRequired` [keyword](../../learn/glossary#keyword) conditionally requires that certain
 properties must be present if a given property is present in an object.
@@ -131,7 +131,7 @@ Previously to Draft 2019-09, ``dependentRequired`` and
 
 <Keywords label="single: conditionals; dependentSchemas single: dependentSchemas" />
 
-## dependentSchemas [#dependentSchemas]
+## dependentSchemas
 
 The `dependentSchemas` keyword conditionally applies a [subschema](../../learn/glossary#subschema) when a
 given property is present. This schema is applied in the same way
@@ -197,7 +197,7 @@ Previously to Draft 2019-09, ``dependentRequired`` and
 
 <Keywords label="single: conditionals single: conditionals; if single: conditionals; then single: conditionals; else single: if single: then single: else" />
 
-## If-Then-Else[#ifthenelse]
+## If-Then-Else
 
 <StarInline label="New in draft 7" />
 The `if`, `then` and `else` keywords allow the application of a subschema based

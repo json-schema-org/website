@@ -48,7 +48,7 @@ In Swift, "string" is analogous to the ``String`` type.
 42
 ```
 
-## Length[#length]
+## Length
 
 The length of a string can be constrained using the `minLength` and
 `maxLength` [keywords](../../learn/glossary#keyword). For both keywords, the value must be a
@@ -79,7 +79,7 @@ non-negative number.
 "ABCD"
 ```
 
-## Regular Expressions[#regexp]
+## Regular Expressions
 
 The `pattern` keyword is used to restrict a string to a particular
 regular expression. The regular expression syntax is the one defined in

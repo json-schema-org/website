@@ -11,20 +11,8 @@ next:
 
 In this step-by-step guide you will learn how to design a JSON Schema that mirrors the structure of an `/etc/fstab` file. 
 
-This guide is divided into the following sections:
 
-* [Introduction](#introduction)
-* [Creating the `fstab` schema](#fstab-schema)
-* [Starting the `entry` schema](#entry-schema)
-* [Constraining an entry](#constraining-entry)
-* [The `diskDevice` definition](#diskdevice)
-* [The `diskUUID` definition](#diskuuid)
-* [The `nfs` definition](#nfs)
-* [The `tmpfs` definition](#tmpfs)
-* [The full entry schema](#full-entry)
-* [Referencing the `entry` schema in the `fstab` schema](#referencing-entry)
-
-## Introduction[#introduction]
+## Introduction
 
 > Not all constraints to an fstab file can be modeled using JSON Schema alone; however, it can represent a good number of them and the exercise is useful to demonstrate how constraints work. The examples provided are illustrative of the JSON Schema concepts rather than a real, working schema for an fstab file.
 
@@ -66,7 +54,7 @@ An entry in an fstab file can have many different forms; Here is an example:
 }
 ```
 
-## Creating the `fstab` schema[#fstab-schema]
+## Creating the `fstab` schema
 
 We will start with a base JSON Schema expressing the following constraints:
 
@@ -106,7 +94,7 @@ Building out our JSON Schema from top to bottom:
 }
 ```
 
-## Starting the `entry` schema[#entry-schema]
+## Starting the `entry` schema
 
 We will start with an outline of the JSON schema which adds new concepts to what we've already demonstrated.
 
@@ -148,7 +136,7 @@ To this we add:
 }
 ```
 
-## Constraining an entry[#constraining-entry]
+## Constraining an entry
 
 Let's now extend this skeleton to add constraints to some of the properties.
 
@@ -204,7 +192,7 @@ With these added constraints, the schema now looks like this:
 }
 ```
 
-## The `diskDevice` definition[#diskdevice]
+## The `diskDevice` definition
 
 One new keyword is introduced here:
 
@@ -228,7 +216,7 @@ One new keyword is introduced here:
 }
 ```
 
-## The `diskUUID` definition[#diskuuid]
+## The `diskUUID` definition
 
 No new keywords are introduced here.
 
@@ -252,7 +240,7 @@ We do have a new key: `label` and the `pattern` validation keyword states it mus
 }
 ```
 
-## The `nfs` definition[#nfs]
+## The `nfs` definition
 
 We find another new keyword:
 
@@ -282,7 +270,7 @@ We find another new keyword:
 }
 ```
 
-## The `tmpfs` definition[#tmpfs]
+## The `tmpfs` definition
 
 Our last definition introduces two new keywords:
 
@@ -307,7 +295,7 @@ Our last definition introduces two new keywords:
 }
 ```
 
-## The full entry schema[#full-entry]
+## The full entry schema
 
 The resulting schema is quite large:
 
@@ -405,7 +393,7 @@ The resulting schema is quite large:
 }
 ```
 
-## Referencing the `entry` schema in the `fstab` schema[#referencing-entry]
+## Referencing the `entry` schema in the `fstab` schema
 
 Coming full circle we use the `$ref` keyword to add our entry schema into the keys left empty at the start of the exercise:
 
