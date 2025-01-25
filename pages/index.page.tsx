@@ -832,7 +832,11 @@ const Home = (props: any) => {
 for Accounting integrations'
                 />
               </a>
-              <a href='https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema' target='_blank' rel='noreferrer'>
+              <a
+                href='https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img
                   src={rxdb_logo}
                   className=' w-44'
