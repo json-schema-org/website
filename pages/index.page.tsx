@@ -317,9 +317,9 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-[85%]'>
-            <div className='w-full mb-6 dark:shadow-2xl'>
+            <div className='w-full mb-6'>
               <Link href='https://json-schema.org/slack'>
-                <div className='p-2 py-8 border rounded-md hover:scale-105 duration-200'>
+                <div className='p-2 py-8 border dark:border-gray-600 rounded-md hover:scale-105 duration-200'>
                   <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                     Join the JSON Schema Slack Workspace!
                     <img
@@ -353,9 +353,9 @@ const Home = (props: any) => {
               </button>
             </div>
             {/* BlogPost Data */}
-            <div className='w-full mb-6 dark:shadow-2xl'>
+            <div className='w-full mb-6 '>
               <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                <div className='p-2 border rounded-md hover:scale-105 duration-200'>
+                <div className='p-2 border dark:border-gray-600 rounded-md hover:scale-105 duration-200'>
                   <h3 className='mb-4 font-semibold pt-1 dark:text-slate-200'>
                     Latest blog post
                   </h3>
@@ -431,7 +431,7 @@ const Home = (props: any) => {
               </div>
             </div>
             <div>
-              <div className='p-3 border rounded-md hover:scale-105 duration-200'>
+              <div className='p-3 border dark:border-gray-600 rounded-md hover:scale-105 duration-200'>
                 <h3 className='mb-4 mt-2 font-semibold dark:text-slate-200'>
                   JSON Schema Community Meetings & Events
                 </h3>
@@ -454,7 +454,7 @@ const Home = (props: any) => {
                   </button>
                 </div>
               </div>
-              <div className='p-2 border rounded-md hover:scale-105 duration-200 mt-6'>
+              <div className='p-2 border dark:border-gray-600 rounded-md hover:scale-105 duration-200 mt-6'>
                 <div>
                   <h2 className='text-h5 mb-4 mt-2 font-semibold dark:text-slate-200'>
                     Upcoming events
@@ -464,7 +464,7 @@ const Home = (props: any) => {
                       {props.datesInfo.map((event: any, index: any) => (
                         <li key={index}>
                           <div className='flex mb-4 items-center gap-2'>
-                            <div className='h-12 overflow-hidden w-12 rounded-xl border border-gray-200 flex flex-col'>
+                            <div className='h-12 overflow-hidden w-12 rounded-xl border border-gray-200 dark:border-gray-600 flex flex-col'>
                               <div className='w-full h-5 bg-red-600'>
                                 <p className='text-sm text-center font-semibold text-white my-auto'>
                                   {new Date(
@@ -479,12 +479,12 @@ const Home = (props: any) => {
                                     .toUpperCase()}
                                 </p>
                               </div>
-                              <p className='h-7 text-center text-black'>
+                              <p className='h-7 text-center text-black dark:text-white'>
                                 {String(event.day).padStart(2, '0')}{' '}
                               </p>
                             </div>
 
-                            <div className='w-[1px] h-[25px] bg-gray-300'></div>
+                            <div className='w-[1px] h-[25px] bg-gray-300 dark:border-gray-600'></div>
                             <div className='text-sm'>
                               <p>{event.title}</p>
                               <p>
