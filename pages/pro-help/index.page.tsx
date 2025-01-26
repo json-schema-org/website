@@ -187,7 +187,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                     </a>
                   </div>
                   <div className='text-sm w-full'>
-                    <StyledMarkdown markdown={contractor.bio}/>
+                    <StyledMarkdown markdown={contractor.bio} />
                     <p className='my-3 font-bold'>
                       Previous work and relevant links
                     </p>

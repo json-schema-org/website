@@ -295,7 +295,7 @@ border-radius: 4px; */
   border-radius: 8px;
 }
 .scrollbar-hidden {
-  scrollbar-width: none; 
+  scrollbar-width: none;
 }
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
