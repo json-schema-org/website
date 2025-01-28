@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import { useTheme } from 'next-themes';
+
+const Logo = () => {
+  const { resolvedTheme } = useTheme();
+  const [imageSrc, setImageSrc] = useState('/img/logos/logo-blue.svg'); // Default to match the server-side render
+
+  useEffect(() => {
+    const src =
+      resolvedTheme === 'dark'
+        ? '/img/logos/logo-white.svg'
+        : '/img/logos/logo-blue.svg';
+    setImageSrc(src);
+  }, [resolvedTheme]);
+
+  return (
+    <Link href='/' className=''>
+      <img
+        src={imageSrc}
+        className='h-8 lg:h-12 top-12 absolute left-1/2 -translate-x-1/2'
+      />
+    </Link>
+  );
+};
 
 export default function PageNotFound() {
   return (
     <div className='h-screen w-full flex flex-col gap-8 items-center justify-center font-semibold text-center'>
-      <h1 className='leading-header text-h1 lg:inline-block hidden'>
+      <Logo />
+      <h1 className='leading-header text-h1 hidden lg:block'>
         404 - Page Not Found!
       </h1>
 
