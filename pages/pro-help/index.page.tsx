@@ -6,6 +6,7 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import Markdown from 'markdown-to-jsx';
+import StyledMarkdown from '~/components/StyledMarkdown';
 
 interface ContractorLink {
   title: string;
@@ -187,7 +188,10 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                     </a>
                   </div>
                   <div className='text-sm w-full'>
-                    <Markdown>{contractor.bio}</Markdown>
+                    <StyledMarkdown
+                      markdown={contractor.bio}
+                      forceBlock={true}
+                    />
                     <p className='my-3 font-bold'>
                       Previous work and relevant links
                     </p>
