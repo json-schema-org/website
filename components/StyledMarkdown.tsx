@@ -50,13 +50,7 @@ function transformMarkdownLinks(markdown: string): string {
   );
 }
 
-export default function StyledMarkdown({
-  markdown,
-  forceBlock = false,
-}: {
-  markdown?: string;
-  forceBlock?: boolean;
-}) {
+export default function StyledMarkdown({ markdown }: { markdown?: string }) {
   if (!markdown) return null;
 
   markdown = transformMarkdownLinks(markdown);
@@ -103,11 +97,7 @@ export default function StyledMarkdown({
       {elements.map((tabOrMarkup, index) => {
         if (tabOrMarkup.type === 'markdown') {
           return (
-            <StyledMarkdownBlock
-              key={index}
-              markdown={tabOrMarkup.markdown}
-              forceBlock={forceBlock}
-            />
+            <StyledMarkdownBlock key={index} markdown={tabOrMarkup.markdown} />
           );
         }
         return <TabsGroup key={index} markdown={tabOrMarkup.markdown} />;
@@ -118,13 +108,7 @@ export default function StyledMarkdown({
 
 const TAB_REGEX = /(?<=\[tab )\s*"(?<label>.*)"\](?<markdown>(.|\n)*?)\[tab/gm;
 
-const TabsGroup = ({
-  markdown,
-  forceBlock = false,
-}: {
-  markdown: string;
-  forceBlock?: boolean;
-}) => {
+const TabsGroup = ({ markdown }: { markdown: string }) => {
   const groupLabel: string | null =
     getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS)?.[0]?.groups?.find(
       (g) => g.name === 'label',
@@ -171,27 +155,17 @@ const TabsGroup = ({
         </div>
       </div>
       <div className='border-slate-100 mb-4 p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-700/50 dark:to-slate-900/50'>
-        <StyledMarkdownBlock
-          markdown={activeTab.markdown}
-          forceBlock={forceBlock}
-        />
+        <StyledMarkdownBlock markdown={activeTab.markdown} />
       </div>
     </div>
   );
 };
 
-const StyledMarkdownBlock = ({
-  markdown,
-  forceBlock = false,
-}: {
-  markdown: string;
-  forceBlock?: boolean;
-}) => {
+const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
   return (
     <FullMarkdownContext.Provider value={markdown}>
       <Markdown
         options={{
-          forceBlock: forceBlock,
           overrides: {
             h1: { component: Headline1 },
             h2: { component: Headline2 },
