@@ -6,6 +6,7 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import Markdown from 'markdown-to-jsx';
+import StyledMarkdown from '~/components/StyledMarkdown';
 
 interface ContractorLink {
   title: string;
@@ -187,14 +188,17 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                     </a>
                   </div>
                   <div className='text-sm w-full'>
-                    <Markdown>{contractor.bio}</Markdown>
-                    <p className='my-3 font-bold'>
+                    <StyledMarkdown markdown={contractor.bio} />
+                    <p className='my-3 font-bold text-slate-600 block dark:text-slate-300'>
                       Previous work and relevant links
                     </p>
                     <ul className='list-disc ms-4'>
                       {contractor.links.map((link) => (
                         <li className='my-2' key={link.url}>
-                          <a className='underline' href={link.url}>
+                          <a
+                            className='text-blue-600 block dark:text-blue-300'
+                            href={link.url}
+                          >
                             {link.title}
                           </a>
                         </li>
