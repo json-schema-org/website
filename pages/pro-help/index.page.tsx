@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
-import Markdown from 'markdown-to-jsx';
 import StyledMarkdown from '~/components/StyledMarkdown';
 
 interface ContractorLink {
