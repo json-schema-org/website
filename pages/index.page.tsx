@@ -681,6 +681,34 @@ const Home = (props: any) => {
                 rel='noreferrer'
               >
                 <img src={apideck_logo} className=' w-44' />
+                <img
+                  src={apideck_logo}
+                  className=' w-44'
+                  alt='The Realtime Unified API
+for Accounting integrations'
+                />
+              </a>
+              <a
+                href='https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={rxdb_logo}
+                  className=' w-44'
+                  alt='The local Database for JavaScript Applications'
+                />
+              </a>
+              <a
+                href='https://topagency.webflow.io'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={wda_logo}
+                  className=' w-44'
+                  alt='best website design agencies'
+                />
               </a>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
