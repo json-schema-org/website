@@ -142,11 +142,9 @@ export default function ToolingPage({
 
         <div className='grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12 min-h-screen'>
           <div
-            className={`fixed top-10 lg:top-auto left-0 lg:left-auto mt-24 w-screen lg:w-auto h-full lg:h-auto bg-white dark:bg-slate-800 lg:bg-transparent transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out overflow-y-auto ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'} z-5`}
+            className={`fixed top-10 lg:top-auto left-0 lg:left-auto mt-24 w-screen lg:w-auto h-full lg:h-auto bg-white dark:bg-slate-800 lg:bg-transparent transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out overflow-y-auto ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'} z-5 scrollbar-hidden`}
             style={{
               height: 'calc(100% - 8rem)',
-              scrollbarWidth: 'none',
-              msOverflowStyle: 'none',
             }}
           >
             <div className='hidden lg:block'>
@@ -167,8 +165,7 @@ export default function ToolingPage({
           </div>
 
           <main
-            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 ${isSidebarOpen ? 'hidden lg:block' : ''}`}
-            style={{ marginLeft: '19rem' }}
+            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 !ml-[300px] ${isSidebarOpen ? 'hidden lg:block' : ''}`}
           >
             <Headline1>JSON Schema Tooling</Headline1>
             <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
@@ -189,7 +186,7 @@ export default function ToolingPage({
                 >
                   <Image
                     src='/img/tools/adding_your_tool.png'
-                    className='rounded-sm  '
+                    className='rounded-sm'
                     height={68}
                     width={190}
                     alt='adding your tool'
@@ -210,7 +207,7 @@ export default function ToolingPage({
                 >
                   <Image
                     src='/img/tools/try_bowtie.png'
-                    className='rounded-sm '
+                    className='rounded-sm'
                     height={68}
                     width={190}
                     alt='try bowtie'
