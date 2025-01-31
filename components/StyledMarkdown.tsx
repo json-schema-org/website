@@ -166,6 +166,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
     <FullMarkdownContext.Provider value={markdown}>
       <Markdown
         options={{
+          forceBlock: true,
           overrides: {
             h1: { component: Headline1 },
             h2: { component: Headline2 },
