@@ -1290,8 +1290,14 @@
   toolingTypes: ['code-to-schema']
   languages: ['Java']
   maintainers:
-    - name: 'Micronaut Team'
-      username: 'micronaut-projects'
+    - name: 'Elif Kurtay'
+      username: 'elifKurtay'
+      platform: 'github'
+    - name: 'Sergio del Amo'
+      username: 'sdelamo'
+      platform: 'github'
+    - name: 'Andriy Dmytruk'
+      username: 'andriy-dmytruk'
       platform: 'github'
   license: 'Apache-2.0'
   source: 'https://github.com/micronaut-projects/micronaut-json-schema'
