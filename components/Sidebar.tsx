@@ -736,7 +736,7 @@ export const DocsNav = ({
             'transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getSpecification,
-              'max-h-80 opacity-100': active.getSpecification,
+              'max-h-80 opacity-100 overflow-hidden': active.getSpecification,
             },
           )}
           id='specification'
