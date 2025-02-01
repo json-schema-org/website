@@ -353,24 +353,40 @@ const BowtieReportBadge = ({ uri }: { uri: string }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    const checkImage = async () => {
+      try {
+        const response = await fetch(
+          `https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`,
+        );
+        if (response.ok) {
+          setLoading(false);
+        } else {
+          setLoading(false);
+          setError(true);
+        }
+      } catch (err) {
+        setLoading(false);
+        setError(true);
+      }
+    };
+    checkImage();
+  }, [uri]);
+
   return (
     <div className='my-1'>
       {loading && !error && (
         <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-[176px] rounded-md'></div>
       )}
-      <Image
-        src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
-        onLoad={() => setLoading(false)}
-        onError={() => {
-          setLoading(false);
-          setError(true);
-        }}
-        width={100}
-        height={20}
-        style={{ display: loading ? 'none' : 'block' }}
-        alt='Bowtie Badge'
-        className='my-1'
-      />
+      {!loading && !error && (
+        <Image
+          src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
+          alt='Bowtie Badge'
+          className='my-1'
+          width={100}
+          height={20}
+        />
+      )}
       {error && (
         <div className='text-red-500 text-sm mt-1'>Failed to load badge</div>
       )}
