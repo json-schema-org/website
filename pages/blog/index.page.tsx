@@ -123,7 +123,7 @@ export default function StaticMarkdownPage({
       </Head>
       <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-10 '>
         {recentBlog[0] && (
-          <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
+          <div className='relative w-full h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]'>
               <Image
                 src={recentBlog[0].frontmatter.cover}
@@ -225,7 +225,7 @@ export default function StaticMarkdownPage({
         </div>
 
         {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800  mx-auto p-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 bg-white dark:bg-slate-800 mx-auto p-6'>
           {blogPosts
             .filter((post) => {
               if (!currentFilterTag || currentFilterTag === 'All') return true;
@@ -244,12 +244,9 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-                  <div className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden dark:border-slate-500 group relative'>
-                    <Link
-                      href={`/blog/posts/${blogPost.slug}`}
-                      className='inline-flex flex-col flex-1 w-full'
-                    >
-                      <div className='relative w-full h-[200px] overflow-hidden'>
+                  <div className='h-[520px] flex border rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden dark:border-slate-500 group relative'>
+                    <div className='inline-flex flex-col flex-1 w-full'>
+                      <div className='relative w-full h-[240px] overflow-hidden'>
                         <Image
                           src={frontmatter.cover}
                           fill
@@ -259,13 +256,12 @@ export default function StaticMarkdownPage({
                       </div>
                       <div className='p-4 flex flex-col flex-1 justify-between'>
                         <div>
-                          <div className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
+                          <div className='bg-blue-100 dark:bg-slate-700 dark:text-blue-100 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
                             {frontmatter.type || 'Unknown Type'}
                           </div>
-                          <div className='text-lg font-semibold group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300'>
+                          <div className='text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300'>
                             {frontmatter.title}
                           </div>
-
                           <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
                             <TextTruncate
                               element='span'
@@ -273,8 +269,7 @@ export default function StaticMarkdownPage({
                               text={frontmatter.excerpt}
                             />
                           </div>
-                        </div>
-                        <div className='flex flex-col space-y-4'>
+                          <div className='mb-4'></div>
                           <div className='flex items-center'>
                             <div className='flex flex-row pl-2 mr-2'>
                               {(frontmatter.authors || []).map(
@@ -294,7 +289,7 @@ export default function StaticMarkdownPage({
                                 ),
                               )}
                             </div>
-                            <div className='text-sm font-semibold'>
+                            <div className='text-sm font-semibold dark:text-slate-300 mb-2'>
                               {frontmatter.authors.length > 2 ? (
                                 <>
                                   {frontmatter.authors
@@ -320,30 +315,33 @@ export default function StaticMarkdownPage({
                               )}
                             </div>
                           </div>
-                          <div className='flex items-center justify-between pt-2 border-t dark:border-slate-600'>
-                            <span className='text-sm text-slate-500 dark:text-slate-300'>
-                              {timeToRead} min read
-                            </span>
-                            <span className='text-blue-600 dark:text-blue-400 font-medium flex items-center group-hover:translate-x-1 transition-transform duration-300'>
-                              Read More
-                              <svg
-                                className='ml-1 w-4 h-4 group-hover:translate-x-1 transition-transform duration-300'
-                                fill='none'
-                                stroke='currentColor'
-                                viewBox='0 0 24 24'
-                              >
-                                <path
-                                  strokeLinecap='round'
-                                  strokeLinejoin='round'
-                                  strokeWidth={2}
-                                  d='M9 5l7 7-7 7'
-                                />
-                              </svg>
-                            </span>
-                          </div>
+                        </div>
+                        <div className='flex items-center justify-between pt-4 mt-4 border-t dark:border-slate-600'>
+                          <span className='text-sm text-slate-500 dark:text-slate-300'>
+                            {timeToRead} min read
+                          </span>
+                          <Link
+                            href={`/blog/posts/${blogPost.slug}`}
+                            className='text-blue-600 dark:text-blue-400 font-medium flex items-center hover:translate-x-1 transition-transform duration-300'
+                          >
+                            Read More
+                            <svg
+                              className='ml-1 w-4 h-4'
+                              fill='none'
+                              stroke='currentColor'
+                              viewBox='0 0 24 24'
+                            >
+                              <path
+                                strokeLinecap='round'
+                                strokeLinejoin='round'
+                                strokeWidth={2}
+                                d='M9 5l7 7-7 7'
+                              />
+                            </svg>
+                          </Link>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   </div>
                 </section>
               );

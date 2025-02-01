@@ -314,12 +314,7 @@ border-radius: 4px; */
   animation: shine 2s infinite;
 }
 
-/* Add smooth transitions for dark mode */
-.dark .group:hover {
-  background: rgba(255, 255, 255, 0.05);
-}
 
-/* Enhance card interactions */
 .group {
   transition: all 0.3s ease;
 }
