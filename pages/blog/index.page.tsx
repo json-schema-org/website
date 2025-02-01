@@ -9,8 +9,8 @@ const PATH = 'pages/blog/posts';
 import TextTruncate from 'react-text-truncate';
 import generateRssFeed from './generateRssFeed';
 import { useRouter } from 'next/router';
-import useSetUrlParam from '~/lib/useSetUrlParam';
 import { SectionContext } from '~/context';
+import Image from 'next/image';
 
 type Author = {
   name: string;
@@ -75,7 +75,6 @@ export default function StaticMarkdownPage({
   filterTag: any;
 }) {
   const router = useRouter();
-  const setParam = useSetUrlParam();
   const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(
     filterTag || 'All',
   );
@@ -92,36 +91,17 @@ export default function StaticMarkdownPage({
     setCurrentFilterTag(filterTag);
   }, [filterTag]);
 
-  const handleClick = (event: { currentTarget: { value: any } }) => {
-    const clickedTag = event.currentTarget.value;
-    setParam('type', clickedTag);
-
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault(); // Prevent default scrolling behavior
+    const clickedTag = event.currentTarget.value as blogCategories;
     if (clickedTag === 'All') {
-      setParam('type', null);
-    } else {
+      setCurrentFilterTag('All');
+      history.replaceState(null, '', '/blog'); // Update the URL without causing a scroll
+    } else if (isValidCategory(clickedTag)) {
       setCurrentFilterTag(clickedTag);
-    }
-
-    // Check if the user is already on the "/blog" page
-    if (router.pathname === '/blog') {
-      if (router.query.type) {
-        // Remove the 'type' query parameter from the URL
-        setParam(
-          'type',
-          router.query.type === clickedTag ? undefined : clickedTag,
-        );
-      }
-      setCurrentFilterTag(clickedTag);
-    } else {
-      // If not on the "/blog" page, navigate to the "/blog" page with the type tag as a query parameter
-      router.replace(
-        { pathname: '/blog', query: { type: clickedTag } },
-        undefined,
-        { shallow: true },
-      );
+      history.replaceState(null, '', `/blog?type=${clickedTag}`); // Update URL
     }
   };
-
   const recentBlog = blogPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime();
     const dateB = new Date(b.frontmatter.date).getTime();
@@ -145,8 +125,10 @@ export default function StaticMarkdownPage({
         {recentBlog[0] && (
           <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]'>
-              <img
+              <Image
                 src={recentBlog[0].frontmatter.cover}
+                width={800}
+                height={450}
                 className='object-cover w-full h-full opacity-70'
                 alt='hero image example'
               />
@@ -210,7 +192,13 @@ export default function StaticMarkdownPage({
               href='/rss/feed.xml'
               className='flex items-center text-blue-500 hover:text-blue-600 cursor-pointer'
             >
-              <img src='/icons/rss.svg' className='rounded h-5 w-5 mr-2' />
+              <Image
+                src='/icons/rss.svg'
+                className='rounded h-5 w-5 mr-2'
+                alt='rss'
+                height={20}
+                width={20}
+              />
               RSS&nbsp;Feed
             </a>
           </div>
@@ -274,10 +262,18 @@ export default function StaticMarkdownPage({
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-                                setParam('type', frontmatter.type);
+
+                                if (frontmatter.type) {
+                                  setCurrentFilterTag(frontmatter.type);
+                                  history.replaceState(
+                                    null,
+                                    '',
+                                    `/blog?type=${frontmatter.type}`,
+                                  );
+                                }
                               }}
                             >
-                              {frontmatter.type}
+                              {frontmatter.type || 'Unknown Type'}
                             </div>
                           </div>
                           <div className='text-lg font-semibold'>

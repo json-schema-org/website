@@ -6,6 +6,7 @@ import Badge from './ui/Badge';
 import type { JSONSchemaTool } from '../JSONSchemaTool';
 import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
+import Image from 'next/image';
 import Tag from './ui/Tag';
 
 export default function ToolingDetailModal({
@@ -43,9 +44,12 @@ export default function ToolingDetailModal({
         <div className='mt-4 flex flex-row items-center justify-start gap-2'>
           {tool.landscape?.logo && (
             <div className='p-2 flex flex-row items-center dark:bg-white rounded-md flex-none'>
-              <img
+              <Image
                 src={`img/tools/logos/${tool.landscape?.logo}`}
                 className='h-[48px] w-[48px]'
+                height={48}
+                width={48}
+                alt='landscape logos'
               />
             </div>
           )}
@@ -341,13 +345,15 @@ const BowtieReportBadge = ({ uri }: { uri: string }) => {
       {loading && !error && (
         <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-[176px] rounded-md'></div>
       )}
-      <img
+      <Image
         src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
         onLoad={() => setLoading(false)}
         onError={() => {
           setLoading(false);
           setError(true);
         }}
+        width={100}
+        height={20}
         style={{ display: loading ? 'none' : 'block' }}
         alt='Bowtie Badge'
         className='my-1'

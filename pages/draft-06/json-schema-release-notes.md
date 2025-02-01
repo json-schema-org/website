@@ -21,8 +21,8 @@ For more information, see that draft's [migration notes](../../draft-07/json-sch
 
 #### Backwards-incompatible changes
 
-keyword | change | consequence
----- | ---- | ----
+| keyword | change | consequence
+| ---- | ---- | ----
 `"id"` | replaced by `"$id"` | no longer easily confused with instance properties named `"id"`
 `"$id"` | replaces `"id"` | behavior is identical, `$` prefix matches the other two core keywords
 `"$ref"` | only allowed where a schema is expected | it is now possible to describe instance properties named `"$ref"`
@@ -31,8 +31,8 @@ keyword | change | consequence
 
 #### Additions and backwards-compatible changes
 
-keyword | change | consequence
----- | ---- | ----
+| keyword | change | consequence
+| ---- | ---- | ----
 booleans as schemas | allowable anywhere, not just `"additionalProperties"` and `"additionalItems"` | `true` is equivalent to `{}`, `false` is equivalent to `{"not": {}}`, but the intent is more clear and implementations can optimize these cases more easily
 `"propertyNames"` | added | takes a schema which validates the *names* of all properties rather than their values
 `"contains"` | added | array keyword that passes validation if its schema validates at least one array item

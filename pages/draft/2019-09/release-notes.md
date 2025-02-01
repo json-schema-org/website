@@ -55,8 +55,8 @@ All keywords have now been organized into [vocabularies](../../draft/2019-09/jso
 
 [Core Specification, Section 8](../../draft/2019-09/json-schema-core.html#rfc.section.8)
 
-keyword | change | notes
----- | ---- | ----
+| keyword | change | notes
+| ---- | ---- | ----
 [`$anchor`](../../draft/2019-09/json-schema-core.html#rfc.section.8.2.3) | **new** | Replaces the `#plain-name` form of `$id`, with a different syntax and approach
 [`$defs` (renamed from `definitions`)](../../draft/2019-09/json-schema-core.html#rfc.section.8.2.5) | **renamed** | Note that the standard meta-schema still reserves `definitions` for backwards compatibility
 [`$id`](../../draft/2019-09/json-schema-core.html#rfc.section.8.2.2) | **changed** | Only URI-references without fragments are allowed; see `$anchor` for a replacement for plain-name fragments; all other fragments in `$id` had undefined behavior previously
@@ -70,8 +70,8 @@ keyword | change | notes
 
 These keywords were formerly found in the Validation Specification.
 
-keyword | change | notes
----- | ---- | ----
+| keyword | change | notes
+| ---- | ---- | ----
 [`dependentSchemas` (split from `dependencies`)](../../draft/2019-09/json-schema-core.html#rfc.section.9.2.2.4) | **split** | This is the schema form of `dependencies`; note that the standard meta-schema still reserves `dependencies` for backwards compatibility
 [`unevaluatedItems`](../../draft/2019-09/json-schema-core.html#rfc.section.9.3.1.3) | **new** | Similar to `additionalItems`, but can "see" into subschemas and across references
 [`unevaluatedProperties`](../../draft/2019-09/json-schema-core.html#rfc.section.9.3.2.4) | **new** | Similar to `additionalProperties`, but can "see" into subschemas and across references
@@ -82,8 +82,8 @@ The other applicator vocabulary keywords are `items`, `additionalItems`, `proper
 
 [Validation Specification, Section 6](../../draft/2019-09/json-schema-validation.html#rfc.section.6)
 
-keyword | change | notes
----- | ---- | ----
+| keyword | change | notes
+| ---- | ---- | ----
 [`dependentRequired` (split from `dependencies`)](../../draft/2019-09/json-schema-validation.html#rfc.section.6.5.4) | **split** | This is the string array form of `dependencies`; note that the standard meta-schema still reserves `dependencies` for backwards compatibility
 [`maxContains` and `minContains`](../../draft/2019-09/json-schema-validation.html#rfc.section.6.4.4) | **new** | Assertion for controlling how many times a subschema must be matched within an array
 
@@ -102,11 +102,11 @@ In the following charts, the "supported" column refers to whether and (for `2019
 
 **Summary of draft-07 behavior**
 
-supported   | configuration | outcome 
------------ | ------------- | -------------
-no          | n/a           | not validated
-yes         | _default_ (on)| inconsistently validated
-yes         | off           | not validated
+| supported   | configuration | outcome 
+| ----------- | ------------- | -------------
+| no          | n/a           | not validated
+| yes         | _default_ (on)| inconsistently validated
+| yes         | off           | not validated
 
 Obviously, each implementation will behave consistently from schema to schema, although some formats may be supported more thoroughly than others despite the wording in the specification.  However, complex formats are, in practice, supported to different degrees in each implementation.  If they are supported at all.
 
@@ -120,28 +120,28 @@ The goal with this draft is to make the default behavior predictable, with the i
 
 * An outcome of _vocabulary error_ means that the implementation will refuse to process the schema as it cannot satisfy the vocabulary requirement.
 
-supported   | configuration  | vocabulary    | outcome 
------------ | -------------- | ------------- | -------------
-no          | n/a            | false         | not validated
-no          | n/a            | true          | _vocabulary error_
-best effort | _default_ (off)| false         | not validated
-best effort | _default_ (off)| true          | _vocabulary error_
-best effort | on             | false         | best effort validation
-best effort | on             | true          | _vocabulary error_
-full syntax | _default_ (off)| false         | not validated
-full syntax | _default_ (off)| true          | full syntax validation
-full syntax | on             | false         | full syntax validation
-full syntax | on             | true          | full syntax validation
+| supported   | configuration  | vocabulary    | outcome 
+| ----------- | -------------- | ------------- | -------------
+| no          | n/a            | false         | not validated
+| no          | n/a            | true          | _vocabulary error_
+| best effort | _default_ (off)| false         | not validated
+| best effort | _default_ (off)| true          | _vocabulary error_
+| best effort | on             | false         | best effort validation
+| best effort | on             | true          | _vocabulary error_
+| full syntax | _default_ (off)| false         | not validated
+| full syntax | _default_ (off)| true          | full syntax validation
+| full syntax | on             | false         | full syntax validation
+| full syntax | on             | true          | full syntax validation
 
 Note that, given that almost no draft-07 or earlier implementations have offered strict and complete validation of every single format, it seems unlikely that any implementations will support option 3 option in practice.  
 
 Additionally, two new formats were added, and a specification reference was updated:
 
-format | change | notes
----- | ---- | ----
-[`"duration"`](../../draft/2019-09/json-schema-validation.html#rfc.section.7.3.1) | **added** | The duration format is from the ISO 8601 ABNF as given in Appendix A of RFC 3339
-[`"hostname"` and `"idn-hostname"`](../../draft/2019-09/json-schema-validation.html#rfc.section.7.3.3) | **updated** | Use RFC 1123 instead of RFC 1034; this allows for a leading digit
-[`"uuid"`](../../draft/2019-09/json-schema-validation.html#rfc.section.7.3.5) | **added** | A string instance is valid against this attribute if it is a valid string representation of a UUID, according to RFC4122
+|format | change | notes
+| ---- | ---- | ----
+| [`"duration"`](../../draft/2019-09/json-schema-validation.html#rfc.section.7.3.1) | **added** | The duration format is from the ISO 8601 ABNF as given in Appendix A of RFC 3339
+| [`"hostname"` and `"idn-hostname"`](../../draft/2019-09/json-schema-validation.html#rfc.section.7.3.3) | **updated** | Use RFC 1123 instead of RFC 1034; this allows for a leading digit
+| [`"uuid"`](../../draft/2019-09/json-schema-validation.html#rfc.section.7.3.5) | **added** | A string instance is valid against this attribute if it is a valid string representation of a UUID, according to RFC4122
 
 
 #### Content Vocabulary
@@ -150,23 +150,23 @@ format | change | notes
 
 These keywords are now specified purely as annotations, and never assertions.  Some guidance is provided around how an implementation can optionally offer further automatic processing of this information outside of the validation process.
 
-keyword | change | notes
----- | ---- | ----
-[`contentEncoding`](../../draft/2019-09/json-schema-validation.html#rfc.section.8.3) | **updated** | Encodings from RFC 4648 are now allowed, and take precedence over RFC 2045 when there is a difference
-[`contentSchema`](../../draft/2019-09/json-schema-validation.html#rfc.section.8.5) | **added** | Schema for use with the decoded content string; note that it is _not_ automatically applied as not all content media types can be understood in advance
+| keyword | change | notes
+| ---- | ---- | ----
+| [`contentEncoding`](../../draft/2019-09/json-schema-validation.html#rfc.section.8.3) | **updated** | Encodings from RFC 4648 are now allowed, and take precedence over RFC 2045 when there is a difference
+| [`contentSchema`](../../draft/2019-09/json-schema-validation.html#rfc.section.8.5) | **added** | Schema for use with the decoded content string; note that it is _not_ automatically applied as not all content media types can be understood in advance
 
 #### Meta-Data Vocabulary
 
 [Validation Specification, Section 9](../../draft/2019-09/json-schema-validation.html#rfc.section.9)
 
-keyword | change | notes
----- | ---- | ----
-[`deprecated`](../../draft/2019-09/json-schema-validation.html#rfc.section.9.3) | **added** | Used to indicate that a field is deprecated in some application-specific manner
+| keyword | change | notes
+| ---- | ---- | ----
+| [`deprecated`](../../draft/2019-09/json-schema-validation.html#rfc.section.9.3) | **added** | Used to indicate that a field is deprecated in some application-specific manner
 
 #### Hyper-Schema Vocabulary
 
 [Hyper-Schema Specification, Sections 5 and 6](../../draft/2019-09/json-schema-hypermedia.html#rfc.section.5)
 
-keyword | change | notes
----- | ---- | ----
-[`rel`](../../draft/2019-09/json-schema-hypermedia.html#rfc.section.6.2.1) | **changed** | Can now be an array of values instead of just a string
+| keyword | change | notes
+| ---- | ---- | ----
+| [`rel`](../../draft/2019-09/json-schema-hypermedia.html#rfc.section.6.2.1) | **changed** | Can now be an array of values instead of just a string
