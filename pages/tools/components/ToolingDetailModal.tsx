@@ -23,6 +23,18 @@ export default function ToolingDetailModal({
     };
   }, []);
 
+  useEffect(() => {
+    const clickEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', clickEsc);
+    return () => {
+      document.removeEventListener('keydown', clickEsc);
+    };
+  }, [onClose]);
+
   return (
     <div className='fixed inset-0 flex items-center justify-center z-50 overflow-x-hidden'>
       <div
@@ -36,9 +48,9 @@ export default function ToolingDetailModal({
         <div className='flex justify-end absolute top-0 right-0 mt-6 mr-6'>
           <button
             onClick={onClose}
-            className='text-gray-500 hover:text-gray-700'
+            className='text-gray-500 hover:text-gray-300'
           >
-            <CancelIcon className='fill-current stroke-current w-3 h-3' />
+            <CancelIcon className='fill-current stroke-current w-4 h-4' />
           </button>
         </div>
         <div className='mt-4 flex flex-row items-center justify-start gap-2'>
