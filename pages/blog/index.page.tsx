@@ -244,7 +244,7 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-                  <div className='h-[520px] flex border rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden dark:border-slate-500 group relative'>
+                  <div className='h-[521px] flex border rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden dark:border-slate-500 group relative'>
                     <div className='inline-flex flex-col flex-1 w-full'>
                       <div className='relative w-full h-[240px] overflow-hidden'>
                         <Image
