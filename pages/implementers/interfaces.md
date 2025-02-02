@@ -1,5 +1,5 @@
 ---
-title: Common Interfaces across JSON Schema Implementations
+title: Common interfaces across JSON Schema implementations
 section: implementers
 prev: 
   label: For Implementers

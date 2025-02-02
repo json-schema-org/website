@@ -9,8 +9,7 @@ import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Welcome() {
   const fileRenderType = 'tsx';
-
-  const newTitle = 'Getting Started';
+  const newTitle = 'Get started';
   return (
     <SectionContext.Provider value='learn'>
       <Head>
@@ -40,7 +39,7 @@ export default function Welcome() {
           link='https://tour.json-schema.org/'
         />
         <Card
-          title='JSON Schema Glossary'
+          title='JSON Schema glossary'
           body='Explore a curated glossary of common terms used in the JSON Schema ecosystem'
           headerSize='medium'
           bodyTextSize='small'

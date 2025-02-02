@@ -1,5 +1,5 @@
 ---
-title: "Declaring a Dialect"
+title: "Dialect and vocabulary declaration"
 section: docs
 prev: 
   label: Applying Subschemas Conditionally

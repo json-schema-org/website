@@ -514,7 +514,7 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/learn/glossary'
-            label='JSON Schema common terms'
+            label='JSON Schema glossary'
             setOpen={setOpen}
           />
           <SegmentSubtitle label='Examples' />
@@ -637,10 +637,11 @@ export const DocsNav = ({
           )}
           id='reference'
         >
+
           <DocLink uri='/understanding-json-schema/reference' label='Overview' setOpen={setOpen} />
-          <DocLinkBlank
-            uri='https://www.learnjsonschema.com/'
-            label='Learn JSON Schema'
+          <DocLink
+            uri='/understanding-json-schema/reference'
+            label='Overview'
             setOpen={setOpen}
           />
           <DocLink
@@ -773,20 +774,15 @@ export const DocsNav = ({
             label='Media: string-encoding non-JSON data'
             setOpen={setOpen}
           />
-          <DocLink
-            uri='/implementers'
-            label='For implementers'
+          <DocLinkBlank
+            uri='https://www.learnjsonschema.com/'
+            label='Learn JSON Schema'
             setOpen={setOpen}
           />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink
-              uri='/implementers/interfaces'
-              label='Common interfaces across implementations'
-              setOpen={setOpen}
-            />
-          </div> {/*Closing div tag: for implementers*/}
-        </div>{/*Closing div: inner reference div */}
-      </div>{/*Closing div: outermost reference div */}
+        </div>
+        {/*Closing div: inner reference div */}
+      </div>
+      {/*Closing div: outermost reference div */}
       {/* Specification */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
         <div
