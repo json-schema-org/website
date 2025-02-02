@@ -471,7 +471,7 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/learn/glossary'
-            label='JSON Schema common terms'
+            label='JSON Schema glossary'
             setOpen={setOpen}
           />
           <SegmentSubtitle label='Examples' />
@@ -531,6 +531,19 @@ export const DocsNav = ({
           id='Guides'
         >
           <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
+          <DocLink
+            uri='/implementers'
+            label='For implementers'
+            setOpen={setOpen}
+          />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink
+              uri='/implementers/interfaces'
+              label='Common interfaces across implementations'
+              setOpen={setOpen}
+            />
+          </div>
+          {/*Closing div tag: for implementers*/}
         </div>
       </div>{' '}
       {/* Closing div: Guides */}
@@ -572,11 +585,6 @@ export const DocsNav = ({
           <DocLink
             uri='/understanding-json-schema/reference'
             label='Overview'
-            setOpen={setOpen}
-          />
-          <DocLinkBlank
-            uri='https://www.learnjsonschema.com/'
-            label='Learn JSON Schema'
             setOpen={setOpen}
           />
           <DocLink
@@ -721,19 +729,11 @@ export const DocsNav = ({
             label='Media: string-encoding non-JSON data'
             setOpen={setOpen}
           />
-          <DocLink
-            uri='/implementers'
-            label='For implementers'
+          <DocLinkBlank
+            uri='https://www.learnjsonschema.com/'
+            label='Learn JSON Schema'
             setOpen={setOpen}
           />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink
-              uri='/implementers/interfaces'
-              label='Common interfaces across implementations'
-              setOpen={setOpen}
-            />
-          </div>{' '}
-          {/*Closing div tag: for implementers*/}
         </div>
         {/*Closing div: inner reference div */}
       </div>

@@ -1,5 +1,5 @@
 ---
-title: "Applying Subschemas Conditionally"
+title: "Applying subschemas conditionally"
 section: docs
 ---
 

@@ -9,7 +9,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 export default function Welcome() {
   const markdownFile = '_indexPage';
 
-  const newTitle = 'Get Started';
+  const newTitle = 'Get started';
   return (
     <SectionContext.Provider value='learn'>
       <Head>
@@ -47,7 +47,7 @@ export default function Welcome() {
           link='https://tour.json-schema.org/'
         />
         <Card
-          title='JSON Schema common terms'
+          title='JSON Schema glossary'
           body='Explore a curated glossary of common terms used in the JSON Schema ecosystem'
           headerSize='medium'
           bodyTextSize='small'

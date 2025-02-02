@@ -1,5 +1,5 @@
 ---
-title: JSON Schema Glossary
+title: JSON Schema glossary
 section: docs
 ---
 

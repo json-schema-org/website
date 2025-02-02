@@ -9,7 +9,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 export default function Welcome() {
   const markdownFile = '_indexPage';
 
-  const newTitle = 'JSON Schema Reference';
+  const newTitle = 'JSON Schema reference';
   return (
     <SectionContext.Provider value='learn'>
       <Head>
@@ -29,20 +29,12 @@ export default function Welcome() {
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
         <Card
-          title='Learn JSON Schema'
-          body='Improve your JSON Schema skills with this reference, crafted by our TSC members, offering practical examples, best practices, and common pitfalls.'
-          headerSize='medium'
-          bodyTextSize='small'
-          extended={true}
-          link='https://www.learnjsonschema.com/2020-12/'
-        />
-        <Card
           title='Keywords'
           body='Browse our comprehensive index of JSON Schema keywords, each linking to detailed documentation.'
           headerSize='medium'
           bodyTextSize='small'
           extended={true}
-          link='https://tour.json-schema.org/'
+          link='/understanding-json-schema/keywords'
         />
         <Card
           title='Data types'
@@ -50,7 +42,15 @@ export default function Welcome() {
           headerSize='medium'
           bodyTextSize='small'
           extended={true}
-          link='https://tour.json-schema.org/'
+          link='./reference/type'
+        />
+        <Card
+          title='Dialect and vocabulary declaration'
+          body='Learn how to declare the JSON Schema dialect and vocabulary your schema uses, ensuring compatibility and proper validation.'
+          headerSize='medium'
+          bodyTextSize='small'
+          extended={true}
+          link='./reference/schema'
         />
         <Card
           title='Value restrictions'
@@ -58,7 +58,7 @@ export default function Welcome() {
           headerSize='medium'
           bodyTextSize='small'
           extended={true}
-          link='https://tour.json-schema.org/'
+          link='./reference/generic'
         />
         <Card
           title='Annotations and comments'
@@ -66,7 +66,15 @@ export default function Welcome() {
           headerSize='medium'
           bodyTextSize='small'
           extended={true}
-          link='https://tour.json-schema.org/'
+          link='./reference/metadata'
+        />
+        <Card
+          title='Conditional schema validation'
+          body='Control validation based on property presence and values using conditional subschemas.'
+          headerSize='medium'
+          bodyTextSize='small'
+          extended={true}
+          link='./reference/conditionals'
         />
         <Card
           title='Schema composition'
@@ -74,7 +82,23 @@ export default function Welcome() {
           headerSize='medium'
           bodyTextSize='small'
           extended={true}
-          link='https://tour.json-schema.org/'
+          link='./reference/composition'
+        />
+        <Card
+          title='String-encoding non-JSON data'
+          body='Describe and handle non-JSON data within JSON strings using media type and encoding information.'
+          headerSize='medium'
+          bodyTextSize='small'
+          extended={true}
+          link='./reference/non_json_data'
+        />
+        <Card
+          title='Learn JSON Schema'
+          body='Improve your JSON Schema skills with this reference, crafted by our TSC members, offering practical examples, best practices, and common pitfalls.'
+          headerSize='medium'
+          bodyTextSize='small'
+          extended={true}
+          link='https://www.learnjsonschema.com/2020-12/'
         />
       </div>
       <DocsHelp markdownFile={markdownFile} />
