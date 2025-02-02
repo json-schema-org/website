@@ -317,6 +317,7 @@ border-radius: 4px; */
 .group {
   transition: all 0.3s ease;
 }
+
 .group:hover {
   transform: translateY(-2px);
 }
