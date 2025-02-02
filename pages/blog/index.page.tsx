@@ -245,125 +245,128 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-                  <div className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
-                    <Link
-                      href={`/blog/posts/${blogPost.slug}`}
-                      className='inline-flex flex-col flex-1 w-full'
-                    >
-                      <div
-                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                        style={{ backgroundImage: `url(${frontmatter.cover})` }}
-                      />
-                      <div className=' p-4 flex flex-col flex-1 justify-between'>
-                        <div>
+                  <Link href={`/blog/posts/${blogPost.slug}`}>
+                    <div className='h-[520px] flex border rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden dark:border-slate-500 group relative'>
+                      <div className='inline-flex flex-col flex-1 w-full'>
+                        <div className='relative w-full h-[240px] overflow-hidden'>
+                          <Image
+                            src={frontmatter.cover}
+                            fill
+                            className='object-cover transition-transform duration-300 group-hover:scale-105'
+                            alt={frontmatter.title}
+                          />
+                        </div>
+                        <div className='p-4 flex flex-col flex-1 justify-between'>
                           <div>
-                            <div
-                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
+                            <div>
+                              <div
+                                className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
 
-                                if (frontmatter.type) {
-                                  setCurrentFilterTag(frontmatter.type);
-                                  history.replaceState(
-                                    null,
-                                    '',
-                                    `/blog?type=${frontmatter.type}`,
-                                  );
-                                }
-                              }}
-                            >
-                              {frontmatter.type || 'Unknown Type'}
+                                  if (frontmatter.type) {
+                                    setCurrentFilterTag(frontmatter.type);
+                                    history.replaceState(
+                                      null,
+                                      '',
+                                      `/blog?type=${frontmatter.type}`,
+                                    );
+                                  }
+                                }}
+                              >
+                                {frontmatter.type || 'Unknown Type'}
+                              </div>
+                            </div>
+                            <div className='text-lg font-semibold'>
+                              {frontmatter.title}
+                            </div>
+
+                            <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
+                              <TextTruncate
+                                element='span'
+                                line={4}
+                                text={frontmatter.excerpt}
+                              />
                             </div>
                           </div>
-                          <div className='text-lg font-semibold'>
-                            {frontmatter.title}
-                          </div>
-
-                          <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
-                            <TextTruncate
-                              element='span'
-                              line={4}
-                              text={frontmatter.excerpt}
-                            />
-                          </div>
-                        </div>
-                        <div
-                          className={`
-                            flex 
-                            flex-row
-                            items-center
-                          `}
-                        >
-                          <div className='flex flex-row pl-2 mr-2'>
-                            {(frontmatter.authors || []).map(
-                              (author: Author, index: number) => (
-                                <div
-                                  key={index}
-                                  className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
-                                    frontmatter.authors.length > 2
-                                      ? 'h-8 w-8'
-                                      : 'h-11 w-11'
-                                  }`}
-                                  style={{
-                                    backgroundImage: `url(${author.photo})`,
-                                    zIndex: 10 - index,
-                                  }}
-                                />
-                              ),
-                            )}
-                          </div>
-
                           <div
                             className={`
                               flex 
-                              flex-col
-                              items-start
+                              flex-row
+                              items-center
                             `}
                           >
-                            <div className='text-sm font-semibold'>
-                              {frontmatter.authors.length > 2 ? (
-                                <>
-                                  {frontmatter.authors
-                                    .slice(0, 2)
-                                    .map((author: Author, index: number) => (
-                                      <span key={author.name}>
-                                        {author.name}
-                                        {index === 0 && ' & '}
-                                      </span>
-                                    ))}
-                                  {'...'}
-                                </>
-                              ) : (
-                                frontmatter.authors.map(
-                                  (author: Author, index: number) => (
-                                    <span key={author.name}>
-                                      {author.name}
-                                      {index < frontmatter.authors.length - 1 &&
-                                        ' & '}
-                                    </span>
-                                  ),
-                                )
+                            <div className='flex flex-row pl-2 mr-2'>
+                              {(frontmatter.authors || []).map(
+                                (author: Author, index: number) => (
+                                  <div
+                                    key={index}
+                                    className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                                      frontmatter.authors.length > 2
+                                        ? 'h-8 w-8'
+                                        : 'h-11 w-11'
+                                    }`}
+                                    style={{
+                                      backgroundImage: `url(${author.photo})`,
+                                      zIndex: 10 - index,
+                                    }}
+                                  />
+                                ),
                               )}
                             </div>
 
-                            <div className='text-slate-500 text-sm dark:text-slate-300'>
-                              {frontmatter.date && (
-                                <span>
-                                  {date.toLocaleDateString('en-us', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric',
-                                  })}
-                                </span>
-                              )}{' '}
-                              &middot; {timeToRead} min read
+                            <div
+                              className={`
+                                flex 
+                                flex-col
+                                items-start
+                              `}
+                            >
+                              <div className='text-sm font-semibold'>
+                                {frontmatter.authors.length > 2 ? (
+                                  <>
+                                    {frontmatter.authors
+                                      .slice(0, 2)
+                                      .map((author: Author, index: number) => (
+                                        <span key={author.name}>
+                                          {author.name}
+                                          {index === 0 && ' & '}
+                                        </span>
+                                      ))}
+                                    {'...'}
+                                  </>
+                                ) : (
+                                  frontmatter.authors.map(
+                                    (author: Author, index: number) => (
+                                      <span key={author.name}>
+                                        {author.name}
+                                        {index < frontmatter.authors.length - 1 &&
+                                          ' & '}
+                                      </span>
+                                    ),
+                                  )
+                                )}
+                              </div>
+
+                              <div className='text-slate-500 text-sm dark:text-slate-300'>
+                                {frontmatter.date && (
+                                  <span>
+                                    {date.toLocaleDateString('en-us', {
+                                      year: 'numeric',
+                                      month: 'long',
+                                      day: 'numeric',
+                                    })}
+                                  </span>
+                                )}{' '}
+                                &middot; {timeToRead} min read
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </Link>
-                  </div>
+                    </div>
+                  </Link>
                 </section>
               );
             })}
