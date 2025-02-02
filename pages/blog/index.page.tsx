@@ -258,30 +258,12 @@ export default function StaticMarkdownPage({
                         </div>
                         <div className='p-4 flex flex-col flex-1 justify-between'>
                           <div>
-                            <div>
-                              <div
-                                className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
-                                onClick={(e) => {
-                                  e.preventDefault();
-                                  e.stopPropagation();
-
-                                  if (frontmatter.type) {
-                                    setCurrentFilterTag(frontmatter.type);
-                                    history.replaceState(
-                                      null,
-                                      '',
-                                      `/blog?type=${frontmatter.type}`,
-                                    );
-                                  }
-                                }}
-                              >
-                                {frontmatter.type || 'Unknown Type'}
-                              </div>
+                            <div className='bg-blue-100 dark:bg-slate-700 dark:text-blue-100 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
+                              {frontmatter.type || 'Unknown Type'}
                             </div>
                             <div className='text-lg font-semibold'>
                               {frontmatter.title}
                             </div>
-
                             <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
                               <TextTruncate
                                 element='span'
@@ -290,13 +272,8 @@ export default function StaticMarkdownPage({
                               />
                             </div>
                           </div>
-                          <div
-                            className={`
-                              flex 
-                              flex-row
-                              items-center
-                            `}
-                          >
+                          
+                          <div className='flex flex-row items-center'>
                             <div className='flex flex-row pl-2 mr-2'>
                               {(frontmatter.authors || []).map(
                                 (author: Author, index: number) => (
