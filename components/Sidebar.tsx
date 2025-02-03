@@ -269,31 +269,59 @@ export const DocsNav = ({
   });
   useEffect(() => {
     const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+    const newActive = {
+      getDocs: false,
+      getStarted: false,
+      getReference: false,
+      getSpecification: false,
+    };
     if (getDocsPath.includes(pathWtihoutFragment)) {
-      setActive({ ...active, getDocs: true });
+      newActive.getDocs = true;
     } else if (getStartedPath.includes(pathWtihoutFragment)) {
-      setActive({ ...active, getStarted: true });
+      newActive.getStarted = true;
     } else if (getReferencePath.includes(pathWtihoutFragment)) {
-      setActive({ ...active, getReference: true });
+      newActive.getReference = true;
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
-      setActive({ ...active, getSpecification: true });
+      newActive.getSpecification = true;
     }
+
+    setActive(newActive);
   }, [router.asPath]);
 
   const handleClickDoc = () => {
-    setActive({ ...active, getDocs: !active.getDocs });
+    setActive({
+      getDocs: !active.getDocs,
+      getStarted: false,
+      getReference: false,
+      getSpecification: false,
+    });
   };
 
   const handleClickGet = () => {
-    setActive({ ...active, getStarted: !active.getStarted });
+    setActive({
+      getDocs: false,
+      getStarted: !active.getStarted,
+      getReference: false,
+      getSpecification: false,
+    });
   };
 
   const handleClickReference = () => {
-    setActive({ ...active, getReference: !active.getReference });
+    setActive({
+      getDocs: false,
+      getStarted: false,
+      getReference: !active.getReference,
+      getSpecification: false,
+    });
   };
 
   const handleClickSpec = () => {
-    setActive({ ...active, getSpecification: !active.getSpecification });
+    setActive({
+      getDocs: false,
+      getStarted: false,
+      getReference: false,
+      getSpecification: !active.getSpecification,
+    });
   };
 
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
@@ -392,7 +420,11 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
-          <DocLink uri='/pro-help' label='Pro Help' setOpen={setOpen} />
+          <DocLink
+            uri='/overview/pro-help'
+            label='Pro Help'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/overview/similar-technologies'
             label='Similar Technologies'
@@ -736,7 +768,7 @@ export const DocsNav = ({
             'transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getSpecification,
-              'max-h-80 opacity-100': active.getSpecification,
+              'max-h-80 opacity-100 overflow-hidden': active.getSpecification,
             },
           )}
           id='specification'

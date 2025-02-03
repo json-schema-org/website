@@ -27,7 +27,7 @@ export default function ContentExample({
   frontmatter: any;
   content: any;
 }) {
-  const markdownFile = '_indexPage';
+  const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
@@ -37,7 +37,7 @@ export default function ContentExample({
         nextLabel='Type-specific keywords'
         nextURL='/understanding-json-schema/reference/type'
       />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

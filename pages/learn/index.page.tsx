@@ -8,7 +8,7 @@ import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Welcome() {
-  const markdownFile = '_indexPage';
+  const fileRenderType = 'tsx';
 
   const newTitle = 'Getting Started';
   return (
@@ -46,7 +46,7 @@ export default function Welcome() {
         nextLabel='Creating your first Schema'
         nextURL='/learn/getting-started-step-by-step'
       />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

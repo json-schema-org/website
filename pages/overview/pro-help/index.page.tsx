@@ -1,10 +1,11 @@
 import React from 'react';
 import fs from 'fs';
-import { getLayout } from '~/components/SiteLayout';
+import { getLayout } from '~/components/Sidebar';
 import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 interface ContractorLink {
   title: string;
@@ -48,16 +49,15 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
   const newTitle = 'Need pro help with JSON Schema?';
 
   return (
-    <SectionContext.Provider value='pro-help'>
+    <SectionContext.Provider value='docs'>
       <Head>
         <title>{newTitle}</title>
       </Head>
       <div
-        className='max-w-screen-xl block px-4 sm:px-6 lg:px-8 mt-12 mx-auto w-full'
+        className='max-w-screen-xl block lg:px-8 mx-auto w-full pt-0 mt-0'
         data-testid='pro-help'
       >
-        <br />
-        <div className='mt-6'>
+        <div>
           <Headline1>{newTitle}</Headline1>
           <p>
             Whether you need training, personalized advice, or custom JSON
@@ -208,6 +208,12 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
             <br />
           </div>
         </div>
+        <NextPrevButton
+          prevLabel='FAQ'
+          prevURL='/overview/faq'
+          nextLabel='Similar Technologies'
+          nextURL='/overview/similar-technologies'
+        />
         <DocsHelp />
       </div>
     </SectionContext.Provider>

@@ -11,7 +11,7 @@ import NextPrevButton from '~/components/NavigationButtons';
 
 export default function ContentExample() {
   const newTitle = 'Case Studies';
-  const markdownFile = '_indexPage';
+  const fileRenderType = 'tsx';
   const { resolvedTheme } = useTheme();
 
   const imgUrl = (src: string): string => {
@@ -52,7 +52,7 @@ export default function ContentExample() {
         nextLabel='FAQs'
         nextURL='/overview/faq'
       />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

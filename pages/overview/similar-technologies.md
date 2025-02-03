@@ -2,8 +2,8 @@
 section: docs
 title: Similar Technologies
 prev: 
-  label: FAQs
-  url: '/overview/faq'
+  label: Pro Help
+  url: '/overview/pro-help'
 next: 
   label: Code of Conduct
   url: '/overview/code-of-conduct'
