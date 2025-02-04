@@ -1,5 +1,5 @@
 ---
-title: "JSON Schema and Relational Databases: Bridging the Gap!"
+title: "JSON Schema and Relational Databases: Bridging the Gap with Oracle!"
 date: "2025-01-31"
 tags:
   - database
@@ -29,7 +29,7 @@ create table blog_posts (
   data json -- BINARY JSON
 );
 
-insert into blog_posts(data) values(
+insert into blog_posts( data ) values (
     json {
         'title': 'New Blog Post',
         'content': 'This is the content of the blog post...',
@@ -59,7 +59,7 @@ The [item method](https://docs.oracle.com/en/database/oracle/oracle-database/23/
 However, nothing prevents us from inserting unexpected data!
 
 ```sql
-insert into blog_posts values('{"garbageDocument":true}');
+insert into blog_posts( data ) values( '{"garbageDocument":true}' );
 commit;
 
 select data from blog_posts;
@@ -85,53 +85,42 @@ select json_dataguide(
 {
   "type" : "object",
   "o:length" : 1,
-  "properties" :
-  {
-    "tags" :
-    {
+  "properties" : {
+    "tags" : {
       "type" : "array",
       "o:length" : 1,
-      "items" :
-      {
+      "items" : {
         "type" : "string",
         "o:length" : 16
       }
     },
-    "title" :
-    {
+    "title" : {
       "type" : "string",
       "o:length" : 16
     },
-    "author" :
-    {
+    "author" : {
       "type" : "object",
       "o:length" : 1,
-      "properties" :
-      {
-        "email" :
-        {
+      "properties" : {
+        "email" : {
           "type" : "string",
           "o:length" : 32
         },
-        "username" :
-        {
+        "username" : {
           "type" : "string",
           "o:length" : 16
         }
       }
     },
-    "content" :
-    {
+    "content" : {
       "type" : "string",
       "o:length" : 64
     },
-    "publishedDate" :
-    {
+    "publishedDate" :  {
       "type" : "string",
       "o:length" : 32
     },
-    "garbageDocument" :
-    {
+    "garbageDocument" : {
       "type" : "boolean",
       "o:length" : 4
     }
@@ -317,7 +306,7 @@ If we retrieve the JSON schema corresponding to this relational table using `dbm
 ```sql
 -- JSON Schema of PRODUCTS table
 -- Contains check constraints!
-select dbms_json_schema.describe('PRODUCTS') as json_schema;
+select dbms_json_schema.describe( 'PRODUCTS' ) as json_schema;
 ```
 
 ```json
@@ -472,7 +461,7 @@ end;
 Then one can use the function as below:
 
 ```sql
-select getAnnotatedJSONSchema('PRODUCTS');
+select getAnnotatedJSONSchema( 'PRODUCTS' );
 ```
 
 ```json
