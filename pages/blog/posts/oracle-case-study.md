@@ -14,7 +14,7 @@ authors:
 excerpt: ""
 ---
 
-As modern multi-model databases increasingly support JSON, it's time to explore what role [JSON schema](https://json-schema.org/) will play. In this post, we'll dive into the newly developed ["Database Vocabulary"](https://github.com/json-schema-org/vocab-database/blob/main/database.md), a proposal to the official JSON schema specification developed by Oracle (with inputs from the MySQL and PostgreSQL teams). This vocabulary addresses key database tasks, including validation, type coercion/casting, and metadata preservation, making it easier to manage JSON in databases effectively and bridging the gap with existing relational data. Regardless of whether you are a JSON developer or a relational model developer, you'll learn something reading this post!
+As modern multi-model databases increasingly support JSON, it's time to explore what role [JSON schema](https://json-schema.org/) will play. In this post, we'll dive into the newly developed ["Database Vocabulary"](https://github.com/json-schema-org/vocab-database/blob/main/database.md), a proposed extension to the official JSON schema specification, developed by Oracle (with inputs from the MySQL and PostgreSQL teams). This vocabulary addresses key database tasks, including validation, type coercion/casting, and metadata preservation, making it easier to manage JSON in databases effectively and bridging the gap with existing relational data. Regardless of whether you are a JSON developer or a relational model developer, you'll learn something reading this post!
 
 Oracle Database 23ai fully implements this new vocabulary and we'll describe not only the concepts but we'll also see real-world examples of JSON schema validation in action and how to describe database objects in JSON schema.
 
@@ -30,16 +30,16 @@ create table blog_posts (
 );
 
 insert into blog_posts( data ) values (
-    json {
-        'title': 'New Blog Post',
-        'content': 'This is the content of the blog post...',
-        'publishedDate': '2023-08-25T15:00:00Z',
-        'author': {
-            'username': 'authoruser',
-            'email': 'author@example.com'
-        },
-        'tags': ['Technology', 'Programming']
-    }
+  json {
+    'title': 'New Blog Post',
+    'content': 'This is the content of the blog post...',
+    'publishedDate': '2023-08-25T15:00:00Z',
+    'author': {
+      'username': 'authoruser',
+      'email': 'author@example.com'
+    },
+    'tags': ['Technology', 'Programming']
+  }
 );
 commit;
 ```
@@ -59,70 +59,69 @@ The [item method](https://docs.oracle.com/en/database/oracle/oracle-database/23/
 However, nothing prevents us from inserting unexpected data!
 
 ```sql
-insert into blog_posts( data ) values( '{"garbageDocument":true}' );
+insert into blog_posts( data ) values( '{ "garbageDocument":true }' );
 commit;
 
 select data from blog_posts;
 ```
-
 |DATA|
 |-|
-|{"title":"New Blog Post","content": "This is the content of the blog post...","publishedDate":"2023-08-25T15:00:00Z","author":{"username":"authoruser","email":"author@example.com"},"tags":["Technology","Programming"]}|
-|{"garbageDocument":true}|
+| <pre>{ <br/>  "title": "New Blog Post",<br/>  "content": "This is the content of the blog post...",<br/>  "publishedDate":"2023-08-25T15:00:00Z",<br/>  "author": {<br/>    "username":"authoruser",<br/>    "email":"author@example.com"<br/>  },<br/>  "tags": [ "Technology", "Programming" ]<br/>}</pre> |
+| <pre>{<br/>  "garbageDocument":true<br/>}</pre>|
 
 This is where, JSON schemas can help, and the [`JSON_DATAGUIDE()`](https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/JSON_DATAGUIDE.html) function can generate one from a set of already existing JSON document(s):
 
 ```sql
 select json_dataguide(
-           data, 
-           dbms_json.format_schema,
-           dbms_json.pretty
+         data, 
+         dbms_json.format_schema,
+         dbms_json.pretty
        ) as json_schema
   from blog_posts;
 ```
 
 ```json
 {
-  "type" : "object",
-  "o:length" : 1,
-  "properties" : {
-    "tags" : {
-      "type" : "array",
-      "o:length" : 1,
-      "items" : {
-        "type" : "string",
-        "o:length" : 16
+  "type": "object",
+  "o:length": 1,
+  "properties": {
+    "tags": {
+      "type": "array",
+      "o:length": 1,
+      "items": {
+        "type": "string",
+        "o:length": 16
       }
     },
-    "title" : {
-      "type" : "string",
-      "o:length" : 16
+    "title": {
+      "type": "string",
+      "o:length": 16
     },
-    "author" : {
-      "type" : "object",
-      "o:length" : 1,
-      "properties" : {
-        "email" : {
-          "type" : "string",
-          "o:length" : 32
+    "author": {
+      "type": "object",
+      "o:length": 1,
+      "properties": {
+        "email": {
+          "type": "string",
+          "o:length": 32
         },
-        "username" : {
-          "type" : "string",
-          "o:length" : 16
+        "username": {
+          "type": "string",
+          "o:length": 16
         }
       }
     },
-    "content" : {
-      "type" : "string",
-      "o:length" : 64
+    "content": {
+      "type": "string",
+      "o:length": 64
     },
-    "publishedDate" :  {
-      "type" : "string",
-      "o:length" : 32
+    "publishedDate":  {
+      "type": "string",
+      "o:length": 32
     },
-    "garbageDocument" : {
-      "type" : "boolean",
-      "o:length" : 4
+    "garbageDocument": {
+      "type": "boolean",
+      "o:length": 4
     }
   }
 }
@@ -142,9 +141,9 @@ select dbms_json_schema.is_schema_valid(
     (
       -- Generate JSON Data Guide/Schema from data column
       select json_dataguide(
-                 data,
-                 dbms_json.format_schema,
-                 dbms_json.pretty
+               data,
+               dbms_json.format_schema,
+               dbms_json.pretty
              ) as json_schema
         from blog_posts
     ) 
@@ -172,10 +171,10 @@ select dbms_json_schema.validate_report(
 from blog_posts;
 ```
 
-| REPORT |
-|-|
-|{"valid": true, "errors": []}|
-|{"valid": true, "errors": []}|
+| REPORT                                                     |
+|------------------------------------------------------------|
+| <pre>{<br/>  "valid": true,<br/>  "errors": []<br/>}</pre> |
+| <pre>{<br/>  "valid": true,<br/>  "errors": []<br/>}</pre> |
 
 With the simplistic JSON schema, no validation errors are present. Let's use a more complex JSON schema (based on the [Blog post](https://json-schema.org/learn/json-schema-examples#blog-post) example from the JSON schema website itself):
 
@@ -246,10 +245,10 @@ select dbms_json_schema.validate_report(
 from blog_posts;
 ```
 
-|REPORT|
-|-|
-|{"valid": true,"errors": []}|
-|{"valid": false,	"errors": [	{	"schemaPath": "\$", "instancePath": "\$", "code": "JZN-00501", "error": "JSON schema validation failed" }, { "schemaPath": "\$.required", "instancePath": "\$", "code": "JZN-00515", "error": "required properties not found: 'title', 'content', 'author'" }	] }|
+| REPORT                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <pre>{ <br/>  "valid": true,<br/>  "errors": []<br/>}</pre>                                                                                                                                                                                                                                                                                                                                                                                |
+| <pre>{<br/>  "valid": false,<br/>  "errors": [<br/>    {<br/>      "schemaPath": "\$",<br/>      "instancePath": "\$",<br/>      "code": "JZN-00501",<br/>      "error": "JSON schema validation failed"<br/>    }, {<br/>      "schemaPath": "\$.required",<br/>      "instancePath": "\$",<br/>      "code": "JZN-00515",<br/>      "error": "required properties not found: 'title', 'content', 'author'"<br/>    }<br/>  ]<br/>}</pre> |
 
 Now we can see that the second JSON document shows several validation errors, namely the missing fields `title`, `content` and `author`.
 
@@ -262,9 +261,9 @@ Finally, you can leverage the `dbms_json_schema.describe()` function to generate
 select dbms_json_schema.describe( 'BLOG_POSTS' ) as json_schema;
 ```
 
-|JSON_SCHEMA|
-|-|
-|{"title": "BLOG_POSTS", "dbObject": "APIDAYS.BLOG_POSTS", "type": "object", "dbObjectType": "table", "properties": { "DATA": {} } }|
+| JSON_SCHEMA                                                                                                                                                                                  |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <pre>{<br/>  "title": "BLOG_POSTS",<br/>  "dbObject": "APIDAYS.BLOG_POSTS",<br/>  "type": "object",<br/>  "dbObjectType": "table",<br/>  "properties": {<br/>    "DATA": {}<br/>  }<br/>}</pre> |
 
 ### Client-side validation using JSON Schema
 
@@ -272,10 +271,7 @@ Now that we are able to create and retrieve JSON schemas from the database, we m
 
 Below, you can see a quick overview of a demo available in this [GitHub repository](https://github.com/loiclefevre/apidays-paris-2024):
 
-<figure class="mt-10">
-  <img src="/img/posts/2025/oracle-case-study/json-schema-form.webp"/>
-  <figcaption class="mt-2 mb-10 text-sm text-center text-gray-500">React frontend form created from the json-schema-form library.</figcaption>
-</figure>
+![React frontend form created from the json-schema-form library.](/img/posts/2025/oracle-case-study/json-schema-form.web)
 
 Using [Oracle REST Data Services](https://download.oracle.com/otn_software/java/ords/ords-latest.zip), we can indeed expose a JSON schema to a frontend via REST. Below, we are using the `json-schema-form` [library](https://github.com/remoteoss/json-schema-form) to build an input form from a JSON schema where `title`, `description`, and check constraints are used to define input fields and associated validation rules. Let's drill down into this example:
 
@@ -311,48 +307,48 @@ select dbms_json_schema.describe( 'PRODUCTS' ) as json_schema;
 
 ```json
 {
-	"title": "PRODUCTS",
-	"dbObject": "APIDAYS.PRODUCTS",
-	"type": "object",
-	"dbObjectType": "table",
-	"properties": {
-		"NAME": {
-			"type": "string",
-			"extendedType": "string",
-			"maxLength": 100,
-			"allOf": [
-				{
-					"minLength": 3
-				}
-			]
-		},
-		"PRICE": {
-			"type": "number",
-			"extendedType": "number",
-			"allOf": [
-				{
-					"exclusiveMinimum": 0
-				}
-			]
-		},
-		"QUANTITY": {
-			"type": "number",
-			"extendedType": "number",
-			"allOf": [
-				{
-					"minimum": 0
-				}
-			]
-		}
-	},
-	"required": [
-		"NAME",
-		"PRICE",
-		"QUANTITY"
+  "title": "PRODUCTS",
+  "dbObject": "APIDAYS.PRODUCTS",
+  "type": "object",
+  "dbObjectType": "table",
+  "properties": {
+    "NAME": {
+      "type": "string",
+      "extendedType": "string",
+      "maxLength": 100,
+      "allOf": [
+        {
+          "minLength": 3
+        }
+      ]
+    }, 
+    "PRICE": {
+      "type": "number",
+      "extendedType": "number",
+      "allOf": [
+        {
+          "exclusiveMinimum": 0
+        }
+      ]
+    },
+    "QUANTITY": {
+      "type": "number",
+      "extendedType": "number",
+      "allOf": [
+        {
+          "minimum": 0
+        }
+      ]
+    }
+  },
+  "required": [
+    "NAME",
+    "PRICE",
+    "QUANTITY"
 	],
-	"dbPrimaryKey": [
-		"NAME"
-	]
+  "dbPrimaryKey": [
+    "NAME"
+  ]
 }
 ```
 
@@ -466,57 +462,57 @@ select getAnnotatedJSONSchema( 'PRODUCTS' );
 
 ```json
 {
-	"title": "PRODUCTS",
-	"dbObject": "APIDAYS.PRODUCTS",
-	"type": "object",
-	"dbObjectType": "table",
-	"properties": {
-		"NAME": {
-			"type": "string",
-			"extendedType": "string",
-			"maxLength": 100,
-			"allOf": [
-				{
-					"minLength": 3
-				}
-			],
-			"title": "Name",
-			"description": "Product name (max length: 100)",
-			"minLength": "3"
-		},
-		"PRICE": {
-			"type": "number",
-			"extendedType": "number",
-			"allOf": [
-				{
-					"exclusiveMinimum": 0
-				}
-			],
-			"description": "Product price strictly positive",
-			"minimum": "0.01",
-			"title": "Price"
-		},
-		"QUANTITY": {
-			"type": "number",
-			"extendedType": "number",
-			"allOf": [
-				{
-					"minimum": 0
-				}
-			],
-			"title": "Quantity",
-			"description": "Quantity of products >= 0",
-			"minimum": "0"
-		}
-	},
-	"required": [
-		"NAME",
-		"PRICE",
-		"QUANTITY"
-	],
-	"dbPrimaryKey": [
-		"NAME"
-	]
+  "title": "PRODUCTS",
+  "dbObject": "APIDAYS.PRODUCTS",
+  "type": "object",
+  "dbObjectType": "table",
+  "properties": {
+    "NAME": {
+      "type": "string",
+      "extendedType": "string",
+      "maxLength": 100,
+      "allOf": [
+        {
+          "minLength": 3
+        }
+      ],
+      "title": "Name",
+      "description": "Product name (max length: 100)",
+      "minLength": "3"
+    },
+    "PRICE": {
+      "type": "number",
+      "extendedType": "number",
+      "allOf": [
+        {
+          "exclusiveMinimum": 0
+        }
+      ],
+      "description": "Product price strictly positive",
+      "minimum": "0.01",
+      "title": "Price"
+    },
+    "QUANTITY": {
+      "type": "number",
+      "extendedType": "number",
+      "allOf": [
+        {
+          "minimum": 0
+        }
+      ],
+      "title": "Quantity",
+      "description": "Quantity of products >= 0",
+      "minimum": "0"
+    }
+  }, 
+  "required": [
+    "NAME", 
+    "PRICE",
+    "QUANTITY"
+  ],
+  "dbPrimaryKey": [
+    "NAME"
+  ]
 }
 ```
 
@@ -528,36 +524,37 @@ The previous SQL query can then be used as the parameterized template for our RE
 -- Run only once:
 BEGIN
   ORDS.ENABLE_SCHEMA(
-      p_enabled             => TRUE,
-      p_schema              => 'APIDAYS', -- database user/schema
-      p_url_mapping_type    => 'BASE_PATH',
-      p_url_mapping_pattern => 'apidays',
-      p_auto_rest_auth      => FALSE);
+    p_enabled             => TRUE,
+    -- database user/schema
+    p_schema              => 'APIDAYS',
+    p_url_mapping_type    => 'BASE_PATH',
+    p_url_mapping_pattern => 'apidays',
+    p_auto_rest_auth      => FALSE);
     
   ORDS.DEFINE_MODULE(
-      p_module_name    => 'apidays',
-      p_base_path      => '/schema_repository/',
-      p_items_per_page => 25,
-      p_status         => 'PUBLISHED',
-      p_comments       => NULL);
+    p_module_name    => 'apidays',
+    p_base_path      => '/schema_repository/',
+    p_items_per_page => 25,
+    p_status         => 'PUBLISHED',
+    p_comments       => NULL);
 
   ORDS.DEFINE_TEMPLATE(
-      p_module_name    => 'apidays',
-      p_pattern        => 'products',
-      p_priority       => 0,
-      p_etag_type      => 'HASH',
-      p_etag_query     => NULL,
-      p_comments       => NULL);
+    p_module_name    => 'apidays',
+    p_pattern        => 'products',
+    p_priority       => 0,
+    p_etag_type      => 'HASH',
+    p_etag_query     => NULL,
+    p_comments       => NULL);
 
   ORDS.DEFINE_HANDLER(
-      p_module_name    => 'apidays',
-      p_pattern        => 'products',
-      p_method         => 'GET',
-      p_source_type    => 'json/item',
-      p_mimes_allowed  => NULL,
-      p_comments       => NULL,
-      p_source         => 
-'select getAnnotatedJSONSchema(''PRODUCTS'') as schema');
+    p_module_name    => 'apidays',
+    p_pattern        => 'products',
+    p_method         => 'GET',
+    p_source_type    => 'json/item',
+    p_mimes_allowed  => NULL,
+    p_comments       => NULL,
+    p_source         => 
+'select getAnnotatedJSONSchema( ''PRODUCTS'' ) as schema');
        
 COMMIT;
 
@@ -573,9 +570,12 @@ import axios from 'axios';
 function ORDS() {}
 
 ORDS.prototype.getSchema = async function() {
-  return await axios.get('http://localhost/ords/apidays/schema_repository/products', {})
-    .then( res => res.data.schema )
-    .catch(err => err);
+  return await axios.get(
+      'http://localhost/ords/apidays/schema_repository/products', 
+      {}
+  )
+  .then( res => res.data.schema )
+  .catch(err => err);
 }
 
 export default new ORDS();
@@ -583,18 +583,15 @@ export default new ORDS();
 
 With all this in place, our React frontend can now create the following form:
 
-<figure class="mt-10">
-  <img class="rounded-lg" src="/img/posts/2025/oracle-case-study/form.webp"/>
-  <figcaption class="mt-2 mb-10 text-sm text-center text-gray-500">React frontend with input form generated from an annotated Oracle Database 23ai JSON schema.</figcaption>
-</figure>
+![React frontend with input form generated from an annotated Oracle Database 23ai JSON schema.](/img/posts/2025/oracle-case-study/form.webp)
 
-Remark: interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:
-
+<Tip label="Tip">Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:</Tip>
 ```sql
 ALTER TABLE products MODIFY name ANNOTATIONS (
   REPLACE "title" 'Product name'
 );
 ```
+
 
 #### JSON Relational Duality View
 
@@ -607,8 +604,7 @@ Consider this *very simple* example (not even involving relationships between ta
 ```sql
 -- GraphQL notation (SQL notation also exists)
 create or replace json relational duality view products_dv as
-products @insert
-{
+products @insert {
   _id: NAME
   PRICE
   QUANTITY
@@ -621,64 +617,55 @@ You can find hereunder the JSON schema of this JSON relational duality view:
 
 ```sql
 -- Get JSON Schema from JSON Relational Duality View
-select dbms_json_schema.describe('PRODUCTS_DV');
+select dbms_json_schema.describe( 'PRODUCTS_DV' );
 ```
 
 ```json
 {
-	"title": "PRODUCTS_DV",
-	"dbObject": "APIDAYS.PRODUCTS_DV",
-	"dbObjectType": "dualityView",
-	"dbObjectProperties": [
-		"insert",
-		"check"
-	],
-	"type": "object",
-	"properties": {
-		"_metadata": {
-			"etag": {
-				"type": "string",
-				"extendedType": "string",
-				"maxLength": 200
-			},
-			"asof": {
-				"type": "string",
-				"extendedType": "string",
-				"maxLength": 20
-			}
-		},
-		"_id": {
-			"type": "string",
-			"extendedType": "string",
-			"maxLength": 100,
-			"dbFieldProperties": [
-				"check"
-			]
-		},
-		"PRICE": {
-			"type": "number",
-			"extendedType": "number",
-			"dbFieldProperties": [
-				"check"
-			]
-		},
-		"QUANTITY": {
-			"type": "number",
-			"extendedType": "number",
-			"dbFieldProperties": [
-				"check"
-			]
-		}
-	},
-	"dbPrimaryKey": [
-		"_id"
-	],
-	"required": [
-		"_id",
-		"PRICE",
-		"QUANTITY"
-	],
-	"additionalProperties": false
+  "title": "PRODUCTS_DV",
+  "dbObject": "APIDAYS.PRODUCTS_DV",
+  "dbObjectType": "dualityView",
+  "dbObjectProperties": [ "insert", "check" ], 
+  "type": "object", 
+  "properties": {
+    "_metadata": {
+      "etag": {
+        "type": "string",
+        "extendedType": "string",
+        "maxLength": 200
+      },
+      "asof": {
+        "type": "string",
+        "extendedType": "string",
+        "maxLength": 20
+      }
+    },
+    "_id": {
+      "type": "string",
+      "extendedType": "string",
+      "maxLength": 100,
+      "dbFieldProperties": [ "check" ]
+    },
+    "PRICE": {
+      "type": "number",
+      "extendedType": "number",
+      "dbFieldProperties": [ "check" ]
+    },
+    "QUANTITY": {
+      "type": "number",
+      "extendedType": "number",
+      "dbFieldProperties": [ "check" ]
+    }
+  },
+  "dbPrimaryKey": [
+    "_id"
+  ],
+  "required": [
+    "_id",
+    "PRICE",
+    "QUANTITY"
+  ],
+  "additionalProperties": false
 }
 ```
 
@@ -688,11 +675,13 @@ So now we can run such an `INSERT` statement:
 -- Insert JSON in a Relational table (Bridging the Gap...)
 -- by using the JSON Relational Duality View
 insert into PRODUCTS_DV(data) values( 
-    json_transform( '{"NAME": "Other nice product", 
-                      "PRICE": 5, 
-                      "QUANTITY": 10}', 
-                    RENAME '$.NAME' = '_id'
-    )
+  json_transform( '{
+                     "NAME": "Other nice product", 
+                     "PRICE": 5, 
+                     "QUANTITY": 10
+                  }', 
+                  RENAME '$.NAME' = '_id'
+  )
 );
 
 commit;
@@ -707,11 +696,11 @@ select * from products;
 
 Running the 2 queries above respectively returns the data in JSON and relational formats:
 
-|DATA|
-|-|
-|{"_id": "Cake mould", "PRICE": 9.99, "QUANTITY": 15, "_metadata": { ... } }|
-|{"_id": "Wooden spatula", "PRICE": 4.99, "QUANTITY": 42, "_metadata": { ... } }|
-|{"_id": "Other nice product", "PRICE": 5, "QUANTITY": 10, "_metadata": { ... } }|
+| DATA                                                                                                                 |
+|----------------------------------------------------------------------------------------------------------------------|
+| <pre>{<br/>  "_id": "Cake mould",<br/>  "PRICE": 9.99,<br/>  "QUANTITY": 15,<br/>  "_metadata": { ... }<br/>}</pre>  |
+| <pre>{<br/>  "_id": "Wooden spatula",<br/>  "PRICE": 4.99,<br/>  "QUANTITY": 42,<br/>  "_metadata": { ... }<br/>}</pre>  |
+| <pre>{<br/>  "_id": "Other nice product",<br/>  "PRICE": 5,<br/>  "QUANTITY": 10,<br/>  "_metadata": { ... }<br/>}</pre> |
 
 |NAME|PRICE|QUANTITY|
 |-|-|-|
@@ -719,7 +708,7 @@ Running the 2 queries above respectively returns the data in JSON and relational
 |Wooden spatula|4.99|42|
 |Other nice product|5|10|
 
-Remark: the `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).
+<Infobox label="Note">The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).</Infobox>
 
 #### POST method
 
@@ -728,15 +717,15 @@ With the JSON relational duality view in place, we can now implement the REST PO
 ```sql
 BEGIN
   ORDS.DEFINE_HANDLER(
-      p_module_name    => 'apidays',
-      p_pattern        => 'products',
-      p_method         => 'POST',
-      p_source_type    => 'plsql/block',
-      p_mimes_allowed  => NULL,
-      p_comments       => NULL,
-      p_source         => 
+    p_module_name    => 'apidays',
+    p_pattern        => 'products',
+    p_method         => 'POST',
+    p_source_type    => 'plsql/block',
+    p_mimes_allowed  => NULL,
+    p_comments       => NULL,
+    p_source         => 
 'begin
-  insert into PRODUCTS_DV(data) values( json_transform(:body_text, RENAME ''$.NAME'' = ''_id'') );
+  insert into PRODUCTS_DV( data ) values( json_transform(:body_text, RENAME ''$.NAME'' = ''_id'') );
   commit;
 end;');
        
@@ -753,7 +742,7 @@ With 23ai, a check constraint can now be marked as [`PRECHECK`](https://docs.ora
 
 Once a check constraint is marked as `PRECHECK`, you have the choice whether or not to disable the check constraint on the table as the retrieved JSON schema with `dbms_json_schema.describe()` will contain the check constraints as well.
 
-**WARNING**: we do *NOT* advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.
+<Danger label="Warning">We do *NOT* advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.</Danger>
 
 ```sql
 -- Mark check constraints as PRECHECK
@@ -801,65 +790,65 @@ Domains also allow for [centralizing JSON schema](https://docs.oracle.com/en/dat
 -- drop domain if exists BlogPost;
 create domain if not exists BlogPost as json
 validate '{
-        "$id": "https://example.com/blog-post.schema.json",
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "description": "A representation of a blog post",
-        "type": "object",
-        "required": ["title", "content", "author"],
-        "properties": {
-            "title": {
-            "type": "string"
-            },
-            "content": {
-            "type": "string"
-            },
-            "publishedDate": {
-            "type": "string",
-            "format": "date-time"
-            },
-            "author": {
-            "$ref": "https://example.com/user-profile.schema.json"
-            },
-            "tags": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-            }
-        },
-        "$def": {
-            "$id": "https://example.com/user-profile.schema.json",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "description": "A representation of a user profile",
-            "type": "object",
-            "required": ["username", "email"],
-            "properties": {
-            "username": {
-                "type": "string"
-            },
-            "email": {
-                "type": "string",
-                "format": "email"
-            },
-            "fullName": {
-                "type": "string"
-            },
-            "age": {
-                "type": "integer",
-                "minimum": 0
-            },
-            "location": {
-                "type": "string"
-            },
-            "interests": {
-                "type": "array",
-                "items": {
-                "type": "string"
-                }
-            }
-            }
+  "$id": "https://example.com/blog-post.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A representation of a blog post",
+  "type": "object",
+  "required": ["title", "content", "author"],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "publishedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "author": {
+      "$ref": "https://example.com/user-profile.schema.json"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$def": {
+    "$id": "https://example.com/user-profile.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "A representation of a user profile",
+    "type": "object",
+    "required": ["username", "email"],
+    "properties": {
+      "username": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      },
+      "fullName": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "location": {
+        "type": "string"
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "type": "string"
         }
-        }';
+      }
+    }
+  }
+}';
 
 -- Now use the Domain as a new column data type!
 create table posts ( content BlogPost );
@@ -869,16 +858,16 @@ insert into posts values (json{ 'garbageDocument' : true });
 
 -- works
 insert into posts values (
-    json {
-        'title': 'Best brownies recipe ever!',
-        'content': 'Take chocolate...',
-        'publishedDate': '2024-12-05T13:00:00Z',
-        'author': {
-            'username': 'Bob',
-            'email': 'bob@blogs.com'
-        },
-        'tags': ['Cooking', 'Chocolate', 'Cocooning']
-    }
+  json {
+    'title': 'Best brownies recipe ever!',
+    'content': 'Take chocolate...',
+    'publishedDate': '2024-12-05T13:00:00Z',
+    'author': {
+      'username': 'Bob',
+      'email': 'bob@blogs.com'
+    },
+    'tags': ['Cooking', 'Chocolate', 'Cocooning']
+  }
 );
 
 commit;
@@ -913,65 +902,65 @@ drop domain if exists BlogPost;
 -- Recreate the Domain with CAST/Type coercion enabled
 create domain BlogPost as json
 validate CAST using '{
-        "$id": "https://example.com/blog-post.schema.json",
-        "$schema": "https://json-schema.org/draft/2020-12/schema",
-        "description": "A representation of a blog post",
-        "type": "object",
-        "required": ["title", "content", "author"],
-        "properties": {
-            "title": {
-            "type": "string"
-            },
-            "content": {
-            "type": "string"
-            },
-            "publishedDate": {
-"extendedType": "timestamp",
-            "format": "date-time"
-            },
-            "author": {
-            "$ref": "https://example.com/user-profile.schema.json"
-            },
-            "tags": {
-            "type": "array",
-            "items": {
-                "type": "string"
-            }
-            }
-        },
-        "$def": {
-            "$id": "https://example.com/user-profile.schema.json",
-            "$schema": "https://json-schema.org/draft/2020-12/schema",
-            "description": "A representation of a user profile",
-            "type": "object",
-            "required": ["username", "email"],
-            "properties": {
-            "username": {
-                "type": "string"
-            },
-            "email": {
-                "type": "string",
-                "format": "email"
-            },
-            "fullName": {
-                "type": "string"
-            },
-            "age": {
-                "type": "integer",
-                "minimum": 0
-            },
-            "location": {
-                "type": "string"
-            },
-            "interests": {
-                "type": "array",
-                "items": {
-                "type": "string"
-                }
-            }
-            }
+  "$id": "https://example.com/blog-post.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "description": "A representation of a blog post",
+  "type": "object",
+  "required": ["title", "content", "author"],
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "publishedDate": {
+      "extendedType": "timestamp",
+      "format": "date-time"
+    },
+    "author": {
+      "$ref": "https://example.com/user-profile.schema.json"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$def": {
+    "$id": "https://example.com/user-profile.schema.json",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "description": "A representation of a user profile",
+    "type": "object",
+    "required": ["username", "email"],
+    "properties": {
+      "username": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string",
+        "format": "email"
+      },
+      "fullName": {
+        "type": "string"
+      },
+      "age": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "location": {
+        "type": "string"
+      },
+      "interests": {
+        "type": "array",
+        "items": {
+          "type": "string"
         }
-        }';
+      }
+    }
+  }
+}';
 
 create table posts ( content BlogPost );
 ```
@@ -989,16 +978,16 @@ select dbms_json_schema.describe( 'POSTS' );
 
 -- works
 insert into posts values (
-    '{
-        "title": "Best brownies recipe ever!",
-        "content": "Take chocolate...",
-        "publishedDate": "2024-12-05T13:00:00Z",
-        "author": {
-            "username": "Bob",
-            "email": "bob@blogs.com"
-        },
-        "tags": ["Cooking", "Chocolate", "Cocooning"]
-    }'
+'{
+   "title": "Best brownies recipe ever!",
+   "content": "Take chocolate...",
+   "publishedDate": "2024-12-05T13:00:00Z",
+   "author": {
+     "username": "Bob",
+     "email": "bob@blogs.com"
+   },
+   "tags": ["Cooking", "Chocolate", "Cocooning"]
+ }'
 );
 commit;
 
@@ -1029,16 +1018,16 @@ Let's look at the following example:
 create table orders ( j json );
 
 insert into orders(j) values (
-  json {'firstName':'Bob', 'address' : 'Paris'}
+  json { 'firstName': 'Bob', 'address': 'Paris' }
 );
 commit;
 
 select j from orders;
 ```
 
-|J|
-|-|
-|{'firstName':'Bob', 'address' : 'Paris'}|
+| J                                                                      |
+|------------------------------------------------------------------------|
+| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris"<br/>}</pre> |
 
 We have an `orders` table with one column containing a JSON document. The JSON document itself  has 2 fields and 2 values. Now, we'll create a [**JSON Search index**](https://docs.oracle.com/en/database/oracle/oracle-database/23/adjsn/json-search-index-ad-hoc-queries-and-full-text-search.html) (that can perform Full-Text search). This index can optionally maintain a JSON Data Guide in real-time, meaning the JSON schema for the JSON documents stored inside the JSON column.
 
@@ -1060,39 +1049,39 @@ parameters('dataguide on change add_vc');
 select * from orders;
 ```
 
-|J|J$address|J$firstName|
-|-|-|-|
-|{'firstName':'Bob', 'address' : 'Paris'}|Paris|Bob|
+| J                                                                 |J$address|J$firstName|
+|-------------------------------------------------------------------|-|-|
+| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris"<br/>}</pre> |Paris|Bob|
 
 ```sql
 insert into orders(j) values (
-  json {'firstName':'Bob', 'address' : 'Paris', 'vat': false}
+  json { 'firstName': 'Bob', 'address': 'Paris', 'vat': false }
 );
 commit;
 
 select * from orders;
 ```
 
-|J|J$address|J$firstName|J$vat|
-|-|-|-|-|
-|{'firstName':'Bob', 'address' : 'Paris'}|Paris|Bob|null|
-|{'firstName':'Bob', 'address' : 'Paris', 'vat': false}|Paris|Bob|false|
+| J                                                                                    |J$address|J$firstName|J$vat|
+|--------------------------------------------------------------------------------------|-|-|-|
+| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris"<br/>}</pre>                    |Paris|Bob|null|
+| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris",<br/>  "vat": false<br/>}</pre> |Paris|Bob|false|
 
 ```sql
 
 insert into orders(j) values (
-  json {'firstName':'Bob', 'address' : 'Paris', 'vat': false, 'tableEvolve': true}
+  json { 'firstName': 'Bob', 'address': 'Paris', 'vat': false, 'tableEvolve': true }
 );
 commit;
 
 select * from orders;
 ```
 
-|J|J$address|J$firstName|J$vat|J$tableEvolve|
-|-|-|-|-|-|
-|{'firstName':'Bob', 'address' : 'Paris'}|Paris|Bob|null|null|
-|{'firstName':'Bob', 'address' : 'Paris', 'vat': false}|Paris|Bob|false|null|
-|{'firstName':'Bob', 'address' : 'Paris', 'vat': false, 'tableEvolve': true}|Paris|Bob|false|true|
+| J                                                                                                                    |J$address|J$firstName|J$vat|J$tableEvolve|
+|----------------------------------------------------------------------------------------------------------------------|-|-|-|-|
+| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris"<br/>}</pre>                                                |Paris|Bob|null|null|
+| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris",<br/>  "vat": false<br/>}</pre>                            |Paris|Bob|false|null|
+| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris",<br/>  "vat": false,<br/>  "tableEvolve": true<br/>}</pre> |Paris|Bob|false|true|
 
 Remark: the trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.
 
@@ -1100,10 +1089,7 @@ Remark: the trigger executes asynchronously, hence not delaying DML response tim
 
 We have shown lots of features inside the Oracle Database 23ai which provide powerful capabilities to have JSON data coexist with relational data, and JSON schema clearly strengthens this even more. But this is only the beginning and as you discover more and more features that work the same way regardless of the data model, or that allow going back and forth from one model to another, you'll understand the true value of a converged database which has one goal: removing barriers, simplifying architecture and making developers more productive!
 
-<figure class="mt-10">
-  <img class="rounded-lg" src="/img/posts/2025/oracle-case-study/converged_database.webp"/>
-  <figcaption class="mt-2 mb-10 text-sm text-center text-gray-500">Oracle Database 23ai is a converged database now supporting JSON schema.</figcaption>
-</figure>
+![Oracle Database 23ai is a converged database now supporting JSON schema.](/img/posts/2025/oracle-case-study/converged_database.webp)
 
 Lean more:
 - [Oracle Database 23ai `DBMS_JSON_SCHEMA` PL/SQL package](https://docs.oracle.com/en/database/oracle/oracle-database/23/arpls/DBMS_JSON_SCHEMA.html#GUID-89B9C48D-D905-482C-A78C-8DB314EDF072)
