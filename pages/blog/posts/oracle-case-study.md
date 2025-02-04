@@ -5,7 +5,7 @@ tags:
   - database
   - relational
 type: Case Study
-cover: /img/posts/2025/oracle-case-study/banner.webp
+cover: /img/posts/2025/oracle-case-study/blog_frontpage.webp
 authors:
   - name: Loïc Lefèvre
     photo: /img/avatars/loiclefevre.webp
@@ -15,6 +15,8 @@ excerpt: ""
 ---
 
 As modern multi-model databases increasingly support JSON, it's time to explore what role [JSON schema](https://json-schema.org/) will play. In this post, we'll dive into the newly developed ["Database Vocabulary"](https://github.com/json-schema-org/vocab-database/blob/main/database.md), a proposed extension to the official JSON schema specification, developed by Oracle (with inputs from the MySQL and PostgreSQL teams). This vocabulary addresses key database tasks, including validation, type coercion/casting, and metadata preservation, making it easier to manage JSON in databases effectively and bridging the gap with existing relational data. Regardless of whether you are a JSON developer or a relational model developer, you'll learn something reading this post!
+
+![JSON Schema with Oracle Database 23ai](/img/posts/2025/oracle-case-study/banner.webp)
 
 Oracle Database 23ai fully implements this new vocabulary and we'll describe not only the concepts but we'll also see real-world examples of JSON schema validation in action and how to describe database objects in JSON schema.
 
@@ -64,10 +66,10 @@ commit;
 
 select data from blog_posts;
 ```
-|DATA|
-|-|
-| <pre>{ <br/>  "title": "New Blog Post",<br/>  "content": "This is the content of the blog post...",<br/>  "publishedDate":"2023-08-25T15:00:00Z",<br/>  "author": {<br/>    "username":"authoruser",<br/>    "email":"author@example.com"<br/>  },<br/>  "tags": [ "Technology", "Programming" ]<br/>}</pre> |
-| <pre>{<br/>  "garbageDocument":true<br/>}</pre>|
+| DATA                                                                                                                                                                                                                                                                                                   |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| {<br/>&nbsp;&nbsp;"title": "New Blog Post",<br/>&nbsp;&nbsp;"content": "This is the content of the blog post...",<br/>&nbsp;&nbsp;"publishedDate":"2023-08-25T15:00:00Z",<br/>&nbsp;&nbsp;"author": {<br/>&nbsp;&nbsp;&nbsp;&nbsp;"username":"authoruser",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"email":"author@example.com"<br/>&nbsp;&nbsp;},<br/>&nbsp;&nbsp;"tags": [ "Technology", "Programming" ]<br/>} |
+| {<br/>&nbsp;&nbsp;"garbageDocument":true<br/>}|
 
 This is where, JSON schemas can help, and the [`JSON_DATAGUIDE()`](https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/JSON_DATAGUIDE.html) function can generate one from a set of already existing JSON document(s):
 
@@ -271,7 +273,7 @@ Now that we are able to create and retrieve JSON schemas from the database, we m
 
 Below, you can see a quick overview of a demo available in this [GitHub repository](https://github.com/loiclefevre/apidays-paris-2024):
 
-![React frontend form created from the json-schema-form library.](/img/posts/2025/oracle-case-study/json-schema-form.web)
+![React frontend form created from the json-schema-form library.](/img/posts/2025/oracle-case-study/json-schema-form.webp)
 
 Using [Oracle REST Data Services](https://download.oracle.com/otn_software/java/ords/ords-latest.zip), we can indeed expose a JSON schema to a frontend via REST. Below, we are using the `json-schema-form` [library](https://github.com/remoteoss/json-schema-form) to build an input form from a JSON schema where `title`, `description`, and check constraints are used to define input fields and associated validation rules. Let's drill down into this example:
 
@@ -585,12 +587,12 @@ With all this in place, our React frontend can now create the following form:
 
 ![React frontend with input form generated from an annotated Oracle Database 23ai JSON schema.](/img/posts/2025/oracle-case-study/form.webp)
 
-<Tip label="Tip">Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:</Tip>
-```sql
-ALTER TABLE products MODIFY name ANNOTATIONS (
-  REPLACE "title" 'Product name'
-);
-```
+> Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:
+> ```sql
+> ALTER TABLE products MODIFY name ANNOTATIONS (
+>   REPLACE "title" 'Product name'
+> );
+> ```
 
 
 #### JSON Relational Duality View
