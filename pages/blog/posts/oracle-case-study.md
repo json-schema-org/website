@@ -1,6 +1,6 @@
 ---
-title: "JSON Schema and Relational Databases: Bridging the Gap with Oracle!"
-date: "2025-01-31"
+title: "How Oracle is Bridging the Gap Between JSON Schema and Relational Databases"
+date: "2025-02-04"
 tags:
   - database
   - relational
