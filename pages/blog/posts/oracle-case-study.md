@@ -18,7 +18,7 @@ As modern multi-model databases increasingly support JSON, it's time to explore 
 
 ![JSON Schema with Oracle Database 23ai](/img/posts/2025/oracle-case-study/banner.webp)
 
-Oracle Database 23ai fully implements this new vocabulary and we'll describe not only the concepts but we'll also see real-world examples of JSON schema validation in action and how to describe database objects in JSON schema.
+Oracle Database 23ai fully implements this new vocabulary, and we'll describe not only the concepts but we'll also see real-world examples of JSON schema validation in action and how to describe database objects in JSON schema.
 
 ## JSON Data Guide
 
@@ -66,10 +66,10 @@ commit;
 
 select data from blog_posts;
 ```
-| DATA                                                                                                                                                                                                                                                                                                   |
-|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DATA |
+|-|
 | {<br/>&nbsp;&nbsp;"title": "New Blog Post",<br/>&nbsp;&nbsp;"content": "This is the content of the blog post...",<br/>&nbsp;&nbsp;"publishedDate":"2023-08-25T15:00:00Z",<br/>&nbsp;&nbsp;"author": {<br/>&nbsp;&nbsp;&nbsp;&nbsp;"username":"authoruser",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"email":"author@example.com"<br/>&nbsp;&nbsp;},<br/>&nbsp;&nbsp;"tags": [ "Technology", "Programming" ]<br/>} |
-| {<br/>&nbsp;&nbsp;"garbageDocument":true<br/>}|
+| {<br/>&nbsp;&nbsp;"garbageDocument":true<br/>} |
 
 This is where, JSON schemas can help, and the [`JSON_DATAGUIDE()`](https://docs.oracle.com/en/database/oracle/oracle-database/23/sqlrf/JSON_DATAGUIDE.html) function can generate one from a set of already existing JSON document(s):
 
@@ -175,8 +175,8 @@ from blog_posts;
 
 | REPORT                                                     |
 |------------------------------------------------------------|
-| <pre>{<br/>  "valid": true,<br/>  "errors": []<br/>}</pre> |
-| <pre>{<br/>  "valid": true,<br/>  "errors": []<br/>}</pre> |
+| {<br/>&nbsp;&nbsp;"valid": true,<br/>&nbsp;&nbsp;"errors": []<br/>} |
+| {<br/>&nbsp;&nbsp;"valid": true,<br/>&nbsp;&nbsp;"errors": []<br/>} |
 
 With the simplistic JSON schema, no validation errors are present. Let's use a more complex JSON schema (based on the [Blog post](https://json-schema.org/learn/json-schema-examples#blog-post) example from the JSON schema website itself):
 
@@ -249,8 +249,8 @@ from blog_posts;
 
 | REPORT                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <pre>{ <br/>  "valid": true,<br/>  "errors": []<br/>}</pre>                                                                                                                                                                                                                                                                                                                                                                                |
-| <pre>{<br/>  "valid": false,<br/>  "errors": [<br/>    {<br/>      "schemaPath": "\$",<br/>      "instancePath": "\$",<br/>      "code": "JZN-00501",<br/>      "error": "JSON schema validation failed"<br/>    }, {<br/>      "schemaPath": "\$.required",<br/>      "instancePath": "\$",<br/>      "code": "JZN-00515",<br/>      "error": "required properties not found: 'title', 'content', 'author'"<br/>    }<br/>  ]<br/>}</pre> |
+| { <br/>&nbsp;&nbsp;"valid": true,<br/>&nbsp;&nbsp;"errors": []<br/>} |
+| {<br/>&nbsp;&nbsp;"valid": false,<br/>&nbsp;&nbsp;"errors": [<br/>&nbsp;&nbsp;&nbsp;&nbsp;{<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"schemaPath": "\$",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"instancePath": "\$",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"code": "JZN-00501",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"error": "JSON schema validation failed"<br/>&nbsp;&nbsp;&nbsp;&nbsp;}, {<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"schemaPath": "\$.required",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"instancePath": "\$",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"code": "JZN-00515",<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"error": "required properties not found: 'title', 'content', 'author'"<br/>&nbsp;&nbsp;&nbsp;&nbsp;}<br/>&nbsp;&nbsp;]<br/>} |
 
 Now we can see that the second JSON document shows several validation errors, namely the missing fields `title`, `content` and `author`.
 
@@ -265,7 +265,7 @@ select dbms_json_schema.describe( 'BLOG_POSTS' ) as json_schema;
 
 | JSON_SCHEMA                                                                                                                                                                                  |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <pre>{<br/>  "title": "BLOG_POSTS",<br/>  "dbObject": "APIDAYS.BLOG_POSTS",<br/>  "type": "object",<br/>  "dbObjectType": "table",<br/>  "properties": {<br/>    "DATA": {}<br/>  }<br/>}</pre> |
+| {<br/>&nbsp;&nbsp;"title": "BLOG_POSTS",<br/>&nbsp;&nbsp;"dbObject": "APIDAYS.BLOG_POSTS",<br/>&nbsp;&nbsp;"type": "object",<br/>&nbsp;&nbsp;"dbObjectType": "table",<br/>&nbsp;&nbsp;"properties": {<br/>&nbsp;&nbsp;&nbsp;&nbsp;"DATA": {}<br/>&nbsp;&nbsp;}<br/>} |
 
 ### Client-side validation using JSON Schema
 
@@ -593,6 +593,7 @@ With all this in place, our React frontend can now create the following form:
 >   REPLACE "title" 'Product name'
 > );
 > ```
+> 
 
 
 #### JSON Relational Duality View
@@ -700,9 +701,9 @@ Running the 2 queries above respectively returns the data in JSON and relational
 
 | DATA                                                                                                                 |
 |----------------------------------------------------------------------------------------------------------------------|
-| <pre>{<br/>  "_id": "Cake mould",<br/>  "PRICE": 9.99,<br/>  "QUANTITY": 15,<br/>  "_metadata": { ... }<br/>}</pre>  |
-| <pre>{<br/>  "_id": "Wooden spatula",<br/>  "PRICE": 4.99,<br/>  "QUANTITY": 42,<br/>  "_metadata": { ... }<br/>}</pre>  |
-| <pre>{<br/>  "_id": "Other nice product",<br/>  "PRICE": 5,<br/>  "QUANTITY": 10,<br/>  "_metadata": { ... }<br/>}</pre> |
+| {<br/>&nbsp;&nbsp;"_id": "Cake mould",<br/>&nbsp;&nbsp;"PRICE": 9.99,<br/>&nbsp;&nbsp;"QUANTITY": 15,<br/>&nbsp;&nbsp;"_metadata": { ... }<br/>}  |
+| {<br/>&nbsp;&nbsp;"_id": "Wooden spatula",<br/>&nbsp;&nbsp;"PRICE": 4.99,<br/>&nbsp;&nbsp;"QUANTITY": 42,<br/>&nbsp;&nbsp;"_metadata": { ... }<br/>}  |
+| {<br/>&nbsp;&nbsp;"_id": "Other nice product",<br/>&nbsp;&nbsp;"PRICE": 5,<br/>&nbsp;&nbsp;"QUANTITY": 10,<br/>&nbsp;&nbsp;"_metadata": { ... }<br/>} |
 
 |NAME|PRICE|QUANTITY|
 |-|-|-|
@@ -710,7 +711,7 @@ Running the 2 queries above respectively returns the data in JSON and relational
 |Wooden spatula|4.99|42|
 |Other nice product|5|10|
 
-<Infobox label="Note">The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).</Infobox>
+> The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).
 
 #### POST method
 
@@ -744,7 +745,7 @@ With 23ai, a check constraint can now be marked as [`PRECHECK`](https://docs.ora
 
 Once a check constraint is marked as `PRECHECK`, you have the choice whether or not to disable the check constraint on the table as the retrieved JSON schema with `dbms_json_schema.describe()` will contain the check constraints as well.
 
-<Danger label="Warning">We do *NOT* advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.</Danger>
+> We do **NOT** advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.
 
 ```sql
 -- Mark check constraints as PRECHECK
@@ -1004,7 +1005,7 @@ select p.content.publishedDate.timestamp() + interval '5' day
 from posts p;
 ```
 
-Remark: we use the item method `timestamp()` in the last statement above because otherwise the SQL dot notation would return a SQL `JSON` (by default in 23ai) on which we cannot apply an interval operation. However, because the value is already stored as `TIMESTAMP` inside the binary JSON format, there will be *no conversion* from `JSON` to `timestamp` here.
+> We use the item method `timestamp()` in the last statement above because otherwise the SQL dot notation would return a SQL `JSON` (by default in 23ai) on which we cannot apply an interval operation. However, because the value is already stored as `TIMESTAMP` inside the binary JSON format, there will be *no conversion* from `JSON` to `timestamp` here.
 
 Last but not least, by enabling type casting, native SQL data type checks are also performed ensuring 100% fidelity between stored binary values in the encoded JSON and SQL data types. As a result, we can store not just the standard JSON data types but also the SQL data types inside the encoded binary JSON such as `NUMBER`, `DATE`, `TIMESTAMP`, `TIMESTAMP WITH TIME ZONE`, `INTERVAL`, `RAW`, `VECTOR`, etc.
 
@@ -1029,7 +1030,7 @@ select j from orders;
 
 | J                                                                      |
 |------------------------------------------------------------------------|
-| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris"<br/>}</pre> |
+| {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris"<br/>} |
 
 We have an `orders` table with one column containing a JSON document. The JSON document itself  has 2 fields and 2 values. Now, we'll create a [**JSON Search index**](https://docs.oracle.com/en/database/oracle/oracle-database/23/adjsn/json-search-index-ad-hoc-queries-and-full-text-search.html) (that can perform Full-Text search). This index can optionally maintain a JSON Data Guide in real-time, meaning the JSON schema for the JSON documents stored inside the JSON column.
 
@@ -1053,7 +1054,7 @@ select * from orders;
 
 | J                                                                 |J$address|J$firstName|
 |-------------------------------------------------------------------|-|-|
-| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris"<br/>}</pre> |Paris|Bob|
+| {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris"<br/>} |Paris|Bob|
 
 ```sql
 insert into orders(j) values (
@@ -1066,8 +1067,8 @@ select * from orders;
 
 | J                                                                                    |J$address|J$firstName|J$vat|
 |--------------------------------------------------------------------------------------|-|-|-|
-| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris"<br/>}</pre>                    |Paris|Bob|null|
-| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris",<br/>  "vat": false<br/>}</pre> |Paris|Bob|false|
+| {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris"<br/>}                    |Paris|Bob|null|
+| {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false<br/>} |Paris|Bob|false|
 
 ```sql
 
@@ -1081,11 +1082,11 @@ select * from orders;
 
 | J                                                                                                                    |J$address|J$firstName|J$vat|J$tableEvolve|
 |----------------------------------------------------------------------------------------------------------------------|-|-|-|-|
-| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris"<br/>}</pre>                                                |Paris|Bob|null|null|
-| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris",<br/>  "vat": false<br/>}</pre>                            |Paris|Bob|false|null|
-| <pre>{<br/>  "firstName": "Bob",<br/>  "address": "Paris",<br/>  "vat": false,<br/>  "tableEvolve": true<br/>}</pre> |Paris|Bob|false|true|
+| {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris"<br/>}                                                |Paris|Bob|null|null|
+| {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false<br/>}                            |Paris|Bob|false|null|
+| {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false,<br/>&nbsp;&nbsp;"tableEvolve": true<br/>} |Paris|Bob|false|true|
 
-Remark: the trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.
+> The trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.
 
 ## Conclusion
 
