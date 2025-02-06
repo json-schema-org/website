@@ -25,14 +25,14 @@ The migration from Draft 2 to Draft 3 of JSON Schema introduced significant upda
 
 ### Tutorial
 
-#### Step 1: Review Core Changes:
+#### Step 1: Review Core Changes
 
 Start by understanding the key differences between Draft 2 and Draft 3, especially regarding core changes in $schema, $ref, and validation keywords.
 
 - `$schema`: In Draft 3, this remains the same but is now more standardized to handle the schema dialect and the version of the specification being used.
 - `$ref`: Draft 3 introduces the `$ref` keyword, which allows referencing external schemas for validation. This will enable more modular and reusable schema definitions.
 
-#### Step 2: Update Validation Keywords:
+#### Step 2: Update Validation Keywords
 
 Draft 3 introduces new validation keywords that improve flexibility in schema definitions. Notable changes include:
 
@@ -45,4 +45,4 @@ Draft 3 introduces new validation keywords that improve flexibility in schema de
 
 Draft 3 introduces `$ref`, which allows you to reference external schemas using **URIs**. This improves schema modularity and enables better reuse of schema definitions.
 
-Validate and test your updated schemas manually, or with your preferred tool.
+Validate and test your updated schemas manually, or with your preferred [tool.](https://json-schema.org/tools)

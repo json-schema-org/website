@@ -57,7 +57,7 @@ The `allOf` keyword has now replaced the previous type schema functionality.
 
 In Draft 3, these identifiers were considered valid:
 
-```
+```json
 id: ""
 id: "#"
 ```
@@ -84,4 +84,4 @@ Draft 4 has introduced new keywords such as `oneOf`, `not`, `anyOf`, and `allOf`
 - If you have properties that must always be present, use `required` to define these properties explicitly.
 - For schemas that contain nested dependencies, consider restructuring them using `dependencies` to improve schema maintainability.
 
-Validate and test your updated schemas manually, or with your preferred tool.
+Validate and test your updated schemas manually, or with your preferred [tool.](https://json-schema.org/tools)
