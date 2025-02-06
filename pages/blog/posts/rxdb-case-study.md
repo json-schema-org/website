@@ -60,25 +60,26 @@ const mySchema = {
             type: 'string',
             maxLength: 100
         },
-        firstName: {
+        name: {
             type: 'string'
         },
-        lastName: {
-            type: 'string'
+        birthdate: {
+            type: 'string',
+            format: 'date'
         },
         secret: {
             type: 'string'
         }
     },
     additionalProperties: false,
-    required: ['firstName', 'lastName', 'id'],
+    required: ['name', 'birthdate', 'id'],
     // RxDB specific fields:
     primaryKey: 'id',
     version: 0,
     keyCompression: true,
     indexes: [
-        'firstName', // single-field index
-        ['firstName', 'lastName'] // compound index
+        'name', // single-field index
+        ['name', 'birthdate'] // compound index
     ],
     encrypted: ['secret']
 }
@@ -101,7 +102,7 @@ JSON Schema is not just for validation and structural guarantees, it can also he
 
 To improve developer experience, RxDB offers a [built-in way](https://rxdb.info/tutorials/typescript.html) to infer the document's TypeScript type from the schema during runtime. This is helpful because you get immediate feedback in your IDE: As soon as you update the schema, TypeScript picks up the changes. You'll see type errors in your code if you attempt to use fields that are no longer valid or if you forget to include newly required fields.
 
-Below is an example on how to interfere the TypeScript type of a document from its JSON-schema:
+Below is an example on how to infer the TypeScript type of a document from its JSON-schema:
 
 ```ts
 import {
@@ -125,8 +126,8 @@ const heroSchemaLiteral = {
         },
         /* ...other fields... */
     },
-    required: ['firstName', 'lastName', 'passportId'],
-    indexes: ['firstName']
+    required: ['name', 'birthdate', 'passportId'],
+    indexes: ['name', 'birthdate']
 } as const;
 
 // Convert the literal object to a typed schema
