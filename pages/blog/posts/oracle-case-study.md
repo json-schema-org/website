@@ -1,17 +1,17 @@
 ---
 title: "How Oracle is Bridging the Gap Between JSON Schema and Relational Databases"
-date: "2025-02-04"
+date: "2025-02-06"
 tags:
   - database
   - relational
 type: Case Study
-cover: /img/posts/2025/oracle-case-study/blog_frontpage.webp
+cover: /img/posts/2025/oracle-case-study/banner.webp
 authors:
   - name: Loïc Lefèvre
     photo: /img/avatars/loiclefevre.webp
     link: https://www.linkedin.com/in/loiclefevre/
     byline: Oracle Database Senior Product Manager
-excerpt: ""
+excerpt: "As modern multi-model databases increasingly support JSON, it's time to explore what role JSON schema will play."
 ---
 
 As modern multi-model databases increasingly support JSON, it's time to explore what role [JSON schema](https://json-schema.org/) will play. In this post, we'll dive into the newly developed ["Database Vocabulary"](https://github.com/json-schema-org/vocab-database/blob/main/database.md), a proposed extension to the official JSON schema specification, developed by Oracle (with inputs from the MySQL and PostgreSQL teams). This vocabulary addresses key database tasks, including validation, type coercion/casting, and metadata preservation, making it easier to manage JSON in databases effectively and bridging the gap with existing relational data. Regardless of whether you are a JSON developer or a relational model developer, you'll learn something reading this post!
@@ -64,6 +64,8 @@ commit;
 
 select data from blog_posts;
 ```
+Results:
+
 | DATA |
 |-|
 | {<br/>&nbsp;&nbsp;"title": "New Blog Post",<br/>&nbsp;&nbsp;"content": "This is the content of the blog post...",<br/>&nbsp;&nbsp;"publishedDate":"2023-08-25T15:00:00Z",<br/>&nbsp;&nbsp;"author": {<br/>&nbsp;&nbsp;&nbsp;&nbsp;"username":"authoruser",<br/>&nbsp;&nbsp;&nbsp;&nbsp;"email":"author@example.com"<br/>&nbsp;&nbsp;},<br/>&nbsp;&nbsp;"tags": [ "Technology", "Programming" ]<br/>} |
@@ -79,6 +81,7 @@ select json_dataguide(
        ) as json_schema
   from blog_posts;
 ```
+Results:
 
 ```json
 {
@@ -170,6 +173,7 @@ select dbms_json_schema.validate_report(
        ) as report
 from blog_posts;
 ```
+Results:
 
 | REPORT                                                     |
 |------------------------------------------------------------|
@@ -244,6 +248,7 @@ select dbms_json_schema.validate_report(
 ) as report
 from blog_posts;
 ```
+Results:
 
 | REPORT                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 |--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -260,6 +265,7 @@ Finally, you can leverage the `dbms_json_schema.describe()` function to generate
 -- Get the JSON schema from a relational table!
 select dbms_json_schema.describe( 'BLOG_POSTS' ) as json_schema;
 ```
+Results:
 
 | JSON_SCHEMA                                                                                                                                                                                  |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -304,6 +310,7 @@ If we retrieve the JSON schema corresponding to this relational table using `dbm
 -- Contains check constraints!
 select dbms_json_schema.describe( 'PRODUCTS' ) as json_schema;
 ```
+Results:
 
 ```json
 {
@@ -392,6 +399,7 @@ select column_name, annotation_name, annotation_value
    and object_type='TABLE'
 order by 1, 2;
 ```
+Results:
 
 |COLUMN_NAME|ANNOTATION_NAME|ANNOTATION_VALUE|
 |-|-|-|
@@ -459,6 +467,7 @@ Then one can use the function as below:
 ```sql
 select getAnnotatedJSONSchema( 'PRODUCTS' );
 ```
+Results:
 
 ```json
 {
@@ -557,7 +566,6 @@ BEGIN
 'select getAnnotatedJSONSchema( ''PRODUCTS'' ) as schema');
        
 COMMIT;
-
 END;
 /
 ```
@@ -585,13 +593,13 @@ With all this in place, our React frontend can now create the following form:
 
 ![React frontend with input form generated from an annotated Oracle Database 23ai JSON schema.](/img/posts/2025/oracle-case-study/form.webp)
 
-> Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:
-> ```sql
-> ALTER TABLE products MODIFY name ANNOTATIONS (
->   REPLACE "title" 'Product name'
-> );
-> ```
-> 
+<Infobox> Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:
+```sql
+ALTER TABLE products MODIFY name ANNOTATIONS (
+  REPLACE "title" 'Product name'
+);
+```
+</Infobox> 
 
 
 #### JSON Relational Duality View
@@ -612,7 +620,7 @@ products @insert {
 };
 ```
 
-Here we ask the view to accept `INSERT` SQL statements (via `@insert`) and remap the JSON `_id` attribute (mandatory JSON unique key) to the relational column `NAME` (note that JSON fields are case sensitive). The other two attributes are automatically mapped because the JSON attributes and relational table column names are the same.
+Here we ask the view to accept `INSERT` SQL statements (via `@insert`) and remap the JSON `_id` attribute (mandatory JSON unique key) to the relational column `NAME` (note that JSON fields are case-sensitive). The other two attributes are automatically mapped because the JSON attributes and relational table column names are the same.
 
 You can find hereunder the JSON schema of this JSON relational duality view:
 
@@ -620,6 +628,7 @@ You can find hereunder the JSON schema of this JSON relational duality view:
 -- Get JSON Schema from JSON Relational Duality View
 select dbms_json_schema.describe( 'PRODUCTS_DV' );
 ```
+Results:
 
 ```json
 {
@@ -695,7 +704,7 @@ select * from products_dv;
 select * from products;
 ```
 
-Running the 2 queries above respectively returns the data in JSON and relational formats:
+Running the 2 queries above respectively returns the data in JSON format:
 
 | DATA                                                                                                                 |
 |----------------------------------------------------------------------------------------------------------------------|
@@ -703,13 +712,15 @@ Running the 2 queries above respectively returns the data in JSON and relational
 | {<br/>&nbsp;&nbsp;"_id": "Wooden spatula",<br/>&nbsp;&nbsp;"PRICE": 4.99,<br/>&nbsp;&nbsp;"QUANTITY": 42,<br/>&nbsp;&nbsp;"_metadata": { ... }<br/>}  |
 | {<br/>&nbsp;&nbsp;"_id": "Other nice product",<br/>&nbsp;&nbsp;"PRICE": 5,<br/>&nbsp;&nbsp;"QUANTITY": 10,<br/>&nbsp;&nbsp;"_metadata": { ... }<br/>} |
 
+...and relational format:
+
 |NAME|PRICE|QUANTITY|
 |-|-|-|
 |Cake mould|9.99|15|
 |Wooden spatula|4.99|42|
 |Other nice product|5|10|
 
-> The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).
+<Infobox>The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).</Infobox>
 
 #### POST method
 
@@ -731,9 +742,7 @@ BEGIN
 end;');
        
 COMMIT;
-
 END;
-
 /
 ```
 
@@ -743,7 +752,7 @@ With 23ai, a check constraint can now be marked as [`PRECHECK`](https://docs.ora
 
 Once a check constraint is marked as `PRECHECK`, you have the choice whether or not to disable the check constraint on the table as the retrieved JSON schema with `dbms_json_schema.describe()` will contain the check constraints as well.
 
-> We do **NOT** advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.
+<Danger>We do **NOT** advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.</Danger>
 
 ```sql
 -- Mark check constraints as PRECHECK
@@ -884,6 +893,7 @@ select p.content.publishedDate
 select p.content.publishedDate.type() as type 
   from posts p;
 ```
+Results:
 
 |TYPE|
 |-|
@@ -1003,7 +1013,7 @@ select p.content.publishedDate.timestamp() + interval '5' day
 from posts p;
 ```
 
-> We use the item method `timestamp()` in the last statement above because otherwise the SQL dot notation would return a SQL `JSON` (by default in 23ai) on which we cannot apply an interval operation. However, because the value is already stored as `TIMESTAMP` inside the binary JSON format, there will be *no conversion* from `JSON` to `timestamp` here.
+<Infobox>We use the item method `timestamp()` in the last statement above because otherwise the SQL dot notation would return a SQL `JSON` (by default in 23ai) on which we cannot apply an interval operation. However, because the value is already stored as `TIMESTAMP` inside the binary JSON format, there will be *no conversion* from `JSON` to `timestamp` here.</Infobox>
 
 Last but not least, by enabling type casting, native SQL data type checks are also performed ensuring 100% fidelity between stored binary values in the encoded JSON and SQL data types. As a result, we can store not just the standard JSON data types but also the SQL data types inside the encoded binary JSON such as `NUMBER`, `DATE`, `TIMESTAMP`, `TIMESTAMP WITH TIME ZONE`, `INTERVAL`, `RAW`, `VECTOR`, etc.
 
@@ -1025,6 +1035,7 @@ commit;
 
 select j from orders;
 ```
+Results:
 
 | J                                                                      |
 |------------------------------------------------------------------------|
@@ -1049,6 +1060,7 @@ parameters('dataguide on change add_vc');
 
 select * from orders;
 ```
+Results:
 
 | J                                                                 |J$address|J$firstName|
 |-------------------------------------------------------------------|-|-|
@@ -1062,6 +1074,7 @@ commit;
 
 select * from orders;
 ```
+Results:
 
 | J                                                                                    |J$address|J$firstName|J$vat|
 |--------------------------------------------------------------------------------------|-|-|-|
@@ -1077,6 +1090,7 @@ commit;
 
 select * from orders;
 ```
+Results:
 
 | J                                                                                                                    |J$address|J$firstName|J$vat|J$tableEvolve|
 |----------------------------------------------------------------------------------------------------------------------|-|-|-|-|
@@ -1084,7 +1098,7 @@ select * from orders;
 | {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false<br/>}                            |Paris|Bob|false|null|
 | {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false,<br/>&nbsp;&nbsp;"tableEvolve": true<br/>} |Paris|Bob|false|true|
 
-> The trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.
+<Infobox>The trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.</Infobox>
 
 ## Conclusion
 
