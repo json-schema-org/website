@@ -1,11 +1,11 @@
 ---
 title: "How Oracle is Bridging the Gap Between JSON Schema and Relational Databases"
-date: "2025-02-06"
+date: "2025-02-07"
 tags:
   - database
   - relational
 type: Case Study
-cover: /img/posts/2025/oracle-case-study/banner.webp
+cover: /img/posts/2025/oracle-case-study/blog_frontpage.webp
 authors:
   - name: Loïc Lefèvre
     photo: /img/avatars/loiclefevre.webp
@@ -15,6 +15,8 @@ excerpt: "As modern multi-model databases increasingly support JSON, it's time t
 ---
 
 As modern multi-model databases increasingly support JSON, it's time to explore what role [JSON schema](https://json-schema.org/) will play. In this post, we'll dive into the newly developed ["Database Vocabulary"](https://github.com/json-schema-org/vocab-database/blob/main/database.md), a proposed extension to the official JSON schema specification, developed by Oracle (with inputs from the MySQL and PostgreSQL teams). This vocabulary addresses key database tasks, including validation, type coercion/casting, and metadata preservation, making it easier to manage JSON in databases effectively and bridging the gap with existing relational data. Regardless of whether you are a JSON developer or a relational model developer, you'll learn something reading this post!
+
+![JSON Schema with Oracle Database 23ai](/img/posts/2025/oracle-case-study/banner.webp)
 
 Oracle Database 23ai fully implements this new vocabulary, and we'll describe not only the concepts but we'll also see real-world examples of JSON schema validation in action and how to describe database objects in JSON schema.
 
@@ -566,6 +568,7 @@ BEGIN
 'select getAnnotatedJSONSchema( ''PRODUCTS'' ) as schema');
        
 COMMIT;
+
 END;
 /
 ```
@@ -593,13 +596,13 @@ With all this in place, our React frontend can now create the following form:
 
 ![React frontend with input form generated from an annotated Oracle Database 23ai JSON schema.](/img/posts/2025/oracle-case-study/form.webp)
 
-<Infobox> Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:
-```sql
-ALTER TABLE products MODIFY name ANNOTATIONS (
-  REPLACE "title" 'Product name'
-);
-```
-</Infobox> 
+> Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:
+> ```sql
+> ALTER TABLE products MODIFY name ANNOTATIONS (
+>   REPLACE "title" 'Product name'
+> );
+> ```
+>
 
 
 #### JSON Relational Duality View
@@ -720,7 +723,7 @@ Running the 2 queries above respectively returns the data in JSON format:
 |Wooden spatula|4.99|42|
 |Other nice product|5|10|
 
-<Infobox>The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).</Infobox>
+> The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).
 
 #### POST method
 
@@ -742,7 +745,9 @@ BEGIN
 end;');
        
 COMMIT;
+
 END;
+
 /
 ```
 
@@ -752,7 +757,7 @@ With 23ai, a check constraint can now be marked as [`PRECHECK`](https://docs.ora
 
 Once a check constraint is marked as `PRECHECK`, you have the choice whether or not to disable the check constraint on the table as the retrieved JSON schema with `dbms_json_schema.describe()` will contain the check constraints as well.
 
-<Danger>We do **NOT** advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.</Danger>
+> We do **NOT** advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.
 
 ```sql
 -- Mark check constraints as PRECHECK
@@ -1013,7 +1018,7 @@ select p.content.publishedDate.timestamp() + interval '5' day
 from posts p;
 ```
 
-<Infobox>We use the item method `timestamp()` in the last statement above because otherwise the SQL dot notation would return a SQL `JSON` (by default in 23ai) on which we cannot apply an interval operation. However, because the value is already stored as `TIMESTAMP` inside the binary JSON format, there will be *no conversion* from `JSON` to `timestamp` here.</Infobox>
+> We use the item method `timestamp()` in the last statement above because otherwise the SQL dot notation would return a SQL `JSON` (by default in 23ai) on which we cannot apply an interval operation. However, because the value is already stored as `TIMESTAMP` inside the binary JSON format, there will be *no conversion* from `JSON` to `timestamp` here.
 
 Last but not least, by enabling type casting, native SQL data type checks are also performed ensuring 100% fidelity between stored binary values in the encoded JSON and SQL data types. As a result, we can store not just the standard JSON data types but also the SQL data types inside the encoded binary JSON such as `NUMBER`, `DATE`, `TIMESTAMP`, `TIMESTAMP WITH TIME ZONE`, `INTERVAL`, `RAW`, `VECTOR`, etc.
 
@@ -1098,7 +1103,7 @@ Results:
 | {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false<br/>}                            |Paris|Bob|false|null|
 | {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false,<br/>&nbsp;&nbsp;"tableEvolve": true<br/>} |Paris|Bob|false|true|
 
-<Infobox>The trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.</Infobox>
+> The trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.
 
 ## Conclusion
 
