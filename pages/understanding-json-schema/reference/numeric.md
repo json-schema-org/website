@@ -168,6 +168,7 @@ The multiple can be a floating point number:
 4.021
 ```
 
+<Infobox label="Note"> The JSON Specification defines numerical precision independently of the IEEE 754 standard. This means developers do not need to worry about the typical limitations of floating-point arithmetic, such as precision loss or representation errors, which are common in most programming languages. </Infobox>
 
 <Keywords label="single: number; range single: maximum single: exclusiveMaximum single: minimum single: exclusiveMinimum" />
 
