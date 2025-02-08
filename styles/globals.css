@@ -300,3 +300,24 @@ border-radius: 4px; */
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+@keyframes shine {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(200%);
+  }
+}
+
+.shine-animation {
+  animation: shine 2s infinite;
+}
+
+.group {
+  transition: all 0.3s ease;
+}
+
+.group:hover {
+  transform: translateY(-2px);
+}
