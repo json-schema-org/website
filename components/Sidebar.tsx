@@ -340,7 +340,7 @@ export const DocsNav = ({
       getStarted: false,
       getGuides: !active.getGuides,
       getReference: false,
-      getSpecification:false,
+      getSpecification: false,
     });
   };
 
@@ -529,10 +529,10 @@ export const DocsNav = ({
         >
           <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
           <DocLink
-              uri='/understanding-json-schema/about'
-              label='What is a schema?'
-              setOpen={setOpen}
-            />
+            uri='/understanding-json-schema/about'
+            label='What is a schema?'
+            setOpen={setOpen}
+          />
           <DocLink
             uri='/understanding-json-schema/basics'
             label='The basics'
@@ -697,7 +697,7 @@ export const DocsNav = ({
             setOpen={setOpen}
           />*/}
           {/*<div className='pl-4 pb-1 pt-1'>*/}
-            {/*<DocLink
+          {/*<DocLink
               uri='/understanding-json-schema/conventions'
               label='Conventions used'
               setOpen={setOpen}
@@ -713,54 +713,59 @@ export const DocsNav = ({
             label='JSON data types'
             setOpen={setOpen}
           />
-            <div className='pl-4 pb-1 pt-1'> {/*Opening div: JSON data types*/}
-              <DocLink
-                uri='/understanding-json-schema/reference/array'
-                label='array'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/boolean'
-                label='boolean'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/null'
-                label='null'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/numeric'
-                label='numeric types'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/object'
-                label='object'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/regular_expressions'
-                label='regular expressions'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/string'
-                label='string'
-                setOpen={setOpen}
-              />
-            </div> {/*Closing div: JSON data types*/}
-          <DocLink
-              uri='/understanding-json-schema/reference/schema'
-              label='Dialect and vocabulary declaration'
+          <div className='pl-4 pb-1 pt-1'>
+            {' '}
+            {/*Opening div: JSON data types*/}
+            <DocLink
+              uri='/understanding-json-schema/reference/array'
+              label='array'
               setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/boolean'
+              label='boolean'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/null'
+              label='null'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/numeric'
+              label='numeric types'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/object'
+              label='object'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/regular_expressions'
+              label='regular expressions'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/string'
+              label='string'
+              setOpen={setOpen}
+            />
+          </div>{' '}
+          {/*Closing div: JSON data types*/}
+          <DocLink
+            uri='/understanding-json-schema/reference/schema'
+            label='Dialect and vocabulary declaration'
+            setOpen={setOpen}
           />
           <DocLink
             uri='/understanding-json-schema/reference/generic'
             label='Enumerated and Constant Values'
             setOpen={setOpen}
           />
-          <div className='pl-4 pb-1 pt-1'> {/*Opening div: Schema constraints*/}
+          <div className='pl-4 pb-1 pt-1'>
+            {' '}
+            {/*Opening div: Schema constraints*/}
             <DocLink
               uri='/understanding-json-schema/reference/enum'
               label='Enumerated values'
@@ -771,7 +776,8 @@ export const DocsNav = ({
               label='Constant values'
               setOpen={setOpen}
             />
-          </div> {/*Closing div: Schema constraints*/}
+          </div>{' '}
+          {/*Closing div: Schema constraints*/}
           <DocLink
             uri='/understanding-json-schema/reference/metadata'
             label='Schema annotations and comments'
@@ -789,7 +795,8 @@ export const DocsNav = ({
               label='Comments'
               setOpen={setOpen}
             />
-          </div> {/*Closing div: Schema metadata*/}
+          </div>{' '}
+          {/*Closing div: Schema metadata*/}
           <DocLink
             uri='/understanding-json-schema/reference/conditionals'
             label='Conditional schema validation'
@@ -800,7 +807,9 @@ export const DocsNav = ({
             label='Schema composition'
             setOpen={setOpen}
           />
-          <div className='pl-4 pb-1 pt-1'> {/*Opening div: Schema composition*/}
+          <div className='pl-4 pb-1 pt-1'>
+            {' '}
+            {/*Opening div: Schema composition*/}
             <DocLink
               uri='/understanding-json-schema/reference/combining'
               label='Boolean JSON Schema combination'
@@ -811,7 +820,8 @@ export const DocsNav = ({
               label='Modular JSON Schema combination'
               setOpen={setOpen}
             />
-          </div> {/*Closing div: Schema composition*/}
+          </div>{' '}
+          {/*Closing div: Schema composition*/}
           <DocLink
             uri='/understanding-json-schema/reference/non_json_data'
             label='Media: string-encoding non-JSON data'

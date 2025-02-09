@@ -108,7 +108,7 @@ export default function Welcome() {
         nextURL='/understanding-json-schema/keywords'
       />
       <DocsHelp fileRenderType={fileRenderType} />
-      </SectionContext.Provider>
+    </SectionContext.Provider>
   );
 }
 Welcome.getLayout = getLayout;

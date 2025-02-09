@@ -22,7 +22,7 @@ export default function Welcome() {
         <br />
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
-      <Card
+        <Card
           title='What is a Schema?'
           body='Let us start by defining what is a Schema'
           headerSize='medium'
