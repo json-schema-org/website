@@ -195,10 +195,13 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             }}
           >
             {getDocsPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white  ml-12'>Overview</h3>
+              <h3 className='text-white  ml-12'>Introduction</h3>
             )}
             {getStartedPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Getting Started</h3>
+              <h3 className='text-white ml-12'>Get started</h3>
+            )}
+            {getGuidesPath.includes(pathWtihoutFragment) && (
+              <h3 className='text-white ml-12'>Guides</h3>
             )}
             {getReferencePath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Reference</h3>
@@ -284,6 +287,9 @@ export const DocsNav = ({
       newActive.getDocs = true;
     } else if (getStartedPath.includes(pathWtihoutFragment)) {
       newActive.getStarted = true;
+      setActive({ ...active, getStarted: true });
+    } else if (getGuidesPath.includes(pathWtihoutFragment)) {
+      setActive({ ...active, getGuides: true });
     } else if (getReferencePath.includes(pathWtihoutFragment)) {
       newActive.getReference = true;
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
@@ -347,6 +353,7 @@ export const DocsNav = ({
 
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateGui = active.getGuides ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
 
@@ -356,17 +363,20 @@ export const DocsNav = ({
   const [reference_icon, setReference_icon] = useState('');
   const [spec_icon, setSpec_icon] = useState('');
   const [overview_icon, setOverview_icon] = useState('');
+  const [guides_icon, setGuides_icon] = useState('');
   useEffect(() => {
     if (resolvedTheme === 'dark') {
       setOverview_icon('/icons/eye-dark.svg');
       setLearn_icon('/icons/compass-dark.svg');
       setReference_icon('/icons/book-dark.svg');
       setSpec_icon('/icons/clipboard-dark.svg');
+      setGuides_icon('/icons/grad-cap-dark.svg');
     } else {
       setOverview_icon('/icons/eye.svg');
       setLearn_icon('/icons/compass.svg');
       setReference_icon('/icons/book.svg');
       setSpec_icon('/icons/clipboard.svg');
+      setGuides_icon('/icons/grad-cap.svg');
     }
   }, [resolvedTheme]);
 
@@ -420,6 +430,7 @@ export const DocsNav = ({
           )}
           id='overview'
         >
+          <DocLink uri='/docs' label='Overview' setOpen={setOpen} />
           <DocLink
             uri='/overview/what-is-jsonschema'
             label='What is JSON Schema?'
@@ -463,7 +474,8 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
         </div>
-      </div> {/*Closing div: Introduction*/}
+      </div>{' '}
+      {/*Closing div: Introduction*/}
       {/* Get started */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
         <div
@@ -525,7 +537,7 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/learn/getting-started-step-by-step'
-            label='Creating your first schema'
+            label='Create your first schema'
             setOpen={setOpen}
           />
           <DocLinkBlank
@@ -557,7 +569,8 @@ export const DocsNav = ({
             />
           </div>
         </div>
-      </div> {/* Closing div: Get started */}
+      </div>{' '}
+      {/* Closing div: Get started */}
       {/* Guides */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
         <div
@@ -565,7 +578,13 @@ export const DocsNav = ({
           onClick={handleClickGuides}
         >
           <div className='flex  items-center align-middle'>
-            <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
+            <Image
+              src={`${guides_icon}`}
+              alt='grad cap icon'
+              height={20}
+              width={20}
+              className='mr-2'
+            />
             <SegmentHeadline label='Guides' />
           </div>
           <svg
@@ -647,6 +666,7 @@ export const DocsNav = ({
             />
           </svg>
         </div>
+        {/*Opening div: inner reference div */}
         <div
           className={classnames(
             'ml-6',
@@ -754,7 +774,8 @@ export const DocsNav = ({
             label='Schema annotations and comments'
             setOpen={setOpen}
           />
-          <div className='pl-4 pb-1 pt-1'> {/*Opening div: Schema metadata*/}
+          <div className='pl-4 pb-1 pt-1'>
+            {/*Opening div: Schema metadata*/}
             <DocLink
               uri='/understanding-json-schema/reference/annotations'
               label='Annotations'
@@ -799,9 +820,8 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
         </div>
-        {/*Closing div: inner reference div */}
-      </div>
-      {/*Closing div: outermost reference div */}
+      </div>{' '}
+      {/*Closing div: inner reference div */}
       {/* Specification */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
         <div

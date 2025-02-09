@@ -20,8 +20,8 @@ export default function Welcome() {
         documents' structure, constraints, and data types. It helps you
         standardize and define expectations for JSON data.
         <br />
-        Our documentation will guide you through the basics and beyond of defining and validating JSON data. 
-        <br />
+        Our documentation will guide you through the basics and beyond of
+        defining and validating JSON data.
         <br />
         <span className='font-bold text-[1.3rem]'>Explore the docs</span>
       </p>
@@ -29,15 +29,15 @@ export default function Welcome() {
         <Card
           icon='/icons/eye.svg'
           title='Introduction'
-          body='Discover the JSON Schema initiative: its purpose and role in data validation.'
+          body='Discover JSON Schema: its purpose and role in data validation.'
           headerSize='medium'
           bodyTextSize='small'
           link='/overview/what-is-jsonschema'
         />
         <Card
           icon='/icons/compass.svg'
-          title='Basics'
-          body='New to JSON Schema? Learn the basics of data validation and schema design.'
+          title='Get started'
+          body='New to JSON Schema? Learn the basics of schema design.'
           headerSize='medium'
           bodyTextSize='small'
           link='/learn'
@@ -61,7 +61,7 @@ export default function Welcome() {
         <Card
           icon='/icons/clipboard.svg'
           title='Specification'
-          body='Understand the evolution of JSON Schema through its drafts'
+          body='Understand the evolution of JSON Schema through its different versions'
           headerSize='medium'
           bodyTextSize='small'
           link='/specification'

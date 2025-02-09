@@ -19,10 +19,12 @@ export default function Welcome() {
       <Headline1>{newTitle}</Headline1>
       <p>
         Master the full power of JSON Schema with our reference documentation.
-        <br/> 
-        <br/>
-        From basic data types to advanced techniques like conditional validation and schema composition, you will learn everything about JSON Schema keywords through clear explanations and examples.
-        By learning best practices for building clear, scalable, and easy-to-maintain schemas, you will ensure that your JSON data is both robust and flexible.        
+        <br />
+        From basic data types to advanced techniques like conditional validation
+        and schema composition, you will learn everything about JSON Schema
+        keywords through clear explanations and examples. By learning best
+        practices for building clear, scalable, and easy-to-maintain schemas,
+        you will ensure that your JSON data is both robust and flexible.
         <br />
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>

@@ -253,4 +253,3 @@ Dates and times are represented in [RFC 3339, section 5.6](https://tools.ietf.or
 
 - `"regex"`: <StarInline label="New in draft 7" /> A regular expression that should be valid according to the [ECMA 262](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/) [dialect](../../learn/glossary#dialect). Be careful, in practice, JSON Schema validators are only required to accept the safe subset of [regular expressions](../../understanding-json-schema/reference/regular_expressions) described elsewhere in this document.
 
-
