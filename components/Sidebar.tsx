@@ -291,8 +291,6 @@ export const DocsNav = ({
     } else if (getStartedPath.includes(pathWtihoutFragment)) {
       newActive.getStarted = true;
       setActive({ ...active, getStarted: true });
-    } else if (getGuidesPath.includes(pathWtihoutFragment)) {
-      setActive({ ...active, getGuides: true });
     } else if (getReferencePath.includes(pathWtihoutFragment)) {
       newActive.getReference = true;
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
@@ -356,7 +354,6 @@ export const DocsNav = ({
 
   const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
-  const rotateGui = active.getGuides ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
 
