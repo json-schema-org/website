@@ -117,13 +117,19 @@ const getStartedPath = [
   '/learn/file-system',
   '/learn/miscellaneous-examples',
   '/learn/getting-started-step-by-step',
+  '/understanding-json-schema/about',
+  '/understanding-json-schema/basics',
+  '/learn/glossary',
+];
+const getGuidesPath = [
+  '/learn/guides',
+  '/implementers',
+  '/implementers/interfaces',
 ];
 const getReferencePath = [
   '/understanding-json-schema',
   '/understanding-json-schema/keywords',
-  '/understanding-json-schema/basics',
   '/understanding-json-schema/conventions',
-  '/understanding-json-schema/about',
   '/understanding-json-schema/credits',
   '/understanding-json-schema/structuring',
   '/understanding-json-schema/reference/annotations',
@@ -144,9 +150,6 @@ const getReferencePath = [
   '/understanding-json-schema/reference/type',
   '/understanding-json-schema/reference/generic',
   '/understanding-json-schema/reference',
-  '/learn/glossary',
-  '/implementers',
-  '/implementers/interfaces',
 ];
 const getSpecificationPath = [
   '/draft/2020-12',
@@ -264,6 +267,7 @@ export const DocsNav = ({
   const [active, setActive] = useState({
     getDocs: false,
     getStarted: false,
+    getGuides: false,
     getReference: false,
     getSpecification: false,
   });
@@ -272,6 +276,7 @@ export const DocsNav = ({
     const newActive = {
       getDocs: false,
       getStarted: false,
+      getGuides: false,
       getReference: false,
       getSpecification: false,
     };
@@ -283,6 +288,8 @@ export const DocsNav = ({
       newActive.getReference = true;
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
       newActive.getSpecification = true;
+    } else if (getGuidesPath.includes(pathWtihoutFragment)) {
+      newActive.getGuides = true;
     }
 
     setActive(newActive);
@@ -294,6 +301,7 @@ export const DocsNav = ({
       getStarted: false,
       getReference: false,
       getSpecification: false,
+      getGuides: false,
     });
   };
 
@@ -303,6 +311,7 @@ export const DocsNav = ({
       getStarted: !active.getStarted,
       getReference: false,
       getSpecification: false,
+      getGuides: false,
     });
   };
 
@@ -312,6 +321,17 @@ export const DocsNav = ({
       getStarted: false,
       getReference: !active.getReference,
       getSpecification: false,
+      getGuides: false,
+    });
+  };
+
+  const handleClickGuides = () => {
+    setActive({
+      getDocs: false,
+      getStarted: false,
+      getGuides: !active.getGuides,
+      getReference: false,
+      getSpecification:false,
     });
   };
 
@@ -319,6 +339,7 @@ export const DocsNav = ({
     setActive({
       getDocs: false,
       getStarted: false,
+      getGuides: false,
       getReference: false,
       getSpecification: !active.getSpecification,
     });
@@ -504,7 +525,7 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/learn/getting-started-step-by-step'
-            label='Create your first schema'
+            label='Creating your first schema'
             setOpen={setOpen}
           />
           <DocLinkBlank
@@ -541,7 +562,7 @@ export const DocsNav = ({
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
-          onClick={handleClickGet}
+          onClick={handleClickGuides}
         >
           <div className='flex  items-center align-middle'>
             <img src={`${learn_icon}`} alt='compass icon' className='mr-2' />
@@ -569,7 +590,7 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getStarted })}
+          className={classnames('ml-6', { hidden: !active.getGuides })}
           id='Guides'
         >
           <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
@@ -637,8 +658,6 @@ export const DocsNav = ({
           )}
           id='reference'
         >
-
-          <DocLink uri='/understanding-json-schema/reference' label='Overview' setOpen={setOpen} />
           <DocLink
             uri='/understanding-json-schema/reference'
             label='Overview'

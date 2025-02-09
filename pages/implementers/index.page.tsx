@@ -51,9 +51,9 @@ export default function ContentExample({
         </div>
       </section>
       <NextPrevButton
-        prevLabel='Structuring a complex schema'
-        prevURL='/understanding-json-schema/structuring'
-        nextLabel='Common Interfaces across Implementations'
+        prevLabel='Guides'
+        prevURL='/guides'
+        nextLabel='Understanding common interfaces'
         nextURL='/implementers/interfaces'
       />
       <DocsHelp fileRenderType={fileRenderType} />

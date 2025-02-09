@@ -2,11 +2,11 @@
 title: JSON Schema glossary
 section: docs
 prev: 
-  label: Other Examples
-  url: /learn/json-schema-examples
+  label: Creating your first schema
+  url: /learn/getting-started-step-by-step
 next: 
-  label: JSON Schema Keywords
-  url: /understanding-json-schema/keywords
+  label: Miscellaneous Examples
+  url: /learn/miscellaneous-examples
 ---
 
 This document collects short explanations of terminology one may encounter within the JSON Schema community.
