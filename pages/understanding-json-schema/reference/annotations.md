@@ -2,8 +2,8 @@
 title: "Annotations"
 section: docs
 prev: 
-  label: Generic keywords
-  url: /understanding-json-schema/reference/generic
+  label: Schema annotations and comments
+  url: /understanding-json-schema/reference/metadata
 next: 
   label: Comments
   url: /understanding-json-schema/reference/comments

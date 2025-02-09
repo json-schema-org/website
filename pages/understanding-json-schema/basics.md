@@ -5,8 +5,8 @@ prev:
   label: What is a Schema?
   url: /understanding-json-schema/about
 next: 
-  label: JSON Schema reference
-  url: /understanding-json-schema/reference
+  label: Creating your first Schema
+  url: /learn/getting-started-step-by-step
 ---
 
 In [What is a schema?](../understanding-json-schema/about), we described what a [schema](../learn/glossary#schema) is,

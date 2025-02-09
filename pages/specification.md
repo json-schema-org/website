@@ -2,8 +2,8 @@
 title: Specification [#section]
 section: docs
 prev: 
-  label: Common Interfaces across Implementations
-  url: /implementers/interfaces
+  label: JSON Schema reference
+  url: /understanding-json-schema/reference
 next: 
   label: Specification Links
   url: /specification-links
