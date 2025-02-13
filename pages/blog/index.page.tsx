@@ -92,6 +92,8 @@ export default function StaticMarkdownPage({
     setCurrentFilterTag(filterTag);
   }, [filterTag]);
 
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault(); // Prevent default scrolling behavior
     const clickedTag = event.currentTarget.value as blogCategories;
@@ -102,6 +104,9 @@ export default function StaticMarkdownPage({
       setCurrentFilterTag(clickedTag);
       history.replaceState(null, '', `/blog?type=${clickedTag}`); // Update URL
     }
+  };
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
   };
   const recentBlog = blogPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime();
@@ -223,16 +228,42 @@ export default function StaticMarkdownPage({
           <span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center dark:text-slate-300'>
             Filter blog posts by category...
           </span>
+          {/* Search box */}
+          <div className="flex items-center mb-4">
+            <input
+              type="text"
+              placeholder="Search"
+              value={searchQuery}
+              onChange={handleSearch}
+              className="px-4 py-1 rounded-full border border-blue-200 focus:border-blue-400 focus:outline-none dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100"
+            />
+          </div>
         </div>
 
         {/* filterTag === frontmatter.type &&  */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800  mx-auto p-4'>
           {blogPosts
             .filter((post) => {
-              if (!currentFilterTag || currentFilterTag === 'All') return true;
-              const blogType = post.frontmatter.type as string | undefined;
-              if (!blogType) return false;
-              return blogType.toLowerCase() === currentFilterTag.toLowerCase();
+              if (currentFilterTag !== 'All') {
+                const blogType = post.frontmatter.type as string | undefined;
+                if (!blogType || blogType.toLowerCase() !== currentFilterTag.toLowerCase()) {
+                  return false;
+                }
+              }
+              
+              // Then apply search filter
+              if (searchQuery) {
+                const searchTerms = searchQuery.toLowerCase();
+                return (
+                  post.frontmatter.title.toLowerCase().includes(searchTerms) ||
+                  post.frontmatter.excerpt.toLowerCase().includes(searchTerms) ||
+                  post.frontmatter.authors.some((author: Author) => 
+                    author.name.toLowerCase().includes(searchTerms)
+                  )
+                );
+              }
+              
+              return true;
             })
             .sort((a, b) => {
               const dateA = new Date(a.frontmatter.date).getTime();
