@@ -43,13 +43,13 @@ describe('DarkModeToggle Component', () => {
       cy.get(TOGGLE_BUTTON).click();
 
       // check if the menu is open
-      cy.get(THEME_DROPDOWN).should('have.css', 'display', 'block');
+      cy.get(THEME_DROPDOWN).should('be.visible');
 
       // click on the toggle button again to close the menu
       cy.get(TOGGLE_BUTTON).click();
 
       // check if the menu is closed
-      cy.get(THEME_DROPDOWN).should('have.css', 'display', 'none');
+      cy.get(THEME_DROPDOWN).should('not.be.visible');
     });
 
     // Should close the menu on mouse leave
@@ -58,13 +58,31 @@ describe('DarkModeToggle Component', () => {
       cy.get(TOGGLE_BUTTON).click();
 
       // check if the menu is open
-      cy.get(THEME_DROPDOWN).should('have.css', 'display', 'block');
+      cy.get(THEME_DROPDOWN).should('be.visible');
 
-      // trigger mouse leave event on the menu
-      cy.get(THEME_DROPDOWN).trigger('mouseout');
+      // simulate mouse leave event on the menu
+      cy.get(THEME_DROPDOWN).then(($el) => {
+        const mouseOutEvent = new Event('mouseout', { bubbles: true });
+        $el[0].dispatchEvent(mouseOutEvent);
+      });
 
       // check if the menu is closed
-      cy.get(THEME_DROPDOWN).should('have.css', 'display', 'none');
+      cy.get(THEME_DROPDOWN).should('not.be.visible');
+    });
+
+    // Should close the menu when clicking outside
+    it('should close the menu when clicking outside', () => {
+      // Click on the toggle button to open the menu
+      cy.get(TOGGLE_BUTTON).click();
+
+      // Check if the menu is open
+      cy.get(THEME_DROPDOWN).should('be.visible');
+
+      // Simulate clicking outside the dropdown
+      cy.get('body').click(0, 0); // Click at the top-left corner of the body
+
+      // Check if the menu is closed
+      cy.get(THEME_DROPDOWN).should('not.be.visible');
     });
   });
 

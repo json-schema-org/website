@@ -1,5 +1,5 @@
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import React from 'react';
 import Image from 'next/image';
 
@@ -35,6 +35,7 @@ export default function DarkModeToggle() {
   const [activeThemeIcon, setActiveThemeIcon] = useState(
     '/icons/theme-switch.svg',
   );
+
   useEffect(() => {
     switch (theme) {
       case 'system':
@@ -46,8 +47,30 @@ export default function DarkModeToggle() {
     }
   }, [theme, resolvedTheme]);
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setShowSelect(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className='relative w-10 h-10 dark-mode-toggle-container'>
+    <div
+      ref={dropdownRef}
+      className='relative w-10 h-10 dark-mode-toggle-container'
+    >
       <button
         onClick={() => setShowSelect(!showSelect)}
         className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
@@ -66,11 +89,10 @@ export default function DarkModeToggle() {
         />
       </button>
       <div
-        className='absolute right-0 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max'
-        style={{ display: showSelect ? 'block' : 'none' }}
-        onMouseLeave={() => {
-          setShowSelect(false);
-        }}
+        onMouseLeave={() => setShowSelect(false)}
+        className={`absolute right-0 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max ${
+          showSelect ? 'block' : 'hidden'
+        }`}
         tabIndex={0}
         data-test='theme-dropdown'
       >
@@ -93,7 +115,7 @@ export default function DarkModeToggle() {
         >
           <Image
             src={'/icons/sun.svg'}
-            alt='System theme'
+            alt='Light theme'
             width={18}
             height={18}
             style={{ filter: isDarkMode ? 'invert(1)' : 'invert(0)' }}
@@ -106,7 +128,7 @@ export default function DarkModeToggle() {
         >
           <Image
             src={'/icons/moon.svg'}
-            alt='System theme'
+            alt='Dark theme'
             width={18}
             height={18}
             style={{ filter: isDarkMode ? 'invert(1)' : 'invert(0)' }}
