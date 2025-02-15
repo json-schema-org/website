@@ -2,11 +2,11 @@
 title: "Media: string-encoding non-JSON data"
 section: docs
 prev: 
-  label: Generic Keywords
-  url: /understanding-json-schema/reference/generic
+  label: Modular JSON Schema combination¶
+  url: /understanding-json-schema/structuring
 next: 
-  label: Schema Composition
-  url: /understanding-json-schema/reference/combining
+  label: Specification
+  url: /specification
 ---
 
 <Keywords label="single: non-JSON data single: media"/>

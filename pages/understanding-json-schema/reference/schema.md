@@ -1,12 +1,12 @@
 ---
-title: "Declaring a Dialect"
+title: "Dialect and vocabulary declaration"
 section: docs
 prev: 
-  label: Applying Subschemas Conditionally
-  url: /understanding-json-schema/reference/conditionals
+  label: string
+  url: /understanding-json-schema/reference/string
 next: 
-  label: Structuring a complex schema
-  url: /understanding-json-schema/structuring
+  label: Value restrictions
+  url: /understanding-json-schema/reference/generic
 ---
 
 A version of JSON Schema is called a [dialect](../../learn/glossary#dialect). A dialect represents the

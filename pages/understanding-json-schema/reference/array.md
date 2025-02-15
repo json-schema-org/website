@@ -2,8 +2,8 @@
 title: "array"
 section: docs
 prev: 
-  label: Object
-  url: /understanding-json-schema/reference/object
+  label: Type-specific Keywords
+  url: /understanding-json-schema/reference/type
 next: 
   label: Boolean
   url: /understanding-json-schema/reference/boolean

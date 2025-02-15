@@ -2,8 +2,8 @@
 title: "Numeric types"
 section: docs
 prev: 
-  label: Regular Expressions
-  url: /understanding-json-schema/reference/regular_expressions
+  label: 'null'
+  url: /understanding-json-schema/reference/null
 next: 
   label: Object
   url: /understanding-json-schema/reference/object

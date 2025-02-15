@@ -48,10 +48,10 @@ export default function StyledValidator({
       <GettingStarted />
       <StyledMarkdown markdown={blocks[1]} />
       <NextPrevButton
-        prevLabel='Overview'
-        prevURL='/learn'
-        nextLabel='Miscellaneous examples'
-        nextURL='/learn/miscellaneous-examples'
+        prevLabel='The basics'
+        prevURL='/understanding-json-schema/basics'
+        nextLabel='JSON Schema glossary'
+        nextURL='/learn/glossary'
       />
       <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
