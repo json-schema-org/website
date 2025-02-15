@@ -5,8 +5,8 @@ prev:
   label: Enumerated values
   url: /understanding-json-schema/reference/enum
 next: 
-  label: 'Media: string-encoding non-JSON data'
-  url: /understanding-json-schema/reference/non_json_data
+  label: Schema annotations and comments
+  url: /understanding-json-schema/reference/metadata
 ---
 
 <Star label="New in draft 6" />
