@@ -9,7 +9,8 @@ next:
   url: /implementers/interfaces
 ---
 
-For Implementers
+Implement JSON Schema
 =========================
 
-Welcome to the **Implementers** section! The place for implementation maintainers' Docs.
+Dive into the technical details of implementing JSON Schema. 
+This section is for developers building tools and libraries that work with JSON Schema.

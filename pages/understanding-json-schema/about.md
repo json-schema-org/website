@@ -2,8 +2,8 @@
 title: "What is a schema?"
 section: "docs"
 prev: 
-  label: Conventions used
-  url: /understanding-json-schema/conventions
+  label: Get Started
+  url: /learn
 next: 
   label: The basics
   url: /understanding-json-schema/basics

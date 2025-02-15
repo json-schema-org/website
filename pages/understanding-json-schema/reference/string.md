@@ -2,11 +2,11 @@
 title: string
 section: docs
 prev: 
-  label: Type-specific keywords
-  url: /understanding-json-schema/reference/type
-next: 
   label: Regular expressions
   url: /understanding-json-schema/reference/regular_expressions
+next: 
+  label: Dialect and vocabulary declaration
+  url: /understanding-json-schema/reference/schema
 ---
 
 The `string` type is used for strings of text. It may contain Unicode characters.
