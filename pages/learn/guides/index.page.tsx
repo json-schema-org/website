@@ -18,7 +18,7 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-       Welcome to our new Guides section!
+        Welcome to our new Guides section!
         <br />
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>

@@ -18,13 +18,13 @@ export default function Welcome() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p>
-      New to JSON Schema and don't know where to start? Explore our learning
-      resources and get started with JSON Schema.
+        New to JSON Schema and don't know where to start? Explore our learning
+        resources and get started with JSON Schema.
         <br />
         <br />
       </p>
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
-      <Card
+        <Card
           title='What is a schema?'
           body='Let us start by defining what is a Schema'
           headerSize='medium'
