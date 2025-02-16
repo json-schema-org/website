@@ -229,13 +229,13 @@ export default function StaticMarkdownPage({
             Filter blog posts by category...
           </span>
           {/* Search box */}
-          <div className="flex items-center mb-4">
+          <div className='flex items-center mb-4'>
             <input
-              type="text"
-              placeholder="Search"
+              type='text'
+              placeholder='Search'
               value={searchQuery}
               onChange={handleSearch}
-              className="px-4 py-1 rounded-full border border-blue-200 focus:border-blue-400 focus:outline-none dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100"
+              className='px-4 py-1 rounded-full border border-blue-200 focus:border-blue-400 focus:outline-none dark:bg-slate-700 dark:border-slate-600 dark:text-slate-100'
             />
           </div>
         </div>
@@ -246,23 +246,26 @@ export default function StaticMarkdownPage({
             .filter((post) => {
               if (currentFilterTag !== 'All') {
                 const blogType = post.frontmatter.type as string | undefined;
-                if (!blogType || blogType.toLowerCase() !== currentFilterTag.toLowerCase()) {
+                if (
+                  !blogType ||
+                  blogType.toLowerCase() !== currentFilterTag.toLowerCase()
+                ) {
                   return false;
                 }
               }
-              
               // Then apply search filter
               if (searchQuery) {
                 const searchTerms = searchQuery.toLowerCase();
                 return (
                   post.frontmatter.title.toLowerCase().includes(searchTerms) ||
-                  post.frontmatter.excerpt.toLowerCase().includes(searchTerms) ||
-                  post.frontmatter.authors.some((author: Author) => 
-                    author.name.toLowerCase().includes(searchTerms)
+                  post.frontmatter.excerpt
+                    .toLowerCase()
+                    .includes(searchTerms) ||
+                  post.frontmatter.authors.some((author: Author) =>
+                    author.name.toLowerCase().includes(searchTerms),
                   )
                 );
               }
-              
               return true;
             })
             .sort((a, b) => {
