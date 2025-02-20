@@ -1,0 +1,116 @@
+name: PR Body Validation
+
+on:
+  pull_request_target:
+    types: [opened, edited, synchronize, reopened]
+
+jobs:
+  check-pr-content:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check PR content
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = context.payload.pull_request;
+            const prBody = pr.body || '';
+            
+            let missingItems = [];
+            
+            // Helper function to extract content between section headers
+            function extractSectionContent(content, sectionHeader) {
+              const regex = new RegExp(`\\*\\*${sectionHeader}\\*\\*(.*?)(?=\\*\\*|$)`, 's');
+              const match = content.match(regex);
+              if (!match) return '';
+              
+              // Remove HTML comments and trim whitespace
+              return match[1].replace(/<!--[\s\S]*?-->/g, '').trim();
+            }
+            
+            // Helper function to check if content is meaningful
+            function hasMeaningfulContent(content) {
+              // Remove HTML comments, markdown symbols, and extra whitespace
+              const cleanContent = content
+                .replace(/<!--[\s\S]*?-->/g, '')
+                .replace(/[#*\[\]()_]/g, '')
+                .trim();
+              return cleanContent.length >= 3; // Requiring at least 3 characters
+            }
+            
+            // Check for issue links
+            const issueRegex = /(closes|related to)\s+#\d+/i;
+            if (!issueRegex.test(prBody)) {
+              missingItems.push('issue reference');
+            }
+            
+            // Check for kind of change
+            const changeContent = extractSectionContent(prBody, 'What kind of change does this PR introduce\\?');
+            if (!hasMeaningfulContent(changeContent)) {
+              missingItems.push('kind of change description');
+            }
+            
+            // Check for breaking changes
+            const breakingContent = extractSectionContent(prBody, 'Does this PR introduce a breaking change\\?');
+            if (!hasMeaningfulContent(breakingContent)) {
+              missingItems.push('breaking changes information');
+            }
+            
+            // Check for unchecked items in checklist
+            const checklistMatch = prBody.match(/# Checklist([\s\S]*?)(?=(?:#|$))/);
+            if (checklistMatch && checklistMatch[1].includes('- [ ]')) {
+              missingItems.push('completed checklist items');
+            }
+            
+            // Get current labels
+            const { data: currentLabels } = await github.rest.issues.listLabelsOnIssue({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+            
+            const hasNeedsInfoLabel = currentLabels.some(label => label.name === 'needs-info');
+            
+            if (missingItems.length > 0) {
+              // If there are missing items, add comment and label
+              const missingItemsList = missingItems.join(', ');
+              const comment = `Hi @${pr.user.login}! Thanks a lot for your contribution! 
+              
+              I noticed that the following required information is missing or incomplete: ${missingItemsList}
+
+              Please update the PR description to include this information. You can find placeholders in the PR template for these items.
+
+              Thanks a lot!`;
+              
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: comment
+              });
+              
+              // Add needs-info label if not already present
+              if (!hasNeedsInfoLabel) {
+                await github.rest.issues.addLabels({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  labels: ['needs-info']
+                });
+              }
+              core.setFailed(`The following required information is missing or incomplete: ${missingItemsList}`);
+            } else if (hasNeedsInfoLabel) {
+              // If all requirements are met and the needs-info label exists, remove it
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: 'needs-info'
+              });
+            }
