@@ -1,10 +1,12 @@
 import React from 'react';
 import fs from 'fs';
-import { getLayout } from '~/components/SiteLayout';
+import { getLayout } from '~/components/Sidebar';
 import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
+import StyledMarkdown from '~/components/StyledMarkdown';
 
 interface ContractorLink {
   title: string;
@@ -48,16 +50,15 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
   const newTitle = 'Need pro help with JSON Schema?';
 
   return (
-    <SectionContext.Provider value='pro-help'>
+    <SectionContext.Provider value='docs'>
       <Head>
         <title>{newTitle}</title>
       </Head>
       <div
-        className='max-w-screen-xl block px-4 sm:px-6 lg:px-8 mt-12 mx-auto w-full'
+        className='max-w-screen-xl block lg:px-8 mx-auto w-full pt-0 mt-0'
         data-testid='pro-help'
       >
-        <br />
-        <div className='mt-6'>
+        <div>
           <Headline1>{newTitle}</Headline1>
           <p>
             Whether you need training, personalized advice, or custom JSON
@@ -93,7 +94,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
           <div className='w-full lg:w-full my-[10px] mx-auto mt-8 mb-8'>
             {contractorData.map((contractor) => (
               <div
-                className='border border-solid border-gray-300 px-5 py-3'
+                className='border border-solid border-gray-300 px-5 py-3 my-4'
                 key={contractor.github}
               >
                 <h1 className='text-xl mb-3 font-semibold'>
@@ -176,7 +177,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                   <div className='me-4 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:gap-2'>
                     <img
                       src={`https://github.com/${contractor.github}.png`}
-                      className='border border-gray-400 max-sm:w-44'
+                      className='border border-gray-400 max-sm:w-44 w-44'
                     />
                     <a
                       href={`mailto:${contractor.email}`}
@@ -185,15 +186,18 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                       Reach out
                     </a>
                   </div>
-                  <div className='text-sm'>
-                    <p>{contractor.bio}</p>
-                    <p className='my-3 font-bold'>
+                  <div className='text-sm w-full'>
+                    <StyledMarkdown markdown={contractor.bio} />
+                    <p className='my-3 font-bold text-slate-600 block dark:text-slate-300'>
                       Previous work and relevant links
                     </p>
                     <ul className='list-disc ms-4'>
                       {contractor.links.map((link) => (
                         <li className='my-2' key={link.url}>
-                          <a className='underline' href={link.url}>
+                          <a
+                            className='text-blue-600 block dark:text-blue-300'
+                            href={link.url}
+                          >
                             {link.title}
                           </a>
                         </li>
@@ -208,6 +212,12 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
             <br />
           </div>
         </div>
+        <NextPrevButton
+          prevLabel='FAQ'
+          prevURL='/overview/faq'
+          nextLabel='Similar Technologies'
+          nextURL='/overview/similar-technologies'
+        />
         <DocsHelp />
       </div>
     </SectionContext.Provider>

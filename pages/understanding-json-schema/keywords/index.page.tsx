@@ -39,7 +39,7 @@ interface LinkObject {
 }
 
 export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
-  const markdownFile = '_index';
+  const fileRenderType = 'tsx';
   return (
     <SectionContext.Provider value={null}>
       <Head>
@@ -93,7 +93,7 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
         nextLabel='Understanding JSON Schema'
         nextURL='/understanding-json-schema'
       />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

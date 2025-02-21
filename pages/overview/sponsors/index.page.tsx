@@ -21,7 +21,8 @@ export async function getStaticProps() {
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
   const newTitle = 'Sponsors';
-
+  const fileRenderType =
+    'https://github.com/json-schema-org/community/blob/main/programs/sponsors/sponsors.md';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -35,7 +36,7 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
         nextLabel='Use Cases'
         nextURL='/overview/use-cases'
       />
-      <DocsHelp />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

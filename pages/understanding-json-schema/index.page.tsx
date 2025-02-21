@@ -19,7 +19,6 @@ export async function getStaticProps() {
     },
   };
 }
-
 export default function ContentExample({
   blocks,
 }: {
@@ -27,8 +26,7 @@ export default function ContentExample({
   frontmatter: any;
   content: any;
 }) {
-  const markdownFile = '_indexPage';
-
+  const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
@@ -38,7 +36,7 @@ export default function ContentExample({
         nextLabel='Conventions used'
         nextURL='/understanding-json-schema/conventions'
       />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

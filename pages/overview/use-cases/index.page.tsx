@@ -10,7 +10,7 @@ import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Content() {
   const newTitle = 'Use Cases';
-  const markdownFile = '_indexPage';
+  const fileRenderType = 'tsx';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -42,7 +42,7 @@ export default function Content() {
         nextLabel='Case Studies'
         nextURL='/overview/case-studies'
       />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
