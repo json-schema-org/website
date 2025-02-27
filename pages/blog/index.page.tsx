@@ -251,10 +251,12 @@ export default function StaticMarkdownPage({
                       href={`/blog/posts/${blogPost.slug}`}
                       className='inline-flex flex-col flex-1 w-full'
                     >
+			    <div className=' h-max-[200px] w-full  object-cover'>
                       <div
                         className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
                         style={{ backgroundImage: `url(${frontmatter.cover})` }}
                       />
+			    </div>
                       <div className=' p-4 flex flex-col flex-1 justify-between'>
                         <div>
                           <div>
@@ -277,7 +279,7 @@ export default function StaticMarkdownPage({
                               {frontmatter.type || 'Unknown Type'}
                             </div>
                           </div>
-                          <div className='text-lg font-semibold'>
+                          <div className='text-lg h-[80px] font-semibold'>
                             {frontmatter.title}
                           </div>
 
