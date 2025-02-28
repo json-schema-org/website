@@ -20,6 +20,7 @@ export default function Welcome() {
       <p>
         Master the full power of JSON Schema with our reference documentation.
         <br />
+        <br />
         From basic data types to advanced techniques like conditional validation
         and schema composition, you will learn everything about JSON Schema
         keywords through clear explanations and examples. By learning best
