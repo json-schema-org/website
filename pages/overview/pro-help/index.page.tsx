@@ -55,7 +55,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
         <title>{newTitle}</title>
       </Head>
       <div
-        className='max-w-screen-xl block lg:px-8 mx-auto w-full pt-0 mt-0'
+        className='max-w-screen-xl block lg:px-8 px-4 mx-auto w-full pt-0 mt-0'
         data-testid='pro-help'
       >
         <div>
@@ -94,14 +94,14 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
           <div className='my-8 space-y-6'>
             {contractorData.map((contractor) => (
               <div
-                className='border border-solid border-gray-300 rounded-lg p-6 hover:shadow-lg transition-shadow duration-300 dark:border-gray-700 dark:bg-gray-800'
+                className='border border-solid border-gray-300 rounded-lg p-4 hover:shadow-lg transition-shadow duration-300 dark:border-gray-700 dark:bg-gray-800'
                 key={contractor.github}
               >
-                <div className='flex items-center justify-between'>
+                <div className='flex flex-col md:flex-row items-center justify-between'>
                   <div className='flex items-center space-x-4'>
                     <img
                       src={`https://github.com/${contractor.github}.png`}
-                      className='w-20 h-20 rounded-md border border-gray-400'
+                      className='w-16 h-16 rounded-md border border-gray-400'
                       alt={`${contractor.name}'s avatar`}
                     />
                     <div>
@@ -113,8 +113,8 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                       </span>
                     </div>
                   </div>
-                  <div className='flex items-center space-x-4 flex-nowrap'>
-                    <div className='flex space-x-4 flex-nowrap'>
+                  <div className='flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 mt-4 md:mt-0'>
+                    <div className='flex space-x-4'>
                       {contractor.website && (
                         <a
                           href={contractor.website}
