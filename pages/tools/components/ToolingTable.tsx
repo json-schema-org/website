@@ -101,12 +101,14 @@ const ToolingTable = ({
       {groups.map((group) => (
         <section key={group} className='mb-12 text-left'>
           {group !== 'none' && (
-            <div className='mb-10 px-4 w-full bg-gray-100 dark:bg-slate-900'>
+            <div className='mb-4 px-4 w-full bg-gray-100 dark:bg-slate-900'>
               <Headline2>{toTitleCase(group, '-')}</Headline2>
             </div>
           )}
+          
           <div className='overflow-x-auto'>
-            <table className='min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
+            {/* Desktop Table */}
+            <table className='hidden lg:table min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
               <thead>
                 <tr className='flex w-full min-w-[976px]'>
                   <TableSortableColumnHeader
@@ -258,16 +260,75 @@ const ToolingTable = ({
                 })}
               </tbody>
             </table>
+
+            {/* Mobile Table */}
+            <table className='lg:hidden min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
+              <tbody>
+                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
+                  const bowtieData = getBowtieData(tool);
+                  if (bowtieData) {
+                    tool.bowtie = bowtieData;
+                  }
+                  return (
+                    <tr
+                      key={index}
+                      className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
+                      onClick={() => openModal(tool)}
+                    >
+                      <td className='p-2'>
+                        <div className='flex justify-between items-center'>
+                          <div className='font-medium'>
+                            {tool.name}
+                            {tool.status === 'obsolete' && (
+                              <Tag intent='error' >
+                                {tool.status}
+                              </Tag>
+                            )}
+                          </div>
+                          {bowtieReport && (
+                            <div>
+                              {bowtieData ? (
+                                <a
+                                  href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                                  target='blank'
+                                  onClick={(event) => event.stopPropagation()}
+                                  title='See at Bowtie'
+                                >
+                                  <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                </a>
+                              ) : (
+                                <CancelIcon className='fill-current stroke-current w-4 h-4' />
+                              )}
+                            </div>
+                          )}
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          {tool.toolingTypes?.join(', ')} | {tool.languages?.join(', ')}
+                        </div>
+                        <div className='flex flex-wrap gap-1 mt-1'>
+                          {tool.supportedDialects?.draft?.map((draft) => (
+                            <Badge key={draft}>{draft}</Badge>
+                          ))}
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          License: {tool.license}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </section>
       ))}
+      
       {selectedTool && (
         <ToolingDetailModal tool={selectedTool} onClose={closeModal} />
       )}
     </>
   );
 };
-
 const TableColumnHeader = ({
   children,
   attributes: propAttributes,
