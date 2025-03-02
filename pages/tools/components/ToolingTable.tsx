@@ -101,7 +101,7 @@ const ToolingTable = ({
       {groups.map((group) => (
         <section key={group} className='mb-12 text-left'>
           {group !== 'none' && (
-            <div className='mb-4 px-4 w-full bg-gray-100 dark:bg-slate-900'>
+            <div className='mb-10 px-4 w-full bg-gray-100 dark:bg-slate-900'>
               <Headline2>{toTitleCase(group, '-')}</Headline2>
             </div>
           )}
