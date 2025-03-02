@@ -203,7 +203,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                 {/* Desktop Header */}
                 <div className="hidden md:flex flex-col md:flex-row items-center justify-between">
                   {/* Image and Name */}
-                  <div className="flex items-center space-x-8 pr-8 border-r border-gray-200 dark:border-gray-700">
+                  <div className="flex items-center space-x-8 pr-8 border-r border-gray-300 dark:border-gray-700">
                     <div className="relative group">
                       <img
                         src={`https://github.com/${contractor.github}.png`}
@@ -217,7 +217,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                         {contractor.name}
                       </h1>
 
-                      <span className=" text-base text-gray-500 dark:text-gray-800 border border-gray-200 uppercase bg-zinc-200 px-3 py-1.5 rounded">
+                      <span className=" text-base text-gray-500 dark:text-gray-800 border border-gray-500 uppercase bg-zinc-200 px-3 py-1.5 rounded">
                         {contractor.type}
                       </span>
                       {/* Social Links */}
@@ -315,10 +315,10 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                 </div>
 
                 {/* End of Header */}
-                <div className="mt-6 border-t pt-6 border-gray-100 dark:border-gray-700">
+                <div className="mt-6 border-t pt-6 border-gray-300 dark:border-gray-700">
                   <StyledMarkdown markdown={contractor.bio} />
                 </div>
-                <div className="mt-6 border-t pt-6 border-gray-200 dark:border-gray-700">
+                <div className="mt-6 border-t pt-6 border-gray-400 dark:border-gray-700">
   <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-4">
     Previous Work & Relevant Links
   </h2>
