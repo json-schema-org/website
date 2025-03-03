@@ -328,7 +328,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                 </div>
 
                 {/* End of Header */}
-                <div className='text-justify mt-6 border-t pt-6 border-gray-300 dark:border-gray-700'>
+                <div className='mt-6 border-t pt-6 border-gray-300 dark:border-gray-700'>
                   <StyledMarkdown markdown={contractor.bio} />
                 </div>
                 <div className='mt-6 border-t pt-6 border-gray-400 dark:border-gray-700'>
