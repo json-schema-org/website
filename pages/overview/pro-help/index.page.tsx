@@ -55,43 +55,36 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
         <title>{newTitle}</title>
       </Head>
       <div
-        className='max-w-screen-xl block lg:px-8 px-4 mx-auto w-full pt-0 mt-0'
+        className='max-w-screen-xl block lg:px-8 mx-auto w-full pt-0 mt-0'
         data-testid='pro-help'
       >
         <div>
           <Headline1>{newTitle}</Headline1>
-          <p className='text-lg text-gray-700 dark:text-gray-300'>
-            Whether you need training, personalized advice, or custom JSON Schema solutions, some
-            members of the JSON Schema Technical Steering Committee (TSC) and Ambassadors programs
-            offer pro services beyond community support. Don't hesitate in reaching out to discuss
+          <p>
+            Whether you need training, personalized advice, or custom JSON
+            Schema solutions, some members of the JSON Schema Technical Steering
+            Committee (TSC) and Ambassadors programs offer pro services beyond
+            community support. Don't hesitate in reaching out to discuss
             further.
           </p>
           <br />
-          <p className='italic text-gray-600 dark:text-gray-400'>
-            Hiring our top contributors also helps funding the JSON Schema open-source organization,
-            and as a consequence, the specifications that build on top of it, such as{' '}
-            <a
-              href='https://www.openapis.org'
-              className='underline text-blue-600 dark:text-blue-400'
-            >
+          <p className='italic'>
+            Hiring our top contributors also helps funding the JSON Schema
+            open-source organization, and as a consequence, the specifications
+            that build on top of it, such as{' '}
+            <a href='https://www.openapis.org' className='underline'>
               OpenAPI
             </a>
-            ,{' '}
-            <a
-              href='https://www.asyncapi.com'
-              className='underline text-blue-600 dark:text-blue-400'
-            >
+            ,
+            <a href='https://www.asyncapi.com' className='underline'>
               AsyncAPI
             </a>
-            ,{' '}
-            <a href='https://raml.org' className='underline text-blue-600 dark:text-blue-400'>
+            ,
+            <a href='https://raml.org' className='underline'>
               RAML
             </a>
-            ,{' '}
-            <a
-              href='https://www.w3.org/WoT/'
-              className='underline text-blue-600 dark:text-blue-400'
-            >
+            ,
+            <a href='https://www.w3.org/WoT/' className='underline'>
               W3C WoT
             </a>
             , and many more.
