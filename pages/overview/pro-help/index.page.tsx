@@ -328,7 +328,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                 </div>
 
                 {/* End of Header */}
-                <div className='mt-6 border-t pt-6 border-gray-300 dark:border-gray-700'>
+                <div className='text-justify mt-6 border-t pt-6 border-gray-300 dark:border-gray-700'>
                   <StyledMarkdown markdown={contractor.bio} />
                 </div>
                 <div className='mt-6 border-t pt-6 border-gray-400 dark:border-gray-700'>
@@ -339,7 +339,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                     {contractor.links.map((link) => (
                       <li
                         key={link.url}
-                        className='flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all transform hover:scale-105'
+                        className='flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all transform hover:scale-95'
                       >
                         <svg
                           className='w-6 h-6 mr-3 text-blue-500 dark:text-blue-400 flex-shrink-0'
