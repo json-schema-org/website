@@ -364,7 +364,6 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                     ))}
                   </ul>
                 </div>
-
               </div>
             ))}
           </div>
