@@ -212,7 +212,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                 {/* Desktop Header */}
                 <div className='hidden md:flex flex-col md:flex-row items-center justify-between'>
                   {/* Image and Name */}
-                  <div className='flex items-center space-x-8 pr-8 border-r border-gray-300 dark:border-gray-700'>
+                  <div className='flex items-center space-x-8 pr-8'>
                     <div className='relative group'>
                       <img
                         src={`https://github.com/${contractor.github}.png`}
@@ -304,27 +304,27 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                     </div>
                   </div>
 
-                  {/* Reach Out Button */}
-                  <div className='flex-1 flex justify-center items-center'>
-                    {contractor.email && (
-                      <a
-                        href={`mailto:${contractor.email}`}
-                        className='px-4 py-4 text-base bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-full shadow-xl transform transition-all duration-300 flex items-center gap-2 dark:from-blue-700 dark:to-blue-600 dark:hover:from-blue-800 dark:hover:to-blue-700 hover:scale-105'
-                      >
-                        <svg
-                          xmlns='http://www.w3.org/2000/svg'
-                          fill='currentColor'
-                          viewBox='0 0 24 24'
-                          className='w-5 h-5'
-                        >
-                          <path d='M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 11 4 6.01V6h16zm0 12H4V8.02l8 4.99 8-4.99V18z' />
-                        </svg>
-                        <span className='text-base font-semibold tracking-wide'>
-                          Reach Out
-                        </span>
-                      </a>
-                    )}
-                  </div>
+                 {/* Reach Out Button */}
+<div className='flex items-center space-x-8 border-l h-32 border-gray-300 dark:border-gray-700'>
+  {contractor.email && (
+    <a
+      href={`mailto:${contractor.email}`}
+      className='ml-4 px-4 py-4 text-base bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-full shadow-xl transform transition-all duration-300 flex items-center gap-2 dark:from-blue-700 dark:to-blue-600 dark:hover:from-blue-800 dark:hover:to-blue-700 hover:scale-105'
+    >
+      <svg
+        xmlns='http://www.w3.org/2000/svg'
+        fill='currentColor'
+        viewBox='0 0 24 24'
+        className='w-5 h-5'
+      >
+        <path d='M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 2v.01L12 11 4 6.01V6h16zm0 12H4V8.02l8 4.99 8-4.99V18z' />
+      </svg>
+      <span className='text-base font-semibold tracking-wide'>
+        Reach Out
+      </span>
+    </a>
+  )}
+</div>
                 </div>
 
                 {/* End of Header */}
