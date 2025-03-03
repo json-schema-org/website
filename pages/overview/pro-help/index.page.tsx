@@ -339,7 +339,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                     {contractor.links.map((link) => (
                       <li
                         key={link.url}
-                        className='flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all transform hover:scale-95'
+                        className='flex items-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow hover:shadow-md transition-all transform hover:scale-105'
                       >
                         <svg
                           className='w-6 h-6 mr-3 text-blue-500 dark:text-blue-400 flex-shrink-0'
