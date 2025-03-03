@@ -105,7 +105,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
     <div className="flex flex-col items-start">
       <h1 className="text-[17px] font-bold text-gray-900 dark:text-gray-100">
         {contractor.name}{" "}
-        <span className="text-base text-gray-500 dark:text-gray-800 border border-gray-200 uppercase bg-zinc-200 px-3 py-0.5 rounded">
+        <span className="text-base text-gray-800 dark:text-gray-800 border border-gray-200 uppercase bg-zinc-200 px-3 py-0.5 rounded">
           {contractor.type}
         </span>
       </h1>
@@ -116,7 +116,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
       href={contractor.website}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
+      className="text-gray-700 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
       title="Website"
     >
       <svg
@@ -140,7 +140,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
       href={`https://www.linkedin.com/in/${contractor.linkedin}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
+      className="text-gray-700 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
       title="LinkedIn"
     >
       <svg
@@ -158,7 +158,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
       href={`https://github.com/${contractor.github}`}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
+      className="text-gray-700 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
       title="GitHub"
     >
       <svg
@@ -212,7 +212,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                         {contractor.name}
                       </h1>
 
-                      <span className=" text-base text-gray-500 dark:text-gray-800 border border-gray-500 uppercase bg-zinc-200 px-3 py-1.5 rounded">
+                      <span className=" text-base text-gray-800 dark:text-gray-800 border border-gray-500 uppercase bg-zinc-200 px-3 py-1.5 rounded">
                         {contractor.type}
                       </span>
                       {/* Social Links */}
@@ -222,7 +222,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                             href={contractor.website}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
+                            className="text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
                             title="Website"
                           >
                             <svg
@@ -247,7 +247,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                             href={`https://www.linkedin.com/in/${contractor.linkedin}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
+                            className="text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
                             title="LinkedIn"
                           >
                             <svg
@@ -266,7 +266,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                             href={`https://github.com/${contractor.github}`}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
+                            className="text-gray-700 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-200 flex items-center"
                             title="GitHub"
                           >
                             <svg
