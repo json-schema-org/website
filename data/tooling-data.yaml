@@ -605,13 +605,13 @@
       platform: 'github'
   license: 'MIT'
   source: 'https://github.com/OptimumCode/json-schema-validator'
-  homepage: 'https://github.com/Kotlin/kotlinx.serialization'
+  homepage: 'https://github.com/OptimumCode/json-schema-validator'
   supportedDialects:
-    draft: ['7']
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: |
     Kotlin Muliplatform implementation of JSON schema to validate the JsonElement from kotlinx.serialization-json.
     The library is 'work in progress' and new features/drafts will be added in the future.
-  lastUpdated: '2023-08-01'
+  lastUpdated: '2025-03-01'
 
 - name: JSON::Schema::Modern
   description: 'Validate data against a schema using a JSON Schema'
