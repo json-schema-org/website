@@ -8,7 +8,7 @@ cover: /img/posts/2022/fundamentals-part-1/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://www.x.com/relequestual
+    twitter: relequestual
     byline: JSON Schema Specification Lead @Postman
 excerpt: 'We explore the fundamental JSON Schema concepts: Applicability, Subschemas, and Assertion Boolean Logic - Everyone needs good fundamentals.'
 ---

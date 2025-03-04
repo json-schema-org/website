@@ -9,7 +9,7 @@ cover: /img/posts/2022/json-schema-joins-the-openjsf/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://www.x.com/relequestual
+    twitter: relequestual
     byline: JSON Schema Specification Lead @Postman
 excerpt: "Find out what we've been doing in 2021 and read about our biggest development yet... joining the OpenJS Foundation. Oh, and WE'RE HIRING!"
 ---

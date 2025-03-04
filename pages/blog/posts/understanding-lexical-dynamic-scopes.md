@@ -10,6 +10,7 @@ authors:
   - name: Juan Cruz Viotti
     photo: /img/avatars/jviotti.webp
     link: https://www.jviotti.com
+    twitter: jviottidc
     byline: O'Reilly author, founder of Intelligence.AI and Sourcemeta
 excerpt: "A deep dive on lexical and dynamic scopes, essential for understanding more advanced topics like dynamic referencing"
 ---

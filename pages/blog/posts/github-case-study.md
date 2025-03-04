@@ -7,6 +7,7 @@ authors:
   - name: Julian Berman
     photo: /img/avatars/julian.webp
     link: https://mastodon.social/@JulianWasTaken
+    twitter: JulianWasTaken
     byline: JSON Schema Test Suite Maintainer & Technical Lead, API Specifications @Postman
 excerpt: "At GitHub's Docs Engineering team, while shipping releases to production 20 times per day or more, JSON Schema is critical in increasing confidence in changes to data, content and APIs."
 ---

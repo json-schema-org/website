@@ -13,12 +13,14 @@ authors:
     byline: Technical Writter Google Season of Docs
   - name: Valeria Hernandez
     photo: /img/avatars/valeria.webp
+    twitter: valeriahhdez
     byline: Technical Writter Google Season of Docs
   - name: Dhairya Amrish Majmudar 
     photo: /img/avatars/dhairya.webp
     byline: Software Engineer Google Season of Docs
   - name: Benjamin Granados
     photo: /img/avatars/benjagm.webp
+    twitter: benjagm
     byline: Community Manager
 
 excerpt: 'An announcement blog post to share the JSON Schema documentation efforts from the GSOD team.'
