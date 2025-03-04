@@ -102,6 +102,7 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
   );
 };
 const getDocsPath = [
+  '/docs',
   '/overview/what-is-jsonschema',
   '/overview/sponsors',
   '/overview/case-studies',
@@ -117,13 +118,19 @@ const getStartedPath = [
   '/learn/file-system',
   '/learn/miscellaneous-examples',
   '/learn/getting-started-step-by-step',
+  '/understanding-json-schema/about',
+  '/understanding-json-schema/basics',
+  '/learn/glossary',
+];
+const getGuidesPath = [
+  '/learn/guides',
+  '/implementers',
+  '/implementers/interfaces',
 ];
 const getReferencePath = [
   '/understanding-json-schema',
   '/understanding-json-schema/keywords',
-  '/understanding-json-schema/basics',
   '/understanding-json-schema/conventions',
-  '/understanding-json-schema/about',
   '/understanding-json-schema/credits',
   '/understanding-json-schema/structuring',
   '/understanding-json-schema/reference/annotations',
@@ -134,6 +141,8 @@ const getReferencePath = [
   '/understanding-json-schema/reference/conditionals',
   '/understanding-json-schema/reference/const',
   '/understanding-json-schema/reference/enum',
+  '/understanding-json-schema/reference/composition',
+  '/understanding-json-schema/reference/metadata',
   '/understanding-json-schema/reference/non_json_data',
   '/understanding-json-schema/reference/null',
   '/understanding-json-schema/reference/numeric',
@@ -144,9 +153,6 @@ const getReferencePath = [
   '/understanding-json-schema/reference/type',
   '/understanding-json-schema/reference/generic',
   '/understanding-json-schema/reference',
-  '/learn/glossary',
-  '/implementers',
-  '/implementers/interfaces',
 ];
 const getSpecificationPath = [
   '/draft/2020-12',
@@ -192,10 +198,13 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             }}
           >
             {getDocsPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white  ml-12'>Overview</h3>
+              <h3 className='text-white  ml-12'>Introduction</h3>
             )}
             {getStartedPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Getting Started</h3>
+              <h3 className='text-white ml-12'>Get started</h3>
+            )}
+            {getGuidesPath.includes(pathWtihoutFragment) && (
+              <h3 className='text-white ml-12'>Guides</h3>
             )}
             {getReferencePath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Reference</h3>
@@ -264,6 +273,7 @@ export const DocsNav = ({
   const [active, setActive] = useState({
     getDocs: false,
     getStarted: false,
+    getGuides: false,
     getReference: false,
     getSpecification: false,
   });
@@ -272,6 +282,7 @@ export const DocsNav = ({
     const newActive = {
       getDocs: false,
       getStarted: false,
+      getGuides: false,
       getReference: false,
       getSpecification: false,
     };
@@ -279,10 +290,13 @@ export const DocsNav = ({
       newActive.getDocs = true;
     } else if (getStartedPath.includes(pathWtihoutFragment)) {
       newActive.getStarted = true;
+      setActive({ ...active, getStarted: true });
     } else if (getReferencePath.includes(pathWtihoutFragment)) {
       newActive.getReference = true;
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
       newActive.getSpecification = true;
+    } else if (getGuidesPath.includes(pathWtihoutFragment)) {
+      newActive.getGuides = true;
     }
 
     setActive(newActive);
@@ -294,6 +308,7 @@ export const DocsNav = ({
       getStarted: false,
       getReference: false,
       getSpecification: false,
+      getGuides: false,
     });
   };
 
@@ -303,6 +318,7 @@ export const DocsNav = ({
       getStarted: !active.getStarted,
       getReference: false,
       getSpecification: false,
+      getGuides: false,
     });
   };
 
@@ -312,6 +328,17 @@ export const DocsNav = ({
       getStarted: false,
       getReference: !active.getReference,
       getSpecification: false,
+      getGuides: false,
+    });
+  };
+
+  const handleClickGuides = () => {
+    setActive({
+      getDocs: false,
+      getStarted: false,
+      getGuides: !active.getGuides,
+      getReference: false,
+      getSpecification: false,
     });
   };
 
@@ -319,6 +346,7 @@ export const DocsNav = ({
     setActive({
       getDocs: false,
       getStarted: false,
+      getGuides: false,
       getReference: false,
       getSpecification: !active.getSpecification,
     });
@@ -335,22 +363,26 @@ export const DocsNav = ({
   const [reference_icon, setReference_icon] = useState('');
   const [spec_icon, setSpec_icon] = useState('');
   const [overview_icon, setOverview_icon] = useState('');
+  const [guides_icon, setGuides_icon] = useState('');
   useEffect(() => {
     if (resolvedTheme === 'dark') {
       setOverview_icon('/icons/eye-dark.svg');
       setLearn_icon('/icons/compass-dark.svg');
       setReference_icon('/icons/book-dark.svg');
       setSpec_icon('/icons/clipboard-dark.svg');
+      setGuides_icon('/icons/grad-cap-dark.svg');
     } else {
       setOverview_icon('/icons/eye.svg');
       setLearn_icon('/icons/compass.svg');
       setReference_icon('/icons/book.svg');
       setSpec_icon('/icons/clipboard.svg');
+      setGuides_icon('/icons/grad-cap.svg');
     }
   }, [resolvedTheme]);
 
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
+      {/* Introduction */}
       <div className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-2 rounded'>
         <div
           className='flex justify-between w-full items-center'
@@ -364,7 +396,7 @@ export const DocsNav = ({
               width={22}
               className='mr-2'
             />
-            <SegmentHeadline label='Overview' />
+            <SegmentHeadline label='Introduction' />
           </div>
           <svg
             style={{
@@ -398,6 +430,7 @@ export const DocsNav = ({
           )}
           id='overview'
         >
+          <DocLink uri='/docs' label='Overview' setOpen={setOpen} />
           <DocLink
             uri='/overview/what-is-jsonschema'
             label='What is JSON Schema?'
@@ -411,12 +444,12 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/overview/use-cases'
-            label='Use Cases'
+            label='Use cases'
             setOpen={setOpen}
           />
           <DocLink
             uri='/overview/case-studies'
-            label='Case Studies'
+            label='Case studies'
             setOpen={setOpen}
           />
           <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
@@ -427,7 +460,7 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/overview/similar-technologies'
-            label='Similar Technologies'
+            label='Similar technologies'
             setOpen={setOpen}
           />
           <DocLinkBlank
@@ -437,13 +470,13 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/overview/code-of-conduct'
-            label='Code of Conduct'
+            label='Code of conduct'
             setOpen={setOpen}
           />
         </div>
-      </div>
-      {/* Get Started */}
-
+      </div>{' '}
+      {/*Closing div: Introduction*/}
+      {/* Get started */}
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
@@ -457,7 +490,7 @@ export const DocsNav = ({
               width={20}
               className='mr-2'
             />
-            <SegmentHeadline label='Getting Started' />
+            <SegmentHeadline label='Get Started' />
           </div>
           <svg
             style={{
@@ -493,13 +526,28 @@ export const DocsNav = ({
         >
           <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
           <DocLink
+            uri='/understanding-json-schema/about'
+            label='What is a schema?'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/understanding-json-schema/basics'
+            label='The basics'
+            setOpen={setOpen}
+          />
+          <DocLink
             uri='/learn/getting-started-step-by-step'
-            label='Creating your first schema'
+            label='Create your first schema'
             setOpen={setOpen}
           />
           <DocLinkBlank
             uri='https://tour.json-schema.org/'
             label='Tour of JSON Schema'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/learn/glossary'
+            label='JSON Schema glossary'
             setOpen={setOpen}
           />
           <SegmentSubtitle label='Examples' />
@@ -521,9 +569,67 @@ export const DocsNav = ({
             />
           </div>
         </div>
-      </div>
+      </div>{' '}
+      {/* Closing div: Get started */}
+      {/* Guides */}
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
+        <div
+          className='flex justify-between w-full items-center'
+          onClick={handleClickGuides}
+        >
+          <div className='flex  items-center align-middle'>
+            <Image
+              src={`${guides_icon}`}
+              alt='grad cap icon'
+              height={20}
+              width={20}
+              className='mr-2'
+            />
+            <SegmentHeadline label='Guides' />
+          </div>
+          <svg
+            style={{
+              transform: rotateG,
+              transition: 'all 0.2s linear',
+              cursor: 'pointer',
+            }}
+            id='arrow'
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            height='32'
+            viewBox='0 0 24 24'
+            width='24'
+          >
+            <path
+              clipRule='evenodd'
+              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+              fill='#707070'
+              fillRule='evenodd'
+            />
+          </svg>
+        </div>
+        <div
+          className={classnames('ml-6', { hidden: !active.getGuides })}
+          id='Guides'
+        >
+          <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
+          <DocLink
+            uri='/implementers'
+            label='For implementers'
+            setOpen={setOpen}
+          />
+          <div className='pl-4 pb-1 pt-1'>
+            <DocLink
+              uri='/implementers/interfaces'
+              label='Common interfaces across implementations'
+              setOpen={setOpen}
+            />
+          </div>
+          {/*Closing div tag: for implementers*/}
+        </div>
+      </div>{' '}
+      {/* Closing div: Guides */}
       {/* Reference */}
-
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
@@ -560,6 +666,7 @@ export const DocsNav = ({
             />
           </svg>
         </div>
+        {/*Opening div: inner reference div */}
         <div
           className={classnames(
             'ml-6',
@@ -572,13 +679,149 @@ export const DocsNav = ({
           id='reference'
         >
           <DocLink
-            uri='/learn/glossary'
-            label='JSON Schema Glossary'
+            uri='/understanding-json-schema/reference'
+            label='Overview'
             setOpen={setOpen}
           />
           <DocLink
             uri='/understanding-json-schema/keywords'
-            label='JSON Schema Keywords'
+            label='JSON Schema keywords'
+            setOpen={setOpen}
+          />
+          {/*<DocLink
+            uri='/understanding-json-schema'
+            label='Understanding JSON Schema'
+            setOpen={setOpen}
+          />*/}
+          {/*<div className='pl-4 pb-1 pt-1'>*/}
+          {/*<DocLink
+              uri='/understanding-json-schema/conventions'
+              label='Conventions used'
+              setOpen={setOpen}
+            />*/}
+          {/*<DocLink
+              uri='/understanding-json-schema/reference'
+              label='JSON Schema Reference'
+              setOpen={setOpen}
+          />
+            <div className='pl-4 pb-1 pt-1'>   Opening div tag: understanding JSON*/}
+          <DocLink
+            uri='/understanding-json-schema/reference/type'
+            label='Type-specific keywords'
+            setOpen={setOpen}
+          />
+          <div className='pl-4 pb-1 pt-1'>
+            {' '}
+            {/*Opening div: JSON data types*/}
+            <DocLink
+              uri='/understanding-json-schema/reference/array'
+              label='array'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/boolean'
+              label='boolean'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/null'
+              label='null'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/numeric'
+              label='numeric types'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/object'
+              label='object'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/regular_expressions'
+              label='regular expressions'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/string'
+              label='string'
+              setOpen={setOpen}
+            />
+          </div>{' '}
+          {/*Closing div: JSON data types*/}
+          <DocLink
+            uri='/understanding-json-schema/reference/schema'
+            label='Dialect and vocabulary declaration'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/understanding-json-schema/reference/generic'
+            label='Enumerated and constant values'
+            setOpen={setOpen}
+          />
+          <div className='pl-4 pb-1 pt-1'>
+            {' '}
+            {/*Opening div: Schema constraints*/}
+            <DocLink
+              uri='/understanding-json-schema/reference/enum'
+              label='Enumerated values'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/const'
+              label='Constant values'
+              setOpen={setOpen}
+            />
+          </div>{' '}
+          {/*Closing div: Schema constraints*/}
+          <DocLink
+            uri='/understanding-json-schema/reference/metadata'
+            label='Schema annotations and comments'
+            setOpen={setOpen}
+          />
+          <div className='pl-4 pb-1 pt-1'>
+            {/*Opening div: Schema metadata*/}
+            <DocLink
+              uri='/understanding-json-schema/reference/annotations'
+              label='Annotations'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/reference/comments'
+              label='Comments'
+              setOpen={setOpen}
+            />
+          </div>{' '}
+          {/*Closing div: Schema metadata*/}
+          <DocLink
+            uri='/understanding-json-schema/reference/conditionals'
+            label='Conditional schema validation'
+            setOpen={setOpen}
+          />
+          <DocLink
+            uri='/understanding-json-schema/reference/composition'
+            label='Schema composition'
+            setOpen={setOpen}
+          />
+          <div className='pl-4 pb-1 pt-1'>
+            {' '}
+            {/*Opening div: Schema composition*/}
+            <DocLink
+              uri='/understanding-json-schema/reference/combining'
+              label='Boolean JSON Schema combination'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/understanding-json-schema/structuring'
+              label='Modular JSON Schema combination'
+              setOpen={setOpen}
+            />
+          </div>{' '}
+          {/*Closing div: Schema composition*/}
+          <DocLink
+            uri='/understanding-json-schema/reference/non_json_data'
+            label='Media: string-encoding non-JSON data'
             setOpen={setOpen}
           />
           <DocLinkBlank
@@ -586,145 +829,10 @@ export const DocsNav = ({
             label='Learn JSON Schema'
             setOpen={setOpen}
           />
-          <DocLink
-            uri='/understanding-json-schema'
-            label='Understanding JSON Schema'
-            setOpen={setOpen}
-          />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink
-              uri='/understanding-json-schema/conventions'
-              label='Conventions used'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/understanding-json-schema/about'
-              label='What is a schema?'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/understanding-json-schema/basics'
-              label='The basics'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/understanding-json-schema/reference'
-              label='JSON Schema Reference'
-              setOpen={setOpen}
-            />
-            <div className='pl-4 pb-1 pt-1'>
-              <DocLink
-                uri='/understanding-json-schema/reference/type'
-                label='Type-specific keywords'
-                setOpen={setOpen}
-              />
-              <div className='pl-4 pb-1 pt-1'>
-                <DocLink
-                  uri='/understanding-json-schema/reference/string'
-                  label='string'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/regular_expressions'
-                  label='regular expressions'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/numeric'
-                  label='numeric types'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/object'
-                  label='object'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/array'
-                  label='array'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/boolean'
-                  label='boolean'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/null'
-                  label='null'
-                  setOpen={setOpen}
-                />
-              </div>
-              <DocLink
-                uri='/understanding-json-schema/reference/generic'
-                label='Generic keywords'
-                setOpen={setOpen}
-              />
-              <div className='pl-4 pb-1 pt-1'>
-                <DocLink
-                  uri='/understanding-json-schema/reference/annotations'
-                  label='Annotations'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/comments'
-                  label='Comments'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/enum'
-                  label='Enumerated values'
-                  setOpen={setOpen}
-                />
-                <DocLink
-                  uri='/understanding-json-schema/reference/const'
-                  label='Constant values'
-                  setOpen={setOpen}
-                />
-              </div>
-              <DocLink
-                uri='/understanding-json-schema/reference/non_json_data'
-                label='Media: string-encoding non-JSON data'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/combining'
-                label='Schema Composition'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/conditionals'
-                label='Applying Subschemas Conditionally'
-                setOpen={setOpen}
-              />
-              <DocLink
-                uri='/understanding-json-schema/reference/schema'
-                label='Declaring a Dialect'
-                setOpen={setOpen}
-              />
-            </div>
-            <DocLink
-              uri='/understanding-json-schema/structuring'
-              label='Structuring a complex schema'
-              setOpen={setOpen}
-            />
-          </div>
-          <DocLink
-            uri='/implementers'
-            label='For implementers'
-            setOpen={setOpen}
-          />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink
-              uri='/implementers/interfaces'
-              label='Common Interfaces across Implementations'
-              setOpen={setOpen}
-            />
-          </div>
         </div>
-      </div>
+      </div>{' '}
+      {/*Closing div: inner reference div */}
       {/* Specification */}
-
       <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
         <div
           className='flex justify-between w-full items-center'
@@ -787,7 +895,7 @@ export const DocsNav = ({
 
           <DocLink
             uri='/specification-links'
-            label='Specification Links'
+            label='Specification links'
             setOpen={setOpen}
           />
 
@@ -798,7 +906,7 @@ export const DocsNav = ({
           />
           <DocLink
             uri='/specification/release-notes'
-            label='Release Notes'
+            label='Release notes'
             setOpen={setOpen}
           />
 
