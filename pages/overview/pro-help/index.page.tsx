@@ -6,6 +6,7 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
+import StyledMarkdown from '~/components/StyledMarkdown';
 
 interface ContractorLink {
   title: string;
@@ -93,7 +94,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
           <div className='w-full lg:w-full my-[10px] mx-auto mt-8 mb-8'>
             {contractorData.map((contractor) => (
               <div
-                className='border border-solid border-gray-300 px-5 py-3'
+                className='border border-solid border-gray-300 px-5 py-3 my-4'
                 key={contractor.github}
               >
                 <h1 className='text-xl mb-3 font-semibold'>
@@ -176,7 +177,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                   <div className='me-4 max-sm:flex max-sm:flex-col max-sm:items-center max-sm:gap-2'>
                     <img
                       src={`https://github.com/${contractor.github}.png`}
-                      className='border border-gray-400 max-sm:w-44'
+                      className='border border-gray-400 max-sm:w-44 w-44'
                     />
                     <a
                       href={`mailto:${contractor.email}`}
@@ -185,15 +186,18 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                       Reach out
                     </a>
                   </div>
-                  <div className='text-sm'>
-                    <p>{contractor.bio}</p>
-                    <p className='my-3 font-bold'>
+                  <div className='text-sm w-full'>
+                    <StyledMarkdown markdown={contractor.bio} />
+                    <p className='my-3 font-bold text-slate-600 block dark:text-slate-300'>
                       Previous work and relevant links
                     </p>
                     <ul className='list-disc ms-4'>
                       {contractor.links.map((link) => (
                         <li className='my-2' key={link.url}>
-                          <a className='underline' href={link.url}>
+                          <a
+                            className='text-blue-600 block dark:text-blue-300'
+                            href={link.url}
+                          >
                             {link.title}
                           </a>
                         </li>

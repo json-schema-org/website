@@ -566,6 +566,7 @@ BEGIN
 'select getAnnotatedJSONSchema( ''PRODUCTS'' ) as schema');
        
 COMMIT;
+
 END;
 /
 ```
@@ -742,7 +743,9 @@ BEGIN
 end;');
        
 COMMIT;
+
 END;
+
 /
 ```
 
