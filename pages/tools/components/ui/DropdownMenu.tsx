@@ -28,7 +28,7 @@ export default function DropdownMenu({
   return (
     <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer'>
       <div
-        className='w-full flex justify-between items-center align-middle'
+        className='w-full flex justify-between items-center align-middle cursor-pointer'
         onClick={() => {
           setIsDropdownOpen((prev) => !prev);
         }}

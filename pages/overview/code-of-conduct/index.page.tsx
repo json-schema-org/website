@@ -29,7 +29,8 @@ export default function Content({
   content: any;
 }) {
   const newTitle = 'Code of Conduct';
-
+  const fileRenderType =
+    'https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -42,7 +43,7 @@ export default function Content({
         nextLabel='Getting Started'
         nextURL='/learn'
       />
-      <DocsHelp />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

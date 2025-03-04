@@ -9,7 +9,7 @@ import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Content() {
   const newTitle = 'FAQ';
-  const markdownFile = '_indexPage';
+  const fileRenderType = 'tsx';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -26,10 +26,10 @@ export default function Content() {
       <NextPrevButton
         prevLabel='Case Studies'
         prevURL='/overview/case-studies'
-        nextLabel='Similar Technologies'
-        nextURL='/overview/similar-technologies'
+        nextLabel='Pro Help'
+        nextURL='/overview/pro-help'
       />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

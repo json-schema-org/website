@@ -23,3 +23,6 @@
 /obsolete-implementations /tools?showObsolete=true 301
 /slack https://join.slack.com/t/json-schema/shared_invite/zt-2ued3v79g-Tk_aI32ZdW~ST0EWpGBwNQ 301
 /slack-redirect https://join.slack.com/t/json-schema/shared_invite/zt-2ued3v79g-Tk_aI32ZdW~ST0EWpGBwNQ 301
+/understanding-json-schema /understanding-json-schema/reference 301
+/understanding-json-schema/conventions /understanding-json-schema/reference 301
+/understanding-json-schema/reference/_index.md /understanding-json-schema/reference 301

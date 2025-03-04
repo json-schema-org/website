@@ -17,7 +17,6 @@ export async function getStaticProps() {
     },
   };
 }
-
 export default function ContentExample({
   blocks,
 }: {
@@ -25,8 +24,7 @@ export default function ContentExample({
   frontmatter: any;
   content: any;
 }) {
-  const markdownFile = '_indexPage';
-
+  const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
@@ -35,8 +33,8 @@ export default function ContentExample({
           <Card
             key='common-interfaces'
             icon='/icons/list.svg'
-            title='Common Interfaces'
-            body='Common Interfaces across JSON Schema Implementations'
+            title='Understand common interfaces'
+            body='Build interoperable JSON Schema tools using shared interfaces.'
             headerSize='small'
             bodyTextSize='small'
             link='./implementers/interfaces'
@@ -44,8 +42,8 @@ export default function ContentExample({
           <Card
             key='bowtie'
             icon='/img/logos/bowtie.svg'
-            title='Bowtie'
-            body='The meta-validator for JSON Schema implementations'
+            title='Validate with Bowtie'
+            body='Validate your JSON Schema tools with the Bowtie meta-validator.'
             headerSize='medium'
             bodyTextSize='small'
             link='https://docs.bowtie.report/en/stable/'
@@ -53,12 +51,12 @@ export default function ContentExample({
         </div>
       </section>
       <NextPrevButton
-        prevLabel='Structuring a complex schema'
-        prevURL='/understanding-json-schema/structuring'
-        nextLabel='Common Interfaces across Implementations'
+        prevLabel='Guides'
+        prevURL='/guides'
+        nextLabel='Understanding common interfaces'
         nextURL='/implementers/interfaces'
       />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
