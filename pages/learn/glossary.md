@@ -127,7 +127,7 @@ For example, the `not` keyword takes a subschema value and inverts its result, s
 Some subschemas may appear in more complex nested locations within a parent schema.
 The `allOf` keyword, for instance, takes an array of multiple subschemas and succeeds whenever all of the subschemas do individually.
 
-Whether something that otherwise *appears* to be a schema (based on its contents) actually *is* a subschema can be misleading at first glance without context or knowlege about its location within the parent schema.
+Whether something that otherwise *appears* to be a schema (based on its contents) actually *is* a subschema can be misleading at first glance without context or knowledge about its location within the parent schema.
 Specifically, in our above example, `{"type": "string"}` was a subschema of a larger schema, but in the schema `{"const": {"type": "string"}}`, it is *not* a subschema.
 Even though as a value it looks the same, the `const` keyword, which compares instances against a specific expected value, does *not* take a subschema as its value, its value is an opaque value with no particular meaning (such that in this schema, the number 12 would be invalid, but the precise instance `{"type": "string"}` is valid).
 Said more plainly, whether a particular value is a subschema or not depends on its precise location within a parent schema, as interpretation of the value depends on the defined behavior of the keyword(s) it lives under.

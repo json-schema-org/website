@@ -2,8 +2,8 @@
 title: "Enumerated values"
 section: docs
 prev: 
-  label: Comments
-  url: /understanding-json-schema/reference/comments
+  label: Enumerated and Constant Values
+  url: /understanding-json-schema/reference/generic
 next: 
   label: Constant values
   url: /understanding-json-schema/reference/const
@@ -62,5 +62,5 @@ also add 42, just for fun.
 
 ```json
 // props { "indent": true, "valid": false }
-{ "color": "blue" }
+0
 ```
