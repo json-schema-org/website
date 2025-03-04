@@ -707,7 +707,7 @@ export const DocsNav = ({
             <div className='pl-4 pb-1 pt-1'>   Opening div tag: understanding JSON*/}
           <DocLink
             uri='/understanding-json-schema/reference/type'
-            label='Type-specific keywords'
+            label='JSON data types'
             setOpen={setOpen}
           />
           <div className='pl-4 pb-1 pt-1'>
