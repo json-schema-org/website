@@ -141,7 +141,6 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
   ];
 
   return (
-
     <div className='relative flex flex-col max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 h-full'>
       <div className='absolute top-0 right-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
       <div className='absolute bottom-100 right-0 w-20 h-1 bg-black dark:bg-gray-400'></div>
