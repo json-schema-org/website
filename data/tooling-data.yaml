@@ -3159,3 +3159,28 @@
   supportedDialects:
     draft: ['2020-12']
   toolingListingNotes: 'Built for Node.js and browsers, it supports static type inference for schema definitions.'
+
+- name: 'MetaConfigurator'
+  description: 'A form generator and schema editor for JSON schema, making editing configuration files, research data and schemas easier and more enjoyable.'
+  toolingTypes:
+    ['data-to-schema', 'schema-to-web-UI', 'schema-to-data', 'editor']
+  languages: ['TypeScript']
+  maintainers:
+    - name: 'Felix Neubauer'
+      username: 'Logende'
+      platform: 'github'
+    - name: 'Paul Bredl '
+      username: 'PaulBredl'
+      platform: 'github'
+    - name: 'Minye'
+      username: 'beyond2void'
+      platform: 'github'
+    - name: 'Keyuri Patel' 
+      username: 'Keyshal-211'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/MetaConfigurator/meta-configurator'
+  supportedDialects:
+    draft: ['2020-12']
+  toolingListingNotes: '[A reference to MetaConfigurator papers](https://rdcu.be/dJvgS).'
+  
