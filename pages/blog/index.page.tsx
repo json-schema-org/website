@@ -246,20 +246,22 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-                  <div className='sm:h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
+                  <div className='sm:h-[507px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
                     <Link
                       href={`/blog/posts/${blogPost.slug}`}
                       className='inline-flex flex-col flex-1 w-full'
                     >
+                      <div className=' h-max-[200px] w-full object-cover'>
                       <div
                         className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
                         style={{ backgroundImage: `url(${frontmatter.cover})` }}
                       />
-                      <div className=' p-4 flex flex-col flex-1 justify-between'>
+                      </div>
+                      <div className=' p-4 pb-6 flex flex-col flex-1 justify-between'>
                         <div>
                           <div>
                             <div
-                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-2 text-sm'
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
@@ -281,7 +283,7 @@ export default function StaticMarkdownPage({
                             {frontmatter.title}
                           </div>
 
-                          <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
+                          <div className='mt-3 mb-3 text-slate-500 dark:text-slate-300'>
                             <TextTruncate
                               element='span'
                               line={4}
