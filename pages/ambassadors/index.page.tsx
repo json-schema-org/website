@@ -8,16 +8,13 @@ import ambassadorsBanner from '~/public/img/community/ambassadors.png';
 import Image from 'next/image';
 
 import fs from 'fs';
-import path from 'path';
 
 import AmbassadorBanner from '~/components/AmbassadorsBanner';
 import AmbassadorCard, { type Ambassador } from '~/components/AmbassadorsCard';
 import AmbassadorList from '~/components/AmbassadorsList';
 
 export async function getStaticProps() {
-  const dataPath = fs.readFileSync('data/ambassadors.json', 'utf-8').trim();
-  const fullPath = path.resolve(process.cwd(), dataPath);
-  const ambassadorData = fs.readFileSync(fullPath, 'utf-8');
+  const ambassadorData = fs.readFileSync('data/ambassadors.json', 'utf-8');
 
   return {
     props: {
@@ -103,7 +100,7 @@ export default function ambassadorPages({
             </p>
           </h2>
         </section>
-        <div className='flex justify-center container m-auto p-auto'>
+        <div className=' flex justify-center container m-auto p-auto'>
           <div className='grid md:grid-cols-2 lg:grid-cols-3 gap-6'>
             {JSON.parse(ambassadorData).map(
               (ambassador: Ambassador, index: number) => (
