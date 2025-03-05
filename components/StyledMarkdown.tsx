@@ -166,6 +166,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
     <FullMarkdownContext.Provider value={markdown}>
       <Markdown
         options={{
+          forceBlock: true,
           overrides: {
             h1: { component: Headline1 },
             h2: { component: Headline2 },
@@ -307,34 +308,25 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
-                  {/* definitely not the best way to prevent overflowing. found no better way that worked */}
+                <div className='overflow-x-auto rounded-lg bg-gray-800 text-white'>
                   <Highlight
                     language={language}
-                    wrapLines={true}
-                    wrapLongLines={true}
-                    customStyle={{
-                      borderRadius: 10,
-                      paddingTop: 15,
-                      paddingBottom: 10,
-                      paddingLeft: 10,
-                      marginBottom: 20,
-                      maxWidth: '100%',
-                    }}
-                    lineNumberStyle={{
-                      marginRight: 10,
-                    }}
                     style={atomOneDark}
                     showLineNumbers
-                    startingLineNumber={1}
-                    lineProps={() => {
-                      const isHighlighted = false;
-                      return {
-                        className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
-                      };
+                    lineNumberStyle={{
+                      color: '#64748B',
+                      fontSize: '16px',
+                      paddingRight: '10px',
+                    }}
+                    customStyle={{
+                      padding: '12px',
+                      fontFamily: 'monospace',
+                      fontSize: '16px',
                     }}
                     codeTagProps={{
-                      className: 'mr-8',
+                      style: {
+                        fontFamily: 'monospace',
+                      },
                     }}
                   >
                     {code}

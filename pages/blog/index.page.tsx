@@ -64,6 +64,7 @@ function isValidCategory(category: any): category is blogCategories {
     'Engineering',
     'Update',
     'Opinion',
+    'Documentation',
   ].includes(category);
 }
 
@@ -245,7 +246,7 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-                  <div className='h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
+                  <div className='sm:h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
                     <Link
                       href={`/blog/posts/${blogPost.slug}`}
                       className='inline-flex flex-col flex-1 w-full'

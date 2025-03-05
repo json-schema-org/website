@@ -37,7 +37,7 @@ export default function StyledValidator({
   content: any;
 }) {
   const newTitle = 'Creating your first schema';
-
+  const fileRenderType = 'tsx';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -53,7 +53,7 @@ export default function StyledValidator({
         nextLabel='Miscellaneous examples'
         nextURL='/learn/miscellaneous-examples'
       />
-      <DocsHelp />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

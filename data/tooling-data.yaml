@@ -605,13 +605,13 @@
       platform: 'github'
   license: 'MIT'
   source: 'https://github.com/OptimumCode/json-schema-validator'
-  homepage: 'https://github.com/Kotlin/kotlinx.serialization'
+  homepage: 'https://github.com/OptimumCode/json-schema-validator'
   supportedDialects:
-    draft: ['7']
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: |
     Kotlin Muliplatform implementation of JSON schema to validate the JsonElement from kotlinx.serialization-json.
     The library is 'work in progress' and new features/drafts will be added in the future.
-  lastUpdated: '2023-08-01'
+  lastUpdated: '2025-03-01'
 
 - name: JSON::Schema::Modern
   description: 'Validate data against a schema using a JSON Schema'
@@ -1285,6 +1285,27 @@
   source: 'https://github.com/Fatal1ty/mashumaro'
   lastUpdated: '2024-04-30'
 
+- name: Micronaut JSON Schema
+  description: 'Generates JSON Schema from Java classes, supporting the Micronaut framework.'
+  toolingTypes: ['code-to-schema']
+  languages: ['Java']
+  maintainers:
+    - name: 'Elif Kurtay'
+      username: 'elifKurtay'
+      platform: 'github'
+    - name: 'Sergio del Amo'
+      username: 'sdelamo'
+      platform: 'github'
+    - name: 'Andriy Dmytruk'
+      username: 'andriy-dmytruk'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/micronaut-projects/micronaut-json-schema'
+  homepage: 'https://micronaut.io'
+  supportedDialects:
+    draft: ['2020-12']
+  lastUpdated: '2025-01-22'
+
 - name: drf-jsonschema-serializer
   description: 'drf-jsonschema-serializer generates schemas from Django Rest Framework serializers.'
   toolingTypes: ['code-to-schema']
@@ -1472,7 +1493,7 @@
 - name: cypress-ajv-schema-validator
   description: 'Cypress plugin that validates API responses against Plain JSON schemas, and whole Swagger and OpenAPI documents using the Ajv JSON Schema validator. It provides a user-friendly view of validated data, highlighting each validation error and the exact reason for the mismatch. Seamless integration, fast and lightweight.'
   toolingTypes: ['validator', 'util-testing']
-  languages: ['Javascript']
+  languages: ['JavaScript']
   maintainers:
     - name: 'Sebastian Clavijo Suero'
       username: 'sclavijosuero'
@@ -3138,3 +3159,28 @@
   supportedDialects:
     draft: ['2020-12']
   toolingListingNotes: 'Built for Node.js and browsers, it supports static type inference for schema definitions.'
+
+- name: 'MetaConfigurator'
+  description: 'A form generator and schema editor for JSON schema, making editing configuration files, research data and schemas easier and more enjoyable.'
+  toolingTypes:
+    ['data-to-schema', 'schema-to-web-UI', 'schema-to-data', 'editor']
+  languages: ['TypeScript']
+  maintainers:
+    - name: 'Felix Neubauer'
+      username: 'Logende'
+      platform: 'github'
+    - name: 'Paul Bredl '
+      username: 'PaulBredl'
+      platform: 'github'
+    - name: 'Minye'
+      username: 'beyond2void'
+      platform: 'github'
+    - name: 'Keyuri Patel' 
+      username: 'Keyshal-211'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/MetaConfigurator/meta-configurator'
+  supportedDialects:
+    draft: ['2020-12']
+  toolingListingNotes: '[A reference to MetaConfigurator papers](https://rdcu.be/dJvgS).'
+  

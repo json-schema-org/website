@@ -333,6 +333,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
           </div>
         </div>
         <Editable
+          className='overflow-x-auto'
           data-test='json-editor'
           onCopy={(e) => {
             e.preventDefault();
@@ -377,7 +378,6 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
                     (jsonPathsWithJsonScope) => jsonPathsWithJsonScope.jsonPath,
                   )
                   .includes(leaf.syntaxPart?.parentJsonPath);
-                // console.log('jsonPathsWithJsonScope', jsonPathsWithJsonScope, leaf, leaf.syntaxPart?.parentJsonPath)
                 if (
                   isJsonScope &&
                   jsonSchemaReferences.objectProperty[leaf.text]
@@ -424,7 +424,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
                   if (!link) return;
                   router.push(link);
                 }}
-                className={classnames('pb-2', textStyles)}
+                className={classnames('pb-2', textStyles, 'whitespace-pre')}
                 title={leaf.syntaxPart?.type}
                 {...attributes}
               >
