@@ -26,7 +26,7 @@ export default function DropdownMenu({
   }, [router]);
 
   return (
-    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer'>
+    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
       <div
         className='w-full flex justify-between items-center align-middle'
         onClick={() => {
@@ -34,7 +34,7 @@ export default function DropdownMenu({
         }}
       >
         {React.cloneElement(icon, {
-          className: 'mr-2 ml-2',
+          className: 'mr-2',
         })}
         <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto'>
           {label}
@@ -64,11 +64,8 @@ export default function DropdownMenu({
       <div
         className={classnames(
           'tools-dropdown-menu',
-          'ml-0 mt-0 overflow-hidden transition-all duration-500 ease-in-out',
-          {
-            'max-h-0 opacity-0 invisible': !isDropdownOpen,
-            'max-h-80 overflow-y-auto opacity-100 visible': isDropdownOpen,
-          },
+          'ml-0 mt-4 overflow-x-hidden overscroll-y-auto max-h-80',
+          { hidden: !isDropdownOpen },
         )}
       >
         {children}
