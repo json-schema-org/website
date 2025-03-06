@@ -143,7 +143,7 @@ export default function ToolingPage({
         <div className='grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12 min-h-screen'>
           <div
             className={`absolute lg:static top-10 lg:top-auto left-0 lg:left-auto mt-24 w-screen lg:w-auto h-full lg:h-auto bg-white dark:bg-slate-800 lg:bg-transparent transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out overflow-y-auto ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'} z-5`}
-            style={{ height: 'calc(100% - 8rem)' }}
+            style={{ height: 'calc(100% - 4rem)' }}
           >
             <div className='hidden lg:block'>
               <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4 lg:mt-6'>
@@ -222,6 +222,7 @@ export default function ToolingPage({
               toolsByGroup={toolsByGroup}
               transform={transform}
               setTransform={setTransform}
+              numberOfTools={numberOfTools}
             />
 
             <DocsHelp />

@@ -24,12 +24,14 @@ interface ToolingTableProps {
   toolsByGroup: GroupedTools;
   transform: Transform;
   setTransform: Dispatch<SetStateAction<Transform>>;
+  numberOfTools: number;
 }
 
 const ToolingTable = ({
   toolsByGroup,
   transform,
   setTransform,
+  numberOfTools,
 }: ToolingTableProps) => {
   const [selectedTool, setSelectedTool] = useState<JSONSchemaTool | null>(null);
   const [bowtieReport, setBowtieReport] = useState<BowtieReport | null>(null);
@@ -95,6 +97,15 @@ const ToolingTable = ({
   const closeModal = () => {
     setSelectedTool(null);
   };
+
+  if (numberOfTools === 0) {
+    return (
+      <div className='text-center py-12 text-gray-500 dark:text-gray-400 border'>
+        <p className='text-lg'>No Tools Found :(</p>
+        <p className='text-sm'>Try Adjusting Your Filters to Find More Tools</p>
+      </div>
+    );
+  }
 
   return (
     <>
