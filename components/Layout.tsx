@@ -11,7 +11,6 @@ import DarkModeToggle from './DarkModeToggle';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import ScrollButton from './ScrollButton';
 import Image from 'next/image';
-import TOC from './TOC';
 
 type Props = {
   children: React.ReactNode;
@@ -105,14 +104,11 @@ export default function Layout({
               <MainNavigation />
             </div>
           </header>
-          <div className="flex">
-            <div ref={mobileNavRef} className="flex-1">
+          <div className='flex'>
+            <div ref={mobileNavRef} className='flex-1'>
               {showMobileNav && <MobileNav />}
               {children}
             </div>
-            <aside className="w-1/4 sticky top-16 hidden lg:block">
-              <TOC />
-            </aside>
           </div>
           <ScrollButton />
           <Footer />
