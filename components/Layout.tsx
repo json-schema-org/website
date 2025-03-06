@@ -104,11 +104,9 @@ export default function Layout({
               <MainNavigation />
             </div>
           </header>
-          <div className='flex'>
-            <div ref={mobileNavRef} className='flex-1'>
-              {showMobileNav && <MobileNav />}
-              {children}
-            </div>
+          <div ref={mobileNavRef} className='flex-1'>
+            {showMobileNav && <MobileNav />}
+            {children}
           </div>
           <ScrollButton />
           <Footer />
