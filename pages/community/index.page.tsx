@@ -1,7 +1,7 @@
 import React from 'react';
 import { getLayout } from '~/components/SiteLayout';
 import { SectionContext } from '~/context';
-import imageData from '~/data/community.json';
+import imageData from '~/data/community-users.json';
 import fs from 'fs';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
@@ -100,17 +100,28 @@ export default function communityPages(props: any) {
           <div className='grid justify-center items-center gap-y-[10px]'>
             <div className='grid justify-center mt-[50px] gap-y-[10px]'>
               <div className='grid grid-cols-10 max-sm:grid-cols-7  gap-3'>
-                {imageData.map((avatar, index) => (
-                  <Image
-                    key={`${avatar.id}-${index}`}
-                    src={avatar.img}
-                    alt={avatar.alt}
-                    width={35}
-                    height={35}
-                    title={avatar.alt}
-                    className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
-                  />
-                ))}
+                {imageData
+                  .filter(
+                    (contributor) =>
+                      contributor.login !== 'the-json-schema-bot[bot]' &&
+                      contributor.login !== 'dependabot[bot]',
+                  )
+                  .sort(() => Math.random() - 0.5)
+                  .slice(0, 60)
+                  .map((avatar, index) => (
+                    <Image
+                      key={`${avatar.id}-${index}`}
+                      src={avatar.avatar_url}
+                      alt={avatar.login}
+                      width={35}
+                      height={35}
+                      title={avatar.login}
+                      priority={index < 10}
+                      loading={index < 10 ? 'eager' : 'lazy'}
+                      quality={75}
+                      className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
+                    />
+                  ))}
               </div>
             </div>
           </div>

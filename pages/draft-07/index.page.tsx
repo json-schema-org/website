@@ -31,12 +31,13 @@ export default function ImplementationsPages({
   blocks: any;
   frontmatter: any;
 }) {
+  const fileRenderType = 'indexmd';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
       <DocTable frontmatter={frontmatter} />
       <StyledMarkdown markdown={blocks.index} />
-      <DocsHelp />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

@@ -8,6 +8,7 @@ import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 import Image from 'next/image';
 import Tag from './ui/Tag';
+import StyledMarkdown from '~/components/StyledMarkdown';
 
 export default function ToolingDetailModal({
   tool,
@@ -23,6 +24,18 @@ export default function ToolingDetailModal({
     };
   }, []);
 
+  useEffect(() => {
+    const clickEsc = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+    document.addEventListener('keydown', clickEsc);
+    return () => {
+      document.removeEventListener('keydown', clickEsc);
+    };
+  }, [onClose]);
+
   return (
     <div className='fixed inset-0 flex items-center justify-center z-50 overflow-x-hidden'>
       <div
@@ -36,9 +49,9 @@ export default function ToolingDetailModal({
         <div className='flex justify-end absolute top-0 right-0 mt-6 mr-6'>
           <button
             onClick={onClose}
-            className='text-gray-500 hover:text-gray-700'
+            className='text-gray-500 hover:text-gray-300'
           >
-            <CancelIcon className='fill-current stroke-current w-3 h-3' />
+            <CancelIcon className='fill-current stroke-current w-4 h-4' />
           </button>
         </div>
         <div className='mt-4 flex flex-row items-center justify-start gap-2'>
@@ -133,7 +146,7 @@ export default function ToolingDetailModal({
             {tool.toolingListingNotes && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Tooling Listing Notes</h3>
-                <p>{tool.toolingListingNotes}</p>
+                <StyledMarkdown markdown={tool.toolingListingNotes} />
               </div>
             )}
 
@@ -340,24 +353,40 @@ const BowtieReportBadge = ({ uri }: { uri: string }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
+  useEffect(() => {
+    const checkImage = async () => {
+      try {
+        const response = await fetch(
+          `https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`,
+        );
+        if (response.ok) {
+          setLoading(false);
+        } else {
+          setLoading(false);
+          setError(true);
+        }
+      } catch (err) {
+        setLoading(false);
+        setError(true);
+      }
+    };
+    checkImage();
+  }, [uri]);
+
   return (
     <div className='my-1'>
       {loading && !error && (
         <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-[176px] rounded-md'></div>
       )}
-      <Image
-        src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
-        onLoad={() => setLoading(false)}
-        onError={() => {
-          setLoading(false);
-          setError(true);
-        }}
-        width={100}
-        height={20}
-        style={{ display: loading ? 'none' : 'block' }}
-        alt='Bowtie Badge'
-        className='my-1'
-      />
+      {!loading && !error && (
+        <Image
+          src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
+          alt='Bowtie Badge'
+          className='my-1'
+          width={100}
+          height={20}
+        />
+      )}
       {error && (
         <div className='text-red-500 text-sm mt-1'>Failed to load badge</div>
       )}

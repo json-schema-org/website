@@ -22,7 +22,7 @@ export default function Checkbox({
   };
 
   return (
-    <label className='flex items-center gap-3 px-4 py-2'>
+    <label className='flex items-center gap-3 px-4 py-2 cursor-pointer'>
       <input
         type='checkbox'
         value={value}

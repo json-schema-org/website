@@ -224,6 +224,7 @@ export default function ToolingPage({
               toolsByGroup={toolsByGroup}
               transform={transform}
               setTransform={setTransform}
+              numberOfTools={numberOfTools}
             />
 
             <DocsHelp />

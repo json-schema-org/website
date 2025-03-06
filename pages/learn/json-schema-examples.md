@@ -5,7 +5,7 @@ prev:
   label: Modeling a file system
   url: /learn/file-system
 next: 
-  label: JSON Scehma Glossary
+  label: JSON Schema Glossary
   url: /learn/glossary
 ---
 
