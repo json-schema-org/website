@@ -20,7 +20,6 @@ const TOC: React.FC = () => {
       if (el.closest('#sidebar')) return;
       const currentFolder = router.pathname.split('/').pop()?.toLowerCase();
       if (text.trim().toLowerCase() === currentFolder) return;
-      // Filter out headings that look like file or folder names
       if (
         text.includes('/') ||
         text.includes('\\') ||
@@ -28,7 +27,6 @@ const TOC: React.FC = () => {
       )
         return;
       const level = parseInt(el.tagName.replace('H', ''));
-      // If the heading doesn't have an ID, assign one from its text content
       if (!el.id) {
         const generatedId = text
           .toLowerCase()
