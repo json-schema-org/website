@@ -18,7 +18,7 @@ At its core, JSON Schema defines the following basic types:
 - [null](../../understanding-json-schema/reference/null)
 - [numeric types](../../understanding-json-schema/reference/numeric)
 - [object](../../understanding-json-schema/reference/object)
-- [regular expressions](../../understanding-json-schema/reference/regular_expressions.md)
+- [regular expressions](../../understanding-json-schema/reference/regular_expressions)
 - [string](../../understanding-json-schema/reference/string)
 
 
