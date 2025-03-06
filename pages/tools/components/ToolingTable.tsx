@@ -117,11 +117,11 @@ const ToolingTable = ({
             </div>
           )}
           
-          <div className='overflow-x-auto'>
+          <div className='overflow-x-hidden'>
             {/* Desktop Table */}
             <table className='hidden lg:table min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
               <thead>
-                <tr className='flex w-full min-w-[976px]'>
+                <tr className='flex w-full min-w-[860px]'>
                   <TableSortableColumnHeader
                     sortBy='name'
                     transform={transform}
