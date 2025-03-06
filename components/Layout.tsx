@@ -104,7 +104,7 @@ export default function Layout({
               <MainNavigation />
             </div>
           </header>
-          <div ref={mobileNavRef} className='flex-1'>
+          <div ref={mobileNavRef}>
             {showMobileNav && <MobileNav />}
             {children}
           </div>
