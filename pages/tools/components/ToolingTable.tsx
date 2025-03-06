@@ -116,7 +116,6 @@ const ToolingTable = ({
               <Headline2>{toTitleCase(group, '-')}</Headline2>
             </div>
           )}
-          
           <div className='overflow-x-hidden'>
             {/* Desktop Table */}
             <table className='hidden lg:table min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
@@ -291,8 +290,7 @@ const ToolingTable = ({
                           <div className='font-medium'>
                             {tool.name}
                             {tool.status === 'obsolete' && (
-                              <Tag intent='error' >
-                                {tool.status}
+                              <Tag intent='error' >{tool.status}
                               </Tag>
                             )}
                           </div>
@@ -333,7 +331,6 @@ const ToolingTable = ({
           </div>
         </section>
       ))}
-      
       {selectedTool && (
         <ToolingDetailModal tool={selectedTool} onClose={closeModal} />
       )}
