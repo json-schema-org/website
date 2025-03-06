@@ -4,7 +4,7 @@ import { useTheme } from 'next-themes';
 
 const Logo = () => {
   const { resolvedTheme } = useTheme();
-  const [imageSrc, setImageSrc] = useState('/img/logos/logo-blue.svg'); // Default to match the server-side render
+  const [imageSrc, setImageSrc] = useState('/img/logos/logo-blue.svg');
 
   useEffect(() => {
     const src =
@@ -32,7 +32,6 @@ export default function PageNotFound() {
         404 - Page Not Found!
       </h1>
 
-      {/* mobile view */}
       <h1 className='lg:hidden text-h1 drop-shadow-[0px_0px_30px_rgba(148,163,184,0.9)]'>
         404
       </h1>
@@ -43,7 +42,7 @@ export default function PageNotFound() {
       </div>
       <Link
         href='/'
-        className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
+        className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white w-[194px] h-10 font-semibold bg-primary dark:shadow-2xl'
       >
         BACK TO HOME
       </Link>
