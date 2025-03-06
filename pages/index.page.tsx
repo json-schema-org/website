@@ -6,13 +6,11 @@ import matter from 'gray-matter';
 const PATH = 'pages/blog/posts';
 import readingTime from 'reading-time';
 import Link from 'next/link';
-import TextTruncate from 'react-text-truncate';
 import Image from 'next/image';
 import {
   fetchRemoteICalFile,
   printEventsForNextWeeks,
 } from '../lib/calendarUtils';
-import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
 
 /* eslint-disable */
@@ -488,7 +486,7 @@ const Home = (props: any) => {
               </div>
               <div>
                 <Link
-                  href={`/blog/`}
+                  href={'/blog'}
                   className=' w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center semi-bold flex items-center justify-center dark:border-none'
                 >
                   Read all blogs{' '}
