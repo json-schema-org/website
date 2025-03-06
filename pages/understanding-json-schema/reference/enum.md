@@ -9,8 +9,9 @@ next:
   url: /understanding-json-schema/reference/const
 ---
 
-The `enum` keyword in JSON Schema allows you to restrict a value to a set of predefined options.
-It requires an array with at least one unique element, and any value validated against this schema must exactly match one of the specified values.
+
+The `enum` [keyword](../../learn/glossary#keyword) is used to restrict a value to a fixed set of values.
+It must be an array with at least one element, where each element is unique.
 
 Below are several examples demonstrating its usage.
 
@@ -41,7 +42,7 @@ This example demonstrates how to validate that the `color` property of a street 
 ### Extended Example: Accepting Multiple Data Types
 
 Enums can be used without explicitly setting a data type, allowing different types of values.
-In the following example, the schema is extended to include `null` (to represent an "off" state) and the number 42.
+In the following example, the schema is extended to include `null` (to represent an "off" state).
 
 ```json
 // props { "isSchema": true }
