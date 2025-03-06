@@ -134,15 +134,12 @@ export default function StaticMarkdownPage({
                 alt='hero image example'
               />
             </div>
-            <div className='absolute text-white w-full h-full mt-custom ml-14'>
+            <div className='absolute text-white w-full h-full mt-7 ml-14 md:mt-custom md:ml-20 lg:mt-15 lg:ml-20'>
               <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm '>
                 {recentBlog[0].frontmatter.type}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
-                <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
-                  {recentBlog[0].frontmatter.title}
-                </h1>
-                <div className='flex ml-2 mb-2 gap-2'>
+                <div className='flex ml-2 gap-2 md:pb-3'>
                   <div
                     className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                     style={{
@@ -154,7 +151,7 @@ export default function StaticMarkdownPage({
                     <p className='text-sm font-semibold text-stroke-1'>
                       {recentBlog[0].frontmatter.authors[0].name}
                     </p>
-                    <div className='mb-6 text-sm  text-stroke-1'>
+                    <div className='mb-1 text-sm  text-stroke-1'>
                       <span>
                         {recentBlog[0].frontmatter.date} &middot; {timeToRead}{' '}
                         min read
@@ -162,6 +159,10 @@ export default function StaticMarkdownPage({
                     </div>
                   </div>
                 </div>
+                <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
+                  {recentBlog[0].frontmatter.title}
+                </h1>
+
               </Link>
             </div>
           </div>
