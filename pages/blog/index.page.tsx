@@ -252,10 +252,10 @@ export default function StaticMarkdownPage({
                       className='inline-flex flex-col flex-1 w-full'
                     >
                       <div className=' h-max-[200px] w-full object-cover'>
-                      <div
-                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                        style={{ backgroundImage: `url(${frontmatter.cover})` }}
-                      />
+                        <div
+                          className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
+                          style={{ backgroundImage: `url(${frontmatter.cover})` }}
+                        />
                       </div>
                       <div className=' p-4 pb-6 flex flex-col flex-1 justify-between'>
                         <div>
@@ -303,11 +303,10 @@ export default function StaticMarkdownPage({
                               (author: Author, index: number) => (
                                 <div
                                   key={index}
-                                  className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
-                                    frontmatter.authors.length > 2
+                                  className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${frontmatter.authors.length > 2
                                       ? 'h-8 w-8'
                                       : 'h-11 w-11'
-                                  }`}
+                                    }`}
                                   style={{
                                     backgroundImage: `url(${author.photo})`,
                                     zIndex: 10 - index,
