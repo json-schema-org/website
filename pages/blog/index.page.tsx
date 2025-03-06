@@ -215,7 +215,11 @@ export default function StaticMarkdownPage({
               className={`cursor-pointer 
 			          font-semibold inline-block px-3 py-1 4
 			          rounded-full mb-4 mr-4 text-sm 
-			          ${currentFilterTag === tag ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100' : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'}`}
+			          ${
+                currentFilterTag === tag
+                  ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
+                  : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
+              }`}
             >
               {tag}
             </button>
@@ -300,12 +304,13 @@ export default function StaticMarkdownPage({
                             items-center
                           `}
                         >
-                          <div className="flex flex-row pl-2 mr-2">
+                          <div className='flex flex-row pl-2 mr-2'>
                             {(frontmatter.authors || []).map((author: Author, index: number) => (
                               <div
                                 key={index}
-                                className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${frontmatter.authors.length > 2 ? 'h-8 w-8' : 'h-11 w-11'
-                                  }`}
+                                className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                                  frontmatter.authors.length > 2 ? 'h-8 w-8' : 'h-11 w-11'
+                                }`}
                                 style={{
                                   backgroundImage: `url(${author.photo})`,
                                   zIndex: 10 - index,
