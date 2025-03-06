@@ -290,8 +290,7 @@ const ToolingTable = ({
                           <div className='font-medium'>
                             {tool.name}
                             {tool.status === 'obsolete' && (
-                              <Tag intent='error' >{tool.status}
-                              </Tag>
+                              <Tag intent='error' >{tool.status}</Tag>
                             )}
                           </div>
                           {bowtieReport && (
@@ -312,7 +311,8 @@ const ToolingTable = ({
                           )}
                         </div>
                         <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
-                          {tool.toolingTypes?.join(', ')} | {tool.languages?.join(', ')}
+                          {tool.toolingTypes?.join(', ')} | 
+                          {tool.languages?.join(', ')}
                         </div>
                         <div className='flex flex-wrap gap-1 mt-1'>
                           {tool.supportedDialects?.draft?.map((draft) => (
