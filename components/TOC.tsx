@@ -32,7 +32,7 @@ const TOC: React.FC = () => {
           .toLowerCase()
           .trim()
           .replace(/\s+/g, '-')
-          .replace(/[^\w\-]+/g, '');
+          .replace(/[^\w-]+/g, '');
         if (generatedId) {
           el.id = generatedId;
         }
