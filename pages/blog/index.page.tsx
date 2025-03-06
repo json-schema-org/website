@@ -130,7 +130,7 @@ export default function StaticMarkdownPage({
                 src={recentBlog[0].frontmatter.cover}
                 width={800}
                 height={450}
-                className='object-cover w-full h-full opacity-70'
+                className='object-cover w-full h-full opacity-70 blur-[5px]'
                 alt='hero image example'
               />
             </div>
@@ -142,7 +142,7 @@ export default function StaticMarkdownPage({
                 <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
-                <div className='flex ml-2 mb-2 '>
+                <div className='flex ml-2 mb-2 gap-2'>
                   <div
                     className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                     style={{
@@ -246,7 +246,10 @@ export default function StaticMarkdownPage({
               return (
                 <section key={blogPost.slug}>
                   <div className='h-[520px] flex border rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden dark:border-slate-500 group relative'>
-                    <div className='inline-flex flex-col flex-1 w-full'>
+                    <Link
+                      href={`/blog/posts/${blogPost.slug}`}
+                      className='inline-flex flex-col flex-1 w-full'
+                    >
                       <div className='relative w-full h-[240px] overflow-hidden'>
                         <Image
                           src={frontmatter.cover}
@@ -355,7 +358,7 @@ export default function StaticMarkdownPage({
                           </Link>
                         </div>
                       </div>
-                    </div>
+                    </Link>
                   </div>
                 </section>
               );
