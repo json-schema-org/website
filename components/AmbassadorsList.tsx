@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 interface AmbassadorsLink {
   title: string;
@@ -21,7 +22,9 @@ const AmbassadorList = ({ ambassadorList }: AmbassadorsListProps) => {
           className='flex flex-col items-center text-center p-5 bg-white dark:bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105'
           data-testid='Ambassadors-list'
         >
-          <img
+          <Image
+            height={150}
+            width={150}
             src={link.icon}
             alt={link.title}
             className='w-[150px] h-auto object-contain mb-5'
