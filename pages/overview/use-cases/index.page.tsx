@@ -18,12 +18,12 @@ export default function Content() {
         <title>{newTitle}</title>
       </Head>
       <Headline1>{newTitle}</Headline1>
-      <p>
+      <p className='px-4 sm:px-0'>
         Discover everything you can do with JSON Schema. This section presents
         the most common use cases for JSON Schema, but there may be many more
         applications waiting to be discovered.
       </p>
-      <div className='w-full lg:w-full grid grid-cols-2 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
+      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8 px-4 sm:px-0'>
         {data.map((element, index) => (
           <Card
             key={index}
