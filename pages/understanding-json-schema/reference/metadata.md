@@ -6,7 +6,7 @@ prev:
   url: /understanding-json-schema/reference/const
 next: 
   label: Annotations
-  url: /understanding-json-schema/reference/annotations
+  url: http://localhost:3000/understanding-json-schema/reference/annotations
 ---
 
 Annotations and comments are not directly related to the core structure and constraints of the JSON Schema itself. As such, keywords for annotations and comments are not required, however, using them can improve the maintainability of your schemas.  
