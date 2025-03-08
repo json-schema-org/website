@@ -130,7 +130,7 @@ export default function StaticMarkdownPage({
                 src={recentBlog[0].frontmatter.cover}
                 width={800}
                 height={450}
-                className='object-cover w-full h-full opacity-70 blur-[5px]'
+                className='object-cover w-full h-full opacity-70'
                 alt='hero image example'
               />
             </div>
@@ -142,7 +142,7 @@ export default function StaticMarkdownPage({
                 <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
-                <div className='flex ml-2 mb-2 gap-2'>
+                <div className='flex ml-2 mb-2 '>
                   <div
                     className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                     style={{
@@ -246,15 +246,19 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-                  <div className='sm:h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
+                  <div className='h-[510px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
                     <Link
                       href={`/blog/posts/${blogPost.slug}`}
                       className='inline-flex flex-col flex-1 w-full'
                     >
-                      <div
-                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                        style={{ backgroundImage: `url(${frontmatter.cover})` }}
-                      />
+                      <div className=' h-max-[200px] w-full  object-cover'>
+                        <div
+                          className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
+                          style={{
+                            backgroundImage: `url(${frontmatter.cover})`,
+                          }}
+                        />
+                      </div>
                       <div className=' p-4 flex flex-col flex-1 justify-between'>
                         <div>
                           <div>
@@ -277,7 +281,7 @@ export default function StaticMarkdownPage({
                               {frontmatter.type || 'Unknown Type'}
                             </div>
                           </div>
-                          <div className='text-lg font-semibold'>
+                          <div className='text-lg h-[80px] font-semibold'>
                             {frontmatter.title}
                           </div>
 
