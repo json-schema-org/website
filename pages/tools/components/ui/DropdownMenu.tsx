@@ -2,25 +2,52 @@ import classnames from 'classnames';
 import { useRouter } from 'next/router';
 import React, {
   type ReactElement,
-  type ReactNode,
   useEffect,
   useState,
+  Children,
+  cloneElement,
+  isValidElement,
 } from 'react';
 
 interface DropdownMenuProps {
-  children: ReactNode;
+  children: React.ReactNode;
   label: string;
   icon: ReactElement;
+  selectedCount?: number;
+  keepOpenOnSelection?: boolean;
 }
 
 export default function DropdownMenu({
   children,
   label,
   icon,
+  selectedCount = 0,
+  keepOpenOnSelection = true,
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
 
+  // Listen for changes in children's checked state
+  const enhancedChildren = Children.map(children, (child) => {
+    if (isValidElement(child) && child.type === 'Checkbox') {
+      return cloneElement(child, {
+        ...child.props,
+        onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+          if (child.props.onChange) {
+            child.props.onChange(e);
+          }
+
+          // If we're not keeping the dropdown open, close it after selection
+          if (!keepOpenOnSelection) {
+            setIsDropdownOpen(false);
+          }
+        },
+      });
+    }
+    return child;
+  });
+
+  // Reset dropdown state on route change
   useEffect(() => {
     setIsDropdownOpen(false);
   }, [router]);
@@ -39,6 +66,11 @@ export default function DropdownMenu({
         <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto'>
           {label}
         </div>
+        {selectedCount > 0 && (
+          <div className='text-slate-900 dark:text-slate-300 font-bold border-white border-2 rounded-full px-2 mr-2'>
+            {selectedCount > 0 && `${selectedCount}`}
+          </div>
+        )}
         <svg
           style={{
             transform: `${isDropdownOpen ? 'rotate(180deg)' : 'rotate(0)'}`,
@@ -60,7 +92,6 @@ export default function DropdownMenu({
           />
         </svg>
       </div>
-
       <div
         className={classnames(
           'tools-dropdown-menu',
@@ -71,7 +102,7 @@ export default function DropdownMenu({
           },
         )}
       >
-        {children}
+        {enhancedChildren}
       </div>
     </div>
   );
