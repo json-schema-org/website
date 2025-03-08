@@ -79,8 +79,15 @@ export default function Sidebar({
         <SearchBar transform={transform} />
         {filters.map(({ label, accessorKey }) => {
           const checkedValues = transform[accessorKey as keyof Transform] || [];
+          const selectedCount = checkedValues.length;
+
           return (
-            <DropdownMenu key={accessorKey} label={label} icon={<FilterIcon />}>
+            <DropdownMenu
+              key={accessorKey}
+              label={label}
+              icon={<FilterIcon />}
+              selectedCount={selectedCount}
+            >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
                 .map((filterOption) => (
