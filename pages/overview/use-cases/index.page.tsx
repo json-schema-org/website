@@ -23,7 +23,7 @@ export default function Content() {
         the most common use cases for JSON Schema, but there may be many more
         applications waiting to be discovered.
       </p>
-      <div className='w-full lg:w-full grid grid-cols-2 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
+      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2  gap-8 my-2 mx-auto mt-8'>
         {data.map((element, index) => (
           <Card
             key={index}
