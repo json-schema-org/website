@@ -47,6 +47,53 @@ jobs:
             const data = yaml.load(fs.readFileSync(dataPath, 'utf-8'));
             const ajv = new Ajv({ allErrors: true });
             addFormats(ajv);
+            
+            ajv.addKeyword({
+              keyword: 'caseInsensitiveUnique',
+              type: 'array',
+              validate: function (schema, data) {
+                if (!Array.isArray(data)) return false;
+                
+                const languagesSet = new Set();
+                const languagesLowercaseSet = new Set();
+
+                data.forEach((tool) => {
+                  if (tool.languages) {
+                    tool.languages.forEach((language) => {
+                      languagesSet.add(language);
+                      languagesLowercaseSet.add(language.toLowerCase());
+                    });
+                  }
+                });
+
+                if (languagesSet.size !== languagesLowercaseSet.size) {
+                  console.error('Duplicate languages found');
+
+                  const lowercaseMap = new Map();
+                  languagesSet.forEach((language) => {
+                    lowercaseMap.set(
+                      language.toLowerCase(), 
+                      (lowercaseMap.get(language.toLowerCase()) || 0) + 1
+                    );
+                  });
+                  
+                  lowercaseMap.forEach((value, key) => {
+                    if (value > 1) {
+                      console.log('Duplicate found for:', key);
+                    }
+                  });
+
+                  validate.errors = [{
+                    keyword: 'caseInsensitiveUnique',
+                    message: 'array contains case-insensitive duplicates',
+                    params: { keyword: 'caseInsensitiveUnique' }
+                  }];
+                  return false;
+                }
+                return true;
+              }
+            });
+
             const validate = ajv.compile(schema);
             const valid = validate(data);
             if (!valid) {
@@ -59,3 +106,4 @@ jobs:
             console.error('Error validating tooling-data.yaml:', error);
             process.exit(1);
           }"
+
