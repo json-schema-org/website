@@ -53,10 +53,8 @@ export default function DropdownMenu({
   return (
     <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
       <div
-        className='w-full flex justify-between items-center align-middle cursor-pointer'
-        onClick={() => {
-          setIsDropdownOpen((prev) => !prev);
-        }}
+        className='w-full flex justify-between items-center cursor-pointer'
+        onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         {React.cloneElement(icon, {
           className: 'mr-2',
@@ -65,20 +63,18 @@ export default function DropdownMenu({
           {label}
         </div>
         {selectedCount > 0 && (
-          <div className='text-slate-900 dark:text-slate-300 font-bold border-white border-2 rounded-full px-2 mr-2'>
-            {selectedCount > 0 && `${selectedCount}`}
+          <div className='h-7 w-7 flex items-center justify-center text-slate-900 dark:border-white dark:text-slate-300 font-bold border-black border-black-100 border-2 rounded-full bg-white dark:bg-slate-700 shadow-md mr-2 text-md'>
+            {selectedCount}
           </div>
         )}
         <svg
           style={{
             transform: `${isDropdownOpen ? 'rotate(180deg)' : 'rotate(0)'}`,
             transition: 'all 0.2s linear',
-            cursor: 'pointer',
           }}
-          id='arrow'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
-          height='32'
+          height='24'
           viewBox='0 0 24 24'
           width='24'
         >
