@@ -2,15 +2,16 @@ import classnames from 'classnames';
 import { useRouter } from 'next/router';
 import React, {
   type ReactElement,
+  type ReactNode,
   useEffect,
   useState,
   Children,
   cloneElement,
-  isValidElement,
+  isValidElement
 } from 'react';
 
 interface DropdownMenuProps {
-  children: React.ReactNode;
+  children: ReactNode;
   label: string;
   icon: ReactElement;
   selectedCount?: number;
@@ -26,8 +27,7 @@ export default function DropdownMenu({
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
-
-  // Listen for changes in children's checked state
+  
   const enhancedChildren = Children.map(children, (child) => {
     if (isValidElement(child) && child.type === 'Checkbox') {
       return cloneElement(child, {
@@ -37,7 +37,6 @@ export default function DropdownMenu({
             child.props.onChange(e);
           }
 
-          // If we're not keeping the dropdown open, close it after selection
           if (!keepOpenOnSelection) {
             setIsDropdownOpen(false);
           }
@@ -47,7 +46,6 @@ export default function DropdownMenu({
     return child;
   });
 
-  // Reset dropdown state on route change
   useEffect(() => {
     setIsDropdownOpen(false);
   }, [router]);
