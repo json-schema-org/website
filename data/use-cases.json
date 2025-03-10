@@ -25,7 +25,7 @@
   },
   {
     "title": "Data Serialization",
-    "summary": "Compress JSON data for storage/transmission. For example: <a href='https://jsonbinpack.sourcemeta.com' style='text-decoration: underline; font-weight: bold;'>check out the Link</a>"
+    "summary": "Compress JSON data for storage/transmission. For example: <a href='https://jsonbinpack.sourcemeta.com' style='text-decoration: underline; font-weight: bold;'>JSON Bin Pack</a>"
   },
   {
     "title": "Fuzzing, enumeration, and generation",
