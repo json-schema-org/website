@@ -503,19 +503,24 @@ const Home = (props: any) => {
                   and by appointment. Open Community Working Meetings are every
                   third Monday of the month at 12:00 PT.
                 </p>
-                <div className='ml-10px w-[252px] flex flex-col items-center'>
-                  <button className='w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-auto py-1 px-4 mb-4 flex items-center justify-center dark:border-none'>
-                    <a href='https://github.com/orgs/json-schema-org/discussions/35' className='text-center'>
+                <div className='w-full flex flex-col items-center'>
+                  <button className='w-full max-w-[385px] min-w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-auto py-2 px-4 mb-4 flex items-center justify-center dark:border-none'>
+                    <a
+                      href='https://github.com/orgs/json-schema-org/discussions/35'
+                      className='text-center'
+                    >
                       Open Community Working Meetings
                     </a>
                   </button>
-                  <button className='w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center dark:border-none'>
-                    <a href='https://github.com/orgs/json-schema-org/discussions/34' className='text-center'>
+                  <button className='w-full max-w-[385px] min-w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center dark:border-none'>
+                    <a
+                      href='https://github.com/orgs/json-schema-org/discussions/34'
+                      className='text-center'
+                    >
                       Office Hours
                     </a>
                   </button>
                 </div>
-
               </div>
               <div className='p-2'>
                 <div>
