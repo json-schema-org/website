@@ -311,7 +311,6 @@ const ToolingTable = ({
                           )}
                         </div>
                         <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
-                          {tool.toolingTypes?.join(',')}
                           {tool.languages?.join(', ')}
                         </div>
                         <div className='flex flex-wrap gap-1 mt-1'>
