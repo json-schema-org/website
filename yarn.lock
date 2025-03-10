@@ -7024,10 +7024,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fuse.js@npm:^7.0.0":
-  version: 7.0.0
-  resolution: "fuse.js@npm:7.0.0"
-  checksum: 10c0/3574b7fc2e0ccb047e05dbe5f8f04e8f0754f62fa209669ef426ea1354a32ae7355620788af8f1d29f94e1fdecd513f1f3787f012848a31ec90bb4e0e6092504
+"fuse.js@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "fuse.js@npm:7.1.0"
+  checksum: 10c0/c0d1b1d192a4bdf3eade897453ddd28aff96b70bf3e49161a45880f9845ebaee97265595db633776700a5bcf8942223c752754a848d70c508c3c9fd997faad1e
   languageName: node
   linkType: hard
 
@@ -8336,7 +8336,7 @@ __metadata:
     eslint-plugin-react-hooks: "npm:^4.4.0"
     feed: "npm:^4.2.2"
     file-saver: "npm:^2.0.5"
-    fuse.js: "npm:^7.0.0"
+    fuse.js: "npm:^7.1.0"
     gray-matter: "npm:^4.0.3"
     husky: "npm:^9.1.6"
     js-yaml: "npm:^4.1.0"
