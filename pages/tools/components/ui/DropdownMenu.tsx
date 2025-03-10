@@ -7,7 +7,7 @@ import React, {
   useState,
   Children,
   cloneElement,
-  isValidElement
+  isValidElement,
 } from 'react';
 
 interface DropdownMenuProps {
@@ -27,7 +27,7 @@ export default function DropdownMenu({
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
-  
+
   const enhancedChildren = Children.map(children, (child) => {
     if (isValidElement(child) && child.type === 'Checkbox') {
       return cloneElement(child, {
