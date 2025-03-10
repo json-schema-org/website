@@ -503,18 +503,19 @@ const Home = (props: any) => {
                   and by appointment. Open Community Working Meetings are every
                   third Monday of the month at 12:00 PT.
                 </p>
-                <div className=''>
-                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'>
-                    <a href='https://github.com/orgs/json-schema-org/discussions/35'>
+                <div className='ml-10px w-[252px] flex flex-col items-center'>
+                  <button className='w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-auto py-1 px-4 mb-4 flex items-center justify-center dark:border-none'>
+                    <a href='https://github.com/orgs/json-schema-org/discussions/35' className='text-center'>
                       Open Community Working Meetings
                     </a>
                   </button>
-                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] flex items-center justify-center mx-auto dark:border-none'>
-                    <a href='https://github.com/orgs/json-schema-org/discussions/34/'>
+                  <button className='w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center dark:border-none'>
+                    <a href='https://github.com/orgs/json-schema-org/discussions/34' className='text-center'>
                       Office Hours
                     </a>
                   </button>
                 </div>
+
               </div>
               <div className='p-2'>
                 <div>
