@@ -97,7 +97,7 @@ export default function Sidebar({
             <DropdownMenu
               key={accessorKey}
               label={label}
-              icon={IconComponent && <IconComponent />}
+              icon={<IconComponent />}
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
