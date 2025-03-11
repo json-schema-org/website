@@ -3183,4 +3183,20 @@
   supportedDialects:
     draft: ['2020-12']
   toolingListingNotes: '[A reference to MetaConfigurator papers](https://rdcu.be/dJvgS).'
+
+- name: 'json-schema'
+  description: 'A Ruby JSON Schema Validator ensures that JSON data adheres to a predefined structure, preventing errors and maintaining data integrity in applications.'
+  toolingTypes:
+    ['validator']
+  languages: ['Ruby']
+  maintainers:
+    - name: 'Vox Pupuli'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/voxpupuli/json-schema/'
+  homepage: 'https://github.com/voxpupuli/json-schema/'
+  supportedDialects:
+     draft: ['1', '2', '3', '4', '6']
+     
+
   
