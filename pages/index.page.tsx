@@ -431,13 +431,13 @@ const Home = (props: any) => {
                     {' '}
                     {blogPosts[0].frontmatter.title}
                   </h3>
-                  <div className='flex ml-2 mb-2 '>
+                  <div className='flex mb-2 '>
                     {(blogPosts[0].frontmatter.authors || []).map(
                       (author: any, index: number) => {
                         return (
                           <div
                             key={index}
-                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                            className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center border-2 border-white'
                             style={{
                               backgroundImage: `url(${author.photo})`,
                               zIndex: 10 - index,
