@@ -112,7 +112,7 @@ export default function StaticMarkdownPage({
           </div>
           <div className='flex-1 lg:w-3/4 w-full'>
             <div
-              className='bg-slate-50 h-[500px] w-full rounded-lg bg-cover mb-10 bg-center'
+              className='bg-slate-50  w-full rounded-lg bg-cover mb-10 bg-center min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]'
               style={{ backgroundImage: `url(${frontmatter.cover})` }}
             />
             <StyledMarkdown markdown={content} />
