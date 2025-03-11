@@ -3188,7 +3188,7 @@
   description: 'Converts a JSON schema to a Joi schema for object validation'
   toolingTypes:
     ['util-format-conversion', 'schema-to-types']
-  language: ['JavaScript']
+  languages: ['JavaScript']
   license: 'Apache License 2.0'
   source: 'https://github.com/kenspirit/json-2-joi'  
 
