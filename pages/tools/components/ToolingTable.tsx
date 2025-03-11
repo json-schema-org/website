@@ -293,25 +293,35 @@ const ToolingTable = ({
                               <Tag intent='error'>{tool.status}</Tag>
                             )}
                           </div>
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          Languages: {tool.languages?.join(', ')}
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1 flex items-center'>
+                          <span>Bowtie:</span>
                           {bowtieReport && (
-                            <div>
+                            <>
                               {bowtieData ? (
                                 <a
                                   href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
                                   target='blank'
                                   onClick={(event) => event.stopPropagation()}
                                   title='See at Bowtie'
+                                  className='ml-1'
                                 >
                                   <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                                 </a>
                               ) : (
-                                <CancelIcon className='fill-current stroke-current w-4 h-4' />
+                                <CancelIcon className='fill-current stroke-current w-4 h-4 ml-1' />
                               )}
-                            </div>
+                            </>
+                          )}
+                          {!bowtieReport && (
+                            <span className='ml-1'>Not available</span>
                           )}
                         </div>
                         <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
-                          {tool.languages?.join(', ')}
+                          Supported Dialects:
                         </div>
                         <div className='flex flex-wrap gap-1 mt-1'>
                           {tool.supportedDialects?.draft?.map((draft) => (
