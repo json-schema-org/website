@@ -49,6 +49,7 @@ export async function getStaticProps({ query }: { query: any }) {
 
   await generateRssFeed(blogPosts);
 
+  // Filtering based on query parameter
   const filterTag: string = query?.type || 'All';
 
   return {
@@ -70,6 +71,17 @@ function isValidCategory(category: any): category is blogCategories {
     'Documentation',
   ].includes(category);
 }
+
+// Helper to extract categories whether frontmatter.categories or frontmatter.type is provided.
+const extractCategories = (post: any): string[] => {
+  const categories = post.frontmatter.categories || post.frontmatter.type;
+  if (Array.isArray(categories)) {
+    return categories;
+  } else if (typeof categories === 'string') {
+    return [categories];
+  }
+  return [];
+};
 
 export default function StaticMarkdownPage({
   blogPosts,
@@ -110,7 +122,9 @@ export default function StaticMarkdownPage({
     } else {
       if (selectedFilterTags.includes(clickedTag)) {
         const newTags = selectedFilterTags.filter((tag) => tag !== clickedTag);
-        setSelectedFilterTags(newTags);
+        setSelectedFilterTags(
+          newTags.filter(isValidCategory) as blogCategories[],
+        );
         if (newTags.length > 0) {
           history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
         } else {
@@ -118,22 +132,28 @@ export default function StaticMarkdownPage({
         }
       } else {
         const newTags = [...selectedFilterTags, clickedTag];
-        setSelectedFilterTags(newTags);
+        setSelectedFilterTags(
+          newTags.filter(isValidCategory) as blogCategories[],
+        );
         history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
       }
     }
   };
 
+  // Sort all blog posts in descending order by date (for the hero section)
   const recentBlog = blogPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime();
     const dateB = new Date(b.frontmatter.date).getTime();
-    return dateA < dateB ? 1 : -1;
+    return dateB - dateA;
   });
 
+  // Calculate time to read for the most recent blog post.
   const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes);
-  const setOfTags: any[] = blogPosts.map((post) => post.frontmatter.type);
-  const uniqueTags = [...new Set(setOfTags)];
-  // Prepend 'All' for the filter button
+
+  // Create a set of unique tags from all posts using the helper.
+  const allTagsSet = blogPosts.flatMap((post) => extractCategories(post));
+  const uniqueTags = [...new Set(allTagsSet)];
+  // Prepend 'All' for the filter button.
   const allTags = ['All', ...uniqueTags];
 
   return (
@@ -154,8 +174,16 @@ export default function StaticMarkdownPage({
               />
             </div>
             <div className='absolute text-white w-full h-full mt-custom ml-14'>
-              <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm '>
-                {recentBlog[0].frontmatter.type}
+              {/* Render each category as a separate badge */}
+              <div className='flex flex-wrap gap-2'>
+                {extractCategories(recentBlog[0]).map((cat, idx) => (
+                  <div
+                    key={idx}
+                    className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm'
+                  >
+                    {cat}
+                  </div>
+                ))}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
                 <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
@@ -229,7 +257,8 @@ export default function StaticMarkdownPage({
               onClick={handleClick}
               className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${
                 (tag === 'All' && selectedFilterTags.length === 0) ||
-                (tag !== 'All' && selectedFilterTags.includes(tag))
+                (tag !== 'All' &&
+                  selectedFilterTags.includes(tag as blogCategories))
                   ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
                   : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
               }`}
@@ -246,21 +275,41 @@ export default function StaticMarkdownPage({
           {blogPosts
             .filter((post) => {
               if (selectedFilterTags.length === 0) return true;
-              const blogType = post.frontmatter.type as string | undefined;
-              if (!blogType) return false;
-              return selectedFilterTags.some(
-                (tag) => tag.toLowerCase() === blogType.toLowerCase(),
+              const postCategories = extractCategories(post);
+              if (!postCategories.length) return false;
+              return selectedFilterTags.some((tag) =>
+                postCategories
+                  .map((c) => c.toLowerCase())
+                  .includes(tag.toLowerCase()),
               );
             })
             .sort((a, b) => {
+              // When multiple filter tags are selected, sort by match count first.
+              if (selectedFilterTags.length > 1) {
+                const aMatches = extractCategories(a).filter((cat) =>
+                  selectedFilterTags.some(
+                    (tag) => tag.toLowerCase() === cat.toLowerCase(),
+                  ),
+                ).length;
+                const bMatches = extractCategories(b).filter((cat) =>
+                  selectedFilterTags.some(
+                    (tag) => tag.toLowerCase() === cat.toLowerCase(),
+                  ),
+                ).length;
+                if (aMatches !== bMatches) {
+                  return bMatches - aMatches;
+                }
+              }
+              // Fallback sort: by date descending.
               const dateA = new Date(a.frontmatter.date).getTime();
               const dateB = new Date(b.frontmatter.date).getTime();
-              return dateA < dateB ? 1 : -1;
+              return dateB - dateA;
             })
             .map((blogPost: any) => {
               const { frontmatter, content } = blogPost;
               const date = new Date(frontmatter.date);
               const timeToRead = Math.ceil(readingTime(content).minutes);
+              const postCategories = extractCategories(blogPost);
 
               return (
                 <section key={blogPost.slug}>
@@ -275,21 +324,27 @@ export default function StaticMarkdownPage({
                       />
                       <div className='p-4 flex flex-col flex-1 justify-between'>
                         <div>
-                          <div>
-                            <div
-                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                if (frontmatter.type) {
+                          {/* Render each category as a separate clickable badge */}
+                          <div className='flex gap-2 flex-wrap'>
+                            {postCategories.map((cat, idx) => (
+                              <div
+                                key={idx}
+                                className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
                                   const newTags = selectedFilterTags.includes(
-                                    frontmatter.type,
+                                    cat as blogCategories,
                                   )
                                     ? selectedFilterTags.filter(
-                                        (tag) => tag !== frontmatter.type,
+                                        (tag) => tag !== cat,
                                       )
-                                    : [...selectedFilterTags, frontmatter.type];
-                                  setSelectedFilterTags(newTags);
+                                    : [...selectedFilterTags, cat];
+                                  setSelectedFilterTags(
+                                    newTags.filter(
+                                      isValidCategory,
+                                    ) as blogCategories[],
+                                  );
                                   if (newTags.length > 0) {
                                     history.replaceState(
                                       null,
@@ -299,11 +354,11 @@ export default function StaticMarkdownPage({
                                   } else {
                                     history.replaceState(null, '', '/blog');
                                   }
-                                }
-                              }}
-                            >
-                              {frontmatter.type || 'Unknown Type'}
-                            </div>
+                                }}
+                              >
+                                {cat}
+                              </div>
+                            ))}
                           </div>
                           <div className='text-lg font-semibold'>
                             {frontmatter.title}
