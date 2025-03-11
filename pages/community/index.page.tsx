@@ -160,11 +160,14 @@ export default function communityPages(props: any) {
                   drive adoption, innovation and knowledge sharing in the JSON
                   Schema community.
                 </h2>
-                <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
+                <div
+                  className='mt-10 mx-auto flex justify-center items-center'
+                  data-testid='HomeCard-button'
+                >
                   <a
                     href='/ambassadors'
                     rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white  font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
                     Become an ambassador
                   </a>
@@ -209,28 +212,34 @@ export default function communityPages(props: any) {
                 <h2 className='text-blue-700 text-[2rem] font-bold  text-center'>
                   JSON Schema Community Meetings & Events
                 </h2>
-                <h2 className='text-slate-500 text-base tracking-wide dark:text-white mt-10 font-bold text-body-lg tracking-body font-regular'>
-                  We hold monthly Office Hours and weekly Open Community Working
-                  Meetings. Office Hours are every first Tuesday of the month at
-                  15:00 BST, and by appointment. Open Community Working Meetings
-                  are every Monday at 14:00 PT.
-                </h2>
-                <div className='mt-10 ' data-testid='HomeCard-button'>
-                  <a
-                    href='https://github.com/orgs/json-schema-org/discussions/35'
-                    rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
-                  >
-                    Open Community Working Meetings
-                  </a>
-                  <br />
-                  <a
-                    href='https://github.com/orgs/json-schema-org/discussions/34/'
-                    rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
-                  >
-                    Office Hours
-                  </a>
+                <div
+                  className='mt-10 text-center'
+                  data-testid='HomeCard-button'
+                >
+                  <h2 className='text-slate-500 text-base tracking-wide dark:text-white mt-10 font-bold text-body-lg tracking-body font-regular'>
+                    We hold monthly Office Hours and weekly Open Community
+                    Working Meetings. Office Hours are every first Tuesday of
+                    the month at 15:00 BST, and by appointment. Open Community
+                    Working Meetings are every Monday at 14:00 PT.
+                  </h2>
+                  <div className='mt-10 flex justify-center'>
+                    <a
+                      href='https://github.com/orgs/json-schema-org/discussions/35'
+                      rel='noopener noreferrer'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                    >
+                      Open Community Working Meetings
+                    </a>
+                  </div>
+                  <div className='mt-4 flex justify-center'>
+                    <a
+                      href='https://github.com/orgs/json-schema-org/discussions/34/'
+                      rel='noopener noreferrer'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                    >
+                      Office Hours
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -273,28 +282,30 @@ export default function communityPages(props: any) {
                   <br />
                   the JSON Schema Blog!
                 </h2>
-                <h2 className='font-bold text-slate-500 text-base dark:text-white tracking-wide mt-10'>
-                  <p>
-                    Want to publish a blog post? Check out the&nbsp;
+                <div className='m-auto flex flex-col items-center text-center'>
+                  <h2 className='font-bold text-slate-500 text-base dark:text-white tracking-wide mt-10'>
+                    <p>
+                      Want to publish a blog post? Check out the&nbsp;
+                      <a
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        href='https://github.com/json-schema-org/community/blob/main/docs/blog-guidelines.md'
+                        className='underline'
+                      >
+                        guidelines
+                      </a>
+                      &nbsp;and submit yours!
+                    </p>
+                  </h2>
+                  <div className='mt-10'>
                     <a
-                      target='_blank'
+                      href='/blog'
                       rel='noopener noreferrer'
-                      href='https://github.com/json-schema-org/community/blob/main/docs/blog-guidelines.md'
-                      className='underline'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                     >
-                      guidelines
+                      Read blog
                     </a>
-                    &nbsp;and submit yours!
-                  </p>{' '}
-                </h2>
-                <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
-                  <a
-                    href='/blog'
-                    rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
-                  >
-                    Read blog
-                  </a>
+                  </div>
                 </div>
               </div>
             </div>
