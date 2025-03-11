@@ -155,7 +155,7 @@ export default function communityPages(props: any) {
                 <h2 className=' text-blue-700 font-bold  text-[2rem] text-center'>
                   Ambassadors Program
                 </h2>
-                <h2 className='font-bold text-slate-500 text-base tracking-wide dark:text-white mt-10'>
+                <h2 className='text-center font-bold text-slate-500 text-base tracking-wide dark:text-white mt-10'>
                   The JSON Schema Ambassadors Program recognize the people who
                   drive adoption, innovation and knowledge sharing in the JSON
                   Schema community.
@@ -176,15 +176,18 @@ export default function communityPages(props: any) {
 
           <div className='z-40 mt-20 rounded-lg border border-gray-200 bg-white transition-colors hover:bg-slate-100 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
-              <div data-testid='HomeCard-main' className='m-auto'>
-                <h2 className=' text-blue-700 font-bold text-[2rem] text-center'>
+              <div
+                data-testid='HomeCard-main'
+                className='m-auto flex flex-col items-center text-center'
+              >
+                <h2 className='text-blue-700 font-bold text-[2rem]'>
                   Join the JSON Schema Slack workspace!
                 </h2>
-                <h2 className=' font-bold text-base text-slate-500 dark:text-white tracking-wide mt-10'>
+                <h2 className='font-bold text-base text-slate-500 dark:text-white tracking-wide mt-10'>
                   Join our Slack to ask questions, get feedback on your
                   projects, and connect with +5000 practitioners and experts.
                 </h2>
-                <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
+                <div className='mt-10'>
                   <a
                     href='/slack'
                     rel='noopener noreferrer'
