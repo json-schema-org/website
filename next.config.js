@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'export',
-  pageExtensions: ['page.tsx'],
+  // output: 'export', -> question on this as we can't api in case of static export.
+  pageExtensions: ['page.tsx', 'page.ts'],
   images: {
     unoptimized: true,
   },
@@ -48,4 +48,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-

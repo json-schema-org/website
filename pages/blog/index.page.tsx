@@ -8,9 +8,9 @@ import readingTime from 'reading-time';
 const PATH = 'pages/blog/posts';
 import TextTruncate from 'react-text-truncate';
 import generateRssFeed from './generateRssFeed';
-import { useRouter } from 'next/router';
 import { SectionContext } from '~/context';
 import Image from 'next/image';
+import { useInView } from 'react-intersection-observer';
 
 type Author = {
   name: string;
@@ -26,9 +26,11 @@ export type blogCategories =
   | 'Update'
   | 'Opinion';
 
+const POSTS_PER_PAGE = 10;
+
 export async function getStaticProps({ query }: { query: any }) {
   const files = fs.readdirSync(PATH);
-  const blogPosts = files
+  const allBlogPosts = files
     .filter((file) => file.substr(-3) === '.md')
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
@@ -44,73 +46,115 @@ export async function getStaticProps({ query }: { query: any }) {
       };
     });
 
-  await generateRssFeed(blogPosts);
+  // Sort posts by date
+  const sortedPosts = allBlogPosts.sort((a, b) => {
+    const dateA = new Date(a.frontmatter.date).getTime();
+    const dateB = new Date(b.frontmatter.date).getTime();
+    return dateB - dateA;
+  });
 
+  const setOfTags = sortedPosts.map((tag) => tag.frontmatter.type);
+
+  // Get initial posts
+  const initialPosts = sortedPosts.slice(0, POSTS_PER_PAGE);
   const filterTag: string = query?.type || 'All';
+
+  await generateRssFeed(allBlogPosts); // Keep RSS feed generation with all posts
 
   return {
     props: {
-      blogPosts,
+      initialPosts,
       filterTag,
+      setOfTags,
     },
   };
 }
-
-function isValidCategory(category: any): category is blogCategories {
-  return [
-    'All',
-    'Community',
-    'Case Study',
-    'Engineering',
-    'Update',
-    'Opinion',
-    'Documentation',
-  ].includes(category);
-}
-
 export default function StaticMarkdownPage({
-  blogPosts,
+  initialPosts,
   filterTag,
+  setOfTags,
 }: {
-  blogPosts: any[];
+  initialPosts: any[];
   filterTag: any;
+  setOfTags: any[];
 }) {
-  const router = useRouter();
+  const [posts, setPosts] = useState(initialPosts);
   const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(
     filterTag || 'All',
   );
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const { ref, inView } = useInView();
 
+  // Reset posts when filter changes
   useEffect(() => {
-    const { query } = router;
-    if (query.type && isValidCategory(query.type)) {
-      setCurrentFilterTag(query.type);
-    }
-  }, [router.query]);
+    setPosts(initialPosts);
+    setPage(1);
+    setHasMore(true);
+  }, [currentFilterTag, initialPosts]);
 
+  // Load more posts when scrolling
   useEffect(() => {
-    // Set the filter tag based on the initial query parameter when the page loads
-    setCurrentFilterTag(filterTag);
-  }, [filterTag]);
+    const loadMorePosts = async () => {
+      if (inView && hasMore && !loading) {
+        setLoading(true);
+        try {
+          const nextPage = page + 1;
+          const res = await fetch(
+            `http://localhost:3000/api/posts?page=${nextPage}&type=${currentFilterTag}`,
+          );
+          const data = await res.json();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault(); // Prevent default scrolling behavior
+          if (data.posts.length) {
+            setPosts((prevPosts) => [...prevPosts, ...data.posts]);
+            setPage(nextPage);
+            setHasMore(data.hasMore);
+          } else {
+            setHasMore(false);
+          }
+        } catch (error) {
+          console.error('Error loading more posts:', error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadMorePosts();
+  }, [inView, hasMore, loading, page, currentFilterTag]);
+
+  const handleFilterClick = async (
+    event: React.MouseEvent<HTMLButtonElement>,
+  ) => {
+    event.preventDefault();
     const clickedTag = event.currentTarget.value as blogCategories;
-    if (clickedTag === 'All') {
-      setCurrentFilterTag('All');
-      history.replaceState(null, '', '/blog'); // Update the URL without causing a scroll
-    } else if (isValidCategory(clickedTag)) {
-      setCurrentFilterTag(clickedTag);
-      history.replaceState(null, '', `/blog?type=${clickedTag}`); // Update URL
+    setCurrentFilterTag(clickedTag);
+
+    try {
+      const res = await fetch(`/api/posts?page=1&type=${clickedTag}`);
+      const data = await res.json();
+      setPosts(data.posts);
+      setHasMore(data.hasMore);
+      setPage(1);
+
+      if (clickedTag === 'All') {
+        history.replaceState(null, '', '/blog');
+      } else {
+        history.replaceState(null, '', `/blog?type=${clickedTag}`);
+      }
+    } catch (error) {
+      console.error('Error filtering posts:', error);
     }
   };
-  const recentBlog = blogPosts.sort((a, b) => {
+
+  const recentBlog = initialPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime();
     const dateB = new Date(b.frontmatter.date).getTime();
     return dateA < dateB ? 1 : -1;
   });
 
   const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes);
-  const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type);
   const spreadTags: any[] = [...setOfTags];
   const allTags = [...new Set(spreadTags)];
   //add tag for all
@@ -211,7 +255,7 @@ export default function StaticMarkdownPage({
             <button
               key={tag}
               value={tag}
-              onClick={handleClick}
+              onClick={handleFilterClick}
               className={`cursor-pointer 
 			          font-semibold inline-block px-3 py-1 4
 			          rounded-full mb-4 mr-4 text-sm 
@@ -226,148 +270,144 @@ export default function StaticMarkdownPage({
         </div>
 
         {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800  mx-auto p-4'>
-          {blogPosts
-            .filter((post) => {
-              if (!currentFilterTag || currentFilterTag === 'All') return true;
-              const blogType = post.frontmatter.type as string | undefined;
-              if (!blogType) return false;
-              return blogType.toLowerCase() === currentFilterTag.toLowerCase();
-            })
-            .sort((a, b) => {
-              const dateA = new Date(a.frontmatter.date).getTime();
-              const dateB = new Date(b.frontmatter.date).getTime();
-              return dateA < dateB ? 1 : -1;
-            })
-            .map((blogPost: any) => {
-              const { frontmatter, content } = blogPost;
-              const date = new Date(frontmatter.date);
-              const timeToRead = Math.ceil(readingTime(content).minutes);
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
+          {posts.map((blogPost: any) => {
+            const { frontmatter, content } = blogPost;
+            const date = new Date(frontmatter.date);
+            const timeToRead = Math.ceil(readingTime(content).minutes);
 
-              return (
-                <section key={blogPost.slug}>
-                  <div className='sm:h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
-                    <Link
-                      href={`/blog/posts/${blogPost.slug}`}
-                      className='inline-flex flex-col flex-1 w-full'
-                    >
-                      <div
-                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                        style={{ backgroundImage: `url(${frontmatter.cover})` }}
-                      />
-                      <div className=' p-4 flex flex-col flex-1 justify-between'>
+            return (
+              <section key={blogPost.slug}>
+                <div className='sm:h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
+                  <Link
+                    href={`/blog/posts/${blogPost.slug}`}
+                    className='inline-flex flex-col flex-1 w-full'
+                  >
+                    <div
+                      className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
+                      style={{ backgroundImage: `url(${frontmatter.cover})` }}
+                    />
+                    <div className=' p-4 flex flex-col flex-1 justify-between'>
+                      <div>
                         <div>
-                          <div>
-                            <div
-                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
+                          <div
+                            className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
 
-                                if (frontmatter.type) {
-                                  setCurrentFilterTag(frontmatter.type);
-                                  history.replaceState(
-                                    null,
-                                    '',
-                                    `/blog?type=${frontmatter.type}`,
-                                  );
-                                }
-                              }}
-                            >
-                              {frontmatter.type || 'Unknown Type'}
-                            </div>
-                          </div>
-                          <div className='text-lg font-semibold'>
-                            {frontmatter.title}
-                          </div>
-
-                          <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
-                            <TextTruncate
-                              element='span'
-                              line={4}
-                              text={frontmatter.excerpt}
-                            />
+                              if (frontmatter.type) {
+                                setCurrentFilterTag(frontmatter.type);
+                                history.replaceState(
+                                  null,
+                                  '',
+                                  `/blog?type=${frontmatter.type}`,
+                                );
+                              }
+                            }}
+                          >
+                            {frontmatter.type || 'Unknown Type'}
                           </div>
                         </div>
-                        <div
-                          className={`
+                        <div className='text-lg font-semibold'>
+                          {frontmatter.title}
+                        </div>
+
+                        <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
+                          <TextTruncate
+                            element='span'
+                            line={4}
+                            text={frontmatter.excerpt}
+                          />
+                        </div>
+                      </div>
+                      <div
+                        className={`
                             flex 
                             flex-row
                             items-center
                           `}
-                        >
-                          <div className='flex flex-row pl-2 mr-2'>
-                            {(frontmatter.authors || []).map(
-                              (author: Author, index: number) => (
-                                <div
-                                  key={index}
-                                  className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
-                                    frontmatter.authors.length > 2
-                                      ? 'h-8 w-8'
-                                      : 'h-11 w-11'
-                                  }`}
-                                  style={{
-                                    backgroundImage: `url(${author.photo})`,
-                                    zIndex: 10 - index,
-                                  }}
-                                />
-                              ),
-                            )}
-                          </div>
+                      >
+                        <div className='flex flex-row pl-2 mr-2'>
+                          {(frontmatter.authors || []).map(
+                            (author: Author, index: number) => (
+                              <div
+                                key={index}
+                                className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                                  frontmatter.authors.length > 2
+                                    ? 'h-8 w-8'
+                                    : 'h-11 w-11'
+                                }`}
+                                style={{
+                                  backgroundImage: `url(${author.photo})`,
+                                  zIndex: 10 - index,
+                                }}
+                              />
+                            ),
+                          )}
+                        </div>
 
-                          <div
-                            className={`
+                        <div
+                          className={`
                               flex 
                               flex-col
                               items-start
                             `}
-                          >
-                            <div className='text-sm font-semibold'>
-                              {frontmatter.authors.length > 2 ? (
-                                <>
-                                  {frontmatter.authors
-                                    .slice(0, 2)
-                                    .map((author: Author, index: number) => (
-                                      <span key={author.name}>
-                                        {author.name}
-                                        {index === 0 && ' & '}
-                                      </span>
-                                    ))}
-                                  {'...'}
-                                </>
-                              ) : (
-                                frontmatter.authors.map(
-                                  (author: Author, index: number) => (
+                        >
+                          <div className='text-sm font-semibold'>
+                            {frontmatter.authors.length > 2 ? (
+                              <>
+                                {frontmatter.authors
+                                  .slice(0, 2)
+                                  .map((author: Author, index: number) => (
                                     <span key={author.name}>
                                       {author.name}
-                                      {index < frontmatter.authors.length - 1 &&
-                                        ' & '}
+                                      {index === 0 && ' & '}
                                     </span>
-                                  ),
-                                )
-                              )}
-                            </div>
+                                  ))}
+                                {'...'}
+                              </>
+                            ) : (
+                              frontmatter.authors.map(
+                                (author: Author, index: number) => (
+                                  <span key={author.name}>
+                                    {author.name}
+                                    {index < frontmatter.authors.length - 1 &&
+                                      ' & '}
+                                  </span>
+                                ),
+                              )
+                            )}
+                          </div>
 
-                            <div className='text-slate-500 text-sm dark:text-slate-300'>
-                              {frontmatter.date && (
-                                <span>
-                                  {date.toLocaleDateString('en-us', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric',
-                                  })}
-                                </span>
-                              )}{' '}
-                              &middot; {timeToRead} min read
-                            </div>
+                          <div className='text-slate-500 text-sm dark:text-slate-300'>
+                            {frontmatter.date && (
+                              <span>
+                                {date.toLocaleDateString('en-us', {
+                                  year: 'numeric',
+                                  month: 'long',
+                                  day: 'numeric',
+                                })}
+                              </span>
+                            )}{' '}
+                            &middot; {timeToRead} min read
                           </div>
                         </div>
                       </div>
-                    </Link>
-                  </div>
-                </section>
-              );
-            })}
+                    </div>
+                  </Link>
+                </div>
+              </section>
+            );
+          })}
+
+          {hasMore && (
+            <div ref={ref} className='col-span-full flex justify-center p-4'>
+              <div className='animate-pulse text-slate-500 dark:text-slate-300'>
+                Loading more posts...
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </SectionContext.Provider>
