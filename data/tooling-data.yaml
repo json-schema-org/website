@@ -3196,5 +3196,11 @@
   source: 'https://github.com/kenspirit/joi-to-json'
   supportedDialects:
     draft: ['4','5','6','7','2019-09','2020-12']
-    additional: ['OpenAPI 3.0', 'OpenAPI 3.1']
+    additional:
+      - name: 'OpenAPI 3.0'
+        source: 'https://spec.openapis.org/oas/v3.0.3'
+      - name: 'OpenAPI 3.1'
+        source: 'https://spec.openapis.org/oas/v3.1.0'
+
+  
   
