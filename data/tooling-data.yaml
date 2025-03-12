@@ -3183,4 +3183,18 @@
   supportedDialects:
     draft: ['2020-12']
   toolingListingNotes: '[A reference to MetaConfigurator papers](https://rdcu.be/dJvgS).'
+
+- name: 'joi-to-json'
+  description: 'Support converting different version''s joi schema to JSON Schema using describe api'
+  toolingTypes: ['code-to-schema','util-general-processing','util-format-conversion']
+  languages: ['JavaScript']
+  maintainers:
+    - name: 'kenspirit'
+      username: 'kenspirit'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/kenspirit/joi-to-json'
+  supportedDialects:
+    draft: ['4','5','6','7','2019-09','2020-12']
+    additional: ['OpenAPI 3.0', 'OpenAPI 3.1']
   
