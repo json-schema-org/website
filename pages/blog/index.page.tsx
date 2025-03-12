@@ -102,7 +102,7 @@ export default function StaticMarkdownPage({
         try {
           const nextPage = page + 1;
           const res = await fetch(
-            `http://localhost:3000/api/posts?page=${nextPage}&type=${currentFilterTag}`,
+            `/api/posts?page=${nextPage}&type=${currentFilterTag}`,
           );
           const data = await res.json();
 
