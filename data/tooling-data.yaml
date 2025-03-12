@@ -1737,7 +1737,7 @@
 
 - name: Stoplight JSON Schema Tree
   toolingTypes: ['schema-to-web-UI']
-  languages: ['Typescript']
+  languages: ['TypeScript']
   maintainers:
     - name: 'Stoplight'
       username: 'stoplightio'
@@ -1751,7 +1751,7 @@
 - name: Stoplight JSON Schema Viewer
   description: 'A JSON Schema viewer React component'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['Typescript']
+  languages: ['TypeScript']
   maintainers:
     - name: 'Stoplight'
       username: 'stoplightio'
@@ -2461,7 +2461,7 @@
 - name: Jsonary
   description: 'Quickly assemble clients for JSON-based APIs (powered by JSON Schema)'
   toolingTypes: ['hyper-schema']
-  languages: ['Javascript']
+  languages: ['JavaScript']
   license: 'MIT'
   source: 'https://github.com/jsonary-js/jsonary'
   supportedDialects:
@@ -3131,7 +3131,7 @@
 
 - name: JSV
   description: 'A generic JSON Schema validator for Elixir'
-  environments: ['Linux', 'MacOS', 'Windows','Embedded platform']
+  environments: ['Linux', 'macOS', 'Windows','Embedded platform']
   toolingTypes: ['validator']
   languages: ['Elixir', 'Erlang']
   maintainers:
