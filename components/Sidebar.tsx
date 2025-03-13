@@ -244,7 +244,6 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
         <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
-          {/* Sidebar */}
           <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
             <div className='h-full overflow-y-auto scrollbar-hidden'>
               <DocsNav open={open} setOpen={setOpen} />
@@ -255,7 +254,6 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           </div>
 
-          {/* Main Content (Children) */}
           <div
             id='main-content'
             className='col-span-4 md:col-span-2 lg:col-span-2 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'
@@ -263,7 +261,6 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             {children}
           </div>
 
-          {/* TOC */}
           <div className='sticky top-16 hidden lg:block'>
             <TOC />
           </div>
