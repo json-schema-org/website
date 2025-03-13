@@ -42,7 +42,7 @@ This example demonstrates how to validate that the `color` property of a street 
 ### Extended Example: Accepting Multiple Data Types
 
 Enums can be used without explicitly setting a data type, allowing different types of values.
-In the following example, the schema is extended to include `null` (to represent an "off" state).
+In the following example, the schema is extended to include `null` (to represent an "off" state) and the number 42.
 
 ```json
 // props { "isSchema": true }
