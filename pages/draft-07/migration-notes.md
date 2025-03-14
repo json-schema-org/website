@@ -15,7 +15,7 @@ This guide will help you understand the new keywords and behaviors introduced in
 | Keyword(Draft 6)  | Keyword(Draft 7)    | Specification | Keyword type | Behavior Details |
 | ---------------- | ---------------- | ----------------| --------------- | --------------- |
 |`$schema` |`$schema` | Core | Identifier | Change in the dialect (Uses the latest Draft7 dialect).           |
-|not present | `$comment`| Core | Reserved location | The `$comment` keyword was introduced for internal comments, requiring a string that must not be shown to end users and has no impact on validation.            |
+|not present | `$comment`| Core | Reserved location | The `$comment` keyword was introduced for internal comments, requiring a string that must not be shown to end users and has no impact on validation. Worked as annotation in Draft 6 but now works as a keyword in Draft 7.            |
 | not present | `if`| `validation` | Applicator | The `if` keyword was introduced, requiring a valid JSON Schema; instances must validate against then if `if` succeeds, and against else if `if` fails, with `if` validation always succeeding on its own. |
 | not present | `then`| `validation`| Applicator |  The `then` keyword was introduced, requiring a valid JSON Schema; it succeeds if the instance validates against both `if` and `then`, and always succeeds if `if` is absent or fails.  |
 | not present | `else` | `validation` | Applicator | The `else` keyword was introduced, requiring a valid JSON Schema; it succeeds if the instance fails `if` and validates against `else`, and always succeeds if `if` is absent or succeeds |
