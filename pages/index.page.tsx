@@ -592,7 +592,7 @@ const Home = (props: any) => {
               </a>{' '}
               or hiring our{' '}
               <a
-                href='/pro-help'
+                href='/overview/pro-help'
                 className='border-b border-black dark:border-white'
               >
                 pro services
