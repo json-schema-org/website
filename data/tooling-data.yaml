@@ -3184,6 +3184,14 @@
     draft: ['2020-12']
   toolingListingNotes: '[A reference to MetaConfigurator papers](https://rdcu.be/dJvgS).'
 
+- name: 'json-2-joi'
+  description: 'Converts a JSON schema to a Joi schema for object validation'
+  toolingTypes:
+    ['util-format-conversion', 'schema-to-types']
+  languages: ['JavaScript']
+  license: 'Apache License 2.0'
+  source: 'https://github.com/kenspirit/json-2-joi'  
+
 - name: 'joi-to-json'
   description: 'Support converting different version''s joi schema to JSON Schema using describe api'
   toolingTypes: ['code-to-schema','util-general-processing','util-format-conversion']
