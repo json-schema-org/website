@@ -33,60 +33,59 @@ export default function NextPrevButton({
   nextURL,
 }: any) {
   return (
-    <div className='mb-4 flex flex-row gap-4'>
+    <div className='mb-4 flex flex-wrap gap-4 sm:flex-nowrap'>
       {prevURL && prevLabel ? (
-        <div className='h-auto w-1/2'>
+        <div className='w-full sm:w-1/2'>
           <div
             className='cursor-pointer rounded border border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:hover:shadow-2xl dark:drop-shadow-lg 
-          sm:text-left'
+            flex flex-col items-center sm:items-start'
           >
-            <Link href={prevURL}>
-              <div className='text-primary dark:text-slate-300 flex flex-row gap-5 text-[18px]'>
+            <Link href={prevURL} className='w-full'>
+              <div className='flex flex-row gap-3 items-center text-[16px] sm:text-[18px] text-primary dark:text-slate-300'>
                 <Image
                   src={'/icons/arrow.svg'}
-                  height={10}
-                  width={10}
+                  height={12}
+                  width={12}
                   alt='prev icon'
-                  className='rotate-180 w-5 '
+                  className='rotate-180 w-5'
                 />
-                <div className='my-auto inline font-bold uppercase'>
-                  Go Back
-                </div>
+                <div className='font-bold uppercase'>Go Back</div>
               </div>
-              <div className='my-2 text-base font-medium text-slate-600 dark:text-slate-300'>
+              <div className='mt-2 text-sm sm:text-base font-medium text-slate-600 dark:text-slate-300'>
                 {prevLabel}
               </div>
             </Link>
           </div>
         </div>
       ) : (
-        <div className='h-auto w-1/2'></div>
+        <div className='hidden sm:block w-1/2'></div>
       )}
 
       {nextURL && nextLabel ? (
-        <div className='h-auto w-1/2'>
-          <div className='h-full cursor-pointer rounded border border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:drop-shadow-lg dark:hover:shadow-2xl sm:text-right'>
-            <Link href={nextURL}>
-              <div className='text-primary  dark:text-slate-300 flex flex-row-reverse gap-5 text-[18px]'>
+        <div className='w-full sm:w-1/2'>
+          <div
+            className='cursor-pointer rounded border border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:drop-shadow-lg dark:hover:shadow-2xl 
+            flex flex-col items-center sm:items-end'
+          >
+            <Link href={nextURL} className='w-full'>
+              <div className='flex flex-row-reverse gap-3 items-center text-[16px] sm:text-[18px] text-primary dark:text-slate-300'>
                 <Image
                   src={'/icons/arrow.svg'}
-                  height={10}
-                  width={10}
-                  alt='next icon '
+                  height={12}
+                  width={12}
+                  alt='next icon'
                   className='w-5'
                 />
-                <div className='my-auto inline font-bold uppercase '>
-                  Up Next
-                </div>
+                <div className='font-bold uppercase'>Up Next</div>
               </div>
-              <div className='my-2 text-base font-medium text-slate-600 dark:text-slate-300'>
+              <div className='mt-2 text-sm sm:text-base font-medium text-slate-600 dark:text-slate-300'>
                 {nextLabel}
               </div>
             </Link>
           </div>
         </div>
       ) : (
-        <div className='h-auto w-1/2'></div>
+        <div className='hidden sm:block w-1/2'></div>
       )}
     </div>
   );
