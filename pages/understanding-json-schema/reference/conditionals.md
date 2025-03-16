@@ -1,12 +1,12 @@
 ---
-title: "Applying Subschemas Conditionally"
+title: "Conditional schema validation"
 section: docs
 prev: 
-  label: Schema Composition
-  url: /understanding-json-schema/reference/combining
+  label: Comments
+  url: /understanding-json-schema/reference/comments
 next: 
-  label: Declaring a Dialect
-  url: /understanding-json-schema/reference/schema
+  label: Schema composition
+  url: /understanding-json-schema/reference/composition
 ---
 
 <Keywords label="single: conditionals; dependentRequired single: property dependentRequired" />

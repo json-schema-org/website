@@ -245,6 +245,7 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
+
                   <div className='h-[520px] flex border rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden dark:border-slate-500 group relative'>
                     <Link
                       href={`/blog/posts/${blogPost.slug}`}
@@ -263,6 +264,7 @@ export default function StaticMarkdownPage({
                           <div className='bg-blue-100 dark:bg-slate-700 dark:text-blue-100 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'>
                             {frontmatter.type || 'Unknown Type'}
                           </div>
+
                           <div className='text-lg font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300'>
                             {frontmatter.title}
                           </div>
