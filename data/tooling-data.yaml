@@ -1737,7 +1737,7 @@
 
 - name: Stoplight JSON Schema Tree
   toolingTypes: ['schema-to-web-UI']
-  languages: ['Typescript']
+  languages: ['TypeScript']
   maintainers:
     - name: 'Stoplight'
       username: 'stoplightio'
@@ -1751,7 +1751,7 @@
 - name: Stoplight JSON Schema Viewer
   description: 'A JSON Schema viewer React component'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['Typescript']
+  languages: ['TypeScript']
   maintainers:
     - name: 'Stoplight'
       username: 'stoplightio'
@@ -2461,7 +2461,7 @@
 - name: Jsonary
   description: 'Quickly assemble clients for JSON-based APIs (powered by JSON Schema)'
   toolingTypes: ['hyper-schema']
-  languages: ['Javascript']
+  languages: ['JavaScript']
   license: 'MIT'
   source: 'https://github.com/jsonary-js/jsonary'
   supportedDialects:
@@ -3131,7 +3131,7 @@
 
 - name: JSV
   description: 'A generic JSON Schema validator for Elixir'
-  environments: ['Linux', 'MacOS', 'Windows','Embedded platform']
+  environments: ['Linux', 'macOS', 'Windows','Embedded platform']
   toolingTypes: ['validator']
   languages: ['Elixir', 'Erlang']
   maintainers:
@@ -3184,6 +3184,24 @@
     draft: ['2020-12']
   toolingListingNotes: '[A reference to MetaConfigurator papers](https://rdcu.be/dJvgS).'
 
+- name: 'joi-to-json'
+  description: 'Support converting different version''s joi schema to JSON Schema using describe api'
+  toolingTypes: ['code-to-schema','util-general-processing','util-format-conversion']
+  languages: ['JavaScript']
+  maintainers:
+    - name: 'kenspirit'
+      username: 'kenspirit'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/kenspirit/joi-to-json'
+  supportedDialects:
+    draft: ['4','6','7','2019-09','2020-12']
+    additional:
+      - name: 'OpenAPI 3.0'
+        source: 'https://spec.openapis.org/oas/v3.0.0'
+      - name: 'OpenAPI 3.1'
+        source: 'https://spec.openapis.org/oas/v3.1.0'
+
 - name: 'json-schema'
   description: 'A Ruby JSON Schema Validator ensures that JSON data adheres to a predefined structure, preventing errors and maintaining data integrity in applications.'
   toolingTypes:
@@ -3197,6 +3215,4 @@
   homepage: 'https://github.com/voxpupuli/json-schema/'
   supportedDialects:
      draft: ['1', '2', '3', '4', '6']
-     
-
   
