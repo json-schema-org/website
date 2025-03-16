@@ -14,6 +14,7 @@ import {
 } from '../lib/calendarUtils';
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
+import TourGuide from '~/components/TourGuide';
 
 /* eslint-disable */
 import ical from 'node-ical';
@@ -930,6 +931,7 @@ for Accounting integrations'
           </div>{' '}
         </section>
       </div>
+      <TourGuide/>
     </div>
   );
 };
