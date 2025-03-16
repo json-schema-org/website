@@ -25,7 +25,7 @@
   },
   {
     "title": "Data Serialization",
-    "summary": "Compress JSON data for storage/transmission. For example: <a href='https://jsonbinpack.sourcemeta.com' style='text-decoration: underline; font-weight: bold;'>https://jsonbinpack.sourcemeta.com</a>"
+    "summary": "Compress JSON data for storage/transmission. For example: <a href='https://jsonbinpack.sourcemeta.com' style='text-decoration: underline; font-weight: bold;'>JSON Bin Pack</a>"
   },
   {
     "title": "Fuzzing, enumeration, and generation",
@@ -37,7 +37,7 @@
   },
   {
     "title": "Automated Testing",
-    "summary": "Good definitions of input/output that schemas provide enable contract and property based testing scenarios. For example: <a href='https://schemathesis.readthedocs.io/en/stable/' style='text-decoration: underline; font-weight: bold;'>https://schemathesis.readthedocs.io/en/stable/</a>"
+    "summary": "Good definitions of input/output that schemas provide enable contract and property-based testing scenarios. For example: <a href='https://schemathesis.readthedocs.io/en/stable/' style='text-decoration: underline; font-weight: bold;'>Schemathesis</a>"
   },
   {
     "title": "Machine-readable profiles of Web resources",
