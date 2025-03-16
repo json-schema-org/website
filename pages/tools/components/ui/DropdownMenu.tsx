@@ -5,21 +5,46 @@ import React, {
   type ReactNode,
   useEffect,
   useState,
+  Children,
+  cloneElement,
+  isValidElement,
 } from 'react';
 
 interface DropdownMenuProps {
   children: ReactNode;
   label: string;
   icon: ReactElement;
+  selectedCount?: number;
+  keepOpenOnSelection?: boolean;
 }
 
 export default function DropdownMenu({
   children,
   label,
   icon,
+  selectedCount = 0,
+  keepOpenOnSelection = true,
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
+
+  const enhancedChildren = Children.map(children, (child) => {
+    if (isValidElement(child) && child.type === 'Checkbox') {
+      return cloneElement(child, {
+        ...child.props,
+        onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+          if (child.props.onChange) {
+            child.props.onChange(e);
+          }
+
+          if (!keepOpenOnSelection) {
+            setIsDropdownOpen(false);
+          }
+        },
+      });
+    }
+    return child;
+  });
 
   useEffect(() => {
     setIsDropdownOpen(false);
@@ -28,10 +53,8 @@ export default function DropdownMenu({
   return (
     <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer'>
       <div
-        className='w-full flex justify-between items-center align-middle cursor-pointer'
-        onClick={() => {
-          setIsDropdownOpen((prev) => !prev);
-        }}
+        className='w-full flex justify-between items-center cursor-pointer'
+        onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         {React.cloneElement(icon, {
           className: 'mr-2 ml-2',
@@ -39,16 +62,19 @@ export default function DropdownMenu({
         <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto'>
           {label}
         </div>
+        {selectedCount > 0 && (
+          <div className='h-7 w-7 flex items-center justify-center text-slate-900 dark:border-white dark:text-slate-300 font-bold border-black border-black-100 border-2 rounded-full bg-white dark:bg-slate-700 shadow-md mr-2 text-md'>
+            {selectedCount}
+          </div>
+        )}
         <svg
           style={{
             transform: `${isDropdownOpen ? 'rotate(180deg)' : 'rotate(0)'}`,
             transition: 'all 0.2s linear',
-            cursor: 'pointer',
           }}
-          id='arrow'
           xmlns='http://www.w3.org/2000/svg'
           fill='none'
-          height='32'
+          height='24'
           viewBox='0 0 24 24'
           width='24'
         >
@@ -60,7 +86,6 @@ export default function DropdownMenu({
           />
         </svg>
       </div>
-
       <div
         className={classnames(
           'tools-dropdown-menu',
@@ -71,7 +96,7 @@ export default function DropdownMenu({
           },
         )}
       >
-        {children}
+        {enhancedChildren}
       </div>
     </div>
   );

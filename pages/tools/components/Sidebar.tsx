@@ -93,11 +93,15 @@ export default function Sidebar({
           const checkedValues = transform[accessorKey as keyof Transform] || [];
           const IconComponent =
             filterIcons[accessorKey as keyof typeof filterIcons];
+          const selectedCount = checkedValues.length;
+
           return (
             <DropdownMenu
               key={accessorKey}
               label={label}
               icon={<IconComponent />}
+              selectedCount={selectedCount}
+
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
