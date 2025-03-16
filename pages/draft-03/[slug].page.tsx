@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
-import { getLayout } from '~/components/Sidebar';
 import StyledMarkdown from '~/components/StyledMarkdown';
+import { getLayout } from '~/components/Sidebar';
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths';
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { Headline1 } from '~/components/Headlines';
@@ -22,7 +22,7 @@ export default function StaticMarkdownPage({
   frontmatter: any;
   content: any;
 }) {
-  const markdownFile = '_index';
+  const fileRenderType = '_md';
   const newTitle = 'JSON Schema - ' + frontmatter.title;
 
   return (
@@ -32,7 +32,7 @@ export default function StaticMarkdownPage({
       </Head>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
-      <DocsHelp markdownFile={markdownFile} />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
