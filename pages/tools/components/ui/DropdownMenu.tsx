@@ -51,13 +51,13 @@ export default function DropdownMenu({
   }, [router]);
 
   return (
-    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded'>
+    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer'>
       <div
         className='w-full flex justify-between items-center cursor-pointer'
         onClick={() => setIsDropdownOpen((prev) => !prev)}
       >
         {React.cloneElement(icon, {
-          className: 'mr-2',
+          className: 'mr-2 ml-2',
         })}
         <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto'>
           {label}
