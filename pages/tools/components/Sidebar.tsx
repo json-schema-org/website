@@ -101,7 +101,6 @@ export default function Sidebar({
               label={label}
               icon={<IconComponent />}
               selectedCount={selectedCount}
-
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
