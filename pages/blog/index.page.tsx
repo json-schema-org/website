@@ -245,7 +245,6 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-
                   <div className='h-[520px] flex border rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden dark:border-slate-500 group relative'>
                     <Link
                       href={`/blog/posts/${blogPost.slug}`}
