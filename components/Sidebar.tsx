@@ -111,7 +111,7 @@ const getDocsPath = [
   '/overview/code-of-conduct',
   '/overview/faq',
   '/overview/roadmap',
-  '/overview/pro-help'
+  '/overview/pro-help',
 ];
 const getStartedPath = [
   '/learn',
