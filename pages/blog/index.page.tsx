@@ -1,4 +1,3 @@
-/* eslint-disable indent */
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -19,15 +18,13 @@ type Author = {
   link?: string;
   byline?: string;
 };
-
 export type blogCategories =
   | 'All'
   | 'Community'
   | 'Case Study'
   | 'Engineering'
   | 'Update'
-  | 'Opinion'
-  | 'Documentation';
+  | 'Opinion';
 
 export async function getStaticProps({ query }: { query: any }) {
   const files = fs.readdirSync(PATH);
@@ -79,51 +76,33 @@ export default function StaticMarkdownPage({
   filterTag: any;
 }) {
   const router = useRouter();
-  // Initialize selected filter tags: if query.type is 'All' or not provided, no filter is applied.
-  const initialTags =
-    filterTag && filterTag !== 'All'
-      ? ((filterTag as string)
-          .split(',')
-          .filter((tag) => isValidCategory(tag)) as blogCategories[])
-      : [];
-  const [selectedFilterTags, setSelectedFilterTags] =
-    useState<blogCategories[]>(initialTags);
+  const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(
+    filterTag || 'All',
+  );
 
   useEffect(() => {
     const { query } = router;
-    if (query.type) {
-      const types = (query.type as string)
-        .split(',')
-        .filter((tag) => isValidCategory(tag)) as blogCategories[];
-      setSelectedFilterTags(types);
-    } else {
-      setSelectedFilterTags([]);
+    if (query.type && isValidCategory(query.type)) {
+      setCurrentFilterTag(query.type);
     }
   }, [router.query]);
 
+  useEffect(() => {
+    // Set the filter tag based on the initial query parameter when the page loads
+    setCurrentFilterTag(filterTag);
+  }, [filterTag]);
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+    event.preventDefault(); // Prevent default scrolling behavior
     const clickedTag = event.currentTarget.value as blogCategories;
     if (clickedTag === 'All') {
-      setSelectedFilterTags([]);
-      history.replaceState(null, '', '/blog');
-    } else {
-      if (selectedFilterTags.includes(clickedTag)) {
-        const newTags = selectedFilterTags.filter((tag) => tag !== clickedTag);
-        setSelectedFilterTags(newTags);
-        if (newTags.length > 0) {
-          history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
-        } else {
-          history.replaceState(null, '', '/blog');
-        }
-      } else {
-        const newTags = [...selectedFilterTags, clickedTag];
-        setSelectedFilterTags(newTags);
-        history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
-      }
+      setCurrentFilterTag('All');
+      history.replaceState(null, '', '/blog'); // Update the URL without causing a scroll
+    } else if (isValidCategory(clickedTag)) {
+      setCurrentFilterTag(clickedTag);
+      history.replaceState(null, '', `/blog?type=${clickedTag}`); // Update URL
     }
   };
-
   const recentBlog = blogPosts.sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime();
     const dateB = new Date(b.frontmatter.date).getTime();
@@ -131,19 +110,21 @@ export default function StaticMarkdownPage({
   });
 
   const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes);
-  const setOfTags: any[] = blogPosts.map((post) => post.frontmatter.type);
-  const uniqueTags = [...new Set(setOfTags)];
-  // Prepend 'All' for the filter button
-  const allTags = ['All', ...uniqueTags];
+  const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type);
+  const spreadTags: any[] = [...setOfTags];
+  const allTags = [...new Set(spreadTags)];
+  //add tag for all
+  allTags.unshift('All');
 
   return (
+    // @ts-ignore
     <SectionContext.Provider value='blog'>
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
       <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-10 '>
         {recentBlog[0] && (
-          <div className='relative w-full h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
+          <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]'>
               <Image
                 src={recentBlog[0].frontmatter.cover}
@@ -168,11 +149,12 @@ export default function StaticMarkdownPage({
                       backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})`,
                     }}
                   />
+
                   <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
                     <p className='text-sm font-semibold text-stroke-1'>
                       {recentBlog[0].frontmatter.authors[0].name}
                     </p>
-                    <div className='mb-6 text-sm text-stroke-1'>
+                    <div className='mb-6 text-sm  text-stroke-1'>
                       <span>
                         {recentBlog[0].frontmatter.date} &middot; {timeToRead}{' '}
                         min read
@@ -190,6 +172,7 @@ export default function StaticMarkdownPage({
               Welcome to the JSON Schema Blog!
             </h2>
           </div>
+
           <div className='flex h-full flex-col justify-center items-center text-center text-sm sm:text-base px-4 my-2'>
             <p>
               Want to publish a blog post? Check out the&nbsp;
@@ -204,6 +187,7 @@ export default function StaticMarkdownPage({
               &nbsp;and submit yours!
             </p>
           </div>
+
           <div className='flex h-full flex-col justify-center items-center text-sm sm:text-base px-4 my-2'>
             <a
               href='/rss/feed.xml'
@@ -221,18 +205,17 @@ export default function StaticMarkdownPage({
           </div>
         </div>
         {/* Filter Buttons */}
+
         <div className='w-full ml-8 flex flex-wrap justify-start'>
           {allTags.map((tag) => (
             <button
               key={tag}
               value={tag}
               onClick={handleClick}
-              className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${
-                (tag === 'All' && selectedFilterTags.length === 0) ||
-                (tag !== 'All' && selectedFilterTags.includes(tag))
-                  ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
-                  : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
-              }`}
+              className={`cursor-pointer 
+			          font-semibold inline-block px-3 py-1 4
+			          rounded-full mb-4 mr-4 text-sm 
+			          ${currentFilterTag === tag ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100' : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'}`}
             >
               {tag}
             </button>
@@ -241,16 +224,15 @@ export default function StaticMarkdownPage({
             Filter blog posts by category...
           </span>
         </div>
-        {/* Filtered Blog Posts */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
+
+        {/* filterTag === frontmatter.type &&  */}
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800  mx-auto p-4'>
           {blogPosts
             .filter((post) => {
-              if (selectedFilterTags.length === 0) return true;
+              if (!currentFilterTag || currentFilterTag === 'All') return true;
               const blogType = post.frontmatter.type as string | undefined;
               if (!blogType) return false;
-              return selectedFilterTags.some(
-                (tag) => tag.toLowerCase() === blogType.toLowerCase(),
-              );
+              return blogType.toLowerCase() === currentFilterTag.toLowerCase();
             })
             .sort((a, b) => {
               const dateA = new Date(a.frontmatter.date).getTime();
@@ -273,7 +255,7 @@ export default function StaticMarkdownPage({
                         className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
                         style={{ backgroundImage: `url(${frontmatter.cover})` }}
                       />
-                      <div className='p-4 flex flex-col flex-1 justify-between'>
+                      <div className=' p-4 flex flex-col flex-1 justify-between'>
                         <div>
                           <div>
                             <div
@@ -281,24 +263,14 @@ export default function StaticMarkdownPage({
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
+
                                 if (frontmatter.type) {
-                                  const newTags = selectedFilterTags.includes(
-                                    frontmatter.type,
-                                  )
-                                    ? selectedFilterTags.filter(
-                                        (tag) => tag !== frontmatter.type,
-                                      )
-                                    : [...selectedFilterTags, frontmatter.type];
-                                  setSelectedFilterTags(newTags);
-                                  if (newTags.length > 0) {
-                                    history.replaceState(
-                                      null,
-                                      '',
-                                      `/blog?type=${newTags.join(',')}`,
-                                    );
-                                  } else {
-                                    history.replaceState(null, '', '/blog');
-                                  }
+                                  setCurrentFilterTag(frontmatter.type);
+                                  history.replaceState(
+                                    null,
+                                    '',
+                                    `/blog?type=${frontmatter.type}`,
+                                  );
                                 }
                               }}
                             >
@@ -308,6 +280,7 @@ export default function StaticMarkdownPage({
                           <div className='text-lg font-semibold'>
                             {frontmatter.title}
                           </div>
+
                           <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
                             <TextTruncate
                               element='span'
@@ -316,7 +289,13 @@ export default function StaticMarkdownPage({
                             />
                           </div>
                         </div>
-                        <div className='flex flex-row items-center'>
+                        <div
+                          className={`
+                            flex 
+                            flex-row
+                            items-center
+                          `}
+                        >
                           <div className='flex flex-row pl-2 mr-2'>
                             {(frontmatter.authors || []).map(
                               (author: Author, index: number) => (
@@ -335,7 +314,14 @@ export default function StaticMarkdownPage({
                               ),
                             )}
                           </div>
-                          <div className='flex flex-col items-start'>
+
+                          <div
+                            className={`
+                              flex 
+                              flex-col
+                              items-start
+                            `}
+                          >
                             <div className='text-sm font-semibold'>
                               {frontmatter.authors.length > 2 ? (
                                 <>
@@ -361,6 +347,7 @@ export default function StaticMarkdownPage({
                                 )
                               )}
                             </div>
+
                             <div className='text-slate-500 text-sm dark:text-slate-300'>
                               {frontmatter.date && (
                                 <span>
