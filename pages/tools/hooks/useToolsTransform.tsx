@@ -199,7 +199,6 @@ const filterTools = (
   transform: Transform,
 ): JSONSchemaTool[] => {
   const filteredTools = tools.filter((tool) => {
-    // Filter by supportsBowtie if the filter is enabled
     if (transform.supportsBowtie === 'true' && !tool.bowtie?.id) {
       return false;
     }
