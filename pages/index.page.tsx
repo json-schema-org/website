@@ -588,7 +588,7 @@ const Home = (props: any) => {
                 className='border-b border-black dark:border-white'
               >
                 sponsor
-              </Link>
+               </Link>
               , a{' '}
               <Link
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
