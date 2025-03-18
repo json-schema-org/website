@@ -302,7 +302,7 @@ const Home = (props: any) => {
               Start learning JSON Schema
             </h2>
             <button className='w-[170px] h-[45px] mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out rounded border-2 bg-primary text-white font-semibold dark:border-none'>
-              <a href='/docs '>Read the docs</a>
+              <Link href='/docs '>Read the docs</Link>
             </button>
           </div>
         </section>
@@ -332,7 +332,7 @@ const Home = (props: any) => {
               amazing Community.
             </p>
             <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out h-[45px] rounded border-2 bg-primary text-white dark:border-none'>
-              <a href='/tools/'>Explore</a>
+              <Link href='/tools/'>Explore</Link>
             </button>
           </div>
         </section>
@@ -389,7 +389,7 @@ const Home = (props: any) => {
                 </p>
               </Link>
               <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'>
-                <a
+                <Link
                   href='https://json-schema.org/slack'
                   className='flex items-center '
                 >
@@ -405,7 +405,7 @@ const Home = (props: any) => {
                     </>
                   )}
                   Join Slack
-                </a>
+                </Link>
               </button>
             </div>
             {/* BlogPost Data */}
@@ -505,12 +505,12 @@ const Home = (props: any) => {
                 </p>
                 <div className='w-full flex flex-col items-center'>
                   <button className='w-full max-w-[385px] min-w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-auto py-2 px-4 mb-4 flex items-center justify-center dark:border-none'>
-                    <a
+                    <Link
                       href='https://github.com/orgs/json-schema-org/discussions/35'
                       className='text-center'
                     >
                       Open Community Working Meetings
-                    </a>
+                    </Link>
                   </button>
                   <button className='w-full max-w-[385px] min-w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center dark:border-none'>
                     <a
@@ -567,9 +567,9 @@ const Home = (props: any) => {
               Start contributing to JSON Schema
             </h2>
             <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none'>
-              <a href='https://github.com/json-schema-org#-contributing-to-json-schema'>
+              <Link href='https://github.com/json-schema-org#-contributing-to-json-schema'>
                 Contribute
-              </a>
+              </Link>
             </button>
           </div>
         </section>
@@ -720,7 +720,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
+              <Link href='https://endjin.com/' target='_blank' rel='noreferrer'>
                 {isClient && (
                   <>
                     <Image
@@ -732,8 +732,12 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
-              <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
+              </Link>
+              <Link
+                href='https://www.llc.org/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 {isClient && (
                   <>
                     <Image
@@ -745,7 +749,7 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
+              </Link>
               <a
                 href='https://www.vpsserver.com/en-us/'
                 target='_blank'
@@ -797,7 +801,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
+              <Link href='https://n8n.io/' target='_blank' rel='noreferrer'>
                 {isClient && (
                   <>
                     <Image
@@ -809,8 +813,12 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
-              <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
+              </Link>
+              <Link
+                href='https://copycopter.ai/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 {isClient && (
                   <>
                     <Image
@@ -822,10 +830,14 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
-              <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
+              </Link>
+              <Link
+                href='https://www.octue.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img src={octue_logo} className=' w-44' />
-              </a>
+              </Link>
               <a
                 href='https://www.apideck.com/'
                 target='_blank'
@@ -907,7 +919,7 @@ for Accounting integrations'
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
-            <a href='https://www.commonroom.io'>
+            <Link href='https://www.commonroom.io'>
               {isClient && (
                 <>
                   <Image
@@ -919,8 +931,8 @@ for Accounting integrations'
                   />
                 </>
               )}
-            </a>
-            <a href='https://json-schema.org/slack'>
+            </Link>
+            <Link href='https://json-schema.org/slack'>
               {isClient && (
                 <>
                   <Image
@@ -932,7 +944,7 @@ for Accounting integrations'
                   />
                 </>
               )}
-            </a>
+            </Link>
           </div>{' '}
         </section>
       </div>
