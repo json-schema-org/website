@@ -251,15 +251,15 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
         <div className='h-12 mt-[4.5rem] lg:hidden'></div>
 
         <div
-          className={`z-[150] fixed top-[calc(4.5rem+3rem)] left-0 h-[calc(100vh-4.5rem-3rem)] w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${open ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md overflow-y-auto pt-4`}
+          className={`z-[150] fixed top-[calc(4.5rem+3rem)] left-0 h-[calc(100vh-4.5rem-3rem)] w-screen  dark:bg-slate-900 dark:shadow-lg transform ${open ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md overflow-y-auto pt-4`}
         >
-          <div className='flex flex-col bg-white dark:bg-slate-900 min-h-full'>
+          <div className='flex flex-col  dark:bg-slate-900 min-h-full'>
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
         <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12 lg:pt-0 -mt-8'>
           <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
-            <div className='h-full bg-white scrollbar-hidden'>
+            <div className='h-full  scrollbar-hidden'>
               <DocsNav open={open} setOpen={setOpen} />
               <CarbonAds
                 className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
