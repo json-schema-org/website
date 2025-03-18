@@ -588,7 +588,7 @@ const Home = (props: any) => {
                 className='border-b border-black dark:border-white'
               >
                 sponsor
-               </Link>
+              </Link>{' '}
               , a{' '}
               <Link
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
@@ -605,6 +605,7 @@ const Home = (props: any) => {
               </Link>
               .
             </p>
+
             <p className='w-5/6 lg:w-3/5 mx-auto'>
               <Link
                 href='https://opencollective.com/json-schema'
