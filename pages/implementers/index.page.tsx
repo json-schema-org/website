@@ -52,7 +52,7 @@ export default function ContentExample({
       </section>
       <NextPrevButton
         prevLabel='Guides'
-        prevURL='/guides'
+        prevURL='/learn/guides'
         nextLabel='Understanding common interfaces'
         nextURL='/implementers/interfaces'
       />

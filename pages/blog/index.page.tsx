@@ -122,9 +122,9 @@ export default function StaticMarkdownPage({
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-10 '>
+      <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-0 sm:mt-10'>
         {recentBlog[0] && (
-          <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
+          <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]'>
               <Image
                 src={recentBlog[0].frontmatter.cover}
@@ -246,15 +246,19 @@ export default function StaticMarkdownPage({
 
               return (
                 <section key={blogPost.slug}>
-                  <div className='sm:h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
+                  <div className='h-[510px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
                     <Link
                       href={`/blog/posts/${blogPost.slug}`}
                       className='inline-flex flex-col flex-1 w-full'
                     >
-                      <div
-                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                        style={{ backgroundImage: `url(${frontmatter.cover})` }}
-                      />
+                      <div className=' h-max-[200px] w-full  object-cover'>
+                        <div
+                          className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
+                          style={{
+                            backgroundImage: `url(${frontmatter.cover})`,
+                          }}
+                        />
+                      </div>
                       <div className=' p-4 flex flex-col flex-1 justify-between'>
                         <div>
                           <div>
@@ -277,7 +281,7 @@ export default function StaticMarkdownPage({
                               {frontmatter.type || 'Unknown Type'}
                             </div>
                           </div>
-                          <div className='text-lg font-semibold'>
+                          <div className='text-lg h-[80px] font-semibold'>
                             {frontmatter.title}
                           </div>
 

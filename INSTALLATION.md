@@ -26,7 +26,7 @@ This guide provides step-by-step instructions for installing the JSON Schema Web
    - [Formatting](#formatting)
    - [Linting](#linting)
    - [Husky for Git Hooks](#husky-for-git-hooks)
-6. [Run locally using Docker](#docker-deployment)
+6. [Run locally using Docker](#run-locally-using-docker)
    - [Prerequisites](#prerequisites)
    - [Steps](#steps)
 

@@ -15,7 +15,7 @@ const AmbassadorBanner: React.FC = () => {
         </p>
         <div className='w-full grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-auto'>
           <Link
-            href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-an-json-schema-ambassador'
+            href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-a-json-schema-ambassador'
             className='inline-block px-6 py-3 bg-blue-600 text-white font-semibold text-center rounded hover:bg-blue-700 transition duration-300'
           >
             Become Ambassador
