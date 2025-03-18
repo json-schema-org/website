@@ -285,7 +285,22 @@ const ToolingTable = ({
                       className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
                       onClick={() => openModal(tool)}
                     >
-                      <td className='p-2'>
+                      <td className='p-2 relative'>
+                        {bowtieData && (
+                          <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
+                            <span>Bowtie:</span>
+                            <a
+                              href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                              target='blank'
+                              onClick={(event) => event.stopPropagation()}
+                              title='See at Bowtie'
+                              className='ml-1'
+                            >
+                              <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                            </a>
+                          </div>
+                        )}
+
                         <div className='flex justify-between items-center'>
                           <div className='font-medium'>
                             {tool.name}
@@ -296,29 +311,6 @@ const ToolingTable = ({
                         </div>
                         <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
                           Languages: {tool.languages?.join(', ')}
-                        </div>
-                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1 flex items-center'>
-                          <span>Bowtie:</span>
-                          {bowtieReport && (
-                            <>
-                              {bowtieData ? (
-                                <a
-                                  href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
-                                  target='blank'
-                                  onClick={(event) => event.stopPropagation()}
-                                  title='See at Bowtie'
-                                  className='ml-1'
-                                >
-                                  <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
-                                </a>
-                              ) : (
-                                <CancelIcon className='fill-current stroke-current w-4 h-4 ml-1' />
-                              )}
-                            </>
-                          )}
-                          {!bowtieReport && (
-                            <span className='ml-1'>Not available</span>
-                          )}
                         </div>
                         <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
                           Supported Dialects:
