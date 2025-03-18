@@ -225,12 +225,12 @@ const Home = (props: any) => {
 
               <p className='text-white mx-4 my-5 dark:text-slate-400'>
                 Please visit the JSON Schema{' '}
-                <a
+                <Link
                   className='underline'
                   href='https://landscape.json-schema.org/'
                 >
                   Landscape
-                </a>{' '}
+                </Link>{' '}
                 and discover more companies using JSON Schema.
               </p>
             </div>
@@ -513,12 +513,12 @@ const Home = (props: any) => {
                     </Link>
                   </button>
                   <button className='w-full max-w-[385px] min-w-[252px] text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center dark:border-none'>
-                    <a
+                    <Link
                       href='https://github.com/orgs/json-schema-org/discussions/34'
                       className='text-center'
                     >
                       Office Hours
-                    </a>
+                    </Link>
                   </button>
                 </div>
               </div>
@@ -546,14 +546,14 @@ const Home = (props: any) => {
                   </div>
                 </div>
 
-                <a
+                <Link
                   href='https://calendar.google.com/calendar/embed?src=json.schema.community%40gmail.com&ctz=Europe%2FLondon'
                   className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
                   View Calendar
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -583,42 +583,42 @@ const Home = (props: any) => {
             </h2>
             <p className='w-5/6 lg:w-3/5 mx-auto dark:text-slate-300'>
               If you ❤️ JSON Schema consider becoming a{' '}
-              <a
+              <Link
                 href='https://json-schema.org/overview/sponsors'
                 className='border-b border-black dark:border-white'
               >
                 sponsor
-              </a>
+              </Link>
               , a{' '}
-              <a
+              <Link
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
                 className='border-b border-black dark:border-white'
               >
                 backer
-              </a>{' '}
+              </Link>{' '}
               or hiring our{' '}
-              <a
+              <Link
                 href='/pro-help'
                 className='border-b border-black dark:border-white'
               >
                 pro services
-              </a>
+              </Link>
               .
             </p>
             <p className='w-5/6 lg:w-3/5 mx-auto'>
-              <a
+              <Link
                 href='https://opencollective.com/json-schema'
                 className='border-b border-black dark:border-white'
               >
                 Support us!
-              </a>
+              </Link>
             </p>
           </div>
           <div className=' text-center mb-12 '>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Gold Sponsors
             </h3>
-            <a
+            <Link
               href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
@@ -639,11 +639,11 @@ const Home = (props: any) => {
                 />
               </svg>
               <p className='block'>Your logo here</p>
-            </a>
+            </Link>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
             </h3>
-            <a
+            <Link
               href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
@@ -664,12 +664,12 @@ const Home = (props: any) => {
                 />
               </svg>
               <p>Your logo here</p>
-            </a>
+            </Link>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
-              <a
+              <Link
                 href=' https://www.asyncapi.com/'
                 target='_blank'
                 rel='noreferrer'
@@ -685,8 +685,8 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
-              <a
+              </Link>
+              <Link
                 href='https://www.airbnb.com/'
                 target='_blank'
                 rel='noreferrer'
@@ -702,8 +702,8 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
-              <a
+              </Link>
+              <Link
                 href='https://www.postman.com/'
                 target='_blank'
                 rel='noreferrer'
@@ -719,7 +719,7 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
+              </Link>
               <Link href='https://endjin.com/' target='_blank' rel='noreferrer'>
                 {isClient && (
                   <>
@@ -750,7 +750,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </Link>
-              <a
+              <Link
                 href='https://www.vpsserver.com/en-us/'
                 target='_blank'
                 rel='noreferrer'
@@ -766,8 +766,8 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
-              <a
+              </Link>
+              <Link
                 href='https://www.itflashcards.com/'
                 target='_blank'
                 rel='noreferrer'
@@ -783,8 +783,8 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
-              <a
+              </Link>
+              <Link
                 href='https://www.route4me.com/'
                 target='_blank'
                 rel='noreferrer'
@@ -800,7 +800,7 @@ const Home = (props: any) => {
                     />
                   </>
                 )}
-              </a>
+              </Link>
               <Link href='https://n8n.io/' target='_blank' rel='noreferrer'>
                 {isClient && (
                   <>
@@ -838,7 +838,7 @@ const Home = (props: any) => {
               >
                 <img src={octue_logo} className=' w-44' />
               </Link>
-              <a
+              <Link
                 href='https://www.apideck.com/'
                 target='_blank'
                 rel='noreferrer'
@@ -849,8 +849,8 @@ const Home = (props: any) => {
                   alt='The Realtime Unified API
 for Accounting integrations'
                 />
-              </a>
-              <a
+              </Link>
+              <Link
                 href='https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema'
                 target='_blank'
                 rel='noreferrer'
@@ -860,8 +860,8 @@ for Accounting integrations'
                   className=' w-44'
                   alt='The local Database for JavaScript Applications'
                 />
-              </a>
-              <a
+              </Link>
+              <Link
                 href='https://topagency.webflow.io'
                 target='_blank'
                 rel='noreferrer'
@@ -871,8 +871,8 @@ for Accounting integrations'
                   className=' w-44'
                   alt='best website design agencies'
                 />
-              </a>
-              <a
+              </Link>
+              <Link
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
@@ -893,7 +893,7 @@ for Accounting integrations'
                   />
                 </svg>
                 <p className='text-sm md:text-base'>Your logo here</p>
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -909,12 +909,12 @@ for Accounting integrations'
               The following companies support us by letting us use their
               products.
               <br />
-              <a
+              <Link
                 href='mailto:info@json-schema.org'
                 className='border-b border-black dark:border-white'
               >
                 Email us
-              </a>{' '}
+              </Link>{' '}
               for more info!
             </p>
           </div>
