@@ -32,3 +32,9 @@ Thanks for submitting a pull request! Please provide enough information so that 
 **Does this PR introduce a breaking change?**
 
 <!-- If this PR introduces a breaking change, please describe the impact and a migration path for existing applications. -->
+
+# Checklist
+
+Please ensure the following tasks are completed before submitting this pull request.
+
+- [ ] Read, understood, and followed the [contributing guidelines](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md).
