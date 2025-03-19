@@ -357,6 +357,7 @@ export const DocsNav = ({
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateGuides = active.getGuides ? 'rotate(180deg)' : 'rotate(0)';
 
   const { resolvedTheme } = useTheme();
 
@@ -590,7 +591,7 @@ export const DocsNav = ({
           </div>
           <svg
             style={{
-              transform: rotateG,
+              transform: rotateGuides,
               transition: 'all 0.2s linear',
               cursor: 'pointer',
             }}
