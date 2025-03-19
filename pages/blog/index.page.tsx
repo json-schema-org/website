@@ -122,9 +122,9 @@ export default function StaticMarkdownPage({
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-10 '>
+      <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-0 sm:mt-10'>
         {recentBlog[0] && (
-          <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
+          <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]'>
               <Image
                 src={recentBlog[0].frontmatter.cover}

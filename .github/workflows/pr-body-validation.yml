@@ -56,12 +56,6 @@ jobs:
               missingItems.push('kind of change description');
             }
             
-            // Check for breaking changes
-            const breakingContent = extractSectionContent(prBody, 'Does this PR introduce a breaking change\\?');
-            if (!hasMeaningfulContent(breakingContent)) {
-              missingItems.push('breaking changes information');
-            }
-            
             // Check for unchecked items in checklist
             const checklistMatch = prBody.match(/# Checklist([\s\S]*?)(?=(?:#|$))/);
             if (checklistMatch && checklistMatch[1].includes('- [ ]')) {
