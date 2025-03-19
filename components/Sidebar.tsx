@@ -10,6 +10,7 @@ import CarbonAds from './CarbonsAds';
 import { useTheme } from 'next-themes';
 import ExternalLinkIcon from '../public/icons/external-link-black.svg';
 import Image from 'next/image';
+import TableOfContents from './TableOfContents';
 const DocLink = ({
   uri,
   label,
@@ -253,8 +254,16 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               />
             </div>
           </div>
-          <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'>
+
+          <div
+            id='main-content'
+            className='col-span-4 md:col-span-2 lg:col-span-2 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'
+          >
             {children}
+          </div>
+
+          <div className='sticky top-16 hidden lg:block'>
+            <TableOfContents />
           </div>
         </div>
       </section>
