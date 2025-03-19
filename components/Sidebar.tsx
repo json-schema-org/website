@@ -65,7 +65,7 @@ const DocLinkBlank = ({
   return (
     <Link
       href={uri}
-      className={classnames('flex text-sm block  py-1 pl-2', {
+      className={classnames('flex text-sm py-1 pl-2', {
         'font-medium': !isActive,
         'text-primary text-bold border-l-2 border-l-primary font-semibold':
           isActive,
@@ -111,6 +111,7 @@ const getDocsPath = [
   '/overview/code-of-conduct',
   '/overview/faq',
   '/overview/roadmap',
+  '/overview/pro-help',
 ];
 const getStartedPath = [
   '/learn',

@@ -13,7 +13,7 @@ This document outlines the guidelines for contributing to and maintaining GitHub
 
 Our YAML files are organized based on specific roles and event triggers. When creating or modifying workflows, ensure that:
 - The file roles described below are strictly maintained.
-- Job sequences within workflows are preserved using [GitHub Action job dependencies](https://docs.github.com/en/actions/using-workflows/using-jobs-in-a-workflow#defining-prerequisite-jobs).
+- Job sequences within workflows are preserved using [GitHub Action job dependencies](https://docs.github.com/en/actions/writing-workflows/choosing-what-your-workflow-does/using-jobs-in-a-workflow#defining-prerequisite-jobs).
 
 ### File Categorization
 
@@ -42,7 +42,7 @@ Separate files may be created for workflows that:
 
 - Only work correctly if they have a dedicated file.
   Examples:
-  - [Preview Deployment](./preview-deployment.yml): Deploys preview environments for pull requests.
+  - [Preview Deployment](./deploy-preview.yml): Deploys preview environments for pull requests.
   - [Production Deployment](./production-deployment.yml): Handles production deployments.
   - [CodeQL Code Scanning](./codeql.yml): Performs code security analysis.
   - [Check PR Dependencies](./pr-dependencies.yml): Enforces dependencies between PRs based on opening comments.

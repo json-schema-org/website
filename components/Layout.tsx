@@ -8,7 +8,6 @@ import useStore from '~/store';
 import { SectionContext } from '~/context';
 import { useTheme } from 'next-themes';
 import DarkModeToggle from './DarkModeToggle';
-import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import ScrollButton from './ScrollButton';
 import Image from 'next/image';
 
@@ -138,7 +137,7 @@ const MainNavLink = ({
   className?: string;
 }) => {
   const router = useRouter();
-  const isActiveNav = extractPathWithoutFragment(router.asPath) === uri;
+  const isActiveNav = router.asPath.startsWith(uri);
 
   return (
     <Link
