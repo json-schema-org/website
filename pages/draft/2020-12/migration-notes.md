@@ -183,7 +183,22 @@ For fixed-length arrays (tuples), replace `items` with `prefixItems`:
 
 To validate additional items beyond `prefixItems`, `items` can still be used:
 
+**Before (Draft 2019-09):**
+
+```json
+{
+  "type": "array",
+  "items": [
+    { "type": "string" },
+    { "type": "number" }
+  ],
+  "additionalItems": { "type": "boolean" }
+}
 ```
+
+**After (Draft 2020-12):**
+
+```json
 {
   "type": "array",
   "prefixItems": [
