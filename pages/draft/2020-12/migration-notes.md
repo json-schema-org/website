@@ -14,7 +14,7 @@ JSON Schema Draft 2020-12 introduces key improvements over Draft 2019-09, focusi
 | $anchor | remained $anchor | Core |  | In 2019-09, $anchor could use a colon and not start with an underscore, but in 2020-12, the upgrade in syntax rule can't use a colon. |
 | $schema | remained $schema | Core |  | The behavior was updated to use dialect 2020-12  |
 | $recursiveAnchor | `$dynamicAnchor` | Core | Identifier | Similar to `$anchor`, but supports `$dynamicRef` for flexible schema resolution and $dynamicAnchor now has its own syntax. |
-| $recursiveRef | `$dynamicRef` | Core | Identifier | Works with `$dynamicAnchor` to allow referencing dynamically resolved schemas at runtime. |
+| $recursiveRef | `$dynamicRef` | Core | Applicator | Works with `$dynamicAnchor` to allow referencing dynamically resolved schemas at runtime. |
 | $vocabulary | `$vocabulary` | Core | Identifier | Specifies which vocabularies a schema uses in 2019-09, but the update now uses format-annotation aiding compatibility and extensibility. |
 | `items` (used for both lists and tuples) | `prefixItems` | Core | Applicator | Separates tuple validation (`prefixItems`) from list validation (`items`). Now, `items` applies only to additional elements beyond `prefixItems`. |
 | $vocabulary |  | Core |  |  |
