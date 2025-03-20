@@ -70,7 +70,10 @@ Draft 7 introduces conditional validation, which allows schemas to specify diffe
   "properties": {
     "age": { "type": "integer" }
   },
-  "if": { "properties": { "age": { "minimum": 18 } } },
+  "if": {
+    "properties": { "age": { "minimum": 18 } },
+    "required": ["age"]
+  },
   "then": { "properties": { "canVote": { "const": true } } },
   "else": { "properties": { "canVote": { "const": false } } }
 }
