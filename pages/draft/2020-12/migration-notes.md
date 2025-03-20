@@ -16,7 +16,7 @@ JSON Schema Draft 2020-12 introduces key improvements over Draft 2019-09, focusi
 | $recursiveAnchor | `$dynamicAnchor` | Core | Identifier | Similar to `$anchor`, but supports `$dynamicRef` for flexible schema resolution and $dynamicAnchor now has its own syntax. |
 | $recursiveRef | `$dynamicRef` | Core | Identifier | Works with `$dynamicAnchor` to allow referencing dynamically resolved schemas at runtime. |
 | $vocabulary | `$vocabulary` | Core | Identifier | Specifies which vocabularies a schema uses in 2019-09, but the update now uses format-annotation aiding compatibility and extensibility. |
-| `items` (used for both lists and tuples) | `prefixItems` | Core | Applicator/Annotation | Separates tuple validation (`prefixItems`) from list validation (`items`). Now, `items` applies only to additional elements beyond `prefixItems`. |
+| `items` (used for both lists and tuples) | `prefixItems` | Core | Applicator | Separates tuple validation (`prefixItems`) from list validation (`items`). Now, `items` applies only to additional elements beyond `prefixItems`. |
 | $vocabulary |  | Core |  |  |
 
 ### Tutorial
