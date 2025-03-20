@@ -84,16 +84,71 @@ To reference dynamically:
 
 ##### 3. Declaring Supported Vocabularies with `$vocabulary`
 
-Explicitly declare the vocabularies your schema uses:
+For your custom dialects, you'll need to update a couple of vocabulary declarations.
 
-**Example:**
+If you're using `format` as annotations (the default), you'll make the following change.
 
-```
+**Before (Draft 2019-09):**
+
+```json
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$vocabulary": {
-    "https://json-schema.org/draft/2020-12/vocab/core": true,
-    "https://json-schema.org/draft/2020-12/vocab/applicator": true
+    "https://json-schema.org/draft/2019-09/vocab/format": false
+  }
+}
+```
+
+**After (Draft 2020-12):**
+
+```json
+{
+  "$vocabulary": {
+    "https://json-schema.org/draft/2020-12/vocab/format-annotation": true
+  }
+}
+```
+
+If you're using `format` as annotations, do this instead,
+
+**Before (Draft 2019-09):**
+
+```json
+{
+  "$vocabulary": {
+    "https://json-schema.org/draft/2019-09/vocab/format": true
+  }
+}
+```
+
+**After (Draft 2020-12):**
+
+```json
+{
+  "$vocabulary": {
+    "https://json-schema.org/draft/2020-12/vocab/format-assertion": true
+  }
+}
+```
+
+Next, update your Applicator vocabulary declaration to include Unevaluated.
+
+**Before (Draft 2019-09):**
+
+```json
+{
+  "$vocabulary": {
+    "https://json-schema.org/draft/2019-09/vocab/applicator": true
+  }
+}
+```
+
+**After (Draft 2020-12):**
+
+```json
+{
+  "$vocabulary": {
+    "https://json-schema.org/draft/2020-12/vocab/applicator": true,
+    "https://json-schema.org/draft/2020-12/vocab/unevaluated": true
   }
 }
 ```
