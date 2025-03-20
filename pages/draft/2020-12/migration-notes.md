@@ -45,13 +45,13 @@ Reference the correct Draft 2020-12 meta-schema to ensure compatibility:
 
 ##### 2. Using `$dynamicAnchor` and `$dynamicRef`
 
-Switch to `$dynamicAnchor` when defining flexible anchors:
+Switch to `$dynamicAnchor` when defining recursive schemas:
 
 **Before (Draft 2019-09):**
 
 ```
 {
-  "$anchor": "mySchema"
+  "$recursiveAnchor": true
 }
 ```
 
