@@ -21,7 +21,7 @@ Below is a summary table highlighting keyword changes between Draft 3 and Draft 
 | `required`        | `required`        | Validation    | Assertion         | The `required` keyword shifted from being a boolean within each property to a standalone keyword that takes an array of required property names outside of properties. |
 | `divisibleBy`     | `multipleOf`      | Validation    | Assertion         | `divisibleBy` was renamed to `multipleOf` with a stricter requirement that its value must be greater than 0.                                                           |
 | `extends`         | removed           | Validation    | Applicator        | The `extends` keyword was removed; allOf was added as a new keyword to achieve similar functionality.                                                                  |
-| `format`          | `format`          | Validation    | Annotation        | -                                                                                                                                                                      |
+| `format`          | `format`          | Validation    | Annotation        | The attributes `phone`, `style`, and `color` have been removed and ip-address has been renamed to `ipv4`.                                                                                                                                                                |
 | `dependencies`    | `dependencies`    | Core          | Assertion         | The `dependencies` member values were changed to require an array of strings or a schema, eliminating the use of single strings.                                       |
 | `id`              | `id`              | Core          | Identifier        | -                                                                                                                                                                      |
 | Not present       | `allOf`           | Core          | Applicator        | -                                                                                                                                                                      |
@@ -58,16 +58,13 @@ The `allOf` keyword has now replaced the previous type schema functionality.
 In Draft 3, these identifiers were considered valid:
 
 ```json
-id: ""
-id: "#"
+"id": ""
+"id": "#"
 ```
 
 However, this format is now prohibited from Draft 4 onwards.
 </Infobox>
 
-<Infobox label="Note">
-Before Draft 3, the JSON Schema only included the Core specification, which outlined the foundational elements for schema structure. With Draft 4, the specification expanded to incorporate Validation, establishing rules for data format, structure, and type requirements. This addition enabled schema authors to define and enforce validation constraints directly within their schemas, making it easier for implementers to ensure data integrity and compatibility as schemas evolved.
-</Infobox>
 
 ### Tutorial
 
