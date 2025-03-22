@@ -301,9 +301,13 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>
               Start learning JSON Schema
             </h2>
-            <button className='w-[170px] h-[45px] mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out rounded border-2 bg-primary text-white font-semibold dark:border-none'>
-              <a href='/docs '>Read the docs</a>
-            </button>
+            <a
+              href='/docs'
+              rel='noopener noreferrer'
+              className='w-[170px] h-[45px] mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out rounded border-2 bg-primary text-white font-semibold dark:border-none flex items-center justify-center'
+            >
+              Read the docs
+            </a>
           </div>
         </section>
 
@@ -331,9 +335,13 @@ const Home = (props: any) => {
               Generators, Linters, and other JSON Schema Utilities made by this
               amazing Community.
             </p>
-            <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out h-[45px] rounded border-2 bg-primary text-white dark:border-none'>
-              <a href='/tools/'>Explore</a>
-            </button>
+            <a
+              href='/tools/'
+              rel='noopener noreferrer'
+              className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out h-[45px] rounded border-2 bg-primary text-white dark:border-none flex items-center justify-center'
+            >
+              Explore
+            </a>
           </div>
         </section>
 
@@ -504,16 +512,21 @@ const Home = (props: any) => {
                   third Monday of the month at 12:00 PT.
                 </p>
                 <div className=''>
-                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'>
-                    <a href='https://github.com/orgs/json-schema-org/discussions/35'>
-                      Open Community Working Meetings
-                    </a>
-                  </button>
-                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] flex items-center justify-center mx-auto dark:border-none'>
-                    <a href='https://github.com/orgs/json-schema-org/discussions/34/'>
-                      Office Hours
-                    </a>
-                  </button>
+                  <a
+                    href='https://github.com/orgs/json-schema-org/discussions/35'
+                    rel='noopener noreferrer'
+                    className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'
+                  >
+                    Open Community Working Meetings
+                  </a>
+
+                  <a
+                    href='https://github.com/orgs/json-schema-org/discussions/34/'
+                    rel='noopener noreferrer'
+                    className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
+                  >
+                    Office Hours
+                  </a>
                 </div>
               </div>
               <div className='p-2'>
@@ -560,11 +573,13 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6 dark:text-slate-200'>
               Start contributing to JSON Schema
             </h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none'>
-              <a href='https://github.com/json-schema-org#-contributing-to-json-schema'>
-                Contribute
-              </a>
-            </button>
+            <a
+              href='https://github.com/json-schema-org#-contributing-to-json-schema'
+              rel='noopener noreferrer'
+              className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none flex items-center justify-center'
+            >
+              Contribute
+            </a>
           </div>
         </section>
 
