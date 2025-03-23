@@ -37,4 +37,6 @@ Thanks for submitting a pull request! Please provide enough information so that 
 
 Please ensure the following tasks are completed before submitting this pull request.
 
+- [ ] I have reviewed my code for formatting and consistency, and I have run `yarn lint` without any errors.
+
 - [ ] Read, understood, and followed the [contributing guidelines](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md).
