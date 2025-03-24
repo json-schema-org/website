@@ -32,7 +32,7 @@ const DocLink = ({
     <Link
       href={uri}
       className={classnames(
-        'text-sm block py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-primary',
+        'text-sm block py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-[#007bff]',
         {
           'font-medium': !isActive,
           'text-primary dark:text-[#007bff] font-bold border-l-2 border-l-primary':
@@ -70,7 +70,7 @@ const DocLinkBlank = ({
     <Link
       href={uri}
       className={classnames(
-        'flex text-sm py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-primary',
+        'flex text-sm py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-[#007bff]',
         {
           'font-medium': !isActive,
           'text-primary font-bold border-l-2 border-l-primary': isActive,
