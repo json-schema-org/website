@@ -611,7 +611,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getGuides })}
+          className={classnames(
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getGuides,
+              'max-h-80 opacity-100': active.getGuides,
+            },
+          )}
           id='Guides'
         >
           <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
