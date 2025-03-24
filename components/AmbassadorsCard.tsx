@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 interface Contribution {
   title: string;
@@ -202,27 +203,25 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
             {contributions.map((contribution, index) => (
               <li
                 key={index}
-                className='mb-2 transform transition-all duration-300 ease-in-out'
-                style={{
-                  transitionDelay: `${index * 100}ms`,
-                  opacity: showContributions ? 1 : 0,
-                  transform: showContributions
-                    ? 'translateY(0)'
-                    : 'translateY(10px)',
-                }}
+                className={`mb-2 transition-all duration-300 ease-in-out ${
+                  showContributions
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 translate-y-2'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <strong>{contribution.title}</strong>
                 {contribution.date &&
                   ` (${contribution.date.month} ${contribution.date.year})`}{' '}
                 -
-                <a
+                <Link
                   href={contribution.link}
                   className='text-blue-600 dark:text-blue-400 ml-1 hover:underline'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
                   {contribution.type}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
