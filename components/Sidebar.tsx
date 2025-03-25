@@ -178,24 +178,25 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (open) {
-        document.body.style.overflow = 'hidden';
-      } else {
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setOpen(false);
         document.body.style.overflow = 'unset';
       }
+    };
 
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 1024) {
-          setOpen(false);
-          document.body.style.overflow = 'unset';
-        }
-      });
-
-      return () => {
-        document.body.style.overflow = 'unset';
-      };
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
     }
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.body.style.overflow = 'unset';
+    };
   }, [open]);
 
   return (
@@ -252,9 +253,9 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
         <div className='h-12 mt-[4.5rem] lg:hidden'></div>
 
         <div
-          className={`z-[150] fixed top-[calc(4.5rem+3rem)] left-0 h-[calc(100vh-4.5rem-3rem)] w-screen  dark:bg-slate-900 dark:shadow-lg transform ${open ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md overflow-y-auto pt-4`}
+          className={`z-[150] fixed top-[calc(4.5rem+3rem)] left-0 h-[calc(100vh-4.5rem-3rem)] w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${open ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md overflow-y-auto pt-4`}
         >
-          <div className='flex flex-col  dark:bg-slate-900 min-h-full'>
+          <div className='flex flex-col bg-white dark:bg-slate-900 min-h-full'>
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
