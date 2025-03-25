@@ -521,7 +521,13 @@ const Home = (props: any) => {
                   <Headline4>Upcoming events</Headline4>
                   <div>
                     <ul>
-                      {props.datesInfo.map((event: any, index: any) => (
+                      {(() => {
+                        const today = new Date();
+                        const upcomingEvents = props.datesInfo.filter((event: any) => {
+                        const eventDate = new Date(event.year, event.month - 1, event.day);
+                        return eventDate >= today;
+                      });
+                      return upcomingEvents.map((event: any, index: any) => (
                         <li key={index}>
                           <div className='flex mb-4'>
                             <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
@@ -535,7 +541,8 @@ const Home = (props: any) => {
                             </div>
                           </div>
                         </li>
-                      ))}
+                      ));
+                    })()}
                     </ul>
                   </div>
                 </div>
@@ -930,3 +937,4 @@ for Accounting integrations'
 
 export default Home;
 Home.getLayout = (page: React.ReactNode) => getLayout(page);
+
