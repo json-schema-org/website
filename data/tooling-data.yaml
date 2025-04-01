@@ -3224,3 +3224,32 @@
   supportedDialects:
      draft: ['1', '2', '3', '4', '6']
   
+- name: Java types generator from JSON Schema with Micronaut
+  description: 'Generates JSON Schema from Java classes, supporting the Micronaut framework.'
+  toolingTypes: ['schema-to-code']
+  languages: ['Java', 'Groovy', 'Kotlin', 'bytecode']
+  maintainers:
+    - name: 'Elif Kurtay'
+      username: 'elifKurtay'
+      platform: 'github'
+    - name: 'Sergio del Amo'
+      username: 'sdelamo'
+      platform: 'github'
+    - name: 'Andriy Dmytruk'
+      username: 'andriy-dmytruk'
+      platform: 'github'
+  creators:
+    - name: 'Elif Kurtay'
+      platform: 'github'    
+    - name: 'Andriy Dmytruk'
+      platform: 'github'    
+    - name: 'Graeme Rocher'
+      platform: 'github'    
+    - name: 'Sergio del Amo'
+      platform: 'github'    
+  license: 'Apache-2.0'
+  source: 'https://github.com/micronaut-projects/micronaut-json-schema'
+  homepage: 'https://micronaut-projects.github.io/micronaut-json-schema/latest/guide/'
+  supportedDialects:
+    draft: ['2020-12']
+  
