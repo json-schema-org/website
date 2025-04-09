@@ -78,10 +78,10 @@ const TableOfContents: React.FC = () => {
         {headings.map((heading) => (
           <li
             key={heading.id}
-            className={`pl-${(heading.level - 1) * 2} ${
+            className={`pl-${(heading.level - 1) * 2} mb-2 ${
               activeId === heading.id
-                ? 'text-primary font-semibold'
-                : 'text-slate-600'
+                ? 'text-primary font-semibold dark:text-primary'
+                : 'text-slate-600 dark:text-slate-300'
             }`}
           >
             <a href={`#${heading.id}`}>{heading.text}</a>
