@@ -70,7 +70,7 @@ const TableOfContents: React.FC = () => {
   }, [router.asPath]);
 
   return (
-    <nav className='w-full p-4 sticky top-24 overflow-y-auto scrollbar-hide'>
+    <nav className='w-full p-4 sticky top-24 overflow-y-auto scrollbar-hide mb-8'>
       <h2 className='text-xl font-bold uppercase text-slate-400 mb-4'>
         On this page
       </h2>
