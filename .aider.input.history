@@ -1,0 +1,33 @@
+
+# 2025-04-10 03:03:06.060819
++n
+
+# 2025-04-10 03:03:43.860543
++fix all these things in toc related ,,,,,,,,Text color not good in dark mode
++The corresponding texts are mixed up, pls. fix it
++It requires more gap between footer and TOC component
++Edit this page on GitHub looks broken it needs to be fixed.
++/pro-help and other pages looks odd after adding this feature, so you need to adjust the overall layout of the pages
+
+# 2025-04-10 03:04:58.045840
++/add pages\overview\pro-help\index.page.tsx components\DocsHelp.tsx components\Layout.tsx components\TableOfContents.tsx 
+
+# 2025-04-10 03:05:02.456627
++Text color not good in dark mode
++The corresponding texts are mixed up, pls. fix it
++It requires more gap between footer and TOC component
++Edit this page on GitHub looks broken it needs to be fixed.
++/pro-help and other pages looks odd after adding this feature, so you need to adjust the overall layout of the pages
+
+# 2025-04-10 03:08:25.347428
++why comes "exmaple" in every page,,,,,see On this page
++Example
++Welcome
++Need Help?
++Did you find these docs helpful?
++Help us make our docs great!
++Still Need Help?
++
+
+# 2025-04-10 03:09:09.546457
++/undo

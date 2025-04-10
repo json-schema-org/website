@@ -257,12 +257,12 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
 
           <div
             id='main-content'
-            className='col-span-4 md:col-span-2 lg:col-span-2 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'
+            className='col-span-4 md:col-span-2 lg:col-span-2 lg:mt-20 pr-4 mx-4 md:mx-0'
           >
             {children}
           </div>
 
-          <div className='sticky top-16 hidden lg:block'>
+          <div className='sticky top-16 hidden lg:block lg:mt-20'>
             <TableOfContents />
           </div>
         </div>
