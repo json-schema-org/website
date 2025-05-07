@@ -1275,7 +1275,7 @@
 
 - name: mashumaro
   description: 'mashumaro generates schemas from Python type annotations.'
-  toolingTypes: ['schema-to-code']
+  toolingTypes: ['code-to-schema']
   languages: ['Python']
   maintainers:
     - name: 'Alexander Tikhonov'
