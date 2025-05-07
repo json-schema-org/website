@@ -164,13 +164,13 @@ export default function communityPages(props: any) {
                   className='mt-10 mx-auto flex justify-center items-center'
                   data-testid='HomeCard-button'
                 >
-                  <a
+                  <Link
                     href='/ambassadors'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
                     Become an ambassador
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -191,13 +191,13 @@ export default function communityPages(props: any) {
                   projects, and connect with +5000 practitioners and experts.
                 </h2>
                 <div className='mt-10'>
-                  <a
+                  <Link
                     href='/slack'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
                     Join Slack
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -298,13 +298,13 @@ export default function communityPages(props: any) {
                     </p>
                   </h2>
                   <div className='mt-10'>
-                    <a
+                    <Link
                       href='/blog'
                       rel='noopener noreferrer'
                       className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                     >
                       Read blog
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -376,13 +376,13 @@ export default function communityPages(props: any) {
                   </div>
                 </Link>
                 <div className='mx-auto '>
-                  <a
+                  <Link
                     href='/blog'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
                   >
                     Read more posts
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
