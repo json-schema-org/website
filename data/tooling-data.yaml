@@ -1287,7 +1287,7 @@
 
 - name: Java types generator from JSON Schema with Micronaut
   description: 'Generates JSON Schema from Java classes, supporting the Micronaut framework.'
-  toolingTypes: ['schema-to-code']
+  toolingTypes: ['code-to-schema']
   languages: ['Java', 'Groovy', 'Kotlin', 'bytecode']
   maintainers:
     - name: 'Elif Kurtay'
