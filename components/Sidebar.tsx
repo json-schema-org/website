@@ -357,6 +357,7 @@ export const DocsNav = ({
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
+  const rotateGuides = active.getGuides ? 'rotate(180deg)' : 'rotate(0)';
 
   const { resolvedTheme } = useTheme();
 
@@ -590,7 +591,7 @@ export const DocsNav = ({
           </div>
           <svg
             style={{
-              transform: rotateG,
+              transform: rotateGuides,
               transition: 'all 0.2s linear',
               cursor: 'pointer',
             }}
@@ -610,7 +611,14 @@ export const DocsNav = ({
           </svg>
         </div>
         <div
-          className={classnames('ml-6', { hidden: !active.getGuides })}
+          className={classnames(
+            'ml-6',
+            'transition-all duration-500 ease-in-out',
+            {
+              'max-h-0 opacity-0 overflow-hidden': !active.getGuides,
+              'max-h-80 opacity-100': active.getGuides,
+            },
+          )}
           id='Guides'
         >
           <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
