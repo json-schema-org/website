@@ -72,13 +72,6 @@ export default function ImplementationsPages({
           link='/draft-06/migration-notes'
         />
         <Card
-          title='Draft-04 to Draft-05'
-          body='Details for migrations from Draft-04 to Draft-05.'
-          headerSize='small'
-          bodyTextSize='small'
-          link='/draft-05/migration-notes'
-        />
-        <Card
           title='Draft-03 to Draft-04'
           body='Details for migrations from Draft-03 to Draft-04.'
           headerSize='small'
