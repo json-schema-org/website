@@ -6,7 +6,12 @@ export default function slugifyMarkdownHeadline(
   const FRAGMENT_REGEX = /\[#(?<slug>(\w|-|_)*)\]/g;
   if (!markdownChildren) return '';
   if (typeof markdownChildren === 'string')
-    return slugify(markdownChildren, { lower: true, trim: true, remove: /[*+~.()'"!:@]/g, });
+    return slugify(markdownChildren, {
+      lower: true,
+      trim: true,
+      remove: /[*+~.()'"!:@]/g,
+    });
+
   const metaSlug = markdownChildren.reduce((acc, child) => {
     if (acc) return acc;
     if (typeof child !== 'string') return null;
@@ -21,8 +26,10 @@ export default function slugifyMarkdownHeadline(
     .filter((child) => typeof child === 'string')
     .map((string) => string.replace(FRAGMENT_REGEX, ''))
     .join(' ');
-  const slug = slugify(joinedChildren, { lower: true, trim: true, remove: /[*+~.()'"!:@]/g, });
+  const slug = slugify(joinedChildren, {
+    lower: true,
+    trim: true,
+    remove: /[*+~.()'"!:@]/g,
+  });
   return slug;
 }
-
-
