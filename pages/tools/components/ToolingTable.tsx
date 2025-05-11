@@ -7,7 +7,7 @@ import React, {
 } from 'react';
 
 import { Headline2 } from '~/components/Headlines';
-import CancelIcon from '~/public/icons/cancel.svg';
+import InfoIcon from '~/public/icons/icons8-info.svg';
 import OutLinkIcon from '~/public/icons/outlink.svg';
 
 import toTitleCase from '../lib/toTitleCase';
@@ -259,7 +259,7 @@ const ToolingTable = ({
                                 <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                               </a>
                             ) : (
-                              <CancelIcon className='fill-current stroke-current w-4 h-4' />
+                              <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                             )}
                           </div>
                         )}
