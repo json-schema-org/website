@@ -867,7 +867,7 @@ for Accounting integrations'
                 />
               </a>
               <a
-                href='https://anonstories.com'
+                href='https://anonstories.com/'
                 target='_blank'
                 rel='noreferrer'
               >
