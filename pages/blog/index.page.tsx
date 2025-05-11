@@ -189,7 +189,7 @@ export default function StaticMarkdownPage({
           </div>
 
           <div className='flex h-full flex-col justify-center items-center text-sm sm:text-base px-4 my-2'>
-            <a
+            <Link
               href='/rss/feed.xml'
               className='flex items-center text-blue-500 hover:text-blue-600 cursor-pointer'
             >
@@ -201,7 +201,7 @@ export default function StaticMarkdownPage({
                 width={20}
               />
               RSS&nbsp;Feed
-            </a>
+            </Link>
           </div>
         </div>
         {/* Filter Buttons */}
