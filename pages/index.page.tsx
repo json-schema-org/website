@@ -112,6 +112,7 @@ const Home = (props: any) => {
   const [apideck_logo, setApideck_logo] = useState('');
   const [rxdb_logo, setRxdb_logo] = useState('');
   const [wda_logo, setWDA_logo] = useState('');
+  const [anon_logo, setAnon_logo] = useState('');
 
   useEffect(() => {
     // Ensure the component is only rendered client-side
@@ -135,6 +136,7 @@ const Home = (props: any) => {
       setApideck_logo('/img/logos/sponsors/apideck-white.svg');
       setRxdb_logo('/img/logos/sponsors/rxdb.svg');
       setWDA_logo('/img/logos/sponsors/wda-dark.svg');
+      setAnon_logo('/img/logos/sponsors/anon-white.png');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -152,6 +154,7 @@ const Home = (props: any) => {
       setApideck_logo('/img/logos/sponsors/apideck.svg');
       setRxdb_logo('/img/logos/sponsors/rxdb.svg');
       setWDA_logo('/img/logos/sponsors/wda.svg');
+      setAnon_logo('/img/logos/sponsors/anon-black.png');
     }
   }, [resolvedTheme]);
   return (
@@ -861,6 +864,17 @@ for Accounting integrations'
                   src={wda_logo}
                   className=' w-44'
                   alt='best website design agencies'
+                />
+              </a>
+              <a
+                href='https://anonstories.com'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={anon_logo}
+                  className=' w-44'
+                  alt='Instagram Story Viewer'
                 />
               </a>
               <a
