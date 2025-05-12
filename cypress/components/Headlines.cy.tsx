@@ -95,9 +95,9 @@ describe('Headlines Component', () => {
   it('should be active if the URL has the hash', () => {
     /* Testing the active headline with Headline1 */
 
-    const title = 'What is JSON Schema?'
-    const slug = slugifyMarkdownHeadline(title)
-    
+    const title = 'What is JSON Schema?';
+    const slug = slugifyMarkdownHeadline(title);
+
     // Update the existing mock router's properties
     mockRouter.asPath = `/#${slug}`;
 

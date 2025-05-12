@@ -31,7 +31,6 @@ export default function slugifyMarkdownHeadline(
     lower: true,
     trim: true,
     remove: /[*+~()'"!]/g,
-
   });
   return slug;
 }
