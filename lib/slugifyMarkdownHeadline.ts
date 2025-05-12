@@ -9,7 +9,7 @@ export default function slugifyMarkdownHeadline(
     return slugify(markdownChildren, {
       lower: true,
       trim: true,
-      remove: /[*+~.()'"!:@]/g,
+      remove: /[*+~()'"!]/g,
     });
 
   const metaSlug = markdownChildren.reduce((acc, child) => {
@@ -26,10 +26,12 @@ export default function slugifyMarkdownHeadline(
     .filter((child) => typeof child === 'string')
     .map((string) => string.replace(FRAGMENT_REGEX, ''))
     .join(' ');
+
   const slug = slugify(joinedChildren, {
     lower: true,
     trim: true,
-    remove: /[*+~.()'"!:@]/g,
+    remove: /[*+~()'"!]/g,
+
   });
   return slug;
 }
