@@ -31,7 +31,7 @@
     "axios": "1.7.7",
     "babel-loader": "^9.2.1",
     "classnames": "^2.5.1",
-    "feed": "^4.2.2",
+    "feed": "^5.0.0",
     "file-saver": "^2.0.5",
     "fuse.js": "^7.0.0",
     "gray-matter": "^4.0.3",
