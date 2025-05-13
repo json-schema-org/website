@@ -6,6 +6,7 @@ import {
   Headline4,
 } from '~/components/Headlines';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
+import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 
 describe('Headlines Component', () => {
   let mockRouter: MockRouter;
@@ -94,11 +95,13 @@ describe('Headlines Component', () => {
   it('should be active if the URL has the hash', () => {
     /* Testing the active headline with Headline1 */
 
+    const title = 'What is JSON Schema?';
+    const slug = slugifyMarkdownHeadline(title);
     // Set the URL with the hash
-    mockRouter.asPath = '/#what-is-json-schema';
+    mockRouter.asPath = `/#${slug}`;
 
     // Check if Correct headline is active
-    cy.mount(<Headline1>What is JSON Schema?</Headline1>);
+    cy.mount(<Headline1>{title}</Headline1>);
     cy.get('span').should(
       'have.class',
       'text-startBlue dark:text-endBlue inline-block ml-2',
