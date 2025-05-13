@@ -5,8 +5,8 @@ prev:
   label: Annotations
   url: /understanding-json-schema/reference/annotations
 next: 
-  label: Enumerated values
-  url: /understanding-json-schema/reference/enum
+  label: Conditional Schema validation
+  url: /understanding-json-schema/reference/conditionals
 ---
 
 <Star label="New in draft 7" />

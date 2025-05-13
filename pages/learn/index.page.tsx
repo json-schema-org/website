@@ -76,8 +76,8 @@ export default function Welcome() {
       <NextPrevButton
         prevLabel='Code of conduct'
         prevURL='/overview/code-of-conduct'
-        nextLabel='Creating your first Schema'
-        nextURL='/learn/getting-started-step-by-step'
+        nextLabel='What is a schema'
+        nextURL='/understanding-json-schema/about'
       />
       <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
