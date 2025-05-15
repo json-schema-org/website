@@ -3291,6 +3291,34 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-compose-refs@npm:1.1.2":
+  version: 1.1.2
+  resolution: "@radix-ui/react-compose-refs@npm:1.1.2"
+  peerDependencies:
+    "@types/react": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/d36a9c589eb75d634b9b139c80f916aadaf8a68a7c1c4b8c6c6b88755af1a92f2e343457042089f04cc3f23073619d08bb65419ced1402e9d4e299576d970771
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-slot@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@radix-ui/react-slot@npm:1.2.2"
+  dependencies:
+    "@radix-ui/react-compose-refs": "npm:1.1.2"
+  peerDependencies:
+    "@types/react": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+  checksum: 10c0/74489f5ad11b17444560a1cdd664c01308206ce5cb9fcd46121b45281ece20273948479711411223c1081f709c15409242d51ca6cc57ff81f6335d70e0cbe0b5
+  languageName: node
+  linkType: hard
+
 "@rushstack/eslint-patch@npm:^1.3.3":
   version: 1.6.0
   resolution: "@rushstack/eslint-patch@npm:1.6.0"
@@ -5069,6 +5097,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"class-variance-authority@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "class-variance-authority@npm:0.7.1"
+  dependencies:
+    clsx: "npm:^2.1.1"
+  checksum: 10c0/0f438cea22131808b99272de0fa933c2532d5659773bfec0c583de7b3f038378996d3350683426b8e9c74a6286699382106d71fbec52f0dd5fbb191792cccb5b
+  languageName: node
+  linkType: hard
+
 "classnames@npm:^2.5.1":
   version: 2.5.1
   resolution: "classnames@npm:2.5.1"
@@ -5130,6 +5167,13 @@ __metadata:
     strip-ansi: "npm:^6.0.0"
     wrap-ansi: "npm:^6.2.0"
   checksum: 10c0/35229b1bb48647e882104cac374c9a18e34bbf0bace0e2cf03000326b6ca3050d6b59545d91e17bfe3705f4a0e2988787aa5cde6331bf5cbbf0164732cef6492
+  languageName: node
+  linkType: hard
+
+"clsx@npm:^2.1.1":
+  version: 2.1.1
+  resolution: "clsx@npm:2.1.1"
+  checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
   languageName: node
   linkType: hard
 
@@ -8332,6 +8376,7 @@ __metadata:
     "@cypress/code-coverage": "npm:^3.13.12"
     "@docsearch/react": "npm:3.8.0"
     "@next/eslint-plugin-next": "npm:^14.0.1"
+    "@radix-ui/react-slot": "npm:^1.2.2"
     "@svgr/webpack": "npm:^8.1.0"
     "@types/babel__core": "npm:^7"
     "@types/babel__preset-env": "npm:^7"
@@ -8348,7 +8393,9 @@ __metadata:
     axios: "npm:1.7.7"
     babel-loader: "npm:^9.2.1"
     babel-plugin-istanbul: "npm:^7.0.0"
+    class-variance-authority: "npm:^0.7.1"
     classnames: "npm:^2.5.1"
+    clsx: "npm:^2.1.1"
     cypress: "npm:^13.13.1"
     eslint: "npm:8.57.0"
     eslint-config-next: "npm:14.2.3"
@@ -8370,6 +8417,7 @@ __metadata:
     js-yaml: "npm:^4.1.0"
     jsonpath: "npm:^1.1.1"
     jszip: "npm:^3.10.1"
+    lucide-react: "npm:^0.510.0"
     markdown-to-jsx: "npm:^7.7.3"
     moment: "npm:2.30.1"
     next: "npm:14.2.14"
@@ -8387,7 +8435,9 @@ __metadata:
     slate: "npm:^0.112.0"
     slate-react: "npm:^0.108.0"
     slugify: "npm:^1.6.5"
+    tailwind-merge: "npm:^3.3.0"
     tailwindcss: "npm:^3.3.5"
+    tw-animate-css: "npm:^1.2.9"
     typescript: "npm:5.7.2"
     webpack: "npm:^5.94.0"
     yarn: "npm:1.22.22"
@@ -8750,6 +8800,15 @@ __metadata:
   dependencies:
     yallist: "npm:^4.0.0"
   checksum: 10c0/cb53e582785c48187d7a188d3379c181b5ca2a9c78d2bce3e7dee36f32761d1c42983da3fe12b55cb74e1779fa94cdc2e5367c028a9b35317184ede0c07a30a9
+  languageName: node
+  linkType: hard
+
+"lucide-react@npm:^0.510.0":
+  version: 0.510.0
+  resolution: "lucide-react@npm:0.510.0"
+  peerDependencies:
+    react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
+  checksum: 10c0/00b3efed64c370cd5ae97023583996ff83939baf6f4af11393d536ca9e520b0cc1a82a81aa6d0350625bff398daaa69357df74383631f2c3a0aeb6974f4237c7
   languageName: node
   linkType: hard
 
@@ -11240,6 +11299,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"tailwind-merge@npm:^3.3.0":
+  version: 3.3.0
+  resolution: "tailwind-merge@npm:3.3.0"
+  checksum: 10c0/a50cd141100486f98541dfab3705712af5860556689b7496dc6b0284374f02d12d5471f0f40035f6bb8b1c749c422060a1f3e5f8900057d8a7786b111c8472e6
+  languageName: node
+  linkType: hard
+
 "tailwindcss@npm:^3.3.5":
   version: 3.3.5
   resolution: "tailwindcss@npm:3.3.5"
@@ -11477,6 +11543,13 @@ __metadata:
   dependencies:
     safe-buffer: "npm:^5.0.1"
   checksum: 10c0/4c7a1b813e7beae66fdbf567a65ec6d46313643753d0beefb3c7973d66fcec3a1e7f39759f0a0b4465883499c6dc8b0750ab8b287399af2e583823e40410a17a
+  languageName: node
+  linkType: hard
+
+"tw-animate-css@npm:^1.2.9":
+  version: 1.2.9
+  resolution: "tw-animate-css@npm:1.2.9"
+  checksum: 10c0/ffbd6dfbb34490a8752b185b40192168ce4bfa69949d153dc831d9471dec2758501f27f1784b6615de7da73a546d01d7201ed691f5220fe3e0a53694cb275a3a
   languageName: node
   linkType: hard
 
