@@ -6759,12 +6759,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"feed@npm:^4.2.2":
-  version: 4.2.2
-  resolution: "feed@npm:4.2.2"
+"feed@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "feed@npm:5.0.1"
   dependencies:
     xml-js: "npm:^1.6.11"
-  checksum: 10c0/c0849bde569da94493224525db00614fd1855a5d7c2e990f6e8637bd0298e85c3d329efe476cba77e711e438c3fb48af60cd5ef0c409da5bcd1f479790b0a372
+  checksum: 10c0/f860345abbb04c03ac90339077aaf2f08b58c655e2b2fa112bb2ac54ce0b04ff7ab58c64bc2a625a390bec40d4fc28ecbf2983f1f3fc1ca9336e41a56c0d1f94
   languageName: node
   linkType: hard
 
@@ -8362,7 +8362,7 @@ __metadata:
     eslint-plugin-promise: "npm:^6.0.0"
     eslint-plugin-react: "npm:^7.35.0"
     eslint-plugin-react-hooks: "npm:^4.4.0"
-    feed: "npm:^4.2.2"
+    feed: "npm:^5.0.1"
     file-saver: "npm:^2.0.5"
     fuse.js: "npm:^7.0.0"
     gray-matter: "npm:^4.0.3"
