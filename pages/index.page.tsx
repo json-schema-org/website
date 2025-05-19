@@ -47,13 +47,11 @@ export const getStaticProps: GetStaticProps = async () => {
         new Date(a.frontmatter.date).getTime(),
     )
     .slice(0, 5);
-  // Example usage:
   const remoteICalUrl =
-    'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics'; // Replace with the actual URL
+    'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
-  // console.log('this is fetched data', datesInfo)
   return {
     props: {
       blogPosts,
@@ -557,7 +555,7 @@ const Home = (props: any) => {
                 </div>
 
                 <a
-                  href='https://calendar.google.com/calendar/embed?src=json.schema.community%40gmail.com&ctz=Europe%2FLondon'
+                  href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org'
                   className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'
