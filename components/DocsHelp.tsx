@@ -317,8 +317,8 @@ export function DocsHelp({
               <a
                 target='_blank'
                 rel='noreferrer'
-                className='px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
-                href={gitredirect} // Ensure gitredirect is defined
+                className='inline-flex items-center px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600'
+                href={gitredirect}
                 data-test='edit-on-github-link'
               >
                 <svg
