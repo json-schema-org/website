@@ -10,6 +10,7 @@ import CarbonAds from './CarbonsAds';
 import { useTheme } from 'next-themes';
 import ExternalLinkIcon from '../public/icons/external-link-black.svg';
 import Image from 'next/image';
+
 const DocLink = ({
   uri,
   label,
@@ -30,11 +31,14 @@ const DocLink = ({
   return (
     <Link
       href={uri}
-      className={classnames('text-sm block py-1 pl-2', {
-        '  font-medium': !isActive,
-        'text-primary dark:text-[#007bff] text-bold border-l-2 border-l-primary  font-semibold':
-          isActive,
-      })}
+      className={classnames(
+        'text-sm block py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-[#007bff]',
+        {
+          'font-medium': !isActive,
+          'text-primary dark:text-[#007bff] font-bold border-l-2 border-l-primary':
+            isActive,
+        },
+      )}
       onClick={() => {
         if (onClick) onClick();
         setOpen(false);
@@ -65,11 +69,13 @@ const DocLinkBlank = ({
   return (
     <Link
       href={uri}
-      className={classnames('flex text-sm py-1 pl-2', {
-        'font-medium': !isActive,
-        'text-primary text-bold border-l-2 border-l-primary font-semibold':
-          isActive,
-      })}
+      className={classnames(
+        'flex text-sm py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-[#007bff]',
+        {
+          'font-medium': !isActive,
+          'text-primary font-bold border-l-2 border-l-primary': isActive,
+        },
+      )}
       target='_blank'
       rel='noopener noreferrer'
       onClick={() => {
@@ -94,6 +100,7 @@ const DocLinkBlank = ({
     </Link>
   );
 };
+
 const SegmentSubtitle = ({ label }: { label: string }) => {
   return (
     <div className='text-sm italic text-slate-900 dark:text-slate-400 mt-2 mb-2'>
@@ -101,6 +108,7 @@ const SegmentSubtitle = ({ label }: { label: string }) => {
     </div>
   );
 };
+
 const getDocsPath = [
   '/docs',
   '/overview/what-is-jsonschema',
@@ -188,7 +196,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
-        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden '>
+        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden'>
           <div
             className='z-[150] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
             onMouseDown={(e) => e.stopPropagation()}
@@ -199,7 +207,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             }}
           >
             {getDocsPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white  ml-12'>Introduction</h3>
+              <h3 className='text-white ml-12'>Introduction</h3>
             )}
             {getStartedPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Get started</h3>
@@ -237,7 +245,9 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
 
         <div
-          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${open ? '-translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md `}
+          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${
+            open ? '-translate-x-0' : '-translate-x-full'
+          } transition-transform duration-300 ease-in-out filter drop-shadow-md`}
         >
           <div className='flex flex-col dark:bg-slate-900'>
             <DocsNav open={open} setOpen={setOpen} />
@@ -269,8 +279,6 @@ export const DocsNav = ({
   setOpen: (open: boolean) => void;
 }) => {
   const router = useRouter();
-
-  /* eslint-disable no-constant-condition */
   const [active, setActive] = useState({
     getDocs: false,
     getStarted: false,
@@ -299,7 +307,6 @@ export const DocsNav = ({
     } else if (getGuidesPath.includes(pathWtihoutFragment)) {
       newActive.getGuides = true;
     }
-
     setActive(newActive);
   }, [router.asPath]);
 
@@ -357,9 +364,7 @@ export const DocsNav = ({
   const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
   const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
   const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
-
   const { resolvedTheme } = useTheme();
-
   const [learn_icon, setLearn_icon] = useState('');
   const [reference_icon, setReference_icon] = useState('');
   const [spec_icon, setSpec_icon] = useState('');
@@ -384,12 +389,12 @@ export const DocsNav = ({
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       {/* Introduction */}
-      <div className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-2 rounded'>
+      <div className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-2 rounded transition-transform duration-300 hover:scale-95'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickDoc}
         >
-          <div className='flex  items-center align-middle'>
+          <div className='flex items-center align-middle'>
             <Image
               src={`${overview_icon}`}
               alt='eye icon'
@@ -422,8 +427,7 @@ export const DocsNav = ({
         </div>
         <div
           className={classnames(
-            'ml-6',
-            'transition-all duration-500 ease-in-out',
+            'ml-6 transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getDocs,
               'max-h-80 opacity-100': active.getDocs,
@@ -475,15 +479,14 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
         </div>
-      </div>{' '}
-      {/*Closing div: Introduction*/}
-      {/* Get started */}
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
+      </div>
+      {/* Get Started */}
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden transition-transform duration-300 hover:scale-95'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickGet}
         >
-          <div className='flex  items-center align-middle'>
+          <div className='flex items-center align-middle'>
             <Image
               src={`${learn_icon}`}
               alt='compass icon'
@@ -516,8 +519,7 @@ export const DocsNav = ({
         </div>
         <div
           className={classnames(
-            'ml-6',
-            'transition-all duration-500 ease-in-out',
+            'ml-6 transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getStarted,
               'max-h-80 opacity-100': active.getStarted,
@@ -570,15 +572,15 @@ export const DocsNav = ({
             />
           </div>
         </div>
-      </div>{' '}
+      </div>
       {/* Closing div: Get started */}
       {/* Guides */}
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white  lg:border-hidden '>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden transition-transform duration-300 hover:scale-95'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickGuides}
         >
-          <div className='flex  items-center align-middle'>
+          <div className='flex items-center align-middle'>
             <Image
               src={`${guides_icon}`}
               alt='grad cap icon'
@@ -628,15 +630,15 @@ export const DocsNav = ({
           </div>
           {/*Closing div tag: for implementers*/}
         </div>
-      </div>{' '}
+      </div>
       {/* Closing div: Guides */}
       {/* Reference */}
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden transition-transform duration-300 hover:scale-95'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickReference}
         >
-          <div className='flex  items-center align-middle'>
+          <div className='flex items-center align-middle'>
             <Image
               src={`${reference_icon}`}
               alt='book icon'
@@ -670,8 +672,7 @@ export const DocsNav = ({
         {/*Opening div: inner reference div */}
         <div
           className={classnames(
-            'ml-6',
-            'transition-all duration-500 ease-in-out',
+            'ml-6 transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getReference,
               'max-h-80 overflow-y-auto opacity-100': active.getReference,
@@ -712,7 +713,6 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <div className='pl-4 pb-1 pt-1'>
-            {' '}
             {/*Opening div: JSON data types*/}
             <DocLink
               uri='/understanding-json-schema/reference/array'
@@ -749,7 +749,7 @@ export const DocsNav = ({
               label='string'
               setOpen={setOpen}
             />
-          </div>{' '}
+          </div>
           {/*Closing div: JSON data types*/}
           <DocLink
             uri='/understanding-json-schema/reference/schema'
@@ -762,7 +762,6 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <div className='pl-4 pb-1 pt-1'>
-            {' '}
             {/*Opening div: Schema constraints*/}
             <DocLink
               uri='/understanding-json-schema/reference/enum'
@@ -774,7 +773,7 @@ export const DocsNav = ({
               label='Constant values'
               setOpen={setOpen}
             />
-          </div>{' '}
+          </div>
           {/*Closing div: Schema constraints*/}
           <DocLink
             uri='/understanding-json-schema/reference/metadata'
@@ -793,8 +792,7 @@ export const DocsNav = ({
               label='Comments'
               setOpen={setOpen}
             />
-          </div>{' '}
-          {/*Closing div: Schema metadata*/}
+          </div>
           <DocLink
             uri='/understanding-json-schema/reference/conditionals'
             label='Conditional schema validation'
@@ -806,7 +804,6 @@ export const DocsNav = ({
             setOpen={setOpen}
           />
           <div className='pl-4 pb-1 pt-1'>
-            {' '}
             {/*Opening div: Schema composition*/}
             <DocLink
               uri='/understanding-json-schema/reference/combining'
@@ -818,28 +815,29 @@ export const DocsNav = ({
               label='Modular JSON Schema combination'
               setOpen={setOpen}
             />
-          </div>{' '}
+          </div>
           {/*Closing div: Schema composition*/}
           <DocLink
             uri='/understanding-json-schema/reference/non_json_data'
             label='Media: string-encoding non-JSON data'
             setOpen={setOpen}
           />
+          {/*Closing div: Schema composition*/}
           <DocLinkBlank
             uri='https://www.learnjsonschema.com/'
             label='Learn JSON Schema'
             setOpen={setOpen}
           />
         </div>
-      </div>{' '}
+      </div>
       {/*Closing div: inner reference div */}
       {/* Specification */}
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden '>
+      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden transition-transform duration-300 hover:scale-95'>
         <div
           className='flex justify-between w-full items-center'
           onClick={handleClickSpec}
         >
-          <div className='flex  items-center align-middle'>
+          <div className='flex items-center align-middle'>
             <Image
               src={`${spec_icon}`}
               alt='clipboard icon'
@@ -873,8 +871,7 @@ export const DocsNav = ({
         </div>
         <div
           className={classnames(
-            'ml-6',
-            'transition-all duration-500 ease-in-out',
+            'ml-6 transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getSpecification,
               'max-h-80 opacity-100 overflow-hidden': active.getSpecification,
@@ -883,23 +880,19 @@ export const DocsNav = ({
           id='specification'
         >
           <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
-
           <SegmentSubtitle label='Versions' />
           <div className='pl-4 pb-1 pt-1'>
             <DocLink uri='/draft/2020-12' label='2020-12' setOpen={setOpen} />
-
             <DocLink uri='/draft/2019-09' label='2019-09' setOpen={setOpen} />
             <DocLink uri='/draft-07' label='draft-07' setOpen={setOpen} />
             <DocLink uri='/draft-06' label='draft-06' setOpen={setOpen} />
             <DocLink uri='/draft-05' label='draft-05' setOpen={setOpen} />
           </div>
-
           <DocLink
             uri='/specification-links'
             label='Specification links'
             setOpen={setOpen}
           />
-
           <DocLink
             uri='/specification/migration'
             label='Migration'
@@ -910,7 +903,6 @@ export const DocsNav = ({
             label='Release notes'
             setOpen={setOpen}
           />
-
           <DocLink
             uri='/specification/json-hyper-schema'
             label='JSON Hyper-Schema'
