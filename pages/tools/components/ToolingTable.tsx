@@ -116,10 +116,11 @@ const ToolingTable = ({
               <Headline2>{toTitleCase(group, '-')}</Headline2>
             </div>
           )}
-          <div className='overflow-x-auto'>
-            <table className='min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
+          <div className='overflow-x-hidden'>
+            {/* Desktop Table */}
+            <table className='hidden lg:table min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
               <thead>
-                <tr className='flex w-full min-w-[976px]'>
+                <tr className='flex w-full min-w-[860px]'>
                   <TableSortableColumnHeader
                     sortBy='name'
                     transform={transform}
@@ -269,6 +270,65 @@ const ToolingTable = ({
                 })}
               </tbody>
             </table>
+
+            {/* Mobile Table */}
+            <table className='lg:hidden min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
+              <tbody>
+                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
+                  const bowtieData = getBowtieData(tool);
+                  if (bowtieData) {
+                    tool.bowtie = bowtieData;
+                  }
+                  return (
+                    <tr
+                      key={index}
+                      className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
+                      onClick={() => openModal(tool)}
+                    >
+                      <td className='p-2 relative'>
+                        {bowtieData && (
+                          <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
+                            <span>Bowtie:</span>
+                            <a
+                              href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                              target='blank'
+                              onClick={(event) => event.stopPropagation()}
+                              title='See at Bowtie'
+                              className='ml-1'
+                            >
+                              <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                            </a>
+                          </div>
+                        )}
+
+                        <div className='flex justify-between items-center'>
+                          <div className='font-medium'>
+                            {tool.name}
+                            {tool.status === 'obsolete' && (
+                              <Tag intent='error'>{tool.status}</Tag>
+                            )}
+                          </div>
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          Languages: {tool.languages?.join(', ')}
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          Supported Dialects:
+                        </div>
+                        <div className='flex flex-wrap gap-1 mt-1'>
+                          {tool.supportedDialects?.draft?.map((draft) => (
+                            <Badge key={draft}>{draft}</Badge>
+                          ))}
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          License: {tool.license}
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         </section>
       ))}
@@ -278,7 +338,6 @@ const ToolingTable = ({
     </>
   );
 };
-
 const TableColumnHeader = ({
   children,
   attributes: propAttributes,
