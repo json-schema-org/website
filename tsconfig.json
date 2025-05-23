@@ -18,7 +18,8 @@
     "paths": {
       "react": ["./node_modules/@types/react"],
       "~/*": ["./*"],
-      "@public/*": ["./public/*"]
+      "@public/*": ["./public/*"],
+      "@/*": ["./*"]
     }
   },
   "include": ["next-env.d.ts", "svgr.d.ts", "**/*.ts", "**/*.tsx"],
