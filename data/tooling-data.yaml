@@ -1824,7 +1824,7 @@
   source: 'https://github.com/brutusin/json-forms'
   lastUpdated: '2018-11-05'
 
-- name: @remoteoss/json-schema-form
+- name: '@remoteoss/json-schema-form'
   description: 'Headless UI form library powered by JSON Schemas. With validations included. Works with any stack.'
   toolingTypes: ['schema-to-web-UI', 'editor']
   languages: ['JavaScript', 'TypeScript']
