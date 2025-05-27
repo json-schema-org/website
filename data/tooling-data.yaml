@@ -1827,13 +1827,10 @@
 - name: '@remoteoss/json-schema-form'
   description: 'Headless UI form library powered by JSON Schemas. With validations included. Works with any stack.'
   toolingTypes: ['schema-to-web-UI', 'editor']
-  languages: ['JavaScript', 'TypeScript']
+  languages: ['TypeScript']
   maintainers:
     - name: 'Remote.com'
       username: 'remoteoss'
-      platform: 'github'
-    - name: 'Sandrina Pereira'
-      username: 'sandrina-p'
       platform: 'github'
   license: 'MIT'
   source: 'https://github.com/remoteoss/json-schema-form'
