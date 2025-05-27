@@ -125,7 +125,7 @@ const ToolingTable = ({
                     transform={transform}
                     setTransform={setTransform}
                     attributes={{
-                      style: { flexBasis: '240px', flexShrink: 0, flexGrow: 0 },
+                      style: { flexBasis: '260px', flexShrink: 0, flexGrow: 0 },
                     }}
                   >
                     Name
@@ -189,9 +189,9 @@ const ToolingTable = ({
                     >
                       <TableCell
                         attributes={{
-                          className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : ''} gap-x-2 gap-y-1`,
+                          className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-word' : ''} gap-x-2 gap-y-1`,
                           style: {
-                            flexBasis: '240px',
+                            flexBasis: '260px',
                             flexShrink: 1,
                             flexGrow: 0,
                           },
