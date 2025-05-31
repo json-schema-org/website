@@ -35,7 +35,7 @@
     "class-variance-authority": "^0.7.1",
     "classnames": "^2.5.1",
     "clsx": "^2.1.1",
-    "feed": "^4.2.2",
+    "feed": "^5.1.0",
     "file-saver": "^2.0.5",
     "fuse.js": "^7.0.0",
     "gray-matter": "^4.0.3",
