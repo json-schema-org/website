@@ -18,13 +18,21 @@ type Author = {
   link?: string;
   byline?: string;
 };
+
 export type blogCategories =
   | 'All'
   | 'Community'
   | 'Case Study'
   | 'Engineering'
   | 'Update'
-  | 'Opinion';
+  | 'Opinion'
+  | 'Documentation';
+
+const getCategories = (frontmatter: any): blogCategories[] => {
+  const cat = frontmatter.categories || frontmatter.type;
+  if (!cat) return [];
+  return Array.isArray(cat) ? cat : [cat];
+};
 
 export async function getStaticProps({ query }: { query: any }) {
   const files = fs.readdirSync(PATH);
@@ -38,7 +46,7 @@ export async function getStaticProps({ query }: { query: any }) {
       );
       const { data: frontmatter, content } = matter(fullFileName);
       return {
-        slug: slug,
+        slug,
         frontmatter,
         content,
       };
@@ -76,45 +84,110 @@ export default function StaticMarkdownPage({
   filterTag: any;
 }) {
   const router = useRouter();
-  const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(
-    filterTag || 'All',
-  );
+  // Initialize the filter as an array. If "All" or not specified, we show all posts.
+  const initialFilters =
+    filterTag && filterTag !== 'All'
+      ? filterTag.split(',').filter(isValidCategory)
+      : ['All'];
 
+  const [currentFilterTags, setCurrentFilterTags] =
+    useState<blogCategories[]>(initialFilters);
+
+  // When the router query changes, update the filters.
   useEffect(() => {
     const { query } = router;
-    if (query.type && isValidCategory(query.type)) {
-      setCurrentFilterTag(query.type);
+    if (query.type) {
+      const tags = (typeof query.type === 'string' ? query.type : '')
+        .split(',')
+        .filter(isValidCategory);
+      setCurrentFilterTags(tags.length ? tags : ['All']);
     }
   }, [router.query]);
 
   useEffect(() => {
-    // Set the filter tag based on the initial query parameter when the page loads
-    setCurrentFilterTag(filterTag);
+    const tags =
+      filterTag && filterTag !== 'All'
+        ? filterTag.split(',').filter(isValidCategory)
+        : ['All'];
+    setCurrentFilterTags(tags);
   }, [filterTag]);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault(); // Prevent default scrolling behavior
-    const clickedTag = event.currentTarget.value as blogCategories;
-    if (clickedTag === 'All') {
-      setCurrentFilterTag('All');
-      history.replaceState(null, '', '/blog'); // Update the URL without causing a scroll
-    } else if (isValidCategory(clickedTag)) {
-      setCurrentFilterTag(clickedTag);
-      history.replaceState(null, '', `/blog?type=${clickedTag}`); // Update URL
+  const toggleCategory = (tag: blogCategories) => {
+    let newTags: blogCategories[] = [];
+    if (tag === 'All') {
+      newTags = ['All'];
+    } else {
+      if (currentFilterTags.includes('All')) {
+        newTags = [tag];
+      } else {
+        if (currentFilterTags.includes(tag)) {
+          newTags = currentFilterTags.filter((t) => t !== tag);
+        } else {
+          newTags = [...currentFilterTags, tag];
+        }
+      }
+      if (newTags.length === 0) {
+        newTags = ['All'];
+      }
+    }
+    setCurrentFilterTags(newTags);
+    if (newTags.includes('All')) {
+      history.replaceState(null, '', '/blog');
+    } else {
+      history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
     }
   };
-  const recentBlog = blogPosts.sort((a, b) => {
+
+  // First, sort all posts by date descending (for fallback sorting)
+  const postsSortedByDate = [...blogPosts].sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime();
     const dateB = new Date(b.frontmatter.date).getTime();
-    return dateA < dateB ? 1 : -1;
+    return dateB - dateA;
   });
 
-  const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes);
-  const setOfTags: any[] = blogPosts.map((tag) => tag.frontmatter.type);
-  const spreadTags: any[] = [...setOfTags];
-  const allTags = [...new Set(spreadTags)];
-  //add tag for all
-  allTags.unshift('All');
+  // Filter posts based on selected categories.
+  // If "All" is selected, all posts are returned.
+  const filteredPosts = postsSortedByDate.filter((post) => {
+    if (currentFilterTags.includes('All') || currentFilterTags.length === 0)
+      return true;
+    const postCategories = getCategories(post.frontmatter);
+    return postCategories.some((cat) =>
+      currentFilterTags.some(
+        (filter) => filter.toLowerCase() === cat.toLowerCase(),
+      ),
+    );
+  });
+
+  const sortedFilteredPosts = filteredPosts.sort((a, b) => {
+    const aMatches = getCategories(a.frontmatter).filter((cat) =>
+      currentFilterTags.some(
+        (filter) => filter.toLowerCase() === cat.toLowerCase(),
+      ),
+    ).length;
+    const bMatches = getCategories(b.frontmatter).filter((cat) =>
+      currentFilterTags.some(
+        (filter) => filter.toLowerCase() === cat.toLowerCase(),
+      ),
+    ).length;
+    if (aMatches !== bMatches) {
+      return bMatches - aMatches;
+    }
+    const dateA = new Date(a.frontmatter.date).getTime();
+    const dateB = new Date(b.frontmatter.date).getTime();
+    return dateB - dateA;
+  });
+
+  const recentBlog = postsSortedByDate;
+  const timeToRead = Math.ceil(
+    readingTime(recentBlog[0]?.content || '').minutes,
+  );
+
+  // Collect all unique categories across posts.
+  const allTagsSet = new Set<string>();
+  blogPosts.forEach((post) => {
+    getCategories(post.frontmatter).forEach((cat) => allTagsSet.add(cat));
+  });
+  const allTags = ['All', ...Array.from(allTagsSet)];
 
   return (
     // @ts-ignore
@@ -125,18 +198,18 @@ export default function StaticMarkdownPage({
       <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-0 sm:mt-10'>
         {recentBlog[0] && (
           <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
-            <div className='absolute w-full h-full dark:bg-[#282d6a]'>
-              <Image
-                src={recentBlog[0].frontmatter.cover}
-                width={800}
-                height={450}
-                className='object-cover w-full h-full opacity-70 blur-[5px]'
-                alt='hero image example'
-              />
-            </div>
+            <div className='absolute w-full h-full dark:bg-[#282d6a]' />
+            <Image
+              src={recentBlog[0].frontmatter.cover}
+              width={800}
+              height={450}
+              className='object-cover w-full h-full opacity-70 blur-[5px]'
+              alt='hero image example'
+            />
             <div className='absolute text-white w-full h-full mt-custom ml-14'>
+              {/* Display all categories (joined by comma) */}
               <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm '>
-                {recentBlog[0].frontmatter.type}
+                {getCategories(recentBlog[0].frontmatter).join(', ')}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
                 <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
@@ -149,7 +222,6 @@ export default function StaticMarkdownPage({
                       backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})`,
                     }}
                   />
-
                   <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
                     <p className='text-sm font-semibold text-stroke-1'>
                       {recentBlog[0].frontmatter.authors[0].name}
@@ -172,7 +244,6 @@ export default function StaticMarkdownPage({
               Welcome to the JSON Schema Blog!
             </h2>
           </div>
-
           <div className='flex h-full flex-col justify-center items-center text-center text-sm sm:text-base px-4 my-2'>
             <p>
               Want to publish a blog post? Check out the&nbsp;
@@ -187,7 +258,6 @@ export default function StaticMarkdownPage({
               &nbsp;and submit yours!
             </p>
           </div>
-
           <div className='flex h-full flex-col justify-center items-center text-sm sm:text-base px-4 my-2'>
             <Link
               href='/rss/feed.xml'
@@ -204,18 +274,19 @@ export default function StaticMarkdownPage({
             </Link>
           </div>
         </div>
-        {/* Filter Buttons */}
 
+        {/* Filter Buttons */}
         <div className='w-full ml-8 flex flex-wrap justify-start'>
           {allTags.map((tag) => (
             <button
               key={tag}
               value={tag}
-              onClick={handleClick}
-              className={`cursor-pointer 
-			          font-semibold inline-block px-3 py-1 4
-			          rounded-full mb-4 mr-4 text-sm 
-			          ${currentFilterTag === tag ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100' : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'}`}
+              onClick={() => toggleCategory(tag as blogCategories)}
+              className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${
+                currentFilterTags.includes(tag as blogCategories)
+                  ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
+                  : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
+              }`}
             >
               {tag}
             </button>
@@ -225,153 +296,122 @@ export default function StaticMarkdownPage({
           </span>
         </div>
 
-        {/* filterTag === frontmatter.type &&  */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800  mx-auto p-4'>
-          {blogPosts
-            .filter((post) => {
-              if (!currentFilterTag || currentFilterTag === 'All') return true;
-              const blogType = post.frontmatter.type as string | undefined;
-              if (!blogType) return false;
-              return blogType.toLowerCase() === currentFilterTag.toLowerCase();
-            })
-            .sort((a, b) => {
-              const dateA = new Date(a.frontmatter.date).getTime();
-              const dateB = new Date(b.frontmatter.date).getTime();
-              return dateA < dateB ? 1 : -1;
-            })
-            .map((blogPost: any) => {
-              const { frontmatter, content } = blogPost;
-              const date = new Date(frontmatter.date);
-              const timeToRead = Math.ceil(readingTime(content).minutes);
+        {/* Blog Posts Grid */}
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
+          {sortedFilteredPosts.map((blogPost: any) => {
+            const { frontmatter, content } = blogPost;
+            const date = new Date(frontmatter.date);
+            const postTimeToRead = Math.ceil(readingTime(content).minutes);
 
-              return (
-                <section key={blogPost.slug}>
-                  <div className='h-[510px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
-                    <Link
-                      href={`/blog/posts/${blogPost.slug}`}
-                      className='inline-flex flex-col flex-1 w-full'
-                    >
-                      <div className=' h-max-[200px] w-full  object-cover'>
-                        <div
-                          className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                          style={{
-                            backgroundImage: `url(${frontmatter.cover})`,
-                          }}
-                        />
-                      </div>
-                      <div className=' p-4 flex flex-col flex-1 justify-between'>
-                        <div>
-                          <div>
+            return (
+              <section key={blogPost.slug}>
+                <div className='h-[510px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
+                  <Link
+                    href={`/blog/posts/${blogPost.slug}`}
+                    className='inline-flex flex-col flex-1 w-full'
+                  >
+                    <div className='h-max-[200px] w-full object-cover'>
+                      <div
+                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
+                        style={{
+                          backgroundImage: `url(${frontmatter.cover})`,
+                        }}
+                      />
+                    </div>
+                    <div className='p-4 flex flex-col flex-1 justify-between'>
+                      <div>
+                        {/* Display each category as a clickable badge */}
+                        <div className='flex flex-wrap gap-2 mb-4'>
+                          {getCategories(frontmatter).map((cat, index) => (
                             <div
-                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
+                              key={index}
+                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full text-sm'
                               onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
-
-                                if (frontmatter.type) {
-                                  setCurrentFilterTag(frontmatter.type);
-                                  history.replaceState(
-                                    null,
-                                    '',
-                                    `/blog?type=${frontmatter.type}`,
-                                  );
-                                }
+                                toggleCategory(cat);
                               }}
                             >
-                              {frontmatter.type || 'Unknown Type'}
+                              {cat || 'Unknown'}
                             </div>
-                          </div>
-                          <div className='text-lg h-[80px] font-semibold'>
-                            {frontmatter.title}
-                          </div>
-
-                          <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
-                            <TextTruncate
-                              element='span'
-                              line={4}
-                              text={frontmatter.excerpt}
-                            />
-                          </div>
+                          ))}
                         </div>
-                        <div
-                          className={`
-                            flex 
-                            flex-row
-                            items-center
-                          `}
-                        >
-                          <div className='flex flex-row pl-2 mr-2'>
-                            {(frontmatter.authors || []).map(
-                              (author: Author, index: number) => (
-                                <div
-                                  key={index}
-                                  className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
-                                    frontmatter.authors.length > 2
-                                      ? 'h-8 w-8'
-                                      : 'h-11 w-11'
-                                  }`}
-                                  style={{
-                                    backgroundImage: `url(${author.photo})`,
-                                    zIndex: 10 - index,
-                                  }}
-                                />
-                              ),
-                            )}
-                          </div>
-
-                          <div
-                            className={`
-                              flex 
-                              flex-col
-                              items-start
-                            `}
-                          >
-                            <div className='text-sm font-semibold'>
-                              {frontmatter.authors.length > 2 ? (
-                                <>
-                                  {frontmatter.authors
-                                    .slice(0, 2)
-                                    .map((author: Author, index: number) => (
-                                      <span key={author.name}>
-                                        {author.name}
-                                        {index === 0 && ' & '}
-                                      </span>
-                                    ))}
-                                  {'...'}
-                                </>
-                              ) : (
-                                frontmatter.authors.map(
-                                  (author: Author, index: number) => (
+                        <div className='text-lg h-[80px] font-semibold'>
+                          {frontmatter.title}
+                        </div>
+                        <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
+                          <TextTruncate
+                            element='span'
+                            line={4}
+                            text={frontmatter.excerpt}
+                          />
+                        </div>
+                      </div>
+                      <div className='flex flex-row items-center'>
+                        <div className='flex flex-row pl-2 mr-2'>
+                          {(frontmatter.authors || []).map(
+                            (author: Author, index: number) => (
+                              <div
+                                key={index}
+                                className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                                  frontmatter.authors.length > 2
+                                    ? 'h-8 w-8'
+                                    : 'h-11 w-11'
+                                }`}
+                                style={{
+                                  backgroundImage: `url(${author.photo})`,
+                                  zIndex: 10 - index,
+                                }}
+                              />
+                            ),
+                          )}
+                        </div>
+                        <div className='flex flex-col items-start'>
+                          <div className='text-sm font-semibold'>
+                            {frontmatter.authors.length > 2 ? (
+                              <>
+                                {frontmatter.authors
+                                  .slice(0, 2)
+                                  .map((author: Author, index: number) => (
                                     <span key={author.name}>
                                       {author.name}
-                                      {index < frontmatter.authors.length - 1 &&
-                                        ' & '}
+                                      {index === 0 && ' & '}
                                     </span>
-                                  ),
-                                )
-                              )}
-                            </div>
-
-                            <div className='text-slate-500 text-sm dark:text-slate-300'>
-                              {frontmatter.date && (
-                                <span>
-                                  {date.toLocaleDateString('en-us', {
-                                    year: 'numeric',
-                                    month: 'long',
-                                    day: 'numeric',
-                                  })}
-                                </span>
-                              )}{' '}
-                              &middot; {timeToRead} min read
-                            </div>
+                                  ))}
+                                {'...'}
+                              </>
+                            ) : (
+                              frontmatter.authors.map(
+                                (author: Author, index: number) => (
+                                  <span key={author.name}>
+                                    {author.name}
+                                    {index < frontmatter.authors.length - 1 &&
+                                      ' & '}
+                                  </span>
+                                ),
+                              )
+                            )}
+                          </div>
+                          <div className='text-slate-500 text-sm dark:text-slate-300'>
+                            {frontmatter.date && (
+                              <span>
+                                {date.toLocaleDateString('en-us', {
+                                  year: 'numeric',
+                                  month: 'long',
+                                  day: 'numeric',
+                                })}
+                              </span>
+                            )}{' '}
+                            &middot; {postTimeToRead} min read
                           </div>
                         </div>
                       </div>
-                    </Link>
-                  </div>
-                </section>
-              );
-            })}
+                    </div>
+                  </Link>
+                </div>
+              </section>
+            );
+          })}
         </div>
       </div>
     </SectionContext.Provider>
