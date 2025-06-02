@@ -144,9 +144,9 @@ export default function ToolingPage({
           <div
             className={`lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto mt-24 lg:mt-20 w-screen lg:w-auto bg-white dark:bg-slate-800 lg:bg-transparent transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out z-5 ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}`}
             style={{
-              height: 'calc(100vh - 8rem)',
-              maxHeight: 'calc(100vh - 8rem)',
-              bottom: '2rem'
+              height: 'calc(100vh - 5rem)',
+              maxHeight: 'calc(100vh - 5rem)',
+              bottom: '0'
             }}
           >
             <div className='h-full flex flex-col'>
