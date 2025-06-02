@@ -142,28 +142,36 @@ export default function ToolingPage({
 
         <div className='grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12 min-h-screen'>
           <div
-            className={`absolute lg:static top-10 lg:top-auto left-0 lg:left-auto mt-24 w-screen lg:w-auto h-full lg:h-auto bg-white dark:bg-slate-800 lg:bg-transparent transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out overflow-y-auto ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'} z-5`}
-            style={{ height: 'calc(100% - 4rem)' }}
+            className={`lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto mt-24 lg:mt-20 w-screen lg:w-auto bg-white dark:bg-slate-800 lg:bg-transparent transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out z-5 ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}`}
+            style={{
+              height: 'calc(100vh - 8rem)',
+              maxHeight: 'calc(100vh - 8rem)',
+              bottom: '2rem'
+            }}
           >
-            <div className='hidden lg:block'>
-              <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4 lg:mt-6'>
-                {numberOfTools}
-              </h1>
-              <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6'>
-                Tools
+            <div className='h-full flex flex-col'>
+              <div className='flex-1 overflow-y-auto scrollbar-hidden min-h-0 px-2 lg:px-0 pb-4'>
+                <div className='hidden lg:block pt-8'>
+                  <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4'>
+                    {numberOfTools}
+                  </h1>
+                  <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6 mb-4'>
+                    Tools
+                  </div>
+                </div>
+                <Sidebar
+                  filterCriteria={filterCriteria}
+                  transform={transform}
+                  setTransform={setTransform}
+                  resetTransform={resetTransform}
+                  setIsSidebarOpen={setIsSidebarOpen}
+                />
               </div>
             </div>
-            <Sidebar
-              filterCriteria={filterCriteria}
-              transform={transform}
-              setTransform={setTransform}
-              resetTransform={resetTransform}
-              setIsSidebarOpen={setIsSidebarOpen}
-            />
           </div>
 
           <main
-            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 ${isSidebarOpen ? 'hidden lg:block' : ''}`}
+            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 lg:!ml-[300px] ${isSidebarOpen ? 'hidden lg:block' : ''}`}
           >
             <Headline1>JSON Schema Tooling</Headline1>
             <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
@@ -184,7 +192,7 @@ export default function ToolingPage({
                 >
                   <Image
                     src='/img/tools/adding_your_tool.png'
-                    className='rounded-sm  '
+                    className='rounded-sm'
                     height={68}
                     width={190}
                     alt='adding your tool'
@@ -205,7 +213,7 @@ export default function ToolingPage({
                 >
                   <Image
                     src='/img/tools/try_bowtie.png'
-                    className='rounded-sm '
+                    className='rounded-sm'
                     height={68}
                     width={190}
                     alt='try bowtie'
