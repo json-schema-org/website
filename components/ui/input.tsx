@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 import { cn } from '@/lib/utils';
 
@@ -18,5 +19,10 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
     />
   );
 }
+
+Input.propTypes = {
+  className: PropTypes.string,
+  type: PropTypes.string,
+};
 
 export { Input };
