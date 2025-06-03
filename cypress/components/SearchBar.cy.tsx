@@ -1,10 +1,21 @@
 import React from 'react';
 import { mount } from 'cypress/react18';
 import SearchBar from '@/pages/tools/components/SearchBar';
+import type { Transform } from '@/pages/tools/hooks/useToolsTransform';
 
 describe('SearchBar Component', () => {
-  const mockTransform = {
+  const mockTransform: Transform = {
     query: '',
+    sortBy: 'name',
+    sortOrder: 'ascending',
+    groupBy: 'toolingTypes',
+    licenses: [],
+    languages: [],
+    drafts: [],
+    toolingTypes: [],
+    environments: [],
+    showObsolete: 'false',
+    supportsBowtie: 'false'
   };
 
   beforeEach(() => {
@@ -24,7 +35,7 @@ describe('SearchBar Component', () => {
 
   it('updates when transform.query changes', () => {
     const newQuery = 'new search query';
-    mount(<SearchBar transform={{ query: newQuery }} />);
+    mount(<SearchBar transform={{ ...mockTransform, query: newQuery }} />);
     cy.get('input[type="text"]').should('have.value', newQuery);
   });
 });
