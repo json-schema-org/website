@@ -165,7 +165,9 @@ export default function ToolingPage({
   `}
             style={{
               height: isMobile
-                ? (isSidebarOpen ? 'calc(100vh - 4.5rem)' : '0')
+                ? isSidebarOpen
+                  ? 'calc(100vh - 4.5rem)'
+                  : '0'
                 : 'calc(100vh - 4.5rem)',
               maxHeight: 'calc(100vh - 4.5rem)',
               bottom: 0,

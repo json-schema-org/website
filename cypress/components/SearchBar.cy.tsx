@@ -27,4 +27,4 @@ describe('SearchBar Component', () => {
     mount(<SearchBar transform={{ query: newQuery }} />);
     cy.get('input[type="text"]').should('have.value', newQuery);
   });
-}); 
+});
