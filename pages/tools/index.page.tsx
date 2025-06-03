@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+/* eslint-disable linebreak-style */
+import React, { useState, useEffect } from 'react';
 import fs from 'fs';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -101,6 +102,16 @@ export default function ToolingPage({
   filterCriteria,
 }: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const {
     numberOfTools,
@@ -144,20 +155,23 @@ export default function ToolingPage({
           <div
             className={`
     lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
-    mt-36 lg:mt-20
-    w-screen lg:w-auto
+    mt-0 lg:mt-20
+    w-screen lg:w-[280px]
     bg-white dark:bg-slate-800 lg:bg-transparent
     transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out
     z-5
     ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}
-    overflow-y-auto lg:overflow-y-hidden
+    ${isMobile && isSidebarOpen ? 'overflow-hidden' : 'overflow-y-auto lg:overflow-y-hidden'}
   `}
             style={{
-              height: 'calc(100vh - 4.5rem)',
+              height: isMobile
+                ? (isSidebarOpen ? 'calc(100vh - 4.5rem)' : '0')
+                : 'calc(100vh - 4.5rem)',
               maxHeight: 'calc(100vh - 4.5rem)',
               bottom: 0,
-              /* remove inline overflowY here */
               scrollbarWidth: 'none',
+              position: 'sticky',
+              top: '4.5rem',
             }}
           >
             <div className='h-full flex flex-col'>
@@ -182,7 +196,7 @@ export default function ToolingPage({
           </div>
 
           <main
-            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 lg:!ml-[300px] ${isSidebarOpen ? 'hidden lg:block' : ''}`}
+            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 lg:!ml-[20px] ${isSidebarOpen ? 'hidden lg:block' : ''}`}
           >
             <Headline1>JSON Schema Tooling</Headline1>
             <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
