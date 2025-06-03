@@ -11,12 +11,14 @@ interface DropdownMenuProps {
   children: ReactNode;
   label: string;
   icon: ReactElement;
+  count?: number;
 }
 
 export default function DropdownMenu({
   children,
   label,
   icon,
+  count = 0,
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const router = useRouter();
@@ -36,8 +38,13 @@ export default function DropdownMenu({
         {React.cloneElement(icon, {
           className: 'mr-2 ml-2',
         })}
-        <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto'>
+        <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto flex items-center gap-2'>
           {label}
+          {count > 0 && (
+            <span className='bg-primary text-white text-xs px-2 py-0.5 rounded-full'>
+              {count}
+            </span>
+          )}
         </div>
         <svg
           style={{
