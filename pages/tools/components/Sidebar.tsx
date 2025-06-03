@@ -4,6 +4,7 @@ import ToolingIcon from '~/public/icons/tooling.svg';
 import EnvironmentIcon from '~/public/icons/environment.svg';
 import DialectIcon from '~/public/icons/dialect.svg';
 import LicenseIcon from '~/public/icons/license.svg';
+import { Button } from '~/components/ui/button';
 import DropdownMenu from './ui/DropdownMenu';
 import Checkbox from './ui/Checkbox';
 import SearchBar from './SearchBar';
@@ -135,19 +136,21 @@ export default function Sidebar({
           }
         />
         <div className='w-full flex items-center justify-between mt-4 gap-2'>
-          <button
+          <Button
             type='submit'
-            className='bg-primary text-white px-4 py-2 rounded hover:bg-primary/90 focus:outline-none'
+            variant="default"
+            className="flex-1 text-white dark:bg-blue-600 dark:text-white"
           >
             Apply Filters
-          </button>
-          <button
+          </Button>
+          <Button
             type='button'
-            className='bg-slate-200 dark:bg-slate-900 text-gray-700 dark:text-slate-200 px-4 py-2 rounded hover:bg-slate-300 focus:outline-none'
+            variant="outline"
             onClick={clearFilters}
+            className="flex-1 text-red-600 border-red-600 hover:bg-red-50 dark:bg-[#bfdbfe] dark:text-slate-900 dark:border-transparent"
           >
             Clear Filters
-          </button>
+          </Button>
         </div>
       </form>
     </div>

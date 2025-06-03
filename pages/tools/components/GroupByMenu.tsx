@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { Button } from '~/components/ui/button';
 import { Transform } from '../hooks/useToolsTransform';
 
 interface GroupByMenuProps {
@@ -39,14 +40,15 @@ const GroupByMenu = ({ transform, setTransform }: GroupByMenuProps) => {
       <span className='text-slate-600 dark:text-slate-300'>GROUP BY:</span>
       {groupBy.map((group) => {
         return (
-          <button
+          <Button
             key={group.accessorKey}
             value={group.accessorKey}
             onClick={setGroupBy}
-            className={`px-4 py-2 self-stretch border dark:border-slate-800 rounded ${groupedBy === group.accessorKey ? 'bg-primary text-white' : 'bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-200'}`}
+            variant={groupedBy === group.accessorKey ? "default" : "outline"}
+            className={`${groupedBy === group.accessorKey ? 'text-white dark:bg-blue-600 dark:text-white' : 'dark:bg-[#bfdbfe] dark:text-slate-900'}`}
           >
             {group.label}
-          </button>
+          </Button>
         );
       })}
     </div>
