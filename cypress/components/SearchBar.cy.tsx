@@ -15,7 +15,7 @@ describe('SearchBar Component', () => {
     toolingTypes: [],
     environments: [],
     showObsolete: 'false',
-    supportsBowtie: 'false'
+    supportsBowtie: 'false',
   };
 
   beforeEach(() => {
