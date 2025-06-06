@@ -1,12 +1,10 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable quotes */
 import * as React from 'react';
+
 import { cn } from '@/lib/utils';
 
-interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
-function Card({ className, ...props }: CardProps) {
+function Card({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card'
@@ -19,11 +17,7 @@ function Card({ className, ...props }: CardProps) {
   );
 }
 
-interface CardHeaderProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
-function CardHeader({ className, ...props }: CardHeaderProps) {
+function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card-header'
@@ -36,11 +30,7 @@ function CardHeader({ className, ...props }: CardHeaderProps) {
   );
 }
 
-interface CardTitleProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
-function CardTitle({ className, ...props }: CardTitleProps) {
+function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card-title'
@@ -50,11 +40,7 @@ function CardTitle({ className, ...props }: CardTitleProps) {
   );
 }
 
-interface CardDescriptionProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
-function CardDescription({ className, ...props }: CardDescriptionProps) {
+function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card-description'
@@ -64,11 +50,7 @@ function CardDescription({ className, ...props }: CardDescriptionProps) {
   );
 }
 
-interface CardActionProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
-function CardAction({ className, ...props }: CardActionProps) {
+function CardAction({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card-action'
@@ -81,11 +63,7 @@ function CardAction({ className, ...props }: CardActionProps) {
   );
 }
 
-interface CardContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
-function CardContent({ className, ...props }: CardContentProps) {
+function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card-content'
@@ -95,11 +73,7 @@ function CardContent({ className, ...props }: CardContentProps) {
   );
 }
 
-interface CardFooterProps extends React.HTMLAttributes<HTMLDivElement> {
-  className?: string;
-}
-
-function CardFooter({ className, ...props }: CardFooterProps) {
+function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {
   return (
     <div
       data-slot='card-footer'
