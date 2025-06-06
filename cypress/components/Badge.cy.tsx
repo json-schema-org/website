@@ -18,25 +18,25 @@ describe('Badge Component', () => {
   });
 
   it('renders with different variants', () => {
-    cy.mount(<Badge variant="default">Default Badge</Badge>);
+    cy.mount(<Badge variant='default'>Default Badge</Badge>);
     cy.get('span').should('have.class', 'bg-[#e2e8f0]');
     cy.get('span').should('have.class', 'dark:bg-[#0f172a]');
     cy.get('span').should('have.class', 'text-[#0f172a]');
     cy.get('span').should('have.class', 'dark:text-white');
 
-    cy.mount(<Badge variant="secondary">Secondary Badge</Badge>);
+    cy.mount(<Badge variant='secondary'>Secondary Badge</Badge>);
     cy.get('span').should('have.class', 'bg-[#e2e8f0]');
     cy.get('span').should('have.class', 'dark:bg-[#0f172a]');
     cy.get('span').should('have.class', 'text-[#0f172a]');
     cy.get('span').should('have.class', 'dark:text-white');
 
-    cy.mount(<Badge variant="outline">Outline Badge</Badge>);
+    cy.mount(<Badge variant='outline'>Outline Badge</Badge>);
     cy.get('span').should('have.class', 'bg-[#e2e8f0]');
     cy.get('span').should('have.class', 'dark:bg-[#0f172a]');
     cy.get('span').should('have.class', 'text-[#0f172a]');
     cy.get('span').should('have.class', 'dark:text-white');
 
-    cy.mount(<Badge variant="destructive">Destructive Badge</Badge>);
+    cy.mount(<Badge variant='destructive'>Destructive Badge</Badge>);
     cy.get('span').should('have.class', 'bg-[#e2e8f0]');
     cy.get('span').should('have.class', 'dark:bg-[#0f172a]');
     cy.get('span').should('have.class', 'text-[#0f172a]');
@@ -48,4 +48,4 @@ describe('Badge Component', () => {
     cy.mount(<Badge>{content}</Badge>);
     cy.get('span').should('contain', content);
   });
-}); 
+});

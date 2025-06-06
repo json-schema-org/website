@@ -1,5 +1,4 @@
 /* eslint-disable linebreak-style */
-// eslint-disable-next-line linebreak-style
 import * as React from 'react';
 import { cn } from '@/lib/utils';
 

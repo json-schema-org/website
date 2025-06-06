@@ -16,7 +16,7 @@ describe('Tag Component', () => {
   });
 
   it('renders with success intent', () => {
-    cy.mount(<Tag intent="success">Success Tag</Tag>);
+    cy.mount(<Tag intent='success'>Success Tag</Tag>);
     cy.get('span').should('have.class', 'bg-emerald-500/10');
     cy.get('span').should('have.class', 'dark:bg-emerald-500/20');
     cy.get('span').should('have.class', 'text-emerald-700');
@@ -24,7 +24,7 @@ describe('Tag Component', () => {
   });
 
   it('renders with warning intent', () => {
-    cy.mount(<Tag intent="warning">Warning Tag</Tag>);
+    cy.mount(<Tag intent='warning'>Warning Tag</Tag>);
     cy.get('span').should('have.class', 'bg-amber-500/10');
     cy.get('span').should('have.class', 'dark:bg-amber-500/20');
     cy.get('span').should('have.class', 'text-amber-700');
@@ -32,7 +32,7 @@ describe('Tag Component', () => {
   });
 
   it('renders with error intent', () => {
-    cy.mount(<Tag intent="error">Error Tag</Tag>);
+    cy.mount(<Tag intent='error'>Error Tag</Tag>);
     cy.get('span').should('have.class', 'bg-red-500/10');
     cy.get('span').should('have.class', 'dark:bg-red-500/20');
     cy.get('span').should('have.class', 'text-red-700');
@@ -51,4 +51,4 @@ describe('Tag Component', () => {
     cy.get('span').should('have.class', 'text-[12px]');
     cy.get('span').should('have.class', 'font-semibold');
   });
-}); 
+});
