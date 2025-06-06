@@ -3802,13 +3802,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:^15":
-  version: 15.7.14
-  resolution: "@types/prop-types@npm:15.7.14"
-  checksum: 10c0/1ec775160bfab90b67a782d735952158c7e702ca4502968aa82565bd8e452c2de8601c8dfe349733073c31179116cf7340710160d3836aa8a1ef76d1532893b1
-  languageName: node
-  linkType: hard
-
 "@types/react-syntax-highlighter@npm:^15.5.13":
   version: 15.5.13
   resolution: "@types/react-syntax-highlighter@npm:15.5.13"
@@ -8564,7 +8557,6 @@ __metadata:
     "@types/js-yaml": "npm:^4.0.5"
     "@types/jsonpath": "npm:^0.2.4"
     "@types/node": "npm:^22.10.10"
-    "@types/prop-types": "npm:^15"
     "@types/react": "npm:18.3.5"
     "@types/react-syntax-highlighter": "npm:^15.5.13"
     "@types/react-text-truncate": "npm:^0.19.0"
@@ -8608,7 +8600,6 @@ __metadata:
     nyc: "npm:^17.1.0"
     postcss: "npm:^8.4.41"
     prettier: "npm:3.3.3"
-    prop-types: "npm:^15.8.1"
     react: "npm:18.3.1"
     react-dom: "npm:18.3.1"
     react-syntax-highlighter: "npm:^15.6.1"
