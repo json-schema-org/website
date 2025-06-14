@@ -402,7 +402,7 @@ const TableSortableColumnHeader = ({
   return (
     <TableColumnHeader attributes={propAttributes}>
       <Button
-        variant="ghost"
+        variant='ghost'
         className='flex items-center focus:outline-none'
         onClick={sortByColumn}
       >

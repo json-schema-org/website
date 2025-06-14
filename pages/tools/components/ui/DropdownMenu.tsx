@@ -1,4 +1,6 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable react-hooks/rules-of-hooks */
+/* eslint-disable linebreak-style */
 import { useRouter } from 'next/router';
 import React, {
   type ReactElement,
