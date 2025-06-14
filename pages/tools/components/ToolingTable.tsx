@@ -9,6 +9,7 @@ import React, {
 import { Headline2 } from '~/components/Headlines';
 import InfoIcon from '~/public/icons/icons8-info.svg';
 import OutLinkIcon from '~/public/icons/outlink.svg';
+import { Button } from '~/components/ui/button';
 
 import toTitleCase from '../lib/toTitleCase';
 import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
@@ -400,7 +401,8 @@ const TableSortableColumnHeader = ({
 
   return (
     <TableColumnHeader attributes={propAttributes}>
-      <button
+      <Button
+        variant='ghost'
         className='flex items-center focus:outline-none'
         onClick={sortByColumn}
       >
@@ -421,7 +423,7 @@ const TableSortableColumnHeader = ({
             />
           </svg>
         )}
-      </button>
+      </Button>
     </TableColumnHeader>
   );
 };
