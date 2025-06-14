@@ -204,7 +204,9 @@ export default function StaticMarkdownPage({
               width={800}
               height={450}
               className='object-cover w-full h-full opacity-70 blur-[5px]'
-              alt='hero image example'
+              alt={recentBlog[0].frontmatter.title}
+              priority
+              quality={75}
             />
             <div className='absolute text-white w-full h-full mt-custom ml-14'>
               {/* Display all categories (joined by comma) */}
@@ -298,7 +300,7 @@ export default function StaticMarkdownPage({
 
         {/* Blog Posts Grid */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
-          {sortedFilteredPosts.map((blogPost: any) => {
+          {sortedFilteredPosts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
@@ -310,12 +312,15 @@ export default function StaticMarkdownPage({
                     href={`/blog/posts/${blogPost.slug}`}
                     className='inline-flex flex-col flex-1 w-full'
                   >
-                    <div className='h-max-[200px] w-full object-cover'>
-                      <div
-                        className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                        style={{
-                          backgroundImage: `url(${frontmatter.cover})`,
-                        }}
+                    <div className='relative h-[160px] w-full'>
+                      <Image
+                        src={frontmatter.cover}
+                        alt={frontmatter.title}
+                        fill
+                        className='object-cover'
+                        loading={idx < 10 ? 'eager' : 'lazy'}
+                        priority={idx < 10}
+                        quality={75}
                       />
                     </div>
                     <div className='p-4 flex flex-col flex-1 justify-between'>
