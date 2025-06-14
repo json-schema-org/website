@@ -5,7 +5,7 @@ prev:
   label: string
   url: /understanding-json-schema/reference/string
 next: 
-  label: Value restrictions
+  label: Enumerated and constant values
   url: /understanding-json-schema/reference/generic
 ---
 

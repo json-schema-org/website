@@ -8,10 +8,13 @@ describe('Remember Component', () => {
     cy.mount(<Remember />);
 
     // Should have the correct elements and text
-
     cy.get('[data-test="remember-heading"]')
-      .should('have.prop', 'tagName', 'H3')
-      .and('contain.text', 'Remember');
+      .should('have.prop', 'tagName', 'DIV')
+      .and('contain.text', 'Remember')
+      .and('have.class', 'text-h5mobile')
+      .and('have.class', 'md:text-h5')
+      .and('have.class', 'leading-none')
+      .and('have.class', 'font-semibold');
 
     cy.get('[data-test="contribute-docs-span"]')
       .should('have.prop', 'tagName', 'SPAN')

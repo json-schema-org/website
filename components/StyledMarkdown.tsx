@@ -417,7 +417,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                         {label}
                       </div>
                     )}
-                    <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
+                    <div className='flex flex-row items-center mb-6 bg-amber-100 px-6 py-4 border border-amber-100 rounded text-slate-500 leading-7'>
                       <Image
                         src='/icons/info-yellow.svg'
                         className='h-7 w-7 mr-3'
