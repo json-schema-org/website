@@ -2,7 +2,7 @@
 title: "Media: string-encoding non-JSON data"
 section: docs
 prev: 
-  label: Modular JSON Schema combination¶
+  label: Modular JSON Schema combination
   url: /understanding-json-schema/structuring
 next: 
   label: Specification

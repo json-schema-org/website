@@ -503,10 +503,10 @@
   toolingListingNotes: 'Built for Cloudflare workers, browsers, and Node.js'
   lastUpdated: '2023-02-28'
 
-- name: JSON Schema Library
+- name: json-schema-library
   description: 'Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation'
-  toolingTypes: ['validator']
-  languages: ['JavaScript']
+  toolingTypes: ['validator', 'util-general-processing', 'schema-to-data']
+  languages: ['Javascript', 'TypeScript']
   maintainers:
     - name: 'Sascha Goldhofer'
       username: 'sagold'
@@ -514,9 +514,9 @@
   license: 'MIT'
   source: 'https://github.com/sagold/json-schema-library'
   supportedDialects:
-    draft: ['7', '6', '4', '2019-09']
-  toolingListingNotes: 'Built for Node.js and browsers. Customizable json-validator and json-schema utilities for traversal, data generation and validation'
-  lastUpdated: '2022-08-31'
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Provides tools and utilities for working with JSON Schema - enabling creation, validation, and schema exploration. This library is designed for developers building custom tools around JSON Schema. It runs in both Node and browser environments, prioritizing flexibility and extensibility over minimal memory footprint or raw performance.'
+  lastUpdated: '2025-05-07'
 
 - name: djv
   description: 'Dynamic JSON Schema Validator - Supports draft-04/06'
@@ -1301,19 +1301,18 @@
       platform: 'github'
   creators:
     - name: 'Elif Kurtay'
-      platform: 'github'    
+      platform: 'github'
     - name: 'Andriy Dmytruk'
-      platform: 'github'    
+      platform: 'github'
     - name: 'Graeme Rocher'
-      platform: 'github'    
+      platform: 'github'
     - name: 'Sergio del Amo'
-      platform: 'github'    
+      platform: 'github'
   license: 'Apache-2.0'
   source: 'https://github.com/micronaut-projects/micronaut-json-schema'
   homepage: 'https://micronaut-projects.github.io/micronaut-json-schema/latest/guide/'
   supportedDialects:
     draft: ['2020-12']
-  
 
 - name: drf-jsonschema-serializer
   description: 'drf-jsonschema-serializer generates schemas from Django Rest Framework serializers.'
@@ -1627,6 +1626,19 @@
   source: 'https://github.com/jimblackler/jsonschematypes'
   supportedDialects:
     draft: ['3', '4', '6', '7', '2019-09']
+
+- name: json-schema-to-java-record
+  description: 'An annotation processor converting JSON schemas to java records. Supports Jackson, JSpecify and RecordBuilder.'
+  toolingTypes: ['schema-to-code']
+  languages: ['Java']
+  maintainers:
+    - name: 'Réda Housni Alaoui'
+      username: 'reda-alaoui'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/Cosium/json-schema-to-java-record'
+  supportedDialects:
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']    
 
 - name: json-kotlin-schema-codegen
   description: 'Generates Kotlin data classes, Java classes or TypeScript interfaces from JSON Schema.'
@@ -1993,17 +2005,6 @@
       platform: 'github'
   license: 'MIT'
   source: 'https://github.com/BigstickCarpet/json-schema-ref-parser'
-
-- name: json-schema-library
-  description: 'Exposes tools to work with json-schema, including: data creation from json-schema, `$ref` processing, walk through schemas, etc.'
-  toolingTypes: ['util-general-processing']
-  languages: ['JavaScript']
-  maintainers:
-    - name: 'Sascha Goldhofer'
-      username: 'sagold'
-      platform: 'github'
-  license: 'MIT'
-  source: 'https://github.com/sagold/json-schema-library'
 
 - name: '@cloudflare/json-schema-walker'
   description: "*draft-07, -06, -04, and Cloudflare's Doca extensions* Walks schemas and runs pre- and post-walk callbacks. Can modify schemas in place."
@@ -3081,7 +3082,7 @@
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2024-10-01'
-  
+
 - name: protoc-gen-jsonschema
   description: 'JsonSchema generator plugin for Google Protocol Buffers'
   toolingTypes: ['model-to-schema']
@@ -3140,7 +3141,7 @@
 
 - name: JSV
   description: 'A generic JSON Schema validator for Elixir'
-  environments: ['Linux', 'macOS', 'Windows','Embedded platform']
+  environments: ['Linux', 'macOS', 'Windows', 'Embedded platform']
   toolingTypes: ['validator']
   languages: ['Elixir', 'Erlang']
   maintainers:
@@ -3184,7 +3185,7 @@
     - name: 'Minye'
       username: 'beyond2void'
       platform: 'github'
-    - name: 'Keyuri Patel' 
+    - name: 'Keyuri Patel'
       username: 'Keyshal-211'
       platform: 'github'
   license: 'MIT'
@@ -3195,15 +3196,15 @@
 
 - name: 'json-2-joi'
   description: 'Converts a JSON schema to a Joi schema for object validation'
-  toolingTypes:
-    ['util-format-conversion', 'schema-to-types']
+  toolingTypes: ['util-format-conversion', 'schema-to-types']
   languages: ['JavaScript']
   license: 'Apache License 2.0'
-  source: 'https://github.com/kenspirit/json-2-joi'  
+  source: 'https://github.com/kenspirit/json-2-joi'
 
 - name: 'joi-to-json'
-  description: 'Support converting different version''s joi schema to JSON Schema using describe api'
-  toolingTypes: ['code-to-schema','util-general-processing','util-format-conversion']
+  description: "Support converting different version's joi schema to JSON Schema using describe api"
+  toolingTypes:
+    ['code-to-schema', 'util-general-processing', 'util-format-conversion']
   languages: ['JavaScript']
   maintainers:
     - name: 'kenspirit'
@@ -3212,7 +3213,7 @@
   license: 'MIT'
   source: 'https://github.com/kenspirit/joi-to-json'
   supportedDialects:
-    draft: ['4','6','7','2019-09','2020-12']
+    draft: ['4', '6', '7', '2019-09', '2020-12']
     additional:
       - name: 'OpenAPI 3.0'
         source: 'https://spec.openapis.org/oas/v3.0.0'
@@ -3221,8 +3222,7 @@
 
 - name: 'json-schema'
   description: 'A Ruby JSON Schema Validator ensures that JSON data adheres to a predefined structure, preventing errors and maintaining data integrity in applications.'
-  toolingTypes:
-    ['validator']
+  toolingTypes: ['validator']
   languages: ['Ruby']
   maintainers:
     - name: 'Vox Pupuli'
@@ -3231,7 +3231,4 @@
   source: 'https://github.com/voxpupuli/json-schema/'
   homepage: 'https://github.com/voxpupuli/json-schema/'
   supportedDialects:
-     draft: ['1', '2', '3', '4', '6']
-  
-
-  
+    draft: ['1', '2', '3', '4', '6']
