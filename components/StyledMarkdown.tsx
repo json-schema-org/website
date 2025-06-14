@@ -564,6 +564,38 @@ export function TableOfContentMarkdown({
   markdown: string;
   depth?: number;
 }) {
+  // Add state to track the active section
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  // Set up intersection observer to track which section is in view
+  useEffect(() => {
+    const headings = document.querySelectorAll('h1, h2, h3, h4');
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-100px 0px -80% 0px',
+        threshold: 0
+      }
+    );
+
+    headings.forEach((heading) => {
+      observer.observe(heading);
+    });
+
+    return () => {
+      headings.forEach((heading) => {
+        observer.unobserve(heading);
+      });
+    };
+  }, []);
+
   return (
     <Markdown
       options={{
@@ -571,10 +603,14 @@ export function TableOfContentMarkdown({
           h1: {
             component: ({ children }) => {
               const slug = slugifyMarkdownHeadline(children);
+              const isActive = activeSection === slug;
               return (
                 <a
                   href={`#${slug}`}
-                  className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
+                  className={`flex cursor-pointer mb-3 max-sm:text-sm leading-6 font-medium ${isActive
+                    ? 'text-blue-600 dark:text-blue-400 font-semibold bg-blue-50 dark:bg-slate-700 px-2 py-1 -ml-2 rounded'
+                    : 'text-slate-600 dark:text-slate-300'
+                    }`}
                 >
                   {children}
                 </a>
@@ -586,91 +622,107 @@ export function TableOfContentMarkdown({
           h2:
             depth === 0
               ? {
+                component: ({ children }) => {
+                  const slug = slugifyMarkdownHeadline(children);
+                  const isActive = activeSection === slug;
+                  return (
+                    <a
+                      href={`#${slug}`}
+                      className={`block cursor-pointer mb-3 leading-5 font-medium ml-4 ${isActive
+                        ? 'text-blue-600 dark:text-blue-400 font-semibold bg-blue-50 dark:bg-slate-700 px-2 py-1 -ml-2 rounded'
+                        : 'text-slate-600 dark:text-slate-300'
+                        }`}
+                    >
+                      {children}
+                    </a>
+                  );
+                },
+              }
+              : depth >= 2
+                ? {
                   component: ({ children }) => {
                     const slug = slugifyMarkdownHeadline(children);
+                    const [isChrome, setIsChrome] = useState(false);
+                    const isActive = activeSection === slug;
+
+                    useEffect(() => {
+                      const chromeCheck =
+                        /Chrome/.test(navigator.userAgent) &&
+                        /Google Inc/.test(navigator.vendor);
+                      setIsChrome(chromeCheck);
+                    }, []);
+
                     return (
+                      // chromeClass
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
+                        className={`block cursor-pointer mb-3 max-sm:text-sm leading-4 max-sm:-ml-[6px] font-medium ${isActive
+                          ? 'text-blue-600 dark:text-blue-400 font-semibold bg-blue-50 dark:bg-slate-700 px-2 py-1 rounded'
+                          : 'text-slate-600 dark:text-slate-300'
+                          } ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`}
                       >
+                        <span className={`mr-1 text-[0.7em] ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-blue-400'}`}>
+                          &#9679;
+                        </span>
                         {children}
                       </a>
                     );
                   },
                 }
-              : depth >= 2
-                ? {
-                    component: ({ children }) => {
-                      const slug = slugifyMarkdownHeadline(children);
-                      const [isChrome, setIsChrome] = useState(false);
-
-                      useEffect(() => {
-                        const chromeCheck =
-                          /Chrome/.test(navigator.userAgent) &&
-                          /Google Inc/.test(navigator.vendor);
-                        setIsChrome(chromeCheck);
-                      }, []);
-
-                      return (
-                        // chromeClass
-                        <a
-                          href={`#${slug}`}
-                          className={`block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ] max-sm:-ml-[6px] font-medium ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`}
-                        >
-                          <span className='mr-1 text-blue-400 text-[0.7em]'>
-                            &#9679;
-                          </span>
-                          {children}
-                        </a>
-                      );
-                    },
-                  }
                 : { component: () => null },
           h3:
             depth >= 3
               ? {
-                  component: ({ children }) => {
-                    const slug = slugifyMarkdownHeadline(children);
-                    return (
-                      <a
-                        href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]'
-                      >
-                        <span className='text-blue-400/40 font-extrabold text-[0.8em] max-sm:text-[1.2em] ml-1'>
-                          &mdash;&mdash;
-                        </span>
-                        <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
-                          &#9679;
-                        </span>
+                component: ({ children }) => {
+                  const slug = slugifyMarkdownHeadline(children);
+                  const isActive = activeSection === slug;
+                  return (
+                    <a
+                      href={`#${slug}`}
+                      className={`flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm leading-4 ml-[-0.25rem] ${isActive
+                        ? 'text-blue-600 dark:text-blue-400 font-semibold bg-blue-50 dark:bg-slate-700 px-2 py-1 rounded'
+                        : 'text-slate-600 dark:text-slate-300'
+                        }`}
+                    >
+                      <span className='text-blue-400/40 font-extrabold text-[0.8em] max-sm:text-[1.2em] ml-1'>
+                        &mdash;&mdash;
+                      </span>
+                      <span className={`mr-1 text-[0.7em] flex justify-center items-center ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-blue-400/90'}`}>
+                        &#9679;
+                      </span>
 
-                        {children}
-                      </a>
-                    );
-                  },
-                }
+                      {children}
+                    </a>
+                  );
+                },
+              }
               : { component: () => null },
           h4:
             depth >= 4
               ? {
-                  component: ({ children }) => {
-                    const slug = slugifyMarkdownHeadline(children);
-                    return (
-                      <a
-                        href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem] '
-                      >
-                        <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
-                          &mdash;&mdash;&mdash;&mdash;
-                        </span>
-                        <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
-                          &#9679;
-                        </span>
+                component: ({ children }) => {
+                  const slug = slugifyMarkdownHeadline(children);
+                  const isActive = activeSection === slug;
+                  return (
+                    <a
+                      href={`#${slug}`}
+                      className={`flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm leading-4 ml-[-0.25rem] ${isActive
+                        ? 'text-blue-600 dark:text-blue-400 font-semibold bg-blue-50 dark:bg-slate-700 px-2 py-1 rounded'
+                        : 'text-slate-600 dark:text-slate-300'
+                        }`}
+                    >
+                      <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
+                        &mdash;&mdash;&mdash;&mdash;
+                      </span>
+                      <span className={`mr-1 text-[0.7em] flex justify-center items-center ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-blue-400/90'}`}>
+                        &#9679;
+                      </span>
 
-                        {children}
-                      </a>
-                    );
-                  },
-                } /* eslint-enable */
+                      {children}
+                    </a>
+                  );
+                },
+              } /* eslint-enable */
               : { component: () => null },
           ...hiddenElements(
             'strong',
