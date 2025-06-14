@@ -2,18 +2,14 @@ import React from 'react';
 import DropdownMenu from '@/pages/tools/components/ui/DropdownMenu';
 
 describe('DropdownMenu Component', () => {
-  const mockIcon = <svg data-testid="test-icon" />;
-  const mockChildren = <div data-testid="test-content">Test Content</div>;
+  const mockIcon = <svg data-testid='test-icon' />;
+  const mockChildren = <div data-testid='test-content'>Test Content</div>;
 
   it('renders with basic props', () => {
     cy.mount(
-      <DropdownMenu
-        label="Test Menu"
-        icon={mockIcon}
-        testMode={true}
-      >
+      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
         {mockChildren}
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     cy.contains('Test Menu').should('be.visible');
@@ -22,13 +18,9 @@ describe('DropdownMenu Component', () => {
 
   it('shows content when clicked', () => {
     cy.mount(
-      <DropdownMenu
-        label="Test Menu"
-        icon={mockIcon}
-        testMode={true}
-      >
+      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
         {mockChildren}
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     cy.get('button').click();
@@ -37,14 +29,9 @@ describe('DropdownMenu Component', () => {
 
   it('displays count badge when count is provided', () => {
     cy.mount(
-      <DropdownMenu
-        label="Test Menu"
-        icon={mockIcon}
-        count={5}
-        testMode={true}
-      >
+      <DropdownMenu label='Test Menu' icon={mockIcon} count={5} testMode={true}>
         {mockChildren}
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     cy.contains('5').should('be.visible');
@@ -52,14 +39,9 @@ describe('DropdownMenu Component', () => {
 
   it('does not show count badge when count is 0', () => {
     cy.mount(
-      <DropdownMenu
-        label="Test Menu"
-        icon={mockIcon}
-        count={0}
-        testMode={true}
-      >
+      <DropdownMenu label='Test Menu' icon={mockIcon} count={0} testMode={true}>
         {mockChildren}
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     cy.contains('0').should('not.exist');
@@ -67,48 +49,46 @@ describe('DropdownMenu Component', () => {
 
   it('rotates arrow icon when dropdown is toggled', () => {
     cy.mount(
-      <DropdownMenu
-        label="Test Menu"
-        icon={mockIcon}
-        testMode={true}
-      >
+      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
         {mockChildren}
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     // Initially arrow should point down
-    cy.get('#arrow').should('have.attr', 'style').and('include', 'rotate(0deg)');
+    cy.get('#arrow')
+      .should('have.attr', 'style')
+      .and('include', 'rotate(0deg)');
 
     // Click to open
     cy.get('button').click();
-    cy.get('#arrow').should('have.attr', 'style').and('include', 'rotate(180deg)');
+    cy.get('#arrow')
+      .should('have.attr', 'style')
+      .and('include', 'rotate(180deg)');
 
     // Click to close
     cy.get('button').click();
-    cy.get('#arrow').should('have.attr', 'style').and('include', 'rotate(0deg)');
+    cy.get('#arrow')
+      .should('have.attr', 'style')
+      .and('include', 'rotate(0deg)');
   });
 
   it('toggles content visibility multiple times', () => {
     cy.mount(
-      <DropdownMenu
-        label="Test Menu"
-        icon={mockIcon}
-        testMode={true}
-      >
+      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
         {mockChildren}
-      </DropdownMenu>
+      </DropdownMenu>,
     );
 
     // First toggle
     cy.get('button').click();
     cy.get('[data-testid="test-content"]').should('be.visible');
-    
+
     // Second toggle
     cy.get('button').click();
     cy.get('[data-testid="test-content"]').should('not.exist');
-    
+
     // Third toggle
     cy.get('button').click();
     cy.get('[data-testid="test-content"]').should('be.visible');
   });
-}); 
+});

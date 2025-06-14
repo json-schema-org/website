@@ -5,11 +5,11 @@ describe('Radio Component', () => {
   it('renders with label and value', () => {
     cy.mount(
       <Radio
-        label="Test Radio"
-        value="test"
-        selectedValue=""
+        label='Test Radio'
+        value='test'
+        selectedValue=''
         onChange={() => {}}
-      />
+      />,
     );
 
     cy.get('[role="radiogroup"]').should('exist');
@@ -19,14 +19,14 @@ describe('Radio Component', () => {
 
   it('handles selection change', () => {
     const onChangeSpy = cy.spy().as('onChangeSpy');
-    
+
     cy.mount(
       <Radio
-        label="Test Radio"
-        value="test"
-        selectedValue=""
+        label='Test Radio'
+        value='test'
+        selectedValue=''
         onChange={onChangeSpy}
-      />
+      />,
     );
 
     cy.get('[role="radio"]').click();
@@ -36,11 +36,11 @@ describe('Radio Component', () => {
   it('shows correct selected state', () => {
     cy.mount(
       <Radio
-        label="Test Radio"
-        value="test"
-        selectedValue="test"
+        label='Test Radio'
+        value='test'
+        selectedValue='test'
         onChange={() => {}}
-      />
+      />,
     );
 
     cy.get('[role="radio"]').should('have.attr', 'data-state', 'checked');
@@ -49,11 +49,11 @@ describe('Radio Component', () => {
   it('has correct styling classes', () => {
     cy.mount(
       <Radio
-        label="Test Radio"
-        value="test"
-        selectedValue=""
+        label='Test Radio'
+        value='test'
+        selectedValue=''
         onChange={() => {}}
-      />
+      />,
     );
 
     cy.get('label').should('have.class', 'flex');
@@ -65,14 +65,14 @@ describe('Radio Component', () => {
 
   it('maintains selection state when re-rendered', () => {
     const onChangeSpy = cy.spy().as('onChangeSpy');
-    
+
     cy.mount(
       <Radio
-        label="Test Radio"
-        value="test"
-        selectedValue=""
+        label='Test Radio'
+        value='test'
+        selectedValue=''
         onChange={onChangeSpy}
-      />
+      />,
     );
 
     // First click to select
@@ -82,14 +82,14 @@ describe('Radio Component', () => {
     // Re-mount with the selected value
     cy.mount(
       <Radio
-        label="Test Radio"
-        value="test"
-        selectedValue="test"
+        label='Test Radio'
+        value='test'
+        selectedValue='test'
         onChange={onChangeSpy}
-      />
+      />,
     );
 
     // Verify the selection state is maintained
     cy.get('[role="radio"]').should('have.attr', 'data-state', 'checked');
   });
-}); 
+});

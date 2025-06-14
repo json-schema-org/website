@@ -1,10 +1,11 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import { Button } from '@/components/ui/button';
 
 describe('Button Component', () => {
   it('renders with default variant and size', () => {
     cy.mount(<Button>Click me</Button>);
-    
+
     cy.get('button')
       .should('have.class', 'bg-primary')
       .and('have.class', 'h-9')
@@ -14,14 +15,14 @@ describe('Button Component', () => {
 
   it('renders with different variants', () => {
     cy.mount(
-      <div className="flex gap-2">
-        <Button variant="default">Default</Button>
-        <Button variant="destructive">Destructive</Button>
-        <Button variant="outline">Outline</Button>
-        <Button variant="secondary">Secondary</Button>
-        <Button variant="ghost">Ghost</Button>
-        <Button variant="link">Link</Button>
-      </div>
+      <div className='flex gap-2'>
+        <Button variant='default'>Default</Button>
+        <Button variant='destructive'>Destructive</Button>
+        <Button variant='outline'>Outline</Button>
+        <Button variant='secondary'>Secondary</Button>
+        <Button variant='ghost'>Ghost</Button>
+        <Button variant='link'>Link</Button>
+      </div>,
     );
 
     cy.get('button').eq(0).should('have.class', 'bg-primary');
@@ -34,12 +35,12 @@ describe('Button Component', () => {
 
   it('renders with different sizes', () => {
     cy.mount(
-      <div className="flex gap-2">
-        <Button size="default">Default</Button>
-        <Button size="sm">Small</Button>
-        <Button size="lg">Large</Button>
-        <Button size="icon">Icon</Button>
-      </div>
+      <div className='flex gap-2'>
+        <Button size='default'>Default</Button>
+        <Button size='sm'>Small</Button>
+        <Button size='lg'>Large</Button>
+        <Button size='icon'>Icon</Button>
+      </div>,
     );
 
     cy.get('button').eq(0).should('have.class', 'h-9');
@@ -60,9 +61,9 @@ describe('Button Component', () => {
   it('renders with icon', () => {
     cy.mount(
       <Button>
-        <svg data-testid="test-icon" />
+        <svg data-testid='test-icon' />
         Button with Icon
-      </Button>
+      </Button>,
     );
 
     cy.get('button').should('have.class', 'has-[>svg]:px-3');
@@ -70,14 +71,14 @@ describe('Button Component', () => {
   });
 
   it('applies custom className', () => {
-    cy.mount(<Button className="custom-class">Custom Button</Button>);
+    cy.mount(<Button className='custom-class'>Custom Button</Button>);
 
     cy.get('button').should('have.class', 'custom-class');
   });
 
   it('handles click events', () => {
     const onClickSpy = cy.spy().as('onClickSpy');
-    
+
     cy.mount(<Button onClick={onClickSpy}>Click me</Button>);
 
     cy.get('button').click();
@@ -87,12 +88,12 @@ describe('Button Component', () => {
   it('renders as child component when asChild is true', () => {
     cy.mount(
       <Button asChild>
-        <a href="#test">Link Button</a>
-      </Button>
+        <a href='#test'>Link Button</a>
+      </Button>,
     );
 
     cy.get('a')
       .should('have.attr', 'href', '#test')
       .and('have.class', 'bg-primary');
   });
-}); 
+});

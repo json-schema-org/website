@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* eslint-disable react/prop-types */
 import * as React from 'react';
 import * as RadioGroupPrimitive from '@radix-ui/react-radio-group';
 import { CircleIcon } from 'lucide-react';
