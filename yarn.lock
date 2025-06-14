@@ -3540,7 +3540,6 @@ __metadata:
   linkType: hard
 
 "@radix-ui/react-slot@npm:1.2.2, @radix-ui/react-slot@npm:^1.2.2":
-
   version: 1.2.2
   resolution: "@radix-ui/react-slot@npm:1.2.2"
   dependencies:
@@ -3554,7 +3553,6 @@ __metadata:
   checksum: 10c0/74489f5ad11b17444560a1cdd664c01308206ce5cb9fcd46121b45281ece20273948479711411223c1081f709c15409242d51ca6cc57ff81f6335d70e0cbe0b5
   languageName: node
   linkType: hard
-
 
 "@radix-ui/react-slot@npm:1.2.3":
   version: 1.2.3
