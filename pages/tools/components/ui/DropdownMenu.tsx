@@ -27,16 +27,13 @@ export default function DropdownMenu({
   label,
   icon,
   count = 0,
-  testMode = false,
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const router = testMode ? null : useRouter();
+  const router = useRouter();
 
   useEffect(() => {
-    if (!testMode) {
-      setIsDropdownOpen(false);
-    }
-  }, [router, testMode]);
+    setIsDropdownOpen(false);
+  }, [router]);
 
   return (
     <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer transition-all duration-200 group'>

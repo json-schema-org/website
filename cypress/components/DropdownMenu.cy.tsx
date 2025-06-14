@@ -1,9 +1,16 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react';
 import DropdownMenu from '@/pages/tools/components/ui/DropdownMenu';
+import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
 
 describe('DropdownMenu Component', () => {
+  let mockRouter: MockRouter;
   const mockIcon = <svg data-testid='test-icon' />;
   const mockChildren = <div data-testid='test-content'>Test Content</div>;
+
+  beforeEach(() => {
+    mockRouter = mockNextRouter();
+  });
 
   it('renders with basic props', () => {
     cy.mount(
