@@ -37,7 +37,8 @@ export default function Sidebar({
   setIsSidebarOpen,
 }: SidebarProps) {
   const filterFormRef = useRef<HTMLFormElement>(null);
-  const [pendingSelections, setPendingSelections] = useState<Transform>(transform);
+  const [pendingSelections, setPendingSelections] =
+    useState<Transform>(transform);
 
   const filters = [
     { label: 'Language', accessorKey: 'languages' },
@@ -47,7 +48,11 @@ export default function Sidebar({
     { label: 'License', accessorKey: 'licenses' },
   ];
 
-  const handleCheckboxChange = (name: string, value: string, checked: boolean) => {
+  const handleCheckboxChange = (
+    name: string,
+    value: string,
+    checked: boolean,
+  ) => {
     setPendingSelections((prev) => {
       const currentValues = prev[name as keyof Transform] as string[];
       const newValues = checked
@@ -82,7 +87,8 @@ export default function Sidebar({
       <form onSubmit={applyFilters} ref={filterFormRef} className='w-full'>
         <SearchBar transform={transform} />
         {filters.map(({ label, accessorKey }) => {
-          const checkedValues = pendingSelections[accessorKey as keyof Transform] || [];
+          const checkedValues =
+            pendingSelections[accessorKey as keyof Transform] || [];
           const IconComponent =
             filterIcons[accessorKey as keyof typeof filterIcons];
           return (
@@ -105,7 +111,9 @@ export default function Sidebar({
                     value={filterOption}
                     name={accessorKey}
                     checked={checkedValues.includes(filterOption)}
-                    onChange={(checked) => handleCheckboxChange(accessorKey, filterOption, checked)}
+                    onChange={(checked) =>
+                      handleCheckboxChange(accessorKey, filterOption, checked)
+                    }
                   />
                 ))}
             </DropdownMenu>
@@ -116,10 +124,10 @@ export default function Sidebar({
           value='showObsolete'
           name='showObsolete'
           checked={pendingSelections['showObsolete'] === 'true'}
-          onChange={(checked) => 
+          onChange={(checked) =>
             setPendingSelections((prev) => ({
               ...prev,
-              showObsolete: checked ? 'true' : 'false'
+              showObsolete: checked ? 'true' : 'false',
             }))
           }
         />
@@ -128,26 +136,26 @@ export default function Sidebar({
           value='supportsBowtie'
           name='supportsBowtie'
           checked={pendingSelections['supportsBowtie'] === 'true'}
-          onChange={(checked) => 
+          onChange={(checked) =>
             setPendingSelections((prev) => ({
               ...prev,
-              supportsBowtie: checked ? 'true' : 'false'
+              supportsBowtie: checked ? 'true' : 'false',
             }))
           }
         />
         <div className='w-full flex items-center justify-between mt-4 gap-2'>
           <Button
             type='submit'
-            variant="default"
-            className="flex-1 text-white dark:bg-blue-600 dark:text-white"
+            variant='default'
+            className='flex-1 text-white dark:bg-[#bfdbfe] dark:text-slate-900'
           >
             Apply Filters
           </Button>
           <Button
             type='button'
-            variant="outline"
+            variant='outline'
             onClick={clearFilters}
-            className="flex-1 text-red-600 border-red-600 hover:bg-red-50 dark:bg-[#bfdbfe] dark:text-slate-900 dark:border-transparent"
+            className='flex-1 text-red-600 border-red-600 hover:bg-red-50 dark:bg-[#0f172a] dark:text-[#bfdbfe] dark:border-transparent'
           >
             Clear Filters
           </Button>

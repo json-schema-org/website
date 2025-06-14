@@ -50,9 +50,9 @@ export default function ToolingDetailModal({
         <div className='flex justify-end absolute top-0 right-0 mt-6 mr-6'>
           <Button
             onClick={onClose}
-            variant="ghost"
-            size="icon"
-            className="text-gray-500 hover:text-gray-300"
+            variant='ghost'
+            size='icon'
+            className='text-gray-500 hover:text-gray-300'
           >
             <CancelIcon className='fill-current stroke-current w-4 h-4' />
           </Button>

@@ -28,44 +28,48 @@ export default function DropdownMenu({
   }, [router]);
 
   return (
-    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer'>
+    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer transition-all duration-200 group'>
       <div
         className='w-full flex justify-between items-center align-middle cursor-pointer'
         onClick={() => {
           setIsDropdownOpen((prev) => !prev);
         }}
       >
-        {React.cloneElement(icon, {
-          className: 'mr-2 ml-2',
-        })}
-        <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto flex items-center gap-2'>
-          {label}
+        <div className='flex items-center'>
+          {React.cloneElement(icon, {
+            className: 'mr-2 ml-2 transition-transform duration-200 group-hover:scale-110',
+          })}
+          <div className='text-slate-900 dark:text-slate-300 font-bold transition-all duration-200 group-hover:text-[#bfdbfe] group-hover:scale-105'>
+            {label}
+          </div>
+        </div>
+        <div className='flex items-center gap-2'>
           {count > 0 && (
-            <span className='bg-primary text-white text-xs px-2 py-0.5 rounded-full'>
+            <span className='bg-primary text-white dark:bg-[#bfdbfe] dark:text-slate-900 text-xs px-2 py-0.5 rounded-full transition-transform duration-200 group-hover:scale-105'>
               {count}
             </span>
           )}
+          <svg
+            style={{
+              transform: `${isDropdownOpen ? 'rotate(180deg)' : 'rotate(0)'}`,
+              transition: 'all 0.2s linear',
+              cursor: 'pointer',
+            }}
+            id='arrow'
+            xmlns='http://www.w3.org/2000/svg'
+            fill='none'
+            height='32'
+            viewBox='0 0 24 24'
+            width='24'
+          >
+            <path
+              clipRule='evenodd'
+              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+              fill='#707070'
+              fillRule='evenodd'
+            />
+          </svg>
         </div>
-        <svg
-          style={{
-            transform: `${isDropdownOpen ? 'rotate(180deg)' : 'rotate(0)'}`,
-            transition: 'all 0.2s linear',
-            cursor: 'pointer',
-          }}
-          id='arrow'
-          xmlns='http://www.w3.org/2000/svg'
-          fill='none'
-          height='32'
-          viewBox='0 0 24 24'
-          width='24'
-        >
-          <path
-            clipRule='evenodd'
-            d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
-            fill='#707070'
-            fillRule='evenodd'
-          />
-        </svg>
       </div>
 
       <div
