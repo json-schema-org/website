@@ -17,6 +17,7 @@ interface DropdownMenuProps {
   label: string;
   icon: ReactElement;
   count?: number;
+  testMode?: boolean;
 }
 
 export default function DropdownMenu({
@@ -24,13 +25,16 @@ export default function DropdownMenu({
   label,
   icon,
   count = 0,
+  testMode = false,
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const router = useRouter();
+  const router = testMode ? null : useRouter();
 
   useEffect(() => {
-    setIsDropdownOpen(false);
-  }, [router]);
+    if (!testMode) {
+      setIsDropdownOpen(false);
+    }
+  }, [router, testMode]);
 
   return (
     <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer transition-all duration-200 group'>
