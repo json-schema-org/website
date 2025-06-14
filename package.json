@@ -61,7 +61,6 @@
     "slugify": "^1.6.5",
     "tailwind-merge": "^3.3.0",
     "tw-animate-css": "^1.2.9",
-    "yarn": "1.22.22",
     "zero-fill": "^2.2.4",
     "zustand": "^5.0.0"
   },
