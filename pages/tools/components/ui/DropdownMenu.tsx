@@ -39,7 +39,7 @@ export default function DropdownMenu({
           {React.cloneElement(icon, {
             className: 'mr-2 ml-2 transition-transform duration-200 group-hover:scale-110',
           })}
-          <div className='text-slate-900 dark:text-slate-300 font-bold transition-all duration-200 group-hover:text-[#bfdbfe] group-hover:scale-105'>
+          <div className='text-slate-900 dark:text-slate-300 font-bold transition-all duration-200 group-hover:text-blue-600 dark:group-hover:text-[#bfdbfe] group-hover:scale-105'>
             {label}
           </div>
         </div>
