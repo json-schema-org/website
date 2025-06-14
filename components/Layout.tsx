@@ -140,6 +140,9 @@ const MainNavLink = ({
   const isActiveNav =
     router.asPath.startsWith(uri) ||
     (uri === '/docs' && router.asPath.startsWith('/overview')) ||
+    (uri === '/docs' && router.asPath.startsWith('/learn')) ||
+    (uri === '/docs' && router.asPath.startsWith('/implementers')) ||
+    (uri === '/docs' && router.asPath.startsWith('/understanding-json-schema')) ||
     (uri === '/specification' && router.asPath.startsWith('/draft'));
 
   return (
