@@ -13,7 +13,7 @@ const cardsData = [
     body: 'Discover JSON Schema: its purpose and role in data validation.',
     headerSize: 'medium',
     bodyTextSize: 'small',
-    link: '/overview/what-is-jsonschema'
+    link: '/overview/what-is-jsonschema',
   },
   {
     icon: '/icons/compass.svg',
@@ -21,7 +21,7 @@ const cardsData = [
     body: 'New to JSON Schema? Learn the basics of schema design.',
     headerSize: 'medium',
     bodyTextSize: 'small',
-    link: '/learn'
+    link: '/learn',
   },
   {
     icon: '/icons/grad-cap.svg',
@@ -29,7 +29,7 @@ const cardsData = [
     body: 'Master advanced skills such as validation with our hands-on guides.',
     headerSize: 'medium',
     bodyTextSize: 'small',
-    link: '/learn/guides'
+    link: '/learn/guides',
   },
   {
     icon: '/icons/book.svg',
@@ -37,7 +37,7 @@ const cardsData = [
     body: 'Dive deeper into JSON Schema keywords with our clear explanations and usage examples.',
     headerSize: 'medium',
     bodyTextSize: 'small',
-    link: '/understanding-json-schema'
+    link: '/understanding-json-schema',
   },
   {
     icon: '/icons/clipboard.svg',
@@ -45,9 +45,9 @@ const cardsData = [
     body: 'Understand the evolution of JSON Schema through its different versions',
     headerSize: 'medium',
     bodyTextSize: 'small',
-    link: '/specification'
-  }
-]
+    link: '/specification',
+  },
+];
 
 export default function Welcome() {
   const newTitle = 'Welcome';
