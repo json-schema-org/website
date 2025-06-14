@@ -1627,6 +1627,19 @@
   supportedDialects:
     draft: ['3', '4', '6', '7', '2019-09']
 
+- name: json-schema-to-java-record
+  description: 'An annotation processor converting JSON schemas to java records. Supports Jackson, JSpecify and RecordBuilder.'
+  toolingTypes: ['schema-to-code']
+  languages: ['Java']
+  maintainers:
+    - name: 'Réda Housni Alaoui'
+      username: 'reda-alaoui'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/Cosium/json-schema-to-java-record'
+  supportedDialects:
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']    
+
 - name: json-kotlin-schema-codegen
   description: 'Generates Kotlin data classes, Java classes or TypeScript interfaces from JSON Schema.'
   toolingTypes: ['schema-to-code']
