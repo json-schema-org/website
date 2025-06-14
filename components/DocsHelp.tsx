@@ -34,8 +34,17 @@ export function DocsHelp({
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
     const formData = new FormData(feedbackFormRef.current!);
+    const feedbackComment = formData.get('feedback-comment') as string;
+
+    // Validate that feedback comment is not empty
+    if (!feedbackComment || feedbackComment.trim() === '') {
+      setError('Please provide feedback before submitting.');
+      return;
+    }
+
     formData.append('feedback-page', router.asPath);
     setIsSubmitting(true);
+    setError(''); // Clear any previous errors
 
     try {
       const response = await fetch(
@@ -49,7 +58,7 @@ export function DocsHelp({
           body: JSON.stringify({
             feedbackPage: formData.get('feedback-page'),
             feedbackVote: formData.get('feedback-vote'),
-            feedbackComment: formData.get('feedback-comment'),
+            feedbackComment: feedbackComment,
           }),
         },
       );
@@ -71,10 +80,20 @@ export function DocsHelp({
 
   const createGitHubIssueHandler = () => {
     const formData = new FormData(feedbackFormRef.current!);
+    const feedbackComment = formData.get('feedback-comment') as string;
+
+    // Validate that feedback comment is not empty
+    if (!feedbackComment || feedbackComment.trim() === '') {
+      setError('Please provide feedback before creating an issue.');
+      return;
+    }
+
     setIsSubmitting(true);
+    setError(''); // Clear any previous errors
+
     try {
       const title = encodeURIComponent('Feedback on Documentation');
-      const body = encodeURIComponent(`${formData.get('feedback-comment')}`);
+      const body = encodeURIComponent(feedbackComment);
       const url = `https://github.com/json-schema-org/website/issues/new?title=${title}&body=${body}`;
 
       window.open(url, '_blank');
@@ -192,7 +211,7 @@ export function DocsHelp({
                             Let us know your Feedback
                           </span>
                           <span className='float-right text-[#7d8590] text-[14px] block'>
-                            Optional
+                            Required
                           </span>
                         </label>
                       </p>
@@ -201,6 +220,7 @@ export function DocsHelp({
                         name='feedback-comment'
                         id='feedback-comment'
                         data-test='feedback-form-input'
+                        required
                       />
                     </div>
 
@@ -292,7 +312,7 @@ export function DocsHelp({
           )}
 
           {error && (
-            <div className='my-6 text-[14px]'>
+            <div className='my-6 text-[14px] text-red-500'>
               <p data-test='feedback-form-error-message'>{error}</p>
             </div>
           )}
