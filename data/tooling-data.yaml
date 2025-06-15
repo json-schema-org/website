@@ -3276,7 +3276,7 @@
   description: 'Tools for static JSON schema analysis and processing, including a function which determines whether one schema describes a subset of another, a function which determines whether a schema describes the empty set and a function that converts a schema to its disjunctive normal form (DNF)'
   toolingTypes: ['util-general-processing','util-schema-to-schema']
   languages: ['JavaScript','TypeScript']
-  dependeciesOnValidators: ['https://github.com/ajv-validator/ajv']
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv']
   creators:
     - name: 'Johannes Bohner'
       username: 'jobohner'
