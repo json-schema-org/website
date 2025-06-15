@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useRef } from 'react';
+import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
 import LanguageIcon from '~/public/icons/language.svg';
 import ToolingIcon from '~/public/icons/tooling.svg';
 import EnvironmentIcon from '~/public/icons/environment.svg';
@@ -36,6 +36,7 @@ export default function Sidebar({
   setIsSidebarOpen,
 }: SidebarProps) {
   const filterFormRef = useRef<HTMLFormElement>(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const filters = [
     { label: 'Language', accessorKey: 'languages' },
@@ -100,8 +101,11 @@ export default function Sidebar({
           return (
             <DropdownMenu
               key={accessorKey}
+              id={accessorKey}
               label={label}
               icon={<IconComponent />}
+              activeDropdown={activeDropdown}
+              setActiveDropdown={setActiveDropdown}
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
@@ -136,14 +140,20 @@ export default function Sidebar({
         <div className='w-full flex items-center justify-between mt-4 gap-2'>
           <button
             type='submit'
-            className='bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none'
+            className='bg-primary text-white px-4 py-2 rounded hover:bg-blue-700 focus:outline-none transition-all duration-200 hover:scale-[1.05]'
+            style={{
+              transition: 'all 0.2s ease-in-out !important',
+            }}
           >
             Apply Filters
           </button>
           <button
             type='button'
-            className='bg-slate-200 dark:bg-slate-900 text-gray-700 dark:text-slate-200 px-4 py-2 rounded hover:bg-slate-300 focus:outline-none'
+            className='bg-slate-200 dark:bg-slate-900 text-gray-700 dark:text-slate-200 px-4 py-2 rounded hover:bg-slate-300 dark:hover:bg-slate-700 focus:outline-none transition-all duration-200 hover:scale-[1.05]'
             onClick={clearFilters}
+            style={{
+              transition: 'all 0.2s ease-in-out !important',
+            }}
           >
             Clear Filters
           </button>

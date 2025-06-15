@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Input } from '@/components/ui/input';
 import type { Transform } from '../hooks/useToolsTransform';
 
 const SearchBar = ({ transform }: { transform: Transform }) => {
@@ -15,16 +14,22 @@ const SearchBar = ({ transform }: { transform: Transform }) => {
 
   return (
     <div className='w-full max-w-md mx-auto my-6 lg:my-auto'>
-      <Input
-        type='text'
-        className='dark:border-slate-900 focus:border-blue-300 dark:bg-slate-900'
-        placeholder='Search'
-        name='query'
-        value={query}
-        onChange={changeHandler}
-      />
+      <div className='relative'>
+        <input
+          type='text'
+          className='w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring bg-white text-slate-900 dark:bg-slate-800 dark:text-white dark:border-slate-900 focus:border-blue-300 transition-all duration-200'
+          placeholder='Search'
+          name='query'
+          value={query}
+          onChange={changeHandler}
+          style={{
+            transition: 'all 0.2s ease-in-out',
+          }}
+        />
+      </div>
     </div>
   );
 };
 
 export default SearchBar;
+
