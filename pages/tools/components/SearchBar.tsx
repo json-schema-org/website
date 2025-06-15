@@ -17,7 +17,7 @@ const SearchBar = ({ transform }: { transform: Transform }) => {
       <div className='relative'>
         <input
           type='text'
-          className='w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring bg-slate-800 text-white dark:border-slate-900 focus:border-blue-300 dark:bg-slate-900 transition-all duration-200'
+          className='w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring bg-white text-slate-900 dark:bg-slate-800 dark:text-white dark:border-slate-900 focus:border-blue-300 transition-all duration-200'
           placeholder='Search'
           name='query'
           value={query}
