@@ -1,10 +1,19 @@
 import React, { ReactNode } from 'react';
+import { Badge as ShadcnBadge } from '../../../../components/ui/badge';
 
-const Badge = ({ children }: { children: ReactNode }) => {
+interface BadgeProps {
+  children: ReactNode;
+  variant?: 'default' | 'secondary' | 'outline' | 'destructive';
+}
+
+const Badge = ({ children, variant = 'secondary' }: BadgeProps) => {
   return (
-    <div className='whitespace-nowrap inline-block rounded-md bg-slate-200 dark:bg-slate-900 mx-[4px] my-[4px] px-[16px] py-[4px]'>
+    <ShadcnBadge
+      variant={variant}
+      className='mx-[4px] my-[4px] bg-[#e2e8f0] dark:bg-[#0f172a] text-[#0f172a] dark:text-white'
+    >
       {children}
-    </div>
+    </ShadcnBadge>
   );
 };
 

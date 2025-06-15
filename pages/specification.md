@@ -2,8 +2,8 @@
 title: Specification [#section]
 section: docs
 prev: 
-  label: JSON Schema reference
-  url: /understanding-json-schema/reference
+  label: "Media: string-encoding non-JSON data"
+  url: /understanding-json-schema/reference/non_json_data
 next: 
   label: Specification Links
   url: /specification-links

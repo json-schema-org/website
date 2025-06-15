@@ -32,3 +32,4 @@ const SearchBar = ({ transform }: { transform: Transform }) => {
 };
 
 export default SearchBar;
+

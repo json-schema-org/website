@@ -71,6 +71,10 @@ export default function Sidebar({
           (formData.get('showObsolete') as string) === 'showObsolete'
             ? 'true'
             : 'false',
+        supportsBowtie:
+          (formData.get('supportsBowtie') as string) === 'supportsBowtie'
+            ? 'true'
+            : 'false',
       } satisfies Transform;
       postAnalytics({ eventType: 'query', eventPayload: newTransform });
       return newTransform;
@@ -127,7 +131,12 @@ export default function Sidebar({
           name='showObsolete'
           checked={transform['showObsolete'] === 'true'}
         />
-
+        <Checkbox
+          label='Support Bowtie'
+          value='supportsBowtie'
+          name='supportsBowtie'
+          checked={transform['supportsBowtie'] === 'true'}
+        />
         <div className='w-full flex items-center justify-between mt-4 gap-2'>
           <button
             type='submit'

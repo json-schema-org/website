@@ -16,6 +16,7 @@ export interface Transform {
   toolingTypes: string[];
   environments: string[];
   showObsolete: 'true' | 'false';
+  supportsBowtie: 'true' | 'false';
 }
 
 export type TransformUpdate =
@@ -38,6 +39,7 @@ const buildQueryString = (transform: Transform) => {
     toolingTypes: transform.toolingTypes.join(','),
     environments: transform.environments.join(','),
     showObsolete: transform.showObsolete,
+    supportsBowtie: transform.supportsBowtie,
   }).toString();
 };
 
@@ -56,6 +58,7 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
     toolingTypes: [],
     environments: [],
     showObsolete: 'false',
+    supportsBowtie: 'false',
   });
 
   useEffect(() => {
@@ -89,6 +92,8 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       ) as Transform['environments'],
       showObsolete:
         (query.showObsolete as Transform['showObsolete']) || 'false',
+      supportsBowtie:
+        (query.supportsBowtie as Transform['supportsBowtie']) || 'false',
     } satisfies Transform;
 
     const queryString = buildQueryString(updatedTransform);
@@ -137,6 +142,7 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       toolingTypes: [],
       environments: [],
       showObsolete: 'false',
+      supportsBowtie: 'false',
     };
 
     const queryString = buildQueryString(initialTransform);
@@ -193,6 +199,9 @@ const filterTools = (
   transform: Transform,
 ): JSONSchemaTool[] => {
   const filteredTools = tools.filter((tool) => {
+    if (transform.supportsBowtie === 'true' && !tool.bowtie?.id) {
+      return false;
+    }
     if (transform.showObsolete === 'false' && tool.status === 'obsolete')
       return false;
 
