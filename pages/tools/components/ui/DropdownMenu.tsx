@@ -4,26 +4,39 @@ import React, {
   type ReactElement,
   type ReactNode,
   useEffect,
-  useState,
 } from 'react';
 
 interface DropdownMenuProps {
   children: ReactNode;
   label: string;
   icon: ReactElement;
+  id: string;
+  activeDropdown: string | null;
+  setActiveDropdown: (id: string | null) => void;
 }
 
 export default function DropdownMenu({
   children,
   label,
   icon,
+  id,
+  activeDropdown,
+  setActiveDropdown,
 }: DropdownMenuProps) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const isDropdownOpen = activeDropdown === id;
   const router = useRouter();
 
   useEffect(() => {
-    setIsDropdownOpen(false);
-  }, [router]);
+    setActiveDropdown(null);
+  }, [router, setActiveDropdown]);
+
+  const toggleDropdown = () => {
+    if (isDropdownOpen) {
+      setActiveDropdown(null);
+    } else {
+      setActiveDropdown(id);
+    }
+  };
 
   return (
     <div
@@ -34,9 +47,7 @@ export default function DropdownMenu({
     >
       <div
         className='w-full flex justify-between items-center align-middle cursor-pointer group'
-        onClick={() => {
-          setIsDropdownOpen((prev) => !prev);
-        }}
+        onClick={toggleDropdown}
       >
         {React.cloneElement(icon, {
           className: 'mr-2 ml-2 group-hover:scale-60 transition-all duration-200',

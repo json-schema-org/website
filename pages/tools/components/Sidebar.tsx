@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useRef } from 'react';
+import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
 import LanguageIcon from '~/public/icons/language.svg';
 import ToolingIcon from '~/public/icons/tooling.svg';
 import EnvironmentIcon from '~/public/icons/environment.svg';
@@ -36,6 +36,7 @@ export default function Sidebar({
   setIsSidebarOpen,
 }: SidebarProps) {
   const filterFormRef = useRef<HTMLFormElement>(null);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
 
   const filters = [
     { label: 'Language', accessorKey: 'languages' },
@@ -96,8 +97,11 @@ export default function Sidebar({
           return (
             <DropdownMenu
               key={accessorKey}
+              id={accessorKey}
               label={label}
               icon={<IconComponent />}
+              activeDropdown={activeDropdown}
+              setActiveDropdown={setActiveDropdown}
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)

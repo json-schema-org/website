@@ -17,13 +17,13 @@ const SearchBar = ({ transform }: { transform: Transform }) => {
       <div className='relative'>
         <input
           type='text'
-          className='w-full px-4 py-2 border dark:border-slate-900 rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-300 bg-slate-800 text-white dark:bg-slate-900 hover:scale-[0.94] transition-all duration-200'
+          className='w-full px-4 py-2 border rounded-md shadow-sm focus:outline-none focus:ring bg-slate-800 text-white dark:border-slate-900 focus:border-blue-300 dark:bg-slate-900 transition-all duration-200'
           placeholder='Search'
           name='query'
           value={query}
           onChange={changeHandler}
           style={{
-            transition: 'all 0.2s ease-in-out !important',
+            transition: 'all 0.2s ease-in-out',
           }}
         />
       </div>
