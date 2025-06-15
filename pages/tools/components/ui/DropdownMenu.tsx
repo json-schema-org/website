@@ -26,23 +26,28 @@ export default function DropdownMenu({
   }, [router]);
 
   return (
-    <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer'>
+    <div
+      className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer hover:scale-[0.94] transition-all duration-200'
+      style={{
+        transition: 'all 0.2s ease-in-out !important',
+      }}
+    >
       <div
-        className='w-full flex justify-between items-center align-middle cursor-pointer'
+        className='w-full flex justify-between items-center align-middle cursor-pointer group'
         onClick={() => {
           setIsDropdownOpen((prev) => !prev);
         }}
       >
         {React.cloneElement(icon, {
-          className: 'mr-2 ml-2',
+          className: 'mr-2 ml-2 group-hover:scale-60 transition-all duration-200',
         })}
-        <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto'>
+        <div className='text-slate-900 dark:text-slate-300 font-bold mr-auto transition-all duration-200'>
           {label}
         </div>
         <svg
           style={{
             transform: `${isDropdownOpen ? 'rotate(180deg)' : 'rotate(0)'}`,
-            transition: 'all 0.2s linear',
+            transition: 'all 0.2s ease-in-out',
             cursor: 'pointer',
           }}
           id='arrow'
@@ -51,6 +56,7 @@ export default function DropdownMenu({
           height='32'
           viewBox='0 0 24 24'
           width='24'
+          className='group-hover:scale-90'
         >
           <path
             clipRule='evenodd'
