@@ -1,6 +1,9 @@
-import Image from 'next/image';
+/* eslint-disable linebreak-style */
 import React from 'react';
 import Link from 'next/link';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 /*
 To use this component:
@@ -26,68 +29,61 @@ import NextPrevButton from '~/components/NextPrevButton';
 <NextPrevButton prevLabel={frontmatter.prev.label} prevURL={frontmatter.prev.url} nextLabel={frontmatter.next.label} nextURL={frontmatter.next.url} />
 */
 
-export default function NextPrevButton({
+interface NavigationButtonsProps {
+  prevLabel?: string;
+  prevURL?: string;
+  nextLabel?: string;
+  nextURL?: string;
+}
+
+const NavButton = ({
+  label,
+  url,
+  direction,
+}: {
+  label?: string;
+  url?: string;
+  direction: 'prev' | 'next';
+}) => {
+  if (!url || !label) return <div className='h-auto w-1/2' />;
+
+  const isPrev = direction === 'prev';
+  const Icon = isPrev ? ChevronLeft : ChevronRight;
+  const buttonText = isPrev ? 'Go Back' : 'Up Next';
+
+  return (
+    <div className='h-auto w-1/2'>
+      <Card className='h-full cursor-pointer border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:hover:shadow-lg dark:drop-shadow-lg lg:text-left'>
+        <Link href={url} className='block'>
+          <Button
+            variant='ghost'
+            className={`w-full gap-5 p-0 text-[18px] hover:bg-transparent ${isPrev ? 'justify-start' : 'justify-end'}`}
+          >
+            {isPrev && <Icon className='h-5 w-5' />}
+            <div className='my-auto inline font-bold uppercase text-primary dark:text-slate-300'>
+              {buttonText}
+            </div>
+            {!isPrev && <Icon className='h-5 w-5' />}
+          </Button>
+          <div className='my-2 text-base font-medium text-slate-600 dark:text-slate-300'>
+            {label}
+          </div>
+        </Link>
+      </Card>
+    </div>
+  );
+};
+
+export default function NavigationButtons({
   prevLabel,
   prevURL,
   nextLabel,
   nextURL,
-}: any) {
+}: NavigationButtonsProps) {
   return (
     <div className='mb-4 flex flex-row gap-4'>
-      {prevURL && prevLabel ? (
-        <div className='h-auto w-1/2'>
-          <div
-            className='cursor-pointer rounded border border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:hover:shadow-2xl dark:drop-shadow-lg 
-          lg:text-left'
-          >
-            <Link href={prevURL}>
-              <div className='text-primary dark:text-slate-300 flex flex-row gap-5 text-[18px]'>
-                <Image
-                  src={'/icons/arrow.svg'}
-                  height={10}
-                  width={10}
-                  alt='prev icon'
-                  className='rotate-180 w-5 '
-                />
-                <div className='my-auto inline font-bold uppercase'>
-                  Go Back
-                </div>
-              </div>
-              <div className='my-2 text-base font-medium text-slate-600 dark:text-slate-300'>
-                {prevLabel}
-              </div>
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <div className='h-auto w-1/2'></div>
-      )}
-
-      {nextURL && nextLabel ? (
-        <div className='h-auto w-1/2'>
-          <div className='h-full cursor-pointer rounded border border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:drop-shadow-lg dark:hover:shadow-2xl lg:text-right'>
-            <Link href={nextURL}>
-              <div className='text-primary  dark:text-slate-300 flex flex-row-reverse gap-5 text-[18px]'>
-                <Image
-                  src={'/icons/arrow.svg'}
-                  height={10}
-                  width={10}
-                  alt='next icon '
-                  className='w-5'
-                />
-                <div className='my-auto inline font-bold uppercase '>
-                  Up Next
-                </div>
-              </div>
-              <div className='my-2 text-base font-medium text-slate-600 dark:text-slate-300'>
-                {nextLabel}
-              </div>
-            </Link>
-          </div>
-        </div>
-      ) : (
-        <div className='h-auto w-1/2'></div>
-      )}
+      <NavButton label={prevLabel} url={prevURL} direction='prev' />
+      <NavButton label={nextLabel} url={nextURL} direction='next' />
     </div>
   );
 }
