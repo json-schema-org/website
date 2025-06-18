@@ -17,19 +17,31 @@ import Image from 'next/image';
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
 }
-export async function getStaticProps(args: any) {
-  return getStaticMarkdownProps(args, 'pages/blog/posts');
+export async function getStaticProps({ params }: any) {
+  const staticProps = await getStaticMarkdownProps(
+    { params },
+    'pages/blog/posts',
+  );
+  return {
+    props: {
+      ...staticProps.props,
+      slug: params.slug,
+    },
+  };
 }
 
 export default function StaticMarkdownPage({
   frontmatter,
   content,
+  slug,
 }: {
   frontmatter: any;
   content: any;
+  slug: string;
 }) {
   const date = new Date(frontmatter.date);
   const timeToRead = Math.ceil(readingTime(content).minutes);
+  const blogUrl = `https://json-schema.org/blog/posts/${slug}`;
 
   return (
     <SectionContext.Provider value='blog'>
@@ -116,6 +128,30 @@ export default function StaticMarkdownPage({
               style={{ backgroundImage: `url(${frontmatter.cover})` }}
             />
             <StyledMarkdown markdown={content} />
+            <div className='flex flex-wrap justify-center gap-4 mt-12 p-4 border-t border-slate-200 dark:border-slate-600'>
+              <span className='text-slate-500 '>Share this article:</span>
+
+              <a
+                href={`https://x.com/intent/tweet?text=${encodeURIComponent(
+                  'Check out this blog post : ' + frontmatter.title,
+                )}&url=${encodeURIComponent(blogUrl)}`}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-blue-500 font-medium hover:underline'
+              >
+                Share on X
+              </a>
+              <a
+                href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(
+                  blogUrl,
+                )}&title=${encodeURIComponent(frontmatter.title)}`}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-blue-500  font-medium hover:underline'
+              >
+                Share on LinkedIn
+              </a>
+            </div>
           </div>
         </div>
       </div>
