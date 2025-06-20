@@ -3,9 +3,6 @@ import React, { FormEvent, useRef, useState } from 'react';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import { Button } from '~/components/ui/button';
 import { Textarea } from '~/components/ui/textarea';
-import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card';
-import { Badge } from '~/components/ui/badge';
-import { Separator } from '~/components/ui/separator';
 
 interface DocsHelpProps {
   fileRenderType?: '_indexmd' | 'indexmd' | 'tsx' | '_md' | string;
