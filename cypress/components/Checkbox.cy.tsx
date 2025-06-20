@@ -76,7 +76,7 @@ describe('Checkbox Component', () => {
           checked={true}
         />,
       );
-      
+
       // Check that the indicator container has proper centering classes
       cy.get('[data-slot="checkbox-indicator"]')
         .should('have.class', 'flex')
@@ -84,12 +84,12 @@ describe('Checkbox Component', () => {
         .and('have.class', 'justify-center')
         .and('have.class', 'w-full')
         .and('have.class', 'h-full');
-      
+
       // Check that the icon exists and has proper sizing
       cy.get('[data-slot="checkbox-indicator"] svg')
         .should('exist')
         .and('have.class', 'size-3.5');
-      
+
       // Verify the checkbox has the correct dimensions for centering
       cy.get('button[role="checkbox"]')
         .should('have.class', 'size-4')
