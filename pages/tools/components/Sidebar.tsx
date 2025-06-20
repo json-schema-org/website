@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, useRef, useState, useEffect } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useRef,
+  useState,
+  useEffect,
+} from 'react';
 import LanguageIcon from '~/public/icons/language.svg';
 import ToolingIcon from '~/public/icons/tooling.svg';
 import EnvironmentIcon from '~/public/icons/environment.svg';
@@ -82,7 +88,7 @@ export default function Sidebar({
     if (filterFormRef.current) {
       filterFormRef.current.reset();
     }
-    
+
     // Reset pending selections to initial empty state
     const initialTransform: Transform = {
       query: '',
@@ -97,7 +103,7 @@ export default function Sidebar({
       showObsolete: 'false',
       supportsBowtie: 'false',
     };
-    
+
     setPendingSelections(initialTransform);
     resetTransform();
     setIsSidebarOpen((prev) => !prev);
@@ -106,9 +112,9 @@ export default function Sidebar({
   return (
     <div className='pb-4 top-12 mx-auto lg:ml-4 lg:mt-8 w-4/5 h-fit'>
       <form onSubmit={applyFilters} ref={filterFormRef} className='w-full'>
-        <SearchBar 
-          transform={pendingSelections} 
-          onQueryChange={(query) => 
+        <SearchBar
+          transform={pendingSelections}
+          onQueryChange={(query) =>
             setPendingSelections((prev) => ({ ...prev, query }))
           }
         />
