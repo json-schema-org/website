@@ -81,7 +81,7 @@ describe('Card Component', () => {
 
   // Test different text size combinations
   it('should render card with small header and large body text sizes', () => {
-    const smallHeaderLargeBody = {
+    const smallHeaderLargeBody: CardProps = {
       ...RoadmapProps,
       headerSize: 'small',
       bodyTextSize: 'large',
