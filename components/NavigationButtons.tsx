@@ -59,13 +59,21 @@ const NavButton = ({
             variant='ghost'
             className={`w-full gap-5 p-0 text-[18px] hover:bg-transparent ${isPrev ? 'justify-start' : 'justify-end'}`}
           >
-            {isPrev && <Icon className='h-5 w-5' data-test="nav-button-icon" />}
-            <div className='my-auto inline font-bold uppercase text-primary dark:text-slate-300 group-hover:text-[20px] transition-all duration-300' data-test="nav-button-text">
+            {isPrev && <Icon className='h-5 w-5' data-test='nav-button-icon' />}
+            <div
+              className='my-auto inline font-bold uppercase text-primary dark:text-slate-300 group-hover:text-[20px] transition-all duration-300'
+              data-test='nav-button-text'
+            >
               {buttonText}
             </div>
-            {!isPrev && <Icon className='h-5 w-5' data-test="nav-button-icon" />}
+            {!isPrev && (
+              <Icon className='h-5 w-5' data-test='nav-button-icon' />
+            )}
           </Button>
-          <div className={`my-2 text-base font-medium text-slate-600 dark:text-slate-300 ${isPrev ? 'text-left' : 'text-right'}`} data-test="nav-button-label">
+          <div
+            className={`my-2 text-base font-medium text-slate-600 dark:text-slate-300 ${isPrev ? 'text-left' : 'text-right'}`}
+            data-test='nav-button-label'
+          >
             {label}
           </div>
         </Link>
