@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import Card from '../../components/Card';
 import { CardProps } from '../../components/Card';

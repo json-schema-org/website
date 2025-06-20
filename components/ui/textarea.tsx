@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 import { cn } from '@/lib/utils';
 
@@ -15,5 +16,9 @@ function Textarea({ className, ...props }: React.ComponentProps<'textarea'>) {
     />
   );
 }
+
+Textarea.propTypes = {
+  className: PropTypes.string,
+};
 
 export { Textarea };

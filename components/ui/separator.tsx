@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import * as React from 'react';
 import * as SeparatorPrimitive from '@radix-ui/react-separator';
+import PropTypes from 'prop-types';
 
 import { cn } from '@/lib/utils';
 
@@ -23,5 +24,11 @@ function Separator({
     />
   );
 }
+
+Separator.propTypes = {
+  className: PropTypes.string,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  decorative: PropTypes.bool,
+};
 
 export { Separator };
