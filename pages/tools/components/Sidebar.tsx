@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
+import React, { Dispatch, SetStateAction, useRef, useState, useEffect } from 'react';
 import LanguageIcon from '~/public/icons/language.svg';
 import ToolingIcon from '~/public/icons/tooling.svg';
 import EnvironmentIcon from '~/public/icons/environment.svg';
@@ -40,6 +40,11 @@ export default function Sidebar({
   const [pendingSelections, setPendingSelections] =
     useState<Transform>(transform);
 
+  // Sync pendingSelections with transform when transform changes
+  useEffect(() => {
+    setPendingSelections(transform);
+  }, [transform]);
+
   const filters = [
     { label: 'Language', accessorKey: 'languages' },
     { label: 'Tooling Type', accessorKey: 'toolingTypes' },
@@ -77,15 +82,36 @@ export default function Sidebar({
     if (filterFormRef.current) {
       filterFormRef.current.reset();
     }
+    
+    // Reset pending selections to initial empty state
+    const initialTransform: Transform = {
+      query: '',
+      sortBy: 'name',
+      sortOrder: 'ascending',
+      groupBy: 'toolingTypes',
+      languages: [],
+      licenses: [],
+      drafts: [],
+      toolingTypes: [],
+      environments: [],
+      showObsolete: 'false',
+      supportsBowtie: 'false',
+    };
+    
+    setPendingSelections(initialTransform);
     resetTransform();
-    setPendingSelections(transform);
     setIsSidebarOpen((prev) => !prev);
   };
 
   return (
     <div className='pb-4 top-12 mx-auto lg:ml-4 lg:mt-8 w-4/5 h-fit'>
       <form onSubmit={applyFilters} ref={filterFormRef} className='w-full'>
-        <SearchBar transform={transform} />
+        <SearchBar 
+          transform={pendingSelections} 
+          onQueryChange={(query) => 
+            setPendingSelections((prev) => ({ ...prev, query }))
+          }
+        />
         {filters.map(({ label, accessorKey }) => {
           const checkedValues =
             pendingSelections[accessorKey as keyof Transform] || [];

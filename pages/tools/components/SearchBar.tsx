@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Input } from '@/components/ui/input';
 import type { Transform } from '../hooks/useToolsTransform';
 
-const SearchBar = ({ transform }: { transform: Transform }) => {
+interface SearchBarProps {
+  transform: Transform;
+  onQueryChange?: (query: string) => void;
+}
+
+const SearchBar = ({ transform, onQueryChange }: SearchBarProps) => {
   const [query, setQuery] = useState(transform.query);
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+    const newQuery = e.target.value;
+    setQuery(newQuery);
+    onQueryChange?.(newQuery);
   };
 
   useEffect(() => {
