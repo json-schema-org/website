@@ -24,7 +24,7 @@ valid schema that will accept any valid JSON.
 {}
 ```
 
-This accepts anything, as long as it's valid JSON
+This accepts anything, as long as it's valid JSON:
 
 ```json
 // props { "valid": true, "indent": true }

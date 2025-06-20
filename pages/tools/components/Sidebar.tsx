@@ -1,5 +1,9 @@
 import React, { Dispatch, SetStateAction, useRef } from 'react';
-import FilterIcon from '~/public/icons/filter.svg';
+import LanguageIcon from '~/public/icons/language.svg';
+import ToolingIcon from '~/public/icons/tooling.svg';
+import EnvironmentIcon from '~/public/icons/environment.svg';
+import DialectIcon from '~/public/icons/dialect.svg';
+import LicenseIcon from '~/public/icons/license.svg';
 import DropdownMenu from './ui/DropdownMenu';
 import Checkbox from './ui/Checkbox';
 import SearchBar from './SearchBar';
@@ -7,6 +11,14 @@ import toTitleCase from '../lib/toTitleCase';
 import type { Transform } from '../hooks/useToolsTransform';
 import type { FilterCriteriaFields } from '../index.page';
 import { postAnalytics } from '../lib/postAnalytics';
+
+const filterIcons = {
+  languages: LanguageIcon,
+  toolingTypes: ToolingIcon,
+  environments: EnvironmentIcon,
+  drafts: DialectIcon,
+  licenses: LicenseIcon,
+};
 
 interface SidebarProps {
   filterCriteria: Record<FilterCriteriaFields, string[]>;
@@ -58,6 +70,10 @@ export default function Sidebar({
           (formData.get('showObsolete') as string) === 'showObsolete'
             ? 'true'
             : 'false',
+        supportsBowtie:
+          (formData.get('supportsBowtie') as string) === 'supportsBowtie'
+            ? 'true'
+            : 'false',
       } satisfies Transform;
       postAnalytics({ eventType: 'query', eventPayload: newTransform });
       return newTransform;
@@ -79,8 +95,14 @@ export default function Sidebar({
         <SearchBar transform={transform} />
         {filters.map(({ label, accessorKey }) => {
           const checkedValues = transform[accessorKey as keyof Transform] || [];
+          const IconComponent =
+            filterIcons[accessorKey as keyof typeof filterIcons];
           return (
-            <DropdownMenu key={accessorKey} label={label} icon={<FilterIcon />}>
+            <DropdownMenu
+              key={accessorKey}
+              label={label}
+              icon={<IconComponent />}
+            >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
                 .map((filterOption) => (
@@ -105,7 +127,12 @@ export default function Sidebar({
           name='showObsolete'
           checked={transform['showObsolete'] === 'true'}
         />
-
+        <Checkbox
+          label='Support Bowtie'
+          value='supportsBowtie'
+          name='supportsBowtie'
+          checked={transform['supportsBowtie'] === 'true'}
+        />
         <div className='w-full flex items-center justify-between mt-4 gap-2'>
           <button
             type='submit'

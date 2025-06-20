@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import classnames from 'classnames';
+import { Badge as ShadcnBadge } from '../../../../components/ui/badge';
 
 interface TagProps {
   children: ReactNode;
@@ -7,23 +7,31 @@ interface TagProps {
 }
 
 const Tag = ({ children, intent = 'neutral' }: TagProps) => {
+  const styles = {
+    success:
+      'bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400',
+    warning:
+      'bg-amber-500/10 dark:bg-amber-500/20 text-amber-700 dark:text-amber-400',
+    error: 'bg-red-500/10 dark:bg-red-500/20 text-red-700 dark:text-red-400',
+    neutral:
+      'bg-slate-500/10 dark:bg-slate-500/20 text-slate-700 dark:text-slate-400',
+  } as const;
+
   return (
-    <div
-      className={classnames(
-        'inline-block rounded-full mr-2 px-3 py-1 text-[12px] font-semibold',
-        {
-          'bg-green-50 text-green-700 border border-green-300':
-            intent === 'success',
-          'bg-yellow-50 text-yellow-700 border border-yellow-300':
-            intent === 'warning',
-          'bg-red-50 text-red-700 border border-red-300': intent === 'error',
-          'bg-gray-50 text-gray-700 border border-gray-300':
-            intent === 'neutral',
-        },
-      )}
+    <ShadcnBadge
+      variant={
+        intent === 'success'
+          ? 'default'
+          : intent === 'warning'
+            ? 'outline'
+            : intent === 'error'
+              ? 'destructive'
+              : 'secondary'
+      }
+      className={`mr-2 text-[12px] font-semibold ${styles[intent]}`}
     >
       {children}
-    </div>
+    </ShadcnBadge>
   );
 };
 

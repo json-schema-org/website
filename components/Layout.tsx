@@ -8,7 +8,6 @@ import useStore from '~/store';
 import { SectionContext } from '~/context';
 import { useTheme } from 'next-themes';
 import DarkModeToggle from './DarkModeToggle';
-import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import ScrollButton from './ScrollButton';
 import Image from 'next/image';
 
@@ -138,7 +137,14 @@ const MainNavLink = ({
   className?: string;
 }) => {
   const router = useRouter();
-  const isActiveNav = extractPathWithoutFragment(router.asPath) === uri;
+  const isActiveNav =
+    router.asPath.startsWith(uri) ||
+    (uri === '/docs' && router.asPath.startsWith('/overview')) ||
+    (uri === '/docs' && router.asPath.startsWith('/learn')) ||
+    (uri === '/docs' && router.asPath.startsWith('/implementers')) ||
+    (uri === '/docs' &&
+      router.asPath.startsWith('/understanding-json-schema')) ||
+    (uri === '/specification' && router.asPath.startsWith('/draft'));
 
   return (
     <Link
@@ -344,9 +350,9 @@ const Footer = () => (
           </a>
         </div>
         <div className='flex flex-col text-center sm:text-left'>
-          <a href='/overview/code-of-conduct' className='text-white mb-2'>
+          <Link href='/overview/code-of-conduct' className='text-white mb-2'>
             Code of Conduct
-          </a>
+          </Link>
         </div>
       </div>
       <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0  gap-x-4 gap-y-4 md:gap-x-0 md:gap-y-0'>

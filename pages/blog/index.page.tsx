@@ -35,6 +35,7 @@ const getCategories = (frontmatter: any): blogCategories[] => {
   return Array.isArray(cat) ? cat : [cat];
 };
 
+
 const isValidCategory = (category: string): category is blogCategories => {
   return [
     'All',
@@ -48,6 +49,7 @@ const isValidCategory = (category: string): category is blogCategories => {
 };
 
 const POSTS_PER_PAGE = 10;
+
 
 export async function getStaticProps({ query }: { query: any }) {
   const files = fs.readdirSync(PATH);
@@ -101,6 +103,7 @@ export default function StaticMarkdownPage({
 }) {
   const router = useRouter();
 
+
   // Initialize the filter as an array. If "All" or not specified, we show all posts.
   const initialFilters =
     filterTag && filterTag !== 'All'
@@ -116,6 +119,7 @@ export default function StaticMarkdownPage({
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
 
+
   // When the router query changes, update the filters.
   useEffect(() => {
     const { query } = router;
@@ -129,6 +133,7 @@ export default function StaticMarkdownPage({
 
   // Reset posts when filter changes
   useEffect(() => {
+
     setPosts(initialPosts);
     setPage(1);
     setHasMore(true);
@@ -168,6 +173,7 @@ export default function StaticMarkdownPage({
   }, [inView, hasMore, loading, page, currentFilterTags]);
 
   const toggleCategory = async (tag: blogCategories) => {
+
     let newTags: blogCategories[] = [];
     if (tag === 'All') {
       newTags = ['All'];
@@ -186,6 +192,7 @@ export default function StaticMarkdownPage({
       }
     }
 
+
     setCurrentFilterTags(newTags);
 
     try {
@@ -203,11 +210,14 @@ export default function StaticMarkdownPage({
       }
     } catch (error) {
       console.error('Error filtering posts:', error);
+
     }
   };
 
   // First, sort all posts by date descending (for fallback sorting)
+
   const postsSortedByDate = [...initialPosts].sort((a, b) => {
+
     const dateA = new Date(a.frontmatter.date).getTime();
     const dateB = new Date(b.frontmatter.date).getTime();
     return dateB - dateA;
@@ -220,7 +230,9 @@ export default function StaticMarkdownPage({
 
   // Collect all unique categories across posts.
   const allTagsSet = new Set<string>();
+
   initialPosts.forEach((post) => {
+
     getCategories(post.frontmatter).forEach((cat) => allTagsSet.add(cat));
   });
   const allTags = ['All', ...Array.from(allTagsSet)];
@@ -336,7 +348,9 @@ export default function StaticMarkdownPage({
 
         {/* Blog Posts Grid */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
+
           {posts.map((blogPost: any, idx: number) => {
+
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
@@ -461,6 +475,7 @@ export default function StaticMarkdownPage({
               </div>
             </div>
           )}
+
         </div>
       </div>
     </SectionContext.Provider>

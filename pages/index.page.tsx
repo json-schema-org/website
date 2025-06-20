@@ -47,13 +47,11 @@ export const getStaticProps: GetStaticProps = async () => {
         new Date(a.frontmatter.date).getTime(),
     )
     .slice(0, 5);
-  // Example usage:
   const remoteICalUrl =
-    'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics'; // Replace with the actual URL
+    'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
-  // console.log('this is fetched data', datesInfo)
   return {
     props: {
       blogPosts,
@@ -112,6 +110,7 @@ const Home = (props: any) => {
   const [apideck_logo, setApideck_logo] = useState('');
   const [rxdb_logo, setRxdb_logo] = useState('');
   const [wda_logo, setWDA_logo] = useState('');
+  const [anon_logo, setAnon_logo] = useState('');
 
   useEffect(() => {
     // Ensure the component is only rendered client-side
@@ -135,6 +134,7 @@ const Home = (props: any) => {
       setApideck_logo('/img/logos/sponsors/apideck-white.svg');
       setRxdb_logo('/img/logos/sponsors/rxdb.svg');
       setWDA_logo('/img/logos/sponsors/wda-dark.svg');
+      setAnon_logo('/img/logos/sponsors/anon-white.png');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -152,6 +152,7 @@ const Home = (props: any) => {
       setApideck_logo('/img/logos/sponsors/apideck.svg');
       setRxdb_logo('/img/logos/sponsors/rxdb.svg');
       setWDA_logo('/img/logos/sponsors/wda.svg');
+      setAnon_logo('/img/logos/sponsors/anon-black.png');
     }
   }, [resolvedTheme]);
   return (
@@ -301,9 +302,13 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6'>
               Start learning JSON Schema
             </h2>
-            <button className='w-[170px] h-[45px] mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out rounded border-2 bg-primary text-white font-semibold dark:border-none'>
-              <a href='/docs '>Read the docs</a>
-            </button>
+            <Link
+              href='/docs'
+              rel='noopener noreferrer'
+              className='w-[170px] h-[45px] mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out rounded border-2 bg-primary text-white font-semibold dark:border-none flex items-center justify-center'
+            >
+              Read the docs
+            </Link>
           </div>
         </section>
 
@@ -331,9 +336,13 @@ const Home = (props: any) => {
               Generators, Linters, and other JSON Schema Utilities made by this
               amazing Community.
             </p>
-            <button className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out h-[45px] rounded border-2 bg-primary text-white dark:border-none'>
-              <a href='/tools/'>Explore</a>
-            </button>
+            <Link
+              href='/tools/'
+              rel='noopener noreferrer'
+              className='w-full md:w-1/2 md:ml-28 lg:ml-0 mx-auto hover:bg-blue-700 transition-all duration-300 ease-in-out h-[45px] rounded border-2 bg-primary text-white dark:border-none flex items-center justify-center'
+            >
+              Explore
+            </Link>
           </div>
         </section>
 
@@ -504,16 +513,21 @@ const Home = (props: any) => {
                   third Monday of the month at 12:00 PT.
                 </p>
                 <div className=''>
-                  <button className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'>
-                    <a href='https://github.com/orgs/json-schema-org/discussions/35'>
-                      Open Community Working Meetings
-                    </a>
-                  </button>
-                  <button className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  h-[40px] flex items-center justify-center mx-auto dark:border-none'>
-                    <a href='https://github.com/orgs/json-schema-org/discussions/34/'>
-                      Office Hours
-                    </a>
-                  </button>
+                  <a
+                    href='https://github.com/orgs/json-schema-org/discussions/35'
+                    rel='noopener noreferrer'
+                    className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'
+                  >
+                    Open Community Working Meetings
+                  </a>
+
+                  <a
+                    href='https://github.com/orgs/json-schema-org/discussions/34/'
+                    rel='noopener noreferrer'
+                    className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
+                  >
+                    Office Hours
+                  </a>
                 </div>
               </div>
               <div className='p-2'>
@@ -541,7 +555,7 @@ const Home = (props: any) => {
                 </div>
 
                 <a
-                  href='https://calendar.google.com/calendar/embed?src=json.schema.community%40gmail.com&ctz=Europe%2FLondon'
+                  href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org'
                   className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
                   target='_blank'
                   rel='noopener noreferrer'
@@ -560,11 +574,13 @@ const Home = (props: any) => {
             <h2 className='text-h3mobile lg:text-h3 text-white mb-6 dark:text-slate-200'>
               Start contributing to JSON Schema
             </h2>
-            <button className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none'>
-              <a href='https://github.com/json-schema-org#-contributing-to-json-schema'>
-                Contribute
-              </a>
-            </button>
+            <Link
+              href='https://github.com/json-schema-org#-contributing-to-json-schema'
+              rel='noopener noreferrer'
+              className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none flex items-center justify-center'
+            >
+              Contribute
+            </Link>
           </div>
         </section>
 
@@ -582,23 +598,17 @@ const Home = (props: any) => {
                 className='border-b border-black dark:border-white'
               >
                 sponsor
-              </a>
-              , a{' '}
+              </a>{' '}
+              or a{' '}
               <a
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
                 className='border-b border-black dark:border-white'
               >
                 backer
               </a>{' '}
-              or hiring our{' '}
-              <a
-                href='/pro-help'
-                className='border-b border-black dark:border-white'
-              >
-                pro services
-              </a>
               .
             </p>
+
             <p className='w-5/6 lg:w-3/5 mx-auto'>
               <a
                 href='https://opencollective.com/json-schema'
@@ -612,7 +622,7 @@ const Home = (props: any) => {
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Gold Sponsors
             </h3>
-            <a
+            <Link
               href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
@@ -633,11 +643,11 @@ const Home = (props: any) => {
                 />
               </svg>
               <p className='block'>Your logo here</p>
-            </a>
+            </Link>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
             </h3>
-            <a
+            <Link
               href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
@@ -658,7 +668,7 @@ const Home = (props: any) => {
                 />
               </svg>
               <p>Your logo here</p>
-            </a>
+            </Link>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
             </h3>
@@ -852,6 +862,17 @@ for Accounting integrations'
                   src={wda_logo}
                   className=' w-44'
                   alt='best website design agencies'
+                />
+              </a>
+              <a
+                href='https://anonstories.com'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={anon_logo}
+                  className=' w-44'
+                  alt='Instagram Story Viewer'
                 />
               </a>
               <a
