@@ -11,6 +11,7 @@ import generateRssFeed from './generateRssFeed';
 import { SectionContext } from '~/context';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/router';
 
 type Author = {
   name: string;
@@ -18,13 +19,33 @@ type Author = {
   link?: string;
   byline?: string;
 };
+
 export type blogCategories =
   | 'All'
   | 'Community'
   | 'Case Study'
   | 'Engineering'
   | 'Update'
-  | 'Opinion';
+  | 'Opinion'
+  | 'Documentation';
+
+const getCategories = (frontmatter: any): blogCategories[] => {
+  const cat = frontmatter.categories || frontmatter.type;
+  if (!cat) return [];
+  return Array.isArray(cat) ? cat : [cat];
+};
+
+const isValidCategory = (category: string): category is blogCategories => {
+  return [
+    'All',
+    'Community',
+    'Case Study',
+    'Engineering',
+    'Update',
+    'Opinion',
+    'Documentation',
+  ].includes(category);
+};
 
 const POSTS_PER_PAGE = 10;
 
@@ -40,7 +61,7 @@ export async function getStaticProps({ query }: { query: any }) {
       );
       const { data: frontmatter, content } = matter(fullFileName);
       return {
-        slug: slug,
+        slug,
         frontmatter,
         content,
       };
@@ -69,30 +90,49 @@ export async function getStaticProps({ query }: { query: any }) {
     },
   };
 }
+
 export default function StaticMarkdownPage({
   initialPosts,
   filterTag,
-  setOfTags,
 }: {
   initialPosts: any[];
   filterTag: any;
   setOfTags: any[];
 }) {
+  const router = useRouter();
+
+  // Initialize the filter as an array. If "All" or not specified, we show all posts.
+  const initialFilters =
+    filterTag && filterTag !== 'All'
+      ? filterTag.split(',').filter(isValidCategory)
+      : ['All'];
+
+  const [currentFilterTags, setCurrentFilterTags] =
+    useState<blogCategories[]>(initialFilters);
+
   const [posts, setPosts] = useState(initialPosts);
-  const [currentFilterTag, setCurrentFilterTag] = useState<blogCategories>(
-    filterTag || 'All',
-  );
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const { ref, inView } = useInView();
+
+  // When the router query changes, update the filters.
+  useEffect(() => {
+    const { query } = router;
+    if (query.type) {
+      const tags = (typeof query.type === 'string' ? query.type : '')
+        .split(',')
+        .filter(isValidCategory);
+      setCurrentFilterTags(tags.length ? tags : ['All']);
+    }
+  }, [router.query]);
 
   // Reset posts when filter changes
   useEffect(() => {
     setPosts(initialPosts);
     setPage(1);
     setHasMore(true);
-  }, [currentFilterTag, initialPosts]);
+  }, [currentFilterTags, initialPosts]);
 
   // Load more posts when scrolling
   useEffect(() => {
@@ -101,8 +141,11 @@ export default function StaticMarkdownPage({
         setLoading(true);
         try {
           const nextPage = page + 1;
+          const filterString = currentFilterTags.includes('All')
+            ? 'All'
+            : currentFilterTags.join(',');
           const res = await fetch(
-            `/api/posts?page=${nextPage}&type=${currentFilterTag}`,
+            `/api/posts?page=${nextPage}&type=${filterString}`,
           );
           const data = await res.json();
 
@@ -122,43 +165,65 @@ export default function StaticMarkdownPage({
     };
 
     loadMorePosts();
-  }, [inView, hasMore, loading, page, currentFilterTag]);
+  }, [inView, hasMore, loading, page, currentFilterTags]);
 
-  const handleFilterClick = async (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault();
-    const clickedTag = event.currentTarget.value as blogCategories;
-    setCurrentFilterTag(clickedTag);
+  const toggleCategory = async (tag: blogCategories) => {
+    let newTags: blogCategories[] = [];
+    if (tag === 'All') {
+      newTags = ['All'];
+    } else {
+      if (currentFilterTags.includes('All')) {
+        newTags = [tag];
+      } else {
+        if (currentFilterTags.includes(tag)) {
+          newTags = currentFilterTags.filter((t) => t !== tag);
+        } else {
+          newTags = [...currentFilterTags, tag];
+        }
+      }
+      if (newTags.length === 0) {
+        newTags = ['All'];
+      }
+    }
+
+    setCurrentFilterTags(newTags);
 
     try {
-      const res = await fetch(`/api/posts?page=1&type=${clickedTag}`);
+      const filterString = newTags.includes('All') ? 'All' : newTags.join(',');
+      const res = await fetch(`/api/posts?page=1&type=${filterString}`);
       const data = await res.json();
       setPosts(data.posts);
       setHasMore(data.hasMore);
       setPage(1);
 
-      if (clickedTag === 'All') {
+      if (newTags.includes('All')) {
         history.replaceState(null, '', '/blog');
       } else {
-        history.replaceState(null, '', `/blog?type=${clickedTag}`);
+        history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
       }
     } catch (error) {
       console.error('Error filtering posts:', error);
     }
   };
 
-  const recentBlog = initialPosts.sort((a, b) => {
+  // First, sort all posts by date descending (for fallback sorting)
+  const postsSortedByDate = [...initialPosts].sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime();
     const dateB = new Date(b.frontmatter.date).getTime();
-    return dateA < dateB ? 1 : -1;
+    return dateB - dateA;
   });
 
-  const timeToRead = Math.ceil(readingTime(recentBlog[0].content).minutes);
-  const spreadTags: any[] = [...setOfTags];
-  const allTags = [...new Set(spreadTags)];
-  //add tag for all
-  allTags.unshift('All');
+  const recentBlog = postsSortedByDate;
+  const timeToRead = Math.ceil(
+    readingTime(recentBlog[0]?.content || '').minutes,
+  );
+
+  // Collect all unique categories across posts.
+  const allTagsSet = new Set<string>();
+  initialPosts.forEach((post) => {
+    getCategories(post.frontmatter).forEach((cat) => allTagsSet.add(cat));
+  });
+  const allTags = ['All', ...Array.from(allTagsSet)];
 
   return (
     // @ts-ignore
@@ -166,21 +231,23 @@ export default function StaticMarkdownPage({
       <Head>
         <title>JSON Schema Blog</title>
       </Head>
-      <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-10 '>
+      <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-0 sm:mt-10'>
         {recentBlog[0] && (
-          <div className='relative w-full  h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
-            <div className='absolute w-full h-full dark:bg-[#282d6a]'>
-              <Image
-                src={recentBlog[0].frontmatter.cover}
-                width={800}
-                height={450}
-                className='object-cover w-full h-full opacity-70 blur-[5px]'
-                alt='hero image example'
-              />
-            </div>
+          <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
+            <div className='absolute w-full h-full dark:bg-[#282d6a]' />
+            <Image
+              src={recentBlog[0].frontmatter.cover}
+              width={800}
+              height={450}
+              className='object-cover w-full h-full opacity-70 blur-[5px]'
+              alt={recentBlog[0].frontmatter.title}
+              priority
+              quality={75}
+            />
             <div className='absolute text-white w-full h-full mt-custom ml-14'>
+              {/* Display all categories (joined by comma) */}
               <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm '>
-                {recentBlog[0].frontmatter.type}
+                {getCategories(recentBlog[0].frontmatter).join(', ')}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
                 <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
@@ -193,7 +260,6 @@ export default function StaticMarkdownPage({
                       backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})`,
                     }}
                   />
-
                   <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
                     <p className='text-sm font-semibold text-stroke-1'>
                       {recentBlog[0].frontmatter.authors[0].name}
@@ -216,7 +282,6 @@ export default function StaticMarkdownPage({
               Welcome to the JSON Schema Blog!
             </h2>
           </div>
-
           <div className='flex h-full flex-col justify-center items-center text-center text-sm sm:text-base px-4 my-2'>
             <p>
               Want to publish a blog post? Check out the&nbsp;
@@ -231,9 +296,8 @@ export default function StaticMarkdownPage({
               &nbsp;and submit yours!
             </p>
           </div>
-
           <div className='flex h-full flex-col justify-center items-center text-sm sm:text-base px-4 my-2'>
-            <a
+            <Link
               href='/rss/feed.xml'
               className='flex items-center text-blue-500 hover:text-blue-600 cursor-pointer'
             >
@@ -245,21 +309,22 @@ export default function StaticMarkdownPage({
                 width={20}
               />
               RSS&nbsp;Feed
-            </a>
+            </Link>
           </div>
         </div>
-        {/* Filter Buttons */}
 
+        {/* Filter Buttons */}
         <div className='w-full ml-8 flex flex-wrap justify-start'>
           {allTags.map((tag) => (
             <button
               key={tag}
               value={tag}
-              onClick={handleFilterClick}
-              className={`cursor-pointer 
-			          font-semibold inline-block px-3 py-1 4
-			          rounded-full mb-4 mr-4 text-sm 
-			          ${currentFilterTag === tag ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100' : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'}`}
+              onClick={() => toggleCategory(tag as blogCategories)}
+              className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${
+                currentFilterTags.includes(tag as blogCategories)
+                  ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
+                  : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
+              }`}
             >
               {tag}
             </button>
@@ -269,50 +334,52 @@ export default function StaticMarkdownPage({
           </span>
         </div>
 
-        {/* filterTag === frontmatter.type &&  */}
+        {/* Blog Posts Grid */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
-          {posts.map((blogPost: any) => {
+          {posts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
-            const timeToRead = Math.ceil(readingTime(content).minutes);
+            const postTimeToRead = Math.ceil(readingTime(content).minutes);
 
             return (
               <section key={blogPost.slug}>
-                <div className='sm:h-[498px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
+                <div className='h-[510px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
                   <Link
                     href={`/blog/posts/${blogPost.slug}`}
                     className='inline-flex flex-col flex-1 w-full'
                   >
-                    <div
-                      className='bg-slate-50 h-[160px] w-full self-stretch mr-3 bg-cover bg-center'
-                      style={{ backgroundImage: `url(${frontmatter.cover})` }}
-                    />
-                    <div className=' p-4 flex flex-col flex-1 justify-between'>
+                    <div className='relative h-[160px] w-full'>
+                      <Image
+                        src={frontmatter.cover}
+                        alt={frontmatter.title}
+                        fill
+                        className='object-cover'
+                        loading={idx < 10 ? 'eager' : 'lazy'}
+                        priority={idx < 10}
+                        quality={75}
+                      />
+                    </div>
+                    <div className='p-4 flex flex-col flex-1 justify-between'>
                       <div>
-                        <div>
-                          <div
-                            className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full mb-4 text-sm'
-                            onClick={(e) => {
-                              e.preventDefault();
-                              e.stopPropagation();
-
-                              if (frontmatter.type) {
-                                setCurrentFilterTag(frontmatter.type);
-                                history.replaceState(
-                                  null,
-                                  '',
-                                  `/blog?type=${frontmatter.type}`,
-                                );
-                              }
-                            }}
-                          >
-                            {frontmatter.type || 'Unknown Type'}
-                          </div>
+                        {/* Display each category as a clickable badge */}
+                        <div className='flex flex-wrap gap-2 mb-4'>
+                          {getCategories(frontmatter).map((cat, index) => (
+                            <div
+                              key={index}
+                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full text-sm'
+                              onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                toggleCategory(cat);
+                              }}
+                            >
+                              {cat || 'Unknown'}
+                            </div>
+                          ))}
                         </div>
-                        <div className='text-lg font-semibold'>
+                        <div className='text-lg h-[80px] font-semibold'>
                           {frontmatter.title}
                         </div>
-
                         <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
                           <TextTruncate
                             element='span'
@@ -321,13 +388,7 @@ export default function StaticMarkdownPage({
                           />
                         </div>
                       </div>
-                      <div
-                        className={`
-                            flex 
-                            flex-row
-                            items-center
-                          `}
-                      >
+                      <div className='flex flex-row items-center'>
                         <div className='flex flex-row pl-2 mr-2'>
                           {(frontmatter.authors || []).map(
                             (author: Author, index: number) => (
@@ -346,14 +407,7 @@ export default function StaticMarkdownPage({
                             ),
                           )}
                         </div>
-
-                        <div
-                          className={`
-                              flex 
-                              flex-col
-                              items-start
-                            `}
-                        >
+                        <div className='flex flex-col items-start'>
                           <div className='text-sm font-semibold'>
                             {frontmatter.authors.length > 2 ? (
                               <>
@@ -379,7 +433,6 @@ export default function StaticMarkdownPage({
                               )
                             )}
                           </div>
-
                           <div className='text-slate-500 text-sm dark:text-slate-300'>
                             {frontmatter.date && (
                               <span>
@@ -390,7 +443,7 @@ export default function StaticMarkdownPage({
                                 })}
                               </span>
                             )}{' '}
-                            &middot; {timeToRead} min read
+                            &middot; {postTimeToRead} min read
                           </div>
                         </div>
                       </div>

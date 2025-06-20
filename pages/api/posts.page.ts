@@ -4,6 +4,12 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 const PATH = 'pages/blog/posts';
 
+const getCategories = (frontmatter: any): string[] => {
+  const cat = frontmatter.categories || frontmatter.type;
+  if (!cat) return [];
+  return Array.isArray(cat) ? cat : [cat];
+};
+
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const { page = 1, type = 'All' } = req.query;
   const POSTS_PER_PAGE = 10;
@@ -24,7 +30,19 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       })
       .filter((post) => {
         if (type === 'All') return true;
-        return post.frontmatter.type === type;
+
+        // Handle multiple categories (comma-separated)
+        const filterCategories = (type as string)
+          .split(',')
+          .map((cat) => cat.trim());
+        const postCategories = getCategories(post.frontmatter);
+
+        // Check if any of the post's categories match any of the filter categories
+        return postCategories.some((cat) =>
+          filterCategories.some(
+            (filterCat) => filterCat.toLowerCase() === cat.toLowerCase(),
+          ),
+        );
       })
       .sort((a, b) => {
         const dateA = new Date(a.frontmatter.date).getTime();
