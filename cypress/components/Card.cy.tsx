@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import Card from '../../components/Card';
 import { CardProps } from '../../components/Card';
@@ -69,5 +70,24 @@ describe('Card Component', () => {
     cy.mount(<Card {...missingProps} />);
     cy.get('[data-test="card-icon"]').should('not.exist');
     cy.get('[data-test="card-link"]').should('not.exist');
+  });
+
+  // Test hover interactions for cards with links
+  it('should show "Read More" text when link is provided', () => {
+    cy.mount(<Card {...RoadmapProps} />);
+    cy.get('[data-test="card-read-more"]').should('exist');
+    cy.get('[data-test="card-read-more"]').should('have.text', 'Read More');
+  });
+
+  // Test different text size combinations
+  it('should render card with small header and large body text sizes', () => {
+    const smallHeaderLargeBody: CardProps = {
+      ...RoadmapProps,
+      headerSize: 'small',
+      bodyTextSize: 'large',
+    };
+    cy.mount(<Card {...smallHeaderLargeBody} />);
+    cy.get('[data-test="card-title"]').should('have.class', 'text-[0.9rem]');
+    cy.get('[data-test="card-body"]').should('have.class', 'text-[1.5rem]');
   });
 });
