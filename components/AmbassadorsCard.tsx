@@ -202,8 +202,8 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
           <Button
             onClick={() => setShowContributions(!showContributions)}
             className={`w-full bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-400 text-white dark:text-slate-100 font-semibold py-2 px-4 rounded transition-all duration-300 transform ${
-              showContributions 
-                ? 'scale-105 shadow-lg shadow-blue-500/50' 
+              showContributions
+                ? 'scale-105 shadow-lg shadow-blue-500/50'
                 : 'scale-100 shadow-md'
             }`}
             variant='default'
@@ -213,7 +213,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
         )}
 
         {/* Contributions list with animation */}
-        <div 
+        <div
           className={`overflow-hidden transition-all duration-500 ease-in-out ${
             showContributions ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}
@@ -225,15 +225,15 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
               </h4>
               <ul className='text-gray-600 dark:text-slate-100 text-sm space-y-2'>
                 {contributions.map((contribution, index) => (
-                  <li 
-                    key={index} 
+                  <li
+                    key={index}
                     className={`transform transition-all duration-300 ease-out ${
-                      showContributions 
-                        ? 'translate-y-0 opacity-100' 
+                      showContributions
+                        ? 'translate-y-0 opacity-100'
                         : 'translate-y-4 opacity-0'
                     }`}
                     style={{
-                      transitionDelay: `${index * 100}ms`
+                      transitionDelay: `${index * 100}ms`,
                     }}
                   >
                     <strong>{contribution.title}</strong>

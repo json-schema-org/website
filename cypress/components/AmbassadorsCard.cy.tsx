@@ -91,16 +91,16 @@ describe('AmbassadorCard Component', () => {
   it('should toggle contributions visibility when button is clicked', () => {
     cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
     
-    // Initially contributions should be hidden
-    cy.contains('Contributions').should('not.exist');
+    // Initially contributions should be hidden (but exist in DOM)
+    cy.contains('Contributions').should('not.be.visible');
     
     // Click the button to show contributions
     cy.get('button').click();
     
     // Check that contributions are now visible
-    cy.contains('Contributions').should('exist');
-    cy.contains('JSON Schema Documentation').should('exist');
-    cy.contains('Schema Validation Tool').should('exist');
+    cy.contains('Contributions').should('be.visible');
+    cy.contains('JSON Schema Documentation').should('be.visible');
+    cy.contains('Schema Validation Tool').should('be.visible');
     
     // Check that button text changed
     cy.get('button').should('contain.text', 'Hide Details');
@@ -109,7 +109,7 @@ describe('AmbassadorCard Component', () => {
     cy.get('button').click();
     
     // Check that contributions are hidden again
-    cy.contains('Contributions').should('not.exist');
+    cy.contains('Contributions').should('not.be.visible');
     cy.get('button').should('contain.text', 'Show Full Details');
   });
 
