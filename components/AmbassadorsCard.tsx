@@ -202,7 +202,9 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
           <Button
             onClick={() => setShowContributions(!showContributions)}
             className={`w-full bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-400 text-white dark:text-slate-100 font-semibold py-2 px-4 rounded transition-all duration-300 transform ${
-              showContributions ? 'rotate' : ''
+              showContributions 
+                ? 'scale-105 shadow-lg shadow-blue-500/50' 
+                : 'scale-100 shadow-md'
             }`}
             variant='default'
           >
@@ -210,32 +212,48 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
           </Button>
         )}
 
-        {/* Contributions list */}
-        {showContributions && contributions.length > 0 && (
-          <div className='mt-4'>
-            <h4 className='text-lg font-semibold mb-2 text-gray-900 dark:text-white'>
-              Contributions
-            </h4>
-            <ul className='text-gray-600 dark:text-slate-100 text-sm'>
-              {contributions.map((contribution, index) => (
-                <li key={index} className='mb-2'>
-                  <strong>{contribution.title}</strong>
-                  {contribution.date &&
-                    ` (${contribution.date.month} ${contribution.date.year})`}{' '}
-                  -
-                  <a
-                    href={contribution.link}
-                    className='text-blue-600 dark:text-blue-400 ml-1 hover:underline'
-                    target='_blank'
-                    rel='noopener noreferrer'
+        {/* Contributions list with animation */}
+        <div 
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            showContributions ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          {contributions.length > 0 && (
+            <div className='mt-4 pt-4 border-t border-gray-200 dark:border-gray-700'>
+              <h4 className='text-lg font-semibold mb-2 text-gray-900 dark:text-white'>
+                Contributions
+              </h4>
+              <ul className='text-gray-600 dark:text-slate-100 text-sm space-y-2'>
+                {contributions.map((contribution, index) => (
+                  <li 
+                    key={index} 
+                    className={`transform transition-all duration-300 ease-out ${
+                      showContributions 
+                        ? 'translate-y-0 opacity-100' 
+                        : 'translate-y-4 opacity-0'
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 100}ms`
+                    }}
                   >
-                    {contribution.type}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+                    <strong>{contribution.title}</strong>
+                    {contribution.date &&
+                      ` (${contribution.date.month} ${contribution.date.year})`}{' '}
+                    -
+                    <a
+                      href={contribution.link}
+                      className='text-blue-600 dark:text-blue-400 ml-1 hover:underline transition-colors duration-200'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      {contribution.type}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </CardContent>
     </Card>
   );
