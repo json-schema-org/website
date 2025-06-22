@@ -133,10 +133,10 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
   return (
     <Card className='py-0 relative max-w-md md:max-w-lg lg:max-w-xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 h-full border-0'>
       {/* Decorative corner elements */}
-      <div className='absolute top-0 right-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
-      <div className='absolute top-0 right-0 w-20 h-1 bg-black dark:bg-gray-400'></div>
-      <div className='absolute bottom-0 left-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
-      <div className='absolute bottom-0 left-0 w-20 h-1 bg-black dark:bg-gray-400'></div>
+      <div className='absolute top-0 right-0 w-1 h-20 bg-gray-400'></div>
+      <div className='absolute top-0 right-0 w-20 h-1 bg-gray-400'></div>
+      <div className='absolute bottom-0 left-0 w-1 h-20 bg-gray-400'></div>
+      <div className='absolute bottom-0 left-0 w-20 h-1 bg-gray-400'></div>
 
       {/* Image section */}
       <div className='p-5'>
