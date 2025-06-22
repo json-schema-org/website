@@ -28,7 +28,7 @@ const AmbassadorBanner: React.FC = () => {
           <div className='w-full grid grid-cols-1 sm:grid-cols-2 gap-4 my-4 mx-auto'>
             <Button
               asChild
-              className='px-6 py-3 bg-blue-600 hover:bg-blue-700 transition duration-300'
+              className='px-6 py-3 bg-blue-600 hover:bg-blue-700 transition duration-300 text-white'
             >
               <Link href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-a-json-schema-ambassador'>
                 Become Ambassador
