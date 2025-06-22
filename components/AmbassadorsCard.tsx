@@ -114,14 +114,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
     ambassador.img || '/api/placeholder/400/320',
   );
 
-  const {
-    name = 'Ambassador',
-    title,
-    bio,
-    company,
-    country,
-    contributions = [],
-  } = ambassador;
+  const { name, title, bio, company, country, contributions = [] } = ambassador;
 
   const SocialIcons: SocialIcons[] = [
     'github',
