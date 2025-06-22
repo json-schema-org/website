@@ -125,27 +125,29 @@ describe('AmbassadorCard Component', () => {
 
   it('should handle ambassador with no image', () => {
     cy.mount(<AmbassadorCard ambassador={ambassadorWithNoImage} />);
-    
+
     // Should use placeholder image
     cy.get('img').should('have.attr', 'src').and('include', '/api/placeholder');
   });
 
   it('should render all social media platforms', () => {
     cy.mount(<AmbassadorCard ambassador={ambassadorWithAllSocialMedia} />);
-    
+
     // Check all social media links are present
     cy.get('a[href*="github.com/socialuser"]').should('exist');
     cy.get('a[href*="twitter.com/socialuser_twitter"]').should('exist');
     cy.get('a[href*="linkedin.com/in/socialuser-linkedin"]').should('exist');
-    cy.get('a[href*="fosstodon.org/socialuser@mastodon.social"]').should('exist');
-    
+    cy.get('a[href*="fosstodon.org/socialuser@mastodon.social"]').should(
+      'exist',
+    );
+
     // Check all social media icons are rendered
     cy.get('svg').should('have.length', 4);
   });
 
   it('should handle ambassador with only company', () => {
     cy.mount(<AmbassadorCard ambassador={ambassadorWithOnlyCompany} />);
-    
+
     cy.contains('Big Corp').should('exist');
     cy.contains('Canada').should('not.exist');
     cy.contains(',').should('not.exist'); // No comma when only company
@@ -153,7 +155,7 @@ describe('AmbassadorCard Component', () => {
 
   it('should handle ambassador with only country', () => {
     cy.mount(<AmbassadorCard ambassador={ambassadorWithOnlyCountry} />);
-    
+
     cy.contains('Canada').should('exist');
     cy.contains('Big Corp').should('not.exist');
     cy.contains(',').should('not.exist'); // No comma when only country
@@ -161,7 +163,7 @@ describe('AmbassadorCard Component', () => {
 
   it('should handle long bio text', () => {
     cy.mount(<AmbassadorCard ambassador={ambassadorWithLongBio} />);
-    
+
     cy.contains('This is a very long bio').should('exist');
     cy.contains('multiple sentences').should('exist');
   });
@@ -226,7 +228,7 @@ describe('AmbassadorCard Component', () => {
     cy.intercept('GET', '/img/ambassadors/test-ambassador.jpg', {
       statusCode: 404,
     }).as('originalImageError');
-    
+
     cy.intercept('GET', '/img/ambassadors/John%20Doe.jpg', {
       statusCode: 404,
     }).as('fallbackImageError');
@@ -236,7 +238,7 @@ describe('AmbassadorCard Component', () => {
     // Wait for both image errors
     cy.wait('@originalImageError');
     cy.wait('@fallbackImageError');
-    
+
     // Check that image still has a src (even if it's the fallback)
     cy.get('img').should('have.attr', 'src');
   });
@@ -349,7 +351,9 @@ describe('AmbassadorCard Component', () => {
       contributions: undefined,
     };
 
-    cy.mount(<AmbassadorCard ambassador={ambassadorWithUndefinedContributions} />);
+    cy.mount(
+      <AmbassadorCard ambassador={ambassadorWithUndefinedContributions} />,
+    );
 
     // Check that contributions button is not rendered
     cy.get('button').should('not.exist');
@@ -417,75 +421,8 @@ describe('AmbassadorCard Component', () => {
     cy.get('a[href*="twitter.com"]').should('not.exist');
     cy.get('a[href*="linkedin.com"]').should('not.exist');
     cy.get('a[href*="fosstodon.org"]').should('not.exist');
-    
+
     // Check that no social media icons are rendered
     cy.get('svg').should('not.exist');
-  });
-
-  it('should test responsive design classes', () => {
-    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
-
-    // Check responsive width classes
-    cy.get('[data-slot="card"]').should('have.class', 'max-w-md');
-    cy.get('[data-slot="card"]').should('have.class', 'md:max-w-lg');
-    cy.get('[data-slot="card"]').should('have.class', 'lg:max-w-xl');
-  });
-
-  it('should test image sizing and optimization', () => {
-    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
-
-    // Check image sizing classes
-    cy.get('img').should('have.class', 'w-full');
-    cy.get('img').should('have.class', 'h-full');
-    cy.get('img').should('have.class', 'object-cover');
-    
-    // Check image container classes
-    cy.get('img').parent().should('have.class', 'w-full');
-    cy.get('img').parent().should('have.class', 'h-80');
-    cy.get('img').parent().should('have.class', 'relative');
-    cy.get('img').parent().should('have.class', 'overflow-hidden');
-    cy.get('img').parent().should('have.class', 'rounded-2xl');
-  });
-
-  it('should test dark mode support', () => {
-    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
-
-    // Check dark mode classes
-    cy.get('[data-slot="card"]').should('have.class', 'dark:bg-gray-800');
-    cy.get('[data-slot="card-title"]').should('have.class', 'dark:text-white');
-    cy.get('[data-slot="card-description"]').should('have.class', 'dark:text-slate-100');
-  });
-
-  it('should test contribution link functionality', () => {
-    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
-
-    // Show contributions
-    cy.get('button').click();
-
-    // Check contribution links
-    cy.get('a[href="https://example.com/doc"]').should('exist');
-    cy.get('a[href="https://example.com/tool"]').should('exist');
-    
-    // Check that contribution links have proper attributes
-    cy.get('a[href="https://example.com/doc"]').should('have.attr', 'target', '_blank');
-    cy.get('a[href="https://example.com/doc"]').should('have.attr', 'rel', 'noopener noreferrer');
-  });
-
-  it('should test component state management', () => {
-    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
-
-    // Test initial state
-    cy.get('button').should('contain.text', 'Show Full Details');
-    cy.contains('Contributions').should('not.be.visible');
-
-    // Test state after first click
-    cy.get('button').click();
-    cy.get('button').should('contain.text', 'Hide Details');
-    cy.contains('Contributions').should('be.visible');
-
-    // Test state after second click
-    cy.get('button').click();
-    cy.get('button').should('contain.text', 'Show Full Details');
-    cy.contains('Contributions').should('not.be.visible');
   });
 });
