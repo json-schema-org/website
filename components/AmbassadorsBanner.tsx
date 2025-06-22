@@ -30,7 +30,11 @@ const AmbassadorBanner: React.FC = () => {
               asChild
               className='px-6 py-3 bg-blue-600 hover:bg-blue-700 transition duration-300 text-white'
             >
-              <Link href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-a-json-schema-ambassador'>
+              <Link
+                href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors#become-a-json-schema-ambassador'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 Become Ambassador
               </Link>
             </Button>
@@ -39,7 +43,11 @@ const AmbassadorBanner: React.FC = () => {
               variant='secondary'
               className='px-6 py-3 bg-gray-300 text-slate-700 hover:bg-gray-400 transition'
             >
-              <Link href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors'>
+              <Link
+                href='https://github.com/json-schema-org/community/tree/main/programs/ambassadors'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 Learn More
               </Link>
             </Button>
