@@ -32,6 +32,35 @@ const minimalAmbassador: Ambassador = {
   name: 'Jane Smith',
 };
 
+const ambassadorWithNoImage: Ambassador = {
+  name: 'No Image Ambassador',
+  title: 'Developer',
+  bio: 'No image provided',
+};
+
+const ambassadorWithAllSocialMedia: Ambassador = {
+  name: 'Social Media Ambassador',
+  github: 'socialuser',
+  twitter: 'socialuser_twitter',
+  linkedin: 'socialuser-linkedin',
+  mastodon: 'socialuser@mastodon.social',
+};
+
+const ambassadorWithOnlyCompany: Ambassador = {
+  name: 'Company Only',
+  company: 'Big Corp',
+};
+
+const ambassadorWithOnlyCountry: Ambassador = {
+  name: 'Country Only',
+  country: 'Canada',
+};
+
+const ambassadorWithLongBio: Ambassador = {
+  name: 'Long Bio Ambassador',
+  bio: 'This is a very long bio that should test how the component handles longer text content. It should wrap properly and not break the layout. The bio contains multiple sentences to ensure proper text rendering.',
+};
+
 describe('AmbassadorCard Component', () => {
   beforeEach(() => {
     // Mock Next.js Image component
@@ -70,7 +99,7 @@ describe('AmbassadorCard Component', () => {
     cy.get('a[href*="github.com/johndoe"]').should('exist');
     cy.get('a[href*="twitter.com/johndoe_twitter"]').should('exist');
     cy.get('a[href*="linkedin.com/in/johndoe-linkedin"]').should('exist');
-    cy.get('a[href*="fosstodon.org/johndoe"]').should('exist');
+    cy.get('a[href*="fosstodon.org/johndoe@mastodon.social"]').should('exist');
 
     // Check contributions button
     cy.get('button').should('contain.text', 'Show Full Details');
@@ -92,6 +121,49 @@ describe('AmbassadorCard Component', () => {
 
     // Check that contributions button is not present
     cy.get('button').should('not.exist');
+  });
+
+  it('should handle ambassador with no image', () => {
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithNoImage} />);
+    
+    // Should use placeholder image
+    cy.get('img').should('have.attr', 'src').and('include', '/api/placeholder');
+  });
+
+  it('should render all social media platforms', () => {
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithAllSocialMedia} />);
+    
+    // Check all social media links are present
+    cy.get('a[href*="github.com/socialuser"]').should('exist');
+    cy.get('a[href*="twitter.com/socialuser_twitter"]').should('exist');
+    cy.get('a[href*="linkedin.com/in/socialuser-linkedin"]').should('exist');
+    cy.get('a[href*="fosstodon.org/socialuser@mastodon.social"]').should('exist');
+    
+    // Check all social media icons are rendered
+    cy.get('svg').should('have.length', 4);
+  });
+
+  it('should handle ambassador with only company', () => {
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithOnlyCompany} />);
+    
+    cy.contains('Big Corp').should('exist');
+    cy.contains('Canada').should('not.exist');
+    cy.contains(',').should('not.exist'); // No comma when only company
+  });
+
+  it('should handle ambassador with only country', () => {
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithOnlyCountry} />);
+    
+    cy.contains('Canada').should('exist');
+    cy.contains('Big Corp').should('not.exist');
+    cy.contains(',').should('not.exist'); // No comma when only country
+  });
+
+  it('should handle long bio text', () => {
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithLongBio} />);
+    
+    cy.contains('This is a very long bio').should('exist');
+    cy.contains('multiple sentences').should('exist');
   });
 
   it('should toggle contributions visibility when button is clicked', () => {
@@ -134,6 +206,41 @@ describe('AmbassadorCard Component', () => {
       .and('match', /John%20Doe/);
   });
 
+  it('should handle placeholder image fallback', () => {
+    // Mock placeholder image error
+    cy.intercept('GET', '/api/placeholder/400/320', {
+      statusCode: 404,
+    }).as('placeholderError');
+
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithNoImage} />);
+
+    // Wait for placeholder error and check fallback
+    cy.wait('@placeholderError');
+    cy.get('img')
+      .should('have.attr', 'src')
+      .and('match', /No%20Image%20Ambassador/);
+  });
+
+  it('should handle multiple image fallbacks', () => {
+    // Mock both original image and fallback image errors
+    cy.intercept('GET', '/img/ambassadors/test-ambassador.jpg', {
+      statusCode: 404,
+    }).as('originalImageError');
+    
+    cy.intercept('GET', '/img/ambassadors/John%20Doe.jpg', {
+      statusCode: 404,
+    }).as('fallbackImageError');
+
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Wait for both image errors
+    cy.wait('@originalImageError');
+    cy.wait('@fallbackImageError');
+    
+    // Check that image still has a src (even if it's the fallback)
+    cy.get('img').should('have.attr', 'src');
+  });
+
   it('should render ambassador with only some social media links', () => {
     const partialSocialAmbassador: Ambassador = {
       ...mockAmbassador,
@@ -148,26 +255,6 @@ describe('AmbassadorCard Component', () => {
     cy.get('a[href*="linkedin.com/in/johndoe-linkedin"]').should('exist');
     cy.get('a[href*="twitter.com"]').should('not.exist');
     cy.get('a[href*="fosstodon.org"]').should('not.exist');
-  });
-
-  it('should render ambassador with only company or only country', () => {
-    const companyOnly: Ambassador = {
-      ...mockAmbassador,
-      country: undefined,
-    };
-
-    cy.mount(<AmbassadorCard ambassador={companyOnly} />);
-    cy.contains('Tech Corp').should('exist');
-    cy.contains('United States').should('not.exist');
-
-    const countryOnly: Ambassador = {
-      ...mockAmbassador,
-      company: undefined,
-    };
-
-    cy.mount(<AmbassadorCard ambassador={countryOnly} />);
-    cy.contains('United States').should('exist');
-    cy.contains('Tech Corp').should('not.exist');
   });
 
   it('should render contributions without dates', () => {
@@ -236,6 +323,14 @@ describe('AmbassadorCard Component', () => {
     cy.get('button').should('have.class', 'hover:bg-blue-700');
   });
 
+  it('should have decorative corner elements', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Check that decorative elements are present
+    cy.get('div').should('have.class', 'absolute');
+    cy.get('div').should('have.class', 'bg-gray-400');
+  });
+
   it('should handle empty contributions array', () => {
     const ambassadorWithoutContributions: Ambassador = {
       ...mockAmbassador,
@@ -246,5 +341,151 @@ describe('AmbassadorCard Component', () => {
 
     // Check that contributions button is not rendered
     cy.get('button').should('not.exist');
+  });
+
+  it('should handle undefined contributions', () => {
+    const ambassadorWithUndefinedContributions: Ambassador = {
+      ...mockAmbassador,
+      contributions: undefined,
+    };
+
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithUndefinedContributions} />);
+
+    // Check that contributions button is not rendered
+    cy.get('button').should('not.exist');
+  });
+
+  it('should test button animation states', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Check initial button state
+    cy.get('button').should('have.class', 'scale-100');
+    cy.get('button').should('have.class', 'shadow-md');
+
+    // Click button to show contributions
+    cy.get('button').click();
+
+    // Check expanded button state
+    cy.get('button').should('have.class', 'scale-105');
+    cy.get('button').should('have.class', 'shadow-lg');
+    cy.get('button').should('have.class', 'shadow-blue-500/50');
+
+    // Click button again to hide contributions
+    cy.get('button').click();
+
+    // Check button returned to initial state
+    cy.get('button').should('have.class', 'scale-100');
+    cy.get('button').should('have.class', 'shadow-md');
+  });
+
+  it('should test contribution animation timing', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Click button to show contributions
+    cy.get('button').click();
+
+    // Check that contributions container has animation classes
+    cy.get('div').should('have.class', 'overflow-hidden');
+    cy.get('div').should('have.class', 'transition-all');
+    cy.get('div').should('have.class', 'duration-500');
+    cy.get('div').should('have.class', 'ease-in-out');
+  });
+
+  it('should test social media URL generation', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Check that all social media URLs are correctly generated
+    cy.get('a[href*="github.com/johndoe"]').should('exist');
+    cy.get('a[href*="twitter.com/johndoe_twitter"]').should('exist');
+    cy.get('a[href*="linkedin.com/in/johndoe-linkedin"]').should('exist');
+    cy.get('a[href*="fosstodon.org/johndoe@mastodon.social"]').should('exist');
+  });
+
+  it('should handle undefined social media usernames', () => {
+    const ambassadorWithUndefinedSocial: Ambassador = {
+      name: 'No Social Media',
+      github: undefined,
+      twitter: undefined,
+      linkedin: undefined,
+      mastodon: undefined,
+    };
+
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithUndefinedSocial} />);
+
+    // Check that no social media links are rendered
+    cy.get('a[href*="github.com"]').should('not.exist');
+    cy.get('a[href*="twitter.com"]').should('not.exist');
+    cy.get('a[href*="linkedin.com"]').should('not.exist');
+    cy.get('a[href*="fosstodon.org"]').should('not.exist');
+    
+    // Check that no social media icons are rendered
+    cy.get('svg').should('not.exist');
+  });
+
+  it('should test responsive design classes', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Check responsive width classes
+    cy.get('[data-slot="card"]').should('have.class', 'max-w-md');
+    cy.get('[data-slot="card"]').should('have.class', 'md:max-w-lg');
+    cy.get('[data-slot="card"]').should('have.class', 'lg:max-w-xl');
+  });
+
+  it('should test image sizing and optimization', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Check image sizing classes
+    cy.get('img').should('have.class', 'w-full');
+    cy.get('img').should('have.class', 'h-full');
+    cy.get('img').should('have.class', 'object-cover');
+    
+    // Check image container classes
+    cy.get('img').parent().should('have.class', 'w-full');
+    cy.get('img').parent().should('have.class', 'h-80');
+    cy.get('img').parent().should('have.class', 'relative');
+    cy.get('img').parent().should('have.class', 'overflow-hidden');
+    cy.get('img').parent().should('have.class', 'rounded-2xl');
+  });
+
+  it('should test dark mode support', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Check dark mode classes
+    cy.get('[data-slot="card"]').should('have.class', 'dark:bg-gray-800');
+    cy.get('[data-slot="card-title"]').should('have.class', 'dark:text-white');
+    cy.get('[data-slot="card-description"]').should('have.class', 'dark:text-slate-100');
+  });
+
+  it('should test contribution link functionality', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Show contributions
+    cy.get('button').click();
+
+    // Check contribution links
+    cy.get('a[href="https://example.com/doc"]').should('exist');
+    cy.get('a[href="https://example.com/tool"]').should('exist');
+    
+    // Check that contribution links have proper attributes
+    cy.get('a[href="https://example.com/doc"]').should('have.attr', 'target', '_blank');
+    cy.get('a[href="https://example.com/doc"]').should('have.attr', 'rel', 'noopener noreferrer');
+  });
+
+  it('should test component state management', () => {
+    cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
+
+    // Test initial state
+    cy.get('button').should('contain.text', 'Show Full Details');
+    cy.contains('Contributions').should('not.be.visible');
+
+    // Test state after first click
+    cy.get('button').click();
+    cy.get('button').should('contain.text', 'Hide Details');
+    cy.contains('Contributions').should('be.visible');
+
+    // Test state after second click
+    cy.get('button').click();
+    cy.get('button').should('contain.text', 'Show Full Details');
+    cy.contains('Contributions').should('not.be.visible');
   });
 });
