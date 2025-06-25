@@ -1257,8 +1257,10 @@
       platform: 'github'
   license: 'MIT'
   source: 'https://github.com/pydantic/pydantic'
-  homepage: 'https://pydantic-docs.helpmanual.io/'
-  lastUpdated: '2020-06-05'
+  homepage: 'https://docs.pydantic.dev/latest/'
+  supportedDialects:
+    draft: ['2020-12']
+  lastUpdated: '2025-06-26'
 
 - name: msgspec
   description: 'msgspec generates schemas from Python type annotations.'
