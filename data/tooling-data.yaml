@@ -3232,3 +3232,120 @@
   homepage: 'https://github.com/voxpupuli/json-schema/'
   supportedDialects:
     draft: ['1', '2', '3', '4', '6']
+
+- name: 'ya-json-schema-types'
+  description: 'TypeScript types for JSONSchema 2020-12.'
+  toolingTypes: ['schema-to-types']
+  languages: ['JavaScript']
+  environments: ['Node.js']
+  creators:
+    - name: 'Nicolas Froidure'
+      username: 'nfroidure'
+      platform: 'github'
+  maintainers:
+    - name: 'Nicolas Froidure'
+      username: 'nfroidure'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/nfroidure/ya-json-schema-types'
+  homepage: 'https://github.com/nfroidure/ya-json-schema-types'
+  supportedDialects:
+    draft: ['2020-12']
+
+- name: 'core-ajv-schema-validator'
+  description: 'Package for API testing to validate API responses against plain JSON schemas, Swagger documents, or OpenAPI documents using the Ajv JSON Schema validator. It can be used directly in any node.js project. Function validateSchema() to report JSON Schema validation errors in the response obtained from any network request. Serves as the core engine for schema validation in the cypress-ajv-schema-validator and playwright-ajv-schema-validator.'
+  toolingTypes: ['util-testing']
+  languages: ['JavaScript']
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv']
+  creators:
+    - name: 'Sebastian Clavijo Suero'
+      username: 'sclavijosuero'
+      platform: 'github'
+  maintainers:
+    - name: 'Sebastian Clavijo Suero'
+      username: 'sclavijosuero'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/sclavijosuero/core-ajv-schema-validator'
+  homepage: 'https://github.com/sclavijosuero/core-ajv-schema-validator/blob/main/README.md'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'It uses the Ajv JSON Schema Validator as its core engine.'
+
+- name: 'json-schema-describes-subset'
+  description: 'Tools for static JSON schema analysis and processing, including a function which determines whether one schema describes a subset of another, a function which determines whether a schema describes the empty set and a function that converts a schema to its disjunctive normal form (DNF)'
+  toolingTypes: ['util-general-processing','util-schema-to-schema']
+  languages: ['JavaScript','TypeScript']
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv']
+  creators:
+    - name: 'Johannes Bohner'
+      username: 'jobohner'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/jobohner/json-schema-describes-subset'
+  homepage: 'https://github.com/jobohner/json-schema-describes-subset#readme'
+  supportedDialects:
+    draft: ['2020-12']
+ 
+- name: 'EasyTalk'
+  description: 'EasyTalk is a Ruby library that simplifies defining, validating and generating JSON Schema. It provides an intuitive interface for Ruby developers to define structured data models that can be used for validation and documentation.'
+  toolingTypes: ['validator', 'code-to-schema', 'model-to-schema']
+  languages: ['Ruby']
+  environments: ['Linux', 'macOS', 'Windows', 'Platform supporting Ruby runtime']
+  creators:
+    - name: 'Sergio Bayona'
+      platform: 'other'
+  maintainers:
+    - name: 'Sergio Bayona'
+      platform: 'other'
+  license: 'MIT'
+  source: 'https://github.com/sergiobayona/easy_talk'
+  homepage: 'https://rubygems.org/gems/easy_talk'
+  supportedDialects:
+    draft: ['2019-09','2020-12']
+
+- name: 'Thydux Schema Bridge'
+  description: 'Thydux Schema Bridge is a conversion and validation tool designed to streamline integration between blockchain data models and standard JSON Schema dialects. It supports schema-to-code, schema validation, and schema migration tailored for DeFi and investment platforms.'
+  toolingTypes: ['validator','schema-to-code','util-schema-to-schema','util-draft-migration','util-format-conversion']
+  languages: ['JavaScript','TypeScript','Python']
+  environments: ['Node.js','Browser (WebAssembly build planned)','CLI']
+  creators:
+    - name: 'Investor ab'
+      username: 'THYDUX'
+      platform: 'github'
+    - name: 'Thydux Open Source Contributors'
+      platform: 'other'
+  maintainers:
+    - name: 'Thydux Developers Team'
+      platform: 'other'
+    - name: 'Investor ab'
+      username: 'THYDUX'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/THYDUX/schema-bridge'
+  homepage: 'https://thyduxweb.com/tools/schema-bridge'
+  supportedDialects:
+    draft: ['4','6','7','2019-09','2020-12']
+    additional:
+      - name: 'Custom DeFi Schema dialect'
+        source: 'https://thyduxweb.com/docs/defi-schema'
+  toolingListingNotes: 'Currently in beta. Actively seeking contributors and validator testing feedback from the DeFi developer community.'
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv', 'https://github.com/python-jsonschema/jsonschema']
+
+- name: 'ToDiagram'
+  description: 'ToDiagram is capable of accurately transforming JSON, YAML, XML and CSV into interactive diagrams where you can edit the data backwards from the visualization. Additionally, you can enable the JSON Schema validation which highlights the invalid fields in real-time, displaying the errors at the nodes.'
+  toolingTypes: ['schema-to-web-UI','validator','data-to-schema','schema-to-data','editor']
+  languages: ['JSON','YAML','XML','CSV']
+  environments: ['Web']
+  creators:
+    - name: 'Aykut Sarac'
+      username: 'AykutSarac'
+      platform: 'github'
+  maintainers:
+    - name: 'Aykut Sarac'
+      username: 'AykutSarac'
+      platform: 'github'
+  license: 'Proprietary'
+  homepage: 'https://todiagram.com/editor'
+  supportedDialects:
+    draft: ['4','6','7','2019-09','2020-12']

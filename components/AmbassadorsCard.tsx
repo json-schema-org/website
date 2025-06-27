@@ -1,5 +1,14 @@
+/* eslint-disable linebreak-style */
 import React, { useState } from 'react';
 import Image from 'next/image';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 
 interface Contribution {
   title: string;
@@ -105,14 +114,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
     ambassador.img || '/api/placeholder/400/320',
   );
 
-  const {
-    name = 'Ambassador',
-    title,
-    bio,
-    company,
-    country,
-    contributions = [],
-  } = ambassador;
+  const { name, title, bio, company, country, contributions = [] } = ambassador;
 
   const SocialIcons: SocialIcons[] = [
     'github',
@@ -122,33 +124,45 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
   ];
 
   return (
-    <div className='relative flex flex-col max-w-sm md:max-w-md lg:max-w-lg mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 h-full'>
-      <div className='absolute top-0 right-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
-      <div className='absolute bottom-100 right-0 w-20 h-1 bg-black dark:bg-gray-400'></div>
-      <div className='absolute bottom-0 left-0 w-1 h-20 bg-black dark:bg-gray-400'></div>
-      <div className='absolute bottom-0 left-0 w-20 h-1 bg-black dark:bg-gray-400'></div>
+    <Card className='py-0 relative max-w-md md:max-w-lg lg:max-w-xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden my-4 h-full border-0'>
+      {/* Decorative corner elements */}
+      <div className='absolute top-0 right-0 w-1 h-20 bg-gray-400'></div>
+      <div className='absolute top-0 right-0 w-20 h-1 bg-gray-400'></div>
+      <div className='absolute bottom-0 left-0 w-1 h-20 bg-gray-400'></div>
+      <div className='absolute bottom-0 left-0 w-20 h-1 bg-gray-400'></div>
 
-      <Image
-        className='w-full object-cover p-5 rounded-3xl'
-        src={imgSrc}
-        alt={`${name} profile`}
-        width={400}
-        height={320}
-        onError={() => setImgSrc(`/img/ambassadors/${name}.jpg`)}
-      />
+      {/* Image section */}
+      <div className='p-5'>
+        <div className='w-full h-80 relative overflow-hidden rounded-2xl'>
+          <Image
+            className='w-full h-full object-cover'
+            src={imgSrc}
+            alt={`${name} profile`}
+            fill
+            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+            onError={() => setImgSrc(`/img/ambassadors/${name}.jpg`)}
+          />
+        </div>
+      </div>
 
-      <div className='flex flex-col flex-grow p-6'>
-        <h3 className='text-xl font-semibold mb-2 text-gray-900 dark:text-white'>
-          {name}
-        </h3>
-        {title && (
-          <p className='text-gray-500 dark:text-slate-100 mb-1'>{title}</p>
-        )}
+      <CardContent className='flex flex-col flex-grow p-6 pt-0'>
+        <CardHeader className='p-0 mb-4'>
+          <CardTitle className='text-xl font-semibold mb-2 text-gray-900 dark:text-white'>
+            {name}
+          </CardTitle>
+          {title && (
+            <CardDescription className='text-gray-500 dark:text-slate-100 mb-1'>
+              {title}
+            </CardDescription>
+          )}
+        </CardHeader>
+
         {bio && (
           <p className='text-gray-700 dark:text-slate-100 text-sm mb-4'>
             {bio}
           </p>
         )}
+
         {(company || country) && (
           <p className='text-gray-500 dark:text-slate-100 mb-4'>
             {company}
@@ -157,6 +171,7 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
           </p>
         )}
 
+        {/* Social icons */}
         <div className='flex justify-center mb-4 mt-auto'>
           {SocialIcons.map((platform) => {
             const username = ambassador[platform];
@@ -175,44 +190,65 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
           })}
         </div>
 
+        {/* Contributions button */}
         {contributions.length > 0 && (
-          <button
+          <Button
             onClick={() => setShowContributions(!showContributions)}
             className={`w-full bg-blue-600 dark:bg-blue-500 hover:bg-blue-700 dark:hover:bg-blue-400 text-white dark:text-slate-100 font-semibold py-2 px-4 rounded transition-all duration-300 transform ${
-              showContributions ? 'rotate' : ''
+              showContributions
+                ? 'scale-105 shadow-lg shadow-blue-500/50'
+                : 'scale-100 shadow-md'
             }`}
+            variant='default'
           >
             {showContributions ? 'Hide Details' : 'Show Full Details'}
-          </button>
+          </Button>
         )}
 
-        {showContributions && contributions.length > 0 && (
-          <div className='mt-4'>
-            <h4 className='text-lg font-semibold mb-2 text-gray-900 dark:text-white'>
-              Contributions
-            </h4>
-            <ul className='text-gray-600 dark:text-slate-100 text-sm'>
-              {contributions.map((contribution, index) => (
-                <li key={index} className='mb-2'>
-                  <strong>{contribution.title}</strong>
-                  {contribution.date &&
-                    ` (${contribution.date.month} ${contribution.date.year})`}{' '}
-                  -
-                  <a
-                    href={contribution.link}
-                    className='text-blue-600 dark:text-blue-400 ml-1 hover:underline'
-                    target='_blank'
-                    rel='noopener noreferrer'
+        {/* Contributions list with animation */}
+        <div
+          className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            showContributions ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          {contributions.length > 0 && (
+            <div className='mt-4 pt-4 border-t border-gray-200 dark:border-gray-700'>
+              <h4 className='text-lg font-semibold mb-2 text-gray-900 dark:text-white'>
+                Contributions
+              </h4>
+              <ul className='text-gray-600 dark:text-slate-100 text-sm space-y-2'>
+                {contributions.map((contribution, index) => (
+                  <li
+                    key={index}
+                    className={`transform transition-all duration-300 ease-out ${
+                      showContributions
+                        ? 'translate-y-0 opacity-100'
+                        : 'translate-y-4 opacity-0'
+                    }`}
+                    style={{
+                      transitionDelay: `${index * 100}ms`,
+                    }}
                   >
-                    {contribution.type}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-    </div>
+                    <strong>{contribution.title}</strong>
+                    {contribution.date &&
+                      ` (${contribution.date.month} ${contribution.date.year})`}{' '}
+                    -
+                    <a
+                      href={contribution.link}
+                      className='text-blue-600 dark:text-blue-400 ml-1 hover:underline transition-colors duration-200'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      {contribution.type}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 
