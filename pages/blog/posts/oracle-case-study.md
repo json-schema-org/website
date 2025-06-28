@@ -594,14 +594,14 @@ With all this in place, our React frontend can now create the following form:
 
 ![React frontend with input form generated from an annotated Oracle Database 23ai JSON schema.](/img/posts/2025/oracle-case-study/form.webp)
 
-<Infobox> Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:
+<blockquote>
+Interestingly, whenever you change the schema annotation in the database, it is immediately reflected inside your browser once you refreshed it. You can try with:
 ```sql
 ALTER TABLE products MODIFY name ANNOTATIONS (
   REPLACE "title" 'Product name'
 );
 ```
-</Infobox> 
-
+</blockquote>
 
 #### JSON Relational Duality View
 
@@ -721,7 +721,9 @@ Running the 2 queries above respectively returns the data in JSON format:
 |Wooden spatula|4.99|42|
 |Other nice product|5|10|
 
-<Infobox>The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).</Infobox>
+<blockquote>
+The `_metadata` object will contain additional information such as an `etag` that can be used for [optimistic concurrency control](https://docs.oracle.com/en/database/oracle/oracle-database/23/jsnvu/using-optimistic-concurrency-control-duality-views.html).
+</blockquote>
 
 #### POST method
 
@@ -755,7 +757,9 @@ With 23ai, a check constraint can now be marked as [`PRECHECK`](https://docs.ora
 
 Once a check constraint is marked as `PRECHECK`, you have the choice whether or not to disable the check constraint on the table as the retrieved JSON schema with `dbms_json_schema.describe()` will contain the check constraints as well.
 
-<Danger>We do **NOT** advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.</Danger>
+<blockquote>
+We do **NOT** advise to disable check constraints as it would allow inserting bad data into the relational tables directly. The remark about `PRECHECK` constraints is here to provide as much information as possible.
+</blockquote>
 
 ```sql
 -- Mark check constraints as PRECHECK
@@ -777,8 +781,6 @@ insert into products (name, price, quantity)
 values ('Bad product', 0, -1);
 
 commit;
-
-select * from products;
 ```
 
 ### Data Use Case Domains
@@ -1016,7 +1018,9 @@ select p.content.publishedDate.timestamp() + interval '5' day
 from posts p;
 ```
 
-<Infobox>We use the item method `timestamp()` in the last statement above because otherwise the SQL dot notation would return a SQL `JSON` (by default in 23ai) on which we cannot apply an interval operation. However, because the value is already stored as `TIMESTAMP` inside the binary JSON format, there will be *no conversion* from `JSON` to `timestamp` here.</Infobox>
+<blockquote>
+We use the item method `timestamp()` in the last statement above because otherwise the SQL dot notation would return a SQL `JSON` (by default in 23ai) on which we cannot apply an interval operation. However, because the value is already stored as `TIMESTAMP` inside the binary JSON format, there will be *no conversion* from `JSON` to `timestamp` here.
+</blockquote>
 
 Last but not least, by enabling type casting, native SQL data type checks are also performed ensuring 100% fidelity between stored binary values in the encoded JSON and SQL data types. As a result, we can store not just the standard JSON data types but also the SQL data types inside the encoded binary JSON such as `NUMBER`, `DATE`, `TIMESTAMP`, `TIMESTAMP WITH TIME ZONE`, `INTERVAL`, `RAW`, `VECTOR`, etc.
 
@@ -1101,7 +1105,9 @@ Results:
 | {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false<br/>}                            |Paris|Bob|false|null|
 | {<br/>&nbsp;&nbsp;"firstName": "Bob",<br/>&nbsp;&nbsp;"address": "Paris",<br/>&nbsp;&nbsp;"vat": false,<br/>&nbsp;&nbsp;"tableEvolve": true<br/>} |Paris|Bob|false|true|
 
-<Infobox>The trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.</Infobox>
+<blockquote>
+The trigger executes asynchronously, hence not delaying DML response times, however, because of it being asynchronous, it may take a second before you will see the new virtual column.
+</blockquote>
 
 ## Conclusion
 
@@ -1109,7 +1115,7 @@ We have shown lots of features inside the Oracle Database 23ai which provide pow
 
 ![Oracle Database 23ai is a converged database now supporting JSON schema.](/img/posts/2025/oracle-case-study/converged_database.webp)
 
-Lean more:
+Learn more:
 - [Oracle Database 23ai `DBMS_JSON_SCHEMA` PL/SQL package](https://docs.oracle.com/en/database/oracle/oracle-database/23/arpls/DBMS_JSON_SCHEMA.html#GUID-89B9C48D-D905-482C-A78C-8DB314EDF072)
 - [Oracle Database 23ai JSON Developer Guide](https://docs.oracle.com/en/database/oracle/oracle-database/23/adjsn/index.html)
 - [Getting started with Oracle Database 23ai](https://medium.com/db-one/oracle-database-download-install-tutorial-my-getting-started-guide-044925c10ca2)
