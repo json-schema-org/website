@@ -5,6 +5,12 @@ type: docs
 authors: ['Austin Wright', 'Henry Andrews', 'Ben Hutton', 'Greg Dennis']
 Metaschema: 'https://json-schema.org/draft/2020-12/schema'
 Specification: 'https://json-schema.org/draft/2020-12/json-schema-core.html'
+prev:
+  label: Specification
+  url: /specification
+next:
+  label: Draft 2019-09
+  url: /draft/2019-09
 ---
 
 ### Introduction

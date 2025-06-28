@@ -9,6 +9,12 @@ authors:
   - Greg Dennis
 Published: 17 September 2019
 Metaschema: https://json-schema.org/draft/2019-09/schema
+prev:
+  label: Draft 2020-12
+  url: /draft/2020-12
+next:
+  label: Draft 07
+  url: /draft-07
 ---
 
 ### Introduction
@@ -43,6 +49,7 @@ One significant update is the shift to HTTPS for all meta-schema URIs. While the
   - [JSON Schema recommended output schema](https://json-schema.org/draft/2019-09/output/schema)
   - [JSON Hyper-Schema recommended output schema](https://json-schema.org/draft/2019-09/output/hyper-schema)
 - Output examples
+
   - [JSON Schema verbose output example](https://json-schema.org/draft/2019-09/output/verbose-example)
 
   ### Release Notes
