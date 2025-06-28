@@ -777,6 +777,8 @@ insert into products (name, price, quantity)
 values ('Bad product', 0, -1);
 
 commit;
+
+select * from products;
 ```
 
 ### Data Use Case Domains
