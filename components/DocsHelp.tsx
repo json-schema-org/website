@@ -56,6 +56,8 @@ export function DocsHelp({
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [commentValue, setCommentValue] = useState('');
+  const [commentError, setCommentError] = useState(false);
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
   // Generate GitHub redirect URL
@@ -85,6 +87,13 @@ export function DocsHelp({
 
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
+
+    // Validate comment is not empty
+    if (!commentValue.trim()) {
+      setCommentError(true);
+      return;
+    }
+
     const formData = new FormData(feedbackFormRef.current!);
     formData.append('feedback-page', router.asPath);
     setIsSubmitting(true);
@@ -99,7 +108,7 @@ export function DocsHelp({
           body: JSON.stringify({
             feedbackPage: formData.get('feedback-page'),
             feedbackVote: formData.get('feedback-vote'),
-            feedbackComment: formData.get('feedback-comment'),
+            feedbackComment: commentValue,
           }),
         },
       );
@@ -117,11 +126,17 @@ export function DocsHelp({
   }
 
   const createGitHubIssueHandler = () => {
+    // Validate comment is not empty
+    if (!commentValue.trim()) {
+      setCommentError(true);
+      return;
+    }
+
     const formData = new FormData(feedbackFormRef.current!);
     setIsSubmitting(true);
     try {
       const title = encodeURIComponent('Feedback on Documentation');
-      const body = encodeURIComponent(`${formData.get('feedback-comment')}`);
+      const body = encodeURIComponent(`${commentValue}`);
       const url = `https://github.com/json-schema-org/website/issues/new?title=${title}&body=${body}`;
       window.open(url, '_blank');
       submitFeedbackHandler('github_issue');
@@ -136,6 +151,8 @@ export function DocsHelp({
     setIsFormOpen(false);
     setFeedbackStatus(status);
     setError('');
+    setCommentValue('');
+    setCommentError(false);
     feedbackFormRef.current!.reset();
   };
 
@@ -237,16 +254,29 @@ export function DocsHelp({
                             Let us know your Feedback
                           </span>
                           <span className='float-right text-[#7d8590] text-[14px] block'>
-                            Optional
+                            Required
                           </span>
                         </label>
                       </p>
                       <Textarea
-                        className='py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid border-[#aaaaaa] rounded-md w-full overflow-hidden'
+                        className={`py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid ${commentError ? 'border-red-500 focus:border-red-500' : 'border-[#aaaaaa]'} rounded-md w-full overflow-hidden`}
                         name='feedback-comment'
                         id='feedback-comment'
                         data-test='feedback-form-input'
+                        value={commentValue}
+                        onChange={(e) => {
+                          setCommentValue(e.target.value);
+                          if (e.target.value.trim()) {
+                            setCommentError(false);
+                          }
+                        }}
+                        required
                       />
+                      {commentError && (
+                        <p className='text-red-500 text-[12px] mt-1'>
+                          Please provide feedback before submitting
+                        </p>
+                      )}
                     </div>
 
                     <div className='flex justify-start items-center mt-1 text-[14px]'>
