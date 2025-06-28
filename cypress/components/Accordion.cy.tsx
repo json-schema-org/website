@@ -1,3 +1,4 @@
+/* eslint-disable cypress/unsafe-to-chain-command */
 import React from 'react';
 import Accordion from '~/components/Accordion';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
@@ -54,13 +55,17 @@ describe('Accordion Component', () => {
           );
 
           // Initially, answer should not be visible
-          cy.get(`[data-test="accordion-answer-${item.id}"]`).should('not.be.visible');
+          cy.get(`[data-test="accordion-answer-${item.id}"]`).should(
+            'not.be.visible',
+          );
 
           // Click on the question to see the answer
           cy.get(`[data-test="accordion-question-${item.id}"]`).click();
-          
+
           // Answer should now be visible
-          cy.get(`[data-test="accordion-answer-${item.id}"]`).should('be.visible');
+          cy.get(`[data-test="accordion-answer-${item.id}"]`).should(
+            'be.visible',
+          );
           cy.get(`[data-test="accordion-answer-${item.id}"]`).should(
             'have.text',
             item.answer,
@@ -74,25 +79,31 @@ describe('Accordion Component', () => {
     const firstItem = items[0];
 
     // Initially, answer should not be visible
-    cy.get(`[data-test="accordion-answer-${firstItem.id}"]`).should('not.be.visible');
+    cy.get(`[data-test="accordion-answer-${firstItem.id}"]`).should(
+      'not.be.visible',
+    );
 
     // Click on the first item to expand it
     cy.get(`[data-test="accordion-toggle-${firstItem.id}"]`).click();
 
     // Check if the first item is expanded (answer should be visible)
-    cy.get(`[data-test="accordion-answer-${firstItem.id}"]`).should('be.visible');
+    cy.get(`[data-test="accordion-answer-${firstItem.id}"]`).should(
+      'be.visible',
+    );
 
     // Click on the toggle button to collapse the first item
     cy.get(`[data-test="accordion-toggle-${firstItem.id}"]`).click();
 
     // Check if the first item is collapsed (answer should not be visible)
-    cy.get(`[data-test="accordion-answer-${firstItem.id}"]`).should('not.be.visible');
+    cy.get(`[data-test="accordion-answer-${firstItem.id}"]`).should(
+      'not.be.visible',
+    );
   });
 
   // Test hover effects on question titles
   it('should apply hover effects on question titles', () => {
     const firstItem = items[0];
-    
+
     // Hover over the question title
     cy.get(`[data-test="accordion-question-${firstItem.id}"]`)
       .trigger('mouseover')
@@ -102,20 +113,22 @@ describe('Accordion Component', () => {
   // Test visual states when accordion items are open
   it('should show correct visual states when items are open', () => {
     const firstItem = items[0];
-    
+
     // Click to open the item
     cy.get(`[data-test="accordion-toggle-${firstItem.id}"]`).click();
-    
+
     // Check that the container has the correct background color class
     cy.get(`[data-test="accordion-item-${firstItem.id}"]`)
       .find('div')
       .first()
       .should('have.class', 'bg-[#e2e8f0]');
-    
+
     // Check that the question title has the active color class
-    cy.get(`[data-test="accordion-question-${firstItem.id}"]`)
-      .should('have.class', 'text-primary');
-    
+    cy.get(`[data-test="accordion-question-${firstItem.id}"]`).should(
+      'have.class',
+      'text-primary',
+    );
+
     // Check that the circle icon shows the correct state
     cy.get(`[data-test="accordion-toggle-${firstItem.id}"]`)
       .find('span')
@@ -127,10 +140,12 @@ describe('Accordion Component', () => {
     it('should scroll when router asPath changes', () => {
       // spy the scrollTo method
       const scrollToSpy = cy.spy(window, 'scrollTo');
-      
+
       // Initially, answer should not be visible
-      cy.get(`[data-test="accordion-answer-${items[0].id}"]`).should('not.be.visible');
-      
+      cy.get(`[data-test="accordion-answer-${items[0].id}"]`).should(
+        'not.be.visible',
+      );
+
       // Click on the question to open it
       cy.get(`[data-test="accordion-question-${items[0].id}"]`).click();
 
@@ -141,7 +156,9 @@ describe('Accordion Component', () => {
       });
 
       // Check if the accordion item is expanded
-      cy.get(`[data-test="accordion-answer-${items[0].id}"]`).should('be.visible');
+      cy.get(`[data-test="accordion-answer-${items[0].id}"]`).should(
+        'be.visible',
+      );
 
       // Check if scrollTo was called
       cy.wrap(scrollToSpy).should('have.been.called');
@@ -157,12 +174,14 @@ describe('Accordion Component', () => {
     it('should handle hash changes correctly', () => {
       // Set up the router with a hash before mounting
       mockRouter.asPath = `#${items[0].id}`;
-      
+
       // Remount the component with the hash in the URL
       cy.mount(<Accordion items={items} />);
 
       // Check if the accordion item is expanded due to the hash
-      cy.get(`[data-test="accordion-answer-${items[0].id}"]`).should('be.visible');
+      cy.get(`[data-test="accordion-answer-${items[0].id}"]`).should(
+        'be.visible',
+      );
     });
 
     it('should handle non-existent hash gracefully', () => {
@@ -174,7 +193,9 @@ describe('Accordion Component', () => {
 
       // No items should be expanded
       items.forEach((item) => {
-        cy.get(`[data-test="accordion-answer-${item.id}"]`).should('not.be.visible');
+        cy.get(`[data-test="accordion-answer-${item.id}"]`).should(
+          'not.be.visible',
+        );
       });
     });
   });
