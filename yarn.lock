@@ -3526,6 +3526,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@radix-ui/react-label@npm:^2.1.7":
+  version: 2.1.7
+  resolution: "@radix-ui/react-label@npm:2.1.7"
+  dependencies:
+    "@radix-ui/react-primitive": "npm:2.1.3"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 10c0/d8c81411d5327b6db5cbf4b900bfcc52030315539911701cf8d82b4970aed80cbd66df5b62d2242859572c666cf4b0e147a8b39dc3c04bd024a4b4405e1183fe
+  languageName: node
+  linkType: hard
+
 "@radix-ui/react-presence@npm:1.1.4":
   version: 1.1.4
   resolution: "@radix-ui/react-presence@npm:1.1.4"
@@ -3639,7 +3658,26 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-slot@npm:1.2.2, @radix-ui/react-slot@npm:^1.2.2":
+"@radix-ui/react-separator@npm:^1.1.7":
+  version: 1.1.7
+  resolution: "@radix-ui/react-separator@npm:1.1.7"
+  dependencies:
+    "@radix-ui/react-primitive": "npm:2.1.3"
+  peerDependencies:
+    "@types/react": "*"
+    "@types/react-dom": "*"
+    react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    "@types/react-dom":
+      optional: true
+  checksum: 10c0/32c0eb4fe018397efbe580542e6e33fdc09b76b96395b2bb4c55da7b6d49224b18f46143bdaf9eb6cb01e166c459fb77508a81d20a591a9034949acee5d171d9
+  languageName: node
+  linkType: hard
+
+"@radix-ui/react-slot@npm:1.2.2":
   version: 1.2.2
   resolution: "@radix-ui/react-slot@npm:1.2.2"
   dependencies:
@@ -3654,7 +3692,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@radix-ui/react-slot@npm:1.2.3":
+"@radix-ui/react-slot@npm:1.2.3, @radix-ui/react-slot@npm:^1.2.3":
   version: 1.2.3
   resolution: "@radix-ui/react-slot@npm:1.2.3"
   dependencies:
@@ -8813,8 +8851,10 @@ __metadata:
     "@next/eslint-plugin-next": "npm:^14.0.1"
     "@radix-ui/react-checkbox": "npm:^1.3.1"
     "@radix-ui/react-collapsible": "npm:^1.1.11"
+    "@radix-ui/react-label": "npm:^2.1.7"
     "@radix-ui/react-radio-group": "npm:^1.3.7"
-    "@radix-ui/react-slot": "npm:^1.2.2"
+    "@radix-ui/react-separator": "npm:^1.1.7"
+    "@radix-ui/react-slot": "npm:^1.2.3"
     "@svgr/webpack": "npm:^8.1.0"
     "@types/babel__core": "npm:^7"
     "@types/babel__preset-env": "npm:^7"
