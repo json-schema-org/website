@@ -38,6 +38,7 @@ html {
   font-family: 'Inter', sans-serif;
   scroll-padding-top: 100px;
   scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 
 .DocSearch-Button-Keys {
