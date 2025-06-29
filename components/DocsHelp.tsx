@@ -94,8 +94,6 @@ export function DocsHelp({
       return;
     }
 
-    const formData = new FormData(feedbackFormRef.current!);
-    formData.append('feedback-page', router.asPath);
     setIsSubmitting(true);
 
     try {
@@ -106,8 +104,8 @@ export function DocsHelp({
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
-            feedbackPage: formData.get('feedback-page'),
-            feedbackVote: formData.get('feedback-vote'),
+            feedbackPage: router.asPath,
+            feedbackVote: (feedbackFormRef.current?.querySelector('input[name="feedback-vote"]:checked') as HTMLInputElement)?.value,
             feedbackComment: commentValue,
           }),
         },
@@ -132,7 +130,6 @@ export function DocsHelp({
       return;
     }
 
-    const formData = new FormData(feedbackFormRef.current!);
     setIsSubmitting(true);
     try {
       const title = encodeURIComponent('Feedback on Documentation');
