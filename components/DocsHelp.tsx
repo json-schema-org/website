@@ -97,6 +97,10 @@ export function DocsHelp({
     setIsSubmitting(true);
 
     try {
+      const selectedInput = feedbackFormRef.current?.querySelector(
+        'input[name="feedback-vote"]:checked',
+      ) as HTMLInputElement | null;
+
       const response = await fetch(
         'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
         {
@@ -105,7 +109,7 @@ export function DocsHelp({
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
             feedbackPage: router.asPath,
-            feedbackVote: (feedbackFormRef.current?.querySelector('input[name="feedback-vote"]:checked') as HTMLInputElement)?.value,
+            feedbackVote: selectedInput?.value,
             feedbackComment: commentValue,
           }),
         },
