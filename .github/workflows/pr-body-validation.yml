@@ -45,7 +45,7 @@ jobs:
             }
             
             // Check for issue links
-            const issueRegex = /(closes|related to)\s+#\d+/i;
+            const issueRegex = /\b(?:(?:close[sd]?|fix(?:e[sd])?|resolve[sd]?))\s+(?:#\d+|https:\/\/github\.com\/[^\/\s]+\/[^\/\s]+\/issues\/\d+)/i;
             if (!issueRegex.test(prBody)) {
               missingItems.push('issue reference');
             }

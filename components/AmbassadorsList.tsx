@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@/components/ui/card';
 
 interface AmbassadorsLink {
   title: string;
@@ -18,20 +25,26 @@ const AmbassadorList = ({ ambassadorList }: AmbassadorsListProps) => {
       {ambassadorList.contents.map((link) => (
         <li
           key={link.title}
-          className='flex flex-col items-center text-center p-5 bg-white dark:bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105'
+          className='flex flex-col items-center text-center'
           data-testid='Ambassadors-list'
         >
-          <img
-            src={link.icon}
-            alt={link.title}
-            className='w-[150px] h-auto object-contain mb-5'
-          />
-          <h2 className='text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-3'>
-            {link.title}
-          </h2>
-          <p className='text-sm md:text-base text-gray-700 dark:text-slate-100 leading-relaxed'>
-            {link.details}
-          </p>
+          <Card className='dark:border-gray-700 w-full h-full p-5 bg-white dark:bg-gray-800 rounded-lg shadow-lg transform transition hover:scale-105'>
+            <CardContent className='p-0'>
+              <img
+                src={link.icon}
+                alt={link.title}
+                className='w-[150px] h-auto object-contain mb-5 mx-auto'
+              />
+              <CardHeader className='p-0 mb-3'>
+                <CardTitle className='text-lg md:text-xl font-semibold text-gray-900 dark:text-white'>
+                  {link.title}
+                </CardTitle>
+              </CardHeader>
+              <CardDescription className='text-sm md:text-base text-gray-700 dark:text-slate-100 leading-relaxed'>
+                {link.details}
+              </CardDescription>
+            </CardContent>
+          </Card>
         </li>
       ))}
     </ul>
