@@ -128,8 +128,10 @@ export default function StaticMarkdownPage({
               style={{ backgroundImage: `url(${frontmatter.cover})` }}
             />
             <StyledMarkdown markdown={content} />
-            <div className='flex flex-wrap justify-center gap-4 mt-12 p-4 border-t border-slate-200 dark:border-slate-600'>
-              <span className='text-slate-500 '>Share this article:</span>
+            <div className='grid grid-cols-1 md:flex flex-wrap justify-center gap-4 mt-12 p-4 border-t border-slate-200 dark:border-slate-600'>
+              <span className='text-slate-500 text-center'>
+                Share this article:
+              </span>
 
               <a
                 href={`https://x.com/intent/tweet?text=${encodeURIComponent(
@@ -137,7 +139,7 @@ export default function StaticMarkdownPage({
                 )}&url=${encodeURIComponent(blogUrl)}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-blue-500 font-medium hover:underline'
+                className='text-blue-500 text-center font-medium hover:underline'
               >
                 Share on X
               </a>
@@ -147,7 +149,7 @@ export default function StaticMarkdownPage({
                 )}&title=${encodeURIComponent(frontmatter.title)}`}
                 target='_blank'
                 rel='noopener noreferrer'
-                className='text-blue-500  font-medium hover:underline'
+                className='text-blue-500 text-center font-medium hover:underline'
               >
                 Share on LinkedIn
               </a>
