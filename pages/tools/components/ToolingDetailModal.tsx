@@ -388,6 +388,7 @@ const BowtieReportBadge = ({ uri }: { uri: string }) => {
           className='my-1'
           width={100}
           height={20}
+          style={{ width: 'auto', height: '20px', objectFit: 'contain' }}
         />
       )}
       {error && (
