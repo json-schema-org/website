@@ -57,7 +57,7 @@ type MultipathDecoration = {
   syntaxPart: SyntaxPart;
 };
 
-const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/g;
+const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/;
 
 // Prevent annoying error messages because slate is not SSR ready
 /* istanbul ignore next:
@@ -101,10 +101,105 @@ const getTextPathIndexesFromNode = (
   return textPathIndexesFromNodes;
 };
 
-const calculateNewDecorationsMap = (value: CustomElement[]) => {
+// Function to create basic syntax highlighting for partial schemas
+const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
+  const parts: SyntaxPart[] = [];
+  
+  // Define patterns for basic syntax highlighting
+  const patterns = [
+    // Strings (including property names)
+    { regex: /"[^"\\]*(?:\\.[^"\\]*)*"/g, type: 'stringValue' },
+    // Numbers
+    { regex: /-?\d+\.?\d*(?:[eE][+-]?\d+)?/g, type: 'numberValue' },
+    // Booleans
+    { regex: /\b(?:true|false)\b/g, type: 'booleanValue' },
+    // Null
+    { regex: /\bnull\b/g, type: 'nullValue' },
+    // Object brackets
+    { regex: /[{}]/g, type: 'objectBracket' },
+    // Array brackets
+    { regex: /[\[\]]/g, type: 'arrayBracket' },
+    // Commas
+    { regex: /,/g, type: 'comma' },
+    // Property names (quoted strings followed by colon)
+    { regex: /"[^"\\]*(?:\\.[^"\\]*)*"\s*:/g, type: 'objectProperty' },
+  ];
+
+  patterns.forEach(({ regex, type }) => {
+    let match;
+    while ((match = regex.exec(serializedText)) !== null) {
+      // Special handling for property names
+      if (type === 'objectProperty') {
+        const fullMatch = match[0];
+        const colonIndex = fullMatch.lastIndexOf(':');
+        const propertyPart = fullMatch.substring(0, colonIndex);
+        
+        // Add quotes
+        parts.push({
+          type: 'objectPropertyStartQuotes',
+          index: match.index,
+          length: 1,
+          match: '"',
+          jsonPath: '$',
+        });
+        
+        // Add property name
+        parts.push({
+          type: 'objectProperty',
+          index: match.index + 1,
+          length: propertyPart.length - 2,
+          match: propertyPart.slice(1, -1),
+          jsonPath: '$',
+        });
+        
+        // Add closing quotes
+        parts.push({
+          type: 'objectPropertyEndQuotes',
+          index: match.index + propertyPart.length - 1,
+          length: 1,
+          match: '"',
+          jsonPath: '$',
+        });
+      } else {
+        // Map some types to match existing styling
+        let mappedType = type;
+        if (type === 'objectBracket') {
+          mappedType = match[0] === '{' ? 'objectStartBracket' : 'objectEndBracket';
+        } else if (type === 'arrayBracket') {
+          mappedType = match[0] === '[' ? 'arrayStartBracket' : 'arrayEndBracket';
+        } else if (type === 'comma') {
+          mappedType = 'arrayComma';
+        }
+        
+        parts.push({
+          type: mappedType,
+          index: match.index,
+          length: match[0].length,
+          match: match[0],
+          jsonPath: '$',
+        });
+      }
+    }
+  });
+
+  // Sort parts by index to ensure proper ordering
+  return parts.sort((a, b) => a.index - b.index);
+};
+
+const calculateNewDecorationsMap = (value: CustomElement[], isPartialSchema: boolean = false) => {
   const serializedText = serializeNodesWithoutLineBreaks(value);
   const textPathIndexes = getTextPathIndexesFromNodes(value);
-  const partsOfJson: SyntaxPart[] = getPartsOfJson(serializedText);
+  
+  let partsOfJson: SyntaxPart[];
+  
+  if (isPartialSchema) {
+    // Use basic syntax highlighting for partial schemas
+    partsOfJson = getBasicSyntaxParts(serializedText);
+  } else {
+    // Use full JSON parsing for complete schemas
+    partsOfJson = getPartsOfJson(serializedText);
+  }
+  
   const multipathDecorations =
     getMultipathDecorationsByMatchesAndTextPathIndexes(
       partsOfJson,
@@ -180,7 +275,13 @@ const deserializeCode = (code: string): CustomElement[] => {
   return paragraphs;
 };
 
-export default function JsonEditor({ initialCode }: { initialCode: string }) {
+export default function JsonEditor({ 
+  initialCode, 
+  isJsonc = false 
+}: { 
+  initialCode: string;
+  isJsonc?: boolean;
+}) {
   const fullMarkdown = useContext(FullMarkdownContext);
   /* istanbul ignore next: In the test environment, the fullMarkdown is not provided. */
   const hasCodeblockAsDescendant: boolean | undefined = (() => {
@@ -195,9 +296,21 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
   })();
 
   const router = useRouter();
+  
+  // Clean code and detect partial schema for JSONC
   const cleanedUpCode = React.useMemo(() => {
-    return initialCode.replace(META_REGEX, '');
-  }, [initialCode]);
+    let code = initialCode.replace(META_REGEX, '');
+    
+    if (isJsonc) {
+      // Remove partial schema comments for JSONC
+      code = code
+        .replace(/\/\/ partial schema\n?/g, '')
+        .replace(/\/\* partial schema \*\/\n?/g, '')
+        .trim();
+    }
+    
+    return code;
+  }, [initialCode, isJsonc]);
 
   const [value, setValue] = React.useState<CustomElement[]>(
     deserializeCode(cleanedUpCode),
@@ -209,7 +322,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
 
   const [editor] = React.useState(() => withReact(createEditor()));
 
-  const meta: null | Meta = (() => {
+  const meta: null | Meta = React.useMemo(() => {
     const metaRegexFinding = META_REGEX.exec(initialCode);
     if (!metaRegexFinding) return null;
     try {
@@ -222,7 +335,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
     } catch (e) {
       return null;
     }
-  })();
+  }, [initialCode]);
 
   const parsedCode: null | any = React.useMemo(() => {
     try {
@@ -232,7 +345,17 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
     }
   }, [serializedCode]);
 
-  const isJsonSchema = parsedCode?.['$schema'] || meta?.isSchema;
+  // Detect partial schema for JSONC
+  const isPartialSchema = React.useMemo(() => {
+    if (!isJsonc) return false;
+    const codeString = String(initialCode || '');
+    return codeString.includes('// partial schema') || 
+           codeString.includes('/* partial schema */');
+  }, [initialCode, isJsonc]);
+
+  const isJsonSchema = React.useMemo(() => {
+    return parsedCode?.['$schema'] || meta?.isSchema;
+  }, [parsedCode, meta]);
 
   const jsonPathsWithJsonScope: JsonSchemaPathWithScope[] =
     React.useMemo(() => {
@@ -240,13 +363,17 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
       return getScopesOfParsedJsonSchema(parsedCode);
     }, [parsedCode, isJsonSchema]);
 
-  const validation: null | 'valid' | 'invalid' =
-    typeof meta?.valid === 'boolean'
+  const validation: null | 'valid' | 'invalid' = React.useMemo(() => {
+    return typeof meta?.valid === 'boolean'
       ? meta.valid
         ? 'valid'
         : 'invalid'
       : null;
-  const caption: null | string = meta?.caption || null;
+  }, [meta]);
+  
+  const caption: null | string = React.useMemo(() => {
+    return meta?.caption || null;
+  }, [meta]);
 
   // fullCodeText variable is for use in copy pasting the code for the user
   const fullCodeText = React.useMemo(() => {
@@ -264,8 +391,8 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
   const [copied, setCopied] = React.useState(false);
 
   const allPathDecorationsMap: Record<string, any> = React.useMemo(
-    () => calculateNewDecorationsMap(value),
-    [value],
+    () => calculateNewDecorationsMap(value, isPartialSchema),
+    [value, isPartialSchema],
   );
 
   return (
@@ -323,7 +450,13 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
             data-test='check-json-schema'
           >
-            {isJsonSchema ? (
+            {isJsonc ? (
+              isPartialSchema ? (
+                <>partial schema</>
+              ) : (
+                <>code</>
+              )
+            ) : isJsonSchema ? (
               <>
                 <Image
                   src='/logo-white.svg'
@@ -419,6 +552,12 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
                   ].includes(leaf.syntaxPart?.type)
                 )
                   return 'text-lime-200';
+                
+                // Handle partial schema specific highlighting that might not match exactly
+                if (!leaf.syntaxPart?.type) {
+                  // If no syntax part type, apply default white color for partial schemas
+                  return isPartialSchema ? 'text-white' : undefined;
+                }
               })();
 
               const link: null | string = (() =>
@@ -487,7 +626,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
         )}
         {validation === 'valid' && (
           <Alert
-            variant='success'
+            variant='default'
             className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-slate-500/30 text-sm border-0 rounded-none'
             data-test='compliant-to-schema'
           >
