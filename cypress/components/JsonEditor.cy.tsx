@@ -244,7 +244,11 @@ describe('JSON Editor Component', () => {
 
     // Check that the badge shows "part of schema" and has the schema icon
     cy.get('[data-test="check-json-schema"]').contains('part of schema');
-    cy.get('[data-test="check-json-schema"] img').should('have.attr', 'src', '/logo-white.svg');
+    cy.get('[data-test="check-json-schema"] img').should(
+      'have.attr',
+      'src',
+      '/logo-white.svg',
+    );
   });
 
   // Test partial schema with block comment
@@ -281,7 +285,11 @@ describe('JSON Editor Component', () => {
 
     // Check that the badge shows "schema" and has the schema icon
     cy.get('[data-test="check-json-schema"]').contains('schema');
-    cy.get('[data-test="check-json-schema"] img').should('have.attr', 'src', '/logo-white.svg');
+    cy.get('[data-test="check-json-schema"] img').should(
+      'have.attr',
+      'src',
+      '/logo-white.svg',
+    );
   });
 
   // Test schema badge for JSON with meta isSchema flag
@@ -327,7 +335,9 @@ describe('JSON Editor Component', () => {
 
     // Check that the card has the indentation class
     // The ml-10 class is applied to the Card component, not the Editable
-    cy.get('[data-test="json-editor"]').closest('.relative').should('have.class', 'ml-10');
+    cy.get('[data-test="json-editor"]')
+      .closest('.relative')
+      .should('have.class', 'ml-10');
   });
 
   // Test invalid JSON parsing
@@ -348,7 +358,7 @@ describe('JSON Editor Component', () => {
 
   // Test empty code
   it('should handle empty code', () => {
-    cy.mount(<JsonEditor initialCode="" />);
+    cy.mount(<JsonEditor initialCode='' />);
 
     // Should still render without crashing
     cy.get('[data-test="json-editor"]').should('exist');
@@ -356,7 +366,7 @@ describe('JSON Editor Component', () => {
 
   // Test code with only whitespace
   it('should handle whitespace-only code', () => {
-    cy.mount(<JsonEditor initialCode="   \n  \t  " />);
+    cy.mount(<JsonEditor initialCode='   \n  \t  ' />);
 
     // Should still render without crashing
     cy.get('[data-test="json-editor"]').should('exist');
@@ -369,7 +379,7 @@ describe('JSON Editor Component', () => {
       cy.stub(win.navigator.clipboard, 'writeText').as('clipboardWriteText');
       // Mock getSelection to return some text
       cy.stub(win, 'getSelection').returns({
-        toString: () => 'selected text'
+        toString: () => 'selected text',
       });
     });
 
@@ -377,7 +387,7 @@ describe('JSON Editor Component', () => {
 
     // Test that the component renders without errors
     cy.get('[data-test="json-editor"]').should('exist');
-    
+
     // Note: Cut event is not typically triggered in read-only editors
     // This test ensures the component handles the event handler properly
   });
@@ -389,7 +399,7 @@ describe('JSON Editor Component', () => {
       cy.stub(win.navigator.clipboard, 'writeText').as('clipboardWriteText');
       // Mock getSelection to return some text
       cy.stub(win, 'getSelection').returns({
-        toString: () => 'selected text'
+        toString: () => 'selected text',
       });
     });
 
@@ -397,7 +407,10 @@ describe('JSON Editor Component', () => {
 
     // Trigger copy event
     cy.get('[data-test="json-editor"]').trigger('copy');
-    cy.get('@clipboardWriteText').should('have.been.calledWith', 'selected text');
+    cy.get('@clipboardWriteText').should(
+      'have.been.calledWith',
+      'selected text',
+    );
   });
 
   // Test click on non-link text
@@ -406,7 +419,7 @@ describe('JSON Editor Component', () => {
 
     // Click on regular text (should not navigate)
     cy.get('[data-test="json-editor"] span').first().click();
-    
+
     // Should not have called router.push
     cy.get('@routerPush').should('not.have.been.called');
   });
@@ -432,7 +445,8 @@ describe('JSON Editor Component', () => {
 
   // Test meta props with invalid JSON
   it('should handle invalid meta props JSON', () => {
-    const invalidMetaProps = '// props { "valid": true, "caption": "test" }\n{ "test": "value" }';
+    const invalidMetaProps =
+      '// props { "valid": true, "caption": "test" }\n{ "test": "value" }';
 
     cy.mount(<JsonEditor initialCode={invalidMetaProps} />);
 
