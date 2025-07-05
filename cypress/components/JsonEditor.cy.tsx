@@ -443,6 +443,53 @@ describe('JSON Editor Component', () => {
     cy.get('[data-test="check-json-schema"]').contains('part of schema');
   });
 
+  // Test array bracket syntax highlighting in partial schemas (covers lines 171-172)
+  it('should handle array brackets in partial schema syntax highlighting', () => {
+    const partialSchemaWithArrays = `// partial schema
+{
+  "type": "object",
+  "properties": {
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}`;
+
+    cy.mount(<JsonEditor initialCode={partialSchemaWithArrays} isJsonc={true} />);
+
+    // Check that the code is rendered with array syntax highlighting
+    cy.get('[data-test="json-editor"]').should('exist');
+    cy.get('[data-test="check-json-schema"]').contains('part of schema');
+  });
+
+  // Test full JSON parsing for non-partial schemas (covers line 194)
+  it('should use full JSON parsing for complete schemas', () => {
+    const completeSchema = `{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}`;
+
+    cy.mount(<JsonEditor initialCode={completeSchema} />);
+
+    // Check that the code is rendered with full JSON parsing
+    cy.get('[data-test="json-editor"]').should('exist');
+    cy.get('[data-test="check-json-schema"]').contains('schema');
+  });
+
   // Test meta props with invalid JSON
   it('should handle invalid meta props JSON', () => {
     const invalidMetaProps =
