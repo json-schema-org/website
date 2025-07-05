@@ -385,10 +385,9 @@ const BowtieReportBadge = ({ uri }: { uri: string }) => {
         <Image
           src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
           alt='Bowtie Badge'
-          className='my-1'
+          className='my-1 h-[20px] w-auto'
           width={100}
           height={20}
-          style={{ width: 'auto', height: '20px', objectFit: 'contain' }}
         />
       )}
       {error && (
