@@ -11,7 +11,7 @@ describe('Alert Component', () => {
   });
 
   it('renders Alert with default variant correctly', () => {
-    cy.mount(<Alert variant="default">Default alert message</Alert>);
+    cy.mount(<Alert variant='default'>Default alert message</Alert>);
 
     cy.get('[data-slot="alert"]').should('exist');
     cy.get('[data-slot="alert"]').should('have.class', 'bg-card');
@@ -19,7 +19,7 @@ describe('Alert Component', () => {
   });
 
   it('renders Alert with destructive variant correctly', () => {
-    cy.mount(<Alert variant="destructive">Destructive alert message</Alert>);
+    cy.mount(<Alert variant='destructive'>Destructive alert message</Alert>);
 
     cy.get('[data-slot="alert"]').should('exist');
     cy.get('[data-slot="alert"]').should('have.class', 'text-destructive');
@@ -28,7 +28,7 @@ describe('Alert Component', () => {
 
   it('renders Alert with custom className correctly', () => {
     cy.mount(
-      <Alert className="custom-alert-class">Alert with custom class</Alert>,
+      <Alert className='custom-alert-class'>Alert with custom class</Alert>,
     );
 
     cy.get('[data-slot="alert"]').should('have.class', 'custom-alert-class');
@@ -85,22 +85,27 @@ describe('Alert Component', () => {
   it('renders Alert with icon correctly', () => {
     cy.mount(
       <Alert>
-        <svg data-testid="alert-icon" />
+        <svg data-testid='alert-icon' />
         <AlertTitle>Alert with Icon</AlertTitle>
         <AlertDescription>This alert has an icon</AlertDescription>
       </Alert>,
     );
 
     cy.get('[data-testid="alert-icon"]').should('exist');
-    cy.get('[data-slot="alert"]').should('have.class', 'has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr]');
+    cy.get('[data-slot="alert"]').should(
+      'have.class',
+      'has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr]',
+    );
   });
 
   it('renders destructive Alert with icon correctly', () => {
     cy.mount(
-      <Alert variant="destructive">
-        <svg data-testid="destructive-icon" />
+      <Alert variant='destructive'>
+        <svg data-testid='destructive-icon' />
         <AlertTitle>Destructive Alert</AlertTitle>
-        <AlertDescription>This is a destructive alert with icon</AlertDescription>
+        <AlertDescription>
+          This is a destructive alert with icon
+        </AlertDescription>
       </Alert>,
     );
 
@@ -108,39 +113,49 @@ describe('Alert Component', () => {
     cy.get('[data-slot="alert"]').should('have.class', 'text-destructive');
     // Check that the alert description has the data-slot attribute and is styled appropriately
     cy.get('[data-slot="alert-description"]').should('exist');
-    cy.get('[data-slot="alert-description"]').should('have.attr', 'data-slot', 'alert-description');
+    cy.get('[data-slot="alert-description"]').should(
+      'have.attr',
+      'data-slot',
+      'alert-description',
+    );
   });
 
   it('renders AlertTitle with custom className correctly', () => {
     cy.mount(
       <Alert>
-        <AlertTitle className="custom-title-class">Custom Title</AlertTitle>
+        <AlertTitle className='custom-title-class'>Custom Title</AlertTitle>
       </Alert>,
     );
 
-    cy.get('[data-slot="alert-title"]').should('have.class', 'custom-title-class');
+    cy.get('[data-slot="alert-title"]').should(
+      'have.class',
+      'custom-title-class',
+    );
   });
 
   it('renders AlertDescription with custom className correctly', () => {
     cy.mount(
       <Alert>
-        <AlertDescription className="custom-description-class">
+        <AlertDescription className='custom-description-class'>
           Custom Description
         </AlertDescription>
       </Alert>,
     );
 
-    cy.get('[data-slot="alert-description"]').should('have.class', 'custom-description-class');
+    cy.get('[data-slot="alert-description"]').should(
+      'have.class',
+      'custom-description-class',
+    );
   });
 
   it('renders multiple Alert components correctly', () => {
     cy.mount(
       <div>
-        <Alert variant="default" data-testid="alert-1">
+        <Alert variant='default' data-testid='alert-1'>
           <AlertTitle>First Alert</AlertTitle>
           <AlertDescription>First alert description</AlertDescription>
         </Alert>
-        <Alert variant="destructive" data-testid="alert-2">
+        <Alert variant='destructive' data-testid='alert-2'>
           <AlertTitle>Second Alert</AlertTitle>
           <AlertDescription>Second alert description</AlertDescription>
         </Alert>
@@ -148,9 +163,13 @@ describe('Alert Component', () => {
     );
 
     cy.get('[data-testid="alert-1"]').should('exist');
-    cy.get('[data-testid="alert-1"] [data-slot="alert-title"]').contains('First Alert');
+    cy.get('[data-testid="alert-1"] [data-slot="alert-title"]').contains(
+      'First Alert',
+    );
     cy.get('[data-testid="alert-2"]').should('exist');
-    cy.get('[data-testid="alert-2"] [data-slot="alert-title"]').contains('Second Alert');
+    cy.get('[data-testid="alert-2"] [data-slot="alert-title"]').contains(
+      'Second Alert',
+    );
     cy.get('[data-testid="alert-2"]').should('have.class', 'text-destructive');
   });
 
@@ -159,7 +178,8 @@ describe('Alert Component', () => {
       <Alert>
         <AlertTitle>HTML Content Alert</AlertTitle>
         <AlertDescription>
-          This alert contains <strong>bold text</strong> and <em>italic text</em>.
+          This alert contains <strong>bold text</strong> and{' '}
+          <em>italic text</em>.
         </AlertDescription>
       </Alert>,
     );
@@ -172,13 +192,23 @@ describe('Alert Component', () => {
 
   it('renders Alert with accessibility attributes correctly', () => {
     cy.mount(
-      <Alert aria-label="Custom alert" data-testid="accessible-alert">
+      <Alert aria-label='Custom alert' data-testid='accessible-alert'>
         <AlertTitle>Accessible Alert</AlertTitle>
-        <AlertDescription>This alert has custom accessibility attributes</AlertDescription>
+        <AlertDescription>
+          This alert has custom accessibility attributes
+        </AlertDescription>
       </Alert>,
     );
 
-    cy.get('[data-testid="accessible-alert"]').should('have.attr', 'aria-label', 'Custom alert');
-    cy.get('[data-testid="accessible-alert"]').should('have.attr', 'role', 'alert');
+    cy.get('[data-testid="accessible-alert"]').should(
+      'have.attr',
+      'aria-label',
+      'Custom alert',
+    );
+    cy.get('[data-testid="accessible-alert"]').should(
+      'have.attr',
+      'role',
+      'alert',
+    );
   });
-}); 
+});
