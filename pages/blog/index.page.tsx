@@ -317,7 +317,7 @@ export default function StaticMarkdownPage({
                         src={frontmatter.cover}
                         alt={frontmatter.title}
                         fill
-                        className='object-cover'
+                        className='object-fill'
                         loading={idx < 10 ? 'eager' : 'lazy'}
                         priority={idx < 10}
                         quality={75}
