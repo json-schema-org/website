@@ -458,7 +458,9 @@ describe('JSON Editor Component', () => {
   }
 }`;
 
-    cy.mount(<JsonEditor initialCode={partialSchemaWithArrays} isJsonc={true} />);
+    cy.mount(
+      <JsonEditor initialCode={partialSchemaWithArrays} isJsonc={true} />,
+    );
 
     // Check that the code is rendered with array syntax highlighting
     cy.get('[data-test="json-editor"]').should('exist');
