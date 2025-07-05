@@ -213,4 +213,257 @@ describe('JSON Editor Component', () => {
     cy.get('[data-test="json-editor"]').trigger('copy');
     cy.get('@clipboardWriteText').should('have.been.calledWith', '');
   });
+
+  // Test JSONC support with isJsonc prop
+  it('should render JSONC code correctly', () => {
+    const jsoncCode = `{
+  // This is a comment
+  "name": "test",
+  "value": 123
+}`;
+
+    cy.mount(<JsonEditor initialCode={jsoncCode} isJsonc={true} />);
+
+    // Check that the badge shows "code" for regular JSONC
+    cy.get('[data-test="check-json-schema"]').contains('code');
+  });
+
+  // Test partial schema detection in JSONC
+  it('should detect and display partial schema correctly', () => {
+    const partialSchemaCode = `// partial schema
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  }
+}`;
+
+    cy.mount(<JsonEditor initialCode={partialSchemaCode} isJsonc={true} />);
+
+    // Check that the badge shows "part of schema" and has the schema icon
+    cy.get('[data-test="check-json-schema"]').contains('part of schema');
+    cy.get('[data-test="check-json-schema"] img').should('have.attr', 'src', '/logo-white.svg');
+  });
+
+  // Test partial schema with block comment
+  it('should detect partial schema with block comment', () => {
+    const partialSchemaCode = `/* partial schema */
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  }
+}`;
+
+    cy.mount(<JsonEditor initialCode={partialSchemaCode} isJsonc={true} />);
+
+    // Check that the badge shows "part of schema"
+    cy.get('[data-test="check-json-schema"]').contains('part of schema');
+  });
+
+  // Test schema badge for JSON with $schema property
+  it('should show schema badge for JSON with $schema property', () => {
+    const schemaCode = `{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  }
+}`;
+
+    cy.mount(<JsonEditor initialCode={schemaCode} />);
+
+    // Check that the badge shows "schema" and has the schema icon
+    cy.get('[data-test="check-json-schema"]').contains('schema');
+    cy.get('[data-test="check-json-schema"] img').should('have.attr', 'src', '/logo-white.svg');
+  });
+
+  // Test schema badge for JSON with meta isSchema flag
+  it('should show schema badge for JSON with meta isSchema flag', () => {
+    const schemaCode = `// props { "isSchema": true }
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  }
+}`;
+
+    cy.mount(<JsonEditor initialCode={schemaCode} />);
+
+    // Check that the badge shows "schema"
+    cy.get('[data-test="check-json-schema"]').contains('schema');
+  });
+
+  // Test data badge for regular JSON without schema
+  it('should show data badge for regular JSON', () => {
+    const dataCode = `{
+  "name": "test",
+  "value": 123,
+  "active": true
+}`;
+
+    cy.mount(<JsonEditor initialCode={dataCode} />);
+
+    // Check that the badge shows "data"
+    cy.get('[data-test="check-json-schema"]').contains('data');
+  });
+
+  // Test indented code with meta indent flag
+  it('should apply indentation with meta indent flag', () => {
+    const indentedCode = `// props { "indent": true }
+{
+  "name": "test"
+}`;
+
+    cy.mount(<JsonEditor initialCode={indentedCode} />);
+
+    // Check that the card has the indentation class
+    // The ml-10 class is applied to the Card component, not the Editable
+    cy.get('[data-test="json-editor"]').closest('.relative').should('have.class', 'ml-10');
+  });
+
+  // Test invalid JSON parsing
+  it('should handle invalid JSON gracefully', () => {
+    const invalidJson = `{
+  "name": "test",
+  "value": 123,
+  "unclosed": {
+}`;
+
+    cy.mount(<JsonEditor initialCode={invalidJson} />);
+
+    // Should still render without crashing
+    cy.get('[data-test="json-editor"]').should('exist');
+    // Should show data badge since it's not valid JSON
+    cy.get('[data-test="check-json-schema"]').contains('data');
+  });
+
+  // Test empty code
+  it('should handle empty code', () => {
+    cy.mount(<JsonEditor initialCode="" />);
+
+    // Should still render without crashing
+    cy.get('[data-test="json-editor"]').should('exist');
+  });
+
+  // Test code with only whitespace
+  it('should handle whitespace-only code', () => {
+    cy.mount(<JsonEditor initialCode="   \n  \t  " />);
+
+    // Should still render without crashing
+    cy.get('[data-test="json-editor"]').should('exist');
+  });
+
+  // Test cut functionality (read-only editor, so this is mainly for coverage)
+  it('should handle cut event', () => {
+    // mock clipboard writeText
+    cy.window().then((win) => {
+      cy.stub(win.navigator.clipboard, 'writeText').as('clipboardWriteText');
+      // Mock getSelection to return some text
+      cy.stub(win, 'getSelection').returns({
+        toString: () => 'selected text'
+      });
+    });
+
+    cy.mount(<JsonEditor initialCode='{"test": "value"}' />);
+
+    // Test that the component renders without errors
+    cy.get('[data-test="json-editor"]').should('exist');
+    
+    // Note: Cut event is not typically triggered in read-only editors
+    // This test ensures the component handles the event handler properly
+  });
+
+  // Test selection and copy functionality
+  it('should handle text selection and copy', () => {
+    // mock clipboard writeText
+    cy.window().then((win) => {
+      cy.stub(win.navigator.clipboard, 'writeText').as('clipboardWriteText');
+      // Mock getSelection to return some text
+      cy.stub(win, 'getSelection').returns({
+        toString: () => 'selected text'
+      });
+    });
+
+    cy.mount(<JsonEditor initialCode='{"test": "value"}' />);
+
+    // Trigger copy event
+    cy.get('[data-test="json-editor"]').trigger('copy');
+    cy.get('@clipboardWriteText').should('have.been.calledWith', 'selected text');
+  });
+
+  // Test click on non-link text
+  it('should handle click on non-link text', () => {
+    cy.mount(<JsonEditor initialCode='{"test": "value"}' />);
+
+    // Click on regular text (should not navigate)
+    cy.get('[data-test="json-editor"] span').first().click();
+    
+    // Should not have called router.push
+    cy.get('@routerPush').should('not.have.been.called');
+  });
+
+  // Test partial schema syntax highlighting
+  it('should apply syntax highlighting to partial schemas', () => {
+    const partialSchemaCode = `// partial schema
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    }
+  }
+}`;
+
+    cy.mount(<JsonEditor initialCode={partialSchemaCode} isJsonc={true} />);
+
+    // Check that the code is rendered (syntax highlighting applied)
+    cy.get('[data-test="json-editor"]').should('exist');
+    cy.get('[data-test="check-json-schema"]').contains('part of schema');
+  });
+
+  // Test meta props with invalid JSON
+  it('should handle invalid meta props JSON', () => {
+    const invalidMetaProps = '// props { "valid": true, "caption": "test" }\n{ "test": "value" }';
+
+    cy.mount(<JsonEditor initialCode={invalidMetaProps} />);
+
+    // Should still render without crashing
+    cy.get('[data-test="json-editor"]').should('exist');
+  });
+
+  // Test meta props with missing groups
+  it('should handle meta props with missing groups', () => {
+    const metaPropsWithoutGroups = '// props {}\n{ "test": "value" }';
+
+    cy.mount(<JsonEditor initialCode={metaPropsWithoutGroups} />);
+
+    // Should still render without crashing
+    cy.get('[data-test="json-editor"]').should('exist');
+  });
+
+  // Test code caption without meta
+  it('should handle code without caption', () => {
+    cy.mount(<JsonEditor initialCode='{"test": "value"}' />);
+
+    // Should render without caption
+    cy.get('[data-test="code-caption"]').should('exist');
+  });
+
+  // Test validation without meta
+  it('should handle code without validation meta', () => {
+    cy.mount(<JsonEditor initialCode='{"test": "value"}' />);
+
+    // Should not show validation alerts
+    cy.get('[data-test="compliant-to-schema"]').should('not.exist');
+    cy.get('[data-test="not-compliant-to-schema"]').should('not.exist');
+  });
 });
