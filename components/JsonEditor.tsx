@@ -452,7 +452,16 @@ export default function JsonEditor({
           >
             {isJsonc ? (
               isPartialSchema ? (
-                <>partial schema</>
+                <>
+                  <Image
+                    src='/logo-white.svg'
+                    alt=' logo-white'
+                    width={16}
+                    height={16}
+                    className=' mr-1.5'
+                  />{' '}
+                  part of schema
+                </>
               ) : (
                 <>code</>
               )
