@@ -191,6 +191,7 @@ const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
 
 const calculateNewDecorationsMap = (
   value: CustomElement[],
+  /* istanbul ignore next: Default parameter is never triggered in current implementation */
   isPartialSchema: boolean = false,
 ) => {
   const serializedText = serializeNodesWithoutLineBreaks(value);
