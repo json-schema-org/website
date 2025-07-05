@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { useContext } from 'react';
 import { BaseEditor, createEditor, Descendant, Text } from 'slate';
 import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
@@ -104,7 +105,7 @@ const getTextPathIndexesFromNode = (
 // Function to create basic syntax highlighting for partial schemas
 const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
   const parts: SyntaxPart[] = [];
-  
+
   // Define patterns for basic syntax highlighting
   const patterns = [
     // Strings (including property names)
@@ -118,7 +119,7 @@ const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
     // Object brackets
     { regex: /[{}]/g, type: 'objectBracket' },
     // Array brackets
-    { regex: /[\[\]]/g, type: 'arrayBracket' },
+    { regex: /[[\]]/g, type: 'arrayBracket' },
     // Commas
     { regex: /,/g, type: 'comma' },
     // Property names (quoted strings followed by colon)
@@ -133,7 +134,7 @@ const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
         const fullMatch = match[0];
         const colonIndex = fullMatch.lastIndexOf(':');
         const propertyPart = fullMatch.substring(0, colonIndex);
-        
+
         // Add quotes
         parts.push({
           type: 'objectPropertyStartQuotes',
@@ -142,7 +143,7 @@ const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
           match: '"',
           jsonPath: '$',
         });
-        
+
         // Add property name
         parts.push({
           type: 'objectProperty',
@@ -151,7 +152,7 @@ const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
           match: propertyPart.slice(1, -1),
           jsonPath: '$',
         });
-        
+
         // Add closing quotes
         parts.push({
           type: 'objectPropertyEndQuotes',
@@ -164,13 +165,15 @@ const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
         // Map some types to match existing styling
         let mappedType = type;
         if (type === 'objectBracket') {
-          mappedType = match[0] === '{' ? 'objectStartBracket' : 'objectEndBracket';
+          mappedType =
+            match[0] === '{' ? 'objectStartBracket' : 'objectEndBracket';
         } else if (type === 'arrayBracket') {
-          mappedType = match[0] === '[' ? 'arrayStartBracket' : 'arrayEndBracket';
+          mappedType =
+            match[0] === '[' ? 'arrayStartBracket' : 'arrayEndBracket';
         } else if (type === 'comma') {
           mappedType = 'arrayComma';
         }
-        
+
         parts.push({
           type: mappedType,
           index: match.index,
@@ -186,12 +189,15 @@ const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
   return parts.sort((a, b) => a.index - b.index);
 };
 
-const calculateNewDecorationsMap = (value: CustomElement[], isPartialSchema: boolean = false) => {
+const calculateNewDecorationsMap = (
+  value: CustomElement[],
+  isPartialSchema: boolean = false,
+) => {
   const serializedText = serializeNodesWithoutLineBreaks(value);
   const textPathIndexes = getTextPathIndexesFromNodes(value);
-  
+
   let partsOfJson: SyntaxPart[];
-  
+
   if (isPartialSchema) {
     // Use basic syntax highlighting for partial schemas
     partsOfJson = getBasicSyntaxParts(serializedText);
@@ -199,7 +205,7 @@ const calculateNewDecorationsMap = (value: CustomElement[], isPartialSchema: boo
     // Use full JSON parsing for complete schemas
     partsOfJson = getPartsOfJson(serializedText);
   }
-  
+
   const multipathDecorations =
     getMultipathDecorationsByMatchesAndTextPathIndexes(
       partsOfJson,
@@ -275,10 +281,10 @@ const deserializeCode = (code: string): CustomElement[] => {
   return paragraphs;
 };
 
-export default function JsonEditor({ 
-  initialCode, 
-  isJsonc = false 
-}: { 
+export default function JsonEditor({
+  initialCode,
+  isJsonc = false,
+}: {
   initialCode: string;
   isJsonc?: boolean;
 }) {
@@ -296,11 +302,11 @@ export default function JsonEditor({
   })();
 
   const router = useRouter();
-  
+
   // Clean code and detect partial schema for JSONC
   const cleanedUpCode = React.useMemo(() => {
     let code = initialCode.replace(META_REGEX, '');
-    
+
     if (isJsonc) {
       // Remove partial schema comments for JSONC
       code = code
@@ -308,7 +314,7 @@ export default function JsonEditor({
         .replace(/\/\* partial schema \*\/\n?/g, '')
         .trim();
     }
-    
+
     return code;
   }, [initialCode, isJsonc]);
 
@@ -349,8 +355,10 @@ export default function JsonEditor({
   const isPartialSchema = React.useMemo(() => {
     if (!isJsonc) return false;
     const codeString = String(initialCode || '');
-    return codeString.includes('// partial schema') || 
-           codeString.includes('/* partial schema */');
+    return (
+      codeString.includes('// partial schema') ||
+      codeString.includes('/* partial schema */')
+    );
   }, [initialCode, isJsonc]);
 
   const isJsonSchema = React.useMemo(() => {
@@ -370,7 +378,7 @@ export default function JsonEditor({
         : 'invalid'
       : null;
   }, [meta]);
-  
+
   const caption: null | string = React.useMemo(() => {
     return meta?.caption || null;
   }, [meta]);
@@ -525,7 +533,8 @@ export default function JsonEditor({
                         JsonSchemaScope.TypeDefinition,
                     )
                     .map(
-                      (jsonPathsWithJsonScope) => jsonPathsWithJsonScope.jsonPath,
+                      (jsonPathsWithJsonScope) =>
+                        jsonPathsWithJsonScope.jsonPath,
                     )
                     .includes(leaf.syntaxPart?.parentJsonPath);
                   if (
@@ -561,7 +570,7 @@ export default function JsonEditor({
                   ].includes(leaf.syntaxPart?.type)
                 )
                   return 'text-lime-200';
-                
+
                 // Handle partial schema specific highlighting that might not match exactly
                 if (!leaf.syntaxPart?.type) {
                   // If no syntax part type, apply default white color for partial schemas

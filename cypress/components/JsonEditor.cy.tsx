@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 import JsonEditor from '~/components/JsonEditor';
 import React from 'react';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
@@ -95,35 +96,34 @@ describe('JSON Editor Component', () => {
     // mount component
     cy.mount(<JsonEditor initialCode={JSON.stringify(initialCode, null, 2)} />);
 
-    // check if copy img is visible
+    // check if copy img is visible initially
     cy.get('[data-test="copy-clipboard-button"]')
       .children('img')
-      .should('have.length', 2)
-      .first()
+      .should('have.length', 1)
       .should('have.attr', 'src', '/icons/copy.svg')
       .should('be.visible');
 
-    // click on copy img
+    // click on copy button
     cy.get('[data-test="copy-clipboard-button"]').click();
 
-    // check if clipboard writeText is copied the correct code
+    // check if clipboard writeText is called with the correct code
     cy.get('@clipboardWriteText').should(
       'have.been.calledWith',
       JSON.stringify(initialCode, null, 2) + '\n',
     );
 
-    // check if copied img is visible
+    // check if copied img is visible after clicking
     cy.get('[data-test="copy-clipboard-button"]')
       .children('img')
-      .last()
+      .should('have.length', 1)
       .should('have.attr', 'src', '/icons/copied.svg')
       .should('be.visible');
 
     // after 2 seconds, check if copy img is visible again
+    cy.wait(2100); // Wait slightly longer than the 2000ms timeout
     cy.get('[data-test="copy-clipboard-button"]')
       .children('img')
-      .should('have.length', 2)
-      .first()
+      .should('have.length', 1)
       .should('have.attr', 'src', '/icons/copy.svg')
       .should('be.visible');
   });

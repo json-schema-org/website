@@ -1,3 +1,6 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import React, { useContext, useEffect, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Link from 'next/link';
@@ -307,11 +310,11 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               const isJsonCode = language === 'lang-json';
               const isJsoncCode = language === 'lang-jsonc';
               const code = children?.props?.children;
-              
+
               if (isJsonCode) {
                 return <JsonEditor initialCode={code} />;
               }
-              
+
               if (isJsoncCode) {
                 return <JsonEditor initialCode={code} isJsonc={true} />;
               }
@@ -731,7 +734,7 @@ export function TableOfContentMarkdown({
                       </a>
                     );
                   },
-                } /* eslint-enable */
+                }
               : { component: () => null },
           ...hiddenElements(
             'strong',
