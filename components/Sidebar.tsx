@@ -16,18 +16,21 @@ const DocLink = ({
   label,
   onClick,
   setOpen,
+  matchPaths,
 }: {
   uri: string;
   label: string | React.ReactNode;
   onClick?: () => void;
   setOpen: (open: boolean) => void;
+  matchPaths?: string[];
 }) => {
   const router = useRouter();
   const url = new URL(`${router.asPath}`, HOST);
   url.search = '';
   url.hash = '';
   const stringUrl = url.toString().substr(HOST.length, Infinity);
-  const isActive = uri === extractPathWithoutFragment(stringUrl);
+  const path = extractPathWithoutFragment(stringUrl);
+  const isActive = matchPaths ? matchPaths.includes(path) : uri === path;
   return (
     <Link
       href={uri}
@@ -163,6 +166,13 @@ const getReferencePath = [
   '/understanding-json-schema/reference/generic',
   '/understanding-json-schema/reference',
 ];
+const getReleaseNotesDraftPath = [
+  '/specification/release-notes',
+  '/draft/2020-12/release-notes',
+  '/draft/2019-09/release-notes',
+  '/draft-07/json-schema-release-notes',
+  '/draft-06/json-schema-release-notes',
+];
 const getSpecificationPath = [
   '/draft/2020-12',
   '/draft/2019-09',
@@ -175,6 +185,10 @@ const getSpecificationPath = [
   '/specification/json-hyper-schema',
   '/specification',
   '/specification-links',
+  '/draft/2020-12/release-notes',
+  '/draft/2019-09/release-notes',
+  '/draft-07/json-schema-release-notes',
+  '/draft-06/json-schema-release-notes',
 ];
 
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
@@ -184,6 +198,8 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const handleRotate = () => setRotateChevron(!rotateChevron);
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)';
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+  const shouldHideSidebar = pathWtihoutFragment === '/md-style-guide';
+
   useEffect(() => {
     if (window) {
       window.addEventListener('resize', () => {
@@ -254,16 +270,20 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
         <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
-          <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
-            <div className='h-full overflow-y-auto scrollbar-hidden'>
-              <DocsNav open={open} setOpen={setOpen} />
-              <CarbonAds
-                className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
-                variant='sidebar'
-              />
+          {!shouldHideSidebar && (
+            <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
+              <div className='h-full overflow-y-auto scrollbar-hidden'>
+                <DocsNav open={open} setOpen={setOpen} />
+                <CarbonAds
+                  className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
+                  variant='sidebar'
+                />
+              </div>
             </div>
-          </div>
-          <div className='col-span-4 md:col-span-3 lg:mt-20 lg:w-5/6 mx-4 md:mx-0'>
+          )}
+          <div
+            className={`lg:mt-20 mx-4 md:mx-0 ${shouldHideSidebar ? 'col-span-4 w-full' : 'col-span-4 md:col-span-3 lg:w-5/6'}`}
+          >
             {children}
           </div>
         </div>
@@ -902,6 +922,7 @@ export const DocsNav = ({
             uri='/specification/release-notes'
             label='Release notes'
             setOpen={setOpen}
+            matchPaths={getReleaseNotesDraftPath}
           />
           <DocLink
             uri='/specification/json-hyper-schema'
