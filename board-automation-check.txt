@@ -1,0 +1,2 @@
+This is sample file added to check the automation of PR review board.
+I'll delete this after the testing.
