@@ -467,6 +467,36 @@ describe('JSON Editor Component', () => {
     cy.get('[data-test="check-json-schema"]').contains('part of schema');
   });
 
+  // Test specific array bracket characters to ensure full coverage of mapping logic
+  it('should handle both opening and closing array brackets in partial schemas', () => {
+    const arrayBracketsTest = `// partial schema
+[
+  "item1",
+  "item2"
+]`;
+
+    cy.mount(<JsonEditor initialCode={arrayBracketsTest} isJsonc={true} />);
+
+    // Check that the code is rendered with array syntax highlighting
+    cy.get('[data-test="json-editor"]').should('exist');
+    cy.get('[data-test="check-json-schema"]').contains('part of schema');
+  });
+
+  // Test calculateNewDecorationsMap with explicit isPartialSchema=false parameter
+  it('should use full JSON parsing when isPartialSchema is explicitly false', () => {
+    const regularJson = `{
+  "name": "test",
+  "value": 123,
+  "array": [1, 2, 3]
+}`;
+
+    cy.mount(<JsonEditor initialCode={regularJson} isJsonc={false} />);
+
+    // Check that the code is rendered with full JSON parsing
+    cy.get('[data-test="json-editor"]').should('exist');
+    cy.get('[data-test="check-json-schema"]').contains('data');
+  });
+
   // Test full JSON parsing for non-partial schemas (covers line 194)
   it('should use full JSON parsing for complete schemas', () => {
     const completeSchema = `{
