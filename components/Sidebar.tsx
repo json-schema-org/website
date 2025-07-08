@@ -675,7 +675,8 @@ export const DocsNav = ({
             'ml-6 transition-all duration-500 ease-in-out',
             {
               'max-h-0 opacity-0 overflow-hidden': !active.getReference,
-              'max-h-80 overflow-y-auto opacity-100': active.getReference,
+              'max-h-80 overflow-y-auto scrollbar-hidden opacity-100':
+                active.getReference,
             },
           )}
           id='reference'
