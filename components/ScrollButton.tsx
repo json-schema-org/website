@@ -1,47 +1,36 @@
-import React, { useEffect, useState } from 'react';
-import Image from 'next/image';
+/* eslint-disable react/react-in-jsx-scope */
+import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { ArrowUp } from 'lucide-react';
 
 export default function ScrollButton() {
-  const [backToTopButton, setBackToTopButton] = useState(false);
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Check the scroll position
-      setBackToTopButton(window.scrollY > 150);
-    };
-
-    // Add scroll event listener to window
+    const handleScroll = () => setShowButton(window.scrollY > 150);
     window.addEventListener('scroll', handleScroll);
-
-    // Cleanup function to remove the event listener when the component unmounts
-    /* istanbul ignore next : can't test cleanup function */
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollUp = () => {
-    window.scrollTo({
-      top: 1,
-      left: 0,
-    });
-  };
+  const scrollUp = () =>
+    window.scrollTo({ top: 1, left: 0, behavior: 'smooth' });
 
   return (
-    <div className='fixed bottom-14 right-4 h-16 w-12 z-40'>
-      {backToTopButton && (
-        <button
+    <div className='fixed bottom-14 right-4 h-12 w-12 z-40'>
+      {showButton && (
+        <Button
           onClick={scrollUp}
-          className='rounded-full transition-transform hover:-translate-y-2 duration-150 ease-in-out shadow-lg bg-white flex items-center justify-center'
+          variant='outline'
+          size='icon'
+          className='rounded-full transition-all duration-200 ease-in-out shadow-lg 
+            bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-600
+            hover:bg-gray-50 dark:hover:bg-gray-700 hover:-translate-y-1
+            flex items-center justify-center h-full w-full'
           aria-label='Scroll to top'
           data-test='scroll-button'
         >
-          {/* Ensure the image is in your public/img directory */}
-          <Image
-            alt='Scroll to top'
-            width={40}
-            height={40}
-            src='/img/scroll.svg'
-          />
-        </button>
+          <ArrowUp className='h-6 w-6 text-gray-700 dark:text-gray-300' />
+        </Button>
       )}
     </div>
   );
