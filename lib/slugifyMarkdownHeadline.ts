@@ -10,9 +10,7 @@ export default function slugifyMarkdownHeadline(
   if (typeof markdownChildren === 'string')
     return slugify(markdownChildren, {
       lower: true,
-
       trim: true,
-
       remove: /[*+~()'"!]/g,
     });
 
@@ -33,18 +31,13 @@ export default function slugifyMarkdownHeadline(
   if (metaSlug) return metaSlug;
 
   const joinedChildren = markdownChildren
-
     .filter((child) => typeof child === 'string')
-
     .map((string) => string.replace(FRAGMENT_REGEX, ''))
-
     .join(' ');
 
   const slug = slugify(joinedChildren, {
     lower: true,
-
     trim: true,
-
     remove: /[*+~()'"!]/g,
   });
 
