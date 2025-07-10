@@ -303,7 +303,9 @@ describe('DocsHelp Component', () => {
     cy.get(FEEDBACK_FORM_INPUT).should('have.class', 'border-red-500');
 
     // Verify error message is displayed
-    cy.contains('Please provide feedback before submitting').should('be.visible');
+    cy.contains('Please provide feedback before submitting').should(
+      'be.visible',
+    );
   });
 
   // Test form validation for empty comment when creating GitHub issue
@@ -319,6 +321,8 @@ describe('DocsHelp Component', () => {
     cy.get(FEEDBACK_FORM_INPUT).should('have.class', 'border-red-500');
 
     // Verify error message is displayed
-    cy.contains('Please provide feedback before submitting').should('be.visible');
+    cy.contains('Please provide feedback before submitting').should(
+      'be.visible',
+    );
   });
 });
