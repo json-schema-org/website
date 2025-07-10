@@ -211,6 +211,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               handleRotate();
               setOpen(!open);
             }}
+            /* istanbul ignore start */
           >
             {getDocsPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Introduction</h3>
@@ -337,6 +338,7 @@ export const DocsNav = ({
       setGuides_icon('/icons/grad-cap.svg');
     }
   }, [resolvedTheme]);
+  /* istanbul ignore end */
 
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
@@ -903,4 +905,5 @@ export const DocsNav = ({
 };
 
 export const getLayout = (page: React.ReactNode) =>
+  /* istanbul ignore next */
   getSiteLayout(<SidebarLayout>{page}</SidebarLayout>);

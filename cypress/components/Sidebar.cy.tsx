@@ -1,4 +1,3 @@
-/* istanbul ignore file */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
 import { SidebarLayout, DocsNav } from '~/components/Sidebar';
