@@ -38,7 +38,7 @@ const DocLink = ({
     <Link
       href={uri}
       className={classnames(
-        'text-sm block py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-[#007bff]',
+        'text-sm block py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-[#007bff] dark:hover:text-[#bfdbfe] dark:hover:bg-slate-800',
         {
           'font-medium': !isActive,
           'text-primary dark:text-[#007bff] font-bold border-l-2 border-l-primary':
@@ -344,13 +344,10 @@ export const DocsNav = ({
       <Collapsible
         open={active.getDocs}
         onOpenChange={(open) =>
-          setActive({
+          setActive((prev) => ({
+            ...prev,
             getDocs: open,
-            getStarted: false,
-            getReference: false,
-            getSpecification: false,
-            getGuides: false,
-          })
+          }))
         }
         className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-3 rounded transition-all duration-300 group'
       >
@@ -376,13 +373,17 @@ export const DocsNav = ({
                 transform: active.getDocs ? 'rotate(180deg)' : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
               }}
               id='arrow'
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
-              height='40'
+              height='25'
               viewBox='0 0 24 24'
-              width='32'
+              width='25'
             >
               <path
                 clipRule='evenodd'
@@ -450,13 +451,10 @@ export const DocsNav = ({
       <Collapsible
         open={active.getStarted}
         onOpenChange={(open) =>
-          setActive({
-            getDocs: false,
+          setActive((prev) => ({
+            ...prev,
             getStarted: open,
-            getReference: false,
-            getSpecification: false,
-            getGuides: false,
-          })
+          }))
         }
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
@@ -482,13 +480,17 @@ export const DocsNav = ({
                 transform: active.getStarted ? 'rotate(180deg)' : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
               }}
               id='arrow'
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
-              height='40'
+              height='25'
               viewBox='0 0 24 24'
-              width='32'
+              width='25'
             >
               <path
                 clipRule='evenodd'
@@ -553,13 +555,10 @@ export const DocsNav = ({
       <Collapsible
         open={active.getGuides}
         onOpenChange={(open) =>
-          setActive({
-            getDocs: false,
-            getStarted: false,
+          setActive((prev) => ({
+            ...prev,
             getGuides: open,
-            getReference: false,
-            getSpecification: false,
-          })
+          }))
         }
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
@@ -585,13 +584,17 @@ export const DocsNav = ({
                 transform: active.getGuides ? 'rotate(180deg)' : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
               }}
               id='arrow'
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
-              height='40'
+              height='25'
               viewBox='0 0 24 24'
-              width='32'
+              width='25'
             >
               <path
                 clipRule='evenodd'
@@ -625,13 +628,10 @@ export const DocsNav = ({
       <Collapsible
         open={active.getReference}
         onOpenChange={(open) =>
-          setActive({
-            getDocs: false,
-            getStarted: false,
-            getGuides: false,
+          setActive((prev) => ({
+            ...prev,
             getReference: open,
-            getSpecification: false,
-          })
+          }))
         }
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
@@ -657,13 +657,17 @@ export const DocsNav = ({
                 transform: active.getReference ? 'rotate(180deg)' : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
               }}
               id='arrow'
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
-              height='40'
+              height='25'
               viewBox='0 0 24 24'
-              width='32'
+              width='25'
             >
               <path
                 clipRule='evenodd'
@@ -807,13 +811,10 @@ export const DocsNav = ({
       <Collapsible
         open={active.getSpecification}
         onOpenChange={(open) =>
-          setActive({
-            getDocs: false,
-            getStarted: false,
-            getGuides: false,
-            getReference: false,
+          setActive((prev) => ({
+            ...prev,
             getSpecification: open,
-          })
+          }))
         }
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
@@ -843,12 +844,16 @@ export const DocsNav = ({
                   : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
               }}
               xmlns='http://www.w3.org/2000/svg'
               fill='none'
-              height='40'
+              height='25'
               viewBox='0 0 24 24'
-              width='32'
+              width='25'
             >
               <path
                 clipRule='evenodd'
