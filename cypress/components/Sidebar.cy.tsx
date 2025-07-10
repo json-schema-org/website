@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
 import { SidebarLayout, DocsNav } from '~/components/Sidebar';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
@@ -19,16 +20,18 @@ describe('Sidebar Component', () => {
     it('should render the sidebar layout correctly', () => {
       cy.mount(
         <SidebarLayout>
-          <div data-testid="content">Test Content</div>
-        </SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
       );
 
       // Check if the layout structure is rendered
-      cy.get('[data-testid="content"]').should('exist').and('contain', 'Test Content');
-      
+      cy.get('[data-testid="content"]')
+        .should('exist')
+        .and('contain', 'Test Content');
+
       // Check if the sidebar container exists
       cy.get('.max-w-\\[1400px\\]').should('exist');
-      
+
       // Check if the grid layout is applied
       cy.get('.grid').should('exist');
     });
@@ -36,15 +39,15 @@ describe('Sidebar Component', () => {
     it('should render mobile menu container', () => {
       cy.mount(
         <SidebarLayout>
-          <div data-testid="content">Test Content</div>
-        </SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
       );
 
       cy.viewport(768, 1024);
-      
+
       // Check if mobile menu container exists
       cy.get('.lg\\:hidden').should('exist');
-      
+
       // Check if the mobile menu has the correct structure
       cy.get('.lg\\:hidden > div').should('exist');
     });
@@ -52,8 +55,8 @@ describe('Sidebar Component', () => {
     it('should handle mobile menu toggle correctly', () => {
       cy.mount(
         <SidebarLayout>
-          <div data-testid="content">Test Content</div>
-        </SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
       );
 
       // Set viewport to mobile size
@@ -77,11 +80,11 @@ describe('Sidebar Component', () => {
       mockRouter.asPath = '/docs';
       cy.mount(
         <SidebarLayout>
-          <div data-testid="content">Test Content</div>
-        </SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
       );
       cy.viewport(768, 1024);
-      
+
       // Check if mobile menu exists and has content
       cy.get('.lg\\:hidden').should('exist');
       cy.get('.lg\\:hidden h3').should('exist');
@@ -92,8 +95,8 @@ describe('Sidebar Component', () => {
       mockRouter.asPath = '/learn';
       cy.mount(
         <SidebarLayout>
-          <div data-testid="content">Test Content</div>
-        </SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
       );
       cy.viewport(768, 1024);
       cy.get('.lg\\:hidden h3').should('contain', 'Get started');
@@ -103,8 +106,8 @@ describe('Sidebar Component', () => {
       mockRouter.asPath = '/understanding-json-schema';
       cy.mount(
         <SidebarLayout>
-          <div data-testid="content">Test Content</div>
-        </SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
       );
       cy.viewport(768, 1024);
       cy.get('.lg\\:hidden h3').should('contain', 'Reference');
@@ -113,19 +116,19 @@ describe('Sidebar Component', () => {
     it('should close mobile menu on window resize', () => {
       cy.mount(
         <SidebarLayout>
-          <div data-testid="content">Test Content</div>
-        </SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
       );
 
       cy.viewport(768, 1024);
-      
+
       // Open mobile menu
       cy.get('.lg\\:hidden > div').first().click();
       cy.get('.transform.-translate-x-0').should('exist');
 
       // Resize to desktop
       cy.viewport(1025, 768);
-      
+
       // Menu should be closed
       cy.get('.transform.-translate-x-full').should('exist');
     });
@@ -243,7 +246,11 @@ describe('Sidebar Component', () => {
 
       // Check external links have correct attributes
       cy.contains('Landscape').should('have.attr', 'target', '_blank');
-      cy.contains('Tour of JSON Schema').should('have.attr', 'target', '_blank');
+      cy.contains('Tour of JSON Schema').should(
+        'have.attr',
+        'target',
+        '_blank',
+      );
       cy.contains('Learn JSON Schema').should('have.attr', 'target', '_blank');
 
       // Check external link icons
@@ -255,7 +262,7 @@ describe('Sidebar Component', () => {
     it('should have correct link structure', () => {
       // Expand Introduction section
       cy.contains('Introduction').parent().click();
-      
+
       // Verify Overview link exists and has correct href
       cy.contains('Overview').should('exist');
       cy.contains('Overview').should('have.attr', 'href', '/docs');
@@ -264,13 +271,13 @@ describe('Sidebar Component', () => {
     it('should have links with correct onClick behavior', () => {
       // Expand Introduction section
       cy.contains('Introduction').parent().click();
-      
+
       // Check that links exist and have the correct structure
       cy.contains('Overview').should('exist');
-      
+
       // Verify the link has the correct href attribute
       cy.contains('Overview').should('have.attr', 'href', '/docs');
-      
+
       // Check that the link is properly structured for navigation
       cy.contains('Overview').should('be.visible');
     });
@@ -278,7 +285,7 @@ describe('Sidebar Component', () => {
     it('should show active link styling correctly', () => {
       mockRouter.asPath = '/docs';
       cy.mount(<DocsNav open={false} setOpen={mockSetOpen} />);
-      
+
       cy.contains('Introduction').parent().click();
       cy.contains('Overview').should('have.class', 'font-bold');
     });
@@ -322,10 +329,10 @@ describe('Sidebar Component', () => {
       // Test hover effects on section headers
       cy.contains('Introduction').parent().trigger('mouseover');
       cy.contains('Introduction').parent().should('have.class', 'group');
-      
+
       // Check that the group class is applied for hover effects
       cy.get('.group').should('exist');
-      
+
       cy.contains('Get Started').parent().trigger('mouseover');
       cy.contains('Get Started').parent().should('have.class', 'group');
     });
@@ -333,7 +340,7 @@ describe('Sidebar Component', () => {
     it('should handle nested navigation items correctly', () => {
       // Expand Reference section
       cy.contains('Reference').parent().click();
-      
+
       // Check nested items under JSON data types
       cy.contains('JSON data types').should('exist');
       cy.contains('array').should('exist');
@@ -374,7 +381,7 @@ describe('Sidebar Component', () => {
     it('should handle scroll behavior in Reference section', () => {
       // Expand Reference section
       cy.contains('Reference').parent().click();
-      
+
       // Check if the Reference section has scroll behavior
       cy.get('.max-h-80').should('exist');
       cy.get('.overflow-y-auto').should('exist');
@@ -452,10 +459,10 @@ describe('Sidebar Component', () => {
   describe('Accessibility', () => {
     it('should have proper ARIA attributes', () => {
       cy.mount(<DocsNav open={false} setOpen={cy.stub()} />);
-      
+
       // Check if buttons exist (they should have role="button" implicitly)
       cy.get('button').should('exist');
-      
+
       // Check if collapsible sections have proper ARIA attributes
       // The CollapsibleTrigger should have aria-expanded
       cy.get('[data-state]').should('exist');
@@ -463,10 +470,10 @@ describe('Sidebar Component', () => {
 
     it('should be keyboard navigable', () => {
       cy.mount(<DocsNav open={false} setOpen={cy.stub()} />);
-      
+
       // Test keyboard navigation by checking if focusable elements exist
       cy.get('button').should('exist');
-      
+
       // Expand a section to reveal links
       cy.contains('Introduction').parent().click();
       cy.get('a').should('exist');
@@ -477,8 +484,8 @@ describe('Sidebar Component', () => {
     it('should adapt to different screen sizes', () => {
       cy.mount(
         <SidebarLayout>
-          <div data-testid="content">Test Content</div>
-        </SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
       );
 
       // Test mobile view
@@ -497,4 +504,4 @@ describe('Sidebar Component', () => {
       cy.get('.hidden.lg\\:block').should('be.visible');
     });
   });
-}); 
+});
