@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 /* istanbul ignore file */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
 import { SidebarLayout, DocsNav } from '~/components/Sidebar';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
