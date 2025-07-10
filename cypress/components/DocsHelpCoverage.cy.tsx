@@ -15,11 +15,12 @@ describe('DocsHelp Coverage Tests', () => {
     cy.get('[data-test="feedback-form"]').should('be.visible');
 
     // Try to submit with empty comment
-    cy.get('[data-test="feedback-form-input"]').type('test').clear();
+    cy.get('[data-test="feedback-form-input"]').type('test');
+    cy.get('[data-test="feedback-form-input"]').clear();
     cy.get('[data-test="feedback-submit-button"]').click();
 
-    // Wait for the state to update
-    cy.wait(100);
+    // Remove unnecessary wait
+    // cy.wait(100);
 
     // Verify error message is displayed
     cy.contains('Please provide feedback before submitting').should(
@@ -75,18 +76,14 @@ describe('DocsHelp Coverage Tests', () => {
     cy.get('[data-test="feedback-survey-yes-button"]').click();
 
     // Try to create issue with empty comment
-    cy.get('[data-test="feedback-form-input"]').type('test').clear();
+    cy.get('[data-test="feedback-form-input"]').type('test');
+    cy.get('[data-test="feedback-form-input"]').clear();
     cy.get('[data-test="create-github-issue-button"]').click();
 
-    // Wait for the state to update
-    cy.wait(100);
+    // Remove unnecessary wait
+    // cy.wait(100);
 
-    // Skip checking the border color and only verify the error message
-    // cy.get('[data-test="feedback-form-input"]').should(
-    //   'have.css',
-    //   'border-color',
-    //   'rgb(239, 68, 68)'
-    // );
+    // Verify error message is displayed
     cy.contains('Please provide feedback before submitting').should(
       'be.visible',
     );

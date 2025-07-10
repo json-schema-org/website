@@ -297,15 +297,13 @@ describe('DocsHelp Component', () => {
     cy.get(FEEDBACK_FORM).should('be.visible');
 
     // Type something and then clear it to ensure the input is properly initialized
-    cy.get(FEEDBACK_FORM_INPUT).type('test').clear();
+    cy.get(FEEDBACK_FORM_INPUT).type('test');
+    cy.get(FEEDBACK_FORM_INPUT).clear();
 
     // Try to submit with empty comment
     cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
 
-    // Wait for the state to update
-    cy.wait(100);
-
-    // Verify error message is displayed  
+    // Verify error message is displayed
     cy.contains('Please provide feedback before submitting').should(
       'be.visible',
     );
@@ -318,13 +316,11 @@ describe('DocsHelp Component', () => {
     cy.get(FEEDBACK_FORM).should('be.visible');
 
     // Type something and then clear it to ensure the input is properly initialized
-    cy.get(FEEDBACK_FORM_INPUT).type('test').clear();
+    cy.get(FEEDBACK_FORM_INPUT).type('test');
+    cy.get(FEEDBACK_FORM_INPUT).clear();
 
     // Try to create GitHub issue with empty comment
     cy.get(CREATE_GITHUB_ISSUE_BUTTON).click();
-
-    // Wait for the state to update
-    cy.wait(100);
 
     // Verify error message is displayed
     cy.contains('Please provide feedback before submitting').should(
