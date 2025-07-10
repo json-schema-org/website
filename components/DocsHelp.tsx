@@ -260,7 +260,7 @@ export function DocsHelp({
                         </label>
                       </p>
                       <Textarea
-                        className={`py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid ${commentError ? 'border-red-500 focus:border-red-500' : 'border-[#aaaaaa]'} rounded-md w-full overflow-hidden`}
+                        className={`py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid rounded-md w-full overflow-hidden`}
                         name='feedback-comment'
                         id='feedback-comment'
                         data-test='feedback-form-input'
@@ -272,6 +272,7 @@ export function DocsHelp({
                           }
                         }}
                         required
+                        style={{ borderColor: commentError ? 'rgb(239, 68, 68)' : '#aaaaaa' }}
                       />
                       {commentError && (
                         <p className='text-red-500 text-[12px] mt-1'>
