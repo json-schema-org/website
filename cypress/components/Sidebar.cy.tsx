@@ -1,3 +1,4 @@
+/* eslint-disable cypress/no-unnecessary-waiting */
 import React from 'react';
 import { SidebarLayout, DocsNav } from '~/components/Sidebar';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
@@ -9,19 +10,25 @@ describe('Sidebar Component', () => {
     mockRouter = mockNextRouter();
     cy.mount(
       <SidebarLayout>
-        <div data-test="sidebar-content">
+        <div data-test='sidebar-content'>
           <h1>Test Content</h1>
           <p>This is test content for the sidebar layout</p>
         </div>
-      </SidebarLayout>
+      </SidebarLayout>,
     );
   });
 
   describe('SidebarLayout', () => {
     it('should render the sidebar layout correctly', () => {
       cy.get('[data-test="sidebar-content"]').should('exist');
-      cy.get('[data-test="sidebar-content"] h1').should('have.text', 'Test Content');
-      cy.get('[data-test="sidebar-content"] p').should('have.text', 'This is test content for the sidebar layout');
+      cy.get('[data-test="sidebar-content"] h1').should(
+        'have.text',
+        'Test Content',
+      );
+      cy.get('[data-test="sidebar-content"] p').should(
+        'have.text',
+        'This is test content for the sidebar layout',
+      );
     });
 
     it('should render the sidebar navigation on desktop', () => {
@@ -88,19 +95,23 @@ describe('Sidebar Component', () => {
         cy.contains('Introduction').click();
         // Wait for animation and check arrow rotation
         cy.wait(100);
-        cy.get('svg[id="arrow"]').first().should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
-        
+        cy.get('svg[id="arrow"]')
+          .first()
+          .should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+
         // Click to collapse
         cy.contains('Introduction').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').first().should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
+        cy.get('svg[id="arrow"]')
+          .first()
+          .should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
       });
 
       it('should show Introduction section links when expanded', () => {
         // Click to expand
         cy.contains('Introduction').click();
         cy.wait(200); // Wait for animation to complete
-        
+
         // Check that links are visible
         cy.get('a[href="/docs"]').should('be.visible');
         cy.get('a[href="/overview/what-is-jsonschema"]').should('be.visible');
@@ -111,7 +122,9 @@ describe('Sidebar Component', () => {
         cy.get('a[href="/overview/faq"]').should('be.visible');
         cy.get('a[href="/overview/pro-help"]').should('be.visible');
         cy.get('a[href="/overview/similar-technologies"]').should('be.visible');
-        cy.get('a[href="https://landscape.json-schema.org"]').should('be.visible');
+        cy.get('a[href="https://landscape.json-schema.org"]').should(
+          'be.visible',
+        );
         cy.get('a[href="/overview/code-of-conduct"]').should('be.visible');
       });
     });
@@ -121,24 +134,34 @@ describe('Sidebar Component', () => {
         // Click to expand
         cy.contains('Get Started').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').eq(1).should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
-        
+        cy.get('svg[id="arrow"]')
+          .eq(1)
+          .should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+
         // Click to collapse
         cy.contains('Get Started').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').eq(1).should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
+        cy.get('svg[id="arrow"]')
+          .eq(1)
+          .should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
       });
 
       it('should show Get Started section links when expanded', () => {
         // Click to expand
         cy.contains('Get Started').click();
         cy.wait(200); // Wait for animation to complete
-        
+
         // Check that links are visible
         cy.get('a[href="/learn"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/about"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/basics"]').should('be.visible');
-        cy.get('a[href="/learn/getting-started-step-by-step"]').should('be.visible');
+        cy.get('a[href="/understanding-json-schema/about"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/understanding-json-schema/basics"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/learn/getting-started-step-by-step"]').should(
+          'be.visible',
+        );
         cy.get('a[href="https://tour.json-schema.org/"]').should('be.visible');
         cy.get('a[href="/learn/glossary"]').should('be.visible');
         cy.get('a[href="/learn/miscellaneous-examples"]').should('be.visible');
@@ -152,19 +175,23 @@ describe('Sidebar Component', () => {
         // Click to expand
         cy.contains('Guides').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').eq(2).should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
-        
+        cy.get('svg[id="arrow"]')
+          .eq(2)
+          .should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+
         // Click to collapse
         cy.contains('Guides').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').eq(2).should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
+        cy.get('svg[id="arrow"]')
+          .eq(2)
+          .should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
       });
 
       it('should show Guides section links when expanded', () => {
         // Click to expand
         cy.contains('Guides').click();
         cy.wait(200); // Wait for animation to complete
-        
+
         // Check that links are visible
         cy.get('a[href="/learn/guides"]').should('be.visible');
         cy.get('a[href="/implementers"]').should('be.visible');
@@ -177,30 +204,54 @@ describe('Sidebar Component', () => {
         // Click to expand
         cy.contains('Reference').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').eq(3).should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
-        
+        cy.get('svg[id="arrow"]')
+          .eq(3)
+          .should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+
         // Click to collapse
         cy.contains('Reference').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').eq(3).should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
+        cy.get('svg[id="arrow"]')
+          .eq(3)
+          .should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
       });
 
       it('should show Reference section links when expanded', () => {
         // Click to expand
         cy.contains('Reference').click();
         cy.wait(200); // Wait for animation to complete
-        
+
         // Check that key links are visible (not all due to overflow)
-        cy.get('a[href="/understanding-json-schema/reference"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/keywords"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/reference/type"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/reference/array"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/reference/boolean"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/reference/null"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/reference/numeric"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/reference/object"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/reference/regular_expressions"]').should('be.visible');
-        cy.get('a[href="/understanding-json-schema/reference/string"]').should('be.visible');
+        cy.get('a[href="/understanding-json-schema/reference"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/understanding-json-schema/keywords"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/understanding-json-schema/reference/type"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/understanding-json-schema/reference/array"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/understanding-json-schema/reference/boolean"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/understanding-json-schema/reference/null"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/understanding-json-schema/reference/numeric"]').should(
+          'be.visible',
+        );
+        cy.get('a[href="/understanding-json-schema/reference/object"]').should(
+          'be.visible',
+        );
+        cy.get(
+          'a[href="/understanding-json-schema/reference/regular_expressions"]',
+        ).should('be.visible');
+        cy.get('a[href="/understanding-json-schema/reference/string"]').should(
+          'be.visible',
+        );
       });
     });
 
@@ -209,19 +260,23 @@ describe('Sidebar Component', () => {
         // Click to expand
         cy.contains('Specification').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').eq(4).should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
-        
+        cy.get('svg[id="arrow"]')
+          .eq(4)
+          .should('have.css', 'transform', 'matrix(-1, 0, 0, -1, 0, 0)');
+
         // Click to collapse
         cy.contains('Specification').click();
         cy.wait(100);
-        cy.get('svg[id="arrow"]').eq(4).should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
+        cy.get('svg[id="arrow"]')
+          .eq(4)
+          .should('have.css', 'transform', 'matrix(1, 0, 0, 1, 0, 0)');
       });
 
       it('should show Specification section links when expanded', () => {
         // Click to expand
         cy.contains('Specification').click();
         cy.wait(200); // Wait for animation to complete
-        
+
         // Check that links are visible
         cy.get('a[href="/specification"]').should('be.visible');
         cy.get('a[href="/draft/2020-12"]').should('be.visible');
@@ -232,7 +287,9 @@ describe('Sidebar Component', () => {
         cy.get('a[href="/specification-links"]').should('be.visible');
         cy.get('a[href="/specification/migration"]').should('be.visible');
         cy.get('a[href="/specification/release-notes"]').should('be.visible');
-        cy.get('a[href="/specification/json-hyper-schema"]').should('be.visible');
+        cy.get('a[href="/specification/json-hyper-schema"]').should(
+          'be.visible',
+        );
       });
     });
   });
@@ -258,8 +315,16 @@ describe('Sidebar Component', () => {
 
     it('should handle external links correctly', () => {
       cy.contains('Introduction').click();
-      cy.get('a[href="https://landscape.json-schema.org"]').should('have.attr', 'target', '_blank');
-      cy.get('a[href="https://landscape.json-schema.org"]').should('have.attr', 'rel', 'noopener noreferrer');
+      cy.get('a[href="https://landscape.json-schema.org"]').should(
+        'have.attr',
+        'target',
+        '_blank',
+      );
+      cy.get('a[href="https://landscape.json-schema.org"]').should(
+        'have.attr',
+        'rel',
+        'noopener noreferrer',
+      );
     });
   });
 
@@ -268,16 +333,16 @@ describe('Sidebar Component', () => {
       cy.viewport(375, 667); // Mobile viewport
       cy.mount(
         <SidebarLayout>
-          <div data-test="sidebar-content">Test content</div>
-        </SidebarLayout>
+          <div data-test='sidebar-content'>Test content</div>
+        </SidebarLayout>,
       );
-      
+
       // Initially the mobile menu should be closed (translated off-screen)
       cy.get('.transform.-translate-x-full').should('exist');
-      
+
       // Click the mobile menu toggle
       cy.get('svg[height="24"]').parent().click();
-      
+
       // The mobile menu should be visible (translated to visible position)
       cy.get('.transform.-translate-x-0').should('exist');
     });
@@ -286,19 +351,19 @@ describe('Sidebar Component', () => {
       cy.viewport(375, 667); // Start with mobile
       cy.mount(
         <SidebarLayout>
-          <div data-test="sidebar-content">Test content</div>
-        </SidebarLayout>
+          <div data-test='sidebar-content'>Test content</div>
+        </SidebarLayout>,
       );
-      
+
       // Open mobile menu
       cy.get('svg[height="24"]').parent().click();
       cy.get('.transform.-translate-x-0').should('exist');
-      
+
       // Resize to desktop
       cy.viewport(1024, 768);
       // Wait for viewport change to be processed
       cy.wait(100);
-      
+
       // On desktop, the mobile menu header should be hidden by CSS
       cy.get('.lg\\:hidden').should('exist');
       // The desktop sidebar should be visible
@@ -312,7 +377,7 @@ describe('Sidebar Component', () => {
     it('should highlight active section based on current route', () => {
       mockRouter.asPath = '/docs';
       cy.mount(<DocsNav open={false} setOpen={cy.stub().as('setOpen')} />);
-      
+
       // Introduction section should be active
       cy.contains('Introduction').parent().should('have.class', 'bg-slate-200');
     });
@@ -320,11 +385,11 @@ describe('Sidebar Component', () => {
     it('should highlight active link within section', () => {
       mockRouter.asPath = '/docs';
       cy.mount(<DocsNav open={false} setOpen={cy.stub().as('setOpen')} />);
-      
+
       cy.contains('Introduction').click();
       cy.get('a[href="/docs"]').should('have.class', 'text-primary');
       cy.get('a[href="/docs"]').should('have.class', 'font-bold');
       cy.get('a[href="/docs"]').should('have.class', 'border-l-2');
     });
   });
-}); 
+});
