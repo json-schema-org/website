@@ -1,4 +1,3 @@
-
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React from 'react';
 import { SidebarLayout, DocsNav } from '~/components/Sidebar';
@@ -398,12 +397,32 @@ describe('Sidebar Component', () => {
       // Since the component is already mounted with light theme in beforeEach,
       // we'll just verify that the current light theme icons are working
       // and that the dark theme logic would be covered by the code coverage
-      cy.get('img[alt="eye icon"]').should('have.attr', 'src', '/icons/eye.svg');
-      cy.get('img[alt="compass icon"]').should('have.attr', 'src', '/icons/compass.svg');
-      cy.get('img[alt="book icon"]').should('have.attr', 'src', '/icons/book.svg');
-      cy.get('img[alt="clipboard icon"]').should('have.attr', 'src', '/icons/clipboard.svg');
-      cy.get('img[alt="grad cap icon"]').should('have.attr', 'src', '/icons/grad-cap.svg');
-      
+      cy.get('img[alt="eye icon"]').should(
+        'have.attr',
+        'src',
+        '/icons/eye.svg',
+      );
+      cy.get('img[alt="compass icon"]').should(
+        'have.attr',
+        'src',
+        '/icons/compass.svg',
+      );
+      cy.get('img[alt="book icon"]').should(
+        'have.attr',
+        'src',
+        '/icons/book.svg',
+      );
+      cy.get('img[alt="clipboard icon"]').should(
+        'have.attr',
+        'src',
+        '/icons/clipboard.svg',
+      );
+      cy.get('img[alt="grad cap icon"]').should(
+        'have.attr',
+        'src',
+        '/icons/grad-cap.svg',
+      );
+
       // This test ensures the icon setting logic is covered
       // The dark theme lines will be covered by code coverage analysis
     });
