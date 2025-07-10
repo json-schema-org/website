@@ -1,19 +1,31 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { useEffect, useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '~/components/ui/button';
 import { ArrowUp } from 'lucide-react';
 
 export default function ScrollButton() {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setShowButton(window.scrollY > 150);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        setShowButton(window.scrollY > 150);
+      }
+    };
+
+    if (typeof window !== 'undefined') {
+      window.addEventListener('scroll', handleScroll);
+      // Initial check
+      handleScroll();
+      return () => window.removeEventListener('scroll', handleScroll);
+    }
   }, []);
 
-  const scrollUp = () =>
-    window.scrollTo({ top: 1, left: 0, behavior: 'smooth' });
+  const scrollUp = () => {
+    if (typeof window !== 'undefined') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className='fixed bottom-14 right-4 h-12 w-12 z-40'>

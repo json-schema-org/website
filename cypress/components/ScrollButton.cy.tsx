@@ -32,7 +32,7 @@ describe('ScrollButton Component', () => {
     cy.wait(500);
 
     // Check if the window scroll to top (allow for small variations due to browser rounding)
-    cy.window().its('scrollY').should('be.closeTo', 1, 1);
+    cy.window().its('scrollY').should('be.closeTo', 0, 1);
 
     // check again if the button is not exist
     cy.get('[data-test="scroll-button"]').should('not.exist');
