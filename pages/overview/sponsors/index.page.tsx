@@ -7,6 +7,7 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync('pages/overview/sponsors/_index.md', 'utf-8');
@@ -20,7 +21,8 @@ export async function getStaticProps() {
 
 export default function ContentExample({ blocks }: { blocks: any[] }) {
   const newTitle = 'Sponsors';
-
+  const fileRenderType =
+    'https://github.com/json-schema-org/community/blob/main/programs/sponsors/sponsors.md';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -28,7 +30,13 @@ export default function ContentExample({ blocks }: { blocks: any[] }) {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <StyledMarkdown markdown={blocks[0]} />
-      <DocsHelp />
+      <NextPrevButton
+        prevLabel='Roadmap'
+        prevURL='/overview/roadmap'
+        nextLabel='Use Cases'
+        nextURL='/overview/use-cases'
+      />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

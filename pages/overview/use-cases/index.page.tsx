@@ -6,10 +6,11 @@ import { Headline1 } from '~/components/Headlines';
 import Card from '~/components/Card';
 import data from '~/data/use-cases.json';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export default function Content() {
   const newTitle = 'Use Cases';
-  const markdownFile = '_indexPage';
+  const fileRenderType = 'tsx';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -17,25 +18,31 @@ export default function Content() {
         <title>{newTitle}</title>
       </Head>
       <Headline1>{newTitle}</Headline1>
-      <p>
+      <p className='px-4 sm:px-0'>
         Discover everything you can do with JSON Schema. This section presents
-        the most common use cases for JSON Schema, but but there may be many
-        more applications waiting to be discovered.
+        the most common use cases for JSON Schema, but there may be many more
+        applications waiting to be discovered.
       </p>
-      <div className='w-full lg:w-full grid grid-cols-2 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8'>
+      <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8 px-4 sm:px-0'>
         {data.map((element, index) => (
           <Card
             key={index}
             title={element.title}
             body={element.summary}
             icon='/icons/bulb2.svg'
-            headerSize={'medium'}
-            extended={true}
-            bodyTextSize={'small'}
+            headerSize='medium'
+            extended
+            bodyTextSize='small'
           />
         ))}
       </div>
-      <DocsHelp markdownFile={markdownFile} />
+      <NextPrevButton
+        prevLabel='Sponsors'
+        prevURL='/overview/sponsors'
+        nextLabel='Case Studies'
+        nextURL='/overview/case-studies'
+      />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

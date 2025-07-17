@@ -1,7 +1,7 @@
 import React from 'react';
 import { getLayout } from '~/components/SiteLayout';
 import { SectionContext } from '~/context';
-import imageData from '~/data/community.json';
+import imageData from '~/data/community-users.json';
 import fs from 'fs';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
@@ -11,7 +11,10 @@ import { GetStaticProps } from 'next';
 import Card from '~/components/Card';
 import Image from 'next/image';
 import ical from 'node-ical';
-import moment from 'moment-timezone';
+import {
+  fetchRemoteICalFile,
+  printEventsForNextWeeks,
+} from '../../lib/calendarUtils';
 
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
@@ -35,19 +38,6 @@ export const getStaticProps: GetStaticProps = async () => {
     })
     .slice(0, 5);
 
-  async function fetchRemoteICalFile(url: string) {
-    try {
-      const response = await fetch(url, { method: 'GET', mode: 'no-cors' });
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      const data = await response.text();
-      return data;
-    } catch (error) {
-      console.error('Error fetching iCal file:', error);
-      return null;
-    }
-  }
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
@@ -61,88 +51,6 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
-function printEventsForNextWeeks(icalData: { [x: string]: any }) {
-  const arrayDates = [];
-  if (!icalData) {
-    console.error('iCal data is empty or invalid.');
-    return;
-  }
-
-  const today = moment().startOf('day');
-  const nextFourWeeksEnd = moment().add(12, 'weeks').endOf('day');
-
-  for (const event of Object.values(icalData)) {
-    if (event.type === 'VEVENT') {
-      const title = event.summary;
-
-      const timezoneL = moment.tz.guess();
-      const startDate = moment.tz(event.start, timezoneL);
-
-      if (event.rrule !== undefined) {
-        const dates = event.rrule.between(
-          today.toDate(),
-          nextFourWeeksEnd.toDate(),
-          true,
-        );
-
-        for (const date of dates) {
-          const startDate = moment.tz(date, timezoneL);
-
-          if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-            const dateTimezone = moment.tz.zone(event.start.tz);
-            const localTimezone = moment.tz.guess();
-            const tz =
-              event.rrule.origOptions.tzid === localTimezone
-                ? event.rrule.origOptions.tzid
-                : localTimezone;
-            const timezone = moment.tz.zone(tz);
-            let offset;
-            if (timezone && dateTimezone)
-              offset = timezone.utcOffset(date) - dateTimezone.utcOffset(date);
-            const newDate = moment(date).add(offset, 'minutes').toDate();
-
-            const start = moment(newDate);
-            const utcDate = start.utc();
-
-            const time = utcDate.format('MMMM Do YYYY, h:mm a');
-            const day = utcDate.format('D');
-            const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
-            arrayDates.push({
-              title,
-              time,
-              day,
-              timezone: 'UTC',
-              parsedStartDate,
-            });
-          }
-        }
-      } else {
-        if (startDate.isBetween(today, nextFourWeeksEnd, undefined, '[]')) {
-          const utcDate = startDate.utc();
-
-          const time = utcDate.format('MMMM Do YYYY, h:mm a');
-          const day = utcDate.format('D');
-          const parsedStartDate = startDate.format('YYYY-MM-DD HH:mm:ss');
-          arrayDates.push({
-            title,
-            time,
-            day,
-            timezone: 'UTC',
-            parsedStartDate,
-          });
-        }
-      }
-    }
-  }
-
-  arrayDates.sort(
-    (x, y) =>
-      new Date(x.parsedStartDate).getTime() -
-      new Date(y.parsedStartDate).getTime(),
-  );
-
-  return arrayDates;
-}
 
 export default function communityPages(props: any) {
   const blogPosts = props.blogPosts;
@@ -192,17 +100,28 @@ export default function communityPages(props: any) {
           <div className='grid justify-center items-center gap-y-[10px]'>
             <div className='grid justify-center mt-[50px] gap-y-[10px]'>
               <div className='grid grid-cols-10 max-sm:grid-cols-7  gap-3'>
-                {imageData.map((avatar, index) => (
-                  <Image
-                    key={`${avatar.id}-${index}`}
-                    src={avatar.img}
-                    alt={avatar.alt}
-                    width={35}
-                    height={35}
-                    title={avatar.alt}
-                    className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
-                  />
-                ))}
+                {imageData
+                  .filter(
+                    (contributor) =>
+                      contributor.login !== 'the-json-schema-bot[bot]' &&
+                      contributor.login !== 'dependabot[bot]',
+                  )
+                  .sort(() => Math.random() - 0.5)
+                  .slice(0, 60)
+                  .map((avatar, index) => (
+                    <Image
+                      key={`${avatar.id}-${index}`}
+                      src={avatar.avatar_url}
+                      alt={avatar.login}
+                      width={35}
+                      height={35}
+                      title={avatar.login}
+                      priority={index < 10}
+                      loading={index < 10 ? 'eager' : 'lazy'}
+                      quality={75}
+                      className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
+                    />
+                  ))}
               </div>
             </div>
           </div>
@@ -236,19 +155,22 @@ export default function communityPages(props: any) {
                 <h2 className=' text-blue-700 font-bold  text-[2rem] text-center'>
                   Ambassadors Program
                 </h2>
-                <h2 className='font-bold text-slate-500 text-base tracking-wide dark:text-white mt-10'>
+                <h2 className='text-center font-bold text-slate-500 text-base tracking-wide dark:text-white mt-10'>
                   The JSON Schema Ambassadors Program recognize the people who
                   drive adoption, innovation and knowledge sharing in the JSON
                   Schema community.
                 </h2>
-                <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
-                  <a
+                <div
+                  className='mt-10 mx-auto flex justify-center items-center'
+                  data-testid='HomeCard-button'
+                >
+                  <Link
                     href='/ambassadors'
                     rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white  font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
                     Become an ambassador
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -257,22 +179,25 @@ export default function communityPages(props: any) {
 
           <div className='z-40 mt-20 rounded-lg border border-gray-200 bg-white transition-colors hover:bg-slate-100 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
-              <div data-testid='HomeCard-main' className='m-auto'>
-                <h2 className=' text-blue-700 font-bold text-[2rem] text-center'>
+              <div
+                data-testid='HomeCard-main'
+                className='m-auto flex flex-col items-center text-center'
+              >
+                <h2 className='text-blue-700 font-bold text-[2rem]'>
                   Join the JSON Schema Slack workspace!
                 </h2>
-                <h2 className=' font-bold text-base text-slate-500 dark:text-white tracking-wide mt-10'>
+                <h2 className='font-bold text-base text-slate-500 dark:text-white tracking-wide mt-10'>
                   Join our Slack to ask questions, get feedback on your
                   projects, and connect with +5000 practitioners and experts.
                 </h2>
-                <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
-                  <a
+                <div className='mt-10'>
+                  <Link
                     href='/slack'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
                     Join Slack
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -287,28 +212,34 @@ export default function communityPages(props: any) {
                 <h2 className='text-blue-700 text-[2rem] font-bold  text-center'>
                   JSON Schema Community Meetings & Events
                 </h2>
-                <h2 className='text-slate-500 text-base tracking-wide dark:text-white mt-10 font-bold text-body-lg tracking-body font-regular'>
-                  We hold monthly Office Hours and weekly Open Community Working
-                  Meetings. Office Hours are every first Tuesday of the month at
-                  15:00 BST, and by appointment. Open Community Working Meetings
-                  are every Monday at 14:00 PT.
-                </h2>
-                <div className='mt-10 ' data-testid='HomeCard-button'>
-                  <a
-                    href='https://github.com/orgs/json-schema-org/discussions/35'
-                    rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
-                  >
-                    Open Community Working Meetings
-                  </a>
-                  <br />
-                  <a
-                    href='https://github.com/orgs/json-schema-org/discussions/34/'
-                    rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
-                  >
-                    Office Hours
-                  </a>
+                <div
+                  className='mt-10 text-center'
+                  data-testid='HomeCard-button'
+                >
+                  <h2 className='text-slate-500 text-base tracking-wide dark:text-white mt-10 font-bold text-body-lg tracking-body font-regular'>
+                    We hold monthly Office Hours and weekly Open Community
+                    Working Meetings. Office Hours are every first Tuesday of
+                    the month at 15:00 BST, and by appointment. Open Community
+                    Working Meetings are every Monday at 14:00 PT.
+                  </h2>
+                  <div className='mt-10 flex justify-center'>
+                    <a
+                      href='https://github.com/orgs/json-schema-org/discussions/35'
+                      rel='noopener noreferrer'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                    >
+                      Open Community Working Meetings
+                    </a>
+                  </div>
+                  <div className='mt-4 flex justify-center'>
+                    <a
+                      href='https://github.com/orgs/json-schema-org/discussions/34/'
+                      rel='noopener noreferrer'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                    >
+                      Office Hours
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
@@ -351,37 +282,42 @@ export default function communityPages(props: any) {
                   <br />
                   the JSON Schema Blog!
                 </h2>
-                <h2 className='font-bold text-slate-500 text-base dark:text-white tracking-wide mt-10'>
-                  <p>
-                    Want to publish a blog post? Check out the&nbsp;
-                    <a
-                      target='_blank'
+                <div className='m-auto flex flex-col items-center text-center'>
+                  <h2 className='font-bold text-slate-500 text-base dark:text-white tracking-wide mt-10'>
+                    <p>
+                      Want to publish a blog post? Check out the&nbsp;
+                      <a
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        href='https://github.com/json-schema-org/community/blob/main/docs/blog-guidelines.md'
+                        className='underline'
+                      >
+                        guidelines
+                      </a>
+                      &nbsp;and submit yours!
+                    </p>
+                  </h2>
+                  <div className='mt-10'>
+                    <Link
+                      href='/blog'
                       rel='noopener noreferrer'
-                      href='https://github.com/json-schema-org/community/blob/main/docs/blog-guidelines.md'
-                      className='underline'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                     >
-                      guidelines
-                    </a>
-                    &nbsp;and submit yours!
-                  </p>{' '}
-                </h2>
-                <div className='mt-10 mx-auto' data-testid='HomeCard-button'>
-                  <a
-                    href='/blog'
-                    rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
-                  >
-                    Read blog
-                  </a>
+                      Read blog
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
             <div className='p-10 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left '>
               <div className='w-full mb-6 '>
                 <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                  <img
+                  <Image
                     src={blogPosts[0].frontmatter.cover}
                     className='w-full h-[232px]  mb-4'
+                    height={232}
+                    width={400}
+                    alt={blogPosts[0].frontmatter.title}
                   />
                   <h3 className='mb-4 font-semibold dark:text-white'>
                     {blogPosts[0].frontmatter.title}
@@ -394,15 +330,41 @@ export default function communityPages(props: any) {
                     />
                   </div>
                   <div className='flex ml-2 mb-2 '>
-                    <div
-                      className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                      style={{
-                        backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})`,
-                      }}
-                    />
+                    {(blogPosts[0].frontmatter.authors || []).map(
+                      (author: any, index: number) => {
+                        return (
+                          <div
+                            key={index}
+                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                            style={{
+                              backgroundImage: `url(${author.photo})`,
+                              zIndex: 10 - index,
+                            }}
+                          />
+                        );
+                      },
+                    )}
                     <div className='flex flex-col ml-2'>
                       <p className='text-sm font-semibold dark:text-white'>
-                        {blogPosts[0].frontmatter.authors[0].name}
+                        {blogPosts[0].frontmatter.authors.length > 2 ? (
+                          <>
+                            {blogPosts[0].frontmatter.authors
+                              .slice(0, 2)
+                              .map((author: any, index: number) => (
+                                <span key={author.name}>
+                                  {author.name}
+                                  {index === 0 && ' & '}
+                                </span>
+                              ))}
+                            {'...'}
+                          </>
+                        ) : (
+                          blogPosts[0].frontmatter.authors.map(
+                            (author: any) => (
+                              <span key={author.name}>{author.name}</span>
+                            ),
+                          )
+                        )}
                       </p>
                       <div className='dark:text-slate-300 text-sm'>
                         <span>
@@ -414,13 +376,13 @@ export default function communityPages(props: any) {
                   </div>
                 </Link>
                 <div className='mx-auto '>
-                  <a
+                  <Link
                     href='/blog'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
                   >
                     Read more posts
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

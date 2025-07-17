@@ -1,6 +1,12 @@
 ---
-title: "Declaring a Dialect"
+title: "Dialect and vocabulary declaration"
 section: docs
+prev: 
+  label: string
+  url: /understanding-json-schema/reference/string
+next: 
+  label: Enumerated and constant values
+  url: /understanding-json-schema/reference/generic
 ---
 
 A version of JSON Schema is called a [dialect](../../learn/glossary#dialect). A dialect represents the

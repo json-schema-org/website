@@ -7,10 +7,11 @@ import data from 'data/case-studies.json';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 import { useTheme } from 'next-themes';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export default function ContentExample() {
   const newTitle = 'Case Studies';
-  const markdownFile = '_indexPage';
+  const fileRenderType = 'tsx';
   const { resolvedTheme } = useTheme();
 
   const imgUrl = (src: string): string => {
@@ -30,10 +31,8 @@ export default function ContentExample() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <p className='text-[18px]'>
-        {/* Please fix below dummy text and make it two to three liner so that we can remove the bug of layout shifting :) */}
-        Learn how organizations are adopting and benefiting from JSON Schema.
-        Please replace this text with a two to three liner so that we can avoid
-        the layout shifting bug.
+        Learn how organizations are adopting JSON Schema to improve data
+        management, ensure consistency, and streamline workflows across systems.
       </p>
       <div className='mx-auto my-[10px] mt-8 grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:w-full'>
         {data.map((element, index) => (
@@ -47,7 +46,13 @@ export default function ContentExample() {
           />
         ))}
       </div>
-      <DocsHelp markdownFile={markdownFile} />
+      <NextPrevButton
+        prevLabel='Use Cases'
+        prevURL='/overview/use-cases'
+        nextLabel='FAQs'
+        nextURL='/overview/faq'
+      />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

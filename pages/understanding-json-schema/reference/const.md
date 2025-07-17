@@ -1,6 +1,12 @@
 ---
 title: "Constant values"
 section: docs
+prev: 
+  label: Enumerated values
+  url: /understanding-json-schema/reference/enum
+next: 
+  label: Schema annotations and comments
+  url: /understanding-json-schema/reference/metadata
 ---
 
 <Star label="New in draft 6" />

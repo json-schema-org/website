@@ -1,9 +1,15 @@
 ---
 section: docs
 title: Miscellaneous Examples
+prev : 
+  label: JSON Schema glossary
+  url: /learn/glossary
+next: 
+  label: Modelling a file system
+  url: /learn/file-system
 ---
 
-In this page, you will find miscellaneous examples illustrating different uses cases to help you get the most out of your JSON Schemas. Each example comes with accompanying JSON data and explanation.
+In this page, you will find miscellaneous examples illustrating different use cases to help you get the most out of your JSON Schemas. Each example comes with accompanying JSON data and explanation.
 
 - [A typical minimum schema](#basic)
 - [Arrays of things](#arrays-of-things)

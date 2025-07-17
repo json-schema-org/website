@@ -20,6 +20,9 @@
 /latest/relative-json-pointer /draft/2020-12/relative-json-pointer.html 301
 /latest/release-notes /draft/2020-12/release-notes
 /implementations /tools 301
-/slack https://join.slack.com/t/json-schema/shared_invite/zt-2n5bzzgx3-ro3V0mnnzUoaguILLosT2A 301
-/slack-redirect https://join.slack.com/t/json-schema/shared_invite/zt-2n5bzzgx3-ro3V0mnnzUoaguILLosT2A 301
-/ambassadors https://github.com/json-schema-org/community/tree/main/programs/ambassadors 301
+/obsolete-implementations /tools?showObsolete=true 301
+/slack https://join.slack.com/t/json-schema/shared_invite/zt-2ued3v79g-Tk_aI32ZdW~ST0EWpGBwNQ 301
+/slack-redirect https://join.slack.com/t/json-schema/shared_invite/zt-2ued3v79g-Tk_aI32ZdW~ST0EWpGBwNQ 301
+/understanding-json-schema /understanding-json-schema/reference 301
+/understanding-json-schema/conventions /understanding-json-schema/reference 301
+/understanding-json-schema/reference/_index.md /understanding-json-schema/reference 301

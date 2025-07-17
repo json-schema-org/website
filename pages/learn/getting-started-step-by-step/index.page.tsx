@@ -9,6 +9,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import GettingStarted from '~/components/GettingStarted';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const block1 = fs.readFileSync(
@@ -28,9 +29,15 @@ export async function getStaticProps() {
   };
 }
 
-export default function StyledValidator({ blocks }: { blocks: any[] }) {
+export default function StyledValidator({
+  blocks,
+}: {
+  blocks: any[];
+  frontmatter: any;
+  content: any;
+}) {
   const newTitle = 'Creating your first schema';
-
+  const fileRenderType = 'tsx';
   return (
     <SectionContext.Provider value='docs'>
       <Head>
@@ -40,7 +47,13 @@ export default function StyledValidator({ blocks }: { blocks: any[] }) {
       <StyledMarkdown markdown={blocks[0]} />
       <GettingStarted />
       <StyledMarkdown markdown={blocks[1]} />
-      <DocsHelp />
+      <NextPrevButton
+        prevLabel='The basics'
+        prevURL='/understanding-json-schema/basics'
+        nextLabel='JSON Schema glossary'
+        nextURL='/learn/glossary'
+      />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

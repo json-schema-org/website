@@ -6,6 +6,7 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
@@ -35,7 +36,7 @@ export default function ImplementationsPages({
   blocks: any;
   frontmatter: any;
 }) {
-  const markdownFile = '_indexPage';
+  const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
@@ -44,7 +45,13 @@ export default function ImplementationsPages({
 
       <StyledMarkdown markdown={blocks.index} />
       <StyledMarkdown markdown={blocks.body} />
-      <DocsHelp markdownFile={markdownFile} />
+      <NextPrevButton
+        prevLabel={frontmatter?.prev?.label}
+        prevURL={frontmatter?.prev?.url}
+        nextLabel={frontmatter?.next?.label}
+        nextURL={frontmatter?.next?.url}
+      />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

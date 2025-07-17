@@ -1,4 +1,5 @@
 module.exports = {
+  mode: 'jit', // Enable JIT mode
   content: [
     './pages/**/*.{js,ts,jsx,tsx,md}',
     './components/**/*.{js,ts,jsx,tsx,md}',
@@ -44,6 +45,20 @@ module.exports = {
     },
 
     extend: {
+      keyframes: {
+        'collapsible-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-collapsible-content-height)' },
+        },
+        'collapsible-up': {
+          from: { height: 'var(--radix-collapsible-content-height)' },
+          to: { height: '0' },
+        },
+      },
+      animation: {
+        'collapsible-down': 'collapsible-down 0.5s ease-in-out',
+        'collapsible-up': 'collapsible-up 0.5s ease-in-out',
+      },
       backgroundImage: {
         'gradient-radial':
           'linear-gradient(72.68deg, #002CC4 28.97%, #5468FF 145.47%)',

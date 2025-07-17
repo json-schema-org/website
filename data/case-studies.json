@@ -1,5 +1,14 @@
 [
   {
+    "title": "How RxDB embraces JSON Schema to build its NoSQL Database",
+    "summary": "RxDB embraces JSON Schema for flexible data modeling, type safety, and advanced features like compression, all in an offline-first database.",
+    "logo": "/img/logos/rxdb-logo.svg",
+    "links": {
+      "lang": "URL1",
+      "url": "/blog/posts/rxdb-case-study"
+    }
+  },
+  {
     "title": "How JSON Schema Was an Obvious Choice at GitHub",
     "summary": "At GitHub's Docs Engineering team, while shipping releases to production 20 times per day or more, JSON Schema is critical in increasing confidence in changes to data, content and APIs.",
     "logo": "/img/logos/github-logo.svg",
@@ -60,6 +69,15 @@
     "links": {
       "lang": "URL1",
       "url": "/blog/posts/w3c-wot-case-study"
+    }
+  },
+  {
+    "title": "JSON Schema deduplicated complex logic and validation at Cookpad",
+    "summary": "Learn how Cookpad used JSON Schema to reduce incomplete input of newly registered items from 10% to 0%.",
+    "logo": "/img/logos/cookpad-logo.png",
+    "links": {
+      "lang": "URL1",
+      "url": "/blog/posts/cookpad-case-study-en"
     }
   }
 ]

@@ -7,6 +7,7 @@ import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/overview');
@@ -22,7 +23,7 @@ export default function StaticMarkdownPage({
   frontmatter: any;
   content: any;
 }) {
-  const markdownFile = '_index';
+  const fileRenderType = '_md';
   const newTitle = 'JSON Schema - ' + frontmatter.title;
 
   return (
@@ -32,7 +33,13 @@ export default function StaticMarkdownPage({
       </Head>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={content} />
-      <DocsHelp markdownFile={markdownFile} />
+      <NextPrevButton
+        prevLabel={frontmatter.prev?.label}
+        prevURL={frontmatter.prev?.url}
+        nextLabel={frontmatter.next.label}
+        nextURL={frontmatter.next.url}
+      />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

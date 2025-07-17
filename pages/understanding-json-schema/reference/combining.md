@@ -1,35 +1,36 @@
 ---
-title: "Schema Composition"
+title: "Boolean JSON Schema combination"
 section: docs
+prev: 
+  label: Schema composition
+  url: /understanding-json-schema/reference/composition
+next: 
+  label: Modular JSON Schema combination
+  url: /understanding-json-schema/structuring
 ---
 
 <Keywords label="schema composition" />
 
+## Introduction
 JSON Schema includes a few [keywords](../../learn/glossary#keyword) for combining schemas together. Note
 that this doesn\'t necessarily mean combining schemas from multiple
-files or JSON trees, though these facilities help to enable that and are
-described in [Structuring a complex schema](../../understanding-json-schema/structuring). Combining schemas may be as
-simple as allowing a value to be validated against multiple criteria at
-the same time.
+files or JSON trees. To learn how to combine reusable JSON Schemas, see [Modular JSON Schema combination](../../understanding-json-schema/structuring). 
 
-These keywords correspond to well known boolean algebra concepts like
-AND, OR, XOR, and NOT. You can often use these keywords to express
-complex constraints that can\'t otherwise be expressed with standard
-JSON Schema keywords.
-
-The keywords used to combine schemas are:
+Here you will learn to combine schemas by allowing a value to be validated against multiple criteria at the same time. This task requires using keywords that correspond to well known boolean algebra concepts like
+AND, OR, XOR, and NOT. The keywords used to combine schemas are the following:
 
 - `allOf`: (AND) Must be valid against *all* of the [subschemas](../../learn/glossary#subschema)
 - `anyOf`: (OR) Must be valid against *any* of the subschemas
 - `oneOf`: (XOR) Must be valid against *exactly one* of the
     subschemas
+- `not`: (NOT) Must *not* be valid against the given schema
 
 All of these keywords must be set to an array, where each item is a
 schema. Be careful with recursive schemas as they can exponentially increase processing times.
 
-In addition, there is:
-
-- `not`: (NOT) Must *not* be valid against the given schema
+In the following sections you will learn to use these keywords to express
+complex constraints that can\'t otherwise be expressed with standard
+JSON Schema keywords.
 
 <Keywords label="single: allOf single: schema composition; allOf" />
 

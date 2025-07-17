@@ -2,9 +2,7 @@
 title: JSON Schema documentation style guide
 ---
 
-# JSON Schema documentation style guide
-
-Welcome to JSON Schema! This guide is intended for project contributors and provides guidelines for the text-formatting conventions of our documentation. The purpose of this style guide is to create consistency throughout our documentation, so make sure to read and follow it carefully.
+Welcome to JSON Schema! This guide is intended for project contributors and provides guidelines for the text-formatting conventions of our documentation. The purpose of this style guide is to create consistency throughout our documentation, so make sure to read and follow it carefully. To learn about how to contribute to our documentation, see the [Docs contributing guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING-docs.md)
 
 ## Our preferred style guide 
 
@@ -51,7 +49,7 @@ To ensure that code samples are easy to search, copy and paste, and adapt, inclu
 
 ## Titles and headings 
 
-Titles should be short and communicate the main idea of the document. For explanation or reference documents, the title should start with a noun, for example _Conditional subschemas_. When the document is a guide that includes steps to complete a task, such as a tutorial, the title should start with a verb, for example, _Structuring complex schemas_. 
+Titles should be short and communicate the main idea of the document. For explanation or reference documents, the title should start with a noun phrase, for example, _Conditional subschemas_. When the document is a guide that includes steps to complete a task, such as a tutorial, the title should start with a bare infinitive, for example, _Structure complex schemas_. To learn more about headings and titles, see [_Headings and titles_](https://developers.google.com/style/text-formatting) of the Google developer documentation style guide. 
 
 Headings help readers scan the document and identify the parts that are relevant to them. Use headings, and subheadings when needed, that clearly describe the information they contain. 
 

@@ -7,8 +7,9 @@ import React, {
 } from 'react';
 
 import { Headline2 } from '~/components/Headlines';
-import CancelIcon from '~/public/icons/cancel.svg';
+import InfoIcon from '~/public/icons/icons8-info.svg';
 import OutLinkIcon from '~/public/icons/outlink.svg';
+import { Button } from '~/components/ui/button';
 
 import toTitleCase from '../lib/toTitleCase';
 import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
@@ -18,17 +19,20 @@ import Badge from './ui/Badge';
 import ToolingDetailModal from './ToolingDetailModal';
 import classnames from 'classnames';
 import { postAnalytics } from '../lib/postAnalytics';
+import Tag from './ui/Tag';
 
 interface ToolingTableProps {
   toolsByGroup: GroupedTools;
   transform: Transform;
   setTransform: Dispatch<SetStateAction<Transform>>;
+  numberOfTools: number;
 }
 
 const ToolingTable = ({
   toolsByGroup,
   transform,
   setTransform,
+  numberOfTools,
 }: ToolingTableProps) => {
   const [selectedTool, setSelectedTool] = useState<JSONSchemaTool | null>(null);
   const [bowtieReport, setBowtieReport] = useState<BowtieReport | null>(null);
@@ -95,6 +99,15 @@ const ToolingTable = ({
     setSelectedTool(null);
   };
 
+  if (numberOfTools === 0) {
+    return (
+      <div className='text-center py-12 text-gray-500 dark:text-gray-400 border'>
+        <p className='text-lg'>No Tools Found :(</p>
+        <p className='text-sm'>Try Adjusting Your Filters to Find More Tools</p>
+      </div>
+    );
+  }
+
   return (
     <>
       {groups.map((group) => (
@@ -104,10 +117,11 @@ const ToolingTable = ({
               <Headline2>{toTitleCase(group, '-')}</Headline2>
             </div>
           )}
-          <div className='overflow-x-auto'>
-            <table className='min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
+          <div className='overflow-x-hidden'>
+            {/* Desktop Table */}
+            <table className='hidden lg:table min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
               <thead>
-                <tr className='flex w-full min-w-[976px]'>
+                <tr className='flex w-full min-w-[860px]'>
                   <TableSortableColumnHeader
                     sortBy='name'
                     transform={transform}
@@ -177,16 +191,19 @@ const ToolingTable = ({
                     >
                       <TableCell
                         attributes={{
-                          className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : ''}`,
+                          className: `${tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : ''} gap-x-2 gap-y-1`,
                           style: {
                             flexBasis: '240px',
-                            flexShrink: 0,
+                            flexShrink: 1,
                             flexGrow: 0,
                           },
                           title: 'See details',
                         }}
                       >
                         {tool.name}
+                        {tool.status === 'obsolete' && (
+                          <Tag intent='error'>{tool.status}</Tag>
+                        )}
                       </TableCell>
                       {transform.groupBy !== 'toolingTypes' && (
                         <TableCell
@@ -244,11 +261,70 @@ const ToolingTable = ({
                                 <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                               </a>
                             ) : (
-                              <CancelIcon className='fill-current stroke-current w-4 h-4' />
+                              <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                             )}
                           </div>
                         )}
                       </TableCell>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+
+            {/* Mobile Table */}
+            <table className='lg:hidden min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
+              <tbody>
+                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
+                  const bowtieData = getBowtieData(tool);
+                  if (bowtieData) {
+                    tool.bowtie = bowtieData;
+                  }
+                  return (
+                    <tr
+                      key={index}
+                      className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
+                      onClick={() => openModal(tool)}
+                    >
+                      <td className='p-2 relative'>
+                        {bowtieData && (
+                          <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
+                            <span>Bowtie:</span>
+                            <a
+                              href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                              target='blank'
+                              onClick={(event) => event.stopPropagation()}
+                              title='See at Bowtie'
+                              className='ml-1'
+                            >
+                              <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                            </a>
+                          </div>
+                        )}
+
+                        <div className='flex justify-between items-center'>
+                          <div className='font-medium'>
+                            {tool.name}
+                            {tool.status === 'obsolete' && (
+                              <Tag intent='error'>{tool.status}</Tag>
+                            )}
+                          </div>
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          Languages: {tool.languages?.join(', ')}
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          Supported Dialects:
+                        </div>
+                        <div className='flex flex-wrap gap-1 mt-1'>
+                          {tool.supportedDialects?.draft?.map((draft) => (
+                            <Badge key={draft}>{draft}</Badge>
+                          ))}
+                        </div>
+                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                          License: {tool.license}
+                        </div>
+                      </td>
                     </tr>
                   );
                 })}
@@ -263,7 +339,6 @@ const ToolingTable = ({
     </>
   );
 };
-
 const TableColumnHeader = ({
   children,
   attributes: propAttributes,
@@ -326,7 +401,8 @@ const TableSortableColumnHeader = ({
 
   return (
     <TableColumnHeader attributes={propAttributes}>
-      <button
+      <Button
+        variant='ghost'
         className='flex items-center focus:outline-none'
         onClick={sortByColumn}
       >
@@ -347,7 +423,7 @@ const TableSortableColumnHeader = ({
             />
           </svg>
         )}
-      </button>
+      </Button>
     </TableColumnHeader>
   );
 };
@@ -364,7 +440,7 @@ const TableCell = ({
       {...propAttributes}
       className={classnames(
         propAttributes?.className,
-        'flex items-center w-full px-2 py-2 border-b border-gray-200 lg:break-words',
+        'flex items-center w-full px-2 py-2 border-b border-gray-200 lg:break-words flex-wrap',
       )}
       title={propAttributes?.title || 'See details'}
     >

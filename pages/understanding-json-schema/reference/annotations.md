@@ -1,6 +1,12 @@
 ---
 title: "Annotations"
 section: docs
+prev: 
+  label: Schema annotations and comments
+  url: /understanding-json-schema/reference/metadata
+next: 
+  label: Comments
+  url: /understanding-json-schema/reference/comments
 ---
 
 JSON Schema includes a few [keywords](../../learn/glossary#keyword), that aren\'t strictly used for

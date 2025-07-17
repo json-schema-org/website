@@ -12,6 +12,7 @@ import readingTime from 'reading-time';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import CarbonAds from '~/components/CarbonsAds';
+import Image from 'next/image';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
@@ -60,7 +61,13 @@ export default function StaticMarkdownPage({
                   href='/blog'
                   className='font-semibold text-sm pb-0 lg:pb-5 text-slate-700 dark:text-slate-300 dark:hover:text-slate-100 hover:text-slate-800 inline-flex flex-row items-center'
                 >
-                  <img src='/icons/left-arrow.svg' className='h-4 w-4 mr-2' />{' '}
+                  <Image
+                    src='/icons/left-arrow.svg'
+                    width={16}
+                    height={16}
+                    className='h-4 w-4 mr-2'
+                    alt='Left arrow icon'
+                  />
                   Go back to blog
                 </Link>
                 <div className='pt-4 lg:border-t border-none lg:border-r border-slate-100'>
@@ -82,7 +89,7 @@ export default function StaticMarkdownPage({
                             {author.twitter && (
                               <a
                                 className='block text-sm text-blue-500 font-medium'
-                                href={`https://twitter.com/${author.twitter}`}
+                                href={`https://x.com/${author.twitter}`}
                               >
                                 @{author.twitter}
                               </a>
@@ -105,7 +112,7 @@ export default function StaticMarkdownPage({
           </div>
           <div className='flex-1 lg:w-3/4 w-full'>
             <div
-              className='bg-slate-50 h-[500px] w-full rounded-lg bg-cover mb-10 bg-center'
+              className='bg-slate-50  w-full rounded-lg bg-cover mb-10 bg-center min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]'
               style={{ backgroundImage: `url(${frontmatter.cover})` }}
             />
             <StyledMarkdown markdown={content} />

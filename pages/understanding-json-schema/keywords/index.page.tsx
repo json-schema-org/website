@@ -9,6 +9,7 @@ import { Headline1, Headline4 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 import Link from 'next/link';
 import Image from 'next/image';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const datas = yaml.load(
@@ -38,20 +39,20 @@ interface LinkObject {
 }
 
 export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
-  const markdownFile = '_index';
+  const fileRenderType = 'tsx';
   return (
     <SectionContext.Provider value={null}>
       <Head>
-        <title>JSON Schema - Keywords</title>
+        <title>JSON Schema - keywords</title>
       </Head>
-      <Headline1>JSON Schema Keywords</Headline1>
+      <Headline1>JSON Schema keywords</Headline1>
       <p className='text-slate-600 block leading-7 dark:text-slate-300'>
-        JSON Schema keywords are the building blocks of JSON Schema and they are
-        used to define the structure of a JSON document.
+        Keywords are the building blocks of JSON Schema and they are used to
+        define the structure of a JSON document.
       </p>
       <p className='text-slate-600 block leading-7 dark:text-slate-300 pt-4'>
-        Find below the list of JSON Schema Keywords and their links to the JSON
-        Schema docs:
+        Below is a list of JSON Schema keywords with links to their respective
+        documentation.
       </p>
       <div className='mt-4'>
         {datas
@@ -86,8 +87,13 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
               ),
           )}
       </div>
-
-      <DocsHelp markdownFile={markdownFile} />
+      <NextPrevButton
+        prevLabel='JSON Schema reference'
+        prevURL='/understanding-json-schema/reference'
+        nextLabel='Type-specific Keywords'
+        nextURL='/understanding-json-schema/reference/type'
+      />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }

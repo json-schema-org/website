@@ -1,6 +1,12 @@
 ---
 title: Specification [#section]
 section: docs
+prev: 
+  label: "Media: string-encoding non-JSON data"
+  url: /understanding-json-schema/reference/non_json_data
+next: 
+  label: Specification Links
+  url: /specification-links
 ---
 
 The current version is *2020-12*!

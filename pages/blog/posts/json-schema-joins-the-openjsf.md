@@ -9,7 +9,7 @@ cover: /img/posts/2022/json-schema-joins-the-openjsf/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
-    link: https://www.twitter.com/relequestual
+    link: https://www.x.com/relequestual
     byline: JSON Schema Specification Lead @Postman
 excerpt: "Find out what we've been doing in 2021 and read about our biggest development yet... joining the OpenJS Foundation. Oh, and WE'RE HIRING!"
 ---
@@ -60,7 +60,7 @@ On joining Postman, one thing we discussed is the potential to bring on more peo
 
 In the immediate future, we're looking to hire for Software Engineer and for Technical Community Manager / Developer Relations roles.
 
-Feel free to reach out to me directly via [Twitter](https://www.twitter.com/jsonschema) or [Slack](https://json-schema.org/slack) should you have any questions.
+Feel free to reach out to me directly via [X](https://www.x.com/jsonschema) or [Slack](https://json-schema.org/slack) should you have any questions.
 
 
 # Regular calls
@@ -95,7 +95,7 @@ Currently there are only a handful of articles, but several more case studies ar
 
 The blog has an RSS feed, so if you're still using an RSS reader you can catch every new update.
 
-There were long time plans to rebuild the website as a whole, but our need for a blog escalated after some discussion around referencing on Twitter. Our first article was a joint post between myself and Mike Ralphson on the new JSON Schema bundling process.
+There were long time plans to rebuild the website as a whole, but our need for a blog escalated after some discussion around referencing on X. Our first article was a joint post between myself and Mike Ralphson on the new JSON Schema bundling process.
 
 We've published one case study in two languages, English and Japanese.
 
@@ -124,7 +124,7 @@ Here's the [Issue which lists all the Key Results as individual tasks](https://g
 
 If you've read this far, you must be interested in what we're doing at JSON Schema and our plans for the future.
 
-The most effective way to keep up to date is to join our Slack server. We're also using Twitter, which is our primary way to reach out to our community when we have questions.
+The most effective way to keep up to date is to join our Slack server. We're also using X, which is our primary way to reach out to our community when we have questions.
 
 There are lots more things we want to bring you, including essential tooling to enable a modern JSON Schema ecosystem.
 

@@ -1,6 +1,12 @@
 ---
 title: Creating your first schema
 section: docs
+prev: 
+  label: The basics
+  url: /understanding-json-schema/basics
+next: 
+  label: JSON Schema glossary
+  url: /learn/glossary
 ---
 
 JSON Schema is a vocabulary that you can use to annotate and validate JSON documents. This tutorial guides you through the process of creating a JSON Schema.
@@ -575,10 +581,10 @@ With the external schema reference, the overall schema looks like this:
 
 ## Validate JSON data against the schema
 
-Now that you have your JSON Schema is time to validate [JSON data](https://json-schema.org/learn/glossary#instance) against it using a [JSON Schema Validator](https://json-schema.org/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=validator). 
+Now that you have your JSON Schema, it is time to validate [JSON data](https://json-schema.org/learn/glossary#instance) against it using a [JSON Schema Validator](https://json-schema.org/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=validator). 
 
-A Validator is a tool that implements the JSON Schema specification. All validators works in a similar way: they take a JSON Schema and a JSON Instance as input and they returns the validation result as output.
+A Validator is a tool that implements the JSON Schema specification. All validators work in a similar way: they take a JSON Schema and a JSON Instance as input and they return the validation result as output.
 
 ![How JSON Schema works](https://json-schema.org/img/json_schema.svg)
 
-To try it yourself, please visit [Tools](https://json-schema.org/tools#validators) and select the validator that better suit your needs, our use the editors available below to explore the different Schemas and Instances and see the different validation results. 
+To try it yourself, please visit [Tools](https://json-schema.org/tools#validators) and select the validator that best suits your needs, or use the editors available below to explore the different Schemas and Instances and see the different validation results. 

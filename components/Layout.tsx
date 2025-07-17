@@ -8,9 +8,9 @@ import useStore from '~/store';
 import { SectionContext } from '~/context';
 import { useTheme } from 'next-themes';
 import DarkModeToggle from './DarkModeToggle';
-import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import ScrollButton from './ScrollButton';
-
+import Image from 'next/image';
+/* istanbul ignore file */
 type Props = {
   children: React.ReactNode;
   mainClassName?: string;
@@ -137,18 +137,33 @@ const MainNavLink = ({
   className?: string;
 }) => {
   const router = useRouter();
+  const isActiveNav =
+    router.asPath.startsWith(uri) ||
+    (uri === '/docs' && router.asPath.startsWith('/overview')) ||
+    (uri === '/docs' && router.asPath.startsWith('/learn')) ||
+    (uri === '/docs' && router.asPath.startsWith('/implementers')) ||
+    (uri === '/docs' &&
+      router.asPath.startsWith('/understanding-json-schema')) ||
+    (uri === '/specification' && router.asPath.startsWith('/draft'));
+
   return (
     <Link
       href={uri}
       className={classnames(
         className,
-        'font-semibold p-2 md:p-4 dark:text-slate-300',
+        'font-semibold p-2 md:p-4',
         // `${
         //   router.asPath === uri
         //     ? 'text-primary hover:text-primary'
         //     : 'text-slate-600 hover:text-primary'
         // }`,
-        `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary hover:text-primary' : 'text-slate-600 hover:text-primary'}`,
+        // `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary dark:text-white dark:underline hover:text-primary' : 'text-slate-600 dark:text-white hover:text-primary dark:hover:underline'}`,
+        {
+          'text-primary dark:text-white dark:underline hover:text-primary':
+            isActiveNav,
+          'text-slate-600 dark:text-white hover:text-primary dark:hover:underline':
+            !isActiveNav,
+        },
       )}
     >
       {label}
@@ -201,7 +216,7 @@ const MainNavigation = () => {
 
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/tools'
+        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
         label='Tools'
         isActive={section === 'tools'}
       />
@@ -290,7 +305,11 @@ const MobileNav = () => {
         isActive={section === 'docs'}
       />
 
-      <MainNavLink uri='/tools' label='Tools' isActive={section === 'tools'} />
+      <MainNavLink
+        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
+        label='Tools'
+        isActive={section === 'tools'}
+      />
       <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
         uri='/community'
@@ -315,7 +334,13 @@ const Footer = () => (
   >
     <div className='max-w-[1400px] mx-auto mt-8 md:mt-4 grid grid-cols-1 md:grid-cols-2 md:w-1/2 lg:w-1/3 justify-center '>
       <div className=' my-6 m-auto md:mt-16'>
-        <img src='/img/logos/logo-white.svg' className='w-[150px] mb-6' />
+        <Image
+          src='/img/logos/logo-white.svg'
+          width={150}
+          height={100}
+          alt='logo-white'
+          className='mb-6'
+        />
         <div className='flex flex-col text-center sm:text-left'>
           <a
             href='https://opencollective.com/json-schema'
@@ -325,9 +350,9 @@ const Footer = () => (
           </a>
         </div>
         <div className='flex flex-col text-center sm:text-left'>
-          <a href='/overview/code-of-conduct' className='text-white mb-2'>
+          <Link href='/overview/code-of-conduct' className='text-white mb-2'>
             Code of Conduct
-          </a>
+          </Link>
         </div>
       </div>
       <div className='grid grid-cols-3 md:grid-cols-1 mx-auto md:mt-8 mb-4 md:mb-0  gap-x-4 gap-y-4 md:gap-x-0 md:gap-y-0'>
@@ -336,20 +361,29 @@ const Footer = () => (
             href='https://json-schema.org/slack'
             className='flex items-center text-white'
           >
-            <img
+            <Image
               src='/img/logos/slack_logo_small-white.svg'
-              className='w-4 h-4 mr-2'
+              width={16}
+              height={16}
+              className=' mr-2'
+              alt='Slack logo'
             />
             Slack
           </a>
         </div>
         <div className=''>
           <a
-            href='https://twitter.com/jsonschema'
+            href='https://x.com/jsonschema'
             className='flex items-center text-white'
           >
-            <img src='/img/logos/x-twitter.svg' className='w-4 h-4 mr-2' />
-            Twitter
+            <Image
+              src='/img/logos/x-twitter.svg'
+              width={16}
+              height={16}
+              className=' mr-2'
+              alt='X logo'
+            />{' '}
+            X
           </a>
         </div>
         <div className=''>
@@ -357,9 +391,12 @@ const Footer = () => (
             href='https://linkedin.com/company/jsonschema/'
             className='flex items-center text-white'
           >
-            <img
+            <Image
               src='/img/logos/icons8-linkedin-2.svg'
-              className='w-4 h-4 mr-2'
+              width={16}
+              height={16}
+              className=' mr-2'
+              alt='LinkedIn logo'
             />
             LinkedIn
           </a>
@@ -369,7 +406,13 @@ const Footer = () => (
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
             className='flex items-center text-white'
           >
-            <img src='/img/logos/icons8-youtube.svg' className='w-4 h-4 mr-2' />
+            <Image
+              src='/img/logos/icons8-youtube.svg'
+              width={16}
+              height={16}
+              className='mr-2'
+              alt='YouTube logo'
+            />
             Youtube
           </a>
         </div>
@@ -378,9 +421,12 @@ const Footer = () => (
             href='https://github.com/json-schema-org'
             className='flex items-center text-white'
           >
-            <img
+            <Image
               src='/img/logos/github_logo-white.svg'
-              className='w-4 h-4 mr-2'
+              width={16}
+              height={16}
+              className='mr-2'
+              alt='GitHub logo'
             />
             GitHub
           </a>
@@ -389,7 +435,7 @@ const Footer = () => (
     </div>
     <div className='text-white font-normal text-center relative m-0 ml-0 mr-1 px-4'>
       <p>
-        Copyright © 2024 JSON Schema.&nbsp;
+        Copyright &copy; {new Date().getFullYear()} JSON Schema.&nbsp;
         <span className='block sm:inline sm:mb-0'>All rights reserved.</span>
       </p>
     </div>
@@ -411,7 +457,13 @@ const Logo = () => {
   return (
     <div>
       <Link href='/' className=''>
-        <img src={imageSrc} className='h-12 mr-2 ' />
+        <Image
+          src={imageSrc}
+          width={170}
+          height={48}
+          className='mr-2'
+          alt='Dynamic image'
+        />
       </Link>
     </div>
   );

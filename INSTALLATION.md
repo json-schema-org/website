@@ -4,7 +4,7 @@ This guide provides step-by-step instructions for installing the JSON Schema Web
 
 ## Table of Contents
 
-1. [Setting Up the Project](#setting-up-the-project)
+1. [Setting Up the Project](#setting-up-project)
    - [Requirements](#requirements)
    - [Cloning the Repository](#cloning-the-repository)
    - [Setting Up Environment Variables](#setting-up-environment-variables)
@@ -26,7 +26,7 @@ This guide provides step-by-step instructions for installing the JSON Schema Web
    - [Formatting](#formatting)
    - [Linting](#linting)
    - [Husky for Git Hooks](#husky-for-git-hooks)
-6. [Run locally using Docker](#docker-deployment)
+6. [Run locally using Docker](#run-locally-using-docker)
    - [Prerequisites](#prerequisites)
    - [Steps](#steps)
 
@@ -48,6 +48,8 @@ git submodule update
 ```
 
 ### Setting Up Environment Variables
+
+This step is optional. Environment variables are not required to run the website on your local development server.
 
 1. Create a new `.env` file by copying the contents of the `.env.example` into `.env` file. Use this command:
 ```

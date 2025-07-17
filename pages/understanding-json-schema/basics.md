@@ -1,6 +1,12 @@
 ---
 title: The basics
 section: docs
+prev: 
+  label: What is a Schema?
+  url: /understanding-json-schema/about
+next: 
+  label: Creating your first Schema
+  url: /learn/getting-started-step-by-step
 ---
 
 In [What is a schema?](../understanding-json-schema/about), we described what a [schema](../learn/glossary#schema) is,
@@ -18,7 +24,7 @@ valid schema that will accept any valid JSON.
 {}
 ```
 
-This accepts anything, as long as it's valid JSON
+This accepts anything, as long as it's valid JSON:
 
 ```json
 // props { "valid": true, "indent": true }

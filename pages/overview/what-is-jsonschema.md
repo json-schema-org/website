@@ -1,6 +1,9 @@
 ---
 section: docs
 title: What is JSON Schema?
+next: 
+  label: Roadmap
+  url: '/overview/roadmap'
 ---
 > JSON Schema is a declarative language for defining structure and constraints for JSON data.
 <br/>
@@ -33,8 +36,8 @@ JSON Schema empowers developers in the following ways:
 
 JSON Schema empowers organizations by:
 
-* **Simplifying Testing and Validation:**: JSON Schema reduces code complexity and development time by simplifying validation logic. It defines constraints for data structures, enabling the detection and prevention of errors, inconsistencies, and invalid data.
-* **Facilitating Seamless Data Exchange:**: JSON Schema establishes a common language for data exchange, no matter the complexity of your project. It defines precise validation rules for your data structures to create a shared understanding and increase interoperability across different systems and platforms.
+* **Simplifying Testing and Validation**: JSON Schema reduces code complexity and development time by simplifying validation logic. It defines constraints for data structures, enabling the detection and prevention of errors, inconsistencies, and invalid data.
+* **Facilitating Seamless Data Exchange**: JSON Schema establishes a common language for data exchange, no matter the complexity of your project. It defines precise validation rules for your data structures to create a shared understanding and increase interoperability across different systems and platforms.
 * **Enhancing Data Documentation**: JSON Schema enables the creation of clear and standardized representations of data. This improves understanding and collaboration among developers, stakeholders, and collaborators, enhancing organizational efficiency.
 * **Access to a Vibrant Tooling Ecosystem**: JSON Schema is supported by a diverse array of languages, libraries, and frameworks with community-driven [tools](https://json-schema.org/tools). This vibrant ecosystem enhances development productivity and provides resources for effective schema implementation and utilization.
 

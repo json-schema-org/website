@@ -166,6 +166,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
     <FullMarkdownContext.Provider value={markdown}>
       <Markdown
         options={{
+          forceBlock: true,
           overrides: {
             h1: { component: Headline1 },
             h2: { component: Headline2 },
@@ -173,7 +174,7 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             h4: { component: Headline4 },
             strong: {
               component: ({ children }) => (
-                <strong className='font-semibold text-slate-800 dark:text-slate-500'>
+                <strong className='font-semibold text-slate-800 dark:text-slate-200'>
                   {children}
                 </strong>
               ),
@@ -191,6 +192,16 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 </p>
               ),
             },
+            specialBox: {
+              component: ({ children }) => {
+                return (
+                  <div className='bg-blue-200 border-l-4 border-blue-500 px-4 py-1 relative text-blue-700 dark:bg-blue-900 dark:border-blue-400 dark:text-blue-200'>
+                    {children}
+                  </div>
+                );
+              },
+            },
+
             a: {
               component: ({ children, href, title, className }) => {
                 if (!href) return children;
@@ -297,34 +308,25 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               }
 
               return (
-                <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
-                  {/* definitely not the best way to prevent overflowing. found no better way that worked */}
+                <div className='overflow-x-auto rounded-lg bg-gray-800 text-white'>
                   <Highlight
                     language={language}
-                    wrapLines={true}
-                    wrapLongLines={true}
-                    customStyle={{
-                      borderRadius: 10,
-                      paddingTop: 15,
-                      paddingBottom: 10,
-                      paddingLeft: 10,
-                      marginBottom: 20,
-                      maxWidth: '100%',
-                    }}
-                    lineNumberStyle={{
-                      marginRight: 10,
-                    }}
                     style={atomOneDark}
                     showLineNumbers
-                    startingLineNumber={1}
-                    lineProps={() => {
-                      const isHighlighted = false;
-                      return {
-                        className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
-                      };
+                    lineNumberStyle={{
+                      color: '#64748B',
+                      fontSize: '16px',
+                      paddingRight: '10px',
+                    }}
+                    customStyle={{
+                      padding: '12px',
+                      fontFamily: 'monospace',
+                      fontSize: '16px',
                     }}
                     codeTagProps={{
-                      className: 'mr-8',
+                      style: {
+                        fontFamily: 'monospace',
+                      },
                     }}
                   >
                     {code}
@@ -378,7 +380,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ label }) => {
                 return (
                   <div className='flex flex-row items-center text-blue-500 text-lg font-semibold mb-6 mt-10'>
-                    <img src='/icons/star.svg' className='h-5 w-5 mr-2 mb-1' />
+                    <Image
+                      src='/icons/star.svg'
+                      width={20}
+                      height={20}
+                      className='mr-2 mb-1'
+                      alt='star'
+                    />
                     {label}
                   </div>
                 );
@@ -388,7 +396,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
               component: ({ label }) => {
                 return (
                   <div className='inline-flex flex-row items-center text-blue-500 font-semibold'>
-                    <img src='/icons/star.svg' className='h-3 w-3 mr-1' />
+                    <Image
+                      src='/icons/info-yellow.svg'
+                      className='mr-1'
+                      width={12}
+                      height={12}
+                      alt='info yellow'
+                    />
                     {label}
                   </div>
                 );
@@ -403,11 +417,13 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                         {label}
                       </div>
                     )}
-                    <div className='flex flex-row items-center mb-6 bg-amber-50 px-6 py-4 border border-amber-100 rounded text-slate-600 leading-7'>
-                      <img
+                    <div className='flex flex-row items-center mb-6 bg-amber-100 px-6 py-4 border border-amber-100 rounded text-slate-500 leading-7'>
+                      <Image
                         src='/icons/info-yellow.svg'
                         className='h-7 w-7 mr-3'
-                        alt=''
+                        width={28}
+                        height={28}
+                        alt='info yellow'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -425,10 +441,12 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-blue-50 px-6 py-4 border border-blue-100 rounded dark:bg-slate-900 dark:text-slate-300 text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/info-blue.svg'
-                        className='h-7 w-7 mr-3'
-                        alt=''
+                        className='mr-3'
+                        width={28}
+                        height={28}
+                        alt='info blue'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -446,10 +464,12 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-green-50 px-6 py-4 border border-green-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/bulb.svg'
-                        className='h-7 w-7 mr-3'
-                        alt=''
+                        className='mr-3'
+                        width={28}
+                        height={28}
+                        alt='bulb'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -467,10 +487,12 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                       </div>
                     )}
                     <div className='flex flex-row items-center mb-6 bg-red-50 px-6 py-4 border border-red-100 rounded text-slate-600 leading-7'>
-                      <img
+                      <Image
                         src='/icons/warning.svg'
-                        className='h-7 w-7 mr-3'
-                        alt=''
+                        className='mr-3'
+                        width={28}
+                        height={28}
+                        alt='warning'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -509,8 +531,8 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                     <div className='flex flex-row gap-2 text-slate-600 dark:text-slate-300 text-h5 max-sm:text-[1rem]  items-center'>
                       <Image
                         src={'/icons/toc-menu.svg'}
-                        height={15}
-                        width={15}
+                        height={'15'}
+                        width={'15'}
                         alt='menu-icon'
                         className='max-sm:w-3 max-sm:h-3'
                       />
@@ -552,11 +574,8 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.40rem] font-medium'
+                  className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
                 >
-                  <span className='mr-1 text-blue-400/90 text-[1em] flex justify-center items-center'>
-                    &#9679;
-                  </span>
                   {children}
                 </a>
               );
@@ -572,7 +591,7 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-4 font-medium'
+                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
                       >
                         {children}
                       </a>
@@ -668,6 +687,11 @@ export function TableOfContentMarkdown({
             'figure',
             'Bigquote',
             'Regularquote',
+            'specialBox',
+            'Infobox',
+            'Danger',
+            'Warning',
+            'Tip',
           ),
         },
       }}

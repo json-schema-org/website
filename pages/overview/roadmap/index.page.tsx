@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import roadmap from '~/data/roadmap.json';
+import NextPrevButton from '~/components/NavigationButtons';
 
 const statusColors = {
   'In Progress': 'bg-green-600 text-white dark:bg-green-500',
@@ -34,7 +35,7 @@ const impactColors = {
 
 export default function Roadmap() {
   const newTitle = 'JSON Schema Roadmap';
-  const markdownFile = '_indexPage';
+  const fileRenderType = 'tsx';
 
   return (
     <SectionContext.Provider value='docs'>
@@ -130,7 +131,13 @@ export default function Roadmap() {
           </div>
         </div>
       </div>
-      <DocsHelp markdownFile={markdownFile} />
+      <NextPrevButton
+        prevLabel='What is JSON Schema'
+        prevURL='/overview/what-is-jsonschema'
+        nextLabel='Sponsors'
+        nextURL='/overview/sponsors'
+      />
+      <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
 }
