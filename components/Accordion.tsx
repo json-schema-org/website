@@ -108,7 +108,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
                 <div className='ml-4 flex-shrink-0'>
                   <div
                     className={cn(
-                      'w-6 h-6 rounded-full border-2 border-border flex items-center justify-center transition-all duration-200',
+                      'w-6 h-6 rounded-full border-2 border-border flex items-center justify-center transition-all duration-200 cursor-pointer',
                       openItems.has(item.id)
                         ? 'border-primary bg-primary text-white rotate-45 dark:bg-[#bfdbfe] dark:text-black dark:border-[#bfdbfe]'
                         : 'hover:border-primary/50',
