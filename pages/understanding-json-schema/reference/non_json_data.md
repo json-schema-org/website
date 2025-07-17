@@ -79,7 +79,7 @@ To better understand how `contentEncoding` and `contentMediaType` are applied in
 ![Role of contentEncoding and contenMediaType keywords in the transmission of non-JSON data](/img/media-keywords.png)
 -->
 
-```mermaid
+```code
 block-beta
    columns 9
    A space B space C space D space E
