@@ -296,11 +296,11 @@ export default function JsonEditor({
   code?: string;
 }) {
   const fullMarkdown = useContext(FullMarkdownContext);
-  
+
   // Determine if we're in JSON/JSONC mode or regular code mode
   const isJsonMode = initialCode !== undefined;
   const codeContent = isJsonMode ? initialCode : code || '';
-  
+
   /* istanbul ignore next: In the test environment, the fullMarkdown is not provided. */
   const hasCodeblockAsDescendant: boolean | undefined = (() => {
     if (!isJsonMode) return false;
@@ -319,7 +319,7 @@ export default function JsonEditor({
   // Clean code and detect partial schema for JSONC
   const cleanedUpCode = React.useMemo(() => {
     if (!isJsonMode) return codeContent;
-    
+
     let code = codeContent.replace(META_REGEX, '');
 
     if (isJsonc) {
