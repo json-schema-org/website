@@ -7,14 +7,9 @@ import Link from 'next/link';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import JsonEditor from '~/components/JsonEditor';
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp';
-import Highlight from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Code from '~/components/Code';
 import { FullMarkdownContext } from '~/context';
 import Image from 'next/image';
-import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 
 import {
   Headline1,
@@ -319,84 +314,8 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
                 return <JsonEditor initialCode={code} isJsonc={true} />;
               }
 
-              // Copy functionality for regular code blocks
-              const [copied, setCopied] = React.useState(false);
-              const handleCopy = () => {
-                navigator.clipboard.writeText(code);
-                setCopied(true);
-                setTimeout(() => setCopied(false), 2000);
-              };
-
-              // Badge text logic
-              const getBadgeText = () => {
-                if (!language) return 'code';
-                const lang = language.replace('lang-', '');
-                return lang;
-              };
-
-              return (
-                <Card className='relative font-mono bg-slate-800 border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0'>
-                  <div className='flex flex-row absolute right-0 z-10'>
-                    <Button
-                      variant='ghost'
-                      size='icon'
-                      className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
-                      onClick={handleCopy}
-                    >
-                      {copied ? (
-                        <Image
-                          src='/icons/copied.svg'
-                          alt='Copied icon'
-                          width={20}
-                          height={20}
-                          title='Copied!'
-                        />
-                      ) : (
-                        <Image
-                          src='/icons/copy.svg'
-                          alt='Copy icon'
-                          title='Copy to clipboard'
-                          width={20}
-                          height={20}
-                        />
-                      )}
-                    </Button>
-                    <Badge
-                      variant='secondary'
-                      className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
-                    >
-                      {getBadgeText()}
-                    </Badge>
-                  </div>
-                  <CardContent className='p-0'>
-                    <div className='overflow-x-auto'>
-                      <Highlight
-                        language={language}
-                        style={atomOneDark}
-                        showLineNumbers
-                        lineNumberStyle={{
-                          color: '#64748B',
-                          fontSize: '16px',
-                          paddingRight: '10px',
-                        }}
-                        customStyle={{
-                          padding: '12px',
-                          fontFamily: 'monospace',
-                          fontSize: '16px',
-                          backgroundColor: 'transparent',
-                        }}
-                        codeTagProps={{
-                          style: {
-                            fontFamily: 'monospace',
-                          },
-                        }}
-                      >
-                        {code}
-                      </Highlight>
-                    </div>
-                  </CardContent>
-                </Card>
-              );
+              // Use JsonEditor for regular code blocks
+              return <JsonEditor language={language} code={code} />;
             },
             blockquote: {
               component: ({ children }) => (

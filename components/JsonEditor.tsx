@@ -16,6 +16,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/alert';
+import Highlight from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 type CustomElement = CustomNode | CustomText;
 type CustomNode = { type: 'paragraph'; children: CustomText[] };
@@ -285,16 +287,26 @@ const deserializeCode = (code: string): CustomElement[] => {
 export default function JsonEditor({
   initialCode,
   isJsonc = false,
+  language,
+  code,
 }: {
-  initialCode: string;
+  initialCode?: string;
   isJsonc?: boolean;
+  language?: string;
+  code?: string;
 }) {
   const fullMarkdown = useContext(FullMarkdownContext);
+  
+  // Determine if we're in JSON/JSONC mode or regular code mode
+  const isJsonMode = initialCode !== undefined;
+  const codeContent = isJsonMode ? initialCode : code || '';
+  
   /* istanbul ignore next: In the test environment, the fullMarkdown is not provided. */
   const hasCodeblockAsDescendant: boolean | undefined = (() => {
-    const positionOfCodeInFullMarkdown = fullMarkdown?.indexOf(initialCode);
+    if (!isJsonMode) return false;
+    const positionOfCodeInFullMarkdown = fullMarkdown?.indexOf(codeContent);
     if (!positionOfCodeInFullMarkdown) return;
-    const endPositionOfCode = positionOfCodeInFullMarkdown + initialCode.length;
+    const endPositionOfCode = positionOfCodeInFullMarkdown + codeContent.length;
     const startPositionOfNextBlock = endPositionOfCode + '\n```\n'.length;
     const markdownAfterCodeBlock = fullMarkdown?.substr(
       startPositionOfNextBlock,
@@ -306,7 +318,9 @@ export default function JsonEditor({
 
   // Clean code and detect partial schema for JSONC
   const cleanedUpCode = React.useMemo(() => {
-    let code = initialCode.replace(META_REGEX, '');
+    if (!isJsonMode) return codeContent;
+    
+    let code = codeContent.replace(META_REGEX, '');
 
     if (isJsonc) {
       // Remove partial schema comments for JSONC
@@ -317,7 +331,7 @@ export default function JsonEditor({
     }
 
     return code;
-  }, [initialCode, isJsonc]);
+  }, [codeContent, isJsonc, isJsonMode]);
 
   const [value, setValue] = React.useState<CustomElement[]>(
     deserializeCode(cleanedUpCode),
@@ -330,7 +344,8 @@ export default function JsonEditor({
   const [editor] = React.useState(() => withReact(createEditor()));
 
   const meta: null | Meta = React.useMemo(() => {
-    const metaRegexFinding = META_REGEX.exec(initialCode);
+    if (!isJsonMode) return null;
+    const metaRegexFinding = META_REGEX.exec(codeContent);
     if (!metaRegexFinding) return null;
     try {
       const metaString: undefined | string = metaRegexFinding?.groups?.meta;
@@ -342,7 +357,7 @@ export default function JsonEditor({
     } catch (e) {
       return null;
     }
-  }, [initialCode]);
+  }, [codeContent, isJsonMode]);
 
   const parsedCode: null | any = React.useMemo(() => {
     try {
@@ -354,13 +369,13 @@ export default function JsonEditor({
 
   // Detect partial schema for JSONC
   const isPartialSchema = React.useMemo(() => {
-    if (!isJsonc) return false;
-    const codeString = String(initialCode || '');
+    if (!isJsonc || !isJsonMode) return false;
+    const codeString = String(codeContent || '');
     return (
       codeString.includes('// partial schema') ||
       codeString.includes('/* partial schema */')
     );
-  }, [initialCode, isJsonc]);
+  }, [codeContent, isJsonc, isJsonMode]);
 
   const isJsonSchema = React.useMemo(() => {
     return parsedCode?.['$schema'] || meta?.isSchema;
@@ -403,6 +418,84 @@ export default function JsonEditor({
     () => calculateNewDecorationsMap(value, isPartialSchema),
     [value, isPartialSchema],
   );
+
+  // Badge text logic for regular code blocks
+  const getBadgeText = () => {
+    if (!language) return 'code';
+    const lang = language.replace('lang-', '');
+    return lang;
+  };
+
+  // If not in JSON mode, render as regular code block
+  if (!isJsonMode) {
+    return (
+      <Card className='relative font-mono bg-slate-800 border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0'>
+        <div className='flex flex-row absolute right-0 z-10'>
+          <Button
+            variant='ghost'
+            size='icon'
+            className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
+            onClick={() => {
+              navigator.clipboard.writeText(codeContent);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+          >
+            {copied ? (
+              <Image
+                src='/icons/copied.svg'
+                alt='Copied icon'
+                width={20}
+                height={20}
+                title='Copied!'
+              />
+            ) : (
+              <Image
+                src='/icons/copy.svg'
+                alt='Copy icon'
+                title='Copy to clipboard'
+                width={20}
+                height={20}
+              />
+            )}
+          </Button>
+          <Badge
+            variant='secondary'
+            className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
+          >
+            {getBadgeText()}
+          </Badge>
+        </div>
+        <CardContent className='p-0'>
+          <div className='overflow-x-auto'>
+            <Highlight
+              language={language}
+              style={atomOneDark}
+              showLineNumbers
+              lineNumberStyle={{
+                color: '#64748B',
+                fontSize: '16px',
+                paddingRight: '10px',
+              }}
+              customStyle={{
+                padding: '12px',
+                fontFamily: 'monospace',
+                fontSize: '16px',
+                backgroundColor: 'transparent',
+              }}
+              codeTagProps={{
+                style: {
+                  fontFamily: 'monospace',
+                },
+              }}
+            >
+              {codeContent}
+            </Highlight>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Slate
