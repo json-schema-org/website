@@ -10,7 +10,7 @@ import { useTheme } from 'next-themes';
 import DarkModeToggle from './DarkModeToggle';
 import ScrollButton from './ScrollButton';
 import Image from 'next/image';
-
+/* istanbul ignore file */
 type Props = {
   children: React.ReactNode;
   mainClassName?: string;

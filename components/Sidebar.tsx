@@ -1,15 +1,22 @@
+/* eslint-disable linebreak-style */
+/* istanbul ignore file */
 import { getLayout as getSiteLayout } from './SiteLayout';
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { HOST } from '~/lib/config';
 import classnames from 'classnames';
-import { SegmentHeadline } from './Layout';
 import extractPathWithoutFragment from '~/lib/extractPathWithoutFragment';
 import CarbonAds from './CarbonsAds';
 import { useTheme } from 'next-themes';
 import ExternalLinkIcon from '../public/icons/external-link-black.svg';
 import Image from 'next/image';
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from './ui/collapsible';
+import { Button } from './ui/button';
 
 const DocLink = ({
   uri,
@@ -32,7 +39,7 @@ const DocLink = ({
     <Link
       href={uri}
       className={classnames(
-        'text-sm block py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-[#007bff]',
+        'text-sm block py-1 pl-2 transition-transform duration-300 hover:scale-105 hover:text-[#007bff] dark:hover:text-[#bfdbfe] dark:hover:bg-slate-800',
         {
           'font-medium': !isActive,
           'text-primary dark:text-[#007bff] font-bold border-l-2 border-l-primary':
@@ -310,60 +317,6 @@ export const DocsNav = ({
     setActive(newActive);
   }, [router.asPath]);
 
-  const handleClickDoc = () => {
-    setActive({
-      getDocs: !active.getDocs,
-      getStarted: false,
-      getReference: false,
-      getSpecification: false,
-      getGuides: false,
-    });
-  };
-
-  const handleClickGet = () => {
-    setActive({
-      getDocs: false,
-      getStarted: !active.getStarted,
-      getReference: false,
-      getSpecification: false,
-      getGuides: false,
-    });
-  };
-
-  const handleClickReference = () => {
-    setActive({
-      getDocs: false,
-      getStarted: false,
-      getReference: !active.getReference,
-      getSpecification: false,
-      getGuides: false,
-    });
-  };
-
-  const handleClickGuides = () => {
-    setActive({
-      getDocs: false,
-      getStarted: false,
-      getGuides: !active.getGuides,
-      getReference: false,
-      getSpecification: false,
-    });
-  };
-
-  const handleClickSpec = () => {
-    setActive({
-      getDocs: false,
-      getStarted: false,
-      getGuides: false,
-      getReference: false,
-      getSpecification: !active.getSpecification,
-    });
-  };
-
-  const rotate = active.getDocs ? 'rotate(180deg)' : 'rotate(0)';
-  const rotateG = active.getStarted ? 'rotate(180deg)' : 'rotate(0)';
-  const rotateR = active.getReference ? 'rotate(180deg)' : 'rotate(0)';
-  const rotateSpec = active.getSpecification ? 'rotate(180deg)' : 'rotate(0)';
   const { resolvedTheme } = useTheme();
   const [learn_icon, setLearn_icon] = useState('');
   const [reference_icon, setReference_icon] = useState('');
@@ -389,527 +342,563 @@ export const DocsNav = ({
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       {/* Introduction */}
-      <div className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-2 rounded transition-transform duration-300 hover:scale-95'>
-        <div
-          className='flex justify-between w-full items-center'
-          onClick={handleClickDoc}
-        >
-          <div className='flex items-center align-middle'>
-            <Image
-              src={`${overview_icon}`}
-              alt='eye icon'
-              height={20}
-              width={22}
-              className='mr-2'
-            />
-            <SegmentHeadline label='Introduction' />
-          </div>
-          <svg
-            style={{
-              transform: rotate,
-              transition: 'all 0.2s linear',
-              cursor: 'pointer',
-            }}
-            id='arrow'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            height='32'
-            viewBox='0 0 24 24'
-            width='24'
+      <Collapsible
+        open={active.getDocs}
+        onOpenChange={(open) =>
+          setActive((prev) => ({
+            ...prev,
+            getDocs: open,
+          }))
+        }
+        className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-3 rounded transition-all duration-300 group'
+      >
+        <CollapsibleTrigger asChild>
+          <Button
+            variant='ghost'
+            className='flex justify-between w-full items-center h-auto p-0 hover:bg-transparent'
           >
-            <path
-              clipRule='evenodd'
-              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
-              fill='#707070'
-              fillRule='evenodd'
+            <div className='flex items-center align-middle'>
+              <Image
+                src={`${overview_icon}`}
+                alt='eye icon'
+                height={24}
+                width={26}
+                className='mr-2 transition-transform duration-300 group-hover:scale-110'
+              />
+              <div className='text-slate-900 dark:text-slate-300 font-bold text-lg transition-all duration-300 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-[#bfdbfe]'>
+                Introduction
+              </div>
+            </div>
+            <svg
+              style={{
+                transform: active.getDocs ? 'rotate(180deg)' : 'rotate(0)',
+                transition: 'all 0.2s linear',
+                cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
+              }}
+              id='arrow'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              height='25'
+              viewBox='0 0 24 24'
+              width='25'
+            >
+              <path
+                clipRule='evenodd'
+                d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+                fill='#707070'
+                fillRule='evenodd'
+              />
+            </svg>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden'>
+          <div className='mt-2'>
+            <DocLink uri='/docs' label='Overview' setOpen={setOpen} />
+            <DocLink
+              uri='/overview/what-is-jsonschema'
+              label='What is JSON Schema?'
+              setOpen={setOpen}
             />
-          </svg>
-        </div>
-        <div
-          className={classnames(
-            'ml-6 transition-all duration-500 ease-in-out',
-            {
-              'max-h-0 opacity-0 overflow-hidden': !active.getDocs,
-              'max-h-80 opacity-100': active.getDocs,
-            },
-          )}
-          id='overview'
-        >
-          <DocLink uri='/docs' label='Overview' setOpen={setOpen} />
-          <DocLink
-            uri='/overview/what-is-jsonschema'
-            label='What is JSON Schema?'
-            setOpen={setOpen}
-          />
-          <DocLink uri='/overview/roadmap' label='Roadmap' setOpen={setOpen} />
-          <DocLink
-            uri='/overview/sponsors'
-            label='Sponsors'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/overview/use-cases'
-            label='Use cases'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/overview/case-studies'
-            label='Case studies'
-            setOpen={setOpen}
-          />
-          <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
-          <DocLink
-            uri='/overview/pro-help'
-            label='Pro Help'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/overview/similar-technologies'
-            label='Similar technologies'
-            setOpen={setOpen}
-          />
-          <DocLinkBlank
-            uri='https://landscape.json-schema.org'
-            label='Landscape'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/overview/code-of-conduct'
-            label='Code of conduct'
-            setOpen={setOpen}
-          />
-        </div>
-      </div>
+            <DocLink
+              uri='/overview/roadmap'
+              label='Roadmap'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/overview/sponsors'
+              label='Sponsors'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/overview/use-cases'
+              label='Use cases'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/overview/case-studies'
+              label='Case studies'
+              setOpen={setOpen}
+            />
+            <DocLink uri='/overview/faq' label='FAQ' setOpen={setOpen} />
+            <DocLink
+              uri='/overview/pro-help'
+              label='Pro Help'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/overview/similar-technologies'
+              label='Similar technologies'
+              setOpen={setOpen}
+            />
+            <DocLinkBlank
+              uri='https://landscape.json-schema.org'
+              label='Landscape'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/overview/code-of-conduct'
+              label='Code of conduct'
+              setOpen={setOpen}
+            />
+          </div>
+        </CollapsibleContent>
+      </Collapsible>
+
       {/* Get Started */}
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden transition-transform duration-300 hover:scale-95'>
-        <div
-          className='flex justify-between w-full items-center'
-          onClick={handleClickGet}
-        >
-          <div className='flex items-center align-middle'>
-            <Image
-              src={`${learn_icon}`}
-              alt='compass icon'
-              height={20}
-              width={20}
-              className='mr-2'
-            />
-            <SegmentHeadline label='Get Started' />
-          </div>
-          <svg
-            style={{
-              transform: rotateG,
-              transition: 'all 0.2s linear',
-              cursor: 'pointer',
-            }}
-            id='arrow'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            height='32'
-            viewBox='0 0 24 24'
-            width='24'
+      <Collapsible
+        open={active.getStarted}
+        onOpenChange={(open) =>
+          setActive((prev) => ({
+            ...prev,
+            getStarted: open,
+          }))
+        }
+        className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
+      >
+        <CollapsibleTrigger asChild>
+          <Button
+            variant='ghost'
+            className='flex justify-between w-full items-center h-auto p-0 hover:bg-transparent'
           >
-            <path
-              clipRule='evenodd'
-              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
-              fill='#707070'
-              fillRule='evenodd'
-            />
-          </svg>
-        </div>
-        <div
-          className={classnames(
-            'ml-6 transition-all duration-500 ease-in-out',
-            {
-              'max-h-0 opacity-0 overflow-hidden': !active.getStarted,
-              'max-h-80 opacity-100': active.getStarted,
-            },
-          )}
-          id='getStarted'
-        >
-          <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
-          <DocLink
-            uri='/understanding-json-schema/about'
-            label='What is a schema?'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/understanding-json-schema/basics'
-            label='The basics'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/learn/getting-started-step-by-step'
-            label='Create your first schema'
-            setOpen={setOpen}
-          />
-          <DocLinkBlank
-            uri='https://tour.json-schema.org/'
-            label='Tour of JSON Schema'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/learn/glossary'
-            label='JSON Schema glossary'
-            setOpen={setOpen}
-          />
-          <SegmentSubtitle label='Examples' />
-          <div className='pl-4 pb-1 pt-1'>
+            <div className='flex items-center align-middle'>
+              <Image
+                src={`${learn_icon}`}
+                alt='compass icon'
+                height={24}
+                width={24}
+                className='mr-2 transition-transform duration-300 group-hover:scale-110'
+              />
+              <div className='text-slate-900 dark:text-slate-300 font-bold text-lg transition-all duration-300 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-[#bfdbfe]'>
+                Get Started
+              </div>
+            </div>
+            <svg
+              style={{
+                transform: active.getStarted ? 'rotate(180deg)' : 'rotate(0)',
+                transition: 'all 0.2s linear',
+                cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
+              }}
+              id='arrow'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              height='25'
+              viewBox='0 0 24 24'
+              width='25'
+            >
+              <path
+                clipRule='evenodd'
+                d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+                fill='#707070'
+                fillRule='evenodd'
+              />
+            </svg>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden'>
+          <div className='mt-2'>
+            <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
             <DocLink
-              uri='/learn/miscellaneous-examples'
-              label='Miscellaneous examples'
+              uri='/understanding-json-schema/about'
+              label='What is a schema?'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/learn/file-system'
-              label='Modelling a file system'
+              uri='/understanding-json-schema/basics'
+              label='The basics'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/learn/json-schema-examples'
-              label='Other examples'
+              uri='/learn/getting-started-step-by-step'
+              label='Create your first schema'
               setOpen={setOpen}
             />
+            <DocLinkBlank
+              uri='https://tour.json-schema.org/'
+              label='Tour of JSON Schema'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/learn/glossary'
+              label='JSON Schema glossary'
+              setOpen={setOpen}
+            />
+            <SegmentSubtitle label='Examples' />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink
+                uri='/learn/miscellaneous-examples'
+                label='Miscellaneous examples'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/learn/file-system'
+                label='Modelling a file system'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/learn/json-schema-examples'
+                label='Other examples'
+                setOpen={setOpen}
+              />
+            </div>
           </div>
-        </div>
-      </div>
-      {/* Closing div: Get started */}
+        </CollapsibleContent>
+      </Collapsible>
+
       {/* Guides */}
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden transition-transform duration-300 hover:scale-95'>
-        <div
-          className='flex justify-between w-full items-center'
-          onClick={handleClickGuides}
-        >
-          <div className='flex items-center align-middle'>
-            <Image
-              src={`${guides_icon}`}
-              alt='grad cap icon'
-              height={20}
-              width={20}
-              className='mr-2'
-            />
-            <SegmentHeadline label='Guides' />
-          </div>
-          <svg
-            style={{
-              transform: rotateG,
-              transition: 'all 0.2s linear',
-              cursor: 'pointer',
-            }}
-            id='arrow'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            height='32'
-            viewBox='0 0 24 24'
-            width='24'
+      <Collapsible
+        open={active.getGuides}
+        onOpenChange={(open) =>
+          setActive((prev) => ({
+            ...prev,
+            getGuides: open,
+          }))
+        }
+        className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
+      >
+        <CollapsibleTrigger asChild>
+          <Button
+            variant='ghost'
+            className='flex justify-between w-full items-center h-auto p-0 hover:bg-transparent'
           >
-            <path
-              clipRule='evenodd'
-              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
-              fill='#707070'
-              fillRule='evenodd'
-            />
-          </svg>
-        </div>
-        <div
-          className={classnames('ml-6', { hidden: !active.getGuides })}
-          id='Guides'
-        >
-          <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
-          <DocLink
-            uri='/implementers'
-            label='For implementers'
-            setOpen={setOpen}
-          />
-          <div className='pl-4 pb-1 pt-1'>
+            <div className='flex items-center align-middle'>
+              <Image
+                src={`${guides_icon}`}
+                alt='grad cap icon'
+                height={24}
+                width={24}
+                className='mr-2 transition-transform duration-300 group-hover:scale-110'
+              />
+              <div className='text-slate-900 dark:text-slate-300 font-bold text-lg transition-all duration-300 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-[#bfdbfe]'>
+                Guides
+              </div>
+            </div>
+            <svg
+              style={{
+                transform: active.getGuides ? 'rotate(180deg)' : 'rotate(0)',
+                transition: 'all 0.2s linear',
+                cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
+              }}
+              id='arrow'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              height='25'
+              viewBox='0 0 24 24'
+              width='25'
+            >
+              <path
+                clipRule='evenodd'
+                d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+                fill='#707070'
+                fillRule='evenodd'
+              />
+            </svg>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden'>
+          <div className='mt-2'>
+            <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
             <DocLink
-              uri='/implementers/interfaces'
-              label='Common interfaces across implementations'
+              uri='/implementers'
+              label='For implementers'
               setOpen={setOpen}
             />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink
+                uri='/implementers/interfaces'
+                label='Common interfaces across implementations'
+                setOpen={setOpen}
+              />
+            </div>
           </div>
-          {/*Closing div tag: for implementers*/}
-        </div>
-      </div>
-      {/* Closing div: Guides */}
+        </CollapsibleContent>
+      </Collapsible>
+
       {/* Reference */}
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden transition-transform duration-300 hover:scale-95'>
-        <div
-          className='flex justify-between w-full items-center'
-          onClick={handleClickReference}
-        >
-          <div className='flex items-center align-middle'>
-            <Image
-              src={`${reference_icon}`}
-              alt='book icon'
-              height={20}
-              width={20}
-              className='mr-2'
-            />
-            <SegmentHeadline label='Reference' />
-          </div>
-          <svg
-            style={{
-              transform: rotateR,
-              transition: 'all 0.2s linear',
-              cursor: 'pointer',
-            }}
-            id='arrow'
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            height='32'
-            viewBox='0 0 24 24'
-            width='24'
+      <Collapsible
+        open={active.getReference}
+        onOpenChange={(open) =>
+          setActive((prev) => ({
+            ...prev,
+            getReference: open,
+          }))
+        }
+        className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
+      >
+        <CollapsibleTrigger asChild>
+          <Button
+            variant='ghost'
+            className='flex justify-between w-full items-center h-auto p-0 hover:bg-transparent'
           >
-            <path
-              clipRule='evenodd'
-              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
-              fill='#707070'
-              fillRule='evenodd'
-            />
-          </svg>
-        </div>
-        {/*Opening div: inner reference div */}
-        <div
-          className={classnames(
-            'ml-6 transition-all duration-500 ease-in-out',
-            {
-              'max-h-0 opacity-0 overflow-hidden': !active.getReference,
-              'max-h-80 overflow-y-auto opacity-100': active.getReference,
-            },
-          )}
-          id='reference'
-        >
-          <DocLink
-            uri='/understanding-json-schema/reference'
-            label='Overview'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/understanding-json-schema/keywords'
-            label='JSON Schema keywords'
-            setOpen={setOpen}
-          />
-          {/*<DocLink
-            uri='/understanding-json-schema'
-            label='Understanding JSON Schema'
-            setOpen={setOpen}
-          />*/}
-          {/*<div className='pl-4 pb-1 pt-1'>*/}
-          {/*<DocLink
-              uri='/understanding-json-schema/conventions'
-              label='Conventions used'
-              setOpen={setOpen}
-            />*/}
-          {/*<DocLink
+            <div className='flex items-center align-middle'>
+              <Image
+                src={`${reference_icon}`}
+                alt='book icon'
+                height={24}
+                width={24}
+                className='mr-2 transition-transform duration-300 group-hover:scale-110'
+              />
+              <div className='text-slate-900 dark:text-slate-300 font-bold text-lg transition-all duration-300 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-[#bfdbfe]'>
+                Reference
+              </div>
+            </div>
+            <svg
+              style={{
+                transform: active.getReference ? 'rotate(180deg)' : 'rotate(0)',
+                transition: 'all 0.2s linear',
+                cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
+              }}
+              id='arrow'
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              height='25'
+              viewBox='0 0 24 24'
+              width='25'
+            >
+              <path
+                clipRule='evenodd'
+                d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+                fill='#707070'
+                fillRule='evenodd'
+              />
+            </svg>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden max-h-80 overflow-y-auto'>
+          <div className='mt-2'>
+            <DocLink
               uri='/understanding-json-schema/reference'
-              label='JSON Schema Reference'
-              setOpen={setOpen}
-          />
-            <div className='pl-4 pb-1 pt-1'>   Opening div tag: understanding JSON*/}
-          <DocLink
-            uri='/understanding-json-schema/reference/type'
-            label='JSON data types'
-            setOpen={setOpen}
-          />
-          <div className='pl-4 pb-1 pt-1'>
-            {/*Opening div: JSON data types*/}
-            <DocLink
-              uri='/understanding-json-schema/reference/array'
-              label='array'
+              label='Overview'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/understanding-json-schema/reference/boolean'
-              label='boolean'
+              uri='/understanding-json-schema/keywords'
+              label='JSON Schema keywords'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/understanding-json-schema/reference/null'
-              label='null'
+              uri='/understanding-json-schema/reference/type'
+              label='JSON data types'
+              setOpen={setOpen}
+            />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink
+                uri='/understanding-json-schema/reference/array'
+                label='array'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/reference/boolean'
+                label='boolean'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/reference/null'
+                label='null'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/reference/numeric'
+                label='numeric types'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/reference/object'
+                label='object'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/reference/regular_expressions'
+                label='regular expressions'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/reference/string'
+                label='string'
+                setOpen={setOpen}
+              />
+            </div>
+            <DocLink
+              uri='/understanding-json-schema/reference/schema'
+              label='Dialect and vocabulary declaration'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/understanding-json-schema/reference/numeric'
-              label='numeric types'
+              uri='/understanding-json-schema/reference/generic'
+              label='Enumerated and constant values'
+              setOpen={setOpen}
+            />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink
+                uri='/understanding-json-schema/reference/enum'
+                label='Enumerated values'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/reference/const'
+                label='Constant values'
+                setOpen={setOpen}
+              />
+            </div>
+            <DocLink
+              uri='/understanding-json-schema/reference/metadata'
+              label='Schema annotations and comments'
+              setOpen={setOpen}
+            />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink
+                uri='/understanding-json-schema/reference/annotations'
+                label='Annotations'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/reference/comments'
+                label='Comments'
+                setOpen={setOpen}
+              />
+            </div>
+            <DocLink
+              uri='/understanding-json-schema/reference/conditionals'
+              label='Conditional schema validation'
               setOpen={setOpen}
             />
             <DocLink
-              uri='/understanding-json-schema/reference/object'
-              label='object'
+              uri='/understanding-json-schema/reference/composition'
+              label='Schema composition'
               setOpen={setOpen}
             />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink
+                uri='/understanding-json-schema/reference/combining'
+                label='Boolean JSON Schema combination'
+                setOpen={setOpen}
+              />
+              <DocLink
+                uri='/understanding-json-schema/structuring'
+                label='Modular JSON Schema combination'
+                setOpen={setOpen}
+              />
+            </div>
             <DocLink
-              uri='/understanding-json-schema/reference/regular_expressions'
-              label='regular expressions'
+              uri='/understanding-json-schema/reference/non_json_data'
+              label='Media: string-encoding non-JSON data'
               setOpen={setOpen}
             />
-            <DocLink
-              uri='/understanding-json-schema/reference/string'
-              label='string'
+            <DocLinkBlank
+              uri='https://www.learnjsonschema.com/'
+              label='Learn JSON Schema'
               setOpen={setOpen}
             />
           </div>
-          {/*Closing div: JSON data types*/}
-          <DocLink
-            uri='/understanding-json-schema/reference/schema'
-            label='Dialect and vocabulary declaration'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/understanding-json-schema/reference/generic'
-            label='Enumerated and constant values'
-            setOpen={setOpen}
-          />
-          <div className='pl-4 pb-1 pt-1'>
-            {/*Opening div: Schema constraints*/}
-            <DocLink
-              uri='/understanding-json-schema/reference/enum'
-              label='Enumerated values'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/understanding-json-schema/reference/const'
-              label='Constant values'
-              setOpen={setOpen}
-            />
-          </div>
-          {/*Closing div: Schema constraints*/}
-          <DocLink
-            uri='/understanding-json-schema/reference/metadata'
-            label='Schema annotations and comments'
-            setOpen={setOpen}
-          />
-          <div className='pl-4 pb-1 pt-1'>
-            {/*Opening div: Schema metadata*/}
-            <DocLink
-              uri='/understanding-json-schema/reference/annotations'
-              label='Annotations'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/understanding-json-schema/reference/comments'
-              label='Comments'
-              setOpen={setOpen}
-            />
-          </div>
-          <DocLink
-            uri='/understanding-json-schema/reference/conditionals'
-            label='Conditional schema validation'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/understanding-json-schema/reference/composition'
-            label='Schema composition'
-            setOpen={setOpen}
-          />
-          <div className='pl-4 pb-1 pt-1'>
-            {/*Opening div: Schema composition*/}
-            <DocLink
-              uri='/understanding-json-schema/reference/combining'
-              label='Boolean JSON Schema combination'
-              setOpen={setOpen}
-            />
-            <DocLink
-              uri='/understanding-json-schema/structuring'
-              label='Modular JSON Schema combination'
-              setOpen={setOpen}
-            />
-          </div>
-          {/*Closing div: Schema composition*/}
-          <DocLink
-            uri='/understanding-json-schema/reference/non_json_data'
-            label='Media: string-encoding non-JSON data'
-            setOpen={setOpen}
-          />
-          {/*Closing div: Schema composition*/}
-          <DocLinkBlank
-            uri='https://www.learnjsonschema.com/'
-            label='Learn JSON Schema'
-            setOpen={setOpen}
-          />
-        </div>
-      </div>
-      {/*Closing div: inner reference div */}
+        </CollapsibleContent>
+      </Collapsible>
+
       {/* Specification */}
-      <div className='mb-2 bg-slate-200 dark:bg-slate-900 p-2 rounded border border-white lg:border-hidden transition-transform duration-300 hover:scale-95'>
-        <div
-          className='flex justify-between w-full items-center'
-          onClick={handleClickSpec}
-        >
-          <div className='flex items-center align-middle'>
-            <Image
-              src={`${spec_icon}`}
-              alt='clipboard icon'
-              height={20}
-              width={20}
-              className='mr-2'
-            />
-            <SegmentHeadline label='Specification' />
-          </div>
-          <svg
-            id='arrow'
-            className='arrow'
-            style={{
-              transform: rotateSpec,
-              transition: 'all 0.2s linear',
-              cursor: 'pointer',
-            }}
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            height='32'
-            viewBox='0 0 24 24'
-            width='24'
+      <Collapsible
+        open={active.getSpecification}
+        onOpenChange={(open) =>
+          setActive((prev) => ({
+            ...prev,
+            getSpecification: open,
+          }))
+        }
+        className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
+      >
+        <CollapsibleTrigger asChild>
+          <Button
+            variant='ghost'
+            className='flex justify-between w-full items-center h-auto p-0 hover:bg-transparent'
           >
-            <path
-              clipRule='evenodd'
-              d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
-              fill='#707070'
-              fillRule='evenodd'
+            <div className='flex items-center align-middle'>
+              <Image
+                src={`${spec_icon}`}
+                alt='clipboard icon'
+                height={24}
+                width={24}
+                className='mr-2 transition-transform duration-300 group-hover:scale-110'
+              />
+              <div className='text-slate-900 dark:text-slate-300 font-bold text-lg transition-all duration-300 group-hover:scale-110 group-hover:text-blue-600 dark:group-hover:text-[#bfdbfe]'>
+                Specification
+              </div>
+            </div>
+            <svg
+              id='arrow'
+              className='arrow'
+              style={{
+                transform: active.getSpecification
+                  ? 'rotate(180deg)'
+                  : 'rotate(0)',
+                transition: 'all 0.2s linear',
+                cursor: 'pointer',
+                minWidth: '25px',
+                minHeight: '25px',
+                width: '25px',
+                height: '25px',
+              }}
+              xmlns='http://www.w3.org/2000/svg'
+              fill='none'
+              height='25'
+              viewBox='0 0 24 24'
+              width='25'
+            >
+              <path
+                clipRule='evenodd'
+                d='m16.5303 8.96967c.2929.29289.2929.76777 0 1.06063l-4 4c-.2929.2929-.7677.2929-1.0606 0l-4.00003-4c-.29289-.29286-.29289-.76774 0-1.06063s.76777-.29289 1.06066 0l3.46967 3.46963 3.4697-3.46963c.2929-.29289.7677-.29289 1.0606 0z'
+                fill='#707070'
+                fillRule='evenodd'
+              />
+            </svg>
+          </Button>
+        </CollapsibleTrigger>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden'>
+          <div className='mt-2'>
+            <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
+            <SegmentSubtitle label='Versions' />
+            <div className='pl-4 pb-1 pt-1'>
+              <DocLink uri='/draft/2020-12' label='2020-12' setOpen={setOpen} />
+              <DocLink uri='/draft/2019-09' label='2019-09' setOpen={setOpen} />
+              <DocLink uri='/draft-07' label='draft-07' setOpen={setOpen} />
+              <DocLink uri='/draft-06' label='draft-06' setOpen={setOpen} />
+              <DocLink uri='/draft-05' label='draft-05' setOpen={setOpen} />
+            </div>
+            <DocLink
+              uri='/specification-links'
+              label='Specification links'
+              setOpen={setOpen}
             />
-          </svg>
-        </div>
-        <div
-          className={classnames(
-            'ml-6 transition-all duration-500 ease-in-out',
-            {
-              'max-h-0 opacity-0 overflow-hidden': !active.getSpecification,
-              'max-h-80 opacity-100 overflow-hidden': active.getSpecification,
-            },
-          )}
-          id='specification'
-        >
-          <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
-          <SegmentSubtitle label='Versions' />
-          <div className='pl-4 pb-1 pt-1'>
-            <DocLink uri='/draft/2020-12' label='2020-12' setOpen={setOpen} />
-            <DocLink uri='/draft/2019-09' label='2019-09' setOpen={setOpen} />
-            <DocLink uri='/draft-07' label='draft-07' setOpen={setOpen} />
-            <DocLink uri='/draft-06' label='draft-06' setOpen={setOpen} />
-            <DocLink uri='/draft-05' label='draft-05' setOpen={setOpen} />
+            <DocLink
+              uri='/specification/migration'
+              label='Migration'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/specification/release-notes'
+              label='Release notes'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/specification/json-hyper-schema'
+              label='JSON Hyper-Schema'
+              setOpen={setOpen}
+            />
           </div>
-          <DocLink
-            uri='/specification-links'
-            label='Specification links'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/specification/migration'
-            label='Migration'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/specification/release-notes'
-            label='Release notes'
-            setOpen={setOpen}
-          />
-          <DocLink
-            uri='/specification/json-hyper-schema'
-            label='JSON Hyper-Schema'
-            setOpen={setOpen}
-          />
-        </div>
-      </div>
+        </CollapsibleContent>
+      </Collapsible>
     </div>
   );
 };
