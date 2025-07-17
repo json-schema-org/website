@@ -191,21 +191,35 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const handleRotate = () => setRotateChevron(!rotateChevron);
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)';
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+
   useEffect(() => {
-    if (window) {
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 1024) {
-          setOpen(false);
-        }
-      });
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setOpen(false);
+        document.body.style.overflow = 'unset';
+      }
+    };
+
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
     }
-  }, [typeof window !== 'undefined']);
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      document.body.style.overflow = 'unset';
+    };
+  }, [open]);
+
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
-      <section>
-        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden'>
+      <section className='w-full'>
+        <div className='bg-primary dark:bg-slate-900 w-full h-12 fixed top-[4.5rem] z-[160] flex flex-col justify-center items-center lg:hidden '>
           <div
-            className='z-[150] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
+            className='z-[160] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
@@ -251,18 +265,18 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
 
+        <div className='h-12 mt-[4.5rem] lg:hidden'></div>
+
         <div
-          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${
-            open ? '-translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out filter drop-shadow-md`}
+          className={`z-[150] fixed top-[calc(4.5rem+3rem)] left-0 h-[calc(100vh-4.5rem-3rem)] w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${open ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out filter drop-shadow-md overflow-y-auto pt-4`}
         >
-          <div className='flex flex-col dark:bg-slate-900'>
+          <div className='flex flex-col bg-white dark:bg-slate-900 min-h-full'>
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
-        <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
+        <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12 lg:pt-0 -mt-8'>
           <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
-            <div className='h-full overflow-y-auto scrollbar-hidden'>
+            <div className='h-full  scrollbar-hidden'>
               <DocsNav open={open} setOpen={setOpen} />
               <CarbonAds
                 className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
@@ -286,6 +300,7 @@ export const DocsNav = ({
   setOpen: (open: boolean) => void;
 }) => {
   const router = useRouter();
+  /* eslint-disable no-constant-condition */
   const [active, setActive] = useState({
     getDocs: false,
     getStarted: false,
