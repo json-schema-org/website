@@ -568,14 +568,14 @@ describe('JSON Editor Component', () => {
   console.log("Hello, World!");
 }`;
 
-    cy.mount(<JsonEditor language="lang-javascript" code={testCode} />);
+    cy.mount(<JsonEditor language='lang-javascript' code={testCode} />);
 
     // Should render the code block (not the JSON editor)
     cy.get('[data-test="json-editor"]').should('not.exist');
-    
+
     // Should show the copy button
     cy.get('button').should('be.visible');
-    
+
     // Should show the language badge
     cy.get('.bg-white\\/20').contains('javascript');
   });
@@ -591,7 +591,7 @@ describe('JSON Editor Component', () => {
       cy.stub(win.navigator.clipboard, 'writeText').as('clipboardWriteText');
     });
 
-    cy.mount(<JsonEditor language="lang-javascript" code={testCode} />);
+    cy.mount(<JsonEditor language='lang-javascript' code={testCode} />);
 
     // Click on copy button
     cy.get('button').click();
@@ -609,24 +609,24 @@ describe('JSON Editor Component', () => {
 
   // Test regular code block with different languages
   it('should display correct language badge for different languages', () => {
-    const testCode = `const x = 1;`;
+    const testCode = 'const x = 1;';
 
     // Test JavaScript
-    cy.mount(<JsonEditor language="lang-javascript" code={testCode} />);
+    cy.mount(<JsonEditor language='lang-javascript' code={testCode} />);
     cy.get('.bg-white\\/20').contains('javascript');
 
     // Test Python
-    cy.mount(<JsonEditor language="lang-python" code={testCode} />);
+    cy.mount(<JsonEditor language='lang-python' code={testCode} />);
     cy.get('.bg-white\\/20').contains('python');
 
     // Test TypeScript
-    cy.mount(<JsonEditor language="lang-typescript" code={testCode} />);
+    cy.mount(<JsonEditor language='lang-typescript' code={testCode} />);
     cy.get('.bg-white\\/20').contains('typescript');
   });
 
   // Test regular code block without language
   it('should display "code" badge when no language is provided', () => {
-    const testCode = `some random code`;
+    const testCode = 'some random code';
 
     cy.mount(<JsonEditor code={testCode} />);
 
@@ -636,7 +636,7 @@ describe('JSON Editor Component', () => {
 
   // Test regular code block with empty code
   it('should handle empty code in regular code block', () => {
-    cy.mount(<JsonEditor language="lang-javascript" code="" />);
+    cy.mount(<JsonEditor language='lang-javascript' code='' />);
 
     // Should still render without crashing
     cy.get('button').should('be.visible');
@@ -645,7 +645,7 @@ describe('JSON Editor Component', () => {
 
   // Test regular code block with whitespace-only code
   it('should handle whitespace-only code in regular code block', () => {
-    cy.mount(<JsonEditor language="lang-javascript" code="   \n  \t  " />);
+    cy.mount(<JsonEditor language='lang-javascript' code='   \n  \t  ' />);
 
     // Should still render without crashing
     cy.get('button').should('be.visible');
@@ -659,12 +659,12 @@ describe('JSON Editor Component', () => {
   return true;
 }`;
 
-    cy.mount(<JsonEditor language="lang-javascript" code={testCode} />);
+    cy.mount(<JsonEditor language='lang-javascript' code={testCode} />);
 
     // Should render the code with syntax highlighting
     // The Highlight component should be present
     cy.get('.overflow-x-auto').should('exist');
-    
+
     // Should show the copy button and badge
     cy.get('button').should('be.visible');
     cy.get('.bg-white\\/20').contains('javascript');
@@ -699,7 +699,7 @@ const Component: React.FC<Props> = ({ name, age }) => {
 
 export default Component;`;
 
-    cy.mount(<JsonEditor language="lang-typescript" code={complexCode} />);
+    cy.mount(<JsonEditor language='lang-typescript' code={complexCode} />);
 
     // Should render the complex code without crashing
     cy.get('button').should('be.visible');
@@ -712,11 +712,11 @@ export default Component;`;
     const regularCode = 'console.log("test");';
 
     cy.mount(
-      <JsonEditor 
-        initialCode={jsonCode} 
-        language="lang-javascript" 
-        code={regularCode} 
-      />
+      <JsonEditor
+        initialCode={jsonCode}
+        language='lang-javascript'
+        code={regularCode}
+      />,
     );
 
     // Should render in JSON mode (with JSON editor)
@@ -726,9 +726,10 @@ export default Component;`;
 
   // Test regular code block with special characters
   it('should handle special characters in regular code blocks', () => {
-    const specialCode = `const special = "Hello & World! < > \" ' \\n \\t \\r";`;
+    const specialCode =
+      'const special = "Hello & World! < > " \' \\n \\t \\r";';
 
-    cy.mount(<JsonEditor language="lang-javascript" code={specialCode} />);
+    cy.mount(<JsonEditor language='lang-javascript' code={specialCode} />);
 
     // Should render without crashing
     cy.get('button').should('be.visible');
@@ -737,14 +738,15 @@ export default Component;`;
 
   // Test regular code block copy functionality with special characters
   it('should copy code with special characters correctly', () => {
-    const specialCode = `const special = "Hello & World! < > \" ' \\n \\t \\r";`;
+    const specialCode =
+      'const special = "Hello & World! < > " \' \\n \\t \\r";';
 
     // mock clipboard writeText
     cy.window().then((win) => {
       cy.stub(win.navigator.clipboard, 'writeText').as('clipboardWriteText');
     });
 
-    cy.mount(<JsonEditor language="lang-javascript" code={specialCode} />);
+    cy.mount(<JsonEditor language='lang-javascript' code={specialCode} />);
 
     // Click on copy button
     cy.get('button').click();
