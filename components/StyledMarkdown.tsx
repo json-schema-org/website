@@ -688,6 +688,10 @@ export function TableOfContentMarkdown({
             'Bigquote',
             'Regularquote',
             'specialBox',
+            'Infobox',
+            'Danger',
+            'Warning',
+            'Tip',
           ),
         },
       }}
