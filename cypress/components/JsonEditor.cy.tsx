@@ -559,4 +559,197 @@ describe('JSON Editor Component', () => {
     cy.get('[data-test="compliant-to-schema"]').should('not.exist');
     cy.get('[data-test="not-compliant-to-schema"]').should('not.exist');
   });
+
+  // ===== REGULAR CODE BLOCK TESTS =====
+
+  // Test regular code block rendering with language and code props
+  it('should render regular code block with language and code props', () => {
+    const testCode = `function hello() {
+  console.log("Hello, World!");
+}`;
+
+    cy.mount(<JsonEditor language="lang-javascript" code={testCode} />);
+
+    // Should render the code block (not the JSON editor)
+    cy.get('[data-test="json-editor"]').should('not.exist');
+    
+    // Should show the copy button
+    cy.get('button').should('be.visible');
+    
+    // Should show the language badge
+    cy.get('.bg-white\\/20').contains('javascript');
+  });
+
+  // Test regular code block copy functionality
+  it('should copy regular code block text when copy button is clicked', () => {
+    const testCode = `function hello() {
+  console.log("Hello, World!");
+}`;
+
+    // mock clipboard writeText
+    cy.window().then((win) => {
+      cy.stub(win.navigator.clipboard, 'writeText').as('clipboardWriteText');
+    });
+
+    cy.mount(<JsonEditor language="lang-javascript" code={testCode} />);
+
+    // Click on copy button
+    cy.get('button').click();
+
+    // Check if clipboard writeText is called with the correct code
+    cy.get('@clipboardWriteText').should('have.been.calledWith', testCode);
+
+    // Check if copied icon is visible after clicking
+    cy.get('button img').should('have.attr', 'src', '/icons/copied.svg');
+
+    // After 2 seconds, check if copy icon is visible again
+    cy.wait(2100);
+    cy.get('button img').should('have.attr', 'src', '/icons/copy.svg');
+  });
+
+  // Test regular code block with different languages
+  it('should display correct language badge for different languages', () => {
+    const testCode = `const x = 1;`;
+
+    // Test JavaScript
+    cy.mount(<JsonEditor language="lang-javascript" code={testCode} />);
+    cy.get('.bg-white\\/20').contains('javascript');
+
+    // Test Python
+    cy.mount(<JsonEditor language="lang-python" code={testCode} />);
+    cy.get('.bg-white\\/20').contains('python');
+
+    // Test TypeScript
+    cy.mount(<JsonEditor language="lang-typescript" code={testCode} />);
+    cy.get('.bg-white\\/20').contains('typescript');
+  });
+
+  // Test regular code block without language
+  it('should display "code" badge when no language is provided', () => {
+    const testCode = `some random code`;
+
+    cy.mount(<JsonEditor code={testCode} />);
+
+    // Should show "code" as the badge text
+    cy.get('.bg-white\\/20').contains('code');
+  });
+
+  // Test regular code block with empty code
+  it('should handle empty code in regular code block', () => {
+    cy.mount(<JsonEditor language="lang-javascript" code="" />);
+
+    // Should still render without crashing
+    cy.get('button').should('be.visible');
+    cy.get('.bg-white\\/20').contains('javascript');
+  });
+
+  // Test regular code block with whitespace-only code
+  it('should handle whitespace-only code in regular code block', () => {
+    cy.mount(<JsonEditor language="lang-javascript" code="   \n  \t  " />);
+
+    // Should still render without crashing
+    cy.get('button').should('be.visible');
+    cy.get('.bg-white\\/20').contains('javascript');
+  });
+
+  // Test regular code block syntax highlighting
+  it('should apply syntax highlighting to regular code blocks', () => {
+    const testCode = `function hello() {
+  console.log("Hello, World!");
+  return true;
+}`;
+
+    cy.mount(<JsonEditor language="lang-javascript" code={testCode} />);
+
+    // Should render the code with syntax highlighting
+    // The Highlight component should be present
+    cy.get('.overflow-x-auto').should('exist');
+    
+    // Should show the copy button and badge
+    cy.get('button').should('be.visible');
+    cy.get('.bg-white\\/20').contains('javascript');
+  });
+
+  // Test regular code block with complex code
+  it('should handle complex code in regular code blocks', () => {
+    const complexCode = `import React from 'react';
+
+interface Props {
+  name: string;
+  age: number;
+}
+
+const Component: React.FC<Props> = ({ name, age }) => {
+  const [count, setCount] = React.useState(0);
+  
+  React.useEffect(() => {
+    console.log(\`Hello \${name}, you are \${age} years old\`);
+  }, [name, age]);
+  
+  return (
+    <div>
+      <h1>Hello {name}!</h1>
+      <p>Count: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+    </div>
+  );
+};
+
+export default Component;`;
+
+    cy.mount(<JsonEditor language="lang-typescript" code={complexCode} />);
+
+    // Should render the complex code without crashing
+    cy.get('button').should('be.visible');
+    cy.get('.bg-white\\/20').contains('typescript');
+  });
+
+  // Test that JSON mode and regular code mode are mutually exclusive
+  it('should prioritize JSON mode when both initialCode and code are provided', () => {
+    const jsonCode = '{"test": "value"}';
+    const regularCode = 'console.log("test");';
+
+    cy.mount(
+      <JsonEditor 
+        initialCode={jsonCode} 
+        language="lang-javascript" 
+        code={regularCode} 
+      />
+    );
+
+    // Should render in JSON mode (with JSON editor)
+    cy.get('[data-test="json-editor"]').should('exist');
+    cy.get('[data-test="check-json-schema"]').contains('data');
+  });
+
+  // Test regular code block with special characters
+  it('should handle special characters in regular code blocks', () => {
+    const specialCode = `const special = "Hello & World! < > \" ' \\n \\t \\r";`;
+
+    cy.mount(<JsonEditor language="lang-javascript" code={specialCode} />);
+
+    // Should render without crashing
+    cy.get('button').should('be.visible');
+    cy.get('.bg-white\\/20').contains('javascript');
+  });
+
+  // Test regular code block copy functionality with special characters
+  it('should copy code with special characters correctly', () => {
+    const specialCode = `const special = "Hello & World! < > \" ' \\n \\t \\r";`;
+
+    // mock clipboard writeText
+    cy.window().then((win) => {
+      cy.stub(win.navigator.clipboard, 'writeText').as('clipboardWriteText');
+    });
+
+    cy.mount(<JsonEditor language="lang-javascript" code={specialCode} />);
+
+    // Click on copy button
+    cy.get('button').click();
+
+    // Check if clipboard writeText is called with the correct code
+    cy.get('@clipboardWriteText').should('have.been.calledWith', specialCode);
+  });
 });
