@@ -46,7 +46,7 @@ const Icon = ({ children }: { children: React.ReactNode }) => (
     {children}
   </svg>
 );
-  
+
 export function DocsHelp({
   fileRenderType,
   showEditOption = true,
@@ -97,8 +97,7 @@ export function DocsHelp({
     }
   };
 
-  const gitredirect = getGitRedirect();
-
+ const gitredirect = getGitRedirect();
 
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
