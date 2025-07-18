@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable linebreak-style */
 import React from 'react';
 import Layout from '~/components/Layout';
