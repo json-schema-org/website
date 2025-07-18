@@ -97,7 +97,7 @@ export function DocsHelp({
     }
   };
 
- const gitredirect = getGitRedirect();
+  const gitredirect = getGitRedirect();
 
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
