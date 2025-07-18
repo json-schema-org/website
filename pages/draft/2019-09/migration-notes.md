@@ -111,7 +111,7 @@ One of the biggest new features is **recursive referencing**, solving complex re
 }
 ```
 
-This allows cleaner recursive references and helps with schema composition across documents.
+This allows cleaner recursive references and helps with schema composition across your documents.
 
 
 
