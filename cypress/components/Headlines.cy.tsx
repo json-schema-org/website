@@ -83,10 +83,7 @@ describe('Headlines Component', () => {
     mockRouter.push('/#what-is-json-schema');
 
     // Check if the headline is active
-    cy.get('span').should(
-      'have.class',
-      'text-startBlue dark:text-endBlue inline-block ml-2',
-    );
+    cy.get('span').should('have.class', 'text-startBlue inline-block ml-2');
     cy.get('span').should('have.text', '¶');
   });
 
@@ -99,10 +96,7 @@ describe('Headlines Component', () => {
 
     // Check if Correct headline is active
     cy.mount(<Headline1>What is JSON Schema?</Headline1>);
-    cy.get('span').should(
-      'have.class',
-      'text-startBlue dark:text-endBlue inline-block ml-2',
-    );
+    cy.get('span').should('have.class', 'text-startBlue inline-block ml-2');
     cy.get('span').should('have.text', '¶');
   });
 });
