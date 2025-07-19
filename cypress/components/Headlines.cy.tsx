@@ -85,7 +85,7 @@ describe('Headlines Component', () => {
     // Check if the headline is active
     cy.get('span').should(
       'have.class',
-      'text-startBlue dark:text-endBlue inline-block ml-2',
+      'text-startBlue inline-block ml-2',
     );
     cy.get('span').should('have.text', '¶');
   });
@@ -101,7 +101,7 @@ describe('Headlines Component', () => {
     cy.mount(<Headline1>What is JSON Schema?</Headline1>);
     cy.get('span').should(
       'have.class',
-      'text-startBlue dark:text-endBlue inline-block ml-2',
+      'text-startBlue inline-block ml-2',
     );
     cy.get('span').should('have.text', '¶');
   });

@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { useState, useEffect } from 'react';
 import { cn } from '~/lib/utils';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
@@ -66,7 +67,7 @@ const Headline = ({
     id: propAttributes?.slug || slug,
     className: cn(
       'group cursor-pointer hover:underline',
-      isActive && 'text-startBlue dark:text-endBlue',
+      isActive && 'text-startBlue',
       propAttributes?.className,
     ),
     onClick: handleHeadingClick,
@@ -77,7 +78,7 @@ const Headline = ({
     <Tag attributes={attributes}>
       {childredWithoutFragment}
       {isActive && (
-        <span className={'text-startBlue dark:text-endBlue inline-block ml-2'}>
+        <span className={'text-startBlue inline-block ml-2'}>
           ¶
         </span>
       )}
