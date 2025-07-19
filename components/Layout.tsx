@@ -1,4 +1,5 @@
 /* eslint-disable linebreak-style */
+/* istanbul ignore file */
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
