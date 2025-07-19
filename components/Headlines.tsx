@@ -78,9 +78,7 @@ const Headline = ({
     <Tag attributes={attributes}>
       {childredWithoutFragment}
       {isActive && (
-        <span className={'text-startBlue inline-block ml-2'}>
-          ¶
-        </span>
+        <span className={'text-startBlue inline-block ml-2'}>¶</span>
       )}
     </Tag>
   );
