@@ -448,6 +448,26 @@
   toolingListingNotes: 'Built for Node.js and browsers. Includes support for custom vocabularies.'
   lastUpdated: '2024-09-04'
 
+- name: '@hyperjump/json-schema-coverage'
+  description: >
+    Generate test coverage reports for the JSON Schemas in your codebase.
+    Supports JSON and YAML. Integrates with Vitest.
+  toolingTypes: ['util-testing']
+  languages: ['JavaScript']
+  maintainers:
+    - name: 'Jason Desrosiers'
+      username: 'jdesrosiers'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/hyperjump-io/json-schema-coverage'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: >
+    Designed to be used with or without Vitest. Coverage data uses the istanbul
+    coverage format. @hyperjump/json-schema is used for validation and
+    instrumentation.
+  lastUpdated: '2025-07-21'
+
 - name: '@exodus/schemasafe'
   description: 'A reasonably safe JSON Schema validator with draft-04/06/07/2019-09/2020-12 support.'
   toolingTypes: ['validator']
