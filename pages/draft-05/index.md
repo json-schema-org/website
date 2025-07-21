@@ -5,6 +5,12 @@ type: docs
 authors: ['Austin Wright']
 Metaschema: 'https://json-schema.org/draft-04/schema'
 Specification: 'https://json-schema.org/draft-05/draft-wright-json-schema-00.pdf'
+prev:
+  label: Draft 06
+  url: /draft-06
+next:
+  label: Specification Links
+  url: /specification-links
 ---
 
 ### Draft-05 Documents

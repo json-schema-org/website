@@ -7,6 +7,7 @@ import { SectionContext } from '~/context';
 import DocTable from '~/components/DocTable';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
+import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const index = fs.readFileSync('pages/draft/2019-09/index.md', 'utf-8');
@@ -36,6 +37,12 @@ export default function ImplementationsPages({
       <Headline1>{frontmatter.title}</Headline1>
       <DocTable frontmatter={frontmatter} />
       <StyledMarkdown markdown={blocks.index} />
+      <NextPrevButton
+        prevLabel={frontmatter?.prev?.label}
+        prevURL={frontmatter?.prev?.url}
+        nextLabel={frontmatter?.next?.label}
+        nextURL={frontmatter?.next?.url}
+      />
       <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
