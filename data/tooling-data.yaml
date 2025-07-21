@@ -448,6 +448,23 @@
   toolingListingNotes: 'Built for Node.js and browsers. Includes support for custom vocabularies.'
   lastUpdated: '2024-09-04'
 
+- name: json-schema.hyperjump.io
+  description: 'Validate JSON Schema documents online using @hyperjump/json-schema'
+  toolingTypes: ['validator']
+  environments: ['Web (Online)']
+  dependsOnValidators: ['https://github.com/hyperjump-io/json-schema']
+  maintainers:
+    - name: 'Jason Desrosiers'
+      username: 'jdesrosiers'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/hyperjump-io/json-schema.hyperjump.io'
+  homepage: 'https://json-schema.hyperjump.io'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Supports multiple schemas and multiple instances; client-side validation'
+  lastUpdated: '2022-08-31'
+
 - name: '@hyperjump/json-schema-coverage'
   description: >
     Generate test coverage reports for the JSON Schemas in your codebase.
@@ -888,23 +905,6 @@
   homepage: 'https://www.apiseven.com/'
   supportedDialects:
     draft: ['4', '6', '7']
-  lastUpdated: '2022-08-31'
-
-- name: json-schema.hyperjump.io
-  description: 'Validate JSON Schema documents online using @hyperjump/json-schema'
-  toolingTypes: ['validator']
-  environments: ['Web (Online)']
-  dependsOnValidators: ['https://github.com/hyperjump-io/json-schema']
-  maintainers:
-    - name: 'Jason Desrosiers'
-      username: 'jdesrosiers'
-      platform: 'github'
-  license: 'MIT'
-  source: 'https://github.com/hyperjump-io/json-schema.hyperjump.io'
-  homepage: 'https://json-schema.hyperjump.io'
-  supportedDialects:
-    draft: ['4', '6', '7', '2019-09', '2020-12']
-  toolingListingNotes: 'Supports multiple schemas and multiple instances; client-side validation'
   lastUpdated: '2022-08-31'
 
 - name: json-everything
