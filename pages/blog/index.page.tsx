@@ -8,9 +8,10 @@ import readingTime from 'reading-time';
 const PATH = 'pages/blog/posts';
 import TextTruncate from 'react-text-truncate';
 import generateRssFeed from './generateRssFeed';
-import { useRouter } from 'next/router';
 import { SectionContext } from '~/context';
 import Image from 'next/image';
+import { useInView } from 'react-intersection-observer';
+import { useRouter } from 'next/router';
 
 type Author = {
   name: string;
@@ -34,9 +35,23 @@ const getCategories = (frontmatter: any): blogCategories[] => {
   return Array.isArray(cat) ? cat : [cat];
 };
 
+const isValidCategory = (category: string): category is blogCategories => {
+  return [
+    'All',
+    'Community',
+    'Case Study',
+    'Engineering',
+    'Update',
+    'Opinion',
+    'Documentation',
+  ].includes(category);
+};
+
+const POSTS_PER_PAGE = 10;
+
 export async function getStaticProps({ query }: { query: any }) {
   const files = fs.readdirSync(PATH);
-  const blogPosts = files
+  const allBlogPosts = files
     .filter((file) => file.substr(-3) === '.md')
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
@@ -52,38 +67,40 @@ export async function getStaticProps({ query }: { query: any }) {
       };
     });
 
-  await generateRssFeed(blogPosts);
+  // Sort posts by date
+  const sortedPosts = allBlogPosts.sort((a, b) => {
+    const dateA = new Date(a.frontmatter.date).getTime();
+    const dateB = new Date(b.frontmatter.date).getTime();
+    return dateB - dateA;
+  });
 
+  const setOfTags = sortedPosts.map((tag) => tag.frontmatter.type);
+
+  // Get initial posts
+  const initialPosts = sortedPosts.slice(0, POSTS_PER_PAGE);
   const filterTag: string = query?.type || 'All';
+
+  await generateRssFeed(allBlogPosts); // Keep RSS feed generation with all posts
 
   return {
     props: {
-      blogPosts,
+      initialPosts,
       filterTag,
+      setOfTags,
     },
   };
 }
 
-function isValidCategory(category: any): category is blogCategories {
-  return [
-    'All',
-    'Community',
-    'Case Study',
-    'Engineering',
-    'Update',
-    'Opinion',
-    'Documentation',
-  ].includes(category);
-}
-
 export default function StaticMarkdownPage({
-  blogPosts,
+  initialPosts,
   filterTag,
 }: {
-  blogPosts: any[];
+  initialPosts: any[];
   filterTag: any;
+  setOfTags: any[];
 }) {
   const router = useRouter();
+
   // Initialize the filter as an array. If "All" or not specified, we show all posts.
   const initialFilters =
     filterTag && filterTag !== 'All'
@@ -92,6 +109,12 @@ export default function StaticMarkdownPage({
 
   const [currentFilterTags, setCurrentFilterTags] =
     useState<blogCategories[]>(initialFilters);
+
+  const [posts, setPosts] = useState(initialPosts);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const { ref, inView } = useInView();
 
   // When the router query changes, update the filters.
   useEffect(() => {
@@ -104,15 +127,47 @@ export default function StaticMarkdownPage({
     }
   }, [router.query]);
 
+  // Reset posts when filter changes
   useEffect(() => {
-    const tags =
-      filterTag && filterTag !== 'All'
-        ? filterTag.split(',').filter(isValidCategory)
-        : ['All'];
-    setCurrentFilterTags(tags);
-  }, [filterTag]);
+    setPosts(initialPosts);
+    setPage(1);
+    setHasMore(true);
+  }, [currentFilterTags, initialPosts]);
 
-  const toggleCategory = (tag: blogCategories) => {
+  // Load more posts when scrolling
+  useEffect(() => {
+    const loadMorePosts = async () => {
+      if (inView && hasMore && !loading) {
+        setLoading(true);
+        try {
+          const nextPage = page + 1;
+          const filterString = currentFilterTags.includes('All')
+            ? 'All'
+            : currentFilterTags.join(',');
+          const res = await fetch(
+            `/api/posts?page=${nextPage}&type=${filterString}`,
+          );
+          const data = await res.json();
+
+          if (data.posts.length) {
+            setPosts((prevPosts) => [...prevPosts, ...data.posts]);
+            setPage(nextPage);
+            setHasMore(data.hasMore);
+          } else {
+            setHasMore(false);
+          }
+        } catch (error) {
+          console.error('Error loading more posts:', error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    loadMorePosts();
+  }, [inView, hasMore, loading, page, currentFilterTags]);
+
+  const toggleCategory = async (tag: blogCategories) => {
     let newTags: blogCategories[] = [];
     if (tag === 'All') {
       newTags = ['All'];
@@ -130,48 +185,30 @@ export default function StaticMarkdownPage({
         newTags = ['All'];
       }
     }
+
     setCurrentFilterTags(newTags);
-    if (newTags.includes('All')) {
-      history.replaceState(null, '', '/blog');
-    } else {
-      history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
+
+    try {
+      const filterString = newTags.includes('All') ? 'All' : newTags.join(',');
+      const res = await fetch(`/api/posts?page=1&type=${filterString}`);
+      const data = await res.json();
+      setPosts(data.posts);
+      setHasMore(data.hasMore);
+      setPage(1);
+
+      if (newTags.includes('All')) {
+        history.replaceState(null, '', '/blog');
+      } else {
+        history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
+      }
+    } catch (error) {
+      console.error('Error filtering posts:', error);
     }
   };
 
   // First, sort all posts by date descending (for fallback sorting)
-  const postsSortedByDate = [...blogPosts].sort((a, b) => {
-    const dateA = new Date(a.frontmatter.date).getTime();
-    const dateB = new Date(b.frontmatter.date).getTime();
-    return dateB - dateA;
-  });
 
-  // Filter posts based on selected categories.
-  // If "All" is selected, all posts are returned.
-  const filteredPosts = postsSortedByDate.filter((post) => {
-    if (currentFilterTags.includes('All') || currentFilterTags.length === 0)
-      return true;
-    const postCategories = getCategories(post.frontmatter);
-    return postCategories.some((cat) =>
-      currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
-      ),
-    );
-  });
-
-  const sortedFilteredPosts = filteredPosts.sort((a, b) => {
-    const aMatches = getCategories(a.frontmatter).filter((cat) =>
-      currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
-      ),
-    ).length;
-    const bMatches = getCategories(b.frontmatter).filter((cat) =>
-      currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
-      ),
-    ).length;
-    if (aMatches !== bMatches) {
-      return bMatches - aMatches;
-    }
+  const postsSortedByDate = [...initialPosts].sort((a, b) => {
     const dateA = new Date(a.frontmatter.date).getTime();
     const dateB = new Date(b.frontmatter.date).getTime();
     return dateB - dateA;
@@ -184,7 +221,8 @@ export default function StaticMarkdownPage({
 
   // Collect all unique categories across posts.
   const allTagsSet = new Set<string>();
-  blogPosts.forEach((post) => {
+
+  initialPosts.forEach((post) => {
     getCategories(post.frontmatter).forEach((cat) => allTagsSet.add(cat));
   });
   const allTags = ['All', ...Array.from(allTagsSet)];
@@ -300,7 +338,7 @@ export default function StaticMarkdownPage({
 
         {/* Blog Posts Grid */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
-          {sortedFilteredPosts.map((blogPost: any, idx: number) => {
+          {posts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
@@ -417,6 +455,14 @@ export default function StaticMarkdownPage({
               </section>
             );
           })}
+
+          {hasMore && (
+            <div ref={ref} className='col-span-full flex justify-center p-4'>
+              <div className='animate-pulse text-slate-500 dark:text-slate-300'>
+                Loading more posts...
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </SectionContext.Provider>
