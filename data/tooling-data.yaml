@@ -3371,3 +3371,16 @@
   homepage: 'https://todiagram.com/editor'
   supportedDialects:
     draft: ['4','6','7','2019-09','2020-12']
+
+- name: libjsonschema
+  description: 'A JSON schema code generator for C.'
+  toolingTypes: ['schema-to-code']
+  languages: ['C']
+  maintainers:
+    - name: 'Simon Ser'
+      username: 'emersion'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://codeberg.org/emersion/libjsonschema'
+  supportedDialects:
+    draft: ['2020-12']
