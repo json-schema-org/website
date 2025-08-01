@@ -9,7 +9,10 @@ interface TabsGroupProps {
   StyledMarkdownBlock: React.ComponentType<{ markdown: string }>;
 }
 
-export const TabsGroup = ({ markdown, StyledMarkdownBlock }: TabsGroupProps) => {
+export const TabsGroup = ({
+  markdown,
+  StyledMarkdownBlock,
+}: TabsGroupProps) => {
   const { groupLabel, tabs } = parseTabsFromMarkdown(markdown);
   const [activeTabIndex, setActiveTabIndex] = React.useState(0);
   const activeTab = tabs[activeTabIndex];
@@ -48,4 +51,4 @@ export const TabsGroup = ({ markdown, StyledMarkdownBlock }: TabsGroupProps) => 
       </div>
     </div>
   );
-}; 
+};
