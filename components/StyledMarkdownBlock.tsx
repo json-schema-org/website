@@ -124,8 +124,20 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             table: {
               component: ({ children }) => (
-                <div className='max-w-[100%] mx-auto mb-8 overflow-auto'>
-                  <table className='table-auto'>{children}</table>
+                <div className='max-w-[100%] mx-auto mb-8'>
+                  {/* Desktop Table */}
+                  <div className='hidden lg:block overflow-auto'>
+                    <table className='table-auto w-full bg-white dark:bg-slate-800 border border-gray-200'>
+                      {children}
+                    </table>
+                  </div>
+                  
+                  {/* Mobile Table */}
+                  <div className='lg:hidden'>
+                    <div className='bg-white dark:bg-slate-800 border border-gray-200'>
+                      {children}
+                    </div>
+                  </div>
                 </div>
               ),
             },
@@ -134,7 +146,16 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                 const isEmpty = !checkHasContent(children);
                 if (isEmpty) return null;
                 return (
-                  <thead className='table-auto bg-slate-100'>{children}</thead>
+                  <>
+                    {/* Desktop Header */}
+                    <thead className='hidden lg:table-header-group bg-slate-100 dark:bg-slate-900'>
+                      {children}
+                    </thead>
+                    {/* Mobile Header - hidden on mobile as we'll show data in cards */}
+                    <thead className='lg:hidden hidden'>
+                      {children}
+                    </thead>
+                  </>
                 );
               },
             },
@@ -153,11 +174,54 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
               ),
             },
             tr: {
-              component: ({ children }) => (
-                <tr className='even:bg-blue-50 dark:even:bg-slate-900 even:bg-opacity-40'>
-                  {children}
-                </tr>
-              ),
+              component: ({ children }) => {
+                // Extract header text for mobile cards
+                const headerTexts: string[] = [];
+                React.Children.forEach(children, (child) => {
+                  if (React.isValidElement(child) && child.type === 'th') {
+                    const childProps = child.props as { children?: React.ReactNode };
+                    if (childProps.children) {
+                      headerTexts.push(String(childProps.children));
+                    }
+                  }
+                });
+
+                return (
+                  <>
+                    {/* Desktop Row */}
+                    <tr className='hidden lg:table-row even:bg-blue-50 dark:even:bg-slate-900 even:bg-opacity-40'>
+                      {children}
+                    </tr>
+                    
+                    {/* Mobile Row - Card Layout */}
+                    <tr className='lg:hidden table-row'>
+                      <td className='p-4 border-b border-gray-200'>
+                        <div className='space-y-2'>
+                          {React.Children.map(children, (child, index) => {
+                            if (React.isValidElement(child) && child.type === 'td') {
+                              const childProps = child.props as { children?: React.ReactNode };
+                              if (childProps.children) {
+                                const headerText = headerTexts[index] || `Column ${index + 1}`;
+                                return (
+                                  <div key={index} className='flex flex-col'>
+                                    <div className='text-sm font-medium text-gray-600 dark:text-gray-300 mb-1'>
+                                      {headerText}:
+                                    </div>
+                                    <div className='text-sm text-gray-900 dark:text-gray-100'>
+                                      {childProps.children}
+                                    </div>
+                                  </div>
+                                );
+                              }
+                            }
+                            return null;
+                          })}
+                        </div>
+                      </td>
+                    </tr>
+                  </>
+                );
+              },
             },
             code: { component: Code },
             pre: ({ children }) => {
