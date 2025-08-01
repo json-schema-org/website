@@ -448,6 +448,43 @@
   toolingListingNotes: 'Built for Node.js and browsers. Includes support for custom vocabularies.'
   lastUpdated: '2024-09-04'
 
+- name: json-schema.hyperjump.io
+  description: 'Validate JSON Schema documents online using @hyperjump/json-schema'
+  toolingTypes: ['validator']
+  environments: ['Web (Online)']
+  dependsOnValidators: ['https://github.com/hyperjump-io/json-schema']
+  maintainers:
+    - name: 'Jason Desrosiers'
+      username: 'jdesrosiers'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/hyperjump-io/json-schema.hyperjump.io'
+  homepage: 'https://json-schema.hyperjump.io'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Supports multiple schemas and multiple instances; client-side validation'
+  lastUpdated: '2022-08-31'
+
+- name: '@hyperjump/json-schema-coverage'
+  description: >
+    Generate test coverage reports for the JSON Schemas in your codebase.
+    Supports JSON and YAML. Integrates with Vitest.
+  toolingTypes: ['util-testing']
+  languages: ['JavaScript']
+  maintainers:
+    - name: 'Jason Desrosiers'
+      username: 'jdesrosiers'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/hyperjump-io/json-schema-coverage'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: >
+    Designed to be used with or without Vitest. Coverage data uses the istanbul
+    coverage format. @hyperjump/json-schema is used for validation and
+    instrumentation.
+  lastUpdated: '2025-07-21'
+
 - name: '@exodus/schemasafe'
   description: 'A reasonably safe JSON Schema validator with draft-04/06/07/2019-09/2020-12 support.'
   toolingTypes: ['validator']
@@ -868,23 +905,6 @@
   homepage: 'https://www.apiseven.com/'
   supportedDialects:
     draft: ['4', '6', '7']
-  lastUpdated: '2022-08-31'
-
-- name: json-schema.hyperjump.io
-  description: 'Validate JSON Schema documents online using @hyperjump/json-schema'
-  toolingTypes: ['validator']
-  environments: ['Web (Online)']
-  dependsOnValidators: ['https://github.com/hyperjump-io/json-schema']
-  maintainers:
-    - name: 'Jason Desrosiers'
-      username: 'jdesrosiers'
-      platform: 'github'
-  license: 'MIT'
-  source: 'https://github.com/hyperjump-io/json-schema.hyperjump.io'
-  homepage: 'https://json-schema.hyperjump.io'
-  supportedDialects:
-    draft: ['4', '6', '7', '2019-09', '2020-12']
-  toolingListingNotes: 'Supports multiple schemas and multiple instances; client-side validation'
   lastUpdated: '2022-08-31'
 
 - name: json-everything
@@ -3351,3 +3371,54 @@
   homepage: 'https://todiagram.com/editor'
   supportedDialects:
     draft: ['4','6','7','2019-09','2020-12']
+
+- name: 'playwright-ajv-schema-validator'
+  description: 'A Playwright plugin for API schema validation against plain JSON schemas, Swagger schema documents. Built on the robust core-ajv-schema-validator plugin and powered by the Ajv JSON Schema Validator, it delivers results in a clear, user-friendly format, simplifying the process of identifying and addressing schema issues.'
+  toolingTypes: ['validator', 'util-testing']
+  languages: ['JavaScript', 'TypeScript']
+  dependsOnValidators: ['https://github.com/sclavijosuero/core-ajv-schema-validator','https://github.com/ajv-validator/ajv']
+  creators:
+    - name: 'Sebastian Clavijo Suero'
+      username: 'sclavijosuero'
+      platform: 'github'
+  maintainers:
+    - name: 'Sebastian Clavijo Suero'
+      username: 'sclavijosuero'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/sclavijosuero/playwright-ajv-schema-validator'
+  homepage: 'https://github.com/sclavijosuero/playwright-ajv-schema-validator/blob/main/README.md'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'It uses the Ajv JSON Schema Validator and core-ajv-schema-validator as its core engines.'
+
+- name: 'shacl2code'
+  description: 'This tool can be used to convert a SHACL model into various code bindings, including JSON schema. The resulting binding does standard type validations, using information provided by SHACL model.'
+  toolingTypes: ['model-to-schema']
+  languages: ['C++', 'JSON Schema', 'Python', 'Go']
+  creators:
+    - name: 'Joshua Watt'
+      username: 'JPEWdev'
+      platform: 'github'
+  maintainers:
+    - name: 'Joshua Watt'
+      username: 'JPEWdev'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/jpewdev/shacl2code/'
+  homepage: 'https://pypi.org/project/shacl2code/' 
+  supportedDialects:
+    draft: ['2020-12']
+
+- name: 'jsonschema-models'
+  description: 'Pydantic models for representing JSON Schema objects.'
+  toolingTypes: ['code-to-schema']
+  languages: ['Python 3']
+  maintainers:
+    - name: 'Gavin M. Roy'
+      username: 'gmr'
+      platform: 'github'
+  license: 'BSD'
+  source: 'https://github.com/gmr/jsonschema-models'
+  supportedDialects:
+    draft: ['2020-12']

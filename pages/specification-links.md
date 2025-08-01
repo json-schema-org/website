@@ -1,9 +1,9 @@
 ---
 title: Specification Links
 section: docs
-prev: 
-  label: Specification
-  url: /specification
+prev:
+  label: Draft 05
+  url: /draft-05
 next: 
   label: Migration
   url: /specification/migration

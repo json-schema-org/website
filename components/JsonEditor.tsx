@@ -1,7 +1,8 @@
+/* eslint-disable linebreak-style */
 import React, { useContext } from 'react';
 import { BaseEditor, createEditor, Descendant, Text } from 'slate';
 import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
-import classnames from 'classnames';
+import { cn } from '@/lib/utils';
 import getPartsOfJson, { SyntaxPart } from '~/lib/getPartsOfJson';
 import jsonSchemaReferences from './jsonSchemaLinks';
 import { useRouter } from 'next/router';
@@ -11,6 +12,12 @@ import getScopesOfParsedJsonSchema, {
   JsonSchemaPathWithScope,
   JsonSchemaScope,
 } from '~/lib/getScopesOfParsedJsonSchema';
+import { Card, CardContent } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Alert } from '@/components/ui/alert';
+import Highlight from 'react-syntax-highlighter';
+import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 type CustomElement = CustomNode | CustomText;
 type CustomNode = { type: 'paragraph'; children: CustomText[] };
@@ -53,7 +60,7 @@ type MultipathDecoration = {
   syntaxPart: SyntaxPart;
 };
 
-const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/g;
+const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/;
 
 // Prevent annoying error messages because slate is not SSR ready
 /* istanbul ignore next:
@@ -97,10 +104,111 @@ const getTextPathIndexesFromNode = (
   return textPathIndexesFromNodes;
 };
 
-const calculateNewDecorationsMap = (value: CustomElement[]) => {
+// Function to create basic syntax highlighting for partial schemas
+const getBasicSyntaxParts = (serializedText: string): SyntaxPart[] => {
+  const parts: SyntaxPart[] = [];
+
+  // Define patterns for basic syntax highlighting
+  const patterns = [
+    // Strings (including property names)
+    { regex: /"[^"\\]*(?:\\.[^"\\]*)*"/g, type: 'stringValue' },
+    // Numbers
+    { regex: /-?\d+\.?\d*(?:[eE][+-]?\d+)?/g, type: 'numberValue' },
+    // Booleans
+    { regex: /\b(?:true|false)\b/g, type: 'booleanValue' },
+    // Null
+    { regex: /\bnull\b/g, type: 'nullValue' },
+    // Object brackets
+    { regex: /[{}]/g, type: 'objectBracket' },
+    // Array brackets
+    { regex: /[[\]]/g, type: 'arrayBracket' },
+    // Commas
+    { regex: /,/g, type: 'comma' },
+    // Property names (quoted strings followed by colon)
+    { regex: /"[^"\\]*(?:\\.[^"\\]*)*"\s*:/g, type: 'objectProperty' },
+  ];
+
+  patterns.forEach(({ regex, type }) => {
+    let match;
+    while ((match = regex.exec(serializedText)) !== null) {
+      // Special handling for property names
+      if (type === 'objectProperty') {
+        const fullMatch = match[0];
+        const colonIndex = fullMatch.lastIndexOf(':');
+        const propertyPart = fullMatch.substring(0, colonIndex);
+
+        // Add quotes
+        parts.push({
+          type: 'objectPropertyStartQuotes',
+          index: match.index,
+          length: 1,
+          match: '"',
+          jsonPath: '$',
+        });
+
+        // Add property name
+        parts.push({
+          type: 'objectProperty',
+          index: match.index + 1,
+          length: propertyPart.length - 2,
+          match: propertyPart.slice(1, -1),
+          jsonPath: '$',
+        });
+
+        // Add closing quotes
+        parts.push({
+          type: 'objectPropertyEndQuotes',
+          index: match.index + propertyPart.length - 1,
+          length: 1,
+          match: '"',
+          jsonPath: '$',
+        });
+      } else {
+        // Map some types to match existing styling
+        let mappedType = type;
+        if (type === 'objectBracket') {
+          mappedType =
+            match[0] === '{' ? 'objectStartBracket' : 'objectEndBracket';
+        } else if (type === 'arrayBracket') {
+          mappedType =
+            match[0] === '[' ? 'arrayStartBracket' : 'arrayEndBracket';
+        } else if (type === 'comma') {
+          mappedType = 'arrayComma';
+        }
+
+        parts.push({
+          type: mappedType,
+          index: match.index,
+          length: match[0].length,
+          match: match[0],
+          jsonPath: '$',
+        });
+      }
+    }
+  });
+
+  // Sort parts by index to ensure proper ordering
+  return parts.sort((a, b) => a.index - b.index);
+};
+
+const calculateNewDecorationsMap = (
+  value: CustomElement[],
+  /* istanbul ignore next: Default parameter is never triggered in current implementation */
+  isPartialSchema: boolean = false,
+) => {
   const serializedText = serializeNodesWithoutLineBreaks(value);
   const textPathIndexes = getTextPathIndexesFromNodes(value);
-  const partsOfJson: SyntaxPart[] = getPartsOfJson(serializedText);
+
+  let partsOfJson: SyntaxPart[];
+
+  if (isPartialSchema) {
+    // Use basic syntax highlighting for partial schemas
+    partsOfJson = getBasicSyntaxParts(serializedText);
+  } else {
+    // Use full JSON parsing for complete schemas
+    partsOfJson = getPartsOfJson(serializedText);
+  }
+
   const multipathDecorations =
     getMultipathDecorationsByMatchesAndTextPathIndexes(
       partsOfJson,
@@ -176,13 +284,29 @@ const deserializeCode = (code: string): CustomElement[] => {
   return paragraphs;
 };
 
-export default function JsonEditor({ initialCode }: { initialCode: string }) {
+export default function JsonEditor({
+  initialCode,
+  isJsonc = false,
+  language,
+  code,
+}: {
+  initialCode?: string;
+  isJsonc?: boolean;
+  language?: string;
+  code?: string;
+}) {
   const fullMarkdown = useContext(FullMarkdownContext);
+
+  // Determine if we're in JSON/JSONC mode or regular code mode
+  const isJsonMode = initialCode !== undefined;
+  const codeContent = isJsonMode ? initialCode : code || '';
+
   /* istanbul ignore next: In the test environment, the fullMarkdown is not provided. */
   const hasCodeblockAsDescendant: boolean | undefined = (() => {
-    const positionOfCodeInFullMarkdown = fullMarkdown?.indexOf(initialCode);
+    if (!isJsonMode) return false;
+    const positionOfCodeInFullMarkdown = fullMarkdown?.indexOf(codeContent);
     if (!positionOfCodeInFullMarkdown) return;
-    const endPositionOfCode = positionOfCodeInFullMarkdown + initialCode.length;
+    const endPositionOfCode = positionOfCodeInFullMarkdown + codeContent.length;
     const startPositionOfNextBlock = endPositionOfCode + '\n```\n'.length;
     const markdownAfterCodeBlock = fullMarkdown?.substr(
       startPositionOfNextBlock,
@@ -191,9 +315,23 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
   })();
 
   const router = useRouter();
+
+  // Clean code and detect partial schema for JSONC
   const cleanedUpCode = React.useMemo(() => {
-    return initialCode.replace(META_REGEX, '');
-  }, [initialCode]);
+    if (!isJsonMode) return codeContent;
+
+    let code = codeContent.replace(META_REGEX, '');
+
+    if (isJsonc) {
+      // Remove partial schema comments for JSONC
+      code = code
+        .replace(/\/\/ partial schema\n?/g, '')
+        .replace(/\/\* partial schema \*\/\n?/g, '')
+        .trim();
+    }
+
+    return code;
+  }, [codeContent, isJsonc, isJsonMode]);
 
   const [value, setValue] = React.useState<CustomElement[]>(
     deserializeCode(cleanedUpCode),
@@ -204,10 +342,10 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
   );
 
   const [editor] = React.useState(() => withReact(createEditor()));
-  //const [] React.useState()
 
-  const meta: null | Meta = (() => {
-    const metaRegexFinding = META_REGEX.exec(initialCode);
+  const meta: null | Meta = React.useMemo(() => {
+    if (!isJsonMode) return null;
+    const metaRegexFinding = META_REGEX.exec(codeContent);
     if (!metaRegexFinding) return null;
     try {
       const metaString: undefined | string = metaRegexFinding?.groups?.meta;
@@ -219,7 +357,7 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
     } catch (e) {
       return null;
     }
-  })();
+  }, [codeContent, isJsonMode]);
 
   const parsedCode: null | any = React.useMemo(() => {
     try {
@@ -229,7 +367,19 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
     }
   }, [serializedCode]);
 
-  const isJsonSchema = parsedCode?.['$schema'] || meta?.isSchema;
+  // Detect partial schema for JSONC
+  const isPartialSchema = React.useMemo(() => {
+    if (!isJsonc || !isJsonMode) return false;
+    const codeString = String(codeContent || '');
+    return (
+      codeString.includes('// partial schema') ||
+      codeString.includes('/* partial schema */')
+    );
+  }, [codeContent, isJsonc, isJsonMode]);
+
+  const isJsonSchema = React.useMemo(() => {
+    return parsedCode?.['$schema'] || meta?.isSchema;
+  }, [parsedCode, meta]);
 
   const jsonPathsWithJsonScope: JsonSchemaPathWithScope[] =
     React.useMemo(() => {
@@ -237,13 +387,17 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
       return getScopesOfParsedJsonSchema(parsedCode);
     }, [parsedCode, isJsonSchema]);
 
-  const validation: null | 'valid' | 'invalid' =
-    typeof meta?.valid === 'boolean'
+  const validation: null | 'valid' | 'invalid' = React.useMemo(() => {
+    return typeof meta?.valid === 'boolean'
       ? meta.valid
         ? 'valid'
         : 'invalid'
       : null;
-  const caption: null | string = meta?.caption || null;
+  }, [meta]);
+
+  const caption: null | string = React.useMemo(() => {
+    return meta?.caption || null;
+  }, [meta]);
 
   // fullCodeText variable is for use in copy pasting the code for the user
   const fullCodeText = React.useMemo(() => {
@@ -261,9 +415,87 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
   const [copied, setCopied] = React.useState(false);
 
   const allPathDecorationsMap: Record<string, any> = React.useMemo(
-    () => calculateNewDecorationsMap(value),
-    [value],
+    () => calculateNewDecorationsMap(value, isPartialSchema),
+    [value, isPartialSchema],
   );
+
+  // Badge text logic for regular code blocks
+  const getBadgeText = () => {
+    if (!language) return 'code';
+    const lang = language.replace('lang-', '');
+    return lang;
+  };
+
+  // If not in JSON mode, render as regular code block
+  if (!isJsonMode) {
+    return (
+      <Card className='relative font-mono bg-slate-800 border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0'>
+        <div className='flex flex-row absolute right-0 z-10'>
+          <Button
+            variant='ghost'
+            size='icon'
+            className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
+            onClick={() => {
+              navigator.clipboard.writeText(codeContent);
+              setCopied(true);
+              setTimeout(() => setCopied(false), 2000);
+            }}
+          >
+            {copied ? (
+              <Image
+                src='/icons/copied.svg'
+                alt='Copied icon'
+                width={20}
+                height={20}
+                title='Copied!'
+              />
+            ) : (
+              <Image
+                src='/icons/copy.svg'
+                alt='Copy icon'
+                title='Copy to clipboard'
+                width={20}
+                height={20}
+              />
+            )}
+          </Button>
+          <Badge
+            variant='secondary'
+            className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
+          >
+            {getBadgeText()}
+          </Badge>
+        </div>
+        <CardContent className='p-0'>
+          <div className='overflow-x-auto'>
+            <Highlight
+              language={language}
+              style={atomOneDark}
+              showLineNumbers
+              lineNumberStyle={{
+                color: '#64748B',
+                fontSize: '16px',
+                paddingRight: '10px',
+              }}
+              customStyle={{
+                padding: '12px',
+                fontFamily: 'monospace',
+                fontSize: '16px',
+                backgroundColor: 'transparent',
+              }}
+              codeTagProps={{
+                style: {
+                  fontFamily: 'monospace',
+                },
+              }}
+            >
+              {codeContent}
+            </Highlight>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  }
 
   return (
     <Slate
@@ -276,9 +508,9 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
         (e) => setValue(e)
       }
     >
-      <div
-        className={classnames(
-          'relative font-mono bg-slate-800 border rounded-xl mt-1 overflow-hidden shadow-lg',
+      <Card
+        className={cn(
+          'relative font-mono bg-slate-800 border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0',
           {
             'ml-10': meta?.indent,
           },
@@ -286,8 +518,10 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
       >
         <div className='flex flex-row absolute right-0 z-10'>
           {/* Copy code button */}
-          <div
-            className='flex mr-1.5 cursor-pointer group'
+          <Button
+            variant='ghost'
+            size='icon'
+            className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
             onClick={() => {
               navigator.clipboard.writeText(fullCodeText);
               setCopied(true);
@@ -295,28 +529,45 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             }}
             data-test='copy-clipboard-button'
           >
-            <Image
-              src='/icons/copy.svg'
-              alt='Copy icon'
-              title='Copy to clipboard'
-              width={20}
-              height={20}
-              className={`opacity-50 hover:opacity-90 duration-150 ${copied ? 'hidden' : ''}`}
-            />
-            <Image
-              src='/icons/copied.svg'
-              alt='Copied icon'
-              width={20}
-              height={20}
-              title='Copied!'
-              className={copied ? '' : 'hidden'}
-            />
-          </div>
-          <div
-            className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold'
+            {copied ? (
+              <Image
+                src='/icons/copied.svg'
+                alt='Copied icon'
+                width={20}
+                height={20}
+                title='Copied!'
+              />
+            ) : (
+              <Image
+                src='/icons/copy.svg'
+                alt='Copy icon'
+                title='Copy to clipboard'
+                width={20}
+                height={20}
+              />
+            )}
+          </Button>
+          <Badge
+            variant='secondary'
+            className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
             data-test='check-json-schema'
           >
-            {isJsonSchema ? (
+            {isJsonc ? (
+              isPartialSchema ? (
+                <>
+                  <Image
+                    src='/logo-white.svg'
+                    alt=' logo-white'
+                    width={16}
+                    height={16}
+                    className=' mr-1.5'
+                  />{' '}
+                  part of schema
+                </>
+              ) : (
+                <>code</>
+              )
+            ) : isJsonSchema ? (
               <>
                 <Image
                   src='/logo-white.svg'
@@ -330,139 +581,149 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
             ) : (
               <>data</>
             )}
-          </div>
+          </Badge>
         </div>
-        <Editable
-          className='overflow-x-auto'
-          data-test='json-editor'
-          onCopy={(e) => {
-            e.preventDefault();
-            const text = window.getSelection()?.toString();
-            navigator.clipboard.writeText(text || '');
-          }}
-          onCut={
-            /* istanbul ignore next : 
-               The editor is read-only, so the onCut function will never be called. */
-            (e) => {
+        <CardContent className='p-0 pt-2 '>
+          <Editable
+            className='overflow-x-auto'
+            data-test='json-editor'
+            onCopy={(e) => {
               e.preventDefault();
               const text = window.getSelection()?.toString();
               navigator.clipboard.writeText(text || '');
-              setValue([{ type: 'paragraph', children: [{ text: '' }] }]);
+            }}
+            onCut={
+              /* istanbul ignore next : 
+                 The editor is read-only, so the onCut function will never be called. */
+              (e) => {
+                e.preventDefault();
+                const text = window.getSelection()?.toString();
+                navigator.clipboard.writeText(text || '');
+                setValue([{ type: 'paragraph', children: [{ text: '' }] }]);
+              }
             }
-          }
-          readOnly={true}
-          decorate={([node, path]) => {
-            if (!Text.isText(node)) return [];
-            const stringPath = path.join(',');
-            /* istanbul ignore next: allPathDecorationsMap[stringPath] cannot be null */
-            return allPathDecorationsMap[stringPath] || [];
-          }}
-          renderLeaf={(props: any) => {
-            const { leaf, children, attributes } = props;
-            const textStyles: undefined | string = (() => {
-              if (
-                [
-                  'objectPropertyStartQuotes',
-                  'objectPropertyEndQuotes',
-                ].includes(leaf.syntaxPart?.type)
-              )
-                return 'text-blue-200';
-              if (['objectProperty'].includes(leaf.syntaxPart?.type)) {
-                const isJsonScope = jsonPathsWithJsonScope
-                  .filter(
-                    (jsonPathWithScope) =>
-                      jsonPathWithScope.scope ===
-                      JsonSchemaScope.TypeDefinition,
-                  )
-                  .map(
-                    (jsonPathsWithJsonScope) => jsonPathsWithJsonScope.jsonPath,
-                  )
-                  .includes(leaf.syntaxPart?.parentJsonPath);
+            readOnly={true}
+            decorate={([node, path]) => {
+              if (!Text.isText(node)) return [];
+              const stringPath = path.join(',');
+              /* istanbul ignore next: allPathDecorationsMap[stringPath] cannot be null */
+              return allPathDecorationsMap[stringPath] || [];
+            }}
+            renderLeaf={(props: any) => {
+              const { leaf, children, attributes } = props;
+              const textStyles: undefined | string = (() => {
                 if (
-                  isJsonScope &&
-                  jsonSchemaReferences.objectProperty[leaf.text]
-                ) {
-                  return 'cursor-pointer text-blue-400 hover:text-blue-300 decoration-blue-500/30 hover:decoration-blue-500/50 underline underline-offset-4';
+                  [
+                    'objectPropertyStartQuotes',
+                    'objectPropertyEndQuotes',
+                  ].includes(leaf.syntaxPart?.type)
+                )
+                  return 'text-blue-200';
+                if (['objectProperty'].includes(leaf.syntaxPart?.type)) {
+                  const isJsonScope = jsonPathsWithJsonScope
+                    .filter(
+                      (jsonPathWithScope) =>
+                        jsonPathWithScope.scope ===
+                        JsonSchemaScope.TypeDefinition,
+                    )
+                    .map(
+                      (jsonPathsWithJsonScope) =>
+                        jsonPathsWithJsonScope.jsonPath,
+                    )
+                    .includes(leaf.syntaxPart?.parentJsonPath);
+                  if (
+                    isJsonScope &&
+                    jsonSchemaReferences.objectProperty[leaf.text]
+                  ) {
+                    return 'cursor-pointer text-blue-400 hover:text-blue-300 decoration-blue-500/30 hover:decoration-blue-500/50 underline underline-offset-4';
+                  }
+                  return 'text-cyan-500';
                 }
-                return 'text-cyan-500';
-              }
-              if (leaf.syntaxPart?.type === 'stringValue') {
-                if (jsonSchemaReferences.stringValue[leaf.text]) {
-                  return 'cursor-pointer text-amber-300 hover:text-amber-300 decoration-amber-500/30 hover:decoration-amber-500/50 underline underline-offset-4';
+                if (leaf.syntaxPart?.type === 'stringValue') {
+                  if (jsonSchemaReferences.stringValue[leaf.text]) {
+                    return 'cursor-pointer text-amber-300 hover:text-amber-300 decoration-amber-500/30 hover:decoration-amber-500/50 underline underline-offset-4';
+                  }
+                  return 'text-lime-200';
                 }
-                return 'text-lime-200';
-              }
-              if (
-                [
-                  'objectStartBracket',
-                  'objectEndBracket',
-                  'arrayComma',
-                  'arrayStartBracket',
-                  'arrayEndBracket',
-                ].includes(leaf.syntaxPart?.type)
-              )
-                return 'text-slate-400';
-              if (
-                [
-                  'numberValue',
-                  'stringValue',
-                  'booleanValue',
-                  'nullValue',
-                ].includes(leaf.syntaxPart?.type)
-              )
-                return 'text-lime-200';
-            })();
+                if (
+                  [
+                    'objectStartBracket',
+                    'objectEndBracket',
+                    'arrayComma',
+                    'arrayStartBracket',
+                    'arrayEndBracket',
+                  ].includes(leaf.syntaxPart?.type)
+                )
+                  return 'text-slate-400';
+                if (
+                  [
+                    'numberValue',
+                    'stringValue',
+                    'booleanValue',
+                    'nullValue',
+                  ].includes(leaf.syntaxPart?.type)
+                )
+                  return 'text-lime-200';
 
-            const link: null | string = (() =>
-              jsonSchemaReferences?.[leaf.syntaxPart?.type]?.[leaf.text] ||
-              null)();
+                // Handle partial schema specific highlighting that might not match exactly
+                if (!leaf.syntaxPart?.type) {
+                  // If no syntax part type, apply default white color for partial schemas
+                  return isPartialSchema ? 'text-white' : undefined;
+                }
+              })();
 
-            return (
-              <span
-                onClick={() => {
-                  /* istanbul ignore if : link cannot be null */
-                  if (!link) return;
-                  router.push(link);
-                }}
-                className={classnames('pb-2', textStyles, 'whitespace-pre')}
-                title={leaf.syntaxPart?.type}
-                {...attributes}
-              >
-                {children}
-              </span>
-            );
-          }}
-          renderElement={(props: any) => {
-            // This will be the path to the image element.
-            const { element, children, attributes } = props;
-            const path = ReactEditor.findPath(editor, element);
-            const line = path[0] + 1;
-            /* istanbul ignore else : no else block to test */
-            if (element.type === 'paragraph') {
+              const link: null | string = (() =>
+                jsonSchemaReferences?.[leaf.syntaxPart?.type]?.[leaf.text] ||
+                null)();
+
               return (
                 <span
-                  className='relative flex flex-row first:pt-4 last:pb-4 '
+                  onClick={() => {
+                    /* istanbul ignore if : link cannot be null */
+                    if (!link) return;
+                    router.push(link);
+                  }}
+                  className={cn('pb-2', textStyles, 'whitespace-pre')}
+                  title={leaf.syntaxPart?.type}
                   {...attributes}
                 >
-                  <span
-                    className='absolute px-4 w-16 after:content-[attr(data-line-number)] text-slate-500 select-none'
-                    data-line-number={line}
-                  />
-                  <span className='ml-12 text-white pl-4'>{children}</span>
+                  {children}
                 </span>
               );
-            }
-            /* istanbul ignore next:
-             * There is no other element type in the render function. Hence this will never be called.*/
-            throw new Error(
-              `unknown element.type [${element.type}] in render function`,
-            );
-          }}
-        />
+            }}
+            renderElement={(props: any) => {
+              // This will be the path to the image element.
+              const { element, children, attributes } = props;
+              const path = ReactEditor.findPath(editor, element);
+              const line = path[0] + 1;
+              /* istanbul ignore else : no else block to test */
+              if (element.type === 'paragraph') {
+                return (
+                  <span
+                    className='relative flex flex-row first:pt-4 last:pb-4 '
+                    {...attributes}
+                  >
+                    <span
+                      className='absolute px-4 w-16 after:content-[attr(data-line-number)] text-slate-500 select-none'
+                      data-line-number={line}
+                    />
+                    <span className='ml-12 text-white pl-4'>{children}</span>
+                  </span>
+                );
+              }
+              /* istanbul ignore next:
+               * There is no other element type in the render function. Hence this will never be called.*/
+              throw new Error(
+                `unknown element.type [${element.type}] in render function`,
+              );
+            }}
+          />
+        </CardContent>
 
         {validation === 'invalid' && (
-          <div
-            className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm'
+          <Alert
+            variant='destructive'
+            className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-red-500/30 text-sm border-0 rounded-none'
             data-test='not-compliant-to-schema'
           >
             <Image
@@ -473,11 +734,12 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
               className=' mr-2'
             />
             not compliant to schema
-          </div>
+          </Alert>
         )}
         {validation === 'valid' && (
-          <div
-            className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-slate-500/30 text-sm'
+          <Alert
+            variant='default'
+            className='text-white px-4 py-3 font-sans flex flex-row justify-end items-center bg-slate-500/30 text-sm border-0 rounded-none'
             data-test='compliant-to-schema'
           >
             <Image
@@ -488,11 +750,11 @@ export default function JsonEditor({ initialCode }: { initialCode: string }) {
               className='mr-2'
             />
             compliant to schema
-          </div>
+          </Alert>
         )}
-      </div>
+      </Card>
       <div
-        className={classnames('text-center text-xs pt-2 text-slate-400', {
+        className={cn('text-center text-xs pt-2 text-slate-400', {
           'mb-10': !hasCodeblockAsDescendant,
         })}
         data-test='code-caption'
