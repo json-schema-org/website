@@ -21,7 +21,9 @@ export const TabsGroup = ({
     <div>
       <div className='flex flex-col sm:flex-row items-start sm:items-end mt-4'>
         {groupLabel && (
-          <div className='p-2 sm:p-4 text-slate-400 mb-2 sm:mb-0 sm:mr-4 text-sm'>{groupLabel}:</div>
+          <div className='p-2 sm:p-4 text-slate-400 mb-2 sm:mb-0 sm:mr-4 text-sm'>
+            {groupLabel}:
+          </div>
         )}
         <div className='flex flex-row overflow-x-auto w-full sm:w-auto'>
           {tabs.map((tab, index) => {
