@@ -2,9 +2,8 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { getLayout } from '~/components/SiteLayout';
-import StyledMarkdown, {
-  TableOfContentMarkdown,
-} from '~/components/StyledMarkdown';
+import StyledMarkdown from '~/components/StyledMarkdown';
+import { TableOfContents } from '~/components/markdown';
 
 import getStaticMarkdownPaths from '~/lib/getStaticMarkdownPaths';
 import getStaticMarkdownProps from '~/lib/getStaticMarkdownProps';
@@ -104,7 +103,7 @@ export default function StaticMarkdownPage({
                   <div className='uppercase text-xs text-slate-400 mb-4'>
                     on this page
                   </div>
-                  <TableOfContentMarkdown markdown={content} depth={0} />
+                  <TableOfContents markdown={content} depth={0} />
                 </div>
                 <CarbonAds variant='sidebar' />
               </div>
