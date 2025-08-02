@@ -1109,7 +1109,7 @@ We have shown lots of features inside the Oracle Database 23ai which provide pow
 
 ![Oracle Database 23ai is a converged database now supporting JSON schema.](/img/posts/2025/oracle-case-study/converged_database.webp)
 
-Lean more:
+Learn more:
 - [Oracle Database 23ai `DBMS_JSON_SCHEMA` PL/SQL package](https://docs.oracle.com/en/database/oracle/oracle-database/23/arpls/DBMS_JSON_SCHEMA.html#GUID-89B9C48D-D905-482C-A78C-8DB314EDF072)
 - [Oracle Database 23ai JSON Developer Guide](https://docs.oracle.com/en/database/oracle/oracle-database/23/adjsn/index.html)
 - [Getting started with Oracle Database 23ai](https://medium.com/db-one/oracle-database-download-install-tutorial-my-getting-started-guide-044925c10ca2)

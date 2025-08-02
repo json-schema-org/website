@@ -1,11 +1,12 @@
+/* eslint-disable linebreak-style */
+/* eslint-disable react-hooks/rules-of-hooks */
+
 import React, { useContext, useEffect, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Link from 'next/link';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import JsonEditor from '~/components/JsonEditor';
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp';
-import Highlight from 'react-syntax-highlighter';
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Code from '~/components/Code';
 import { FullMarkdownContext } from '~/context';
 import Image from 'next/image';
@@ -302,37 +303,19 @@ const StyledMarkdownBlock = ({ markdown }: { markdown: string }) => {
             pre: ({ children }) => {
               const language = children?.props?.className;
               const isJsonCode = language === 'lang-json';
+              const isJsoncCode = language === 'lang-jsonc';
               const code = children?.props?.children;
+
               if (isJsonCode) {
                 return <JsonEditor initialCode={code} />;
               }
 
-              return (
-                <div className='overflow-x-auto rounded-lg bg-gray-800 text-white'>
-                  <Highlight
-                    language={language}
-                    style={atomOneDark}
-                    showLineNumbers
-                    lineNumberStyle={{
-                      color: '#64748B',
-                      fontSize: '16px',
-                      paddingRight: '10px',
-                    }}
-                    customStyle={{
-                      padding: '12px',
-                      fontFamily: 'monospace',
-                      fontSize: '16px',
-                    }}
-                    codeTagProps={{
-                      style: {
-                        fontFamily: 'monospace',
-                      },
-                    }}
-                  >
-                    {code}
-                  </Highlight>
-                </div>
-              );
+              if (isJsoncCode) {
+                return <JsonEditor initialCode={code} isJsonc={true} />;
+              }
+
+              // Use JsonEditor for regular code blocks
+              return <JsonEditor language={language} code={code} />;
             },
             blockquote: {
               component: ({ children }) => (
@@ -670,7 +653,7 @@ export function TableOfContentMarkdown({
                       </a>
                     );
                   },
-                } /* eslint-enable */
+                }
               : { component: () => null },
           ...hiddenElements(
             'strong',
@@ -688,6 +671,10 @@ export function TableOfContentMarkdown({
             'Bigquote',
             'Regularquote',
             'specialBox',
+            'Infobox',
+            'Danger',
+            'Warning',
+            'Tip',
           ),
         },
       }}
