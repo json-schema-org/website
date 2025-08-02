@@ -395,7 +395,7 @@ export const DocsNav = ({
             </svg>
           </Button>
         </CollapsibleTrigger>
-        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden'>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden scrollbar-hidden'>
           <div className='mt-2'>
             <DocLink uri='/docs' label='Overview' setOpen={setOpen} />
             <DocLink
@@ -502,7 +502,7 @@ export const DocsNav = ({
             </svg>
           </Button>
         </CollapsibleTrigger>
-        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden'>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden scrollbar-hidden'>
           <div className='mt-2'>
             <DocLink uri='/learn' label='Overview' setOpen={setOpen} />
             <DocLink
@@ -606,7 +606,7 @@ export const DocsNav = ({
             </svg>
           </Button>
         </CollapsibleTrigger>
-        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden'>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden scrollbar-hidden'>
           <div className='mt-2'>
             <DocLink uri='/learn/guides' label='Overview' setOpen={setOpen} />
             <DocLink
@@ -679,7 +679,7 @@ export const DocsNav = ({
             </svg>
           </Button>
         </CollapsibleTrigger>
-        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden max-h-80 overflow-y-auto'>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden max-h-80 overflow-y-auto scrollbar-hidden'>
           <div className='mt-2'>
             <DocLink
               uri='/understanding-json-schema/reference'
@@ -865,7 +865,7 @@ export const DocsNav = ({
             </svg>
           </Button>
         </CollapsibleTrigger>
-        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden'>
+        <CollapsibleContent className='ml-6 transition-all duration-500 ease-in-out data-[state=closed]:animate-[collapsible-up_0.5s_ease-in-out] data-[state=open]:animate-[collapsible-down_0.5s_ease-in-out] overflow-hidden scrollbar-hidden'>
           <div className='mt-2'>
             <DocLink uri='/specification' label='Overview' setOpen={setOpen} />
             <SegmentSubtitle label='Versions' />
