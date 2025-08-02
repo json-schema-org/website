@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
@@ -9,7 +10,7 @@ const PATH = 'pages/blog/posts';
 import TextTruncate from 'react-text-truncate';
 import generateRssFeed from './generateRssFeed';
 import { useRouter } from 'next/router';
-import { SectionContext } from '~/context';
+import { SectionContext } from '../../context';
 import Image from 'next/image';
 
 type Author = {
@@ -197,14 +198,13 @@ export default function StaticMarkdownPage({
       </Head>
       <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-0 sm:mt-10'>
         {recentBlog[0] && (
-          <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
+          <div className='relative w-full aspect-[16/9] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]' />
             <Image
               src={recentBlog[0].frontmatter.cover}
-              width={800}
-              height={450}
-              className='object-cover w-full h-full opacity-70 blur-[5px]'
               alt={recentBlog[0].frontmatter.title}
+              fill
+              className='object-fill w-full h-full opacity-70 blur-[5px]'
               priority
               quality={75}
             />
@@ -307,113 +307,125 @@ export default function StaticMarkdownPage({
 
             return (
               <section key={blogPost.slug}>
-                <div className='h-[510px] flex border rounded-lg shadow-sm hover:shadow-lg transition-all overflow-hidden dark:border-slate-500'>
-                  <Link
-                    href={`/blog/posts/${blogPost.slug}`}
-                    className='inline-flex flex-col flex-1 w-full'
-                  >
-                    <div className='relative h-[160px] w-full'>
-                      <Image
-                        src={frontmatter.cover}
-                        alt={frontmatter.title}
-                        fill
-                        className='object-fill'
-                        loading={idx < 10 ? 'eager' : 'lazy'}
-                        priority={idx < 10}
-                        quality={75}
-                      />
+                <Link
+                  href={`/blog/posts/${blogPost.slug}`}
+                  className='h-[600px] sm:h-[540px] flex border rounded-lg shadow-sm transition-shadow duration-300 overflow-hidden dark:border-slate-500 group flex-col flex-1 w-full'
+                >
+                  <div className='relative w-full aspect-[16/9] overflow-hidden'>
+                    <Image
+                      src={frontmatter.cover}
+                      alt={frontmatter.title}
+                      fill
+                      className='object-fill transition-transform duration-300 group-hover:scale-110'
+                      loading={idx < 10 ? 'eager' : 'lazy'}
+                      priority={idx < 10}
+                      quality={75}
+                    />
+                    <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 pointer-events-none' />
+                  </div>
+                  <div className='p-4 flex flex-col flex-1 justify-between min-h-0 pt-2'>
+                    <div>
+                      {/* Display each category as a clickable badge */}
+                      <div className='flex flex-wrap gap-2 mb-4'>
+                        {getCategories(frontmatter).map((cat, index) => (
+                          <div
+                            key={index}
+                            className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full text-sm'
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              toggleCategory(cat);
+                            }}
+                          >
+                            {cat || 'Unknown'}
+                          </div>
+                        ))}
+                      </div>
+                      <div className='text-lg h-[95px] font-semibold overflow-hidden transition-transform duration-300 group-hover:scale-105'>
+                        {frontmatter.title}
+                      </div>
+                      <div className='mt-3   text-slate-500 dark:text-slate-300 flex-1 min-h-0'>
+                        <TextTruncate
+                          element='span'
+                          line={4}
+                          text={frontmatter.excerpt}
+                        />
+                      </div>
                     </div>
-                    <div className='p-4 flex flex-col flex-1 justify-between'>
-                      <div>
-                        {/* Display each category as a clickable badge */}
-                        <div className='flex flex-wrap gap-2 mb-4'>
-                          {getCategories(frontmatter).map((cat, index) => (
+                    <div className='flex flex-row items-center mt-2'>
+                      <div className='flex flex-row pl-2 mr-2'>
+                        {(frontmatter.authors || []).map(
+                          (author: Author, index: number) => (
                             <div
                               key={index}
-                              className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full text-sm'
-                              onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                toggleCategory(cat);
+                              className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                                frontmatter.authors.length > 2
+                                  ? 'h-8 w-8'
+                                  : 'h-11 w-11'
+                              }`}
+                              style={{
+                                backgroundImage: `url(${author.photo})`,
+                                zIndex: 10 - index,
                               }}
-                            >
-                              {cat || 'Unknown'}
-                            </div>
-                          ))}
-                        </div>
-                        <div className='text-lg h-[80px] font-semibold'>
-                          {frontmatter.title}
-                        </div>
-                        <div className='mt-3 mb-6 text-slate-500 dark:text-slate-300'>
-                          <TextTruncate
-                            element='span'
-                            line={4}
-                            text={frontmatter.excerpt}
-                          />
-                        </div>
+                            />
+                          ),
+                        )}
                       </div>
-                      <div className='flex flex-row items-center'>
-                        <div className='flex flex-row pl-2 mr-2'>
-                          {(frontmatter.authors || []).map(
-                            (author: Author, index: number) => (
-                              <div
-                                key={index}
-                                className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
-                                  frontmatter.authors.length > 2
-                                    ? 'h-8 w-8'
-                                    : 'h-11 w-11'
-                                }`}
-                                style={{
-                                  backgroundImage: `url(${author.photo})`,
-                                  zIndex: 10 - index,
-                                }}
-                              />
-                            ),
-                          )}
-                        </div>
-                        <div className='flex flex-col items-start'>
-                          <div className='text-sm font-semibold'>
-                            {frontmatter.authors.length > 2 ? (
-                              <>
-                                {frontmatter.authors
-                                  .slice(0, 2)
-                                  .map((author: Author, index: number) => (
-                                    <span key={author.name}>
-                                      {author.name}
-                                      {index === 0 && ' & '}
-                                    </span>
-                                  ))}
-                                {'...'}
-                              </>
-                            ) : (
-                              frontmatter.authors.map(
-                                (author: Author, index: number) => (
+                      <div className='flex flex-col items-start'>
+                        <div className='text-sm font-semibold'>
+                          {frontmatter.authors.length > 2 ? (
+                            <>
+                              {frontmatter.authors
+                                .slice(0, 2)
+                                .map((author: Author, index: number) => (
                                   <span key={author.name}>
                                     {author.name}
-                                    {index < frontmatter.authors.length - 1 &&
-                                      ' & '}
+                                    {index === 0 && ' & '}
                                   </span>
-                                ),
-                              )
-                            )}
-                          </div>
-                          <div className='text-slate-500 text-sm dark:text-slate-300'>
-                            {frontmatter.date && (
-                              <span>
-                                {date.toLocaleDateString('en-us', {
-                                  year: 'numeric',
-                                  month: 'long',
-                                  day: 'numeric',
-                                })}
-                              </span>
-                            )}{' '}
-                            &middot; {postTimeToRead} min read
-                          </div>
+                                ))}
+                              {'...'}
+                            </>
+                          ) : (
+                            frontmatter.authors.map(
+                              (author: Author, index: number) => (
+                                <span key={author.name}>
+                                  {author.name}
+                                  {index < frontmatter.authors.length - 1 &&
+                                    ' & '}
+                                </span>
+                              ),
+                            )
+                          )}
+                        </div>
+                        <div className='text-slate-500 text-sm dark:text-slate-300'>
+                          {frontmatter.date && (
+                            <span>
+                              {date.toLocaleDateString('en-us', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric',
+                              })}
+                            </span>
+                          )}{' '}
                         </div>
                       </div>
                     </div>
-                  </Link>
-                </div>
+                  </div>
+                  {/* Separator Line */}
+                  <div className='border-t border-gray-200 dark:border-slate-600 mx-4'></div>
+                  {/* Read More Section */}
+                  <div className='flex w-full px-4 py-2 justify-between items-center'>
+                    <span className='text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-1 group/readmore'>
+                      Read More
+                      <span className='transition-transform group-hover/readmore:translate-x-1 text-xs'>
+                        →
+                      </span>
+                    </span>
+                    <span className='text-slate-500 text-sm dark:text-slate-400'>
+                      {postTimeToRead} min read
+                    </span>
+                  </div>
+                </Link>
               </section>
             );
           })}

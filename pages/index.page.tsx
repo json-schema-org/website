@@ -427,7 +427,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px]  mb-4'
+                      className='object-fill mb-4'
                       width={600}
                       height={232}
                       alt='blog'
