@@ -204,7 +204,7 @@ export default function StaticMarkdownPage({
               src={recentBlog[0].frontmatter.cover}
               alt={recentBlog[0].frontmatter.title}
               fill
-              className='object-cover w-full h-full opacity-70 blur-[5px]'
+              className='object-fill w-full h-full opacity-70 blur-[5px]'
               priority
               quality={75}
             />
@@ -316,7 +316,7 @@ export default function StaticMarkdownPage({
                       src={frontmatter.cover}
                       alt={frontmatter.title}
                       fill
-                      className='object-cover transition-transform duration-300 group-hover:scale-110'
+                      className='object-fill transition-transform duration-300 group-hover:scale-110'
                       loading={idx < 10 ? 'eager' : 'lazy'}
                       priority={idx < 10}
                       quality={75}
