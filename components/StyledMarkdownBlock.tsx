@@ -17,156 +17,11 @@ import {
 import classnames from 'classnames';
 import { checkHasContent } from '~/lib/markdownUtils';
 import { TableOfContent } from '~/components/TableOfContentMarkdown';
+import ResponsiveTable from '~/components/ResponsiveTable';
 
 interface StyledMarkdownBlockProps {
   markdown: string;
 }
-
-// Mobile-friendly table component
-const ResponsiveTable = ({ children }: { children: React.ReactNode }) => {
-  const [headers, setHeaders] = React.useState<string[]>([]);
-  const [rows, setRows] = React.useState<React.ReactNode[][]>([]);
-
-  React.useEffect(() => {
-    // Extract table structure from children
-    if (!children) return;
-
-    let extractedHeaders: string[] = [];
-    let extractedRows: React.ReactNode[][] = [];
-
-    // Helper function to extract text content from React nodes
-    const extractTextContent = (node: React.ReactNode): string => {
-      if (typeof node === 'string') return node;
-      if (typeof node === 'number') return node.toString();
-      if (React.isValidElement(node)) {
-        return React.Children.toArray(node.props.children)
-          .map((child) => extractTextContent(child))
-          .join('');
-      }
-      if (Array.isArray(node)) {
-        return node.map((child) => extractTextContent(child)).join('');
-      }
-      return '';
-    };
-
-    const processTableChildren = (tableChildren: React.ReactNode[]) => {
-      tableChildren.forEach((child: React.ReactNode) => {
-        if (React.isValidElement(child)) {
-          const childElement = child as React.ReactElement<any>;
-          if (childElement.type === 'thead') {
-            // Extract headers
-            const theadChildren = React.Children.toArray(
-              childElement.props.children,
-            );
-            theadChildren.forEach((row: React.ReactNode) => {
-              if (React.isValidElement(row)) {
-                const rowElement = row as React.ReactElement<any>;
-                if (rowElement.type === 'tr') {
-                  const thElements = React.Children.toArray(
-                    rowElement.props.children,
-                  );
-                  extractedHeaders = thElements.map((th: React.ReactNode) => {
-                    if (React.isValidElement(th)) {
-                      const thElement = th as React.ReactElement<any>;
-                      return extractTextContent(
-                        thElement.props?.children || '',
-                      );
-                    }
-                    return '';
-                  });
-                }
-              }
-            });
-          } else if (childElement.type === 'tbody') {
-            // Extract rows
-            const tbodyChildren = React.Children.toArray(
-              childElement.props.children,
-            );
-            extractedRows = tbodyChildren
-              .map((row: React.ReactNode) => {
-                if (React.isValidElement(row)) {
-                  const rowElement = row as React.ReactElement<any>;
-                  if (rowElement.type === 'tr') {
-                    return React.Children.toArray(
-                      rowElement.props.children,
-                    ).map((td: React.ReactNode) => {
-                      if (React.isValidElement(td)) {
-                        const tdElement = td as React.ReactElement<any>;
-                        return tdElement.props?.children || '';
-                      }
-                      return '';
-                    });
-                  }
-                }
-                return [];
-              })
-              .filter((row) => row.length > 0);
-          }
-        }
-      });
-    };
-
-    // Handle direct table structure or nested table
-    if (React.isValidElement(children)) {
-      const childElement = children as React.ReactElement<any>;
-      const tableChildren = React.Children.toArray(
-        childElement.props?.children || [],
-      );
-      processTableChildren(tableChildren);
-    } else {
-      const childrenArray = React.Children.toArray(children);
-      processTableChildren(childrenArray);
-    }
-
-    setHeaders(extractedHeaders);
-    setRows(extractedRows);
-  }, [children]);
-
-  return (
-    <div className='max-w-[100%] mx-auto mb-8'>
-      {/* Desktop Table */}
-      <div className='hidden md:block overflow-auto'>
-        <table className='table-auto min-w-full'>{children}</table>
-      </div>
-
-      {/* Mobile Card Layout */}
-      <div className='md:hidden space-y-3'>
-        {rows.length > 0 ? (
-          rows.map((row, rowIndex) => (
-            <div
-              key={rowIndex}
-              className='bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg p-4 shadow-sm'
-            >
-              {headers.map((header, colIndex) => {
-                const cellContent = row[colIndex];
-                if (!cellContent && cellContent !== 0) return null;
-
-                return (
-                  <div
-                    key={colIndex}
-                    className='flex flex-col py-2 border-b border-slate-100 dark:border-slate-700 last:border-b-0'
-                  >
-                    <div className='font-semibold text-sm text-slate-600 dark:text-slate-300 mb-1'>
-                      {header}
-                    </div>
-                    <div className='text-slate-800 dark:text-slate-200 break-words'>
-                      {cellContent}
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          ))
-        ) : (
-          // Fallback: if extraction fails, show simple scrollable table
-          <div className='overflow-x-auto'>
-            <table className='table-auto min-w-full text-sm'>{children}</table>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
 
 export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
   return (
@@ -269,16 +124,18 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
               ),
             },
             table: {
-              component: ResponsiveTable,
+              component: ({ children }) => (
+                <ResponsiveTable maxMobileColumns={3}>
+                  <table className='table-auto'>{children}</table>
+                </ResponsiveTable>
+              ),
             },
             thead: {
               component: ({ children }) => {
                 const isEmpty = !checkHasContent(children);
                 if (isEmpty) return null;
                 return (
-                  <thead className='table-auto bg-slate-100 dark:bg-slate-800'>
-                    {children}
-                  </thead>
+                  <thead className='table-auto bg-slate-100'>{children}</thead>
                 );
               },
             },
@@ -291,10 +148,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             td: {
               component: ({ children, rowSpan }) => (
-                <td
-                  className='border border-slate-200 dark:border-slate-700 p-4 dark:text-slate-200'
-                  rowSpan={rowSpan}
-                >
+                <td className='border border-slate-200 p-4' rowSpan={rowSpan}>
                   {children}
                 </td>
               ),
