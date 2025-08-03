@@ -131,6 +131,7 @@ export function TableOfContentMarkdown({
             'a',
             'ul',
             'li',
+            'table',
             'code',
             'pre',
             'blockquote',
@@ -145,78 +146,6 @@ export function TableOfContentMarkdown({
             'Warning',
             'Tip',
           ),
-          table: {
-            component: ({ children }) => (
-              <div className="overflow-hidden">
-                <table className="hidden md:table w-full border-collapse border border-gray-300 dark:border-gray-600">
-                  {children}
-                </table>
-                <div className="md:hidden space-y-4">
-                  {children}
-                </div>
-              </div>
-            ),
-          },
-          thead: {
-            component: ({ children }) => (
-              <>
-                <thead className="hidden md:table-header-group bg-gray-50 dark:bg-gray-800">
-                  {children}
-                </thead>
-              </>
-            ),
-          },
-          tbody: {
-            component: ({ children }) => (
-              <tbody className="hidden md:table-row-group">
-                {children}
-              </tbody>
-            ),
-          },
-          tr: {
-            component: ({ children }) => {
-              const childrenArray = React.Children.toArray(children);
-              return (
-                <>
-                  <tr className="hidden md:table-row border-b border-gray-200 dark:border-gray-700">
-                    {children}
-                  </tr>
-                  <div className="md:hidden bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4 shadow-sm">
-                    {childrenArray.map((child, index) => {
-                      if (React.isValidElement(child)) {
-                        const headers = ['Type Keyword', 'Specific Keywords', 'Description'];
-                        return (
-                          <div key={index} className="mb-3 last:mb-0">
-                            <div className="font-semibold text-sm text-gray-600 dark:text-gray-400 mb-1">
-                              {headers[index] || `Column ${index + 1}`}
-                            </div>
-                            <div className="text-sm text-gray-900 dark:text-gray-100">
-                              {child}
-                            </div>
-                          </div>
-                        );
-                      }
-                      return null;
-                    })}
-                  </div>
-                </>
-              );
-            },
-          },
-          th: {
-            component: ({ children }) => (
-              <th className="hidden md:table-cell px-4 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider border-b-2 border-gray-300 dark:border-gray-600">
-                {children}
-              </th>
-            ),
-          },
-          td: {
-            component: ({ children }) => (
-              <td className="hidden md:table-cell px-4 py-3 text-sm text-gray-900 dark:text-gray-100 border-b border-gray-200 dark:border-gray-700">
-                {children}
-              </td>
-            ),
-          },
         },
       }}
     >
