@@ -17,7 +17,6 @@ import {
 import classnames from 'classnames';
 import { checkHasContent } from '~/lib/markdownUtils';
 import { TableOfContent } from '~/components/TableOfContentMarkdown';
-import ResponsiveTable from '~/components/ResponsiveTable';
 
 interface StyledMarkdownBlockProps {
   markdown: string;
@@ -125,9 +124,9 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             table: {
               component: ({ children }) => (
-                <ResponsiveTable maxMobileColumns={3}>
+                <div className='max-w-[100%] mx-auto mb-8 overflow-auto'>
                   <table className='table-auto'>{children}</table>
-                </ResponsiveTable>
+                </div>
               ),
             },
             thead: {
