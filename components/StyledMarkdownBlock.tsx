@@ -186,7 +186,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             summary: {
               component: ({ children }) => (
-                <summary className='bg-slate-100 -mx-4 p-4 rounded-xl my-3 cursor-pointer hover:bg-slate-200'>
+                <summary className='bg-slate-100 dark:bg-slate-700 -mx-4 p-4 rounded-xl my-3 cursor-pointer hover:bg-slate-200 dark:hover:bg-slate-600 text-slate-800 dark:text-slate-200'>
                   {children}
                 </summary>
               ),
@@ -194,7 +194,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             details: {
               component: ({ children }) => {
                 return (
-                  <details className='bg-slate-50 p-0 rounded-xl my-3 px-4'>
+                  <details className='bg-slate-50 dark:bg-slate-800 p-0 rounded-xl my-3 px-4'>
                     {children}
                   </details>
                 );
@@ -349,7 +349,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             Bigquote: {
               component: ({ children }) => {
                 return (
-                  <div className='text-h2mobile md:text-h2 text-center p-10 py-16 font-semibold text-slate-500 bg-slate-50 mb-4 rounded-xl'>
+                  <div className='text-h2mobile md:text-h2 text-center p-10 py-16 font-semibold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-700 mb-4 rounded-xl'>
                     "{children}"
                   </div>
                 );
