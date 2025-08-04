@@ -7853,7 +7853,7 @@ __metadata:
     slugify: "npm:^1.6.5"
     tailwind-merge: "npm:^3.3.1"
     tailwindcss: "npm:^3.3.5"
-    tw-animate-css: "npm:^1.2.9"
+    tw-animate-css: "npm:^1.3.6"
     typescript: "npm:5.8.3"
     webpack: "npm:^5.94.0"
     zero-fill: "npm:^2.2.4"
@@ -10978,10 +10978,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tw-animate-css@npm:^1.2.9":
-  version: 1.2.9
-  resolution: "tw-animate-css@npm:1.2.9"
-  checksum: 10c0/ffbd6dfbb34490a8752b185b40192168ce4bfa69949d153dc831d9471dec2758501f27f1784b6615de7da73a546d01d7201ed691f5220fe3e0a53694cb275a3a
+"tw-animate-css@npm:^1.3.6":
+  version: 1.3.6
+  resolution: "tw-animate-css@npm:1.3.6"
+  checksum: 10c0/11e157ed84b5876f02220dcf52733000d5bef99c79d336c8f3fc0fc046bbc127528b2610937bbcc8b1d27b10c900ef9ffbe999b21cd73b72d8e33163460312bc
   languageName: node
   linkType: hard
 
