@@ -6,7 +6,6 @@ cover: /img/posts/2022/w3c-wot-case-study/cover.webp
 authors:
   - name: Juan Cruz Viotti
     photo: /img/avatars/jviotti.webp
-    twitter: jviottidc
 excerpt: "Using JSON Schema at the W3C Web of Things to create an interoperability layer so that different IoT platforms, protocols and standards can operate together"
 language: en
 ---
