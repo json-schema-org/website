@@ -403,7 +403,7 @@ If the value of `isMember` is true:
 * The `then` block is applied, which specifies that the `membershipNumber` property should be a string with a minimum length of 10 and a maximum length of 10.
 
 If the value of `isMember` is anything other than true:
-* The `else` block is applied, which specifies that the `membershipNumber` property can be any string.
+* The `else` block is applied, which specifies that the `membershipNumber` property should be a string with a minimum length of 15.
 
 ```json
 {
