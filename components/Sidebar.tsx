@@ -306,7 +306,6 @@ export const DocsNav = ({
       newActive.getDocs = true;
     } else if (getStartedPath.includes(pathWithoutFragment)) {
       newActive.getStarted = true;
-      setActive({ ...active, getStarted: true });
     } else if (getReferencePath.includes(pathWithoutFragment)) {
       newActive.getReference = true;
     } else if (getSpecificationPath.includes(pathWithoutFragment)) {
