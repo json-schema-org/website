@@ -255,7 +255,7 @@ const Home = (props: any) => {
           </div>
           {/* Feature 4 section*/}
           <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
-            <Card className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 border-0 hover:border-2 hover:hover:shadow-sm'>
+            <Card className='w-full border-2 border-transparent shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary dark:hover:border-slate-600'>
               <CardContent className='p-0'>
                 <CardTitle className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                   Streamline testing and validation
@@ -268,7 +268,7 @@ const Home = (props: any) => {
                 </p>
               </CardContent>
             </Card>
-            <Card className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 border-0 hover:border-2 hover:border-primary hover:shadow-none transition-all duration-300 ease-in-out cursor-pointer'>
+              <Card className='w-full border-2 border-transparent shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary dark:hover:border-slate-600'>
               <CardContent className='p-0'>
                 <CardTitle className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                   Exchange data seamlessly
@@ -282,7 +282,7 @@ const Home = (props: any) => {
                 </p>
               </CardContent>
             </Card>
-            <Card className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 border-0 hover:border-2 hover:border-primary hover:shadow-none transition-all duration-300 ease-in-out cursor-pointer'>
+              <Card className='w-full border-2 border-transparent shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary dark:hover:border-slate-600'>
               <CardContent className='p-0'>
                 <CardTitle className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200 '>
                   Document your data
@@ -294,7 +294,7 @@ const Home = (props: any) => {
                 </p>
               </CardContent>
             </Card>
-            <Card className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 border-0 hover:border-2 hover:border-primary hover:shadow-none transition-all duration-300 ease-in-out cursor-pointer'>
+             <Card className='w-full border-2 border-transparent shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:border-primary dark:hover:border-slate-600'>
               <CardContent className='p-0'>
                 <CardTitle className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                   Vibrant tooling ecosystem
