@@ -280,7 +280,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const DocsNav = ({
-  open,
+  open, // eslint-disable-line @typescript-eslint/no-unused-vars
   setOpen,
 }: {
   open: boolean;
