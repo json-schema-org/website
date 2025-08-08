@@ -280,6 +280,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const DocsNav = ({
+  open,
   setOpen,
 }: {
   open: boolean;
