@@ -190,7 +190,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const [rotateChevron, setRotateChevron] = useState(false);
   const handleRotate = () => setRotateChevron(!rotateChevron);
   const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)';
-  const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+  const pathWithoutFragment = extractPathWithoutFragment(router.asPath);
   useEffect(() => {
     if (window) {
       window.addEventListener('resize', () => {
@@ -213,19 +213,19 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               setOpen(!open);
             }}
           >
-            {getDocsPath.includes(pathWtihoutFragment) && (
+            {getDocsPath.includes(pathWithoutFragment) && (
               <h3 className='text-white ml-12'>Introduction</h3>
             )}
-            {getStartedPath.includes(pathWtihoutFragment) && (
+            {getStartedPath.includes(pathWithoutFragment) && (
               <h3 className='text-white ml-12'>Get started</h3>
             )}
-            {getGuidesPath.includes(pathWtihoutFragment) && (
+            {getGuidesPath.includes(pathWithoutFragment) && (
               <h3 className='text-white ml-12'>Guides</h3>
             )}
-            {getReferencePath.includes(pathWtihoutFragment) && (
+            {getReferencePath.includes(pathWithoutFragment) && (
               <h3 className='text-white ml-12'>Reference</h3>
             )}
-            {getSpecificationPath.includes(pathWtihoutFragment) && (
+            {getSpecificationPath.includes(pathWithoutFragment) && (
               <h3 className='text-white ml-12'>Specification</h3>
             )}
             {router.pathname === null && (
@@ -280,6 +280,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
 };
 
 export const DocsNav = ({
+  open, // eslint-disable-line @typescript-eslint/no-unused-vars
   setOpen,
 }: {
   open: boolean;
@@ -294,7 +295,7 @@ export const DocsNav = ({
     getSpecification: false,
   });
   useEffect(() => {
-    const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+    const pathWithoutFragment = extractPathWithoutFragment(router.asPath);
     const newActive = {
       getDocs: false,
       getStarted: false,
@@ -302,16 +303,15 @@ export const DocsNav = ({
       getReference: false,
       getSpecification: false,
     };
-    if (getDocsPath.includes(pathWtihoutFragment)) {
+    if (getDocsPath.includes(pathWithoutFragment)) {
       newActive.getDocs = true;
-    } else if (getStartedPath.includes(pathWtihoutFragment)) {
+    } else if (getStartedPath.includes(pathWithoutFragment)) {
       newActive.getStarted = true;
-      setActive({ ...active, getStarted: true });
-    } else if (getReferencePath.includes(pathWtihoutFragment)) {
+    } else if (getReferencePath.includes(pathWithoutFragment)) {
       newActive.getReference = true;
-    } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
+    } else if (getSpecificationPath.includes(pathWithoutFragment)) {
       newActive.getSpecification = true;
-    } else if (getGuidesPath.includes(pathWtihoutFragment)) {
+    } else if (getGuidesPath.includes(pathWithoutFragment)) {
       newActive.getGuides = true;
     }
     setActive(newActive);
@@ -339,17 +339,30 @@ export const DocsNav = ({
     }
   }, [resolvedTheme]);
 
+  const handleAccordion = (section: keyof typeof active) => (open: boolean) => {
+    if (open) {
+      setActive({
+        getDocs: false,
+        getStarted: false,
+        getGuides: false,
+        getReference: false,
+        getSpecification: false,
+        [section]: true,
+      });
+    } else {
+      setActive((prev) => ({
+        ...prev,
+        [section]: false,
+      }));
+    }
+  };
+
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       {/* Introduction */}
       <Collapsible
         open={active.getDocs}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getDocs: open,
-          }))
-        }
+        onOpenChange={handleAccordion('getDocs')}
         className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-3 rounded transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -451,12 +464,7 @@ export const DocsNav = ({
       {/* Get Started */}
       <Collapsible
         open={active.getStarted}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getStarted: open,
-          }))
-        }
+        onOpenChange={handleAccordion('getStarted')}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -555,12 +563,7 @@ export const DocsNav = ({
       {/* Guides */}
       <Collapsible
         open={active.getGuides}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getGuides: open,
-          }))
-        }
+        onOpenChange={handleAccordion('getGuides')}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -628,12 +631,7 @@ export const DocsNav = ({
       {/* Reference */}
       <Collapsible
         open={active.getReference}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getReference: open,
-          }))
-        }
+        onOpenChange={handleAccordion('getReference')}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -811,12 +809,7 @@ export const DocsNav = ({
       {/* Specification */}
       <Collapsible
         open={active.getSpecification}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getSpecification: open,
-          }))
-        }
+        onOpenChange={handleAccordion('getSpecification')}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
