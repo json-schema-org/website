@@ -538,10 +538,10 @@ const Home = (props: any) => {
                     and by appointment. Open Community Working Meetings are
                     every third Monday of the month at 12:00 PT.
                   </p>
-                  <div className=''>
+                  <div className='w-full flex flex-col items-center'>
                     <Button
                       asChild
-                      className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 mx-auto dark:border-none'
+                      className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 dark:border-none'
                     >
                       <a
                         href='https://github.com/orgs/json-schema-org/discussions/35'
@@ -553,7 +553,7 @@ const Home = (props: any) => {
 
                     <Button
                       asChild
-                      className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mx-auto dark:border-none'
+                      className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] dark:border-none'
                     >
                       <a
                         href='https://github.com/orgs/json-schema-org/discussions/34/'
