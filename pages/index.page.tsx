@@ -376,231 +376,254 @@ const Home = (props: any) => {
               build new connections.
             </p>
           </div>
-          <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <Card className='p-4 w-full mb-6 dark:shadow-2xl border-0'>
-              <CardContent className='p-0'>
-                <Link href='https://json-schema.org/slack'>
-                  <CardTitle className='mb-4 font-semibold flex items-center dark:text-slate-200'>
-                    Join the JSON Schema Slack Workspace!
-                    {isClient && (
-                      <>
-                        <Image
-                          src='/img/logos/Slack-mark.svg'
-                          className='w-8 h-8'
-                          alt='slack'
-                          height={32}
-                          width={32}
-                        />
-                      </>
-                    )}
-                  </CardTitle>
-                  {isClient && (
-                    <>
-                      <Image
-                        src='/img/home-page/slack-json-schema.png'
-                        className='w-full mb-4'
-                        alt='slack-json-schema'
-                        height={500}
-                        width={300}
-                      />
-                    </>
-                  )}
-
-                  {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-                  <p className='mb-4 dark:text-slate-300'>
-                    Join our Slack to ask questions, get feedback on your
-                    projects, and connect with +5000 practitioners and experts.
-                  </p>
-                </Link>
-                <Button
-                  asChild
-                  className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mx-auto dark:border-none'
-                >
-                  <a
-                    href='https://json-schema.org/slack'
-                    className='flex items-center '
-                  >
-                    {isClient && (
-                      <>
-                        <Image
-                          src='/img/logos/slack_logo_small-white.svg'
-                          className='w-4 h-4 mr-2 '
-                          width={16}
-                          height={16}
-                          alt='slack'
-                        />
-                      </>
-                    )}
-                    Join Slack
-                  </a>
-                </Button>
-              </CardContent>
-            </Card>
-            {/* BlogPost Data */}
-            <Card className='p-4 w-full mb-6 dark:shadow-2xl border-0'>
-              <CardContent className='p-0'>
-                <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                  <CardTitle className='mb-5 font-semibold pt-1 dark:text-slate-200'>
-                    The JSON Schema Blog
-                  </CardTitle>
-                  {isClient && (
-                    <>
-                      <Image
-                        src={blogPosts[0].frontmatter.cover}
-                        className='w-full h-[232px]  mb-4'
-                        width={600}
-                        height={232}
-                        alt='blog'
-                      />
-                    </>
-                  )}
-                  <h3 className='mb-4 font-semibold dark:text-slate-300'>
-                    {' '}
-                    {blogPosts[0].frontmatter.title}
-                  </h3>
-                  <div className='mb-4'>
-                    <TextTruncate
-                      element='span'
-                      line={4}
-                      text={blogPosts[0].frontmatter.excerpt}
-                    />
-                  </div>
-
-                  <div className='flex ml-2 mb-2 '>
-                    {(blogPosts[0].frontmatter.authors || []).map(
-                      (author: any, index: number) => {
-                        return (
-                          <div
-                            key={index}
-                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                            style={{
-                              backgroundImage: `url(${author.photo})`,
-                              zIndex: 10 - index,
-                            }}
-                          />
-                        );
-                      },
-                    )}
-                    <div className='flex flex-col ml-2'>
-                      <p className='text-sm font-semibold dark:text-slate-300'>
-                        {blogPosts[0].frontmatter.authors.length > 2 ? (
-                          <>
-                            {blogPosts[0].frontmatter.authors
-                              .slice(0, 2)
-                              .map((author: any, index: number) => (
-                                <span key={author.name}>
-                                  {author.name}
-                                  {index === 0 && ' & '}
-                                </span>
-                              ))}
-                            {'...'}
-                          </>
-                        ) : (
-                          blogPosts[0].frontmatter.authors.map(
-                            (author: any) => (
-                              <span key={author.name}>{author.name}</span>
-                            ),
-                          )
-                        )}
-                      </p>
-
-                      <div className='text-slate-500 text-sm dark:text-slate-300'>
-                        <span>
-                          {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
-                          min read
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </Link>
-
-                <div>
-                  <Button
-                    asChild
-                    className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center pt-1 semi-bold mx-auto dark:border-none'
-                  >
-                    <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                      Read more{' '}
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-            <div>
-              <Card className='p-4 md:w-full mb-6 mr-4 dark:shadow-2xl border-0'>
-                <CardContent className='p-0'>
-                  <CardTitle className='mb-2 font-semibold dark:text-slate-200'>
-                    JSON Schema Community Meetings & Events
-                  </CardTitle>
-                  <p className='mb-4 dark:text-slate-300'>
-                    We hold monthly Office Hours and Open Community Working
-                    Meetings. Office Hours are every first Tuesday of the month
-                    and by appointment. Open Community Working Meetings are
-                    every third Monday of the month at 12:00 PT.
-                  </p>
-                  <div className='w-full flex flex-col items-center'>
-                    <Button
-                      asChild
-                      className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 dark:border-none'
-                    >
-                      <a
-                        href='https://github.com/orgs/json-schema-org/discussions/35'
-                        rel='noopener noreferrer'
-                      >
-                        Open Community Working Meetings
-                      </a>
-                    </Button>
-
-                    <Button
-                      asChild
-                      className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] dark:border-none'
-                    >
-                      <a
-                        href='https://github.com/orgs/json-schema-org/discussions/34/'
-                        rel='noopener noreferrer'
-                      >
-                        Office Hours
-                      </a>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-              <div className='p-2'>
-                <div>
-                  <Headline4>Upcoming events</Headline4>
-                  <div>
-                    <ul>
-                      {props.datesInfo.map((event: any, index: any) => (
+          {/* Community Section - Improved Layout */}
+          <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12'>
+              {/* Upcoming Events - Calendar Section */}
+              <div className='bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg dark:shadow-2xl min-h-[400px]'>
+                <Headline4 className='mb-6 text-gray-900 dark:text-slate-200'>
+                  Upcoming Events
+                </Headline4>
+                
+                <div className='space-y-4 mb-8'>
+                  {props.datesInfo.length > 0 ? (
+                    <ul className='space-y-4'>
+                      {props.datesInfo.slice(0, 5).map((event: any, index: any) => (
                         <li key={index}>
-                          <div className='flex mb-4'>
-                            <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
+                          <div className='flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200'>
+                            <div className='bg-btnOrange rounded-full w-12 h-12 flex items-center justify-center text-white font-bold text-sm flex-shrink-0'>
                               {event.day}
-                            </p>
-                            <div className='text-sm'>
-                              <p>{event.title}</p>
-                              <p>
-                                <b>{event.time}</b> ({event.timezone})
+                            </div>
+                            <div className='flex-1 min-w-0'>
+                              <p className='text-sm font-medium text-gray-900 dark:text-slate-300 line-clamp-3 mb-1'>
+                                {event.title}
+                              </p>
+                              <p className='text-xs text-gray-500 dark:text-slate-400'>
+                                <span className='font-medium'>{event.time}</span> ({event.timezone})
                               </p>
                             </div>
                           </div>
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  ) : (
+                    <div className='text-center py-12'>
+                      <div className='w-16 h-16 mx-auto mb-4 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center'>
+                        <svg className='w-8 h-8 text-gray-400' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+                          <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' />
+                        </svg>
+                      </div>
+                      <p className='text-sm text-gray-500 dark:text-slate-400'>
+                        No upcoming events scheduled
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 <Button
                   asChild
-                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center mx-auto dark:border-none'
+                  className='w-full rounded-lg bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[44px] text-sm font-medium dark:border-none'
                 >
                   <a
                     href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org'
                     target='_blank'
                     rel='noopener noreferrer'
                   >
-                    View Calendar
+                    View Full Calendar
                   </a>
                 </Button>
+              </div>
+
+              {/* Blog Card */}
+              <Card className='p-6 h-fit dark:shadow-2xl border-0 hover:shadow-lg transition-shadow duration-300'>
+                <CardContent className='p-0'>
+                  <Link href={`/blog/posts/${blogPosts[0].slug}`} className='block'>
+                    <CardTitle className='mb-4 font-semibold text-lg dark:text-slate-200'>
+                      The JSON Schema Blog
+                    </CardTitle>
+                    
+                    {isClient && (
+                      <div className='mb-4 overflow-hidden rounded-lg'>
+                        <Image
+                          src={blogPosts[0].frontmatter.cover}
+                          className='w-full h-48 object-cover hover:scale-105 transition-transform duration-300'
+                          width={400}
+                          height={192}
+                          alt='blog'
+                        />
+                      </div>
+                    )}
+                    
+                    <h3 className='mb-3 font-semibold text-gray-900 dark:text-slate-300 line-clamp-2'>
+                      {blogPosts[0].frontmatter.title}
+                    </h3>
+                    
+                    <div className='mb-4 text-gray-700 dark:text-slate-400'>
+                      <TextTruncate
+                        element='span'
+                        line={3}
+                        text={blogPosts[0].frontmatter.excerpt}
+                      />
+                    </div>
+
+                    {/* Author Info */}
+                    <div className='flex items-center mb-6'>
+                      <div className='flex -space-x-2'>
+                        {(blogPosts[0].frontmatter.authors || []).slice(0, 3).map(
+                          (author: any, index: number) => (
+                            <div
+                              key={index}
+                              className='w-8 h-8 rounded-full border-2 border-white bg-cover bg-center flex-shrink-0'
+                              style={{
+                                backgroundImage: `url(${author.photo})`,
+                                zIndex: 10 - index,
+                              }}
+                            />
+                          ),
+                        )}
+                      </div>
+                      <div className='ml-3 flex-1 min-w-0'>
+                        <p className='text-sm font-medium text-gray-900 dark:text-slate-300 truncate'>
+                          {blogPosts[0].frontmatter.authors.length > 2 ? (
+                            <>
+                              {blogPosts[0].frontmatter.authors
+                                .slice(0, 2)
+                                .map((author: any, index: number) => (
+                                  <span key={author.name}>
+                                    {author.name}
+                                    {index === 0 && ' & '}
+                                  </span>
+                                ))}
+                              {'...'}
+                            </>
+                          ) : (
+                            blogPosts[0].frontmatter.authors.map(
+                              (author: any) => (
+                                <span key={author.name}>{author.name}</span>
+                              ),
+                            )
+                          )}
+                        </p>
+                        <p className='text-xs text-gray-500 dark:text-slate-400'>
+                          {blogPosts[0].frontmatter.date} · {timeToRead} min read
+                        </p>
+                      </div>
+                    </div>
+                  </Link>
+
+                  <Button
+                    asChild
+                    className='w-full rounded-lg bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[44px] font-medium dark:border-none'
+                  >
+                    <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+                      Read Article
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Slack Card - Third Column with Community Meetings Below */}
+              <div className='space-y-6'>
+                <Card className='p-6 h-fit dark:shadow-2xl border-0 hover:shadow-lg transition-shadow duration-300'>
+                  <CardContent className='p-0'>
+                    <div className='flex items-center gap-3 mb-4'>
+                      {isClient && (
+                        <Image
+                          src='/img/logos/Slack-mark.svg'
+                          className='w-8 h-8 flex-shrink-0'
+                          alt='slack'
+                          height={32}
+                          width={32}
+                        />
+                      )}
+                      <CardTitle className='font-semibold text-lg dark:text-slate-200'>
+                        Join the JSON Schema Slack Workspace!
+                      </CardTitle>
+                    </div>
+                    
+                    <Link href='https://json-schema.org/slack' className='block'>
+                      {isClient && (
+                        <div className='mb-4 overflow-hidden rounded-lg'>
+                          <Image
+                            src='/img/home-page/slack-json-schema.png'
+                            className='w-full h-48 object-cover hover:scale-105 transition-transform duration-300'
+                            alt='slack-json-schema'
+                            height={192}
+                            width={400}
+                          />
+                        </div>
+                      )}
+
+                      <p className='mb-6 text-gray-700 dark:text-slate-300 leading-relaxed'>
+                        Join our Slack to ask questions, get feedback on your
+                        projects, and connect with +5000 practitioners and experts.
+                      </p>
+                    </Link>
+                    
+                    <Button
+                      asChild
+                      className='w-full rounded-lg bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[44px] font-medium dark:border-none'
+                    >
+                      <a
+                        href='https://json-schema.org/slack'
+                        className='flex items-center justify-center gap-2'
+                      >
+                        {isClient && (
+                          <Image
+                            src='/img/logos/slack_logo_small-white.svg'
+                            className='w-4 h-4'
+                            width={16}
+                            height={16}
+                            alt='slack'
+                          />
+                        )}
+                        Join Slack
+                      </a>
+                    </Button>
+                  </CardContent>
+                </Card>
+
+                {/* Community Meetings & Events - Now Below Slack */}
+                <Card className='p-6 dark:shadow-2xl border-0 hover:shadow-lg transition-shadow duration-300'>
+                  <CardContent className='p-0'>
+                    <CardTitle className='mb-4 font-semibold text-lg dark:text-slate-200'>
+                      Community Meetings & Events
+                    </CardTitle>
+                    
+                    <p className='mb-6 text-gray-700 dark:text-slate-300 leading-relaxed text-sm'>
+                      We hold monthly Office Hours and Open Community Working
+                      Meetings. Office Hours are every first Tuesday of the month
+                      and by appointment. Open Community Working Meetings are
+                      every third Monday of the month at 12:00 PT.
+                    </p>
+                    
+                    <div className='space-y-3'>
+                      <Button
+                        asChild
+                        className='w-full rounded-lg bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] text-sm font-medium dark:border-none'
+                      >
+                        <a
+                          href='https://github.com/orgs/json-schema-org/discussions/35'
+                          rel='noopener noreferrer'
+                        >
+                          Open Community Working Meetings
+                        </a>
+                      </Button>
+
+                      <Button
+                        asChild
+                        className='w-full rounded-lg bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] text-sm font-medium dark:border-none'
+                      >
+                        <a
+                          href='https://github.com/orgs/json-schema-org/discussions/34/'
+                          rel='noopener noreferrer'
+                        >
+                          Office Hours
+                        </a>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
               </div>
             </div>
           </div>
