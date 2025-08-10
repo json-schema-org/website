@@ -2,12 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import CancelIcon from '~/public/icons/cancel.svg';
 import { Button } from '~/components/ui/button';
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from '~/components/ui/dialog';
+import { Dialog, DialogContent } from '~/components/ui/dialog';
 
 import Badge from './ui/Badge';
 import type { JSONSchemaTool } from '../JSONSchemaTool';
@@ -26,12 +21,12 @@ export default function ToolingDetailModal({
 }) {
   return (
     <Dialog open={true} onOpenChange={() => onClose()}>
-      <DialogContent 
+      <DialogContent
         className='fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] transform-none bg-white dark:bg-slate-800 rounded-lg p-8 max-w-full lg:max-w-4xl w-10/12 lg:w-full max-h-[80vh] overflow-y-auto border-0 shadow-lg z-50'
-        style={{ 
+        style={{
           overflowWrap: 'anywhere',
           top: 'calc(50% + 16px)', // Offset to match original positioning
-          transform: 'translate(-50%, -50%)'
+          transform: 'translate(-50%, -50%)',
         }}
         showCloseButton={false}
       >

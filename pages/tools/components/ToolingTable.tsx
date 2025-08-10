@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React, {
   Dispatch,
   ReactNode,
@@ -131,138 +132,140 @@ const ToolingTable = ({
               <Table className='w-full table-fixed bg-white dark:bg-slate-800 border border-gray-200'>
                 <TableHeader>
                   <TableRow className='border-b border-gray-200 hover:bg-transparent'>
-                  <TableSortableColumnHeader
-                    sortBy='name'
-                    transform={transform}
-                    setTransform={setTransform}
-                    attributes={{
-                      className: 'w-1/4',
-                    }}
-                  >
-                    Name
-                  </TableSortableColumnHeader>
-                  {transform.groupBy !== 'toolingTypes' && (
-                    <TableColumnHeader
+                    <TableSortableColumnHeader
+                      sortBy='name'
+                      transform={transform}
+                      setTransform={setTransform}
                       attributes={{
-                        className: 'w-1/6',
+                        className: 'w-1/4',
                       }}
                     >
-                      Tooling Type
-                    </TableColumnHeader>
-                  )}
-                  {transform.groupBy !== 'languages' && (
+                      Name
+                    </TableSortableColumnHeader>
+                    {transform.groupBy !== 'toolingTypes' && (
+                      <TableColumnHeader
+                        attributes={{
+                          className: 'w-1/6',
+                        }}
+                      >
+                        Tooling Type
+                      </TableColumnHeader>
+                    )}
+                    {transform.groupBy !== 'languages' && (
+                      <TableColumnHeader attributes={{ className: 'w-1/6' }}>
+                        Languages
+                      </TableColumnHeader>
+                    )}
                     <TableColumnHeader
+                      attributes={{
+                        className: '!px-0 w-1/4',
+                      }}
+                    >
+                      Dialects
+                    </TableColumnHeader>
+                    <TableSortableColumnHeader
+                      sortBy='license'
+                      transform={transform}
+                      setTransform={setTransform}
                       attributes={{ className: 'w-1/6' }}
                     >
-                      Languages
-                    </TableColumnHeader>
-                  )}
-                  <TableColumnHeader
-                    attributes={{
-                      className: '!px-0 w-1/4',
-                    }}
-                  >
-                    Dialects
-                  </TableColumnHeader>
-                  <TableSortableColumnHeader
-                    sortBy='license'
-                    transform={transform}
-                    setTransform={setTransform}
-                    attributes={{ className: 'w-1/6' }}
-                  >
-                    License
-                  </TableSortableColumnHeader>
-                  <TableSortableColumnHeader
-                    sortBy='bowtie'
-                    transform={transform}
-                    setTransform={setTransform}
-                    attributes={{
-                      className: 'text-center px-1 w-20',
-                    }}
-                  >
-                    Bowtie
-                  </TableSortableColumnHeader>
+                      License
+                    </TableSortableColumnHeader>
+                    <TableSortableColumnHeader
+                      sortBy='bowtie'
+                      transform={transform}
+                      setTransform={setTransform}
+                      attributes={{
+                        className: 'text-center px-1 w-20',
+                      }}
+                    >
+                      Bowtie
+                    </TableSortableColumnHeader>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
-                  const bowtieData = getBowtieData(tool);
-                  if (bowtieData) {
-                    tool.bowtie = bowtieData;
-                  }
-                  return (
-                    <TableRow
-                      key={index}
-                      className='hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer border-b border-gray-200'
-                      onClick={() => openModal(tool)}
-                    >
-                      <TableCell
-                        attributes={{
-                          className: 'break-words',
-                          title: 'See details',
-                        }}
+                  {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
+                    const bowtieData = getBowtieData(tool);
+                    if (bowtieData) {
+                      tool.bowtie = bowtieData;
+                    }
+                    return (
+                      <TableRow
+                        key={index}
+                        className='hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer border-b border-gray-200'
+                        onClick={() => openModal(tool)}
                       >
-                        <div className='flex flex-wrap items-center gap-x-2 gap-y-1'>
-                          <span className={tool.name.split(' ').some((segment) => segment.length > 25) ? 'break-all' : 'break-words'}>
-                            {tool.name}
-                          </span>
-                          {tool.status === 'obsolete' && (
-                            <Tag intent='error'>{tool.status}</Tag>
-                          )}
-                        </div>
-                      </TableCell>
-                      {transform.groupBy !== 'toolingTypes' && (
-                        <TableCell>
-                          {tool.toolingTypes
-                            ?.map((type) => toTitleCase(type, '-'))
-                            .join(', ')}
-                        </TableCell>
-                      )}
-                      {transform.groupBy !== 'languages' && (
-                        <TableCell>
-                          {tool.languages?.join(', ')}
-                        </TableCell>
-                      )}
-                      <TableCell
-                        attributes={{
-                          className: '!px-0',
-                        }}
-                      >
-                        <div className='flex flex-wrap gap-1'>
-                          {tool.supportedDialects?.draft?.map((draft) => {
-                            return <Badge key={draft}>{draft}</Badge>;
-                          })}
-                        </div>
-                      </TableCell>
-                      <TableCell>
-                        {tool.license}
-                      </TableCell>
-                      <TableCell
-                        attributes={{
-                          className: 'text-center px-1',
-                        }}
-                      >
-                        {bowtieReport && (
-                          <div className='flex justify-center items-center h-full m-auto'>
-                            {bowtieData ? (
-                              <a
-                                className='flex justify-center items-center h-full'
-                                href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
-                                target='blank'
-                                onClick={(event) => event.stopPropagation()}
-                                title='See at Bowtie'
-                              >
-                                <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
-                              </a>
-                            ) : (
-                              <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                        <TableCell
+                          attributes={{
+                            className: 'break-words',
+                            title: 'See details',
+                          }}
+                        >
+                          <div className='flex flex-wrap items-center gap-x-2 gap-y-1'>
+                            <span
+                              className={
+                                tool.name
+                                  .split(' ')
+                                  .some((segment) => segment.length > 25)
+                                  ? 'break-all'
+                                  : 'break-words'
+                              }
+                            >
+                              {tool.name}
+                            </span>
+                            {tool.status === 'obsolete' && (
+                              <Tag intent='error'>{tool.status}</Tag>
                             )}
                           </div>
+                        </TableCell>
+                        {transform.groupBy !== 'toolingTypes' && (
+                          <TableCell>
+                            {tool.toolingTypes
+                              ?.map((type) => toTitleCase(type, '-'))
+                              .join(', ')}
+                          </TableCell>
                         )}
-                      </TableCell>
-                    </TableRow>
-                  );
-                })}
+                        {transform.groupBy !== 'languages' && (
+                          <TableCell>{tool.languages?.join(', ')}</TableCell>
+                        )}
+                        <TableCell
+                          attributes={{
+                            className: '!px-0',
+                          }}
+                        >
+                          <div className='flex flex-wrap gap-1'>
+                            {tool.supportedDialects?.draft?.map((draft) => {
+                              return <Badge key={draft}>{draft}</Badge>;
+                            })}
+                          </div>
+                        </TableCell>
+                        <TableCell>{tool.license}</TableCell>
+                        <TableCell
+                          attributes={{
+                            className: 'text-center px-1',
+                          }}
+                        >
+                          {bowtieReport && (
+                            <div className='flex justify-center items-center h-full m-auto'>
+                              {bowtieData ? (
+                                <a
+                                  className='flex justify-center items-center h-full'
+                                  href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                                  target='blank'
+                                  onClick={(event) => event.stopPropagation()}
+                                  title='See at Bowtie'
+                                >
+                                  <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                </a>
+                              ) : (
+                                <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                              )}
+                            </div>
+                          )}
+                        </TableCell>
+                      </TableRow>
+                    );
+                  })}
                 </TableBody>
               </Table>
             </div>
@@ -283,43 +286,43 @@ const ToolingTable = ({
                         onClick={() => openModal(tool)}
                       >
                         <ShadcnTableCell className='p-3 relative text-base'>
-                        {bowtieData && (
-                          <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
-                            <span>Bowtie:</span>
-                            <a
-                              href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
-                              target='blank'
-                              onClick={(event) => event.stopPropagation()}
-                              title='See at Bowtie'
-                              className='ml-1'
-                            >
-                              <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
-                            </a>
-                          </div>
-                        )}
+                          {bowtieData && (
+                            <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
+                              <span>Bowtie:</span>
+                              <a
+                                href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                                target='blank'
+                                onClick={(event) => event.stopPropagation()}
+                                title='See at Bowtie'
+                                className='ml-1'
+                              >
+                                <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                              </a>
+                            </div>
+                          )}
 
-                        <div className='flex justify-between items-center'>
-                          <div className='font-medium text-base'>
-                            {tool.name}
-                            {tool.status === 'obsolete' && (
-                              <Tag intent='error'>{tool.status}</Tag>
-                            )}
+                          <div className='flex justify-between items-center'>
+                            <div className='font-medium text-base'>
+                              {tool.name}
+                              {tool.status === 'obsolete' && (
+                                <Tag intent='error'>{tool.status}</Tag>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
-                          Languages: {tool.languages?.join(', ')}
-                        </div>
-                        <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
-                          Supported Dialects:
-                        </div>
-                        <div className='flex flex-wrap gap-1 mt-1'>
-                          {tool.supportedDialects?.draft?.map((draft) => (
-                            <Badge key={draft}>{draft}</Badge>
-                          ))}
-                        </div>
-                                                <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
-                          License: {tool.license}
-                        </div>
+                          <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                            Languages: {tool.languages?.join(', ')}
+                          </div>
+                          <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                            Supported Dialects:
+                          </div>
+                          <div className='flex flex-wrap gap-1 mt-1'>
+                            {tool.supportedDialects?.draft?.map((draft) => (
+                              <Badge key={draft}>{draft}</Badge>
+                            ))}
+                          </div>
+                          <div className='text-sm text-gray-600 dark:text-gray-300 mt-1'>
+                            License: {tool.license}
+                          </div>
                         </ShadcnTableCell>
                       </TableRow>
                     );
