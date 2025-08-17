@@ -1,11 +1,7 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable linebreak-style */
 import React from 'react';
 import ToolingTable from '~/pages/tools/components/ToolingTable';
-import type {
-  GroupedTools,
-  Transform,
-} from '~/pages/tools/hooks/useToolsTransform';
+import type { GroupedTools, Transform } from '~/pages/tools/hooks/useToolsTransform';
 import type { JSONSchemaTool } from '~/pages/tools/JSONSchemaTool';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
 
@@ -30,8 +26,8 @@ const mockTools: JSONSchemaTool[] = [
 ];
 
 const mockToolsByGroup: GroupedTools = {
-  validator: [mockTools[0]],
-  editor: [mockTools[1]],
+  'validator': [mockTools[0]],
+  'editor': [mockTools[1]],
 };
 
 const mockTransform: Transform = {
@@ -49,7 +45,7 @@ const mockTransform: Transform = {
 };
 
 describe('ToolingTable Component', () => {
-  let setTransformStub: any;
+  let setTransformStub: Cypress.SinonStub;
   let mockRouter: MockRouter;
 
   beforeEach(() => {
@@ -67,7 +63,7 @@ describe('ToolingTable Component', () => {
         transform={mockTransform}
         setTransform={setTransformStub}
         numberOfTools={2}
-      />,
+      />
     );
 
     cy.contains('Validator').should('exist');
@@ -83,7 +79,7 @@ describe('ToolingTable Component', () => {
         transform={mockTransform}
         setTransform={setTransformStub}
         numberOfTools={2}
-      />,
+      />
     );
 
     cy.contains('obsolete').should('exist');
@@ -94,24 +90,22 @@ describe('ToolingTable Component', () => {
 
   it('handles sorting and modal interactions', () => {
     cy.viewport(1200, 800); // Set large viewport to show desktop table
-
+    
     cy.mount(
       <ToolingTable
         toolsByGroup={mockToolsByGroup}
         transform={mockTransform}
         setTransform={setTransformStub}
         numberOfTools={2}
-      />,
+      />
     );
 
-    cy.get('.hidden.lg\\:block')
-      .first()
-      .within(() => {
-        cy.contains('Name').click();
-        cy.get('@setTransform').should('have.been.called');
-
-        cy.get('tbody tr').first().click();
-      });
+    cy.get('.hidden.lg\\:block').first().within(() => {
+      cy.contains('Name').click();
+      cy.get('@setTransform').should('have.been.called');
+      
+      cy.get('tbody tr').first().click();
+    });
 
     cy.get('[role="dialog"]').should('exist');
   });
@@ -123,7 +117,7 @@ describe('ToolingTable Component', () => {
         transform={mockTransform}
         setTransform={setTransformStub}
         numberOfTools={0}
-      />,
+      />
     );
 
     cy.contains('No Tools Found :(').should('exist');
@@ -136,7 +130,7 @@ describe('ToolingTable Component', () => {
         transform={mockTransform}
         setTransform={setTransformStub}
         numberOfTools={2}
-      />,
+      />
     );
 
     cy.get('.hidden.lg\\:block').should('exist');
