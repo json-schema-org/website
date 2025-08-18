@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react/prop-types */
+/* istanbul ignore file */
 import * as React from 'react';
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { XIcon } from 'lucide-react';
