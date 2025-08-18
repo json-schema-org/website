@@ -1,3 +1,4 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import { getLayout } from '~/components/SiteLayout';
 import { SectionContext } from '~/context';
@@ -15,6 +16,8 @@ import {
   fetchRemoteICalFile,
   printEventsForNextWeeks,
 } from '../../lib/calendarUtils';
+import { Button } from '~/components/ui/button';
+import { cn } from '~/lib/utils';
 
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
@@ -83,7 +86,7 @@ export default function communityPages(props: any) {
                 </h2>
               </div>
               <div className='mt-8'>
-                <button
+                <Button
                   className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   onClick={() =>
                     window.open(
@@ -93,7 +96,7 @@ export default function communityPages(props: any) {
                   }
                 >
                   Join Discussions
-                </button>
+                </Button>
               </div>
             </div>
           </div>
@@ -152,10 +155,10 @@ export default function communityPages(props: any) {
           <div className='z-40 mt-20 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between rounded-lg border border-gray-200 bg-white transition-colors hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main' className='m-auto'>
-                <h2 className=' text-blue-700 font-bold  text-[2rem] text-center'>
+                <h2 className='text-blue-700 font-bold text-[2rem] max-sm:text-[1.5rem] text-center'>
                   Ambassadors Program
                 </h2>
-                <h2 className='text-center font-bold text-slate-500 text-base tracking-wide dark:text-white mt-10'>
+                <h2 className='text-center font-bold text-slate-500 text-base max-sm:text-sm tracking-wide dark:text-white mt-10'>
                   The JSON Schema Ambassadors Program recognize the people who
                   drive adoption, innovation and knowledge sharing in the JSON
                   Schema community.
@@ -164,17 +167,18 @@ export default function communityPages(props: any) {
                   className='mt-10 mx-auto flex justify-center items-center'
                   data-testid='HomeCard-button'
                 >
-                  <Link
-                    href='/ambassadors'
-                    rel='noopener noreferrer'
+                  <Button
+                    asChild
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
-                    Become an ambassador
-                  </Link>
+                    <Link href='/ambassadors' rel='noopener noreferrer'>
+                      Become an ambassador
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
-            <div className='w-full h-fit-content md:w-3/6 max-sm:w-1/4 flex rounded-r-lg justify-end bg-cover bg-center bg-ambassador' />
+            <div className='w-full h-[250px] sm:h-[300px] md:h-full md:w-3/6 max-sm:w-full flex rounded-r-lg md:rounded-r-lg max-sm:rounded-t-none max-sm:rounded-b-lg justify-end bg-cover bg-center bg-ambassador max-sm:bg-contain max-sm:bg-no-repeat' />
           </div>
 
           <div className='z-40 mt-20 rounded-lg border border-gray-200 bg-white transition-colors hover:bg-slate-100 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
@@ -183,25 +187,26 @@ export default function communityPages(props: any) {
                 data-testid='HomeCard-main'
                 className='m-auto flex flex-col items-center text-center'
               >
-                <h2 className='text-blue-700 font-bold text-[2rem]'>
+                <h2 className='text-blue-700 font-bold text-[2rem] max-sm:text-[1.5rem]'>
                   Join the JSON Schema Slack workspace!
                 </h2>
-                <h2 className='font-bold text-base text-slate-500 dark:text-white tracking-wide mt-10'>
+                <h2 className='font-bold text-base max-sm:text-sm text-slate-500 dark:text-white tracking-wide mt-10'>
                   Join our Slack to ask questions, get feedback on your
                   projects, and connect with +5000 practitioners and experts.
                 </h2>
                 <div className='mt-10'>
-                  <Link
-                    href='/slack'
-                    rel='noopener noreferrer'
+                  <Button
+                    asChild
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
-                    Join Slack
-                  </Link>
+                    <Link href='/slack' rel='noopener noreferrer'>
+                      Join Slack
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
-            <div className='w-full h-fit-content md:w-3/6  flex rounded-r-lg justify-end bg-cover bg-center bg-slack' />
+            <div className='hidden md:flex w-full h-[200px] sm:h-[300px] md:h-full md:w-3/6 flex rounded-r-lg md:rounded-r-lg justify-end bg-cover bg-center bg-slack' />
           </div>
         </div>
 
@@ -209,43 +214,49 @@ export default function communityPages(props: any) {
           <div className='z-40 mt-20 w-full rounded-lg border border-gray-200 bg-white group dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors hover:bg-slate-100 md:flex grid grid-cols-1 lg:grid-cols-2 justify-between'>
             <div className='p-4 px-8 grid items-center w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
               <div data-testid='HomeCard-main'>
-                <h2 className='text-blue-700 text-[2rem] font-bold  text-center'>
+                <h2 className='text-blue-700 text-[2rem] max-sm:text-[1.5rem] font-bold text-center'>
                   JSON Schema Community Meetings & Events
                 </h2>
                 <div
                   className='mt-10 text-center'
                   data-testid='HomeCard-button'
                 >
-                  <h2 className='text-slate-500 text-base tracking-wide dark:text-white mt-10 font-bold text-body-lg tracking-body font-regular'>
+                  <h2 className='text-slate-500 text-base max-sm:text-sm tracking-wide dark:text-white mt-10 font-bold text-body-lg tracking-body font-regular'>
                     We hold monthly Office Hours and weekly Open Community
                     Working Meetings. Office Hours are every first Tuesday of
                     the month at 15:00 BST, and by appointment. Open Community
                     Working Meetings are every Monday at 14:00 PT.
                   </h2>
-                  <div className='mt-10 flex justify-center'>
-                    <a
-                      href='https://github.com/orgs/json-schema-org/discussions/35'
-                      rel='noopener noreferrer'
-                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                  <div className='mt-10 flex justify-center max-sm:flex-col max-sm:gap-3'>
+                    <Button
+                      asChild
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 mx-1 rounded block md:inline-block focus:outline-none'
                     >
-                      Open Community Working Meetings
-                    </a>
-                  </div>
-                  <div className='mt-4 flex justify-center'>
-                    <a
-                      href='https://github.com/orgs/json-schema-org/discussions/34/'
-                      rel='noopener noreferrer'
-                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                      <a
+                        href='https://github.com/orgs/json-schema-org/discussions/35'
+                        rel='noopener noreferrer'
+                      >
+                        Open Community Working Meetings
+                      </a>
+                    </Button>
+                    <Button
+                      asChild
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 mx-1 rounded block md:inline-block focus:outline-none'
                     >
-                      Office Hours
-                    </a>
+                      <a
+                        href='https://github.com/orgs/json-schema-org/discussions/34/'
+                        rel='noopener noreferrer'
+                      >
+                        Office Hours
+                      </a>
+                    </Button>
                   </div>
                 </div>
               </div>
             </div>
             <div className='w-fit-content h-fit-content py-3 md:w-3/6 max-lg:mx-3 flex rounded-r-lg justify-end'>
               <div className='mx-auto max-lg:w-full'>
-                <h2 className='text-center dark:text-white text-primary text-[2rem] font-bold '>
+                <h2 className='text-center dark:text-white text-primary text-[2rem] max-sm:text-[1.5rem] font-bold '>
                   Upcoming events
                 </h2>
                 {props.datesInfo.map((event: any, index: any) => (
@@ -254,12 +265,16 @@ export default function communityPages(props: any) {
                     className='mx-auto gap-2 group-hover:bg-white dark:bg-slate-900/50 dark:group-hover:bg-slate-800  bg-slate-100 h-[90px] max-md:h-[120px]  max-sm:h-auto  w-full rounded-lg flex flex-row justify-between  items-center p-2 mt-2'
                   >
                     <div
-                      className={`h-[70px] w-1/3 rounded-lg text-center grid items-center bg-index-${index}`}
+                      className={cn(
+                        `h-[70px] w-1/3 rounded-lg text-center grid items-center bg-index-${index}`,
+                      )}
                     >
-                      <p className='text-[2rem] dark:text-white'>{event.day}</p>
+                      <p className='text-[2rem] max-sm:text-[1.5rem] dark:text-white'>
+                        {event.day}
+                      </p>
                     </div>
                     <div className='h-[70px] max-md:h-[120px]   max-sm:h-auto w-2/3  rounded-lg grid items-center px-2'>
-                      <p className='text-[12px]  dark:text-white'>
+                      <p className='text-[12px] max-sm:text-[10px] dark:text-white'>
                         <b className='text-blue-700'>{event.title}</b>
                         <br />
                         <span>
@@ -276,14 +291,17 @@ export default function communityPages(props: any) {
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
           <div className='z-40 mt-20 w-full md:h-130 rounded-lg border border-gray-200 bg-white shadow-3xl transition-colors  hover:bg-slate-100 md:flex grid grid-cols-1 md:grid-cols-2 justify-between mb-10  dark:bg-slate-800 hover:dark:bg-slate-900/30  dark:shadow-2xl dark:shadow-slate-900'>
             <div className='p-4 px-8 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left'>
-              <div data-testid='HomeCard-main' className='mx-auto my-20'>
-                <h2 className=' text-blue-700 font-bold text-[2rem] text-center'>
+              <div
+                data-testid='HomeCard-main'
+                className='mx-auto my-20 max-sm:my-10'
+              >
+                <h2 className='text-blue-700 font-bold text-[2rem] max-sm:text-[1.5rem] text-center'>
                   Welcome to
                   <br />
                   the JSON Schema Blog!
                 </h2>
                 <div className='m-auto flex flex-col items-center text-center'>
-                  <h2 className='font-bold text-slate-500 text-base dark:text-white tracking-wide mt-10'>
+                  <h2 className='font-bold text-slate-500 text-base max-sm:text-sm dark:text-white tracking-wide mt-10'>
                     <p>
                       Want to publish a blog post? Check out the&nbsp;
                       <a
@@ -298,31 +316,32 @@ export default function communityPages(props: any) {
                     </p>
                   </h2>
                   <div className='mt-10'>
-                    <Link
-                      href='/blog'
-                      rel='noopener noreferrer'
+                    <Button
+                      asChild
                       className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                     >
-                      Read blog
-                    </Link>
+                      <Link href='/blog' rel='noopener noreferrer'>
+                        Read blog
+                      </Link>
+                    </Button>
                   </div>
                 </div>
               </div>
             </div>
-            <div className='p-10 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left '>
+            <div className='p-10 max-sm:p-6 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left '>
               <div className='w-full mb-6 '>
                 <Link href={`/blog/posts/${blogPosts[0].slug}`}>
                   <Image
                     src={blogPosts[0].frontmatter.cover}
-                    className='w-full h-[232px]  mb-4'
+                    className='w-full h-[232px] max-sm:h-[180px] mb-4'
                     height={232}
                     width={400}
                     alt={blogPosts[0].frontmatter.title}
                   />
-                  <h3 className='mb-4 font-semibold dark:text-white'>
+                  <h3 className='mb-4 font-semibold dark:text-white max-sm:text-base'>
                     {blogPosts[0].frontmatter.title}
                   </h3>
-                  <div className='mb-4 text-[14px] dark:text-white'>
+                  <div className='mb-4 text-[14px] max-sm:text-[12px] dark:text-white'>
                     <TextTruncate
                       element='span'
                       line={4}
@@ -335,7 +354,7 @@ export default function communityPages(props: any) {
                         return (
                           <div
                             key={index}
-                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                            className='bg-slate-50 h-[44px] w-[44px] max-sm:h-[36px] max-sm:w-[36px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                             style={{
                               backgroundImage: `url(${author.photo})`,
                               zIndex: 10 - index,
@@ -345,7 +364,7 @@ export default function communityPages(props: any) {
                       },
                     )}
                     <div className='flex flex-col ml-2'>
-                      <p className='text-sm font-semibold dark:text-white'>
+                      <p className='text-sm max-sm:text-xs font-semibold dark:text-white'>
                         {blogPosts[0].frontmatter.authors.length > 2 ? (
                           <>
                             {blogPosts[0].frontmatter.authors
@@ -366,7 +385,7 @@ export default function communityPages(props: any) {
                           )
                         )}
                       </p>
-                      <div className='dark:text-slate-300 text-sm'>
+                      <div className='dark:text-slate-300 text-sm max-sm:text-xs'>
                         <span>
                           {blogPosts[0].frontmatter.date} &middot;{timeToRead}{' '}
                           min min read
@@ -376,13 +395,14 @@ export default function communityPages(props: any) {
                   </div>
                 </Link>
                 <div className='mx-auto '>
-                  <Link
-                    href='/blog'
-                    rel='noopener noreferrer'
+                  <Button
+                    asChild
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
                   >
-                    Read more posts
-                  </Link>
+                    <Link href='/blog' rel='noopener noreferrer'>
+                      Read more posts
+                    </Link>
+                  </Button>
                 </div>
               </div>
             </div>
