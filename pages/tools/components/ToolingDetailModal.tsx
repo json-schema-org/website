@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import CancelIcon from '~/public/icons/cancel.svg';
 import { Button } from '~/components/ui/button';
+import { Dialog, DialogContent } from '~/components/ui/dialog';
 
 import Badge from './ui/Badge';
 import type { JSONSchemaTool } from '../JSONSchemaTool';
@@ -18,34 +19,16 @@ export default function ToolingDetailModal({
   tool: JSONSchemaTool;
   onClose: () => void;
 }) {
-  useEffect(() => {
-    document.body.classList.add('no-scroll');
-    return () => {
-      document.body.classList.remove('no-scroll');
-    };
-  }, []);
-
-  useEffect(() => {
-    const clickEsc = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-    document.addEventListener('keydown', clickEsc);
-    return () => {
-      document.removeEventListener('keydown', clickEsc);
-    };
-  }, [onClose]);
-
   return (
-    <div className='fixed inset-0 flex items-center justify-center z-50 overflow-x-hidden'>
-      <div
-        className='fixed inset-0 bg-black opacity-50'
-        onClick={onClose}
-      ></div>
-      <div
-        className='bg-white dark:bg-slate-800 rounded-lg p-8 max-w-full lg:max-w-4xl w-10/12 lg:w-full relative top-8 z-50 max-h-[80vh] overflow-y-auto'
-        style={{ overflowWrap: 'anywhere' }}
+    <Dialog open={true} onOpenChange={() => onClose()}>
+      <DialogContent
+        className='fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] transform-none bg-white dark:bg-slate-800 rounded-lg p-8 max-w-full lg:max-w-4xl w-10/12 lg:w-full max-h-[80vh] overflow-y-auto border-0 shadow-lg z-50'
+        style={{
+          overflowWrap: 'anywhere',
+          top: 'calc(50% + 16px)', // Offset to match original positioning
+          transform: 'translate(-50%, -50%)',
+        }}
+        showCloseButton={false}
       >
         <div className='flex justify-end absolute top-0 right-0 mt-6 mr-6'>
           <Button
@@ -347,8 +330,8 @@ export default function ToolingDetailModal({
             )}
           </div>
         </div>
-      </div>
-    </div>
+      </DialogContent>
+    </Dialog>
   );
 }
 
