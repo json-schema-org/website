@@ -15,7 +15,7 @@ jobs:
     name: Build Preview Site and Upload Build Artifact
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
             submodules: 'recursive'
 
