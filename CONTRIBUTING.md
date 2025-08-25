@@ -81,7 +81,7 @@ When contributing to the website design components, we use [shadcn/ui](https://u
    corepack prepare yarn@4.4.0 --activate
    yarn dlx shadcn@latest add [component-name]
    ```
-   Replace `[component-name]` with the actual component name
+   Replace `[component-name]` with the actual component name, This should work across all devices. When creating a new component, please also update the corresponding test files
 
 
 ### 🚀 Contributing to CI/CD Pipeline
