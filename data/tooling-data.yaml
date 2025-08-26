@@ -3422,3 +3422,33 @@
   source: 'https://github.com/gmr/jsonschema-models'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'json-schema-utils'
+  description: 'Random utilities to analyze and manipulate JSON Schema'
+  toolingTypes: ['validation', 'linter', 'schema-to-types', 'util-general-processing']
+  languages: ['Python']
+  maintainers:
+    - username: 'zx80'
+      platform: 'github'
+    - username: 'clairey-zx81'
+      platform: 'github'
+  license: 'Public Domain'
+  source: 'https://github.com/zx80/json-schema-utils'
+  homepage: 'https://github.com/zx80/json-schema-utils'
+  supportedDialects:
+    draft: [1, 2, 3, 4, 5, 6, 7, '2019-09', '2020-12']
+
+- name: 'json-model'
+  description: 'JSON Model Tools: compilers (C, Python, JavaScript, PL/pgSQL, Java) and exporters (JSON Schema, Pydantic)'
+  toolingTypes: 'model-to-schema'
+  languages: ['Python']
+  maintainers:
+    - username: 'clairey-zx81'
+      platform: 'github'
+    - username: 'zx80'
+      platform: 'github'
+  license: 'Public Domain'
+  source: 'https://github.com/clairey-zx81/json-model'
+  homepage: 'https://github.com/clairey-zx81/json-model'
+  supportedDialects:
+    draft: ['2020-12']
