@@ -78,7 +78,7 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `optional`              | Core          | 02                 | 03      | Replaced by `required`                                                         |
 | `pattern`               | Core          | 01                 | No      | No                                                                             |
 | `patternProperties`     | Core          | 03                 | No      | No                                                                             |
-| `prefixItems`           | Core          | 2020-12            | No      | Replaced `items`                                                               |
+| `prefixItems`           | Core          | 2020-12            | No      | Partially replaced `items`                                                               |
 | `properties`            | Core          | 01                 | No      | No                                                                             |
 | `propertyNames`         | Core          | 06                 | No      | No                                                                             |
 | `readOnly`              | Validation    | 01                 | No      | No                                                                             |
