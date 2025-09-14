@@ -11,7 +11,7 @@ next:
 
 ### Introduction
 
-As your schemas evolve over time, so does JSON Schema specification. This guide provides useful information help you smoothly upgrade your schemas across different specification versions
+As your schemas evolve over time, so does JSON Schema specification. This guide provides useful information to help you smoothly upgrade your schemas across different specification versions.
 
 Learn how to use our migration guides and tooling ([AlterSchema](https://alterschema.sourcemeta.com/)) to bring your work with you.
 
