@@ -63,7 +63,7 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `if`                    | Core          | 07                 | No      | No                                                                             |
 | `items`                 | Core          | 01                 | No      | Changed in 2020-12. Replaced `additionalItems`                                |
 | `maxContains`           | Validation    | 2019-09            | No      | No                                                                             |
-| `maxDecimals`           | Validation    | 01                 | Yes     | Replaced by `divisibleBy`                                                      |
+| `maxDecimals`           | Validation    | 01                 | 02     | Replaced by `divisibleBy`                                                      |
 | `maxItems`             | Core    | 01                 | No      | No                                                                             |
 | `maxProperties`         | Validation    | 04                 | No      | No                                                                             |
 | `maximumCanEqual`       | Validation    | 01                 | 03      | Replaced by `exclusiveMaximum`                                                 |
