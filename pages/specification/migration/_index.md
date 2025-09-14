@@ -51,7 +51,7 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `deprecated`            | Validation    | 2019-09            | No      | No                                                                             |
 | `description`           | Validation    | 01                 | No      | No                                                                             |
 | `disallow`              | Core          | 01                 | 04      | Replaced by `not`                                                              |
-| `divisibleBy`           | Validation    | 02                 | Yes     | Replaced by `multipleOf`                                                       |
+| `divisibleBy`           | Validation    | 02                 | 04     | Replaced by `multipleOf`                                                       |
 | `else`                  | Core          | 07                 | No      | No                                                                             |
 | `enum`                  | Validation    | 01                 | No      | No                                                                             |
 | `examples`              | Validation    | 06                 | No      | No                                                                             |
