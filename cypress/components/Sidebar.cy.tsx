@@ -192,14 +192,8 @@ describe('Sidebar Component', () => {
     });
 
     it('should render all navigation links correctly', () => {
-      // Expand all sections to check links
-      cy.contains('Introduction').parent().click();
-      cy.contains('Get Started').parent().click();
-      cy.contains('Guides').parent().click();
-      cy.contains('Reference').parent().click();
-      cy.contains('Specification').parent().click();
-
       // Check Introduction links
+      cy.contains('Introduction').parent().click();
       cy.contains('Overview').should('exist');
       cy.contains('What is JSON Schema?').should('exist');
       cy.contains('Roadmap').should('exist');
@@ -213,13 +207,20 @@ describe('Sidebar Component', () => {
       cy.contains('Code of conduct').should('exist');
 
       // Check Get Started links
+      cy.contains('Get Started').parent().click();
       cy.contains('What is a schema?').should('exist');
       cy.contains('The basics').should('exist');
       cy.contains('Create your first schema').should('exist');
       cy.contains('Tour of JSON Schema').should('exist');
       cy.contains('JSON Schema glossary').should('exist');
 
+      // Check Guides links
+      cy.contains('Guides').parent().click();
+      cy.contains('For implementers').should('exist');
+      cy.contains('Common interfaces across implementations').should('exist');
+
       // Check Reference links
+      cy.contains('Reference').parent().click();
       cy.contains('JSON Schema keywords').should('exist');
       cy.contains('JSON data types').should('exist');
       cy.contains('array').should('exist');
@@ -231,6 +232,7 @@ describe('Sidebar Component', () => {
       cy.contains('string').should('exist');
 
       // Check Specification links
+      cy.contains('Specification').parent().click();
       cy.contains('2020-12').should('exist');
       cy.contains('2019-09').should('exist');
       cy.contains('draft-07').should('exist');
@@ -239,23 +241,23 @@ describe('Sidebar Component', () => {
     });
 
     it('should handle external links correctly', () => {
-      // Expand sections to access external links
+      // Expand Introduction to access external links and check attributes and icons
       cy.contains('Introduction').parent().click();
-      cy.contains('Get Started').parent().click();
-      cy.contains('Reference').parent().click();
-
-      // Check external links have correct attributes
       cy.contains('Landscape').should('have.attr', 'target', '_blank');
+      cy.contains('Landscape').find('svg').should('exist');
+
+      // Expand Get Started to access external links and check attributes and icons
+      cy.contains('Get Started').parent().click();
       cy.contains('Tour of JSON Schema').should(
         'have.attr',
         'target',
         '_blank',
       );
-      cy.contains('Learn JSON Schema').should('have.attr', 'target', '_blank');
-
-      // Check external link icons
-      cy.contains('Landscape').find('svg').should('exist');
       cy.contains('Tour of JSON Schema').find('svg').should('exist');
+
+      // Expand Reference to access external links and check attributes and icons
+      cy.contains('Reference').parent().click();
+      cy.contains('Learn JSON Schema').should('have.attr', 'target', '_blank');
       cy.contains('Learn JSON Schema').find('svg').should('exist');
     });
 
@@ -300,19 +302,27 @@ describe('Sidebar Component', () => {
 
     it('should call onClick and setOpen when DocLinkBlank is clicked', () => {
       const mockSetOpen = cy.stub().as('mockSetOpen');
-
-      // Mount DocsNav with mocked setOpen
       cy.mount(<DocsNav open={false} setOpen={mockSetOpen} />);
 
-      // Expand sections to reveal external links
+      // Test Introduction external link (Landscape)
       cy.contains('Introduction').parent().click();
-      cy.contains('Get Started').parent().click();
-      cy.contains('Reference').parent().click();
-
-      // Trigger the onClick event on the external link without causing navigation
       cy.contains('Landscape').trigger('click', { force: true });
+      cy.get('@mockSetOpen').should('have.been.calledWith', false);
 
-      // Verify setOpen was called with false
+      // Reset the stub for next test
+      mockSetOpen.resetHistory();
+
+      // Test Get Started external link (Tour of JSON Schema)
+      cy.contains('Get Started').parent().click();
+      cy.contains('Tour of JSON Schema').trigger('click', { force: true });
+      cy.get('@mockSetOpen').should('have.been.calledWith', false);
+
+      // Reset the stub for next test
+      mockSetOpen.resetHistory();
+
+      // Test Reference external link (Learn JSON Schema)
+      cy.contains('Reference').parent().click();
+      cy.contains('Learn JSON Schema').trigger('click', { force: true });
       cy.get('@mockSetOpen').should('have.been.calledWith', false);
     });
 
@@ -338,15 +348,25 @@ describe('Sidebar Component', () => {
       // Mount DocsNav with mocked setOpen
       cy.mount(<DocsNav open={false} setOpen={mockSetOpen} />);
 
-      // Expand sections to reveal external links
+      // Test Introduction external link (Landscape)
       cy.contains('Introduction').parent().click();
-      cy.contains('Get Started').parent().click();
-      cy.contains('Reference').parent().click();
-
-      // Trigger the onClick event on the external link without causing navigation
       cy.contains('Landscape').trigger('click', { force: true });
+      cy.get('@mockSetOpen').should('have.been.calledWith', false);
 
-      // Verify setOpen was called with false even without custom onClick
+      // Reset the stub for next test
+      mockSetOpen.resetHistory();
+
+      // Test Get Started external link (Tour of JSON Schema)
+      cy.contains('Get Started').parent().click();
+      cy.contains('Tour of JSON Schema').trigger('click', { force: true });
+      cy.get('@mockSetOpen').should('have.been.calledWith', false);
+
+      // Reset the stub for next test
+      mockSetOpen.resetHistory();
+
+      // Test Reference external link (Learn JSON Schema)
+      cy.contains('Reference').parent().click();
+      cy.contains('Learn JSON Schema').trigger('click', { force: true });
       cy.get('@mockSetOpen').should('have.been.calledWith', false);
     });
 
@@ -470,13 +490,16 @@ describe('Sidebar Component', () => {
     });
 
     it('should handle section subtitles correctly', () => {
-      // Expand sections to see subtitles
+      // Test Get Started section subtitles
       cy.contains('Get Started').parent().click();
-      cy.contains('Reference').parent().click();
-      cy.contains('Specification').parent().click();
-
-      // Check subtitles are rendered with correct styling
       cy.contains('Examples').should('have.class', 'italic');
+
+      // Test Reference section subtitles (if any exist)
+      cy.contains('Reference').parent().click();
+      // Note: Based on code, Reference section doesn't seem to have subtitles
+
+      // Test Specification section subtitles
+      cy.contains('Specification').parent().click();
       cy.contains('Versions').should('have.class', 'italic');
     });
 
