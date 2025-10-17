@@ -113,7 +113,7 @@ explained in subsequent chapters.
          "street_address": { "type": "string" },
          "city": { "type": "string" },
          "state": { "type": "string" },
-         "country": { "type" : "string" }
+         "country": { "type": "string" }
        }
     }
   }
