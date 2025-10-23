@@ -145,8 +145,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   return (
     <nav
       className={cn(
-        'hidden xl:block sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto',
-        'pr-4',
+        'hidden xl:block sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto pr-4',
         className,
       )}
       aria-label='Table of contents'
