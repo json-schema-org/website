@@ -291,8 +291,8 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
           )}
           <div
             className={`lg:mt-20 mx-4 md:mx-0 ${
-              shouldHideSidebar 
-                ? 'col-span-12 w-full' 
+              shouldHideSidebar
+                ? 'col-span-12 w-full'
                 : 'col-span-12 lg:col-span-6 xl:col-span-6'
             }`}
           >

@@ -62,7 +62,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     const observer = new IntersectionObserver(
       (entries) => {
         let newActiveId = '';
-        let isAtTop = window.scrollY < 100; // 100px from top
+        const isAtTop = window.scrollY < 100; // 100px from top
 
         if (isAtTop) {
           // If at the top, highlight Introduction
@@ -83,9 +83,9 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       {
         rootMargin: '-20% 0px -60% 0px',
         threshold: 0.1,
-      }
+      },
     );
-    
+
     // Observe all headings
     tocItems.forEach(({ id }) => {
       const element = document.getElementById(id);
@@ -93,8 +93,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
         observer.observe(element);
       }
     });
-    
-    
+
     return () => {
       tocItems.forEach(({ id }) => {
         const element = document.getElementById(id);
@@ -104,7 +103,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       });
     };
   }, [tocItems]);
-  
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY < 100) {
@@ -116,21 +115,28 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
-    e.preventDefault();
-    const element = id === 'introduction'
-      ? document.documentElement // Scroll to top for introduction
-      : document.getElementById(id);
+  const handleClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+      e.preventDefault();
+      const element =
+        id === 'introduction'
+          ? document.documentElement // Scroll to top for introduction
+          : document.getElementById(id);
 
-    if (element) {
-      const yOffset = -80; // Adjust this value to match your header height
-      const y = id === 'introduction'
-        ? 0
-        : element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      if (element) {
+        const yOffset = -80; // Adjust this value to match your header height
+        const y =
+          id === 'introduction'
+            ? 0
+            : element.getBoundingClientRect().top +
+              window.pageYOffset +
+              yOffset;
 
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
-  }, []);
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    },
+    [],
+  );
 
   if (tocItems.length === 0) {
     return null;
@@ -141,19 +147,19 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       className={cn(
         'hidden xl:block sticky top-24 h-[calc(100vh-6rem)] overflow-y-auto',
         'pr-4',
-        className
+        className,
       )}
-      aria-label="Table of contents"
+      aria-label='Table of contents'
       style={{
         scrollbarWidth: 'thin',
         scrollbarColor: 'rgb(203 213 225) transparent',
       }}
     >
-      <div className="space-y-2 pb-8">
-        <h4 className="font-semibold text-slate-900 dark:text-slate-100 mb-4 text-sm uppercase tracking-wide">
+      <div className='space-y-2 pb-8'>
+        <h4 className='font-semibold text-slate-900 dark:text-slate-100 mb-4 text-sm uppercase tracking-wide'>
           On This Page
         </h4>
-        <ul className="space-y-2 text-sm border-l-2 border-slate-200 dark:border-slate-700">
+        <ul className='space-y-2 text-sm border-l-2 border-slate-200 dark:border-slate-700'>
           {tocItems.map((item) => (
             <li
               key={item.id}
@@ -168,10 +174,11 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
                 onClick={(e) => handleClick(e, item.id)}
                 className={cn(
                   'block py-2 text-sm transition-colors duration-200',
-                  activeId === item.id || (item.id === 'introduction' && !activeId)
+                  activeId === item.id ||
+                    (item.id === 'introduction' && !activeId)
                     ? 'text-primary font-medium'
                     : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300',
-                  item.level === 3 ? 'pl-2' : ''
+                  item.level === 3 ? 'pl-2' : '',
                 )}
               >
                 {item.text}
