@@ -37,14 +37,18 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
 
     // Start from index 1 to skip the first heading
     for (let i = 1; i < headings.length; i++) {
+      // Get the heading element and its text content
       const heading = headings[i];
+      // Get the text content of the heading
       const text = heading.textContent || '';
+      // Get the ID of the heading, or generate one from the text content
       const id = heading.id || text.toLowerCase().replace(/\s+/g, '-');
 
+      // If the heading doesn't have an ID, set one
       if (!heading.id && id) {
         heading.id = id;
       }
-
+      // Add the heading to the table of contents
       items.push({
         id,
         text,
@@ -60,12 +64,16 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     if (tocItems.length === 0) return;
 
     const observer = new IntersectionObserver(
+      // Callback function to handle intersection events
       (entries) => {
+        // Track the currently active section
         let newActiveId = '';
+
+        // Check if we are at the top of the page
         const isAtTop = window.scrollY < 100; // 100px from top
 
+        // If at the top, highlight Introduction
         if (isAtTop) {
-          // If at the top, highlight Introduction
           newActiveId = 'introduction';
         } else {
           // Otherwise, find the first visible heading
@@ -76,6 +84,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
           });
         }
 
+        // Update the active ID
         if (newActiveId) {
           setActiveId(newActiveId);
         }
@@ -90,6 +99,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
     tocItems.forEach(({ id }) => {
       const element = document.getElementById(id);
       if (element) {
+        // Observe the element
         observer.observe(element);
       }
     });
@@ -98,6 +108,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
       tocItems.forEach(({ id }) => {
         const element = document.getElementById(id);
         if (element) {
+          // Unobserve the element
           observer.unobserve(element);
         }
       });
@@ -107,6 +118,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY < 100) {
+        // If at the top, highlight Introduction
         setActiveId('introduction');
       }
     };
@@ -116,14 +128,17 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
   }, []);
 
   const handleClick = useCallback(
+    // Callback function to handle click events
     (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
       e.preventDefault();
+      // Get the element to scroll to
       const element =
         id === 'introduction'
           ? document.documentElement // Scroll to top for introduction
           : document.getElementById(id);
 
       if (element) {
+        // Calculate the scroll position
         const yOffset = -80; // Adjust this value to match your header height
         const y =
           id === 'introduction'
@@ -132,6 +147,7 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
               window.pageYOffset +
               yOffset;
 
+        // Scroll to the element
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     },
@@ -170,14 +186,15 @@ export const TableOfContents: React.FC<TableOfContentsProps> = ({
               <a
                 key={item.id}
                 href={`#${item.id}`}
+                // click function to handle smooth scrolling
                 onClick={(e) => handleClick(e, item.id)}
                 className={cn(
                   'block py-2 text-sm transition-colors duration-200',
                   activeId === item.id ||
                     (item.id === 'introduction' && !activeId)
-                    ? 'text-primary font-medium'
+                    ? 'text-primary font-medium' // active state
                     : 'text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-300',
-                  item.level === 3 ? 'pl-2' : '',
+                  item.level === 3 ? 'pl-2' : '', // indentation
                 )}
               >
                 {item.text}
