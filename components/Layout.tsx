@@ -117,14 +117,12 @@ export default function Layout({
               <MainNavigation />
             </div>
           </header>
+          <div ref={mobileNavRef}>{showMobileNav && <MobileNav />}</div>
           <div
-            ref={mobileNavRef}
-            className={classnames('transition-all duration-300 ease-in-out', {
-              'mt-[280px]': showMobileNav,
-              'mt-[64px]': !showMobileNav,
-            })}
+            className={`transition-all duration-300 ${
+              showMobileNav ? 'mt-[200px]' : 'mt-0'
+            }`}
           >
-            {showMobileNav && <MobileNav />}
             {children}
           </div>
           <ScrollButton />
