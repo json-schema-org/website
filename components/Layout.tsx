@@ -38,6 +38,17 @@ export default function Layout({
 
   const mobileNavRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (showMobileNav) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [showMobileNav]);
+
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
     [router.asPath],
@@ -304,29 +315,40 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
-      <MainNavLink
-        uri='/specification'
-        label='Specification'
-        isActive={section === 'specification'}
-      />
-      <MainNavLink
-        uri='/learn/getting-started-step-by-step'
-        label='Docs'
-        isActive={section === 'docs'}
-      />
+    <div className='flex flex-col lg:hidden shadow-xl fixed bg-white w-full z-[190] top-16 left-0 pl-8 dark:bg-slate-800 transition-all duration-300 ease-in-out'>
+      <div className='flex flex-col space-y-2 py-2'>
+        <MainNavLink
+          className='block py-1.5'
+          uri='/specification'
+          label='Specification'
+          isActive={section === 'specification'}
+        />
+        <MainNavLink
+          className='block py-1.5'
+          uri='/learn/getting-started-step-by-step'
+          label='Docs'
+          isActive={section === 'docs'}
+        />
 
-      <MainNavLink
-        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
-        label='Tools'
-        isActive={section === 'tools'}
-      />
-      <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
-      <MainNavLink
-        uri='/community'
-        label='Community'
-        isActive={section === 'community'}
-      />
+        <MainNavLink
+          className='block py-1.5'
+          uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
+          label='Tools'
+          isActive={section === 'tools'}
+        />
+        <MainNavLink
+          className='block py-1.5'
+          uri='/blog'
+          label='Blog'
+          isActive={section === 'blog'}
+        />
+        <MainNavLink
+          className='block py-1.5'
+          uri='/community'
+          label='Community'
+          isActive={section === 'community'}
+        />
+      </div>
     </div>
   );
 };
