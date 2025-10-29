@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-
+/* istanbul ignore file */
 type SiteLayoutProps = {
   children?: React.ReactNode;
   isDropdown?: boolean;

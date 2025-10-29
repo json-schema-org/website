@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import CancelIcon from '~/public/icons/cancel.svg';
+import { Button } from '~/components/ui/button';
 
 import Badge from './ui/Badge';
 import type { JSONSchemaTool } from '../JSONSchemaTool';
@@ -47,12 +48,14 @@ export default function ToolingDetailModal({
         style={{ overflowWrap: 'anywhere' }}
       >
         <div className='flex justify-end absolute top-0 right-0 mt-6 mr-6'>
-          <button
+          <Button
             onClick={onClose}
+            variant='ghost'
+            size='icon'
             className='text-gray-500 hover:text-gray-300'
           >
             <CancelIcon className='fill-current stroke-current w-4 h-4' />
-          </button>
+          </Button>
         </div>
         <div className='mt-4 flex flex-row items-center justify-start gap-2'>
           {tool.landscape?.logo && (
@@ -382,7 +385,7 @@ const BowtieReportBadge = ({ uri }: { uri: string }) => {
         <Image
           src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
           alt='Bowtie Badge'
-          className='my-1'
+          className='my-1 h-[20px] w-auto'
           width={100}
           height={20}
         />
