@@ -215,6 +215,25 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
     }
   }, [open]);
 
+  const overlayNavigation = useStore((s) => s.overlayNavigation);
+  useEffect(() => {
+    if (overlayNavigation !== null && open) {
+      setOpen(false);
+    }
+  }, [overlayNavigation, open]);
+
+  useEffect(() => {
+    const originalOverflow = typeof window !== 'undefined' ? document.body.style.overflow : '';
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = originalOverflow || '';
+    }
+    return () => {
+      document.body.style.overflow = originalOverflow || '';
+    };
+  }, [open]);
+
   useLayoutEffect(() => {
     const calculateOffset = () => {
       if (!headerRef.current) return;
@@ -289,19 +308,34 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             </svg>
           </div>
         </div>
+        {open && (
+          <div
+            className='fixed inset-0 z-[148] lg:hidden'
+            onClick={() => setOpen(false)}
+            aria-hidden='true'
+          />
+        )}
         <div
           ref={dropdownRef}
           className={classnames(
-            'z-[149] w-full bg-white dark:bg-slate-900 transform transition-all duration-300 ease-in-out',
+            'z-[149] w-full bg-white dark:bg-slate-900 transform transition-transform duration-300 ease-in-out will-change-transform',
             {
-              'max-h-0 overflow-hidden': !open,
-              'max-h-[80vh] overflow-y-auto': open,
+              '-translate-x-full lg:translate-x-0 fixed left-0 right-0': !open,
+              'translate-x-0 fixed left-0 right-0 lg:relative': open,
               'shadow-lg': open,
-            }
+            },
           )}
+          style={
+            open
+              ? {
+                  top: headerRef.current ? headerRef.current.offsetTop + headerRef.current.offsetHeight + 'px' : undefined,
+                  height: '80vh',
+                }
+              : undefined
+          }
         >
-          <div className='flex flex-col dark:bg-slate-900'>
-              <DocsNav open={open} setOpen={setOpen} />
+          <div className={classnames('flex flex-col dark:bg-slate-900', { 'h-full overflow-y-auto': open, 'h-0 overflow-hidden': !open })}>
+            <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
         <div 
