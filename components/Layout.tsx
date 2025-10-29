@@ -108,6 +108,12 @@ export default function Layout({
           </header>
           <div ref={mobileNavRef}>
             {showMobileNav && <MobileNav />}
+          </div>
+          <div
+            className={`transition-all duration-300 ${
+              showMobileNav ? 'mt-[200px]' : 'mt-0'
+            }`}
+          >
             {children}
           </div>
           <ScrollButton />
