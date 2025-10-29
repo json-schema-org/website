@@ -206,7 +206,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const [topOffset, setTopOffset] = useState('0px');
   const headerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
-  
+
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
   const shouldHideSidebar = pathWtihoutFragment === '/md-style-guide';
   useEffect(() => {
@@ -216,6 +216,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   }, [open]);
 
   const overlayNavigation = useStore((s) => s.overlayNavigation);
+
   useEffect(() => {
     if (overlayNavigation !== null && open) {
       setOpen(false);
@@ -223,7 +224,8 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   }, [overlayNavigation, open]);
 
   useEffect(() => {
-    const originalOverflow = typeof window !== 'undefined' ? document.body.style.overflow : '';
+    const originalOverflow =
+      typeof window !== 'undefined' ? document.body.style.overflow : '';
     if (open) {
       document.body.style.overflow = 'hidden';
     } else {
@@ -262,8 +264,8 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
-      <section className="w-full">
-        <div 
+      <section className='w-full'>
+        <div
           ref={headerRef}
           className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden'
         >
@@ -328,23 +330,32 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
           style={
             open
               ? {
-                  top: headerRef.current ? headerRef.current.offsetTop + headerRef.current.offsetHeight + 'px' : undefined,
+                  top: headerRef.current
+                    ? headerRef.current.offsetTop +
+                      headerRef.current.offsetHeight +
+                      'px'
+                    : undefined,
                   height: '80vh',
                 }
               : undefined
           }
         >
-          <div className={classnames('flex flex-col dark:bg-slate-900', { 'h-full overflow-y-auto': open, 'h-0 overflow-hidden': !open })}>
+          <div
+            className={classnames('flex flex-col dark:bg-slate-900', {
+              'h-full overflow-y-auto': open,
+              'h-0 overflow-hidden': !open,
+            })}
+          >
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
-        <div 
+        <div
           className={classnames(
             'dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12 transition-all duration-300',
             {
               'lg:pt-12': true,
-              'pt-0': open     
-            }
+              'pt-0': open,
+            },
           )}
           style={{
             marginTop: open ? topOffset : '0',

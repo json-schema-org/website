@@ -106,9 +106,7 @@ export default function Layout({
               <MainNavigation />
             </div>
           </header>
-          <div ref={mobileNavRef}>
-            {showMobileNav && <MobileNav />}
-          </div>
+          <div ref={mobileNavRef}>{showMobileNav && <MobileNav />}</div>
           <div
             className={`transition-all duration-300 ${
               showMobileNav ? 'mt-[200px]' : 'mt-0'
