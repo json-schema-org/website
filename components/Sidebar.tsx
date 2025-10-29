@@ -1,5 +1,6 @@
 /* eslint-disable linebreak-style */
 /* istanbul ignore file */
+import useStore from '~/store';
 import { getLayout as getSiteLayout } from './SiteLayout';
 import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { useRouter } from 'next/router';
@@ -208,6 +209,11 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
   const shouldHideSidebar = pathWtihoutFragment === '/md-style-guide';
+  useEffect(() => {
+    if (open) {
+      useStore.setState({ overlayNavigation: null });
+    }
+  }, [open]);
 
   useLayoutEffect(() => {
     const calculateOffset = () => {
