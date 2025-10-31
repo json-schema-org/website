@@ -262,6 +262,19 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
     setOpen(!open);
   };
 
+  let panelStyle: React.CSSProperties | undefined;
+  if (open) {
+    const top = headerRef.current
+      ? headerRef.current.offsetTop + headerRef.current.offsetHeight + 'px'
+      : undefined;
+    panelStyle = {
+      top,
+      height: '80vh',
+    };
+  } else {
+    panelStyle = undefined;
+  }
+
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section className='w-full'>
@@ -327,18 +340,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               'shadow-lg': open,
             },
           )}
-          style={
-            open
-              ? {
-                  top: headerRef.current
-                    ? headerRef.current.offsetTop +
-                      headerRef.current.offsetHeight +
-                      'px'
-                    : undefined,
-                  height: '80vh',
-                }
-              : undefined
-          }
+          style={panelStyle}
         >
           <div
             className={classnames('flex flex-col dark:bg-slate-900', {
