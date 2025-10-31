@@ -111,6 +111,9 @@ const Home = (props: any) => {
   const [rxdb_logo, setRxdb_logo] = useState('');
   const [wda_logo, setWDA_logo] = useState('');
   const [anon_logo, setAnon_logo] = useState('');
+  const [sourcemeta_logo, setSourcemeta_logo] = useState('');
+  const [dottxt_logo, setDottxt_logo] = useState('');
+  const [devevents_logo, setDevevents_logo] = useState('');
 
   useEffect(() => {
     // Ensure the component is only rendered client-side
@@ -135,6 +138,9 @@ const Home = (props: any) => {
       setRxdb_logo('/img/logos/sponsors/rxdb.svg');
       setWDA_logo('/img/logos/sponsors/wda-dark.svg');
       setAnon_logo('/img/logos/sponsors/anon-white.png');
+      setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-light.svg');
+      setDottxt_logo('/img/logos/sponsors/dottxt-logo-white.svg');
+      setDevevents_logo('/img/logos/dark-mode/dev_events_logo.png')
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -153,6 +159,8 @@ const Home = (props: any) => {
       setRxdb_logo('/img/logos/sponsors/rxdb.svg');
       setWDA_logo('/img/logos/sponsors/wda.svg');
       setAnon_logo('/img/logos/sponsors/anon-black.png');
+      setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-dark.svg');
+      setDottxt_logo('/img/logos/sponsors/dottxt-logo-dark.svg')
     }
   }, [resolvedTheme]);
   return (
@@ -876,6 +884,28 @@ for Accounting integrations'
                 />
               </a>
               <a
+                href='https://dottxt.ai/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={dottxt_logo}
+                  className=' w-44'
+                  alt='dottxt logo'
+                />
+              </a>
+               <a
+                href='https://www.sourcemeta.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={sourcemeta_logo}
+                  className=' w-44'
+                  alt='dottxt logo'
+                />
+              </a>
+              <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
@@ -899,6 +929,36 @@ for Accounting integrations'
               </a>
             </div>
           </div>
+        </section>
+
+{/* Media Partner for JSON Schema conference */}
+      <section className='my-20'>
+          <div className='text-center mb-12'>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
+              Media Partner
+            </h2>
+            <p className='px-12 mx-auto md:w-3/4 md:mx-auto'>
+              The JSON Schema Conference is proudly featured on a global platform connecting tech communities with over 250k monthly visitors, 
+              helping speakers, organizers, and attendees discover and engage with leading conferences worldwide.
+              <br />
+            </p>
+          </div>
+          <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
+            <a href='https://dev.events/'>
+              {isClient && (
+                <>
+                  <Image
+                    src={devevents_logo}
+                    className='w-48 md:w-56'
+                    width={192}
+                    height={224}
+                    alt='dev events'
+                  />
+                </>
+              )}
+            </a>
+            
+          </div>{' '}
         </section>
 
         {/* Supported */}
