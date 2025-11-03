@@ -924,7 +924,7 @@ for Accounting integrations'
         </section>
 
         {/* Media Partner for JSON Schema conference */}
-        <section className='my-20'>
+        <section className='my-18'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
               Media Partner
@@ -956,7 +956,7 @@ for Accounting integrations'
 
         {/* Supported */}
 
-        <section className='my-20'>
+        <section className='my-18'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
               Supported by
