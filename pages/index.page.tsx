@@ -924,12 +924,12 @@ for Accounting integrations'
         </section>
 
         {/* Media Partner for JSON Schema conference */}
-        <section className='my-18'>
+        <section className='my-16'>
           <div className='text-center mb-12'>
-            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
               Media Partner
             </h2>
-            <p className='px-12 mx-auto md:w-3/4 md:mx-auto'>
+            <p className='px-12 mx-auto md:w-3/4 md:mx-auto dark:text-slate-300'>
               The JSON Schema Conference is proudly featured on a global
               platform connecting tech communities with over 250k monthly
               visitors, helping speakers, organizers, and attendees discover and
@@ -956,7 +956,7 @@ for Accounting integrations'
 
         {/* Supported */}
 
-        <section className='my-18'>
+        <section className='my-16'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
               Supported by
