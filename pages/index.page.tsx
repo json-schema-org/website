@@ -140,7 +140,7 @@ const Home = (props: any) => {
       setAnon_logo('/img/logos/sponsors/anon-white.png');
       setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-light.svg');
       setDottxt_logo('/img/logos/sponsors/dottxt-logo-white.svg');
-      setDevevents_logo('/img/logos/dark-mode/dev_events_logo.png')
+      setDevevents_logo('/img/logos/dark-mode/dev_events_logo.png');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -160,7 +160,7 @@ const Home = (props: any) => {
       setWDA_logo('/img/logos/sponsors/wda.svg');
       setAnon_logo('/img/logos/sponsors/anon-black.png');
       setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-dark.svg');
-      setDottxt_logo('/img/logos/sponsors/dottxt-logo-dark.svg')
+      setDottxt_logo('/img/logos/sponsors/dottxt-logo-dark.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -883,18 +883,10 @@ for Accounting integrations'
                   alt='Instagram Story Viewer'
                 />
               </a>
-              <a
-                href='https://dottxt.ai/'
-                target='_blank'
-                rel='noreferrer'
-              >
-                <img
-                  src={dottxt_logo}
-                  className=' w-44'
-                  alt='dottxt logo'
-                />
+              <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
+                <img src={dottxt_logo} className=' w-44' alt='dottxt logo' />
               </a>
-               <a
+              <a
                 href='https://www.sourcemeta.com/'
                 target='_blank'
                 rel='noreferrer'
@@ -931,15 +923,17 @@ for Accounting integrations'
           </div>
         </section>
 
-{/* Media Partner for JSON Schema conference */}
-      <section className='my-20'>
+        {/* Media Partner for JSON Schema conference */}
+        <section className='my-20'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
               Media Partner
             </h2>
             <p className='px-12 mx-auto md:w-3/4 md:mx-auto'>
-              The JSON Schema Conference is proudly featured on a global platform connecting tech communities with over 250k monthly visitors, 
-              helping speakers, organizers, and attendees discover and engage with leading conferences worldwide.
+              The JSON Schema Conference is proudly featured on a global
+              platform connecting tech communities with over 250k monthly
+              visitors, helping speakers, organizers, and attendees discover and
+              engage with leading conferences worldwide.
               <br />
             </p>
           </div>
@@ -957,7 +951,6 @@ for Accounting integrations'
                 </>
               )}
             </a>
-            
           </div>{' '}
         </section>
 
