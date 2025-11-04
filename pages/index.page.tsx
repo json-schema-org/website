@@ -887,10 +887,18 @@ for Accounting integrations'
                 />
               </a>
               <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
-                <img src={supadata_logo} className=' w-44' alt='supadata logo' />
+                <img
+                  src={supadata_logo}
+                  className='w-44'
+                  alt='supadata logo'
+                />
               </a>
               <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
-                <img src={dottxt_logo} className=' w-44' alt='dottxt logo' />
+                <img
+                  src={dottxt_logo}
+                  className='w-44'
+                  alt='dottxt logo'
+                />
               </a>
               <a
                 href='https://www.sourcemeta.com/'
