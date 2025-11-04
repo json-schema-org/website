@@ -113,6 +113,7 @@ const Home = (props: any) => {
   const [anon_logo, setAnon_logo] = useState('');
   const [sourcemeta_logo, setSourcemeta_logo] = useState('');
   const [dottxt_logo, setDottxt_logo] = useState('');
+  const [supadata_logo, setSupadata_logo] = useState('');
   const [devevents_logo, setDevevents_logo] = useState('');
 
   useEffect(() => {
@@ -140,6 +141,7 @@ const Home = (props: any) => {
       setAnon_logo('/img/logos/sponsors/anon-white.png');
       setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-light.svg');
       setDottxt_logo('/img/logos/sponsors/dottxt-logo-white.svg');
+      setSupadata_logo('/img/logos/sponsors/supadata-logo-light.svg');
       setDevevents_logo('/img/logos/dark-mode/dev_events_logo.png');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
@@ -160,6 +162,7 @@ const Home = (props: any) => {
       setWDA_logo('/img/logos/sponsors/wda.svg');
       setAnon_logo('/img/logos/sponsors/anon-black.png');
       setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-dark.svg');
+      setSupadata_logo('/img/logos/sponsors/supadata-logo-dark.svg');
       setDottxt_logo('/img/logos/sponsors/dottxt-logo-dark.svg');
     }
   }, [resolvedTheme]);
@@ -883,6 +886,9 @@ for Accounting integrations'
                   alt='Instagram Story Viewer'
                 />
               </a>
+              <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
+                <img src={supadata_logo} className=' w-44' alt='supadata logo' />
+              </a>
               <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
                 <img src={dottxt_logo} className=' w-44' alt='dottxt logo' />
               </a>
@@ -937,7 +943,7 @@ for Accounting integrations'
               <br />
             </p>
           </div>
-          <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
+          <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4 mb-12'>
             <a href='https://dev.events/'>
               {isClient && (
                 <>
