@@ -7,6 +7,7 @@ import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
 import StyledMarkdown from '~/components/StyledMarkdown';
+import Image from 'next/image';
 
 interface ContractorLink {
   title: string;
@@ -105,7 +106,9 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                   <div className='flex flex-row items-center space-x-4'>
                     {/* Image */}
                     <div className='relative group flex-shrink-0'>
-                      <img
+                      <Image
+                        width={120}
+                        height={60}
                         src={`https://github.com/${contractor.github}.png`}
                         className='w-20 h-20 rounded-md border-4 border-blue-100 shadow-lg hover:border-blue-300 transition-all duration-300 dark:border-gray-600'
                         alt={`${contractor.name}'s avatar`}
@@ -186,7 +189,6 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                       </div>
                     </div>
                   </div>
-
                   {/* Reach Out Button */}
                   <div className='mt-4 flex justify-center'>
                     {contractor.email && (
@@ -214,7 +216,9 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                   {/* Image and Name */}
                   <div className='flex items-center space-x-8 pr-8'>
                     <div className='relative group'>
-                      <img
+                      <Image
+                        width={120}
+                        height={60}
                         src={`https://github.com/${contractor.github}.png`}
                         className='w-32 h-32 rounded-md border-4 border-blue-100 shadow-lg hover:border-blue-300 transition-all duration-300 dark:border-gray-600'
                         alt={`${contractor.name}'s avatar`}
@@ -326,7 +330,6 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                     )}
                   </div>
                 </div>
-
                 {/* End of Header */}
                 <div className='mt-6 border-t pt-6 border-gray-300 dark:border-gray-700'>
                   <StyledMarkdown markdown={contractor.bio} />

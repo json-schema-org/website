@@ -839,14 +839,22 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <img src={octue_logo} className=' w-44' />
+                <Image
+                  alt='octue'
+                  width={176}
+                  height={100}
+                  src={octue_logo}
+                  className=' w-44'
+                />
               </a>
               <a
                 href='https://www.apideck.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={apideck_logo}
                   className=' w-44'
                   alt='The Realtime Unified API
@@ -858,7 +866,9 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={rxdb_logo}
                   className=' w-44'
                   alt='The local Database for JavaScript Applications'
@@ -869,7 +879,9 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={wda_logo}
                   className=' w-44'
                   alt='best website design agencies'
@@ -880,28 +892,40 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={anon_logo}
                   className=' w-44'
                   alt='Instagram Story Viewer'
                 />
               </a>
               <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={supadata_logo}
                   className=' w-44'
                   alt='supadata logo'
                 />
               </a>
               <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
-                <img src={dottxt_logo} className=' w-44' alt='dottxt logo' />
+                <Image
+                  width={176}
+                  height={100}
+                  src={dottxt_logo}
+                  className=' w-44'
+                  alt='dottxt logo'
+                />
               </a>
               <a
                 href='https://www.sourcemeta.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={sourcemeta_logo}
                   className=' w-44'
                   alt='dottxt logo'
