@@ -1,28 +1,28 @@
 ---
 section: docs
 title: Modeling a file system with JSON Schema
-prev: 
+prev:
   label: Miscellaneous examples
   url: /learn/miscellaneous-examples
-next: 
+next:
   label: Other examples
   url: /learn/json-schema-examples
 ---
 
-In this step-by-step guide you will learn how to design a JSON Schema that mirrors the structure of an `/etc/fstab` file. 
+In this step-by-step guide you will learn how to design a JSON Schema that mirrors the structure of an `/etc/fstab` file.
 
 This guide is divided into the following sections:
 
-* [Introduction](#introduction)
-* [Creating the `fstab` schema](#fstab-schema)
-* [Starting the `entry` schema](#entry-schema)
-* [Constraining an entry](#constraining-entry)
-* [The `diskDevice` definition](#diskdevice)
-* [The `diskUUID` definition](#diskuuid)
-* [The `nfs` definition](#nfs)
-* [The `tmpfs` definition](#tmpfs)
-* [The full entry schema](#full-entry)
-* [Referencing the `entry` schema in the `fstab` schema](#referencing-entry)
+- [Introduction](#introduction)
+- [Creating the `fstab` schema](#fstab-schema)
+- [Starting the `entry` schema](#entry-schema)
+- [Constraining an entry](#constraining-entry)
+- [The `diskDevice` definition](#diskdevice)
+- [The `diskUUID` definition](#diskuuid)
+- [The `nfs` definition](#nfs)
+- [The `tmpfs` definition](#tmpfs)
+- [The full entry schema](#full-entry)
+- [Referencing the `entry` schema in the `fstab` schema](#referencing-entry)
 
 ## Introduction[#introduction]
 
@@ -48,7 +48,7 @@ An entry in an fstab file can have many different forms; Here is an example:
       "label": "8f3ba6f4-5c70-46ec-83af-0d5434953e5f"
     },
     "fstype": "ext4",
-    "options": [ "nosuid" ]
+    "options": ["nosuid"]
   },
   "/tmp": {
     "storage": {
@@ -70,23 +70,23 @@ An entry in an fstab file can have many different forms; Here is an example:
 
 We will start with a base JSON Schema expressing the following constraints:
 
-* the list of entries is a JSON object;
-* the member names (or property names) of this object must all be valid, absolute paths;
-* there must be an entry for the root filesystem (ie, `/`).
+- the list of entries is a JSON object;
+- the member names (or property names) of this object must all be valid, absolute paths;
+- there must be an entry for the root filesystem (ie, `/`).
 
 Building out our JSON Schema from top to bottom:
 
-* The [`$id`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.1) keyword.
-* The [`$schema`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.1.1) keyword.
-* The [`type`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.1.1) validation keyword.
-* The [`required`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.5.3) validation keyword.
-* The [`properties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1) validation keyword.
-  * The `/` key is empty now; We will fill it out later.
-* The [`patternProperties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.2) validation keyword.
-  * This matches other property names via a regular expression. Note: it does not match `/`.
-  * The `^(/[^/]+)+$` key is empty now; We will fill it out later.
-* The [`additionalProperties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.3) validation keyword.
-  * The value here is `false` to constrain object properties to be either `/` or to match the regular expression.
+- The [`$id`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.1) keyword.
+- The [`$schema`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.1.1) keyword.
+- The [`type`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.1.1) validation keyword.
+- The [`required`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.5.3) validation keyword.
+- The [`properties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.1) validation keyword.
+  - The `/` key is empty now; We will fill it out later.
+- The [`patternProperties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.2) validation keyword.
+  - This matches other property names via a regular expression. Note: it does not match `/`.
+  - The `^(/[^/]+)+$` key is empty now; We will fill it out later.
+- The [`additionalProperties`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.2.3) validation keyword.
+  - The value here is `false` to constrain object properties to be either `/` or to match the regular expression.
 
 > You will notice that the regular expression is explicitly anchored (with `^` and `$`): in JSON Schema, regular expressions (in `patternProperties` and in `pattern`) are not anchored by default.
 
@@ -95,7 +95,7 @@ Building out our JSON Schema from top to bottom:
   "$id": "https://example.com/fstab",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [ "/" ],
+  "required": ["/"],
   "properties": {
     "/": {}
   },
@@ -114,12 +114,12 @@ We saw these keywords in the prior exercise: `$id`, `$schema`, `type`, `required
 
 To this we add:
 
-* The [`description`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1) annotation keyword.
-* The [`oneOf`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.2.1.3) keyword.
-* The [`$ref`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.3.1) keyword.
-  * In this case, all references used are local to the schema using a relative fragment URI (`#/...`).
-* The [`$defs`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.4) keyword.
-  * Including several key names which we will define later.
+- The [`description`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-9.1) annotation keyword.
+- The [`oneOf`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.2.1.3) keyword.
+- The [`$ref`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.3.1) keyword.
+  - In this case, all references used are local to the schema using a relative fragment URI (`#/...`).
+- The [`$defs`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-8.2.4) keyword.
+  - Including several key names which we will define later.
 
 ```json
 {
@@ -127,7 +127,7 @@ To this we add:
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "JSON Schema for an fstab entry",
   "type": "object",
-  "required": [ "storage" ],
+  "required": ["storage"],
   "properties": {
     "storage": {
       "type": "object",
@@ -152,14 +152,14 @@ To this we add:
 
 Let's now extend this skeleton to add constraints to some of the properties.
 
-* Our `fstype` key uses the [`enum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.1.2) validation keyword.
-* Our `options` key uses the following:
-  * The `type` validation keyword (see above).
-  * The [`minItems`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.4.2) validation keyword.
-  * The [`items`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.1.2) validation keyword.
-  * The [`uniqueItems`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.4.3) validation keyword.
-  * Together these say: `options` must be an array, and the items therein must be strings, there must be at least one item, and all items should be unique.
-* We have a `readonly` key.
+- Our `fstype` key uses the [`enum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.1.2) validation keyword.
+- Our `options` key uses the following:
+  - The `type` validation keyword (see above).
+  - The [`minItems`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.4.2) validation keyword.
+  - The [`items`](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.3.1.2) validation keyword.
+  - The [`uniqueItems`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.4.3) validation keyword.
+  - Together these say: `options` must be an array, and the items therein must be strings, there must be at least one item, and all items should be unique.
+- We have a `readonly` key.
 
 With these added constraints, the schema now looks like this:
 
@@ -169,7 +169,7 @@ With these added constraints, the schema now looks like this:
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "JSON Schema for an fstab entry",
   "type": "object",
-  "required": [ "storage" ],
+  "required": ["storage"],
   "properties": {
     "storage": {
       "type": "object",
@@ -181,7 +181,7 @@ With these added constraints, the schema now looks like this:
       ]
     },
     "fstype": {
-      "enum": [ "ext3", "ext4", "btrfs" ]
+      "enum": ["ext3", "ext4", "btrfs"]
     },
     "options": {
       "type": "array",
@@ -208,21 +208,21 @@ With these added constraints, the schema now looks like this:
 
 One new keyword is introduced here:
 
-* The [`pattern`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.3.3) validation keyword notes the `device` key must be an absolute path starting with */dev*.
+- The [`pattern`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.3.3) validation keyword notes the `device` key must be an absolute path starting with _/dev_.
 
 ```json
 {
   "diskDevice": {
     "properties": {
       "type": {
-        "enum": [ "disk" ]
+        "enum": ["disk"]
       },
       "device": {
         "type": "string",
         "pattern": "^/dev/[^/]+(/[^/]+)*$"
       }
     },
-    "required": [ "type", "device" ],
+    "required": ["type", "device"],
     "additionalProperties": false
   }
 }
@@ -239,14 +239,14 @@ We do have a new key: `label` and the `pattern` validation keyword states it mus
   "diskUUID": {
     "properties": {
       "type": {
-        "enum": [ "disk" ]
+        "enum": ["disk"]
       },
       "label": {
         "type": "string",
         "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
       }
     },
-    "required": [ "type", "label" ],
+    "required": ["type", "label"],
     "additionalProperties": false
   }
 }
@@ -256,13 +256,13 @@ We do have a new key: `label` and the `pattern` validation keyword states it mus
 
 We find another new keyword:
 
-* The [`format`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-7) annotation and assertion keyword.
+- The [`format`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-7) annotation and assertion keyword.
 
 ```json
 {
   "nfs": {
     "properties": {
-      "type": { "enum": [ "nfs" ] },
+      "type": { "enum": ["nfs"] },
       "remotePath": {
         "type": "string",
         "pattern": "^(/[^/]+)+$"
@@ -276,7 +276,7 @@ We find another new keyword:
         ]
       }
     },
-    "required": [ "type", "server", "remotePath" ],
+    "required": ["type", "server", "remotePath"],
     "additionalProperties": false
   }
 }
@@ -286,22 +286,22 @@ We find another new keyword:
 
 Our last definition introduces two new keywords:
 
-* The [`minimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.2.4) validation keyword.
-* The [`maximum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.2.2) validation keyword.
-* Together these require the size be between 16 and 512, inclusive.
+- The [`minimum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.2.4) validation keyword.
+- The [`maximum`](https://json-schema.org/draft/2020-12/json-schema-validation.html#section-6.2.2) validation keyword.
+- Together these require the size be between 16 and 512, inclusive.
 
 ```json
 {
   "tmpfs": {
     "properties": {
-      "type": { "enum": [ "tmpfs" ] },
+      "type": { "enum": ["tmpfs"] },
       "sizeInMB": {
         "type": "integer",
         "minimum": 16,
         "maximum": 512
       }
     },
-    "required": [ "type", "sizeInMB" ],
+    "required": ["type", "sizeInMB"],
     "additionalProperties": false
   }
 }
@@ -317,7 +317,7 @@ The resulting schema is quite large:
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "JSON Schema for an fstab entry",
   "type": "object",
-  "required": [ "storage" ],
+  "required": ["storage"],
   "properties": {
     "storage": {
       "type": "object",
@@ -329,7 +329,7 @@ The resulting schema is quite large:
       ]
     },
     "fstype": {
-      "enum": [ "ext3", "ext4", "btrfs" ]
+      "enum": ["ext3", "ext4", "btrfs"]
     },
     "options": {
       "type": "array",
@@ -347,32 +347,32 @@ The resulting schema is quite large:
     "diskDevice": {
       "properties": {
         "type": {
-          "enum": [ "disk" ]
+          "enum": ["disk"]
         },
         "device": {
           "type": "string",
           "pattern": "^/dev/[^/]+(/[^/]+)*$"
         }
       },
-      "required": [ "type", "device" ],
+      "required": ["type", "device"],
       "additionalProperties": false
     },
     "diskUUID": {
       "properties": {
         "type": {
-          "enum": [ "disk" ]
+          "enum": ["disk"]
         },
         "label": {
           "type": "string",
           "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
         }
       },
-      "required": [ "type", "label" ],
+      "required": ["type", "label"],
       "additionalProperties": false
     },
     "nfs": {
       "properties": {
-        "type": { "enum": [ "nfs" ] },
+        "type": { "enum": ["nfs"] },
         "remotePath": {
           "type": "string",
           "pattern": "^(/[^/]+)+$"
@@ -386,19 +386,19 @@ The resulting schema is quite large:
           ]
         }
       },
-      "required": [ "type", "server", "remotePath" ],
+      "required": ["type", "server", "remotePath"],
       "additionalProperties": false
     },
     "tmpfs": {
       "properties": {
-        "type": { "enum": [ "tmpfs" ] },
+        "type": { "enum": ["tmpfs"] },
         "sizeInMB": {
           "type": "integer",
           "minimum": 16,
           "maximum": 512
         }
       },
-      "required": [ "type", "sizeInMB" ],
+      "required": ["type", "sizeInMB"],
       "additionalProperties": false
     }
   }
@@ -409,20 +409,20 @@ The resulting schema is quite large:
 
 Coming full circle we use the `$ref` keyword to add our entry schema into the keys left empty at the start of the exercise:
 
-* The `/` key.
-* The `^(/[^/]+)+$` key.
+- The `/` key.
+- The `^(/[^/]+)+$` key.
 
 ```json
 {
   "$id": "https://example.com/fstab",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": [ "/" ],
+  "required": ["/"],
   "properties": {
     "/": { "$ref": "https://example.com/entry-schema" }
   },
   "patternProperties": {
-    "^(/[^/]+)+$":  { "$ref": "https://example.com/entry-schema" }
+    "^(/[^/]+)+$": { "$ref": "https://example.com/entry-schema" }
   },
   "additionalProperties": false
 }

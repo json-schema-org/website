@@ -1,10 +1,10 @@
 ---
-title: "Modular JSON Schema combination"
+title: 'Modular JSON Schema combination'
 section: docs
-prev: 
+prev:
   label: Boolean JSON Schema combination
   url: /understanding-json-schema/reference/combining
-next: 
+next:
   label: 'Media: string-encoding non-JSON data'
   url: /understanding-json-schema/reference/non_json_data
 ---
@@ -15,7 +15,7 @@ next:
 
 When writing computer programs of even moderate complexity, it\'s
 commonly accepted that \"structuring\" the program into reusable
-functions is better than duplicating code. Similarly, in JSON Schema, structuring your schema into reusable components is highly beneficial for anything beyond the most trivial cases. 
+functions is better than duplicating code. Similarly, in JSON Schema, structuring your schema into reusable components is highly beneficial for anything beyond the most trivial cases.
 
 Here, you will learn about the keywords used to combine JSON schemas modularly and see examples of their application.
 
@@ -37,36 +37,39 @@ In the following sections we will see how the \"identifier\" for a
 schema is determined.
 
 > URI terminology can sometimes be unintuitive. In this document, the
-following definitions are used.
+> following definitions are used.
+>
 > - **URI**
+
     [\[1\]](https://datatracker.ietf.org/doc/html/rfc3986#section-3) or
     **non-relative URI**: A full URI containing a scheme (`https`). It
     may contain a URI fragment (`#foo`). Sometimes this document will
     use \"non-relative URI\" to make it extra clear that relative URIs
     are not allowed.
+
 - **relative reference**
-    [\[2\]](https://datatracker.ietf.org/doc/html/rfc3986#section-4.2):
-    A partial URI that does not contain a scheme (`https`). It may
-    contain a fragment (`#foo`).
+  [\[2\]](https://datatracker.ietf.org/doc/html/rfc3986#section-4.2):
+  A partial URI that does not contain a scheme (`https`). It may
+  contain a fragment (`#foo`).
 - **URI-reference**
-    [\[3\]](https://datatracker.ietf.org/doc/html/rfc3986#section-4.1):
-    A relative reference or non-relative URI. It may contain a URI
-    fragment (`#foo`).
+  [\[3\]](https://datatracker.ietf.org/doc/html/rfc3986#section-4.1):
+  A relative reference or non-relative URI. It may contain a URI
+  fragment (`#foo`).
 - **absolute URI**
-   [\[4\]](https://datatracker.ietf.org/doc/html/rfc3986#section-4.3) A
-   full URI containing a scheme (`https`) but not a URI fragment
-   (`#foo`).
+[\[4\]](https://datatracker.ietf.org/doc/html/rfc3986#section-4.3) A
+full URI containing a scheme (`https`) but not a URI fragment
+(`#foo`).
 <p />
 
-<span />   
+<span />
 
 > Even though schemas are identified by URIs, those identifiers are not
-necessarily network-addressable. They are just identifiers. Generally,
-[implementations](../learn/glossary#implementation) don\'t make HTTP requests (`https://`) or read from the
-file system (`file://`) to fetch schemas. Instead, they provide a way to
-load schemas into an internal schema database. When a schema is
-referenced by it\'s URI identifier, the schema is retrieved from the
-internal schema database.
+> necessarily network-addressable. They are just identifiers. Generally,
+> [implementations](../learn/glossary#implementation) don\'t make HTTP requests (`https://`) or read from the
+> file system (`file://`) to fetch schemas. Instead, they provide a way to
+> load schemas into an internal schema database. When a schema is
+> referenced by it\'s URI identifier, the schema is retrieved from the
+> internal schema database.
 
 <Keywords label="single: base URI single: structuring; base URI" />
 
@@ -78,9 +81,9 @@ resulting in a non-relative URI. This section describes how a schema\'s
 base URI is determined.
 
 > Base URI determination and relative reference resolution is defined by
-[RFC-3986](https://datatracker.ietf.org/doc/html/rfc3986#section-5). If
-you are familiar with how this works in HTML, this section should feel
-very familiar.
+> [RFC-3986](https://datatracker.ietf.org/doc/html/rfc3986#section-5). If
+> you are familiar with how this works in HTML, this section should feel
+> very familiar.
 
 <Keywords label="single: retrieval URI single: structuring; base URI; retrieval URI" />
 
@@ -199,8 +202,8 @@ A JSON Pointer describes a slash-separated path to traverse the keys in
 the objects in the document. Therefore, `/properties/street_address`
 means:
 
-- 1)  find the value of the key `properties`
-- 2)  within that object, find the value of the key `street_address`
+- 1.  find the value of the key `properties`
+- 2.  within that object, find the value of the key `street_address`
 
 The URI `https://example.com/schemas/address#/properties/street_address`
 identifies the highlighted subschema in the following schema.
@@ -246,8 +249,8 @@ parts in the URI-reference.
 [tabs-end]
 
 > If a named anchor is defined that doesn\'t follow these naming rules,
-then behavior is undefined. Your anchors might work in some
-implementation, but not others.
+> then behavior is undefined. Your anchors might work in some
+> implementation, but not others.
 
 The URI `https://example.com/schemas/address#street_address` identifies
 the subschema on the highlighted part of the following schema.
@@ -261,7 +264,7 @@ the subschema on the highlighted part of the following schema.
     "street_address": { "$anchor": "street_address", "type": "string" },
     "city": { "type": "string" },
     "state": { "type": "string" }
-  }, 
+  },
   "required": ["street_address", "city", "state"]
 }
 ```
@@ -275,7 +278,6 @@ value of `$ref` is a URI-reference that is resolved against the
 schema\'s [Base URI](#base-uri). When evaluating a `$ref`, an
 implementation uses the resolved identifier to retrieve the referenced
 schema and applies that schema to the [instance](../learn/glossary#instance).
-
 
 <Infobox label="Draft-specific info">
 In Draft 4-7, `$ref` behaves a little differently. When an
@@ -316,13 +318,14 @@ everywhere that addresses are used.
 The URI-references in `$ref` resolve against the schema\'s
 [Base URI](#base-uri) (`https://example.com/schemas/customer`) which
 results in `https://example.com/schemas/address`. The implementation
-retrieves that schema and uses it to evaluate the \"shipping\_address\"
-and \"billing\_address\" properties.
+retrieves that schema and uses it to evaluate the \"shipping_address\"
+and \"billing_address\" properties.
 
 > When using `$ref` in an anonymous schema, relative references may not be
-resolvable. Let\'s assume this example is used as an anonymous schema
+> resolvable. Let\'s assume this example is used as an anonymous schema
 
-> 
+>
+
 ```json
 // props { "isSchema": true }
 {
@@ -335,12 +338,12 @@ resolvable. Let\'s assume this example is used as an anonymous schema
   },
   "required": ["first_name", "last_name", "shipping_address", "billing_address"]
 }
-```  
+```
 
 > The `$ref` at `/properties/shipping_address` can resolve just fine
-without a non-relative base URI to resolve against, but the `$ref` at
-`/properties/billing_address` can\'t resolve to a non-relative URI and
-therefore can\'t be used to retrieve the address schema.
+> without a non-relative base URI to resolve against, but the `$ref` at
+> `/properties/billing_address` can\'t resolve to a non-relative URI and
+> therefore can\'t be used to retrieve the address schema.
 
 <Keywords label="single: \$defs single: structuring; \$defs" />
 
@@ -369,13 +372,18 @@ candidate for using `$defs`.
     "shipping_address": { "$ref": "/schemas/address" },
     "billing_address": { "$ref": "/schemas/address" }
   },
-  "required": ["first_name", "last_name", "shipping_address", "billing_address"],
+  "required": [
+    "first_name",
+    "last_name",
+    "shipping_address",
+    "billing_address"
+  ],
 
   "$defs": {
     "name": { "type": "string" }
   }
 }
-```  
+```
 
 `$defs` isn\'t just good for avoiding duplication. It can also be useful
 for writing schemas that are easier to read and maintain. Complex parts
@@ -385,8 +393,8 @@ quickly and easily understand the schema at a high level before diving
 into the more complex parts.
 
 > It\'s possible to reference an external subschema, but generally you
-want to limit a `$ref` to referencing either an external schema or an
-internal subschema defined in `$defs`.
+> want to limit a `$ref` to referencing either an external schema or an
+> internal subschema defined in `$defs`.
 
 <Keywords label="recursion single: \$ref single: structuring; recursion; \$ref" />
 
@@ -408,7 +416,8 @@ array of `children`, each of which are also `person` instances.
     }
   }
 }
-```  
+```
+
 A snippet of the British royal family tree
 
 ```json
@@ -421,10 +430,7 @@ A snippet of the British royal family tree
       "children": [
         {
           "name": "William",
-          "children": [
-            { "name": "George" },
-            { "name": "Charlotte" }
-          ]
+          "children": [{ "name": "George" }, { "name": "Charlotte" }]
         },
         {
           "name": "Harry"
@@ -448,11 +454,12 @@ infinite loop in the resolver, and is explicitly disallowed.
     "bob": { "$ref": "#/$defs/alice" }
   }
 }
-```  
+```
 
 <Keywords label="single: Extending Recursive Schemas single: \$recursiveRef single: \$recursiveAnchor single: structuring; Extending Recursive Schemas" />
 
 ## Extending Recursive Schemas
+
 <Star label="New in draft 2019-09" />
 
 Documentation Coming Soon
@@ -474,9 +481,9 @@ Document is called a Schema Resource.
 [tabs-start "Draft-specific info"]
 
 [tab "Draft 4"]
-In Draft 4, ``$id`` is just ``id`` (without the dollar sign).
+In Draft 4, `$id` is just `id` (without the dollar sign).
 [tab "Draft 4-7"]
-In Draft 4-7, an ``$id`` in a subschema did not indicate an
+In Draft 4-7, an `$id` in a subschema did not indicate an
 embedded schema. Instead it was simply a base URI change in a
 single schema document.
 
@@ -487,9 +494,9 @@ single schema document.
 <span />
 
 > It is unusual to use embedded schemas when developing schemas. It\'s
-generally best not to use this feature explicitly and use schema
-bundling tools to construct bundled schemas if such a thing is needed.
-:::
+> generally best not to use this feature explicitly and use schema
+> bundling tools to construct bundled schemas if such a thing is needed.
+> :::
 
 This example shows the customer schema example and the address schema
 example bundled into a Compound Schema Document.
@@ -507,7 +514,12 @@ example bundled into a Compound Schema Document.
     "shipping_address": { "$ref": "/schemas/address" },
     "billing_address": { "$ref": "/schemas/address" }
   },
-  "required": ["first_name", "last_name", "shipping_address", "billing_address"],
+  "required": [
+    "first_name",
+    "last_name",
+    "shipping_address",
+    "billing_address"
+  ],
 
   "$defs": {
     "address": {
@@ -528,7 +540,7 @@ example bundled into a Compound Schema Document.
     }
   }
 }
-```  
+```
 
 All references in a Compound Schema Document need to be the same whether
 the Schema Resources are bundled or not. Notice that the `$ref` keywords

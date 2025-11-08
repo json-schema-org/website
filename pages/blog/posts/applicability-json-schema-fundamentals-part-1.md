@@ -83,7 +83,6 @@ OK, let's check our Schema does all we need it to. What happens when our instanc
 }
 // isEmailConfirmed should be a Boolean, not a string.
 
-
 // Will cause validation error.
 ```
 
@@ -111,7 +110,6 @@ We can now be confident that if our required fields are missing, validation will
   "isEmaleConfirmed": "true"
 }
 // Typo for key "isEmaleConfirmed".
-
 
 // Validates because of applicability.
 ```
@@ -150,7 +148,6 @@ Finally, what if we expect an Object, but are given an Array or another non-obje
     "isEmaleConfirmed": "true"
   }
 ]
-
 
 // An array is not an object...
 ```

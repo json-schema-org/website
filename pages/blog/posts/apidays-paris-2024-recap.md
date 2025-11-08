@@ -1,6 +1,6 @@
 ---
-title: "JSON Schema conference: A milestone event at Apidays Paris 2024"
-date: "2024-12-19"
+title: 'JSON Schema conference: A milestone event at Apidays Paris 2024'
+date: '2024-12-19'
 tags:
   - News
 type: Community
@@ -10,9 +10,11 @@ authors:
     photo: /img/avatars/valeria.webp
     twitter: valeriahhdez
     byline: Technical writer
-excerpt: "Apidays Paris 2024 was the venue for a significant milestone for our project: the first-ever JSON Schema Conference."
+excerpt: 'Apidays Paris 2024 was the venue for a significant milestone for our project: the first-ever JSON Schema Conference.'
 ---
+
 ## Introduction
+
 [Apidays Paris](https://www.apidays.global/paris/), the flagship event of the apidays family, returned this year with a focus on "The Future API Stack for Mass Innovation." This annual gathering of API enthusiasts, developers, and industry leaders brought together experts to discuss the latest trends and best practices in API design, API development, and API management.
 
 This year's agenda highlighted the increasing role of AI in API development, exploring how AI can be used to automate tasks, improve API design, and enhance API performance.
@@ -20,7 +22,7 @@ Continuing our successful partnership with [AsyncAPI](https://www.asyncapi.com/e
 
 ## The first JSON Schema conference
 
-The inaugural [JSON Schema conference track](https://conference.json-schema.org/) at apidays Paris 2024 was a resounding success. As part of the larger conference theme "The Future API Stack for Mass Innovation," the track showcased JSON Schema's crucial role in modern API development and data contract design. 
+The inaugural [JSON Schema conference track](https://conference.json-schema.org/) at apidays Paris 2024 was a resounding success. As part of the larger conference theme "The Future API Stack for Mass Innovation," the track showcased JSON Schema's crucial role in modern API development and data contract design.
 
 <figure className='flex flex-wrap justify-center items-center gap-4 w-full'>
     <img className='max-w-400 px-20' src='/img/posts/2024/apidays-paris-2024-recap/json-schema-team.jpg' alt="Five people standing at a booth labeled 'Standards'. They are smiling and looking at the camera. From left to right, their names are Benjamin Granados, Thomas Clark, Andreas Eberhart, Juan Cruz Viotti, and Ben Hutton."/>
@@ -57,23 +59,24 @@ Looking ahead, this first dedicated track has laid a strong foundation for futur
 
 ## Collaboration with organizations
 
-The success of the JSON Schema track at apidays Paris 2024 highlighted the vital role of community collaboration in our growth. It also demonstrated how organizations collaborating with JSON Schema gain more than just visibility - they become part of a broader movement toward standardized, high-quality API development. 
+The success of the JSON Schema track at apidays Paris 2024 highlighted the vital role of community collaboration in our growth. It also demonstrated how organizations collaborating with JSON Schema gain more than just visibility - they become part of a broader movement toward standardized, high-quality API development.
 
 Here's how your organization can benefit:
+
 - **Standardization & interoperability**: Ensure seamless data exchange and API integration.
 - **Improved data quality**: Minimize errors with robust data validation.
 - **Enhanced API design**: Streamline development with clear and concise schemas.
 - **Increased productivity**: Automate tasks and boost efficiency with JSON Schema tools.
-  
+
 Here’s how you can become part of the initiative:
+
 - [Be an ambassador](https://github.com/json-schema-org/community/tree/main/programs/ambassadors): Share your JSON Schema expertise and champion its adoption.
 - [Become a sponsor](https://json-schema.org/overview/sponsors): Gain visibility and support the standard's growth.
 - [Contribute to the project](https://github.com/json-schema-org): Help us shape the future of JSON Schema development.
 - [Join our Slack workspace](https://json-schema.org/slack): Connect with the vibrant JSON Schema community.
 
-
-Together, we can build a more robust and interoperable API ecosystem. 
+Together, we can build a more robust and interoperable API ecosystem.
 
 A final thank you to Octue for sponsoring the conference, apidays Paris for hosting it, the organizers for their dedication and hard work, and the attendees for your valuable input and insightful questions. On behalf of JSON Schema, we look forward to seeing you again next year!
 
-Acknowledgments: The author would like to thank Onyedikachi Hope, Ben Hutton, and Benjamin Granados for their valuable feedback, which enhanced the quality of this article. 
+Acknowledgments: The author would like to thank Onyedikachi Hope, Ben Hutton, and Benjamin Granados for their valuable feedback, which enhanced the quality of this article.

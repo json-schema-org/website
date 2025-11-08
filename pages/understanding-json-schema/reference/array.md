@@ -1,10 +1,10 @@
 ---
-title: "array"
+title: 'array'
 section: docs
-prev: 
+prev:
   label: Type-specific keywords
   url: /understanding-json-schema/reference/type
-next: 
+next:
   label: Boolean
   url: /understanding-json-schema/reference/boolean
 ---
@@ -18,7 +18,7 @@ may be of a different type.
 
 [tab "Python"]
 In Python, "array" is analogous to the `list` or `tuple` type,
-depending on usage.  However, the `json` module in the Python
+depending on usage. However, the `json` module in the Python
 standard library will always use Python lists to represent JSON
 arrays.
 
@@ -39,28 +39,31 @@ In Swift, "array" is analogous to the `Array` type.
 // props { "isSchema": true }
 { "type": "array" }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 [1, 2, 3, 4, 5]
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 [3, "different", { "types": "of values" }]
 ```
+
 ```json
 // props { "indent": true, "valid": false }
-{"Not": "an array"}
+{ "Not": "an array" }
 ```
 
 There are two ways in which arrays are generally used in JSON:
 
 - **List validation:** a sequence of arbitrary length where each item
-    matches the same [schema](../../learn/glossary#schema).
+  matches the same [schema](../../learn/glossary#schema).
 - **Tuple validation:** a sequence of fixed length where each item may
-    have a different schema. In this usage, the index (or location) of
-    each item is meaningful as to how the value is interpreted. (This
-    usage is often given a whole separate type in some programming
-    languages, such as Python\'s `tuple`).
+  have a different schema. In this usage, the index (or location) of
+  each item is meaningful as to how the value is interpreted. (This
+  usage is often given a whole separate type in some programming
+  languages, such as Python\'s `tuple`).
 
 ## Items[#items]
 
@@ -81,16 +84,19 @@ number:
   }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 [1, 2, 3, 4, 5]
 ```
+
 A single "non-number" causes the whole array to be invalid:
 
 ```json
 // props { "indent": true, "valid": false }
 [1, 2, "3", 4, 5]
 ```
+
 The empty array is always valid:
 
 ```json
@@ -112,17 +118,16 @@ For example, you may represent a street address such as `1600 Pennsylvania Avenu
 [number, street_name, street_type, direction]
 ```
 
-
-> \[number, street\_name, street\_type, direction\]
+> \[number, street_name, street_type, direction\]
 
 Each of these fields will have a different schema:
 
--   `number`: The address number. Must be a number.
--   `street_name`: The name of the street. Must be a string.
--   `street_type`: The type of street. Should be a string from a fixed
-    set of values.
--   `direction`: The city quadrant of the address. Should be a string
-    from a different set of values.
+- `number`: The address number. Must be a number.
+- `street_name`: The name of the street. Must be a string.
+- `street_type`: The type of street. Should be a string from a fixed
+  set of values.
+- `direction`: The city quadrant of the address. Should be a string
+  from a different set of values.
 
 To do this, we use the `prefixItems` keyword. `prefixItems` is an array,
 where each item is a schema that corresponds to each index of the
@@ -151,28 +156,33 @@ Here\'s the example schema:
   ]
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 [1600, "Pennsylvania", "Avenue", "NW"]
 ```
+
 "Drive" is not one of the acceptable street types:
 
 ```json
 // props { "indent": true, "valid": false }
 [24, "Sussex", "Drive"]
 ```
+
 This address is missing a street number:
 
 ```json
 // props { "indent": true, "valid": false }
 ["Palais de l'Élysée"]
 ```
+
 It's okay to not provide all of the items:
 
 ```json
 // props { "indent": true, "valid": true }
 [10, "Downing", "Street"]
 ```
+
 And, by default, it's also okay to add additional items to end:
 
 ```json
@@ -217,16 +227,19 @@ which has the effect of disallowing extra items in the tuple.
   "items": false
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 [1600, "Pennsylvania", "Avenue", "NW"]
 ```
+
 It's ok to not provide all of the items:
 
 ```json
 // props { "indent": true, "valid": true }
 [1600, "Pennsylvania", "Avenue"]
 ```
+
 But, since `items` is `false`, we can't provide extra items:
 
 ```json
@@ -252,12 +265,14 @@ strings:
   "items": { "type": "string" }
 }
 ```
+
 Extra string items are ok ...
 
 ```json
 // props { "indent": true, "valid": true }
 [1600, "Pennsylvania", "Avenue", "NW", "Washington"]
 ```
+
 ... but not anything else
 
 ```json
@@ -274,14 +289,14 @@ Extra string items are ok ...
 The `unevaluatedItems` keyword is useful mainly when you want to add
 or disallow extra items to an array.
 
-`unevaluatedItems` applies to any values not evaluated by an `items`, 
+`unevaluatedItems` applies to any values not evaluated by an `items`,
 `prefixItems`, or `contains` keyword. Just as `unevaluatedProperties`
 affects only **properties** in an object, `unevaluatedItems` affects
 only **items** in an array.
 
-> Watch out! The word "unevaluated" *does not mean* "not evaluated by
-`items`, `prefixItems`, or `contains`." "Unevaluated" means
-"not successfully evaluated", or "does not evaluate to true".
+> Watch out! The word "unevaluated" _does not mean_ "not evaluated by
+> `items`, `prefixItems`, or `contains`." "Unevaluated" means
+> "not successfully evaluated", or "does not evaluate to true".
 
 Like with `items`, if you set `unevaluatedItems` to `false`, you
 can disallow extra items in the array.
@@ -289,9 +304,7 @@ can disallow extra items in the array.
 ```json
 // props { "isSchema": true }
 {
-  "prefixItems": [
-    { "type": "string" }, { "type": "number" }
-  ],
+  "prefixItems": [{ "type": "string" }, { "type": "number" }],
   "unevaluatedItems": false
 }
 ```
@@ -354,10 +367,7 @@ more arguments when you need it to be.)
 {
   "$id": "https://example.com/my-tuple",
   "type": "array",
-  "prefixItems": [
-    { "type": "boolean" },
-    { "type": "string" }
-  ],
+  "prefixItems": [{ "type": "boolean" }, { "type": "string" }],
 
   "$defs": {
     "closed": {
@@ -415,18 +425,21 @@ the array.
   }
 }
 ```
+
 A single "number" is enough to make this pass:
 
 ```json
 // props { "indent": true, "valid": true }
 ["life", "universe", "everything", 42]
 ```
+
 But if we have no number, it fails:
 
 ```json
 // props { "indent": true, "valid": false }
 ["life", "universe", "everything", "forty-two"]
 ```
+
 All numbers is, of course, also okay:
 
 ```json
@@ -453,20 +466,24 @@ keywords can be any non-negative number including zero.
   "maxContains": 3
 }
 ```
+
 Fails `minContains`
 
 ```json
 // props { "indent": true, "valid": false }
 ["apple", "orange", 2]
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 ["apple", "orange", 2, 4]
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 ["apple", "orange", 2, 4, 8]
 ```
+
 Fails `maxContains`
 
 ```json
@@ -490,22 +507,27 @@ number. These keywords work whether doing [list validation](#items) or [tuple-va
   "maxItems": 3
 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 []
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 [1]
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 [1, 2]
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 [1, 2, 3]
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 [1, 2, 3, 4]
@@ -525,14 +547,17 @@ set the `uniqueItems` keyword to `true`.
   "uniqueItems": true
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 [1, 2, 3, 4, 5]
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 [1, 2, 3, 3, 4]
 ```
+
 The empty array always passes:
 
 ```json

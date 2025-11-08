@@ -1,10 +1,10 @@
 ---
 title: Release notes
 type: docs
-prev: 
+prev:
   label: Migration
   url: /specification/migration
-next: 
+next:
   label: JSON Hyper-Schema
   url: /specification/json-hyper-schema
 ---

@@ -1,10 +1,10 @@
 ---
-title: "object"
+title: 'object'
 section: docs
-prev: 
+prev:
   label: Numeric Types
   url: /understanding-json-schema/reference/numeric
-next: 
+next:
   label: Regular expressions
   url: /understanding-json-schema/reference/regular_expressions
 ---
@@ -20,7 +20,7 @@ conventionally referred to as a \"property\".
 [tabs-start "Language-specific info"]
 
 [tab "Python"]
-In Python, "objects" are analogous to the `dict` type.  An
+In Python, "objects" are analogous to the `dict` type. An
 important difference, however, is that while Python dictionaries
 may use anything hashable as a key, in JSON all the keys
 must be strings.
@@ -52,6 +52,7 @@ In Swift, "objects" are analogous to the `Dictionary` type.
 // props { "isSchema": true }
 { "type": "object" }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -59,6 +60,7 @@ In Swift, "objects" are analogous to the `Dictionary` type.
   "another_key": "another_value"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -66,7 +68,7 @@ In Swift, "objects" are analogous to the `Dictionary` type.
   "Jupiter": 1.8986e27,
   "Saturn": 5.6846e26,
   "Neptune": 10.243e25,
-  "Uranus": 8.6810e25,
+  "Uranus": 8.681e25,
   "Earth": 5.9736e24,
   "Venus": 4.8685e24,
   "Mars": 6.4185e23,
@@ -75,20 +77,23 @@ In Swift, "objects" are analogous to the `Dictionary` type.
   "Pluto": 1.25e22
 }
 ```
+
 Using non-strings as keys is invalid JSON:
 
 ```json
 // props { "indent": true, "valid": false }
 {
-  0.01: "cm",
-  1: "m",
-  1000: "km"
+  "0.01": "cm",
+  "1": "m",
+  "1000": "km"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 "Not an object"
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 ["An", "array", "not", "an", "object"]
@@ -103,8 +108,8 @@ validate that property. Any property that doesn\'t match any of the
 property names in the `properties` keyword is ignored by this keyword.
 
 > See [Additional Properties](#additionalproperties) and
-[Unevaluated Properties](#unevaluatedproperties) for how to disallow properties that
-don\'t match any of the property names in `properties`.
+> [Unevaluated Properties](#unevaluatedproperties) for how to disallow properties that
+> don\'t match any of the property names in `properties`.
 
 For example, let\'s say we want to define a simple schema for an address
 made up of a number, street name and street type:
@@ -120,33 +125,43 @@ made up of a number, street name and street type:
   }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue" }
 ```
+
 // If we provide the number in the wrong type, it is invalid:
 
 ```json
 // props { "indent": true, "valid": false }
 { "number": "1600", "street_name": "Pennsylvania", "street_type": "Avenue" }
 ```
+
 By default, leaving out properties is valid. See [Required Properties](#required).
 
 ```json
 // props { "indent": true, "valid": true }
 { "number": 1600, "street_name": "Pennsylvania" }
 ```
+
 By extension, even an empty object is valid:
 
 ```json
 // props { "indent": true, "valid": true }
-{ }
+{}
 ```
+
 By default, providing additional properties is valid:
 
 ```json
 // props { "indent": true, "valid": true }
-{ "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue", "direction": "NW" }
+{
+  "number": 1600,
+  "street_name": "Pennsylvania",
+  "street_type": "Avenue",
+  "direction": "NW"
+}
 ```
 
 ## Pattern Properties [#patternProperties]
@@ -158,13 +173,12 @@ a property name matches the given regular expression, the property value
 must validate against the corresponding schema.
 
 > Regular expressions are not anchored. This means that when defining the
-regular expressions for `patternProperties`, it\'s important to note
-that the expression may match anywhere within the property name. For
-example, the regular expression `"p"` will match any property name with
-a `p` in it, such as `"apple"`, not just a property whose name is simply
-`"p"`. It\'s therefore usually less confusing to surround the regular
-expression in `^...$`, for example, `"^p$"`.
-
+> regular expressions for `patternProperties`, it\'s important to note
+> that the expression may match anywhere within the property name. For
+> example, the regular expression `"p"` will match any property name with
+> a `p` in it, such as `"apple"`, not just a property whose name is simply
+> `"p"`. It\'s therefore usually less confusing to surround the regular
+> expression in `^...$`, for example, `"^p$"`.
 
 In this example, any properties whose names start with the prefix `S_`
 must be strings, and any with the prefix `I_` must be integers. Any
@@ -180,26 +194,31 @@ properties that do not match either regular expression are ignored.
   }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "S_25": "This is a string" }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "I_0": 42 }
 ```
+
 If the name starts with `S_`, it must be a string
 
 ```json
 // props { "indent": true, "valid": false }
 { "S_0": 42 }
 ```
+
 If the name starts with `I_`, it must be an integer
 
 ```json
 // props { "indent": true, "valid": false }
 { "I_42": "This is a string" }
 ```
+
 This is a key that doesn't match any of the regular expressions:
 
 ```json
@@ -235,15 +254,22 @@ Reusing the example from [Properties](#properties), but this time setting
   "additionalProperties": false
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue" }
 ```
+
 Since `additionalProperties` is `false`, this extra property "direction" makes the object invalid:
 
 ```json
 // props { "indent": true, "valid": false }
-{ "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue", "direction": "NW" }
+{
+  "number": 1600,
+  "street_name": "Pennsylvania",
+  "street_type": "Avenue",
+  "direction": "NW"
+}
 ```
 
 You can use non-boolean schemas to put more complex constraints on the
@@ -262,21 +288,34 @@ additional properties, but only if their values are each a string:
   "additionalProperties": { "type": "string" }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue" }
 ```
+
 This is valid, since the additional property's value is a string:
 
 ```json
 // props { "indent": true, "valid": true }
-{ "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue", "direction": "NW" }
+{
+  "number": 1600,
+  "street_name": "Pennsylvania",
+  "street_type": "Avenue",
+  "direction": "NW"
+}
 ```
+
 This is invalid, since the additional property's value is not a string:
 
 ```json
 // props { "indent": true, "valid": false }
-{ "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue", "office_number": 201 }
+{
+  "number": 1600,
+  "street_name": "Pennsylvania",
+  "street_type": "Avenue",
+  "office_number": 201
+}
 ```
 
 You can use `additionalProperties` with a combination of `properties`
@@ -302,16 +341,19 @@ must be strings:
   "additionalProperties": { "type": "string" }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "builtin": 42 }
 ```
+
 This is a key that doesn't match any of the regular expressions:
 
 ```json
 // props { "indent": true, "valid": true }
 { "keyword": "value" }
 ```
+
 It must be a string:
 
 ```json
@@ -345,11 +387,12 @@ cause attempts to extend the address schema example to fail.
   ],
 
   "properties": {
-    "type": { "enum": [ "residential", "business" ] }
+    "type": { "enum": ["residential", "business"] }
   },
   "required": ["type"]
 }
 ```
+
 Fails `additionalProperties`. "type" is considered additional.
 
 ```json
@@ -361,6 +404,7 @@ Fails `additionalProperties`. "type" is considered additional.
   "type": "business"
 }
 ```
+
 Fails `required`. "type" is required.
 
 ```json
@@ -374,7 +418,7 @@ Fails `required`. "type" is required.
 
 Because `additionalProperties` only recognizes properties declared in
 the same subschema, it considers anything other than
-\"street\_address\", \"city\", and \"state\" to be additional. Combining
+\"street_address\", \"city\", and \"state\" to be additional. Combining
 the schemas with [allOf](../../understanding-json-schema/reference/combining#allof) doesn\'t change that. A workaround
 you can use is to move `additionalProperties` to the extending schema
 and redeclare the properties from the extended schema.
@@ -398,12 +442,13 @@ and redeclare the properties from the extended schema.
     "street_address": true,
     "city": true,
     "state": true,
-    "type": { "enum": [ "residential", "business" ] }
+    "type": { "enum": ["residential", "business"] }
   },
   "required": ["type"],
   "additionalProperties": false
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -413,6 +458,7 @@ and redeclare the properties from the extended schema.
   "type": "business"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -462,6 +508,7 @@ rewritten without the need to redeclare properties.
   "unevaluatedProperties": false
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -471,6 +518,7 @@ rewritten without the need to redeclare properties.
   "type": "business"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -517,6 +565,7 @@ allows the \"department\" property only if the \"type\" of address is
   "unevaluatedProperties": false
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -527,6 +576,7 @@ allows the \"department\" property only if the \"type\" of address is
   "department": "HR"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -576,6 +626,7 @@ don\'t provide their address or telephone number:
   "required": ["name", "email"]
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 {
@@ -583,6 +634,7 @@ don\'t provide their address or telephone number:
   "email": "bill@stratford-upon-avon.co.uk"
 }
 ```
+
 Providing extra properties is fine, even properties not defined in the schema:
 
 ```json
@@ -594,16 +646,18 @@ Providing extra properties is fine, even properties not defined in the schema:
   "authorship": "in question"
 }
 ```
+
 Missing the required "email" property makes the JSON document invalid:
 
 ```json
 // props { "indent": true, "valid": false }
 {
   "name": "William Shakespeare",
-  "address": "Henley Street, Stratford-upon-Avon, Warwickshire, England",
+  "address": "Henley Street, Stratford-upon-Avon, Warwickshire, England"
 }
 ```
-In JSON a property with value `null` is not equivalent to the property not being present. This fails because ``null`` is not of type "string", it's of type "null"
+
+In JSON a property with value `null` is not equivalent to the property not being present. This fails because `null` is not of type "string", it's of type "null"
 
 ```json
 // props { "indent": true, "valid": false }
@@ -636,12 +690,14 @@ attributes in a particular programming language.
   }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 {
   "_a_proper_token_001": "value"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 {
@@ -673,22 +729,27 @@ non-negative integer.
   "maxProperties": 3
 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 {}
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 { "a": 0 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "a": 0, "b": 1 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "a": 0, "b": 1, "c": 2 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 { "a": 0, "b": 1, "c": 2, "d": 3 }

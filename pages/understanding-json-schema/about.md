@@ -1,10 +1,10 @@
 ---
-title: "What is a schema?"
-section: "docs"
-prev: 
+title: 'What is a schema?'
+section: 'docs'
+prev:
   label: Get Started
   url: /learn
-next: 
+next:
   label: The basics
   url: /understanding-json-schema/basics
 ---
@@ -25,40 +25,44 @@ involve web surfing.
 At its heart, JSON is built on the following data structures:
 
 ### object
+
 ```json
 { "key1": "value1", "key2": "value2" }
 ```
 
 ### array
+
 ```json
-[ "first", "second", "third" ]
+["first", "second", "third"]
 ```
 
-### number 
-```json 
+### number
+
+```json
 42
 3.1415926
-``` 
+```
 
 ### string
+
 ```json
 "This is a string"
 ```
 
 ### boolean
+
 ```json
   true
   false
 ```
 
 ### null
+
 ```json
-  null
+null
 ```
 
 These types have [analogs in most programming languages](../understanding-json-schema/reference/type).
-
-
 
 With these simple data types, all kinds of structured data can be
 represented. With that great flexibility comes great responsibility,
@@ -71,7 +75,7 @@ JSON in different ways:
   "name": "George Washington",
   "birthday": "February 22, 1732",
   "address": "Mount Vernon, Virginia, United States"
-} 
+}
 ```
 
 ```json
@@ -108,13 +112,13 @@ explained in subsequent chapters.
     "last_name": { "type": "string" },
     "birthday": { "type": "string", "format": "date" },
     "address": {
-       "type": "object",
-       "properties": {
-         "street_address": { "type": "string" },
-         "city": { "type": "string" },
-         "state": { "type": "string" },
-         "country": { "type" : "string" }
-       }
+      "type": "object",
+      "properties": {
+        "street_address": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string" },
+        "country": { "type": "string" }
+      }
     }
   }
 }

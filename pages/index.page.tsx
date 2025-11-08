@@ -261,50 +261,36 @@ const Home = (props: any) => {
             </p>
           </div>
           {/* Feature 4 section*/}
-          <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
-            <div className='w-full  shadow-3xl  rounded-[10px] p-[20px] dark:shadow-slate-700'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
-                Streamline testing and validation
-              </h3>
-              <p className='dark:text-slate-300'>
-                Simplify your validation logic to reduce your code’s complexity
-                and save time on development. Define constraints for your data
-                structures to catch and prevent errors, inconsistencies, and
-                invalid data.
-              </p>
-            </div>
-            <div className='w-full  shadow-3xl  rounded-[10px] p-[20px] dark:shadow-slate-700'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
-                Exchange data seamlessly
-              </h3>
-              <p className='dark:text-slate-300'>
-                Establish a common language for data exchange, no matter the
-                scale or complexity of your project. Define precise validation
-                rules for your data structures to create shared understanding
-                and increase interoperability across different systems and
-                platforms.
-              </p>
-            </div>
-            <div className='w-full  shadow-3xl  rounded-[10px] p-[20px] dark:shadow-slate-700'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200 '>
-                Document your data
-              </h3>
-              <p className='dark:text-slate-300'>
-                Create a clear, standardized representation of your data to
-                improve understanding and collaboration among developers,
-                stakeholders, and collaborators.
-              </p>
-            </div>
-            <div className='w-full  shadow-3xl  rounded-[10px] p-[20px] dark:shadow-slate-700'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
-                Vibrant tooling ecosystem
-              </h3>
-              <p className='dark:text-slate-300'>
-                Adopt JSON Schema with an expansive range of community-driven
-                tools, libraries, and frameworks across many programming
-                languages.
-              </p>
-            </div>
+          <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6 my-[85px] mx-auto'>
+            {[
+              {
+                title: 'Streamline testing and validation',
+                desc: 'Simplify your validation logic to reduce your code’s complexity and save time on development. Define constraints for your data structures to catch and prevent errors, inconsistencies, and invalid data.',
+              },
+              {
+                title: 'Exchange data seamlessly',
+                desc: 'Establish a common language for data exchange, no matter the scale or complexity of your project. Define precise validation rules for your data structures to create shared understanding and increase interoperability across systems.',
+              },
+              {
+                title: 'Document your data',
+                desc: 'Create a clear, standardized representation of your data to improve understanding and collaboration among developers, stakeholders, and collaborators.',
+              },
+              {
+                title: 'Vibrant tooling ecosystem',
+                desc: 'Adopt JSON Schema with an expansive range of community-driven tools, libraries, and frameworks across many programming languages.',
+              },
+            ].map((item, index) => (
+              <div
+                key={index}
+                className='relative group overflow-hidden rounded-[10px] shadow-3xl dark:shadow-slate-700 p-[20px] transition-all duration-500 transform hover:-translate-y-2 hover:shadow-blue-400/40 hover:shadow-2xl cursor-pointer'
+              >
+                <div className='absolute inset-0 bg-blue-600/0 group-hover:bg-blue-600/10 transition-all duration-500 rounded-[10px]' />
+                <h3 className='relative text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
+                  {item.title}
+                </h3>
+                <p className='relative dark:text-slate-300'>{item.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 

@@ -1,10 +1,10 @@
 ---
-title: "Enumerated and constant values"
+title: 'Enumerated and constant values'
 section: docs
-prev: 
+prev:
   label: Dialect and vocabulary declaration
   url: /understanding-json-schema/reference/schema
-next: 
+next:
   label: Enumerated values
   url: /understanding-json-schema/reference/enum
 ---
@@ -12,8 +12,7 @@ next:
 The `enum` and `const` keywords contribute to data validation by defining limits on the values a property can hold.
 
 - **Define a set of values**. Use the `enum` keyword to specify a finite set of acceptable values for a property. This ensures that only predefined options are valid.
-  
-- **Define a fixed, single value**. Use the `const` keyword to force a property to have a single, fixed value. This keyword is more restrictive than `enum`. 
+- **Define a fixed, single value**. Use the `const` keyword to force a property to have a single, fixed value. This keyword is more restrictive than `enum`.
 
 Learn more about how to use these keywords with the following resources:
 

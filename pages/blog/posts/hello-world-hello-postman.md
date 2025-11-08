@@ -1,6 +1,6 @@
 ---
-title: "Hello World, Hello Postman"
-date: "2022-06-16"
+title: 'Hello World, Hello Postman'
+date: '2022-06-16'
 tags:
   - Update
   - News
@@ -11,7 +11,7 @@ authors:
     photo: /img/avatars/julian.webp
     twitter: JulianWasTaken
     byline: JSON Schema Test Suite Maintainer & Technical Lead, API Specifications @Postman
-excerpt: "Oh hello there! A second person is now working full-time on JSON Schema."
+excerpt: 'Oh hello there! A second person is now working full-time on JSON Schema.'
 ---
 
 Hi! I'm Julian Berman.

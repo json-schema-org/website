@@ -1,10 +1,10 @@
 ---
-title: "Annotations"
+title: 'Annotations'
 section: docs
-prev: 
+prev:
   label: Schema annotations and comments
   url: /understanding-json-schema/reference/metadata
-next: 
+next:
   label: Comments
   url: /understanding-json-schema/reference/comments
 ---
@@ -59,10 +59,7 @@ the future.
   "title": "Match anything",
   "description": "This is a schema that matches anything.",
   "default": "Default value",
-  "examples": [
-    "Anything",
-    4035
-  ],
+  "examples": ["Anything", 4035],
   "deprecated": true,
   "readOnly": true,
   "writeOnly": false

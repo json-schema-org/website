@@ -1,10 +1,10 @@
 ---
-title: "Comments"
+title: 'Comments'
 section: docs
-prev: 
+prev:
   label: Annotations
   url: /understanding-json-schema/reference/annotations
-next: 
+next:
   label: Conditional Schema validation
   url: /understanding-json-schema/reference/conditionals
 ---
@@ -20,13 +20,13 @@ notes to future editors of a JSON schema, but should not be used to
 communicate to users of the schema.
 
 ```json
-    {
-      "$comment": "Created by John Doe",
-      "type": "object",
-      "properties": {
-        "country": {
-          "$comment": "TODO: add enum of countries"
-        }
-      }
+{
+  "$comment": "Created by John Doe",
+  "type": "object",
+  "properties": {
+    "country": {
+      "$comment": "TODO: add enum of countries"
     }
+  }
+}
 ```

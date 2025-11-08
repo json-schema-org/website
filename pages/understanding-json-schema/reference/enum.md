@@ -1,14 +1,13 @@
 ---
-title: "Enumerated values"
+title: 'Enumerated values'
 section: docs
-prev: 
+prev:
   label: Enumerated and Constant Values
   url: /understanding-json-schema/reference/generic
-next: 
+next:
   label: Constant values
   url: /understanding-json-schema/reference/const
 ---
-
 
 The `enum` [keyword](../../learn/glossary#keyword) is used to restrict a value to a fixed set of values.
 It must be an array with at least one element, where each element is unique.
@@ -29,14 +28,15 @@ This example demonstrates how to validate that the `color` property of a street 
   }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
-{  "color": "red" }
+{ "color": "red" }
 ```
 
 ```json
 // props { "indent": true, "valid": false }
-{  "color": "blue" }
+{ "color": "blue" }
 ```
 
 ### Extended Example: Accepting Multiple Data Types
@@ -69,7 +69,6 @@ In the following example, the schema is extended to include `null` (to represent
 // props { "indent": true, "valid": false }
 { "color": 0 }
 ```
-
 
 ### Additional Example: Mixed Types for Shape
 

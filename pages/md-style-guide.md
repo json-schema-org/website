@@ -4,16 +4,16 @@ title: JSON Schema documentation style guide
 
 Welcome to JSON Schema! This guide is intended for project contributors and provides guidelines for the text-formatting conventions of our documentation. The purpose of this style guide is to create consistency throughout our documentation, so make sure to read and follow it carefully. To learn about how to contribute to our documentation, see the [Docs contributing guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING-docs.md)
 
-## Our preferred style guide 
+## Our preferred style guide
 
-We use the [Google developer documentation style guide](https://developers.google.com/style) as our default guide. For a quick summary, see the [Google style guide highlights](https://developers.google.com/style/highlights). This document describes customizations to the Google developers style guide specific to the JSON Schema documentation. 
+We use the [Google developer documentation style guide](https://developers.google.com/style) as our default guide. For a quick summary, see the [Google style guide highlights](https://developers.google.com/style/highlights). This document describes customizations to the Google developers style guide specific to the JSON Schema documentation.
 
 The JSON Schema documentation uses American spelling and our preferred dictionary is the
-[American Heritage Dictionary](https://ahdictionary.com/). 
+[American Heritage Dictionary](https://ahdictionary.com/).
 
 ## Write for your audience
 
-The content of our documentation is written mainly for develepers, therefore, information should be clear, concise, and accurate. If you're unsure about a certain detail, please contact the appropriate people to verify it. For more information about our users personas, see [Personas](https://github.com/json-schema-org/community/issues/336#personas). 
+The content of our documentation is written mainly for develepers, therefore, information should be clear, concise, and accurate. If you're unsure about a certain detail, please contact the appropriate people to verify it. For more information about our users personas, see [Personas](https://github.com/json-schema-org/community/issues/336#personas).
 
 ## Types of documents and information architecture
 
@@ -33,33 +33,28 @@ Other types of documents we write are the following:
 We organize our documentation into the following content buckets:
 
 - **Introduction**: Several types of documents live in this bucket that introduce the JSON Schema initiative's purpose, how the JSON Schema is used in various industries and applications, and its key features and benefits.
-   
-- **Basics**: The documents of this content bucket help beginners get started with JSON Schema. 
-  
-- **Guides**: The guides contained in this bucket help users develop practical skills for validating schemas, building complex ones, and troubleshooting issues. 
-  
+- **Basics**: The documents of this content bucket help beginners get started with JSON Schema.
+- **Guides**: The guides contained in this bucket help users develop practical skills for validating schemas, building complex ones, and troubleshooting issues.
 - **Reference**: These documents explain the type of data, formats, and constraints that keywords expect. It also contains examples of how to use JSON Schema keywords.
-  
-- **Specification**: This section contains detailed changelogs of keyword modifications, highlights behavioral changes, and provides migration best practices.  
- 
+- **Specification**: This section contains detailed changelogs of keyword modifications, highlights behavioral changes, and provides migration best practices.
 
 ## Code blocks
 
-To ensure that code samples are easy to search, copy and paste, and adapt, include all code as text, not as images, in the documentation.  
+To ensure that code samples are easy to search, copy and paste, and adapt, include all code as text, not as images, in the documentation.
 
-## Titles and headings 
+## Titles and headings
 
-Titles should be short and communicate the main idea of the document. For explanation or reference documents, the title should start with a noun phrase, for example, _Conditional subschemas_. When the document is a guide that includes steps to complete a task, such as a tutorial, the title should start with a bare infinitive, for example, _Structure complex schemas_. To learn more about headings and titles, see [_Headings and titles_](https://developers.google.com/style/text-formatting) of the Google developer documentation style guide. 
+Titles should be short and communicate the main idea of the document. For explanation or reference documents, the title should start with a noun phrase, for example, _Conditional subschemas_. When the document is a guide that includes steps to complete a task, such as a tutorial, the title should start with a bare infinitive, for example, _Structure complex schemas_. To learn more about headings and titles, see [_Headings and titles_](https://developers.google.com/style/text-formatting) of the Google developer documentation style guide.
 
-Headings help readers scan the document and identify the parts that are relevant to them. Use headings, and subheadings when needed, that clearly describe the information they contain. 
+Headings help readers scan the document and identify the parts that are relevant to them. Use headings, and subheadings when needed, that clearly describe the information they contain.
 
 ## Notices and Markdown tags
 
-Use the following tags to give readers relevant information that is not part of the flow of the text. To learn when to use notices, please read the [Notes, cautions, warning, and other notices](https://developers.google.com/style/notices) chapter of the Google developer documentation style guide. 
+Use the following tags to give readers relevant information that is not part of the flow of the text. To learn when to use notices, please read the [Notes, cautions, warning, and other notices](https://developers.google.com/style/notices) chapter of the Google developer documentation style guide.
 
 ### Table of contents
 
-To help readers find the information they are looking for within the document, add a table of contents at the beginning. 
+To help readers find the information they are looking for within the document, add a table of contents at the beginning.
 
 ```markdown
 <tableofcontent content= {content} depth= {depth}/>
@@ -67,13 +62,13 @@ To help readers find the information they are looking for within the document, a
 
 ### Blockquote
 
-Use the `Blockquote` tag for text that is quoted from another source. 
+Use the `Blockquote` tag for text that is quoted from another source.
 
 ```markdown
 <blockquote> Message to show </blockquote>
 ```
 
-Example: 
+Example:
 
 According to the Google developers style guide, notices should be used sparingly:
 
@@ -83,7 +78,7 @@ According to the Google developers style guide, notices should be used sparingly
 
 ### Tabs group
 
-Use the tabs groups to make comparisons. 
+Use the tabs groups to make comparisons.
 
 ```markdown
 [ tabs-start "label"]
@@ -97,7 +92,7 @@ Example:
 [tabs-start "Language-specific info"]
 
 [tab "Python"]
-In Python, "objects" are analogous to the `dict` type.  An
+In Python, "objects" are analogous to the `dict` type. An
 important difference, however, is that while Python dictionaries
 may use anything hashable as a key, in JSON all the keys
 must be strings.
@@ -140,7 +135,7 @@ The deprecated keyword is a boolean that indicates that the instance value the k
 
 ### Infobox tag
 
-Use the `Infobox` tag for [Notes](https://developers.google.com/style/notices). Notes provide the reader with relevant information that is not necessary, for example, an aside or a tip. 
+Use the `Infobox` tag for [Notes](https://developers.google.com/style/notices). Notes provide the reader with relevant information that is not necessary, for example, an aside or a tip.
 
 ```markdown
 <Infobox label="Note"> Message to show </Infobox>
@@ -152,7 +147,7 @@ Example:
 
 ### Warning tag
 
-Use the `Warning` tag for cautions. A [Caution](https://developers.google.com/style/notices) notice lets the reader know they should proceed carefully. 
+Use the `Warning` tag for cautions. A [Caution](https://developers.google.com/style/notices) notice lets the reader know they should proceed carefully.
 
 ```markdown
 <Warning label="Caution"> Message to show </Warning>
@@ -164,7 +159,7 @@ Example:
 
 ### Danger tag
 
-Use the `Danger` tag for [Warning](https://developers.google.com/style/notices) notices, which are stronger than Cautions.  
+Use the `Danger` tag for [Warning](https://developers.google.com/style/notices) notices, which are stronger than Cautions.
 
 ```markdown
 <Danger label="Warning"> Message to show </Danger>
@@ -176,11 +171,11 @@ Example:
 
 ## Markdown tags for blog articles
 
-Use the following tags only when writing blog articles.  
+Use the following tags only when writing blog articles.
 
 ### StarInline
 
-You can use the `StarInLine` tag to highlight important information within your text, for example, when providing a best practice. 
+You can use the `StarInLine` tag to highlight important information within your text, for example, when providing a best practice.
 
 ```markdown
 <StarInline label="Best Practice"/> Message to show
@@ -232,7 +227,7 @@ View the details of the employee information schema here
 
 ### Bigquote
 
-Use `Bigquote` to emphasize key quotations or statements, for example, a user testimonial. 
+Use `Bigquote` to emphasize key quotations or statements, for example, a user testimonial.
 
 ```markdown
 <Bigquote> This is an important quote </Bigquote>
@@ -240,7 +235,7 @@ Use `Bigquote` to emphasize key quotations or statements, for example, a user te
 
 Example:
 
-<Bigquote> _Choosing JSON Schema to allow JSON schema validation was a natural and obvious choice that our team made. It has been a fundamental part of our application since we moved from having a static site to a dynamic application about 3 years ago._ 
+<Bigquote> _Choosing JSON Schema to allow JSON schema validation was a natural and obvious choice that our team made. It has been a fundamental part of our application since we moved from having a static site to a dynamic application about 3 years ago._
 <br><br> - Rachael Sewell & Robert Sese, Docs Engineers at GitHub </Bigquote>
 
 ### Regularquote
@@ -251,7 +246,7 @@ Use the `Regularquote` tag for shorter quotes from documentation or other source
 <Regularquote>This is a short quote</Regularquote>
 ```
 
-Example: 
+Example:
 
 When discussing JSON Schema validation, it's important to understand the concept of keywords.
 
@@ -259,16 +254,15 @@ When discussing JSON Schema validation, it's important to understand the concept
 Keywords are the basic building blocks of JSON Schema. They are used to impose requirements on parts of the instance, or to provide annotation information.
 </Regularquote>
 
-
 ### Tip
 
-Use the `Tip` tag to give readers advice or additional context that enhances understanding. 
+Use the `Tip` tag to give readers advice or additional context that enhances understanding.
 
 ```markdown
 <Tip label="Tip">This is a tip or additional context.</Tip>
 ```
 
-Example: 
+Example:
 
 <Tip label="Tip">To learn more about keyword dependencies, read the _Static Analysis of JSON Schema_ article by Greg Dennis.</Tip>
 

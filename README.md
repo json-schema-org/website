@@ -20,11 +20,12 @@
 </p>
 
 # 👋 Welcome to the JSON Schema website
+
 This repository contains the source code of the JSON Schema website:
 
-* Powered by Next.js,
-* Uses the Tailwind CSS framework,
-* Built and deployed with Netlify.
+- Powered by Next.js,
+- Uses the Tailwind CSS framework,
+- Built and deployed with Netlify.
 
 ## Setting up the Project
 
@@ -53,6 +54,7 @@ This repository has the following structure:
 ```
 
 ## Contribute
+
 Here are some areas where you can contribute to the website:
 
 - Blog posts
@@ -72,7 +74,7 @@ You should also check out our [Contributing guidelines](./CONTRIBUTING.md).
 Thanks to these wonderful people who contributed to this website:
 <br />
 <a href="https://github.com/json-schema-org/website/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=json-schema-org/website"/>
+<img src="https://contrib.rocks/image?repo=json-schema-org/website"/>
 </a>
 
 <sub>Made with [contributors-img](https://contrib.rocks).</sub>
@@ -97,7 +99,9 @@ Thanks to these wonderful people who contributed to this website:
 </p>
 
 ## Inspired by
+
 This document was inspired by [AsyncAPI website README.md](https://github.com/asyncapi/website/blob/master/README.md).
 
 ## License
-The contents of this repository are licensed under either the BSD 3-clause license *or* the Academic Free License v3.0. See [LICENSE](./LICENSE).
+
+The contents of this repository are licensed under either the BSD 3-clause license _or_ the Academic Free License v3.0. See [LICENSE](./LICENSE).

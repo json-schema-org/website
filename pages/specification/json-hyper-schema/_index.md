@@ -1,9 +1,9 @@
 ---
 title: JSON Hyper-Schema
-prev: 
+prev:
   label: Release Notes
   url: /specification/release-notes
-next: 
+next:
   label: What is JSON Schema?
   url: /overview/what-is-jsonschema
 ---

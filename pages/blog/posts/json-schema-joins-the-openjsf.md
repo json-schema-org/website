@@ -1,6 +1,6 @@
 ---
-title: "JSON Schema joins the OpenJS Foundation and 2022 updates"
-date: "2022-02-11"
+title: 'JSON Schema joins the OpenJS Foundation and 2022 updates'
+date: '2022-02-11'
 tags:
   - Update
   - News
@@ -32,12 +32,11 @@ You can read my full proposal and report in a JSON Schema Community GitHub Discu
 
 I primed the application, which was then reviewed and revised by the team and community. You can read the full application in our Community GitHub Repository: https://github.com/json-schema-org/community/blob/main/docs/openjsf/application.md
 
-
 # OpenJS Foundation announcement
 
 Here's the majority of the OpenJS Foundation announcement regarding JSON Schema joining the foundation. You can read the full announcement here: https://openjsf.org/blog/2022/01/31/json-schema-joins-openjs-foundation/
 
-__JSON Schema is the newest technical project hosted under the OpenJS Foundation!__
+**JSON Schema is the newest technical project hosted under the OpenJS Foundation!**
 
 JSON Schema is a vocabulary that allows you to annotate and validate JSON documents. It defines how a JSON should be structured, making it easy to ensure that a JSON is formatted correctly, and it is useful for automated testing and validating. In addition, JSON Schema provides clear human- and machine-readable documentation.
 
@@ -53,7 +52,6 @@ JSON Schema is a vocabulary that allows you to annotate and validate JSON docume
 
 JSON Schema will be designated "At-Large," which includes many different types of projects but is most often used for stable projects with minimal needs. They are now officially in the incubation process where projects complete their on-boarding to join the foundation.
 
-
 # JSON Schema is hiring! (at Postman)
 
 On joining Postman, one thing we discussed is the potential to bring on more people to work on JSON Schema full time. While JSON Schema currently does not provide or maintain any software as such, that could change.
@@ -61,7 +59,6 @@ On joining Postman, one thing we discussed is the potential to bring on more peo
 In the immediate future, we're looking to hire for Software Engineer and for Technical Community Manager / Developer Relations roles.
 
 Feel free to reach out to me directly via [X](https://www.x.com/jsonschema) or [Slack](https://json-schema.org/slack) should you have any questions.
-
 
 # Regular calls
 
@@ -75,7 +72,6 @@ We still want more people to join us on these calls. If you want to have a voice
 
 Links to both regular calls can be found on our home page: [https://json-schema.org](https://json-schema.org)
 
-
 # Community, Slack, and GitHub Discussions
 
 We started using GitHub Discussions as a place for our community outside of Slack. The free tier of Slack limits history, and the valuable answers and discussions are lost. While they can be deep-linked, people still have to be registered with the JSON Schema slack to read the content, and it's not search engine indexed.
@@ -83,7 +79,6 @@ We started using GitHub Discussions as a place for our community outside of Slac
 After joining the OpenJS Foundation, I reached out to Slack again to see if they would bless us with a free Pro account. This time, they agreed! Enjoy access to the full history of our Slack server!
 
 As we expand the ways in which we interact with our community, it feels fitting to enable the community to discuss how they would like to see things develop, and have an open space to see and read proposals. Our Community repo is that space: [https://github.com/json-schema-org/community](https://github.com/json-schema-org/community)
-
 
 # JSON Schema Blog
 
@@ -101,13 +96,11 @@ We've published one case study in two languages, English and Japanese.
 
 If you're interested in writing a guest post or collaborating on a case study, please reach out.
 
-
 # JSON Schema on YouTube
 
 In addition to our written case studies, we wanted to provide some easy watching chat style case studies. This series is called JSON Schema in Production.
 
 We needed a YouTube channel to host the videos, which you can [now subscribe to](https://www.youtube.com/channel/UCrl3fjmHSp6FhJUKcEJhisA) - We need 100 subscribers to claim a custom URL, so any sharing is appreciated.
-
 
 # Open Objectives
 
@@ -119,7 +112,6 @@ Here is a [Project view for 2022 Q1 OKRs grouped by objective](https://github.co
 
 Here's the [Issue which lists all the Key Results as individual tasks](https://github.com/json-schema-org/community/issues/72).
 
-
 # In Summary
 
 If you've read this far, you must be interested in what we're doing at JSON Schema and our plans for the future.
@@ -127,7 +119,5 @@ If you've read this far, you must be interested in what we're doing at JSON Sche
 The most effective way to keep up to date is to join our Slack server. We're also using X, which is our primary way to reach out to our community when we have questions.
 
 There are lots more things we want to bring you, including essential tooling to enable a modern JSON Schema ecosystem.
-
-
 
 Photo by [Abraham Barrera](https://unsplash.com/@abebarrera?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText) on [Unsplash](https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText).

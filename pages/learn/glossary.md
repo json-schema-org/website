@@ -1,10 +1,10 @@
 ---
 title: JSON Schema Glossary
 section: docs
-prev: 
+prev:
   label: Create your first schema
   url: /learn/getting-started-step-by-step
-next: 
+next:
   label: Miscellaneous examples
   url: /learn/miscellaneous-examples
 ---
@@ -26,7 +26,7 @@ A cohesive collection of [keywords](#keyword) available for use within a schema,
 
 Dialects, particularly the 2019-09 and 2020-12 dialects, are often defined via a collection of [vocabularies](#vocabulary).
 
-Each dialect is identified by a URI, its *dialect identifier*, which [schemas](#schema) may then reference in their `$schema` [keyword](#keyword).
+Each dialect is identified by a URI, its _dialect identifier_, which [schemas](#schema) may then reference in their `$schema` [keyword](#keyword).
 Doing so identifies the schema as being written in the dialect, and thereby indicates which keywords are usable within it, along with their intended meaning.
 
 The JSON Schema specification defines a number of dialects, each of which enable vocabularies suitable for the dialect's specific use case.
@@ -47,8 +47,8 @@ The current list of drafts can be found [here](../specification-links#published-
 A pervasive data interchange format used for representing and transmitting data as human readable text.
 JSON is extremely widely used, and parsers which can read and write it exist for essentially every commonly-used programming language.
 
-JSON Schema, distinctly, is built *on top* of JSON, in that JSON [schemas](#schema) are themselves JSON objects which describe JSON values.
-The two are, however, entirely different pieces of the conceptual puzzle, with JSON being a concrete format for *representing* data, and JSON Schema being a way to *schematize* data which is written in a JSON-compatible format.
+JSON Schema, distinctly, is built _on top_ of JSON, in that JSON [schemas](#schema) are themselves JSON objects which describe JSON values.
+The two are, however, entirely different pieces of the conceptual puzzle, with JSON being a concrete format for _representing_ data, and JSON Schema being a way to _schematize_ data which is written in a JSON-compatible format.
 
 The JSON format is an open format, with its own [homepage](https://www.json.org/), and specifications published in the [ECMA-404](https://www.ecma-international.org/publications-and-standards/standards/ecma-404/) and [RFC-8259](https://datatracker.ietf.org/doc/html/rfc8259) documents from ECMA and the IETF respectively.
 In particular, it is not managed or developed by the JSON Schema team, who simply make use of the format.
@@ -73,7 +73,7 @@ The [JSON Schema specification](../specification) defines behavior for a large l
 
 ### implementation
 
-Historically, the word "implementation" has been used to describe both specifically validators/annotators (the scope of the spec) and also various other kinds of JSON Schema tooling.  However, due to this ambiguity, we have decided that the preferred conversational term should be ["tooling"](#tooling).
+Historically, the word "implementation" has been used to describe both specifically validators/annotators (the scope of the spec) and also various other kinds of JSON Schema tooling. However, due to this ambiguity, we have decided that the preferred conversational term should be ["tooling"](#tooling).
 
 ### instance
 
@@ -86,17 +86,17 @@ In particular it does not reserve any properties within a JSON object for its ow
 
 ### meta-schema
 
-A [schema](#schema) which is itself intended to describe other *schemas*.
+A [schema](#schema) which is itself intended to describe other _schemas_.
 
 JSON Schema defines a language for describing any [instance](#instance) using a schema written in JSON.
-Since schemas are themselves JSON values, they may be also be treated as *instances*, and therefore described by other schemas.
+Since schemas are themselves JSON values, they may be also be treated as _instances_, and therefore described by other schemas.
 
 We refer to the schema-of-a-schema as a "meta-schema" to express this use.
 
 ### normative
 
 In the context of JSON Schema, and formal specifications more broadly, a document which outlines standardized behavior.
-This is as distinct from *non*-normative or informational documents, meant to explain, simplify or offer opinions.
+This is as distinct from _non_-normative or informational documents, meant to explain, simplify or offer opinions.
 
 Distinguishing between whether a document is normative or not is intended to clarify to those using the document whether its contents are allowed to contradict or augment behavior described in other normative documents.
 JSON Schema's normative documents notably include its [specification](../specification).
@@ -104,7 +104,7 @@ This page for instance, not being a normative document, is not able to proscribe
 
 #### See also
 
-* [normative](https://developer.mozilla.org/en-US/docs/Glossary/Normative) and [non-normative](https://developer.mozilla.org/en-US/docs/Glossary/non-normative) in the Mozilla Glossary, and its links
+- [normative](https://developer.mozilla.org/en-US/docs/Glossary/Normative) and [non-normative](https://developer.mozilla.org/en-US/docs/Glossary/non-normative) in the Mozilla Glossary, and its links
 
 ### schema
 
@@ -127,9 +127,9 @@ For example, the `not` keyword takes a subschema value and inverts its result, s
 Some subschemas may appear in more complex nested locations within a parent schema.
 The `allOf` keyword, for instance, takes an array of multiple subschemas and succeeds whenever all of the subschemas do individually.
 
-Whether something that otherwise *appears* to be a schema (based on its contents) actually *is* a subschema can be misleading at first glance without context or knowledge about its location within the parent schema.
-Specifically, in our above example, `{"type": "string"}` was a subschema of a larger schema, but in the schema `{"const": {"type": "string"}}`, it is *not* a subschema.
-Even though as a value it looks the same, the `const` keyword, which compares instances against a specific expected value, does *not* take a subschema as its value, its value is an opaque value with no particular meaning (such that in this schema, the number 12 would be invalid, but the precise instance `{"type": "string"}` is valid).
+Whether something that otherwise _appears_ to be a schema (based on its contents) actually _is_ a subschema can be misleading at first glance without context or knowledge about its location within the parent schema.
+Specifically, in our above example, `{"type": "string"}` was a subschema of a larger schema, but in the schema `{"const": {"type": "string"}}`, it is _not_ a subschema.
+Even though as a value it looks the same, the `const` keyword, which compares instances against a specific expected value, does _not_ take a subschema as its value, its value is an opaque value with no particular meaning (such that in this schema, the number 12 would be invalid, but the precise instance `{"type": "string"}` is valid).
 Said more plainly, whether a particular value is a subschema or not depends on its precise location within a parent schema, as interpretation of the value depends on the defined behavior of the keyword(s) it lives under.
 
 Subschemas may themselves contain sub-subschemas, though colloquially one generally uses the term "subschema" regardless of the level of nesting, further clarifying which larger schema is the parent schema whenever needed.
@@ -165,4 +165,4 @@ In some [dialects](#dialect) of JSON Schema, the `$vocabulary` keyword can be us
 
 #### See also
 
-* [`json-schema-vocabularies`](https://github.com/json-schema-org/json-schema-vocabularies), a repository which collects known third-party JSON Schema vocabularies
+- [`json-schema-vocabularies`](https://github.com/json-schema-org/json-schema-vocabularies), a repository which collects known third-party JSON Schema vocabularies

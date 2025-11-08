@@ -1,6 +1,6 @@
 ---
-title: "Why JSON Schema needs a Code of Conduct"
-date: "2021-11-24"
+title: 'Why JSON Schema needs a Code of Conduct'
+date: '2021-11-24'
 tags:
   - Community
 type: Community
@@ -10,7 +10,7 @@ authors:
     photo: /img/avatars/benhutton.webp
     twitter: relequestual
     byline: JSON Schema Specification Lead @Postman
-excerpt: "The community of JSON Schema is growing, and the community needs a culture for interactions to avoid past mistakes."
+excerpt: 'The community of JSON Schema is growing, and the community needs a culture for interactions to avoid past mistakes.'
 ---
 
 If the JSON Schema project had a Code of Conduct in the early days, I suspect we would be years ahead of where we are today. It may seem unlikely, and you may feel like you rarely see a code of conduct in action, but having a Code of Conduct lays some foundational expectations from contributors. You could argue that you shouldn't NEED a Code of Conduct, that people should use common sense and be nice... but it's not so clear cut. Let me explain.

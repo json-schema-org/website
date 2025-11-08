@@ -1,13 +1,12 @@
 ---
 title: Migrating from older drafts
 section: docs
-prev: 
+prev:
   label: Specification Links
   url: /specification-links
-next: 
+next:
   label: Release Notes
   url: /specification/release-notes
 ---
 
 The release notes discuss the changes impacting users and implementers:
-

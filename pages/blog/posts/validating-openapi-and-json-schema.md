@@ -1,6 +1,6 @@
 ---
-title: "Validating OpenAPI and JSON Schema"
-date: "2021-12-08"
+title: 'Validating OpenAPI and JSON Schema'
+date: '2021-12-08'
 type: Engineering
 tags:
   - OpenAPI
@@ -13,7 +13,7 @@ authors:
     photo: /img/avatars/jasondesrosiers.jpeg
     twitter: jasondesrosiers
     byline: JSON Schema Specification Contributor
-excerpt: "Dynamic references make it possible to validate the schemas in an OpenAPI document even though OpenAPI does not constrain which JSON Schema dialects can be used."
+excerpt: 'Dynamic references make it possible to validate the schemas in an OpenAPI document even though OpenAPI does not constrain which JSON Schema dialects can be used.'
 ---
 
 Starting with the release of OpenAPI 3.1, the dialect of JSON Schema used in
@@ -72,27 +72,33 @@ new feature of JSON Schema and many validators don't yet support them, or have
 limited support, or have bugs.
 
 #### Without schema validation
+
 ```javascript
-import { validate } from "@hyperjump/json-schema/openapi-3-1";
+import { validate } from '@hyperjump/json-schema/openapi-3-1';
 
-const validateOpenApi = await validate("https://spec.openapis.org/oas/3.1/schema");
+const validateOpenApi = await validate(
+  'https://spec.openapis.org/oas/3.1/schema',
+);
 
-const example = YAML.parse(await readFile("./example.openapi.json"));
+const example = YAML.parse(await readFile('./example.openapi.json'));
 const result = validateOpenApi(example);
 console.log(result);
 ```
 
 #### With OpenAPI Schema dialect schema validation
+
 ```javascript
-import { validate } from "@hyperjump/json-schema/openapi-3-1";
+import { validate } from '@hyperjump/json-schema/openapi-3-1';
 
 (async function () {
-  const validateOpenApi = await validate("https://spec.openapis.org/oas/3.1/schema-base");
+  const validateOpenApi = await validate(
+    'https://spec.openapis.org/oas/3.1/schema-base',
+  );
 
-  const example = YAML.parse(await readFile("./example.openapi.json"));
+  const example = YAML.parse(await readFile('./example.openapi.json'));
   const result = validateOpenApi(example);
   console.log(result);
-}());
+})();
 ```
 
 ### How does it work?

@@ -1,10 +1,10 @@
 ---
-title: "Constant values"
+title: 'Constant values'
 section: docs
-prev: 
+prev:
   label: Enumerated values
   url: /understanding-json-schema/reference/enum
-next: 
+next:
   label: Schema annotations and comments
   url: /understanding-json-schema/reference/metadata
 ---
@@ -26,10 +26,12 @@ export reasons:
   }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 { "country": "United States of America" }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 { "country": "Canada" }

@@ -1,10 +1,10 @@
 ---
 section: docs
-title: "Conventions used in this documentation"
-prev: 
+title: 'Conventions used in this documentation'
+prev:
   label: Understanding JSON Schema
   url: /understanding-json-schema
-next: 
+next:
   label: What is a Schema?
   url: /understanding-json-schema/about
 ---
@@ -74,7 +74,7 @@ Often there are comments in between to explain why something is or
 isn\'t valid.
 
 > These examples are tested automatically whenever the book is
-built, so hopefully they are not just helpful, but also correct!
+> built, so hopefully they are not just helpful, but also correct!
 
 For example, here\'s a snippet illustrating how to use the `number` type:
 
@@ -82,26 +82,31 @@ For example, here\'s a snippet illustrating how to use the `number` type:
 // props { "isSchema": true }
 { "type": "number" }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 42
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 -1
 ```
+
 Simple floating point number:
 
 ```json
 // props { "indent": true, "valid": true }
 5.0
 ```
+
 Exponential notation also works:
 
 ```json
 // props { "indent": true, "valid": true }
 2.99792458e8
 ```
+
 Numbers as strings are rejected:
 
 ```json

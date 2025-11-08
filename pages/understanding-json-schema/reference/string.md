@@ -1,10 +1,10 @@
 ---
 title: string
 section: docs
-prev: 
+prev:
   label: Regular expressions
   url: /understanding-json-schema/reference/regular_expressions
-next: 
+next:
   label: Dialect and vocabulary declaration
   url: /understanding-json-schema/reference/schema
 ---
@@ -20,10 +20,10 @@ In Python, "string" is analogous to the `unicode` type on Python
 In Ruby, "string" is analogous to the String type.
 
 [tab "Objective-C"]
-In Objective-C, "string" is analogous to the ``NSString`` type.
+In Objective-C, "string" is analogous to the `NSString` type.
 
 [tab "Swift"]
-In Swift, "string" is analogous to the ``String`` type.
+In Swift, "string" is analogous to the `String` type.
 
 [tabs-end]
 
@@ -31,18 +31,22 @@ In Swift, "string" is analogous to the ``String`` type.
 // props { "isSchema": true }
 { "type": "string" }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "Déjà vu"
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 ""
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "42"
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 42
@@ -62,18 +66,22 @@ non-negative number.
   "maxLength": 3
 }
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 "A"
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "AB"
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "ABC"
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 "ABCD"
@@ -105,18 +113,22 @@ with an optional area code:
   "pattern": "^(\\([0-9]{3}\\))?[0-9]{3}-[0-9]{4}$"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "555-1212"
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "(888)555-1212"
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 "(888)555-1212 ext. 532"
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 "(800)FLOWERS"

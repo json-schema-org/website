@@ -1,10 +1,10 @@
 ---
 section: docs
 title: JSON Schema examples
-prev: 
+prev:
   label: Modeling a file system
   url: /learn/file-system
-next: 
+next:
   label: Guides
   url: /learn/guides
 ---
@@ -21,7 +21,6 @@ In this page, you will find examples illustrating different use cases to help yo
 - [Job posting](#job-posting)
 - [Movie](#movie)
 - [User profile](#user-profile)
-
 
 ## Address
 
@@ -56,10 +55,10 @@ A schema representing an address, with optional properties for different address
       "type": "string"
     }
   },
-  "required": [ "locality", "region", "countryName" ],
+  "required": ["locality", "region", "countryName"],
   "dependentRequired": {
-    "postOfficeBox": [ "streetAddress" ],
-    "extendedAddress": [ "streetAddress" ]
+    "postOfficeBox": ["streetAddress"],
+    "extendedAddress": ["streetAddress"]
   }
 }
 ```
@@ -76,7 +75,6 @@ A schema representing an address, with optional properties for different address
   "countryName": "Country"
 }
 ```
-
 
 ## Blog post
 
@@ -128,7 +126,6 @@ A schema representing a blog post, including properties like `title`, `content`,
 }
 ```
 
-
 ## Calendar
 
 A schema representing an event in a calendar, including properties like `startDate`, `endDate`, `summary`, `location`, and `recurrenceDate` details. The `geo` property is a reference (`$ref`) to another schema defined at a different location which represents a geographical location with latitude and longitude values.
@@ -139,7 +136,7 @@ A schema representing an event in a calendar, including properties like `startDa
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "A representation of an event",
   "type": "object",
-  "required": [ "dtstart", "summary" ],
+  "required": ["dtstart", "summary"],
   "properties": {
     "startDate": {
       "type": "string",
@@ -195,10 +192,9 @@ A schema representing an event in a calendar, including properties like `startDa
 }
 ```
 
-
 ## Device type
 
-This schema represents electronic devices with a `deviceType` property that determines the device's category, such as `smartphone` or `laptop`. It employs the `oneOf` keyword to dynamically reference schemas based on the `deviceType` property. This flexible schema structure allows data to conform to the appropriate device schema based on the deviceType specified, making it easy to describe different electronic devices with their unique characteristics. When `deviceType` is set to `smartphone`, the schema enforces properties specific to smartphones, and when `deviceType` is set to `laptop`, it enforces properties specific to laptops. 
+This schema represents electronic devices with a `deviceType` property that determines the device's category, such as `smartphone` or `laptop`. It employs the `oneOf` keyword to dynamically reference schemas based on the `deviceType` property. This flexible schema structure allows data to conform to the appropriate device schema based on the deviceType specified, making it easy to describe different electronic devices with their unique characteristics. When `deviceType` is set to `smartphone`, the schema enforces properties specific to smartphones, and when `deviceType` is set to `laptop`, it enforces properties specific to laptops.
 
 ```json
 {
@@ -278,7 +274,6 @@ This schema represents electronic devices with a `deviceType` property that dete
 }
 ```
 
-
 ## Ecommerce system
 
 A schema representing an ecommerce system, where `$anchor` is used within the definitions of `product` and `order` schemas to define anchor points: `ProductSchema` and `OrderSchema`, respectively.
@@ -331,7 +326,6 @@ A schema representing an ecommerce system, where `$anchor` is used within the de
 }
 ```
 
-
 ## Geographical location
 
 A schema representing geographical coordinates with `latitude` and `longitude` values within specified ranges.
@@ -342,7 +336,7 @@ A schema representing geographical coordinates with `latitude` and `longitude` v
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Longitude and Latitude Values",
   "description": "A geographical coordinate.",
-  "required": [ "latitude", "longitude" ],
+  "required": ["latitude", "longitude"],
   "type": "object",
   "properties": {
     "latitude": {
@@ -367,7 +361,6 @@ A schema representing geographical coordinates with `latitude` and `longitude` v
   "longitude": 2.294694
 }
 ```
-
 
 ## Health record
 
@@ -433,7 +426,6 @@ A schema representing a health record, including `patientName`, `dateOfBirth`, `
 }
 ```
 
-
 ## Job posting
 
 A schema representing a job posting, including properties like `title`, `company`, `location`, `description`, `employmentType`, `salary`, and `applicationDeadline`. It also uses the `$anchor` keyword for defining an anchor.
@@ -487,8 +479,7 @@ A schema representing a job posting, including properties like `title`, `company
 }
 ```
 
-
-## Movie 
+## Movie
 
 A schema representing a movie, including properties such as `title`, `director`, `release date`, `genre`, `duration`, and `cast members`.
 
@@ -541,7 +532,6 @@ A schema representing a movie, including properties such as `title`, `director`,
 }
 ```
 
-
 ## User profile
 
 A schema representing a user profile, including properties like `username`, `email`, `fullName`, `age`, `location`, and `interests`.
@@ -593,4 +583,3 @@ A schema representing a user profile, including properties like `username`, `ema
   "interests": ["Travel", "Technology"]
 }
 ```
-

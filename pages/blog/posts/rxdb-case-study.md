@@ -1,6 +1,6 @@
 ---
-title: "How RxDB embraces JSON Schema to build its NoSQL Database"
-date: "2025-01-30"
+title: 'How RxDB embraces JSON Schema to build its NoSQL Database'
+date: '2025-01-30'
 type: Case Study
 cover: /img/posts/2025/rxdb-case-study/cover.jpeg
 authors:
@@ -8,11 +8,8 @@ authors:
     photo: /img/avatars/daniel.png
     link: https://www.linkedin.com/in/danielmeyerdev/
     byline: Creator of RxDB
-excerpt: "RxDB embraces JSON Schema for flexible data modeling, type safety, and advanced features like compression, all in an offline-first database."
+excerpt: 'RxDB embraces JSON Schema for flexible data modeling, type safety, and advanced features like compression, all in an offline-first database.'
 ---
-
-
-
 
 # How RxDB embraces JSON Schema to build its NoSQL Database
 
@@ -26,9 +23,7 @@ One of RxDB's standout architectural choices is its reliance on JSON Schema to d
 
 - **Long-term maintainability**: Because JSON Schema is recognized as a standard, future updates and ecosystem support are more reliable than a custom, one-off solution.
 
-
 By building on JSON Schema, RxDB has a foundation that makes schema design, data validation, and typing straightforward, making it easier for developers to build robust, safe applications in production.
-
 
 <center>
     <a href="https://rxdb.info/">
@@ -37,7 +32,6 @@ By building on JSON Schema, RxDB has a foundation that makes schema design, data
 </center>
 
 ## How RxDB uses JSON Schema
-
 
 While RxDB adopts the JSON Schema Core and Validation specifications, it also extends it to introduce RxDB-specific functionality. Like in other NoSQL databases, you can manually define which fields to encrypt, which ones to index, and how to interpret specific fields for queries. RxDB enables these configurations as custom JSON Schema keywords:
 
@@ -53,36 +47,36 @@ Below is a sample RxDB schema that demonstrates how standard JSON Schema vocabul
 
 ```ts
 const mySchema = {
-    primaryKey: 'id',
-    type: 'object',
-    properties: {
-        id: {
-            type: 'string',
-            maxLength: 100
-        },
-        name: {
-            type: 'string'
-        },
-        birthdate: {
-            type: 'string',
-            format: 'date'
-        },
-        secret: {
-            type: 'string'
-        }
+  primaryKey: 'id',
+  type: 'object',
+  properties: {
+    id: {
+      type: 'string',
+      maxLength: 100,
     },
-    additionalProperties: false,
-    required: ['name', 'birthdate', 'id'],
-    // RxDB specific fields:
-    primaryKey: 'id',
-    version: 0,
-    keyCompression: true,
-    indexes: [
-        'name', // single-field index
-        ['name', 'birthdate'] // compound index
-    ],
-    encrypted: ['secret']
-}
+    name: {
+      type: 'string',
+    },
+    birthdate: {
+      type: 'string',
+      format: 'date',
+    },
+    secret: {
+      type: 'string',
+    },
+  },
+  additionalProperties: false,
+  required: ['name', 'birthdate', 'id'],
+  // RxDB specific fields:
+  primaryKey: 'id',
+  version: 0,
+  keyCompression: true,
+  indexes: [
+    'name', // single-field index
+    ['name', 'birthdate'], // compound index
+  ],
+  encrypted: ['secret'],
+};
 ```
 
 ## Restrictions
@@ -95,7 +89,6 @@ At the top level of the schema, `additionalProperties` must be set to `false`. T
 
 RxDB does not allow `$ref` to other files or external schema fragments or `$dynamicRef`. The goal is to keep schema loading fast and self-contained. If a schema needs to be composed of multiple parts, you must combine them at build time or otherwise ensure they are merged before passing them to RxDB at runtime. This approach also prevents any network calls or asynchronous fetches that could slow down your application's startup.
 
-
 ## Inferring Document Types with TypeScript
 
 JSON Schema is not just for validation and structural guarantees, it can also help generate or infer TypeScript types. In many projects, developers rely on tools like [json-schema-to-typescript](https://github.com/bcherny/json-schema-to-typescript) to produce `.d.ts` files or interface definitions from schema files at build time. However, that requires a separate build step, which slows down your workflow.
@@ -106,28 +99,28 @@ Below is an example on how to infer the TypeScript type of a document from its J
 
 ```ts
 import {
-    toTypedRxJsonSchema,
-    ExtractDocumentTypeFromTypedRxJsonSchema,
-    RxJsonSchema,
-    RxCollection
+  toTypedRxJsonSchema,
+  ExtractDocumentTypeFromTypedRxJsonSchema,
+  RxJsonSchema,
+  RxCollection,
 } from 'rxdb';
 
 const heroSchemaLiteral = {
-    title: 'hero schema',
-    description: 'describes a human being',
-    version: 0,
-    keyCompression: true,
-    primaryKey: 'passportId',
-    type: 'object',
-    properties: {
-        passportId: {
-            type: 'string',
-            maxLength: 100
-        },
-        /* ...other fields... */
+  title: 'hero schema',
+  description: 'describes a human being',
+  version: 0,
+  keyCompression: true,
+  primaryKey: 'passportId',
+  type: 'object',
+  properties: {
+    passportId: {
+      type: 'string',
+      maxLength: 100,
     },
-    required: ['name', 'birthdate', 'passportId'],
-    indexes: ['name', 'birthdate']
+    /* ...other fields... */
+  },
+  required: ['name', 'birthdate', 'passportId'],
+  indexes: ['name', 'birthdate'],
 } as const;
 
 // Convert the literal object to a typed schema
@@ -142,7 +135,6 @@ const heroSchema: RxJsonSchema<HeroDocType> = heroSchemaLiteral;
 // Example usage: create a typed collection
 const myCollection: RxCollection<HeroDocType> = db.heroes;
 ```
-
 
 ## Different JSON Schema Validators
 
@@ -174,7 +166,6 @@ Dexie Storage (based on IndexedDB in the browser):
 
 On Dexie Storage, the difference in time-to-first-insert is negligible, and inserting thousands of documents also shows only a modest increase in latency when using a validator. The overall overhead for 3000 inserts remains fairly small (a difference of tens of milliseconds).
 
-
 Memory Storage: stores everything in memory for extremely fast reads and writes, with no persistence by default. Often used with the RxDB memory-mapped plugin that processes data in memory an later persists to disc in background:
 
 | **Memory Storage** | Time to First insert | Insert 3000 documents |
@@ -195,16 +186,13 @@ Including a validator library also increases your JavaScript bundle size. Here's
 
 Including a validator can substantially increase your final bundle size. For large single-page applications, an extra 30-50 KB or more of JavaScript could influence startup times, especially for users on slow networks.
 
-
-
 ## Should JSON Schema Validation Be Used in Production?
 
-Many teams limit JSON Schema validation to development builds to avoid performance overhead in production. However, if your application deals with highly sensitive or mission-critical data, keeping validation enabled ensures data integrity and can prevent costly errors, despite the added CPU and bundle-size costs. Ultimately, the choice depends on your performance targets and  the risk of invalid data.
+Many teams limit JSON Schema validation to development builds to avoid performance overhead in production. However, if your application deals with highly sensitive or mission-critical data, keeping validation enabled ensures data integrity and can prevent costly errors, despite the added CPU and bundle-size costs. Ultimately, the choice depends on your performance targets and the risk of invalid data.
 
 ### Running the Validation in a WebWorker
 
 If you must keep validation enabled in production but you have to ensure that your UI does not lack during validation, you might consider the [RxDB WebWorker plugin](https://rxdb.info/rx-storage-worker.html). This plugin runs the RxDB storage & validation in a separate Web Worker, offloading the main UI thread. While it won't reduce the absolute time spent on validation, it can help maintain a smooth UI by preventing blocking operations on the main thread.
-
 
 ## Learnings
 
@@ -215,7 +203,6 @@ Over time, RxDB has evolved its usage of JSON Schema, learning from real product
 - Keep Custom Fields at the Top Level: Originally, RxDB allowed custom definitions (`index`, `encrypted`, etc.) to appear deeply nested. This caused performance hits because the library had to traverse large schema objects to find them. By placing these fields at the top level, RxDB can parse and apply them much faster, improving startup times.
 
 - Error messages are not standardized: Each validator produces a different structure for error messages. If your app logic inspects these errors, you risk partial or complete rewrites if you ever switch validators. Decide early on which validator meets your needs and plan on sticking with it long-term. This might be solved in the future when all validators support the [standard output formatting](https://json-schema.org/draft/2020-12/json-schema-core#name-output-formatting).
-
 
 ## Follow Up
 

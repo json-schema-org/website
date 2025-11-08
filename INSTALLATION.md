@@ -30,18 +30,20 @@ This guide provides step-by-step instructions for installing the JSON Schema Web
    - [Prerequisites](#prerequisites)
    - [Steps](#steps)
 
-
 ## Setting up Project
 
 ## Configuration
 
 ### Requirements
+
 Use the following tools to set up the project:
 
 Node.js v20.9.0+
 
 ### Cloning the repository
+
 This project uses git submodules, so you will need to run the following commands to fully clone the repo.
+
 ```
 git submodule init
 git submodule update
@@ -52,9 +54,11 @@ git submodule update
 This step is optional. Environment variables are not required to run the website on your local development server.
 
 1. Create a new `.env` file by copying the contents of the `.env.example` into `.env` file. Use this command:
+
 ```
 cp .env.example .env
 ```
+
 2. Open .env and fill in your actual values for each variable.
 
 3. Save the file.
@@ -68,7 +72,6 @@ This project uses modern Yarn (yarn@4.4.0), which requires Corepack for proper s
 #### What is Corepack?
 
 Corepack is an experimental tool to help with managing versions of your package managers. It exposes binary proxies for each supported package manager that, when called, will identify whatever package manager is configured for the current project, download it if needed, and finally run it.
-
 
 #### Installing Corepack
 
@@ -129,6 +132,7 @@ For more information about Corepack, refer to the [official Node.js documentatio
 ### Installing Dependencies
 
 Install dependencies
+
 ```
 yarn
 ```
@@ -136,6 +140,7 @@ yarn
 ### Running the Development Server
 
 Run the development server on http://localhost:3000
+
 ```
 yarn dev
 ```
@@ -143,15 +148,16 @@ yarn dev
 ### Building Static Files
 
 Build static files on `/out` folder
+
 ```
 yarn build
 ```
+
 ## Testing
 
 We use Cypress for both end-to-end (E2E) testing and component testing. This document will guide you through the process of running tests and generating coverage reports.
 
 ### Running Tests
-
 
 #### Opening Cypress Test Runner
 
@@ -200,6 +206,7 @@ yarn test:coverage:all
 ```
 
 This command will:
+
 1. Run E2E tests with coverage
 2. Run component tests with coverage
 3. Merge the coverage results
@@ -251,6 +258,7 @@ yarn run lint:fix
 This project uses Husky to run checks for the formatting, linting, typecheck and build commands before committing the code.
 
 #### pre-commit hook
+
 pre-commit hook will run the following commands:
 
 ```
@@ -260,6 +268,7 @@ yarn run build
 ```
 
 If you don't want these pre-commit checks running on each commit, you can manually opt out of it using the `--no-verify` flag with your commit message as shown:-
+
 ```
 git commit -m "commit message" --no-verify
 ```
@@ -275,14 +284,16 @@ If you are a Docker lover, you have the option to use it following these instruc
 After cloning repository to your local, perform the following steps from the root of the repository.
 
 #### Steps:
+
 1. Build the Docker image:
-    ```bash
-      make install
-    ```
+
+   ```bash
+     make install
+   ```
 
 2. Start the container:
-    ```bash
-      make run
-    ```
+   ```bash
+     make run
+   ```
 
 Now you're running JSON Schema website in a development mode. Container is mapped with your local copy of the website. Whenever you make changes to the code, the website will refresh and changes visible in `http://localhost:3000`.

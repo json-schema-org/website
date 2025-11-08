@@ -1,10 +1,10 @@
 ---
-title: "Numeric types"
+title: 'Numeric types'
 section: docs
-prev: 
+prev:
   label: 'null'
   url: /understanding-json-schema/reference/null
-next: 
+next:
   label: Object
   url: /understanding-json-schema/reference/object
 ---
@@ -15,7 +15,7 @@ There are two numeric types in JSON Schema: [integer](#integer) and [number](#nu
 They share the same validation [keywords](../../learn/glossary#keyword).
 
 > JSON has no standard way to represent complex numbers, so there is no
-way to test for them in JSON Schema.
+> way to test for them in JSON Schema.
 
 ## integer[#integer]
 
@@ -42,26 +42,31 @@ In Swift, "integer" is analogous to the `Int` type.
 // props { "isSchema": true }
 { "type": "integer" }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 42
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 -1
 ```
+
 Numbers with a zero fractional part are considered integers:
 
 ```json
 // props { "indent": true, "valid": true }
 1.0
 ```
+
 Floating point numbers are rejected:
 
 ```json
 // props { "indent": true, "valid": false }
 3.1415926
 ```
+
 Numbers as strings are rejected:
 
 ```json
@@ -92,26 +97,31 @@ In Swift, "number" is analogous to the `Double` type.
 // props { "isSchema": true }
 { "type": "number" }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 42
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 -1
 ```
+
 Simple floating point number:
 
 ```json
 // props { "indent": true, "valid": true }
 5.0
 ```
+
 Exponential notation also works:
 
 ```json
 // props { "indent": true, "valid": true }
 2.99792458e8
 ```
+
 Numbers as strings are rejected:
 
 ```json
@@ -130,21 +140,25 @@ Numbers can be restricted to a multiple of a given number, using the
 // props { "isSchema": true }
 {
   "type": "number",
-  "multipleOf" : 10
+  "multipleOf": 10
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 0
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 10
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 20
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 23
@@ -156,13 +170,15 @@ The multiple can be a floating point number:
 // props { "isSchema": true }
 {
   "type": "number",
-  "multipleOf" : 0.01
+  "multipleOf": 0.01
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 4.02
 ```
+
 ```json
 // props { "indent": true, "valid": false }
 4.021
@@ -178,12 +194,12 @@ Ranges of numbers are specified using a combination of the `minimum` and
 `maximum` keywords, (or `exclusiveMinimum` and `exclusiveMaximum` for
 expressing exclusive range).
 
-If *x* is the value being validated, the following must hold true:
+If _x_ is the value being validated, the following must hold true:
 
-> *x* ≥ `minimum`  
-> *x* \> `exclusiveMinimum`  
-> *x* ≤ `maximum`  
-> *x* \< `exclusiveMaximum`
+> _x_ ≥ `minimum`  
+> _x_ \> `exclusiveMinimum`  
+> _x_ ≤ `maximum`  
+> _x_ \< `exclusiveMaximum`
 
 While you can specify both of `minimum` and `exclusiveMinimum` or both
 of `maximum` and `exclusiveMaximum`, it doesn\'t really make sense to do
@@ -197,32 +213,38 @@ so.
   "exclusiveMaximum": 100
 }
 ```
+
 Less than `minimum`:
 
 ```json
 // props { "indent": true, "valid": false }
 -1
 ```
+
 `minimum` is inclusive, so 0 is valid:
 
 ```json
 // props { "indent": true, "valid": true }
 0
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 10
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 99
 ```
+
 `exclusiveMaximum` is exclusive, so 100 is not valid:
 
 ```json
 // props { "indent": true, "valid": false }
 100
 ```
+
 Greater than `maximum`:
 
 ```json
@@ -236,11 +258,11 @@ In JSON Schema Draft 4, `exclusiveMinimum` and `exclusiveMaximum` work
 differently. There they are boolean values, that indicate whether
 `minimum` and `maximum` are exclusive of the value. For example:
 
-> if `exclusiveMinimum` is `false`, *x* ≥ `minimum`  
-> if `exclusiveMinimum` is `true`, *x* > `minimum`.
+> if `exclusiveMinimum` is `false`, _x_ ≥ `minimum`  
+> if `exclusiveMinimum` is `true`, _x_ > `minimum`.
 
-This was changed to have better keyword independence.  
-  
+This was changed to have better keyword independence.
+
 Here is an example using the older Draft 4 convention:
 
 ```json
@@ -252,31 +274,38 @@ Here is an example using the older Draft 4 convention:
   "exclusiveMaximum": true
 }
 ```
+
 Less than `minimum`:
+
 ```json
 // props { "indent": true, "valid": false }
 -1
 ```
+
 `exclusiveMinimum` was not specified, so 0 is included:
 
 ```json
 // props { "indent": true, "valid": true }
 0
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 10
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 99
 ```
+
 `exclusiveMaximum` is `true`, so 100 is not included:
 
 ```json
 // props { "indent": true, "valid": false }
 100
 ```
+
 Greater than `maximum`:
 
 ```json

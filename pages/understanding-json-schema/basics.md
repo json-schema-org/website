@@ -1,10 +1,10 @@
 ---
 title: The basics
 section: docs
-prev: 
+prev:
   label: What is a Schema?
   url: /understanding-json-schema/about
-next: 
+next:
   label: Creating your first Schema
   url: /learn/getting-started-step-by-step
 ---
@@ -38,7 +38,7 @@ This accepts anything, as long as it's valid JSON:
 
 ```json
 // props { "valid": true, "indent": true }
-{ "an": [ "arbitrarily", "nested" ], "data": "structure" }
+{ "an": ["arbitrarily", "nested"], "data": "structure" }
 ```
 
 <Star label="New in draft 6" />
@@ -58,22 +58,23 @@ true
 // props { "valid": true, "indent": true }
 42
 ```
+
 ```json
 // props { "valid": true, "indent": true }
 "I'm a string"
 ```
+
 ```json
 // props { "valid": true, "indent": true }
-{ "an": [ "arbitrarily", "nested" ], "data": "structure" }
+{ "an": ["arbitrarily", "nested"], "data": "structure" }
 ```
 
-Documents for this schema will always be invalid: 
+Documents for this schema will always be invalid:
 
 ```json
 // props { "isSchema": true }
 false
 ```
-
 
 ```json
 // props { "valid": false, "indent": true }
@@ -87,9 +88,9 @@ any JSON document. The most common thing to do in a JSON Schema is to
 restrict to a specific type. The `type` [keyword](../learn/glossary#keyword) is used for that.
 
 > When this book refers to JSON Schema "keywords", it means the
-"key" part of the key/value pair in an object.  Most of the work
-of writing a JSON Schema involves mapping a special "keyword" to a
-value within an object.
+> "key" part of the key/value pair in an object. Most of the work
+> of writing a JSON Schema involves mapping a special "keyword" to a
+> value within an object.
 
 For example, in the following, only strings are
 accepted:
@@ -98,10 +99,12 @@ accepted:
 // props { "isSchema": true }
 { "type": "string" }
 ```
+
 ```json
 // props { "valid": true, "indent": true }
 "I'm a string"
 ```
+
 ```json
 // props { "valid": false, "indent": true }
 42
@@ -118,7 +121,7 @@ for more information. It\'s generally good practice to include it,
 though it is not required.
 
 > For brevity, the `$schema` keyword isn\'t included in most of the
-examples in this book, but it should always be used in the real world.
+> examples in this book, but it should always be used in the real world.
 
 ```json
 // props { "isSchema": true }

@@ -1,13 +1,13 @@
 ---
-title: "How Tyler Technologies reduced its client feedback loop with JSON Schema"
-date: "2022-05-09"
+title: 'How Tyler Technologies reduced its client feedback loop with JSON Schema'
+date: '2022-05-09'
 type: Case Study
 cover: /img/posts/2022/tyler-technologies-case-study/cover.webp
 authors:
   - name: Ben Hutton
     photo: /img/avatars/benhutton.webp
     twitter: relequestual
-excerpt: "Using JSON Schema at Tyler Technologies meant showing added value to clients could take minutes rather than days or in some cases weeks."
+excerpt: 'Using JSON Schema at Tyler Technologies meant showing added value to clients could take minutes rather than days or in some cases weeks.'
 ---
 
 ## Challenge
@@ -41,6 +41,7 @@ A new custom field would need to be fully identified and get approval, sent to t
 Rather than a full development cycle and release process, updating a JSON Schema takes just a few minutes by those that know JSON Schema, dramatically reducing the time to resolution of bugs related to custom data structures.
 
 ## Key Impact Results
+
 <Bigquote>
 Showing added value to clients in minutes, rather than days or weeks.
 </Bigquote>

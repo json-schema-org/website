@@ -1,16 +1,15 @@
 ---
-title: "Understanding JSON Schema"
+title: 'Understanding JSON Schema'
 section: docs
-prev: 
+prev:
   label: JSON Schema Keywords
   url: /understanding-json-schema/keywords
-next: 
+next:
   label: Conventions
   url: /understanding-json-schema/conventions
 ---
 
-Understanding JSON Schema
-=========================
+# Understanding JSON Schema
 
 <img src="understanding/octopus.svg" className="w-1/2 float-right" />
 
@@ -24,28 +23,27 @@ understand it, but maybe aren\'t interested in building their own
 car—er, writing their own JSON Schema validator — just yet.
 
 > This tutorial describes JSON Schema draft 2020-12. Earlier versions of
-JSON Schema are not completely compatible with the format
-described here, but for the most part, those differences are noted
-in the text.
+> JSON Schema are not completely compatible with the format
+> described here, but for the most part, those differences are noted
+> in the text.
 
 ## Where to begin?
 
--   This book uses some novel [conventions](../understanding-json-schema/conventions)
-    for showing schema examples and relating JSON Schema to your
-    programming language of choice.
--   If you\'re not sure what a schema is, check out [What is a schema?](../understanding-json-schema/about).
--   [The basics](../understanding-json-schema/basics) chapter should be enough to get you started
-    with understanding the core [JSON Schema Reference](../understanding-json-schema/reference).
--   When you start developing large schemas with many nested and
-    repeated sections, check out [Structuring a complex schema](../understanding-json-schema/structuring).
--   [json-schema.org](http://json-schema.org) has a number of resources,
-    including the official specification and tools for working with JSON
-    Schema from various programming languages.
--   There are a number of [online JSON Schema tools](https://json-schema.org/tools#validator)
-    that allow you to run your own JSON schemas against example
-    documents. These can be very handy if you want to try things out
-    without installing any software.
-
+- This book uses some novel [conventions](../understanding-json-schema/conventions)
+  for showing schema examples and relating JSON Schema to your
+  programming language of choice.
+- If you\'re not sure what a schema is, check out [What is a schema?](../understanding-json-schema/about).
+- [The basics](../understanding-json-schema/basics) chapter should be enough to get you started
+  with understanding the core [JSON Schema Reference](../understanding-json-schema/reference).
+- When you start developing large schemas with many nested and
+  repeated sections, check out [Structuring a complex schema](../understanding-json-schema/structuring).
+- [json-schema.org](http://json-schema.org) has a number of resources,
+  including the official specification and tools for working with JSON
+  Schema from various programming languages.
+- There are a number of [online JSON Schema tools](https://json-schema.org/tools#validator)
+  that allow you to run your own JSON schemas against example
+  documents. These can be very handy if you want to try things out
+  without installing any software.
 
 `© Copyright 2013-2016 Michael Droettboom, Space Telescope Science Institute;`<br />
 `© 2016-2018 Michael Droettboom;`<br/>

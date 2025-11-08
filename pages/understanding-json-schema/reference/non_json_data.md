@@ -1,10 +1,10 @@
 ---
-title: "Media: string-encoding non-JSON data"
+title: 'Media: string-encoding non-JSON data'
 section: docs
-prev: 
+prev:
   label: Modular JSON Schema combination
   url: /understanding-json-schema/structuring
-next: 
+next:
   label: Specification
   url: /specification
 ---
@@ -21,7 +21,7 @@ JSON schema has a set of [keywords](../../learn/glossary#keyword) to describe an
 
 The `contentMediaType` keyword specifies the media type of the content of a string, as described in [RFC 2046](https://tools.ietf.org/html/rfc2046). The Internet Assigned Numbers Authority (IANA) has officially registered [a comprehensive list of media types](http://www.iana.org/assignments/media-types/media-types.xhtml), but the set of supported types depends on the application and operating system. Mozilla Developer Network maintains a [shorter list of media types that are important for the web](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types)
 
-### Example 
+### Example
 
 The following schema specifies a string containing an HTML file using the document's default encoding.
 
@@ -32,6 +32,7 @@ The following schema specifies a string containing an HTML file using the docume
   "contentMediaType": "text/html"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "<!DOCTYPE html><html xmlns=\"http://www.w3.org/1999/xhtml\"><head></head></html>"
@@ -39,22 +40,21 @@ The following schema specifies a string containing an HTML file using the docume
 
 <Keywords label="single: contentEncoding single: media; contentEncoding" />
 
-
 The `contentEncoding` keyword specifies the encoding used to store the contents, as specified in [RFC 2054, part 6.1](https://tools.ietf.org/html/rfc2045) and [RFC 4648](https://datatracker.ietf.org/doc/html/rfc4648).
 
 The acceptable values are the following:
+
 - `quoted-printable`
-- `base16` 
-- `base32` 
-- `base64` 
- 
+- `base16`
+- `base32`
+- `base64`
+
 If not specified, the encoding is the same as the containing JSON document.
 
 There are two main scenarios:
 
 1. **Same encoding as JSON document**: Leave `contentEncoding` unspecified and include the content in a string as-is. This is suitable for text-based content types (e.g., `text/html`, `application/xml`) and assumes UTF-8 encoding in most cases.
 2. **Binary data**: Set `contentEncoding` to `base64` and encode the content using Base64. This is appropriate for binary content types such as images (`image/png`) or audio files (`audio/mpeg`).
-
 
 ### Example
 
@@ -68,6 +68,7 @@ The following schema indicates that a string contains a PNG file and is encoded 
   "contentMediaType": "image/png"
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABmJLR0QA/wD/AP+gvaeTAAAA..."
@@ -107,9 +108,10 @@ This process ensures that the non-JSON content is properly encoded for transmiss
 <Keywords label="single: contentSchema single: media; contentSchema" />
 
 ## contentSchema
+
 <Star label="New in draft 2019-09" />
 
-The value of `contentSchema` must be a valid JSON schema that you can use to define the structure and constraints of the content. It is used in conjunction with `contentMediaType` when the instance is a string. If `contentMediaType` is absent, the value of `contentSchema` is ignored. 
+The value of `contentSchema` must be a valid JSON schema that you can use to define the structure and constraints of the content. It is used in conjunction with `contentMediaType` when the instance is a string. If `contentMediaType` is absent, the value of `contentSchema` is ignored.
 
 ## Full example
 
@@ -118,29 +120,30 @@ The following schema indicates that a string contains a JSON object encoded usin
 ```json
 // props { "isSchema": true }
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "type": "object",
-    "properties": {
-        "data": {
-            "type": "string",
-            "contentMediaType": "application/json",
-            "contentEncoding": "base64",
-            "contentSchema": {
-                "type": "object",
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "age": {
-                        "type": "integer"
-                    }
-                },
-                "required": ["name", "age"]
-            }
-        }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "string",
+      "contentMediaType": "application/json",
+      "contentEncoding": "base64",
+      "contentSchema": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "age": {
+            "type": "integer"
+          }
+        },
+        "required": ["name", "age"]
+      }
     }
+  }
 }
 ```
+
 ```json
 // props { "indent": true, "valid": true }
 "eyJuYW1lIjoiSm9obiBEb2UiLCJ0b21lIjoiMjUifQ=="
