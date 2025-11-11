@@ -622,7 +622,7 @@ const Home = (props: any) => {
               href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
-              className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -647,7 +647,7 @@ const Home = (props: any) => {
               href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
-              className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -896,7 +896,7 @@ for Accounting integrations'
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
-                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
