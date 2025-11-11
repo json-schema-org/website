@@ -175,11 +175,8 @@ export const TableOfContent = ({ depth }: TableOfContentProps) => {
         <span>Table of Contents</span>
       </div>
       <div className='mt-2 bg-slate-50 dark:bg-slate-900 pt-6 pb-3 pr-3 border border-r-0 border-y-0 border-l-blue-400/40 border-l-[2.5px]'>
-        <TableOfContentMarkdown
-          markdown={fullMarkdown}
-          depth={depth}
-        />
+        <TableOfContentMarkdown markdown={fullMarkdown} depth={depth} />
       </div>
     </>
   );
-}; 
+};
