@@ -637,7 +637,9 @@ const Home = (props: any) => {
               href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
-              className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
+
+
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -662,7 +664,8 @@ const Home = (props: any) => {
               href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
-              className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
+
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -693,7 +696,8 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={asyncapi_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+
                       width={176}
                       height={100}
                       alt='asyncapi'
@@ -710,7 +714,8 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={airbnb_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+
                       width={176}
                       height={100}
                       alt='airbnb'
@@ -727,7 +732,8 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={postman_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+
                       width={176}
                       height={100}
                       alt='postman'
@@ -740,7 +746,8 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={endjin_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+
                       width={176}
                       height={100}
                       alt='endjin'
@@ -753,7 +760,8 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={llc_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+
                       width={176}
                       height={100}
                       alt='llc'
@@ -770,7 +778,8 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={vpsserver_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+
                       width={176}
                       height={100}
                       alt='vpsserver'
@@ -787,7 +796,8 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={itflashcards_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+
                       width={176}
                       height={100}
                       alt='itflashcards'
@@ -804,7 +814,8 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={route4me_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+
                       width={176}
                       height={100}
                       alt='route4me'
@@ -817,7 +828,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={n8n_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='n8n'
@@ -830,7 +841,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={ccopter_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='ccopter'
@@ -839,7 +850,8 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <img src={octue_logo} className=' w-44' />
+                <img src={octue_logo} className='w-44 transition-transform duration-300 hover:scale-105'
+ />
               </a>
               <a
                 href='https://www.apideck.com/'
@@ -848,7 +860,8 @@ const Home = (props: any) => {
               >
                 <img
                   src={apideck_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+
                   alt='The Realtime Unified API
 for Accounting integrations'
                 />
@@ -860,7 +873,8 @@ for Accounting integrations'
               >
                 <img
                   src={rxdb_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+
                   alt='The local Database for JavaScript Applications'
                 />
               </a>
@@ -871,7 +885,8 @@ for Accounting integrations'
               >
                 <img
                   src={wda_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+
                   alt='best website design agencies'
                 />
               </a>
@@ -882,19 +897,22 @@ for Accounting integrations'
               >
                 <img
                   src={anon_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+
                   alt='Instagram Story Viewer'
                 />
               </a>
               <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
                 <img
                   src={supadata_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+
                   alt='supadata logo'
                 />
               </a>
               <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
-                <img src={dottxt_logo} className=' w-44' alt='dottxt logo' />
+                <img src={dottxt_logo} className='w-44 transition-transform duration-300 hover:scale-105'
+ alt='dottxt logo' />
               </a>
               <a
                 href='https://www.sourcemeta.com/'
@@ -903,7 +921,8 @@ for Accounting integrations'
               >
                 <img
                   src={sourcemeta_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+
                   alt='dottxt logo'
                 />
               </a>
@@ -911,7 +930,7 @@ for Accounting integrations'
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
-                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -953,7 +972,8 @@ for Accounting integrations'
                 <>
                   <Image
                     src={devevents_logo}
-                    className='w-48 md:w-56'
+                    className='w-48 md:w-56 transition-transform duration-300 hover:scale-105'
+
                     width={192}
                     height={224}
                     alt='dev events'
