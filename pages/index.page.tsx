@@ -95,28 +95,6 @@ const Home = (props: any) => {
 
   const [isClient, setIsClient] = useState(false);
 
-  // const [asyncapi_logo, setAsyncapi_logo] = useState('');
-  // const [vpsserver_logo, setVPSserver_logo] = useState('');
-  // const [airbnb_logo, setAirbnb_logo] = useState('');
-  // const [postman_logo, setPostman_logo] = useState('');
-  // const [itflashcards_logo, setItflashcards_logo] = useState('');
-  // const [route4me_logo, setRoute4me_logo] = useState('');
-  // const [n8n_logo, setN8n_logo] = useState('');
-  // const [endjin_logo, setEndjin_logo] = useState('');
-  // const [llc_logo, setLlc_logo] = useState('');
-  // const [common_room_logo, setCommon_room_logo] = useState('');
-  // const [slack_logo, setSlack_logo] = useState('');
-  // const [ccopter_logo, setCCopter_logo] = useState('');
-  // const [octue_logo, setOctue_logo] = useState('');
-  // const [apideck_logo, setApideck_logo] = useState('');
-  // const [rxdb_logo, setRxdb_logo] = useState('');
-  // const [wda_logo, setWDA_logo] = useState('');
-  // const [anon_logo, setAnon_logo] = useState('');
-  // const [sourcemeta_logo, setSourcemeta_logo] = useState('');
-  // const [dottxt_logo, setDottxt_logo] = useState('');
-  // const [supadata_logo, setSupadata_logo] = useState('');
-  // const [devevents_logo, setDevevents_logo] = useState('');
-
   useEffect(() => {
     // Ensure the component is only rendered client-side
     setIsClient(true);
@@ -173,52 +151,6 @@ const Home = (props: any) => {
 
     setLogos(resolvedTheme === 'dark' ? darkLogos : lightLogos);
   }, [resolvedTheme]);
-  // useEffect(() => {
-  //   if (resolvedTheme === 'dark') {
-  //     setAsyncapi_logo('/img/logos/dark-mode/asyncapi_white.svg');
-  //     setAirbnb_logo('/img/logos/dark-mode/airbnb_white.png');
-  //     setPostman_logo('/img/logos/usedby/postman-white.png');
-  //     setEndjin_logo('/img/logos/sponsors/endjin-logo.svg');
-  //     setLlc_logo('/img/logos/dark-mode/llc_white.svg');
-  //     setCommon_room_logo('/img/logos/dark-mode/common-room_white.svg');
-  //     setSlack_logo('/img/logos/dark-mode/slack_white.svg');
-  //     setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
-  //     setItflashcards_logo('/img/logos/sponsors/it_flashcards-white.svg');
-  //     setRoute4me_logo('/img/logos/sponsors/route4me-logo-dark.svg');
-  //     setN8n_logo('/img/logos/sponsors/n8n-logo-dark.svg');
-  //     setCCopter_logo('/img/logos/sponsors/copycopter-white.png');
-  //     setOctue_logo('/img/logos/sponsors/octue-white.svg');
-  //     setApideck_logo('/img/logos/sponsors/apideck-white.svg');
-  //     setRxdb_logo('/img/logos/sponsors/rxdb.svg');
-  //     setWDA_logo('/img/logos/sponsors/wda-dark.svg');
-  //     setAnon_logo('/img/logos/sponsors/anon-white.png');
-  //     setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-light.svg');
-  //     setDottxt_logo('/img/logos/sponsors/dottxt-logo-white.svg');
-  //     setSupadata_logo('/img/logos/sponsors/supadata-logo-light.svg');
-  //     setDevevents_logo('/img/logos/dark-mode/dev_events_logo.png');
-  //   } else {
-  //     setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
-  //     setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
-  //     setPostman_logo('/img/logos/sponsors/postman_logo-orange.svg');
-  //     setEndjin_logo('/img/logos/sponsors/endjin-logo.svg');
-  //     setLlc_logo('/img/logos/sponsors/llc-logo.svg');
-  //     setCommon_room_logo('/img/logos/supported/common-room.svg');
-  //     setSlack_logo('/img/logos/supported/slack-logo.svg');
-  //     setVPSserver_logo('/img/logos/sponsors/vps-server-logo.svg');
-  //     setItflashcards_logo('/img/logos/sponsors/it_flashcards.svg');
-  //     setRoute4me_logo('/img/logos/sponsors/route4me-logo-white.svg');
-  //     setN8n_logo('/img/logos/sponsors/n8n-logo-white.svg');
-  //     setCCopter_logo('/img/logos/sponsors/copycopter.png');
-  //     setOctue_logo('/img/logos/sponsors/octue-black.svg');
-  //     setApideck_logo('/img/logos/sponsors/apideck.svg');
-  //     setRxdb_logo('/img/logos/sponsors/rxdb.svg');
-  //     setWDA_logo('/img/logos/sponsors/wda.svg');
-  //     setAnon_logo('/img/logos/sponsors/anon-black.png');
-  //     setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-dark.svg');
-  //     setSupadata_logo('/img/logos/sponsors/supadata-logo-dark.svg');
-  //     setDottxt_logo('/img/logos/sponsors/dottxt-logo-dark.svg');
-  //   }
-  // }, [resolvedTheme]);
   return (
     <div>
       <div className='flex flex-col items-center'>
