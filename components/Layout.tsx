@@ -357,7 +357,10 @@ const Footer = () => (
           </a>
         </div>
         <div className='flex flex-col text-center sm:text-left'>
-          <Link href='/overview/code-of-conduct' className='text-white mb-2 hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'>
+          <Link
+            href='/overview/code-of-conduct'
+            className='text-white mb-2 hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'
+          >
             Code of Conduct
           </Link>
         </div>
