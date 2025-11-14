@@ -351,13 +351,13 @@ const Footer = () => (
         <div className='flex flex-col text-center sm:text-left'>
           <a
             href='https://opencollective.com/json-schema'
-            className='text-white mb-2'
+            className='text-white mb-2 hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'
           >
             Open Collective
           </a>
         </div>
         <div className='flex flex-col text-center sm:text-left'>
-          <Link href='/overview/code-of-conduct' className='text-white mb-2'>
+          <Link href='/overview/code-of-conduct' className='text-white mb-2 hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'>
             Code of Conduct
           </Link>
         </div>
@@ -366,7 +366,7 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://json-schema.org/slack'
-            className='flex items-center text-white'
+            className='flex items-center text-white hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'
           >
             <Image
               src='/img/logos/slack_logo_small-white.svg'
@@ -381,7 +381,7 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://x.com/jsonschema'
-            className='flex items-center text-white'
+            className='flex items-center text-white hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'
           >
             <Image
               src='/img/logos/x-twitter.svg'
@@ -396,7 +396,7 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://linkedin.com/company/jsonschema/'
-            className='flex items-center text-white'
+            className='flex items-center text-white hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'
           >
             <Image
               src='/img/logos/icons8-linkedin-2.svg'
@@ -411,7 +411,7 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
-            className='flex items-center text-white'
+            className='flex items-center text-white hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'
           >
             <Image
               src='/img/logos/icons8-youtube.svg'
@@ -426,7 +426,7 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://github.com/json-schema-org'
-            className='flex items-center text-white'
+            className='flex items-center text-white hover:text-blue-400 transition-all duration-300 ease-in-out hover:translate-x-1'
           >
             <Image
               src='/img/logos/github_logo-white.svg'
