@@ -351,7 +351,7 @@ const Footer = () => (
         <div className='flex flex-col text-center sm:text-left'>
           <a
             href='https://opencollective.com/json-schema'
-            className='text-white mb-2 hover:text-blue-200 dark:hover:text-blue-300 transition-colors duration-300'
+            className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             Open Collective
           </a>
@@ -359,7 +359,7 @@ const Footer = () => (
         <div className='flex flex-col text-center sm:text-left'>
           <Link
             href='/overview/code-of-conduct'
-            className='text-white mb-2 hover:text-blue-200 dark:hover:text-blue-300 transition-colors duration-300'
+            className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             Code of Conduct
           </Link>
