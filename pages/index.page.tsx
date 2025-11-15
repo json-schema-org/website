@@ -839,7 +839,10 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
+                  alt='octue'
+                  width={176}
+                  height={100}
                   src={octue_logo}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                 />
@@ -849,7 +852,9 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={apideck_logo}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='The Realtime Unified API
@@ -861,7 +866,9 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={rxdb_logo}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='The local Database for JavaScript Applications'
@@ -872,7 +879,9 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={wda_logo}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='best website design agencies'
@@ -883,21 +892,27 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={anon_logo}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='Instagram Story Viewer'
                 />
               </a>
               <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={supadata_logo}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='supadata logo'
                 />
               </a>
               <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={dottxt_logo}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='dottxt logo'
@@ -908,7 +923,9 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={sourcemeta_logo}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='dottxt logo'
