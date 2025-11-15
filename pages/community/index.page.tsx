@@ -40,9 +40,23 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics';
-  const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
-    .catch((error) => console.error('Error:', error));
+  let datesInfo: Array<{
+    title: string;
+    time: string;
+    day: string;
+    timezone: string;
+    parsedStartDate: string;
+  }> = [];
+  try {
+    const icalData = await fetchRemoteICalFile(remoteICalUrl);
+    if (icalData) {
+      const parsedData = ical.parseICS(icalData);
+      datesInfo = printEventsForNextWeeks(parsedData) || [];
+    }
+  } catch (error) {
+    console.error('Error processing calendar data:', error);
+    // datesInfo defaults to empty array to prevent crashes
+  }
   return {
     props: {
       blogPosts,
@@ -53,8 +67,11 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function communityPages(props: any) {
-  const blogPosts = props.blogPosts;
-  const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
+  const blogPosts = props.blogPosts || [];
+  const firstBlogPost = blogPosts[0];
+  const timeToRead = firstBlogPost
+    ? Math.ceil(readingTime(firstBlogPost.content).minutes)
+    : 0;
 
   return (
     <SectionContext.Provider value='community'>
@@ -248,7 +265,7 @@ export default function communityPages(props: any) {
                 <h2 className='text-center dark:text-white text-primary text-[2rem] font-bold '>
                   Upcoming events
                 </h2>
-                {props.datesInfo.map((event: any, index: any) => (
+                {(props.datesInfo || []).map((event: any, index: any) => (
                   <div
                     key={index}
                     className='mx-auto gap-2 group-hover:bg-white dark:bg-slate-900/50 dark:group-hover:bg-slate-800  bg-slate-100 h-[90px] max-md:h-[120px]  max-sm:h-auto  w-full rounded-lg flex flex-row justify-between  items-center p-2 mt-2'
@@ -309,83 +326,86 @@ export default function communityPages(props: any) {
                 </div>
               </div>
             </div>
-            <div className='p-10 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left '>
-              <div className='w-full mb-6 '>
-                <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                  <Image
-                    src={blogPosts[0].frontmatter.cover}
-                    className='w-full h-[232px]  mb-4'
-                    height={232}
-                    width={400}
-                    alt={blogPosts[0].frontmatter.title}
-                  />
-                  <h3 className='mb-4 font-semibold dark:text-white'>
-                    {blogPosts[0].frontmatter.title}
-                  </h3>
-                  <div className='mb-4 text-[14px] dark:text-white'>
-                    <TextTruncate
-                      element='span'
-                      line={4}
-                      text={blogPosts[0].frontmatter.excerpt}
+            {firstBlogPost && (
+              <div className='p-10 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left '>
+                <div className='w-full mb-6 '>
+                  <Link href={`/blog/posts/${firstBlogPost.slug}`}>
+                    <Image
+                      src={firstBlogPost.frontmatter.cover}
+                      className='w-full h-[232px]  mb-4'
+                      height={232}
+                      width={400}
+                      alt={firstBlogPost.frontmatter.title}
                     />
-                  </div>
-                  <div className='flex ml-2 mb-2 '>
-                    {(blogPosts[0].frontmatter.authors || []).map(
-                      (author: any, index: number) => {
-                        return (
-                          <div
-                            key={index}
-                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                            style={{
-                              backgroundImage: `url(${author.photo})`,
-                              zIndex: 10 - index,
-                            }}
-                          />
-                        );
-                      },
-                    )}
-                    <div className='flex flex-col ml-2'>
-                      <p className='text-sm font-semibold dark:text-white'>
-                        {blogPosts[0].frontmatter.authors.length > 2 ? (
-                          <>
-                            {blogPosts[0].frontmatter.authors
-                              .slice(0, 2)
-                              .map((author: any, index: number) => (
-                                <span key={author.name}>
-                                  {author.name}
-                                  {index === 0 && ' & '}
-                                </span>
-                              ))}
-                            {'...'}
-                          </>
-                        ) : (
-                          blogPosts[0].frontmatter.authors.map(
-                            (author: any) => (
-                              <span key={author.name}>{author.name}</span>
-                            ),
-                          )
-                        )}
-                      </p>
-                      <div className='dark:text-slate-300 text-sm'>
-                        <span>
-                          {blogPosts[0].frontmatter.date} &middot;{timeToRead}{' '}
-                          min min read
-                        </span>
+                    <h3 className='mb-4 font-semibold dark:text-white'>
+                      {firstBlogPost.frontmatter.title}
+                    </h3>
+                    <div className='mb-4 text-[14px] dark:text-white'>
+                      <TextTruncate
+                        element='span'
+                        line={4}
+                        text={firstBlogPost.frontmatter.excerpt}
+                      />
+                    </div>
+                    <div className='flex ml-2 mb-2 '>
+                      {(firstBlogPost.frontmatter.authors || []).map(
+                        (author: any, index: number) => {
+                          return (
+                            <div
+                              key={index}
+                              className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                              style={{
+                                backgroundImage: `url(${author.photo})`,
+                                zIndex: 10 - index,
+                              }}
+                            />
+                          );
+                        },
+                      )}
+                      <div className='flex flex-col ml-2'>
+                        <p className='text-sm font-semibold dark:text-white'>
+                          {firstBlogPost.frontmatter.authors &&
+                          firstBlogPost.frontmatter.authors.length > 2 ? (
+                            <>
+                              {firstBlogPost.frontmatter.authors
+                                .slice(0, 2)
+                                .map((author: any, index: number) => (
+                                  <span key={author.name}>
+                                    {author.name}
+                                    {index === 0 && ' & '}
+                                  </span>
+                                ))}
+                              {'...'}
+                            </>
+                          ) : (
+                            firstBlogPost.frontmatter.authors?.map(
+                              (author: any) => (
+                                <span key={author.name}>{author.name}</span>
+                              ),
+                            ) || []
+                          )}
+                        </p>
+                        <div className='dark:text-slate-300 text-sm'>
+                          <span>
+                            {firstBlogPost.frontmatter.date} &middot;
+                            {timeToRead} min min read
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-                <div className='mx-auto '>
-                  <Link
-                    href='/blog'
-                    rel='noopener noreferrer'
-                    className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
-                  >
-                    Read more posts
                   </Link>
+                  <div className='mx-auto '>
+                    <Link
+                      href='/blog'
+                      rel='noopener noreferrer'
+                      className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
+                    >
+                      Read more posts
+                    </Link>
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

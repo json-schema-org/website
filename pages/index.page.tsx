@@ -49,9 +49,23 @@ export const getStaticProps: GetStaticProps = async () => {
     .slice(0, 5);
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
-  const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
-    .catch((error) => console.error('Error:', error));
+  let datesInfo: Array<{
+    title: string;
+    time: string;
+    day: string;
+    timezone: string;
+    parsedStartDate: string;
+  }> = [];
+  try {
+    const icalData = await fetchRemoteICalFile(remoteICalUrl);
+    if (icalData) {
+      const parsedData = ical.parseICS(icalData);
+      datesInfo = printEventsForNextWeeks(parsedData) || [];
+    }
+  } catch (error) {
+    console.error('Error processing calendar data:', error);
+    // datesInfo defaults to empty array to prevent crashes
+  }
   return {
     props: {
       blogPosts,
@@ -89,8 +103,11 @@ export function AlgoliaSearch() {
   );
 }
 const Home = (props: any) => {
-  const blogPosts = props.blogPosts;
-  const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
+  const blogPosts = props.blogPosts || [];
+  const firstBlogPost = blogPosts[0];
+  const timeToRead = firstBlogPost
+    ? Math.ceil(readingTime(firstBlogPost.content).minutes)
+    : 0;
   const { resolvedTheme } = useTheme();
 
   const [asyncapi_logo, setAsyncapi_logo] = useState('');
@@ -429,89 +446,94 @@ const Home = (props: any) => {
               </button>
             </div>
             {/* BlogPost Data */}
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
-              <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
-                  The JSON Schema Blog
-                </h3>
-                {isClient && (
-                  <>
-                    <Image
-                      src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px]  mb-4'
-                      width={600}
-                      height={232}
-                      alt='blog'
-                    />
-                  </>
-                )}
-                <h3 className='mb-4 font-semibold dark:text-slate-300'>
-                  {' '}
-                  {blogPosts[0].frontmatter.title}
-                </h3>
-                <div className='mb-4'>
-                  <TextTruncate
-                    element='span'
-                    line={4}
-                    text={blogPosts[0].frontmatter.excerpt}
-                  />
-                </div>
-
-                <div className='flex ml-2 mb-2 '>
-                  {(blogPosts[0].frontmatter.authors || []).map(
-                    (author: any, index: number) => {
-                      return (
-                        <div
-                          key={index}
-                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                          style={{
-                            backgroundImage: `url(${author.photo})`,
-                            zIndex: 10 - index,
-                          }}
-                        />
-                      );
-                    },
+            {firstBlogPost && (
+              <div className='p-4 w-full mb-6 dark:shadow-2xl'>
+                <Link href={`/blog/posts/${firstBlogPost.slug}`}>
+                  <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
+                    The JSON Schema Blog
+                  </h3>
+                  {isClient && (
+                    <>
+                      <Image
+                        src={firstBlogPost.frontmatter.cover}
+                        className='w-full h-[232px]  mb-4'
+                        width={600}
+                        height={232}
+                        alt='blog'
+                      />
+                    </>
                   )}
-                  <div className='flex flex-col ml-2'>
-                    <p className='text-sm font-semibold dark:text-slate-300'>
-                      {blogPosts[0].frontmatter.authors.length > 2 ? (
-                        <>
-                          {blogPosts[0].frontmatter.authors
-                            .slice(0, 2)
-                            .map((author: any, index: number) => (
-                              <span key={author.name}>
-                                {author.name}
-                                {index === 0 && ' & '}
-                              </span>
-                            ))}
-                          {'...'}
-                        </>
-                      ) : (
-                        blogPosts[0].frontmatter.authors.map((author: any) => (
-                          <span key={author.name}>{author.name}</span>
-                        ))
-                      )}
-                    </p>
+                  <h3 className='mb-4 font-semibold dark:text-slate-300'>
+                    {' '}
+                    {firstBlogPost.frontmatter.title}
+                  </h3>
+                  <div className='mb-4'>
+                    <TextTruncate
+                      element='span'
+                      line={4}
+                      text={firstBlogPost.frontmatter.excerpt}
+                    />
+                  </div>
 
-                    <div className='text-slate-500 text-sm dark:text-slate-300'>
-                      <span>
-                        {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
-                        min read
-                      </span>
+                  <div className='flex ml-2 mb-2 '>
+                    {(firstBlogPost.frontmatter.authors || []).map(
+                      (author: any, index: number) => {
+                        return (
+                          <div
+                            key={index}
+                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                            style={{
+                              backgroundImage: `url(${author.photo})`,
+                              zIndex: 10 - index,
+                            }}
+                          />
+                        );
+                      },
+                    )}
+                    <div className='flex flex-col ml-2'>
+                      <p className='text-sm font-semibold dark:text-slate-300'>
+                        {firstBlogPost.frontmatter.authors &&
+                        firstBlogPost.frontmatter.authors.length > 2 ? (
+                          <>
+                            {firstBlogPost.frontmatter.authors
+                              .slice(0, 2)
+                              .map((author: any, index: number) => (
+                                <span key={author.name}>
+                                  {author.name}
+                                  {index === 0 && ' & '}
+                                </span>
+                              ))}
+                            {'...'}
+                          </>
+                        ) : (
+                          firstBlogPost.frontmatter.authors?.map(
+                            (author: any) => (
+                              <span key={author.name}>{author.name}</span>
+                            ),
+                          ) || []
+                        )}
+                      </p>
+
+                      <div className='text-slate-500 text-sm dark:text-slate-300'>
+                        <span>
+                          {firstBlogPost.frontmatter.date} &middot; {timeToRead}{' '}
+                          min read
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </Link>
-
-              <div>
-                <Link
-                  href={`/blog/posts/${blogPosts[0].slug}`}
-                  className=' w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center pt-1 semi-bold flex items-center justify-center mx-auto dark:border-none'
-                >
-                  Read more{' '}
                 </Link>
+
+                <div>
+                  <Link
+                    href={`/blog/posts/${firstBlogPost.slug}`}
+                    className=' w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center pt-1 semi-bold flex items-center justify-center mx-auto dark:border-none'
+                  >
+                    Read more{' '}
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
             <div>
               <div className='p-4 md:w-full mb-6 mr-4 dark:shadow-2xl'>
                 <h3 className='mb-2 font-semibold dark:text-slate-200'>
@@ -546,7 +568,7 @@ const Home = (props: any) => {
                   <Headline4>Upcoming events</Headline4>
                   <div>
                     <ul>
-                      {props.datesInfo.map((event: any, index: any) => (
+                      {(props.datesInfo || []).map((event: any, index: any) => (
                         <li key={index}>
                           <div className='flex mb-4'>
                             <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
