@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { getLayout } from '../components/SiteLayout';
 import { DocSearch } from '@docsearch/react';
 import fs from 'fs';
@@ -99,10 +99,8 @@ const Home = (props: any) => {
     // Ensure the component is only rendered client-side
     setIsClient(true);
   }, []);
-
-  const [logos, setLogos] = useState<Record<string, string>>({});
-  useEffect(() => {
-    const darkLogos = {
+  const LOGOS_PATHS = {
+    darkLogos: {
       asyncapi: '/img/logos/dark-mode/asyncapi_white.svg',
       airbnb: '/img/logos/dark-mode/airbnb_white.png',
       postman: '/img/logos/usedby/postman-white.png',
@@ -124,9 +122,8 @@ const Home = (props: any) => {
       dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
       supadata: '/img/logos/sponsors/supadata-logo-light.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
-    };
-
-    const lightLogos = {
+    },
+    lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
       airbnb: '/img/logos/sponsors/airbnb-logo.png',
       postman: '/img/logos/sponsors/postman_logo-orange.svg',
@@ -147,10 +144,16 @@ const Home = (props: any) => {
       sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
       supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
       dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
-    };
+      devevents: '/img/logos/dark-mode/dev_events_logo.png',
+    },
+  };
 
-    setLogos(resolvedTheme === 'dark' ? darkLogos : lightLogos);
-  }, [resolvedTheme]);
+  const logos = useMemo(
+    () =>
+      LOGOS_PATHS[resolvedTheme == 'dark' ? 'darkLogos' : 'lightLogos'] ||
+      LOGOS_PATHS.lightLogos,
+    [resolvedTheme],
+  );
   return (
     <div>
       <div className='flex flex-col items-center'>
