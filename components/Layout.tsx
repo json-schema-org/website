@@ -162,9 +162,9 @@ const MainNavLink = ({
         // }`,
         // `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary dark:text-white dark:underline hover:text-primary' : 'text-slate-600 dark:text-white hover:text-primary dark:hover:underline'}`,
         {
-          'text-primary dark:text-white dark:underline hover:text-primary':
+          'text-primary dark:text-blue-400 hover:text-primary dark:hover:text-blue-400':
             isActiveNav,
-          'text-slate-600 dark:text-white hover:text-primary dark:hover:underline':
+          'text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-blue-300':
             !isActiveNav,
         },
       )}
