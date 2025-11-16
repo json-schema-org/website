@@ -189,7 +189,7 @@ const Home = (props: any) => {
                 Getting started
               </Link>
               <a
-                href="https://json-schema.org/slack"
+                href='https://json-schema.org/slack'
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl"
