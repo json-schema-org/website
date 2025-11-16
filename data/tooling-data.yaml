@@ -1713,6 +1713,22 @@
   supportedDialects:
     draft: ['4']
 
+- name: typify
+  description: 'A Rust library and CLI that generates Rust types from JSON Schema definitions.'
+  toolingTypes: ['schema-to-code']
+  languages: ['Rust']
+  maintainers:
+    - name: 'Oxide Computer Company'
+      username: 'oxidecomputer'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/oxidecomputer/typify'
+  homepage: 'https://crates.io/crates/typify'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Actively maintained and widely used for schema-to-code generation in Rust.'
+  lastUpdated: '2025-10-21'
+
 - name: json-schema-to-case-class
   description: 'NPM Package, Web UI, and a CLI to generate Scala case classes from JSON Schema.'
   toolingTypes: ['schema-to-code']
