@@ -164,6 +164,7 @@ const Home = (props: any) => {
       setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-dark.svg');
       setSupadata_logo('/img/logos/sponsors/supadata-logo-dark.svg');
       setDottxt_logo('/img/logos/sponsors/dottxt-logo-dark.svg');
+      setDevevents_logo('/img/logos/dark-mode/dev_events_logo.png');
     }
   }, [resolvedTheme]);
   return (
