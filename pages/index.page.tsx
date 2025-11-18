@@ -203,34 +203,65 @@ const Home = (props: any) => {
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
                 {isClient && (
                   <>
-                    <Image
-                      src='/img/logos/usedby/zapier-logo_white.png'
-                      className='w-40 mx-auto'
-                      alt='zapier'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/microsoft-white.png'
-                      className='w-40 mx-auto'
-                      alt='microsoft'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/postman-white.png'
-                      className='w-40 mx-auto'
-                      alt='postman'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/github-white.png'
-                      className='w-40 mx-auto'
-                      alt='github'
-                      height={40}
-                      width={160}
-                    />
+                    <a
+                      href='https://zapier.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
+                    >
+                      <Image
+                        src='/img/logos/usedby/zapier-logo_white.png'
+                        className='w-40 mx-auto'
+                        alt='zapier'
+                        height={40}
+                        width={160}
+                      />
+                    </a>
+
+                    <a
+                      href='https://www.microsoft.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
+                    >
+                      <Image
+                        src='/img/logos/usedby/microsoft-white.png'
+                        className='w-40 mx-auto'
+                        alt='microsoft'
+                        height={40}
+                        width={160}
+                      />
+                    </a>
+
+                    <a
+                      href='https://www.postman.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
+                    >
+                      <Image
+                        src='/img/logos/usedby/postman-white.png'
+                        className='w-40 mx-auto'
+                        alt='postman'
+                        height={40}
+                        width={160}
+                      />
+                    </a>
+
+                    <a
+                      href='https://github.com'
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
+                    >
+                      <Image
+                        src='/img/logos/usedby/github-white.png'
+                        className='w-40 mx-auto'
+                        alt='github'
+                        height={40}
+                        width={160}
+                      />
+                    </a>
                   </>
                 )}
               </div>
