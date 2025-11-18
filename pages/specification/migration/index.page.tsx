@@ -49,28 +49,42 @@ export default function ImplementationsPages({
           body='Details for migrations from Draft 2019-09 to 2020-12.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft/2020-12/release-notes'
+          link='/draft/2020-12/migration-notes'
         />
         <Card
           title='Draft-07 to Draft 2019-09'
           body='Details for migrations from Draft-07 to 2019-09.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft/2019-09/release-notes'
+          link='/draft/2019-09/migration-notes'
         />
         <Card
           title='Draft-06 to Draft-07'
-          body='Details for migrations from Draft-6 to Draft-07.'
+          body='Details for migrations from Draft-06 to Draft-07.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft-07/json-schema-release-notes'
+          link='/draft-07/migration-notes'
         />
         <Card
-          title='Draft-05 to Draft-06'
+          title='Draft-04 to Draft-06'
           body='Details for migrations from Draft-05 to Draft-06.'
           headerSize='small'
           bodyTextSize='small'
-          link='/draft-06/json-schema-release-notes'
+          link='/draft-06/migration-notes'
+        />
+        <Card
+          title='Draft-03 to Draft-04'
+          body='Details for migrations from Draft-03 to Draft-04.'
+          headerSize='small'
+          bodyTextSize='small'
+          link='/draft-04/migration-notes'
+        />
+        <Card
+          title='Draft-02 to Draft-03'
+          body='Details for migrations from Draft-02 to Draft-03.'
+          headerSize='small'
+          bodyTextSize='small'
+          link='/draft-03/migration-notes'
         />
       </div>
       <NextPrevButton
