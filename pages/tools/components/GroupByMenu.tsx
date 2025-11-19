@@ -45,7 +45,7 @@ const GroupByMenu = ({ transform, setTransform }: GroupByMenuProps) => {
             value={group.accessorKey}
             onClick={setGroupBy}
             variant={groupedBy === group.accessorKey ? 'default' : 'outline'}
-            className={`${groupedBy === group.accessorKey ? 'text-white dark:text-slate-900 dark:bg-[#bfdbfe]' : 'dark:bg-[#0f172a] text-black dark:text-slate-300 dark:border-transparent'}`}
+            className={`${groupedBy === group.accessorKey ? 'text-white dark:text-slate-900 dark:bg-[#bfdbfe] hover:scale-105 hover:shadow-lg' : 'dark:bg-[#0f172a] text-black dark:text-slate-300 dark:border-transparent hover:bg-slate-200 hover:border-slate-300 dark:hover:bg-slate-700 dark:hover:border-slate-600 hover:scale-105 hover:shadow-md'} transition-all duration-200`}
           >
             {group.label}
           </Button>
