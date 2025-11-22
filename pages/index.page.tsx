@@ -111,6 +111,10 @@ const Home = (props: any) => {
   const [rxdb_logo, setRxdb_logo] = useState('');
   const [wda_logo, setWDA_logo] = useState('');
   const [anon_logo, setAnon_logo] = useState('');
+  const [sourcemeta_logo, setSourcemeta_logo] = useState('');
+  const [dottxt_logo, setDottxt_logo] = useState('');
+  const [supadata_logo, setSupadata_logo] = useState('');
+  const [devevents_logo, setDevevents_logo] = useState('');
 
   useEffect(() => {
     // Ensure the component is only rendered client-side
@@ -135,6 +139,10 @@ const Home = (props: any) => {
       setRxdb_logo('/img/logos/sponsors/rxdb.svg');
       setWDA_logo('/img/logos/sponsors/wda-dark.svg');
       setAnon_logo('/img/logos/sponsors/anon-white.png');
+      setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-light.svg');
+      setDottxt_logo('/img/logos/sponsors/dottxt-logo-white.svg');
+      setSupadata_logo('/img/logos/sponsors/supadata-logo-light.svg');
+      setDevevents_logo('/img/logos/dark-mode/dev_events_logo.png');
     } else {
       setAsyncapi_logo('/img/logos/sponsors/asyncapi-logo-dark.svg');
       setAirbnb_logo('/img/logos/sponsors/airbnb-logo.png');
@@ -153,6 +161,9 @@ const Home = (props: any) => {
       setRxdb_logo('/img/logos/sponsors/rxdb.svg');
       setWDA_logo('/img/logos/sponsors/wda.svg');
       setAnon_logo('/img/logos/sponsors/anon-black.png');
+      setSourcemeta_logo('/img/logos/sponsors/sourcemeta-logo-dark.svg');
+      setSupadata_logo('/img/logos/sponsors/supadata-logo-dark.svg');
+      setDottxt_logo('/img/logos/sponsors/dottxt-logo-dark.svg');
     }
   }, [resolvedTheme]);
   return (
@@ -251,7 +262,7 @@ const Home = (props: any) => {
           </div>
           {/* Feature 4 section*/}
           <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
-            <div className='w-full  shadow-3xl  rounded-[10px] p-[20px] dark:shadow-slate-700'>
+            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                 Streamline testing and validation
               </h3>
@@ -262,7 +273,7 @@ const Home = (props: any) => {
                 invalid data.
               </p>
             </div>
-            <div className='w-full  shadow-3xl  rounded-[10px] p-[20px] dark:shadow-slate-700'>
+            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                 Exchange data seamlessly
               </h3>
@@ -274,7 +285,7 @@ const Home = (props: any) => {
                 platforms.
               </p>
             </div>
-            <div className='w-full  shadow-3xl  rounded-[10px] p-[20px] dark:shadow-slate-700'>
+            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200 '>
                 Document your data
               </h3>
@@ -284,7 +295,7 @@ const Home = (props: any) => {
                 stakeholders, and collaborators.
               </p>
             </div>
-            <div className='w-full  shadow-3xl  rounded-[10px] p-[20px] dark:shadow-slate-700'>
+            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                 Vibrant tooling ecosystem
               </h3>
@@ -626,7 +637,7 @@ const Home = (props: any) => {
               href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
-              className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -651,7 +662,7 @@ const Home = (props: any) => {
               href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
-              className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+              className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
@@ -682,7 +693,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={asyncapi_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='asyncapi'
@@ -699,7 +710,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={airbnb_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='airbnb'
@@ -716,7 +727,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={postman_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='postman'
@@ -729,7 +740,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={endjin_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='endjin'
@@ -742,7 +753,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={llc_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='llc'
@@ -759,7 +770,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={vpsserver_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='vpsserver'
@@ -776,7 +787,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={itflashcards_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='itflashcards'
@@ -793,7 +804,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={route4me_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='route4me'
@@ -806,7 +817,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={n8n_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='n8n'
@@ -819,7 +830,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={ccopter_logo}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='ccopter'
@@ -828,7 +839,10 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <img src={octue_logo} className=' w-44' />
+                <img
+                  src={octue_logo}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                />
               </a>
               <a
                 href='https://www.apideck.com/'
@@ -837,7 +851,7 @@ const Home = (props: any) => {
               >
                 <img
                   src={apideck_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='The Realtime Unified API
 for Accounting integrations'
                 />
@@ -849,7 +863,7 @@ for Accounting integrations'
               >
                 <img
                   src={rxdb_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='The local Database for JavaScript Applications'
                 />
               </a>
@@ -860,7 +874,7 @@ for Accounting integrations'
               >
                 <img
                   src={wda_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='best website design agencies'
                 />
               </a>
@@ -871,15 +885,40 @@ for Accounting integrations'
               >
                 <img
                   src={anon_logo}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='Instagram Story Viewer'
+                />
+              </a>
+              <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
+                <img
+                  src={supadata_logo}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='supadata logo'
+                />
+              </a>
+              <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
+                <img
+                  src={dottxt_logo}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='dottxt logo'
+                />
+              </a>
+              <a
+                href='https://www.sourcemeta.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={sourcemeta_logo}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='dottxt logo'
                 />
               </a>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
-                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3'
+                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'
@@ -901,9 +940,40 @@ for Accounting integrations'
           </div>
         </section>
 
+        {/* Media Partner for JSON Schema conference */}
+        <section className='my-16'>
+          <div className='text-center mb-12'>
+            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
+              Media Partner
+            </h2>
+            <p className='px-12 mx-auto md:w-3/4 md:mx-auto dark:text-slate-300'>
+              The JSON Schema Conference is proudly featured on a global
+              platform connecting tech communities with over 250k monthly
+              visitors, helping speakers, organizers, and attendees discover and
+              engage with leading conferences worldwide.
+              <br />
+            </p>
+          </div>
+          <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4 mb-12'>
+            <a href='https://dev.events/'>
+              {isClient && (
+                <>
+                  <Image
+                    src={devevents_logo}
+                    className='w-48 md:w-56 transition-transform duration-300 hover:scale-105'
+                    width={192}
+                    height={224}
+                    alt='dev events'
+                  />
+                </>
+              )}
+            </a>
+          </div>{' '}
+        </section>
+
         {/* Supported */}
 
-        <section className='my-20'>
+        <section className='my-16'>
           <div className='text-center mb-12'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2'>
               Supported by

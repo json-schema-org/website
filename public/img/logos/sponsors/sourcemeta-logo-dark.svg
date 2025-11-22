@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="3396px" height="846px" viewBox="0 0 3396 846" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Artboard</title>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo" transform="translate(65, 58)">
+            <rect id="Rectangle" stroke="#000000" fill="#000000" fill-rule="nonzero" x="0" y="0" width="730" height="730" rx="19"></rect>
+            <g id="Combined-Shape" transform="translate(164, 304)">
+                <g id="path-1-link" transform="translate(0, 0)" fill="#000000" fill-rule="nonzero">
+                    <polygon id="path-1" points="321.409997 0 360.881298 24.6910325 362 26.4837141 41.4634688 227 0 201.062464"></polygon>
+                </g>
+                <g id="path-1-link" transform="translate(0, 0)" fill="#FFFFFF">
+                    <polygon id="path-1" points="321.409997 0 360.881298 24.6910325 362 26.4837141 41.4634688 227 0 201.062464"></polygon>
+                </g>
+            </g>
+            <g id="Combined-Shape-Copy-5" transform="translate(365, 475.5) scale(-1, 1) translate(-365, -475.5)translate(184, 362)">
+                <g id="path-3-link" transform="translate(-0, 0)" fill="#000000" fill-rule="nonzero">
+                    <polygon id="path-3" points="321.409997 0 360.881298 24.6910325 362 26.4837141 41.4634688 227 0 201.062464"></polygon>
+                </g>
+                <g id="path-3-link" transform="translate(-0, 0)" fill="#FFFFFF">
+                    <polygon id="path-3" points="321.409997 0 360.881298 24.6910325 362 26.4837141 41.4634688 227 0 201.062464"></polygon>
+                </g>
+            </g>
+            <g id="Combined-Shape-Copy-4" transform="translate(364, 301.5) scale(-1, 1) translate(-364, -301.5)translate(183, 188)">
+                <g id="path-5-link" fill="#000000" fill-rule="nonzero">
+                    <polygon id="path-5" points="41.414243 0 362 200.869082 361.6244 201.467727 320.874423 227 0 25.9489352"></polygon>
+                </g>
+                <g id="path-5-link" fill="#FFFFFF">
+                    <polygon id="path-5" points="41.414243 0 362 200.869082 361.6244 201.467727 320.874423 227 0 25.9489352"></polygon>
+                </g>
+            </g>
+            <g id="Combined-Shape" transform="translate(164, 129)">
+                <g id="path-7-link" fill="#000000" fill-rule="nonzero">
+                    <polygon id="path-7" points="41.414243 0 362 200.869082 361.6244 201.467727 320.874423 227 0 25.9489352"></polygon>
+                </g>
+                <g id="path-7-link" fill="#FFFFFF">
+                    <polygon id="path-7" points="41.414243 0 362 200.869082 361.6244 201.467727 320.874423 227 0 25.9489352"></polygon>
+                </g>
+            </g>
+        </g>
+        <text id="Sourcemeta" font-family="SFProDisplay-Regular, SF Pro Display" font-size="490" font-weight="normal" letter-spacing="-10.5" fill="#000000">
+            <tspan x="929" y="589">Sourcemeta</tspan>
+        </text>
+    </g>
+</svg>

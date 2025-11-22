@@ -543,7 +543,7 @@
 - name: json-schema-library
   description: 'Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation'
   toolingTypes: ['validator', 'util-general-processing', 'schema-to-data']
-  languages: ['Javascript', 'TypeScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Sascha Goldhofer'
       username: 'sagold'
