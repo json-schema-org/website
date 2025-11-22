@@ -113,143 +113,84 @@ https://demo.slashdb.com/db/Chinook/Employee/EmployeeId/1.json?schema
             "type": "integer"
         },
         "LastName": {
-            "type": "string",
-            "maxLength": 20
+            "type": "string", "maxLength": 20
         },
         "FirstName": {
-            "type": "string",
-            "maxLength": 20
+            "type": "string", "maxLength": 20
         },
         "Title": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 30
         },
         "ReportsTo": {
-            "type": [
-                "integer",
-                "null"
-            ]
+            "type": ["integer", "null"]
         },
         "BirthDate": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "format": "date-time"
         },
         "HireDate": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "format": "date-time"
         },
         "Address": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 70
         },
         "City": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 40
         },
         "State": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 40
         },
         "Country": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 40
         },
         "PostalCode": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 10
         },
         "Phone": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 24
         },
         "Fax": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 24
         },
         "Email": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 60
         },
         "Employee_1": {
-            "type": [
-                "object",
-                "null"
-            ],
+            "type": ["object", "null"],
             "properties": {
                 "__href": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": ["string", "null"]
                 }
             }
         },
         "Employee_N": {
-            "type": [
-                "object",
-                "null"
-            ],
+            "type": ["object", "null"],
             "properties": {
                 "__href": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": ["string", "null"]
                 }
             }
         },
         "Customer": {
-            "type": [
-                "object",
-                "null"
-            ],
+            "type": ["object", "null"],
             "properties": {
                 "__href": {
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "type": ["string", "null"]
                 }
             }
         },
         "__href": {
-            "type": [
-                "string",
-                "null"
-            ]
+            "type": ["string", "null"]
         }
     }
 }
@@ -294,10 +235,7 @@ https://demo.slashdb.com/db/Chinook/Employee.json?schema
         "maxLength": 20
       },
       "Title": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 30
       },
       "ReportsTo": {
@@ -307,122 +245,71 @@ https://demo.slashdb.com/db/Chinook/Employee.json?schema
         ]
       },
       "BirthDate": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "format": "date-time"
       },
       "HireDate": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "format": "date-time"
       },
       "Address": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 70
       },
       "City": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 40
       },
       "State": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 40
       },
       "Country": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 40
       },
       "PostalCode": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 10
       },
       "Phone": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 24
       },
       "Fax": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 24
       },
       "Email": {
-        "type": [
-          "string",
-          "null"
-        ],
+        "type": ["string", "null"],
         "maxLength": 60
       },
       "Employee_1": {
-        "type": [
-          "object",
-          "null"
-        ],
+        "type": ["object", "null"],
         "properties": {
           "__href": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           }
         }
       },
       "Employee_N": {
-        "type": [
-          "object",
-          "null"
-        ],
+        "type": ["object", "null"],
         "properties": {
           "__href": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           }
         }
       },
       "Customer": {
-        "type": [
-          "object",
-          "null"
-        ],
+        "type": ["object", "null"],
         "properties": {
           "__href": {
-            "type": [
-              "string",
-              "null"
-            ]
+            "type": ["string", "null"]
           }
         }
       },
       "__href": {
-        "type": [
-          "string",
-          "null"
-        ]
+        "type": ["string", "null"]
       }
     },
     "required": [
@@ -528,16 +415,10 @@ And the schema:
         "type": "object",
         "properties": {
             "Year": {
-                "type": [
-                    "integer",
-                    "null"
-                ]
+                "type": ["integer", "null"]
             },
             "Total": {
-                "type": [
-                    "number",
-                    "null"
-                ]
+                "type": ["number", "null"]
             }
         }
     },
@@ -601,10 +482,7 @@ https://demo.slashdb.com/querydef/active-users.json?schema
     "additionalProperties": false,
     "properties": {
         "creator": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "pattern": "^(?![xX][mM][lL])[a-zA-Z_][a-zA-Z0-9@_~-]*$",
             "maxLength": 128
         },
@@ -614,10 +492,7 @@ https://demo.slashdb.com/querydef/active-users.json?schema
             "maxLength": 128
         },
         "desc": {
-            "type": [
-                "string",
-                "null"
-            ],
+            "type": ["string", "null"],
             "maxLength": 4096
         },
         "execute": {
@@ -694,10 +569,7 @@ https://demo.slashdb.com/querydef/active-users.json?schema
             ]
         },
         "url_template": {
-            "type": [
-                "string",
-                "null"
-            ]
+            "type": ["string", "null"]
         }
     },
     "required": [
