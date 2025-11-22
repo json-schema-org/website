@@ -14,7 +14,7 @@ authors:
 excerpt: "As modern multi-model databases increasingly support JSON, it's time to explore what role JSON schema will play."
 ---
 
-JSON Schema has become the backbone of modern API design—not just for describing data types, but for enforcing consistency, validating input, and communicating intent between systems. Beyond simple type declarations, schemas can capture constraints like string lengths, date formats, nullability, and even complex conditional logic.  
+JSON Schema has become the backbone of modern API design — not just for describing data types, but for enforcing consistency, validating input, and communicating intent between systems. Beyond simple type declarations, schemas can capture constraints like string lengths, date formats, nullability, and even complex conditional logic.  
 
 In this article, we’ll explore how these advanced features come to life in a real-world setting: [SlashDB](https://docs.slashdb.com/), a REST API gateway for relational databases. By examining its schema endpoints and validation mechanisms, you’ll see how JSON Schema can:  
 
@@ -597,7 +597,7 @@ We also see the `oneOf` attribute - used here to define that an attribute is eit
 
 ### Conclusion: JSON Schema as a Bridge Between Data and APIs
 
-What we’ve seen through SlashDB is more than just schema decoration—it’s JSON Schema acting as a **bridge** between relational data models and modern web APIs. By embedding constraints like `maxLength`, `format`, and `pattern` directly into schemas, SlashDB ensures that data integrity is preserved not only in the database but also at the API boundary.  
+What we’ve seen through SlashDB is more than just schema decoration — it’s JSON Schema acting as a **bridge** between relational data models and modern web APIs. By embedding constraints like `maxLength`, `format`, and `pattern` directly into schemas, SlashDB ensures that data integrity is preserved not only in the database but also at the API boundary.  
 
 For developers, this means:  
 - **Confidence in data quality** before it ever reaches the database  
@@ -606,7 +606,7 @@ For developers, this means:
 
 As JSON Schema continues to evolve, its role in API ecosystems will only grow. Whether you’re designing a new service or modernizing legacy systems, adopting schema-driven validation is one of the most effective ways to build APIs that are both resilient and self-documenting.  
 
-If you’re already using JSON Schema, consider how tools like SlashDB can extend its power into your data layer. And if you’re just getting started, let this case study be a reminder: schemas aren’t just documentation—they’re executable rules that make your APIs smarter, safer, and more reliable.  
+If you’re already using JSON Schema, consider how tools like SlashDB can extend its power into your data layer. And if you’re just getting started, let this case study be a reminder: schemas aren’t just documentation — they’re executable rules that make your APIs smarter, safer, and more reliable.  
 
 > ## 📌 Key Takeaways: JSON Schema in Data-Centric APIs
 > 
