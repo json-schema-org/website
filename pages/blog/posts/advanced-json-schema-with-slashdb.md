@@ -368,7 +368,7 @@ curl -X POST "https://demo.slashdb.com/db/Chinook/Employee.json" -d '{"EmployeeI
 {"http_code": 400, "description": "Could not parse JSON: The \"BirthDate\": error at node '/0/BirthDate': '01-01-2000' is not a 'date-time'"}
 ```
 
-The validator used the `format` property of the `BirthDate` to check that the value was formatted as an ISO 8601 datetime string, and detected an error. 
+The validator used the `format` property of the `BirthDate` to check that the value was formatted as an RFC 3339 datetime string (a subset of ISO 8601), and detected an error. 
 
 
 #### SQL Pass-Thru
@@ -613,7 +613,7 @@ If you’re already using JSON Schema, consider how tools like SlashDB can exten
 > - **Type & Nullability** → Use `type` with arrays (e.g. `["string", "null"]`) to explicitly allow nullable fields.  
 > - **Required vs. Optional** → `required` enforces critical fields (like primary keys), while optional fields can be left null or omitted.  
 > - **String Constraints** → `maxLength` ensures values (e.g. `PostalCode`) don’t exceed database column limits.  
-> - **Date & Time Validation** → `format: "date-time"` enforces ISO 8601 compliance for temporal fields.  
+> - **Date & Time Validation** → `format: "date-time"` enforces RFC 3339 compliance for temporal fields.  
 > - **Array Controls** → `minItems` and `maxItems` define expected record counts in query results.  
 > - **Pattern Matching** → `pattern` applies regex rules to enforce naming conventions or input formats.  
 > - **Conditional Structures** → `oneOf` allows flexible definitions (e.g. property may be `null` or an array of strings).  
