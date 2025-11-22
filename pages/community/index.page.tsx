@@ -374,7 +374,7 @@ export default function communityPages(props: any) {
                       <div className='dark:text-slate-300 text-sm'>
                         <span>
                           {blogPosts[0].frontmatter.date} &middot;{timeToRead}{' '}
-                          min min read
+                          min read
                         </span>
                       </div>
                     </div>
