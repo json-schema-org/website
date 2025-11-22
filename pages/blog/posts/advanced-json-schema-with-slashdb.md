@@ -368,7 +368,7 @@ curl -X POST "https://demo.slashdb.com/db/Chinook/Employee.json" -d '{"EmployeeI
 {"http_code": 400, "description": "Could not parse JSON: The \"BirthDate\": error at node '/0/BirthDate': '01-01-2000' is not a 'date-time'"}
 ```
 
-The validator used the `format` property of the `BirthDate` to check that the value was formatted as an IS0 8601 datetime string, and detected an error. 
+The validator used the `format` property of the `BirthDate` to check that the value was formatted as an ISO 8601 datetime string, and detected an error. 
 
 
 #### SQL Pass-Thru
