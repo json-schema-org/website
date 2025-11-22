@@ -374,7 +374,7 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
+            <div className='p-4 w-full mb-6 border border-slate-300 rounded-lg dark:border-none dark:shadow-2xl'>
               <Link href='https://json-schema.org/slack'>
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
@@ -429,7 +429,7 @@ const Home = (props: any) => {
               </button>
             </div>
             {/* BlogPost Data */}
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
+            <div className='p-4 w-full mb-6 border border-slate-300 rounded-lg dark:border-none dark:shadow-2xl'>
               <Link href={`/blog/posts/${blogPosts[0].slug}`}>
                 <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
                   The JSON Schema Blog
@@ -513,7 +513,7 @@ const Home = (props: any) => {
               </div>
             </div>
             <div>
-              <div className='p-4 md:w-full mb-6 mr-4 dark:shadow-2xl'>
+              <div className='p-4 w-full mb-6 border border-slate-300 rounded-lg dark:border-none dark:shadow-2xl'>
                 <h3 className='mb-2 font-semibold dark:text-slate-200'>
                   JSON Schema Community Meetings & Events
                 </h3>
