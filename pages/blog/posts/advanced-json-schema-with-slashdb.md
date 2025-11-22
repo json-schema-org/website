@@ -32,7 +32,7 @@ We will be examining how an application can leverage these features to thoroughl
 
 In addition to creating endpoints for data, **SlashDB** has JSON schema endpoints so that you may examine the structure of any resource.
 
-It has two modes of operation - *Data Discovery* and *SQL Pass-Thru*.
+It has two modes of operation — *Data Discovery* and *SQL Pass-Thru*.
 
 *Data Discovery* exposes unique REST endpoints for every resource within a database, from full tables, to subsets of tables, to individual columns or values.
 
@@ -41,20 +41,20 @@ It has two modes of operation - *Data Discovery* and *SQL Pass-Thru*.
 
 #### Example Data Discovery Endpoints
 
-* a database endpoint - https://demo.slashdb.com/db/Chinook
+* a database endpoint — https://demo.slashdb.com/db/Chinook
 
-* a table endpoint - https://demo.slashdb.com/db/Chinook/Employee
+* a table endpoint — https://demo.slashdb.com/db/Chinook/Employee
 
-* a single record, identified by primary key - https://demo.slashdb.com/db/Chinook/Employee/EmployeeId/1
+* a single record, identified by primary key — https://demo.slashdb.com/db/Chinook/Employee/EmployeeId/1
 
 
 *Data Discovery* also uses JSON schemas to validate data when records are being created or changed.
 
 #### Example SQL Pass-Thru Endpoints
 
-* a simple query - https://demo.slashdb.com/query/sales-by-year.json?limit=29
+* a simple query — https://demo.slashdb.com/query/sales-by-year.json?limit=29
 
-* a *parameterized* query, with a parameter-value pair of `year/2010` - https://demo.slashdb.com/query/invoices-by-year/year/2010?limit=29
+* a *parameterized* query, with a parameter-value pair of `year/2010` — https://demo.slashdb.com/query/invoices-by-year/year/2010?limit=29
 
 ### Examining Data & Schemas
 
@@ -94,7 +94,7 @@ https://demo.slashdb.com/db/Chinook/Employee/EmployeeId/1.json
 }
 ```
 
-We see that this record has data fields of various kinds - numbers, strings, dates, null values, as well as some additional metadata.
+We see that this record has data fields of various kinds — numbers, strings, dates, null values, as well as some additional metadata.
 
 Now let's retrieve the schema for this record:
 https://demo.slashdb.com/db/Chinook/Employee/EmployeeId/1.json?schema
@@ -198,21 +198,23 @@ https://demo.slashdb.com/db/Chinook/Employee/EmployeeId/1.json?schema
 
 Examining this schema and comparing to the data, we can see that various JSON schema properties are present:
 
-* there are `required` fields, specifying which fields in the record cannot not be null - this attribute also contains the table's primary key, in this case `EmployeeId`
+* there are `required` fields, specifying which fields in the record cannot not be null — this attribute also contains the table's primary key, in this case `EmployeeId`
 
 * some `string` fields have the `maxLength` property, reflecting that a maximum length is defined for the database column
 
-* some `string` fields have the `format` property, that identifies them as `date-time` fields - validation/parsing tools can use this to ensure data validity
+* some `string` fields have the `format` property, that identifies them as `date-time` fields — validation/parsing tools can use this to ensure data validity
 
-* a `type` with an array of values means the field can be any one of those types - e.g. `["string", "null"]` is a string field that is nullable
+* a `type` with an array of values means the field can be any one of those types — e.g. `["string", "null"]` is a string field that is nullable
+
+While this approach is not typical—and not always the most appropriate — we support two ways for a property to be absent: it can be explicitly set to null, or it can be omitted entirely. This can help reduce bandwidth when transmitting data and aligns with XML conventions, which SlashDB also supports and which similarly allow a tag to be either "nillable" or omitted.
 
 #### Endpoints With Multiple Records
 
-To pull multiple records:
+To pull multiple records (table) you would use:
 
 https://demo.slashdb.com/db/Chinook/Employee.json?limit=3
 
-And the schema:
+To get corresponding schema:
 
 https://demo.slashdb.com/db/Chinook/Employee.json?schema
 
@@ -321,6 +323,7 @@ https://demo.slashdb.com/db/Chinook/Employee.json?schema
   "minItems": 1
 }
 ```
+
 In this last endpoint, the schema is the same but is nested in an `array` of `items` since there are multiple records. Additionally, the JSON schema `minItems` property is present to denote that data being validated against this schema should contain at least one record.
 
 One other parameter we can use with **SlashDB**'s schemas is the `cardinality` query string parameter:
@@ -426,9 +429,9 @@ And the schema:
 }
 ```
 
-In the schema, all records are grouped inside of an `array` of `items`, with an object property for each column in the results.  Note that in *SQL Pass-Thru*, the `type` will always be an array of values - the first value being the actual type, the second being `null`; this allows the schema to account for NULL values in the result.
+In the schema, all records are grouped inside of an `array` of `items`, with an object property for each column in the results.  Note that in *SQL Pass-Thru*, the `type` will always be an array of values — the first value being the actual type, the second being `null`; this allows the schema to account for NULL values in the result.
 
-You can now use this schema to examine the structure of the query's output, and also to validate data with any client-side tools that support JSON schemas.
+You can now use this schema to examine the structure of the query's output, and also to validate data with any client—side tools that support JSON schemas.
 
 ### SlashDB Internal API & Schemas
 
@@ -442,7 +445,7 @@ A couple more JSON schema properties are used in internal schemas: `pattern` and
 
 ### Example Endpoints
 
-* a query definition -  https://demo.slashdb.com/querydef/active-users
+* a query definition —  https://demo.slashdb.com/querydef/active-users
 
 ### API & Schemas
 
@@ -591,9 +594,9 @@ https://demo.slashdb.com/querydef/active-users.json?schema
 
 We see that the `pattern` attribute is present in several portions of the schema here.  Used in conjunction with `string`, `pattern` allows you to specify a regular expression that a value must match against.
 
-E.g - the `query_id` attribute, which is a unique string that identifies the query, must be no more than 128 characters long (`maxLength` property), and the string must match [this regular expression](https://regex101.com/r/2crKdN/2) - `^(?![xX][mM][lL])[a-zA-Z_][a-zA-Z0-9@_~-]`.
+For example, the `query_id` attribute, which is a unique string that identifies the query, must be no more than 128 characters long (`maxLength` property), and the string must match [this regular expression](https://regex101.com/r/2crKdN/2) — `^(?![xX][mM][lL])[a-zA-Z_][a-zA-Z0-9@_~-]`.
 
-We also see the `oneOf` attribute - used here to define that an attribute is either null/not present, or an array of `items` (e.g. the `read` or `write` properties).
+We also see the `oneOf` attribute — used here to define that an attribute is either null/not present, or an array of `items` (e.g. the `read` or `write` properties).
 
 ### Conclusion: JSON Schema as a Bridge Between Data and APIs
 
