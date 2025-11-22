@@ -543,7 +543,7 @@
 - name: json-schema-library
   description: 'Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation'
   toolingTypes: ['validator', 'util-general-processing', 'schema-to-data']
-  languages: ['Javascript', 'TypeScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Sascha Goldhofer'
       username: 'sagold'
@@ -3422,6 +3422,29 @@
   source: 'https://github.com/gmr/jsonschema-models'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'Blaze4J'
+  description: 'Blaze4J is a high-performance Java wrapper for the Blaze JSON Schema validator,'
+  toolingTypes: ['validator']
+  languages: ['Java']
+  environments: ['Windows', 'Linux', 'macOS']
+  creators:
+    - name: 'Madhav Dhatrak (Contributor)'
+      username: 'MadhavDhatrak'
+      platform: 'github'
+    - name: 'Bence Eros (Mentor)'
+      username: 'erosb'
+      platform: 'github'
+  maintainers:
+    - name: 'Madhav Dhatrak'
+      username: 'MadhavDhatrak'
+      platform: 'github'
+  license: 'AGPL-3.0'
+  source: 'https://github.com/MadhavDhatrak/Blaze4J.git'
+  homepage: 'https://github.com/MadhavDhatrak/Blaze4J.git'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Project built under GSoC "25. High-performance Java wrapper for Blaze JSON Schema validator using Java FFM API.'
 
 - name: 'json-schema-utils'
   description: 'Random utilities to analyze and manipulate JSON Schema'
