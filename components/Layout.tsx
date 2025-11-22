@@ -162,9 +162,9 @@ const MainNavLink = ({
         // }`,
         // `${extractPathWithoutFragment(router.asPath) === uri ? 'text-primary dark:text-white dark:underline hover:text-primary' : 'text-slate-600 dark:text-white hover:text-primary dark:hover:underline'}`,
         {
-          'text-primary dark:text-white dark:underline hover:text-primary':
+          'text-primary dark:text-blue-400 hover:text-primary dark:hover:text-blue-400':
             isActiveNav,
-          'text-slate-600 dark:text-white hover:text-primary dark:hover:underline':
+          'text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-blue-300':
             !isActiveNav,
         },
       )}
@@ -351,13 +351,16 @@ const Footer = () => (
         <div className='flex flex-col text-center sm:text-left'>
           <a
             href='https://opencollective.com/json-schema'
-            className='text-white mb-2'
+            className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             Open Collective
           </a>
         </div>
         <div className='flex flex-col text-center sm:text-left'>
-          <Link href='/overview/code-of-conduct' className='text-white mb-2'>
+          <Link
+            href='/overview/code-of-conduct'
+            className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
+          >
             Code of Conduct
           </Link>
         </div>
@@ -366,13 +369,13 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://json-schema.org/slack'
-            className='flex items-center text-white'
+            className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
               src='/img/logos/slack_logo_small-white.svg'
               width={16}
               height={16}
-              className=' mr-2'
+              className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='Slack logo'
             />
             Slack
@@ -381,13 +384,13 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://x.com/jsonschema'
-            className='flex items-center text-white'
+            className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
               src='/img/logos/x-twitter.svg'
               width={16}
               height={16}
-              className=' mr-2'
+              className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='X logo'
             />{' '}
             X
@@ -396,13 +399,13 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://linkedin.com/company/jsonschema/'
-            className='flex items-center text-white'
+            className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
               src='/img/logos/icons8-linkedin-2.svg'
               width={16}
               height={16}
-              className=' mr-2'
+              className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='LinkedIn logo'
             />
             LinkedIn
@@ -411,13 +414,13 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
-            className='flex items-center text-white'
+            className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
               src='/img/logos/icons8-youtube.svg'
               width={16}
               height={16}
-              className='mr-2'
+              className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='YouTube logo'
             />
             Youtube
@@ -426,13 +429,13 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://github.com/json-schema-org'
-            className='flex items-center text-white'
+            className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
               src='/img/logos/github_logo-white.svg'
               width={16}
               height={16}
-              className='mr-2'
+              className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='GitHub logo'
             />
             GitHub
