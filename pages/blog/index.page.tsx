@@ -218,12 +218,16 @@ export default function StaticMarkdownPage({
                   {recentBlog[0].frontmatter.title}
                 </h1>
                 <div className='flex ml-2 mb-2 gap-2'>
-                  <div
-                    className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                    style={{
-                      backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})`,
-                    }}
-                  />
+                  <div className='relative h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 overflow-hidden border-2 border-white bg-slate-200'>
+                    <Image
+                      src={recentBlog[0].frontmatter.authors[0].photo}
+                      alt={recentBlog[0].frontmatter.authors[0].name}
+                      fill
+                      className='object-cover'
+                      sizes='44px'
+                    />
+                  </div>
+
                   <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
                     <p className='text-sm font-semibold text-stroke-1'>
                       {recentBlog[0].frontmatter.authors[0].name}
@@ -357,17 +361,22 @@ export default function StaticMarkdownPage({
                         {(frontmatter.authors || []).map(
                           (author: Author, index: number) => (
                             <div
-                              key={index}
-                              className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                              className={`relative rounded-full overflow-hidden -ml-3 border-2 border-white ${
                                 frontmatter.authors.length > 2
                                   ? 'h-8 w-8'
                                   : 'h-11 w-11'
                               }`}
-                              style={{
-                                backgroundImage: `url(${author.photo})`,
-                                zIndex: 10 - index,
-                              }}
-                            />
+                              key={index}
+                              style={{ zIndex: 10 - index }}
+                            >
+                              <Image
+                                src={author.photo!}
+                                alt={author.name}
+                                fill
+                                className='object-cover'
+                                sizes='44px'
+                              />
+                            </div>
                           ),
                         )}
                       </div>
