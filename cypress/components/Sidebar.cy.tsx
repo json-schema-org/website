@@ -71,8 +71,7 @@ describe('Sidebar Component', () => {
       // Click on mobile menu button (the div with onClick handler)
       cy.get('.lg\\:hidden > div').first().click();
 
-      // Menu should be open
-      cy.get('.transform.-translate-x-0').should('exist');
+      cy.get('.transform.translate-x-0').should('exist');
     });
 
     it('should show correct section title based on current path', () => {
@@ -124,7 +123,7 @@ describe('Sidebar Component', () => {
 
       // Open mobile menu
       cy.get('.lg\\:hidden > div').first().click();
-      cy.get('.transform.-translate-x-0').should('exist');
+      cy.get('.transform.translate-x-0').should('exist');
 
       // Resize to desktop
       cy.viewport(1025, 768);
