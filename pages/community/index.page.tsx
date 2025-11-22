@@ -119,7 +119,9 @@ export default function communityPages(props: any) {
                       priority={index < 10}
                       loading={index < 10 ? 'eager' : 'lazy'}
                       quality={75}
-                      className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
+                      className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] 
+rounded-full border-black 
+transition-transform duration-200 hover:scale-110 hover:shadow-md'
                     />
                   ))}
               </div>
