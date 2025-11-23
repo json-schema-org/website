@@ -72,7 +72,7 @@ floating-point.
 [tab "Perl"]
 
 The following table maps from the names of JSON types to
-their analogous types in Objective-C:
+their analogous types in Perl:
 
 | JSON    | Perl                                             |
 |---------|--------------------------------------------------|
@@ -85,7 +85,7 @@ their analogous types in Objective-C:
 
 [tab "Objective-C"]
 
-The following table maps from the names of JavaScript types to
+The following table maps from the names of JSON types to
 their analogous types in Objective-C:
 
 | JSON    | Objective-C  |
@@ -105,7 +105,7 @@ value for identity (pointer equality) to `@YES` and `@NO` constants.
 
 [tab "Swift"]
 
-The following table maps from the names of JavaScript types to
+The following table maps from the names of JSON types to
 their analogous types in Swift:
 
 | JSON    | Swift      |
@@ -129,7 +129,7 @@ The `type` keyword can take two forms:
 
 1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean`, `integer`, `number`, `null`, `object`, `regular expressions`, or `string`). This specifies that the instance data is only valid when it matches that specific type. 
 
-Here is an example of using the `string` keyword as a single string:
+Here is an example of using the `number` keyword as a single string:
 
 ```json
 // props { "isSchema": true }
