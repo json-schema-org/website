@@ -984,7 +984,7 @@ for Accounting integrations'
               <br />
               <a
                 href='mailto:info@json-schema.org'
-                className='border-b border-black dark:border-white'
+                className='border-b border-black dark:border-white inline-block transition-transform duration-300 hover:scale-105 hover:-translate-y-0.5'
               >
                 Email us
               </a>{' '}
