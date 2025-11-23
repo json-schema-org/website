@@ -681,7 +681,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.asyncapi}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='asyncapi'
@@ -698,7 +698,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.airbnb}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='airbnb'
@@ -715,7 +715,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.postman}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='postman'
@@ -728,7 +728,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.endjin}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='endjin'
@@ -741,7 +741,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.llc}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='llc'
@@ -758,7 +758,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.vpsserver}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='vpsserver'
@@ -775,7 +775,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.itflashcards}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='itflashcards'
@@ -792,7 +792,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.route4me}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='route4me'
@@ -805,7 +805,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.n8n}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='n8n'
@@ -818,7 +818,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={logos.ccopter}
-                      className=' w-44'
+                      className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
                       alt='ccopter'
@@ -827,7 +827,10 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <img src={logos.octue} className=' w-44' />
+                <img
+                  src={logos.octue}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                />
               </a>
               <a
                 href='https://www.apideck.com/'
@@ -836,7 +839,7 @@ const Home = (props: any) => {
               >
                 <img
                   src={logos.apideck}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='The Realtime Unified API
 for Accounting integrations'
                 />
@@ -848,7 +851,7 @@ for Accounting integrations'
               >
                 <img
                   src={logos.rxdb}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='The local Database for JavaScript Applications'
                 />
               </a>
@@ -859,7 +862,7 @@ for Accounting integrations'
               >
                 <img
                   src={logos.wda}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='best website design agencies'
                 />
               </a>
@@ -870,19 +873,23 @@ for Accounting integrations'
               >
                 <img
                   src={logos.anon}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='Instagram Story Viewer'
                 />
               </a>
               <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
                 <img
                   src={logos.supadata}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='supadata logo'
                 />
               </a>
               <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
-                <img src={logos.dottxt} className=' w-44' alt='dottxt logo' />
+                <img
+                  src={logos.dottxt}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='dottxt logo'
+                />
               </a>
               <a
                 href='https://www.sourcemeta.com/'
@@ -891,7 +898,7 @@ for Accounting integrations'
               >
                 <img
                   src={logos.sourcemeta}
-                  className=' w-44'
+                  className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='dottxt logo'
                 />
               </a>
@@ -941,7 +948,7 @@ for Accounting integrations'
                 <>
                   <Image
                     src={logos.devevents}
-                    className='w-48 md:w-56'
+                    className='w-48 md:w-56 transition-transform duration-300 hover:scale-105'
                     width={192}
                     height={224}
                     alt='dev events'
