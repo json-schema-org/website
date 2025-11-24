@@ -122,6 +122,7 @@ const Home = (props: any) => {
       dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
       supadata: '/img/logos/sponsors/supadata-logo-light.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
+      nix: '/img/logos/sponsors/n-ix-logo.png',
     },
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
@@ -145,6 +146,7 @@ const Home = (props: any) => {
       supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
       dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
+      nix: '/img/logos/sponsors/n-ix-logo.png',
     },
   };
 
@@ -900,6 +902,17 @@ for Accounting integrations'
                   src={logos.sourcemeta}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='dottxt logo'
+                />
+              </a>
+              <a
+                href='https://www.n-ix.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={logos.nix}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='n-iX logo'
                 />
               </a>
               <a
