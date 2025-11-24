@@ -904,11 +904,7 @@ for Accounting integrations'
                   alt='dottxt logo'
                 />
               </a>
-              <a
-                href='https://www.n-ix.com/'
-                target='_blank'
-                rel='noreferrer'
-              >
+              <a href='https://www.n-ix.com/' target='_blank' rel='noreferrer'>
                 <img
                   src={logos.nix}
                   className='w-44 transition-transform duration-300 hover:scale-105'
