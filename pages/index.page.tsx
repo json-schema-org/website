@@ -864,8 +864,6 @@ const Home = (props: any) => {
                   src={logos.rxdb}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='The local Database for JavaScript Applications'
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The local Database for JavaScript Applications'
                 />
               </a>
               <a
@@ -877,8 +875,6 @@ const Home = (props: any) => {
                   width={176}
                   height={100}
                   src={logos.wda}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='best website design agencies'
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='best website design agencies'
                 />
