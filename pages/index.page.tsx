@@ -926,8 +926,10 @@ const Home = (props: any) => {
                 />
               </a>
               <a href='https://www.n-ix.com/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
                   src={logos.nix}
+                  width={176}
+                  height={100}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='n-iX logo'
                 />
