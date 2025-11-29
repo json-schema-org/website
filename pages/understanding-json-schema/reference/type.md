@@ -11,21 +11,19 @@ next:
 
 The `type` [keyword](../../learn/glossary#keyword) is fundamental to JSON Schema because it specifies the data type that a schema should expect.
 
-At its core, JSON Schema defines the following basic types:
+The `type` keyword defines the following types:
 
 - [array](../../understanding-json-schema/reference/array)
 - [boolean](../../understanding-json-schema/reference/boolean)
 - [null](../../understanding-json-schema/reference/null)
+- [integer](../../understanding-json-schema/reference/numeric)
 - [number](../../understanding-json-schema/reference/numeric)
 - [object](../../understanding-json-schema/reference/object)
 - [string](../../understanding-json-schema/reference/string)
 
+> Note: JSON does not define an `integer` type. In JSON Schema, `"type": "integer"` is shorthand for `"type": "number", "multipleOf": 1`, and is used to represent whole-number numeric values.
 
-These types have analogs in most programming languages, though they may
-go by different names.
-
-> Note: JSON does not define an `integer` type. In JSON Schema, `"integer"` is shorthand for `"number"` with `"multipleOf": 1`, used to represent whole-number numeric values.
-
+These types have analogs in most programming languages, though they may go by different names.
 
 [tabs-start "Language-specific info"]
 
@@ -129,7 +127,7 @@ to decode ``Int`` from a non-integer number in JSON.
 
 The `type` keyword can take two forms:
 
-1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean` , `number`, `null`, `object` or `string`). This specifies that the instance data is only valid when it matches that specific type. 
+1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean`, `number`, `null`, `object` or `string`). This specifies that the instance data is only valid when it matches that specific type. 
 
 Here is an example of using `"number"` as a single string value:
 
@@ -208,7 +206,7 @@ The JSON Schema specification has a bias toward networking-related formats due t
 
 ### Built-in Formats
 
-It should be noted that `format` is not limited to a specific set of valid values or types. Users may define additional custom formats, but the built-in formats apply only to the `string` type. Below, we cover the formats defined in the JSON Schema specification.
+It should be noted that `format` is not limited to a specific set of valid values or types. Users may define their own custom formats including ones that work with JSON data types other than `string`, such as `number`. Below, we cover the formats specified in the JSON Schema specification.
 
 #### Dates and Times
 
