@@ -102,6 +102,7 @@ export default function StaticMarkdownPage({
         .split(',')
         .filter(isValidCategory);
       setCurrentFilterTags(tags.length ? tags : ['All']);
+      setCurrentPage(1);
     }
   }, [router.query]);
 
@@ -189,6 +190,23 @@ export default function StaticMarkdownPage({
     getCategories(post.frontmatter).forEach((cat) => allTagsSet.add(cat));
   });
   const allTags = ['All', ...Array.from(allTagsSet)];
+
+  // pagination implement
+  const POSTS_PER_PAGE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(sortedFilteredPosts.length / POSTS_PER_PAGE);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [totalPages]);
+
+  const currentPagePosts = sortedFilteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  );
 
   return (
     // @ts-ignore
@@ -298,9 +316,38 @@ export default function StaticMarkdownPage({
           </span>
         </div>
 
+        {/* pagination control */}
+        <div className='flex justify-center items-center gap-4 my-5'>
+          <button
+            className={`px-4 py-2 rounded-md font-semibold ${
+              currentPage === 1
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => p - 1)}
+          >
+            Previous
+          </button>
+          <span className='text-lg font-medium dark:text-white'>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className={`px-4 py-2 rounded-md font-semibold ${
+              currentPage === totalPages
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => p + 1)}
+          >
+            Next
+          </button>
+        </div>
+
         {/* Blog Posts Grid */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
-          {sortedFilteredPosts.map((blogPost: any, idx: number) => {
+          {currentPagePosts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
