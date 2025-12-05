@@ -58,6 +58,11 @@ export function DocsHelp({
   const [error, setError] = useState('');
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
+  // Popup state
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+  const [popupType, setPopupType] = useState<'success' | 'error' | ''>('');
+
   // Generate GitHub redirect URL
   const getGitRedirect = () => {
     if (
@@ -85,9 +90,24 @@ export function DocsHelp({
 
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
+
     const formData = new FormData(feedbackFormRef.current!);
+
+    // 🔍 Validation for empty feedback comment
+    const feedbackComment = formData.get('feedback-comment')?.toString().trim();
+    if (!feedbackComment) {
+      const message = 'Please enter a feedback comment before submitting.';
+      setError('Feedback comment cannot be empty.');
+      setPopupMessage(message);
+      setPopupType('error');
+      setShowPopup(true);
+      return;
+    }
+
     formData.append('feedback-page', router.asPath);
+
     setIsSubmitting(true);
+    setError('');
 
     try {
       const response = await fetch(
@@ -99,18 +119,30 @@ export function DocsHelp({
           body: JSON.stringify({
             feedbackPage: formData.get('feedback-page'),
             feedbackVote: formData.get('feedback-vote'),
-            feedbackComment: formData.get('feedback-comment'),
+            // use trimmed, non-empty comment
+            feedbackComment,
           }),
         },
       );
 
       if (response.ok) {
         submitFeedbackHandler('feedback');
+        setPopupMessage('Thanks for the feedback!');
+        setPopupType('success');
+        setShowPopup(true);
       } else {
-        setError('An error occurred. Please try again later.');
+        const message = 'An error occurred. Please try again later.';
+        setError(message);
+        setPopupMessage(message);
+        setPopupType('error');
+        setShowPopup(true);
       }
     } catch (error) {
-      setError('An error occurred. Please try again later.');
+      const message = 'An error occurred. Please try again later.';
+      setError(message);
+      setPopupMessage(message);
+      setPopupType('error');
+      setShowPopup(true);
     } finally {
       setIsSubmitting(false);
     }
@@ -254,13 +286,17 @@ export function DocsHelp({
                         type='submit'
                         variant='outline'
                         size='sm'
-                        className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200 dark:hover:bg-gray-600'}`}
+                        className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${
+                          isSubmitting
+                            ? 'cursor-not-allowed opacity-50'
+                            : 'hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
                         disabled={isSubmitting}
                         data-test='feedback-submit-button'
                       >
                         <Icon>
                           <path d='M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2' />
-                          <path d='m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2' />
+                          <path d='m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0-.398-2' />
                         </Icon>
                         Submit Feedback
                       </Button>
@@ -272,7 +308,11 @@ export function DocsHelp({
                         type='button'
                         variant='outline'
                         size='sm'
-                        className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${isSubmitting ? 'cursor-not-allowed opacity-50' : 'hover:bg-gray-200 dark:hover:bg-gray-600'}`}
+                        className={`px-[16px] py-[7px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md ${
+                          isSubmitting
+                            ? 'cursor-not-allowed opacity-50'
+                            : 'hover:bg-gray-200 dark:hover:bg-gray-600'
+                        }`}
                         disabled={isSubmitting}
                         onClick={createGitHubIssueHandler}
                         data-test='create-github-issue-button'
@@ -424,6 +464,28 @@ export function DocsHelp({
           </div>
         </div>
       </div>
+
+      {/* Popup modal */}
+      {showPopup && (
+        <div className='fixed inset-0 z-50 flex items-center justify-center bg-black/40'>
+          <div className='bg-white dark:bg-gray-800 rounded-lg shadow-lg px-6 py-4 max-w-sm w-full text-center'>
+            <p
+              className={`mb-4 text-sm ${
+                popupType === 'success' ? 'text-green-600' : 'text-red-600'
+              }`}
+            >
+              {popupMessage}
+            </p>
+            <Button
+              size='sm'
+              onClick={() => setShowPopup(false)}
+              className='px-4 py-1'
+            >
+              OK
+            </Button>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
