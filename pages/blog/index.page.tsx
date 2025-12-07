@@ -316,37 +316,8 @@ export default function StaticMarkdownPage({
           </span>
         </div>
 
-        {/* pagination control */}
-        <div className='flex justify-center items-center gap-4 my-5'>
-          <button
-            className={`px-4 py-2 rounded-md font-semibold ${
-              currentPage === 1
-                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700'
-            }`}
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => p - 1)}
-          >
-            Previous
-          </button>
-          <span className='text-lg font-medium dark:text-white'>
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            className={`px-4 py-2 rounded-md font-semibold ${
-              currentPage === totalPages
-                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700'
-            }`}
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => p + 1)}
-          >
-            Next
-          </button>
-        </div>
-
         {/* Blog Posts Grid */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
           {currentPagePosts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
@@ -476,6 +447,34 @@ export default function StaticMarkdownPage({
               </section>
             );
           })}
+        </div>
+        {/* pagination control */}
+        <div className='flex justify-center items-center gap-4'>
+          <button
+            className={`px-4 py-2 rounded-md font-semibold ${
+              currentPage === 1
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => p - 1)}
+          >
+            Previous
+          </button>
+          <span className='text-lg font-medium dark:text-white'>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className={`px-4 py-2 rounded-md font-semibold ${
+              currentPage === totalPages
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => p + 1)}
+          >
+            Next
+          </button>
         </div>
       </div>
     </SectionContext.Provider>
