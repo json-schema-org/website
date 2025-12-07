@@ -220,7 +220,12 @@ const getPartsOfJsonObjectContent = (
     stringsWithPayload = [...stringsWithPayload, stringWithPayload];
   });
 
-  let keywordsAndValue: any[] = [];
+  let keywordsAndValue: Array<{
+    index?: number;
+    keyword?: string;
+    payload?: string;
+    payloadStartIndex?: number;
+  }> = [];
 
   let openCurlyBrackets = 0;
   let openSquareBrackets = 0;
@@ -303,6 +308,14 @@ const getPartsOfJsonObjectContent = (
   });
 
   return keywordsAndValue.reduce((acc, keywordAndValue) => {
+    if (
+      !keywordAndValue.keyword ||
+      keywordAndValue.index === undefined ||
+      !keywordAndValue.payload ||
+      keywordAndValue.payloadStartIndex === undefined
+    ) {
+      return acc;
+    }
     const propertyJsonPath = `${jsonPath}['${keywordAndValue.keyword}']`;
     const objectPropertyStartQuotes: SyntaxPart = {
       type: 'objectPropertyStartQuotes',
@@ -340,7 +353,7 @@ const getPartsOfJsonObjectContent = (
       objectPropertyEndQuotes,
       ...partsFromPayload,
     ];
-  }, []);
+  }, [] as SyntaxPart[]);
 };
 
 const getPartsOfArrayContent = (

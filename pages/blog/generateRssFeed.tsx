@@ -3,7 +3,25 @@ import { Feed, Author, Item } from 'feed';
 
 const SITE_URL = 'https://json-schema.org';
 
-export default async function generateRssFeed(blogPosts: any) {
+interface BlogPostFrontmatter {
+  title: string;
+  excerpt?: string;
+  cover?: string;
+  date?: string;
+  type?: string | string[];
+  authors?: Array<{
+    name: string;
+    twitter?: string;
+  }>;
+}
+
+interface BlogPost {
+  slug: string;
+  frontmatter: BlogPostFrontmatter;
+  content?: string;
+}
+
+export default async function generateRssFeed(blogPosts: BlogPost[]) {
   const today = new Date();
   const feed = new Feed({
     title: 'JSON Schema Blog RSS Feed',
@@ -23,9 +41,9 @@ export default async function generateRssFeed(blogPosts: any) {
     language: 'en-gb',
   });
 
-  blogPosts.forEach((post: any) => {
-    const authors: Author[] = post.frontmatter.authors.map(
-      (author: any): Author => {
+  blogPosts.forEach((post) => {
+    const authors: Author[] = (post.frontmatter.authors || []).map(
+      (author): Author => {
         const link = author.twitter
           ? `https://x.com/${author.twitter}`
           : undefined;
@@ -41,19 +59,29 @@ export default async function generateRssFeed(blogPosts: any) {
       title: post.frontmatter.title,
       id: url,
       link: url,
-      description: post.frontmatter.excerpt as string,
+      description: post.frontmatter.excerpt || '',
       author: authors,
-      date: new Date(post.frontmatter.date),
-      image: {
-        url: `${SITE_URL}${post.frontmatter.cover}`,
-      },
-      category: post.frontmatter.type,
-      enclosure: {
-        url: `${SITE_URL}${post.frontmatter.cover}`,
-        type: 'image',
-        length: 15026,
-      },
-      published: new Date(post.frontmatter.date),
+      date: new Date(post.frontmatter.date || Date.now()),
+      /* eslint-disable indent */
+      image: post.frontmatter.cover
+        ? {
+            url: `${SITE_URL}${post.frontmatter.cover}`,
+          }
+        : undefined,
+      category: Array.isArray(post.frontmatter.type)
+        ? post.frontmatter.type.map((t) => ({ name: t }))
+        : post.frontmatter.type
+          ? [{ name: post.frontmatter.type }]
+          : undefined,
+      enclosure: post.frontmatter.cover
+        ? {
+            url: `${SITE_URL}${post.frontmatter.cover}`,
+            type: 'image',
+            length: 15026,
+          }
+        : undefined,
+      /* eslint-enable indent */
+      published: new Date(post.frontmatter.date || Date.now()),
     };
     feed.addItem(item);
   });

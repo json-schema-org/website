@@ -20,7 +20,7 @@ const FEEDBACK_FORM_GITHUB_SUCCESS_MESSAGE =
 describe('DocsHelp Component', () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let mockRouter: MockRouter;
-  const extractPathWithoutFragment = (path: any) => path.split('#')[0];
+  const extractPathWithoutFragment = (path: string) => path.split('#')[0];
   // Note: we are not using the mockRouter in this test file, but it is required to mock the router in the component file
 
   beforeEach(() => {

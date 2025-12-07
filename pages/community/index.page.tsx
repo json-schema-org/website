@@ -14,6 +14,7 @@ import ical from 'node-ical';
 import {
   fetchRemoteICalFile,
   printEventsForNextWeeks,
+  CalendarEventInfo,
 } from '../../lib/calendarUtils';
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -41,7 +42,9 @@ export const getStaticProps: GetStaticProps = async () => {
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
+    .then((icalData) =>
+      icalData ? printEventsForNextWeeks(ical.parseICS(icalData)) : [],
+    )
     .catch((error) => console.error('Error:', error));
   return {
     props: {
@@ -52,7 +55,27 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default function communityPages(props: any) {
+interface Author {
+  name: string;
+  photo: string;
+}
+
+interface BlogPostFrontmatter {
+  title: string;
+  cover: string;
+  excerpt: string;
+  date: string;
+  authors: Author[];
+}
+
+export default function communityPages(props: {
+  blogPosts: {
+    slug: string;
+    frontmatter: BlogPostFrontmatter;
+    content: string;
+  }[];
+  datesInfo: CalendarEventInfo[];
+}) {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
 
@@ -248,7 +271,7 @@ export default function communityPages(props: any) {
                 <h2 className='text-center dark:text-white text-primary text-[2rem] font-bold '>
                   Upcoming events
                 </h2>
-                {props.datesInfo.map((event: any, index: any) => (
+                {props.datesInfo.map((event, index) => (
                   <div
                     key={index}
                     className='mx-auto gap-2 group-hover:bg-white dark:bg-slate-900/50 dark:group-hover:bg-slate-800  bg-slate-100 h-[90px] max-md:h-[120px]  max-sm:h-auto  w-full rounded-lg flex flex-row justify-between  items-center p-2 mt-2'
@@ -331,7 +354,7 @@ export default function communityPages(props: any) {
                   </div>
                   <div className='flex ml-2 mb-2 '>
                     {(blogPosts[0].frontmatter.authors || []).map(
-                      (author: any, index: number) => {
+                      (author, index: number) => {
                         return (
                           <div
                             key={index}
@@ -350,7 +373,7 @@ export default function communityPages(props: any) {
                           <>
                             {blogPosts[0].frontmatter.authors
                               .slice(0, 2)
-                              .map((author: any, index: number) => (
+                              .map((author, index: number) => (
                                 <span key={author.name}>
                                   {author.name}
                                   {index === 0 && ' & '}
@@ -359,11 +382,9 @@ export default function communityPages(props: any) {
                             {'...'}
                           </>
                         ) : (
-                          blogPosts[0].frontmatter.authors.map(
-                            (author: any) => (
-                              <span key={author.name}>{author.name}</span>
-                            ),
-                          )
+                          blogPosts[0].frontmatter.authors.map((author) => (
+                            <span key={author.name}>{author.name}</span>
+                          ))
                         )}
                       </p>
                       <div className='dark:text-slate-300 text-sm'>
