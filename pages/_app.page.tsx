@@ -5,12 +5,16 @@ import type { AppProps } from 'next/app';
 import { ThemeProvider } from 'next-themes';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  // @ts-ignore
-  const getLayout = Component.getLayout || ((page: JSX.Element) => page);
-  const AnyComponent = Component as any;
+  // Use type assertion for getLayout since Next.js allows custom properties on components
+  const getLayout =
+    (
+      Component as {
+        getLayout?: (page: JSX.Element, pageProps?: unknown) => JSX.Element;
+      }
+    ).getLayout || ((page: JSX.Element) => page);
   return (
     <ThemeProvider attribute='class'>
-      {getLayout(<AnyComponent {...pageProps} />, pageProps)}
+      {getLayout(<Component {...pageProps} />, pageProps)}
     </ThemeProvider>
   );
 }

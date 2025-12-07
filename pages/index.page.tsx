@@ -11,6 +11,7 @@ import Image from 'next/image';
 import {
   fetchRemoteICalFile,
   printEventsForNextWeeks,
+  CalendarEventInfo,
 } from '../lib/calendarUtils';
 import { Headline4 } from '~/components/Headlines';
 import { GetStaticProps } from 'next';
@@ -27,7 +28,7 @@ const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH);
   const blogPosts = files
-    .filter((file) => file.substr(-3) === '.md')
+    .filter((file) => file.endsWith('.md'))
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
       const fullFileName = fs.readFileSync(
@@ -50,7 +51,9 @@ export const getStaticProps: GetStaticProps = async () => {
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
+    .then((icalData) =>
+      icalData ? printEventsForNextWeeks(ical.parseICS(icalData)) : [],
+    )
     .catch((error) => console.error('Error:', error));
   return {
     props: {
@@ -88,7 +91,27 @@ export function AlgoliaSearch() {
     </div>
   );
 }
-const Home = (props: any) => {
+interface Author {
+  name: string;
+  photo: string;
+}
+
+interface BlogPostFrontmatter {
+  title: string;
+  cover: string;
+  excerpt: string;
+  date: string;
+  authors: Author[];
+}
+
+const Home = (props: {
+  blogPosts: {
+    slug: string;
+    frontmatter: BlogPostFrontmatter;
+    content: string;
+  }[];
+  datesInfo: CalendarEventInfo[];
+}) => {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
   const { resolvedTheme } = useTheme();
@@ -449,7 +472,7 @@ const Home = (props: any) => {
 
                 <div className='flex ml-2 mb-2 '>
                   {(blogPosts[0].frontmatter.authors || []).map(
-                    (author: any, index: number) => {
+                    (author, index: number) => {
                       return (
                         <div
                           key={index}
@@ -468,7 +491,7 @@ const Home = (props: any) => {
                         <>
                           {blogPosts[0].frontmatter.authors
                             .slice(0, 2)
-                            .map((author: any, index: number) => (
+                            .map((author, index: number) => (
                               <span key={author.name}>
                                 {author.name}
                                 {index === 0 && ' & '}
@@ -477,7 +500,7 @@ const Home = (props: any) => {
                           {'...'}
                         </>
                       ) : (
-                        blogPosts[0].frontmatter.authors.map((author: any) => (
+                        blogPosts[0].frontmatter.authors.map((author) => (
                           <span key={author.name}>{author.name}</span>
                         ))
                       )}
@@ -536,7 +559,7 @@ const Home = (props: any) => {
                   <Headline4>Upcoming events</Headline4>
                   <div>
                     <ul>
-                      {props.datesInfo.map((event: any, index: any) => (
+                      {props.datesInfo.map((event, index) => (
                         <li key={index}>
                           <div className='flex mb-4'>
                             <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>

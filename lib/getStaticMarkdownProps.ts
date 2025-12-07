@@ -3,10 +3,19 @@ import matter from 'gray-matter';
 
 type Props = { params?: { slug: string } };
 
+interface Frontmatter {
+  [key: string]: unknown;
+}
+
 export default async function getStaticMarkdownProps(
   props: Props,
   path: string,
-) {
+): Promise<{
+  props: {
+    frontmatter: Frontmatter;
+    content: string;
+  };
+}> {
   const slug = props.params?.slug || '_index';
 
   const fileName2 = `${path}/${slug}.md`;
@@ -16,7 +25,7 @@ export default async function getStaticMarkdownProps(
 
   return {
     props: {
-      frontmatter,
+      frontmatter: frontmatter as Frontmatter,
       content,
     },
   };

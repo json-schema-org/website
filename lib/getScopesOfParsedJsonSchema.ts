@@ -7,35 +7,45 @@ export type JsonSchemaPathWithScope = {
   scope: JsonSchemaScope;
 };
 
+interface ParsedJsonSchema {
+  type?: string;
+  properties?: Record<string, unknown>;
+  patternProperties?: Record<string, unknown>;
+  items?: unknown;
+  [key: string]: unknown;
+}
+
 export default function getScopesOfParsedJsonSchema(
-  parsedJsonSchema: any,
+  parsedJsonSchema: ParsedJsonSchema | unknown,
   jsonPath = '$',
 ): JsonSchemaPathWithScope[] {
   if (typeof parsedJsonSchema !== 'object' || parsedJsonSchema === null)
     return [];
+
+  const schema = parsedJsonSchema as ParsedJsonSchema;
   const typeDefinitionScope = {
     jsonPath,
     scope: JsonSchemaScope.TypeDefinition,
   };
-  if (parsedJsonSchema.type === 'object') {
-    const scopesOfProperties = Object.keys(
-      parsedJsonSchema?.properties || {},
-    ).reduce<JsonSchemaPathWithScope[]>((acc, property) => {
+  if (schema.type === 'object') {
+    const scopesOfProperties = Object.keys(schema?.properties || {}).reduce<
+      JsonSchemaPathWithScope[]
+    >((acc, property) => {
       return [
         ...acc,
         ...getScopesOfParsedJsonSchema(
-          parsedJsonSchema.properties?.[property],
+          schema.properties?.[property],
           `${jsonPath}['properties']['${property}']`,
         ),
       ];
     }, []);
     const scopesOfPatternProperties = Object.keys(
-      parsedJsonSchema?.patternProperties || {},
+      schema?.patternProperties || {},
     ).reduce<JsonSchemaPathWithScope[]>((acc, property) => {
       return [
         ...acc,
         ...getScopesOfParsedJsonSchema(
-          parsedJsonSchema.patternProperties?.[property],
+          schema.patternProperties?.[property],
           `${jsonPath}['patternProperties']['${property}']`,
         ),
       ];
@@ -46,13 +56,10 @@ export default function getScopesOfParsedJsonSchema(
       ...scopesOfPatternProperties,
     ];
   }
-  if (parsedJsonSchema.type === 'array') {
+  if (schema.type === 'array') {
     return [
       typeDefinitionScope,
-      ...getScopesOfParsedJsonSchema(
-        parsedJsonSchema.items,
-        `${jsonPath}['items']`,
-      ),
+      ...getScopesOfParsedJsonSchema(schema.items, `${jsonPath}['items']`),
     ];
   }
   return [typeDefinitionScope];

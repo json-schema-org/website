@@ -17,7 +17,21 @@ import Image from 'next/image';
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
 }
-export async function getStaticProps(args: any) {
+interface Author {
+  name: string;
+  photo: string;
+  twitter?: string;
+}
+
+interface Frontmatter {
+  title: string;
+  date?: string;
+  cover?: string;
+  authors?: Author[];
+  [key: string]: unknown;
+}
+
+export async function getStaticProps(args: { params?: { slug: string } }) {
   return getStaticMarkdownProps(args, 'pages/blog/posts');
 }
 
@@ -25,10 +39,10 @@ export default function StaticMarkdownPage({
   frontmatter,
   content,
 }: {
-  frontmatter: any;
-  content: any;
+  frontmatter: Frontmatter;
+  content: string;
 }) {
-  const date = new Date(frontmatter.date);
+  const date = frontmatter.date ? new Date(frontmatter.date) : null;
   const timeToRead = Math.ceil(readingTime(content).minutes);
 
   return (
@@ -38,7 +52,7 @@ export default function StaticMarkdownPage({
       </Head>
       <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16 dark:bg-slate-800 dark:slate-700 px-4'>
         <div className='flex flex-col pt-6'>
-          {frontmatter.date && (
+          {date && (
             <div className='text-center text-sm text-slate-500 mt-16'>
               {date.toLocaleDateString('en-us', {
                 weekday: 'long',
@@ -71,34 +85,32 @@ export default function StaticMarkdownPage({
                   Go back to blog
                 </Link>
                 <div className='pt-4 lg:border-t border-none lg:border-r border-slate-100'>
-                  {(frontmatter.authors || []).map(
-                    (author: any, index: number) => {
-                      return (
+                  {(frontmatter.authors || []).map((author, index) => {
+                    return (
+                      <div
+                        key={index}
+                        className='flex flex-row items-center mb-3 w-full'
+                      >
                         <div
-                          key={index}
-                          className='flex flex-row items-center mb-3 w-full'
-                        >
-                          <div
-                            className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center'
-                            style={{ backgroundImage: `url(${author.photo})` }}
-                          />
-                          <div>
-                            <div className='text-sm font-semibold pl-2'>
-                              {author.name}
-                            </div>
-                            {author.twitter && (
-                              <a
-                                className='block text-sm text-blue-500 font-medium'
-                                href={`https://x.com/${author.twitter}`}
-                              >
-                                @{author.twitter}
-                              </a>
-                            )}
+                          className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center'
+                          style={{ backgroundImage: `url(${author.photo})` }}
+                        />
+                        <div>
+                          <div className='text-sm font-semibold pl-2'>
+                            {author.name}
                           </div>
+                          {author.twitter && (
+                            <a
+                              className='block text-sm text-blue-500 font-medium'
+                              href={`https://x.com/${author.twitter}`}
+                            >
+                              @{author.twitter}
+                            </a>
+                          )}
                         </div>
-                      );
-                    },
-                  )}
+                      </div>
+                    );
+                  })}
                 </div>
                 <div className='pt-4 pr-4 hidden lg:block w-full'>
                   <div className='uppercase text-xs text-slate-400 mb-4'>

@@ -4,16 +4,16 @@
  */
 
 export interface MockRouter {
-  push: any;
-  replace: any;
-  prefetch: any;
+  push: Cypress.Agent<sinon.SinonStub>;
+  replace: Cypress.Agent<sinon.SinonStub>;
+  prefetch: Cypress.Agent<sinon.SinonStub>;
   pathname: string;
-  query: Record<string, any>;
+  query: Record<string, string | string[]>;
   asPath: string;
   events: {
-    on: any;
-    off: any;
-    emit: any;
+    on: Cypress.Agent<sinon.SinonStub>;
+    off: Cypress.Agent<sinon.SinonStub>;
+    emit: Cypress.Agent<sinon.SinonStub>;
   };
 }
 

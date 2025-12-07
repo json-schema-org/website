@@ -1,13 +1,13 @@
 import slugify from 'slugify';
 
 export default function slugifyMarkdownHeadline(
-  markdownChildren: string | any[],
+  markdownChildren: string | (string | unknown)[],
 ): string {
   const FRAGMENT_REGEX = /\[#(?<slug>(\w|-|_)*)\]/g;
   if (!markdownChildren) return '';
   if (typeof markdownChildren === 'string')
     return slugify(markdownChildren, { lower: true, trim: true });
-  const metaSlug = markdownChildren.reduce((acc, child) => {
+  const metaSlug = markdownChildren.reduce<string | null>((acc, child) => {
     if (acc) return acc;
     if (typeof child !== 'string') return null;
     const fragment = FRAGMENT_REGEX.exec(child);

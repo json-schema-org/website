@@ -135,7 +135,7 @@ describe('Sidebar Component', () => {
   });
 
   describe('DocsNav', () => {
-    let mockSetOpen: any;
+    let mockSetOpen: Cypress.Agent<sinon.SinonStub>;
 
     beforeEach(() => {
       mockSetOpen = cy.stub().as('setOpen');

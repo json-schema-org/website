@@ -13,13 +13,6 @@ import { useRouter } from 'next/router';
 import { SectionContext } from '../../context';
 import Image from 'next/image';
 
-type Author = {
-  name: string;
-  photo?: string;
-  link?: string;
-  byline?: string;
-};
-
 export type blogCategories =
   | 'All'
   | 'Community'
@@ -29,15 +22,31 @@ export type blogCategories =
   | 'Opinion'
   | 'Documentation';
 
-const getCategories = (frontmatter: any): blogCategories[] => {
+interface Frontmatter {
+  title: string;
+  date?: string;
+  excerpt?: string;
+  cover?: string;
+  authors?: Array<{ name: string; twitter?: string; photo?: string }>;
+  type?: string | string[];
+  categories?: string | string[];
+  [key: string]: unknown;
+}
+
+const getCategories = (frontmatter: Frontmatter): blogCategories[] => {
   const cat = frontmatter.categories || frontmatter.type;
   if (!cat) return [];
-  return Array.isArray(cat) ? cat : [cat];
+  const categories = Array.isArray(cat) ? cat : [cat];
+  return categories.filter((c): c is blogCategories => isValidCategory(c));
 };
 
-export async function getStaticProps({ query }: { query: any }) {
+export async function getStaticProps({
+  query,
+}: {
+  query: Record<string, unknown>;
+}) {
   const files = fs.readdirSync(PATH);
-  const blogPosts = files
+  const blogPosts: BlogPost[] = files
     .filter((file) => file.substr(-3) === '.md')
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
@@ -48,14 +57,14 @@ export async function getStaticProps({ query }: { query: any }) {
       const { data: frontmatter, content } = matter(fullFileName);
       return {
         slug,
-        frontmatter,
+        frontmatter: frontmatter as Frontmatter,
         content,
       };
     });
 
   await generateRssFeed(blogPosts);
 
-  const filterTag: string = query?.type || 'All';
+  const filterTag: string = (query?.type as string) || 'All';
 
   return {
     props: {
@@ -65,30 +74,39 @@ export async function getStaticProps({ query }: { query: any }) {
   };
 }
 
-function isValidCategory(category: any): category is blogCategories {
-  return [
-    'All',
-    'Community',
-    'Case Study',
-    'Engineering',
-    'Update',
-    'Opinion',
-    'Documentation',
-  ].includes(category);
+function isValidCategory(category: unknown): category is blogCategories {
+  return (
+    typeof category === 'string' &&
+    [
+      'All',
+      'Community',
+      'Case Study',
+      'Engineering',
+      'Update',
+      'Opinion',
+      'Documentation',
+    ].includes(category)
+  );
+}
+
+interface BlogPost {
+  slug: string;
+  frontmatter: Frontmatter;
+  content: string;
 }
 
 export default function StaticMarkdownPage({
   blogPosts,
   filterTag,
 }: {
-  blogPosts: any[];
-  filterTag: any;
+  blogPosts: BlogPost[];
+  filterTag: string;
 }) {
   const router = useRouter();
   // Initialize the filter as an array. If "All" or not specified, we show all posts.
-  const initialFilters =
+  const initialFilters: blogCategories[] =
     filterTag && filterTag !== 'All'
-      ? filterTag.split(',').filter(isValidCategory)
+      ? (filterTag.split(',').filter(isValidCategory) as blogCategories[])
       : ['All'];
 
   const [currentFilterTags, setCurrentFilterTags] =
@@ -100,15 +118,15 @@ export default function StaticMarkdownPage({
     if (query.type) {
       const tags = (typeof query.type === 'string' ? query.type : '')
         .split(',')
-        .filter(isValidCategory);
+        .filter(isValidCategory) as blogCategories[];
       setCurrentFilterTags(tags.length ? tags : ['All']);
     }
   }, [router.query]);
 
   useEffect(() => {
-    const tags =
+    const tags: blogCategories[] =
       filterTag && filterTag !== 'All'
-        ? filterTag.split(',').filter(isValidCategory)
+        ? (filterTag.split(',').filter(isValidCategory) as blogCategories[])
         : ['All'];
     setCurrentFilterTags(tags);
   }, [filterTag]);
@@ -141,8 +159,8 @@ export default function StaticMarkdownPage({
 
   // First, sort all posts by date descending (for fallback sorting)
   const postsSortedByDate = [...blogPosts].sort((a, b) => {
-    const dateA = new Date(a.frontmatter.date).getTime();
-    const dateB = new Date(b.frontmatter.date).getTime();
+    const dateA = new Date(a.frontmatter.date || 0).getTime();
+    const dateB = new Date(b.frontmatter.date || 0).getTime();
     return dateB - dateA;
   });
 
@@ -173,8 +191,8 @@ export default function StaticMarkdownPage({
     if (aMatches !== bMatches) {
       return bMatches - aMatches;
     }
-    const dateA = new Date(a.frontmatter.date).getTime();
-    const dateB = new Date(b.frontmatter.date).getTime();
+    const dateA = new Date(a.frontmatter.date || 0).getTime();
+    const dateB = new Date(b.frontmatter.date || 0).getTime();
     return dateB - dateA;
   });
 
@@ -201,7 +219,7 @@ export default function StaticMarkdownPage({
           <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]' />
             <Image
-              src={recentBlog[0].frontmatter.cover}
+              src={recentBlog[0].frontmatter.cover || ''}
               alt={recentBlog[0].frontmatter.title}
               fill
               className='object-cover w-full h-full opacity-70 blur-[5px]'
@@ -217,25 +235,27 @@ export default function StaticMarkdownPage({
                 <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
-                <div className='flex ml-2 mb-2 gap-2'>
-                  <div
-                    className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                    style={{
-                      backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})`,
-                    }}
-                  />
-                  <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
-                    <p className='text-sm font-semibold text-stroke-1'>
-                      {recentBlog[0].frontmatter.authors[0].name}
-                    </p>
-                    <div className='mb-6 text-sm  text-stroke-1'>
-                      <span>
-                        {recentBlog[0].frontmatter.date} &middot; {timeToRead}{' '}
-                        min read
-                      </span>
+                {recentBlog[0].frontmatter.authors?.[0] && (
+                  <div className='flex ml-2 mb-2 gap-2'>
+                    <div
+                      className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                      style={{
+                        backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo || ''})`,
+                      }}
+                    />
+                    <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
+                      <p className='text-sm font-semibold text-stroke-1'>
+                        {recentBlog[0].frontmatter.authors[0].name}
+                      </p>
+                      <div className='mb-6 text-sm  text-stroke-1'>
+                        <span>
+                          {recentBlog[0].frontmatter.date} &middot; {timeToRead}{' '}
+                          min read
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                )}
               </Link>
             </div>
           </div>
@@ -300,9 +320,9 @@ export default function StaticMarkdownPage({
 
         {/* Blog Posts Grid */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
-          {sortedFilteredPosts.map((blogPost: any, idx: number) => {
+          {sortedFilteredPosts.map((blogPost, idx) => {
             const { frontmatter, content } = blogPost;
-            const date = new Date(frontmatter.date);
+            const date = new Date(frontmatter.date || 0);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
 
             return (
@@ -313,7 +333,7 @@ export default function StaticMarkdownPage({
                 >
                   <div className='relative w-full aspect-[16/9] overflow-hidden'>
                     <Image
-                      src={frontmatter.cover}
+                      src={frontmatter.cover || ''}
                       alt={frontmatter.title}
                       fill
                       className='object-cover transition-transform duration-300 group-hover:scale-110'
@@ -355,16 +375,16 @@ export default function StaticMarkdownPage({
                     <div className='flex flex-row items-center mt-2'>
                       <div className='flex flex-row pl-2 mr-2'>
                         {(frontmatter.authors || []).map(
-                          (author: Author, index: number) => (
+                          (author, index: number) => (
                             <div
                               key={index}
                               className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
-                                frontmatter.authors.length > 2
+                                (frontmatter.authors?.length || 0) > 2
                                   ? 'h-8 w-8'
                                   : 'h-11 w-11'
                               }`}
                               style={{
-                                backgroundImage: `url(${author.photo})`,
+                                backgroundImage: `url(${author.photo || ''})`,
                                 zIndex: 10 - index,
                               }}
                             />
@@ -373,11 +393,11 @@ export default function StaticMarkdownPage({
                       </div>
                       <div className='flex flex-col items-start'>
                         <div className='text-sm font-semibold'>
-                          {frontmatter.authors.length > 2 ? (
+                          {(frontmatter.authors?.length || 0) > 2 ? (
                             <>
                               {frontmatter.authors
-                                .slice(0, 2)
-                                .map((author: Author, index: number) => (
+                                ?.slice(0, 2)
+                                .map((author, index: number) => (
                                   <span key={author.name}>
                                     {author.name}
                                     {index === 0 && ' & '}
@@ -386,11 +406,12 @@ export default function StaticMarkdownPage({
                               {'...'}
                             </>
                           ) : (
-                            frontmatter.authors.map(
-                              (author: Author, index: number) => (
+                            frontmatter.authors?.map(
+                              (author, index: number) => (
                                 <span key={author.name}>
                                   {author.name}
-                                  {index < frontmatter.authors.length - 1 &&
+                                  {index <
+                                    (frontmatter.authors?.length || 0) - 1 &&
                                     ' & '}
                                 </span>
                               ),

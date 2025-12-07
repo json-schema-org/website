@@ -1,4 +1,5 @@
 import moment from 'moment-timezone';
+import type { CalendarResponse, VEvent } from 'node-ical';
 
 export async function fetchRemoteICalFile(url: string): Promise<string | null> {
   try {
@@ -13,11 +14,25 @@ export async function fetchRemoteICalFile(url: string): Promise<string | null> {
   }
 }
 
-export function printEventsForNextWeeks(icalData: { [x: string]: any }) {
-  const arrayDates = [];
+function isVEvent(component: CalendarResponse[string]): component is VEvent {
+  return component.type === 'VEVENT';
+}
+
+export interface CalendarEventInfo {
+  title: string | undefined;
+  time: string;
+  day: string;
+  timezone: string;
+  parsedStartDate: string;
+}
+
+export function printEventsForNextWeeks(
+  icalData: CalendarResponse,
+): CalendarEventInfo[] {
+  const arrayDates: CalendarEventInfo[] = [];
   if (!icalData) {
     console.error('iCal data is empty or invalid.');
-    return;
+    return [];
   }
 
   // Calculate the range of dates for the next 12 weeks from today
@@ -26,14 +41,18 @@ export function printEventsForNextWeeks(icalData: { [x: string]: any }) {
 
   // Loop through the events in the iCal data
   for (const k in icalData) {
-    const event = icalData[k];
+    const component = icalData[k];
 
-    if (event.type === 'VEVENT') {
+    if (isVEvent(component)) {
+      const event = component;
       const title = event.summary;
 
       const timezoneL = moment.tz.guess(); // Default to UTC if timezone information is not provided
 
-      const startDate = moment.tz(event.start, timezoneL);
+      const eventStart = event.start;
+      if (!eventStart) continue;
+
+      const startDate = moment.tz(eventStart, timezoneL);
 
       // Complicated case - if an RRULE exists, handle multiple recurrences of the event.
       if (event.rrule !== undefined) {
@@ -46,7 +65,7 @@ export function printEventsForNextWeeks(icalData: { [x: string]: any }) {
         // Loop through the set of date entries to see which recurrences should be printed.
         for (const date of dates) {
           const startDate = moment.tz(date, timezoneL);
-          const eventtimezone = event.start.tz;
+          const eventtimezone = eventStart.tz ?? 'UTC';
           const owntimezone = moment.tz.guess();
           const eventOffset = moment.tz(eventtimezone).utcOffset();
           const localOffset = moment.tz(owntimezone).utcOffset();
@@ -54,10 +73,11 @@ export function printEventsForNextWeeks(icalData: { [x: string]: any }) {
 
           // Check if the event falls within the next 4 weeks from today
           if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
-            const dateTimezone = moment.tz.zone(event.start.tz);
+            const dateTimezone = moment.tz.zone(eventtimezone);
             let offset;
             if (dateTimezone && offsetDifference)
-              offset = offsetDifference - dateTimezone.utcOffset(date);
+              offset =
+                offsetDifference - dateTimezone.utcOffset(date.getTime());
 
             const newDate = moment(date).subtract(offset, 'minutes').toDate();
 
