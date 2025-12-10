@@ -941,8 +941,10 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
                   src={logos.oracle}
+                  width={176}
+                  height={100}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='Oracle logo'
                 />
