@@ -308,9 +308,7 @@ export default function JsonEditor({
     if (!positionOfCodeInFullMarkdown) return;
     const endPositionOfCode = positionOfCodeInFullMarkdown + codeContent.length;
     const startPositionOfNextBlock = endPositionOfCode + '\n```\n'.length;
-    const markdownAfterCodeBlock = fullMarkdown?.substr(
-      startPositionOfNextBlock,
-    );
+    const markdownAfterCodeBlock = fullMarkdown?.slice(startPositionOfNextBlock);
     return markdownAfterCodeBlock?.startsWith('```');
   })();
 
