@@ -123,6 +123,7 @@ const Home = (props: any) => {
       supadata: '/img/logos/sponsors/supadata-logo-light.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
+      oracle: '/img/logos/sponsors/Oracle.png',
     },
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
@@ -147,6 +148,7 @@ const Home = (props: any) => {
       dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
+      oracle: '/img/logos/sponsors/Oracle.png',
     },
   };
 
@@ -908,6 +910,17 @@ const Home = (props: any) => {
                   src={logos.nix}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='n-iX logo'
+                />
+              </a>
+              <a
+                href='https://www.oracle.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={logos.oracle}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Oracle logo'
                 />
               </a>
               <a
