@@ -813,7 +813,7 @@
       username: 'Stranger6667'
       platform: 'github'
   license: 'MIT'
-  source: 'https://github.com/Stranger6667/jsonschema-rs'
+  source: 'https://github.com/Stranger6667/jsonschema'
   homepage: 'https://docs.rs/jsonschema'
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
