@@ -50,6 +50,7 @@ export async function getStaticProps({ query }: { query: any }) {
         slug,
         frontmatter,
         content,
+        readingTime: Math.ceil(readingTime(content).minutes),
       };
     });
 
@@ -196,6 +197,7 @@ export default function StaticMarkdownPage({
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(sortedFilteredPosts.length / POSTS_PER_PAGE);
+  const isFirstPage = currentPage === 1;
 
   useEffect(() => {
     if (currentPage > totalPages) {
@@ -319,27 +321,26 @@ export default function StaticMarkdownPage({
         {/* Blog Posts Grid */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
           {currentPagePosts.map((blogPost: any, idx: number) => {
-            const { frontmatter, content } = blogPost;
+            const { frontmatter } = blogPost;
             const date = new Date(frontmatter.date);
-            const postTimeToRead = Math.ceil(readingTime(content).minutes);
 
             return (
               <section key={blogPost.slug}>
                 <Link
                   href={`/blog/posts/${blogPost.slug}`}
-                  className='h-[600px] sm:h-[540px] flex border rounded-lg shadow-sm transition-shadow duration-300 overflow-hidden dark:border-slate-500 group flex-col flex-1 w-full'
+                  className='group h-[600px] sm:h-[540px] flex flex-col border rounded-lg shadow-sm transform-gpu will-change-transform transition-shadow duration-300 overflow-hidden'
                 >
                   <div className='relative w-full aspect-[16/9] overflow-hidden'>
                     <Image
                       src={frontmatter.cover}
                       alt={frontmatter.title}
                       fill
-                      className='object-cover transition-transform duration-300 group-hover:scale-110'
-                      loading={idx < 10 ? 'eager' : 'lazy'}
-                      priority={idx < 10}
+                      className='object-cover transform-gpu will-change-transform transition-transform duration-300 group-hover:scale-110'
+                      loading={isFirstPage && idx < 2 ? 'eager' : 'lazy'}
+                      priority={isFirstPage && idx < 2}
                       quality={75}
                     />
-                    <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 pointer-events-none' />
+                    <div className='absolute inset-0 bg-black bg-opacity-0 transition-opacity duration-300 group-hover:bg-opacity-30 pointer-events-none' />
                   </div>
                   <div className='p-4 flex flex-col flex-1 justify-between min-h-0 pt-2'>
                     <div>
@@ -359,7 +360,7 @@ export default function StaticMarkdownPage({
                           </div>
                         ))}
                       </div>
-                      <div className='text-lg h-[95px] font-semibold overflow-hidden transition-transform duration-300 group-hover:scale-105'>
+                      <div className='text-lg h-[95px] font-semibold overflow-hidden transform-gpu will-change-transform transition-transform duration-300 group-hover:scale-105'>
                         {frontmatter.title}
                       </div>
                       <div className='mt-3   text-slate-500 dark:text-slate-300 flex-1 min-h-0'>
@@ -440,7 +441,7 @@ export default function StaticMarkdownPage({
                       </span>
                     </span>
                     <span className='text-slate-500 text-sm dark:text-slate-400'>
-                      {postTimeToRead} min read
+                      {blogPost.readingTime} min read
                     </span>
                   </div>
                 </Link>
