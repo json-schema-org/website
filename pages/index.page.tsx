@@ -201,6 +201,7 @@ const Home = (props: any) => {
                       alt='zapier'
                       height={40}
                       width={160}
+                      loading='lazy'
                     />
                     <Image
                       src='/img/logos/usedby/microsoft-white.png'
@@ -208,6 +209,7 @@ const Home = (props: any) => {
                       alt='microsoft'
                       height={40}
                       width={160}
+                      loading='lazy'
                     />
                     <Image
                       src='/img/logos/usedby/postman-white.png'
@@ -215,6 +217,7 @@ const Home = (props: any) => {
                       alt='postman'
                       height={40}
                       width={160}
+                      loading='lazy'
                     />
                     <Image
                       src='/img/logos/usedby/github-white.png'
@@ -222,6 +225,7 @@ const Home = (props: any) => {
                       alt='github'
                       height={40}
                       width={160}
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -325,6 +329,7 @@ const Home = (props: any) => {
                 alt='community'
                 height={600}
                 width={800}
+                loading='lazy'
               />
             </>
           )}
@@ -378,6 +383,7 @@ const Home = (props: any) => {
                         alt='slack'
                         height={32}
                         width={32}
+                        loading='lazy'
                       />
                     </>
                   )}
@@ -390,6 +396,7 @@ const Home = (props: any) => {
                       alt='slack-json-schema'
                       height={500}
                       width={300}
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -413,6 +420,7 @@ const Home = (props: any) => {
                         width={16}
                         height={16}
                         alt='slack'
+                        loading='lazy'
                       />
                     </>
                   )}
@@ -434,6 +442,7 @@ const Home = (props: any) => {
                       width={600}
                       height={232}
                       alt='blog'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -689,6 +698,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='asyncapi'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -706,6 +716,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='airbnb'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -723,6 +734,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='postman'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -736,6 +748,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='endjin'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -749,6 +762,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='llc'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -766,6 +780,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='vpsserver'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -783,6 +798,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='itflashcards'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -800,6 +816,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='route4me'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -813,6 +830,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='n8n'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -826,6 +844,7 @@ const Home = (props: any) => {
                       width={176}
                       height={100}
                       alt='ccopter'
+                      loading='lazy'
                     />
                   </>
                 )}
@@ -1011,6 +1030,7 @@ for Accounting integrations'
                     width={192}
                     height={224}
                     alt='n8n'
+                    loading='lazy'
                   />
                 </>
               )}
@@ -1024,6 +1044,7 @@ for Accounting integrations'
                     width={96}
                     height={128}
                     alt='slack'
+                    loading='lazy'
                   />
                 </>
               )}

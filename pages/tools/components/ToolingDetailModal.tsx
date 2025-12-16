@@ -66,6 +66,7 @@ export default function ToolingDetailModal({
                 height={48}
                 width={48}
                 alt='landscape logos'
+                loading='lazy'
               />
             </div>
           )}

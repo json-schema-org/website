@@ -448,6 +448,7 @@ export default function JsonEditor({
                 width={20}
                 height={20}
                 title='Copied!'
+                loading='lazy'
               />
             ) : (
               <Image
@@ -456,6 +457,7 @@ export default function JsonEditor({
                 title='Copy to clipboard'
                 width={20}
                 height={20}
+                loading='lazy'
               />
             )}
           </Button>
@@ -536,6 +538,7 @@ export default function JsonEditor({
                 width={20}
                 height={20}
                 title='Copied!'
+                loading='lazy'
               />
             ) : (
               <Image
@@ -544,6 +547,7 @@ export default function JsonEditor({
                 title='Copy to clipboard'
                 width={20}
                 height={20}
+                loading='lazy'
               />
             )}
           </Button>
@@ -561,6 +565,7 @@ export default function JsonEditor({
                     width={16}
                     height={16}
                     className=' mr-1.5'
+                    loading='lazy'
                   />{' '}
                   part of schema
                 </>
@@ -575,6 +580,7 @@ export default function JsonEditor({
                   width={16}
                   height={16}
                   className=' mr-1.5'
+                  loading='lazy'
                 />{' '}
                 schema
               </>
@@ -732,6 +738,7 @@ export default function JsonEditor({
               width={16}
               height={16}
               className=' mr-2'
+              loading='lazy'
             />
             not compliant to schema
           </Alert>
@@ -748,6 +755,7 @@ export default function JsonEditor({
               width={20}
               height={20}
               className='mr-2'
+              loading='lazy'
             />
             compliant to schema
           </Alert>
