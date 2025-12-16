@@ -122,16 +122,15 @@ export default function ToolingPage({
   } = useToolsTransform(toolingData);
 
   return (
-    <SectionContext.Provider value='tools'>
+    <SectionContext.Provider value={'tools'}>
       <Head>
         <title>JSON Schema - Tools</title>
       </Head>
+
       <div className='mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center'>
         <div
           className='bg-primary w-full h-12 mt-[4.5rem] relative lg:hidden px-8 flex justify-between items-center'
-          onClick={() => {
-            setIsSidebarOpen((prev) => !prev);
-          }}
+          onClick={() => setIsSidebarOpen((prev) => !prev)}
         >
           <h3 className='text-white'>{numberOfTools} Tools</h3>
 
@@ -140,29 +139,32 @@ export default function ToolingPage({
               transform: `${isSidebarOpen ? 'rotate(180deg)' : 'rotate(0)'}`,
               transition: 'transform 0.2s linear',
             }}
-            xmlns='http://www.w3.org/2000/svg'
+            xmlns={'http://www.w3.org/2000/svg'}
             height='24'
             viewBox='0 0 256 512'
           >
             <path
-              d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z'
-              fill='#ffffff'
+              d={
+                'M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z'
+              }
+              fill={'#ffffff'}
             />
           </svg>
         </div>
 
-        <div className='grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12 min-h-screen'>
+        {/* FIX 1: mx → px, and overflow-x-hidden */}
+        <div className='w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'>
           <div
             className={`
-    lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
-    mt-0 lg:mt-20
-    w-screen lg:w-auto
-    bg-white dark:bg-slate-800 lg:bg-transparent
-    transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out
-    z-5
-    ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}
-    ${isMobile && isSidebarOpen ? 'overflow-hidden' : 'overflow-y-auto lg:overflow-y-hidden'}
-  `}
+              lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
+              mt-0 lg:mt-20
+              w-full max-w-full lg:w-auto overflow-x-hidden
+              bg-white dark:bg-slate-800 lg:bg-transparent
+              transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out
+              z-5
+              ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}
+              ${isMobile && isSidebarOpen ? 'overflow-hidden' : 'overflow-y-auto lg:overflow-y-hidden'}
+            `}
             style={{
               height: isMobile
                 ? isSidebarOpen
@@ -186,6 +188,7 @@ export default function ToolingPage({
                     Tools
                   </div>
                 </div>
+
                 <Sidebar
                   filterCriteria={filterCriteria}
                   transform={transform}
@@ -198,7 +201,9 @@ export default function ToolingPage({
           </div>
 
           <main
-            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 lg:!ml-[20px] ${isSidebarOpen ? 'hidden lg:block' : ''}`}
+            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 lg:!ml-[20px] ${
+              isSidebarOpen ? 'hidden lg:block' : ''
+            }`}
           >
             <Headline1>JSON Schema Tooling</Headline1>
             <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
@@ -209,6 +214,7 @@ export default function ToolingPage({
               Listing does not signify a recommendation or endorsement of any
               kind.
             </p>
+
             <div className='flex flex-row items-center gap-2 w-full'>
               <div className='flex items-center justify-center gap-2 w-1/2'>
                 <Link
@@ -252,7 +258,9 @@ export default function ToolingPage({
                 </p>
               </div>
             </div>
+
             <GroupByMenu transform={transform} setTransform={setTransform} />
+
             <ToolingTable
               toolsByGroup={toolsByGroup}
               transform={transform}
