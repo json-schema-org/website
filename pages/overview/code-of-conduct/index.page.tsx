@@ -6,7 +6,6 @@ import matter from 'gray-matter';
 import StyledMarkdown from '~/components/StyledMarkdown';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
-import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
   const block = fs.readFileSync(
@@ -37,12 +36,6 @@ export default function Content({
         <title>{newTitle}</title>
       </Head>
       <StyledMarkdown markdown={blocks[0]} />
-      <NextPrevButton
-        prevLabel='Similar-Technologies'
-        prevURL='/overview/similar-technologies'
-        nextLabel='Getting Started'
-        nextURL='/learn'
-      />
       <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>
   );
