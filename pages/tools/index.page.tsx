@@ -127,15 +127,9 @@ export default function ToolingPage({
         <title>JSON Schema - Tools</title>
       </Head>
 
-      <div
-        className={
-          'mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center'
-        }
-      >
+      <div className='mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center'>
         <div
-          className={
-            'bg-primary w-full h-12 mt-[4.5rem] relative lg:hidden px-8 flex justify-between items-center'
-          }
+          className='bg-primary w-full h-12 mt-[4.5rem] relative lg:hidden px-8 flex justify-between items-center'
           onClick={() => setIsSidebarOpen((prev) => !prev)}
         >
           <h3 className='text-white'>{numberOfTools} Tools</h3>
@@ -159,11 +153,7 @@ export default function ToolingPage({
         </div>
 
         {/* FIX 1: mx → px, and overflow-x-hidden */}
-        <div
-          className={
-            'w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'
-          }
-        >
+        <div className='w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'>
           <div
             className={`
               lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
@@ -188,21 +178,13 @@ export default function ToolingPage({
               top: '4.5rem',
             }}
           >
-            <div className={'h-full flex flex-col'}>
-              <div
-                className={
-                  'flex-1 overflow-y-auto scrollbar-hidden min-h-0 px-2 lg:px-0 pb-2'
-                }
-              >
-                <div className={'hidden lg:block pt-8'}>
-                  <h1 className={'text-h1mobile md:text-h1 font-bold lg:ml-4'}>
+            <div className='h-full flex flex-col'>
+              <div className='flex-1 overflow-y-auto scrollbar-hidden min-h-0 px-2 lg:px-0 pb-2'>
+                <div className='hidden lg:block pt-8'>
+                  <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4'>
                     {numberOfTools}
                   </h1>
-                  <div
-                    className={
-                      'text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6 mb-4'
-                    }
-                  >
+                  <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6 mb-4'>
                     Tools
                   </div>
                 </div>
@@ -224,69 +206,53 @@ export default function ToolingPage({
             }`}
           >
             <Headline1>JSON Schema Tooling</Headline1>
-            <p
-              className={
-                'text-slate-600 block leading-7 pb-1 dark:text-slate-300'
-              }
-            >
+            <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
               Toolings below are written in different languages, and support
               part, or all, of at least one recent version of the specification.
             </p>
-            <p
-              className={
-                'text-slate-600 block leading-7 pb-4 dark:text-slate-300'
-              }
-            >
+            <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
               Listing does not signify a recommendation or endorsement of any
               kind.
             </p>
 
-            <div className={'flex flex-row items-center gap-2 w-full'}>
-              <div className={'flex items-center justify-center gap-2 w-1/2'}>
+            <div className='flex flex-row items-center gap-2 w-full'>
+              <div className='flex items-center justify-center gap-2 w-1/2'>
                 <Link
-                  className={'flex-none max-w-full'}
+                  className='flex-none max-w-full'
                   href='https://github.com/json-schema-org/website/issues/new?assignees=&labels=Status%3A+Triage&template=adding-your-tooling.yml'
                   target='_blank'
                   rel='noreferrer'
                 >
                   <Image
                     src='/img/tools/adding_your_tool.png'
-                    className={'rounded-sm'}
+                    className='rounded-sm'
                     height={68}
                     width={190}
                     alt='adding your tool'
                   />
                 </Link>
-                <p
-                  className={
-                    'hidden lg:block text-slate-600 dark:text-slate-300 px-4'
-                  }
-                >
+                <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
                   Raise an issue to get your tool added or updated in the
                   tooling table.
                 </p>
               </div>
 
-              <div className={'flex items-center justify-center gap-2 w-1/2'}>
+              <div className='flex items-center justify-center gap-2 w-1/2'>
                 <Link
-                  className={'flex-none max-w-full'}
+                  className='flex-none max-w-full'
                   href='https://bowtie.report'
                   target='_blank'
                   rel='noreferrer'
                 >
                   <Image
                     src='/img/tools/try_bowtie.png'
-                    className={'rounded-sm'}
+                    className='rounded-sm'
                     height={68}
                     width={190}
                     alt='try bowtie'
                   />
                 </Link>
-                <p
-                  className={
-                    'hidden lg:block text-slate-600 dark:text-slate-300 px-4'
-                  }
-                >
+                <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
                   Bowtie is a meta-validator for JSON Schema implementations and
                   it provides compliance reports.
                 </p>
