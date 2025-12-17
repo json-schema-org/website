@@ -3445,3 +3445,17 @@
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Project built under GSoC "25. High-performance Java wrapper for Blaze JSON Schema validator using Java FFM API.'
+
+- name: 'SimWorkflow'
+  description: 'SimWorkflow is a platform that combines visual workflow automation with document management to streamline business operations. It enables teams to design, automate, and scale workflows with AI-driven tasks while managing and organizing documents seamlessly. With integrations for third-party APIs and tools, SimWorkflow helps businesses improve efficiency, track workflows in real-time, and ensure smooth document handling across processes.'
+  toolingTypes: ['validator', 'schema-to-data', 'util-general-processing', 'linter-plugins']
+  languages: ['JavaScript', 'JSON', 'YAML', 'XML', 'CSV']
+  environments: ['Web']
+  creators:
+    - name: 'SimWorkflow'
+  maintainers:
+    - name: 'SimWorkflow'
+  license: 'Proprietary'
+  homepage: 'https://www.simworkflow.com/'
+  supportedDialects:
+    draft: ['1', '2', '3', '4', '6', '7', '2019-09', '2020-12']
