@@ -67,7 +67,7 @@ const Headline = ({
     id: propAttributes?.slug || slug,
     className: cn(
       'group cursor-pointer hover:underline',
-      isActive && 'text-startBlue',
+      isActive && 'text-startBlue dark:text-startBlue',
       propAttributes?.className,
     ),
     onClick: handleHeadingClick,
@@ -97,7 +97,7 @@ const Headline1Tag = ({ children, attributes }: TagProps) => (
   <h1
     {...attributes}
     className={cn(
-      'text-[30px] md:text-h1 dark:text-slate-200  font-bold pt-10 mb-6',
+      'text-h1mobile md:text-h1 dark:text-slate-200  font-bold pt-10 mb-6',
       attributes?.className,
     )}
   >

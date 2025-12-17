@@ -36,7 +36,8 @@ const GroupByMenu = ({ transform, setTransform }: GroupByMenuProps) => {
   };
 
   return (
-    <div className='ml-2 my-8 flex justify-center items-center space-x-2 max-w-screen overflow-x-auto'>
+    <div className='ml-2 my-8 flex items-center space-x-2 max-w-screen overflow-x-auto'>
+      <span className='text-slate-600 dark:text-slate-300'>GROUP BY:</span>
       {groupBy.map((group) => {
         return (
           <Button
