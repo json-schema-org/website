@@ -5,7 +5,6 @@ tags:
   - database
   - relational
 type: Case Study
-cover: /img/posts/2025/oracle-case-study/banner.webp
 authors:
   - name: Loïc Lefèvre
     photo: /img/avatars/loiclefevre.webp
