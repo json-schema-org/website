@@ -22,6 +22,44 @@ In this page, you will find examples illustrating different use cases to help yo
 - [Movie](#movie)
 - [User profile](#user-profile)
 
+- [Choosing between oneOf, anyOf, and allOf](#choosing-between-oneof-anyof-and-allof)
+## Choosing between oneOf, anyOf, and allOf
+
+When combining schemas, `oneOf`, `anyOf`, and `allOf` behave differently.
+The examples below show common real-world scenarios and pitfalls.
+
+### anyOf — at least one schema must match
+
+```json
+{
+  "anyOf": [
+    { "type": "string" },
+    { "type": "number" }
+  ]
+}
+```
+
+### oneOf — exactly one schema must match
+
+```json
+{
+  "oneOf": [
+    { "type": "number", "minimum": 0 },
+    { "type": "number", "maximum": 100 }
+  ]
+}
+```
+
+### allOf — all schemas must match
+
+```json
+{
+  "allOf": [
+    { "type": "string" },
+    { "minLength": 5 }
+  ]
+}
+```
 
 ## Address
 
