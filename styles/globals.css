@@ -302,3 +302,24 @@ border-radius: 4px; */
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+
+@layer components {
+  @media (max-width:767px){
+    .table-container{
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin:0 -1rem;
+    }
+    table{
+      width:100%;
+      table-layout:fixed;
+    }
+    td,th{
+      white-space:normal;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      padding:0.5rem;
+    }
+  }
+}
