@@ -1,7 +1,14 @@
 /* eslint-disable linebreak-style */
 import React, { useContext } from 'react';
 import { BaseEditor, createEditor, Descendant, Text } from 'slate';
-import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
+import {
+  Editable,
+  ReactEditor,
+  Slate,
+  withReact,
+  RenderLeafProps,
+  RenderElementProps,
+} from 'slate-react';
 import { cn } from '@/lib/utils';
 import getPartsOfJson, { SyntaxPart } from '~/lib/getPartsOfJson';
 import jsonSchemaReferences from './jsonSchemaLinks';
@@ -21,7 +28,7 @@ import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 
 type CustomElement = CustomNode | CustomText;
 type CustomNode = { type: 'paragraph'; children: CustomText[] };
-type CustomText = { text: string };
+type CustomText = { text: string; syntaxPart?: SyntaxPart };
 
 declare module 'slate' {
   interface CustomTypes {
@@ -215,7 +222,7 @@ const calculateNewDecorationsMap = (
       textPathIndexes,
     );
   const highlightingDecorations = multipathDecorations.reduce(
-    (acc, multipathDecoration: MultipathDecoration) => {
+    (acc: RangeWithSyntaxPart[], multipathDecoration: MultipathDecoration) => {
       const decorationsOfNodes = multipathDecoration.nodes.reduce(
         (acc: RangeWithSyntaxPart[], node: NodeRange) => {
           const decorationOfNode = {
@@ -231,11 +238,11 @@ const calculateNewDecorationsMap = (
           };
           return [...acc, decorationOfNode];
         },
-        [],
+        [] as RangeWithSyntaxPart[],
       );
       return [...acc, ...decorationsOfNodes];
     },
-    [],
+    [] as RangeWithSyntaxPart[],
   );
 
   const decorationMap = makeDecorationsToMap(highlightingDecorations);
@@ -359,7 +366,7 @@ export default function JsonEditor({
     }
   }, [codeContent, isJsonMode]);
 
-  const parsedCode: null | any = React.useMemo(() => {
+  const parsedCode: Record<string, unknown> | null = React.useMemo(() => {
     try {
       return JSON.parse(serializedCode);
     } catch (e) {
@@ -404,8 +411,15 @@ export default function JsonEditor({
     let text = '';
     /* istanbul ignore else : there is no else block to test here */
     if (value) {
-      value.forEach((e: any) => {
-        text += e.children[0].text + '\n';
+      value.forEach((e: Descendant) => {
+        if (
+          'children' in e &&
+          Array.isArray(e.children) &&
+          e.children[0] &&
+          'text' in e.children[0]
+        ) {
+          text += (e.children[0] as Text).text + '\n';
+        }
       });
     }
     return text;
@@ -414,10 +428,11 @@ export default function JsonEditor({
   // copy status react state
   const [copied, setCopied] = React.useState(false);
 
-  const allPathDecorationsMap: Record<string, any> = React.useMemo(
-    () => calculateNewDecorationsMap(value, isPartialSchema),
-    [value, isPartialSchema],
-  );
+  const allPathDecorationsMap: Record<string, RangeWithSyntaxPart[]> =
+    React.useMemo(
+      () => calculateNewDecorationsMap(value, isPartialSchema),
+      [value, isPartialSchema],
+    );
 
   // Badge text logic for regular code blocks
   const getBadgeText = () => {
@@ -609,17 +624,19 @@ export default function JsonEditor({
               /* istanbul ignore next: allPathDecorationsMap[stringPath] cannot be null */
               return allPathDecorationsMap[stringPath] || [];
             }}
-            renderLeaf={(props: any) => {
+            renderLeaf={(props: RenderLeafProps) => {
               const { leaf, children, attributes } = props;
+              const syntaxType = leaf.syntaxPart?.type ?? '';
               const textStyles: undefined | string = (() => {
+                const parentJsonPath = leaf.syntaxPart?.parentJsonPath ?? '';
                 if (
                   [
                     'objectPropertyStartQuotes',
                     'objectPropertyEndQuotes',
-                  ].includes(leaf.syntaxPart?.type)
+                  ].includes(syntaxType)
                 )
                   return 'text-blue-200';
-                if (['objectProperty'].includes(leaf.syntaxPart?.type)) {
+                if (['objectProperty'].includes(syntaxType)) {
                   const isJsonScope = jsonPathsWithJsonScope
                     .filter(
                       (jsonPathWithScope) =>
@@ -630,7 +647,7 @@ export default function JsonEditor({
                       (jsonPathsWithJsonScope) =>
                         jsonPathsWithJsonScope.jsonPath,
                     )
-                    .includes(leaf.syntaxPart?.parentJsonPath);
+                    .includes(parentJsonPath);
                   if (
                     isJsonScope &&
                     jsonSchemaReferences.objectProperty[leaf.text]
@@ -652,7 +669,7 @@ export default function JsonEditor({
                     'arrayComma',
                     'arrayStartBracket',
                     'arrayEndBracket',
-                  ].includes(leaf.syntaxPart?.type)
+                  ].includes(syntaxType)
                 )
                   return 'text-slate-400';
                 if (
@@ -661,19 +678,20 @@ export default function JsonEditor({
                     'stringValue',
                     'booleanValue',
                     'nullValue',
-                  ].includes(leaf.syntaxPart?.type)
+                  ].includes(syntaxType)
                 )
                   return 'text-lime-200';
 
                 // Handle partial schema specific highlighting that might not match exactly
-                if (!leaf.syntaxPart?.type) {
+                if (!syntaxType) {
                   // If no syntax part type, apply default white color for partial schemas
                   return isPartialSchema ? 'text-white' : undefined;
                 }
               })();
 
               const link: null | string = (() =>
-                jsonSchemaReferences?.[leaf.syntaxPart?.type]?.[leaf.text] ||
+                (syntaxType &&
+                  jsonSchemaReferences?.[syntaxType]?.[leaf.text]) ||
                 null)();
 
               return (
@@ -691,7 +709,7 @@ export default function JsonEditor({
                 </span>
               );
             }}
-            renderElement={(props: any) => {
+            renderElement={(props: RenderElementProps) => {
               // This will be the path to the image element.
               const { element, children, attributes } = props;
               const path = ReactEditor.findPath(editor, element);
@@ -783,18 +801,20 @@ export type PathIndex = [number, number[]];
 const getMultipathDecorationsByMatchesAndTextPathIndexes = (
   syntaxParts: SyntaxPart[],
   textPathIndexes: PathIndex[],
-): any[] => {
-  const multipathDecorations: any[] = syntaxParts.map((syntaxPart) => {
-    const nodes = getNodesFromIndexAndLength(
-      syntaxPart.index,
-      syntaxPart.length,
-      textPathIndexes,
-    );
-    return {
-      nodes: nodes,
-      syntaxPart,
-    };
-  });
+): MultipathDecoration[] => {
+  const multipathDecorations: MultipathDecoration[] = syntaxParts.map(
+    (syntaxPart) => {
+      const nodes = getNodesFromIndexAndLength(
+        syntaxPart.index,
+        syntaxPart.length,
+        textPathIndexes,
+      );
+      return {
+        nodes: nodes,
+        syntaxPart,
+      };
+    },
+  );
   return multipathDecorations;
 };
 
@@ -802,10 +822,10 @@ export const getNodesFromIndexAndLength = (
   index: number,
   length: number,
   textPathIndexes: PathIndex[],
-): any[] => {
+): NodeRange[] => {
   const { nodes } = textPathIndexes.reduce(
     (
-      acc: { nodes: any[]; index: number; length: number },
+      acc: { nodes: NodeRange[]; index: number; length: number },
       textPathIndex: PathIndex,
     ) => {
       if (acc.length <= 0) return acc;
@@ -816,7 +836,7 @@ export const getNodesFromIndexAndLength = (
       const anchor = acc.index;
       const focus = Math.min(anchor + acc.length, textPathLength);
       const lengthInNode = focus - anchor;
-      const node: any = { anchor, focus, path: nodePath };
+      const node: NodeRange = { anchor, focus, path: nodePath };
       return {
         nodes: [...acc.nodes, node],
         index: 0,
@@ -828,9 +848,14 @@ export const getNodesFromIndexAndLength = (
   return nodes;
 };
 
-const makeDecorationsToMap = (decorations: any[]): Record<string, any[]> => {
-  return decorations.reduce((acc, decoration) => {
-    const stringPath = decoration.anchor.path.join(',');
-    return { ...acc, [stringPath]: [...(acc[stringPath] || []), decoration] };
-  }, {});
+const makeDecorationsToMap = (
+  decorations: RangeWithSyntaxPart[],
+): Record<string, RangeWithSyntaxPart[]> => {
+  return decorations.reduce(
+    (acc, decoration) => {
+      const stringPath = decoration.anchor.path.join(',');
+      return { ...acc, [stringPath]: [...(acc[stringPath] || []), decoration] };
+    },
+    {} as Record<string, RangeWithSyntaxPart[]>,
+  );
 };

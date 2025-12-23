@@ -8,6 +8,7 @@ import DocTable from '~/components/DocTable';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
+import { Frontmatter } from '~/types/common';
 
 export async function getStaticProps() {
   const index = fs.readFileSync('pages/draft/2020-12/index.md', 'utf-8');
@@ -24,12 +25,22 @@ export async function getStaticProps() {
   };
 }
 
+interface DraftFrontmatter extends Frontmatter {
+  Specification?: string;
+  Published?: string;
+  Metaschema?: string;
+}
+
+interface BlocksData {
+  index: string;
+}
+
 export default function ImplementationsPages({
   blocks,
   frontmatter,
 }: {
-  blocks: any;
-  frontmatter: any;
+  blocks: BlocksData;
+  frontmatter: DraftFrontmatter;
 }) {
   const fileRenderType = 'indexmd';
   return (

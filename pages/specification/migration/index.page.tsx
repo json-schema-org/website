@@ -8,6 +8,7 @@ import { SectionContext } from '~/context';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
+import { Frontmatter } from '~/types/common';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
@@ -30,19 +31,24 @@ export async function getStaticProps() {
   };
 }
 
+interface BlocksData {
+  index: string;
+  body?: string;
+}
+
 export default function ImplementationsPages({
   blocks,
   frontmatter,
 }: {
-  blocks: any;
-  frontmatter: any;
+  blocks: BlocksData;
+  frontmatter: Frontmatter;
 }) {
   const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
       <StyledMarkdown markdown={blocks.index} />
-      <StyledMarkdown markdown={blocks.body} />
+      {blocks.body && <StyledMarkdown markdown={blocks.body} />}
       <div className='w-full lg:w-full grid grid-cols-1 sm:grid-cols-2 gap-6 my-[10px] mx-auto mt-8 mb-4'>
         <Card
           title='Draft 2019-09 to Draft 2020-12'

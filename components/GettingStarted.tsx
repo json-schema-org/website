@@ -9,13 +9,21 @@ async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
   const data = await response.json();
 
-  const defaultSchemaData = data.find((data: any) => data.default === true);
+  const defaultSchemaData = data.find(
+    (data: { default?: boolean; file: string; instances: unknown[] }) =>
+      data.default === true,
+  );
 
   const schemaResp = await fetch(defaultSchemaData.file);
   const schemaData = await schemaResp.json();
 
   const defaultInstanceData = defaultSchemaData.instances.find(
-    (instance: any) => instance.default === true,
+    (instance: {
+      default?: boolean;
+      file: string;
+      details: string;
+      valid: string;
+    }) => instance.default === true,
   );
 
   const instanceResp = await fetch(defaultInstanceData.file);
@@ -31,11 +39,13 @@ async function fetchData() {
 }
 
 interface SchemaOption {
+  name: string;
   file: string;
   instances: InstanceOption[];
 }
 
 interface InstanceOption {
+  name: string;
   file: string;
   details: string;
   valid: string;
@@ -139,7 +149,7 @@ const GettingStarted = () => {
                 id='Examples'
                 onChange={handleSchemaChange}
               >
-                {options.map((option: any, id: number) => (
+                {options.map((option, id) => (
                   <option key={id} value={option.file}>
                     {option.name}
                   </option>
@@ -194,7 +204,7 @@ const GettingStarted = () => {
                 id='Examples'
                 onChange={handleInstanceChange}
               >
-                {instances.map((instance: any, id: number) => (
+                {instances.map((instance, id) => (
                   <option key={id} value={instance.file}>
                     {instance.name}
                   </option>
