@@ -395,7 +395,7 @@ export function DocsHelp({
           <div className='my-6 text-[14px]'>
             <p data-test='additional-help-description'>
               Learning JSON Schema is often confusing, but don't worry, we are
-              here to help!.
+              here to help!
             </p>
           </div>
 
