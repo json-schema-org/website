@@ -7,7 +7,7 @@ import { SectionContext } from '~/context';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
-import { Frontmatter } from '~/types/common';
+import { Frontmatter, BlocksData } from '~/types/common';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
@@ -34,11 +34,6 @@ interface SpecificationFrontmatter extends Frontmatter {
   Specification?: string;
 }
 
-interface BlocksData {
-  index: string;
-  body?: string;
-}
-
 export default function ImplementationsPages({
   blocks,
   frontmatter,
@@ -50,7 +45,13 @@ export default function ImplementationsPages({
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
-      {frontmatter.type && <h1>{frontmatter.type}</h1>}
+      {frontmatter.type && (
+        <h1>
+          {Array.isArray(frontmatter.type)
+            ? frontmatter.type.join(', ')
+            : frontmatter.type}
+        </h1>
+      )}
       {frontmatter.Specification && <h2>{frontmatter.Specification}</h2>}
 
       <StyledMarkdown markdown={blocks.index} />

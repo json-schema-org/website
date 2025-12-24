@@ -2,11 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-
-interface Author {
-  name: string;
-  photo?: string;
-}
+import { Author } from '~/types/common';
 
 interface DocTableProps {
   frontmatter: {

@@ -8,7 +8,7 @@ import { SectionContext } from '~/context';
 import Card from '~/components/Card';
 import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
-import { Frontmatter } from '~/types/common';
+import { Frontmatter, BlocksData } from '~/types/common';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
@@ -29,11 +29,6 @@ export async function getStaticProps() {
       frontmatter,
     },
   };
-}
-
-interface BlocksData {
-  index: string;
-  body?: string;
 }
 
 export default function ImplementationsPages({

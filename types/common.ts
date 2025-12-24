@@ -23,13 +23,6 @@ export interface Frontmatter {
   [key: string]: unknown;
 }
 
-// Props for getStaticProps parameter
-export interface StaticPropsParams {
-  params?: {
-    slug: string;
-  };
-}
-
 // Return type for markdown page props
 export interface MarkdownPageProps {
   frontmatter: Frontmatter;
@@ -114,6 +107,12 @@ export type SectionType =
 export interface NavLink {
   label: string;
   url: string;
+}
+
+// Blocks data structure for pages with multiple markdown sections
+export interface BlocksData {
+  index: string;
+  body?: string;
 }
 
 // JSON Schema specific types
