@@ -178,14 +178,15 @@ const ToolingTable = ({
                 </tr>
               </thead>
               <tbody>
-                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
+                {toolsByGroup[group].map((tool: JSONSchemaTool) => {
                   const bowtieData = getBowtieData(tool);
                   if (bowtieData) {
                     tool.bowtie = bowtieData;
                   }
+                  const toolKey = tool.source || tool.name;
                   return (
                     <tr
-                      key={index}
+                      key={toolKey}
                       className='flex w-full hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
                       onClick={() => openModal(tool)}
                     >
@@ -275,14 +276,15 @@ const ToolingTable = ({
             {/* Mobile Table */}
             <table className='lg:hidden min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
               <tbody>
-                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
+                {toolsByGroup[group].map((tool: JSONSchemaTool) => {
                   const bowtieData = getBowtieData(tool);
                   if (bowtieData) {
                     tool.bowtie = bowtieData;
                   }
+                  const toolKey = tool.source || tool.name;
                   return (
                     <tr
-                      key={index}
+                      key={toolKey}
                       className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
                       onClick={() => openModal(tool)}
                     >
