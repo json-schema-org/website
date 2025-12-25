@@ -183,9 +183,10 @@ const ToolingTable = ({
                   if (bowtieData) {
                     tool.bowtie = bowtieData;
                   }
+                  const toolKey = `${tool.name}-${tool.source || tool.homepage || index}`;
                   return (
                     <tr
-                      key={index}
+                      key={toolKey}
                       className='flex w-full hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
                       onClick={() => openModal(tool)}
                     >
@@ -280,9 +281,10 @@ const ToolingTable = ({
                   if (bowtieData) {
                     tool.bowtie = bowtieData;
                   }
+                  const toolKey = `${tool.name}-${tool.source || tool.homepage || index}`;
                   return (
                     <tr
-                      key={index}
+                      key={toolKey}
                       className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
                       onClick={() => openModal(tool)}
                     >
