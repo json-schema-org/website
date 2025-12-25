@@ -13,47 +13,98 @@ export default function getScopesOfParsedJsonSchema(
 ): JsonSchemaPathWithScope[] {
   if (typeof parsedJsonSchema !== 'object' || parsedJsonSchema === null)
     return [];
-  const typeDefinitionScope = {
-    jsonPath,
-    scope: JsonSchemaScope.TypeDefinition,
-  };
-  if (parsedJsonSchema.type === 'object') {
-    const scopesOfProperties = Object.keys(
-      parsedJsonSchema?.properties || {},
-    ).reduce<JsonSchemaPathWithScope[]>((acc, property) => {
-      return [
-        ...acc,
+
+  let scopes: JsonSchemaPathWithScope[] = [
+    {
+      jsonPath,
+      scope: JsonSchemaScope.TypeDefinition,
+    },
+  ];
+
+  // 1. Objects where each value is a subschema
+  const mapKeywords = [
+    'properties',
+    'patternProperties',
+    'definitions',
+    '$defs',
+    'dependentSchemas',
+  ];
+
+  mapKeywords.forEach((keyword) => {
+    const map = parsedJsonSchema[keyword];
+    if (map && typeof map === 'object' && !Array.isArray(map)) {
+      Object.keys(map).forEach((key) => {
+        scopes = [
+          ...scopes,
+          ...getScopesOfParsedJsonSchema(
+            map[key],
+            `${jsonPath}['${keyword}']['${key}']`,
+          ),
+        ];
+      });
+    }
+  });
+
+  // 2. Arrays where each item is a subschema
+  const arrayKeywords = ['allOf', 'anyOf', 'oneOf', 'prefixItems'];
+
+  arrayKeywords.forEach((keyword) => {
+    const list = parsedJsonSchema[keyword];
+    if (Array.isArray(list)) {
+      list.forEach((subschema: any, index: number) => {
+        scopes = [
+          ...scopes,
+          ...getScopesOfParsedJsonSchema(
+            subschema,
+            `${jsonPath}['${keyword}'][${index}]`,
+          ),
+        ];
+      });
+    }
+  });
+
+  // 3. Single subschemas
+  const singleKeywords = [
+    'items',
+    'not',
+    'if',
+    'then',
+    'else',
+    'additionalProperties',
+    'propertyNames',
+    'unevaluatedProperties',
+    'additionalItems',
+    'unevaluatedItems',
+  ];
+
+  singleKeywords.forEach((keyword) => {
+    const subschema = parsedJsonSchema[keyword];
+    // In JSON Schema, a subschema can be an object or a boolean (true/false)
+    if (typeof subschema === 'object' && subschema !== null) {
+      scopes = [
+        ...scopes,
+        ...getScopesOfParsedJsonSchema(subschema, `${jsonPath}['${keyword}']`),
+      ];
+    } else if (typeof subschema === 'boolean') {
+      scopes.push({
+        jsonPath: `${jsonPath}['${keyword}']`,
+        scope: JsonSchemaScope.TypeDefinition,
+      });
+    }
+  });
+
+  // Special case: "items" as an array (pre-Draft 2020-12 style)
+  if (Array.isArray(parsedJsonSchema.items)) {
+    parsedJsonSchema.items.forEach((subschema: any, index: number) => {
+      scopes = [
+        ...scopes,
         ...getScopesOfParsedJsonSchema(
-          parsedJsonSchema.properties?.[property],
-          `${jsonPath}['properties']['${property}']`,
+          subschema,
+          `${jsonPath}['items'][${index}]`,
         ),
       ];
-    }, []);
-    const scopesOfPatternProperties = Object.keys(
-      parsedJsonSchema?.patternProperties || {},
-    ).reduce<JsonSchemaPathWithScope[]>((acc, property) => {
-      return [
-        ...acc,
-        ...getScopesOfParsedJsonSchema(
-          parsedJsonSchema.patternProperties?.[property],
-          `${jsonPath}['patternProperties']['${property}']`,
-        ),
-      ];
-    }, []);
-    return [
-      typeDefinitionScope,
-      ...scopesOfProperties,
-      ...scopesOfPatternProperties,
-    ];
+    });
   }
-  if (parsedJsonSchema.type === 'array') {
-    return [
-      typeDefinitionScope,
-      ...getScopesOfParsedJsonSchema(
-        parsedJsonSchema.items,
-        `${jsonPath}['items']`,
-      ),
-    ];
-  }
-  return [typeDefinitionScope];
+
+  return scopes;
 }
