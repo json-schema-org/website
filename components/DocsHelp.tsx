@@ -53,12 +53,26 @@ export function DocsHelp({
 }: DocsHelpProps) {
   const router = useRouter();
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedVote, setSelectedVote] = useState<string | null>(null);
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
   // Generate GitHub redirect URL
+
+  const handleVoteClick = (value: string) => {
+    if (selectedVote === value) {
+      setIsFormOpen(!isFormOpen);
+      if (isFormOpen) {
+        setSelectedVote(null);
+      }
+    } else {
+      setIsFormOpen(true);
+      setSelectedVote(value);
+    }
+  };
+
   const getGitRedirect = () => {
     if (
       typeof fileRenderType === 'string' &&
@@ -136,6 +150,7 @@ export function DocsHelp({
     setIsFormOpen(false);
     setFeedbackStatus(status);
     setError('');
+    setSelectedVote(null);
     feedbackFormRef.current!.reset();
   };
 
@@ -200,11 +215,13 @@ export function DocsHelp({
                           id={id}
                           aria-label={id.includes('yes') ? 'yes' : 'no'}
                           value={value}
+                          checked={selectedVote === value}
+                          onChange={() => {}}
                         />
                         <label
                           className={`px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 ${className}`}
                           htmlFor={id}
-                          onClick={() => setIsFormOpen(true)}
+                          onClick={() => handleVoteClick(value)}
                           data-test={label}
                         >
                           <svg
