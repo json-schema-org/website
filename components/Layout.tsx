@@ -245,7 +245,9 @@ const MainNavigation = () => {
         >
           <Search />
         </div>
-        <DarkModeToggle />
+        <div onClick={() => useStore.setState({ overlayNavigation: null })}>
+          <DarkModeToggle />
+        </div>
         {showMobileNav === false ? (
           <div onClick={() => useStore.setState({ overlayNavigation: 'docs' })}>
             <div className='block lg:hidden space-y-2  items-center'>
