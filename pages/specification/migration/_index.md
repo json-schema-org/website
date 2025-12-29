@@ -65,13 +65,17 @@ This table provides an overview of keyword changes and removals in JSON Schema s
 | `maxContains`           | Validation    | 2019-09            | No      | No                                                                             |
 | `maxDecimals`           | Validation    | 01                 | 02     | Replaced by `divisibleBy`                                                      |
 | `maxItems`             | Core    | 01                 | No      | No                                                                             |
+| `maxLength`         | Validation    | 01                 | No      | No                                                                             |
 | `maxProperties`         | Validation    | 04                 | No      | No                                                                             |
+| `maximum`             | Validation    | 01                 | No      | No                                                                             |
 | `maximumCanEqual`       | Validation    | 01                 | 03      | Replaced by `exclusiveMaximum`                                                 |
 | `media`                 | Hyper-Schema  | 04                 | 07      | Replaced by `contentEncoding` and `contentMediaType`                           |
-| `minimumCanEqual`       | Validation    | 01                 | 03      | Replaced by `exclusiveMinimum`                                                 |
 | `minContains`           | Validation    | 2019-09            | No      | No                                                                             |
 | `minItems`             | Core    | 01                 | No      | No                                                                             |
+| `minLength`             | Validation    | 01                 | No      | No                                                                             |
 | `minProperties`         | Validation    | 04                 | No      | No                                                                             |
+| `minimum`       | Validation    | 01                 | No      | No                                               |
+| `minimumCanEqual`       | Validation    | 01                 | 03      | Replaced by `exclusiveMinimum`                                                 |
 | `multipleOf`            | Validation    | 04                 | No      | Replaced `divisibleBy`                                                         |
 | `not`                   | Core          | 04                 | No      | No                                                                             |
 | `oneOf`                 | Core          | 04                 | No      | No                                                                             |
