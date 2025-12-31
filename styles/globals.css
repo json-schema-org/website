@@ -302,3 +302,11 @@ border-radius: 4px; */
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+pre,
+code {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
