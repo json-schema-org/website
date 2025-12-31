@@ -60,7 +60,6 @@ export function DocsHelp({
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
   // Generate GitHub redirect URL
-
   const handleVoteClick = (value: string) => {
     if (selectedVote === value) {
       setIsFormOpen(!isFormOpen);
