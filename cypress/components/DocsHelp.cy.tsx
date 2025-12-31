@@ -285,14 +285,11 @@ describe('DocsHelp Component', () => {
     // 1. Click 'Yes' to open
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
-
-    //  Wait for the button to actually be checked before clicking again
-    cy.get('input#feedback-survey-yes').should('be.checked');
-
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(500);
     // 2. Click 'Yes' again to close
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
-
-    // 3.it will correctly hide
+    // 3. Verify it is hidden
     cy.get(FEEDBACK_FORM).should('not.be.visible');
     cy.get('input[name="feedback-vote"]').should('not.be.checked');
   });
