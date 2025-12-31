@@ -62,10 +62,9 @@ export function DocsHelp({
   // Generate GitHub redirect URL
   const handleVoteClick = (value: string) => {
     if (selectedVote === value) {
+      // Toggle both states directly without the nested 'if'
       setIsFormOpen(!isFormOpen);
-      if (isFormOpen) {
-        setSelectedVote(null);
-      }
+      setSelectedVote(isFormOpen ? null : value);
     } else {
       setIsFormOpen(true);
       setSelectedVote(value);
