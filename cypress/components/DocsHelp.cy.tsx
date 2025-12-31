@@ -281,18 +281,31 @@ describe('DocsHelp Component', () => {
     cy.get('[data-test="edit-on-github-link"]').should('not.exist');
   });
 
-  it('should toggle the feedback form visibility when the same button is clicked twice', () => {
-    // First we are checking click 'yes' to open the form
-    cy.get('[data-test="feedback-survey-yes-button"]').click();
-    cy.get('[data-test="feeback-form"]').should('be.visible');
-    // Click 'Yes' again to close the form (This triggers the close logic)
-    cy.get('[data-test="feedback-survey-yes-button"]').click();
-    cy.get('[data-test="feedback-form"]').should('not.be.visible');
-    // Click 'no to open it again it again'
-    cy.get('[data-test="feedback-survey-no-button"]').click();
-    cy.get('[data-test="feedback-form"]').should('be.visible');
-    // Click 'NO again to close it'
-    cy.get('[data-test="feedback-survey-no-button"]').click();
-    cy.get('[data-test="feedback-form"]').should('no.be.visible');
+  it('should toggle the feedback form visibility and reset selection when the same button is clicked twice', () => {
+    // Click 'Yes' to open the form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+    cy.get('input#feedback-survey-yes').should('be.checked');
+
+    // Click 'Yes' again to close the form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('not.be.visible');
+
+    // Verify state reset: ensure no radio buttons are selected
+    cy.get('input#feedback-survey-yes').should('not.be.checked');
+    cy.get('input#feedback-survey-no').should('not.be.checked');
+
+    //  Repeat for 'No' button
+    cy.get(FEEDBACK_FORM_NO_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+    cy.get('input#feedback-survey-no').should('be.checked');
+
+    // Click 'No' again to close it
+    cy.get(FEEDBACK_FORM_NO_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('not.be.visible');
+
+    // Verify both buttons are unchecked
+    cy.get('input#feedback-survey-yes').should('not.be.checked');
+    cy.get('input#feedback-survey-no').should('not.be.checked');
   });
 });
