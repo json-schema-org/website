@@ -85,7 +85,7 @@ describe('DocsHelp Component', () => {
       .and('contain.text', 'Learning JSON Schema is often confusing');
 
     // GitHub community link
-    cy.get('[ data-test="ask-on-github-link"]')
+    cy.get('[data-test="ask-on-github-link"]')
       .should('have.prop', 'tagName', 'A')
       .and(
         'have.attr',
@@ -100,8 +100,7 @@ describe('DocsHelp Component', () => {
       .and('have.attr', 'href', 'https://json-schema.org/slack')
       .and('contains', /Ask the community on Slack/i);
   });
-
-  // test feedback form funtionality works correctly
+  // test feedback form functionality works correctly
   it('should handle successful feedback submission', () => {
     // mocking the feedback api call
     cy.intercept(
@@ -282,14 +281,11 @@ describe('DocsHelp Component', () => {
   });
 
   it('should toggle the feedback form visibility and reset selection when the same button is clicked twice', () => {
-    // 1. Click 'Yes' to open
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
-    // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(500);
-    // 2. Click 'Yes' again to close
+    cy.get(FEEDBACK_FORM_INPUT).should('be.visible'); // Ensure form is fully rendered
+    
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
-    // 3. Verify it is hidden
     cy.get(FEEDBACK_FORM).should('not.be.visible');
     cy.get('input[name="feedback-vote"]').should('not.be.checked');
   });
