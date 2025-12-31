@@ -59,20 +59,19 @@ export function DocsHelp({
   const [error, setError] = useState('');
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
-  // Generate GitHub redirect URL
   const handleVoteClick = (value: string) => {
-    if (selectedVote === value) {
-      setIsFormOpen((prevOpen) => {
-        const nextOpenState = !prevOpen;
-        if (!nextOpenState) setSelectedVote(null);
-        return nextOpenState;
-      });
+    const isSameButton = selectedVote === value;
+
+    if (isSameButton) {
+      const willBeOpen = !isFormOpen;
+      setIsFormOpen(willBeOpen);
+      setSelectedVote(willBeOpen ? value : null);
     } else {
       setIsFormOpen(true);
       setSelectedVote(value);
     }
   };
-
+  // Generate GitHub redirect URL
   const getGitRedirect = () => {
     if (
       typeof fileRenderType === 'string' &&
