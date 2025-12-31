@@ -286,10 +286,13 @@ describe('DocsHelp Component', () => {
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
 
+    //  Wait for the button to actually be checked before clicking again
+    cy.get('input#feedback-survey-yes').should('be.checked');
+
     // 2. Click 'Yes' again to close
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
 
-    // 3. Verify it is hidden and selection is cleared
+    // 3.it will correctly hide
     cy.get(FEEDBACK_FORM).should('not.be.visible');
     cy.get('input[name="feedback-vote"]').should('not.be.checked');
   });
