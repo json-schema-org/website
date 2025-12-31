@@ -285,7 +285,7 @@ describe('DocsHelp Component', () => {
     cy.get(FEEDBACK_FORM).should('be.visible');
 
     // eslint-disable-next-line cypress/no-unnecessary-waiting
-    cy.wait(500);
+    cy.wait(501);
 
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('not.be.visible');
