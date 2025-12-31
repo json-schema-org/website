@@ -282,15 +282,17 @@ describe('DocsHelp Component', () => {
   });
 
   it('should toggle the feedback form visibility and reset selection when the same button is clicked twice', () => {
-    // 1. Open the form
+    // 1. Click 'Yes' to open
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
 
-    // 2. Click again to close (triggers the logic above)
+    // 2. Click 'Yes' again to close
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    
+    // 3. Verify it is hidden
     cy.get(FEEDBACK_FORM).should('not.be.visible');
-
-    // 3. Assert the state is null (radio is unchecked)
+    
+    // 4. Verify selection is cleared
     cy.get('input[name="feedback-vote"]').should('not.be.checked');
   });
 });

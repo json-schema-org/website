@@ -62,9 +62,11 @@ export function DocsHelp({
   // Generate GitHub redirect URL
   const handleVoteClick = (value: string) => {
     if (selectedVote === value) {
-      const isClosing = isFormOpen;
-      setIsFormOpen(!isFormOpen);
-      setSelectedVote(isClosing ? null : value);
+      setIsFormOpen((prevOpen) => {
+        const nextOpenState = !prevOpen;
+        if (!nextOpenState) setSelectedVote(null);
+        return nextOpenState;
+      });
     } else {
       setIsFormOpen(true);
       setSelectedVote(value);
