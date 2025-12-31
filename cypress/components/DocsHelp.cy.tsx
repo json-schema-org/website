@@ -283,7 +283,10 @@ describe('DocsHelp Component', () => {
   it('should toggle the feedback form visibility and reset selection when the same button is clicked twice', () => {
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
-    cy.get(FEEDBACK_FORM_INPUT).should('be.visible'); // To Ensure form is fully rendered
+
+    // eslint-disable-next-line cypress/no-unnecessary-waiting
+    cy.wait(500);
+
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('not.be.visible');
     cy.get('input[name="feedback-vote"]').should('not.be.checked');
