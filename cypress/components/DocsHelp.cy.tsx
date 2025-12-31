@@ -286,24 +286,19 @@ describe('DocsHelp Component', () => {
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
     cy.get('input#feedback-survey-yes').should('be.checked');
-
     // Click 'Yes' again to close the form
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('not.be.visible');
-
     // Verify state reset: ensure no radio buttons are selected
     cy.get('input#feedback-survey-yes').should('not.be.checked');
     cy.get('input#feedback-survey-no').should('not.be.checked');
-
     //  Repeat for 'No' button
     cy.get(FEEDBACK_FORM_NO_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('be.visible');
     cy.get('input#feedback-survey-no').should('be.checked');
-
     // Click 'No' again to close it
     cy.get(FEEDBACK_FORM_NO_BUTTON).click();
     cy.get(FEEDBACK_FORM).should('not.be.visible');
-
     // Verify both buttons are unchecked
     cy.get('input#feedback-survey-yes').should('not.be.checked');
     cy.get('input#feedback-survey-no').should('not.be.checked');
