@@ -60,12 +60,14 @@ export function DocsHelp({
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
   const handleVoteClick = (value: string) => {
-    const isSameButton = selectedVote === value;
-
-    if (isSameButton) {
-      const willBeOpen = !isFormOpen;
-      setIsFormOpen(willBeOpen);
-      setSelectedVote(willBeOpen ? value : null);
+    if (selectedVote === value) {
+      setIsFormOpen((prevIsFormOpen) => {
+        const willBeOpen = !prevIsFormOpen;
+        if (!willBeOpen) {
+          setSelectedVote(null);
+        }
+        return willBeOpen;
+      });
     } else {
       setIsFormOpen(true);
       setSelectedVote(value);
