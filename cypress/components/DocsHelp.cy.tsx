@@ -280,4 +280,19 @@ describe('DocsHelp Component', () => {
     cy.mount(<DocsHelp fileRenderType='indexmd' showEditOption={false} />);
     cy.get('[data-test="edit-on-github-link"]').should('not.exist');
   });
+
+  it('should toggle the feedback form visibility when the same button is clicked twice', () => {
+    // First we are checking click 'yes' to open the form
+    cy.get('[data-test="feedback-survey-yes-button"]').click();
+    cy.get('[data-test="feeback-form"]').should('be.visible');
+    // Click 'Yes' again to close the form (This triggers the close logic)
+    cy.get('[data-test="feedback-survey-yes-button"]').click();
+    cy.get('[data-test="feedback-form"]').should('not.be.visible');
+    // Click 'no to open it again it again'
+    cy.get('[data-test="feedback-survey-no-button"]').click();
+    cy.get('[data-test="feedback-form"]').should('be.visible');
+    // Click 'NO again to close it'
+    cy.get('[data-test="feedback-survey-no-button"]').click();
+    cy.get('[data-test="feedback-form"]').should('no.be.visible');
+  });
 });
