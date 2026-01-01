@@ -90,10 +90,8 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       environments: parseArrayParam(
         query.environments,
       ) as Transform['environments'],
-      showObsolete:
-        (query.showObsolete as Transform['showObsolete']) || 'false',
-      supportsBowtie:
-        (query.supportsBowtie as Transform['supportsBowtie']) || 'false',
+      showObsolete: query.showObsolete === 'true' ? 'true' : 'false',
+      supportsBowtie: query.supportsBowtie === 'true' ? 'true' : 'false',
     } satisfies Transform;
 
     const queryString = buildQueryString(updatedTransform);
