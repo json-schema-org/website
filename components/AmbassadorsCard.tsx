@@ -113,8 +113,35 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
   const [imgSrc, setImgSrc] = useState(
     ambassador.img || '/api/placeholder/400/320',
   );
+  const [imgError, setImgError] = useState(false);
 
   const { name, title, bio, company, country, contributions = [] } = ambassador;
+
+  // Generate initials from ambassador name for fallback avatar
+  const getInitials = (fullName?: string): string => {
+    if (!fullName) return '?';
+    const parts = fullName.split(' ');
+    if (parts.length >= 2) {
+      return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+    }
+    return fullName.substring(0, 2).toUpperCase();
+  };
+
+  // Generate consistent color based on name
+  const getAvatarColor = (fullName?: string): string => {
+    const colors = [
+      'bg-blue-500',
+      'bg-purple-500',
+      'bg-pink-500',
+      'bg-indigo-500',
+      'bg-cyan-500',
+      'bg-teal-500',
+      'bg-green-500',
+    ];
+    if (!fullName) return colors[0];
+    const charCode = fullName.charCodeAt(0);
+    return colors[charCode % colors.length];
+  };
 
   const SocialIcons: SocialIcons[] = [
     'github',
@@ -134,14 +161,25 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
       {/* Image section */}
       <div className='p-5'>
         <div className='w-full h-80 relative overflow-hidden rounded-2xl'>
-          <Image
-            className='w-full h-full object-cover'
-            src={imgSrc}
-            alt={`${name} profile`}
-            fill
-            sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-            onError={() => setImgSrc(`/img/ambassadors/${name}.jpg`)}
-          />
+          {!imgError ? (
+            <Image
+              className='w-full h-full object-cover'
+              src={imgSrc}
+              alt={`${name} profile`}
+              fill
+              sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              onError={() => setImgError(true)}
+            />
+          ) : (
+            // Fallback avatar with initials
+            <div
+              className={`w-full h-full flex items-center justify-center ${getAvatarColor(name)} text-white`}
+            >
+              <span className='text-6xl font-bold'>
+                {getInitials(name)}
+              </span>
+            </div>
+          )}
         </div>
       </div>
 

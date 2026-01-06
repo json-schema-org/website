@@ -113,9 +113,8 @@ describe('AmbassadorCard Component', () => {
     }).as('imageError');
     cy.mount(<AmbassadorCard ambassador={mockAmbassador} />);
     cy.wait('@imageError');
-    cy.get('img')
-      .should('have.attr', 'src')
-      .and('match', /John%20Doe/);
+    // When image fails to load, fallback avatar with initials should be displayed
+    cy.get('div').contains('JD').should('be.visible');
   });
 
   it('has proper accessibility attributes', () => {
