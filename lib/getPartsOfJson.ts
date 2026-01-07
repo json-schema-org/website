@@ -208,7 +208,7 @@ const getPartsOfJsonObjectContent = (
     const nextStartIndex = doubleQuoteMatches[index + 1]?.index || Infinity;
     const payload = serializedJson.slice(
       doubleQuoteMatch.index + 1,
-      nextStartIndex - 1,
+      nextStartIndex,
     );
     const match = serializedJson.slice(keywordStartIndex - 1, nextStartIndex);
     const stringWithPayload: StringWithPayload = {

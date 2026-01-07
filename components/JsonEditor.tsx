@@ -307,7 +307,7 @@ export default function JsonEditor({
     const positionOfCodeInFullMarkdown = fullMarkdown?.indexOf(codeContent);
     if (
       positionOfCodeInFullMarkdown === undefined ||
-      positionOfCodeInFullMarkdown === -1
+      positionOfCodeInFullMarkdown <= 0
     )
       return;
     const endPositionOfCode = positionOfCodeInFullMarkdown + codeContent.length;
