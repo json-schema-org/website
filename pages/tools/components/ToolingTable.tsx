@@ -80,6 +80,18 @@ const ToolingTable = ({
 
   const groups = Object.keys(toolsByGroup);
 
+  const generateToolKey = (tool: JSONSchemaTool, group: string): string => {
+    const parts = [group];
+    if (tool.source) parts.push(tool.source);
+    if (tool.name) parts.push(tool.name);
+    if (tool.homepage && tool.homepage !== tool.source)
+      parts.push(tool.homepage);
+    if (tool.license) parts.push(tool.license);
+    if (tool.status) parts.push(tool.status);
+    if (tool.lastUpdated) parts.push(tool.lastUpdated);
+    return parts.join('|');
+  };
+
   const openModal = (tool: JSONSchemaTool) => {
     setSelectedTool(tool);
     postAnalytics({
@@ -183,7 +195,7 @@ const ToolingTable = ({
                   if (bowtieData) {
                     tool.bowtie = bowtieData;
                   }
-                  const toolKey = tool.source || tool.name;
+                  const toolKey = generateToolKey(tool, group);
                   return (
                     <tr
                       key={toolKey}
@@ -281,7 +293,7 @@ const ToolingTable = ({
                   if (bowtieData) {
                     tool.bowtie = bowtieData;
                   }
-                  const toolKey = tool.source || tool.name;
+                  const toolKey = generateToolKey(tool, group);
                   return (
                     <tr
                       key={toolKey}
