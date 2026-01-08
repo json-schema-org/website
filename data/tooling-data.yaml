@@ -919,7 +919,7 @@
   source: 'https://framagit.org/fperrad/lua-schema'
   homepage: 'https://fperrad.frama.io/lua-schema'
   supportedDialects:
-    draft: ['1', '2', '3', '4', '6', '7', '2019-09', '2020-12']
+    draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2026-01-08'
 
 - name: json-everything
