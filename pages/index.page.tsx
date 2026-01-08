@@ -336,7 +336,7 @@ const Home = (props: any) => {
             <h3 className=' text-center lg:text-left text-h3mobile md:text-h3 font-semibold mb-4 dark:text-slate-200'>
               Explore the JSON Schema Ecosystem
             </h3>
-            <p className='lg:pr-8 mb-4 text-center lg:text-left dark:text-slate-300'>
+            <p className='lg:pr-8 mb-4 text-center lg:text-left dark:text-slate-300 text-balance'>
               Discover JSON Schema tooling to help your organization leverage
               the benefits of JSON Schema. Because JSON Schema is much more than
               a Specification, it is a vibrant ecosystem of Validators,
