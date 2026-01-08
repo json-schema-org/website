@@ -907,6 +907,21 @@
     draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
 
+- name: lua-schema
+  description: 'lua-schema is a JSON Schema (classical & modern) data validator for Lua. It validates data from a JSON instance or from any equivalent data model, for example CBOR, Message Pack, UBJSON or just plain Lua.'
+  toolingTypes: ['validator']
+  languages: ['Lua']
+  maintainers:
+    - name: 'François Perrad'
+      username: 'fperrad'
+      platform: 'gitlab'
+  license: 'MIT'
+  source: 'https://framagit.org/fperrad/lua-schema'
+  homepage: 'https://fperrad.frama.io/lua-schema'
+  supportedDialects:
+    draft: ['1', '2', '3', '4', '6', '7', '2019-09', '2020-12']
+  lastUpdated: '2026-01-08'
+
 - name: json-everything
   description: 'System.Text.Json-based support for all of your JSON needs.'
   toolingTypes: ['validator']
