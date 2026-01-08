@@ -467,8 +467,8 @@ const Logo = () => {
   }, [resolvedTheme]);
 
   return (
-    <div>
-      <Link href='/' className=''>
+    <div className='w-[170px] h-[48px] relative'>
+      <Link href='/' className='flex items-center'>
         <Image
           src={imageSrc}
           width={170}
