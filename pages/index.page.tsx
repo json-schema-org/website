@@ -241,7 +241,7 @@ const Home = (props: any) => {
           </div>
         </section>
         {/* Feature */}
-        <section className='max-w-[1400px] mt-12 lg:mt-[80px]'>
+        <section className='max-w-[1400px] mt-12 lg:mt-[80px] *:text-balance'>
           <div className='w-5/6 md:w-1/2 text-center  mb-6  mx-auto '>
             <h2 className='text-h3mobile md:text-h3 font-bold mb-6 dark:text-slate-200'>
               Why JSON Schema?
@@ -253,49 +253,53 @@ const Home = (props: any) => {
             </p>
           </div>
           {/* Feature 4 section*/}
-          <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
-            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
-                Streamline testing and validation
-              </h3>
-              <p className='dark:text-slate-300'>
-                Simplify your validation logic to reduce your code’s complexity
-                and save time on development. Define constraints for your data
-                structures to catch and prevent errors, inconsistencies, and
-                invalid data.
-              </p>
+          <div className='w-5/6 lg:w-[55%] grid grid-cols-1 md:grid-cols-2 gap-6 my-[85px] mx-auto'>
+            <div className='flex flex-col gap-6 h-full'>
+              <div className='w-full h-[60%] shadow-3xl rounded-[10px] py-4 px-5 dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+                <h3 className='text-h5mobile md:text-h5 font-semibold mb-4 dark:text-slate-200'>
+                  Streamline testing and validation
+                </h3>
+                <p className='dark:text-slate-300'>
+                  Simplify your validation logic to reduce your code’s
+                  complexity and save time on development. Define constraints
+                  for your data structures to catch and prevent errors,
+                  inconsistencies, and invalid data.
+                </p>
+              </div>
+              <div className='w-full h-[40%] shadow-3xl rounded-[10px] py-4 px-5 dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+                <h3 className='text-h5mobile md:text-h5 font-semibold mb-4 dark:text-slate-200 '>
+                  Document your data
+                </h3>
+                <p className='dark:text-slate-300 mb-2 lg:mb-0'>
+                  Create a clear, standardized representation of your data to
+                  improve understanding and collaboration among developers,
+                  stakeholders, and collaborators.
+                </p>
+              </div>
             </div>
-            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
-                Exchange data seamlessly
-              </h3>
-              <p className='dark:text-slate-300'>
-                Establish a common language for data exchange, no matter the
-                scale or complexity of your project. Define precise validation
-                rules for your data structures to create shared understanding
-                and increase interoperability across different systems and
-                platforms.
-              </p>
-            </div>
-            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200 '>
-                Document your data
-              </h3>
-              <p className='dark:text-slate-300'>
-                Create a clear, standardized representation of your data to
-                improve understanding and collaboration among developers,
-                stakeholders, and collaborators.
-              </p>
-            </div>
-            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
-              <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
-                Vibrant tooling ecosystem
-              </h3>
-              <p className='dark:text-slate-300'>
-                Adopt JSON Schema with an expansive range of community-driven
-                tools, libraries, and frameworks across many programming
-                languages.
-              </p>
+            <div className='flex flex-col gap-6 h-full'>
+              <div className='w-full h-[40%] shadow-3xl rounded-[10px] py-4 px-5 dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+                <h3 className='text-h5mobile md:text-h5 font-semibold mb-4 dark:text-slate-200'>
+                  Vibrant tooling ecosystem
+                </h3>
+                <p className='dark:text-slate-300 mb-2 lg:mb-0'>
+                  Adopt JSON Schema with an expansive range of community-driven
+                  tools, libraries, and frameworks across many programming
+                  languages.
+                </p>
+              </div>
+              <div className='w-full h-[60%] shadow-3xl rounded-[10px] py-4 px-5 dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+                <h3 className='text-h5mobile md:text-h5 font-semibold mb-4 dark:text-slate-200'>
+                  Exchange data seamlessly
+                </h3>
+                <p className='dark:text-slate-300'>
+                  Establish a common language for data exchange, no matter the
+                  scale or complexity of your project. Define precise validation
+                  rules for your data structures to create shared understanding
+                  and increase interoperability across different systems and
+                  platforms.
+                </p>
+              </div>
             </div>
           </div>
         </section>
