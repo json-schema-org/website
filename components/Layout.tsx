@@ -279,7 +279,7 @@ const MainNavigation = () => {
           >
             <span className='inline-block mr-1'>
               <svg
-                className='inline-block -mt-1 w-6 h-6 size-7'
+                className='inline-block mt-0.5 w-6 h-6 size-7'
                 fill='currentColor'
                 viewBox='0 0 24 24'
               >
