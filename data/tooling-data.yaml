@@ -895,7 +895,7 @@
 - name: lua-resty-jsonschema
   description: 'Pure Lua JSON schema validator for Lua/LuaJIT'
   toolingTypes: ['validator']
-  languages: ['Lua/LuaJIT']
+  languages: ['Lua']
   maintainers:
     - name: 'YuanSheng Wang'
       username: 'membphis'
