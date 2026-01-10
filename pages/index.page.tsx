@@ -374,7 +374,7 @@ const Home = (props: any) => {
                     <>
                       <Image
                         src='/img/logos/Slack-mark.svg'
-                        className='w-8 h-8'
+                        className='size-12'
                         alt='slack'
                         height={32}
                         width={32}
@@ -395,7 +395,7 @@ const Home = (props: any) => {
                 )}
 
                 {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-                <p className='mb-4 dark:text-slate-300'>
+                <p className='mb-4 dark:text-slate-300 text-balance'>
                   Join our Slack to ask questions, get feedback on your
                   projects, and connect with +5000 practitioners and experts.
                 </p>
@@ -409,7 +409,7 @@ const Home = (props: any) => {
                     <>
                       <Image
                         src='/img/logos/slack_logo_small-white.svg'
-                        className='w-4 h-4 mr-2 '
+                        className='w-4 h-4 mr-2'
                         width={16}
                         height={16}
                         alt='slack'
@@ -430,7 +430,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px]  mb-4'
+                      className='w-full h-[232px] object-contain mb-4'
                       width={600}
                       height={232}
                       alt='blog'
@@ -449,7 +449,7 @@ const Home = (props: any) => {
                   />
                 </div>
 
-                <div className='flex ml-2 mb-2 '>
+                <div className='flex ml-2 mb-2'>
                   {(blogPosts[0].frontmatter.authors || []).map(
                     (author: any, index: number) => {
                       return (
