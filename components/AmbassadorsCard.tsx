@@ -40,13 +40,25 @@ const getSocialMediaUrl = (
   platform: SocialIcons,
   username: string | undefined,
 ) => {
+  if (!username) return undefined;
+
   const baseUrls: Record<SocialIcons, string> = {
     github: 'https://github.com/',
     twitter: 'https://twitter.com/',
-    mastodon: 'https://fosstodon.org/',
+    mastodon: '',
     linkedin: 'https://www.linkedin.com/in/',
   };
-  return username ? baseUrls[platform] + username : undefined;
+
+  // Handle Mastodon handles in @username@server format
+  if (platform === 'mastodon') {
+    const mastodonMatch = username.match(/^@?([^@]+)@([^@]+)$/);
+    if (mastodonMatch) {
+      const [, user, server] = mastodonMatch;
+      return `https://${server}/@${user}`;
+    }
+  }
+
+  return baseUrls[platform] + username;
 };
 
 const SocialIcon = ({ platform }: { platform: SocialIcons }) => {

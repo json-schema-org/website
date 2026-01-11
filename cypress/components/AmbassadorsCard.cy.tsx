@@ -56,7 +56,7 @@ describe('AmbassadorCard Component', () => {
     cy.get('a[href*="github.com/johndoe"]').should('exist');
     cy.get('a[href*="twitter.com/johndoe_twitter"]').should('exist');
     cy.get('a[href*="linkedin.com/in/johndoe-linkedin"]').should('exist');
-    cy.get('a[href*="fosstodon.org/johndoe@mastodon.social"]').should('exist');
+    cy.get('a[href="https://mastodon.social/@johndoe"]').should('exist');
     cy.get('button').should('contain.text', 'Show Full Details');
   });
 
@@ -83,7 +83,7 @@ describe('AmbassadorCard Component', () => {
       'target',
       '_blank',
     );
-    cy.get('a[href*="fosstodon.org/johndoe@mastodon.social"]').should(
+    cy.get('a[href="https://mastodon.social/@johndoe"]').should(
       'have.attr',
       'target',
       '_blank',
