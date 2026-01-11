@@ -81,7 +81,8 @@ const NavButton = ({
               {buttonText}
             </div>
             {!isPrev && (
-              <Icon className='h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1'
+              <Icon
+                className='h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1'
                 data-test='nav-button-icon'
               />
             )}
