@@ -52,25 +52,42 @@ const NavButton = ({
 
   return (
     <div className='h-auto w-1/2' data-test={`nav-button-${direction}`}>
-      <Card className='group h-full cursor-pointer border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:hover:shadow-lg dark:drop-shadow-lg lg:text-left'>
+      <Card className='h-full cursor-pointer border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:hover:shadow-lg dark:drop-shadow-lg lg:text-left'>
         <Link href={url} className='block'>
           <Button
             variant='ghost'
-            className={`w-full gap-5 p-0 text-[18px] hover:bg-transparent ${isPrev ? 'justify-start' : 'justify-end'}`}
+            className={`group
+              w-full gap-3 sm:gap-5
+              p-0
+              text-sm sm:text-[18px]
+              hover:bg-transparent
+              transition-all
+              ${isPrev ? 'justify-start' : 'justify-end'}
+            `}
           >
-            {isPrev && <Icon className='h-5 w-5' data-test='nav-button-icon' />}
+            {isPrev && (
+              <Icon
+                className='h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:-translate-x-1'
+                data-test='nav-button-icon'
+              />
+            )}
+
             <div
-              className='my-auto inline font-bold uppercase text-primary dark:text-slate-300 group-hover:text-[20px] transition-all duration-300'
+              className='my-auto inline font-bold uppercase text-primary dark:text-slate-300
+                         transition-transform duration-300 origin-center
+                         group-hover:scale-110'
               data-test='nav-button-text'
             >
               {buttonText}
             </div>
             {!isPrev && (
-              <Icon className='h-5 w-5' data-test='nav-button-icon' />
+              <Icon className='h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 group-hover:translate-x-1'
+                data-test='nav-button-icon'
+              />
             )}
           </Button>
           <div
-            className={`my-2 text-base font-medium text-slate-600 dark:text-slate-300 ${isPrev ? 'text-left' : 'text-right'}`}
+            className={`my-2 text-sm sm:text-base font-medium text-slate-600 dark:text-slate-300 ${isPrev ? 'text-left' : 'text-right'}`}
             data-test='nav-button-label'
           >
             {label}
