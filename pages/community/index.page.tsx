@@ -16,7 +16,6 @@ import {
   printEventsForNextWeeks,
 } from '../../lib/calendarUtils';
 
-
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
   const files = fs.readdirSync(PATH);
@@ -56,9 +55,6 @@ export const getStaticProps: GetStaticProps = async () => {
 function shuffleArray<T>(array: T[]) {
   return [...array].sort(() => Math.random() - 0.5);
 }
-
-
-
 
 export default function communityPages(props: any) {
   const blogPosts = props.blogPosts;
@@ -114,7 +110,7 @@ export default function communityPages(props: any) {
                       contributor.login !== 'the-json-schema-bot[bot]' &&
                       contributor.login !== 'dependabot[bot]',
                   )
-                  
+
                   .slice(0, 60)
                   .map((avatar, index) => (
                     <a
@@ -132,7 +128,15 @@ export default function communityPages(props: any) {
                         priority={index < 10}
                         loading={index < 10 ? 'eager' : 'lazy'}
                         quality={75}
-                        className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black cursor-pointer'
+                        className='
+                              sm:w-[40px] md:w-[45px] lg:w-[50px]
+                              sm:h-[40px] md:h-[45px] lg:h-[50px]
+                              rounded-full cursor-pointer
+                              transition-transform transition-shadow duration-200 ease-in-out
+                              hover:scale-110
+                              hover:shadow-lg
+                             hover:ring-2 hover:ring-blue-500
+                            '
                       />
                     </a>
                   ))}
