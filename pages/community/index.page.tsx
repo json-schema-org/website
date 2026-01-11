@@ -16,6 +16,7 @@ import {
   printEventsForNextWeeks,
 } from '../../lib/calendarUtils';
 
+
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
   const files = fs.readdirSync(PATH);
@@ -51,6 +52,13 @@ export const getStaticProps: GetStaticProps = async () => {
     },
   };
 };
+
+function shuffleArray<T>(array: T[]) {
+  return [...array].sort(() => Math.random() - 0.5);
+}
+
+
+
 
 export default function communityPages(props: any) {
   const blogPosts = props.blogPosts;
@@ -106,21 +114,27 @@ export default function communityPages(props: any) {
                       contributor.login !== 'the-json-schema-bot[bot]' &&
                       contributor.login !== 'dependabot[bot]',
                   )
-                  .sort(() => Math.random() - 0.5)
+                  
                   .slice(0, 60)
                   .map((avatar, index) => (
-                    <Image
+                    <a
                       key={`${avatar.id}-${index}`}
-                      src={avatar.avatar_url}
-                      alt={avatar.login}
-                      width={35}
-                      height={35}
+                      href={`https://github.com/${avatar.login}`}
+                      target='_blank'
+                      rel='noopener noreferrer'
                       title={avatar.login}
-                      priority={index < 10}
-                      loading={index < 10 ? 'eager' : 'lazy'}
-                      quality={75}
-                      className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
-                    />
+                    >
+                      <Image
+                        src={avatar.avatar_url}
+                        alt={avatar.login}
+                        width={35}
+                        height={35}
+                        priority={index < 10}
+                        loading={index < 10 ? 'eager' : 'lazy'}
+                        quality={75}
+                        className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black cursor-pointer'
+                      />
+                    </a>
                   ))}
               </div>
             </div>
