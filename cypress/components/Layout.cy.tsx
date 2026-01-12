@@ -38,12 +38,6 @@ describe('Layout Component', () => {
       cy.get('[data-testid="content"]').should('contain', 'Test content');
     });
 
-    // Skipping title test as Next.js Head component doesn't work reliably in Cypress component tests
-    // it('should render with custom meta title', () => {
-    //   mountLayout({ metaTitle: 'Test Page' });
-    //   cy.get('title').should('contain', 'JSON Schema - Test Page');
-    // });
-
     it('should render with white background when whiteBg is true', () => {
       mountLayout({ whiteBg: true });
       cy.get('main').parent().should('have.class', 'bg-white');
@@ -133,14 +127,13 @@ describe('Layout Component', () => {
   describe('Search Component', () => {
     it('should render the search component', () => {
       mountLayout();
-      // DocSearch component doesn't have a specific data-testid, so we check for the container
-      cy.get('header').find('.rounded-md').should('exist');
+      cy.get('[data-testid="search-container"]').should('exist');
     });
 
     it('should have correct styling for search container', () => {
       mountLayout();
-      cy.get('header')
-        .find('.rounded-md')
+      // UPDATED: Use data-testid (Fixes the ambiguity with .rounded-md)
+      cy.get('[data-testid="search-container"]')
         .should('have.class', 'dark:hover:bg-gray-700')
         .and('have.class', 'hover:bg-gray-100')
         .and('have.class', 'focus:bg-gray-100')
@@ -188,8 +181,6 @@ describe('Layout Component', () => {
         .find('[data-testid="Button-link"]')
         .find('svg')
         .should('exist')
-        .and('have.class', 'w-6')
-        .and('have.class', 'h-6')
         .and('have.class', 'size-7');
     });
 
@@ -215,8 +206,7 @@ describe('Layout Component', () => {
         .and('have.class', 'text-sm')
         .and('have.class', 'font-medium')
         .and('have.class', 'tracking-heading')
-        .and('have.class', 'py-2.5')
-        .and('have.class', 'ml-2');
+        .and('have.class', 'py-2.5');
     });
 
     it('should be hidden on mobile screens', () => {
@@ -237,13 +227,12 @@ describe('Layout Component', () => {
   describe('Mobile Navigation', () => {
     it('should render hamburger menu on mobile', () => {
       mountLayout();
-      cy.get('header').find('.block.lg\\:hidden').should('exist');
+      cy.get('[data-testid="mobile-menu-trigger"]').should('exist');
     });
 
     it('should show mobile navigation when hamburger is clicked', () => {
       mountLayout();
-      // Click hamburger menu
-      cy.get('header').find('.block.lg\\:hidden').click();
+      cy.get('[data-testid="mobile-menu-trigger"]').click();
 
       // Check if mobile nav is visible
       cy.get('.flex.flex-col.lg\\:hidden').should('be.visible');
@@ -252,19 +241,17 @@ describe('Layout Component', () => {
     it('should hide mobile navigation when close button is clicked', () => {
       mountLayout();
       // Open mobile nav
-      cy.get('header').find('.block.lg\\:hidden').click();
+      cy.get('[data-testid="mobile-menu-trigger"]').click();
 
-      // Click close button
-      cy.get('header').find('.h-6.w-6.lg\\:hidden').click();
+      cy.get('[data-testid="mobile-menu-close"]').click();
 
-      // Check if mobile nav is hidden - it should not exist in DOM when hidden
       cy.get('.flex.flex-col.lg\\:hidden').should('not.exist');
     });
 
     it('should render mobile navigation links', () => {
       mountLayout();
       // Open mobile nav
-      cy.get('header').find('.block.lg\\:hidden').click();
+      cy.get('[data-testid="mobile-menu-trigger"]').click();
 
       // Check mobile nav links
       cy.get('.flex.flex-col.lg\\:hidden')

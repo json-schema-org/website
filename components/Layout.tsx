@@ -13,6 +13,7 @@ import DarkModeToggle from './DarkModeToggle';
 import ScrollButton from './ScrollButton';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { Menu, X } from 'lucide-react';
 
 type Props = {
   children: React.ReactNode;
@@ -154,7 +155,7 @@ const MainNavLink = ({
       href={uri}
       className={classnames(
         className,
-        'font-semibold p-2 md:p-4',
+        'font-semibold p-2 md:p-4 rounded',
         // `${
         //   router.asPath === uri
         //     ? 'text-primary hover:text-primary'
@@ -236,8 +237,9 @@ const MainNavigation = () => {
         isActive={section === 'community'}
       />
 
-      <div className='flex items-center max-sm:ml-4 mr-8 gap-6 md:gap-4 dark:bg-slate-800'>
+      <div className='flex items-center mx-2 max-md:mr-4 gap-4 max-md:gap-2 dark:bg-slate-800'>
         <div
+          data-testid='search-container'
           className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
           onClick={() => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -249,11 +251,12 @@ const MainNavigation = () => {
           <DarkModeToggle />
         </div>
         {showMobileNav === false ? (
-          <div onClick={() => useStore.setState({ overlayNavigation: 'docs' })}>
+          <div
+            onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
+            data-testid='mobile-menu-trigger'
+          >
             <div className='block lg:hidden space-y-2  items-center'>
-              <div className={`w-6 h-1 ${menu} rounded`}></div>
-              <div className={`w-6 h-1 ${menu} rounded`}></div>
-              <div className={`w-6 h-1 ${menu} rounded`}></div>
+              <Menu size={26} />
             </div>
           </div>
         ) : (
@@ -261,16 +264,19 @@ const MainNavigation = () => {
             style={{
               backgroundImage: closeMenu,
             }}
-            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
+            data-testid='mobile-menu-close'
+            className='lg:hidden px-[5px] bg-center bg-no-repeat transition-all cursor-pointer'
             onClick={() => useStore.setState({ overlayNavigation: null })}
-          />
+          >
+            <X size={16} />
+          </div>
         )}
       </div>
       <div className='flex items-center justify-end mr-8'>
         <Button
           asChild
           data-testid='Button-link'
-          className='cursor-pointer hidden lg:flex bg-primary hover:bg-blue-700 text-white transition-all duration-500 ease-in-out rounded-md px-3 text-sm font-medium tracking-heading py-2.5 ml-2'
+          className='cursor-pointer h-10 hidden lg:flex bg-primary hover:bg-blue-700 text-white transition-all duration-500 ease-in-out rounded-md px-3 text-sm font-medium tracking-heading py-2.5'
         >
           <a
             target='_blank'
@@ -279,7 +285,7 @@ const MainNavigation = () => {
           >
             <span className='inline-block mr-1'>
               <svg
-                className='inline-block -mt-1 w-6 h-6 size-7'
+                className='inline-block mt-0.5 size-7'
                 fill='currentColor'
                 viewBox='0 0 24 24'
               >
@@ -290,7 +296,9 @@ const MainNavigation = () => {
                 ></path>
               </svg>
             </span>
-            <span className='inline-block'>Star on GitHub</span>
+            <p className='inline-block text-[15px] mt-1 font-semibold'>
+              Star on GitHub
+            </p>
           </a>
         </Button>
       </div>
@@ -302,28 +310,41 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
+    <div
+      className='flex flex-col lg:hidden justify-end fixed bg-white 
+      dark:bg-slate-900 max-lg:w-[80%] max-sm:w-[90%] z-[190] 
+      top-[72px] left-1/2 -translate-x-1/2 p-2 gap-1 rounded shadow-2xl'
+    >
       <MainNavLink
         uri='/specification'
         label='Specification'
         isActive={section === 'specification'}
+        className='border border-slate-300 dark:border-slate-700'
       />
       <MainNavLink
         uri='/learn/getting-started-step-by-step'
         label='Docs'
         isActive={section === 'docs'}
+        className='border border-slate-300 dark:border-slate-700'
       />
 
       <MainNavLink
         uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
         label='Tools'
         isActive={section === 'tools'}
+        className='border border-slate-300 dark:border-slate-700'
       />
-      <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
+      <MainNavLink
+        uri='/blog'
+        label='Blog'
+        isActive={section === 'blog'}
+        className='border border-slate-300 dark:border-slate-700'
+      />
       <MainNavLink
         uri='/community'
         label='Community'
         isActive={section === 'community'}
+        className='border border-slate-300 dark:border-slate-700'
       />
     </div>
   );
