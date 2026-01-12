@@ -5,6 +5,7 @@ import React, {
   useState,
   useEffect,
 } from 'react';
+import { useRouter } from 'next/router';
 import LanguageIcon from '~/public/icons/language.svg';
 import ToolingIcon from '~/public/icons/tooling.svg';
 import EnvironmentIcon from '~/public/icons/environment.svg';
@@ -33,6 +34,7 @@ interface SidebarProps {
   setTransform: Dispatch<SetStateAction<Transform>>;
   resetTransform: () => void;
   setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
+  scrollToTop: () => void;
 }
 
 export default function Sidebar({
@@ -41,15 +43,22 @@ export default function Sidebar({
   setTransform,
   resetTransform,
   setIsSidebarOpen,
+  scrollToTop,
 }: SidebarProps) {
+  const router = useRouter();
   const filterFormRef = useRef<HTMLFormElement>(null);
   const [pendingSelections, setPendingSelections] =
     useState<Transform>(transform);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   // Sync pendingSelections with transform when transform changes
   useEffect(() => {
     setPendingSelections(transform);
   }, [transform]);
+
+  useEffect(() => {
+    setOpenDropdown(null);
+  }, [router]);
 
   const filters = [
     { label: 'Language', accessorKey: 'languages' },
@@ -82,6 +91,8 @@ export default function Sidebar({
     setTransform(pendingSelections);
     postAnalytics({ eventType: 'query', eventPayload: pendingSelections });
     setIsSidebarOpen((prev) => !prev);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    scrollToTop();
   };
 
   const clearFilters = () => {
@@ -107,10 +118,11 @@ export default function Sidebar({
     setPendingSelections(initialTransform);
     resetTransform();
     setIsSidebarOpen((prev) => !prev);
+    scrollToTop();
   };
 
   return (
-    <div className='pb-4 top-12 mx-auto lg:ml-4 lg:mt-8 w-4/5 h-fit'>
+    <div className='flex top-12 justify-center items-center pb-4 mx-auto lg:mt-4 w-[90%] h-fit'>
       <form onSubmit={applyFilters} ref={filterFormRef} className='w-full'>
         <SearchBar
           transform={pendingSelections}
@@ -129,6 +141,10 @@ export default function Sidebar({
               label={label}
               icon={<IconComponent />}
               count={checkedValues.length}
+              isOpen={openDropdown === accessorKey}
+              onOpenChange={(isOpen) =>
+                setOpenDropdown(isOpen ? accessorKey : null)
+              }
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
@@ -187,7 +203,7 @@ export default function Sidebar({
             type='button'
             variant='outline'
             onClick={clearFilters}
-            className='flex-1 text-red-600 border-red-600 hover:bg-red-50 dark:bg-[#0f172a] dark:text-[#bfdbfe] dark:border-transparent'
+            className='flex-1 text-red-600 border-red-600 hover:bg-red-50 dark:bg-slate-800 dark:text-[#bfdbfe] dark:border-transparent'
           >
             Clear Filters
           </Button>

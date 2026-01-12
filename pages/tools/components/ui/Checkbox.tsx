@@ -17,7 +17,7 @@ export default function Checkbox({
   onChange?: (checked: boolean) => void;
 }) {
   return (
-    <label className='flex items-center gap-3 px-4 py-2 cursor-pointer bg-slate-200 dark:bg-slate-900 hover:bg-slate-300 dark:hover:bg-slate-800 transition-colors duration-200 border border-slate-300 dark:border-slate-700 rounded-md my-2'>
+    <label className='flex items-center gap-3 px-4 py-2 cursor-pointer bg-slate-200 dark:bg-slate-900 hover:bg-slate-300 dark:hover:bg-slate-800 transition-colors duration-200 border border-slate-300 dark:border-slate-700 rounded-md m-2'>
       <ShadcnCheckbox
         value={value}
         name={name}
