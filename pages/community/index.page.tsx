@@ -62,17 +62,16 @@ export default function CommunityPages(props: any) {
 
   const [shuffledContributors, setShuffledContributors] = useState<any[]>([]);
 
-useEffect(() => {
-  const filtered = imageData.filter(
-    (contributor) =>
-      contributor.login !== 'the-json-schema-bot[bot]' &&
-      contributor.login !== 'dependabot[bot]'
-  );
+  useEffect(() => {
+    const filtered = imageData.filter(
+      (contributor) =>
+        contributor.login !== 'the-json-schema-bot[bot]' &&
+        contributor.login !== 'dependabot[bot]',
+    );
 
-  const shuffled = shuffleArray(filtered).slice(0, 60);
-  setShuffledContributors(shuffled);
-}, []);
-
+    const shuffled = shuffleArray(filtered).slice(0, 60);
+    setShuffledContributors(shuffled);
+  }, []);
 
   return (
     <SectionContext.Provider value='community'>
@@ -115,26 +114,26 @@ useEffect(() => {
               </div>
             </div>
           </div>
-         <div className='grid justify-center items-center gap-y-[10px]'>
-  <div className='grid justify-center mt-[50px] gap-y-[10px]'>
-    <div className='grid grid-cols-10 max-sm:grid-cols-7 gap-3'>
-      {shuffledContributors.map((avatar, index) => (
-        <a
-          key={`${avatar.id}-${index}`}
-          href={`https://github.com/${avatar.login}`}
-          target='_blank'
-          rel='noopener noreferrer'
-          title={avatar.login}
-        >
-          <Image
-            src={avatar.avatar_url}
-            alt={avatar.login}
-            width={35}
-            height={35}
-            priority={index < 10}
-            loading={index < 10 ? 'eager' : 'lazy'}
-            quality={75}
-            className='
+          <div className='grid justify-center items-center gap-y-[10px]'>
+            <div className='grid justify-center mt-[50px] gap-y-[10px]'>
+              <div className='grid grid-cols-10 max-sm:grid-cols-7 gap-3'>
+                {shuffledContributors.map((avatar, index) => (
+                  <a
+                    key={`${avatar.id}-${index}`}
+                    href={`https://github.com/${avatar.login}`}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    title={avatar.login}
+                  >
+                    <Image
+                      src={avatar.avatar_url}
+                      alt={avatar.login}
+                      width={35}
+                      height={35}
+                      priority={index < 10}
+                      loading={index < 10 ? 'eager' : 'lazy'}
+                      quality={75}
+                      className='
               sm:w-[40px] md:w-[45px] lg:w-[50px]
               sm:h-[40px] md:h-[45px] lg:h-[50px]
               rounded-full cursor-pointer
@@ -142,13 +141,12 @@ useEffect(() => {
               hover:scale-110 hover:shadow-lg
               hover:ring-2 hover:ring-blue-500
             '
-          />
-        </a>
-      ))}
-    </div>
-  </div>
-</div>
-
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
         <section className='mt-10'>
           <div className='flex flex-row justify-between gap-4  max-sm:flex-col max-lg:gap-8 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
