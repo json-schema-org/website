@@ -162,16 +162,14 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             code: {
               component: ({ children, className }) => {
                 const isInline = !className?.includes('lang-');
-                
                 if (isInline) {
                   // Wrap inline code in a span with break-words
                   return (
-                    <span className="break-words inline">
+                    <span className='break-words inline'>
                       <Code>{children}</Code>
                     </span>
                   );
                 }
-                
                 return <Code>{children}</Code>;
               },
             },
