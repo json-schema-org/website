@@ -56,7 +56,7 @@ function shuffleArray<T>(array: T[]) {
   return [...array].sort(() => Math.random() - 0.5);
 }
 
-export default function communityPages(props: any) {
+export default function CommunityPages(props: any) {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
 
@@ -417,4 +417,4 @@ useEffect(() => {
   );
 }
 
-communityPages.getLayout = getLayout;
+CommunityPages.getLayout = getLayout;
