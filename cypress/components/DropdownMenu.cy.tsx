@@ -1,7 +1,25 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, { useState } from 'react';
 import DropdownMenu from '@/pages/tools/components/ui/DropdownMenu';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
+
+const DropdownMenuWrapper = ({
+  children,
+  ...props
+}: {
+  children: React.ReactNode;
+  label: string;
+  icon: React.ReactElement;
+  testMode?: boolean;
+  count?: number;
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <DropdownMenu {...props} isOpen={isOpen} onOpenChange={setIsOpen}>
+      {children}
+    </DropdownMenu>
+  );
+};
 
 describe('DropdownMenu Component', () => {
   let mockRouter: MockRouter;
@@ -14,7 +32,13 @@ describe('DropdownMenu Component', () => {
 
   it('renders with basic props', () => {
     cy.mount(
-      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
+      <DropdownMenu
+        label='Test Menu'
+        icon={mockIcon}
+        testMode={true}
+        isOpen={false}
+        onOpenChange={cy.stub()}
+      >
         {mockChildren}
       </DropdownMenu>,
     );
@@ -25,9 +49,9 @@ describe('DropdownMenu Component', () => {
 
   it('shows content when clicked', () => {
     cy.mount(
-      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
+      <DropdownMenuWrapper label='Test Menu' icon={mockIcon} testMode={true}>
         {mockChildren}
-      </DropdownMenu>,
+      </DropdownMenuWrapper>,
     );
 
     cy.get('button').click();
@@ -36,7 +60,14 @@ describe('DropdownMenu Component', () => {
 
   it('displays count badge when count is provided', () => {
     cy.mount(
-      <DropdownMenu label='Test Menu' icon={mockIcon} count={5} testMode={true}>
+      <DropdownMenu
+        label='Test Menu'
+        icon={mockIcon}
+        count={5}
+        testMode={true}
+        isOpen={false}
+        onOpenChange={cy.stub()}
+      >
         {mockChildren}
       </DropdownMenu>,
     );
@@ -46,7 +77,14 @@ describe('DropdownMenu Component', () => {
 
   it('does not show count badge when count is 0', () => {
     cy.mount(
-      <DropdownMenu label='Test Menu' icon={mockIcon} count={0} testMode={true}>
+      <DropdownMenu
+        label='Test Menu'
+        icon={mockIcon}
+        count={0}
+        testMode={true}
+        isOpen={false}
+        onOpenChange={cy.stub()}
+      >
         {mockChildren}
       </DropdownMenu>,
     );
@@ -56,9 +94,9 @@ describe('DropdownMenu Component', () => {
 
   it('rotates arrow icon when dropdown is toggled', () => {
     cy.mount(
-      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
+      <DropdownMenuWrapper label='Test Menu' icon={mockIcon} testMode={true}>
         {mockChildren}
-      </DropdownMenu>,
+      </DropdownMenuWrapper>,
     );
 
     // Initially arrow should point down
@@ -81,9 +119,9 @@ describe('DropdownMenu Component', () => {
 
   it('toggles content visibility multiple times', () => {
     cy.mount(
-      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
+      <DropdownMenuWrapper label='Test Menu' icon={mockIcon} testMode={true}>
         {mockChildren}
-      </DropdownMenu>,
+      </DropdownMenuWrapper>,
     );
 
     // First toggle
