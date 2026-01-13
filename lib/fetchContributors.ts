@@ -60,8 +60,8 @@ export async function fetchContributorsFromGitHub(): Promise<Contributor[]> {
     } else {
       console.warn(
         'GITHUB_TOKEN not found in environment variables. ' +
-        'API rate limit will be restricted to 60 requests/hour. ' +
-        'Consider adding a GitHub token to .env.local for higher limits.',
+          'API rate limit will be restricted to 60 requests/hour. ' +
+          'Consider adding a GitHub token to .env.local for higher limits.',
       );
     }
 
@@ -85,7 +85,6 @@ export async function fetchContributorsFromGitHub(): Promise<Contributor[]> {
 
     // Check rate limit headers
     const rateLimitRemaining = response.headers.get('X-RateLimit-Remaining');
-    const rateLimitReset = response.headers.get('X-RateLimit-Reset');
 
     if (rateLimitRemaining) {
       console.log(
