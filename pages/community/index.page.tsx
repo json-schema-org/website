@@ -1,7 +1,7 @@
+/* eslint-disable linebreak-style */
 import React from 'react';
 import { getLayout } from '~/components/SiteLayout';
 import { SectionContext } from '~/context';
-import imageData from '~/data/community-users.json';
 import fs from 'fs';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
@@ -15,6 +15,10 @@ import {
   fetchRemoteICalFile,
   printEventsForNextWeeks,
 } from '../../lib/calendarUtils';
+import {
+  fetchContributorsWithFallback,
+  Contributor,
+} from '~/lib/fetchContributors';
 
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
@@ -43,17 +47,30 @@ export const getStaticProps: GetStaticProps = async () => {
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
+
+  // Fetch contributors from GitHub API at build time
+  // This replaces the static community-users.json import
+  const contributors = await fetchContributorsWithFallback();
+
   return {
     props: {
       blogPosts,
       datesInfo,
+      contributors, // Pass contributors data to the page component
       fallback: false,
     },
   };
 };
 
-export default function communityPages(props: any) {
+interface CommunityPageProps {
+  blogPosts: any[];
+  datesInfo: any[];
+  contributors: Contributor[];
+}
+
+export default function communityPages(props: CommunityPageProps) {
   const blogPosts = props.blogPosts;
+  const contributors = props.contributors; // Get contributors from props instead of static import
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
 
   return (
@@ -100,15 +117,15 @@ export default function communityPages(props: any) {
           <div className='grid justify-center items-center gap-y-[10px]'>
             <div className='grid justify-center mt-[50px] gap-y-[10px]'>
               <div className='grid grid-cols-10 max-sm:grid-cols-7  gap-3'>
-                {imageData
+                {contributors
                   .filter(
-                    (contributor) =>
+                    (contributor: Contributor) =>
                       contributor.login !== 'the-json-schema-bot[bot]' &&
                       contributor.login !== 'dependabot[bot]',
                   )
                   .sort(() => Math.random() - 0.5)
                   .slice(0, 60)
-                  .map((avatar, index) => (
+                  .map((avatar: Contributor, index: number) => (
                     <Image
                       key={`${avatar.id}-${index}`}
                       src={avatar.avatar_url}
