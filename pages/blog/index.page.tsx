@@ -12,6 +12,7 @@ import generateRssFeed from './generateRssFeed';
 import { useRouter } from 'next/router';
 import { SectionContext } from '../../context';
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 
 type Author = {
   name: string;
@@ -217,12 +218,12 @@ export default function StaticMarkdownPage({
       <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-0 sm:mt-10'>
         {recentBlog[0] && (
           <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
-            <div className='absolute w-full h-full dark:bg-[#282d6a]' />
+            <div className='absolute w-full h-full bg-gradient-to-br from-startBlue from-1.95% to-endBlue dark:from-[#002C34] dark:to-[#023e8a]' />
             <Image
               src={recentBlog[0].frontmatter.cover}
               alt={recentBlog[0].frontmatter.title}
               fill
-              className='object-cover w-full h-full opacity-70 blur-[5px]'
+              className='object-contain scale-[140%] max-lg:scale-100 mt-6 w-full h-full opacity-15'
               priority
               quality={75}
             />
@@ -260,8 +261,11 @@ export default function StaticMarkdownPage({
         )}
         <div className='w-full mx-auto my-5'>
           <div className='flex h-full flex-col justify-center items-center mb-3 my-2'>
-            <h2 className='text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>
-              Welcome to the JSON Schema Blog!
+            <h2 className='relative text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>
+              <span className='relative group cursor-default'>
+                Welcome to the JSON Schema Blog!
+                <span className='absolute bottom-0.5 left-0 h-[3px] w-0 bg-current transition-all duration-500 group-hover:w-full' />
+              </span>
             </h2>
           </div>
           <div className='flex h-full flex-col justify-center items-center text-center text-sm sm:text-base px-4 my-2'>
@@ -317,7 +321,7 @@ export default function StaticMarkdownPage({
         </div>
 
         {/* Blog Posts Grid */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
           {currentPagePosts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
@@ -327,28 +331,28 @@ export default function StaticMarkdownPage({
               <section key={blogPost.slug}>
                 <Link
                   href={`/blog/posts/${blogPost.slug}`}
-                  className='h-[600px] sm:h-[540px] flex border rounded-lg shadow-sm transition-shadow duration-300 overflow-hidden dark:border-slate-500 group flex-col flex-1 w-full'
+                  className='h-[600px] sm:h-[540px] flex border rounded-lg shadow-sm hover:shadow-lg hover:z-10 dark:hover:shadow-white/25 transition-all duration-300 group overflow-hidden dark:border-slate-600 group flex-col flex-1 w-full'
                 >
                   <div className='relative w-full aspect-[16/9] overflow-hidden'>
                     <Image
                       src={frontmatter.cover}
                       alt={frontmatter.title}
                       fill
-                      className='object-cover transition-transform duration-300 group-hover:scale-110'
+                      className='object-cover transition-transform duration-300 group-hover:scale-[103%]'
                       loading={idx < 10 ? 'eager' : 'lazy'}
                       priority={idx < 10}
                       quality={75}
                     />
-                    <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-300 pointer-events-none' />
+                    <div className='absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-25 transition-all duration-300 pointer-events-none' />
                   </div>
-                  <div className='p-4 flex flex-col flex-1 justify-between min-h-0 pt-2'>
+                  <div className='p-4 flex flex-col flex-1 justify-between min-h-0 '>
                     <div>
                       {/* Display each category as a clickable badge */}
-                      <div className='flex flex-wrap gap-2 mb-4'>
+                      <div className='flex flex-wrap gap-2 mb-3'>
                         {getCategories(frontmatter).map((cat, index) => (
                           <div
                             key={index}
-                            className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full text-sm'
+                            className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 -ml-0.5 rounded-full text-sm'
                             onClick={(e) => {
                               e.preventDefault();
                               e.stopPropagation();
@@ -359,10 +363,10 @@ export default function StaticMarkdownPage({
                           </div>
                         ))}
                       </div>
-                      <div className='text-lg h-[95px] font-semibold overflow-hidden transition-transform duration-300 group-hover:scale-105'>
+                      <div className='text-lg h-[80px] font-semibold overflow-hidden transition-transform duration-300 group-hover:scale-[102%]'>
                         {frontmatter.title}
                       </div>
-                      <div className='mt-3   text-slate-500 dark:text-slate-300 flex-1 min-h-0'>
+                      <div className='mt-3 text-slate-500 dark:text-slate-300 flex-1 min-h-0'>
                         <TextTruncate
                           element='span'
                           line={4}
@@ -371,12 +375,12 @@ export default function StaticMarkdownPage({
                       </div>
                     </div>
                     <div className='flex flex-row items-center mt-2'>
-                      <div className='flex flex-row pl-2 mr-2'>
+                      <div className='flex flex-row '>
                         {(frontmatter.authors || []).map(
                           (author: Author, index: number) => (
                             <div
                               key={index}
-                              className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                              className={`bg-slate-50 rounded-full bg-cover bg-center border-2 border-white -mr-1 ${
                                 frontmatter.authors.length > 2
                                   ? 'h-8 w-8'
                                   : 'h-11 w-11'
@@ -389,7 +393,7 @@ export default function StaticMarkdownPage({
                           ),
                         )}
                       </div>
-                      <div className='flex flex-col items-start'>
+                      <div className='flex flex-col items-start ml-4'>
                         <div className='text-sm font-semibold'>
                           {frontmatter.authors.length > 2 ? (
                             <>
@@ -432,14 +436,14 @@ export default function StaticMarkdownPage({
                   {/* Separator Line */}
                   <div className='border-t border-gray-200 dark:border-slate-600 mx-4'></div>
                   {/* Read More Section */}
-                  <div className='flex w-full px-4 py-2 justify-between items-center'>
-                    <span className='text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-1 group/readmore'>
+                  <div className='flex w-full px-4 py-1 text-base justify-between items-center'>
+                    <span className='text-blue-600 font-medium flex items-center gap-1 group-hover:text-blue-500'>
                       Read More
-                      <span className='transition-transform group-hover/readmore:translate-x-1 text-xs'>
-                        →
+                      <span className='transition-all duration-300 group-hover:-rotate-45'>
+                        <ArrowRight className='size-4' />
                       </span>
                     </span>
-                    <span className='text-slate-500 text-sm dark:text-slate-400'>
+                    <span className='text-slate-500 dark:text-slate-400'>
                       {postTimeToRead} min read
                     </span>
                   </div>
