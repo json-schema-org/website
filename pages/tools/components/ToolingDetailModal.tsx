@@ -4,7 +4,7 @@ import CancelIcon from '~/public/icons/cancel.svg';
 import { Button } from '~/components/ui/button';
 
 import Badge from './ui/Badge';
-import type { JSONSchemaTool } from '../JSONSchemaTool';
+import type { JSONSchemaTool, BowtieData } from '../JSONSchemaTool';
 import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,9 +13,11 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 
 export default function ToolingDetailModal({
   tool,
+  bowtieData,
   onClose,
 }: {
   tool: JSONSchemaTool;
+  bowtieData: BowtieData | null;
   onClose: () => void;
 }) {
   useEffect(() => {
@@ -242,23 +244,23 @@ export default function ToolingDetailModal({
               </div>
             )}
 
-            {tool.bowtie && (
+            {bowtieData && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Report</h3>
-                {tool.bowtie.badges_urls.supported_versions && (
+                {bowtieData.badges_urls.supported_versions && (
                   <div>
                     <h4 className='text-[14px] font-semibold'>
                       Supported Versions:
                     </h4>
                     <BowtieReportBadge
-                      uri={tool.bowtie.badges_urls.supported_versions}
+                      uri={bowtieData.badges_urls.supported_versions}
                     />
                   </div>
                 )}
-                {tool.bowtie.badges_urls.compliance && (
+                {bowtieData.badges_urls.compliance && (
                   <div>
                     <h4 className='text-[14px] font-semibold'>Compliance:</h4>
-                    {Object.values(tool.bowtie.badges_urls.compliance).map(
+                    {Object.values(bowtieData.badges_urls.compliance).map(
                       (badgeURI) => (
                         <BowtieReportBadge key={badgeURI} uri={badgeURI} />
                       ),
@@ -267,7 +269,7 @@ export default function ToolingDetailModal({
                 )}
                 <Link
                   className='text-[14px] underline italic'
-                  href={`https://bowtie.report/#/implementations/${tool.bowtie.id}`}
+                  href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
                   target='_blank'
                 >
                   View detailed report
@@ -308,10 +310,10 @@ export default function ToolingDetailModal({
               </div>
             )}
 
-            {tool.bowtie && (
+            {bowtieData && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Identifier</h3>
-                <p>{tool.bowtie.id}</p>
+                <p>{bowtieData.id}</p>
               </div>
             )}
 
