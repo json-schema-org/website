@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'jit', // Enable JIT mode
+  // JIT mode is enabled by default in Tailwind CSS 3.4+
   content: [
     './pages/**/*.{js,ts,jsx,tsx,md}',
     './components/**/*.{js,ts,jsx,tsx,md}',
