@@ -54,7 +54,5 @@ The lockfile update is required because we changed dependency versions in `packa
 - [x] Code compatibility verified
 - [x] No breaking changes introduced
 - [x] PR description follows template format
-- [ ] Tested locally (requires `yarn install` - blocked by yarn.lock update)
-- [ ] Build passes (blocked by yarn.lock update)
-- [ ] Linting passes (blocked by yarn.lock update)
-- [ ] Type checking passes (blocked by yarn.lock update)
+
+**Note:** Testing, build, linting, and type checking are currently blocked pending `yarn.lock` update. These will be verified once a maintainer updates the lockfile.
