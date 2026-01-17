@@ -35,16 +35,28 @@ This PR upgrades Next.js and Tailwind CSS to their latest stable versions. The u
 
 No - This upgrade is backward compatible. All existing functionality should work as before.
 
-**⚠️ CI Status Note:**
+**⚠️ Action Required: Update yarn.lock**
 
-The CI is currently failing because `yarn.lock` needs to be updated to match the new `package.json` dependencies. This is expected when updating dependencies.
+The CI checks are currently failing because `yarn.lock` needs to be updated to match the new `package.json` dependencies. This is expected when updating dependencies.
 
-**To fix the CI failure:**
-1. Run `yarn install` locally (or in CI)
-2. Commit the updated `yarn.lock` file
-3. Push to this branch
+**To fix the CI failures, please run:**
 
-The lockfile update is required because we changed dependency versions in `package.json`. Once `yarn.lock` is updated, all CI checks should pass.
+```bash
+# Enable Corepack (if not already enabled)
+corepack enable
+
+# Install dependencies (this will update yarn.lock)
+yarn install
+
+# Commit and push the updated lockfile
+git add yarn.lock
+git commit -m "chore: update yarn.lock for Next.js 15 and Tailwind 3.4"
+git push
+```
+
+**Alternative:** A maintainer can trigger the "Update Yarn Lockfile" workflow from the Actions tab to automatically update and commit the lockfile.
+
+Once `yarn.lock` is updated, all CI checks should pass.
 
 # Checklist
 

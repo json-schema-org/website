@@ -1,0 +1,56 @@
+name: Update Yarn Lockfile
+
+# This workflow can be manually triggered to update yarn.lock
+# It's useful when package.json dependencies are updated in a PR
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to update (optional)'
+        required: false
+        type: string
+
+jobs:
+  update-lockfile:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Corepack enable
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Check for lockfile changes
+        id: check-lockfile
+        run: |
+          if [ -n "$(git status --porcelain yarn.lock)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+            git diff yarn.lock | head -50
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "yarn.lock is already up to date"
+          fi
+
+      - name: Commit and push lockfile changes
+        if: steps.check-lockfile.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add yarn.lock
+          git commit -m "chore: update yarn.lock to match package.json dependencies"
+          git push
