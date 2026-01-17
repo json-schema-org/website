@@ -104,6 +104,17 @@ Please test the following:
 - TypeScript 5.8.3 is already up-to-date
 - All existing tests should pass without modification
 
+## ⚠️ CI Status Note
+
+The CI is currently failing because `yarn.lock` needs to be updated to match the new `package.json` dependencies. This is expected when updating dependencies.
+
+**To fix the CI failure:**
+1. Run `yarn install` locally (or in CI)
+2. Commit the updated `yarn.lock` file
+3. Push to this branch
+
+The lockfile update is required because we changed dependency versions in `package.json`. Once `yarn.lock` is updated, all CI checks should pass.
+
 ## Related Issues
 
 Closes #2114
