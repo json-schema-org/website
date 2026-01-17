@@ -78,7 +78,7 @@ export default function DropdownMenu({
         </CollapsibleTrigger>
 
         <CollapsibleContent className='ml-0 mt-0 overflow-hidden transition-all duration-500 ease-in-out data-[state=open]:animate-collapsible-down data-[state=closed]:animate-collapsible-up'>
-          <div className='max-h-[20vh] overflow-y-auto transition-all duration-500 ease-in-out'> 
+          <div className='max-h-[20vh] overflow-y-auto transition-all duration-500 ease-in-out'>
             {children}
           </div>
         </CollapsibleContent>
