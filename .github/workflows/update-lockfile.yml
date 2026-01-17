@@ -1,0 +1,56 @@
+name: Update Lockfile
+
+on:
+  workflow_dispatch:
+    inputs:
+      pr_number:
+        description: 'PR number to update'
+        required: false
+  pull_request:
+    paths:
+      - 'package.json'
+    types: [opened, synchronize]
+
+jobs:
+  update-lockfile:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'pull_request' && !github.event.pull_request.head.repo.fork == false)
+    permissions:
+      contents: write
+      pull-requests: write
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref || github.ref }}
+
+      - name: Corepack enable
+        run: corepack enable
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Check for lockfile changes
+        id: check-lockfile
+        run: |
+          if [ -n "$(git status --porcelain yarn.lock)" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit lockfile changes
+        if: steps.check-lockfile.outputs.changed == 'true'
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add yarn.lock
+          git commit -m "chore: update yarn.lock to match package.json dependencies [skip ci]"
+          git push
