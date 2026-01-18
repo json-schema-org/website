@@ -13,18 +13,18 @@ function ListItem({
   'data-test'?: string;
 }) {
   return (
-   <div
-           role="menuitem"
-           tabIndex={0}
-           onClick={onClick}
-           onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                onClick();
-              }
-            }}          
-           className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-md transition duration-150 flex row gap-2 w-full text-sm'
-           data-test={dataTest}
->
+    <div
+      role='menuitem'
+      tabIndex={0}
+      onClick={onClick}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          onClick();
+        }
+      }}
+      className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-md transition duration-150 flex row gap-2 w-full text-sm'
+      data-test={dataTest}
+    >
       {children}
     </div>
   );
@@ -78,14 +78,13 @@ export default function DarkModeToggle() {
       ref={dropdownRef}
       className='relative w-10 h-10 dark-mode-toggle-container'
     >
-     <button
-            onClick={() => setShowSelect(!showSelect)}
-            aria-haspopup="menu"
-            aria-expanded={showSelect}
-            className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150'
-            data-test='dark-mode-toggle'
-            >
-
+      <button
+        onClick={() => setShowSelect(!showSelect)}
+        aria-haspopup='menu'
+        aria-expanded={showSelect}
+        className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150'
+        data-test='dark-mode-toggle'
+      >
         <Image
           src={activeThemeIcon}
           alt='Dark Mode'
@@ -98,21 +97,20 @@ export default function DarkModeToggle() {
           data-test='theme-icon'
         />
       </button>
-    <div
-  onMouseLeave={() => setShowSelect(false)}
-  onKeyDown={(e) => {
-    if (e.key === 'Escape') {
-      setShowSelect(false);
-    }
-  }}
-  className={`absolute right-0 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max ${
-    showSelect ? 'block' : 'hidden'
-  }`}
-  role="menu"
-  tabIndex={-1}
-  data-test='theme-dropdown'
->
-
+      <div
+        onMouseLeave={() => setShowSelect(false)}
+        onKeyDown={(e) => {
+          if (e.key === 'Escape') {
+            setShowSelect(false);
+          }
+        }}
+        className={`absolute right-0 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max ${
+          showSelect ? 'block' : 'hidden'
+        }`}
+        role='menu'
+        tabIndex={-1}
+        data-test='theme-dropdown'
+      >
         <ListItem
           onClick={() => setTheme('system')}
           data-test='select-system-theme'
