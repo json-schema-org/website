@@ -429,12 +429,26 @@ export default function JsonEditor({
   // If not in JSON mode, render as regular code block
   if (!isJsonMode) {
     return (
-      <Card className='relative font-mono bg-slate-800 border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0'>
-        <div className='flex flex-row absolute right-0 z-10'>
+<Card
+  className='relative font-mono rounded-xl mt-1 overflow-hidden py-0
+  bg-slate-50 text-slate-900 border border-slate-200 shadow-sm
+  dark:bg-slate-800 dark:text-slate-100 dark:border-slate-700'
+>
+
+        
+        
+          <div className='flex flex-row absolute right-2 top-2 z-20'>
+
           <Button
             variant='ghost'
             size='icon'
-            className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
+           
+            className='mr-1.5 h-6 w-6
+       bg-white/80 hover:bg-white
+    dark:bg-slate-700 dark:hover:bg-slate-600
+    opacity-100
+  '
+            
             onClick={() => {
               navigator.clipboard.writeText(codeContent);
               setCopied(true);
@@ -508,20 +522,27 @@ export default function JsonEditor({
         (e) => setValue(e)
       }
     >
-      <Card
-        className={cn(
-          'relative font-mono bg-slate-800 border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0',
-          {
-            'ml-10': meta?.indent,
-          },
-        )}
-      >
+  <Card
+  className={cn(
+    'relative font-mono rounded-xl mt-1 overflow-hidden py-0',
+    'bg-slate-50 border border-slate-200 shadow-sm',
+    'dark:bg-slate-800 dark:border-slate-700',
+    {
+      'ml-10': meta?.indent,
+    },
+  )}
+>
         <div className='flex flex-row absolute right-0 z-10'>
           {/* Copy code button */}
           <Button
             variant='ghost'
             size='icon'
-            className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
+            
+              className='mr-1.5 h-6 w-6
+    bg-white/80 hover:bg-white
+    dark:bg-slate-700 dark:hover:bg-slate-600
+    opacity-100
+  '
             onClick={() => {
               navigator.clipboard.writeText(fullCodeText);
               setCopied(true);
@@ -547,41 +568,33 @@ export default function JsonEditor({
               />
             )}
           </Button>
-          <Badge
-            variant='secondary'
-            className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
-            data-test='check-json-schema'
-          >
-            {isJsonc ? (
-              isPartialSchema ? (
-                <>
-                  <Image
-                    src='/logo-white.svg'
-                    alt=' logo-white'
-                    width={16}
-                    height={16}
-                    className=' mr-1.5'
-                  />{' '}
-                  part of schema
-                </>
-              ) : (
-                <>code</>
-              )
-            ) : isJsonSchema ? (
-              <>
-                <Image
-                  src='/logo-white.svg'
-                  alt=' logo-white'
-                  width={16}
-                  height={16}
-                  className=' mr-1.5'
-                />{' '}
-                schema
-              </>
-            ) : (
-              <>data</>
-            )}
-          </Badge>
+         <Badge
+  className="
+    flex items-center gap-1.5
+    rounded-md px-2 py-0.5
+    text-xs font-medium
+    border
+    bg-yellow text-slate-700 border-slate-200
+    shadow-sm
+    dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700
+  "
+>
+  {isJsonSchema ? (
+    <>
+      <Image
+        src='/logo-white.svg'
+        alt='schema'
+        width={14}
+        height={14}
+        className='opacity-80'
+      />
+      schema
+    </>
+  ) : (
+    <>data</>
+  )}
+</Badge>
+
         </div>
         <CardContent className='p-0 pt-2 '>
           <Editable
@@ -637,13 +650,17 @@ export default function JsonEditor({
                   ) {
                     return 'cursor-pointer text-blue-400 hover:text-blue-300 decoration-blue-500/30 hover:decoration-blue-500/50 underline underline-offset-4';
                   }
-                  return 'text-cyan-500';
+                
+                  return 'text-blue-600 dark:text-cyan-400';
+
+
                 }
                 if (leaf.syntaxPart?.type === 'stringValue') {
                   if (jsonSchemaReferences.stringValue[leaf.text]) {
                     return 'cursor-pointer text-amber-300 hover:text-amber-300 decoration-amber-500/30 hover:decoration-amber-500/50 underline underline-offset-4';
                   }
-                  return 'text-lime-200';
+                  return 'text-green-600 dark:text-lime-200';
+
                 }
                 if (
                   [
@@ -663,14 +680,23 @@ export default function JsonEditor({
                     'nullValue',
                   ].includes(leaf.syntaxPart?.type)
                 )
-                  return 'text-lime-200';
+                  return 'text-emerald-600 dark:text-emerald-300';
 
-                // Handle partial schema specific highlighting that might not match exactly
-                if (!leaf.syntaxPart?.type) {
-                  // If no syntax part type, apply default white color for partial schemas
-                  return isPartialSchema ? 'text-white' : undefined;
-                }
+
+                // // Handle partial schema specific highlighting that might not match exactly
+                // if (!leaf.syntaxPart?.type) {
+                //   // If no syntax part type, apply default white color for partial schemas
+                //   return isPartialSchema ? 'text-white' : undefined;
+                // }
+
+                          if (!leaf.syntaxPart?.type) {
+  return isPartialSchema
+    ? 'text-slate-800 dark:text-slate-100'
+    : undefined;
+}
               })();
+
+    
 
               const link: null | string = (() =>
                 jsonSchemaReferences?.[leaf.syntaxPart?.type]?.[leaf.text] ||
@@ -707,8 +733,14 @@ export default function JsonEditor({
                       className='absolute px-4 w-16 after:content-[attr(data-line-number)] text-slate-500 select-none'
                       data-line-number={line}
                     />
-                    <span className='ml-12 text-white pl-4'>{children}</span>
+              
+                   <span className='ml-12 pl-4 text-slate-900 dark:text-slate-100'>
+  {children}
+</span>
+  
+
                   </span>
+
                 );
               }
               /* istanbul ignore next:

@@ -302,3 +302,17 @@ border-radius: 4px; */
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+
+
+
+
+
+html:not(.dark) [data-slot='card'] {
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+html.dark [data-slot='card'] {
+  border: 1px solid #334155;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
