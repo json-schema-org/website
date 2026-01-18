@@ -194,6 +194,10 @@ export default function StaticMarkdownPage({
   // pagination implement
   const POSTS_PER_PAGE = 10;
   const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}, [currentPage]);
+
 
   const totalPages = Math.ceil(sortedFilteredPosts.length / POSTS_PER_PAGE);
 
