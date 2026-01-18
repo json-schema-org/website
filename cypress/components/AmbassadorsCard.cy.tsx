@@ -136,4 +136,13 @@ describe('AmbassadorCard Component', () => {
       `${mockAmbassador.name}'s twitter profile`,
     );
   });
+
+  it('does not render mastodon link when username format is invalid', () => {
+    const ambassadorWithInvalidMastodon: Ambassador = {
+      ...mockAmbassador,
+      mastodon: 'invalid-format',
+    };
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithInvalidMastodon} />);
+    cy.get('a[href*="mastodon"]').should('not.exist');
+  });
 });
