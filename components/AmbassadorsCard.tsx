@@ -56,6 +56,7 @@ const getSocialMediaUrl = (
       const [, user, server] = mastodonMatch;
       return `https://${server}/@${user}`;
     }
+    return undefined;
   }
 
   return baseUrls[platform] + username;
