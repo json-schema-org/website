@@ -466,7 +466,7 @@ export default function JsonEditor({
   if (!isJsonMode) {
     const displayCode = codeContent?.trim() || ' ';
     const badgeText = getBadgeText();
-    
+
     return (
       <Card className='relative font-mono bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0'>
         <div className='flex flex-row absolute right-0 z-10'>
@@ -796,9 +796,12 @@ export default function JsonEditor({
         )}
       </Card>
       <div
-        className={cn('text-center text-xs pt-2 text-slate-600 dark:text-slate-400', {
-          'mb-10': !hasCodeblockAsDescendant,
-        })}
+        className={cn(
+          'text-center text-xs pt-2 text-slate-600 dark:text-slate-400',
+          {
+            'mb-10': !hasCodeblockAsDescendant,
+          },
+        )}
         data-test='code-caption'
       >
         {caption}
