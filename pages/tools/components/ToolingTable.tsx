@@ -33,7 +33,6 @@ const ToolingTable = ({
   toolsByGroup,
   transform,
   setTransform,
-  numberOfTools,
   onVisibleToolCountChange,
 }: ToolingTableProps) => {
   const [selectedTool, setSelectedTool] = useState<JSONSchemaTool | null>(null);
