@@ -78,10 +78,15 @@ export default function StaticMarkdownPage({
                           key={index}
                           className='flex flex-row items-center mb-3 w-full'
                         >
-                          <div
-                            className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center'
-                            style={{ backgroundImage: `url(${author.photo})` }}
-                          />
+                          <div className='relative h-[44px] w-[44px] rounded-full overflow-hidden bg-[#1e293b]'>
+                            <Image
+                              src={author.photo}
+                              alt={author.name}
+                              fill
+                              className='object-cover'
+                              sizes='44px'
+                            />
+                          </div>
                           <div>
                             <div className='text-sm font-semibold pl-2'>
                               {author.name}
@@ -111,10 +116,17 @@ export default function StaticMarkdownPage({
             </div>
           </div>
           <div className='flex-1 lg:w-3/4 w-full'>
-            <div
-              className='bg-slate-50  w-full rounded-lg bg-cover mb-10 bg-center min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]'
-              style={{ backgroundImage: `url(${frontmatter.cover})` }}
-            />
+            <div className='relative w-full rounded-lg overflow-hidden mb-10 min-h-[200px] sm:min-h-[300px] md:min-h-[400px] lg:min-h-[500px]'>
+              <Image
+                src={frontmatter.cover}
+                alt={frontmatter.title}
+                fill
+                className='object-cover bg-white'
+                sizes='100vw'
+                priority
+              />
+            </div>
+
             <StyledMarkdown markdown={content} />
           </div>
         </div>

@@ -258,12 +258,21 @@ const MainNavigation = () => {
           </div>
         ) : (
           <div
-            style={{
-              backgroundImage: closeMenu,
-            }}
-            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
+            className='relative h-8 w-8 lg:hidden cursor-pointer transition-all'
             onClick={() => useStore.setState({ overlayNavigation: null })}
-          />
+          >
+            <Image
+              src={
+                resolvedTheme === 'dark'
+                  ? '/icons/cancel-dark.svg'
+                  : '/icons/cancel.svg'
+              }
+              alt='Close menu'
+              fill
+              className='object-contain p-1'
+              sizes='24px'
+            />
+          </div>
         )}
       </div>
       <div className='flex items-center justify-end mr-8'>

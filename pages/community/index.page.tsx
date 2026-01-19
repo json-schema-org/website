@@ -335,12 +335,17 @@ export default function communityPages(props: any) {
                         return (
                           <div
                             key={index}
-                            className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                            style={{
-                              backgroundImage: `url(${author.photo})`,
-                              zIndex: 10 - index,
-                            }}
-                          />
+                            className='relative h-[44px] w-[44px] rounded-full overflow-hidden -ml-3 border-2 border-white bg-slate-200'
+                            style={{ zIndex: 10 - index }}
+                          >
+                            <Image
+                              src={author.photo}
+                              alt={author.name}
+                              fill
+                              className='object-cover'
+                              sizes='44px'
+                            />
+                          </div>
                         );
                       },
                     )}
