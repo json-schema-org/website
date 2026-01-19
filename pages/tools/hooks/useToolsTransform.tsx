@@ -197,14 +197,6 @@ const filterTools = (
   transform: Transform,
 ): JSONSchemaTool[] => {
   const filteredTools = tools.filter((tool) => {
-    const hasBowtieSupport = tool.bowtie != null;
-
-    if (transform.supportsBowtie === 'true' && !hasBowtieSupport) {
-      return false;
-    }
-    // if (transform.supportsBowtie === 'true' && !tool.bowtie?.id) {
-    //   return false;
-    // }
     if (transform.showObsolete === 'false' && tool.status === 'obsolete')
       return false;
 
