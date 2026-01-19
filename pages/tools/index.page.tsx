@@ -218,7 +218,7 @@ export default function ToolingPage({
             <div className='flex flex-row items-center gap-2 w-full'>
               <div className='flex items-center justify-center gap-2 w-1/2'>
                 <Link
-                  className='flex-none max-w-full'
+                  className='flex-none max-w-full hover:scale-105 transition-transform duration-200'
                   href='https://github.com/json-schema-org/website/issues/new?assignees=&labels=Status%3A+Triage&template=adding-your-tooling.yml'
                   target='_blank'
                   rel='noreferrer'
@@ -239,7 +239,7 @@ export default function ToolingPage({
 
               <div className='flex items-center justify-center gap-2 w-1/2'>
                 <Link
-                  className='flex-none max-w-full'
+                  className='flex-none max-w-full hover:scale-105 transition-transform duration-200'
                   href='https://bowtie.report'
                   target='_blank'
                   rel='noreferrer'

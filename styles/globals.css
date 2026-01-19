@@ -302,3 +302,10 @@ border-radius: 4px; */
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
 }
+.collective-btn {
+  transition: transform 0.25s ease;
+  border-radius: 12px; /* NEW */
+}
+.collective-btn:hover {
+  transform: scale(1.06);
+}
