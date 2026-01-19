@@ -286,6 +286,30 @@ const deserializeCode = (code: string): CustomElement[] => {
   return paragraphs;
 };
 
+// Safe clipboard copy function with fallback
+const copyToClipboard = async (text: string): Promise<boolean> => {
+  try {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } else {
+      // Fallback for environments without clipboard API
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      const success = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      return success;
+    }
+  } catch (err) {
+    console.error('Failed to copy text:', err);
+    return false;
+  }
+};
+
 export default function JsonEditor({
   initialCode,
   isJsonc = false,
@@ -302,7 +326,7 @@ export default function JsonEditor({
 
   // Determine if we're in JSON/JSONC mode or regular code mode
   const isJsonMode = initialCode !== undefined;
-  const codeContent = isJsonMode ? initialCode : code || '';
+  const codeContent = (isJsonMode ? initialCode : code || '').toString();
 
   /* istanbul ignore next: In the test environment, the fullMarkdown is not provided. */
   const hasCodeblockAsDescendant: boolean | undefined = (() => {
@@ -402,6 +426,18 @@ export default function JsonEditor({
     return meta?.caption || null;
   }, [meta]);
 
+  // fullCodeText variable is for use in copy pasting the code for the user
+  const fullCodeText = React.useMemo(() => {
+    let text = '';
+    /* istanbul ignore else : there is no else block to test here */
+    if (value) {
+      value.forEach((e: any) => {
+        text += e.children[0].text + '\n';
+      });
+    }
+    return text;
+  }, [value]);
+
   // copy status react state
   const [copied, setCopied] = React.useState(false);
 
@@ -414,11 +450,23 @@ export default function JsonEditor({
   const getBadgeText = () => {
     if (!language) return 'code';
     const lang = language.replace('lang-', '');
-    return lang;
+    return lang || 'code';
+  };
+
+  // Handle copy click with async/await
+  const handleCopyClick = async (textToCopy: string) => {
+    const success = await copyToClipboard(textToCopy);
+    // Always show copied state for UX
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+    return success;
   };
 
   // If not in JSON mode, render as regular code block
   if (!isJsonMode) {
+    const displayCode = codeContent?.trim() || ' ';
+    const badgeText = getBadgeText();
+    
     return (
       <Card className='relative font-mono bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0'>
         <div className='flex flex-row absolute right-0 z-10'>
@@ -426,10 +474,8 @@ export default function JsonEditor({
             variant='ghost'
             size='icon'
             className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
-            onClick={() => {
-              navigator.clipboard.writeText(codeContent);
-              setCopied(true);
-              setTimeout(() => setCopied(false), 2000);
+            onClick={async () => {
+              await handleCopyClick(codeContent);
             }}
           >
             {copied ? (
@@ -438,6 +484,7 @@ export default function JsonEditor({
                 alt='Copied icon'
                 width={20}
                 height={20}
+                className='dark:brightness-100 brightness-0'
                 title='Copied!'
               />
             ) : (
@@ -447,6 +494,7 @@ export default function JsonEditor({
                 title='Copy to clipboard'
                 width={20}
                 height={20}
+                className='dark:brightness-100 brightness-0'
               />
             )}
           </Button>
@@ -454,15 +502,15 @@ export default function JsonEditor({
             variant='secondary'
             className='flex flex-row items-center text-slate-800 dark:text-white h-6 font-sans bg-slate-100 dark:bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
           >
-            {getBadgeText()}
+            {badgeText}
           </Badge>
         </div>
         <CardContent className='p-0'>
           <div className='overflow-x-auto'>
             <Highlight
-              language={language}
+              language={language || 'text'}
               style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
-              showLineNumbers
+              showLineNumbers={displayCode.trim().length > 0}
               lineNumberStyle={{
                 color: resolvedTheme === 'dark' ? '#64748B' : '#90A4AE',
                 fontSize: '16px',
@@ -473,6 +521,7 @@ export default function JsonEditor({
                 fontFamily: 'monospace',
                 fontSize: '16px',
                 backgroundColor: 'transparent',
+                minHeight: '20px',
               }}
               codeTagProps={{
                 style: {
@@ -480,7 +529,7 @@ export default function JsonEditor({
                 },
               }}
             >
-              {codeContent}
+              {displayCode}
             </Highlight>
           </div>
         </CardContent>
@@ -513,11 +562,10 @@ export default function JsonEditor({
             variant='ghost'
             size='icon'
             className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
-            onClick={() => {
-              navigator.clipboard.writeText(codeContent);
-              setCopied(true);
-              setTimeout(() => setCopied(false), 2000);
+            onClick={async () => {
+              await handleCopyClick(fullCodeText);
             }}
+            data-test='copy-clipboard-button'
           >
             {copied ? (
               <Image
@@ -525,23 +573,17 @@ export default function JsonEditor({
                 alt='Copied icon'
                 width={20}
                 height={20}
+                className='dark:brightness-100 brightness-0'
                 title='Copied!'
               />
-            ) : resolvedTheme === 'dark' ? (
+            ) : (
               <Image
                 src='/icons/copy.svg'
                 alt='Copy icon'
                 title='Copy to clipboard'
                 width={20}
                 height={20}
-              />
-            ) : (
-              <Image
-                src='/icons/copy-dark.svg'
-                alt='Copy icon'
-                title='Copy to clipboard'
-                width={20}
-                height={20}
+                className='dark:brightness-100 brightness-0'
               />
             )}
           </Button>
@@ -588,7 +630,7 @@ export default function JsonEditor({
             onCopy={(e) => {
               e.preventDefault();
               const text = window.getSelection()?.toString();
-              navigator.clipboard.writeText(text || '');
+              copyToClipboard(text || '');
             }}
             onCut={
               /* istanbul ignore next : 
@@ -596,7 +638,7 @@ export default function JsonEditor({
               (e) => {
                 e.preventDefault();
                 const text = window.getSelection()?.toString();
-                navigator.clipboard.writeText(text || '');
+                copyToClipboard(text || '');
                 setValue([{ type: 'paragraph', children: [{ text: '' }] }]);
               }
             }
@@ -754,12 +796,9 @@ export default function JsonEditor({
         )}
       </Card>
       <div
-        className={cn(
-          'text-center text-xs pt-2 text-slate-600 dark:text-slate-400',
-          {
-            'mb-10': !hasCodeblockAsDescendant,
-          },
-        )}
+        className={cn('text-center text-xs pt-2 text-slate-600 dark:text-slate-400', {
+          'mb-10': !hasCodeblockAsDescendant,
+        })}
         data-test='code-caption'
       >
         {caption}
