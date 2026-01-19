@@ -171,7 +171,7 @@ export default function ToolingPage({
             `}
           >
             {/* Inner wrapper: sticky on desktop to keep filters visible */}
-            <div className='lg:sticky lg:top-[4.5rem] lg:max-h-[calc(100vh-5rem)] lg:overflow-y-auto scrollbar-hidden'>
+            <div className='lg:sticky lg:top-[4.5rem] lg:max-h-[calc(100vh-4.5rem)] lg:overflow-y-auto scrollbar-hidden'>
               <div className='px-2 lg:px-0 pb-2'>
                 <div className='hidden lg:block pt-8'>
                   <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4'>
