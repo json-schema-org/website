@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 import React, { useContext } from 'react';
 import { BaseEditor, createEditor, Descendant, Text } from 'slate';
+
 import { Editable, ReactEditor, Slate, withReact } from 'slate-react';
 import { cn } from '@/lib/utils';
 import getPartsOfJson, { SyntaxPart } from '~/lib/getPartsOfJson';
@@ -295,6 +296,7 @@ export default function JsonEditor({
   language?: string;
   code?: string;
 }) {
+
   const fullMarkdown = useContext(FullMarkdownContext);
 
   // Determine if we're in JSON/JSONC mode or regular code mode
@@ -425,7 +427,7 @@ export default function JsonEditor({
     const lang = language.replace('lang-', '');
     return lang;
   };
-
+      
   // If not in JSON mode, render as regular code block
   if (!isJsonMode) {
     return (
@@ -465,7 +467,7 @@ export default function JsonEditor({
               />
             ) : (
               <Image
-                src='/icons/copy.svg'
+                src='/icons/dark_copy_cli.svg'
                 alt='Copy icon'
                 title='Copy to clipboard'
                 width={20}
@@ -560,7 +562,7 @@ export default function JsonEditor({
               />
             ) : (
               <Image
-                src='/icons/copy.svg'
+                src='/icons/dark_copy_cli.svg'
                 alt='Copy icon'
                 title='Copy to clipboard'
                 width={20}
