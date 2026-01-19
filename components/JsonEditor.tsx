@@ -18,6 +18,8 @@ import { Button } from '@/components/ui/button';
 import { Alert } from '@/components/ui/alert';
 import Highlight from 'react-syntax-highlighter';
 import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { atomOneLight } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import { useTheme } from 'next-themes';
 
 type CustomElement = CustomNode | CustomText;
 type CustomNode = { type: 'paragraph'; children: CustomText[] };
@@ -295,6 +297,7 @@ export default function JsonEditor({
   language?: string;
   code?: string;
 }) {
+  const { resolvedTheme } = useTheme();
   const fullMarkdown = useContext(FullMarkdownContext);
 
   // Determine if we're in JSON/JSONC mode or regular code mode
@@ -429,7 +432,7 @@ export default function JsonEditor({
   // If not in JSON mode, render as regular code block
   if (!isJsonMode) {
     return (
-      <Card className='relative font-mono bg-slate-800 border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0'>
+      <Card className='relative font-mono bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0'>
         <div className='flex flex-row absolute right-0 z-10'>
           <Button
             variant='ghost'
@@ -461,7 +464,7 @@ export default function JsonEditor({
           </Button>
           <Badge
             variant='secondary'
-            className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
+            className='flex flex-row items-center text-slate-800 dark:text-white h-6 font-sans bg-slate-100 dark:bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
           >
             {getBadgeText()}
           </Badge>
@@ -470,10 +473,10 @@ export default function JsonEditor({
           <div className='overflow-x-auto'>
             <Highlight
               language={language}
-              style={atomOneDark}
+              style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
               showLineNumbers
               lineNumberStyle={{
-                color: '#64748B',
+                color: resolvedTheme === 'dark' ? '#64748B' : '#90A4AE',
                 fontSize: '16px',
                 paddingRight: '10px',
               }}
@@ -510,7 +513,7 @@ export default function JsonEditor({
     >
       <Card
         className={cn(
-          'relative font-mono bg-slate-800 border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0',
+          'relative font-mono bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 rounded-xl mt-1 overflow-hidden shadow-lg py-0',
           {
             'ml-10': meta?.indent,
           },
@@ -523,33 +526,42 @@ export default function JsonEditor({
             size='icon'
             className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
             onClick={() => {
-              navigator.clipboard.writeText(fullCodeText);
+              navigator.clipboard.writeText(codeContent);
               setCopied(true);
               setTimeout(() => setCopied(false), 2000);
             }}
-            data-test='copy-clipboard-button'
           >
             {copied ? (
-              <Image
-                src='/icons/copied.svg'
-                alt='Copied icon'
-                width={20}
-                height={20}
-                title='Copied!'
-              />
+                <Image
+                  src='/icons/copied.svg'
+                  alt='Copied icon'
+                  width={20}
+                  height={20}
+                  title='Copied!'
+                />
             ) : (
-              <Image
-                src='/icons/copy.svg'
-                alt='Copy icon'
-                title='Copy to clipboard'
-                width={20}
-                height={20}
-              />
+              resolvedTheme === 'dark' ? (
+                <Image
+                  src='/icons/copy.svg'
+                  alt='Copy icon'
+                  title='Copy to clipboard'
+                  width={20}
+                  height={20}
+                />
+              ) : (
+                <Image
+                  src='/icons/copy-dark.svg'
+                  alt='Copy icon'
+                  title='Copy to clipboard'
+                  width={20}
+                  height={20}
+                />
+              )
             )}
           </Button>
           <Badge
             variant='secondary'
-            className='flex flex-row items-center text-white h-6 font-sans bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
+            className='flex flex-row items-center text-slate-800 dark:text-white h-6 font-sans bg-slate-100 dark:bg-white/20 text-xs px-3 rounded-bl-lg font-semibold border-0'
             data-test='check-json-schema'
           >
             {isJsonc ? (
@@ -560,7 +572,7 @@ export default function JsonEditor({
                     alt=' logo-white'
                     width={16}
                     height={16}
-                    className=' mr-1.5'
+                    className='mr-1.5 dark:filter-none filter-invert'
                   />{' '}
                   part of schema
                 </>
@@ -574,7 +586,7 @@ export default function JsonEditor({
                   alt=' logo-white'
                   width={16}
                   height={16}
-                  className=' mr-1.5'
+                  className='mr-1.5 dark:filter-none filter-invert'
                 />{' '}
                 schema
               </>
@@ -583,7 +595,7 @@ export default function JsonEditor({
             )}
           </Badge>
         </div>
-        <CardContent className='p-0 pt-2 '>
+        <CardContent className='p-0 pt-2'>
           <Editable
             className='overflow-x-auto'
             data-test='json-editor'
@@ -618,7 +630,7 @@ export default function JsonEditor({
                     'objectPropertyEndQuotes',
                   ].includes(leaf.syntaxPart?.type)
                 )
-                  return 'text-blue-200';
+                  return 'text-blue-600 dark:text-blue-200';
                 if (['objectProperty'].includes(leaf.syntaxPart?.type)) {
                   const isJsonScope = jsonPathsWithJsonScope
                     .filter(
@@ -635,15 +647,15 @@ export default function JsonEditor({
                     isJsonScope &&
                     jsonSchemaReferences.objectProperty[leaf.text]
                   ) {
-                    return 'cursor-pointer text-blue-400 hover:text-blue-300 decoration-blue-500/30 hover:decoration-blue-500/50 underline underline-offset-4';
+                    return 'cursor-pointer text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 decoration-blue-500/30 hover:decoration-blue-500/50 underline underline-offset-4';
                   }
-                  return 'text-cyan-500';
+                  return 'text-blue-700 dark:text-cyan-500';
                 }
                 if (leaf.syntaxPart?.type === 'stringValue') {
                   if (jsonSchemaReferences.stringValue[leaf.text]) {
-                    return 'cursor-pointer text-amber-300 hover:text-amber-300 decoration-amber-500/30 hover:decoration-amber-500/50 underline underline-offset-4';
+                    return 'cursor-pointer text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-300 decoration-amber-500/30 hover:decoration-amber-500/50 underline underline-offset-4';
                   }
-                  return 'text-lime-200';
+                  return 'text-green-700 dark:text-lime-200';
                 }
                 if (
                   [
@@ -654,7 +666,7 @@ export default function JsonEditor({
                     'arrayEndBracket',
                   ].includes(leaf.syntaxPart?.type)
                 )
-                  return 'text-slate-400';
+                  return 'text-slate-500 dark:text-slate-400';
                 if (
                   [
                     'numberValue',
@@ -663,12 +675,12 @@ export default function JsonEditor({
                     'nullValue',
                   ].includes(leaf.syntaxPart?.type)
                 )
-                  return 'text-lime-200';
+                  return 'text-green-700 dark:text-lime-200';
 
                 // Handle partial schema specific highlighting that might not match exactly
                 if (!leaf.syntaxPart?.type) {
-                  // If no syntax part type, apply default white color for partial schemas
-                  return isPartialSchema ? 'text-white' : undefined;
+                  // If no syntax part type, apply default color for partial schemas
+                  return 'text-slate-800 dark:text-white';
                 }
               })();
 
@@ -700,14 +712,16 @@ export default function JsonEditor({
               if (element.type === 'paragraph') {
                 return (
                   <span
-                    className='relative flex flex-row first:pt-4 last:pb-4 '
+                    className='relative flex flex-row first:pt-4 last:pb-4'
                     {...attributes}
                   >
                     <span
-                      className='absolute px-4 w-16 after:content-[attr(data-line-number)] text-slate-500 select-none'
+                      className='absolute px-4 w-16 after:content-[attr(data-line-number)] text-slate-400 dark:text-slate-500 select-none'
                       data-line-number={line}
                     />
-                    <span className='ml-12 text-white pl-4'>{children}</span>
+                    <span className='ml-12 text-slate-800 dark:text-white pl-4'>
+                      {children}
+                    </span>
                   </span>
                 );
               }
@@ -731,7 +745,7 @@ export default function JsonEditor({
               alt='Error icon'
               width={16}
               height={16}
-              className=' mr-2'
+              className='mr-2'
             />
             not compliant to schema
           </Alert>
@@ -754,7 +768,7 @@ export default function JsonEditor({
         )}
       </Card>
       <div
-        className={cn('text-center text-xs pt-2 text-slate-400', {
+        className={cn('text-center text-xs pt-2 text-slate-600 dark:text-slate-400', {
           'mb-10': !hasCodeblockAsDescendant,
         })}
         data-test='code-caption'
