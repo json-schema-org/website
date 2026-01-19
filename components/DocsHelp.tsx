@@ -56,6 +56,8 @@ export function DocsHelp({
   const [feedbackStatus, setFeedbackStatus] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [commentValue, setCommentValue] = useState('');
+  const [commentError, setCommentError] = useState(false);
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
   // Generate GitHub redirect URL
@@ -85,11 +87,20 @@ export function DocsHelp({
 
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
-    const formData = new FormData(feedbackFormRef.current!);
-    formData.append('feedback-page', router.asPath);
+
+    // Validate comment is not empty
+    if (!commentValue.trim()) {
+      setCommentError(true);
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
+      const selectedInput = feedbackFormRef.current?.querySelector(
+        'input[name="feedback-vote"]:checked',
+      ) as HTMLInputElement | null;
+
       const response = await fetch(
         'https://script.google.com/macros/s/AKfycbx9KA_BwTdsYgOfTLrHAxuhHs_wgYibB5_Msj9XP1rL5Ip4A20g1O609xAuTZmnbhRv/exec',
         {
@@ -97,9 +108,9 @@ export function DocsHelp({
           method: 'POST',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
           body: JSON.stringify({
-            feedbackPage: formData.get('feedback-page'),
-            feedbackVote: formData.get('feedback-vote'),
-            feedbackComment: formData.get('feedback-comment'),
+            feedbackPage: router.asPath,
+            feedbackVote: selectedInput?.value,
+            feedbackComment: commentValue,
           }),
         },
       );
@@ -117,11 +128,16 @@ export function DocsHelp({
   }
 
   const createGitHubIssueHandler = () => {
-    const formData = new FormData(feedbackFormRef.current!);
+    // Validate comment is not empty
+    if (!commentValue.trim()) {
+      setCommentError(true);
+      return;
+    }
+
     setIsSubmitting(true);
     try {
       const title = encodeURIComponent('Feedback on Documentation');
-      const body = encodeURIComponent(`${formData.get('feedback-comment')}`);
+      const body = encodeURIComponent(`${commentValue}`);
       const url = `https://github.com/json-schema-org/website/issues/new?title=${title}&body=${body}`;
       window.open(url, '_blank');
       submitFeedbackHandler('github_issue');
@@ -136,6 +152,8 @@ export function DocsHelp({
     setIsFormOpen(false);
     setFeedbackStatus(status);
     setError('');
+    setCommentValue('');
+    setCommentError(false);
     feedbackFormRef.current!.reset();
   };
 
@@ -237,16 +255,36 @@ export function DocsHelp({
                             Let us know your Feedback
                           </span>
                           <span className='float-right text-[#7d8590] text-[14px] block'>
-                            Optional
+                            Required
                           </span>
                         </label>
                       </p>
                       <Textarea
-                        className='py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid border-[#aaaaaa] rounded-md w-full overflow-hidden'
+                        className={
+                          'py-2 text-[14px] min-h-[28px] px-[12px] align-middle border border-solid rounded-md w-full overflow-hidden'
+                        }
                         name='feedback-comment'
                         id='feedback-comment'
                         data-test='feedback-form-input'
+                        value={commentValue}
+                        onChange={(e) => {
+                          setCommentValue(e.target.value);
+                          if (e.target.value.trim()) {
+                            setCommentError(false);
+                          }
+                        }}
+                        required
+                        style={{
+                          borderColor: commentError
+                            ? 'rgb(239, 68, 68)'
+                            : '#aaaaaa',
+                        }}
                       />
+                      {commentError && (
+                        <p className='text-red-500 text-[12px] mt-1'>
+                          Please provide feedback before submitting
+                        </p>
+                      )}
                     </div>
 
                     <div className='flex justify-start items-center mt-1 text-[14px]'>

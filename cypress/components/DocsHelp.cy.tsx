@@ -129,7 +129,14 @@ describe('DocsHelp Component', () => {
     // check if clicking on submit button should show success message
     cy.get(FEEDBACK_FORM_SUCCESS_MESSAGE)
       .should('have.prop', 'tagName', 'P')
-      .and('contains', /Thank you for your feedback!/i);
+      .should('include.text', 'Thanks for the feedback!')
+      .and('include.text', '#website')
+      .and('include.text', 'channel on')
+      .and('include.text', 'Slack')
+      .and('include.text', 'for further discussion');
+
+    // Verify the form is no longer visible
+    cy.get(FEEDBACK_FORM).should('not.exist');
   });
 
   /* test feedback form functionality when status code is 500
@@ -262,6 +269,8 @@ describe('DocsHelp Component', () => {
         expectedGitRedirect,
       );
     });
+
+    // Test direct URL case
     const customLink = 'https://example.com/custom-docs';
     cy.mount(<DocsHelp fileRenderType={customLink} />);
     cy.get('[data-test="edit-on-github-link"]').should(
@@ -279,5 +288,43 @@ describe('DocsHelp Component', () => {
   it('should not render the "Edit on GitHub" link when showEditOption is false', () => {
     cy.mount(<DocsHelp fileRenderType='indexmd' showEditOption={false} />);
     cy.get('[data-test="edit-on-github-link"]').should('not.exist');
+  });
+
+  // Test form validation for empty comment submission
+  it.skip('should show error when submitting feedback with empty comment', () => {
+    // Click on yes button to show feedback form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // Type something and then clear it to ensure the input is properly initialized
+    cy.get(FEEDBACK_FORM_INPUT).type('test');
+    cy.get(FEEDBACK_FORM_INPUT).clear();
+
+    // Try to submit with empty comment
+    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
+
+    // Verify error message is displayed
+    cy.contains('Please provide feedback before submitting').should(
+      'be.visible',
+    );
+  });
+
+  // Test form validation for empty comment when creating GitHub issue
+  it('should show error when creating GitHub issue with empty comment', () => {
+    // Click on yes button to show feedback form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // Type something and then clear it to ensure the input is properly initialized
+    cy.get(FEEDBACK_FORM_INPUT).type('test');
+    cy.get(FEEDBACK_FORM_INPUT).clear();
+
+    // Try to create GitHub issue with empty comment
+    cy.get(CREATE_GITHUB_ISSUE_BUTTON).click();
+
+    // Verify error message is displayed
+    cy.contains('Please provide feedback before submitting').should(
+      'be.visible',
+    );
   });
 });
