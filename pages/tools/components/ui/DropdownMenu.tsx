@@ -1,7 +1,6 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable linebreak-style */
-import { useRouter } from 'next/router';
 import React, {
   type ReactElement,
   type ReactNode,
@@ -20,6 +19,8 @@ interface DropdownMenuProps {
   icon: ReactElement;
   count?: number;
   testMode?: boolean;
+  isOpen?: boolean;
+  onToggle?: () => void;
 }
 
 export default function DropdownMenu({
@@ -27,18 +28,32 @@ export default function DropdownMenu({
   label,
   icon,
   count = 0,
+  isOpen,
+  onToggle,
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
-    setIsDropdownOpen(false);
-  }, [router]);
+    if (onToggle && isOpen !== undefined) {
+      setIsDropdownOpen(isOpen);
+    }
+  }, [isOpen, onToggle]);
+
+  const handleToggle = () => {
+    if (onToggle) {
+      onToggle();
+    } else {
+      setIsDropdownOpen(!isDropdownOpen);
+    }
+  };
 
   return (
     <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer transition-all duration-200 group'>
       <Collapsible open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
-        <CollapsibleTrigger className='w-full flex justify-between items-center align-middle cursor-pointer'>
+        <CollapsibleTrigger
+          className='w-full flex justify-between items-center align-middle cursor-pointer'
+          onClick={handleToggle}
+        >
           <div className='flex items-center'>
             {React.cloneElement(icon, {
               className:

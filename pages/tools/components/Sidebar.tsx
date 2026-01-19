@@ -45,11 +45,16 @@ export default function Sidebar({
   const filterFormRef = useRef<HTMLFormElement>(null);
   const [pendingSelections, setPendingSelections] =
     useState<Transform>(transform);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   // Sync pendingSelections with transform when transform changes
   useEffect(() => {
     setPendingSelections(transform);
   }, [transform]);
+
+  const handleDropdownToggle = (accessorKey: string) => {
+    setOpenDropdown((prev) => (prev === accessorKey ? null : accessorKey));
+  };
 
   const filters = [
     { label: 'Language', accessorKey: 'languages' },
@@ -129,6 +134,8 @@ export default function Sidebar({
               label={label}
               icon={<IconComponent />}
               count={checkedValues.length}
+              isOpen={openDropdown === accessorKey}
+              onToggle={() => handleDropdownToggle(accessorKey)}
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
