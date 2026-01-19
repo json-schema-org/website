@@ -402,18 +402,6 @@ export default function JsonEditor({
     return meta?.caption || null;
   }, [meta]);
 
-  // fullCodeText variable is for use in copy pasting the code for the user
-  const fullCodeText = React.useMemo(() => {
-    let text = '';
-    /* istanbul ignore else : there is no else block to test here */
-    if (value) {
-      value.forEach((e: any) => {
-        text += e.children[0].text + '\n';
-      });
-    }
-    return text;
-  }, [value]);
-
   // copy status react state
   const [copied, setCopied] = React.useState(false);
 
@@ -532,31 +520,29 @@ export default function JsonEditor({
             }}
           >
             {copied ? (
-                <Image
-                  src='/icons/copied.svg'
-                  alt='Copied icon'
-                  width={20}
-                  height={20}
-                  title='Copied!'
-                />
+              <Image
+                src='/icons/copied.svg'
+                alt='Copied icon'
+                width={20}
+                height={20}
+                title='Copied!'
+              />
+            ) : resolvedTheme === 'dark' ? (
+              <Image
+                src='/icons/copy.svg'
+                alt='Copy icon'
+                title='Copy to clipboard'
+                width={20}
+                height={20}
+              />
             ) : (
-              resolvedTheme === 'dark' ? (
-                <Image
-                  src='/icons/copy.svg'
-                  alt='Copy icon'
-                  title='Copy to clipboard'
-                  width={20}
-                  height={20}
-                />
-              ) : (
-                <Image
-                  src='/icons/copy-dark.svg'
-                  alt='Copy icon'
-                  title='Copy to clipboard'
-                  width={20}
-                  height={20}
-                />
-              )
+              <Image
+                src='/icons/copy-dark.svg'
+                alt='Copy icon'
+                title='Copy to clipboard'
+                width={20}
+                height={20}
+              />
             )}
           </Button>
           <Badge
@@ -768,9 +754,12 @@ export default function JsonEditor({
         )}
       </Card>
       <div
-        className={cn('text-center text-xs pt-2 text-slate-600 dark:text-slate-400', {
-          'mb-10': !hasCodeblockAsDescendant,
-        })}
+        className={cn(
+          'text-center text-xs pt-2 text-slate-600 dark:text-slate-400',
+          {
+            'mb-10': !hasCodeblockAsDescendant,
+          },
+        )}
         data-test='code-caption'
       >
         {caption}
