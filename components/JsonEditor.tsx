@@ -602,7 +602,7 @@ export default function JsonEditor({
                     alt=' logo-white'
                     width={16}
                     height={16}
-                    className='mr-1.5 dark:filter-none filter-invert'
+                    className='mr-1.5 dark:filter-none filter-invert dark:brightness-100 brightness-0'
                   />{' '}
                   part of schema
                 </>
@@ -616,7 +616,7 @@ export default function JsonEditor({
                   alt=' logo-white'
                   width={16}
                   height={16}
-                  className='mr-1.5 dark:filter-none filter-invert'
+                  className='mr-1.5 dark:filter-none filter-invert dark:brightness-100 brightness-0'
                 />{' '}
                 schema
               </>
