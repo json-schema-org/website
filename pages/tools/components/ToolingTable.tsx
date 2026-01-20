@@ -45,10 +45,6 @@ const ToolingTable = ({
           'https://bowtie.report/api/v1/json-schema-org/implementations',
         );
         const bowtieReport: BowtieReport = await res.json();
-        console.log(
-          '[Bowtie] report loaded, keys:',
-          Object.keys(bowtieReport).length,
-        ); //cmnt
         setBowtieReport(bowtieReport);
       } catch (error) {
         console.error('Error fetching Bowtie report:', error);
@@ -60,21 +56,12 @@ const ToolingTable = ({
   }, []);
 
   const getBowtieData = (tool: JSONSchemaTool) => {
-    if (!bowtieReport) {
-      console.log('[Bowtie] report not loaded yet');
-      return null;
-    }
-
-    if (!tool.source) {
-      console.log('[Bowtie] no source:', tool.name);
-      return null;
-    }
+    if (!bowtieReport || !tool.source) return null;
 
     const cleanedSource = tool.source.replace(/^www\./, '').replace(/\/$/, '');
 
     const exactMatch = bowtieReport[cleanedSource];
     if (exactMatch) {
-      console.log('[Bowtie MATCH exact]', tool.name);
       return exactMatch;
     }
 
@@ -85,12 +72,9 @@ const ToolingTable = ({
       const rootUri = match[1];
       const rootMatch = bowtieReport[rootUri];
       if (rootMatch) {
-        console.log('[Bowtie MATCH root]', tool.name);
         return rootMatch;
       }
     }
-
-    console.log('[Bowtie NO MATCH]', tool.name, cleanedSource);
     return null;
   };
 
