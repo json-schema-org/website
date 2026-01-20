@@ -98,4 +98,52 @@ describe('DropdownMenu Component', () => {
     cy.get('button').click();
     cy.get('[data-testid="test-content"]').should('be.visible');
   });
+
+  it('syncs open state when controlled via isOpen prop', () => {
+    const onToggle = cy.stub().as('onToggle');
+
+    cy.mount(
+      <DropdownMenu
+        label='Test Menu'
+        icon={mockIcon}
+        isOpen={true}
+        onToggle={onToggle}
+        testMode={true}
+      >
+        {mockChildren}
+      </DropdownMenu>,
+    );
+
+    cy.get('[data-testid="test-content"]').should('be.visible');
+  });
+
+  it('calls onToggle when trigger is clicked in controlled mode', () => {
+    const onToggle = cy.stub().as('onToggle');
+
+    cy.mount(
+      <DropdownMenu
+        label='Test Menu'
+        icon={mockIcon}
+        isOpen={false}
+        onToggle={onToggle}
+        testMode={true}
+      >
+        {mockChildren}
+      </DropdownMenu>,
+    );
+
+    cy.get('button').click();
+    cy.get('@onToggle').should('have.been.called');
+  });
+
+  it('works without onToggle prop (uncontrolled mode)', () => {
+    cy.mount(
+      <DropdownMenu label='Test Menu' icon={mockIcon} testMode={true}>
+        {mockChildren}
+      </DropdownMenu>,
+    );
+
+    cy.contains('Test Menu').should('be.visible');
+    cy.get('button').should('be.visible');
+  });
 });
