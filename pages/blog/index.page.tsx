@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import fs from 'fs';
@@ -197,11 +197,19 @@ export default function StaticMarkdownPage({
 
   const totalPages = Math.ceil(sortedFilteredPosts.length / POSTS_PER_PAGE);
 
+  const blogPostsContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (currentPage > totalPages) {
       setCurrentPage(1);
     }
   }, [totalPages]);
+
+  useEffect(() => {
+    if (blogPostsContainerRef.current) {
+      blogPostsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [currentPage]);
 
   const currentPagePosts = sortedFilteredPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
@@ -258,7 +266,7 @@ export default function StaticMarkdownPage({
             </div>
           </div>
         )}
-        <div className='w-full mx-auto my-5'>
+        <div ref={blogPostsContainerRef} className='w-full mx-auto my-5'>
           <div className='flex h-full flex-col justify-center items-center mb-3 my-2'>
             <h2 className='text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>
               Welcome to the JSON Schema Blog!
