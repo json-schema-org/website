@@ -192,7 +192,7 @@ export default function communityPages(props: any) {
                 </h2>
                 <div className='mt-10'>
                   <Link
-                    href='/slack'
+                    href='https://json-schema.org/slack'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
