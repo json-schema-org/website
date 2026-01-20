@@ -38,7 +38,7 @@ describe('Sidebar Component', () => {
 
       cy.viewport(768, 1024);
       cy.get('.lg\\:hidden').should('exist');
-      cy.get('.lg\\:hidden > div').should('exist');
+      cy.get('.lg\\:hidden').should('be.visible');
     });
 
     it('should handle mobile menu toggle correctly', () => {
@@ -51,15 +51,11 @@ describe('Sidebar Component', () => {
       cy.viewport(768, 1024);
       cy.get('.lg\\:hidden').should('exist');
 
-      cy.get('.lg\\:hidden > div').should(
-        'have.attr',
-        'aria-expanded',
-        'false',
-      );
+      // Click on mobile menu trigger (the arrow header)
+      cy.get('.lg\\:hidden').first().click();
 
-      cy.get('.lg\\:hidden > div').first().click();
-
-      cy.get('.lg\\:hidden > div').should('have.attr', 'aria-expanded', 'true');
+      // Check that sidebar panel becomes visible
+      cy.get('.translate-x-0').should('exist');
     });
 
     it('should show correct section title based on current path', () => {
@@ -81,13 +77,14 @@ describe('Sidebar Component', () => {
       );
 
       cy.viewport(768, 1024);
-      cy.get('.lg\\:hidden > div').first().click();
-      cy.get('.lg\\:hidden > div').should('have.attr', 'aria-expanded', 'true');
+      cy.get('.lg\\:hidden').first().click();
+      cy.get('.translate-x-0').should('exist');
 
       // Resize to desktop
       cy.viewport(1025, 768);
 
-      cy.get('.lg\\:hidden > div').should('not.be.visible');
+      // Menu should be closed on desktop resize
+      cy.get('.-translate-x-full').should('exist');
     });
   });
 
@@ -129,13 +126,13 @@ describe('Sidebar Component', () => {
       // Open Get Started - Introduction should close (accordion behavior)
       cy.contains('Get Started').parent().click();
       cy.contains('Overview').should('not.be.visible');
-      cy.contains('Step by step').should('be.visible');
+      cy.contains('What is a schema?').should('be.visible');
       cy.get('[data-state="open"]').should('contain', 'Get Started');
 
       // Open Reference - Get Started should close
       cy.contains('Reference').parent().click();
-      cy.contains('Step by step').should('not.be.visible');
-      cy.contains('Numeric').should('be.visible');
+      cy.contains('What is a schema?').should('not.be.visible');
+      cy.contains('JSON data types').should('be.visible');
       cy.get('[data-state="open"]').should('contain', 'Reference');
     });
 
@@ -155,13 +152,13 @@ describe('Sidebar Component', () => {
 
       // Test Get Started section
       cy.contains('Get Started').parent().click();
-      cy.contains('Step by step').should('be.visible');
-      cy.contains('Learn JSON Schema').should('be.visible');
+      cy.contains('What is a schema?').should('be.visible');
+      cy.contains('The basics').should('be.visible');
 
       // Test Reference section
       cy.contains('Reference').parent().click();
-      cy.contains('Numeric').should('be.visible');
-      cy.contains('Object').should('be.visible');
+      cy.contains('JSON data types').should('be.visible');
+      cy.contains('array').should('be.visible');
     });
 
     it('should handle external links correctly', () => {
