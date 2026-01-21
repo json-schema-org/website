@@ -201,9 +201,6 @@ const getSpecificationPath = [
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [rotateChevron, setRotateChevron] = useState(false);
-  const handleRotate = () => setRotateChevron(!rotateChevron);
-  const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)';
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
   const shouldHideSidebar = pathWtihoutFragment === '/md-style-guide';
 
@@ -216,61 +213,68 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
       });
     }
   }, [typeof window !== 'undefined']);
+
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [open]);
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
-        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden'>
-          <div
-            className='z-[150] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
-            onMouseDown={(e) => e.stopPropagation()}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleRotate();
-              setOpen(!open);
+        <div
+          className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-[160] flex justify-between items-center px-8 lg:hidden relative'
+          onClick={() => setOpen(!open)}
+        >
+          {getDocsPath.includes(pathWtihoutFragment) && (
+            <h3 className='text-white'>Introduction</h3>
+          )}
+          {getStartedPath.includes(pathWtihoutFragment) && (
+            <h3 className='text-white'>Get started</h3>
+          )}
+          {getGuidesPath.includes(pathWtihoutFragment) && (
+            <h3 className='text-white'>Guides</h3>
+          )}
+          {getReferencePath.includes(pathWtihoutFragment) && (
+            <h3 className='text-white'>Reference</h3>
+          )}
+          {getSpecificationPath.includes(pathWtihoutFragment) && (
+            <h3 className='text-white'>Specification</h3>
+          )}
+          {router.pathname === null && <h3 className='text-white'>Docs</h3>}
+
+          <svg
+            style={{
+              transform: `${open ? 'rotate(180deg)' : 'rotate(0)'}`,
+              transition: 'transform 0.2s linear',
             }}
+            xmlns='http://www.w3.org/2000/svg'
+            height='24'
+            viewBox='0 0 256 512'
           >
-            {getDocsPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Introduction</h3>
-            )}
-            {getStartedPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Get started</h3>
-            )}
-            {getGuidesPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Guides</h3>
-            )}
-            {getReferencePath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Reference</h3>
-            )}
-            {getSpecificationPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Specification</h3>
-            )}
-            {router.pathname === null && (
-              <h3 className='text-white ml-12'>Docs</h3>
-            )}
-            <svg
-              style={{
-                marginRight: '50px',
-                color: 'white',
-                transform: rotate,
-                transition: 'all 0.2s linear',
-              }}
-              xmlns='http://www.w3.org/2000/svg'
-              height='24'
-              viewBox='0 0 256 512'
-            >
-              <path
-                d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z'
-                id='mainIconPathAttribute'
-                fill='#ffffff'
-              ></path>
-            </svg>
-          </div>
+            <path
+              d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z'
+              fill='#ffffff'
+            />
+          </svg>
         </div>
 
         <div
-          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${
-            open ? '-translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out filter drop-shadow-md`}
+          className={`z-[150] fixed top-[8.5rem] left-0 right-0 bottom-0 w-full bg-white dark:bg-slate-900 dark:shadow-lg transform transition-transform duration-300 ease-in-out filter drop-shadow-md overflow-y-auto ${
+            open ? 'translate-x-0' : '-translate-x-full'
+          }`}
         >
           <div className='flex flex-col dark:bg-slate-900'>
             <DocsNav open={open} setOpen={setOpen} />
@@ -306,35 +310,24 @@ export const DocsNav = ({
   setOpen: (open: boolean) => void;
 }) => {
   const router = useRouter();
-  const [active, setActive] = useState({
-    getDocs: false,
-    getStarted: false,
-    getGuides: false,
-    getReference: false,
-    getSpecification: false,
-  });
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const handleSectionToggle = (section: string) => {
+    setOpenSection(openSection === section ? null : section);
+  };
   useEffect(() => {
     const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
-    const newActive = {
-      getDocs: false,
-      getStarted: false,
-      getGuides: false,
-      getReference: false,
-      getSpecification: false,
-    };
     if (getDocsPath.includes(pathWtihoutFragment)) {
-      newActive.getDocs = true;
+      setOpenSection('getDocs');
     } else if (getStartedPath.includes(pathWtihoutFragment)) {
-      newActive.getStarted = true;
-      setActive({ ...active, getStarted: true });
+      setOpenSection('getStarted');
     } else if (getReferencePath.includes(pathWtihoutFragment)) {
-      newActive.getReference = true;
+      setOpenSection('getReference');
     } else if (getSpecificationPath.includes(pathWtihoutFragment)) {
-      newActive.getSpecification = true;
+      setOpenSection('getSpecification');
     } else if (getGuidesPath.includes(pathWtihoutFragment)) {
-      newActive.getGuides = true;
+      setOpenSection('getGuides');
     }
-    setActive(newActive);
   }, [router.asPath]);
 
   const { resolvedTheme } = useTheme();
@@ -363,13 +356,8 @@ export const DocsNav = ({
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       {/* Introduction */}
       <Collapsible
-        open={active.getDocs}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getDocs: open,
-          }))
-        }
+        open={openSection === 'getDocs'}
+        onOpenChange={() => handleSectionToggle('getDocs')}
         className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-3 rounded transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -391,7 +379,8 @@ export const DocsNav = ({
             </div>
             <svg
               style={{
-                transform: active.getDocs ? 'rotate(180deg)' : 'rotate(0)',
+                transform:
+                  openSection === 'getDocs' ? 'rotate(180deg)' : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
                 minWidth: '25px',
@@ -470,13 +459,8 @@ export const DocsNav = ({
 
       {/* Get Started */}
       <Collapsible
-        open={active.getStarted}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getStarted: open,
-          }))
-        }
+        open={openSection === 'getStarted'}
+        onOpenChange={() => handleSectionToggle('getStarted')}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -498,7 +482,8 @@ export const DocsNav = ({
             </div>
             <svg
               style={{
-                transform: active.getStarted ? 'rotate(180deg)' : 'rotate(0)',
+                transform:
+                  openSection === 'getStarted' ? 'rotate(180deg)' : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
                 minWidth: '25px',
@@ -574,13 +559,8 @@ export const DocsNav = ({
 
       {/* Guides */}
       <Collapsible
-        open={active.getGuides}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getGuides: open,
-          }))
-        }
+        open={openSection === 'getGuides'}
+        onOpenChange={() => handleSectionToggle('getGuides')}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -602,7 +582,8 @@ export const DocsNav = ({
             </div>
             <svg
               style={{
-                transform: active.getGuides ? 'rotate(180deg)' : 'rotate(0)',
+                transform:
+                  openSection === 'getGuides' ? 'rotate(180deg)' : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
                 minWidth: '25px',
@@ -647,13 +628,8 @@ export const DocsNav = ({
 
       {/* Reference */}
       <Collapsible
-        open={active.getReference}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getReference: open,
-          }))
-        }
+        open={openSection === 'getReference'}
+        onOpenChange={() => handleSectionToggle('getReference')}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -675,7 +651,10 @@ export const DocsNav = ({
             </div>
             <svg
               style={{
-                transform: active.getReference ? 'rotate(180deg)' : 'rotate(0)',
+                transform:
+                  openSection === 'getReference'
+                    ? 'rotate(180deg)'
+                    : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
                 minWidth: '25px',
@@ -830,13 +809,8 @@ export const DocsNav = ({
 
       {/* Specification */}
       <Collapsible
-        open={active.getSpecification}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getSpecification: open,
-          }))
-        }
+        open={openSection === 'getSpecification'}
+        onOpenChange={() => handleSectionToggle('getSpecification')}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -860,9 +834,10 @@ export const DocsNav = ({
               id='arrow'
               className='arrow'
               style={{
-                transform: active.getSpecification
-                  ? 'rotate(180deg)'
-                  : 'rotate(0)',
+                transform:
+                  openSection === 'getSpecification'
+                    ? 'rotate(180deg)'
+                    : 'rotate(0)',
                 transition: 'all 0.2s linear',
                 cursor: 'pointer',
                 minWidth: '25px',
