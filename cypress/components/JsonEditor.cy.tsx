@@ -634,26 +634,6 @@ describe('JSON Editor Component', () => {
     cy.get('[data-test="language-badge"]').contains('code');
   });
 
-  // Test regular code block with empty language
-  it('should display "code" badge when language is empty', () => {
-    const testCode = 'some random code';
-
-    cy.mount(<JsonEditor language='' code={testCode} />);
-
-    // Should show "code" as the badge text
-    cy.get('[data-test="language-badge"]').contains('code');
-  });
-
-  // Test regular code block with whitespace-only language
-  it('should display "code" badge when language is whitespace', () => {
-    const testCode = 'some random code';
-
-    cy.mount(<JsonEditor language='   ' code={testCode} />);
-
-    // Should show "code" as the badge text
-    cy.get('[data-test="language-badge"]').contains('code');
-  });
-
   // Test regular code block with empty code
   it('should handle empty code in regular code block', () => {
     cy.mount(<JsonEditor language='lang-javascript' code='' />);

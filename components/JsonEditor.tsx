@@ -286,28 +286,6 @@ const deserializeCode = (code: string): CustomElement[] => {
   return paragraphs;
 };
 
-const copyToClipboard = async (text: string): Promise<boolean> => {
-  try {
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      await navigator.clipboard.writeText(text);
-      return true;
-    } else {
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      textArea.style.opacity = '0';
-      document.body.appendChild(textArea);
-      textArea.select();
-      const success = document.execCommand('copy');
-      document.body.removeChild(textArea);
-      return success;
-    }
-  } catch (err) {
-    console.error('Failed to copy text:', err);
-    return false;
-  }
-};
-
 export default function JsonEditor({
   initialCode,
   isJsonc = false,
@@ -324,7 +302,7 @@ export default function JsonEditor({
 
   // Determine if we're in JSON/JSONC mode or regular code mode
   const isJsonMode = initialCode !== undefined;
-  const codeContent = String(isJsonMode ? initialCode || '' : code || '');
+  const codeContent = isJsonMode ? initialCode : code || '';
 
   /* istanbul ignore next: In the test environment, the fullMarkdown is not provided. */
   const hasCodeblockAsDescendant: boolean | undefined = (() => {
@@ -446,17 +424,16 @@ export default function JsonEditor({
 
   // Badge text logic for regular code blocks
   const getBadgeText = () => {
-    if (!language || language.trim() === '') return 'code';
+    if (!language) return 'code';
     const lang = language.replace('lang-', '');
-    return lang.trim() || 'code';
+    return lang;
   };
 
-  const handleCopyClick = async (textToCopy: string) => {
+  const handleCopyClick = (textToCopy: string) => {
     const text = String(textToCopy || '');
-    const success = await copyToClipboard(text);
+    navigator.clipboard.writeText(text);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-    return success;
   };
 
   // If not in JSON mode, render as regular code block
@@ -475,8 +452,8 @@ export default function JsonEditor({
             variant='ghost'
             size='icon'
             className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
-            onClick={async () => {
-              await handleCopyClick(codeContent);
+            onClick={() => {
+              handleCopyClick(codeContent);
             }}
           >
             {copied ? (
@@ -565,8 +542,8 @@ export default function JsonEditor({
             variant='ghost'
             size='icon'
             className='mr-1.5 h-6 w-6 opacity-50 hover:opacity-90 duration-150'
-            onClick={async () => {
-              await handleCopyClick(fullCodeText);
+            onClick={() => {
+              handleCopyClick(fullCodeText);
             }}
             data-test='copy-clipboard-button'
           >
@@ -632,7 +609,7 @@ export default function JsonEditor({
             onCopy={(e) => {
               e.preventDefault();
               const text = window.getSelection()?.toString();
-              copyToClipboard(text || '');
+              navigator.clipboard.writeText(text || '');
             }}
             onCut={
               /* istanbul ignore next : 
@@ -640,7 +617,7 @@ export default function JsonEditor({
               (e) => {
                 e.preventDefault();
                 const text = window.getSelection()?.toString();
-                copyToClipboard(text || '');
+                navigator.clipboard.writeText(text || '');
                 setValue([{ type: 'paragraph', children: [{ text: '' }] }]);
               }
             }
