@@ -1,7 +1,8 @@
 /* eslint-disable linebreak-style */
 /* istanbul ignore file */
+import useStore from '~/store';
 import { getLayout as getSiteLayout } from './SiteLayout';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useLayoutEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { HOST } from '~/lib/config';
@@ -202,32 +203,89 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [rotateChevron, setRotateChevron] = useState(false);
-  const handleRotate = () => setRotateChevron(!rotateChevron);
-  const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)';
+  const [topOffset, setTopOffset] = useState('0px');
+  const headerRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
   const shouldHideSidebar = pathWtihoutFragment === '/md-style-guide';
+  useEffect(() => {
+    if (open) {
+      useStore.setState({ overlayNavigation: null });
+    }
+  }, [open]);
+
+  const overlayNavigation = useStore((s) => s.overlayNavigation);
 
   useEffect(() => {
-    if (window) {
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 1024) {
-          setOpen(false);
-        }
-      });
+    if (overlayNavigation !== null && open) {
+      setOpen(false);
     }
-  }, [typeof window !== 'undefined']);
+  }, [overlayNavigation, open]);
+
+  useEffect(() => {
+    const originalOverflow =
+      typeof window !== 'undefined' ? document.body.style.overflow : '';
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = originalOverflow || '';
+    }
+    return () => {
+      document.body.style.overflow = originalOverflow || '';
+    };
+  }, [open]);
+
+  useLayoutEffect(() => {
+    const calculateOffset = () => {
+      if (!headerRef.current) return;
+      let totalHeight = headerRef.current.offsetHeight;
+      if (open && dropdownRef.current) {
+        totalHeight += dropdownRef.current.offsetHeight;
+      }
+      setTopOffset(`${totalHeight}px`);
+    };
+    calculateOffset();
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setOpen(false);
+      }
+      calculateOffset();
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [open]);
+
+  const handleToggle = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setRotateChevron(!rotateChevron);
+    setOpen(!open);
+  };
+
+  let panelStyle: React.CSSProperties | undefined;
+  if (open) {
+    const top = headerRef.current
+      ? headerRef.current.offsetTop + headerRef.current.offsetHeight + 'px'
+      : undefined;
+    panelStyle = {
+      top,
+      height: '80vh',
+    };
+  } else {
+    panelStyle = undefined;
+  }
+
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
-      <section>
-        <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden'>
+      <section className='w-full'>
+        <div
+          ref={headerRef}
+          className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden'
+        >
           <div
             className='z-[150] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
             onMouseDown={(e) => e.stopPropagation()}
-            onClick={(e) => {
-              e.stopPropagation();
-              handleRotate();
-              setOpen(!open);
-            }}
+            onClick={handleToggle}
           >
             {getDocsPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Introduction</h3>
@@ -251,7 +309,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               style={{
                 marginRight: '50px',
                 color: 'white',
-                transform: rotate,
+                transform: rotateChevron ? 'rotate(180deg)' : 'rotate(0)',
                 transition: 'all 0.2s linear',
               }}
               xmlns='http://www.w3.org/2000/svg'
@@ -260,25 +318,53 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             >
               <path
                 d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z'
-                id='mainIconPathAttribute'
                 fill='#ffffff'
-              ></path>
+              />
             </svg>
           </div>
         </div>
-
+        {open && (
+          <div
+            className='fixed inset-0 z-[148] lg:hidden'
+            onClick={() => setOpen(false)}
+            aria-hidden='true'
+          />
+        )}
         <div
-          className={`z-[150] absolute top-10 mt-24 left-0 h-full w-screen bg-white dark:bg-slate-900 dark:shadow-lg transform ${
-            open ? '-translate-x-0' : '-translate-x-full'
-          } transition-transform duration-300 ease-in-out filter drop-shadow-md`}
+          ref={dropdownRef}
+          className={classnames(
+            'z-[149] w-full bg-white dark:bg-slate-900 transform transition-transform duration-300 ease-in-out will-change-transform',
+            {
+              '-translate-x-full lg:translate-x-0 fixed left-0 right-0': !open,
+              'translate-x-0 fixed left-0 right-0 lg:relative': open,
+              'shadow-lg': open,
+            },
+          )}
+          style={panelStyle}
         >
-          <div className='flex flex-col dark:bg-slate-900'>
+          <div
+            className={classnames('flex flex-col dark:bg-slate-900', {
+              'h-full overflow-y-auto': open,
+              'h-0 overflow-hidden': !open,
+            })}
+          >
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
-        <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
+        <div
+          className={classnames(
+            'dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12 transition-all duration-300',
+            {
+              'lg:pt-12': true,
+              'pt-0': open,
+            },
+          )}
+          style={{
+            marginTop: open ? topOffset : '0',
+          }}
+        >
           {!shouldHideSidebar && (
-            <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
+            <div className='hidden lg:block sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
               <div className='h-full overflow-y-auto scrollbar-hidden'>
                 <DocsNav open={open} setOpen={setOpen} />
                 <CarbonAds
@@ -289,7 +375,10 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           )}
           <div
-            className={`lg:mt-20 mx-4 md:mx-0 ${shouldHideSidebar ? 'col-span-4 w-full' : 'col-span-4 md:col-span-3 lg:w-5/6'}`}
+            className={classnames('mx-4 md:mx-0 transition-all duration-300', {
+              'col-span-4 w-full': shouldHideSidebar,
+              'col-span-4 md:col-span-3 lg:w-5/6': !shouldHideSidebar,
+            })}
           >
             {children}
           </div>
