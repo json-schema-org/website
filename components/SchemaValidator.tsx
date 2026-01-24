@@ -1,81 +1,99 @@
 /* eslint-disable linebreak-style */
-import { useState } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import Ajv from 'ajv';
-import Editor from '@monaco-editor/react';
+import Editor, { OnMount } from '@monaco-editor/react';
+import type * as Monaco from 'monaco-editor';
 
 interface ValidationResult {
   valid: boolean;
   errors?: { message: string; path?: string }[];
 }
 
+const DEFAULT_SCHEMA = `{
+  "type": "object",
+  "properties": {
+    "name": { "type": "string" },
+    "age": { "type": "number" }
+  },
+  "required": ["name"]
+}`;
+
+const DEFAULT_DATA = `{
+  "name": "John Doe",
+  "age": 30
+}`;
+
 export default function SchemaValidator() {
-  const [schema, setSchema] = useState<string>(
-    JSON.stringify(
-      {
-        type: 'object',
-        properties: {
-          name: { type: 'string' },
-          age: { type: 'number' },
-        },
-        required: ['name'],
-      },
-      null,
-      2,
-    ),
-  );
-  const [jsonData, setJsonData] = useState<string>(
-    JSON.stringify(
-      {
-        name: 'John Doe',
-        age: 30,
-      },
-      null,
-      2,
-    ),
-  );
   const [result, setResult] = useState<ValidationResult | null>(null);
   const [isValidating, setIsValidating] = useState(false);
 
-  const validateSchema = () => {
-    console.log('Validate button clicked');
+  // Use refs to get current editor values
+  const schemaEditorRef = useRef<Monaco.editor.IStandaloneCodeEditor | null>(
+    null,
+  );
+  const dataEditorRef = useRef<Monaco.editor.IStandaloneCodeEditor | null>(
+    null,
+  );
+
+  const handleSchemaMount: OnMount = (editor) => {
+    schemaEditorRef.current = editor;
+  };
+
+  const handleDataMount: OnMount = (editor) => {
+    dataEditorRef.current = editor;
+  };
+
+  const validateSchema = useCallback(() => {
+    console.log('Validate button clicked!');
     setIsValidating(true);
+    setResult(null);
+
+    // Get values directly from editors
+    const schemaValue = schemaEditorRef.current?.getValue() || DEFAULT_SCHEMA;
+    const dataValue = dataEditorRef.current?.getValue() || DEFAULT_DATA;
+
+    console.log('Schema:', schemaValue);
+    console.log('Data:', dataValue);
 
     try {
-      const schemaObj = JSON.parse(schema);
-      const dataObj = JSON.parse(jsonData);
+      const schemaObj = JSON.parse(schemaValue);
+      const dataObj = JSON.parse(dataValue);
 
       const ajv = new Ajv({ allErrors: true });
       const validate = ajv.compile(schemaObj);
       const valid = validate(dataObj);
 
+      console.log('Validation result:', valid);
+
       if (valid) {
         setResult({ valid: true });
       } else {
-        setResult({
-          valid: false,
-          errors:
-            validate.errors?.map((err) => ({
-              message: err.message || 'Unknown error',
-              path: err.instancePath || '/',
-            })) || [],
-        });
+        const errors =
+          validate.errors?.map((err) => ({
+            message: err.message || 'Unknown error',
+            path: err.instancePath || '/',
+          })) || [];
+        console.log('Validation errors:', errors);
+        setResult({ valid: false, errors });
       }
     } catch (error) {
-      console.error('Validation error:', error);
+      console.error('Parse/Validation error:', error);
       setResult({
         valid: false,
         errors: [
-          { message: error instanceof Error ? error.message : 'Unknown error' },
+          {
+            message: error instanceof Error ? error.message : 'Unknown error',
+          },
         ],
       });
     } finally {
       setIsValidating(false);
     }
-  };
+  }, []);
 
-  const resetValidator = () => {
+  const handleEditorChange = useCallback(() => {
     setResult(null);
-  };
+  }, []);
 
   return (
     <div className='flex flex-col gap-6'>
@@ -89,11 +107,9 @@ export default function SchemaValidator() {
             <Editor
               height='350px'
               defaultLanguage='json'
-              value={schema}
-              onChange={(value) => {
-                setSchema(value || '');
-                resetValidator();
-              }}
+              defaultValue={DEFAULT_SCHEMA}
+              onMount={handleSchemaMount}
+              onChange={handleEditorChange}
               theme='vs-dark'
               options={{
                 minimap: { enabled: false },
@@ -116,11 +132,9 @@ export default function SchemaValidator() {
             <Editor
               height='350px'
               defaultLanguage='json'
-              value={jsonData}
-              onChange={(value) => {
-                setJsonData(value || '');
-                resetValidator();
-              }}
+              defaultValue={DEFAULT_DATA}
+              onMount={handleDataMount}
+              onChange={handleEditorChange}
               theme='vs-dark'
               options={{
                 minimap: { enabled: false },
@@ -173,9 +187,7 @@ export default function SchemaValidator() {
                     key={index}
                     className='text-red-600 dark:text-red-400 font-mono text-sm'
                   >
-                    {err.path && (
-                      <span className='font-semibold'>{err.path}: </span>
-                    )}
+                    {err.path && <span className='font-semibold'>{err.path}: </span>}
                     {err.message}
                   </li>
                 ))}
