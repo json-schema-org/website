@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback } from 'react';
 import Ajv from 'ajv';
 import Editor, { OnMount } from '@monaco-editor/react';
 import type * as Monaco from 'monaco-editor';
@@ -187,7 +187,9 @@ export default function SchemaValidator() {
                     key={index}
                     className='text-red-600 dark:text-red-400 font-mono text-sm'
                   >
-                    {err.path && <span className='font-semibold'>{err.path}: </span>}
+                    {err.path && (
+                      <span className='font-semibold'>{err.path}: </span>
+                    )}
                     {err.message}
                   </li>
                 ))}
