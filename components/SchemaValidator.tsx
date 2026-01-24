@@ -34,8 +34,12 @@ export default function SchemaValidator() {
     ),
   );
   const [result, setResult] = useState<ValidationResult | null>(null);
+  const [isValidating, setIsValidating] = useState(false);
 
   const validateSchema = () => {
+    console.log('Validate button clicked');
+    setIsValidating(true);
+
     try {
       const schemaObj = JSON.parse(schema);
       const dataObj = JSON.parse(jsonData);
@@ -57,12 +61,15 @@ export default function SchemaValidator() {
         });
       }
     } catch (error) {
+      console.error('Validation error:', error);
       setResult({
         valid: false,
         errors: [
           { message: error instanceof Error ? error.message : 'Unknown error' },
         ],
       });
+    } finally {
+      setIsValidating(false);
     }
   };
 
@@ -131,10 +138,12 @@ export default function SchemaValidator() {
       {/* Validate Button */}
       <div className='flex justify-center'>
         <button
+          type='button'
           onClick={validateSchema}
-          className='bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg'
+          disabled={isValidating}
+          className='bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200 shadow-md hover:shadow-lg cursor-pointer disabled:cursor-not-allowed'
         >
-          Validate
+          {isValidating ? 'Validating...' : 'Validate'}
         </button>
       </div>
 
@@ -144,7 +153,7 @@ export default function SchemaValidator() {
           {result.valid ? (
             <div className='p-4 bg-green-50 dark:bg-green-900/30 border border-green-400 dark:border-green-600 rounded-lg'>
               <div className='flex items-center gap-2'>
-                <span className='text-2xl'>&#10003;</span>
+                <span className='text-2xl text-green-600'>✓</span>
                 <span className='text-green-700 dark:text-green-300 font-semibold text-lg'>
                   Valid! Data matches schema.
                 </span>
@@ -153,7 +162,7 @@ export default function SchemaValidator() {
           ) : (
             <div className='p-4 bg-red-50 dark:bg-red-900/30 border border-red-400 dark:border-red-600 rounded-lg'>
               <div className='flex items-center gap-2 mb-3'>
-                <span className='text-2xl'>&#10007;</span>
+                <span className='text-2xl text-red-600'>✗</span>
                 <span className='text-red-700 dark:text-red-300 font-semibold text-lg'>
                   Invalid! Errors found:
                 </span>
