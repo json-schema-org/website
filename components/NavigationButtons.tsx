@@ -44,14 +44,14 @@ const NavButton = ({
   url?: string;
   direction: 'prev' | 'next';
 }) => {
-  if (!url || !label) return <div className='h-auto w-1/2' />;
+  if (!url || !label) return <div className='h-auto w-full' />;
 
   const isPrev = direction === 'prev';
   const Icon = isPrev ? ChevronLeft : ChevronRight;
   const buttonText = isPrev ? 'Go Back' : 'Up Next';
 
   return (
-    <div className='h-auto w-1/2' data-test={`nav-button-${direction}`}>
+    <div className='h-auto w-full' data-test={`nav-button-${direction}`}>
       <Card className='group h-full cursor-pointer border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:hover:shadow-lg dark:drop-shadow-lg lg:text-left'>
         <Link href={url} className='block'>
           <Button
@@ -88,7 +88,7 @@ export default function NavigationButtons({
   nextURL,
 }: NavigationButtonsProps) {
   return (
-    <div className='mb-4 flex flex-row gap-4'>
+    <div className='mb-4 grid grid-cols-1 gap-4 md:grid-cols-2'>
       <NavButton label={prevLabel} url={prevURL} direction='prev' />
       <NavButton label={nextLabel} url={nextURL} direction='next' />
     </div>
