@@ -169,7 +169,8 @@ export const TableOfContent = ({ depth }: TableOfContentProps) => {
           src={'/icons/toc-menu.svg'}
           height={'15'}
           width={'15'}
-          alt='menu-icon'
+          alt=''
+          role='presentation'
           className='max-sm:w-3 max-sm:h-3'
         />
         <span>Table of Contents</span>

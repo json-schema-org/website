@@ -13,7 +13,11 @@ import { Button } from '~/components/ui/button';
 
 import toTitleCase from '../lib/toTitleCase';
 import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
-import type { BowtieReport, JSONSchemaTool } from '../JSONSchemaTool';
+import type {
+  BowtieReport,
+  BowtieData,
+  JSONSchemaTool,
+} from '../JSONSchemaTool';
 import Badge from './ui/Badge';
 
 import ToolingDetailModal from './ToolingDetailModal';
@@ -35,6 +39,8 @@ const ToolingTable = ({
   numberOfTools,
 }: ToolingTableProps) => {
   const [selectedTool, setSelectedTool] = useState<JSONSchemaTool | null>(null);
+  const [selectedToolBowtieData, setSelectedToolBowtieData] =
+    useState<BowtieData | null>(null);
   const [bowtieReport, setBowtieReport] = useState<BowtieReport | null>(null);
 
   useEffect(() => {
@@ -82,6 +88,7 @@ const ToolingTable = ({
 
   const openModal = (tool: JSONSchemaTool) => {
     setSelectedTool(tool);
+    setSelectedToolBowtieData(getBowtieData(tool));
     postAnalytics({
       eventType: 'about',
       eventPayload: {
@@ -97,6 +104,7 @@ const ToolingTable = ({
 
   const closeModal = () => {
     setSelectedTool(null);
+    setSelectedToolBowtieData(null);
   };
 
   if (numberOfTools === 0) {
@@ -180,9 +188,6 @@ const ToolingTable = ({
               <tbody>
                 {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
                   const bowtieData = getBowtieData(tool);
-                  if (bowtieData) {
-                    tool.bowtie = bowtieData;
-                  }
                   return (
                     <tr
                       key={index}
@@ -277,9 +282,6 @@ const ToolingTable = ({
               <tbody>
                 {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
                   const bowtieData = getBowtieData(tool);
-                  if (bowtieData) {
-                    tool.bowtie = bowtieData;
-                  }
                   return (
                     <tr
                       key={index}
@@ -334,7 +336,11 @@ const ToolingTable = ({
         </section>
       ))}
       {selectedTool && (
-        <ToolingDetailModal tool={selectedTool} onClose={closeModal} />
+        <ToolingDetailModal
+          tool={selectedTool}
+          bowtieData={selectedToolBowtieData}
+          onClose={closeModal}
+        />
       )}
     </>
   );

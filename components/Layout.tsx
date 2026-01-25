@@ -474,7 +474,7 @@ const Logo = () => {
           width={170}
           height={48}
           className='mr-2'
-          alt='Dynamic image'
+          alt='JSON Schema logo - Return to homepage'
         />
       </Link>
     </div>
