@@ -170,8 +170,10 @@ export default function ToolingPage({
                 ? isSidebarOpen
                   ? 'calc(100vh - 4.5rem)'
                   : '0'
-                : 'calc(100vh - 4.5rem)',
-              maxHeight: 'calc(100vh - 4.5rem)',
+                : 'auto',
+              maxHeight: isMobile 
+              ? 'calc(100vh - 4.5rem)' 
+               : 'none',
               bottom: 0,
               scrollbarWidth: 'none',
               position: 'sticky',
