@@ -72,7 +72,7 @@ describe('NavigationButtons Component', () => {
 
     // Next button should be a placeholder div
     cy.get('[data-test="nav-button-next"]').should('not.exist');
-    cy.get('[class*="w-full"]').should('have.length', 2);
+    cy.get('div[class*="h-auto"][class*="w-full"]').should('have.length', 2);
   });
 
   it('should render only next button when prev props are missing', () => {
@@ -95,7 +95,7 @@ describe('NavigationButtons Component', () => {
 
     // Previous button should be a placeholder div
     cy.get('[data-test="nav-button-prev"]').should('not.exist');
-    cy.get('[class*="w-full"]').should('have.length', 2);
+    cy.get('div[class*="h-auto"][class*="w-full"]').should('have.length', 2);
   });
 
   it('should render placeholder divs when no props are provided', () => {
@@ -106,7 +106,7 @@ describe('NavigationButtons Component', () => {
     cy.get('[data-test="nav-button-next"]').should('not.exist');
 
     // Should have two placeholder divs
-    cy.get('[class*="w-full"]').should('have.length', 2);
+    cy.get('div[class*="h-auto"][class*="w-full"]').should('have.length', 2);
   });
 
   it('should apply correct styling classes', () => {
@@ -170,7 +170,7 @@ describe('NavigationButtons Component', () => {
     // Should render placeholder divs when props are empty strings
     cy.get('[data-test="nav-button-prev"]').should('not.exist');
     cy.get('[data-test="nav-button-next"]').should('not.exist');
-    cy.get('[class*="w-full"]').should('have.length', 2);
+    cy.get('div[class*="h-auto"][class*="w-full"]').should('have.length', 2);
   });
 
   it('should handle mixed valid and invalid props', () => {
