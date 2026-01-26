@@ -171,9 +171,7 @@ export default function ToolingPage({
                   ? 'calc(100vh - 4.5rem)'
                   : '0'
                 : 'auto',
-              maxHeight: isMobile 
-              ? 'calc(100vh - 4.5rem)' 
-               : 'none',
+              maxHeight: isMobile ? 'calc(100vh - 4.5rem)' : 'none',
               bottom: 0,
               scrollbarWidth: 'none',
               position: 'sticky',
