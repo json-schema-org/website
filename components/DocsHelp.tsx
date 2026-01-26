@@ -61,13 +61,8 @@ export function DocsHelp({
 
   const handleVoteClick = (value: string) => {
     if (selectedVote === value) {
-      setIsFormOpen((prevIsFormOpen) => {
-        const willBeOpen = !prevIsFormOpen;
-        if (!willBeOpen) {
-          setSelectedVote(null);
-        }
-        return willBeOpen;
-      });
+      setIsFormOpen(false);
+      setSelectedVote(null);
     } else {
       setIsFormOpen(true);
       setSelectedVote(value);

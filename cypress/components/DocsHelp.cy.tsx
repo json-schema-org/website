@@ -286,7 +286,7 @@ describe('DocsHelp Component', () => {
     //Wait for the form to verify rendered and stable before clicking again
     cy.get('input[name="feedback-vote"]').should('be.checked');
     cy.get(FEEDBACK_FORM_YES_BUTTON).click();
-    cy.get(FEEDBACK_FORM).should('not.be.visible');
+    cy.get(FEEDBACK_FORM).should('not.exist');
     cy.get('input[name="feedback-vote"]').should('not.be.checked');
   });
 });
