@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import TextTruncate from 'react-text-truncate';
 import Image from 'next/image';
+import DOMPurify from 'isomorphic-dompurify';
 import { Card as ShadcnCard } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
@@ -38,6 +39,30 @@ const CardBody = ({
     medium: 'text-[1rem]',
     large: 'text-[1.5rem]',
   };
+
+  // Sanitize HTML content to prevent XSS attacks
+  // Only allow safe formatting and link tags
+  // prettier-ignore
+  /* eslint-disable indent */
+  const sanitizedBody = extended
+    ? DOMPurify.sanitize(body, {
+      ALLOWED_TAGS: [
+        'a',
+        'b',
+        'i',
+        'em',
+        'strong',
+        'br',
+        'p',
+        'ul',
+        'ol',
+        'li',
+      ],
+      ALLOWED_ATTR: ['href', 'target', 'rel', 'style'],
+      ALLOW_DATA_ATTR: false,
+    })
+    : body;
+  /* eslint-enable indent */
 
   return (
     <ShadcnCard className='group relative h-full w-full rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30'>
@@ -88,7 +113,7 @@ const CardBody = ({
         data-test='card-body'
       >
         {extended ? (
-          <span dangerouslySetInnerHTML={{ __html: body }} />
+          <span dangerouslySetInnerHTML={{ __html: sanitizedBody }} />
         ) : (
           <TextTruncate element='span' line={3} text={body} />
         )}
