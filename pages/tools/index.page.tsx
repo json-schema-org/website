@@ -163,7 +163,7 @@ export default function ToolingPage({
               transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out
               z-5
               ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}
-              ${isMobile && isSidebarOpen ? 'overflow-hidden' : 'overflow-y-auto lg:overflow-y-hidden'}
+              ${isMobile && isSidebarOpen ? 'overflow-visible' : 'overflow-y-auto lg:overflow-y-hidden'}
             `}
             style={{
               height: isMobile
