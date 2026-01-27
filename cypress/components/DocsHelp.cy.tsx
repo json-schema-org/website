@@ -101,6 +101,61 @@ describe('DocsHelp Component', () => {
       .and('contains', /Ask the community on Slack/i);
   });
 
+  // test that empty feedback submission is prevented
+  it('should show error when submitting empty feedback', () => {
+    // click on yes button to open the form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // try to submit without entering any comment
+    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+
+    // form should still be visible (not submitted)
+    cy.get(FEEDBACK_FORM).should('be.visible');
+  });
+
+  // test that empty feedback submission is prevented for whitespace-only input
+  it('should show error when submitting whitespace-only feedback', () => {
+    // click on yes button to open the form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // type only whitespace
+    cy.get(FEEDBACK_FORM_INPUT).type('   ');
+    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+
+    // form should still be visible (not submitted)
+    cy.get(FEEDBACK_FORM).should('be.visible');
+  });
+
+  // test that empty feedback prevents creating GitHub issue
+  it('should show error when creating GitHub issue with empty feedback', () => {
+    // click on yes button to open the form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // try to create GitHub issue without entering any comment
+    cy.get(CREATE_GITHUB_ISSUE_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+
+    // form should still be visible (not submitted)
+    cy.get(FEEDBACK_FORM).should('be.visible');
+  });
+
   // test feedback form funtionality works correctly
   it('should handle successful feedback submission', () => {
     // mocking the feedback api call
