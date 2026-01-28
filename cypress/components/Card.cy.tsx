@@ -90,4 +90,33 @@ describe('Card Component', () => {
     cy.get('[data-test="card-title"]').should('have.class', 'text-[0.9rem]');
     cy.get('[data-test="card-body"]').should('have.class', 'text-[1.5rem]');
   });
+
+  // Test XSS sanitization for extended content
+  it('should sanitize HTML content when extended is true', () => {
+    const xssTestProps: CardProps = {
+      ...RoadmapProps,
+      body: '<p>Safe content</p><script>alert("XSS")</script><img src=x onerror=alert("XSS")>',
+      extended: true,
+    };
+    cy.mount(<Card {...xssTestProps} />);
+    cy.get('[data-test="card-body"]').should('contain', 'Safe content');
+    cy.get('[data-test="card-body"]').should('not.contain', '<script>');
+    cy.get('[data-test="card-body"]').should('not.contain', 'onerror=');
+    cy.get('[data-test="card-body"]').should('not.contain', 'alert(');
+  });
+
+  // Test that safe HTML is preserved
+  it('should preserve safe HTML tags when extended is true', () => {
+    const safeHtmlProps: CardProps = {
+      ...RoadmapProps,
+      body: '<p>This is <strong>bold</strong> and <em>italic</em> text with a <a href="https://example.com">link</a>.</p>',
+      extended: true,
+    };
+    cy.mount(<Card {...safeHtmlProps} />);
+    cy.get('[data-test="card-body"]').should('contain', 'This is');
+    cy.get('[data-test="card-body"]').should('contain', 'bold');
+    cy.get('[data-test="card-body"]').should('contain', 'italic');
+    cy.get('[data-test="card-body"]').should('contain', 'text with a');
+    cy.get('[data-test="card-body"]').should('contain', 'link');
+  });
 });
