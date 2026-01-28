@@ -108,7 +108,7 @@ const CardBody = ({
                   'pre',
                 ],
                 allowedAttributes: {
-                  a: ['href', 'title', 'target'],
+                  a: ['href', 'title', 'target', 'rel'],
                   code: ['class'],
                   pre: ['class'],
                 },
