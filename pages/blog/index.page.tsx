@@ -240,7 +240,7 @@ export default function StaticMarkdownPage({
                 {getCategories(recentBlog[0].frontmatter).join(', ')}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
-                <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
+                <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300 sm:leading-tight'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
                 <div className='flex ml-2 mb-2 gap-2'>
