@@ -1,1 +1,7 @@
-../../../_includes/community/programs/sponsors/sponsors.md
+---
+title: Sponsors
+---
+
+# Sponsors
+
+(Content temporarily unavailable due to file access error)

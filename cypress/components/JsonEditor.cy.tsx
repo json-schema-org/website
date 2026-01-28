@@ -145,12 +145,12 @@ describe('JSON Editor Component', () => {
 
     // iterate over each type keyword and click on it and check if each keyword navigates to the correct page
     type_keywords.forEach((type) => {
-      cy.get('span')
+      cy.get('a')
         .contains(`"${type}"`, { matchCase: false })
-        .then(($spans) => {
-          $spans.each((index, span) => {
+        .then(($anchors) => {
+          $anchors.each((index, anchor) => {
             // click on each type keyword
-            cy.wrap(span).click();
+            cy.wrap(anchor).click();
 
             const link = `/understanding-json-schema/reference/${type == 'number' || type == 'integer' ? `numeric#${type}` : type}`;
 

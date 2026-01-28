@@ -13,17 +13,22 @@ function ListItem({
   'data-test'?: string;
 }) {
   return (
-    <div
+    <button
+      type='button'
       onClick={onClick}
-      className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-md transition duration-150 flex row gap-2 w-full text-sm'
+      className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-md transition duration-150 flex row gap-2 w-full text-sm text-left'
       data-test={dataTest}
     >
       {children}
-    </div>
+    </button>
   );
 }
 
-export default function DarkModeToggle() {
+export default function DarkModeToggle({
+  onInteract,
+}: {
+  onInteract?: () => void;
+}) {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -48,6 +53,7 @@ export default function DarkModeToggle() {
   }, [theme, resolvedTheme]);
 
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -66,19 +72,48 @@ export default function DarkModeToggle() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!showSelect) return;
+
+    requestAnimationFrame(() => {
+      const firstItem = dropdownRef.current?.querySelector(
+        '[data-test="select-system-theme"]',
+      );
+      (firstItem as HTMLElement | null)?.focus();
+    });
+  }, [showSelect]);
+
+  useEffect(() => {
+    if (!showSelect) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      setShowSelect(false);
+      toggleButtonRef.current?.focus();
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showSelect]);
+
   return (
     <div
       ref={dropdownRef}
       className='relative w-10 h-10 dark-mode-toggle-container'
     >
       <button
+        ref={toggleButtonRef}
         onClick={() => setShowSelect(!showSelect)}
         className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
         data-test='dark-mode-toggle'
+        aria-haspopup='menu'
+        aria-expanded={showSelect}
+        aria-label='Toggle theme menu'
       >
         <Image
           src={activeThemeIcon}
-          alt='Dark Mode'
+          alt=''
           width={25}
           height={25}
           style={{
@@ -89,15 +124,21 @@ export default function DarkModeToggle() {
         />
       </button>
       <div
+        role='menu'
+        aria-label='Theme'
         onMouseLeave={() => setShowSelect(false)}
         className={`absolute right-0 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max ${
           showSelect ? 'block' : 'hidden'
         }`}
-        tabIndex={0}
         data-test='theme-dropdown'
       >
         <ListItem
-          onClick={() => setTheme('system')}
+          onClick={() => {
+            onInteract?.();
+            setTheme('system');
+            setShowSelect(false);
+            toggleButtonRef.current?.focus();
+          }}
           data-test='select-system-theme'
         >
           <Image
@@ -110,7 +151,12 @@ export default function DarkModeToggle() {
           System
         </ListItem>
         <ListItem
-          onClick={() => setTheme('light')}
+          onClick={() => {
+            onInteract?.();
+            setTheme('light');
+            setShowSelect(false);
+            toggleButtonRef.current?.focus();
+          }}
           data-test='select-light-theme'
         >
           <Image
@@ -123,7 +169,12 @@ export default function DarkModeToggle() {
           Light
         </ListItem>
         <ListItem
-          onClick={() => setTheme('dark')}
+          onClick={() => {
+            onInteract?.();
+            setTheme('dark');
+            setShowSelect(false);
+            toggleButtonRef.current?.focus();
+          }}
           data-test='select-dark-theme'
         >
           <Image

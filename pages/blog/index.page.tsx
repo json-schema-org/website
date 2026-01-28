@@ -346,8 +346,9 @@ export default function StaticMarkdownPage({
                       {/* Display each category as a clickable badge */}
                       <div className='flex flex-wrap gap-2 mb-4'>
                         {getCategories(frontmatter).map((cat, index) => (
-                          <div
+                          <button
                             key={index}
+                            type='button'
                             className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full text-sm'
                             onClick={(e) => {
                               e.preventDefault();
@@ -356,7 +357,7 @@ export default function StaticMarkdownPage({
                             }}
                           >
                             {cat || 'Unknown'}
-                          </div>
+                          </button>
                         ))}
                       </div>
                       <div className='text-lg h-[95px] font-semibold overflow-hidden transition-transform duration-300 group-hover:scale-105'>

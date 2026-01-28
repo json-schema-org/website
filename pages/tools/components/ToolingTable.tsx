@@ -186,8 +186,7 @@ const ToolingTable = ({
                   return (
                     <tr
                       key={index}
-                      className='flex w-full hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
-                      onClick={() => openModal(tool)}
+                      className='flex w-full hover:bg-gray-100 dark:hover:bg-slate-700'
                     >
                       <TableCell
                         attributes={{
@@ -200,7 +199,15 @@ const ToolingTable = ({
                           title: 'See details',
                         }}
                       >
-                        {tool.name}
+                        <Button
+                          type='button'
+                          variant='ghost'
+                          className='p-0 h-auto text-left justify-start hover:bg-transparent'
+                          onClick={() => openModal(tool)}
+                          aria-label={`See details for ${tool.name}`}
+                        >
+                          {tool.name}
+                        </Button>
                         {tool.status === 'obsolete' && (
                           <Tag intent='error'>{tool.status}</Tag>
                         )}
@@ -254,8 +261,10 @@ const ToolingTable = ({
                               <a
                                 className='flex justify-center items-center h-full'
                                 href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
-                                target='blank'
+                                target='_blank'
+                                rel='noopener noreferrer'
                                 onClick={(event) => event.stopPropagation()}
+                                aria-label={`See ${tool.name} at Bowtie`}
                                 title='See at Bowtie'
                               >
                                 <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
@@ -283,8 +292,7 @@ const ToolingTable = ({
                   return (
                     <tr
                       key={index}
-                      className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
-                      onClick={() => openModal(tool)}
+                      className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700'
                     >
                       <td className='p-2 relative'>
                         {bowtieData && (
@@ -292,8 +300,10 @@ const ToolingTable = ({
                             <span>Bowtie:</span>
                             <a
                               href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
-                              target='blank'
+                              target='_blank'
+                              rel='noopener noreferrer'
                               onClick={(event) => event.stopPropagation()}
+                              aria-label={`See ${tool.name} at Bowtie`}
                               title='See at Bowtie'
                               className='ml-1'
                             >
@@ -304,7 +314,15 @@ const ToolingTable = ({
 
                         <div className='flex justify-between items-center'>
                           <div className='font-medium'>
-                            {tool.name}
+                            <Button
+                              type='button'
+                              variant='ghost'
+                              className='p-0 h-auto text-left justify-start hover:bg-transparent'
+                              onClick={() => openModal(tool)}
+                              aria-label={`See details for ${tool.name}`}
+                            >
+                              {tool.name}
+                            </Button>
                             {tool.status === 'obsolete' && (
                               <Tag intent='error'>{tool.status}</Tag>
                             )}

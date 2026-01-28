@@ -676,20 +676,28 @@ export default function JsonEditor({
                 jsonSchemaReferences?.[leaf.syntaxPart?.type]?.[leaf.text] ||
                 null)();
 
-              return (
-                <span
-                  onClick={() => {
-                    /* istanbul ignore if : link cannot be null */
-                    if (!link) return;
-                    router.push(link);
-                  }}
-                  className={cn('pb-2', textStyles, 'whitespace-pre')}
-                  title={leaf.syntaxPart?.type}
-                  {...attributes}
-                >
-                  {children}
-                </span>
-              );
+              const commonProps = {
+                className: cn('pb-2', textStyles, 'whitespace-pre'),
+                title: leaf.syntaxPart?.type,
+                ...attributes,
+              };
+
+              if (link) {
+                return (
+                  <a
+                    href={link}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      router.push(link);
+                    }}
+                    {...commonProps}
+                  >
+                    {children}
+                  </a>
+                );
+              }
+
+              return <span {...commonProps}>{children}</span>;
             }}
             renderElement={(props: any) => {
               // This will be the path to the image element.

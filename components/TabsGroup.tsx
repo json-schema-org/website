@@ -17,6 +17,10 @@ export const TabsGroup = ({
   const [activeTabIndex, setActiveTabIndex] = React.useState(0);
   const activeTab = tabs[activeTabIndex];
 
+  const baseId = React.useId();
+
+  const tabRefs = React.useRef<Array<HTMLButtonElement | null>>([]);
+
   return (
     <div>
       <div className='flex flex-col sm:flex-row items-start sm:items-end mt-4'>
@@ -25,13 +29,37 @@ export const TabsGroup = ({
             {groupLabel}:
           </div>
         )}
-        <div className='flex flex-row overflow-x-auto w-full sm:w-auto'>
+        <div
+          className='flex flex-row overflow-x-auto w-full sm:w-auto'
+          role='tablist'
+          aria-label={groupLabel ? `${groupLabel} tabs` : 'Tabs'}
+        >
           {tabs.map((tab, index) => {
             const isActive = index === activeTabIndex;
+            const tabId = `${baseId}-tab-${index}`;
+            const panelId = `${baseId}-panel-${index}`;
             return (
-              <div
+              <button
                 key={index}
+                ref={(el) => {
+                  tabRefs.current[index] = el;
+                }}
+                type='button'
+                role='tab'
+                id={tabId}
+                aria-selected={isActive}
+                aria-controls={panelId}
+                tabIndex={isActive ? 0 : -1}
                 onClick={() => setActiveTabIndex(index)}
+                onKeyDown={(event) => {
+                  if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight')
+                    return;
+                  event.preventDefault();
+                  const delta = event.key === 'ArrowRight' ? 1 : -1;
+                  const nextIndex = (index + delta + tabs.length) % tabs.length;
+                  setActiveTabIndex(nextIndex);
+                  requestAnimationFrame(() => tabRefs.current[nextIndex]?.focus());
+                }}
                 className={classnames(
                   'p-2 sm:p-4 px-3 sm:px-6 text-slate-700 font-medium border-b-2 rounded-t-lg whitespace-nowrap text-sm sm:text-base',
                   {
@@ -43,12 +71,17 @@ export const TabsGroup = ({
                 )}
               >
                 {tab.label}
-              </div>
+              </button>
             );
           })}
         </div>
       </div>
-      <div className='border-slate-100 mb-4 p-3 sm:p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-700/50 dark:to-slate-900/50'>
+      <div
+        id={`${baseId}-panel-${activeTabIndex}`}
+        role='tabpanel'
+        aria-labelledby={`${baseId}-tab-${activeTabIndex}`}
+        className='border-slate-100 mb-4 p-3 sm:p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-700/50 dark:to-slate-900/50'
+      >
         <StyledMarkdownBlock markdown={activeTab.markdown} />
       </div>
     </div>

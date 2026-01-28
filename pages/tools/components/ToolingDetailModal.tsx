@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import CancelIcon from '~/public/icons/cancel.svg';
 import { Button } from '~/components/ui/button';
@@ -18,6 +18,29 @@ export default function ToolingDetailModal({
   tool: JSONSchemaTool;
   onClose: () => void;
 }) {
+  const [toolIdPart] = useState(() =>
+    String(tool.name)
+      .toLowerCase()
+      .trim()
+      .replace(/\s+/g, '-')
+      .replace(/[^a-z0-9-_]/g, ''),
+  );
+  const [titleId] = useState(() => `tooling-detail-title-${toolIdPart}`);
+  const [descriptionId] = useState(
+    () => `tooling-detail-description-${toolIdPart}`,
+  );
+  const previouslyFocusedRef = useRef<HTMLElement | null>(null);
+  const [dialogElement, setDialogElement] = useState<HTMLDivElement | null>(
+    null,
+  );
+  const [closeButtonElement, setCloseButtonElement] =
+    useState<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return;
+    previouslyFocusedRef.current = document.activeElement as HTMLElement | null;
+  }, []);
+
   useEffect(() => {
     document.body.classList.add('no-scroll');
     return () => {
@@ -37,6 +60,60 @@ export default function ToolingDetailModal({
     };
   }, [onClose]);
 
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      closeButtonElement?.focus();
+    });
+  }, [closeButtonElement]);
+
+  useEffect(() => {
+    return () => {
+      const el = previouslyFocusedRef.current;
+      if (el && document.contains(el)) {
+        requestAnimationFrame(() => el.focus());
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!dialogElement) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Tab') return;
+
+      const focusable = Array.from(
+        dialogElement.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => {
+        const style = window.getComputedStyle(el);
+        return style.visibility !== 'hidden' && style.display !== 'none';
+      });
+
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (event.shiftKey) {
+        if (!active || active === first) {
+          event.preventDefault();
+          last.focus();
+        }
+        return;
+      }
+
+      if (active === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [dialogElement]);
+
   return (
     <div className='fixed inset-0 flex items-center justify-center z-50 overflow-x-hidden'>
       <div
@@ -44,17 +121,27 @@ export default function ToolingDetailModal({
         onClick={onClose}
       ></div>
       <div
+        ref={setDialogElement}
+        role='dialog'
+        aria-modal='true'
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
         className='bg-white dark:bg-slate-800 rounded-lg p-8 max-w-full lg:max-w-4xl w-10/12 lg:w-full relative top-8 z-50 max-h-[80vh] overflow-y-auto'
         style={{ overflowWrap: 'anywhere' }}
       >
         <div className='flex justify-end absolute top-0 right-0 mt-6 mr-6'>
           <Button
+            ref={setCloseButtonElement}
             onClick={onClose}
             variant='ghost'
             size='icon'
             className='text-gray-500 hover:text-gray-300'
+            aria-label='Close dialog'
           >
-            <CancelIcon className='fill-current stroke-current w-4 h-4' />
+            <CancelIcon
+              className='fill-current stroke-current w-4 h-4'
+              aria-hidden='true'
+            />
           </Button>
         </div>
         <div className='mt-4 flex flex-row items-center justify-start gap-2'>
@@ -70,14 +157,20 @@ export default function ToolingDetailModal({
             </div>
           )}
           <div>
-            <h2 className='text-h4 font-bold flex items-center gap-x-2'>
+            <h2
+              id={titleId}
+              className='text-h4 font-bold flex items-center gap-x-2'
+            >
               {tool.name}
               {tool.status === 'obsolete' && (
                 <Tag intent='error'>{tool.status}</Tag>
               )}
             </h2>
             {tool.description && (
-              <p className='text-gray-600 dark:text-slate-300 mt-1 text-sm md:text-base'>
+              <p
+                id={descriptionId}
+                className='text-gray-600 dark:text-slate-300 mt-1 text-sm md:text-base'
+              >
                 {tool.description}
               </p>
             )}
@@ -90,7 +183,8 @@ export default function ToolingDetailModal({
                 <h3 className='text-lg font-semibold'>Source</h3>
                 <a
                   href={tool.source}
-                  target='blank'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='text-blue-500 hover:underline'
                 >
                   {tool.source}
@@ -103,7 +197,8 @@ export default function ToolingDetailModal({
                 <h3 className='text-lg font-semibold'>Homepage</h3>
                 <a
                   href={tool.homepage}
-                  target='blank'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='text-blue-500 hover:underline'
                 >
                   {tool.homepage}
@@ -128,7 +223,8 @@ export default function ToolingDetailModal({
                         <h4 className='font-semibold'>Docs:</h4>
                         <a
                           href={tool.compliance.config.docs}
-                          target='blank'
+                          target='_blank'
+                          rel='noopener noreferrer'
                           className='text-blue-500 hover:underline'
                         >
                           {tool.compliance.config.docs}
@@ -165,7 +261,8 @@ export default function ToolingDetailModal({
                         {creator.username && creator.platform && (
                           <a
                             href={`https://${creator.platform}.com/${creator.username}`}
-                            target='blank'
+                            target='_blank'
+                            rel='noopener noreferrer'
                             className='text-blue-500 hover:underline'
                           >
                             @{creator.username}
@@ -191,7 +288,8 @@ export default function ToolingDetailModal({
                         {maintainer.username && maintainer.platform && (
                           <a
                             href={`https://${maintainer.platform}.com/${maintainer.username}`}
-                            target='blank'
+                            target='_blank'
+                            rel='noopener noreferrer'
                             className='text-blue-500 hover:underline'
                           >
                             @{maintainer.username}
@@ -227,7 +325,8 @@ export default function ToolingDetailModal({
                             {additional.name} (
                             <a
                               href={additional.source}
-                              target='blank'
+                              target='_blank'
+                              rel='noopener noreferrer'
                               className='text-blue-500 hover:underline'
                             >
                               Source
@@ -269,6 +368,7 @@ export default function ToolingDetailModal({
                   className='text-[14px] underline italic'
                   href={`https://bowtie.report/#/implementations/${tool.bowtie.id}`}
                   target='_blank'
+                  rel='noopener noreferrer'
                 >
                   View detailed report
                 </Link>
@@ -323,7 +423,8 @@ export default function ToolingDetailModal({
                     <li key={index}>
                       <a
                         href={validator}
-                        target='blank'
+                        target='_blank'
+                        rel='noopener noreferrer'
                         className='text-blue-500 hover:underline'
                       >
                         {validator}

@@ -38,6 +38,15 @@ describe('Layout Component', () => {
       cy.get('[data-testid="content"]').should('contain', 'Test content');
     });
 
+    it('should render a skip link that focuses the main content', () => {
+      mountLayout();
+      cy.get('a.skip-link')
+        .should('have.attr', 'href', '#main-content')
+        .focus()
+        .click();
+      cy.focused().should('have.attr', 'id', 'main-content');
+    });
+
     // Skipping title test as Next.js Head component doesn't work reliably in Cypress component tests
     // it('should render with custom meta title', () => {
     //   mountLayout({ metaTitle: 'Test Page' });
@@ -237,13 +246,13 @@ describe('Layout Component', () => {
   describe('Mobile Navigation', () => {
     it('should render hamburger menu on mobile', () => {
       mountLayout();
-      cy.get('header').find('.block.lg\\:hidden').should('exist');
+      cy.get('header').find('[data-test="mobile-nav-toggle"]').should('exist');
     });
 
     it('should show mobile navigation when hamburger is clicked', () => {
       mountLayout();
       // Click hamburger menu
-      cy.get('header').find('.block.lg\\:hidden').click();
+      cy.get('header').find('[data-test="mobile-nav-toggle"]').click();
 
       // Check if mobile nav is visible
       cy.get('.flex.flex-col.lg\\:hidden').should('be.visible');
@@ -252,10 +261,10 @@ describe('Layout Component', () => {
     it('should hide mobile navigation when close button is clicked', () => {
       mountLayout();
       // Open mobile nav
-      cy.get('header').find('.block.lg\\:hidden').click();
+      cy.get('header').find('[data-test="mobile-nav-toggle"]').click();
 
       // Click close button
-      cy.get('header').find('.h-6.w-6.lg\\:hidden').click();
+      cy.get('header').find('[data-test="mobile-nav-toggle"]').click();
 
       // Check if mobile nav is hidden - it should not exist in DOM when hidden
       cy.get('.flex.flex-col.lg\\:hidden').should('not.exist');
@@ -264,7 +273,7 @@ describe('Layout Component', () => {
     it('should render mobile navigation links', () => {
       mountLayout();
       // Open mobile nav
-      cy.get('header').find('.block.lg\\:hidden').click();
+      cy.get('header').find('[data-test="mobile-nav-toggle"]').click();
 
       // Check mobile nav links
       cy.get('.flex.flex-col.lg\\:hidden')
@@ -276,6 +285,15 @@ describe('Layout Component', () => {
       cy.get('.flex.flex-col.lg\\:hidden')
         .contains('Community')
         .should('exist');
+    });
+
+    it('should open mobile navigation with keyboard', () => {
+      mountLayout();
+      cy.get('header')
+        .find('[data-test="mobile-nav-toggle"]')
+        .focus()
+        .type('{enter}');
+      cy.get('.flex.flex-col.lg\\:hidden').should('be.visible');
     });
   });
 

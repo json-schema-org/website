@@ -98,6 +98,11 @@ border-radius: 4px; */
   box-shadow: none;
 }
 
+.DocSearch-Button:focus-visible {
+  outline: 2px solid #2563eb !important;
+  outline-offset: 2px;
+}
+
 /** Style Algolia */
 
 .keygrad {
@@ -301,4 +306,53 @@ border-radius: 4px; */
 }
 .scrollbar-hidden::-webkit-scrollbar {
   display: none;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.75rem;
+  top: 0.75rem;
+  z-index: 1000;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  background: #ffffff;
+  color: #0f172a;
+  border: 2px solid #2563eb;
+  transform: translateY(-200%);
+  transition: transform 150ms ease-in-out;
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+:is(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role='button'],
+    [role='link'],
+    [tabindex]:not([tabindex='-1'])
+  ):focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+html[data-theme='dark']
+  :is(
+    a,
+    button,
+    input,
+    select,
+    textarea,
+    summary,
+    [role='button'],
+    [role='link'],
+    [tabindex]:not([tabindex='-1'])
+  ):focus-visible {
+  outline-color: #93c5fd;
 }

@@ -1,1 +1,7 @@
-../../../_includes/dot-github/CODE_OF_CONDUCT.md
+---
+title: Code of Conduct
+---
+
+# Code of Conduct
+
+(Content temporarily unavailable due to file access error)

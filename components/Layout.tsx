@@ -36,7 +36,9 @@ export default function Layout({
 
   const router = useRouter();
 
-  const mobileNavRef = useRef<HTMLDivElement>(null);
+  const mobileNavPanelRef = useRef<HTMLDivElement>(null);
+  const mobileNavToggleRef = useRef<HTMLButtonElement>(null);
+  const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
 
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
@@ -57,19 +59,53 @@ export default function Layout({
   }, []);
 
   useEffect(() => {
-    const handleCloseNavbar = (event: MouseEvent) => {
-      if (
-        mobileNavRef.current &&
-        (mobileNavRef.current as any).contains(event.target)
-      ) {
-        useStore.setState({ overlayNavigation: null });
-      }
+    if (!showMobileNav) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      event.preventDefault();
+      useStore.setState({ overlayNavigation: null });
+      mobileNavToggleRef.current?.focus();
     };
 
-    document.addEventListener('click', handleCloseNavbar);
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [showMobileNav]);
 
-    return () => document.removeEventListener('click', handleCloseNavbar);
-  }, [mobileNavRef]);
+  useEffect(() => {
+    if (!showMobileNav) return;
+
+    const handleMouseDown = (event: MouseEvent) => {
+      const target = event.target as Node;
+
+      if (mobileNavToggleRef.current?.contains(target)) return;
+      if (mobileNavPanelRef.current?.contains(target)) return;
+
+      useStore.setState({ overlayNavigation: null });
+    };
+
+    document.addEventListener('mousedown', handleMouseDown);
+    return () => document.removeEventListener('mousedown', handleMouseDown);
+  }, [showMobileNav]);
+
+  useEffect(() => {
+    if (showMobileNav) {
+      previouslyFocusedElementRef.current = document.activeElement as
+        | HTMLElement
+        | null;
+
+      requestAnimationFrame(() => {
+        const firstLink = mobileNavPanelRef.current?.querySelector('a');
+        (firstLink as HTMLElement | null)?.focus();
+      });
+      return;
+    }
+
+    const el = previouslyFocusedElementRef.current;
+    if (el && document.contains(el)) {
+      requestAnimationFrame(() => el.focus());
+    }
+  }, [showMobileNav]);
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
   return (
@@ -89,27 +125,45 @@ export default function Layout({
         ></meta>
       </Head>
       <div className={classnames({ 'bg-white': whiteBg })}>
+        <a
+          href='#main-content'
+          className='skip-link'
+          onClick={(event) => {
+            event.preventDefault();
+            const main = document.getElementById('main-content');
+            if (!main) return;
+            main.focus();
+            main.scrollIntoView();
+          }}
+        >
+          Skip to main content
+        </a>
+        <header
+          className={classnames(
+            'w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg',
+          )}
+        >
+          <div className='flex w-full md:justify-between items-center ml-8 2xl:px-12 py-4'>
+            <Logo />
+            <MainNavigation
+              mobileNavToggleRef={mobileNavToggleRef}
+              mobileNavPanelId='mobile-navigation'
+            />
+          </div>
+        </header>
         <main
+          id='main-content'
+          tabIndex={-1}
           className={classnames(
             mainClassName,
             'z-10 h-screen xl:rounded-xl pt-4 mx-auto',
             // 'z-10 h-screen  xl:rounded-xl pt-4 mx-auto',
           )}
         >
-          <header
-            className={classnames(
-              'w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg',
-            )}
-          >
-            <div className='flex w-full md:justify-between items-center ml-8 2xl:px-12 py-4'>
-              <Logo />
-              <MainNavigation />
-            </div>
-          </header>
-          <div ref={mobileNavRef}>
+          <div ref={mobileNavPanelRef} id='mobile-navigation'>
             {showMobileNav && <MobileNav />}
-            {children}
           </div>
+          {children}
           <ScrollButton />
           <Footer />
         </main>
@@ -174,7 +228,13 @@ const MainNavLink = ({
   );
 };
 
-const MainNavigation = () => {
+const MainNavigation = ({
+  mobileNavToggleRef,
+  mobileNavPanelId,
+}: {
+  mobileNavToggleRef: React.RefObject<HTMLButtonElement>;
+  mobileNavPanelId: string;
+}) => {
   const section = useContext(SectionContext);
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
 
@@ -239,32 +299,43 @@ const MainNavigation = () => {
       <div className='flex items-center max-sm:ml-4 mr-8 gap-6 md:gap-4 dark:bg-slate-800'>
         <div
           className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
         >
           <Search />
         </div>
-        <div onClick={() => useStore.setState({ overlayNavigation: null })}>
-          <DarkModeToggle />
-        </div>
-        {showMobileNav === false ? (
-          <div onClick={() => useStore.setState({ overlayNavigation: 'docs' })}>
-            <div className='block lg:hidden space-y-2  items-center'>
+        <DarkModeToggle
+          onInteract={() => useStore.setState({ overlayNavigation: null })}
+        />
+        <button
+          ref={mobileNavToggleRef}
+          type='button'
+          className='block lg:hidden'
+          aria-controls={mobileNavPanelId}
+          aria-expanded={showMobileNav}
+          aria-label={
+            showMobileNav ? 'Close navigation menu' : 'Open navigation menu'
+          }
+          data-test='mobile-nav-toggle'
+          onClick={() =>
+            useStore.setState({
+              overlayNavigation: showMobileNav ? null : 'docs',
+            })
+          }
+        >
+          {showMobileNav === false ? (
+            <div className='space-y-2 items-center'>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
             </div>
-          </div>
-        ) : (
-          <div
-            style={{
-              backgroundImage: closeMenu,
-            }}
-            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
-            onClick={() => useStore.setState({ overlayNavigation: null })}
-          />
-        )}
+          ) : (
+            <div
+              style={{
+                backgroundImage: closeMenu,
+              }}
+              className='h-6 w-6 bg-center bg-[length:22px_22px] bg-no-repeat transition-all cursor-pointer dark:text-slate-300'
+            />
+          )}
+        </button>
       </div>
       <div className='flex items-center justify-end mr-8'>
         <Button
@@ -302,7 +373,10 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
+    <nav
+      aria-label='Primary'
+      className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'
+    >
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -325,7 +399,7 @@ const MobileNav = () => {
         label='Community'
         isActive={section === 'community'}
       />
-    </div>
+    </nav>
   );
 };
 

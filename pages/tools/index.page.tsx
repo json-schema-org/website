@@ -128,8 +128,11 @@ export default function ToolingPage({
       </Head>
 
       <div className='mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center'>
-        <div
+        <button
+          type='button'
           className='bg-primary w-full h-12 mt-[4.5rem] relative lg:hidden px-8 flex justify-between items-center'
+          aria-controls='tools-sidebar'
+          aria-expanded={isSidebarOpen}
           onClick={() => setIsSidebarOpen((prev) => !prev)}
         >
           <h3 className='text-white'>{numberOfTools} Tools</h3>
@@ -150,11 +153,12 @@ export default function ToolingPage({
               fill={'#ffffff'}
             />
           </svg>
-        </div>
+        </button>
 
         {/* FIX 1: mx → px, and overflow-x-hidden */}
         <div className='w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'>
           <div
+            id='tools-sidebar'
             className={`
               lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
               mt-0 lg:mt-20
