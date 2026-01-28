@@ -142,10 +142,7 @@ export default function getScopesOfParsedJsonSchema(
   // 8. Handle conditional schemas (if/then/else)
   if (parsedJsonSchema.if) {
     scopes.push(
-      ...getScopesOfParsedJsonSchema(
-        parsedJsonSchema.if,
-        `${jsonPath}['if']`,
-      ),
+      ...getScopesOfParsedJsonSchema(parsedJsonSchema.if, `${jsonPath}['if']`),
     );
   }
 
