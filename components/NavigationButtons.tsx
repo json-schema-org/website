@@ -44,15 +44,15 @@ const NavButton = ({
   url?: string;
   direction: 'prev' | 'next';
 }) => {
-  if (!url || !label) return <div className='h-auto w-1/2' />;
+  if (!url || !label) return <div className='w-1/2' />;
 
   const isPrev = direction === 'prev';
   const Icon = isPrev ? ChevronLeft : ChevronRight;
   const buttonText = isPrev ? 'Go Back' : 'Up Next';
 
   return (
-    <div className='h-auto w-1/2' data-test={`nav-button-${direction}`}>
-      <Card className='group h-full cursor-pointer border-gray-200 p-4 text-center shadow-md transition-all duration-300 ease-in-out hover:border-gray-300 hover:shadow-lg dark:shadow-xl dark:hover:shadow-lg dark:drop-shadow-lg lg:text-left'>
+    <div className='w-1/2' data-test={`nav-button-${direction}`}>
+      <Card className='group cursor-pointer border-gray-200 p-4 text-center shadow-md hover:border-gray-300 hover:shadow-lg dark:shadow-xl lg:text-left'>
         <Link href={url} className='block'>
           <Button
             variant='ghost'
@@ -60,7 +60,7 @@ const NavButton = ({
           >
             {isPrev && <Icon className='h-5 w-5' data-test='nav-button-icon' />}
             <div
-              className='my-auto inline font-bold uppercase text-primary dark:text-slate-300 group-hover:text-[20px] transition-all duration-300'
+              className='my-auto inline font-bold uppercase text-primary dark:text-slate-300 transition-colors duration-300'
               data-test='nav-button-text'
             >
               {buttonText}
