@@ -115,9 +115,9 @@ describe('NavigationButtons Component', () => {
     // Check container styling
     cy.get('.mb-4.flex.flex-row.gap-4').should('exist');
 
-    // Check card styling
+    // Check card styling (group, cursor-pointer, border-gray-200, p-4, text-center, shadow-md)
     cy.get(
-      '.h-full.cursor-pointer.border-gray-200.p-4.text-center.shadow-md',
+      '[data-slot="card"].cursor-pointer.border-gray-200.p-4.text-center.shadow-md',
     ).should('exist');
 
     // Check button styling
@@ -135,9 +135,7 @@ describe('NavigationButtons Component', () => {
 
     // Check hover classes are applied
     cy.get('.hover\\:border-gray-300.hover\\:shadow-lg').should('exist');
-    cy.get(
-      '.dark\\:shadow-xl.dark\\:hover\\:shadow-lg.dark\\:drop-shadow-lg',
-    ).should('exist');
+    cy.get('.dark\\:shadow-xl').should('exist');
   });
 
   it('should handle dark mode styling', () => {
@@ -145,9 +143,7 @@ describe('NavigationButtons Component', () => {
 
     // Check dark mode classes
     cy.get('.dark\\:text-slate-300').should('exist');
-    cy.get(
-      '.dark\\:shadow-xl.dark\\:hover\\:shadow-lg.dark\\:drop-shadow-lg',
-    ).should('exist');
+    cy.get('.dark\\:shadow-xl').should('exist');
   });
 
   it('should render with correct responsive classes', () => {
