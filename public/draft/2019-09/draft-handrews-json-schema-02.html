@@ -10,6 +10,33 @@
 
     <style type="text/css" title="Xml2Rfc (sans serif)">
       /*<![CDATA[*/
+      :root {
+        --toc-width: 300px;
+        --page-max: 1200px;
+        --toc-top-offset: 1.25rem;
+        --gutter: 1rem;
+      }
+      .container{
+        display: grid;
+        align-items: start;
+        grid-template-columns: var(--toc-width) minmax(0, 1fr) !important;
+        gap: var(--gutter);
+        max-width: var(--page-max) !important;
+        margin: 0 auto;
+        padding: 1rem;
+      }
+      aside.toc{
+        align-self: start;
+        position: sticky;
+        top: var(--toc-top-offset);
+        max-height: calc(100vh - var(--toc-top-offset) - 2rem);
+        overflow-y: auto;
+        padding-right: 0.75rem;
+        padding-left: 0.25rem;
+        border-right: 1px solid #e0e0e0;
+        background: transparent;
+        font-size: 0.95rem;
+      }
       a {
         text-decoration: none;
       }
@@ -42,63 +69,6 @@
         background-color: #eee;
         text-align: left;
       }
-      :root {
-        --toc-width: 300px;
-        --gutter: 1rem;
-        --page-padding: 1rem 2rem;
-        --toc-top-offset: 1.5rem;
-        --max-content-width: 1100px;
-      }
-      .container {
-        display: grid;
-        grid-template-columns: var(--toc-width) 1fr;
-        gap: var(--gutter);
-        max-width: var(--max-content-width);
-        margin: 0 auto;
-        padding: var(--page-padding);
-        box-sizing: border-box;
-      }
-      .header,
-      .title {
-        grid-column: 1/-1;
-      }
-      aside.toc {
-        align-self: start;
-        position: sticky;
-        top: var(--toc-top-offset);
-        max-height: calc(100vh - var(--toc-top-offset) - 2rem);
-        overflow-y: auto;
-        padding-right: 0.75rem;
-        padding-left: 0.25rem;
-        border-right: 1px solid #e0e0e0;
-        background: transparent;
-        font-size: 0.95rem;
-      }
-      aside.toc ul.toc {
-        margin: 0;
-        padding: 0 0.25rem;
-        list-style: none;
-      }
-      aside.toc ul.toc li {
-        margin: 0.35rem 0;
-        line-height: 1.25;
-      }
-      aside.toc ul.toc li a {
-        color: #222;
-        text-decoration: none;
-        display: inline-block;
-      }
-      aside.toc ul.toc li a:hover {
-        text-decoration: underline;
-      }
-      aside.toc ul.toc ul {
-        margin-left: 0.6rem;
-        margin-top: 0.25rem;
-      }
-      main.content {
-        padding-left: 0.75rem;
-        padding-right: 0.25rem;
-      }
       a.smpl {
         color: black;
       }
@@ -118,11 +88,129 @@
         font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
         font-size: 16px;
         margin: 0;
-        background: #fff;
+        background: #fff
+        
       }
-      /* ensure header/title span when placed inside .container */
-      table.header { grid-column: 1 / -1; width: 100%; box-sizing: border-box; }
-      .title { grid-column: 1 / -1; }
+      table.header { 
+        grid-column: 1 / -1; 
+        width: 100% !important;  
+      }
+      table.header, .title{
+        grid-column: 1 / -1;
+        box-sizing: border-box;
+        width: 100%;
+      }
+      .title { 
+        grid-column: 1 / -1; 
+      }
+      main.content{
+        padding-left: 1rem;
+        padding-right: 1rem;
+        box-sizing: border-box;
+        min-width: 0;
+        width: auto;
+      }
+      main.content p,
+      main.content ul,
+      main.content ol,
+      main.content dl,
+      main.content table,
+      main.content pre,
+      main.content blockquote,
+      main.content img {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        max-width: none !important;
+      }
+      main.content pre, main.content table {
+        overflow: auto;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+      .sr-only{
+        position: absolute !important;
+        width: 1px; height: 1px;
+        padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0 0 0 0);
+        white-space: nowrap; border: 0;
+      }
+      aside.toc{
+        grid-column: 1 / 2;
+        width: var(--toc-width) !important;
+        min-width: var(--toc-width) !important;
+        box-sizing: border-box;
+        position: sticky;
+        top: var(--toc-top-offset);
+        max-height: calc(100vh - var(--toc-top-offset) - 2rem);
+        overflow-y: auto;
+        padding: 0.5rem;
+        background: transparent;
+      }
+      aside.toc ul.toc{
+        padding: 0.25rem 0 !important;
+        margin: 0 !important;
+        list-style: none;
+      }
+      aside.toc ul.toc ul{
+        margin-left: 0.5rem;
+      }
+      aside.toc{
+        width: var(--toc-width);
+        min-width: var(--toc-width);
+        box-sizing: border-box;
+        flex-shrink: 0;
+      }
+      aside.toc ul.toc li{
+        margin: 0.25rem 0;
+        font-weight: 600;
+        font-size: 0.95 rem;
+      }
+      aside.toc ul.toc li li{
+        font-weight: 400;
+        font-size: 0.9rem;
+        padding: 0 1rem;
+        box-sizing: border-box;
+        min-width: 0;
+      }
+      main.content{grid-column: 2 / -1; min-width: 0; box-sizing: border-box;}
+      main.content .content-inner{
+        max-width: 900px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        box-sizing: border-box; 
+      }
+      main.content .content-inner inner,
+      main.content .content-inner p,
+      main.content .content-inner ul,
+      main.content .content-inner ol,
+      main.content .content-inner dl,
+      main.content .content-inner li,
+      main.content .content-inner table,
+      main.content .content-inner pre,
+      main.content .content-inner blockquote,
+      main.content .content-inner img {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        max-width: none !important;
+        padding: 0 !important;
+      }
+      main.content .content-inner img,
+      main.content .content-inner table,
+      main.content .content-inner pre{
+        max-width: 100%;
+        overflow: auto;
+        box-sizing: border-box;
+      }
+
+      @media (max-width: 900px){
+        .container { grid-template-columns: 1fr; }
+        aside.toc{
+          width: auto; border-right: none; border-bottom: 1px solid #eaeaea;
+        }
+      }
+
       cite {
         font-style: normal;
       }
@@ -374,33 +462,6 @@
       .warning {
         font-size: 14pt;
         background-color: yellow;
-      }
-
-      @media print {
-        aside.toc {
-          position: static;
-          max-height: none;
-          border: none;
-        }
-        .container {
-          grid-template-columns: 1fr;
-          padding: 0;
-        }
-      }
-      @media (max-width: 900px) {
-        .container {
-          grid-template-columns: 1fr;
-          padding: 0.75rem;
-        }
-        aside.toc {
-          position: relative;
-          top: auto;
-          max-height: none;
-          border-right: none;
-          border-bottom: 1px solid #eaeaea;
-          padding-bottom: 0.5rem;
-          margin-bottom: 0.75rem;
-        }
       }
 
       @media print {
@@ -864,6 +925,7 @@
   </head>
 
   <body>
+    <div class="container">
     <table class="header">
       <tbody>
         <tr>
@@ -969,1343 +1031,1214 @@
     </p>
 
     <hr class="noprint" />
-    <div class="container">
-      <aside class="toc" aria-labelledby="rfc.toc.label">
-        <h2 id="rfc.toc.label">Table of Contents</h2>
-        <nav role="navigation" aria-label="Table of Contents">
-          <ul class="toc">
-            <h1 class="np" id="rfc.toc">
-              <a href="#rfc.toc">Table of Contents</a>
-            </h1>
-            <ul class="toc">
-              <li>1. <a href="#rfc.section.1">Introduction</a></li>
+    <aside class="toc" aria-labelledby="rfc.toc.label">
+      <h2 id="rfc.toc.label" class="sr-only">Table of Contents</h2>
+      <nav role="navigation" aria-label="Table of Contents">
+        <ul class="toc">
+          <li>1. <a href="#rfc.section.1">Introduction</a></li>
+          <li>2. <a href="#rfc.section.2">Conventions and Terminology</a></li>
+          <li>3. <a href="#rfc.section.3">Overview</a></li>
+          <li>4. <a href="#rfc.section.4">Definitions</a></li>
+          <ul>
+            <li>4.1. <a href="#rfc.section.4.1">JSON Document</a></li>
+            <li>4.2. <a href="#rfc.section.4.2">Instance</a></li>
+            <ul>
+              <li>4.2.1. <a href="#rfc.section.4.2.1">Instance Data Model</a></li>
+              <li>4.2.2. <a href="#rfc.section.4.2.2">Instance Media Types</a></li>
+              <li>4.2.3. <a href="#rfc.section.4.2.3">Instance Equality</a></li>
+            </ul>
+            <li>4.3. <a href="#rfc.section.4.3">JSON Schema Documents</a></li>
+            <ul>
               <li>
-                2. <a href="#rfc.section.2">Conventions and Terminology</a>
+                4.3.1.
+                <a href="#rfc.section.4.3.1">JSON Schema Objects and Keywords</a>
               </li>
-              <li>3. <a href="#rfc.section.3">Overview</a></li>
-              <li>4. <a href="#rfc.section.4">Definitions</a></li>
-              <ul>
-                <li>4.1. <a href="#rfc.section.4.1">JSON Document</a></li>
-                <li>4.2. <a href="#rfc.section.4.2">Instance</a></li>
-                <ul>
-                  <li>
-                    4.2.1. <a href="#rfc.section.4.2.1">Instance Data Model</a>
-                  </li>
-                  <li>
-                    4.2.2. <a href="#rfc.section.4.2.2">Instance Media Types</a>
-                  </li>
-                  <li>
-                    4.2.3. <a href="#rfc.section.4.2.3">Instance Equality</a>
-                  </li>
-                </ul>
-                <li>
-                  4.3. <a href="#rfc.section.4.3">JSON Schema Documents</a>
-                </li>
-                <ul>
-                  <li>
-                    4.3.1.
-                    <a href="#rfc.section.4.3.1"
-                      >JSON Schema Objects and Keywords</a
-                    >
-                  </li>
-                  <li>
-                    4.3.2. <a href="#rfc.section.4.3.2">Boolean JSON Schemas</a>
-                  </li>
-                  <li>
-                    4.3.3. <a href="#rfc.section.4.3.3">Schema Vocabularies</a>
-                  </li>
-                  <li>4.3.4. <a href="#rfc.section.4.3.4">Meta-Schemas</a></li>
-                  <li>
-                    4.3.5.
-                    <a href="#rfc.section.4.3.5"
-                      >Root Schema and Subschemas and Resources</a
-                    >
-                  </li>
-                </ul>
-              </ul>
-              <li>5. <a href="#rfc.section.5">Fragment Identifiers</a></li>
-              <li>6. <a href="#rfc.section.6">General Considerations</a></li>
-              <ul>
-                <li>
-                  6.1. <a href="#rfc.section.6.1">Range of JSON Values</a>
-                </li>
-                <li>
-                  6.2.
-                  <a href="#rfc.section.6.2"
-                    >Programming Language Independence</a
-                  >
-                </li>
-                <li>
-                  6.3. <a href="#rfc.section.6.3">Mathematical Integers</a>
-                </li>
-                <li>6.4. <a href="#rfc.section.6.4">Regular Expressions</a></li>
-                <li>
-                  6.5. <a href="#rfc.section.6.5">Extending JSON Schema</a>
-                </li>
-              </ul>
-              <li>7. <a href="#rfc.section.7">Keyword Behaviors</a></li>
-              <ul>
-                <li>
-                  7.1.
-                  <a href="#rfc.section.7.1">Lexical Scope and Dynamic Scope</a>
-                </li>
-                <li>
-                  7.2. <a href="#rfc.section.7.2">Keyword Interactions</a>
-                </li>
-                <li>7.3. <a href="#rfc.section.7.3">Default Behaviors</a></li>
-                <li>7.4. <a href="#rfc.section.7.4">Identifiers</a></li>
-                <li>7.5. <a href="#rfc.section.7.5">Applicators</a></li>
-                <ul>
-                  <li>
-                    7.5.1.
-                    <a href="#rfc.section.7.5.1"
-                      >Referenced and Referencing Schemas</a
-                    >
-                  </li>
-                </ul>
-                <li>7.6. <a href="#rfc.section.7.6">Assertions</a></li>
-                <ul>
-                  <li>
-                    7.6.1.
-                    <a href="#rfc.section.7.6.1"
-                      >Assertions and Instance Primitive Types</a
-                    >
-                  </li>
-                </ul>
-                <li>7.7. <a href="#rfc.section.7.7">Annotations</a></li>
-                <ul>
-                  <li>
-                    7.7.1.
-                    <a href="#rfc.section.7.7.1">Collecting Annotations</a>
-                  </li>
-                </ul>
-                <li>7.8. <a href="#rfc.section.7.8">Reserved Locations</a></li>
-              </ul>
+              <li>4.3.2. <a href="#rfc.section.4.3.2">Boolean JSON Schemas</a></li>
+              <li>4.3.3. <a href="#rfc.section.4.3.3">Schema Vocabularies</a></li>
+              <li>4.3.4. <a href="#rfc.section.4.3.4">Meta-Schemas</a></li>
               <li>
-                8. <a href="#rfc.section.8">The JSON Schema Core Vocabulary</a>
-              </li>
-              <ul>
-                <li>
-                  8.1.
-                  <a href="#rfc.section.8.1">Meta-Schemas and Vocabularies</a>
-                </li>
-                <ul>
-                  <li>
-                    8.1.1.
-                    <a href="#rfc.section.8.1.1">The "$schema" Keyword</a>
-                  </li>
-                  <li>
-                    8.1.2.
-                    <a href="#rfc.section.8.1.2">The "$vocabulary" Keyword</a>
-                  </li>
-                  <li>
-                    8.1.3.
-                    <a href="#rfc.section.8.1.3"
-                      >Updates to Meta-Schema and Vocabulary URIs</a
-                    >
-                  </li>
-                  <li>
-                    8.1.4.
-                    <a href="#rfc.section.8.1.4">Detecting a Meta-Schema</a>
-                  </li>
-                </ul>
-                <li>
-                  8.2.
-                  <a href="#rfc.section.8.2"
-                    >Base URI, Anchors, and Dereferencing</a
-                  >
-                </li>
-                <ul>
-                  <li>
-                    8.2.1. <a href="#rfc.section.8.2.1">Initial Base URI</a>
-                  </li>
-                  <li>
-                    8.2.2. <a href="#rfc.section.8.2.2">The "$id" Keyword</a>
-                  </li>
-                  <li>
-                    8.2.3.
-                    <a href="#rfc.section.8.2.3"
-                      >Defining location-independent identifiers with
-                      "$anchor"</a
-                    >
-                  </li>
-                  <li>
-                    8.2.4. <a href="#rfc.section.8.2.4">Schema References</a>
-                  </li>
-                  <li>
-                    8.2.5.
-                    <a href="#rfc.section.8.2.5">Schema Re-Use With "$defs"</a>
-                  </li>
-                </ul>
-                <li>
-                  8.3. <a href="#rfc.section.8.3">Comments With "$comment"</a>
-                </li>
-              </ul>
-              <li>
-                9.
-                <a href="#rfc.section.9"
-                  >A Vocabulary for Applying Subschemas</a
+                4.3.5.
+                <a href="#rfc.section.4.3.5"
+                  >Root Schema and Subschemas and Resources</a
                 >
               </li>
-              <ul>
-                <li>
-                  9.1. <a href="#rfc.section.9.1">Keyword Independence</a>
-                </li>
-                <li>
-                  9.2.
-                  <a href="#rfc.section.9.2"
-                    >Keywords for Applying Subschemas in Place</a
-                  >
-                </li>
-                <ul>
-                  <li>
-                    9.2.1.
-                    <a href="#rfc.section.9.2.1"
-                      >Keywords for Applying Subschemas With Boolean Logic</a
-                    >
-                  </li>
-                  <li>
-                    9.2.2.
-                    <a href="#rfc.section.9.2.2"
-                      >Keywords for Applying Subschemas Conditionally</a
-                    >
-                  </li>
-                </ul>
-                <li>
-                  9.3.
-                  <a href="#rfc.section.9.3"
-                    >Keywords for Applying Subschemas to Child Instances</a
-                  >
-                </li>
-                <ul>
-                  <li>
-                    9.3.1.
-                    <a href="#rfc.section.9.3.1"
-                      >Keywords for Applying Subschemas to Arrays</a
-                    >
-                  </li>
-                  <li>
-                    9.3.2.
-                    <a href="#rfc.section.9.3.2"
-                      >Keywords for Applying Subschemas to Objects</a
-                    >
-                  </li>
-                </ul>
-              </ul>
-              <li>10. <a href="#rfc.section.10">Output Formatting</a></li>
-              <ul>
-                <li>10.1. <a href="#rfc.section.10.1">Format</a></li>
-                <li>10.2. <a href="#rfc.section.10.2">Output Formats</a></li>
-                <li>
-                  10.3. <a href="#rfc.section.10.3">Minimum Information</a>
-                </li>
-                <ul>
-                  <li>
-                    10.3.1.
-                    <a href="#rfc.section.10.3.1">Keyword Relative Location</a>
-                  </li>
-                  <li>
-                    10.3.2.
-                    <a href="#rfc.section.10.3.2">Keyword Absolute Location</a>
-                  </li>
-                  <li>
-                    10.3.3. <a href="#rfc.section.10.3.3">Instance Location</a>
-                  </li>
-                  <li>
-                    10.3.4.
-                    <a href="#rfc.section.10.3.4">Error or Annotation</a>
-                  </li>
-                  <li>
-                    10.3.5. <a href="#rfc.section.10.3.5">Nested Results</a>
-                  </li>
-                </ul>
-                <li>10.4. <a href="#rfc.section.10.4">Output Structure</a></li>
-                <ul>
-                  <li>10.4.1. <a href="#rfc.section.10.4.1">Flag</a></li>
-                  <li>10.4.2. <a href="#rfc.section.10.4.2">Basic</a></li>
-                  <li>10.4.3. <a href="#rfc.section.10.4.3">Detailed</a></li>
-                  <li>10.4.4. <a href="#rfc.section.10.4.4">Verbose</a></li>
-                  <li>
-                    10.4.5.
-                    <a href="#rfc.section.10.4.5">Output validation schemas</a>
-                  </li>
-                </ul>
-              </ul>
-              <li>11. <a href="#rfc.section.11">Usage for Hypermedia</a></li>
-              <ul>
-                <li>
-                  11.1. <a href="#rfc.section.11.1">Linking to a Schema</a>
-                </li>
-                <li>
-                  11.2.
-                  <a href="#rfc.section.11.2"
-                    >Identifying a Schema via a Media Type Parameter</a
-                  >
-                </li>
-                <li>11.3. <a href="#rfc.section.11.3">Usage Over HTTP</a></li>
-              </ul>
-              <li>12. <a href="#rfc.section.12">Security Considerations</a></li>
-              <li>13. <a href="#rfc.section.13">IANA Considerations</a></li>
-              <ul>
-                <li>
-                  13.1. <a href="#rfc.section.13.1">application/schema+json</a>
-                </li>
-                <li>
-                  13.2.
-                  <a href="#rfc.section.13.2"
-                    >application/schema-instance+json</a
-                  >
-                </li>
-              </ul>
-              <li>14. <a href="#rfc.references">References</a></li>
-              <ul>
-                <li>
-                  14.1. <a href="#rfc.references.1">Normative References</a>
-                </li>
-                <li>
-                  14.2. <a href="#rfc.references.2">Informative References</a>
-                </li>
-              </ul>
-              <li>
-                Appendix A.
-                <a href="#rfc.appendix.A">Schema identification examples</a>
-              </li>
-              <li>
-                Appendix B.
-                <a href="#rfc.appendix.B"
-                  >Manipulating schema documents and references</a
-                >
-              </li>
-              <ul>
-                <li>
-                  B.1.
-                  <a href="#rfc.appendix.B.1"
-                    >Bundling schema resources into a single document</a
-                  >
-                </li>
-                <li>
-                  B.2.
-                  <a href="#rfc.appendix.B.2"
-                    >Reference removal is not always safe</a
-                  >
-                </li>
-              </ul>
-              <li>
-                Appendix C.
-                <a href="#rfc.appendix.C"
-                  >Example of recursive schema extension</a
-                >
-              </li>
-              <li>
-                Appendix D.
-                <a href="#rfc.appendix.D">Working with vocabularies</a>
-              </li>
-              <ul>
-                <li>
-                  D.1.
-                  <a href="#rfc.appendix.D.1"
-                    >Best practices for vocabulary and meta-schema authors</a
-                  >
-                </li>
-                <li>
-                  D.2.
-                  <a href="#rfc.appendix.D.2"
-                    >Example meta-schema with vocabulary declarations</a
-                  >
-                </li>
-              </ul>
-              <li>
-                Appendix E.
-                <a href="#rfc.appendix.E"
-                  >References and generative use cases</a
-                >
-              </li>
-              <li>Appendix F. <a href="#rfc.appendix.F">Acknowledgments</a></li>
-              <li>Appendix G. <a href="#rfc.appendix.G">ChangeLog</a></li>
-              <li><a href="#rfc.authors">Authors' Addresses</a></li>
             </ul>
           </ul>
-        </nav>
-      </aside>
-      <main class="content">
-        <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> Introduction</h1>
-        <p id="rfc.section.1.p.1">
-          JSON Schema is a JSON media type for defining the structure of JSON
-          data. JSON Schema is intended to define validation, documentation,
-          hyperlink navigation, and interaction control of JSON data.
-        </p>
-        <p id="rfc.section.1.p.2">
-          This specification defines JSON Schema core terminology and
-          mechanisms, including pointing to another JSON Schema by reference,
-          dereferencing a JSON Schema reference, specifying the vocabulary being
-          used, and defining the expected output.
-        </p>
-        <p id="rfc.section.1.p.3">
-          Other specifications define the vocabularies that perform assertions
-          about validation, linking, annotation, navigation, and interaction.
-        </p>
-        <h1 id="rfc.section.2">
-          <a href="#rfc.section.2">2.</a> Conventions and Terminology
-        </h1>
-        <p id="rfc.section.2.p.1">
-          The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-          "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-          document are to be interpreted as described in
-          <a href="#RFC2119" class="xref">RFC 2119</a>.
-        </p>
-        <p id="rfc.section.2.p.2">
-          The terms "JSON", "JSON text", "JSON value", "member", "element",
-          "object", "array", "number", "string", "boolean", "true", "false", and
-          "null" in this document are to be interpreted as defined in
-          <a href="#RFC8259" class="xref">RFC 8259</a>.
-        </p>
-        <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> Overview</h1>
-        <p id="rfc.section.3.p.1">
-          This document proposes a new media type "application/schema+json" to
-          identify a JSON Schema for describing JSON data. It also proposes a
-          further optional media type, "application/schema-instance+json", to
-          provide additional integration features. JSON Schemas are themselves
-          JSON documents. This, and related specifications, define keywords
-          allowing authors to describe JSON data in several ways.
-        </p>
-        <p id="rfc.section.3.p.2">
-          JSON Schema uses keywords to assert constraints on JSON instances or
-          annotate those instances with additional information. Additional
-          keywords are used to apply assertions and annotations to more complex
-          JSON data structures, or based on some sort of condition.
-        </p>
-        <p id="rfc.section.3.p.3">
-          To facilitate re-use, keywords can be organized into vocabularies. A
-          vocabulary consists of a list of keywords, together with their syntax
-          and semantics.
-        </p>
-        <p id="rfc.section.3.p.4">
-          JSON Schema can be extended either by defining additional
-          vocabularies, or less formally by defining additional keywords outside
-          of any vocabulary. Unrecognized individual keywords are ignored, while
-          the behavior with respect to an unrecognized vocabulary can be
-          controlled when declaring which vocabularies are in use.
-        </p>
-        <p id="rfc.section.3.p.5">
-          This document defines a core vocabulary that MUST be supported by any
-          implementation, and cannot be disabled. Its keywords are each prefixed
-          with a "$" character to emphasize their required nature. This
-          vocabulary is essential to the functioning of the
-          "application/schema+json" media type, and is used to bootstrap the
-          loading of other vocabularies.
-        </p>
-        <p id="rfc.section.3.p.6">
-          Additionally, this document defines a RECOMMENDED vocabulary of
-          keywords for applying subschemas conditionally, and for applying
-          subschemas to the contents of objects and arrays. Either this
-          vocabulary or one very much like it is required to write schemas for
-          non-trivial JSON instances, whether those schemas are intended for
-          assertion validation, annotation, or both. While not part of the
-          required core vocabulary, for maximum interoperability this additional
-          vocabulary is included in this document and its use is strongly
-          encouraged.
-        </p>
-        <p id="rfc.section.3.p.7">
-          Further vocabularies for purposes such as structural validation or
-          hypermedia annotation are defined in other documents.
-        </p>
-        <h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> Definitions</h1>
-        <h1 id="rfc.section.4.1">
-          <a href="#rfc.section.4.1">4.1.</a> JSON Document
-        </h1>
-        <p id="rfc.section.4.1.p.1">
-          A JSON document is an information resource (series of octets)
-          described by the application/json media type.
-        </p>
-        <p id="rfc.section.4.1.p.2">
-          In JSON Schema, the terms "JSON document", "JSON text", and "JSON
-          value" are interchangeable because of the data model it defines.
-        </p>
-        <p id="rfc.section.4.1.p.3">
-          JSON Schema is only defined over JSON documents. However, any document
-          or memory structure that can be parsed into or processed according to
-          the JSON Schema data model can be interpreted against a JSON Schema,
-          including media types like <a href="#RFC7049" class="xref">CBOR</a>.
-        </p>
-        <h1 id="rfc.section.4.2">
-          <a href="#rfc.section.4.2">4.2.</a> Instance
-        </h1>
-        <p id="rfc.section.4.2.p.1">
-          A JSON document to which a schema is applied is known as an
-          "instance".
-        </p>
-        <h1 id="rfc.section.4.2.1">
-          <a href="#rfc.section.4.2.1">4.2.1.</a> Instance Data Model
-        </h1>
-        <p id="rfc.section.4.2.1.p.1">
-          JSON Schema interprets documents according to a data model. A JSON
-          value interpreted according to this data model is called an
-          "instance".
-        </p>
-        <p id="rfc.section.4.2.1.p.2">
-          An instance has one of six primitive types, and a range of possible
-          values depending on the type:
-        </p>
-
-        <dl>
-          <dt>null:</dt>
-          <dd style="margin-left: 8">A JSON "null" production</dd>
-          <dt>boolean:</dt>
-          <dd style="margin-left: 8">
-            A "true" or "false" value, from the JSON "true" or "false"
-            productions
-          </dd>
-          <dt>object:</dt>
-          <dd style="margin-left: 8">
-            An unordered set of properties mapping a string to an instance, from
-            the JSON "object" production
-          </dd>
-          <dt>array:</dt>
-          <dd style="margin-left: 8">
-            An ordered list of instances, from the JSON "array" production
-          </dd>
-          <dt>number:</dt>
-          <dd style="margin-left: 8">
-            An arbitrary-precision, base-10 decimal number value, from the JSON
-            "number" production
-          </dd>
-          <dt>string:</dt>
-          <dd style="margin-left: 8">
-            A string of Unicode code points, from the JSON "string" production
-          </dd>
-        </dl>
-
-        <p></p>
-        <p id="rfc.section.4.2.1.p.3">
-          Whitespace and formatting concerns, including different lexical
-          representations of numbers that are equal within the data model, are
-          thus outside the scope of JSON Schema. JSON Schema
-          <a href="#vocabulary" class="xref">vocabularies</a> that wish to work
-          with such differences in lexical representations SHOULD define
-          keywords to precisely interpret formatted strings within the data
-          model rather than relying on having the original JSON representation
-          Unicode characters available.
-        </p>
-        <p id="rfc.section.4.2.1.p.4">
-          Since an object cannot have two properties with the same key, behavior
-          for a JSON document that tries to define two properties (the "member"
-          production) with the same key (the "string" production) in a single
-          object is undefined.
-        </p>
-        <p id="rfc.section.4.2.1.p.5">
-          Note that JSON Schema vocabularies are free to define their own
-          extended type system. This should not be confused with the core data
-          model types defined here. As an example, "integer" is a reasonable
-          type for a vocabulary to define as a value for a keyword, but the data
-          model makes no distinction between integers and other numbers.
-        </p>
-        <h1 id="rfc.section.4.2.2">
-          <a href="#rfc.section.4.2.2">4.2.2.</a> Instance Media Types
-        </h1>
-        <p id="rfc.section.4.2.2.p.1">
-          JSON Schema is designed to fully work with "application/json"
-          documents, as well as media types using the "+json" structured syntax
-          suffix.
-        </p>
-        <p id="rfc.section.4.2.2.p.2">
-          Some functionality that is useful for working with schemas is defined
-          by each media type, namely media type parameters and URI fragment
-          identifier syntax and semantics. These features are useful in content
-          negotiation and in calculating URIs for specific locations within an
-          instance, respectively.
-        </p>
-        <p id="rfc.section.4.2.2.p.3">
-          This specification defines the "application/schema-instance+json"
-          media type in order to allow instance authors to take full advantage
-          of parameters and fragment identifiers for these purposes.
-        </p>
-        <h1 id="rfc.section.4.2.3">
-          <a href="#rfc.section.4.2.3">4.2.3.</a> Instance Equality
-        </h1>
-        <p id="rfc.section.4.2.3.p.1">
-          Two JSON instances are said to be equal if and only if they are of the
-          same type and have the same value according to the data model.
-          Specifically, this means:
-        </p>
-
-        <ul class="empty">
-          <li>both are null; or</li>
-          <li>both are true; or</li>
-          <li>both are false; or</li>
+          <li>5. <a href="#rfc.section.5">Fragment Identifiers</a></li>
+          <li>6. <a href="#rfc.section.6">General Considerations</a></li>
+          <ul>
+            <li>6.1. <a href="#rfc.section.6.1">Range of JSON Values</a></li>
+            <li>
+              6.2. <a href="#rfc.section.6.2">Programming Language Independence</a>
+            </li>
+            <li>6.3. <a href="#rfc.section.6.3">Mathematical Integers</a></li>
+            <li>6.4. <a href="#rfc.section.6.4">Regular Expressions</a></li>
+            <li>6.5. <a href="#rfc.section.6.5">Extending JSON Schema</a></li>
+          </ul>
+          <li>7. <a href="#rfc.section.7">Keyword Behaviors</a></li>
+          <ul>
+            <li>
+              7.1. <a href="#rfc.section.7.1">Lexical Scope and Dynamic Scope</a>
+            </li>
+            <li>7.2. <a href="#rfc.section.7.2">Keyword Interactions</a></li>
+            <li>7.3. <a href="#rfc.section.7.3">Default Behaviors</a></li>
+            <li>7.4. <a href="#rfc.section.7.4">Identifiers</a></li>
+            <li>7.5. <a href="#rfc.section.7.5">Applicators</a></li>
+            <ul>
+              <li>
+                7.5.1.
+                <a href="#rfc.section.7.5.1">Referenced and Referencing Schemas</a>
+              </li>
+            </ul>
+            <li>7.6. <a href="#rfc.section.7.6">Assertions</a></li>
+            <ul>
+              <li>
+                7.6.1.
+                <a href="#rfc.section.7.6.1"
+                  >Assertions and Instance Primitive Types</a
+                >
+              </li>
+            </ul>
+            <li>7.7. <a href="#rfc.section.7.7">Annotations</a></li>
+            <ul>
+              <li>
+                7.7.1. <a href="#rfc.section.7.7.1">Collecting Annotations</a>
+              </li>
+            </ul>
+            <li>7.8. <a href="#rfc.section.7.8">Reserved Locations</a></li>
+          </ul>
+          <li>8. <a href="#rfc.section.8">The JSON Schema Core Vocabulary</a></li>
+          <ul>
+            <li>
+              8.1. <a href="#rfc.section.8.1">Meta-Schemas and Vocabularies</a>
+            </li>
+            <ul>
+              <li>8.1.1. <a href="#rfc.section.8.1.1">The "$schema" Keyword</a></li>
+              <li>
+                8.1.2. <a href="#rfc.section.8.1.2">The "$vocabulary" Keyword</a>
+              </li>
+              <li>
+                8.1.3.
+                <a href="#rfc.section.8.1.3"
+                  >Updates to Meta-Schema and Vocabulary URIs</a
+                >
+              </li>
+              <li>
+                8.1.4. <a href="#rfc.section.8.1.4">Detecting a Meta-Schema</a>
+              </li>
+            </ul>
+            <li>
+              8.2.
+              <a href="#rfc.section.8.2">Base URI, Anchors, and Dereferencing</a>
+            </li>
+            <ul>
+              <li>8.2.1. <a href="#rfc.section.8.2.1">Initial Base URI</a></li>
+              <li>8.2.2. <a href="#rfc.section.8.2.2">The "$id" Keyword</a></li>
+              <li>
+                8.2.3.
+                <a href="#rfc.section.8.2.3"
+                  >Defining location-independent identifiers with "$anchor"</a
+                >
+              </li>
+              <li>8.2.4. <a href="#rfc.section.8.2.4">Schema References</a></li>
+              <li>
+                8.2.5. <a href="#rfc.section.8.2.5">Schema Re-Use With "$defs"</a>
+              </li>
+            </ul>
+            <li>8.3. <a href="#rfc.section.8.3">Comments With "$comment"</a></li>
+          </ul>
           <li>
-            both are strings, and are the same codepoint-for-codepoint; or
+            9. <a href="#rfc.section.9">A Vocabulary for Applying Subschemas</a>
           </li>
-          <li>both are numbers, and have the same mathematical value; or</li>
-          <li>both are arrays, and have an equal value item-for-item; or</li>
+          <ul>
+            <li>9.1. <a href="#rfc.section.9.1">Keyword Independence</a></li>
+            <li>
+              9.2.
+              <a href="#rfc.section.9.2"
+                >Keywords for Applying Subschemas in Place</a
+              >
+            </li>
+            <ul>
+              <li>
+                9.2.1.
+                <a href="#rfc.section.9.2.1"
+                  >Keywords for Applying Subschemas With Boolean Logic</a
+                >
+              </li>
+              <li>
+                9.2.2.
+                <a href="#rfc.section.9.2.2"
+                  >Keywords for Applying Subschemas Conditionally</a
+                >
+              </li>
+            </ul>
+            <li>
+              9.3.
+              <a href="#rfc.section.9.3"
+                >Keywords for Applying Subschemas to Child Instances</a
+              >
+            </li>
+            <ul>
+              <li>
+                9.3.1.
+                <a href="#rfc.section.9.3.1"
+                  >Keywords for Applying Subschemas to Arrays</a
+                >
+              </li>
+              <li>
+                9.3.2.
+                <a href="#rfc.section.9.3.2"
+                  >Keywords for Applying Subschemas to Objects</a
+                >
+              </li>
+            </ul>
+          </ul>
+          <li>10. <a href="#rfc.section.10">Output Formatting</a></li>
+          <ul>
+            <li>10.1. <a href="#rfc.section.10.1">Format</a></li>
+            <li>10.2. <a href="#rfc.section.10.2">Output Formats</a></li>
+            <li>10.3. <a href="#rfc.section.10.3">Minimum Information</a></li>
+            <ul>
+              <li>
+                10.3.1. <a href="#rfc.section.10.3.1">Keyword Relative Location</a>
+              </li>
+              <li>
+                10.3.2. <a href="#rfc.section.10.3.2">Keyword Absolute Location</a>
+              </li>
+              <li>10.3.3. <a href="#rfc.section.10.3.3">Instance Location</a></li>
+              <li>10.3.4. <a href="#rfc.section.10.3.4">Error or Annotation</a></li>
+              <li>10.3.5. <a href="#rfc.section.10.3.5">Nested Results</a></li>
+            </ul>
+            <li>10.4. <a href="#rfc.section.10.4">Output Structure</a></li>
+            <ul>
+              <li>10.4.1. <a href="#rfc.section.10.4.1">Flag</a></li>
+              <li>10.4.2. <a href="#rfc.section.10.4.2">Basic</a></li>
+              <li>10.4.3. <a href="#rfc.section.10.4.3">Detailed</a></li>
+              <li>10.4.4. <a href="#rfc.section.10.4.4">Verbose</a></li>
+              <li>
+                10.4.5. <a href="#rfc.section.10.4.5">Output validation schemas</a>
+              </li>
+            </ul>
+          </ul>
+          <li>11. <a href="#rfc.section.11">Usage for Hypermedia</a></li>
+          <ul>
+            <li>11.1. <a href="#rfc.section.11.1">Linking to a Schema</a></li>
+            <li>
+              11.2.
+              <a href="#rfc.section.11.2"
+                >Identifying a Schema via a Media Type Parameter</a
+              >
+            </li>
+            <li>11.3. <a href="#rfc.section.11.3">Usage Over HTTP</a></li>
+          </ul>
+          <li>12. <a href="#rfc.section.12">Security Considerations</a></li>
+          <li>13. <a href="#rfc.section.13">IANA Considerations</a></li>
+          <ul>
+            <li>13.1. <a href="#rfc.section.13.1">application/schema+json</a></li>
+            <li>
+              13.2. <a href="#rfc.section.13.2">application/schema-instance+json</a>
+            </li>
+          </ul>
+          <li>14. <a href="#rfc.references">References</a></li>
+          <ul>
+            <li>14.1. <a href="#rfc.references.1">Normative References</a></li>
+            <li>14.2. <a href="#rfc.references.2">Informative References</a></li>
+          </ul>
           <li>
-            both are objects, and each property in one has exactly one property
-            with a key equal to the other's, and that other property has an
-            equal value.
+            Appendix A. <a href="#rfc.appendix.A">Schema identification examples</a>
           </li>
+          <li>
+            Appendix B.
+            <a href="#rfc.appendix.B"
+              >Manipulating schema documents and references</a
+            >
+          </li>
+          <ul>
+            <li>
+              B.1.
+              <a href="#rfc.appendix.B.1"
+                >Bundling schema resources into a single document</a
+              >
+            </li>
+            <li>
+              B.2.
+              <a href="#rfc.appendix.B.2">Reference removal is not always safe</a>
+            </li>
+          </ul>
+          <li>
+            Appendix C.
+            <a href="#rfc.appendix.C">Example of recursive schema extension</a>
+          </li>
+          <li>
+            Appendix D. <a href="#rfc.appendix.D">Working with vocabularies</a>
+          </li>
+          <ul>
+            <li>
+              D.1.
+              <a href="#rfc.appendix.D.1"
+                >Best practices for vocabulary and meta-schema authors</a
+              >
+            </li>
+            <li>
+              D.2.
+              <a href="#rfc.appendix.D.2"
+                >Example meta-schema with vocabulary declarations</a
+              >
+            </li>
+          </ul>
+          <li>
+            Appendix E.
+            <a href="#rfc.appendix.E">References and generative use cases</a>
+          </li>
+          <li>Appendix F. <a href="#rfc.appendix.F">Acknowledgments</a></li>
+          <li>Appendix G. <a href="#rfc.appendix.G">ChangeLog</a></li>
+          <li><a href="#rfc.authors">Authors' Addresses</a></li>
         </ul>
+      </nav>
+    </aside>  
 
-        <p></p>
-        <p id="rfc.section.4.2.3.p.2">
-          Implied in this definition is that arrays must be the same length,
-          objects must have the same number of members, properties in objects
-          are unordered, there is no way to define multiple properties with the
-          same key, and mere formatting differences (indentation, placement of
-          commas, trailing zeros) are insignificant.
-        </p>
-        <h1 id="rfc.section.4.3">
-          <a href="#rfc.section.4.3">4.3.</a>
-          <a href="#schema-document" id="schema-document"
-            >JSON Schema Documents</a
-          >
-        </h1>
-        <p id="rfc.section.4.3.p.1">
-          A JSON Schema document, or simply a schema, is a JSON document used to
-          describe an instance. A schema can itself be interpreted as an
-          instance, but SHOULD always be given the media type
-          "application/schema+json" rather than
-          "application/schema-instance+json". The "application/schema+json"
-          media type is defined to offer a superset of the media type parameter
-          and fragment identifier syntax and semantics provided by
-          "application/schema-instance+json".
-        </p>
-        <p id="rfc.section.4.3.p.2">
-          A JSON Schema MUST be an object or a boolean.
-        </p>
-        <h1 id="rfc.section.4.3.1">
-          <a href="#rfc.section.4.3.1">4.3.1.</a> JSON Schema Objects and
-          Keywords
-        </h1>
-        <p id="rfc.section.4.3.1.p.1">
-          Object properties that are applied to the instance are called
-          keywords, or schema keywords. Broadly speaking, keywords fall into one
-          of four categories:
-        </p>
+    <main class="content">
+      <div class="content-inner">
+      <h1 id="rfc.section.1"><a href="#rfc.section.1">1.</a> Introduction</h1>
+      <p id="rfc.section.1.p.1">
+        JSON Schema is a JSON media type for defining the structure of JSON data.
+        JSON Schema is intended to define validation, documentation, hyperlink
+        navigation, and interaction control of JSON data.
+      </p>
+      <p id="rfc.section.1.p.2">
+        This specification defines JSON Schema core terminology and mechanisms,
+        including pointing to another JSON Schema by reference, dereferencing a
+        JSON Schema reference, specifying the vocabulary being used, and defining
+        the expected output.
+      </p>
+      <p id="rfc.section.1.p.3">
+        Other specifications define the vocabularies that perform assertions about
+        validation, linking, annotation, navigation, and interaction.
+      </p>
+      <h1 id="rfc.section.2">
+        <a href="#rfc.section.2">2.</a> Conventions and Terminology
+      </h1>
+      <p id="rfc.section.2.p.1">
+        The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
+        "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
+        document are to be interpreted as described in
+        <a href="#RFC2119" class="xref">RFC 2119</a>.
+      </p>
+      <p id="rfc.section.2.p.2">
+        The terms "JSON", "JSON text", "JSON value", "member", "element",
+        "object", "array", "number", "string", "boolean", "true", "false", and
+        "null" in this document are to be interpreted as defined in
+        <a href="#RFC8259" class="xref">RFC 8259</a>.
+      </p>
+      <h1 id="rfc.section.3"><a href="#rfc.section.3">3.</a> Overview</h1>
+      <p id="rfc.section.3.p.1">
+        This document proposes a new media type "application/schema+json" to
+        identify a JSON Schema for describing JSON data. It also proposes a
+        further optional media type, "application/schema-instance+json", to
+        provide additional integration features. JSON Schemas are themselves JSON
+        documents. This, and related specifications, define keywords allowing
+        authors to describe JSON data in several ways.
+      </p>
+      <p id="rfc.section.3.p.2">
+        JSON Schema uses keywords to assert constraints on JSON instances or
+        annotate those instances with additional information. Additional keywords
+        are used to apply assertions and annotations to more complex JSON data
+        structures, or based on some sort of condition.
+      </p>
+      <p id="rfc.section.3.p.3">
+        To facilitate re-use, keywords can be organized into vocabularies. A
+        vocabulary consists of a list of keywords, together with their syntax and
+        semantics.
+      </p>
+      <p id="rfc.section.3.p.4">
+        JSON Schema can be extended either by defining additional vocabularies, or
+        less formally by defining additional keywords outside of any vocabulary.
+        Unrecognized individual keywords are ignored, while the behavior with
+        respect to an unrecognized vocabulary can be controlled when declaring
+        which vocabularies are in use.
+      </p>
+      <p id="rfc.section.3.p.5">
+        This document defines a core vocabulary that MUST be supported by any
+        implementation, and cannot be disabled. Its keywords are each prefixed
+        with a "$" character to emphasize their required nature. This vocabulary
+        is essential to the functioning of the "application/schema+json" media
+        type, and is used to bootstrap the loading of other vocabularies.
+      </p>
+      <p id="rfc.section.3.p.6">
+        Additionally, this document defines a RECOMMENDED vocabulary of keywords
+        for applying subschemas conditionally, and for applying subschemas to the
+        contents of objects and arrays. Either this vocabulary or one very much
+        like it is required to write schemas for non-trivial JSON instances,
+        whether those schemas are intended for assertion validation, annotation,
+        or both. While not part of the required core vocabulary, for maximum
+        interoperability this additional vocabulary is included in this document
+        and its use is strongly encouraged.
+      </p>
+      <p id="rfc.section.3.p.7">
+        Further vocabularies for purposes such as structural validation or
+        hypermedia annotation are defined in other documents.
+      </p>
+      <h1 id="rfc.section.4"><a href="#rfc.section.4">4.</a> Definitions</h1>
+      <h1 id="rfc.section.4.1">
+        <a href="#rfc.section.4.1">4.1.</a> JSON Document
+      </h1>
+      <p id="rfc.section.4.1.p.1">
+        A JSON document is an information resource (series of octets) described by
+        the application/json media type.
+      </p>
+      <p id="rfc.section.4.1.p.2">
+        In JSON Schema, the terms "JSON document", "JSON text", and "JSON value"
+        are interchangeable because of the data model it defines.
+      </p>
+      <p id="rfc.section.4.1.p.3">
+        JSON Schema is only defined over JSON documents. However, any document or
+        memory structure that can be parsed into or processed according to the
+        JSON Schema data model can be interpreted against a JSON Schema, including
+        media types like <a href="#RFC7049" class="xref">CBOR</a>.
+      </p>
+      <h1 id="rfc.section.4.2"><a href="#rfc.section.4.2">4.2.</a> Instance</h1>
+      <p id="rfc.section.4.2.p.1">
+        A JSON document to which a schema is applied is known as an "instance".
+      </p>
+      <h1 id="rfc.section.4.2.1">
+        <a href="#rfc.section.4.2.1">4.2.1.</a> Instance Data Model
+      </h1>
+      <p id="rfc.section.4.2.1.p.1">
+        JSON Schema interprets documents according to a data model. A JSON value
+        interpreted according to this data model is called an "instance".
+      </p>
+      <p id="rfc.section.4.2.1.p.2">
+        An instance has one of six primitive types, and a range of possible values
+        depending on the type:
+      </p>
 
-        <dl>
-          <dt>identifiers:</dt>
-          <dd style="margin-left: 8">
-            control schema identification through setting the schema's canonical
-            URI and/or changing how the base URI is determined
-          </dd>
-          <dt>assertions:</dt>
-          <dd style="margin-left: 8">
-            produce a boolean result when applied to an instance
-          </dd>
-          <dt>annotations:</dt>
-          <dd style="margin-left: 8">
-            attach information to an instance for application use
-          </dd>
-          <dt>applicators:</dt>
-          <dd style="margin-left: 8">
-            apply one or more subschemas to a particular location in the
-            instance, and combine or modify their results
-          </dd>
-          <dt>reserved locations:</dt>
-          <dd style="margin-left: 8">
-            do not directly affect results, but reserve a place for a specific
-            purpose to ensure interoperability
-          </dd>
-        </dl>
+      <dl>
+        <dt>null:</dt>
+        <dd style="margin-left: 8">A JSON "null" production</dd>
+        <dt>boolean:</dt>
+        <dd style="margin-left: 8">
+          A "true" or "false" value, from the JSON "true" or "false" productions
+        </dd>
+        <dt>object:</dt>
+        <dd style="margin-left: 8">
+          An unordered set of properties mapping a string to an instance, from the
+          JSON "object" production
+        </dd>
+        <dt>array:</dt>
+        <dd style="margin-left: 8">
+          An ordered list of instances, from the JSON "array" production
+        </dd>
+        <dt>number:</dt>
+        <dd style="margin-left: 8">
+          An arbitrary-precision, base-10 decimal number value, from the JSON
+          "number" production
+        </dd>
+        <dt>string:</dt>
+        <dd style="margin-left: 8">
+          A string of Unicode code points, from the JSON "string" production
+        </dd>
+      </dl>
 
-        <p></p>
-        <p id="rfc.section.4.3.1.p.2">
-          Keywords may fall into multiple categories, although applicators
-          SHOULD only produce assertion results based on their subschemas'
-          results. They should not define additional constraints independent of
-          their subschemas.
-        </p>
-        <p id="rfc.section.4.3.1.p.3">
-          Extension keywords, meaning those defined outside of this document and
-          its companions, are free to define other behaviors as well.
-        </p>
-        <p id="rfc.section.4.3.1.p.4">
-          A JSON Schema MAY contain properties which are not schema keywords.
-          Unknown keywords SHOULD be ignored.
-        </p>
-        <p id="rfc.section.4.3.1.p.5">
-          An empty schema is a JSON Schema with no properties, or only unknown
-          properties.
-        </p>
-        <h1 id="rfc.section.4.3.2">
-          <a href="#rfc.section.4.3.2">4.3.2.</a> Boolean JSON Schemas
-        </h1>
-        <p id="rfc.section.4.3.2.p.1">
-          The boolean schema values "true" and "false" are trivial schemas that
-          always produce themselves as assertions results, regardless of the
-          instance value. They never produce annotation results.
-        </p>
-        <p id="rfc.section.4.3.2.p.2">
-          These boolean schemas exist to clarify schema author intent and
-          facilitate schema processing optimizations. They behave identically to
-          the following schema objects (where "not" is part of the subschema
-          application vocabulary defined in this document).
-        </p>
+      <p></p>
+      <p id="rfc.section.4.2.1.p.3">
+        Whitespace and formatting concerns, including different lexical
+        representations of numbers that are equal within the data model, are thus
+        outside the scope of JSON Schema. JSON Schema
+        <a href="#vocabulary" class="xref">vocabularies</a> that wish to work with
+        such differences in lexical representations SHOULD define keywords to
+        precisely interpret formatted strings within the data model rather than
+        relying on having the original JSON representation Unicode characters
+        available.
+      </p>
+      <p id="rfc.section.4.2.1.p.4">
+        Since an object cannot have two properties with the same key, behavior for
+        a JSON document that tries to define two properties (the "member"
+        production) with the same key (the "string" production) in a single object
+        is undefined.
+      </p>
+      <p id="rfc.section.4.2.1.p.5">
+        Note that JSON Schema vocabularies are free to define their own extended
+        type system. This should not be confused with the core data model types
+        defined here. As an example, "integer" is a reasonable type for a
+        vocabulary to define as a value for a keyword, but the data model makes no
+        distinction between integers and other numbers.
+      </p>
+      <h1 id="rfc.section.4.2.2">
+        <a href="#rfc.section.4.2.2">4.2.2.</a> Instance Media Types
+      </h1>
+      <p id="rfc.section.4.2.2.p.1">
+        JSON Schema is designed to fully work with "application/json" documents,
+        as well as media types using the "+json" structured syntax suffix.
+      </p>
+      <p id="rfc.section.4.2.2.p.2">
+        Some functionality that is useful for working with schemas is defined by
+        each media type, namely media type parameters and URI fragment identifier
+        syntax and semantics. These features are useful in content negotiation and
+        in calculating URIs for specific locations within an instance,
+        respectively.
+      </p>
+      <p id="rfc.section.4.2.2.p.3">
+        This specification defines the "application/schema-instance+json" media
+        type in order to allow instance authors to take full advantage of
+        parameters and fragment identifiers for these purposes.
+      </p>
+      <h1 id="rfc.section.4.2.3">
+        <a href="#rfc.section.4.2.3">4.2.3.</a> Instance Equality
+      </h1>
+      <p id="rfc.section.4.2.3.p.1">
+        Two JSON instances are said to be equal if and only if they are of the
+        same type and have the same value according to the data model.
+        Specifically, this means:
+      </p>
 
-        <dl>
-          <dt>true:</dt>
-          <dd style="margin-left: 8">
-            Always passes validation, as if the empty schema {}
-          </dd>
-          <dt>false:</dt>
-          <dd style="margin-left: 8">
-            Always fails validation, as if the schema { "not": {} }
-          </dd>
-        </dl>
+      <ul class="empty">
+        <li>both are null; or</li>
+        <li>both are true; or</li>
+        <li>both are false; or</li>
+        <li>both are strings, and are the same codepoint-for-codepoint; or</li>
+        <li>both are numbers, and have the same mathematical value; or</li>
+        <li>both are arrays, and have an equal value item-for-item; or</li>
+        <li>
+          both are objects, and each property in one has exactly one property with
+          a key equal to the other's, and that other property has an equal value.
+        </li>
+      </ul>
 
-        <p>
-          While the empty schema object is unambiguous, there are many possible
-          equivalents to the "false" schema. Using the boolean values ensures
-          that the intent is clear to both human readers and implementations.
-        </p>
-        <h1 id="rfc.section.4.3.3">
-          <a href="#rfc.section.4.3.3">4.3.3.</a> Schema Vocabularies
-        </h1>
-        <p id="rfc.section.4.3.3.p.1">
-          A schema vocabulary, or simply a vocabulary, is a set of keywords,
-          their syntax, and their semantics. A vocabulary is generally organized
-          around a particular purpose. Different uses of JSON Schema, such as
-          validation, hypermedia, or user interface generation, will involve
-          different sets of vocabularies.
-        </p>
-        <p id="rfc.section.4.3.3.p.2">
-          Vocabularies are the primary unit of re-use in JSON Schema, as schema
-          authors can indicate what vocabularies are required or optional in
-          order to process the schema. Since vocabularies are identified by URIs
-          in the meta-schema, generic implementations can load extensions to
-          support previously unknown vocabularies. While keywords can be
-          supported outside of any vocabulary, there is no analogous mechanism
-          to indicate individual keyword usage.
-        </p>
-        <h1 id="rfc.section.4.3.4">
-          <a href="#rfc.section.4.3.4">4.3.4.</a> Meta-Schemas
-        </h1>
-        <p id="rfc.section.4.3.4.p.1">
-          A schema that itself describes a schema is called a meta-schema.
-          Meta-schemas are used to validate JSON Schemas and specify which
-          vocabularies they are using.
-        </p>
-        <p id="rfc.section.4.3.4.p.2">
-          Typically, a meta-schema will specify a set of vocabularies, and
-          validate schemas that conform to the syntax of those vocabularies.
-          However, meta-schemas and vocabularies are separate in order to allow
-          meta-schemas to validate schema conformance more strictly or more
-          loosely than the vocabularies' specifications call for. Meta-schemas
-          may also describe and validate additional keywords that are not part
-          of a formal vocabulary.
-        </p>
-        <h1 id="rfc.section.4.3.5">
-          <a href="#rfc.section.4.3.5">4.3.5.</a>
-          <a href="#root" id="root">Root Schema and Subschemas and Resources</a>
-        </h1>
-        <p id="rfc.section.4.3.5.p.1">
-          A JSON Schema resource is a schema which is
-          <a href="#RFC6596" class="xref">canonically</a> identified by an
-          <a href="#RFC3986" class="xref">absolute URI</a>.
-        </p>
-        <p id="rfc.section.4.3.5.p.2">
-          The root schema is the schema that comprises the entire JSON document
-          in question. The root schema is always a schema resource, where the
-          URI is determined as described in section
-          <a href="#initial-base" class="xref">8.2.1</a>.
-        </p>
-        <p id="rfc.section.4.3.5.p.3">
-          Some keywords take schemas themselves, allowing JSON Schemas to be
-          nested:
-        </p>
-        <pre>
+      <p></p>
+      <p id="rfc.section.4.2.3.p.2">
+        Implied in this definition is that arrays must be the same length, objects
+        must have the same number of members, properties in objects are unordered,
+        there is no way to define multiple properties with the same key, and mere
+        formatting differences (indentation, placement of commas, trailing zeros)
+        are insignificant.
+      </p>
+      <h1 id="rfc.section.4.3">
+        <a href="#rfc.section.4.3">4.3.</a>
+        <a href="#schema-document" id="schema-document">JSON Schema Documents</a>
+      </h1>
+      <p id="rfc.section.4.3.p.1">
+        A JSON Schema document, or simply a schema, is a JSON document used to
+        describe an instance. A schema can itself be interpreted as an instance,
+        but SHOULD always be given the media type "application/schema+json" rather
+        than "application/schema-instance+json". The "application/schema+json"
+        media type is defined to offer a superset of the media type parameter and
+        fragment identifier syntax and semantics provided by
+        "application/schema-instance+json".
+      </p>
+      <p id="rfc.section.4.3.p.2">
+        A JSON Schema MUST be an object or a boolean.
+      </p>
+      <h1 id="rfc.section.4.3.1">
+        <a href="#rfc.section.4.3.1">4.3.1.</a> JSON Schema Objects and Keywords
+      </h1>
+      <p id="rfc.section.4.3.1.p.1">
+        Object properties that are applied to the instance are called keywords, or
+        schema keywords. Broadly speaking, keywords fall into one of four
+        categories:
+      </p>
 
-{
-    "title": "root",
-    "items": {
-        "title": "array item"
-    }
-}
+      <dl>
+        <dt>identifiers:</dt>
+        <dd style="margin-left: 8">
+          control schema identification through setting the schema's canonical URI
+          and/or changing how the base URI is determined
+        </dd>
+        <dt>assertions:</dt>
+        <dd style="margin-left: 8">
+          produce a boolean result when applied to an instance
+        </dd>
+        <dt>annotations:</dt>
+        <dd style="margin-left: 8">
+          attach information to an instance for application use
+        </dd>
+        <dt>applicators:</dt>
+        <dd style="margin-left: 8">
+          apply one or more subschemas to a particular location in the instance,
+          and combine or modify their results
+        </dd>
+        <dt>reserved locations:</dt>
+        <dd style="margin-left: 8">
+          do not directly affect results, but reserve a place for a specific
+          purpose to ensure interoperability
+        </dd>
+      </dl>
 
-                        </pre
+      <p></p>
+      <p id="rfc.section.4.3.1.p.2">
+        Keywords may fall into multiple categories, although applicators SHOULD
+        only produce assertion results based on their subschemas' results. They
+        should not define additional constraints independent of their subschemas.
+      </p>
+      <p id="rfc.section.4.3.1.p.3">
+        Extension keywords, meaning those defined outside of this document and its
+        companions, are free to define other behaviors as well.
+      </p>
+      <p id="rfc.section.4.3.1.p.4">
+        A JSON Schema MAY contain properties which are not schema keywords.
+        Unknown keywords SHOULD be ignored.
+      </p>
+      <p id="rfc.section.4.3.1.p.5">
+        An empty schema is a JSON Schema with no properties, or only unknown
+        properties.
+      </p>
+      <h1 id="rfc.section.4.3.2">
+        <a href="#rfc.section.4.3.2">4.3.2.</a> Boolean JSON Schemas
+      </h1>
+      <p id="rfc.section.4.3.2.p.1">
+        The boolean schema values "true" and "false" are trivial schemas that
+        always produce themselves as assertions results, regardless of the
+        instance value. They never produce annotation results.
+      </p>
+      <p id="rfc.section.4.3.2.p.2">
+        These boolean schemas exist to clarify schema author intent and facilitate
+        schema processing optimizations. They behave identically to the following
+        schema objects (where "not" is part of the subschema application
+        vocabulary defined in this document).
+      </p>
+
+      <dl>
+        <dt>true:</dt>
+        <dd style="margin-left: 8">
+          Always passes validation, as if the empty schema {}
+        </dd>
+        <dt>false:</dt>
+        <dd style="margin-left: 8">
+          Always fails validation, as if the schema { "not": {} }
+        </dd>
+      </dl>
+
+      <p>
+        While the empty schema object is unambiguous, there are many possible
+        equivalents to the "false" schema. Using the boolean values ensures that
+        the intent is clear to both human readers and implementations.
+      </p>
+      <h1 id="rfc.section.4.3.3">
+        <a href="#rfc.section.4.3.3">4.3.3.</a> Schema Vocabularies
+      </h1>
+      <p id="rfc.section.4.3.3.p.1">
+        A schema vocabulary, or simply a vocabulary, is a set of keywords, their
+        syntax, and their semantics. A vocabulary is generally organized around a
+        particular purpose. Different uses of JSON Schema, such as validation,
+        hypermedia, or user interface generation, will involve different sets of
+        vocabularies.
+      </p>
+      <p id="rfc.section.4.3.3.p.2">
+        Vocabularies are the primary unit of re-use in JSON Schema, as schema
+        authors can indicate what vocabularies are required or optional in order
+        to process the schema. Since vocabularies are identified by URIs in the
+        meta-schema, generic implementations can load extensions to support
+        previously unknown vocabularies. While keywords can be supported outside
+        of any vocabulary, there is no analogous mechanism to indicate individual
+        keyword usage.
+      </p>
+      <h1 id="rfc.section.4.3.4">
+        <a href="#rfc.section.4.3.4">4.3.4.</a> Meta-Schemas
+      </h1>
+      <p id="rfc.section.4.3.4.p.1">
+        A schema that itself describes a schema is called a meta-schema.
+        Meta-schemas are used to validate JSON Schemas and specify which
+        vocabularies they are using.
+      </p>
+      <p id="rfc.section.4.3.4.p.2">
+        Typically, a meta-schema will specify a set of vocabularies, and validate
+        schemas that conform to the syntax of those vocabularies. However,
+        meta-schemas and vocabularies are separate in order to allow meta-schemas
+        to validate schema conformance more strictly or more loosely than the
+        vocabularies' specifications call for. Meta-schemas may also describe and
+        validate additional keywords that are not part of a formal vocabulary.
+      </p>
+      <h1 id="rfc.section.4.3.5">
+        <a href="#rfc.section.4.3.5">4.3.5.</a>
+        <a href="#root" id="root">Root Schema and Subschemas and Resources</a>
+      </h1>
+      <p id="rfc.section.4.3.5.p.1">
+        A JSON Schema resource is a schema which is
+        <a href="#RFC6596" class="xref">canonically</a> identified by an
+        <a href="#RFC3986" class="xref">absolute URI</a>.
+      </p>
+      <p id="rfc.section.4.3.5.p.2">
+        The root schema is the schema that comprises the entire JSON document in
+        question. The root schema is always a schema resource, where the URI is
+        determined as described in section
+        <a href="#initial-base" class="xref">8.2.1</a>.
+      </p>
+      <p id="rfc.section.4.3.5.p.3">
+        Some keywords take schemas themselves, allowing JSON Schemas to be nested:
+      </p>
+      <pre>
+
+  {
+      "title": "root",
+      "items": {
+          "title": "array item"
+      }
+  }
+
+                          </pre
+      >
+      <p id="rfc.section.4.3.5.p.4">
+        In this example document, the schema titled "array item" is a subschema,
+        and the schema titled "root" is the root schema.
+      </p>
+      <p id="rfc.section.4.3.5.p.5">
+        As with the root schema, a subschema is either an object or a boolean.
+      </p>
+      <p id="rfc.section.4.3.5.p.6">
+        As discussed in section <a href="#id-keyword" class="xref">8.2.2</a>, a
+        JSON Schema document can contain multiple JSON Schema resources. When used
+        without qualification, the term "root schema" refers to the document's
+        root schema. In some cases, resource root schemas are discussed. A
+        resource's root schema is its top-level schema object, which would also be
+        a document root schema if the resource were to be extracted to a
+        standalone JSON Schema document.
+      </p>
+      <h1 id="rfc.section.5">
+        <a href="#rfc.section.5">5.</a>
+        <a href="#fragments" id="fragments">Fragment Identifiers</a>
+      </h1>
+      <p id="rfc.section.5.p.1">
+        In accordance with section 3.1 of
+        <a href="#RFC6839" class="xref">[RFC6839]</a>, the syntax and semantics of
+        fragment identifiers specified for any +json media type SHOULD be as
+        specified for "application/json". (At publication of this document, there
+        is no fragment identification syntax defined for "application/json".)
+      </p>
+      <p id="rfc.section.5.p.2">
+        Additionally, the "application/schema+json" media type supports two
+        fragment identifier structures: plain names and JSON Pointers. The
+        "application/schema-instance+json" media type supports one fragment
+        identifier structure: JSON Pointers.
+      </p>
+      <p id="rfc.section.5.p.3">
+        The use of JSON Pointers as URI fragment identifiers is described in
+        <a href="#RFC6901" class="xref">RFC 6901</a>. For
+        "application/schema+json", which supports two fragment identifier
+        syntaxes, fragment identifiers matching the JSON Pointer syntax, including
+        the empty string, MUST be interpreted as JSON Pointer fragment
+        identifiers.
+      </p>
+      <p id="rfc.section.5.p.4">
+        Per the W3C's
+        <a href="#W3C.WD-fragid-best-practices-20121025" class="xref"
+          >best practices for fragment identifiers</a
+        >, plain name fragment identifiers in "application/schema+json" are
+        reserved for referencing locally named schemas. All fragment identifiers
+        that do not match the JSON Pointer syntax MUST be interpreted as plain
+        name fragment identifiers.
+      </p>
+      <p id="rfc.section.5.p.5">
+        Defining and referencing a plain name fragment identifier within an
+        "application/schema+json" document are specified in the
+        <a href="#anchor" class="xref">"$anchor" keyword</a> section.
+      </p>
+      <p></p>
+      <h1 id="rfc.section.6">
+        <a href="#rfc.section.6">6.</a> General Considerations
+      </h1>
+      <h1 id="rfc.section.6.1">
+        <a href="#rfc.section.6.1">6.1.</a> Range of JSON Values
+      </h1>
+      <p id="rfc.section.6.1.p.1">
+        An instance may be any valid JSON value as defined by
+        <a href="#RFC8259" class="xref">JSON</a>. JSON Schema imposes no
+        restrictions on type: JSON Schema can describe any JSON value, including,
+        for example, null.
+      </p>
+      <h1 id="rfc.section.6.2">
+        <a href="#rfc.section.6.2">6.2.</a>
+        <a href="#language" id="language">Programming Language Independence</a>
+      </h1>
+      <p id="rfc.section.6.2.p.1">
+        JSON Schema is programming language agnostic, and supports the full range
+        of values described in the data model. Be aware, however, that some
+        languages and JSON parsers may not be able to represent in memory the full
+        range of values describable by JSON.
+      </p>
+      <h1 id="rfc.section.6.3">
+        <a href="#rfc.section.6.3">6.3.</a>
+        <a href="#integers" id="integers">Mathematical Integers</a>
+      </h1>
+      <p id="rfc.section.6.3.p.1">
+        Some programming languages and parsers use different internal
+        representations for floating point numbers than they do for integers.
+      </p>
+      <p id="rfc.section.6.3.p.2">
+        For consistency, integer JSON numbers SHOULD NOT be encoded with a
+        fractional part.
+      </p>
+      <h1 id="rfc.section.6.4">
+        <a href="#rfc.section.6.4">6.4.</a>
+        <a href="#regex" id="regex">Regular Expressions</a>
+      </h1>
+      <p id="rfc.section.6.4.p.1">
+        Keywords MAY use regular expressions to express constraints, or constrain
+        the instance value to be a regular expression. These regular expressions
+        SHOULD be valid according to the regular expression dialect described in
+        <a href="#ecma262" class="xref">ECMA 262, section 15.10.1</a>.
+      </p>
+      <p id="rfc.section.6.4.p.2">
+        Furthermore, given the high disparity in regular expression constructs
+        support, schema authors SHOULD limit themselves to the following regular
+        expression tokens:
+      </p>
+
+      <ul class="empty">
+        <li>
+          individual Unicode characters, as defined by the
+          <a href="#RFC8259" class="xref">JSON specification</a>;
+        </li>
+        <li>
+          simple character classes ([abc]), range character classes ([a-z]);
+        </li>
+        <li>complemented character classes ([^abc], [^a-z]);</li>
+        <li>
+          simple quantifiers: "+" (one or more), "*" (zero or more), "?" (zero or
+          one), and their lazy versions ("+?", "*?", "??");
+        </li>
+        <li>
+          range quantifiers: "{x}" (exactly x occurrences), "{x,y}" (at least x,
+          at most y, occurrences), {x,} (x occurrences or more), and their lazy
+          versions;
+        </li>
+        <li>the beginning-of-input ("^") and end-of-input ("$") anchors;</li>
+        <li>simple grouping ("(...)") and alternation ("|").</li>
+      </ul>
+
+      <p></p>
+      <p id="rfc.section.6.4.p.3">
+        Finally, implementations MUST NOT take regular expressions to be anchored,
+        neither at the beginning nor at the end. This means, for instance, the
+        pattern "es" matches "expression".
+      </p>
+      <h1 id="rfc.section.6.5">
+        <a href="#rfc.section.6.5">6.5.</a>
+        <a href="#extending" id="extending">Extending JSON Schema</a>
+      </h1>
+      <p id="rfc.section.6.5.p.1">
+        Additional schema keywords and schema vocabularies MAY be defined by any
+        entity. Save for explicit agreement, schema authors SHALL NOT expect these
+        additional keywords and vocabularies to be supported by implementations
+        that do not explicitly document such support. Implementations SHOULD
+        ignore keywords they do not support.
+      </p>
+      <p id="rfc.section.6.5.p.2">
+        Implementations MAY provide the ability to register or load handlers for
+        vocabularies that they do not support directly. The exact mechanism for
+        registering and implementing such handlers is implementation-dependent.
+      </p>
+      <h1 id="rfc.section.7">
+        <a href="#rfc.section.7">7.</a> Keyword Behaviors
+      </h1>
+      <p id="rfc.section.7.p.1">
+        JSON Schema keywords fall into several general behavior categories.
+        Assertions validate that an instance satisfies constraints, producing a
+        boolean result. Annotations attach information that applications may use
+        in any way they see fit. Applicators apply subschemas to parts of the
+        instance and combine their results.
+      </p>
+      <p id="rfc.section.7.p.2">
+        Extension keywords SHOULD stay within these categories, keeping in mind
+        that annotations in particular are extremely flexible. Complex behavior is
+        usually better delegated to applications on the basis of annotation data
+        than implemented directly as schema keywords. However, extension keywords
+        MAY define other behaviors for specialized purposes.
+      </p>
+      <p id="rfc.section.7.p.3">
+        Evaluating an instance against a schema involves processing all of the
+        keywords in the schema against the appropriate locations within the
+        instance. Typically, applicator keywords are processed until a schema
+        object with no applicators (and therefore no subschemas) is reached. The
+        appropriate location in the instance is evaluated against the assertion
+        and annotation keywords in the schema object, and their results are
+        gathered into the parent schema according to the rules of the applicator.
+      </p>
+      <p id="rfc.section.7.p.4">
+        Evaluation of a parent schema object can complete once all of its
+        subschemas have been evaluated, although in some circumstances evaluation
+        may be short-circuited due to assertion results. When annotations are
+        being collected, some assertion result short-circuiting is not possible
+        due to the need to examine all subschemas for annotation collection,
+        including those that cannot further change the assertion result.
+      </p>
+      <h1 id="rfc.section.7.1">
+        <a href="#rfc.section.7.1">7.1.</a>
+        <a href="#scopes" id="scopes">Lexical Scope and Dynamic Scope</a>
+      </h1>
+      <p id="rfc.section.7.1.p.1">
+        While most JSON Schema keywords can be evaluated on their own, or at most
+        need to take into account the values or results of adjacent keywords in
+        the same schema object, a few have more complex behavior.
+      </p>
+      <p id="rfc.section.7.1.p.2">
+        The lexical scope of a keyword is determined by the nested JSON data
+        structure of objects and arrays. The largest such scope is an entire
+        schema document. The smallest scope is a single schema object with no
+        subschemas.
+      </p>
+      <p id="rfc.section.7.1.p.3">
+        Keywords MAY be defined with a partial value, such as a URI-reference,
+        which must be resolved against another value, such as another
+        URI-reference or a full URI, which is found through the lexical structure
+        of the JSON document. The "$id" core keyword and the "base" JSON
+        Hyper-Schema keyword are examples of this sort of behavior. Additionally,
+        "$ref" and "$recursiveRef" from this specification resolve their values in
+        this way, although they do not change how further values are resolved.
+      </p>
+      <p id="rfc.section.7.1.p.4">
+        Note that some keywords, such as "$schema", apply to the lexical scope of
+        the entire schema document, and therefore MUST only appear in a schema
+        resource's root schema.
+      </p>
+      <p id="rfc.section.7.1.p.5">
+        Other keywords may take into account the dynamic scope that exists during
+        the evaluation of a schema, typically together with an instance document.
+        The outermost dynamic scope is the root schema of the schema document in
+        which processing begins. The path from this root schema to any particular
+        keyword (that includes any "$ref" and "$recursiveRef" keywords that may
+        have been resolved) is considered the keyword's "validation path."
+        <a id="CREF1" class="info"
+          >[CREF1]<span class="info"
+            >Or should this be the schema object at which processing begins, even
+            if it is not a root? This has some implications for the case where
+            "$recursiveAnchor" is only allowed in the root schema but processing
+            begins in a subschema.
+          </span></a
         >
-        <p id="rfc.section.4.3.5.p.4">
-          In this example document, the schema titled "array item" is a
-          subschema, and the schema titled "root" is the root schema.
-        </p>
-        <p id="rfc.section.4.3.5.p.5">
-          As with the root schema, a subschema is either an object or a boolean.
-        </p>
-        <p id="rfc.section.4.3.5.p.6">
-          As discussed in section <a href="#id-keyword" class="xref">8.2.2</a>,
-          a JSON Schema document can contain multiple JSON Schema resources.
-          When used without qualification, the term "root schema" refers to the
-          document's root schema. In some cases, resource root schemas are
-          discussed. A resource's root schema is its top-level schema object,
-          which would also be a document root schema if the resource were to be
-          extracted to a standalone JSON Schema document.
-        </p>
-        <h1 id="rfc.section.5">
-          <a href="#rfc.section.5">5.</a>
-          <a href="#fragments" id="fragments">Fragment Identifiers</a>
-        </h1>
-        <p id="rfc.section.5.p.1">
-          In accordance with section 3.1 of
-          <a href="#RFC6839" class="xref">[RFC6839]</a>, the syntax and
-          semantics of fragment identifiers specified for any +json media type
-          SHOULD be as specified for "application/json". (At publication of this
-          document, there is no fragment identification syntax defined for
-          "application/json".)
-        </p>
-        <p id="rfc.section.5.p.2">
-          Additionally, the "application/schema+json" media type supports two
-          fragment identifier structures: plain names and JSON Pointers. The
-          "application/schema-instance+json" media type supports one fragment
-          identifier structure: JSON Pointers.
-        </p>
-        <p id="rfc.section.5.p.3">
-          The use of JSON Pointers as URI fragment identifiers is described in
-          <a href="#RFC6901" class="xref">RFC 6901</a>. For
-          "application/schema+json", which supports two fragment identifier
-          syntaxes, fragment identifiers matching the JSON Pointer syntax,
-          including the empty string, MUST be interpreted as JSON Pointer
-          fragment identifiers.
-        </p>
-        <p id="rfc.section.5.p.4">
-          Per the W3C's
-          <a href="#W3C.WD-fragid-best-practices-20121025" class="xref"
-            >best practices for fragment identifiers</a
-          >, plain name fragment identifiers in "application/schema+json" are
-          reserved for referencing locally named schemas. All fragment
-          identifiers that do not match the JSON Pointer syntax MUST be
-          interpreted as plain name fragment identifiers.
-        </p>
-        <p id="rfc.section.5.p.5">
-          Defining and referencing a plain name fragment identifier within an
-          "application/schema+json" document are specified in the
-          <a href="#anchor" class="xref">"$anchor" keyword</a> section.
-        </p>
-        <p></p>
-        <h1 id="rfc.section.6">
-          <a href="#rfc.section.6">6.</a> General Considerations
-        </h1>
-        <h1 id="rfc.section.6.1">
-          <a href="#rfc.section.6.1">6.1.</a> Range of JSON Values
-        </h1>
-        <p id="rfc.section.6.1.p.1">
-          An instance may be any valid JSON value as defined by
-          <a href="#RFC8259" class="xref">JSON</a>. JSON Schema imposes no
-          restrictions on type: JSON Schema can describe any JSON value,
-          including, for example, null.
-        </p>
-        <h1 id="rfc.section.6.2">
-          <a href="#rfc.section.6.2">6.2.</a>
-          <a href="#language" id="language"
-            >Programming Language Independence</a
-          >
-        </h1>
-        <p id="rfc.section.6.2.p.1">
-          JSON Schema is programming language agnostic, and supports the full
-          range of values described in the data model. Be aware, however, that
-          some languages and JSON parsers may not be able to represent in memory
-          the full range of values describable by JSON.
-        </p>
-        <h1 id="rfc.section.6.3">
-          <a href="#rfc.section.6.3">6.3.</a>
-          <a href="#integers" id="integers">Mathematical Integers</a>
-        </h1>
-        <p id="rfc.section.6.3.p.1">
-          Some programming languages and parsers use different internal
-          representations for floating point numbers than they do for integers.
-        </p>
-        <p id="rfc.section.6.3.p.2">
-          For consistency, integer JSON numbers SHOULD NOT be encoded with a
-          fractional part.
-        </p>
-        <h1 id="rfc.section.6.4">
-          <a href="#rfc.section.6.4">6.4.</a>
-          <a href="#regex" id="regex">Regular Expressions</a>
-        </h1>
-        <p id="rfc.section.6.4.p.1">
-          Keywords MAY use regular expressions to express constraints, or
-          constrain the instance value to be a regular expression. These regular
-          expressions SHOULD be valid according to the regular expression
-          dialect described in
-          <a href="#ecma262" class="xref">ECMA 262, section 15.10.1</a>.
-        </p>
-        <p id="rfc.section.6.4.p.2">
-          Furthermore, given the high disparity in regular expression constructs
-          support, schema authors SHOULD limit themselves to the following
-          regular expression tokens:
-        </p>
-
-        <ul class="empty">
-          <li>
-            individual Unicode characters, as defined by the
-            <a href="#RFC8259" class="xref">JSON specification</a>;
-          </li>
-          <li>
-            simple character classes ([abc]), range character classes ([a-z]);
-          </li>
-          <li>complemented character classes ([^abc], [^a-z]);</li>
-          <li>
-            simple quantifiers: "+" (one or more), "*" (zero or more), "?" (zero
-            or one), and their lazy versions ("+?", "*?", "??");
-          </li>
-          <li>
-            range quantifiers: "{x}" (exactly x occurrences), "{x,y}" (at least
-            x, at most y, occurrences), {x,} (x occurrences or more), and their
-            lazy versions;
-          </li>
-          <li>the beginning-of-input ("^") and end-of-input ("$") anchors;</li>
-          <li>simple grouping ("(...)") and alternation ("|").</li>
-        </ul>
-
-        <p></p>
-        <p id="rfc.section.6.4.p.3">
-          Finally, implementations MUST NOT take regular expressions to be
-          anchored, neither at the beginning nor at the end. This means, for
-          instance, the pattern "es" matches "expression".
-        </p>
-        <h1 id="rfc.section.6.5">
-          <a href="#rfc.section.6.5">6.5.</a>
-          <a href="#extending" id="extending">Extending JSON Schema</a>
-        </h1>
-        <p id="rfc.section.6.5.p.1">
-          Additional schema keywords and schema vocabularies MAY be defined by
-          any entity. Save for explicit agreement, schema authors SHALL NOT
-          expect these additional keywords and vocabularies to be supported by
-          implementations that do not explicitly document such support.
-          Implementations SHOULD ignore keywords they do not support.
-        </p>
-        <p id="rfc.section.6.5.p.2">
-          Implementations MAY provide the ability to register or load handlers
-          for vocabularies that they do not support directly. The exact
-          mechanism for registering and implementing such handlers is
-          implementation-dependent.
-        </p>
-        <h1 id="rfc.section.7">
-          <a href="#rfc.section.7">7.</a> Keyword Behaviors
-        </h1>
-        <p id="rfc.section.7.p.1">
-          JSON Schema keywords fall into several general behavior categories.
-          Assertions validate that an instance satisfies constraints, producing
-          a boolean result. Annotations attach information that applications may
-          use in any way they see fit. Applicators apply subschemas to parts of
-          the instance and combine their results.
-        </p>
-        <p id="rfc.section.7.p.2">
-          Extension keywords SHOULD stay within these categories, keeping in
-          mind that annotations in particular are extremely flexible. Complex
-          behavior is usually better delegated to applications on the basis of
-          annotation data than implemented directly as schema keywords. However,
-          extension keywords MAY define other behaviors for specialized
-          purposes.
-        </p>
-        <p id="rfc.section.7.p.3">
-          Evaluating an instance against a schema involves processing all of the
-          keywords in the schema against the appropriate locations within the
-          instance. Typically, applicator keywords are processed until a schema
-          object with no applicators (and therefore no subschemas) is reached.
-          The appropriate location in the instance is evaluated against the
-          assertion and annotation keywords in the schema object, and their
-          results are gathered into the parent schema according to the rules of
-          the applicator.
-        </p>
-        <p id="rfc.section.7.p.4">
-          Evaluation of a parent schema object can complete once all of its
-          subschemas have been evaluated, although in some circumstances
-          evaluation may be short-circuited due to assertion results. When
-          annotations are being collected, some assertion result
-          short-circuiting is not possible due to the need to examine all
-          subschemas for annotation collection, including those that cannot
-          further change the assertion result.
-        </p>
-        <h1 id="rfc.section.7.1">
-          <a href="#rfc.section.7.1">7.1.</a>
-          <a href="#scopes" id="scopes">Lexical Scope and Dynamic Scope</a>
-        </h1>
-        <p id="rfc.section.7.1.p.1">
-          While most JSON Schema keywords can be evaluated on their own, or at
-          most need to take into account the values or results of adjacent
-          keywords in the same schema object, a few have more complex behavior.
-        </p>
-        <p id="rfc.section.7.1.p.2">
-          The lexical scope of a keyword is determined by the nested JSON data
-          structure of objects and arrays. The largest such scope is an entire
-          schema document. The smallest scope is a single schema object with no
-          subschemas.
-        </p>
-        <p id="rfc.section.7.1.p.3">
-          Keywords MAY be defined with a partial value, such as a URI-reference,
-          which must be resolved against another value, such as another
-          URI-reference or a full URI, which is found through the lexical
-          structure of the JSON document. The "$id" core keyword and the "base"
-          JSON Hyper-Schema keyword are examples of this sort of behavior.
-          Additionally, "$ref" and "$recursiveRef" from this specification
-          resolve their values in this way, although they do not change how
-          further values are resolved.
-        </p>
-        <p id="rfc.section.7.1.p.4">
-          Note that some keywords, such as "$schema", apply to the lexical scope
-          of the entire schema document, and therefore MUST only appear in a
-          schema resource's root schema.
-        </p>
-        <p id="rfc.section.7.1.p.5">
-          Other keywords may take into account the dynamic scope that exists
-          during the evaluation of a schema, typically together with an instance
-          document. The outermost dynamic scope is the root schema of the schema
-          document in which processing begins. The path from this root schema to
-          any particular keyword (that includes any "$ref" and "$recursiveRef"
-          keywords that may have been resolved) is considered the keyword's
-          "validation path."
-          <a id="CREF1" class="info"
-            >[CREF1]<span class="info"
-              >Or should this be the schema object at which processing begins,
-              even if it is not a root? This has some implications for the case
-              where "$recursiveAnchor" is only allowed in the root schema but
-              processing begins in a subschema.
-            </span></a
-          >
-        </p>
-        <p id="rfc.section.7.1.p.6">
-          Lexical and dynamic scopes align until a reference keyword is
-          encountered. While following the reference keyword moves processing
-          from one lexical scope into a different one, from the perspective of
-          dynamic scope, following reference is no different from descending
-          into a subschema present as a value. A keyword on the far side of that
-          reference that resolves information through the dynamic scope will
-          consider the originating side of the reference to be their dynamic
-          parent, rather than examining the local lexically enclosing parent.
-        </p>
-        <p id="rfc.section.7.1.p.7">
-          The concept of dynamic scope is primarily used with "$recursiveRef"
-          and "$recursiveAnchor", and should be considered an advanced feature
-          and used with caution when defining additional keywords. It also
-          appears when reporting errors and collected annotations, as it may be
-          possible to revisit the same lexical scope repeatedly with different
-          dynamic scopes. In such cases, it is important to inform the user of
-          the dynamic path that produced the error or annotation.
-        </p>
-        <h1 id="rfc.section.7.2">
-          <a href="#rfc.section.7.2">7.2.</a> Keyword Interactions
-        </h1>
-        <p id="rfc.section.7.2.p.1">
-          Keyword behavior MAY be defined in terms of the annotation results of
-          <a href="#root" class="xref">subschemas</a> and/or adjacent keywords.
-          Such keywords MUST NOT result in a circular dependency. Keywords MAY
-          modify their behavior based on the presence or absence of another
-          keyword in the same
-          <a href="#schema-document" class="xref">schema object</a>.
-        </p>
-        <h1 id="rfc.section.7.3">
-          <a href="#rfc.section.7.3">7.3.</a> Default Behaviors
-        </h1>
-        <p id="rfc.section.7.3.p.1">
-          A missing keyword MUST NOT produce a false assertion result, MUST NOT
-          produce annotation results, and MUST NOT cause any other schema to be
-          evaluated as part of its own behavioral definition. However, given
-          that missing keywords do not contribute annotations, the lack of
-          annotation results may indirectly change the behavior of other
-          keywords.
-        </p>
-        <p id="rfc.section.7.3.p.2">
-          In some cases, the missing keyword assertion behavior of a keyword is
-          identical to that produced by a certain value, and keyword definitions
-          SHOULD note such values where known. However, even if the value which
-          produces the default behavior would produce annotation results if
-          present, the default behavior still MUST NOT result in annotations.
-        </p>
-        <p id="rfc.section.7.3.p.3">
-          Because annotation collection can add significant cost in terms of
-          both computation and memory, implementations MAY opt out of this
-          feature. Keywords known to an implementation to have assertion or
-          applicator behavior that depend on annotation results MUST then be
-          treated as errors, unless an alternate implementation producing the
-          same behavior is available. Keywords of this sort SHOULD describe
-          reasonable alternate approaches when appropriate. This approach is
-          demonstrated by the "<a href="#additionalItems" class="xref"
-            >additionalItems</a
-          >" and "<a href="#additionalProperties" class="xref"
-            >additionalProperties</a
-          >" keywords in this document.
-        </p>
-        <h1 id="rfc.section.7.4">
-          <a href="#rfc.section.7.4">7.4.</a>
-          <a href="#identifiers" id="identifiers">Identifiers</a>
-        </h1>
-        <p id="rfc.section.7.4.p.1">
-          Identifiers set the canonical URI of a schema, or affect how such URIs
-          are resolved in <a href="#references" class="xref">references</a>, or
-          both. The Core vocabulary defined in this document defines several
-          identifying keywords, most notably "$id".
-        </p>
-        <p id="rfc.section.7.4.p.2">
-          Canonical schema URIs MUST NOT change while processing an instance,
-          but keywords that affect URI-reference resolution MAY have behavior
-          that is only fully determined at runtime.
-        </p>
-        <p id="rfc.section.7.4.p.3">
-          While custom identifier keywords are possible, vocabulary designers
-          should take care not to disrupt the functioning of core keywords. For
-          example, the "$recursiveAnchor" keyword in this specification limits
-          its URI resolution effects to the matching "$recursiveRef" keyword,
-          leaving "$ref" undisturbed.
-        </p>
-        <h1 id="rfc.section.7.5">
-          <a href="#rfc.section.7.5">7.5.</a>
-          <a href="#applicators" id="applicators">Applicators</a>
-        </h1>
-        <p id="rfc.section.7.5.p.1">
-          Applicators allow for building more complex schemas than can be
-          accomplished with a single schema object. Evaluation of an instance
-          against a
-          <a href="#schema-document" class="xref">schema document</a> begins by
-          applying the <a href="#root" class="xref">root schema</a> to the
-          complete instance document. From there, keywords known as applicators
-          are used to determine which additional schemas are applied. Such
-          schemas may be applied in-place to the current location, or to a child
-          location.
-        </p>
-        <p id="rfc.section.7.5.p.2">
-          The schemas to be applied may be present as subschemas comprising all
-          or part of the keyword's value. Alternatively, an applicator may refer
-          to a schema elsewhere in the same schema document, or in a different
-          one. The mechanism for identifying such referenced schemas is defined
-          by the keyword.
-        </p>
-        <p id="rfc.section.7.5.p.3">
-          Applicator keywords also define how subschema or referenced schema
-          boolean <a href="#assertions" class="xref">assertion</a> results are
-          modified and/or combined to produce the boolean result of the
-          applicator. Applicators may apply any boolean logic operation to the
-          assertion results of subschemas, but MUST NOT introduce new assertion
-          conditions of their own.
-        </p>
-        <p>
-          <a href="#annotations" class="xref">Annotation</a> results are
-          combined according to the rules specified by each annotation keyword.
-        </p>
-        <h1 id="rfc.section.7.5.1">
-          <a href="#rfc.section.7.5.1">7.5.1.</a>
-          <a href="#referenced" id="referenced"
-            >Referenced and Referencing Schemas</a
-          >
-        </h1>
-        <p id="rfc.section.7.5.1.p.1">
-          As noted in <a href="#applicators" class="xref">Section 7.5</a>, an
-          applicator keyword may refer to a schema to be applied, rather than
-          including it as a subschema in the applicator's value. In such
-          situations, the schema being applied is known as the referenced
-          schema, while the schema containing the applicator keyword is the
-          referencing schema.
-        </p>
-        <p id="rfc.section.7.5.1.p.2">
-          While root schemas and subschemas are static concepts based on a
-          schema's position within a schema document, referenced and referencing
-          schemas are dynamic. Different pairs of schemas may find themselves in
-          various referenced and referencing arrangements during the evaluation
-          of an instance against a schema.
-        </p>
-        <p id="rfc.section.7.5.1.p.3">
-          For some by-reference applicators, such as
-          <a href="#ref" class="xref">"$ref"</a>, the referenced schema can be
-          determined by static analysis of the schema document's lexical scope.
-          Others, such as "$recursiveRef" and "$recursiveAnchor", may make use
-          of dynamic scoping, and therefore only be resolvable in the process of
-          evaluating the schema with an instance.
-        </p>
-        <h1 id="rfc.section.7.6">
-          <a href="#rfc.section.7.6">7.6.</a>
-          <a href="#assertions" id="assertions">Assertions</a>
-        </h1>
-        <p id="rfc.section.7.6.p.1">
-          JSON Schema can be used to assert constraints on a JSON document,
-          which either passes or fails the assertions. This approach can be used
-          to validate conformance with the constraints, or document what is
-          needed to satisfy them.
-        </p>
-        <p id="rfc.section.7.6.p.2">
-          JSON Schema implementations produce a single boolean result when
-          evaluating an instance against schema assertions.
-        </p>
-        <p id="rfc.section.7.6.p.3">
-          An instance can only fail an assertion that is present in the schema.
-        </p>
-        <h1 id="rfc.section.7.6.1">
-          <a href="#rfc.section.7.6.1">7.6.1.</a> Assertions and Instance
-          Primitive Types
-        </h1>
-        <p id="rfc.section.7.6.1.p.1">
-          Most assertions only constrain values within a certain primitive type.
-          When the type of the instance is not of the type targeted by the
-          keyword, the instance is considered to conform to the assertion.
-        </p>
-        <p id="rfc.section.7.6.1.p.2">
-          For example, the "maxLength" keyword from the companion
-          <a href="#json-schema-validation" class="xref"
-            >validation vocabulary</a
-          >: will only restrict certain strings (that are too long) from being
-          valid. If the instance is a number, boolean, null, array, or object,
-          then it is valid against this assertion.
-        </p>
-        <p id="rfc.section.7.6.1.p.3">
-          This behavior allows keywords to be used more easily with instances
-          that can be of multiple primitive types. The companion validation
-          vocabulary also includes a "type" keyword which can independently
-          restrict the instance to one or more primitive types. This allows for
-          a concise expression of use cases such as a function that might return
-          either a string of a certain length or a null value:
-        </p>
-        <pre>
-
-{
-    "type": ["string", "null"],
-    "maxLength": 255
-}
-
-                        </pre
+      </p>
+      <p id="rfc.section.7.1.p.6">
+        Lexical and dynamic scopes align until a reference keyword is encountered.
+        While following the reference keyword moves processing from one lexical
+        scope into a different one, from the perspective of dynamic scope,
+        following reference is no different from descending into a subschema
+        present as a value. A keyword on the far side of that reference that
+        resolves information through the dynamic scope will consider the
+        originating side of the reference to be their dynamic parent, rather than
+        examining the local lexically enclosing parent.
+      </p>
+      <p id="rfc.section.7.1.p.7">
+        The concept of dynamic scope is primarily used with "$recursiveRef" and
+        "$recursiveAnchor", and should be considered an advanced feature and used
+        with caution when defining additional keywords. It also appears when
+        reporting errors and collected annotations, as it may be possible to
+        revisit the same lexical scope repeatedly with different dynamic scopes.
+        In such cases, it is important to inform the user of the dynamic path that
+        produced the error or annotation.
+      </p>
+      <h1 id="rfc.section.7.2">
+        <a href="#rfc.section.7.2">7.2.</a> Keyword Interactions
+      </h1>
+      <p id="rfc.section.7.2.p.1">
+        Keyword behavior MAY be defined in terms of the annotation results of
+        <a href="#root" class="xref">subschemas</a> and/or adjacent keywords. Such
+        keywords MUST NOT result in a circular dependency. Keywords MAY modify
+        their behavior based on the presence or absence of another keyword in the
+        same <a href="#schema-document" class="xref">schema object</a>.
+      </p>
+      <h1 id="rfc.section.7.3">
+        <a href="#rfc.section.7.3">7.3.</a> Default Behaviors
+      </h1>
+      <p id="rfc.section.7.3.p.1">
+        A missing keyword MUST NOT produce a false assertion result, MUST NOT
+        produce annotation results, and MUST NOT cause any other schema to be
+        evaluated as part of its own behavioral definition. However, given that
+        missing keywords do not contribute annotations, the lack of annotation
+        results may indirectly change the behavior of other keywords.
+      </p>
+      <p id="rfc.section.7.3.p.2">
+        In some cases, the missing keyword assertion behavior of a keyword is
+        identical to that produced by a certain value, and keyword definitions
+        SHOULD note such values where known. However, even if the value which
+        produces the default behavior would produce annotation results if present,
+        the default behavior still MUST NOT result in annotations.
+      </p>
+      <p id="rfc.section.7.3.p.3">
+        Because annotation collection can add significant cost in terms of both
+        computation and memory, implementations MAY opt out of this feature.
+        Keywords known to an implementation to have assertion or applicator
+        behavior that depend on annotation results MUST then be treated as errors,
+        unless an alternate implementation producing the same behavior is
+        available. Keywords of this sort SHOULD describe reasonable alternate
+        approaches when appropriate. This approach is demonstrated by the "<a
+          href="#additionalItems"
+          class="xref"
+          >additionalItems</a
+        >" and "<a href="#additionalProperties" class="xref"
+          >additionalProperties</a
+        >" keywords in this document.
+      </p>
+      <h1 id="rfc.section.7.4">
+        <a href="#rfc.section.7.4">7.4.</a>
+        <a href="#identifiers" id="identifiers">Identifiers</a>
+      </h1>
+      <p id="rfc.section.7.4.p.1">
+        Identifiers set the canonical URI of a schema, or affect how such URIs are
+        resolved in <a href="#references" class="xref">references</a>, or both.
+        The Core vocabulary defined in this document defines several identifying
+        keywords, most notably "$id".
+      </p>
+      <p id="rfc.section.7.4.p.2">
+        Canonical schema URIs MUST NOT change while processing an instance, but
+        keywords that affect URI-reference resolution MAY have behavior that is
+        only fully determined at runtime.
+      </p>
+      <p id="rfc.section.7.4.p.3">
+        While custom identifier keywords are possible, vocabulary designers should
+        take care not to disrupt the functioning of core keywords. For example,
+        the "$recursiveAnchor" keyword in this specification limits its URI
+        resolution effects to the matching "$recursiveRef" keyword, leaving "$ref"
+        undisturbed.
+      </p>
+      <h1 id="rfc.section.7.5">
+        <a href="#rfc.section.7.5">7.5.</a>
+        <a href="#applicators" id="applicators">Applicators</a>
+      </h1>
+      <p id="rfc.section.7.5.p.1">
+        Applicators allow for building more complex schemas than can be
+        accomplished with a single schema object. Evaluation of an instance
+        against a
+        <a href="#schema-document" class="xref">schema document</a> begins by
+        applying the <a href="#root" class="xref">root schema</a> to the complete
+        instance document. From there, keywords known as applicators are used to
+        determine which additional schemas are applied. Such schemas may be
+        applied in-place to the current location, or to a child location.
+      </p>
+      <p id="rfc.section.7.5.p.2">
+        The schemas to be applied may be present as subschemas comprising all or
+        part of the keyword's value. Alternatively, an applicator may refer to a
+        schema elsewhere in the same schema document, or in a different one. The
+        mechanism for identifying such referenced schemas is defined by the
+        keyword.
+      </p>
+      <p id="rfc.section.7.5.p.3">
+        Applicator keywords also define how subschema or referenced schema boolean
+        <a href="#assertions" class="xref">assertion</a> results are modified
+        and/or combined to produce the boolean result of the applicator.
+        Applicators may apply any boolean logic operation to the assertion results
+        of subschemas, but MUST NOT introduce new assertion conditions of their
+        own.
+      </p>
+      <p>
+        <a href="#annotations" class="xref">Annotation</a> results are combined
+        according to the rules specified by each annotation keyword.
+      </p>
+      <h1 id="rfc.section.7.5.1">
+        <a href="#rfc.section.7.5.1">7.5.1.</a>
+        <a href="#referenced" id="referenced"
+          >Referenced and Referencing Schemas</a
         >
-        <p>
-          If "maxLength" also restricted the instance type to be a string, then
-          this would be substantially more cumbersome to express because the
-          example as written would not actually allow null values. Each keyword
-          is evaluated separately unless explicitly specified otherwise, so if
-          "maxLength" restricted the instance to strings, then including "null"
-          in "type" would not have any useful effect.
-        </p>
-        <h1 id="rfc.section.7.7">
-          <a href="#rfc.section.7.7">7.7.</a>
-          <a href="#annotations" id="annotations">Annotations</a>
-        </h1>
-        <p id="rfc.section.7.7.p.1">
-          JSON Schema can annotate an instance with information, whenever the
-          instance validates against the schema object containing the
-          annotation, and all of its parent schema objects. The information can
-          be a simple value, or can be calculated based on the instance
-          contents.
-        </p>
-        <p id="rfc.section.7.7.p.2">
-          Annotations are attached to specific locations in an instance. Since
-          many subschemas can be applied to any single location, annotation
-          keywords need to specify any unusual handling of multiple applicable
-          occurrences of the keyword with different values.
-        </p>
-        <p id="rfc.section.7.7.p.3">
-          Unlike assertion results, annotation data can take a wide variety of
-          forms, which are provided to applications to use as they see fit. JSON
-          Schema implementations are not expected to make use of the collected
-          information on behalf of applications.
-        </p>
-        <p id="rfc.section.7.7.p.4">
-          Unless otherwise specified, the value of an annotation keyword's
-          annotation is the keyword's value. However, other behaviors are
-          possible. For example,
-          <a href="#json-hyper-schema" class="xref">JSON Hyper-Schema's</a>
-          "links" keyword is a complex annotation that produces a value based in
-          part on the instance data.
-        </p>
-        <p id="rfc.section.7.7.p.5">
-          While "short-circuit" evaluation is possible for assertions,
-          collecting annotations requires examining all schemas that apply to an
-          instance location, even if they cannot change the overall assertion
-          result. The only exception is that subschemas of a schema object that
-          has failed validation MAY be skipped, as annotations are not retained
-          for failing schemas.
-        </p>
-        <h1 id="rfc.section.7.7.1">
-          <a href="#rfc.section.7.7.1">7.7.1.</a> Collecting Annotations
-        </h1>
-        <p id="rfc.section.7.7.1.p.1">
-          Annotations are collected by keywords that explicitly define
-          annotation-collecting behavior. Note that boolean schemas cannot
-          produce annotations as they do not make use of keywords.
-        </p>
-        <p id="rfc.section.7.7.1.p.2">
-          A collected annotation MUST include the following information:
-        </p>
+      </h1>
+      <p id="rfc.section.7.5.1.p.1">
+        As noted in <a href="#applicators" class="xref">Section 7.5</a>, an
+        applicator keyword may refer to a schema to be applied, rather than
+        including it as a subschema in the applicator's value. In such situations,
+        the schema being applied is known as the referenced schema, while the
+        schema containing the applicator keyword is the referencing schema.
+      </p>
+      <p id="rfc.section.7.5.1.p.2">
+        While root schemas and subschemas are static concepts based on a schema's
+        position within a schema document, referenced and referencing schemas are
+        dynamic. Different pairs of schemas may find themselves in various
+        referenced and referencing arrangements during the evaluation of an
+        instance against a schema.
+      </p>
+      <p id="rfc.section.7.5.1.p.3">
+        For some by-reference applicators, such as
+        <a href="#ref" class="xref">"$ref"</a>, the referenced schema can be
+        determined by static analysis of the schema document's lexical scope.
+        Others, such as "$recursiveRef" and "$recursiveAnchor", may make use of
+        dynamic scoping, and therefore only be resolvable in the process of
+        evaluating the schema with an instance.
+      </p>
+      <h1 id="rfc.section.7.6">
+        <a href="#rfc.section.7.6">7.6.</a>
+        <a href="#assertions" id="assertions">Assertions</a>
+      </h1>
+      <p id="rfc.section.7.6.p.1">
+        JSON Schema can be used to assert constraints on a JSON document, which
+        either passes or fails the assertions. This approach can be used to
+        validate conformance with the constraints, or document what is needed to
+        satisfy them.
+      </p>
+      <p id="rfc.section.7.6.p.2">
+        JSON Schema implementations produce a single boolean result when
+        evaluating an instance against schema assertions.
+      </p>
+      <p id="rfc.section.7.6.p.3">
+        An instance can only fail an assertion that is present in the schema.
+      </p>
+      <h1 id="rfc.section.7.6.1">
+        <a href="#rfc.section.7.6.1">7.6.1.</a> Assertions and Instance Primitive
+        Types
+      </h1>
+      <p id="rfc.section.7.6.1.p.1">
+        Most assertions only constrain values within a certain primitive type.
+        When the type of the instance is not of the type targeted by the keyword,
+        the instance is considered to conform to the assertion.
+      </p>
+      <p id="rfc.section.7.6.1.p.2">
+        For example, the "maxLength" keyword from the companion
+        <a href="#json-schema-validation" class="xref">validation vocabulary</a>:
+        will only restrict certain strings (that are too long) from being valid.
+        If the instance is a number, boolean, null, array, or object, then it is
+        valid against this assertion.
+      </p>
+      <p id="rfc.section.7.6.1.p.3">
+        This behavior allows keywords to be used more easily with instances that
+        can be of multiple primitive types. The companion validation vocabulary
+        also includes a "type" keyword which can independently restrict the
+        instance to one or more primitive types. This allows for a concise
+        expression of use cases such as a function that might return either a
+        string of a certain length or a null value:
+      </p>
+      <pre>
 
-        <ul class="empty">
-          <li>The name of the keyword that produces the annotation</li>
-          <li>
-            The instance location to which it is attached, as a JSON Pointer
-          </li>
-          <li>
-            The schema location path, indicating how reference keywords such as
-            "$ref" were followed to reach the absolute schema location.
-          </li>
-          <li>
-            The absolute schema location of the attaching keyword, as a URI.
-            This MAY be omitted if it is the same as the schema location path
-            from above.
-          </li>
-          <li>The attached value(s)</li>
-        </ul>
+  {
+      "type": ["string", "null"],
+      "maxLength": 255
+  }
 
-        <p></p>
-        <p id="rfc.section.7.7.1.p.3">
-          If the same keyword attaches values from multiple schema locations to
-          the same instance location, and the annotation defines a process for
-          combining such values, then the combined value MUST also be associated
-          with the instance location. The
-          <a href="#output" class="xref">output formats</a> described in this
-          specification that include annotation information meet this
-          requirement.
-        </p>
-        <h1 id="rfc.section.7.7.1.1">
-          <a href="#rfc.section.7.7.1.1">7.7.1.1.</a> Distinguishing Among
-          Multiple Values
-        </h1>
-        <p id="rfc.section.7.7.1.1.p.1">
-          Applications MAY make decisions on which of multiple annotation values
-          to use based on the schema location that contributed the value. This
-          is intended to allow flexible usage. Collecting the schema location
-          facilitates such usage.
-        </p>
-        <p id="rfc.section.7.7.1.1.p.2">
-          For example, consider this schema, which uses annotations and
-          assertions from the
-          <a href="#json-schema-validation" class="xref"
-            >Validation specification</a
-          >:
-        </p>
-        <p>Note that some lines are wrapped for clarity.</p>
-        <pre>
+                          </pre
+      >
+      <p>
+        If "maxLength" also restricted the instance type to be a string, then this
+        would be substantially more cumbersome to express because the example as
+        written would not actually allow null values. Each keyword is evaluated
+        separately unless explicitly specified otherwise, so if "maxLength"
+        restricted the instance to strings, then including "null" in "type" would
+        not have any useful effect.
+      </p>
+      <h1 id="rfc.section.7.7">
+        <a href="#rfc.section.7.7">7.7.</a>
+        <a href="#annotations" id="annotations">Annotations</a>
+      </h1>
+      <p id="rfc.section.7.7.p.1">
+        JSON Schema can annotate an instance with information, whenever the
+        instance validates against the schema object containing the annotation,
+        and all of its parent schema objects. The information can be a simple
+        value, or can be calculated based on the instance contents.
+      </p>
+      <p id="rfc.section.7.7.p.2">
+        Annotations are attached to specific locations in an instance. Since many
+        subschemas can be applied to any single location, annotation keywords need
+        to specify any unusual handling of multiple applicable occurrences of the
+        keyword with different values.
+      </p>
+      <p id="rfc.section.7.7.p.3">
+        Unlike assertion results, annotation data can take a wide variety of
+        forms, which are provided to applications to use as they see fit. JSON
+        Schema implementations are not expected to make use of the collected
+        information on behalf of applications.
+      </p>
+      <p id="rfc.section.7.7.p.4">
+        Unless otherwise specified, the value of an annotation keyword's
+        annotation is the keyword's value. However, other behaviors are possible.
+        For example,
+        <a href="#json-hyper-schema" class="xref">JSON Hyper-Schema's</a> "links"
+        keyword is a complex annotation that produces a value based in part on the
+        instance data.
+      </p>
+      <p id="rfc.section.7.7.p.5">
+        While "short-circuit" evaluation is possible for assertions, collecting
+        annotations requires examining all schemas that apply to an instance
+        location, even if they cannot change the overall assertion result. The
+        only exception is that subschemas of a schema object that has failed
+        validation MAY be skipped, as annotations are not retained for failing
+        schemas.
+      </p>
+      <h1 id="rfc.section.7.7.1">
+        <a href="#rfc.section.7.7.1">7.7.1.</a> Collecting Annotations
+      </h1>
+      <p id="rfc.section.7.7.1.p.1">
+        Annotations are collected by keywords that explicitly define
+        annotation-collecting behavior. Note that boolean schemas cannot produce
+        annotations as they do not make use of keywords.
+      </p>
+      <p id="rfc.section.7.7.1.p.2">
+        A collected annotation MUST include the following information:
+      </p>
 
-{
-    "title": "Feature list",
-    "type": "array",
-    "items": [
-        {
-            "title": "Feature A",
-            "properties": {
-                "enabled": {
-                    "$ref": "#/$defs/enabledToggle",
-                    "default": true
-                }
-            }
-        },
-        {
-            "title": "Feature B",
-            "properties": {
-                "enabled": {
-                    "description": "If set to null, Feature B
-                                    inherits the enabled
-                                    value from Feature A",
-                    "$ref": "#/$defs/enabledToggle"
-                }
-            }
-        }
-    ],
-    "$defs": {
-        "enabledToggle": {
-            "title": "Enabled",
-            "description": "Whether the feature is enabled (true),
-                            disabled (false), or under
-                            automatic control (null)",
-            "type": ["boolean", "null"],
-            "default": null
-        }
-    }
-}
+      <ul class="empty">
+        <li>The name of the keyword that produces the annotation</li>
+        <li>The instance location to which it is attached, as a JSON Pointer</li>
+        <li>
+          The schema location path, indicating how reference keywords such as
+          "$ref" were followed to reach the absolute schema location.
+        </li>
+        <li>
+          The absolute schema location of the attaching keyword, as a URI. This
+          MAY be omitted if it is the same as the schema location path from above.
+        </li>
+        <li>The attached value(s)</li>
+      </ul>
 
-                            </pre
-        >
-        <p id="rfc.section.7.7.1.1.p.3">
+      <p></p>
+      <p id="rfc.section.7.7.1.p.3">
+        If the same keyword attaches values from multiple schema locations to the
+        same instance location, and the annotation defines a process for combining
+        such values, then the combined value MUST also be associated with the
+        instance location. The
+        <a href="#output" class="xref">output formats</a> described in this
+        specification that include annotation information meet this requirement.
+      </p>
+      <h1 id="rfc.section.7.7.1.1">
+        <a href="#rfc.section.7.7.1.1">7.7.1.1.</a> Distinguishing Among Multiple
+        Values
+      </h1>
+      <p id="rfc.section.7.7.1.1.p.1">
+        Applications MAY make decisions on which of multiple annotation values to
+        use based on the schema location that contributed the value. This is
+        intended to allow flexible usage. Collecting the schema location
+        facilitates such usage.
+      </p>
+      <p id="rfc.section.7.7.1.1.p.2">
+        For example, consider this schema, which uses annotations and assertions
+        from the
+        <a href="#json-schema-validation" class="xref">Validation specification</a
+        >:
+      </p>
+      <p>Note that some lines are wrapped for clarity.</p>
+      <pre>
+
+  {
+      "title": "Feature list",
+      "type": "array",
+      "items": [
+          {
+              "title": "Feature A",
+              "properties": {
+                  "enabled": {
+                      "$ref": "#/$defs/enabledToggle",
+                      "default": true
+                  }
+              }
+          },
+          {
+              "title": "Feature B",
+              "properties": {
+                  "enabled": {
+                      "description": "If set to null, Feature B
+                                      inherits the enabled
+                                      value from Feature A",
+                      "$ref": "#/$defs/enabledToggle"
+                  }
+              }
+          }
+      ],
+      "$defs": {
+          "enabledToggle": {
+              "title": "Enabled",
+              "description": "Whether the feature is enabled (true),
+                              disabled (false), or under
+                              automatic control (null)",
+              "type": ["boolean", "null"],
+              "default": null
+          }
+      }
+  }
+
+                              </pre
+      >
+      <p id="rfc.section.7.7.1.1.p.3">
           In this example, both Feature A and Feature B make use of the
           re-usable "enabledToggle" schema. That schema uses the "title",
           "description", and "default" annotations, none of which define special
@@ -5622,8 +5555,8 @@ User-Agent: product-name/5.4.1 so-cool-json-schema/1.0.2 curl/7.43.0
               ></span
             >
           </address>
-        </div>
-      </main>
+      </div>
+    </main>
     </div>
   </body>
 </html>
