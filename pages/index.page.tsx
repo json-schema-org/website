@@ -941,22 +941,14 @@ for Accounting integrations'
                   alt='Spin the wheel logo'
                 />
               </a>
-              <a
-                href='https://litslink.com/'
-                target='_blank'
-                rel='noreferrer'
-              >
+              <a href='https://litslink.com/' target='_blank' rel='noreferrer'>
                 <img
                   src={logos.litslink}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='Litslink logo'
                 />
               </a>
-              <a
-                href='https://time.now/'
-                target='_blank'
-                rel='noreferrer'
-              >
+              <a href='https://time.now/' target='_blank' rel='noreferrer'>
                 <img
                   src={logos.timenow}
                   className='w-24 transition-transform duration-300 hover:scale-105'
