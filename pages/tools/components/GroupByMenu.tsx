@@ -1,4 +1,10 @@
-import React, { Dispatch, SetStateAction, useState, useEffect, useRef } from 'react';
+import React, {
+  Dispatch,
+  SetStateAction,
+  useState,
+  useEffect,
+  useRef,
+} from 'react';
 import { Button } from '~/components/ui/button';
 import { Transform } from '../hooks/useToolsTransform';
 
@@ -8,7 +14,11 @@ interface GroupByMenuProps {
   activeSections?: string[];
 }
 
-const GroupByMenu = ({ transform, setTransform, activeSections = [] }: GroupByMenuProps) => {
+const GroupByMenu = ({
+  transform,
+  setTransform,
+  activeSections = [],
+}: GroupByMenuProps) => {
   const groupedBy = transform.groupBy;
 
   const [isOpen, setIsOpen] = useState(false);
