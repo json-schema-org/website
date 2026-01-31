@@ -124,6 +124,9 @@ const Home = (props: any) => {
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
+      litslink: '/img/logos/sponsors/litslink_dark.svg',
+      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+      timenow: '/img/logos/sponsors/time_now_dark.svg',
     },
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
@@ -149,6 +152,9 @@ const Home = (props: any) => {
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
+      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+      litslink: '/img/logos/sponsors/litslink_white.svg',
+      timenow: '/img/logos/sponsors/time_now_white.svg',
     },
   };
 
@@ -922,6 +928,31 @@ for Accounting integrations'
                   src={logos.oracle}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='Oracle logo'
+                />
+              </a>
+              <a
+                href='https://spinthewheel.io/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={logos.spinthewheel}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Spin the wheel logo'
+                />
+              </a>
+              <a href='https://litslink.com/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.litslink}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Litslink logo'
+                />
+              </a>
+              <a href='https://time.now/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.timenow}
+                  className='w-24 transition-transform duration-300 hover:scale-105'
+                  alt='Time Now logo'
                 />
               </a>
               <a
