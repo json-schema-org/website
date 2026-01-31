@@ -22,7 +22,7 @@ export function TableOfContentMarkdown({
 
   useEffect(() => {
     const sections = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-    
+
     observerRef.current = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,7 +34,7 @@ export function TableOfContentMarkdown({
       {
         rootMargin: '-20% 0px -80% 0px',
         threshold: 0,
-      }
+      },
     );
 
     sections.forEach((section) => {
@@ -63,7 +63,10 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className={getSectionClassName(slug, 'flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6 font-medium')}
+                  className={getSectionClassName(
+                    slug,
+                    'flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6 font-medium',
+                  )}
                 >
                   {children}
                 </a>
