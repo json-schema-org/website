@@ -1,7 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react-hooks/rules-of-hooks */
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Image from 'next/image';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
@@ -17,6 +17,42 @@ export function TableOfContentMarkdown({
   markdown,
   depth = 2,
 }: TableOfContentMarkdownProps) {
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -80% 0px',
+        threshold: 0,
+      }
+    );
+
+    sections.forEach((section) => {
+      if (section.id) {
+        observerRef.current?.observe(section);
+      }
+    });
+
+    return () => {
+      observerRef.current?.disconnect();
+    };
+  }, [markdown]);
+
+  const getSectionClassName = (slug: string, defaultClass: string) => {
+    const isActive = activeSection === slug;
+    return `${defaultClass} ${isActive ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`;
+  };
+
   return (
     <Markdown
       options={{
@@ -27,7 +63,7 @@ export function TableOfContentMarkdown({
               return (
                 <a
                   href={`#${slug}`}
-                  className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
+                  className={getSectionClassName(slug, 'flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6 font-medium')}
                 >
                   {children}
                 </a>
@@ -44,7 +80,7 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
+                        className={getSectionClassName(slug, 'block cursor-pointer mb-3 text-slate-600 dark:text-slate-300 leading-5 font-medium ml-4')}
                       >
                         {children}
                       </a>
@@ -65,10 +101,9 @@ export function TableOfContentMarkdown({
                       }, []);
 
                       return (
-                        // chromeClass
                         <a
                           href={`#${slug}`}
-                          className={`block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ] max-sm:-ml-[6px] font-medium ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`}
+                          className={getSectionClassName(slug, `block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 max-sm:-ml-[6px] font-medium ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`)}
                         >
                           <span className='mr-1 text-blue-400 text-[0.7em]'>
                             &#9679;
@@ -87,7 +122,7 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]'
+                        className={getSectionClassName(slug, 'flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]')}
                       >
                         <span className='text-blue-400/40 font-extrabold text-[0.8em] max-sm:text-[1.2em] ml-1'>
                           &mdash;&mdash;
@@ -110,7 +145,7 @@ export function TableOfContentMarkdown({
                     return (
                       <a
                         href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem] '
+                        className={getSectionClassName(slug, 'flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem] ')}
                       >
                         <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
                           &mdash;&mdash;&mdash;&mdash;
