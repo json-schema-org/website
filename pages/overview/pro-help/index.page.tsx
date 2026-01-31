@@ -2,6 +2,7 @@ import React from 'react';
 import fs from 'fs';
 import { getLayout } from '~/components/Sidebar';
 import Head from 'next/head';
+import Image from 'next/image';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
@@ -105,8 +106,10 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                   <div className='flex flex-row items-center space-x-4'>
                     {/* Image */}
                     <div className='relative group flex-shrink-0'>
-                      <img
+                      <Image
                         src={`https://github.com/${contractor.github}.png`}
+                        width={80}
+                        height={80}
                         className='w-20 h-20 rounded-md border-4 border-blue-100 shadow-lg hover:border-blue-300 transition-all duration-300 dark:border-gray-600'
                         alt={`${contractor.name}'s avatar`}
                       />
@@ -214,8 +217,10 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
                   {/* Image and Name */}
                   <div className='flex items-center space-x-8 pr-8'>
                     <div className='relative group'>
-                      <img
+                      <Image
                         src={`https://github.com/${contractor.github}.png`}
+                        width={128}
+                        height={128}
                         className='w-32 h-32 rounded-md border-4 border-blue-100 shadow-lg hover:border-blue-300 transition-all duration-300 dark:border-gray-600'
                         alt={`${contractor.name}'s avatar`}
                       />
