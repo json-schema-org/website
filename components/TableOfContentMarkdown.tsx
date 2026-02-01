@@ -1,6 +1,7 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react-hooks/rules-of-hooks */
-
+/* eslint-disable indent */
+/* eslint-disable prettier/prettier */
 import React, { useContext, useEffect, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Image from 'next/image';
@@ -90,8 +91,6 @@ export function TableOfContentMarkdown({
               );
             },
           },
-
-          /* eslint-disable */
           h2:
             depth === 0
               ? {
@@ -185,7 +184,6 @@ export function TableOfContentMarkdown({
                         <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
                           &#9679;
                         </span>
-
                         {children}
                       </a>
                     );
@@ -226,12 +224,11 @@ interface TableOfContentProps {
 }
 
 export const TableOfContent = ({ depth }: TableOfContentProps) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const fullMarkdown = useContext(FullMarkdownContext);
   if (!fullMarkdown) return null;
   return (
     <>
-      <div className='flex flex-row gap-2 text-slate-600 dark:text-slate-300 text-h5 max-sm:text-[1rem]  items-center'>
+      <div className='flex flex-row gap-2 text-slate-600 dark:text-slate-300 text-h5 max-sm:text-[1rem] items-center'>
         <Image
           src={'/icons/toc-menu.svg'}
           height={'15'}
