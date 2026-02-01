@@ -153,12 +153,12 @@ export default function ToolingPage({
         </div>
 
         {/* FIX 1: mx → px, and overflow-x-hidden */}
-        <div className='grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'>
+        <div className='w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'>
           <div
             className={`
               lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
               mt-0 lg:mt-20
-              w-screen lg:w-auto
+              w-full lg:w-auto
               bg-white dark:bg-slate-800 lg:bg-transparent
               transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out
               z-5
