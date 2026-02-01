@@ -23,13 +23,14 @@ export function TableOfContentMarkdown({
     const offset = 180;
     const computeActive = () => {
       const sections = Array.from(
-        document.querySelectorAll('h1, h2, h3, h4, h5, h6'),
+        document.querySelectorAll('[data-test="headline"]'),
       );
       if (sections.length === 0) {
         setActiveSection(null);
         return;
       }
-      let candidate: string | null = null;
+      const hash = window.location.hash ? window.location.hash.slice(1) : null;
+      let candidate: string | null = hash || null;
       for (let i = 0; i < sections.length; i++) {
         const s = sections[i] as HTMLElement;
         const r = s.getBoundingClientRect();
