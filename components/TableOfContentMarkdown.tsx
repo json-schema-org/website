@@ -20,31 +20,47 @@ export function TableOfContentMarkdown({
   const [activeSection, setActiveSection] = useState<string | null>(null);
   useEffect(() => {
     let ticking = false;
-    const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const sections = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
-          let newActiveSection = null;
-
-          sections.forEach((section) => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < 150 && section.id) {
-              newActiveSection = section.id;
-            }
-          });
-
-          setActiveSection(newActiveSection);
-          ticking = false;
-        });
-        ticking = true;
+    const offset = 180;
+    const computeActive = () => {
+      const sections = Array.from(
+        document.querySelectorAll('h1, h2, h3, h4, h5, h6'),
+      );
+      if (sections.length === 0) {
+        setActiveSection(null);
+        return;
       }
+      let candidate: string | null = null;
+      for (let i = 0; i < sections.length; i++) {
+        const s = sections[i] as HTMLElement;
+        const r = s.getBoundingClientRect();
+        if (r.top <= offset && s.id) {
+          candidate = s.id;
+        } else if (r.top > offset) {
+          break;
+        }
+      }
+      if (!candidate) {
+        const first = sections[0] as HTMLElement;
+        candidate = first.id || null;
+      }
+      setActiveSection(candidate);
     };
-
-    window.addEventListener('scroll', handleScroll);
-    handleScroll();
-
+    const onScrollOrResize = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        computeActive();
+        ticking = false;
+      });
+    };
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize);
+    window.addEventListener('hashchange', onScrollOrResize);
+    computeActive();
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onScrollOrResize);
+      window.removeEventListener('resize', onScrollOrResize);
+      window.removeEventListener('hashchange', onScrollOrResize);
     };
   }, [markdown]);
 
