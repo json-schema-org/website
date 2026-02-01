@@ -115,7 +115,7 @@ const ToolingTable = ({
           {group !== 'none' && (
             <div
               id={group.toLowerCase().replace(/\s+/g, '-')}
-              className='mb-10 px-4 w-full bg-gray-100 dark:bg-slate-900 scroll-mt-24'
+              className='mb-10 px-4 w-full bg-gray-100 dark:bg-slate-900'
             >
               <Headline2>{toTitleCase(group, '-')}</Headline2>
             </div>
