@@ -1,7 +1,3 @@
-/* eslint-disable linebreak-style */
-/* eslint-disable react-hooks/rules-of-hooks */
-/* eslint-disable indent */
-/* eslint-disable prettier/prettier */
 import React, { useContext, useEffect, useState } from 'react';
 import Markdown from 'markdown-to-jsx';
 import Image from 'next/image';
@@ -23,53 +19,49 @@ export function TableOfContentMarkdown({
     let ticking = false;
     const offset = 180;
     const computeActive = () => {
-      const sections = Array.from(
-        document.querySelectorAll('[data-test="headline"]'),
+      const sections = document.querySelectorAll<HTMLElement>(
+        '[data-test="headline"]',
       );
-      if (sections.length === 0) {
+      if (!sections.length) {
         setActiveSection(null);
         return;
       }
-      const hash = window.location.hash ? window.location.hash.slice(1) : null;
-      let candidate: string | null = hash || null;
-      for (let i = 0; i < sections.length; i++) {
-        const s = sections[i] as HTMLElement;
-        const r = s.getBoundingClientRect();
-        if (r.top <= offset && s.id) {
-          candidate = s.id;
-        } else if (r.top > offset) {
+
+      const hash = window.location.hash.slice(1) || null;
+      let candidate = hash;
+      for (const section of sections) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= offset && section.id) {
+          candidate = section.id;
+        } else if (rect.top > offset) {
           break;
         }
       }
-      if (!candidate) {
-        const first = sections[0] as HTMLElement;
-        candidate = first.id || null;
+      setActiveSection(candidate || sections[0]?.id || null);
+    };
+    const handleScrollEvent = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(() => {
+          computeActive();
+          ticking = false;
+        });
       }
-      setActiveSection(candidate);
     };
-    const onScrollOrResize = () => {
-      if (ticking) return;
-      ticking = true;
-      window.requestAnimationFrame(() => {
-        computeActive();
-        ticking = false;
-      });
-    };
-    window.addEventListener('scroll', onScrollOrResize, { passive: true });
-    window.addEventListener('resize', onScrollOrResize);
-    window.addEventListener('hashchange', onScrollOrResize);
+
+    window.addEventListener('scroll', handleScrollEvent, { passive: true });
+    window.addEventListener('resize', handleScrollEvent);
+    window.addEventListener('hashchange', handleScrollEvent);
     computeActive();
     return () => {
-      window.removeEventListener('scroll', onScrollOrResize);
-      window.removeEventListener('resize', onScrollOrResize);
-      window.removeEventListener('hashchange', onScrollOrResize);
+      window.removeEventListener('scroll', handleScrollEvent);
+      window.removeEventListener('resize', handleScrollEvent);
+      window.removeEventListener('hashchange', handleScrollEvent);
     };
   }, [markdown]);
 
-  const getSectionClassName = (slug: string, defaultClass: string) => {
-    const isActive = activeSection === slug;
-    return `${defaultClass} ${isActive ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`;
-  };
+  const getSectionClassName = (slug: string, defaultClass: string) =>
+    `${defaultClass} ${activeSection === slug ? 'text-blue-600 dark:text-blue-400 font-semibold' : ''}`;
 
   return (
     <Markdown
@@ -175,7 +167,7 @@ export function TableOfContentMarkdown({
                         href={`#${slug}`}
                         className={getSectionClassName(
                           slug,
-                          'flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem] ',
+                          'flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]',
                         )}
                       >
                         <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
