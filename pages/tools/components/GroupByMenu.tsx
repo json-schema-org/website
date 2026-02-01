@@ -74,7 +74,7 @@ const GroupByMenu = ({
 
   return (
     <div className='my-8 ml-2 flex flex-col gap-4'>
-      <div className='flex items-center gap-2'>
+      <div className='flex flex-wrap items-center gap-2'>
         <div className='flex max-w-full items-center space-x-2 overflow-x-auto p-1'>
           <span className='mr-2 text-sm font-bold text-slate-600 dark:text-slate-300 whitespace-nowrap'>
             GROUP BY:
