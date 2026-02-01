@@ -266,23 +266,34 @@ git commit -m "commit message" --no-verify
 
 ### Run locally using Docker
 
-If you are a Docker lover, you have the option to use it following these instructions.
+If you prefer using Docker, you can build and run the development environment in a container.
 
 #### Prerequisites:
 
 - [Install Docker](https://docs.docker.com/get-docker/)
 
-After cloning repository to your local, perform the following steps from the root of the repository.
-
 #### Steps:
-1. Build the Docker image:
+
+After cloning the repository, navigate to the `website` directory, where the `Dockerfile` is located.
+
+```bash
+cd website
+```
+
+1.  **Build the Docker image:**
+
+    Run the following command to build the Docker image. This will create an image named `json-schema-website`.
+
     ```bash
-      make install
+    docker build -t json-schema-website .
     ```
 
-2. Start the container:
+2.  **Run the Docker container:**
+
+    This command starts the container, mapping port 3000 and mounting your local `website` directory for live code updates.
+
     ```bash
-      make run
+    docker run --rm -p 3000:3000 -v "./:/app" json-schema-website
     ```
 
-Now you're running JSON Schema website in a development mode. Container is mapped with your local copy of the website. Whenever you make changes to the code, the website will refresh and changes visible in `http://localhost:3000`.
+You can now access the website at `http://localhost:3000`. The development server is running in your terminal. To stop it, press `Ctrl+C`.
