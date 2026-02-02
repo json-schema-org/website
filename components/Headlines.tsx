@@ -70,7 +70,6 @@ const Headline = ({
       isActive && 'text-startBlue dark:text-startBlue',
       propAttributes?.className,
     ),
-    'data-test': 'headline',
   };
   const childredWithoutFragment = filterFragment(children);
   return (
@@ -82,6 +81,7 @@ const Headline = ({
           handleHeadingClick();
         }}
         className='cursor-pointer hover:underline text-inherit'
+        data-test='headline'
       >
         {childredWithoutFragment}
       </a>
