@@ -251,9 +251,9 @@ const MainNavigation = () => {
           <button
             onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
             aria-label='Open navigation menu'
-            className='focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md'
+            className='focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md block lg:hidden'
           >
-            <div className='block lg:hidden space-y-2  items-center'>
+            <div className='space-y-2  items-center'>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
