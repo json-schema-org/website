@@ -26,7 +26,6 @@ export function TableOfContentMarkdown({
         setActiveSection(null);
         return;
       }
-
       const hash = window.location.hash.slice(1) || null;
       let candidate = hash;
       for (const section of sections) {
@@ -160,28 +159,28 @@ export function TableOfContentMarkdown({
           h4:
             depth >= 4
               ? {
-                  component: ({ children }) => {
-                    const slug = slugifyMarkdownHeadline(children);
-                    return (
-                      <a
-                        href={`#${slug}`}
-                        className={getSectionClassName(
-                          slug,
-                          'flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]',
-                        )}
-                      >
-                        <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
-                          &mdash;&mdash;&mdash;&mdash;
-                        </span>
-                        <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
-                          &#9679;
-                        </span>
-                        {children}
-                      </a>
-                    );
-                  },
-                }
-              : { component: () => null },
+                component: ({ children }) => {
+                  const slug = slugifyMarkdownHeadline(children);
+                  return (
+                    <a
+                      href={`#${slug}`}
+                      className={getSectionClassName(
+                        slug,
+                        'flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]',
+                      )}
+                    >
+                      <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
+                        &mdash;&mdash;&mdash;&mdash;
+                      </span>
+                      <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
+                        &#9679;
+                      </span>
+                      {children}
+                    </a>
+                  );
+                },
+              }
+            : { component: () => null },
           ...hiddenElements(
             'strong',
             'p',
