@@ -235,6 +235,10 @@ describe('Layout Component', () => {
   });
 
   describe('Mobile Navigation', () => {
+    beforeEach(() => {
+      cy.viewport('iphone-6');
+    });
+
     it('should render hamburger menu on mobile', () => {
       mountLayout();
       cy.get('header').find('.block.lg\\:hidden').should('exist');
