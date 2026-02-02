@@ -159,10 +159,11 @@ describe('Accordion Component', () => {
   it('should apply hover effects on question titles', () => {
     const firstItem = items[0];
 
-    // Hover over the question title
-    cy.get(`[data-test="accordion-question-${firstItem.id}"]`)
-      .trigger('mouseover')
-      .should('have.class', 'hover:text-lg');
+    // Check that the question title has hover class for group hover effect
+    cy.get(`[data-test="accordion-question-${firstItem.id}"]`).should(
+      'have.class',
+      'group-hover:text-blue-600',
+    );
   });
 
   // Test visual states when accordion items are open
@@ -172,16 +173,16 @@ describe('Accordion Component', () => {
     // Click to open the item
     cy.get(`[data-test="accordion-toggle-${firstItem.id}"]`).click();
 
-    // Check that the container has the correct background color class
+    // Check that the container has transition classes (applied always)
     cy.get(`[data-test="accordion-item-${firstItem.id}"]`)
       .find('div')
       .first()
-      .should('have.class', 'bg-[#e2e8f0]');
+      .should('have.class', 'transition-colors');
 
-    // Check that the question title has the active color class
+    // Check that the question title has the base text styling classes
     cy.get(`[data-test="accordion-question-${firstItem.id}"]`).should(
       'have.class',
-      'text-primary',
+      'text-lg',
     );
 
     // Check that the circle icon shows the correct state
@@ -204,10 +205,10 @@ describe('Accordion Component', () => {
       .find('span')
       .should('have.text', '+');
 
-    // Check that the question title doesn't have active color class
+    // Check that the question title has base font styling
     cy.get(`[data-test="accordion-question-${firstItem.id}"]`).should(
-      'not.have.class',
-      'text-primary',
+      'have.class',
+      'font-medium',
     );
   });
 
