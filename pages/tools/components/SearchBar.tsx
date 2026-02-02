@@ -26,6 +26,7 @@ const SearchBar = ({ transform, onQueryChange }: SearchBarProps) => {
         type='text'
         className='dark:border-slate-900 focus:border-blue-300 dark:bg-slate-900'
         placeholder='Search'
+        aria-label='Search tools'
         name='query'
         value={query}
         onChange={changeHandler}

@@ -62,30 +62,29 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export function AlgoliaSearch() {
-  useEffect(() => {
-    const customButton = document.querySelector('.herobtn');
-    const docSearchButton = document.querySelector(
-      '.DocSearch-Button',
-    ) as HTMLButtonElement;
-
-    if (customButton && docSearchButton) {
-      customButton.addEventListener('click', () => {
-        docSearchButton.click();
-      });
-    }
-  }, []);
-
   return (
-    <div className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white bg-primary mx-auto dark:shadow-2xl cursor-pointer'>
-      <div className='flex flex-row justify-center items-center mr-4'>
+    <>
+      <div className='hidden'>
         <DocSearch
           appId={algoliaAppId}
           apiKey={algoliaApiKey}
           indexName='json-schema'
         />
-        Search
       </div>
-    </div>
+      <button
+        className='flex herobtn items-center justify-center font-semibold w-[194px] h-[40px] rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white bg-primary mx-auto dark:shadow-2xl cursor-pointer'
+        onClick={() => {
+          const docSearchButton = document.querySelector(
+            '.DocSearch-Button',
+          ) as HTMLButtonElement;
+          if (docSearchButton) docSearchButton.click();
+        }}
+      >
+        <div className='flex flex-row justify-center items-center mr-4'>
+          Search
+        </div>
+      </button>
+    </>
   );
 }
 const Home = (props: any) => {

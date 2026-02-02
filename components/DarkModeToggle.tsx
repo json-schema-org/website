@@ -13,17 +13,21 @@ function ListItem({
   'data-test'?: string;
 }) {
   return (
-    <div
+    <button
       onClick={onClick}
-      className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-md transition duration-150 flex row gap-2 w-full text-sm'
+      className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-md transition duration-150 flex row gap-2 w-full text-sm text-left items-center focus:outline-none focus:ring-2 focus:ring-blue-400'
       data-test={dataTest}
     >
       {children}
-    </div>
+    </button>
   );
 }
 
-export default function DarkModeToggle() {
+export default function DarkModeToggle({
+  onToggle,
+}: {
+  onToggle?: () => void;
+}) {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -72,7 +76,10 @@ export default function DarkModeToggle() {
       className='relative w-10 h-10 dark-mode-toggle-container'
     >
       <button
-        onClick={() => setShowSelect(!showSelect)}
+        onClick={() => {
+          setShowSelect(!showSelect);
+          if (onToggle) onToggle();
+        }}
         className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
         data-test='dark-mode-toggle'
       >

@@ -238,31 +238,35 @@ const MainNavigation = () => {
 
       <div className='flex items-center max-sm:ml-4 mr-8 gap-6 md:gap-4 dark:bg-slate-800'>
         <div
-          className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 focus:bg-gray-100 focus:outline-none transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          }}
+          className={`rounded-md dark:hover:bg-gray-700 hover:bg-gray-100 transition duration-150  md:block border-gray-100 ml-0  ${icon}`}
         >
           <Search />
         </div>
-        <div onClick={() => useStore.setState({ overlayNavigation: null })}>
-          <DarkModeToggle />
+        <div>
+          <DarkModeToggle
+            onToggle={() => useStore.setState({ overlayNavigation: null })}
+          />
         </div>
         {showMobileNav === false ? (
-          <div onClick={() => useStore.setState({ overlayNavigation: 'docs' })}>
+          <button
+            onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
+            aria-label='Open navigation menu'
+            className='focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md'
+          >
             <div className='block lg:hidden space-y-2  items-center'>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
             </div>
-          </div>
+          </button>
         ) : (
-          <div
+          <button
             style={{
               backgroundImage: closeMenu,
             }}
-            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
+            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-400 rounded-md'
             onClick={() => useStore.setState({ overlayNavigation: null })}
+            aria-label='Close navigation menu'
           />
         )}
       </div>

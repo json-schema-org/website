@@ -67,51 +67,45 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
               className='w-full'
               data-test={`accordion-toggle-${item.id}`}
             >
-              <div className='flex items-center justify-between w-full p-4 text-left hover:bg-muted/50 transition-colors rounded-lg'>
-                <div className='flex-1'>
-                  <a
-                    href={`#${item.id}`}
-                    onClick={(e) => {
-                      const isCurrentlyOpen = openItems.has(item.id);
-                      if (isCurrentlyOpen) {
-                        // If open, just close it without navigation
-                        e.preventDefault();
-                        handleToggle(item.id);
-                      } else {
-                        // If closed, open it and scroll to a position a few pixels higher
-                        e.preventDefault();
-                        handleToggle(item.id);
-                        setTimeout(() => {
-                          const element = document.getElementById(`${item.id}`);
-                          if (element) {
-                            const navbarHeight = 150;
-                            const offset =
-                              element.offsetTop - navbarHeight - 20; // 20px higher
-                            window.scrollTo({
-                              top: offset,
-                              behavior: 'smooth',
-                            });
-                          }
-                        }, 100);
+              <button
+                type='button'
+                className='flex items-center justify-between w-full p-4 text-left hover:bg-muted/50 transition-colors rounded-lg group'
+                onClick={() => {
+                  const isCurrentlyOpen = openItems.has(item.id);
+                  if (!isCurrentlyOpen) {
+                    setTimeout(() => {
+                      const element = document.getElementById(`${item.id}`);
+                      if (element) {
+                        const navbarHeight = 150;
+                        const offset = element.offsetTop - navbarHeight - 20;
+                        window.scrollTo({
+                          top: offset,
+                          behavior: 'smooth',
+                        });
                       }
-                    }}
+                    }, 100);
+                  }
+                }}
+              >
+                <div className='flex-1'>
+                  <span
                     className={cn(
-                      'text-lg font-medium text-foreground transition-all duration-200 dark:hover:text-[#bfdbfe] hover:text-lg hover:text-blue-600',
+                      'text-lg font-medium text-foreground transition-all duration-200 dark:hover:text-[#bfdbfe] group-hover:text-blue-600',
                       openItems.has(item.id) &&
                         'text-primary dark:text-[#bfdbfe]',
                     )}
                     data-test={`accordion-question-${item.id}`}
                   >
                     {item.question}
-                  </a>
+                  </span>
                 </div>
                 <div className='ml-4 flex-shrink-0'>
                   <div
                     className={cn(
-                      'w-6 h-6 rounded-full border-2 border-border flex items-center justify-center transition-all duration-200 cursor-pointer',
+                      'w-6 h-6 rounded-full border-2 border-border flex items-center justify-center transition-all duration-200',
                       openItems.has(item.id)
                         ? 'border-primary bg-primary text-white rotate-45 dark:bg-[#bfdbfe] dark:text-black dark:border-[#bfdbfe]'
-                        : 'hover:border-primary/50',
+                        : 'group-hover:border-primary/50',
                     )}
                   >
                     <span className='text-sm font-bold leading-none'>
@@ -119,7 +113,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
                     </span>
                   </div>
                 </div>
-              </div>
+              </button>
             </CollapsibleTrigger>
 
             <CollapsibleContent

@@ -66,17 +66,25 @@ const Headline = ({
     ...propAttributes,
     id: propAttributes?.slug || slug,
     className: cn(
-      'group cursor-pointer hover:underline',
+      'group',
       isActive && 'text-startBlue dark:text-startBlue',
       propAttributes?.className,
     ),
-    onClick: handleHeadingClick,
     'data-test': 'headline',
   };
   const childredWithoutFragment = filterFragment(children);
   return (
     <Tag attributes={attributes}>
-      {childredWithoutFragment}
+      <a
+        href={`#${slug}`}
+        onClick={(e) => {
+          e.preventDefault();
+          handleHeadingClick();
+        }}
+        className='cursor-pointer hover:underline text-inherit'
+      >
+        {childredWithoutFragment}
+      </a>
       {isActive && (
         <span className={'text-startBlue inline-block ml-2'}>¶</span>
       )}

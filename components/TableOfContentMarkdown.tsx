@@ -70,7 +70,7 @@ export function TableOfContentMarkdown({
                           href={`#${slug}`}
                           className={`block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ] max-sm:-ml-[6px] font-medium ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`}
                         >
-                          <span className='mr-1 text-blue-400 text-[0.7em]'>
+                          <span className='mr-1 text-blue-400 text-[0.7em]' aria-hidden='true'>
                             &#9679;
                           </span>
                           {children}
@@ -89,10 +89,16 @@ export function TableOfContentMarkdown({
                         href={`#${slug}`}
                         className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]'
                       >
-                        <span className='text-blue-400/40 font-extrabold text-[0.8em] max-sm:text-[1.2em] ml-1'>
+                        <span
+                          className='text-blue-400/40 font-extrabold text-[0.8em] max-sm:text-[1.2em] ml-1'
+                          aria-hidden='true'
+                        >
                           &mdash;&mdash;
                         </span>
-                        <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
+                        <span
+                          className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'
+                          aria-hidden='true'
+                        >
                           &#9679;
                         </span>
 
@@ -112,10 +118,16 @@ export function TableOfContentMarkdown({
                         href={`#${slug}`}
                         className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem] '
                       >
-                        <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
+                        <span
+                        className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'
+                        aria-hidden='true'
+                      >
                           &mdash;&mdash;&mdash;&mdash;
                         </span>
-                        <span className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'>
+                        <span
+                        className='mr-1 text-blue-400/90 text-[0.7em] flex justify-center items-center'
+                        aria-hidden='true'
+                      >
                           &#9679;
                         </span>
 

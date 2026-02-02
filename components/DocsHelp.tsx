@@ -194,17 +194,17 @@ export function DocsHelp({
                     ({ id, value, label, className, icon }) => (
                       <React.Fragment key={id}>
                         <input
-                          className={`hidden peer/${id.includes('yes') ? 'feedback-survey-yes' : 'feedback-survey-no'}`}
+                          className={`sr-only peer/${id.includes('yes') ? 'feedback-survey-yes' : 'feedback-survey-no'}`}
                           type='radio'
                           name='feedback-vote'
                           id={id}
                           aria-label={id.includes('yes') ? 'yes' : 'no'}
                           value={value}
+                          onChange={() => setIsFormOpen(true)}
                         />
                         <label
                           className={`px-[16px] py-[8px] cursor-pointer border-solid border-[#aaaaaa] border rounded-md hover:bg-gray-200 dark:hover:bg-gray-600 ${className}`}
                           htmlFor={id}
-                          onClick={() => setIsFormOpen(true)}
                           data-test={label}
                         >
                           <svg

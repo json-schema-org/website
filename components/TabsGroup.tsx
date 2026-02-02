@@ -25,15 +25,23 @@ export const TabsGroup = ({
             {groupLabel}:
           </div>
         )}
-        <div className='flex flex-row overflow-x-auto w-full sm:w-auto'>
+        <div
+          className='flex flex-row overflow-x-auto w-full sm:w-auto'
+          role='tablist'
+          aria-label={groupLabel || 'Tabs'}
+        >
           {tabs.map((tab, index) => {
             const isActive = index === activeTabIndex;
             return (
-              <div
+              <button
                 key={index}
+                role='tab'
+                aria-selected={isActive}
+                aria-controls={`tabpanel-${index}`}
+                id={`tab-${index}`}
                 onClick={() => setActiveTabIndex(index)}
                 className={classnames(
-                  'p-2 sm:p-4 px-3 sm:px-6 text-slate-700 font-medium border-b-2 rounded-t-lg whitespace-nowrap text-sm sm:text-base',
+                  'p-2 sm:p-4 px-3 sm:px-6 text-slate-700 font-medium border-b-2 rounded-t-lg whitespace-nowrap text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-blue-400',
                   {
                     'border-blue-400 text-blue-500 bg-blue-50 dark:bg-slate-900 dark:text-white':
                       isActive,
@@ -43,12 +51,17 @@ export const TabsGroup = ({
                 )}
               >
                 {tab.label}
-              </div>
+              </button>
             );
           })}
         </div>
       </div>
-      <div className='border-slate-100 mb-4 p-3 sm:p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-700/50 dark:to-slate-900/50'>
+      <div
+        className='border-slate-100 mb-4 p-3 sm:p-6 from-slate-50/50 to-slate-50/100 rounded-xl bg-gradient-to-b dark:from-slate-700/50 dark:to-slate-900/50'
+        role='tabpanel'
+        id={`tabpanel-${activeTabIndex}`}
+        aria-labelledby={`tab-${activeTabIndex}`}
+      >
         <StyledMarkdownBlock markdown={activeTab.markdown} />
       </div>
     </div>
