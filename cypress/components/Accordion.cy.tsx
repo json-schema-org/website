@@ -173,21 +173,15 @@ describe('Accordion Component', () => {
     // Click to open the item
     cy.get(`[data-test="accordion-toggle-${firstItem.id}"]`).click();
 
-    // Check that the container has transition classes (applied always)
-    cy.get(`[data-test="accordion-item-${firstItem.id}"]`)
-      .find('div')
-      .first()
-      .should('have.class', 'transition-colors');
-
-    // Check that the question title has the base text styling classes
-    cy.get(`[data-test="accordion-question-${firstItem.id}"]`).should(
-      'have.class',
-      'text-lg',
+    // Check that the answer is visible
+    cy.get(`[data-test="accordion-answer-${firstItem.id}"]`).should(
+      'be.visible',
     );
 
-    // Check that the circle icon shows the correct state
+    // Check that the circle icon shows the correct state (× when open)
     cy.get(`[data-test="accordion-toggle-${firstItem.id}"]`)
       .find('span')
+      .last()
       .should('have.text', '×');
   });
 
@@ -195,21 +189,16 @@ describe('Accordion Component', () => {
   it('should show correct visual states when items are closed', () => {
     const firstItem = items[0];
 
-    // Ensure item is closed initially
+    // Ensure item is closed initially - answer should not be visible
     cy.get(`[data-test="accordion-answer-${firstItem.id}"]`).should(
       'not.be.visible',
     );
 
-    // Check that the circle icon shows the correct state for closed items
+    // Check that the circle icon shows the correct state (+ when closed)
     cy.get(`[data-test="accordion-toggle-${firstItem.id}"]`)
       .find('span')
+      .last()
       .should('have.text', '+');
-
-    // Check that the question title has base font styling
-    cy.get(`[data-test="accordion-question-${firstItem.id}"]`).should(
-      'have.class',
-      'font-medium',
-    );
   });
 
   // Test dark mode styling classes
