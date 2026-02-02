@@ -1,4 +1,3 @@
-
 import React from 'react';
 import StyledMarkdown from '../../components/StyledMarkdown';
 
@@ -38,7 +37,7 @@ Footer
   });
 
   it('should handle null/empty markdown', () => {
-    cy.mount(<StyledMarkdown markdown="" />);
+    cy.mount(<StyledMarkdown markdown='' />);
     cy.get('div').should('not.exist'); // Or checks that nothing renders
   });
 });

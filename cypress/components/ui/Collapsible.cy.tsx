@@ -1,5 +1,9 @@
 import React from 'react';
-import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '../../../components/ui/collapsible';
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from '../../../components/ui/collapsible';
 
 describe('Collapsible Component', () => {
   it('should render and toggle content', () => {
@@ -14,13 +18,13 @@ describe('Collapsible Component', () => {
     };
 
     cy.mount(<TestComponent />);
-    
+
     cy.contains('Toggle').should('exist');
     cy.contains('Content').should('not.exist'); // Initially closed
-    
+
     cy.contains('Toggle').click();
     cy.contains('Content').should('exist'); // Open
-    
+
     cy.contains('Toggle').click();
     cy.contains('Content').should('not.exist'); // Closed
   });

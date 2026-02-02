@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { TableOfContentMarkdown } from '../../components/TableOfContentMarkdown';
 import { FullMarkdownContext } from '../../context';
@@ -15,7 +14,7 @@ describe('TableOfContentMarkdown Component', () => {
     cy.mount(
       <FullMarkdownContext.Provider value={markdown}>
         <TableOfContentMarkdown markdown={markdown} />
-      </FullMarkdownContext.Provider>
+      </FullMarkdownContext.Provider>,
     );
 
     cy.contains('Heading 1').should('exist');
@@ -26,7 +25,7 @@ describe('TableOfContentMarkdown Component', () => {
     cy.mount(
       <FullMarkdownContext.Provider value={markdown}>
         <TableOfContentMarkdown markdown={markdown} depth={3} />
-      </FullMarkdownContext.Provider>
+      </FullMarkdownContext.Provider>,
     );
 
     cy.contains('Heading 3').should('exist');
@@ -36,7 +35,7 @@ describe('TableOfContentMarkdown Component', () => {
     cy.mount(
       <FullMarkdownContext.Provider value={markdown}>
         <TableOfContentMarkdown markdown={markdown} />
-      </FullMarkdownContext.Provider>
+      </FullMarkdownContext.Provider>,
     );
 
     cy.contains('a', 'Heading 1').should('have.attr', 'href', '#heading-1');
@@ -46,19 +45,20 @@ describe('TableOfContentMarkdown Component', () => {
     // Mock userAgent to be Chrome
     cy.window().then((win) => {
       Object.defineProperty(win.navigator, 'userAgent', {
-        value: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
-        configurable: true
+        value:
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36',
+        configurable: true,
       });
       Object.defineProperty(win.navigator, 'vendor', {
         value: 'Google Inc.',
-        configurable: true
+        configurable: true,
       });
     });
 
     cy.mount(
       <FullMarkdownContext.Provider value={markdown}>
         <TableOfContentMarkdown markdown={markdown} depth={2} />
-      </FullMarkdownContext.Provider>
+      </FullMarkdownContext.Provider>,
     );
 
     // We can't easily check the exact class applied by state change without waiting or checking implementation details
