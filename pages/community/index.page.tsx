@@ -83,17 +83,14 @@ export default function communityPages(props: any) {
                 </h2>
               </div>
               <div className='mt-8'>
-                <button
+                <Link
+                  href='https://github.com/orgs/json-schema-org/discussions'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
-                  onClick={() =>
-                    window.open(
-                      'https://github.com/orgs/json-schema-org/discussions',
-                      '_self',
-                    )
-                  }
                 >
                   Join Discussions
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -166,6 +163,7 @@ export default function communityPages(props: any) {
                 >
                   <Link
                     href='/ambassadors'
+                    target='_blank'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
@@ -192,7 +190,8 @@ export default function communityPages(props: any) {
                 </h2>
                 <div className='mt-10'>
                   <Link
-                    href='/slack'
+                    href='https://json-schema.org/slack'
+                    target='_blank'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
@@ -225,6 +224,7 @@ export default function communityPages(props: any) {
                   <div className='mt-10 flex justify-center'>
                     <a
                       href='https://github.com/orgs/json-schema-org/discussions/35'
+                      target='_blank'
                       rel='noopener noreferrer'
                       className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                     >
@@ -234,6 +234,7 @@ export default function communityPages(props: any) {
                   <div className='mt-4 flex justify-center'>
                     <a
                       href='https://github.com/orgs/json-schema-org/discussions/34/'
+                      target='_blank'
                       rel='noopener noreferrer'
                       className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                     >
@@ -299,6 +300,7 @@ export default function communityPages(props: any) {
                   </h2>
                   <div className='mt-10'>
                     <Link
+                      target='_blank'
                       href='/blog'
                       rel='noopener noreferrer'
                       className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
@@ -311,7 +313,7 @@ export default function communityPages(props: any) {
             </div>
             <div className='p-10 flex justify-between w-full md:w-3/6 h-auto flex-col text-center md:text-left '>
               <div className='w-full mb-6 '>
-                <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+                <Link href={`/blog/posts/${blogPosts[0].slug}`} target='_blank'>
                   <Image
                     src={blogPosts[0].frontmatter.cover}
                     className='w-full h-[232px]  mb-4'
@@ -379,6 +381,7 @@ export default function communityPages(props: any) {
                   <Link
                     href='/blog'
                     rel='noopener noreferrer'
+                    target='_blank'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
                   >
                     Read more posts
