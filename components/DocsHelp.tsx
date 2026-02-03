@@ -86,8 +86,17 @@ export function DocsHelp({
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
     const formData = new FormData(feedbackFormRef.current!);
+    const feedbackComment = formData.get('feedback-comment')?.toString().trim();
+
+    // Validate that feedback comment is not empty
+    if (!feedbackComment) {
+      setError('Feedback comment cannot be empty.');
+      return;
+    }
+
     formData.append('feedback-page', router.asPath);
     setIsSubmitting(true);
+    setError(''); // Clear any previous error
 
     try {
       const response = await fetch(
@@ -118,10 +127,19 @@ export function DocsHelp({
 
   const createGitHubIssueHandler = () => {
     const formData = new FormData(feedbackFormRef.current!);
+    const feedbackComment = formData.get('feedback-comment')?.toString().trim();
+
+    // Validate that feedback comment is not empty
+    if (!feedbackComment) {
+      setError('Feedback comment cannot be empty.');
+      return;
+    }
+
     setIsSubmitting(true);
+    setError(''); // Clear any previous error
     try {
       const title = encodeURIComponent('Feedback on Documentation');
-      const body = encodeURIComponent(`${formData.get('feedback-comment')}`);
+      const body = encodeURIComponent(feedbackComment);
       const url = `https://github.com/json-schema-org/website/issues/new?title=${title}&body=${body}`;
       window.open(url, '_blank');
       submitFeedbackHandler('github_issue');
@@ -236,8 +254,8 @@ export function DocsHelp({
                           <span className='font-bold text-[14px] block'>
                             Let us know your Feedback
                           </span>
-                          <span className='float-right text-[#7d8590] text-[14px] block'>
-                            Optional
+                          <span className='float-right text-[#da3633] text-[14px] block'>
+                            Required
                           </span>
                         </label>
                       </p>
