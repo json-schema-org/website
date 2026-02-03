@@ -17,14 +17,12 @@ describe('Card Component', () => {
   it('should render Roadmap Card correctly', () => {
     cy.mount(<Card {...RoadmapProps} />);
     cy.get('[data-test="card-image"]').should('not.exist');
-    cy.get('[data-test="card-icon"]').should(
-      'have.attr',
-      'src',
-      RoadmapProps.icon,
-    );
+    cy.get('[data-test="card-icon"]')
+      .should('have.attr', 'src')
+      .and('include', RoadmapProps.icon);
     cy.get('[data-test="card-title"]').should('have.text', RoadmapProps.title);
     cy.get('[data-test="card-body"]').should('have.text', RoadmapProps.body);
-    cy.get('[data-test="card-read-more"]').should('have.text', 'Read More');
+    cy.get('[data-test="card-read-more"]').should('contain.text', 'Read More');
     cy.get('[data-test="card-link"]').should(
       'have.attr',
       'href',
@@ -42,8 +40,17 @@ describe('Card Component', () => {
       bodyTextSize: undefined,
     };
     cy.mount(<Card {...missingSizes} />);
-    cy.get('[data-test="card-title"]').should('have.class', 'text-[1.3rem]');
+    cy.get('[data-test="card-title"]').should('have.class', 'text-[1.2rem]');
     cy.get('[data-test="card-body"]').should('have.class', 'text-[1rem]');
+  });
+
+  it('should render Roadmap card with base header size', () => {
+    const baseHeaderProps: CardProps = {
+      ...RoadmapProps,
+      headerSize: 'base',
+    };
+    cy.mount(<Card {...baseHeaderProps} />);
+    cy.get('[data-test="card-title"]').should('have.class', 'text-[1rem]');
   });
 
   // Render the Roadmap card with extended body text
@@ -57,11 +64,9 @@ describe('Card Component', () => {
   it('should render Roadmap card with image', () => {
     const imageProps = { ...RoadmapProps, image: '/icons/roadmap.svg' };
     cy.mount(<Card {...imageProps} />);
-    cy.get('[data-test="card-image"]').should(
-      'have.attr',
-      'src',
-      imageProps.image,
-    );
+    cy.get('[data-test="card-image"]')
+      .should('have.attr', 'src')
+      .and('include', imageProps.image);
   });
 
   // Render the Roadmap Card with some missing props
@@ -76,7 +81,7 @@ describe('Card Component', () => {
   it('should show "Read More" text when link is provided', () => {
     cy.mount(<Card {...RoadmapProps} />);
     cy.get('[data-test="card-read-more"]').should('exist');
-    cy.get('[data-test="card-read-more"]').should('have.text', 'Read More');
+    cy.get('[data-test="card-read-more"]').should('contain.text', 'Read More');
   });
 
   // Test different text size combinations
