@@ -24,7 +24,7 @@ const SearchBar = ({ transform, onQueryChange }: SearchBarProps) => {
     <div className='w-full max-w-md mx-auto my-6 lg:my-auto'>
       <Input
         type='text'
-        className='dark:border-slate-900 focus:border-blue-300 dark:bg-slate-900'
+        className='border-slate-300 dark:border-slate-700 focus:border-blue-300 dark:bg-slate-800'
         placeholder='Search'
         name='query'
         value={query}

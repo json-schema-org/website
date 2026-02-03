@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import fs from 'fs';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -104,6 +104,13 @@ export default function ToolingPage({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const scrollToTop = () => {
+    if (sidebarRef.current) {
+      sidebarRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 1024);
@@ -129,7 +136,7 @@ export default function ToolingPage({
 
       <div className='mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center'>
         <div
-          className='bg-primary w-full h-12 mt-[4.5rem] relative lg:hidden px-8 flex justify-between items-center'
+          className='bg-primary w-full h-12 mt-[4.5rem] relative lg:hidden px-8 flex justify-between items-center z-20'
           onClick={() => setIsSidebarOpen((prev) => !prev)}
         >
           <h3 className='text-white'>{numberOfTools} Tools</h3>
@@ -152,39 +159,39 @@ export default function ToolingPage({
           </svg>
         </div>
 
-        {/* FIX 1: mx → px, and overflow-x-hidden */}
-        <div className='w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'>
+        <div className='w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen'>
           <div
             className={`
-              lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
+              fixed lg:sticky top-0 lg:top-0 left-0 lg:left-auto
               mt-0 lg:mt-20
-              w-full max-w-full lg:w-auto overflow-x-hidden
+              h-full w-full max-w-full lg:w-auto overflow-x-hidden
               bg-white dark:bg-slate-800 lg:bg-transparent
               transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out
               z-5
-              ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}
-              ${isMobile && isSidebarOpen ? 'overflow-hidden' : 'overflow-y-auto lg:overflow-y-hidden'}
+              ${isSidebarOpen && isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}
+              ${isMobile ? 'overflow-y-auto' : 'overflow-y-clip'}    
             `}
             style={{
               height: isMobile
                 ? isSidebarOpen
                   ? 'calc(100vh - 4.5rem)'
                   : '0'
-                : 'calc(100vh - 4.5rem)',
-              maxHeight: 'calc(100vh - 4.5rem)',
+                : 'calc(100vh - 6rem)',
+              maxHeight: 'calc(100vh - 6rem)',
               bottom: 0,
-              scrollbarWidth: 'none',
-              position: 'sticky',
               top: '4.5rem',
             }}
           >
-            <div className='h-full flex flex-col'>
-              <div className='flex-1 overflow-y-auto scrollbar-hidden min-h-0 px-2 lg:px-0 pb-2'>
-                <div className='hidden lg:block pt-8'>
+            <div className='h-full flex flex-col mt-6 max-lg:mt-20'>
+              <div
+                ref={sidebarRef}
+                className='w-[90%] max-md:w-[85%] mx-auto flex-1 bg-slate-100 dark:bg-slate-900 overflow-y-auto scrollbar-hidden min-h-0 pb-6 md:pb-20 max-sm:pb-24 lg:px-0'
+              >
+                <div className='hidden lg:block pt-2'>
                   <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4'>
                     {numberOfTools}
                   </h1>
-                  <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6 mb-4'>
+                  <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-5'>
                     Tools
                   </div>
                 </div>
@@ -195,6 +202,7 @@ export default function ToolingPage({
                   setTransform={setTransform}
                   resetTransform={resetTransform}
                   setIsSidebarOpen={setIsSidebarOpen}
+                  scrollToTop={scrollToTop}
                 />
               </div>
             </div>
