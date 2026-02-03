@@ -98,4 +98,67 @@ describe('DropdownMenu Component', () => {
     cy.get('button').click();
     cy.get('[data-testid="test-content"]').should('be.visible');
   });
+
+  it('persists state to localStorage when id is provided', () => {
+    const testId = 'test-dropdown-id';
+
+    // Clear storage before test
+    window.localStorage.clear();
+
+    // Spy on localStorage
+    cy.spy(window.localStorage, 'setItem').as('setItem');
+    cy.spy(window.localStorage, 'getItem').as('getItem');
+
+    // 1. Mount and open
+    cy.mount(
+      <DropdownMenu
+        label='Persist Test'
+        icon={mockIcon}
+        id={testId}
+        testMode={true}
+      >
+        {mockChildren}
+      </DropdownMenu>,
+    );
+
+    // Initially closed
+    cy.get('[data-testid="test-content"]').should('not.exist');
+
+    // Open it
+    cy.get('button').click();
+    cy.get('[data-testid="test-content"]').should('be.visible');
+
+    // Verify setItem was called
+    cy.get('@setItem').should(
+      'have.been.calledWith',
+      `sidebar_open_${testId}`,
+      'true',
+    );
+
+    // 2. Remount (simulate page reload)
+    cy.mount(
+      <DropdownMenu
+        label='Persist Test'
+        icon={mockIcon}
+        id={testId}
+        testMode={true}
+      >
+        {mockChildren}
+      </DropdownMenu>,
+    );
+
+    // Verify getItem was called
+    cy.get('@getItem').should('have.been.calledWith', `sidebar_open_${testId}`);
+
+    // Should be open immediately because of localStorage
+    cy.get('[data-testid="test-content"]').should('be.visible');
+
+    // 3. Close it
+    cy.get('button').click();
+    cy.get('@setItem').should(
+      'have.been.calledWith',
+      `sidebar_open_${testId}`,
+      'false',
+    );
+  });
 });

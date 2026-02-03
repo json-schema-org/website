@@ -129,6 +129,7 @@ export default function Sidebar({
               label={label}
               icon={<IconComponent />}
               count={checkedValues.length}
+              id={accessorKey}
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)

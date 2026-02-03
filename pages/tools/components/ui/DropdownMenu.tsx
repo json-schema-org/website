@@ -1,12 +1,12 @@
 /* eslint-disable linebreak-style */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable linebreak-style */
-import { useRouter } from 'next/router';
 import React, {
   type ReactElement,
   type ReactNode,
   useEffect,
   useState,
+  useRef,
 } from 'react';
 import {
   Collapsible,
@@ -20,6 +20,7 @@ interface DropdownMenuProps {
   icon: ReactElement;
   count?: number;
   testMode?: boolean;
+  id?: string;
 }
 
 export default function DropdownMenu({
@@ -27,14 +28,27 @@ export default function DropdownMenu({
   label,
   icon,
   count = 0,
+  id,
 }: DropdownMenuProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const router = useRouter();
-
+  const isFirstRun = useRef(true);
   useEffect(() => {
-    setIsDropdownOpen(false);
-  }, [router]);
-
+    if (id) {
+      const storedState = localStorage.getItem(`sidebar_open_${id}`);
+      if (storedState) {
+        setIsDropdownOpen(storedState === 'true');
+      }
+    }
+  }, [id]);
+  useEffect(() => {
+    if (id) {
+      if (isFirstRun.current) {
+        isFirstRun.current = false;
+        return;
+      }
+      localStorage.setItem(`sidebar_open_${id}`, String(isDropdownOpen));
+    }
+  }, [id, isDropdownOpen]);
   return (
     <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer transition-all duration-200 group'>
       <Collapsible open={isDropdownOpen} onOpenChange={setIsDropdownOpen}>
