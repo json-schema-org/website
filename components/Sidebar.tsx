@@ -217,13 +217,15 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
         <div className='bg-primary dark:bg-slate-900 w-full h-12 mt-[4.5rem] z-150 flex relative flex-col justify-center items-center lg:hidden'>
-          <div
+          <button
             className='z-[150] flex w-full bg-primary dark:bg-slate-900 justify-between items-center'
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
               setOpen(!open);
             }}
+            aria-label='Toggle sidebar menu'
+            aria-expanded={open}
           >
             {getDocsPath.includes(pathWtihoutFragment) && (
               <h3 className='text-white ml-12'>Introduction</h3>
@@ -253,6 +255,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               xmlns='http://www.w3.org/2000/svg'
               height='24'
               viewBox='0 0 256 512'
+              aria-hidden='true'
             >
               <path
                 d='M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z'
@@ -260,7 +263,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
                 fill='#ffffff'
               ></path>
             </svg>
-          </div>
+          </button>
         </div>
 
         <div
@@ -356,7 +359,12 @@ export const DocsNav = ({
   }, [resolvedTheme]);
 
   return (
-    <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
+    <nav
+      id='sidebar'
+      role='navigation'
+      aria-label='Documentation sidebar'
+      className='lg:mt-8 w-4/5 mx-auto lg:ml-4'
+    >
       {/* Introduction */}
       <Collapsible
         open={active.getDocs}
@@ -916,7 +924,7 @@ export const DocsNav = ({
           </div>
         </CollapsibleContent>
       </Collapsible>
-    </div>
+    </nav>
   );
 };
 

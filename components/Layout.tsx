@@ -203,7 +203,10 @@ const MainNavigation = () => {
   }, [theme, resolvedTheme]);
 
   return (
-    <div className='flex justify-end md:mr-8 w-full '>
+    <nav
+      aria-label='Main navigation'
+      className='flex justify-end md:mr-8 w-full '
+    >
       <MainNavLink
         className='hidden lg:block hover:underline'
         uri='/specification'
@@ -249,20 +252,28 @@ const MainNavigation = () => {
           <DarkModeToggle />
         </div>
         {showMobileNav === false ? (
-          <div onClick={() => useStore.setState({ overlayNavigation: 'docs' })}>
+          <button
+            onClick={() => useStore.setState({ overlayNavigation: 'docs' })}
+            aria-label='Open main menu'
+            aria-expanded={false}
+            aria-controls='mobile-nav'
+          >
             <div className='block lg:hidden space-y-2  items-center'>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
               <div className={`w-6 h-1 ${menu} rounded`}></div>
             </div>
-          </div>
+          </button>
         ) : (
-          <div
+          <button
             style={{
               backgroundImage: closeMenu,
             }}
             className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
             onClick={() => useStore.setState({ overlayNavigation: null })}
+            aria-label='Close main menu'
+            aria-expanded={true}
+            aria-controls='mobile-nav'
           />
         )}
       </div>
@@ -294,7 +305,7 @@ const MainNavigation = () => {
           </a>
         </Button>
       </div>
-    </div>
+    </nav>
   );
 };
 
@@ -302,7 +313,11 @@ const MobileNav = () => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
+    <nav
+      id='mobile-nav'
+      aria-label='Mobile navigation'
+      className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'
+    >
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -325,7 +340,7 @@ const MobileNav = () => {
         label='Community'
         isActive={section === 'community'}
       />
-    </div>
+    </nav>
   );
 };
 
@@ -480,13 +495,13 @@ const Logo = () => {
 
   return (
     <div>
-      <Link href='/' className=''>
+      <Link href='/' className='' aria-label='JSON Schema home'>
         <Image
           src={imageSrc}
           width={170}
           height={48}
           className='mr-2'
-          alt='Dynamic image'
+          alt='JSON Schema Logo'
         />
       </Link>
     </div>

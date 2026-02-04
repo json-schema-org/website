@@ -40,12 +40,15 @@ const CardBody = ({
   };
 
   return (
-    <ShadcnCard className='group relative h-full w-full rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30'>
+    <ShadcnCard
+      className='group relative h-full w-full rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30'
+      aria-label={`Open ${title}`}
+    >
       {image && (
         <div className='flex justify-center '>
           <Image
             src={image}
-            alt={title}
+            alt={`Illustration for ${title}`}
             width={384}
             height={128}
             className='h-32 p-2 object-contain'
@@ -59,7 +62,7 @@ const CardBody = ({
           <span className='mr-6 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg border bg-blue-200 px-3 text-gray-900 dark:text-white'>
             <Image
               src={icon}
-              alt={title}
+              alt=''
               width={56}
               height={56}
               className='h-full w-full'

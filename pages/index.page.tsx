@@ -174,10 +174,10 @@ const Home = (props: any) => {
               Build more. Break less. Empower others.
             </h1>
 
-            <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 dark:text-slate-300'>
+            <p className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 dark:text-slate-300'>
               JSON Schema enables the confident and reliable use of the JSON
               data format.
-            </h2>
+            </p>
 
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
               <Link
@@ -196,7 +196,7 @@ const Home = (props: any) => {
             </div>
 
             <div className='mb-16 md:mb-36  mx-auto w-full md:w-5/6 lg:w-full'>
-              <h3 className='text-white text-xl mb-4'>Used by</h3>
+              <h2 className='text-white text-xl mb-4'>Used by</h2>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
                 {isClient && (
@@ -204,28 +204,28 @@ const Home = (props: any) => {
                     <Image
                       src='/img/logos/usedby/zapier-logo_white.png'
                       className='w-40 mx-auto'
-                      alt='zapier'
+                      alt='Zapier logo'
                       height={40}
                       width={160}
                     />
                     <Image
                       src='/img/logos/usedby/microsoft-white.png'
                       className='w-40 mx-auto'
-                      alt='microsoft'
+                      alt='Microsoft logo'
                       height={40}
                       width={160}
                     />
                     <Image
                       src='/img/logos/usedby/postman-white.png'
                       className='w-40 mx-auto'
-                      alt='postman'
+                      alt='Postman logo'
                       height={40}
                       width={160}
                     />
                     <Image
                       src='/img/logos/usedby/github-white.png'
                       className='w-40 mx-auto'
-                      alt='github'
+                      alt='GitHub logo'
                       height={40}
                       width={160}
                     />
@@ -328,7 +328,7 @@ const Home = (props: any) => {
               <Image
                 src='/img/home-page/community-illustration.svg'
                 className='w-5/6 mx-auto lg:w-[600px] xl:w-[800px]'
-                alt='community'
+                alt='Illustration of JSON Schema ecosystem'
                 height={600}
                 width={800}
               />
@@ -356,9 +356,7 @@ const Home = (props: any) => {
         </section>
 
         {/* Join community */}
-        <h2 className='anchor'>
-          <span id='community'></span>
-        </h2>
+        <div id='community' aria-hidden='true'></div>
         <section className='lg:my-12 max-w-[1400px]'>
           <div className='mb-12 md:w-3/4  mx-auto text-center'>
             <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
@@ -381,7 +379,8 @@ const Home = (props: any) => {
                       <Image
                         src='/img/logos/Slack-mark.svg'
                         className='size-12'
-                        alt='slack'
+                        alt=''
+                        aria-hidden='true'
                         height={32}
                         width={32}
                       />
@@ -393,7 +392,7 @@ const Home = (props: any) => {
                     <Image
                       src='/img/home-page/slack-json-schema.png'
                       className='w-full mb-4'
-                      alt='slack-json-schema'
+                      alt='JSON Schema Slack workspace preview'
                       height={500}
                       width={300}
                     />
@@ -418,7 +417,8 @@ const Home = (props: any) => {
                         className='w-4 h-4 mr-2'
                         width={16}
                         height={16}
-                        alt='slack'
+                        alt=''
+                        aria-hidden='true'
                       />
                     </>
                   )}
@@ -439,7 +439,7 @@ const Home = (props: any) => {
                       className='w-full h-[232px] object-contain mb-4'
                       width={600}
                       height={232}
-                      alt='blog'
+                      alt={`Cover image for ${blogPosts[0].frontmatter.title}`}
                     />
                   </>
                 )}
@@ -635,6 +635,7 @@ const Home = (props: any) => {
               href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
+              aria-label='Become a gold sponsor'
               className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
@@ -643,6 +644,7 @@ const Home = (props: any) => {
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
+                aria-hidden='true'
               >
                 <path
                   strokeLinecap='round'
@@ -651,7 +653,7 @@ const Home = (props: any) => {
                   d='M12 4v16m8-8H4'
                 />
               </svg>
-              <p className='block'>Your logo here</p>
+              <span className='block'>Your logo here</span>
             </Link>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Silver Sponsors
@@ -660,6 +662,7 @@ const Home = (props: any) => {
               href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
               rel='noreferrer'
+              aria-label='Become a silver sponsor'
               className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
@@ -668,6 +671,7 @@ const Home = (props: any) => {
                 fill='none'
                 viewBox='0 0 24 24'
                 stroke='currentColor'
+                aria-hidden='true'
               >
                 <path
                   strokeLinecap='round'
@@ -676,7 +680,7 @@ const Home = (props: any) => {
                   d='M12 4v16m8-8H4'
                 />
               </svg>
-              <p>Your logo here</p>
+              <span>Your logo here</span>
             </Link>
             <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
               Bronze Sponsors
@@ -694,7 +698,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='asyncapi'
+                      alt='AsyncAPI logo'
                     />
                   </>
                 )}
@@ -711,7 +715,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='airbnb'
+                      alt='Airbnb logo'
                     />
                   </>
                 )}
@@ -728,7 +732,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='postman'
+                      alt='Postman logo'
                     />
                   </>
                 )}
@@ -741,7 +745,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='endjin'
+                      alt='Endjin logo'
                     />
                   </>
                 )}
@@ -754,7 +758,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='llc'
+                      alt='LLC.org logo'
                     />
                   </>
                 )}
@@ -771,7 +775,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='vpsserver'
+                      alt='VPS Server logo'
                     />
                   </>
                 )}
@@ -788,7 +792,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='itflashcards'
+                      alt='IT Flashcards logo'
                     />
                   </>
                 )}
@@ -805,7 +809,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='route4me'
+                      alt='Route4Me logo'
                     />
                   </>
                 )}
@@ -818,7 +822,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='n8n'
+                      alt='n8n logo'
                     />
                   </>
                 )}
@@ -831,7 +835,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='ccopter'
+                      alt='Copycopter logo'
                     />
                   </>
                 )}
@@ -840,6 +844,7 @@ const Home = (props: any) => {
                 <img
                   src={logos.octue}
                   className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Octue logo'
                 />
               </a>
               <a
@@ -850,8 +855,7 @@ const Home = (props: any) => {
                 <img
                   src={logos.apideck}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The Realtime Unified API
-for Accounting integrations'
+                  alt='Apideck logo'
                 />
               </a>
               <a
@@ -862,7 +866,7 @@ for Accounting integrations'
                 <img
                   src={logos.rxdb}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The local Database for JavaScript Applications'
+                  alt='RxDB logo'
                 />
               </a>
               <a
@@ -873,7 +877,7 @@ for Accounting integrations'
                 <img
                   src={logos.wda}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='best website design agencies'
+                  alt='WDA logo'
                 />
               </a>
               <a
@@ -884,21 +888,21 @@ for Accounting integrations'
                 <img
                   src={logos.anon}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='Instagram Story Viewer'
+                  alt='Anon Stories logo'
                 />
               </a>
               <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
                 <img
                   src={logos.supadata}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='supadata logo'
+                  alt='Supadata logo'
                 />
               </a>
               <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
                 <img
                   src={logos.dottxt}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='dottxt logo'
+                  alt='Dottxt logo'
                 />
               </a>
               <a
@@ -909,7 +913,7 @@ for Accounting integrations'
                 <img
                   src={logos.sourcemeta}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='dottxt logo'
+                  alt='Sourcemeta logo'
                 />
               </a>
               <a href='https://www.n-ix.com/' target='_blank' rel='noreferrer'>
@@ -959,6 +963,7 @@ for Accounting integrations'
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
+                aria-label='Become a bronze sponsor'
                 className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
               >
                 <svg
@@ -967,6 +972,7 @@ for Accounting integrations'
                   fill='none'
                   viewBox='0 0 24 24'
                   stroke='currentColor'
+                  aria-hidden='true'
                 >
                   <path
                     strokeLinecap='round'
@@ -975,7 +981,7 @@ for Accounting integrations'
                     d='M12 4v16m8-8H4'
                   />
                 </svg>
-                <p className='text-sm md:text-base'>Your logo here</p>
+                <span className='text-sm md:text-base'>Your logo here</span>
               </a>
             </div>
           </div>
@@ -1004,7 +1010,7 @@ for Accounting integrations'
                     className='w-48 md:w-56 transition-transform duration-300 hover:scale-105'
                     width={192}
                     height={224}
-                    alt='dev events'
+                    alt='Dev.events logo'
                   />
                 </>
               )}
@@ -1041,7 +1047,7 @@ for Accounting integrations'
                     className='w-48 md:w-56'
                     width={192}
                     height={224}
-                    alt='n8n'
+                    alt='Common Room logo'
                   />
                 </>
               )}
@@ -1054,7 +1060,7 @@ for Accounting integrations'
                     className=' w-24 md:w-32'
                     width={96}
                     height={128}
-                    alt='slack'
+                    alt='Slack logo'
                   />
                 </>
               )}
