@@ -103,6 +103,7 @@ export default function ToolingPage({
 }: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [visibleToolCount, setVisibleToolCount] = useState<number>(0);
 
   useEffect(() => {
     const handleResize = () => {
@@ -132,7 +133,7 @@ export default function ToolingPage({
           className='bg-primary w-full h-12 mt-[4.5rem] relative lg:hidden px-8 flex justify-between items-center'
           onClick={() => setIsSidebarOpen((prev) => !prev)}
         >
-          <h3 className='text-white'>{numberOfTools} Tools</h3>
+          <h3 className='text-white'>{visibleToolCount} Tools</h3>
 
           <svg
             style={{
@@ -182,7 +183,7 @@ export default function ToolingPage({
               <div className='flex-1 overflow-y-auto scrollbar-hidden min-h-0 px-2 lg:px-0 pb-2'>
                 <div className='hidden lg:block pt-8'>
                   <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4'>
-                    {numberOfTools}
+                    {visibleToolCount}
                   </h1>
                   <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6 mb-4'>
                     Tools
@@ -266,6 +267,7 @@ export default function ToolingPage({
               transform={transform}
               setTransform={setTransform}
               numberOfTools={numberOfTools}
+              onVisibleToolCountChange={setVisibleToolCount}
             />
 
             <DocsHelp />
