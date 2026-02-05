@@ -59,7 +59,7 @@ const GettingStarted = () => {
           setDetails(initialDetails);
         },
       )
-      .catch((e) => console.log('Error: ', e));
+      .catch((e) => console.error('Error: ', e));
   }, []);
 
   const [options, setOptions] = useState<SchemaOption[]>([]);
@@ -119,7 +119,7 @@ const GettingStarted = () => {
         saveAs(content, 'getting-started-examples.zip');
       });
     } catch (e) {
-      console.log('Error zipping files', e);
+      console.error('Error zipping files', e);
     }
   };
 
