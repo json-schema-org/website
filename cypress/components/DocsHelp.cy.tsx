@@ -188,6 +188,54 @@ describe('DocsHelp Component', () => {
       .and('contains', /An error occurred. Please try again later./i);
   });
 
+  // test feedback form shows error when submitting empty comment
+  it('should show error when submitting empty feedback comment', () => {
+    // click on yes button to open feedback form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // leave feedback input empty and click submit
+    cy.get(FEEDBACK_FORM_INPUT).should('be.visible').and('have.value', '');
+    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+  });
+
+  // test feedback form shows error when submitting whitespace-only comment
+  it('should show error when submitting whitespace-only feedback comment', () => {
+    // click on yes button to open feedback form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // type only whitespace and click submit
+    cy.get(FEEDBACK_FORM_INPUT).type('   ');
+    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+  });
+
+  // test create github issue shows error when comment is empty
+  it('should show error when creating github issue with empty comment', () => {
+    // click on yes button to open feedback form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // leave feedback input empty and click create issue
+    cy.get(FEEDBACK_FORM_INPUT).should('be.visible').and('have.value', '');
+    cy.get(CREATE_GITHUB_ISSUE_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+  });
+
   // test create github issue functionality when submitting feedback
   it('should open github issue page', () => {
     // mock window.open function
