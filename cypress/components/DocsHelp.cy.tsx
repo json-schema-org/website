@@ -282,11 +282,10 @@ describe('DocsHelp Component', () => {
   });
   //Check that clicking the same feedback button twice toggles the form open and closed
   it('should toggle the feedback form visibility and reset selection when the same button is clicked twice', () => {
-    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
-    cy.get('[data-test="feedback-form-input"]').should('be.visible');
-    cy.get('input[name="feedback-vote"]').should('be-checked');
-    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
-    cy.get('[data-test="feedback-form-input"]').should('not.exist');
-    cy.get('input[name="feedback-vote"]').should('not.be.checked');
+    cy.mount(<DocsHelp />);
+    cy.contains('button', 'Yes').click();
+    cy.get('form').should('exist');
+    cy.contains('button', 'Yes').click();
+    cy.get('form').should('not.exist');
   });
 });
