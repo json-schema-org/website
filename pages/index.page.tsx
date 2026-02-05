@@ -428,78 +428,75 @@ const Home = (props: any) => {
             </div>
             {/* BlogPost Data */}
             <div className='p-4 w-full mb-6 dark:shadow-2xl'>
-              <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
-                  The JSON Schema Blog
-                </h3>
-                {isClient && (
-                  <>
-                    <Image
-                      src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px] object-contain mb-4'
-                      width={600}
-                      height={232}
-                      alt={`Cover image for ${blogPosts[0].frontmatter.title}`}
-                    />
-                  </>
-                )}
-                <h3 className='mb-4 font-semibold dark:text-slate-300'>
-                  {' '}
-                  {blogPosts[0].frontmatter.title}
-                </h3>
-                <div className='mb-4'>
-                  <TextTruncate
-                    element='span'
-                    line={4}
-                    text={blogPosts[0].frontmatter.excerpt}
+              <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
+                The JSON Schema Blog
+              </h3>
+              {isClient && (
+                <>
+                  <Image
+                    src={blogPosts[0].frontmatter.cover}
+                    className='w-full h-[232px] object-contain mb-4'
+                    width={600}
+                    height={232}
+                    alt={`Cover image for ${blogPosts[0].frontmatter.title}`}
                   />
-                </div>
+                </>
+              )}
+              <h3 className='mb-4 font-semibold dark:text-slate-300'>
+                {' '}
+                {blogPosts[0].frontmatter.title}
+              </h3>
+              <div className='mb-4'>
+                <TextTruncate
+                  element='span'
+                  line={4}
+                  text={blogPosts[0].frontmatter.excerpt}
+                />
+              </div>
+              <div className='flex ml-2 mb-2'>
+                {(blogPosts[0].frontmatter.authors || []).map(
+                  (author: any, index: number) => {
+                    return (
+                      <div
+                        key={index}
+                        className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                        style={{
+                          backgroundImage: `url(${author.photo})`,
+                          zIndex: 10 - index,
+                        }}
+                      />
+                    );
+                  },
+                )}
+                <div className='flex flex-col ml-2'>
+                  <p className='text-sm font-semibold dark:text-slate-300'>
+                    {blogPosts[0].frontmatter.authors.length > 2 ? (
+                      <>
+                        {blogPosts[0].frontmatter.authors
+                          .slice(0, 2)
+                          .map((author: any, index: number) => (
+                            <span key={author.name}>
+                              {author.name}
+                              {index === 0 && ' & '}
+                            </span>
+                          ))}
+                        {'...'}
+                      </>
+                    ) : (
+                      blogPosts[0].frontmatter.authors.map((author: any) => (
+                        <span key={author.name}>{author.name}</span>
+                      ))
+                    )}
+                  </p>
 
-                <div className='flex ml-2 mb-2'>
-                  {(blogPosts[0].frontmatter.authors || []).map(
-                    (author: any, index: number) => {
-                      return (
-                        <div
-                          key={index}
-                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                          style={{
-                            backgroundImage: `url(${author.photo})`,
-                            zIndex: 10 - index,
-                          }}
-                        />
-                      );
-                    },
-                  )}
-                  <div className='flex flex-col ml-2'>
-                    <p className='text-sm font-semibold dark:text-slate-300'>
-                      {blogPosts[0].frontmatter.authors.length > 2 ? (
-                        <>
-                          {blogPosts[0].frontmatter.authors
-                            .slice(0, 2)
-                            .map((author: any, index: number) => (
-                              <span key={author.name}>
-                                {author.name}
-                                {index === 0 && ' & '}
-                              </span>
-                            ))}
-                          {'...'}
-                        </>
-                      ) : (
-                        blogPosts[0].frontmatter.authors.map((author: any) => (
-                          <span key={author.name}>{author.name}</span>
-                        ))
-                      )}
-                    </p>
-
-                    <div className='text-slate-500 text-sm dark:text-slate-300'>
-                      <span>
-                        {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
-                        min read
-                      </span>
-                    </div>
+                  <div className='text-slate-500 text-sm dark:text-slate-300'>
+                    <span>
+                      {blogPosts[0].frontmatter.date} &middot; {timeToRead}
+                      &nbsp;min read
+                    </span>
                   </div>
                 </div>
-              </Link>
+              </div>
 
               <div>
                 <Link

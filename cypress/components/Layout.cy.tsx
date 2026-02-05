@@ -71,7 +71,7 @@ describe('Layout Component', () => {
 
     it('should render the logo', () => {
       mountLayout();
-      cy.get('header').find('img[alt="Dynamic image"]').should('exist');
+      cy.get('header').find('img[alt="JSON Schema Logo"]').should('exist');
     });
 
     it('should have logo link to home page', () => {
@@ -405,7 +405,7 @@ describe('Layout Component', () => {
   describe('Accessibility', () => {
     it('should have proper alt text for images', () => {
       mountLayout();
-      cy.get('img[alt="Dynamic image"]').should('exist');
+      cy.get('img[alt="JSON Schema Logo"]').should('exist');
       cy.get('img[alt="logo-white"]').should('exist');
       cy.get('img[alt="Slack logo"]').should('exist');
       cy.get('img[alt="X logo"]').should('exist');
