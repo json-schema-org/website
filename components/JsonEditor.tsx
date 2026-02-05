@@ -305,10 +305,14 @@ export default function JsonEditor({
   const hasCodeblockAsDescendant: boolean | undefined = (() => {
     if (!isJsonMode) return false;
     const positionOfCodeInFullMarkdown = fullMarkdown?.indexOf(codeContent);
-    if (!positionOfCodeInFullMarkdown) return;
+    if (
+      positionOfCodeInFullMarkdown === undefined ||
+      positionOfCodeInFullMarkdown <= 0
+    )
+      return;
     const endPositionOfCode = positionOfCodeInFullMarkdown + codeContent.length;
     const startPositionOfNextBlock = endPositionOfCode + '\n```\n'.length;
-    const markdownAfterCodeBlock = fullMarkdown?.substr(
+    const markdownAfterCodeBlock = fullMarkdown?.slice(
       startPositionOfNextBlock,
     );
     return markdownAfterCodeBlock?.startsWith('```');
