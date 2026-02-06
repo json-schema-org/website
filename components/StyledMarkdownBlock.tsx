@@ -125,7 +125,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             table: {
               component: ({ children }) => (
                 <div className='max-w-[100%] mx-auto mb-8 overflow-auto'>
-                  <table className='table-auto'>{children}</table>
+                  <table className='table-auto w-full'>{children}</table>
                 </div>
               ),
             },
@@ -140,14 +140,17 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             th: {
               component: ({ children }) => (
-                <th className='border border-slate-300 dark:text-white p-4 dark:bg-slate-900 font-semibold text-black'>
+                <th className='border border-slate-300 dark:text-white p-4 dark:bg-slate-900 font-semibold text-black break-words'>
                   {children}
                 </th>
               ),
             },
             td: {
               component: ({ children, rowSpan }) => (
-                <td className='border border-slate-200 p-4' rowSpan={rowSpan}>
+                <td
+                  className='border border-slate-200 p-4 break-words'
+                  rowSpan={rowSpan}
+                >
                   {children}
                 </td>
               ),
