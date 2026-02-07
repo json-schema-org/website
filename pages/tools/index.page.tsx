@@ -157,8 +157,8 @@ export default function ToolingPage({
         <div className='w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'>
           <div
             className={`
-              lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
-              mt-0 lg:mt-20
+              absolute lg:sticky top-0 lg:top-[4.5rem] left-0 lg:left-auto
+              mt-0
               w-full max-w-full lg:w-auto overflow-x-hidden
               bg-white dark:bg-slate-800 lg:bg-transparent
               transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out
@@ -169,27 +169,26 @@ export default function ToolingPage({
             style={{
               height: isMobile
                 ? isSidebarOpen
-                  ? 'calc(100vh - 4.5rem)'
+                  ? 'calc(100vh - 7.5rem)'
                   : '0'
                 : 'calc(100vh - 4.5rem)',
-              maxHeight: 'calc(100vh - 4.5rem)',
-              bottom: 0,
+              maxHeight: isMobile
+                ? 'calc(100vh - 7.5rem)'
+                : 'calc(100vh - 4.5rem)',
               scrollbarWidth: 'none',
-              position: 'sticky',
-              top: '4.5rem',
             }}
           >
-            <div className='h-full flex flex-col'>
-              <div className='flex-1 overflow-y-auto scrollbar-hidden min-h-0 px-2 lg:px-0 pb-2'>
-                <div className='hidden lg:block pt-8'>
-                  <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4'>
-                    {visibleToolCount}
-                  </h1>
-                  <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6 mb-4'>
-                    Tools
-                  </div>
+            <div className='h-full flex flex-col overflow-hidden px-2 lg:px-0 pb-2'>
+              <div className='hidden lg:block pt-8'>
+                <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4'>
+                  {visibleToolCount}
+                </h1>
+                <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6 mb-4'>
+                  Tools
                 </div>
+              </div>
 
+              <div className='flex-1 min-h-0'>
                 <Sidebar
                   filterCriteria={filterCriteria}
                   transform={transform}

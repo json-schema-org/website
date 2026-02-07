@@ -46,9 +46,6 @@ export default function Sidebar({
   const [pendingSelections, setPendingSelections] =
     useState<Transform>(transform);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
-  const [pendingSelections, setPendingSelections] = useState<Transform>(
-    () => transform,
-  );
 
   // Sync pendingSelections with transform when transform changes
   useEffect(() => {
@@ -118,76 +115,83 @@ export default function Sidebar({
   };
 
   return (
-    <div className='pb-4 top-12 mx-auto lg:ml-4 lg:mt-8 w-4/5 h-fit'>
-      <form onSubmit={applyFilters} ref={filterFormRef} className='w-full'>
-        <SearchBar
-          transform={pendingSelections}
-          onQueryChange={(query) =>
-            setPendingSelections((prev) => ({ ...prev, query }))
-          }
-        />
-        {filters.map(({ label, accessorKey }) => {
-          const checkedValues =
-            pendingSelections[accessorKey as keyof Transform] || [];
-          const IconComponent =
-            filterIcons[accessorKey as keyof typeof filterIcons];
-          return (
-            <DropdownMenu
-              key={accessorKey}
-              label={label}
-              icon={<IconComponent />}
-              count={checkedValues.length}
-              isOpen={openDropdown === accessorKey}
-              onToggle={() => handleDropdownToggle(accessorKey)}
-            >
-              {filterCriteria[accessorKey as FilterCriteriaFields]
-                ?.map(String)
-                .map((filterOption) => (
-                  <Checkbox
-                    key={filterOption}
-                    label={
-                      accessorKey === 'toolingTypes'
-                        ? toTitleCase(filterOption, '-')
-                        : filterOption
-                    }
-                    value={filterOption}
-                    name={accessorKey}
-                    checked={checkedValues.includes(filterOption)}
-                    onChange={(checked) =>
-                      handleCheckboxChange(accessorKey, filterOption, checked)
-                    }
-                  />
-                ))}
-            </DropdownMenu>
-          );
-        })}
-        <Checkbox
-          label='Show obsolete'
-          value='showObsolete'
-          name='showObsolete'
-          checked={pendingSelections.showObsolete === 'true'}
-          onChange={(checked) =>
-            setPendingSelections((prev) => ({
-              ...prev,
-              showObsolete: checked ? 'true' : 'false',
-            }))
-          }
-        />
+    <div className='pb-4 top-12 mx-auto lg:ml-4 lg:mt-8 w-4/5 h-full min-h-0'>
+      <form
+        onSubmit={applyFilters}
+        ref={filterFormRef}
+        className='w-full h-full min-h-0'
+      >
+        {/* Scroll only the filter controls; keep the action buttons always visible. */}
+        <div className='overflow-y-auto pr-1 -mr-1 max-h-[calc(100%_-_6rem)]'>
+          <SearchBar
+            transform={pendingSelections}
+            onQueryChange={(query) =>
+              setPendingSelections((prev) => ({ ...prev, query }))
+            }
+          />
+          {filters.map(({ label, accessorKey }) => {
+            const checkedValues =
+              pendingSelections[accessorKey as keyof Transform] || [];
+            const IconComponent =
+              filterIcons[accessorKey as keyof typeof filterIcons];
+            return (
+              <DropdownMenu
+                key={accessorKey}
+                label={label}
+                icon={<IconComponent />}
+                count={checkedValues.length}
+                isOpen={openDropdown === accessorKey}
+                onToggle={() => handleDropdownToggle(accessorKey)}
+              >
+                {filterCriteria[accessorKey as FilterCriteriaFields]
+                  ?.map(String)
+                  .map((filterOption) => (
+                    <Checkbox
+                      key={filterOption}
+                      label={
+                        accessorKey === 'toolingTypes'
+                          ? toTitleCase(filterOption, '-')
+                          : filterOption
+                      }
+                      value={filterOption}
+                      name={accessorKey}
+                      checked={checkedValues.includes(filterOption)}
+                      onChange={(checked) =>
+                        handleCheckboxChange(accessorKey, filterOption, checked)
+                      }
+                    />
+                  ))}
+              </DropdownMenu>
+            );
+          })}
+          <Checkbox
+            label='Show obsolete'
+            value='showObsolete'
+            name='showObsolete'
+            checked={pendingSelections.showObsolete === 'true'}
+            onChange={(checked) =>
+              setPendingSelections((prev) => ({
+                ...prev,
+                showObsolete: checked ? 'true' : 'false',
+              }))
+            }
+          />
 
-        <Checkbox
-          label='Support Bowtie'
-          value='supportsBowtie'
-          name='supportsBowtie'
-          checked={pendingSelections.supportsBowtie === 'true'}
-          onChange={(checked) =>
-            setPendingSelections((prev) => ({
-              ...prev,
-              supportsBowtie: checked ? 'true' : 'false',
-            }))
-          }
-        />
+          <Checkbox
+            label='Support Bowtie'
+            value='supportsBowtie'
+            name='supportsBowtie'
+            checked={pendingSelections.supportsBowtie === 'true'}
+            onChange={(checked) =>
+              setPendingSelections((prev) => ({
+                ...prev,
+                supportsBowtie: checked ? 'true' : 'false',
+              }))
+            }
+          />
+        </div>
 
-        <div className='w-full flex items-center justify-between mt-4 gap-2'>
+        <div className='w-full pt-3 pb-4 flex items-center justify-between mt-3 gap-2'>
           <Button
             type='submit'
             variant='default'
