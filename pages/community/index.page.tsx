@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { getLayout } from '~/components/SiteLayout';
 import { SectionContext } from '~/context';
 import imageData from '~/data/community-users.json';
@@ -52,9 +52,26 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default function communityPages(props: any) {
+function shuffleArray<T>(array: T[]) {
+  return [...array].sort(() => Math.random() - 0.5);
+}
+
+export default function CommunityPages(props: any) {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
+
+  const [shuffledContributors, setShuffledContributors] = useState<any[]>([]);
+
+  useEffect(() => {
+    const filtered = imageData.filter(
+      (contributor) =>
+        contributor.login !== 'the-json-schema-bot[bot]' &&
+        contributor.login !== 'dependabot[bot]',
+    );
+
+    const shuffled = shuffleArray(filtered).slice(0, 60);
+    setShuffledContributors(shuffled);
+  }, []);
 
   return (
     <SectionContext.Provider value='community'>
@@ -83,45 +100,47 @@ export default function communityPages(props: any) {
                 </h2>
               </div>
               <div className='mt-8'>
-                <button
+                <a
+                  href='https://github.com/orgs/json-schema-org/discussions'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
-                  onClick={() =>
-                    window.open(
-                      'https://github.com/orgs/json-schema-org/discussions',
-                      '_self',
-                    )
-                  }
                 >
                   Join Discussions
-                </button>
+                </a>
               </div>
             </div>
           </div>
           <div className='grid justify-center items-center gap-y-[10px]'>
             <div className='grid justify-center mt-[50px] gap-y-[10px]'>
-              <div className='grid grid-cols-10 max-sm:grid-cols-7  gap-3'>
-                {imageData
-                  .filter(
-                    (contributor) =>
-                      contributor.login !== 'the-json-schema-bot[bot]' &&
-                      contributor.login !== 'dependabot[bot]',
-                  )
-                  .sort(() => Math.random() - 0.5)
-                  .slice(0, 60)
-                  .map((avatar, index) => (
+              <div className='grid grid-cols-10 max-sm:grid-cols-7 gap-3'>
+                {shuffledContributors.map((avatar, index) => (
+                  <a
+                    key={`${avatar.id}-${index}`}
+                    href={`https://github.com/${avatar.login}`}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    title={avatar.login}
+                  >
                     <Image
-                      key={`${avatar.id}-${index}`}
                       src={avatar.avatar_url}
                       alt={avatar.login}
                       width={35}
                       height={35}
-                      title={avatar.login}
                       priority={index < 10}
                       loading={index < 10 ? 'eager' : 'lazy'}
                       quality={75}
-                      className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
+                      className='
+              sm:w-[40px] md:w-[45px] lg:w-[50px]
+              sm:h-[40px] md:h-[45px] lg:h-[50px]
+              rounded-full cursor-pointer
+              transition-transform transition-shadow duration-200 ease-in-out
+              hover:scale-110 hover:shadow-lg
+              hover:ring-2 hover:ring-blue-500
+            '
                     />
-                  ))}
+                  </a>
+                ))}
               </div>
             </div>
           </div>
@@ -166,6 +185,7 @@ export default function communityPages(props: any) {
                 >
                   <Link
                     href='/ambassadors'
+                    target='_blank'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
@@ -193,6 +213,7 @@ export default function communityPages(props: any) {
                 <div className='mt-10'>
                   <Link
                     href='/slack'
+                    target='_blank'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                   >
@@ -225,6 +246,7 @@ export default function communityPages(props: any) {
                   <div className='mt-10 flex justify-center'>
                     <a
                       href='https://github.com/orgs/json-schema-org/discussions/35'
+                      target='_blank'
                       rel='noopener noreferrer'
                       className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                     >
@@ -234,6 +256,7 @@ export default function communityPages(props: any) {
                   <div className='mt-4 flex justify-center'>
                     <a
                       href='https://github.com/orgs/json-schema-org/discussions/34/'
+                      target='_blank'
                       rel='noopener noreferrer'
                       className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
                     >
@@ -299,6 +322,7 @@ export default function communityPages(props: any) {
                   </h2>
                   <div className='mt-10'>
                     <Link
+                      target='_blank'
                       href='/blog'
                       rel='noopener noreferrer'
                       className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
@@ -378,6 +402,7 @@ export default function communityPages(props: any) {
                 <div className='mx-auto '>
                   <Link
                     href='/blog'
+                    target='_blank'
                     rel='noopener noreferrer'
                     className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none mt-4'
                   >
@@ -393,4 +418,4 @@ export default function communityPages(props: any) {
   );
 }
 
-communityPages.getLayout = getLayout;
+CommunityPages.getLayout = getLayout;

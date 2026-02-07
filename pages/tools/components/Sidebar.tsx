@@ -46,6 +46,9 @@ export default function Sidebar({
   const [pendingSelections, setPendingSelections] =
     useState<Transform>(transform);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [pendingSelections, setPendingSelections] = useState<Transform>(
+    () => transform,
+  );
 
   // Sync pendingSelections with transform when transform changes
   useEffect(() => {
@@ -162,7 +165,7 @@ export default function Sidebar({
           label='Show obsolete'
           value='showObsolete'
           name='showObsolete'
-          checked={pendingSelections['showObsolete'] === 'true'}
+          checked={pendingSelections.showObsolete === 'true'}
           onChange={(checked) =>
             setPendingSelections((prev) => ({
               ...prev,
@@ -170,11 +173,12 @@ export default function Sidebar({
             }))
           }
         />
+
         <Checkbox
           label='Support Bowtie'
           value='supportsBowtie'
           name='supportsBowtie'
-          checked={pendingSelections['supportsBowtie'] === 'true'}
+          checked={pendingSelections.supportsBowtie === 'true'}
           onChange={(checked) =>
             setPendingSelections((prev) => ({
               ...prev,
@@ -182,6 +186,7 @@ export default function Sidebar({
             }))
           }
         />
+
         <div className='w-full flex items-center justify-between mt-4 gap-2'>
           <Button
             type='submit'
