@@ -1,6 +1,7 @@
 ---
 section: docs
 title: Miscellaneous Examples
+date: "2026-02-09"
 prev : 
   label: JSON Schema glossary
   url: /learn/glossary
