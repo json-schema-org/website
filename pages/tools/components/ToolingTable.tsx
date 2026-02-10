@@ -10,6 +10,7 @@ import { Headline2 } from '~/components/Headlines';
 import InfoIcon from '~/public/icons/icons8-info.svg';
 import OutLinkIcon from '~/public/icons/outlink.svg';
 import { Button } from '~/components/ui/button';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 import toTitleCase from '../lib/toTitleCase';
 import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
@@ -29,6 +30,8 @@ interface ToolingTableProps {
   onVisibleToolCountChange?: (count: number) => void;
 }
 
+const INITIAL_VISIBLE_ROWS = 5;
+
 const ToolingTable = ({
   toolsByGroup,
   transform,
@@ -37,6 +40,9 @@ const ToolingTable = ({
 }: ToolingTableProps) => {
   const [selectedTool, setSelectedTool] = useState<JSONSchemaTool | null>(null);
   const [bowtieReport, setBowtieReport] = useState<BowtieReport | null>(null);
+  const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(
+    {},
+  );
 
   useEffect(() => {
     const fetchBowtieReport = async () => {
@@ -120,6 +126,13 @@ const ToolingTable = ({
     onVisibleToolCountChange?.(visibleToolCount);
   }, [visibleToolCount, onVisibleToolCountChange]);
 
+  const toggleGroupExpansion = (group: string) => {
+    setExpandedGroups((prev) => ({
+      ...prev,
+      [group]: !prev[group],
+    }));
+  };
+
   if (visibleToolCount === 0) {
     return (
       <div className='text-center py-12 text-gray-500 dark:text-gray-400 border'>
@@ -131,76 +144,95 @@ const ToolingTable = ({
 
   return (
     <>
-      {groups.map((group) => (
-        <section key={group} className='mb-12 text-left'>
-          {group !== 'none' && (
-            <div className='mb-10 px-4 w-full bg-gray-100 dark:bg-slate-900'>
-              <Headline2>{toTitleCase(group, '-')}</Headline2>
-            </div>
-          )}
-          <div className='overflow-x-hidden'>
-            {/* Desktop Table */}
-            <table className='hidden lg:table min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
-              <thead>
-                <tr className='flex w-full min-w-[860px]'>
-                  <TableSortableColumnHeader
-                    sortBy='name'
-                    transform={transform}
-                    setTransform={setTransform}
-                    attributes={{
-                      style: { flexBasis: '240px', flexShrink: 0, flexGrow: 0 },
-                    }}
-                  >
-                    Name
-                  </TableSortableColumnHeader>
-                  {transform.groupBy !== 'toolingTypes' && (
-                    <TableColumnHeader
+      {groups.map((group) => {
+        const tools = filteredToolsByGroup[group] ?? [];
+        const isExpanded = expandedGroups[group];
+        const visibleTools = isExpanded
+          ? tools
+          : tools.slice(0, INITIAL_VISIBLE_ROWS);
+        const hasMore = tools.length > INITIAL_VISIBLE_ROWS;
+
+        return (
+          <section key={group} className='mb-12 text-left'>
+            {group !== 'none' && (
+              <div className='mb-10 px-4 w-full bg-gray-100 dark:bg-slate-900'>
+                <Headline2>{toTitleCase(group, '-')}</Headline2>
+              </div>
+            )}
+            <div className='overflow-x-hidden'>
+              {/* Desktop Table */}
+              <table className='hidden lg:table min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
+                <thead>
+                  <tr className='flex w-full min-w-[860px]'>
+                    <TableSortableColumnHeader
+                      sortBy='name'
+                      transform={transform}
+                      setTransform={setTransform}
                       attributes={{
-                        style: { flexBasis: '15%', flexShrink: 0, flexGrow: 0 },
+                        style: {
+                          flexBasis: '240px',
+                          flexShrink: 0,
+                          flexGrow: 0,
+                        },
                       }}
                     >
-                      Tooling Type
-                    </TableColumnHeader>
-                  )}
-                  {transform.groupBy !== 'languages' && (
+                      Name
+                    </TableSortableColumnHeader>
+                    {transform.groupBy !== 'toolingTypes' && (
+                      <TableColumnHeader
+                        attributes={{
+                          style: {
+                            flexBasis: '15%',
+                            flexShrink: 0,
+                            flexGrow: 0,
+                          },
+                        }}
+                      >
+                        Tooling Type
+                      </TableColumnHeader>
+                    )}
+                    {transform.groupBy !== 'languages' && (
+                      <TableColumnHeader
+                        attributes={{ style: { flexBasis: '15%' } }}
+                      >
+                        Languages
+                      </TableColumnHeader>
+                    )}
                     <TableColumnHeader
+                      attributes={{
+                        className: '!px-0',
+                        style: { flexBasis: '20%', flexGrow: 1 },
+                      }}
+                    >
+                      Dialects
+                    </TableColumnHeader>
+                    <TableSortableColumnHeader
+                      sortBy='license'
+                      transform={transform}
+                      setTransform={setTransform}
                       attributes={{ style: { flexBasis: '15%' } }}
                     >
-                      Languages
-                    </TableColumnHeader>
-                  )}
-                  <TableColumnHeader
-                    attributes={{
-                      className: '!px-0',
-                      style: { flexBasis: '20%', flexGrow: 1 },
-                    }}
-                  >
-                    Dialects
-                  </TableColumnHeader>
-                  <TableSortableColumnHeader
-                    sortBy='license'
-                    transform={transform}
-                    setTransform={setTransform}
-                    attributes={{ style: { flexBasis: '15%' } }}
-                  >
-                    License
-                  </TableSortableColumnHeader>
-                  <TableSortableColumnHeader
-                    sortBy='bowtie'
-                    transform={transform}
-                    setTransform={setTransform}
-                    attributes={{
-                      className: 'text-center !px-0',
-                      style: { flexBasis: '70px', flexShrink: 0, flexGrow: 0 },
-                    }}
-                  >
-                    Bowtie
-                  </TableSortableColumnHeader>
-                </tr>
-              </thead>
-              <tbody>
-                {(filteredToolsByGroup[group] ?? []).map(
-                  (tool: JSONSchemaTool, index) => {
+                      License
+                    </TableSortableColumnHeader>
+                    <TableSortableColumnHeader
+                      sortBy='bowtie'
+                      transform={transform}
+                      setTransform={setTransform}
+                      attributes={{
+                        className: 'text-center !px-0',
+                        style: {
+                          flexBasis: '70px',
+                          flexShrink: 0,
+                          flexGrow: 0,
+                        },
+                      }}
+                    >
+                      Bowtie
+                    </TableSortableColumnHeader>
+                  </tr>
+                </thead>
+                <tbody>
+                  {visibleTools.map((tool: JSONSchemaTool, index) => {
                     const bowtieData = getBowtieData(tool);
                     return (
                       <tr
@@ -287,16 +319,14 @@ const ToolingTable = ({
                         </TableCell>
                       </tr>
                     );
-                  },
-                )}
-              </tbody>
-            </table>
+                  })}
+                </tbody>
+              </table>
 
-            {/* Mobile Table */}
-            <table className='lg:hidden min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
-              <tbody>
-                {(filteredToolsByGroup[group] ?? []).map(
-                  (tool: JSONSchemaTool, index) => {
+              {/* Mobile Table */}
+              <table className='lg:hidden min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
+                <tbody>
+                  {visibleTools.map((tool: JSONSchemaTool, index) => {
                     const bowtieData = getBowtieData(tool);
                     return (
                       <tr
@@ -349,13 +379,32 @@ const ToolingTable = ({
                         </td>
                       </tr>
                     );
-                  },
-                )}
-              </tbody>
-            </table>
-          </div>
-        </section>
-      ))}
+                  })}
+                </tbody>
+              </table>
+              {hasMore && (
+                <div className='flex justify-center mt-4'>
+                  <Button
+                    variant='default'
+                    onClick={() => toggleGroupExpansion(group)}
+                    className='flex items-center gap-2 text-white'
+                  >
+                    {isExpanded ? (
+                      <>
+                        Show Less <ChevronUp className='h-4 w-4' />
+                      </>
+                    ) : (
+                      <>
+                        Load More <ChevronDown className='h-4 w-4' />
+                      </>
+                    )}
+                  </Button>
+                </div>
+              )}
+            </div>
+          </section>
+        );
+      })}
       {selectedTool && (
         <ToolingDetailModal tool={selectedTool} onClose={closeModal} />
       )}
