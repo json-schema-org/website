@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import fs from 'fs';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -104,17 +104,7 @@ export default function ToolingPage({
   filterCriteria,
 }: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [visibleToolCount, setVisibleToolCount] = useState<number>(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const {
     numberOfTools,
@@ -132,21 +122,19 @@ export default function ToolingPage({
 
       <div className='mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center px-4 md:px-12'>
         {/* Filter Drawer */}
+        {/* Filter Drawer */}
         <div
-          className={`fixed inset-0 z-50 flex transform transition-all duration-300 ${isSidebarOpen ? 'visible' : 'invisible pointer-events-none'
-            }`}
+          className={`fixed inset-0 z-50 flex transform transition-all duration-300 ${isSidebarOpen ? 'visible' : 'invisible pointer-events-none'}`}
         >
           {/* Backdrop */}
           <div
-            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0'
-              }`}
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0'}`}
             onClick={() => setIsSidebarOpen(false)}
           />
 
           {/* Drawer Content */}
           <div
-            className={`absolute right-0 w-full max-w-sm bg-white dark:bg-slate-900 h-full shadow-lg transform transition-transform duration-300 flex flex-col ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'
-              }`}
+            className={`absolute right-0 w-full max-w-sm bg-white dark:bg-slate-900 h-full shadow-lg transform transition-transform duration-300 flex flex-col ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
             <div className='p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700'>
               <h2 className='text-xl font-bold'>Filters</h2>
@@ -176,8 +164,8 @@ export default function ToolingPage({
         <main className='w-full mt-8'>
           <Headline1>JSON Schema Tooling</Headline1>
           <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
-            Toolings below are written in different languages, and support
-            part, or all, of at least one recent version of the specification.
+            Toolings below are written in different languages, and support part,
+            or all, of at least one recent version of the specification.
           </p>
           <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
             Listing does not signify a recommendation or endorsement of any
@@ -201,8 +189,8 @@ export default function ToolingPage({
                 />
               </Link>
               <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
-                Raise an issue to get your tool added or updated in the
-                tooling table.
+                Raise an issue to get your tool added or updated in the tooling
+                table.
               </p>
             </div>
 
@@ -230,10 +218,7 @@ export default function ToolingPage({
 
           <div className='flex flex-wrap items-center justify-between gap-4 mb-6'>
             <div className='flex items-center gap-4'>
-              <GroupByMenu
-                transform={transform}
-                setTransform={setTransform}
-              />
+              <GroupByMenu transform={transform} setTransform={setTransform} />
             </div>
             <div className='flex items-center gap-4'>
               <div className='text-sm text-gray-500 hidden sm:block'>

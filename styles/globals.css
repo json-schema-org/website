@@ -101,9 +101,11 @@ border-radius: 4px; */
 /** Style Algolia */
 
 .keygrad {
-  --docsearch-key-gradient: linear-gradient(-225deg,
-      #d5dbe4,
-      #f8f8f8) !important;
+  --docsearch-key-gradient: linear-gradient(
+    -225deg,
+    #d5dbe4,
+    #f8f8f8
+  ) !important;
 }
 
 .keyshadow {
