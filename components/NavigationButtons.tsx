@@ -88,9 +88,9 @@ export default function NavigationButtons({
   nextURL,
 }: NavigationButtonsProps) {
   return (
-    <nav aria-label='Page navigation' className='mb-4 flex flex-row gap-4'>
+    <div className='mb-4 flex flex-row gap-4'>
       <NavButton label={prevLabel} url={prevURL} direction='prev' />
       <NavButton label={nextLabel} url={nextURL} direction='next' />
-    </nav>
+    </div>
   );
 }

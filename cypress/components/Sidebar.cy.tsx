@@ -48,8 +48,8 @@ describe('Sidebar Component', () => {
       // Check if mobile menu container exists
       cy.get('.lg\\:hidden').should('exist');
 
-      // Check if the mobile menu has the correct structure (button for toggle)
-      cy.get('.lg\\:hidden button').should('exist');
+      // Check if the mobile menu has the correct structure
+      cy.get('.lg\\:hidden > div').should('exist');
     });
 
     it('should handle mobile menu toggle correctly', () => {
@@ -68,8 +68,8 @@ describe('Sidebar Component', () => {
       // Initially mobile menu should be closed
       cy.get('.transform.-translate-x-full').should('exist');
 
-      // Click on mobile menu button
-      cy.get('.lg\\:hidden button').first().click();
+      // Click on mobile menu button (the div with onClick handler)
+      cy.get('.lg\\:hidden > div').first().click();
 
       // Menu should be open
       cy.get('.transform.-translate-x-0').should('exist');
@@ -123,7 +123,7 @@ describe('Sidebar Component', () => {
       cy.viewport(768, 1024);
 
       // Open mobile menu
-      cy.get('.lg\\:hidden button').first().click();
+      cy.get('.lg\\:hidden > div').first().click();
       cy.get('.transform.-translate-x-0').should('exist');
 
       // Resize to desktop

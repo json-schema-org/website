@@ -362,7 +362,7 @@ const Footer = () => (
           src='/img/logos/logo-white.svg'
           width={150}
           height={100}
-          alt='logo-white'
+          alt='JSON Schema White Logo'
           className='mb-6'
         />
         <div className='flex flex-col text-center sm:text-left'>

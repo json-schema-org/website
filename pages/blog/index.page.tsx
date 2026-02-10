@@ -228,7 +228,7 @@ export default function StaticMarkdownPage({
             <div className='absolute w-full h-full dark:bg-[#282d6a]' />
             <Image
               src={recentBlog[0].frontmatter.cover}
-              alt={`Cover image for ${recentBlog[0].frontmatter.title}`}
+              alt={recentBlog[0].frontmatter.title}
               fill
               className='object-cover w-full h-full opacity-70 blur-[5px]'
               priority
@@ -245,8 +245,6 @@ export default function StaticMarkdownPage({
                 </h1>
                 <div className='flex ml-2 mb-2 gap-2'>
                   <div
-                    role='img'
-                    aria-label={`Photo of ${recentBlog[0].frontmatter.authors[0].name}`}
                     className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                     style={{
                       backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})`,
@@ -296,8 +294,7 @@ export default function StaticMarkdownPage({
               <Image
                 src='/icons/rss.svg'
                 className='rounded h-5 w-5 mr-2'
-                alt=''
-                aria-hidden='true'
+                alt='rss'
                 height={20}
                 width={20}
               />
@@ -307,15 +304,11 @@ export default function StaticMarkdownPage({
         </div>
 
         {/* Filter Buttons */}
-        <nav
-          aria-label='Filter blog posts by category'
-          className='w-full ml-8 flex flex-wrap justify-start'
-        >
+        <div className='w-full ml-8 flex flex-wrap justify-start'>
           {allTags.map((tag) => (
             <button
               key={tag}
               value={tag}
-              aria-pressed={currentFilterTags.includes(tag as blogCategories)}
               onClick={() => toggleCategory(tag as blogCategories)}
               className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${
                 currentFilterTags.includes(tag as blogCategories)
@@ -326,30 +319,20 @@ export default function StaticMarkdownPage({
               {tag}
             </button>
           ))}
-          <span
-            className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center dark:text-slate-300'
-            aria-hidden='true'
-          >
+          <span className='text-blue-800 inline-block px-3 py-1 mb-4 mr-4 text-sm items-center dark:text-slate-300'>
             Filter blog posts by category...
           </span>
-        </nav>
+        </div>
 
         {/* Blog Posts Grid */}
-        <div
-          role='feed'
-          aria-label='Blog posts'
-          className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'
-        >
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
           {currentPagePosts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
 
             return (
-              <article
-                key={blogPost.slug}
-                aria-labelledby={`blog-title-${blogPost.slug}`}
-              >
+              <section key={blogPost.slug}>
                 <Link
                   href={`/blog/posts/${blogPost.slug}`}
                   className='h-[600px] sm:h-[540px] flex border rounded-lg shadow-sm transition-shadow duration-300 overflow-hidden dark:border-slate-500 group flex-col flex-1 w-full'
@@ -371,9 +354,8 @@ export default function StaticMarkdownPage({
                       {/* Display each category as a clickable badge */}
                       <div className='flex flex-wrap gap-2 mb-4'>
                         {getCategories(frontmatter).map((cat, index) => (
-                          <button
+                          <div
                             key={index}
-                            type='button'
                             className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full text-sm'
                             onClick={(e) => {
                               e.preventDefault();
@@ -382,15 +364,12 @@ export default function StaticMarkdownPage({
                             }}
                           >
                             {cat || 'Unknown'}
-                          </button>
+                          </div>
                         ))}
                       </div>
-                      <h3
-                        id={`blog-title-${blogPost.slug}`}
-                        className='text-lg h-[95px] font-semibold overflow-hidden transition-transform duration-300 group-hover:scale-105'
-                      >
+                      <div className='text-lg h-[95px] font-semibold overflow-hidden transition-transform duration-300 group-hover:scale-105'>
                         {frontmatter.title}
-                      </h3>
+                      </div>
                       <div className='mt-3   text-slate-500 dark:text-slate-300 flex-1 min-h-0'>
                         <TextTruncate
                           element='span'
@@ -405,8 +384,6 @@ export default function StaticMarkdownPage({
                           (author: Author, index: number) => (
                             <div
                               key={index}
-                              role='img'
-                              aria-label={`Photo of ${author.name}`}
                               className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
                                 frontmatter.authors.length > 2
                                   ? 'h-8 w-8'
@@ -466,10 +443,7 @@ export default function StaticMarkdownPage({
                   <div className='flex w-full px-4 py-2 justify-between items-center'>
                     <span className='text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-1 group/readmore'>
                       Read More
-                      <span
-                        aria-hidden='true'
-                        className='transition-transform group-hover/readmore:translate-x-1 text-xs'
-                      >
+                      <span className='transition-transform group-hover/readmore:translate-x-1 text-xs'>
                         →
                       </span>
                     </span>
@@ -478,17 +452,13 @@ export default function StaticMarkdownPage({
                     </span>
                   </div>
                 </Link>
-              </article>
+              </section>
             );
           })}
         </div>
         {/* pagination control */}
-        <nav
-          aria-label='Blog pagination'
-          className='flex justify-center items-center gap-4'
-        >
+        <div className='flex justify-center items-center gap-4'>
           <button
-            aria-label='Go to previous page'
             className={`px-4 py-2 rounded-md font-semibold ${
               currentPage === 1
                 ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
@@ -499,15 +469,10 @@ export default function StaticMarkdownPage({
           >
             Previous
           </button>
-          <span
-            aria-live='polite'
-            aria-atomic='true'
-            className='text-lg font-medium dark:text-white'
-          >
+          <span className='text-lg font-medium dark:text-white'>
             Page {currentPage} of {totalPages}
           </span>
           <button
-            aria-label='Go to next page'
             className={`px-4 py-2 rounded-md font-semibold ${
               currentPage === totalPages
                 ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
@@ -518,7 +483,7 @@ export default function StaticMarkdownPage({
           >
             Next
           </button>
-        </nav>
+        </div>
       </div>
     </SectionContext.Provider>
   );

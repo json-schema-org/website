@@ -165,7 +165,7 @@ const Home = (props: any) => {
     [resolvedTheme],
   );
   return (
-    <div>
+    <main>
       <div className='flex flex-col items-center'>
         {/* Hero  */}
         <section className='bg-[linear-gradient(72.68deg,_#002CC4_28.97%,_#5468FF_145.47%)] clip-bottom w-full dark:bg-[linear-gradient(72.68deg,_#002C34_28.97%,_#5468FF_145.47%)]'>
@@ -371,60 +371,54 @@ const Home = (props: any) => {
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
             <div className='p-4 w-full mb-6 dark:shadow-2xl'>
-              <Link href='https://json-schema.org/slack'>
-                <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
-                  Join the JSON Schema Slack Workspace!
-                  {isClient && (
-                    <>
-                      <Image
-                        src='/img/logos/Slack-mark.svg'
-                        className='size-12'
-                        alt=''
-                        aria-hidden='true'
-                        height={32}
-                        width={32}
-                      />
-                    </>
-                  )}
-                </h3>
+              <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
+                Join the JSON Schema Slack Workspace!
                 {isClient && (
                   <>
                     <Image
-                      src='/img/home-page/slack-json-schema.png'
-                      className='w-full mb-4'
-                      alt='JSON Schema Slack workspace preview'
-                      height={500}
-                      width={300}
+                      src='/img/logos/Slack-mark.svg'
+                      className='size-12'
+                      alt=''
+                      aria-hidden='true'
+                      height={32}
+                      width={32}
                     />
                   </>
                 )}
-
-                {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-                <p className='mb-4 dark:text-slate-300 text-balance'>
-                  Join our Slack to ask questions, get feedback on your
-                  projects, and connect with +5000 practitioners and experts.
-                </p>
-              </Link>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'>
-                <a
-                  href='https://json-schema.org/slack'
-                  className='flex items-center '
-                >
-                  {isClient && (
-                    <>
-                      <Image
-                        src='/img/logos/slack_logo_small-white.svg'
-                        className='w-4 h-4 mr-2'
-                        width={16}
-                        height={16}
-                        alt=''
-                        aria-hidden='true'
-                      />
-                    </>
-                  )}
-                  Join Slack
-                </a>
-              </button>
+              </h3>
+              {isClient && (
+                <>
+                  <Image
+                    src='/img/home-page/slack-json-schema.png'
+                    className='w-full mb-4'
+                    alt='JSON Schema Slack workspace preview'
+                    height={500}
+                    width={300}
+                  />
+                </>
+              )}
+              <p className='mb-4 dark:text-slate-300 text-balance'>
+                Join our Slack to ask questions, get feedback on your projects,
+                and connect with +5000 practitioners and experts.
+              </p>
+              <a
+                href='https://json-schema.org/slack'
+                className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
+              >
+                {isClient && (
+                  <>
+                    <Image
+                      src='/img/logos/slack_logo_small-white.svg'
+                      className='w-4 h-4 mr-2'
+                      width={16}
+                      height={16}
+                      alt=''
+                      aria-hidden='true'
+                    />
+                  </>
+                )}
+                Join Slack
+              </a>
             </div>
             {/* BlogPost Data */}
             <div className='p-4 w-full mb-6 dark:shadow-2xl'>
@@ -459,6 +453,8 @@ const Home = (props: any) => {
                     return (
                       <div
                         key={index}
+                        role='img'
+                        aria-label={`Photo of ${author.name}`}
                         className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
                         style={{
                           backgroundImage: `url(${author.photo})`,
@@ -1065,7 +1061,7 @@ const Home = (props: any) => {
           </div>{' '}
         </section>
       </div>
-    </div>
+    </main>
   );
 };
 

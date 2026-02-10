@@ -130,16 +130,13 @@ const GettingStarted = () => {
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
             <h2 className='text-h6 font-semibold mb-1'>JSON Schema</h2>
             <div className='select-wrap'>
-              <label
-                htmlFor='schema-select'
-                className='mr-2 max-sm:text-[12px]'
-              >
+              <label className='mr-2 max-sm:text-[12px]'>
                 Select a Schema:
               </label>
               <select
                 name='Select a JSON Schema Validator'
                 className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
-                id='schema-select'
+                id='Examples'
                 onChange={handleSchemaChange}
               >
                 {options.map((option: any, id: number) => (
@@ -188,16 +185,13 @@ const GettingStarted = () => {
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
             <h2 className='text-h6 font-semibold mb-1'>JSON Instance</h2>
             <div className='select-wrap'>
-              <label
-                htmlFor='instance-select'
-                className='mr-2 max-sm:text-[12px]'
-              >
+              <label className='mr-2 max-sm:text-[12px]'>
                 Select an Instance:
               </label>
               <select
                 name='Select a JSON Schema Validator'
                 className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
-                id='instance-select'
+                id='Examples'
                 onChange={handleInstanceChange}
               >
                 {instances.map((instance: any, id: number) => (

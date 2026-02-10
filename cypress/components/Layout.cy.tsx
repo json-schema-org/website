@@ -303,7 +303,9 @@ describe('Layout Component', () => {
 
     it('should render the white logo in footer', () => {
       mountLayout();
-      cy.get('footer').find('img[alt="logo-white"]').should('exist');
+      cy.get('footer')
+        .find('img[alt="JSON Schema White Logo"]')
+        .should('exist');
     });
 
     it('should render social media links', () => {
@@ -406,7 +408,7 @@ describe('Layout Component', () => {
     it('should have proper alt text for images', () => {
       mountLayout();
       cy.get('img[alt="JSON Schema Logo"]').should('exist');
-      cy.get('img[alt="logo-white"]').should('exist');
+      cy.get('img[alt="JSON Schema White Logo"]').should('exist');
       cy.get('img[alt="Slack logo"]').should('exist');
       cy.get('img[alt="X logo"]').should('exist');
       cy.get('img[alt="LinkedIn logo"]').should('exist');
