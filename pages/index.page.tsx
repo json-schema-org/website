@@ -175,8 +175,8 @@ const Home = (props: any) => {
             </h1>
 
             <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 dark:text-slate-300'>
-              JSON Schema enables the confident and reliable use of the JSON
-              data format.
+              JSON Schema&trade; enables the confident and reliable use of the
+              JSON data format.
             </h2>
 
             <div className='lg:w-[650px]  mx-auto my-10 grid grid-cols-1 lg:grid-cols-3 gap-8 justify-items-center '>
