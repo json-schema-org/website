@@ -96,8 +96,16 @@ export function DocsHelp({
   async function createFeedbackHandler(event: FormEvent) {
     event.preventDefault();
     const formData = new FormData(feedbackFormRef.current!);
+    const feedbackComment = formData.get('feedback-comment')?.toString().trim();
+
+    if (!feedbackComment) {
+      setError('Feedback comment cannot be empty.');
+      return;
+    }
+
     formData.append('feedback-page', router.asPath);
     setIsSubmitting(true);
+    setError('');
 
     try {
       const response = await fetch(
@@ -128,7 +136,15 @@ export function DocsHelp({
 
   const createGitHubIssueHandler = () => {
     const formData = new FormData(feedbackFormRef.current!);
+    const feedbackComment = formData.get('feedback-comment')?.toString().trim();
+
+    if (!feedbackComment) {
+      setError('Feedback comment cannot be empty.');
+      return;
+    }
+
     setIsSubmitting(true);
+    setError('');
     try {
       const title = encodeURIComponent('Feedback on Documentation');
       const body = encodeURIComponent(`${formData.get('feedback-comment')}`);
