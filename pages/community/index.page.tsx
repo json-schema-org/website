@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { getLayout } from '~/components/SiteLayout';
 import { SectionContext } from '~/context';
-import imageData from '~/data/community-users.json';
 import fs from 'fs';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
@@ -19,6 +18,7 @@ import {
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
   const files = fs.readdirSync(PATH);
+
   const blogPosts = files
     .filter((file) => file.endsWith('.md'))
     .map((fileName) => {
@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async () => {
       const fullFileName = fs.readFileSync(`${PATH}/${slug}.md`, 'utf-8');
       const { data: frontmatter, content } = matter(fullFileName);
       return {
-        slug: slug,
+        slug,
         frontmatter,
         content,
       };
@@ -38,53 +38,77 @@ export const getStaticProps: GetStaticProps = async () => {
     })
     .slice(0, 5);
 
+  // Fetch contributors from GitHub
+  const contributorsRes = await fetch(
+    'https://api.github.com/repos/json-schema-org/json-schema-org.github.io/contributors?per_page=100',
+  );
+
+  const contributors = await contributorsRes.json();
+
+  const imageData = contributors.map((contributor: any) => ({
+    id: contributor.id,
+    login: contributor.login,
+    avatar_url: contributor.avatar_url,
+    html_url: contributor.html_url,
+  }));
+
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/json.schema.community%40gmail.com/public/basic.ics';
+
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
-    .catch((error) => console.error('Error:', error));
+    .catch(() => []);
+
   return {
     props: {
       blogPosts,
       datesInfo,
-      fallback: false,
+      imageData,
     },
   };
 };
 
-export default function communityPages(props: any) {
-  const blogPosts = props.blogPosts;
+export default function communityPages({
+  blogPosts,
+  datesInfo,
+  imageData,
+}: any) {
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
+
+  // Shuffle contributors on every render
+  const shuffledContributors = useMemo(() => {
+    return imageData
+      .filter(
+        (contributor: any) =>
+          contributor.login !== 'the-json-schema-bot[bot]' &&
+          contributor.login !== 'dependabot[bot]',
+      )
+      .sort(() => Math.random() - 0.5)
+      .slice(0, 60);
+  }, [imageData]);
 
   return (
     <SectionContext.Provider value='community'>
-      <div
-        className='max-w-screen-xl block px-4 sm:px-6 lg:px-8 mx-auto w-full'
-        data-testid='Container-main'
-      >
+      <div className='max-w-screen-xl block px-4 sm:px-6 lg:px-8 mx-auto w-full'>
         <div className='grid grid-cols-1 lg:grid-cols-2 h-auto lg:h-[100vh]'>
-          <div className='grid items-center mx-auto mb-[20px] sm:w-[80%] lg:w-auto mt-[100px] '>
-            <div
-              className='text-center flex justify-center flex-col items-center mt-10 md:mt-0 w-fit h-fit max-lg:mt-0'
-              data-testid='Header-hero-heading'
-            >
-              <div className='mt-8' data-testid='Header-heading-1'>
-                <h2 className='text-[2.5rem] max-sm:text-[2rem] font-bold px-4 items-center text-center'>
-                  Welcome to the
-                  <br />
-                  JSON Schema Community
-                </h2>
-              </div>
-              <div className='mt-5 w-5/6' data-testid='Header-heading-2'>
-                <h2 className='text-gray-700 text-xl max-sm:text-[15px] font-heading dark:text-slate-100 text-body-md tracking-body font-regular '>
-                  Join the Community to learn, share ideas, ask questions, build
-                  JSON Schema tooling, and get involved in the future of the
-                  specifications.
-                </h2>
-              </div>
+          {/* Left Section */}
+          <div className='grid items-center mx-auto mt-[100px]'>
+            <div className='text-center flex flex-col items-center'>
+              <h2 className='text-[2.5rem] font-bold'>
+                Welcome to the
+                <br />
+                JSON Schema Community
+              </h2>
+
+              <h2 className='text-gray-700 text-xl mt-5 w-5/6'>
+                Join the Community to learn, share ideas, ask questions, build
+                JSON Schema tooling, and get involved in the future of the
+                specifications.
+              </h2>
+
               <div className='mt-8'>
                 <button
-                  className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded block md:inline-block focus:outline-none'
+                  className='bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded'
                   onClick={() =>
                     window.open(
                       'https://github.com/orgs/json-schema-org/discussions',
@@ -97,35 +121,35 @@ export default function communityPages(props: any) {
               </div>
             </div>
           </div>
-          <div className='grid justify-center items-center gap-y-[10px]'>
-            <div className='grid justify-center mt-[50px] gap-y-[10px]'>
-              <div className='grid grid-cols-10 max-sm:grid-cols-7  gap-3'>
-                {imageData
-                  .filter(
-                    (contributor) =>
-                      contributor.login !== 'the-json-schema-bot[bot]' &&
-                      contributor.login !== 'dependabot[bot]',
-                  )
-                  .sort(() => Math.random() - 0.5)
-                  .slice(0, 60)
-                  .map((avatar, index) => (
-                    <Image
-                      key={`${avatar.id}-${index}`}
-                      src={avatar.avatar_url}
-                      alt={avatar.login}
-                      width={35}
-                      height={35}
-                      title={avatar.login}
-                      priority={index < 10}
-                      loading={index < 10 ? 'eager' : 'lazy'}
-                      quality={75}
-                      className='sm:w-[40px] md:w-[45px] lg:w-[50px] sm:h-[40px] md:h-[45px] lg:h-[50px] rounded-full border-black'
-                    />
-                  ))}
-              </div>
+
+          {/* Right Section - Contributors */}
+          <div className='grid justify-center items-center'>
+            <div className='grid grid-cols-10 gap-3 mt-[50px]'>
+              {shuffledContributors.map((avatar: any, index: number) => (
+                <a
+                  key={`${avatar.id}-${index}`}
+                  href={avatar.html_url}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  title={avatar.login}
+                >
+                  <Image
+                    src={avatar.avatar_url}
+                    alt={avatar.login}
+                    width={50}
+                    height={50}
+                    priority={index < 10}
+                    className='rounded-full border-2 border-transparent 
+           hover:border-blue-600 
+           transition-all duration-200 
+           hover:scale-110'
+                  />
+                </a>
+              ))}
             </div>
           </div>
         </div>
+
         <section className='mt-10'>
           <div className='flex flex-row justify-between gap-4  max-sm:flex-col max-lg:gap-8 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
             <Card
@@ -248,7 +272,7 @@ export default function communityPages(props: any) {
                 <h2 className='text-center dark:text-white text-primary text-[2rem] font-bold '>
                   Upcoming events
                 </h2>
-                {props.datesInfo.map((event: any, index: any) => (
+                {datesInfo.map((event: any, index: any) => (
                   <div
                     key={index}
                     className='mx-auto gap-2 group-hover:bg-white dark:bg-slate-900/50 dark:group-hover:bg-slate-800  bg-slate-100 h-[90px] max-md:h-[120px]  max-sm:h-auto  w-full rounded-lg flex flex-row justify-between  items-center p-2 mt-2'
