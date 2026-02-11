@@ -241,7 +241,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                       width={20}
                       height={20}
                       className='mr-2 mb-1'
-                      alt='star'
+                      alt=''
+                      role='presentation'
                     />
                     {label}
                   </div>
@@ -257,7 +258,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                       className='mr-1'
                       width={12}
                       height={12}
-                      alt='info yellow'
+                      alt=''
+                      role='presentation'
                     />
                     {label}
                   </div>
@@ -279,7 +281,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                         className='h-7 w-7 mr-3'
                         width={28}
                         height={28}
-                        alt='info yellow'
+                        alt=''
+                        role='presentation'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -302,7 +305,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                         className='mr-3'
                         width={28}
                         height={28}
-                        alt='info blue'
+                        alt=''
+                        role='presentation'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -325,7 +329,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                         className='mr-3'
                         width={28}
                         height={28}
-                        alt='bulb'
+                        alt=''
+                        role='presentation'
                       />
                       <div className='font'>{children}</div>
                     </div>
@@ -348,7 +353,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                         className='mr-3'
                         width={28}
                         height={28}
-                        alt='warning'
+                        alt=''
+                        role='presentation'
                       />
                       <div className='font'>{children}</div>
                     </div>
