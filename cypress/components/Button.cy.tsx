@@ -85,6 +85,19 @@ describe('Button Component', () => {
     cy.get('@onClickSpy').should('have.been.calledOnce');
   });
 
+  it('does not trigger click events when disabled', () => {
+    const onClickSpy = cy.spy().as('onClickSpy');
+
+    cy.mount(
+      <Button disabled onClick={onClickSpy}>
+        Disabled Button
+      </Button>,
+    );
+
+    cy.get('button').click({ force: true });
+    cy.get('@onClickSpy').should('not.have.been.called');
+  });
+
   it('renders as child component when asChild is true', () => {
     cy.mount(
       <Button asChild>
