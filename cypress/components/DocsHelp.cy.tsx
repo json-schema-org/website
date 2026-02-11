@@ -280,4 +280,15 @@ describe('DocsHelp Component', () => {
     cy.mount(<DocsHelp fileRenderType='indexmd' showEditOption={false} />);
     cy.get('[data-test="edit-on-github-link"]').should('not.exist');
   });
+  //Check that clicking the same feedback button twice toggles the form open and closed
+  it('should toggle the feedback form visibility and reset selection when the same button is clicked twice', () => {
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    // Wait for the conditional content to appear
+    cy.get('[data-test="feedback-form-input"]').should('be.visible');
+    cy.get('input[name="feedback-vote"]').should('be.checked');
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    // After toggle, the conditional content should not exist
+    cy.get('[data-test="feedback-form-input"]').should('not.exist');
+    cy.get('input[name="feedback-vote"]').should('not.be.checked');
+  });
 });
