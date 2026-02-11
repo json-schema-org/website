@@ -126,6 +126,10 @@ const ToolingTable = ({
     onVisibleToolCountChange?.(visibleToolCount);
   }, [visibleToolCount, onVisibleToolCountChange]);
 
+  useEffect(() => {
+    setExpandedGroups({});
+  }, [toolsByGroup]);
+
   const toggleGroupExpansion = (group: string) => {
     setExpandedGroups((prev) => ({
       ...prev,

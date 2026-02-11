@@ -122,7 +122,6 @@ export default function ToolingPage({
 
       <div className='mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center px-4 md:px-12'>
         {/* Filter Drawer */}
-        {/* Filter Drawer */}
         <div
           className={`fixed inset-0 z-50 flex transform transition-all duration-300 ${isSidebarOpen ? 'visible' : 'invisible pointer-events-none'}`}
         >
