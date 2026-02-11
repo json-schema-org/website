@@ -1002,7 +1002,7 @@ for Accounting integrations'
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
-            <a href='https://www.commonroom.io' target='_black'>
+            <a href='https://www.commonroom.io' target='_blank'  rel="noopener noreferrer">
               {isClient && (
                 <>
                   <Image
@@ -1015,7 +1015,7 @@ for Accounting integrations'
                 </>
               )}
             </a>
-            <a href='https://json-schema.org/slack' target='_blank' >
+            <a href='https://json-schema.org/slack' target='_blank' rel="noopener noreferrer">
               {isClient && (
                 <>
                   <Image
