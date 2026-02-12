@@ -182,7 +182,8 @@ const Home = (props: any) => {
               </Link>
               <Link
                 href='/slack'
-                target='_blank' rel='noopener noreferrer'
+                target='_blank'
+                rel='noopener noreferrer'
                 className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
                 Join Slack
@@ -967,7 +968,11 @@ for Accounting integrations'
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4 mb-12'>
-            <a href='https://dev.events/'    target='_blank' rel='noopener noreferrer'  >
+            <a
+              href='https://dev.events/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
