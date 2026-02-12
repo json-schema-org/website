@@ -3460,3 +3460,31 @@
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Project built under GSoC "25. High-performance Java wrapper for Blaze JSON Schema validator using Java FFM API.'
+ 
+- name: JSON Schema Kit
+  description: Lightweight JavaScript/TypeScript library for writing concise JSON Schema definitions with helper functions for schema composition, validation, and transformation.
+  tooling_types:
+    - validator
+    - util-general-processing
+    - util-schema-to-schema
+  languages:
+    - JavaScript
+    - TypeScript
+  environments:
+    - Node.js
+    - Browser
+    - Deno
+  dependencies_on_validators: None
+  creators: nexxtmove
+  maintainers: nexxtmove
+  license: MIT
+  source_repository_url: https://github.com/nexxtmove/json-schema-kit
+  homepage_url: https://github.com/nexxtmove/json-schema-kit
+  supported_dialects:
+    - draft-07
+    - 2020-12
+  additional_dialects: []
+  bowtie_compliance_testing: false
+  tooling_listing_notes: Specialized for OpenAI Structured Outputs and AI-driven schema generation workflows.
+  compliance: Supports core features of JSON Schema Draft 7 and Draft 2020-12
+  landscape_information: Developer-focused utility library designed for programmatic JSON Schema creation, particularly suited for AI integration and dynamic schema generation use cases.
