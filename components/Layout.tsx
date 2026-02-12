@@ -349,6 +349,7 @@ const Footer = () => (
           height={100}
           alt='logo-white'
           className='mb-6'
+          loading='lazy'
         />
         <div className='flex flex-col text-center sm:text-left'>
           <a
@@ -383,6 +384,7 @@ const Footer = () => (
               height={16}
               className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='Slack logo'
+              loading='lazy'
             />
             Slack
           </a>
@@ -400,6 +402,7 @@ const Footer = () => (
               height={16}
               className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='X logo'
+              loading='lazy'
             />{' '}
             X
           </a>
@@ -417,6 +420,7 @@ const Footer = () => (
               height={16}
               className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='LinkedIn logo'
+              loading='lazy'
             />
             LinkedIn
           </a>
@@ -434,6 +438,7 @@ const Footer = () => (
               height={16}
               className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='YouTube logo'
+              loading='lazy'
             />
             Youtube
           </a>
@@ -451,6 +456,7 @@ const Footer = () => (
               height={16}
               className='mr-2 group-hover:brightness-125 transition-all duration-300'
               alt='GitHub logo'
+              loading='lazy'
             />
             GitHub
           </a>
@@ -487,6 +493,7 @@ const Logo = () => {
           height={48}
           className='mr-2'
           alt='Dynamic image'
+          loading='lazy'
         />
       </Link>
     </div>
