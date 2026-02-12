@@ -137,9 +137,7 @@ export default function Sidebar({
               icon={<IconComponent />}
               count={checkedValues.length}
               isOpen={openDropdown === accessorKey}
-              onToggle={(isOpen) =>
-                handleDropdownToggle(accessorKey, isOpen)
-              }
+              onToggle={(isOpen) => handleDropdownToggle(accessorKey, isOpen)}
             >
               {filterCriteria[accessorKey as FilterCriteriaFields]
                 ?.map(String)
