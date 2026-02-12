@@ -131,10 +131,20 @@ const ToolingTable = ({
   }, [toolsByGroup]);
 
   const toggleGroupExpansion = (group: string) => {
+    const isExpanded = expandedGroups[group];
     setExpandedGroups((prev) => ({
       ...prev,
       [group]: !prev[group],
     }));
+
+    if (isExpanded) {
+      setTimeout(() => {
+        const element = document.getElementById(`expand-button-${group}`);
+        if (element) {
+          element.scrollIntoView({ block: 'nearest', behavior: 'auto' });
+        }
+      }, 0);
+    }
   };
 
   if (visibleToolCount === 0) {
@@ -157,7 +167,11 @@ const ToolingTable = ({
         const hasMore = tools.length > INITIAL_VISIBLE_ROWS;
 
         return (
-          <section key={group} className='mb-12 text-left'>
+          <section
+            key={group}
+            id={`group-${group}`}
+            className='mb-12 text-left'
+          >
             {group !== 'none' && (
               <div className='mb-10 px-4 w-full bg-gray-100 dark:bg-slate-900'>
                 <Headline2>{toTitleCase(group, '-')}</Headline2>
@@ -389,6 +403,7 @@ const ToolingTable = ({
               {hasMore && (
                 <div className='flex justify-center mt-4'>
                   <Button
+                    id={`expand-button-${group}`}
                     variant='default'
                     onClick={() => toggleGroupExpansion(group)}
                     className='flex items-center gap-2 text-white'
