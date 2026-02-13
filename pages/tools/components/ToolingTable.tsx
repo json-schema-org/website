@@ -254,6 +254,7 @@ const ToolingTable = ({
                             return <Badge key={draft}>{draft}</Badge>;
                           })}
                         </TableCell>
+<<<<<<< Updated upstream
                         <TableCell attributes={{ style: { flexBasis: '15%' } }}>
                           {tool.license}
                         </TableCell>
@@ -289,12 +290,61 @@ const ToolingTable = ({
                     );
                   },
                 )}
+=======
+                      )}
+                      <TableCell
+                        attributes={{
+                          className: '!block !px-0',
+                          style: { flexBasis: '20%', flexGrow: 1 },
+                        }}
+                      >
+                        {tool.supportedDialects?.draft?.map((draft) => {
+                          return <Badge key={draft}>{draft}</Badge>;
+                        })}
+                      </TableCell>
+                      <TableCell attributes={{ style: { flexBasis: '15%' } }}>
+                        {tool.license}
+                      </TableCell>
+                      <TableCell
+                        attributes={{
+                          className: 'text-center !px-0',
+                          style: {
+                            flexBasis: '70px',
+                            flexShrink: 0,
+                            flexGrow: 0,
+                          },
+                        }}
+                      >
+                        {bowtieReport && (
+                          <div className='flex justify-center items-center h-full m-auto'>
+                            {bowtieData ? (
+                              <a
+                                className='flex justify-center items-center h-full'
+                                href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                                onClick={(event) => event.stopPropagation()}
+                                title='See at Bowtie'
+                              >
+                                <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                              </a>
+                            ) : (
+                              <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                            )}
+                          </div>
+                        )}
+                      </TableCell>
+                    </tr>
+                  );
+                })}
+>>>>>>> Stashed changes
               </tbody>
             </table>
 
             {/* Mobile Table */}
             <table className='lg:hidden min-w-full bg-white dark:bg-slate-800 border border-gray-200'>
               <tbody>
+<<<<<<< Updated upstream
                 {(filteredToolsByGroup[group] ?? []).map(
                   (tool: JSONSchemaTool, index) => {
                     const bowtieData = getBowtieData(tool);
@@ -323,6 +373,35 @@ const ToolingTable = ({
                               )}
                             </div>
                           )}
+=======
+                {toolsByGroup[group].map((tool: JSONSchemaTool, index) => {
+                  const bowtieData = getBowtieData(tool);
+                  if (bowtieData) {
+                    tool.bowtie = bowtieData;
+                  }
+                  return (
+                    <tr
+                      key={index}
+                      className='border-b border-gray-200 hover:bg-gray-100 dark:hover:bg-slate-700 cursor-pointer'
+                      onClick={() => openModal(tool)}
+                    >
+                      <td className='p-2 relative'>
+                        {bowtieData && (
+                          <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
+                            <span>Bowtie:</span>
+                            <a
+                              href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              onClick={(event) => event.stopPropagation()}
+                              title='See at Bowtie'
+                              className='ml-1'
+                            >
+                              <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                            </a>
+                          </div>
+                        )}
+>>>>>>> Stashed changes
 
                           <div className='flex justify-between items-center'>
                             <div className='font-medium'>
