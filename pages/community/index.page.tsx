@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default function communityPages({
+export default function CommunityPages({
   blogPosts,
   datesInfo,
   imageData,
@@ -416,7 +416,6 @@ export default function communityPages({
     </SectionContext.Provider>
   );
 }
-
-communityPages.getLayout = getLayout;
+CommunityPages.getLayout = getLayout;
 
 
