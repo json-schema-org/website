@@ -244,7 +244,7 @@ export default function StaticMarkdownPage({
             <h2 className='text-h3mobile md:text-h3 font-bold text-center mb-4'>
               Welcome to the JSON Schema Blog!
             </h2>
-            
+
             {/* SEARCH BAR COMPONENT */}
             <div className='relative w-full max-w-2xl mt-4'>
               <input
@@ -263,7 +263,12 @@ export default function StaticMarkdownPage({
                 stroke='currentColor'
                 viewBox='0 0 24 24'
               >
-                <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z' />
+                <path
+                  strokeLinecap='round'
+                  strokeLinejoin='round'
+                  strokeWidth={2}
+                  d='M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z'
+                />
               </svg>
               {searchQuery && (
                 <button
@@ -292,7 +297,13 @@ export default function StaticMarkdownPage({
               href='/rss/feed.xml'
               className='flex items-center text-blue-500 hover:text-blue-600'
             >
-              <Image src='/icons/rss.svg' className='mr-2' alt='rss' height={20} width={20} />
+              <Image
+                src='/icons/rss.svg'
+                className='mr-2'
+                alt='rss'
+                height={20}
+                width={20}
+              />
               RSS Feed
             </Link>
           </div>
@@ -348,7 +359,10 @@ export default function StaticMarkdownPage({
                       <div>
                         <div className='flex flex-wrap gap-2 mb-3'>
                           {getCategories(frontmatter).map((cat, i) => (
-                            <span key={i} className='text-[10px] uppercase tracking-wider font-bold text-blue-600 dark:text-blue-300'>
+                            <span
+                              key={i}
+                              className='text-[10px] uppercase tracking-wider font-bold text-blue-600 dark:text-blue-300'
+                            >
                               {cat}
                             </span>
                           ))}
@@ -360,17 +374,23 @@ export default function StaticMarkdownPage({
                           <TextTruncate line={3} text={frontmatter.excerpt} />
                         </div>
                       </div>
-                      
+
                       <div className='mt-4'>
                         <div className='flex items-center gap-2 mb-3'>
                           <div
                             className='h-8 w-8 rounded-full border border-gray-200 bg-cover'
-                            style={{ backgroundImage: `url(${frontmatter.authors[0]?.photo})` }}
+                            style={{
+                              backgroundImage: `url(${frontmatter.authors[0]?.photo})`,
+                            }}
                           />
-                          <span className='text-xs font-medium'>{frontmatter.authors[0]?.name}</span>
+                          <span className='text-xs font-medium'>
+                            {frontmatter.authors[0]?.name}
+                          </span>
                         </div>
                         <div className='flex justify-between items-center text-[11px] text-slate-400 border-t pt-3 dark:border-slate-600'>
-                          <span>{new Date(frontmatter.date).toLocaleDateString()}</span>
+                          <span>
+                            {new Date(frontmatter.date).toLocaleDateString()}
+                          </span>
                           <span>{postTimeToRead} min read</span>
                         </div>
                       </div>
@@ -381,9 +401,14 @@ export default function StaticMarkdownPage({
             })
           ) : (
             <div className='col-span-full text-center py-20'>
-              <p className='text-xl text-slate-500'>No posts found matching your criteria.</p>
-              <button 
-                onClick={() => {setSearchQuery(''); setCurrentFilterTags(['All']);}}
+              <p className='text-xl text-slate-500'>
+                No posts found matching your criteria.
+              </p>
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  setCurrentFilterTags(['All']);
+                }}
                 className='mt-4 text-blue-600 underline'
               >
                 Clear all filters
