@@ -68,11 +68,8 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-function CommunityPages({
-  blogPosts,
-  datesInfo,
-  imageData,
-}: any) {
+function CommunityPages({ blogPosts, datesInfo, imageData }: any) {
+
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
 
   // Shuffle contributors on every render
