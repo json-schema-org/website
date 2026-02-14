@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import fs from 'fs';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -18,6 +18,8 @@ import useToolsTransform from './hooks/useToolsTransform';
 import getDistinctEntries from './lib/getDistinctEntries';
 import type { JSONSchemaTool } from './JSONSchemaTool';
 import Image from 'next/image';
+import { Button } from '~/components/ui/button';
+import { Filter, X } from 'lucide-react';
 
 export type FilterCriteriaFields =
   | 'languages'
@@ -102,17 +104,7 @@ export default function ToolingPage({
   filterCriteria,
 }: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [visibleToolCount, setVisibleToolCount] = useState<number>(0);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   const {
     numberOfTools,
@@ -128,151 +120,130 @@ export default function ToolingPage({
         <title>JSON Schema - Tools</title>
       </Head>
 
-      <div className='mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center'>
+      <div className='mx-auto w-full max-w-[1400px] min-h-screen flex flex-col items-center px-4 md:px-12'>
+        {/* Filter Drawer */}
         <div
-          className='bg-primary w-full h-12 mt-[4.5rem] relative lg:hidden px-8 flex justify-between items-center'
-          onClick={() => setIsSidebarOpen((prev) => !prev)}
+          className={`fixed inset-0 z-50 flex transform transition-all duration-300 ${isSidebarOpen ? 'visible' : 'invisible pointer-events-none'}`}
         >
-          <h3 className='text-white'>{visibleToolCount} Tools</h3>
+          {/* Backdrop */}
+          <div
+            className={`absolute inset-0 bg-black/50 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0'}`}
+            onClick={() => setIsSidebarOpen(false)}
+          />
 
-          <svg
-            style={{
-              transform: `${isSidebarOpen ? 'rotate(180deg)' : 'rotate(0)'}`,
-              transition: 'transform 0.2s linear',
-            }}
-            xmlns={'http://www.w3.org/2000/svg'}
-            height='24'
-            viewBox='0 0 256 512'
+          {/* Drawer Content */}
+          <div
+            className={`absolute right-0 w-full max-w-sm bg-white dark:bg-slate-900 h-full shadow-lg transform transition-transform duration-300 flex flex-col ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
-            <path
-              d={
-                'M64 448c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L178.8 256L41.38 118.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160c12.5 12.5 12.5 32.75 0 45.25l-160 160C80.38 444.9 72.19 448 64 448z'
-              }
-              fill={'#ffffff'}
-            />
-          </svg>
+            <div className='p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700'>
+              <h2 className='text-xl font-bold'>Filters</h2>
+              <Button
+                variant='ghost'
+                size='icon'
+                onClick={() => setIsSidebarOpen(false)}
+              >
+                <X className='h-6 w-6' />
+              </Button>
+            </div>
+            <div className='flex-1 overflow-y-auto p-4 custom-scrollbar'>
+              <Sidebar
+                filterCriteria={filterCriteria}
+                transform={transform}
+                setTransform={setTransform}
+                resetTransform={resetTransform}
+                setIsSidebarOpen={setIsSidebarOpen}
+              />
+            </div>
+            <div className='p-4 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500'>
+              {visibleToolCount} Tools Found
+            </div>
+          </div>
         </div>
 
-        {/* FIX 1: mx → px, and overflow-x-hidden */}
-        <div className='w-full grid grid-cols-1 lg:grid-cols-4 px-4 md:px-12 min-h-screen overflow-x-hidden'>
-          <div
-            className={`
-              lg:fixed absolute top-0 lg:top-0 left-0 lg:left-auto
-              mt-0 lg:mt-20
-              w-full max-w-full lg:w-auto overflow-x-hidden
-              bg-white dark:bg-slate-800 lg:bg-transparent
-              transition-transform lg:transform-none duration-300 lg:duration-0 ease-in-out
-              z-5
-              ${isSidebarOpen ? '-translate-x-0' : '-translate-x-full'}
-              ${isMobile && isSidebarOpen ? 'overflow-hidden' : 'overflow-y-auto lg:overflow-y-hidden'}
-            `}
-            style={{
-              height: isMobile
-                ? isSidebarOpen
-                  ? 'calc(100vh - 4.5rem)'
-                  : '0'
-                : 'calc(100vh - 4.5rem)',
-              maxHeight: 'calc(100vh - 4.5rem)',
-              bottom: 0,
-              scrollbarWidth: 'none',
-              position: 'sticky',
-              top: '4.5rem',
-            }}
-          >
-            <div className='h-full flex flex-col'>
-              <div className='flex-1 overflow-y-auto scrollbar-hidden min-h-0 px-2 lg:px-0 pb-2'>
-                <div className='hidden lg:block pt-8'>
-                  <h1 className='text-h1mobile md:text-h1 font-bold lg:ml-4'>
-                    {visibleToolCount}
-                  </h1>
-                  <div className='text-xl text-slate-900 dark:text-slate-300 font-bold lg:ml-6 mb-4'>
-                    Tools
-                  </div>
-                </div>
+        <main className='w-full mt-8'>
+          <Headline1>JSON Schema Tooling</Headline1>
+          <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
+            Toolings below are written in different languages, and support part,
+            or all, of at least one recent version of the specification.
+          </p>
+          <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
+            Listing does not signify a recommendation or endorsement of any
+            kind.
+          </p>
 
-                <Sidebar
-                  filterCriteria={filterCriteria}
-                  transform={transform}
-                  setTransform={setTransform}
-                  resetTransform={resetTransform}
-                  setIsSidebarOpen={setIsSidebarOpen}
+          <div className='flex flex-row items-center gap-2 w-full'>
+            <div className='flex items-center justify-center gap-2 w-1/2'>
+              <Link
+                className='flex-none max-w-full'
+                href='https://github.com/json-schema-org/website/issues/new?assignees=&labels=Status%3A+Triage&template=adding-your-tooling.yml'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <Image
+                  src='/img/tools/adding_your_tool.png'
+                  className='rounded-sm'
+                  height={68}
+                  width={190}
+                  alt='adding your tool'
                 />
-              </div>
+              </Link>
+              <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
+                Raise an issue to get your tool added or updated in the tooling
+                table.
+              </p>
+            </div>
+
+            <div className='flex items-center justify-center gap-2 w-1/2'>
+              <Link
+                className='flex-none max-w-full'
+                href='https://bowtie.report'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <Image
+                  src='/img/tools/try_bowtie.png'
+                  className='rounded-sm'
+                  height={68}
+                  width={190}
+                  alt='try bowtie'
+                />
+              </Link>
+              <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
+                Bowtie is a meta-validator for JSON Schema implementations and
+                it provides compliance reports.
+              </p>
             </div>
           </div>
 
-          <main
-            className={`md:col-span-3 lg:mt-20 lg:w-full mx-4 md:mx-0 lg:!ml-[20px] ${
-              isSidebarOpen ? 'hidden lg:block' : ''
-            }`}
-          >
-            <Headline1>JSON Schema Tooling</Headline1>
-            <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
-              Toolings below are written in different languages, and support
-              part, or all, of at least one recent version of the specification.
-            </p>
-            <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
-              Listing does not signify a recommendation or endorsement of any
-              kind.
-            </p>
-
-            <div className='flex flex-row items-center gap-2 w-full'>
-              <div className='flex items-center justify-center gap-2 w-1/2'>
-                <Link
-                  className='flex-none max-w-full'
-                  href='https://github.com/json-schema-org/website/issues/new?assignees=&labels=Status%3A+Triage&template=adding-your-tooling.yml'
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  <Image
-                    src='/img/tools/adding_your_tool.png'
-                    className='rounded-sm'
-                    height={68}
-                    width={190}
-                    alt='adding your tool'
-                  />
-                </Link>
-                <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
-                  Raise an issue to get your tool added or updated in the
-                  tooling table.
-                </p>
-              </div>
-
-              <div className='flex items-center justify-center gap-2 w-1/2'>
-                <Link
-                  className='flex-none max-w-full'
-                  href='https://bowtie.report'
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  <Image
-                    src='/img/tools/try_bowtie.png'
-                    className='rounded-sm'
-                    height={68}
-                    width={190}
-                    alt='try bowtie'
-                  />
-                </Link>
-                <p className='hidden lg:block text-slate-600 dark:text-slate-300 px-4'>
-                  Bowtie is a meta-validator for JSON Schema implementations and
-                  it provides compliance reports.
-                </p>
-              </div>
+          <div className='flex flex-wrap items-center justify-between gap-4 mb-6'>
+            <div className='flex items-center gap-4'>
+              <GroupByMenu transform={transform} setTransform={setTransform} />
             </div>
+            <div className='flex items-center gap-4'>
+              <div className='text-sm text-gray-500 hidden sm:block'>
+                {visibleToolCount} Tools
+              </div>
+              <Button
+                variant='default'
+                onClick={() => setIsSidebarOpen(true)}
+                className='flex items-center gap-2 text-white'
+              >
+                <Filter className='h-4 w-4' />
+                Filters
+              </Button>
+            </div>
+          </div>
 
-            <GroupByMenu transform={transform} setTransform={setTransform} />
+          <ToolingTable
+            toolsByGroup={toolsByGroup}
+            transform={transform}
+            setTransform={setTransform}
+            numberOfTools={numberOfTools}
+            onVisibleToolCountChange={setVisibleToolCount}
+          />
 
-            <ToolingTable
-              toolsByGroup={toolsByGroup}
-              transform={transform}
-              setTransform={setTransform}
-              numberOfTools={numberOfTools}
-              onVisibleToolCountChange={setVisibleToolCount}
-            />
-
-            <DocsHelp />
-          </main>
-        </div>
+          <DocsHelp />
+        </main>
       </div>
     </SectionContext.Provider>
   );
