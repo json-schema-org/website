@@ -188,6 +188,8 @@ const Home = (props: any) => {
               </Link>
               <Link
                 href='/slack'
+                target='_blank'
+                rel='noopener noreferrer'
                 className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
                 Join Slack
@@ -586,6 +588,7 @@ const Home = (props: any) => {
             <Link
               href='https://github.com/json-schema-org#-contributing-to-json-schema'
               rel='noopener noreferrer'
+              target='_blank'
               className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none flex items-center justify-center'
             >
               Contribute
@@ -996,7 +999,11 @@ for Accounting integrations'
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4 mb-12'>
-            <a href='https://dev.events/'>
+            <a
+              href='https://dev.events/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
@@ -1033,7 +1040,11 @@ for Accounting integrations'
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
-            <a href='https://www.commonroom.io'>
+            <a
+              href='https://www.commonroom.io'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
@@ -1046,7 +1057,11 @@ for Accounting integrations'
                 </>
               )}
             </a>
-            <a href='https://json-schema.org/slack'>
+            <a
+              href='https://json-schema.org/slack'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
