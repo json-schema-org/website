@@ -86,6 +86,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                       as={href}
                       href='/'
                       title={title}
+                      target='_blank'
+                      rel='noopener noreferrer'
                       className={combinedClassName} // Use the combined className
                     >
                       {children}
@@ -93,6 +95,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                   ) : (
                     <a
                       href={href}
+                      target='_blank'
+                      rel='noopener noreferrer'
                       title={title}
                       className={combinedClassName} // Use the combined className
                     >
