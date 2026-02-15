@@ -227,7 +227,8 @@ export default function StaticMarkdownPage({
                   <div className='mb-6 text-sm text-stroke-1'>
                     <span>
                       {blogPosts[0].frontmatter.date} &middot;{' '}
-                      {Math.ceil(readingTime(blogPosts[0].content).minutes)} min read
+                      {Math.ceil(readingTime(blogPosts[0].content).minutes)} min
+                      read
                     </span>
                   </div>
                 </div>
@@ -253,7 +254,9 @@ export default function StaticMarkdownPage({
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className='w-full px-10 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white'
               />
-              <span className='absolute left-4 top-1/2 -translate-y-1/2 text-gray-400'>🔍</span>
+              <span className='absolute left-4 top-1/2 -translate-y-1/2 text-gray-400'>
+                🔍
+              </span>
             </div>
           </div>
 
@@ -276,7 +279,13 @@ export default function StaticMarkdownPage({
               href='/rss/feed.xml'
               className='flex items-center text-blue-500 hover:text-blue-600 cursor-pointer'
             >
-              <Image src='/icons/rss.svg' className='rounded h-5 w-5 mr-2' alt='rss' height={20} width={20} />
+              <Image
+                src='/icons/rss.svg'
+                className='rounded h-5 w-5 mr-2'
+                alt='rss'
+                height={20}
+                width={20}
+              />
               RSS&nbsp;Feed
             </Link>
           </div>
@@ -348,43 +357,56 @@ export default function StaticMarkdownPage({
                         {frontmatter.title}
                       </div>
                       <div className='mt-3 text-slate-500 dark:text-slate-300 flex-1 min-h-0'>
-                        <TextTruncate element='span' line={4} text={frontmatter.excerpt} />
+                        <TextTruncate
+                          element='span'
+                          line={4}
+                          text={frontmatter.excerpt}
+                        />
                       </div>
                     </div>
                     <div className='flex flex-row items-center mt-2'>
                       <div className='flex flex-row pl-2 mr-2'>
-                        {(frontmatter.authors || []).map((author: Author, index: number) => (
-                          <div
-                            key={index}
-                            className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
-                              frontmatter.authors.length > 2 ? 'h-8 w-8' : 'h-11 w-11'
-                            }`}
-                            style={{
-                              backgroundImage: `url(${author.photo})`,
-                              zIndex: 10 - index,
-                            }}
-                          />
-                        ))}
+                        {(frontmatter.authors || []).map(
+                          (author: Author, index: number) => (
+                            <div
+                              key={index}
+                              className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                                frontmatter.authors.length > 2
+                                  ? 'h-8 w-8'
+                                  : 'h-11 w-11'
+                              }`}
+                              style={{
+                                backgroundImage: `url(${author.photo})`,
+                                zIndex: 10 - index,
+                              }}
+                            />
+                          ),
+                        )}
                       </div>
                       <div className='flex flex-col items-start'>
                         <div className='text-sm font-semibold'>
                           {frontmatter.authors.length > 2 ? (
                             <>
-                              {frontmatter.authors.slice(0, 2).map((author: Author, index: number) => (
-                                <span key={author.name}>
-                                  {author.name}
-                                  {index === 0 && ' & '}
-                                </span>
-                              ))}
+                              {frontmatter.authors
+                                .slice(0, 2)
+                                .map((author: Author, index: number) => (
+                                  <span key={author.name}>
+                                    {author.name}
+                                    {index === 0 && ' & '}
+                                  </span>
+                                ))}
                               {'...'}
                             </>
                           ) : (
-                            frontmatter.authors.map((author: Author, index: number) => (
-                              <span key={author.name}>
-                                {author.name}
-                                {index < frontmatter.authors.length - 1 && ' & '}
-                              </span>
-                            ))
+                            frontmatter.authors.map(
+                              (author: Author, index: number) => (
+                                <span key={author.name}>
+                                  {author.name}
+                                  {index < frontmatter.authors.length - 1 &&
+                                    ' & '}
+                                </span>
+                              ),
+                            )
                           )}
                         </div>
                         <div className='text-slate-500 text-sm dark:text-slate-300'>
@@ -405,7 +427,9 @@ export default function StaticMarkdownPage({
                   <div className='flex w-full px-4 py-2 justify-between items-center'>
                     <span className='text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-1 group/readmore'>
                       Read More
-                      <span className='transition-transform group-hover/readmore:translate-x-1 text-xs'>→</span>
+                      <span className='transition-transform group-hover/readmore:translate-x-1 text-xs'>
+                        →
+                      </span>
                     </span>
                     <span className='text-slate-500 text-sm dark:text-slate-400'>
                       {postTimeToRead} min read
@@ -421,7 +445,9 @@ export default function StaticMarkdownPage({
         <div className='flex justify-center items-center gap-4'>
           <button
             className={`px-4 py-2 rounded-md font-semibold ${
-              currentPage === 1 ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'
+              currentPage === 1
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((p) => p - 1)}
@@ -433,7 +459,9 @@ export default function StaticMarkdownPage({
           </span>
           <button
             className={`px-4 py-2 rounded-md font-semibold ${
-              currentPage === totalPages || totalPages === 0 ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700'
+              currentPage === totalPages || totalPages === 0
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
             disabled={currentPage === totalPages || totalPages === 0}
             onClick={() => setCurrentPage((p) => p + 1)}
