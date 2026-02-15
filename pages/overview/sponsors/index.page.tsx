@@ -19,7 +19,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function ContentExample({ blocks }: { blocks: any[] }) {
+export default function ContentExample({ blocks }: { blocks: string[] }) {
   const newTitle = 'Sponsors';
   const fileRenderType =
     'https://github.com/json-schema-org/community/blob/main/programs/sponsors/sponsors.md';

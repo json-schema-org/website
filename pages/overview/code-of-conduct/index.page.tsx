@@ -21,13 +21,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function Content({
-  blocks,
-}: {
-  blocks: any[];
-  frontmatter: any;
-  content: any;
-}) {
+export default function Content({ blocks }: { blocks: string[] }) {
   const newTitle = 'Code of Conduct';
   const fileRenderType =
     'https://github.com/json-schema-org/.github/blob/main/CODE_OF_CONDUCT.md';
