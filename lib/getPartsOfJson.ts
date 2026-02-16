@@ -284,8 +284,8 @@ const getPartsOfJsonObjectContent = (
         stringWithPayload.index +
         (hasComma
           ? indexOfComma +
-          stringWithPayload.match.length -
-          stringWithPayload.payload.length
+            stringWithPayload.match.length -
+            stringWithPayload.payload.length
           : stringWithPayload.match.length);
       const payload = serializedJson.substr(
         payloadStartIndex,
