@@ -20,6 +20,20 @@ type Author = {
   byline?: string;
 };
 
+type BlogPost = {
+  slug: string;
+  frontmatter: {
+    title: string;
+    date: string;
+    cover: string;
+    categories?: string[];
+    type?: string | string[];
+    excerpt?: string;
+    authors: Author[];
+  };
+  content: string;
+};
+
 export type blogCategories =
   | 'All'
   | 'Community'
@@ -29,17 +43,17 @@ export type blogCategories =
   | 'Opinion'
   | 'Documentation';
 
-const getCategories = (frontmatter: any): blogCategories[] => {
+const getCategories = (frontmatter: BlogPost['frontmatter']): blogCategories[] => {
   const cat = frontmatter.categories || frontmatter.type;
   if (!cat) return [];
-  return Array.isArray(cat) ? cat : [cat];
+  return Array.isArray(cat) ? (cat as blogCategories[]) : ([cat] as blogCategories[]);
 };
 
 export async function getStaticProps({ query }: { query: any }) {
   const files = fs.readdirSync(PATH);
   const blogPosts = files
-    .filter((file) => file.substr(-3) === '.md')
-    .map((fileName) => {
+    .filter((file: string) => file.substr(-3) === '.md')
+    .map((fileName: string) => {
       const slug = fileName.replace('.md', '');
       const fullFileName = fs.readFileSync(
         `pages/blog/posts/${slug}.md`,
@@ -81,8 +95,8 @@ export default function StaticMarkdownPage({
   blogPosts,
   filterTag,
 }: {
-  blogPosts: any[];
-  filterTag: any;
+  blogPosts: BlogPost[];
+  filterTag: string;
 }) {
   const router = useRouter();
   // Initialize the filter as an array. If "All" or not specified, we show all posts.
@@ -136,7 +150,7 @@ export default function StaticMarkdownPage({
         newTags = [tag];
       } else {
         if (currentFilterTags.includes(tag)) {
-          newTags = currentFilterTags.filter((t) => t !== tag);
+          newTags = currentFilterTags.filter((t: blogCategories) => t !== tag);
         } else {
           newTags = [...currentFilterTags, tag];
         }
@@ -178,7 +192,7 @@ export default function StaticMarkdownPage({
     const postCategories = getCategories(post.frontmatter);
     return postCategories.some((cat) =>
       currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
+        (filter: blogCategories) => filter.toLowerCase() === cat.toLowerCase(),
       ),
     );
   });
@@ -186,12 +200,12 @@ export default function StaticMarkdownPage({
   const sortedFilteredPosts = filteredPosts.sort((a, b) => {
     const aMatches = getCategories(a.frontmatter).filter((cat) =>
       currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
+        (filter: blogCategories) => filter.toLowerCase() === cat.toLowerCase(),
       ),
     ).length;
     const bMatches = getCategories(b.frontmatter).filter((cat) =>
       currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
+        (filter: blogCategories) => filter.toLowerCase() === cat.toLowerCase(),
       ),
     ).length;
     if (aMatches !== bMatches) {
@@ -348,8 +362,8 @@ export default function StaticMarkdownPage({
               value={tag}
               onClick={() => toggleCategory(tag as blogCategories)}
               className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${currentFilterTags.includes(tag as blogCategories)
-                  ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
-                  : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
+                ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
+                : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
                 }`}
             >
               {tag}
@@ -362,7 +376,7 @@ export default function StaticMarkdownPage({
 
         {/* Blog Posts Grid */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
-          {currentPagePosts.map((blogPost: any, idx: number) => {
+          {currentPagePosts.map((blogPost: BlogPost, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
@@ -393,7 +407,7 @@ export default function StaticMarkdownPage({
                           <div
                             key={index}
                             className='bg-blue-100 hover:bg-blue-200 dark:bg-slate-700 dark:text-blue-100 cursor-pointer font-semibold text-blue-800 inline-block px-3 py-1 rounded-full text-sm'
-                            onClick={(e) => {
+                            onClick={(e: React.MouseEvent) => {
                               e.preventDefault();
                               e.stopPropagation();
                               toggleCategory(cat);
@@ -421,8 +435,8 @@ export default function StaticMarkdownPage({
                             <div
                               key={index}
                               className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${frontmatter.authors.length > 2
-                                  ? 'h-8 w-8'
-                                  : 'h-11 w-11'
+                                ? 'h-8 w-8'
+                                : 'h-11 w-11'
                                 }`}
                               style={{
                                 backgroundImage: `url(${author.photo})`,
@@ -495,8 +509,8 @@ export default function StaticMarkdownPage({
         <div className='flex justify-center items-center gap-4'>
           <button
             className={`px-4 py-2 rounded-md font-semibold ${currentPage === 1
-                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700'
+              ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+              : 'bg-blue-600 text-white hover:bg-blue-700'
               }`}
             disabled={currentPage === 1}
             onClick={() => handlePageChange(currentPage - 1)}
@@ -508,8 +522,8 @@ export default function StaticMarkdownPage({
           </span>
           <button
             className={`px-4 py-2 rounded-md font-semibold ${currentPage === totalPages
-                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
-                : 'bg-blue-600 text-white hover:bg-blue-700'
+              ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+              : 'bg-blue-600 text-white hover:bg-blue-700'
               }`}
             disabled={currentPage === totalPages}
             onClick={() => handlePageChange(currentPage + 1)}
