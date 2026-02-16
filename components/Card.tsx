@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Card as ShadcnCard } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
+import { LucideArrowDownRight } from 'lucide-react';
 
 export interface CardProps {
   title: string;
@@ -13,7 +14,7 @@ export interface CardProps {
   link?: string;
   image?: string;
   extended?: boolean;
-  headerSize?: 'small' | 'medium' | 'large';
+  headerSize?: 'small' | 'base' | 'medium' | 'large';
   bodyTextSize?: 'small' | 'medium' | 'large';
 }
 
@@ -29,7 +30,8 @@ const CardBody = ({
 }: CardProps) => {
   const headerSizeClasses = {
     small: 'text-[0.9rem]',
-    medium: 'text-[1.3rem]',
+    base: 'text-[1rem]',
+    medium: 'text-[1.2rem]',
     large: 'text-[2rem]',
   };
 
@@ -54,28 +56,32 @@ const CardBody = ({
         </div>
       )}
 
-      <div className='flex flex-row items-start '>
-        {icon && (
-          <span className='mr-6 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg border bg-blue-200 px-3 text-gray-900 dark:text-white'>
-            <Image
-              src={icon}
-              alt={title}
-              width={56}
-              height={56}
-              className='h-full w-full'
-              data-test='card-icon'
-            />
-          </span>
-        )}
-        <p
-          className={cn(
-            'mb-1 mt-1 items-center font-bold text-gray-900 dark:text-white',
-            headerSizeClasses[headerSize],
+      <div className='flex flex-row items-start'>
+        <div className='flex flex-col h-full w-fit items-center justify-center'>
+          {icon && (
+            <span className='mr-6 flex size-[52px] flex-shrink-0 items-center justify-center rounded-lg border bg-blue-200 px-3 text-gray-900 dark:text-white'>
+              <Image
+                src={icon}
+                alt={title}
+                width={56}
+                height={56}
+                className='h-full w-full'
+                data-test='card-icon'
+              />
+            </span>
           )}
-          data-test='card-title'
-        >
-          {title}
-        </p>
+        </div>
+        <div className='flex flex-col h-full w-fit items-center justify-center'>
+          <p
+            className={cn(
+              'flex items-center my-1 font-bold text-gray-900 dark:text-white',
+              headerSizeClasses[headerSize],
+            )}
+            data-test='card-title'
+          >
+            {title}
+          </p>
+        </div>
       </div>
 
       <Separator className='bg-gray-400' />
@@ -96,10 +102,11 @@ const CardBody = ({
 
       {link && (
         <p
-          className='absolute bottom-3 right-5 font-medium opacity-0 transition-opacity delay-150 ease-in-out group-hover:opacity-100 text-black dark:text-white'
+          className='absolute flex bottom-3 right-5 font-medium opacity-0 transition-opacity delay-100 ease-in-out group-hover:opacity-100 text-black dark:text-white'
           data-test='card-read-more'
         >
-          Read More
+          Read More{' '}
+          <LucideArrowDownRight className='ml-2 group-hover:-rotate-90 duration-500' />
         </p>
       )}
     </ShadcnCard>
@@ -108,8 +115,10 @@ const CardBody = ({
 
 const Card: React.FC<CardProps> = ({ link, ...props }) => {
   return link ? (
-    <Link href={link} data-test='card-link'>
-      <CardBody link={link} {...props} />
+    <Link href={link} passHref legacyBehavior>
+      <a data-test='card-link'>
+        <CardBody link={link} {...props} />
+      </a>
     </Link>
   ) : (
     <CardBody {...props} />

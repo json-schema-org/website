@@ -29,13 +29,13 @@ export default function ContentExample({
     <SectionContext.Provider value='docs'>
       <StyledMarkdown markdown={blocks[0]} />
       <section className='my-10'>
-        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4 w-12/12 md:w-11/12 lg:w-10/12 mx-auto'>
           <Card
             key='common-interfaces'
             icon='/icons/list.svg'
             title='Understand common interfaces'
             body='Build interoperable JSON Schema tools using shared interfaces.'
-            headerSize='small'
+            headerSize='base'
             bodyTextSize='small'
             link='./implementers/interfaces'
           />
@@ -44,7 +44,7 @@ export default function ContentExample({
             icon='/img/logos/bowtie.svg'
             title='Validate with Bowtie'
             body='Validate your JSON Schema tools with the Bowtie meta-validator.'
-            headerSize='medium'
+            headerSize='base'
             bodyTextSize='small'
             link='https://docs.bowtie.report/en/stable/'
           />
