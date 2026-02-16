@@ -94,17 +94,30 @@ export default function StaticMarkdownPage({
   const [currentFilterTags, setCurrentFilterTags] =
     useState<blogCategories[]>(initialFilters);
 
-  // When the router query changes, update the filters.
+  // When the router query changes, update the filters and current page.
   useEffect(() => {
-    const { query } = router;
-    if (query.type) {
-      const tags = (typeof query.type === 'string' ? query.type : '')
-        .split(',')
-        .filter(isValidCategory);
-      setCurrentFilterTags(tags.length ? tags : ['All']);
-      setCurrentPage(1);
+    if (router.isReady) {
+      const { type, page } = router.query;
+
+      // Handle filters
+      if (type) {
+        const tags = (typeof type === 'string' ? type : '')
+          .split(',')
+          .filter(isValidCategory);
+        setCurrentFilterTags(tags.length ? tags : ['All']);
+      } else {
+        setCurrentFilterTags(['All']);
+      }
+
+      // Handle pagination
+      const pageNumber = parseInt(page as string, 10);
+      if (!isNaN(pageNumber) && pageNumber > 0) {
+        setCurrentPage(pageNumber);
+      } else {
+        setCurrentPage(1);
+      }
     }
-  }, [router.query]);
+  }, [router.isReady, router.query.type, router.query.page]);
 
   useEffect(() => {
     const tags =
@@ -132,12 +145,22 @@ export default function StaticMarkdownPage({
         newTags = ['All'];
       }
     }
-    setCurrentFilterTags(newTags);
+    const query = { ...router.query };
     if (newTags.includes('All')) {
-      history.replaceState(null, '', '/blog');
+      delete query.type;
     } else {
-      history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
+      query.type = newTags.join(',');
     }
+    delete query.page; // Reset to first page when filtering
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query,
+      },
+      undefined,
+      { shallow: true },
+    );
   };
 
   // First, sort all posts by date descending (for fallback sorting)
@@ -215,6 +238,20 @@ export default function StaticMarkdownPage({
     (currentPage - 1) * POSTS_PER_PAGE,
     currentPage * POSTS_PER_PAGE,
   );
+
+  const handlePageChange = (newPage: number) => {
+    const query = { ...router.query, page: newPage.toString() };
+    if (newPage === 1) delete query.page;
+
+    router.push(
+      {
+        pathname: router.pathname,
+        query,
+      },
+      undefined,
+      { shallow: true },
+    );
+  };
 
   return (
     // @ts-ignore
@@ -310,11 +347,10 @@ export default function StaticMarkdownPage({
               key={tag}
               value={tag}
               onClick={() => toggleCategory(tag as blogCategories)}
-              className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${
-                currentFilterTags.includes(tag as blogCategories)
+              className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${currentFilterTags.includes(tag as blogCategories)
                   ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
                   : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
-              }`}
+                }`}
             >
               {tag}
             </button>
@@ -384,11 +420,10 @@ export default function StaticMarkdownPage({
                           (author: Author, index: number) => (
                             <div
                               key={index}
-                              className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
-                                frontmatter.authors.length > 2
+                              className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${frontmatter.authors.length > 2
                                   ? 'h-8 w-8'
                                   : 'h-11 w-11'
-                              }`}
+                                }`}
                               style={{
                                 backgroundImage: `url(${author.photo})`,
                                 zIndex: 10 - index,
@@ -459,13 +494,12 @@ export default function StaticMarkdownPage({
         {/* pagination control */}
         <div className='flex justify-center items-center gap-4'>
           <button
-            className={`px-4 py-2 rounded-md font-semibold ${
-              currentPage === 1
+            className={`px-4 py-2 rounded-md font-semibold ${currentPage === 1
                 ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
                 : 'bg-blue-600 text-white hover:bg-blue-700'
-            }`}
+              }`}
             disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => p - 1)}
+            onClick={() => handlePageChange(currentPage - 1)}
           >
             Previous
           </button>
@@ -473,13 +507,12 @@ export default function StaticMarkdownPage({
             Page {currentPage} of {totalPages}
           </span>
           <button
-            className={`px-4 py-2 rounded-md font-semibold ${
-              currentPage === totalPages
+            className={`px-4 py-2 rounded-md font-semibold ${currentPage === totalPages
                 ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
                 : 'bg-blue-600 text-white hover:bg-blue-700'
-            }`}
+              }`}
             disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => p + 1)}
+            onClick={() => handlePageChange(currentPage + 1)}
           >
             Next
           </button>
