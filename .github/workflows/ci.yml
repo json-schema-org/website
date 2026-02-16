@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Corepack enable 
         run: corepack enable
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           submodules: recursive
 
@@ -79,7 +79,7 @@ jobs:
   #   runs-on: ubuntu-latest
   #   steps: 
   #     - name: Checkout code
-  #       uses: actions/checkout@v4
+  #       uses: actions/checkout@v5
       
   #     - name: Get Changed Unauthorized files
   #       id: changed-unauth-files
