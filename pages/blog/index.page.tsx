@@ -43,10 +43,14 @@ export type blogCategories =
   | 'Opinion'
   | 'Documentation';
 
-const getCategories = (frontmatter: BlogPost['frontmatter']): blogCategories[] => {
+const getCategories = (
+  frontmatter: BlogPost['frontmatter'],
+): blogCategories[] => {
   const cat = frontmatter.categories || frontmatter.type;
   if (!cat) return [];
-  return Array.isArray(cat) ? (cat as blogCategories[]) : ([cat] as blogCategories[]);
+  return Array.isArray(cat)
+    ? (cat as blogCategories[])
+    : ([cat] as blogCategories[]);
 };
 
 export async function getStaticProps({ query }: { query: any }) {
@@ -361,10 +365,11 @@ export default function StaticMarkdownPage({
               key={tag}
               value={tag}
               onClick={() => toggleCategory(tag as blogCategories)}
-              className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${currentFilterTags.includes(tag as blogCategories)
-                ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
-                : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
-                }`}
+              className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${
+                currentFilterTags.includes(tag as blogCategories)
+                  ? 'dark:bg-blue-200 dark:text-slate-700 bg-blue-800 text-blue-100'
+                  : 'dark:bg-slate-700 dark:text-blue-100 bg-blue-100 text-blue-800 hover:bg-blue-200 hover:dark:bg-slate-600'
+              }`}
             >
               {tag}
             </button>
@@ -434,10 +439,11 @@ export default function StaticMarkdownPage({
                           (author: Author, index: number) => (
                             <div
                               key={index}
-                              className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${frontmatter.authors.length > 2
-                                ? 'h-8 w-8'
-                                : 'h-11 w-11'
-                                }`}
+                              className={`bg-slate-50 rounded-full -ml-3 bg-cover bg-center border-2 border-white ${
+                                frontmatter.authors.length > 2
+                                  ? 'h-8 w-8'
+                                  : 'h-11 w-11'
+                              }`}
                               style={{
                                 backgroundImage: `url(${author.photo})`,
                                 zIndex: 10 - index,
@@ -508,10 +514,11 @@ export default function StaticMarkdownPage({
         {/* pagination control */}
         <div className='flex justify-center items-center gap-4'>
           <button
-            className={`px-4 py-2 rounded-md font-semibold ${currentPage === 1
-              ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
-              : 'bg-blue-600 text-white hover:bg-blue-700'
-              }`}
+            className={`px-4 py-2 rounded-md font-semibold ${
+              currentPage === 1
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
             disabled={currentPage === 1}
             onClick={() => handlePageChange(currentPage - 1)}
           >
@@ -521,10 +528,11 @@ export default function StaticMarkdownPage({
             Page {currentPage} of {totalPages}
           </span>
           <button
-            className={`px-4 py-2 rounded-md font-semibold ${currentPage === totalPages
-              ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
-              : 'bg-blue-600 text-white hover:bg-blue-700'
-              }`}
+            className={`px-4 py-2 rounded-md font-semibold ${
+              currentPage === totalPages
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
             disabled={currentPage === totalPages}
             onClick={() => handlePageChange(currentPage + 1)}
           >
