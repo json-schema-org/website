@@ -104,10 +104,11 @@ export default function StaticMarkdownPage({
 }) {
   const router = useRouter();
   // Initialize the filter as an array. If "All" or not specified, we show all posts.
-  const initialFilters =
+  const initialFilters = (
     filterTag && filterTag !== 'All'
       ? filterTag.split(',').filter(isValidCategory)
-      : ['All'];
+      : ['All']
+  ) as blogCategories[];
 
   const [currentFilterTags, setCurrentFilterTags] =
     useState<blogCategories[]>(initialFilters);
@@ -138,10 +139,11 @@ export default function StaticMarkdownPage({
   }, [router.isReady, router.query.type, router.query.page]);
 
   useEffect(() => {
-    const tags =
+    const tags = (
       filterTag && filterTag !== 'All'
         ? filterTag.split(',').filter(isValidCategory)
-        : ['All'];
+        : ['All']
+    ) as blogCategories[];
     setCurrentFilterTags(tags);
   }, [filterTag]);
 
@@ -259,7 +261,7 @@ export default function StaticMarkdownPage({
 
   const handlePageChange = (newPage: number) => {
     const query = { ...router.query, page: newPage.toString() };
-    if (newPage === 1) delete query.page;
+    if (newPage === 1) delete (query as any).page;
 
     router.push(
       {
