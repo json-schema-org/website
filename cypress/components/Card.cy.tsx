@@ -90,4 +90,90 @@ describe('Card Component', () => {
     cy.get('[data-test="card-title"]').should('have.class', 'text-[0.9rem]');
     cy.get('[data-test="card-body"]').should('have.class', 'text-[1.5rem]');
   });
+
+  // Test XSS sanitization for extended content
+  it('should sanitize HTML content when extended is true', () => {
+    const xssTestProps: CardProps = {
+      ...RoadmapProps,
+      body: '<p>Safe content</p><script>alert("XSS")</script><img src=x onerror=alert("XSS")>',
+      extended: true,
+    };
+    cy.mount(<Card {...xssTestProps} />);
+    cy.get('[data-test="card-body"]').should('contain', 'Safe content');
+    cy.get('[data-test="card-body"]').should('not.contain', '<script>');
+    cy.get('[data-test="card-body"]').should('not.contain', 'onerror=');
+    cy.get('[data-test="card-body"]').should('not.contain', 'alert(');
+  });
+
+  // Test that safe HTML is preserved
+  it('should preserve safe HTML tags when extended is true', () => {
+    const safeHtmlProps: CardProps = {
+      ...RoadmapProps,
+      body: '<p>This is <strong>bold</strong> and <em>italic</em> text with a <a href="https://example.com">link</a>.</p>',
+      extended: true,
+    };
+    cy.mount(<Card {...safeHtmlProps} />);
+    cy.get('[data-test="card-body"]').should('contain', 'This is');
+    cy.get('[data-test="card-body"]').should('contain', 'bold');
+    cy.get('[data-test="card-body"]').should('contain', 'italic');
+    cy.get('[data-test="card-body"]').should('contain', 'text with a');
+    cy.get('[data-test="card-body"]').should('contain', 'link');
+  });
+
+  // Test external link security transformation
+  it('should add security attributes to external links', () => {
+    const externalLinkProps: CardProps = {
+      ...RoadmapProps,
+      body: '<p>Check this <a href="https://example.com">external link</a> and this <a href="/internal">internal link</a>.</p>',
+      extended: true,
+    };
+    cy.mount(<Card {...externalLinkProps} />);
+    cy.get('[data-test="card-body"]').should('contain', 'external link');
+    cy.get('[data-test="card-body"]').should('contain', 'internal link');
+
+    // Check that external links have security attributes
+    cy.get('[data-test="card-body"] a[href="https://example.com"]').should(
+      'have.attr',
+      'target',
+      '_blank',
+    );
+    cy.get('[data-test="card-body"] a[href="https://example.com"]').should(
+      'have.attr',
+      'rel',
+      'noopener noreferrer',
+    );
+
+    // Check that internal links don't have security attributes
+    cy.get('[data-test="card-body"] a[href="/internal"]').should(
+      'not.have.attr',
+      'target',
+    );
+    cy.get('[data-test="card-body"] a[href="/internal"]').should(
+      'not.have.attr',
+      'rel',
+    );
+  });
+
+  // Test transformTags function specifically
+  it('should test transformTags function with external links', () => {
+    const transformTestProps: CardProps = {
+      ...RoadmapProps,
+      body: '<a href="https://external.com">External Link</a>',
+      extended: true,
+    };
+    cy.mount(<Card {...transformTestProps} />);
+
+    // The transformTags function should add security attributes
+    cy.get('[data-test="card-body"] a').should(
+      'have.attr',
+      'href',
+      'https://external.com',
+    );
+    cy.get('[data-test="card-body"] a').should('have.attr', 'target', '_blank');
+    cy.get('[data-test="card-body"] a').should(
+      'have.attr',
+      'rel',
+      'noopener noreferrer',
+    );
+  });
 });
