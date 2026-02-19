@@ -355,17 +355,30 @@ export const DocsNav = ({
     }
   }, [resolvedTheme]);
 
+  /* Accordion helper: Auto-collapse other sections when opening a new one */
+  const handleAccordionChange = (key: keyof typeof active, isOpen: boolean) => {
+    if (isOpen) {
+      setActive({
+        getDocs: key === 'getDocs',
+        getStarted: key === 'getStarted',
+        getGuides: key === 'getGuides',
+        getReference: key === 'getReference',
+        getSpecification: key === 'getSpecification',
+      });
+    } else {
+      setActive((prev) => ({
+        ...prev,
+        [key]: false,
+      }));
+    }
+  };
+
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>
       {/* Introduction */}
       <Collapsible
         open={active.getDocs}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getDocs: open,
-          }))
-        }
+        onOpenChange={(open) => handleAccordionChange('getDocs', open)}
         className='my-2 bg-slate-200 dark:bg-slate-900 border-white border lg:border-hidden p-3 rounded transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -467,12 +480,7 @@ export const DocsNav = ({
       {/* Get Started */}
       <Collapsible
         open={active.getStarted}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getStarted: open,
-          }))
-        }
+        onOpenChange={(open) => handleAccordionChange('getStarted', open)}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -571,12 +579,7 @@ export const DocsNav = ({
       {/* Guides */}
       <Collapsible
         open={active.getGuides}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getGuides: open,
-          }))
-        }
+        onOpenChange={(open) => handleAccordionChange('getGuides', open)}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -644,12 +647,7 @@ export const DocsNav = ({
       {/* Reference */}
       <Collapsible
         open={active.getReference}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getReference: open,
-          }))
-        }
+        onOpenChange={(open) => handleAccordionChange('getReference', open)}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
@@ -827,12 +825,7 @@ export const DocsNav = ({
       {/* Specification */}
       <Collapsible
         open={active.getSpecification}
-        onOpenChange={(open) =>
-          setActive((prev) => ({
-            ...prev,
-            getSpecification: open,
-          }))
-        }
+        onOpenChange={(open) => handleAccordionChange('getSpecification', open)}
         className='mb-2 bg-slate-200 dark:bg-slate-900 p-3 rounded border border-white lg:border-hidden transition-all duration-300 group'
       >
         <CollapsibleTrigger asChild>
