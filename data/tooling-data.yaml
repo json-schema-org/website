@@ -55,8 +55,8 @@
   source: 'https://github.com/lateapexearlyspeed/Lateapexearlyspeed.JsonSchema'
   homepage: 'https://www.nuget.org/packages/Lateapexearlyspeed.Json.Schema'
   supportedDialects:
-    draft: ['2020-12']
-  lastUpdated: '2023-12-13'
+    draft: ['7', '2019-09', '2020-12']
+  lastUpdated: '2026-02-10'
 
 - name: f5-json-schema
   description: 'JSON schema validation'
