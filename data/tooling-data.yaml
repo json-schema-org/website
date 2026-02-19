@@ -116,6 +116,29 @@
   toolingListingNotes: 'Header-only library'
   lastUpdated: '2024-04-22'
 
+- name: M3
+  description: 'Passes every test in the official JSON Schema Test Suite across all drafts from draft-03 through draft-next — 9,622 assertions with zero failures. Usable from Clojure, Java, Kotlin, Scala, JavaScript, and Node.js.'
+  toolingTypes: ['validator']
+  languages: ['Clojure', 'Java', 'JavaScript']
+  creators:
+    - name: 'Julian Gosnell'
+      username: 'JulesGosnell'
+      platform: 'github'
+  maintainers:
+    - name: 'Julian Gosnell'
+      username: 'JulesGosnell'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/JulesGosnell/m3'
+  homepage: 'https://github.com/JulesGosnell/m3'
+  supportedDialects:
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']
+    additional:
+      - name: 'draft-next'
+        source: 'https://github.com/json-schema-org/json-schema-spec'
+  toolingListingNotes: 'Written in Clojure/ClojureScript, runs on JVM and in the browser. Also usable from Kotlin, Scala, and Node.js.'
+  lastUpdated: '2026-02-11'
+
 - name: jinx
   description: "jinx is not xml-schema (it's json-schema!)"
   toolingTypes: ['validator']
