@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { atomOneDark } from 'react-syntax-highlighter/dist/cjs/styles/hljs';
+import {
+  atomOneDark,
+  atomOneLight,
+} from 'react-syntax-highlighter/dist/cjs/styles/hljs';
 import Highlight from 'react-syntax-highlighter';
 import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
 
 async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
@@ -42,6 +46,8 @@ interface InstanceOption {
 }
 
 const GettingStarted = () => {
+  const { resolvedTheme } = useTheme();
+
   useEffect(() => {
     fetchData()
       .then(
@@ -128,14 +134,16 @@ const GettingStarted = () => {
       <div className='relative'>
         <div className='flex flex-col'>
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-            <h2 className='text-h6 font-semibold mb-1'>JSON Schema</h2>
+            <h2 className='text-h6 font-semibold mb-1 text-slate-900 dark:text-white'>
+              JSON Schema
+            </h2>
             <div className='select-wrap'>
-              <label className='mr-2 max-sm:text-[12px]'>
+              <label className='mr-2 max-sm:text-[12px] text-slate-700 dark:text-slate-300'>
                 Select a Schema:
               </label>
               <select
                 name='Select a JSON Schema Validator'
-                className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
+                className='p-2 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px]'
                 id='Examples'
                 onChange={handleSchemaChange}
               >
@@ -159,11 +167,18 @@ const GettingStarted = () => {
                 paddingLeft: 10,
                 marginBottom: 20,
                 maxWidth: '100%',
+                backgroundColor:
+                  resolvedTheme === 'dark' ? '#282c34' : '#f8fafc',
+                border:
+                  resolvedTheme === 'dark'
+                    ? '1px solid #374151'
+                    : '1px solid #e2e8f0',
               }}
               lineNumberStyle={{
                 marginRight: 10,
+                color: resolvedTheme === 'dark' ? '#64748B' : '#94a3b8',
               }}
-              style={atomOneDark}
+              style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
               showLineNumbers
               startingLineNumber={1}
               lineProps={() => {
@@ -183,14 +198,16 @@ const GettingStarted = () => {
 
         <div className='flex flex-col'>
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
-            <h2 className='text-h6 font-semibold mb-1'>JSON Instance</h2>
+            <h2 className='text-h6 font-semibold mb-1 text-slate-900 dark:text-white'>
+              JSON Instance
+            </h2>
             <div className='select-wrap'>
-              <label className='mr-2 max-sm:text-[12px]'>
+              <label className='mr-2 max-sm:text-[12px] text-slate-700 dark:text-slate-300'>
                 Select an Instance:
               </label>
               <select
                 name='Select a JSON Schema Validator'
-                className='p-2 border dark:border-slate-300 border-slate-800 dark:bg-slate-900 rounded-md max-sm:text-[12px]'
+                className='p-2 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px]'
                 id='Examples'
                 onChange={handleInstanceChange}
               >
@@ -213,11 +230,18 @@ const GettingStarted = () => {
                 paddingLeft: 10,
                 marginBottom: 20,
                 maxWidth: '100%',
+                backgroundColor:
+                  resolvedTheme === 'dark' ? '#282c34' : '#f8fafc',
+                border:
+                  resolvedTheme === 'dark'
+                    ? '1px solid #374151'
+                    : '1px solid #e2e8f0',
               }}
               lineNumberStyle={{
                 marginRight: 10,
+                color: resolvedTheme === 'dark' ? '#64748B' : '#94a3b8',
               }}
-              style={atomOneDark}
+              style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
               showLineNumbers
               startingLineNumber={1}
               lineProps={() => {
@@ -233,9 +257,11 @@ const GettingStarted = () => {
               {JSON.stringify(fetchedInstance, null, 2)}
             </Highlight>
           </div>
-          <h2 className='text-h6 font-semibold'>Validation Result</h2>
-          <div className='flex bg-[#282c34] justify-between items-center text-white font-medium flex-row border p-5 rounded-xl'>
-            <p>{details[0]}</p>
+          <h2 className='text-h6 font-semibold text-slate-900 dark:text-white'>
+            Validation Result
+          </h2>
+          <div className='flex dark:bg-[#282c34] bg-slate-100 justify-between items-center text-slate-800 dark:text-white font-medium flex-row border dark:border-slate-700 border-slate-300 p-5 rounded-xl'>
+            <p className='text-slate-700 dark:text-slate-300'>{details[0]}</p>
 
             {details[1] ? (
               <Image
@@ -243,6 +269,7 @@ const GettingStarted = () => {
                 alt='green tick'
                 width={24}
                 height={24}
+                className='dark:brightness-100 brightness-90'
               />
             ) : (
               <Image
@@ -250,13 +277,14 @@ const GettingStarted = () => {
                 alt='red cross'
                 width={24}
                 height={24}
+                className='dark:brightness-100 brightness-90'
               />
             )}
           </div>
         </div>
 
         <button
-          className='absolute right-0 my-4 text-[17px] bg-startBlue text-white px-3 py-1 rounded'
+          className='absolute right-0 my-4 text-[17px] bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md'
           onClick={createZip}
         >
           Download
