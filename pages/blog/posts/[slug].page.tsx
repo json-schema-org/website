@@ -78,38 +78,38 @@ export default function StaticMarkdownPage({
                           key={index}
                           className='flex flex-row items-center mb-3 w-full'
                         >
-                            <div
-                              className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center'
-                              style={{ backgroundImage: `url(${author.photo})` }}
-                            />
-                            <div className='flex flex-col pl-2'>
-                              <div className='text-sm font-semibold'>
-                                {author.name}
-                              </div>
-                              <div className='flex gap-2 text-xs'>
-                                {author.twitter && (
-                                  <a
-                                    className='text-blue-500 hover:underline'
-                                    href={`https://x.com/${author.twitter}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    Twitter
-                                  </a>
-                                )}
-                                {author.linkedin && (
-                                  <a
-                                    className='text-blue-700 hover:underline'
-                                    href={author.linkedin}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    LinkedIn
-                                  </a>
-                                )}
-                              </div>
+                          <div
+                            className='bg-slate-50 h-[44px] w-[44px] rounded-full bg-cover bg-center'
+                            style={{ backgroundImage: `url(${author.photo})` }}
+                          />
+                          <div className='flex flex-col pl-2'>
+                            <div className='text-sm font-semibold'>
+                              {author.name}
+                            </div>
+                            <div className='flex gap-2 text-xs'>
+                              {author.twitter && (
+                                <a
+                                  className='text-blue-500 hover:underline'
+                                  href={`https://x.com/${author.twitter}`}
+                                  target='_blank'
+                                  rel='noopener noreferrer'
+                                >
+                                  Twitter
+                                </a>
+                              )}
+                              {author.linkedin && (
+                                <a
+                                  className='text-blue-700 hover:underline'
+                                  href={author.linkedin}
+                                  target='_blank'
+                                  rel='noopener noreferrer'
+                                >
+                                  LinkedIn
+                                </a>
+                              )}
                             </div>
                           </div>
+                        </div>
                       );
                     },
                   )}
