@@ -40,7 +40,7 @@ const CardBody = ({
   };
 
   return (
-    <ShadcnCard className='group relative h-full w-full rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30'>
+    <ShadcnCard className='group relative h-full w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)] bg-white dark:bg-slate-800'>
       {image && (
         <div className='flex justify-center '>
           <Image
