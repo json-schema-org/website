@@ -124,6 +124,9 @@ const Home = (props: any) => {
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
+      litslink: '/img/logos/sponsors/litslink_dark.svg',
+      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+      timenow: '/img/logos/sponsors/time_now_dark.svg',
     },
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
@@ -149,6 +152,9 @@ const Home = (props: any) => {
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
+      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+      litslink: '/img/logos/sponsors/litslink_white.svg',
+      timenow: '/img/logos/sponsors/time_now_white.svg',
     },
   };
 
@@ -182,6 +188,8 @@ const Home = (props: any) => {
               </Link>
               <Link
                 href='/slack'
+                target='_blank'
+                rel='noopener noreferrer'
                 className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
                 Join Slack
@@ -374,7 +382,7 @@ const Home = (props: any) => {
                     <>
                       <Image
                         src='/img/logos/Slack-mark.svg'
-                        className='w-8 h-8'
+                        className='size-12'
                         alt='slack'
                         height={32}
                         width={32}
@@ -395,7 +403,7 @@ const Home = (props: any) => {
                 )}
 
                 {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-                <p className='mb-4 dark:text-slate-300'>
+                <p className='mb-4 dark:text-slate-300 text-balance'>
                   Join our Slack to ask questions, get feedback on your
                   projects, and connect with +5000 practitioners and experts.
                 </p>
@@ -409,7 +417,7 @@ const Home = (props: any) => {
                     <>
                       <Image
                         src='/img/logos/slack_logo_small-white.svg'
-                        className='w-4 h-4 mr-2 '
+                        className='w-4 h-4 mr-2'
                         width={16}
                         height={16}
                         alt='slack'
@@ -430,7 +438,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px]  mb-4'
+                      className='w-full h-[232px] object-contain mb-4'
                       width={600}
                       height={232}
                       alt='blog'
@@ -449,7 +457,7 @@ const Home = (props: any) => {
                   />
                 </div>
 
-                <div className='flex ml-2 mb-2 '>
+                <div className='flex ml-2 mb-2'>
                   {(blogPosts[0].frontmatter.authors || []).map(
                     (author: any, index: number) => {
                       return (
@@ -580,6 +588,7 @@ const Home = (props: any) => {
             <Link
               href='https://github.com/json-schema-org#-contributing-to-json-schema'
               rel='noopener noreferrer'
+              target='_blank'
               className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none flex items-center justify-center'
             >
               Contribute
@@ -925,6 +934,31 @@ for Accounting integrations'
                 />
               </a>
               <a
+                href='https://spinthewheel.io/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={logos.spinthewheel}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Spin the wheel logo'
+                />
+              </a>
+              <a href='https://litslink.com/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.litslink}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Litslink logo'
+                />
+              </a>
+              <a href='https://time.now/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.timenow}
+                  className='w-24 transition-transform duration-300 hover:scale-105'
+                  alt='Time Now logo'
+                />
+              </a>
+              <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
@@ -965,7 +999,11 @@ for Accounting integrations'
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4 mb-12'>
-            <a href='https://dev.events/'>
+            <a
+              href='https://dev.events/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
@@ -1002,7 +1040,11 @@ for Accounting integrations'
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
-            <a href='https://www.commonroom.io'>
+            <a
+              href='https://www.commonroom.io'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
@@ -1015,7 +1057,11 @@ for Accounting integrations'
                 </>
               )}
             </a>
-            <a href='https://json-schema.org/slack'>
+            <a
+              href='https://json-schema.org/slack'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image

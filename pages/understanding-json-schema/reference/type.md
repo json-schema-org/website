@@ -72,7 +72,7 @@ floating-point.
 [tab "Perl"]
 
 The following table maps from the names of JSON types to
-their analogous types in Objective-C:
+their analogous types in Perl:
 
 | JSON    | Perl                                             |
 |---------|--------------------------------------------------|

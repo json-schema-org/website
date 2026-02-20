@@ -86,6 +86,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                       as={href}
                       href='/'
                       title={title}
+                      target='_blank'
+                      rel='noopener noreferrer'
                       className={combinedClassName} // Use the combined className
                     >
                       {children}
@@ -93,6 +95,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                   ) : (
                     <a
                       href={href}
+                      target='_blank'
+                      rel='noopener noreferrer'
                       title={title}
                       className={combinedClassName} // Use the combined className
                     >
@@ -159,7 +163,20 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                 </tr>
               ),
             },
-            code: { component: Code },
+            code: {
+              component: ({ children, className }) => {
+                const isInline = !className?.includes('lang-');
+                if (isInline) {
+                  // Wrap inline code in a span with break-words
+                  return (
+                    <span className='break-words inline'>
+                      <Code>{children}</Code>
+                    </span>
+                  );
+                }
+                return <Code>{children}</Code>;
+              },
+            },
             pre: ({ children }) => {
               const language = children?.props?.className;
               const isJsonCode = language === 'lang-json';

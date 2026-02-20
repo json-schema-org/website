@@ -55,8 +55,8 @@
   source: 'https://github.com/lateapexearlyspeed/Lateapexearlyspeed.JsonSchema'
   homepage: 'https://www.nuget.org/packages/Lateapexearlyspeed.Json.Schema'
   supportedDialects:
-    draft: ['2020-12']
-  lastUpdated: '2023-12-13'
+    draft: ['7', '2019-09', '2020-12']
+  lastUpdated: '2026-02-10'
 
 - name: f5-json-schema
   description: 'JSON schema validation'
@@ -115,6 +115,29 @@
     draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Header-only library'
   lastUpdated: '2024-04-22'
+
+- name: M3
+  description: 'Passes every test in the official JSON Schema Test Suite across all drafts from draft-03 through draft-next — 9,622 assertions with zero failures. Usable from Clojure, Java, Kotlin, Scala, JavaScript, and Node.js.'
+  toolingTypes: ['validator']
+  languages: ['Clojure', 'Java', 'JavaScript']
+  creators:
+    - name: 'Julian Gosnell'
+      username: 'JulesGosnell'
+      platform: 'github'
+  maintainers:
+    - name: 'Julian Gosnell'
+      username: 'JulesGosnell'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/JulesGosnell/m3'
+  homepage: 'https://github.com/JulesGosnell/m3'
+  supportedDialects:
+    draft: ['3', '4', '6', '7', '2019-09', '2020-12']
+    additional:
+      - name: 'draft-next'
+        source: 'https://github.com/json-schema-org/json-schema-spec'
+  toolingListingNotes: 'Written in Clojure/ClojureScript, runs on JVM and in the browser. Also usable from Kotlin, Scala, and Node.js.'
+  lastUpdated: '2026-02-11'
 
 - name: jinx
   description: "jinx is not xml-schema (it's json-schema!)"
@@ -895,7 +918,7 @@
 - name: lua-resty-jsonschema
   description: 'Pure Lua JSON schema validator for Lua/LuaJIT'
   toolingTypes: ['validator']
-  languages: ['Lua/LuaJIT']
+  languages: ['Lua']
   maintainers:
     - name: 'YuanSheng Wang'
       username: 'membphis'
@@ -906,6 +929,21 @@
   supportedDialects:
     draft: ['4', '6', '7']
   lastUpdated: '2022-08-31'
+
+- name: lua-schema
+  description: 'lua-schema is a JSON Schema (classical & modern) data validator for Lua. It validates data from a JSON instance or from any equivalent data model, for example CBOR, Message Pack, UBJSON or just plain Lua.'
+  toolingTypes: ['validator']
+  languages: ['Lua']
+  maintainers:
+    - name: 'François Perrad'
+      username: 'fperrad'
+      platform: 'gitlab'
+  license: 'MIT'
+  source: 'https://framagit.org/fperrad/lua-schema'
+  homepage: 'https://fperrad.frama.io/lua-schema'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  lastUpdated: '2026-01-08'
 
 - name: json-everything
   description: 'System.Text.Json-based support for all of your JSON needs.'
