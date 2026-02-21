@@ -1,3 +1,4 @@
+import React from 'react';
 import getFindResultsByGlobalRegExp from '~/lib/getFindResultsByGlobalRegExp';
 
 export const REGEX_TAB_GROUPS =
@@ -45,18 +46,16 @@ export const hiddenElements = (...elements: string[]) => {
   }, {});
 };
 
-export const checkHasContent = (reactNode: React.ReactChild) => {
+export const checkHasContent = (reactNode: React.ReactChild): boolean => {
   if (!reactNode) return false;
   if (typeof reactNode === 'string' || typeof reactNode === 'number')
     return true;
-  if ((reactNode?.props?.children || []).length === 0) return false;
-  return reactNode.props.children.reduce(
-    (acc: boolean, reactNode: React.ReactChild) => {
-      if (acc) return acc;
-      return checkHasContent(reactNode);
-    },
-    false,
-  );
+  const children = React.Children.toArray(reactNode?.props?.children ?? []);
+  if (children.length === 0) return false;
+  return children.reduce((acc: boolean, child: React.ReactNode) => {
+    if (acc) return acc;
+    return checkHasContent(child as React.ReactChild);
+  }, false);
 };
 
 export function parseTabsFromMarkdown(markdown: string) {
