@@ -306,7 +306,7 @@ const ToolingTable = ({
                         onClick={() => openModal(tool)}
                       >
                         <td className='p-2 relative'>
-                                                    {bowtieReport && (
+                          {bowtieReport && (
                             <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
                               <span>Bowtie:</span>
                               {bowtieData ? (
