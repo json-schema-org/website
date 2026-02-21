@@ -306,22 +306,25 @@ const ToolingTable = ({
                         onClick={() => openModal(tool)}
                       >
                         <td className='p-2 relative'>
-                          {bowtieData && (
+                                                    {bowtieReport && (
                             <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
                               <span>Bowtie:</span>
-                              <a
-                                href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
-                                target='_blank'
-                                rel='noopener noreferrer'
-                                onClick={(event) => event.stopPropagation()}
-                                title='See at Bowtie'
-                                className='ml-1'
-                              >
-                                <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
-                              </a>
+                              {bowtieData ? (
+                                <a
+                                  href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                                  target='_blank'
+                                  rel='noopener noreferrer'
+                                  onClick={(event) => event.stopPropagation()}
+                                  title='See at Bowtie'
+                                  className='ml-1'
+                                >
+                                  <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                </a>
+                              ) : (
+                                <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                              )}
                             </div>
                           )}
-
                           <div className='flex justify-between items-center'>
                             <div className='font-medium'>
                               {tool.name}
