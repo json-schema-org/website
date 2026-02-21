@@ -177,11 +177,12 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
 
   const { numberOfTools, toolsByGroup } = useMemo(
     () => groupTools(sortedHits, transform),
-    [sortedHits,
-    transform.groupBy,
-    transform.toolingTypes?.join(',') ?? '',
-    transform.languages?.join(',') ?? '',
- ],
+    [
+      sortedHits,
+      transform.groupBy,
+      transform.toolingTypes?.join(',') ?? '',
+      transform.languages?.join(',') ?? '',
+    ],
   );
 
   return {
@@ -323,16 +324,18 @@ const groupTools = (
 
   if (groupBy === 'languages' || groupBy === 'toolingTypes') {
     //If the page is scoped (e.g. toolingTypes=validator or languages=js),
-   // only group by the scoped values so the grouped structure matches the scope.
+    // only group by the scoped values so the grouped structure matches the scope.
     const activeFilter =
-    groupBy === 'toolingTypes'
-      ? (transform.toolingTypes ?? [])
-      : (transform.languages ?? []);
+      groupBy === 'toolingTypes'
+        ? (transform.toolingTypes ?? [])
+        : (transform.languages ?? []);
     tools.forEach((tool) => {
-      let groups = Array.isArray(tool[groupBy]) ? tool[groupBy] : [];
-        if (activeFilter.length > 0) {
-          groups = groups.filter((g) => activeFilter.includes(g));
-    }
+      let groups: string[] = Array.isArray(tool[groupBy])
+        ? (tool[groupBy] as string[])
+        : [];
+      if (activeFilter.length > 0) {
+        groups = groups.filter((g) => activeFilter.includes(g));
+      }
       if (groups.length > 0) {
         groups.forEach((group) => {
           if (!groupedTools[group]) groupedTools[group] = [];
