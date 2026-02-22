@@ -217,7 +217,13 @@ export default function ToolingPage({
 
           <div className='flex flex-wrap items-center justify-between gap-4 mb-6'>
             <div className='flex items-center gap-4'>
-              <GroupByMenu transform={transform} setTransform={setTransform} />
+              <GroupByMenu
+                transform={transform}
+                setTransform={setTransform}
+                activeSections={Object.keys(toolsByGroup).filter(
+                  (g) => g !== 'none' && toolsByGroup[g].length > 0,
+                )}
+              />
             </div>
             <div className='flex items-center gap-4'>
               <div className='text-sm text-gray-500 hidden sm:block'>
