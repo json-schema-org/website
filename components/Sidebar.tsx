@@ -205,14 +205,20 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const shouldHideSidebar = pathWtihoutFragment === '/md-style-guide';
 
   useEffect(() => {
-    if (window) {
-      window.addEventListener('resize', () => {
-        if (window.innerWidth > 1024) {
-          setOpen(false);
-        }
-      });
-    }
-  }, [typeof window !== 'undefined']);
+    if (typeof window === 'undefined') return;
+
+    const handleResize = () => {
+      if (window.innerWidth > 1024) {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   return (
     <div className='max-w-[1400px] mx-auto flex flex-col items-center'>
       <section>
