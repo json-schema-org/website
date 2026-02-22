@@ -503,9 +503,16 @@ const FaviconHead = () => {
     const matcher: MediaQueryList = window.matchMedia(
       '(prefers-color-scheme: dark)',
     );
-    matcher.addEventListener('change', () => onUpdate(matcher));
+
+    const handleChange = () => onUpdate(matcher);
+
+    matcher.addEventListener('change', handleChange);
     onUpdate(matcher);
-  }, []);
+
+    return () => {
+      matcher.removeEventListener('change', handleChange);
+    };
+  }, [onUpdate]);
 
   if (isDarkMode) {
     return (
