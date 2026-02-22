@@ -71,6 +71,19 @@ If you would like to join the efforts to improve the JSON Schema Website, we enc
 
 If you would like to contribute with designs, we encourage you to join `#design` channel in our [Slack workspace](https://json-schema.org/slack) and read the [contributing guidelines](https://github.com/json-schema-org/brand/blob/master/CONTRIBUTING.md) in the [Brand](https://github.com/json-schema-org/brand) repository.
 
+#### Using shadcn/ui Components
+
+When contributing to the website design components, we use [shadcn/ui](https://ui.shadcn.com/) for consistent, accessible UI components. Here's how to add new components:
+
+1. **First step**: Go to the [shadcn/ui website](https://ui.shadcn.com/) and search for the required components
+2. **Installation**: Run the following commands to add the component:
+   ```bash
+   corepack prepare yarn@4.4.0 --activate
+   yarn dlx shadcn@latest add [component-name]
+   ```
+   Replace `[component-name]` with the actual component name, This should work across all devices. When creating a new component, please also update the corresponding test files
+
+
 ### 🚀 Contributing to CI/CD Pipeline
 
 If you would like to contribute to our CI/CD pipeline, we encourage you to review our current setup in the [workflows README](https://github.com/json-schema-org/website/blob/main/.github/workflows/README.md).
