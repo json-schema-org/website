@@ -50,7 +50,7 @@ const GroupByMenu = ({
   };
 
   return (
-    <div className='ml-2 my-8 flex flex-col lg:flex-row items-start lg:items-center gap-4 w-full'>
+    <div className='ml-2 my-8 flex flex-col md:flex-row items-start md:items-center gap-4 w-full'>
       <div className='flex items-center space-x-2 max-w-screen overflow-x-auto'>
         <span className='text-slate-600 dark:text-slate-300'>GROUP BY:</span>
         {groupBy.map((group) => {
@@ -68,7 +68,7 @@ const GroupByMenu = ({
         })}
       </div>
       {activeSections.length > 0 && groupedBy !== 'none' && (
-        <div className='relative inline-block w-48 lg:ml-2'>
+        <div className='relative inline-block w-48'>
           <select
             onChange={(e) => scrollToSection(e.target.value)}
             defaultValue=''
