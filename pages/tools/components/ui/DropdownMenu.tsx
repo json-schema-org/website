@@ -20,6 +20,8 @@ interface DropdownMenuProps {
   icon: ReactElement;
   count?: number;
   testMode?: boolean;
+  isOpen?: boolean;
+  onToggle?: (isOpen: boolean) => void;
 }
 
 export default function DropdownMenu({
@@ -27,13 +29,20 @@ export default function DropdownMenu({
   label,
   icon,
   count = 0,
+  isOpen,
+  onToggle,
 }: DropdownMenuProps) {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
   const router = useRouter();
 
+  const isDropdownOpen = isOpen !== undefined ? isOpen : internalIsOpen;
+  const setIsDropdownOpen = onToggle || setInternalIsOpen;
+
   useEffect(() => {
-    setIsDropdownOpen(false);
-  }, [router]);
+    if (isOpen === undefined) {
+      setInternalIsOpen(false);
+    }
+  }, [router, isOpen]);
 
   return (
     <div className='my-2 bg-slate-200 dark:bg-slate-900 p-2 rounded cursor-pointer transition-all duration-200 group'>

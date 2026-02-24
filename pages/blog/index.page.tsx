@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import fs from 'fs';
@@ -102,6 +102,7 @@ export default function StaticMarkdownPage({
         .split(',')
         .filter(isValidCategory);
       setCurrentFilterTags(tags.length ? tags : ['All']);
+      setCurrentPage(1);
     }
   }, [router.query]);
 
@@ -190,6 +191,31 @@ export default function StaticMarkdownPage({
   });
   const allTags = ['All', ...Array.from(allTagsSet)];
 
+  // pagination implement
+  const POSTS_PER_PAGE = 10;
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.ceil(sortedFilteredPosts.length / POSTS_PER_PAGE);
+
+  const blogPostsContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [totalPages]);
+
+  useEffect(() => {
+    if (blogPostsContainerRef.current) {
+      blogPostsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [currentPage]);
+
+  const currentPagePosts = sortedFilteredPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
+  );
+
   return (
     // @ts-ignore
     <SectionContext.Provider value='blog'>
@@ -198,7 +224,7 @@ export default function StaticMarkdownPage({
       </Head>
       <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-0 sm:mt-10'>
         {recentBlog[0] && (
-          <div className='relative w-full aspect-[16/9] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
+          <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]' />
             <Image
               src={recentBlog[0].frontmatter.cover}
@@ -214,7 +240,7 @@ export default function StaticMarkdownPage({
                 {getCategories(recentBlog[0].frontmatter).join(', ')}
               </div>
               <Link href={`/blog/posts/${recentBlog[0].slug}`}>
-                <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300'>
+                <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300 sm:leading-tight'>
                   {recentBlog[0].frontmatter.title}
                 </h1>
                 <div className='flex ml-2 mb-2 gap-2'>
@@ -240,7 +266,7 @@ export default function StaticMarkdownPage({
             </div>
           </div>
         )}
-        <div className='w-full mx-auto my-5'>
+        <div ref={blogPostsContainerRef} className='w-full mx-auto my-5'>
           <div className='flex h-full flex-col justify-center items-center mb-3 my-2'>
             <h2 className='text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>
               Welcome to the JSON Schema Blog!
@@ -299,8 +325,8 @@ export default function StaticMarkdownPage({
         </div>
 
         {/* Blog Posts Grid */}
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-20 bg-white dark:bg-slate-800 mx-auto p-4'>
-          {sortedFilteredPosts.map((blogPost: any, idx: number) => {
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
+          {currentPagePosts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
             const date = new Date(frontmatter.date);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
@@ -429,6 +455,34 @@ export default function StaticMarkdownPage({
               </section>
             );
           })}
+        </div>
+        {/* pagination control */}
+        <div className='flex justify-center items-center gap-4'>
+          <button
+            className={`px-4 py-2 rounded-md font-semibold ${
+              currentPage === 1
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => p - 1)}
+          >
+            Previous
+          </button>
+          <span className='text-lg font-medium dark:text-white'>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            className={`px-4 py-2 rounded-md font-semibold ${
+              currentPage === totalPages
+                ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
+                : 'bg-blue-600 text-white hover:bg-blue-700'
+            }`}
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => p + 1)}
+          >
+            Next
+          </button>
         </div>
       </div>
     </SectionContext.Provider>

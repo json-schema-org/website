@@ -56,7 +56,7 @@ describe('AmbassadorCard Component', () => {
     cy.get('a[href*="github.com/johndoe"]').should('exist');
     cy.get('a[href*="twitter.com/johndoe_twitter"]').should('exist');
     cy.get('a[href*="linkedin.com/in/johndoe-linkedin"]').should('exist');
-    cy.get('a[href*="fosstodon.org/johndoe@mastodon.social"]').should('exist');
+    cy.get('a[href="https://mastodon.social/@johndoe"]').should('exist');
     cy.get('button').should('contain.text', 'Show Full Details');
   });
 
@@ -83,7 +83,7 @@ describe('AmbassadorCard Component', () => {
       'target',
       '_blank',
     );
-    cy.get('a[href*="fosstodon.org/johndoe@mastodon.social"]').should(
+    cy.get('a[href="https://mastodon.social/@johndoe"]').should(
       'have.attr',
       'target',
       '_blank',
@@ -135,5 +135,14 @@ describe('AmbassadorCard Component', () => {
       'aria-label',
       `${mockAmbassador.name}'s twitter profile`,
     );
+  });
+
+  it('does not render mastodon link when username format is invalid', () => {
+    const ambassadorWithInvalidMastodon: Ambassador = {
+      ...mockAmbassador,
+      mastodon: 'invalid-format',
+    };
+    cy.mount(<AmbassadorCard ambassador={ambassadorWithInvalidMastodon} />);
+    cy.get('a[href*="mastodon"]').should('not.exist');
   });
 });
