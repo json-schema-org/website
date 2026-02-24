@@ -203,10 +203,10 @@ means:
 - 2)  within that object, find the value of the key `street_address`
 
 The URI `https://example.com/schemas/address#/properties/street_address`
-identifies the corresponding subschema in the following schema.
+identifies the highlighted subschema in the following schema.
 
 ```json
-// props { "isSchema": true }
+// props { "isSchema": true, "highlightLines": "5" }
 {
   "$id": "https://example.com/schemas/address",
   "type": "object",
@@ -250,10 +250,10 @@ then behavior is undefined. Your anchors might work in some
 implementation, but not others.
 
 The URI `https://example.com/schemas/address#street_address` identifies
-the corresponding subschema in following schema.
+the subschema on the highlighted part of the following schema.
 
 ```json
-// props { "isSchema": true }
+// props { "isSchema": true, "highlightLines": "5" }
 {
   "$id": "https://example.com/schemas/address",
   "type": "object",

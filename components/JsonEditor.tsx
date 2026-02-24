@@ -36,6 +36,9 @@ type Meta = {
   valid?: boolean;
   isSchema?: boolean;
   indent?: boolean;
+  highlightLines?: string;
+  highlightLineStart?: number;
+  highlightLineEnd?: number;
 };
 
 type Path = number[];
@@ -60,6 +63,43 @@ type MultipathDecoration = {
   syntaxPart: SyntaxPart;
 };
 
+function parseHighlightLines(meta: Meta | null): Set<number> {
+  const out = new Set<number>();
+  if (!meta) return out;
+
+  // Support start/end range
+  if (
+    typeof meta.highlightLineStart === 'number' &&
+    typeof meta.highlightLineEnd === 'number'
+  ) {
+    const start = Math.min(meta.highlightLineStart, meta.highlightLineEnd);
+    const end = Math.max(meta.highlightLineStart, meta.highlightLineEnd);
+    for (let i = start; i <= end; i++) out.add(i);
+    return out;
+  }
+
+  // Support highlightLines string: "5" or "2-9" or "2-5,7,9-10"
+  const input = meta.highlightLines;
+  if (!input) return out;
+
+  for (const part of input
+    .split(',')
+    .map((p) => p.trim())
+    .filter(Boolean)) {
+    const m = part.match(/^(\d+)(?:-(\d+))?$/);
+    if (!m) continue;
+
+    const start = Number(m[1]);
+    const end = m[2] ? Number(m[2]) : start;
+
+    const lo = Math.min(start, end);
+    const hi = Math.max(start, end);
+
+    for (let i = lo; i <= hi; i++) out.add(i);
+  }
+
+  return out;
+}
 const META_REGEX = /^\s*\/\/ props (?<meta>{.*}).*\n/;
 
 // Prevent annoying error messages because slate is not SSR ready
@@ -358,6 +398,10 @@ export default function JsonEditor({
       return null;
     }
   }, [codeContent, isJsonMode]);
+  const highlightedLines = React.useMemo(
+    () => parseHighlightLines(meta),
+    [meta],
+  );
 
   const parsedCode: null | any = React.useMemo(() => {
     try {
@@ -698,9 +742,13 @@ export default function JsonEditor({
               const line = path[0] + 1;
               /* istanbul ignore else : no else block to test */
               if (element.type === 'paragraph') {
+                const isHighlighted = highlightedLines.has(line);
                 return (
                   <span
-                    className='relative flex flex-row first:pt-4 last:pb-4 '
+                    className={cn(
+                      'relative flex flex-row first:pt-4 last:pb-4',
+                      isHighlighted && 'bg-white/10',
+                    )}
                     {...attributes}
                   >
                     <span
