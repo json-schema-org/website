@@ -207,6 +207,33 @@ describe('JSON Editor Component', () => {
       .closest('span.relative')
       .should('have.class', 'bg-white/10');
   });
+  it('should highlight lines using highlightLineStart and highlightLineEnd', () => {
+    const code = `// props { "highlightLineStart": 1, "highlightLineEnd": 2 }
+{
+  "a": 1,
+  "b": 2
+}`;
+
+    cy.mount(<JsonEditor initialCode={code} />);
+
+    // line 1 "{"
+    cy.get('[data-test="json-editor"]')
+      .contains('{')
+      .closest('span.relative')
+      .should('have.class', 'bg-white/10');
+
+    // line 2 `"a": 1,`
+    cy.get('[data-test="json-editor"]')
+      .contains('"a"')
+      .closest('span.relative')
+      .should('have.class', 'bg-white/10');
+
+    // line 3 `"b": 2` should NOT be highlighted
+    cy.get('[data-test="json-editor"]')
+      .contains('"b"')
+      .closest('span.relative')
+      .should('not.have.class', 'bg-white/10');
+  });
 
   // should render with meta regex props and check schema compliant
   it('should render with meta regex props', () => {
