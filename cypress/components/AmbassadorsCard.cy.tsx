@@ -9,7 +9,7 @@ const mockAmbassador: Ambassador = {
   company: 'Tech Corp',
   country: 'United States',
   github: 'johndoe',
-  X: 'johndoe_X',
+  twitter: 'johndoe_X',
   linkedin: 'johndoe-linkedin',
   mastodon: 'johndoe@mastodon.social',
   contributions: [
