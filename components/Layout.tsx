@@ -395,10 +395,10 @@ const Footer = () => (
             rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
-           <FaXTwitter
-            size={16}
-            className='mr-2 group-hover:brightness-125 transition-all duration-300'
-          />{' '}
+            <FaXTwitter
+              size={16}
+              className='mr-2 group-hover:brightness-125 transition-all duration-300'
+            />{' '}
             X
           </a>
         </div>
