@@ -9,7 +9,7 @@ const mockAmbassador: Ambassador = {
   company: 'Tech Corp',
   country: 'United States',
   github: 'johndoe',
-  twitter: 'johndoe_twitter',
+  X: 'johndoe_X',
   linkedin: 'johndoe-linkedin',
   mastodon: 'johndoe@mastodon.social',
   contributions: [
@@ -54,7 +54,7 @@ describe('AmbassadorCard Component', () => {
       `${mockAmbassador.name || 'Ambassador'} profile`,
     );
     cy.get('a[href*="github.com/johndoe"]').should('exist');
-    cy.get('a[href*="twitter.com/johndoe_twitter"]').should('exist');
+    cy.get('a[href*="X.com/johndoe_X"]').should('exist');
     cy.get('a[href*="linkedin.com/in/johndoe-linkedin"]').should('exist');
     cy.get('a[href="https://mastodon.social/@johndoe"]').should('exist');
     cy.get('button').should('contain.text', 'Show Full Details');
@@ -64,7 +64,7 @@ describe('AmbassadorCard Component', () => {
     cy.mount(<AmbassadorCard ambassador={minimalAmbassador} />);
     cy.contains('Jane Smith').should('exist');
     cy.get('a[href*="github.com"]').should('not.exist');
-    cy.get('a[href*="twitter.com"]').should('not.exist');
+    cy.get('a[href*="X.com"]').should('not.exist');
     cy.get('button').should('not.exist');
   });
 
@@ -73,7 +73,7 @@ describe('AmbassadorCard Component', () => {
     cy.get('a[href*="github.com/johndoe"]')
       .should('have.attr', 'target', '_blank')
       .and('have.attr', 'rel', 'noopener noreferrer');
-    cy.get('a[href*="twitter.com/johndoe_twitter"]').should(
+    cy.get('a[href*="X.com/johndoe_X"]').should(
       'have.attr',
       'target',
       '_blank',
@@ -130,10 +130,10 @@ describe('AmbassadorCard Component', () => {
       'aria-label',
       `${mockAmbassador.name}'s github profile`,
     );
-    cy.get('a[href*="twitter.com"]').should(
+    cy.get('a[href*="X.com"]').should(
       'have.attr',
       'aria-label',
-      `${mockAmbassador.name}'s twitter profile`,
+      `${mockAmbassador.name}'s X profile`,
     );
   });
 
