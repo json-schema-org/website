@@ -35,7 +35,7 @@ const getCategories = (frontmatter: any): blogCategories[] => {
   return Array.isArray(cat) ? cat : [cat];
 };
 
-export async function getStaticProps({ query }: { query: any }) {
+export async function getStaticProps() {
   const files = fs.readdirSync(PATH);
   const blogPosts = files
     .filter((file) => file.substr(-3) === '.md')
@@ -55,12 +55,9 @@ export async function getStaticProps({ query }: { query: any }) {
 
   await generateRssFeed(blogPosts);
 
-  const filterTag: string = query?.type || 'All';
-
   return {
     props: {
       blogPosts,
-      filterTag,
     },
   };
 }
@@ -79,20 +76,32 @@ function isValidCategory(category: any): category is blogCategories {
 
 export default function StaticMarkdownPage({
   blogPosts,
-  filterTag,
 }: {
   blogPosts: any[];
-  filterTag: any;
 }) {
   const router = useRouter();
+
   // Initialize the filter as an array. If "All" or not specified, we show all posts.
   const initialFilters =
-    filterTag && filterTag !== 'All'
-      ? filterTag.split(',').filter(isValidCategory)
+    router.query.type && router.query.type !== 'All'
+      ? (typeof router.query.type === 'string' ? router.query.type : '')
+          .split(',')
+          .filter(isValidCategory)
       : ['All'];
 
-  const [currentFilterTags, setCurrentFilterTags] =
-    useState<blogCategories[]>(initialFilters);
+  const [currentFilterTags, setCurrentFilterTags] = useState<blogCategories[]>(
+    initialFilters as blogCategories[],
+  );
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // Set client-side flag and initialize from URL
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const pageParam = urlParams.get('page');
+    const initialPage = pageParam ? Math.max(1, parseInt(pageParam, 10)) : 1;
+    setCurrentPage(initialPage);
+  }, []);
 
   // When the router query changes, update the filters.
   useEffect(() => {
@@ -101,18 +110,28 @@ export default function StaticMarkdownPage({
       const tags = (typeof query.type === 'string' ? query.type : '')
         .split(',')
         .filter(isValidCategory);
-      setCurrentFilterTags(tags.length ? tags : ['All']);
+      setCurrentFilterTags(tags.length ? (tags as blogCategories[]) : ['All']);
       setCurrentPage(1);
+    }
+    // Update page from URL query parameter
+    if (query.page) {
+      const page = Math.max(
+        1,
+        parseInt(Array.isArray(query.page) ? query.page[0] : query.page, 10),
+      );
+      setCurrentPage(page);
     }
   }, [router.query]);
 
   useEffect(() => {
     const tags =
-      filterTag && filterTag !== 'All'
-        ? filterTag.split(',').filter(isValidCategory)
+      router.query.type && router.query.type !== 'All'
+        ? (typeof router.query.type === 'string' ? router.query.type : '')
+            .split(',')
+            .filter(isValidCategory)
         : ['All'];
-    setCurrentFilterTags(tags);
-  }, [filterTag]);
+    setCurrentFilterTags(tags as blogCategories[]);
+  }, [router.query.type]);
 
   const toggleCategory = (tag: blogCategories) => {
     let newTags: blogCategories[] = [];
@@ -132,7 +151,8 @@ export default function StaticMarkdownPage({
         newTags = ['All'];
       }
     }
-    setCurrentFilterTags(newTags);
+    setCurrentFilterTags(newTags as blogCategories[]);
+    setCurrentPage(1); // Reset to page 1 when filter changes
     if (newTags.includes('All')) {
       history.replaceState(null, '', '/blog');
     } else {
@@ -193,7 +213,6 @@ export default function StaticMarkdownPage({
 
   // pagination implement
   const POSTS_PER_PAGE = 10;
-  const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.ceil(sortedFilteredPosts.length / POSTS_PER_PAGE);
 
@@ -210,6 +229,29 @@ export default function StaticMarkdownPage({
       blogPostsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [currentPage]);
+
+  // Function to update URL with current page and filters
+  const updateUrl = (page: number, tags: blogCategories[]) => {
+    const params = new URLSearchParams();
+    if (page > 1) params.set('page', page.toString());
+    if (tags.length > 0 && !tags.includes('All')) {
+      params.set('type', tags.join(','));
+    }
+    const queryString = params.toString();
+    const newUrl = queryString ? `/blog?${queryString}` : '/blog';
+    history.replaceState(null, '', newUrl);
+  };
+
+  // Update URL when page or filters change
+  useEffect(() => {
+    updateUrl(currentPage, currentFilterTags);
+  }, [currentPage, currentFilterTags]);
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage >= 1 && newPage <= totalPages) {
+      setCurrentPage(newPage);
+    }
+  };
 
   const currentPagePosts = sortedFilteredPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
@@ -465,7 +507,7 @@ export default function StaticMarkdownPage({
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
             disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => p - 1)}
+            onClick={() => handlePageChange(currentPage - 1)}
           >
             Previous
           </button>
@@ -479,7 +521,7 @@ export default function StaticMarkdownPage({
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
             disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => p + 1)}
+            onClick={() => handlePageChange(currentPage + 1)}
           >
             Next
           </button>
