@@ -13,6 +13,7 @@ import DarkModeToggle from './DarkModeToggle';
 import ScrollButton from './ScrollButton';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import { FaXTwitter } from 'react-icons/fa6';
 
 type Props = {
   children: React.ReactNode;
@@ -394,13 +395,10 @@ const Footer = () => (
             rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
-            <Image
-              src='/img/logos/x-twitter.svg'
-              width={16}
-              height={16}
-              className='mr-2 group-hover:brightness-125 transition-all duration-300'
-              alt='X logo'
-            />{' '}
+           <FaXTwitter
+            size={16}
+            className='mr-2 group-hover:brightness-125 transition-all duration-300'
+          />{' '}
             X
           </a>
         </div>
