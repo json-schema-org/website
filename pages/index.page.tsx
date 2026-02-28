@@ -853,8 +853,7 @@ const Home = (props: any) => {
                 <img
                   src={logos.apideck}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The Realtime Unified API
-for Accounting integrations'
+                  alt='The Realtime Unified API for Accounting integrations'
                 />
               </a>
               <a
