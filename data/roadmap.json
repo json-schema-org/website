@@ -31,7 +31,7 @@
           }
         },
         {
-          "name": "In Progress",
+          "name": "Done",
           "field": {
             "name": "Status"
           }
@@ -205,9 +205,6 @@
       "assignees": {
         "nodes": [
           {
-            "login": "Julian"
-          },
-          {
             "login": "benjagm"
           }
         ]
@@ -218,7 +215,6 @@
     "id": "PVTI_lADOAMaoXc4ARJVmzgHJWSI",
     "fieldValues": {
       "nodes": [
-        {},
         {},
         {},
         {
@@ -256,11 +252,7 @@
     "content": {
       "title": "Report on projects financial sustainability requirements",
       "assignees": {
-        "nodes": [
-          {
-            "login": "Julian"
-          }
-        ]
+        "nodes": []
       }
     }
   },

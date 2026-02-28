@@ -245,7 +245,9 @@ const MainNavigation = () => {
         >
           <Search />
         </div>
-        <DarkModeToggle />
+        <div onClick={() => useStore.setState({ overlayNavigation: null })}>
+          <DarkModeToggle />
+        </div>
         {showMobileNav === false ? (
           <div onClick={() => useStore.setState({ overlayNavigation: 'docs' })}>
             <div className='block lg:hidden space-y-2  items-center'>
@@ -351,6 +353,8 @@ const Footer = () => (
         <div className='flex flex-col text-center sm:text-left'>
           <a
             href='https://opencollective.com/json-schema'
+            target='_blank'
+            rel='noopener noreferrer'
             className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             Open Collective
@@ -369,6 +373,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://json-schema.org/slack'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -384,6 +390,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://x.com/jsonschema'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -399,6 +407,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://linkedin.com/company/jsonschema/'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -414,6 +424,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -429,6 +441,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://github.com/json-schema-org'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -489,9 +503,16 @@ const FaviconHead = () => {
     const matcher: MediaQueryList = window.matchMedia(
       '(prefers-color-scheme: dark)',
     );
-    matcher.addEventListener('change', () => onUpdate(matcher));
+
+    const handleChange = () => onUpdate(matcher);
+
+    matcher.addEventListener('change', handleChange);
     onUpdate(matcher);
-  }, []);
+
+    return () => {
+      matcher.removeEventListener('change', handleChange);
+    };
+  }, [onUpdate]);
 
   if (isDarkMode) {
     return (
