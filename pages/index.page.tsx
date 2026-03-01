@@ -526,7 +526,8 @@ const Home = (props: any) => {
                 <div className='flex flex-col'>
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/35'
-                    rel='noopener noreferrer' target='_blank'
+                    rel='noopener noreferrer'
+                    target='_blank'
                     className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'
                   >
                     Open Community Working Meetings
@@ -534,7 +535,8 @@ const Home = (props: any) => {
 
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/34/'
-                    rel='noopener noreferrer' target='_blank'
+                    rel='noopener noreferrer'
+                    target='_blank'
                     className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
                   >
                     Office Hours
