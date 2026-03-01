@@ -3523,5 +3523,5 @@
   source: 'https://github.com/sjf4j-projects/sjf4j'
   homepage: 'https://sjf4j.org'
   supportedDialects:
-    draft: ['1', '2', '3', '4', '6', '7', '2019-09', '2020-12']
+    draft: ['2020-12']
   toolingListingNotes: 'SJF4J has passed Bowtie evaluation and provides full Draft 2020-12 support. Validates native Java objects directly without JSON serialization.'
