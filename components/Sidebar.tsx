@@ -201,9 +201,6 @@ const getSpecificationPath = [
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
-  const [rotateChevron, setRotateChevron] = useState(false);
-  const handleRotate = () => setRotateChevron(!rotateChevron);
-  const rotate = rotateChevron ? 'rotate(180deg)' : 'rotate(0)';
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
   const shouldHideSidebar = pathWtihoutFragment === '/md-style-guide';
 
@@ -225,7 +222,6 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             onMouseDown={(e) => e.stopPropagation()}
             onClick={(e) => {
               e.stopPropagation();
-              handleRotate();
               setOpen(!open);
             }}
           >
@@ -251,7 +247,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               style={{
                 marginRight: '50px',
                 color: 'white',
-                transform: rotate,
+                transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
                 transition: 'all 0.2s linear',
               }}
               xmlns='http://www.w3.org/2000/svg'

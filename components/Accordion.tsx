@@ -110,11 +110,11 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
                     className={cn(
                       'w-6 h-6 rounded-full border-2 border-border flex items-center justify-center transition-all duration-200 cursor-pointer',
                       openItems.has(item.id)
-                        ? 'border-primary bg-primary text-white rotate-45 dark:bg-[#bfdbfe] dark:text-black dark:border-[#bfdbfe]'
+                        ? 'border-primary bg-primary text-white dark:bg-[#bfdbfe] dark:text-black dark:border-[#bfdbfe]'
                         : 'hover:border-primary/50',
                     )}
                   >
-                    <span className='text-sm font-bold leading-none'>
+                    <span className='text-sm font-bold leading-none select-none'>
                       {openItems.has(item.id) ? '×' : '+'}
                     </span>
                   </div>
