@@ -108,7 +108,12 @@ const CardBody = ({
 
 const Card: React.FC<CardProps> = ({ link, ...props }) => {
   return link ? (
-    <Link href={link} data-test='card-link'>
+    <Link
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-test="card-link"
+    >
       <CardBody link={link} {...props} />
     </Link>
   ) : (
