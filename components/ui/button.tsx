@@ -37,16 +37,46 @@ const buttonVariants = cva(
   },
 );
 
+type ButtonProps = React.ComponentProps<'button'> &
+  React.ComponentProps<'select'> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+    selectButton?: boolean;
+  };
+
 function Button({
   className,
   variant,
   size,
   asChild = false,
+  selectButton = false,
+  children,
   ...props
-}: React.ComponentProps<'button'> &
-  VariantProps<typeof buttonVariants> & {
-    asChild?: boolean;
-  }) {
+}: ButtonProps) {
+  if (selectButton) {
+    return (
+      <div className='relative inline-flex'>
+        <select
+          data-slot='select-button'
+          className={cn(
+            buttonVariants({ variant, size }),
+            'appearance-none cursor-pointer pr-8',
+            className,
+          )}
+          {...(props as React.ComponentProps<'select'>)}
+        >
+          {children}
+        </select>
+
+        <div className='pointer-events-none absolute inset-y-0 right-2 flex items-center'>
+          <svg className='h-4 w-4 fill-current opacity-70' viewBox='0 0 20 20'>
+            <path d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z' />
+          </svg>
+        </div>
+      </div>
+    );
+  }
+
   const Comp = asChild ? Slot : 'button';
 
   return (
@@ -54,7 +84,9 @@ function Button({
       data-slot='button'
       className={cn(buttonVariants({ variant, size, className }))}
       {...props}
-    />
+    >
+      {children}
+    </Comp>
   );
 }
 
