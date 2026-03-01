@@ -37,8 +37,8 @@ const buttonVariants = cva(
   },
 );
 
-type ButtonProps = React.ComponentProps<'button'> &
-  React.ComponentProps<'select'> &
+type ButtonProps = Omit<React.ComponentProps<'button'>, 'size'> &
+  Omit<React.ComponentProps<'select'>, 'size'> &
   VariantProps<typeof buttonVariants> & {
     asChild?: boolean;
     selectButton?: boolean;
