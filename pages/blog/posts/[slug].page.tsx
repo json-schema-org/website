@@ -89,6 +89,8 @@ export default function StaticMarkdownPage({
                             {author.twitter && (
                               <a
                                 className='block text-sm text-blue-500 font-medium'
+                                target='_blank'
+                                rel='noopener noreferrer'
                                 href={`https://x.com/${author.twitter}`}
                               >
                                 @{author.twitter}
