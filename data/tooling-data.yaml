@@ -3483,3 +3483,17 @@
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Project built under GSoC "25. High-performance Java wrapper for Blaze JSON Schema validator using Java FFM API.'
+
+- name: 'json-schema-merge'
+  description: 'A library for merging and comparing Draft-07 JSON Schemas.'
+  toolingTypes: ['util-schema-to-schema']
+  languages: ['TypeScript']
+  maintainers:
+    - name: 'Roman Krasilnikov'
+      username: 'x0k'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/x0k/json-schema-merge'
+  supportedDialects:
+    draft: ['7']
+  lastUpdated: '2025-10-05'
