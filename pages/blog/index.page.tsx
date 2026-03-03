@@ -85,8 +85,8 @@ export default function StaticMarkdownPage({
   const initialFilters =
     router.query.type && router.query.type !== 'All'
       ? (typeof router.query.type === 'string' ? router.query.type : '')
-          .split(',')
-          .filter(isValidCategory)
+        .split(',')
+        .filter(isValidCategory)
       : ['All'];
 
   const [currentFilterTags, setCurrentFilterTags] = useState<blogCategories[]>(
@@ -127,8 +127,8 @@ export default function StaticMarkdownPage({
     const tags =
       router.query.type && router.query.type !== 'All'
         ? (typeof router.query.type === 'string' ? router.query.type : '')
-            .split(',')
-            .filter(isValidCategory)
+          .split(',')
+          .filter(isValidCategory)
         : ['All'];
     setCurrentFilterTags(tags as blogCategories[]);
   }, [router.query.type]);
