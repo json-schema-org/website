@@ -411,7 +411,7 @@ const Home = (props: any) => {
               <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'>
                 <a
                   href='https://json-schema.org/slack'
-                  className='flex items-center ' target='_blank'
+                  className='flex items-center ' target='_blank' rel='noreferrer'
                 >
                   {isClient && (
                     <>
