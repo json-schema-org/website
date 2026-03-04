@@ -13,13 +13,15 @@ function ListItem({
   'data-test'?: string;
 }) {
   return (
-    <div
+    <button
       onClick={onClick}
       className='p-2 hover:bg-gray-200 dark:hover:bg-gray-700 cursor-pointer rounded-md transition duration-150 flex row gap-2 w-full text-sm'
       data-test={dataTest}
+      role='menuitem'
+      type='button'
     >
       {children}
-    </div>
+    </button>
   );
 }
 
@@ -75,10 +77,13 @@ export default function DarkModeToggle() {
         onClick={() => setShowSelect(!showSelect)}
         className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
         data-test='dark-mode-toggle'
+        aria-label='Toggle theme menu'
+        aria-expanded={showSelect}
+        aria-haspopup='menu'
       >
         <Image
           src={activeThemeIcon}
-          alt='Dark Mode'
+          alt='Theme icon'
           width={25}
           height={25}
           style={{
@@ -95,6 +100,8 @@ export default function DarkModeToggle() {
         }`}
         tabIndex={0}
         data-test='theme-dropdown'
+        role='menu'
+        aria-label='Theme options'
       >
         <ListItem
           onClick={() => setTheme('system')}
