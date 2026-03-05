@@ -57,7 +57,7 @@ const Headline = ({
     const newHash = `#${slug}`;
     url.hash = newHash;
 
-    const urlString = url.toString().substr(HOST.length, Infinity);
+    const urlString = url.toString().slice(HOST.length);
     router.push(urlString, undefined, { shallow: true });
     setIsActive(true);
   };
