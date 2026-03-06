@@ -2376,7 +2376,7 @@
       platform: 'github'
   license: 'Apache-2.0'
   source: 'https://github.com/schemastore/schemastore/'
-  homepage: 'https://schemastore.org/json/'
+  homepage: 'https://schemastore.org'
 
 - name: json-schema-linter
   description: 'Lint/validate/parse json-schema itself, and find typos, missing properties, missing required keys, etc.'
