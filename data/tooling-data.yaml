@@ -1285,7 +1285,7 @@
   description: 'A Go implementation for JSON Schema by Google.'
   toolingTypes: ['validator']
   languages: ['Go']
-  licence: 'MIT'
+  license: 'MIT'
   source: 'https://github.com/google/jsonschema-go'
   supportedDialects:
     draft: ['7', '2020-12']
