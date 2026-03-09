@@ -144,7 +144,7 @@ const GettingStarted = () => {
               JSON Schema
             </h2>
             <div className='select-wrap flex items-center'>
-              <label className='mr-2 max-sm:text-[12px] text-slate-700 dark:text-slate-300'>
+              <label className='mr-2 max-sm:text-[12px] text-slate-700 dark:text-slate-300' htmlFor='schema-examples'>
                 Select a Schema:
               </label>
               <div className='relative'>
@@ -213,7 +213,7 @@ const GettingStarted = () => {
               JSON Instance
             </h2>
             <div className='select-wrap flex items-center'>
-              <label className='mr-2 max-sm:text-[12px] text-slate-700 dark:text-slate-300'>
+              <label className='mr-2 max-sm:text-[12px] text-slate-700 dark:text-slate-300' htmlFor='instance-examples'>
                 Select an Instance:
               </label>
               <div className='relative'>
