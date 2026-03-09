@@ -151,7 +151,7 @@ const GettingStarted = () => {
                 <select
                   name='Select a JSON Schema Validator'
                   className='p-2 pr-8 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px] appearance-none cursor-pointer'
-                  id='Examples'
+                  id='schema-examples'
                   onChange={handleSchemaChange}
                 >
                   {options.map((option: any, id: number) => (
@@ -220,7 +220,7 @@ const GettingStarted = () => {
                 <select
                   name='Select a JSON Schema Validator'
                   className='p-2 pr-8 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px] appearance-none cursor-pointer'
-                  id='Examples'
+                  id='instance-examples'
                   onChange={handleInstanceChange}
                 >
                   {instances.map((instance: any, id: number) => (
