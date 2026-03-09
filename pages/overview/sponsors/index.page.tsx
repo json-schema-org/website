@@ -10,7 +10,10 @@ import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
 
 export async function getStaticProps() {
-  const block1 = fs.readFileSync('pages/overview/sponsors/_index.md', 'utf-8');
+  const block1 = fs.readFileSync(
+    '_includes/community/programs/sponsors/sponsors.md',
+    'utf-8',
+  );
   const { content: block1Content } = matter(block1);
   return {
     props: {

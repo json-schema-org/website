@@ -631,7 +631,10 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className=' text-center mb-12 '>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='gold-sponsors'
+            >
               Gold Sponsors
             </h3>
             <Link
@@ -656,7 +659,10 @@ const Home = (props: any) => {
               </svg>
               <p className='block'>Your logo here</p>
             </Link>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='silver-sponsors'
+            >
               Silver Sponsors
             </h3>
             <Link
@@ -681,7 +687,10 @@ const Home = (props: any) => {
               </svg>
               <p>Your logo here</p>
             </Link>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='bronze-sponsors'
+            >
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
