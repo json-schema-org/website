@@ -11,9 +11,9 @@ next:
 
 JSON Schema is a vocabulary that you can use to annotate and validate JSON documents. This tutorial guides you through the process of creating a JSON Schema.
 
-After creating your JSON Schema, you can then validate example data against your schema by using a validator in a language of your choice. Please, visit [Tools](https://json-schema.org/tools#validators) and select the validator that better suit your needs.
+After creating your JSON Schema, you can then validate example data against your schema by using a validator in a language of your choice. Please, visit [Tools](https://json-schema.org/tools#validators) and select the validator that best suits your needs.
 
-If you already know how to create JSON Schemas and you are looking for different JSON Schema use cases like schema generation, code generation, documentation, UI generation or JSON Schema processing or conversion, please visit [Tools](https://json-schema.org/tools) and explore the amazing tooling available in the JSON Schema Ecosystem.
+If you already know how to create JSON Schemas and are looking for different JSON Schema use cases like schema generation, code generation, documentation, UI generation or JSON Schema processing or conversion, please visit [Tools](https://json-schema.org/tools) and explore the tooling available in the JSON Schema Ecosystem.
 
 <tableofcontent depth={2} />
 
@@ -592,7 +592,7 @@ With the external schema reference, the overall schema looks like this:
 }
 ```
 
-<span id="valiate"></span>
+<span id="validate"></span>
 
 ## Validate JSON data against the schema
 
