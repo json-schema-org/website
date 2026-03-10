@@ -272,7 +272,7 @@ const GettingStarted = () => {
             {details[1] ? (
               <Image
                 src='/icons/green-tick.svg'
-                alt='green tick'
+                alt='Validation passed'
                 width={24}
                 height={24}
                 className='dark:brightness-100 brightness-90'
@@ -280,7 +280,7 @@ const GettingStarted = () => {
             ) : (
               <Image
                 src='/icons/red-cross.svg'
-                alt='red cross'
+                alt='Validation failed'
                 width={24}
                 height={24}
                 className='dark:brightness-100 brightness-90'
