@@ -124,6 +124,9 @@ const Home = (props: any) => {
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
+      litslink: '/img/logos/sponsors/litslink_dark.svg',
+      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+      timenow: '/img/logos/sponsors/time_now_dark.svg',
     },
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
@@ -149,6 +152,9 @@ const Home = (props: any) => {
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
+      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+      litslink: '/img/logos/sponsors/litslink_white.svg',
+      timenow: '/img/logos/sponsors/time_now_white.svg',
     },
   };
 
@@ -182,6 +188,8 @@ const Home = (props: any) => {
               </Link>
               <Link
                 href='/slack'
+                target='_blank'
+                rel='noopener noreferrer'
                 className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
                 Join Slack
@@ -374,7 +382,7 @@ const Home = (props: any) => {
                     <>
                       <Image
                         src='/img/logos/Slack-mark.svg'
-                        className='w-8 h-8'
+                        className='size-12'
                         alt='slack'
                         height={32}
                         width={32}
@@ -395,7 +403,7 @@ const Home = (props: any) => {
                 )}
 
                 {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-                <p className='mb-4 dark:text-slate-300'>
+                <p className='mb-4 dark:text-slate-300 text-balance'>
                   Join our Slack to ask questions, get feedback on your
                   projects, and connect with +5000 practitioners and experts.
                 </p>
@@ -409,7 +417,7 @@ const Home = (props: any) => {
                     <>
                       <Image
                         src='/img/logos/slack_logo_small-white.svg'
-                        className='w-4 h-4 mr-2 '
+                        className='w-4 h-4 mr-2'
                         width={16}
                         height={16}
                         alt='slack'
@@ -430,7 +438,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px]  mb-4'
+                      className='w-full h-[232px] object-contain mb-4'
                       width={600}
                       height={232}
                       alt='blog'
@@ -449,7 +457,7 @@ const Home = (props: any) => {
                   />
                 </div>
 
-                <div className='flex ml-2 mb-2 '>
+                <div className='flex ml-2 mb-2'>
                   {(blogPosts[0].frontmatter.authors || []).map(
                     (author: any, index: number) => {
                       return (
@@ -515,11 +523,11 @@ const Home = (props: any) => {
                   and by appointment. Open Community Working Meetings are every
                   third Monday of the month at 12:00 PT.
                 </p>
-                <div className=''>
+                <div className='flex flex-col'>
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/35'
                     rel='noopener noreferrer'
-                    className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'
+                    className='w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[44px] py-2 px-4 mb-4 flex items-center justify-center dark:border-none'
                   >
                     Open Community Working Meetings
                   </a>
@@ -527,7 +535,7 @@ const Home = (props: any) => {
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/34/'
                     rel='noopener noreferrer'
-                    className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
+                    className='w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[44px] py-2 px-4 flex items-center justify-center dark:border-none'
                   >
                     Office Hours
                   </a>
@@ -580,6 +588,7 @@ const Home = (props: any) => {
             <Link
               href='https://github.com/json-schema-org#-contributing-to-json-schema'
               rel='noopener noreferrer'
+              target='_blank'
               className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none flex items-center justify-center'
             >
               Contribute
@@ -622,7 +631,10 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className=' text-center mb-12 '>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='gold-sponsors'
+            >
               Gold Sponsors
             </h3>
             <Link
@@ -647,7 +659,10 @@ const Home = (props: any) => {
               </svg>
               <p className='block'>Your logo here</p>
             </Link>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='silver-sponsors'
+            >
               Silver Sponsors
             </h3>
             <Link
@@ -672,7 +687,10 @@ const Home = (props: any) => {
               </svg>
               <p>Your logo here</p>
             </Link>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='bronze-sponsors'
+            >
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
@@ -924,6 +942,31 @@ const Home = (props: any) => {
                 />
               </a>
               <a
+                href='https://spinthewheel.io/'
+                target='_blank'
+                rel='noreferrer'
+              >
+                <img
+                  src={logos.spinthewheel}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Spin the wheel logo'
+                />
+              </a>
+              <a href='https://litslink.com/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.litslink}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Litslink logo'
+                />
+              </a>
+              <a href='https://time.now/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.timenow}
+                  className='w-24 transition-transform duration-300 hover:scale-105'
+                  alt='Time Now logo'
+                />
+              </a>
+              <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noreferrer'
@@ -964,7 +1007,11 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4 mb-12'>
-            <a href='https://dev.events/'>
+            <a
+              href='https://dev.events/'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
@@ -1001,7 +1048,11 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
-            <a href='https://www.commonroom.io'>
+            <a
+              href='https://www.commonroom.io'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
@@ -1014,7 +1065,11 @@ const Home = (props: any) => {
                 </>
               )}
             </a>
-            <a href='https://json-schema.org/slack'>
+            <a
+              href='https://json-schema.org/slack'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
