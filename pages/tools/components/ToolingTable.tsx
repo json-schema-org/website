@@ -373,7 +373,7 @@ const ToolingTable = ({
                               )}
                             </div>
                           )}
-                          <div className='flex justify-between items-center'>
+                          <div className='flex justify-between items-center pr-24'>
                             <div className='font-medium'>
                               {tool.name}
                               {tool.status === 'obsolete' && (
