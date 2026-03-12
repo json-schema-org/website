@@ -1974,6 +1974,21 @@
   homepage: 'https://react-jsonschema-form-material-ui.github56.now.sh/'
   lastUpdated: '2023-08-17'
 
+- name: Jedison
+  description: 'A JavaScript library that generates forms from JSON Schemas for editing and validating JSON.'
+  toolingTypes: ['validator', 'schema-to-web-UI']
+  languages: ['JavaScript']
+  maintainers:
+    - name: 'German Bisurgi'
+      username: 'germanbisurgi'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/germanbisurgi/jedison'
+  homepage: 'https://germanbisurgi.github.io/jedison-docs/'
+  supportedDialects:
+    draft: ['2020-12']
+  lastUpdated: '2026-03-02'
+
 - name: React Schema Form (networknt)
   description: 'React form based on json schema for form generation and validation'
   toolingTypes: ['schema-to-web-UI']
