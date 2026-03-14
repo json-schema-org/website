@@ -262,7 +262,7 @@ const Home = (props: any) => {
           </div>
           {/* Feature 4 section*/}
           <div className='w-5/6 lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6   my-[85px] mx-auto '>
-            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-800 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                 Streamline testing and validation
               </h3>
@@ -273,7 +273,7 @@ const Home = (props: any) => {
                 invalid data.
               </p>
             </div>
-            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-800 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                 Exchange data seamlessly
               </h3>
@@ -285,7 +285,7 @@ const Home = (props: any) => {
                 platforms.
               </p>
             </div>
-            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-800 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200 '>
                 Document your data
               </h3>
@@ -295,7 +295,7 @@ const Home = (props: any) => {
                 stakeholders, and collaborators.
               </p>
             </div>
-            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-700 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+            <div className='w-full shadow-3xl rounded-[10px] p-[20px] dark:shadow-slate-800 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <h3 className='text-h5mobile md:text-h5 font-semibold mb-6 dark:text-slate-200'>
                 Vibrant tooling ecosystem
               </h3>
@@ -374,7 +374,7 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
+            <div className='p-4 w-full mb-6 shadow-3xl rounded-[10px] border border-gray-300 dark:border-slate-600 dark:shadow-slate-800 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)] bg-white dark:bg-slate-800'>
               <Link href='https://json-schema.org/slack'>
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
@@ -429,7 +429,7 @@ const Home = (props: any) => {
               </button>
             </div>
             {/* BlogPost Data */}
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
+            <div className='p-4 w-full mb-6 shadow-3xl rounded-[10px] border border-gray-300 dark:border-slate-600 dark:shadow-slate-800 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)] bg-white dark:bg-slate-800'>
               <Link href={`/blog/posts/${blogPosts[0].slug}`}>
                 <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
                   The JSON Schema Blog
@@ -513,7 +513,7 @@ const Home = (props: any) => {
               </div>
             </div>
             <div>
-              <div className='p-4 md:w-full mb-6 mr-4 dark:shadow-2xl'>
+              <div className='p-4 md:w-full mb-6 mr-4 shadow-3xl rounded-[10px] border border-gray-300 dark:border-slate-600 dark:shadow-slate-800 transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)] bg-white dark:bg-slate-800'>
                 <h3 className='mb-2 font-semibold dark:text-slate-200'>
                   JSON Schema Community Meetings & Events
                 </h3>
