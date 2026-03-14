@@ -226,7 +226,9 @@ This schema represents electronic devices with a `deviceType` property that dete
     }
   ]
 }
+```
 
+```json
 {
   "$id": "https://example.com/smartphone.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
@@ -244,7 +246,9 @@ This schema represents electronic devices with a `deviceType` property that dete
   },
   "required": ["brand", "model", "screenSize"]
 }
+```
 
+```json
 {
   "$id": "https://example.com/laptop.schema.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
