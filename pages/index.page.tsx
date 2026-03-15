@@ -241,7 +241,7 @@ const Home = (props: any) => {
                   className='underline'
                   href='https://landscape.json-schema.org/'
                   target='_blank'
-                  rel="noopener noreferrer"
+                  rel='noopener noreferrer'
                 >
                   Landscape
                 </a>{' '}
@@ -377,7 +377,11 @@ const Home = (props: any) => {
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
             <div className='p-4 w-full mb-6 dark:shadow-2xl'>
-              <Link href='https://json-schema.org/slack' target="_blank" rel='noopener noreferrer'>
+              <Link
+                href='https://json-schema.org/slack'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
                   {isClient && (
@@ -625,7 +629,7 @@ const Home = (props: any) => {
                 className='border-b border-black dark:border-white'
                 target='_blank'
                 rel='noopener noreferrer'
-                >
+              >
                 backer
               </a>{' '}
               .
@@ -748,7 +752,11 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://endjin.com/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://endjin.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 {isClient && (
                   <>
                     <Image
@@ -761,7 +769,11 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://www.llc.org/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://www.llc.org/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 {isClient && (
                   <>
                     <Image
@@ -825,7 +837,11 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://n8n.io/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://n8n.io/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 {isClient && (
                   <>
                     <Image
@@ -838,7 +854,11 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://copycopter.ai/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://copycopter.ai/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 {isClient && (
                   <>
                     <Image
@@ -851,7 +871,11 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://www.octue.com/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://www.octue.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <img
                   src={logos.octue}
                   className='w-44 transition-transform duration-300 hover:scale-105'
@@ -902,14 +926,22 @@ for Accounting integrations'
                   alt='Instagram Story Viewer'
                 />
               </a>
-              <a href='https://supadata.ai/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://supadata.ai/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <img
                   src={logos.supadata}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='supadata logo'
                 />
               </a>
-              <a href='https://dottxt.ai/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://dottxt.ai/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <img
                   src={logos.dottxt}
                   className='w-44 transition-transform duration-300 hover:scale-105'
@@ -927,7 +959,11 @@ for Accounting integrations'
                   alt='dottxt logo'
                 />
               </a>
-              <a href='https://www.n-ix.com/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://www.n-ix.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <img
                   src={logos.nix}
                   className='w-44 transition-transform duration-300 hover:scale-105'
@@ -956,7 +992,11 @@ for Accounting integrations'
                   alt='Spin the wheel logo'
                 />
               </a>
-              <a href='https://litslink.com/' target='_blank' rel='noopener noreferrer'>
+              <a
+                href='https://litslink.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <img
                   src={logos.litslink}
                   className='w-44 transition-transform duration-300 hover:scale-105'
