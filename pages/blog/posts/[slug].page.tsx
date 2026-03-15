@@ -94,6 +94,17 @@ export default function StaticMarkdownPage({
                                 @{author.twitter}
                               </a>
                             )}
+                            {author.link && !author.twitter && (
+                              <a
+                              className='block text-sm text-blue-500 font-medium pl-2'
+                              href={author.link}
+                              target='_blank'
+                              rel='noopener noreferrer'
+                              >
+                                 LinkedIn
+                              </a>
+                            )}
+                            
                           </div>
                         </div>
                       );
