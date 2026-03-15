@@ -103,8 +103,6 @@ const Home = (props: any) => {
     darkLogos: {
       asyncapi: '/img/logos/dark-mode/asyncapi_white.svg',
       airbnb: '/img/logos/dark-mode/airbnb_white.png',
-      postman: '/img/logos/usedby/postman-white.png',
-      endjin: '/img/logos/sponsors/endjin-logo.svg',
       llc: '/img/logos/dark-mode/llc_white.svg',
       common_room: '/img/logos/dark-mode/common-room_white.svg',
       slack: '/img/logos/dark-mode/slack_white.svg',
@@ -113,17 +111,12 @@ const Home = (props: any) => {
       route4me: '/img/logos/sponsors/route4me-logo-dark.svg',
       n8n: '/img/logos/sponsors/n8n-logo-dark.svg',
       ccopter: '/img/logos/sponsors/copycopter-white.png',
-      octue: '/img/logos/sponsors/octue-white.svg',
       apideck: '/img/logos/sponsors/apideck-white.svg',
       rxdb: '/img/logos/sponsors/rxdb.svg',
-      wda: '/img/logos/sponsors/wda-dark.svg',
       anon: '/img/logos/sponsors/anon-white.png',
-      sourcemeta: '/img/logos/sponsors/sourcemeta-logo-light.svg',
-      dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
       supadata: '/img/logos/sponsors/supadata-logo-light.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
-      oracle: '/img/logos/sponsors/Oracle.png',
       litslink: '/img/logos/sponsors/litslink_dark.svg',
       spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
       timenow: '/img/logos/sponsors/time_now_dark.svg',
@@ -131,8 +124,6 @@ const Home = (props: any) => {
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
       airbnb: '/img/logos/sponsors/airbnb-logo.png',
-      postman: '/img/logos/sponsors/postman_logo-orange.svg',
-      endjin: '/img/logos/sponsors/endjin-logo.svg',
       llc: '/img/logos/sponsors/llc-logo.svg',
       common_room: '/img/logos/supported/common-room.svg',
       slack: '/img/logos/supported/slack-logo.svg',
@@ -141,17 +132,12 @@ const Home = (props: any) => {
       route4me: '/img/logos/sponsors/route4me-logo-white.svg',
       n8n: '/img/logos/sponsors/n8n-logo-white.svg',
       ccopter: '/img/logos/sponsors/copycopter.png',
-      octue: '/img/logos/sponsors/octue-black.svg',
       apideck: '/img/logos/sponsors/apideck.svg',
       rxdb: '/img/logos/sponsors/rxdb.svg',
-      wda: '/img/logos/sponsors/wda.svg',
       anon: '/img/logos/sponsors/anon-black.png',
-      sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
       supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
-      dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
-      oracle: '/img/logos/sponsors/Oracle.png',
       spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
       litslink: '/img/logos/sponsors/litslink_white.svg',
       timenow: '/img/logos/sponsors/time_now_white.svg',
@@ -728,36 +714,6 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a
-                href='https://www.postman.com/'
-                target='_blank'
-                rel='noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.postman}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='postman'
-                    />
-                  </>
-                )}
-              </a>
-              <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.endjin}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='endjin'
-                    />
-                  </>
-                )}
-              </a>
               <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
                 {isClient && (
                   <>
@@ -848,12 +804,6 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <img
-                  src={logos.octue}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                />
-              </a>
               <a
                 href='https://www.apideck.com/'
                 target='_blank'
@@ -878,17 +828,6 @@ for Accounting integrations'
                 />
               </a>
               <a
-                href='https://topagency.webflow.io'
-                target='_blank'
-                rel='noreferrer'
-              >
-                <img
-                  src={logos.wda}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='best website design agencies'
-                />
-              </a>
-              <a
                 href='https://anonstories.com'
                 target='_blank'
                 rel='noreferrer'
@@ -906,24 +845,6 @@ for Accounting integrations'
                   alt='supadata logo'
                 />
               </a>
-              <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
-                <img
-                  src={logos.dottxt}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='dottxt logo'
-                />
-              </a>
-              <a
-                href='https://www.sourcemeta.com/'
-                target='_blank'
-                rel='noreferrer'
-              >
-                <img
-                  src={logos.sourcemeta}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='dottxt logo'
-                />
-              </a>
               <a href='https://www.n-ix.com/' target='_blank' rel='noreferrer'>
                 <img
                   src={logos.nix}
@@ -932,14 +853,28 @@ for Accounting integrations'
                 />
               </a>
               <a
-                href='https://www.oracle.com/'
+                href='https://spinthewheel.io/'
                 target='_blank'
                 rel='noreferrer'
               >
                 <img
-                  src={logos.oracle}
+                  src={logos.spinthewheel}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='Oracle logo'
+                  alt='Spin the wheel logo'
+                />
+              </a>
+              <a href='https://litslink.com/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.litslink}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='Litslink logo'
+                />
+              </a>
+              <a href='https://time.now/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.timenow}
+                  className='w-24 transition-transform duration-300 hover:scale-105'
+                  alt='Time Now logo'
                 />
               </a>
               <a
