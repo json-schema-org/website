@@ -377,7 +377,7 @@ const Home = (props: any) => {
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
             <div className='p-4 w-full mb-6 dark:shadow-2xl'>
-              <Link href='https://json-schema.org/slack' target="_blank" rel="noopener noreferrer">
+              <Link href='https://json-schema.org/slack' target="_blank" rel='noopener noreferrer'>
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
                   {isClient && (
@@ -649,7 +649,7 @@ const Home = (props: any) => {
             <Link
               href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
-              rel='noreferrer'
+              rel='noopener noreferrer'
               className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
@@ -674,7 +674,7 @@ const Home = (props: any) => {
             <Link
               href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
-              rel='noreferrer'
+              rel='noopener noreferrer'
               className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
@@ -700,7 +700,7 @@ const Home = (props: any) => {
               <a
                 href=' https://www.asyncapi.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -717,7 +717,7 @@ const Home = (props: any) => {
               <a
                 href='https://www.airbnb.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -734,7 +734,7 @@ const Home = (props: any) => {
               <a
                 href='https://www.postman.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -748,7 +748,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
+              <a href='https://endjin.com/' target='_blank' rel='noopener noreferrer'>
                 {isClient && (
                   <>
                     <Image
@@ -761,7 +761,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
+              <a href='https://www.llc.org/' target='_blank' rel='noopener noreferrer'>
                 {isClient && (
                   <>
                     <Image
@@ -777,7 +777,7 @@ const Home = (props: any) => {
               <a
                 href='https://www.vpsserver.com/en-us/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -794,7 +794,7 @@ const Home = (props: any) => {
               <a
                 href='https://www.itflashcards.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -811,7 +811,7 @@ const Home = (props: any) => {
               <a
                 href='https://www.route4me.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -825,7 +825,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
+              <a href='https://n8n.io/' target='_blank' rel='noopener noreferrer'>
                 {isClient && (
                   <>
                     <Image
@@ -838,7 +838,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
+              <a href='https://copycopter.ai/' target='_blank' rel='noopener noreferrer'>
                 {isClient && (
                   <>
                     <Image
@@ -851,7 +851,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
+              <a href='https://www.octue.com/' target='_blank' rel='noopener noreferrer'>
                 <img
                   src={logos.octue}
                   className='w-44 transition-transform duration-300 hover:scale-105'
@@ -872,7 +872,7 @@ for Accounting integrations'
               <a
                 href='https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 <img
                   src={logos.rxdb}
@@ -883,7 +883,7 @@ for Accounting integrations'
               <a
                 href='https://topagency.webflow.io'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 <img
                   src={logos.wda}
@@ -894,7 +894,7 @@ for Accounting integrations'
               <a
                 href='https://anonstories.com'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 <img
                   src={logos.anon}
@@ -902,14 +902,14 @@ for Accounting integrations'
                   alt='Instagram Story Viewer'
                 />
               </a>
-              <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
+              <a href='https://supadata.ai/' target='_blank' rel='noopener noreferrer'>
                 <img
                   src={logos.supadata}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='supadata logo'
                 />
               </a>
-              <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
+              <a href='https://dottxt.ai/' target='_blank' rel='noopener noreferrer'>
                 <img
                   src={logos.dottxt}
                   className='w-44 transition-transform duration-300 hover:scale-105'
@@ -919,7 +919,7 @@ for Accounting integrations'
               <a
                 href='https://www.sourcemeta.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 <img
                   src={logos.sourcemeta}
@@ -927,7 +927,7 @@ for Accounting integrations'
                   alt='dottxt logo'
                 />
               </a>
-              <a href='https://www.n-ix.com/' target='_blank' rel='noreferrer'>
+              <a href='https://www.n-ix.com/' target='_blank' rel='noopener noreferrer'>
                 <img
                   src={logos.nix}
                   className='w-44 transition-transform duration-300 hover:scale-105'
@@ -937,7 +937,7 @@ for Accounting integrations'
               <a
                 href='https://www.oracle.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 <img
                   src={logos.oracle}
@@ -948,7 +948,7 @@ for Accounting integrations'
               <a
                 href='https://spinthewheel.io/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 <img
                   src={logos.spinthewheel}
@@ -956,7 +956,7 @@ for Accounting integrations'
                   alt='Spin the wheel logo'
                 />
               </a>
-              <a href='https://litslink.com/' target='_blank' rel='noreferrer'>
+              <a href='https://litslink.com/' target='_blank' rel='noopener noreferrer'>
                 <img
                   src={logos.litslink}
                   className='w-44 transition-transform duration-300 hover:scale-105'
@@ -973,7 +973,7 @@ for Accounting integrations'
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
                 className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
               >
                 <svg

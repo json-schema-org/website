@@ -76,15 +76,15 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
               OpenAPI
             </a>
             ,
-            <a href='https://www.asyncapi.com' className='underline' target="_blank" rel="noopener noreferrer">
+            <a href='https://www.asyncapi.com' className='underline' target='_blank' rel='noopener noreferrer'>
               AsyncAPI
             </a>
             ,
-            <a href='https://raml.org' className='underline' target="_blank" rel="noopener noreferrer">
+            <a href='https://raml.org' className='underline' target='_blank' rel='noopener noreferrer'>
               RAML
             </a>
             ,
-            <a href='https://www.w3.org/WoT/' className='underline' target="_blank" rel="noopener noreferrer">
+            <a href='https://www.w3.org/WoT/' className='underline' target='_blank' rel='noopener noreferrer'>
               W3C WoT
             </a>
             , and many more.
