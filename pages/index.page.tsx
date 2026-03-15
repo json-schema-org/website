@@ -240,6 +240,8 @@ const Home = (props: any) => {
                 <a
                   className='underline'
                   href='https://landscape.json-schema.org/'
+                  target='_blank'
+                  rel="noopener noreferrer"
                 >
                   Landscape
                 </a>{' '}
@@ -375,7 +377,7 @@ const Home = (props: any) => {
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
             <div className='p-4 w-full mb-6 dark:shadow-2xl'>
-              <Link href='https://json-schema.org/slack'>
+              <Link href='https://json-schema.org/slack' target="_blank" rel="noopener noreferrer">
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
                   {isClient && (
@@ -528,8 +530,8 @@ const Home = (props: any) => {
                 <div className='flex flex-col'>
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/35'
-                    rel='noopener noreferrer'
                     target='_blank'
+                    rel='noopener noreferrer'
                     className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'
                   >
                     Open Community Working Meetings
@@ -537,8 +539,8 @@ const Home = (props: any) => {
 
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/34/'
-                    rel='noopener noreferrer'
                     target='_blank'
+                    rel='noopener noreferrer'
                     className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
                   >
                     Office Hours
@@ -612,6 +614,8 @@ const Home = (props: any) => {
               <a
                 href='https://json-schema.org/overview/sponsors'
                 className='border-b border-black dark:border-white'
+                target='_blank'
+                rel='noopener noreferrer'
               >
                 sponsor
               </a>{' '}
@@ -619,7 +623,9 @@ const Home = (props: any) => {
               <a
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
                 className='border-b border-black dark:border-white'
-              >
+                target='_blank'
+                rel='noopener noreferrer'
+                >
                 backer
               </a>{' '}
               .
@@ -629,6 +635,8 @@ const Home = (props: any) => {
               <a
                 href='https://opencollective.com/json-schema'
                 className='border-b border-black dark:border-white'
+                target='_blank'
+                rel='noopener noreferrer'
               >
                 Support us!
               </a>
