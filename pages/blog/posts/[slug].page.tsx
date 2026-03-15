@@ -96,15 +96,14 @@ export default function StaticMarkdownPage({
                             )}
                             {author.link && !author.twitter && (
                               <a
-                              className='block text-sm text-blue-500 font-medium pl-2'
-                              href={author.link}
-                              target='_blank'
-                              rel='noopener noreferrer'
+                                className='block text-sm text-blue-500 font-medium pl-2'
+                                href={author.link}
+                                target='_blank'
+                                rel='noopener noreferrer'
                               >
-                                 LinkedIn
+                                LinkedIn
                               </a>
                             )}
-                            
                           </div>
                         </div>
                       );
