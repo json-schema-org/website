@@ -463,12 +463,17 @@ const Home = (props: any) => {
                       return (
                         <div
                           key={index}
-                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                          style={{
-                            backgroundImage: `url(${author.photo})`,
-                            zIndex: 10 - index,
-                          }}
-                        />
+                          className='relative h-[44px] w-[44px] rounded-full -ml-3 overflow-hidden border-2 border-white bg-slate-200'
+                          style={{ zIndex: 10 - index }}
+                        >
+                          <Image
+                            src={author.photo}
+                            alt={author.name}
+                            fill
+                            className='object-cover'
+                            sizes='44px'
+                          />
+                        </div>
                       );
                     },
                   )}
@@ -849,7 +854,10 @@ const Home = (props: any) => {
                 )}
               </a>
               <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
+                  alt='octue'
+                  width={176}
+                  height={100}
                   src={logos.octue}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                 />
@@ -859,11 +867,12 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={logos.apideck}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The Realtime Unified API
-for Accounting integrations'
+                  alt='The Realtime Unified API for Accounting integrations'
                 />
               </a>
               <a
@@ -871,7 +880,9 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={logos.rxdb}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='The local Database for JavaScript Applications'
@@ -882,7 +893,9 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={logos.wda}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='best website design agencies'
@@ -893,21 +906,27 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={logos.anon}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='Instagram Story Viewer'
                 />
               </a>
               <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={logos.supadata}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='supadata logo'
                 />
               </a>
               <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={logos.dottxt}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='dottxt logo'
@@ -918,15 +937,19 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
+                  width={176}
+                  height={100}
                   src={logos.sourcemeta}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='dottxt logo'
                 />
               </a>
               <a href='https://www.n-ix.com/' target='_blank' rel='noreferrer'>
-                <img
+                <Image
                   src={logos.nix}
+                  width={176}
+                  height={100}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='n-iX logo'
                 />
@@ -936,8 +959,10 @@ for Accounting integrations'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
+                <Image
                   src={logos.oracle}
+                  width={176}
+                  height={100}
                   className='w-44 transition-transform duration-300 hover:scale-105'
                   alt='Oracle logo'
                 />
