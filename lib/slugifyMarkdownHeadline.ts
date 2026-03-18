@@ -1,5 +1,14 @@
 import slugify from 'slugify';
 
+function extractTextFromNode(node: any): string {
+  if (typeof node === 'string') return node;
+  if (Array.isArray(node)) return node.map(extractTextFromNode).join('');
+  if (node && typeof node === 'object' && node.props) {
+    return extractTextFromNode(node.props.children);
+  }
+  return '';
+}
+
 export default function slugifyMarkdownHeadline(
   markdownChildren: string | any[],
 ): string {
@@ -16,11 +25,12 @@ export default function slugifyMarkdownHeadline(
     return slug || null;
   }, null);
   if (metaSlug) return metaSlug;
-
   const joinedChildren = markdownChildren
-    .filter((child) => typeof child === 'string')
-    .map((string) => string.replace(FRAGMENT_REGEX, ''))
-    .join(' ');
+    .map(extractTextFromNode)
+    .map((s) => s.replace(FRAGMENT_REGEX, ''))
+    .join(' ')
+    .trim();
+
   const slug = slugify(joinedChildren, { lower: true, trim: true });
   return slug;
 }
