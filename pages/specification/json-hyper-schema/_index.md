@@ -33,6 +33,6 @@ In essence:
 
 ### Release Notes
 
-- [Draft-07 to 2019-09](../draft/2019-09/release-notes#hyper-schema-vocabulary)
+- [Draft-07 to 2019-09](../draft/2019-09/release-notes)
 - [Draft-04 to Draft-07](../draft-07/json-hyper-schema-release-notes)
 - [Draft-04 to Draft-06](../draft-06/json-hyper-schema-release-notes)
