@@ -334,26 +334,16 @@ export const DocsNav = ({
   }, [router.asPath]);
 
   const { resolvedTheme } = useTheme();
-  const [learn_icon, setLearn_icon] = useState('');
-  const [reference_icon, setReference_icon] = useState('');
-  const [spec_icon, setSpec_icon] = useState('');
-  const [overview_icon, setOverview_icon] = useState('');
-  const [guides_icon, setGuides_icon] = useState('');
+  const [mounted, setMounted] = useState(false);
   useEffect(() => {
-    if (resolvedTheme === 'dark') {
-      setOverview_icon('/icons/eye-dark.svg');
-      setLearn_icon('/icons/compass-dark.svg');
-      setReference_icon('/icons/book-dark.svg');
-      setSpec_icon('/icons/clipboard-dark.svg');
-      setGuides_icon('/icons/grad-cap-dark.svg');
-    } else {
-      setOverview_icon('/icons/eye.svg');
-      setLearn_icon('/icons/compass.svg');
-      setReference_icon('/icons/book.svg');
-      setSpec_icon('/icons/clipboard.svg');
-      setGuides_icon('/icons/grad-cap.svg');
-    }
-  }, [resolvedTheme]);
+    setMounted(true);
+  }, []);
+
+  const overview_icon = mounted && resolvedTheme === 'dark' ? '/icons/eye-dark.svg' : '/icons/eye.svg';
+  const learn_icon = mounted && resolvedTheme === 'dark' ? '/icons/compass-dark.svg' : '/icons/compass.svg';
+  const reference_icon = mounted && resolvedTheme === 'dark' ? '/icons/book-dark.svg' : '/icons/book.svg';
+  const spec_icon = mounted && resolvedTheme === 'dark' ? '/icons/clipboard-dark.svg' : '/icons/clipboard.svg';
+  const guides_icon = mounted && resolvedTheme === 'dark' ? '/icons/grad-cap-dark.svg' : '/icons/grad-cap.svg';
 
   return (
     <div id='sidebar' className='lg:mt-8 w-4/5 mx-auto lg:ml-4'>

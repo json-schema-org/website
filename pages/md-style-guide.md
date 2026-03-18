@@ -62,7 +62,7 @@ Use the following tags to give readers relevant information that is not part of 
 To help readers find the information they are looking for within the document, add a table of contents at the beginning. 
 
 ```markdown
-<tableofcontent content= {content} depth= {depth}/>
+<TableOfContents content= {content} depth= {depth}/>
 ```
 
 ### Blockquote
