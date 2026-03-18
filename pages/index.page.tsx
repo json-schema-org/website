@@ -408,11 +408,10 @@ const Home = (props: any) => {
                   projects, and connect with +5000 practitioners and experts.
                 </p>
               </Link>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'>
-                <a
-                  href='https://json-schema.org/slack'
-                  className='flex items-center '
-                >
+              <a
+                href='https://json-schema.org/slack'
+                className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
+              >
                   {isClient && (
                     <>
                       <Image
@@ -425,8 +424,7 @@ const Home = (props: any) => {
                     </>
                   )}
                   Join Slack
-                </a>
-              </button>
+              </a>
             </div>
             {/* BlogPost Data */}
             <div className='p-4 w-full mb-6 dark:shadow-2xl'>
@@ -862,8 +860,7 @@ const Home = (props: any) => {
                 <img
                   src={logos.apideck}
                   className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The Realtime Unified API
-for Accounting integrations'
+                  alt='The Realtime Unified API for Accounting integrations'
                 />
               </a>
               <a

@@ -381,7 +381,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                 );
               },
             },
-            tableofcontent: {
+            TableOfContents: {
               component: ({ depth }) => {
                 return <TableOfContent depth={depth} />;
               },
