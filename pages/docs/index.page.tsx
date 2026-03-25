@@ -10,7 +10,7 @@ const cardsData = [
   {
     icon: '/icons/eye.svg',
     title: 'Introduction',
-    body: 'Discover JSON Schema: its purpose and role in data validation.',
+    body: 'Discover JSON Schema and its role in validating JSON data.',
     headerSize: 'medium',
     bodyTextSize: 'small',
     link: '/overview/what-is-jsonschema',
@@ -18,7 +18,7 @@ const cardsData = [
   {
     icon: '/icons/compass.svg',
     title: 'Get started',
-    body: 'New to JSON Schema? Learn the basics of schema design.',
+    body: 'New to JSON Schema? Learn the fundamentals of schema design.',
     headerSize: 'medium',
     bodyTextSize: 'small',
     link: '/learn',
@@ -26,7 +26,7 @@ const cardsData = [
   {
     icon: '/icons/grad-cap.svg',
     title: 'Guides',
-    body: 'Master advanced skills such as validation with our hands-on guides.',
+    body: 'Master advanced skills like validation through hands-on guides.',
     headerSize: 'medium',
     bodyTextSize: 'small',
     link: '/learn/guides',
@@ -34,7 +34,7 @@ const cardsData = [
   {
     icon: '/icons/book.svg',
     title: 'Reference',
-    body: 'Dive deeper into JSON Schema keywords with our clear explanations and usage examples.',
+    body: 'Dive deep into JSON Schema keywords with clear explanations and examples.',
     headerSize: 'medium',
     bodyTextSize: 'small',
     link: '/understanding-json-schema',
@@ -42,7 +42,7 @@ const cardsData = [
   {
     icon: '/icons/clipboard.svg',
     title: 'Specification',
-    body: 'Understand the evolution of JSON Schema through its different versions',
+    body: 'Explore the evolution of JSON Schema across different versions.',
     headerSize: 'medium',
     bodyTextSize: 'small',
     link: '/specification',
@@ -77,17 +77,16 @@ export default function Welcome() {
         />
       </Head>
       <Headline1>{newTitle}</Headline1>
-      <p>
-        JSON Schema is a declarative language for annotating and validating JSON
-        documents' structure, constraints, and data types. It helps you
+      <p className='mt-4'>
+        JSON Schema is a declarative language for annotating and validating the
+        structure, constraints, and data types of JSON documents. It helps
         standardize and define expectations for JSON data.
-        <br />
-        Our documentation will guide you through the basics and beyond of
-        defining and validating JSON data.
-        <br />
-        <br />
-        <span className='font-bold text-[1.3rem]'>Explore the docs</span>
       </p>
+      <p className='mt-2'>
+        Our documentation will guide you from the basics to advanced topics in
+        defining and validating JSON data.
+      </p>
+      <p className='mt-4 font-bold text-[1.3rem]'>Explore the docs</p>
       {renderCards()}
       <DocsHelp fileRenderType={fileRenderType} />
     </SectionContext.Provider>

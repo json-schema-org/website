@@ -44,19 +44,18 @@ export default function Roadmap() {
       </Head>
       <Headline1>{newTitle}</Headline1>
       <div className='text-md'>
-        Our "Roadmap" section displays our key objectives for the long term.
-        While this roadmap provides a detailed outlook for the near future,
-        please note that it might be subject to change. In fact, we are
-        currently{' '}
+        Our "Roadmap" section highlights the key objectives we aim to achieve
+        over the long term. While this roadmap provides a detailed outlook for
+        the near future, it may change as priorities evolve. Currently, we are{' '}
         <a
           className='text-blue-600 underline'
           href='https://github.com/orgs/json-schema-org/discussions/813'
         >
           discussing
         </a>{' '}
-        the new priorities for the next 24-month cycle, which will lead to
-        relevant changes. Please consider joining the discussion to become an
-        active part of JSON Schema's future!
+        new priorities for the next 24-month cycle, which could result in
+        updates to the roadmap. We encourage you to join the discussion and
+        become an active part of shaping JSON Schema's future!
       </div>
       <div className='text-gray-900 dark:text-white'>
         <div className='container mt-14 mx-auto px-4'>
