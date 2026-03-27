@@ -51,7 +51,10 @@ export const getStaticProps: GetStaticProps = async () => {
     'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
-    .catch((error) => console.error('Error:', error));
+    .catch((error) => {
+      console.error('Error:', error);
+      return null;
+    });
   return {
     props: {
       blogPosts,
@@ -546,7 +549,7 @@ const Home = (props: any) => {
                   <Headline4>Upcoming events</Headline4>
                   <div>
                     <ul>
-                      {props.datesInfo.map((event: any, index: any) => (
+                      {props?.datesInfo?.map((event: any, index: any) => (
                         <li key={index}>
                           <div className='flex mb-4'>
                             <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
