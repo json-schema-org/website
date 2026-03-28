@@ -165,14 +165,14 @@ In addition to any Code of Conduct review team, GitHub organizational owners wil
 
 The OpenJS Foundation provides an [escalation path](https://github.com/openjs-foundation/cross-project-council/blob/HEAD/CODE_OF_CONDUCT.md#escalate-an-issue) should you feel your report has not been handled appropriately. Recipients of reports commit to participate in the defined path of escalation when required, as required by the OpenJS Foundation Code of Conduct.
 
-> The OpenJS Foundation maintains a [Code of Conduct Panel (CoCP)](https://github.com/openjs-foundation/cross-project-council/blob/HEAD/conduct/FOUNDATION_CODE_OF_CONDUCT_REQUIREMENTS.md#code-of-conduct-panel). This is a foundation-wide team established to manage escalation when a reporter believes that a report to a member project or the CPC has not been properly handled. In order to escalate to the CoCP send an email to coc-escalation@lists.openjsf.org.
+> The OpenJS Foundation maintains a [Code of Conduct Panel (CoCP)](https://github.com/openjs-foundation/cross-project-council/blob/15910968014412c9107155d64ee3255acfe21c3e/conduct/COC_POLICY.md). This is a foundation-wide team established to manage escalation when a reporter believes that a report to a member project or the CPC has not been properly handled. In order to escalate to the CoCP send an email to coc-escalation@lists.openjsf.org.
 
-## Enforcement responsabilities
+## Enforcement responsibilities
 
-If a Code of Conduct report involves a community leader, that member will not participate in the investigation or any decisions related to that report. If the report involves multiple community leaders, mediation will defer to the [OpenJS Code of Conduct Panel (CoCP)](https://github.com/openjs-foundation/cross-project-council/blob/HEAD/conduct/FOUNDATION_CODE_OF_CONDUCT_REQUIREMENTS.md#code-of-conduct-panel).
+If a Code of Conduct report involves a community leader, that member will not participate in the investigation or any decisions related to that report. If the report involves multiple community leaders, mediation will defer to the [OpenJS Code of Conduct Panel (CoCP)](https://github.com/openjs-foundation/cross-project-council/blob/15910968014412c9107155d64ee3255acfe21c3e/conduct/COC_POLICY.md).
 
 For more information, refer to the full
-[Code of Conduct governance document](https://github.com/openjs-foundation/cross-project-council/tree/HEAD/proposals/approved/CODE_OF_CONDUCT).
+[Code of Conduct governance document](https://github.com/openjs-foundation/cross-project-council/blob/15910968014412c9107155d64ee3255acfe21c3e/governance/GOVERNANCE.md).
 
 # Attribution
 
