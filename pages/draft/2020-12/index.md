@@ -13,9 +13,10 @@ next:
   url: /draft/2019-09
 ---
 
+
 ### Introduction
 
-The JSON Schema Draft 2020-12 is a comprehensive update to the previous [draft 2019-09](draft/2019-09), addressing feedback and implementation experiences. This draft introduces features to simplify creating and validating JSON schemas.
+The JSON Schema Draft 2020-12 is a comprehensive update to the previous [draft 2019-09](\2019-09), addressing feedback and implementation experiences. This draft introduces features to simplify creating and validating JSON schemas.
 
 Here's an overview of updates to Draft 2020-12;
 
