@@ -61,4 +61,4 @@ _These were updated without changing functionality or meta-schemas due to a few 
 
 ### Release Notes
 
-- [Draft 2020-12 Release Notes](../draft/2020-12/release-notes)
+- [Draft 2020-12 Release Notes](./release-notes)
