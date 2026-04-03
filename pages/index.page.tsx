@@ -127,6 +127,7 @@ const Home = (props: any) => {
       litslink: '/img/logos/sponsors/litslink_dark.svg',
       spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
       timenow: '/img/logos/sponsors/time_now_dark.svg',
+      legasset: '/img/logos/sponsors/legasset-logo.svg',
     },
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
@@ -155,6 +156,7 @@ const Home = (props: any) => {
       spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
       litslink: '/img/logos/sponsors/litslink_white.svg',
       timenow: '/img/logos/sponsors/time_now_white.svg',
+      legasset: '/img/logos/sponsors/legasset-logo-dark.svg',
     },
   };
 
@@ -965,6 +967,13 @@ for Accounting integrations'
                   src={logos.timenow}
                   className='w-24 transition-transform duration-300 hover:scale-105'
                   alt='Time Now logo'
+                />
+              </a>
+              <a href='https://www.legasset.com/' target='_blank' rel='noreferrer'>
+                <img
+                  src={logos.legasset}
+                  className='w-44 transition-transform duration-300 hover:scale-105'
+                  alt='legasset logo'
                 />
               </a>
               <a
