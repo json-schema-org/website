@@ -35,11 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
         'utf-8',
       );
       const { data: frontmatter, content } = matter(fullFileName);
-      return {
-        slug,
-        frontmatter,
-        content,
-      };
+      return { slug, frontmatter, content };
     })
     .sort(
       (a, b) =>
@@ -52,13 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
-  return {
-    props: {
-      blogPosts,
-      datesInfo,
-      fallback: false,
-    },
-  };
+  return { props: { blogPosts, datesInfo, fallback: false } };
 };
 
 export function AlgoliaSearch() {
@@ -969,7 +959,11 @@ for Accounting integrations'
                   alt='Time Now logo'
                 />
               </a>
-              <a href='https://www.legasset.com/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://www.legasset.com/'
+                target='_blank'
+                rel='noreferrer'
+              >
                 <img
                   src={logos.legasset}
                   className='w-44 transition-transform duration-300 hover:scale-105'
