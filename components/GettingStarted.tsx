@@ -8,7 +8,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { ChevronDown } from "lucide-react"; // ✅ added
+import { ChevronDown } from 'lucide-react'; // ✅ added
 
 async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
@@ -139,7 +139,6 @@ const GettingStarted = () => {
   return (
     <>
       <div className='relative'>
-
         {/* JSON Schema */}
         <div className='flex flex-col'>
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
@@ -152,7 +151,7 @@ const GettingStarted = () => {
                 Select a Schema:
               </label>
 
-              <div className="relative inline-block">
+              <div className='relative inline-block'>
                 <select
                   name='Select a JSON Schema Validator'
                   className='p-2 pr-10 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px] appearance-none'
@@ -166,7 +165,7 @@ const GettingStarted = () => {
                   ))}
                 </select>
 
-                <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <ChevronDown className='w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none' />
               </div>
             </div>
           </div>
@@ -213,7 +212,7 @@ const GettingStarted = () => {
                 Select an Instance:
               </label>
 
-              <div className="relative inline-block">
+              <div className='relative inline-block'>
                 <select
                   className='p-2 pr-10 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px] appearance-none'
                   onChange={handleInstanceChange}
@@ -225,12 +224,14 @@ const GettingStarted = () => {
                   ))}
                 </select>
 
-                <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                <ChevronDown className='w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none' />
               </div>
             </div>
           </div>
 
-          <Highlight style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}>
+          <Highlight
+            style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
+          >
             {JSON.stringify(fetchedInstance, null, 2)}
           </Highlight>
 
@@ -242,9 +243,19 @@ const GettingStarted = () => {
             <p>{details[0]}</p>
 
             {details[1] ? (
-              <Image src='/icons/green-tick.svg' alt='ok' width={24} height={24} />
+              <Image
+                src='/icons/green-tick.svg'
+                alt='ok'
+                width={24}
+                height={24}
+              />
             ) : (
-              <Image src='/icons/red-cross.svg' alt='no' width={24} height={24} />
+              <Image
+                src='/icons/red-cross.svg'
+                alt='no'
+                width={24}
+                height={24}
+              />
             )}
           </div>
         </div>
