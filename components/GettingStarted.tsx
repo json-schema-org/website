@@ -8,7 +8,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
-import { ChevronDown } from 'lucide-react'; // ✅ added
+import { ChevronDown } from 'lucide-react';
 
 async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
@@ -139,7 +139,6 @@ const GettingStarted = () => {
   return (
     <>
       <div className='relative'>
-        {/* JSON Schema */}
         <div className='flex flex-col'>
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
             <h2 className='text-h6 font-semibold mb-1 text-slate-900 dark:text-white'>
@@ -199,8 +198,6 @@ const GettingStarted = () => {
             </Highlight>
           </div>
         </div>
-
-        {/* JSON Instance */}
         <div className='flex flex-col'>
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
             <h2 className='text-h6 font-semibold mb-1 text-slate-900 dark:text-white'>
