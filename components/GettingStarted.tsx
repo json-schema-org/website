@@ -229,17 +229,41 @@ const GettingStarted = () => {
             </div>
           </div>
 
-          <Highlight
-            style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
-          >
-            {JSON.stringify(fetchedInstance, null, 2)}
-          </Highlight>
+          <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
+            <Highlight
+              wrapLines={true}
+              wrapLongLines={true}
+              customStyle={{
+                borderRadius: 10,
+                paddingTop: 15,
+                paddingBottom: 10,
+                paddingLeft: 10,
+                marginBottom: 20,
+                maxWidth: '100%',
+                backgroundColor:
+                  resolvedTheme === 'dark' ? '#1e293b' : '#f8fafc',
+                border:
+                  resolvedTheme === 'dark'
+                    ? '1px solid #374151'
+                    : '1px solid #e2e8f0',
+              }}
+              lineNumberStyle={{
+                marginRight: 10,
+                color: resolvedTheme === 'dark' ? '#64748B' : '#94a3b8',
+              }}
+              style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
+              showLineNumbers
+              startingLineNumber={1}
+            >
+              {JSON.stringify(fetchedInstance, null, 2)}
+            </Highlight>
+          </div>
 
           <h2 className='text-h6 font-semibold text-slate-900 dark:text-white'>
             Validation Result
           </h2>
 
-          <div className='flex dark:bg-[#1e293b] bg-slate-100 justify-between items-center text-slate-800 dark:text-white font-medium border p-5 rounded-xl'>
+          <div className='flex dark:bg-[#1e293b] bg-slate-100 justify-between items-center text-slate-800 dark:text-white font-medium flex-row border dark:border-slate-700 border-slate-300 p-5 rounded-xl'>
             <p>{details[0]}</p>
 
             {details[1] ? (
