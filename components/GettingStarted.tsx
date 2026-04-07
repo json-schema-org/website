@@ -269,8 +269,7 @@ const GettingStarted = () => {
               }}
               codeTagProps={{
                 className: 'mr-8',
-              }
-              }
+              }}
             >
               {JSON.stringify(fetchedInstance, null, 2)}
             </Highlight>
