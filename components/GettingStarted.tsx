@@ -8,6 +8,7 @@ import JSZip from 'jszip';
 import { saveAs } from 'file-saver';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
+import { ChevronDown } from 'lucide-react';
 
 async function fetchData() {
   const response = await fetch('/data/getting-started-examples.json');
@@ -143,22 +144,28 @@ const GettingStarted = () => {
             <h2 className='text-h6 font-semibold mb-1 text-slate-900 dark:text-white'>
               JSON Schema
             </h2>
-            <div className='select-wrap'>
+
+            <div className='select-wrap relative'>
               <label className='mr-2 max-sm:text-[12px] text-slate-700 dark:text-slate-300'>
                 Select a Schema:
               </label>
-              <select
-                name='Select a JSON Schema Validator'
-                className='p-2 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px]'
-                id='Examples'
-                onChange={handleSchemaChange}
-              >
-                {options.map((option: any, id: number) => (
-                  <option key={id} value={option.file}>
-                    {option.name}
-                  </option>
-                ))}
-              </select>
+
+              <div className='relative inline-block'>
+                <select
+                  name='Select a JSON Schema Validator'
+                  className='p-2 pr-10 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px] appearance-none'
+                  id='Examples'
+                  onChange={handleSchemaChange}
+                >
+                  {options.map((option: any, id: number) => (
+                    <option key={id} value={option.file}>
+                      {option.name}
+                    </option>
+                  ))}
+                </select>
+
+                <ChevronDown className='w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none' />
+              </div>
             </div>
           </div>
 
@@ -201,30 +208,34 @@ const GettingStarted = () => {
             </Highlight>
           </div>
         </div>
-
         <div className='flex flex-col'>
           <div className='flex items-end flex-row justify-between mt-5 mb-3 '>
             <h2 className='text-h6 font-semibold mb-1 text-slate-900 dark:text-white'>
               JSON Instance
             </h2>
-            <div className='select-wrap'>
+
+            <div className='select-wrap relative'>
               <label className='mr-2 max-sm:text-[12px] text-slate-700 dark:text-slate-300'>
                 Select an Instance:
               </label>
-              <select
-                name='Select a JSON Schema Validator'
-                className='p-2 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px]'
-                id='Examples'
-                onChange={handleInstanceChange}
-              >
-                {instances.map((instance: any, id: number) => (
-                  <option key={id} value={instance.file}>
-                    {instance.name}
-                  </option>
-                ))}
-              </select>
+
+              <div className='relative inline-block'>
+                <select
+                  className='p-2 pr-10 border dark:border-slate-300 border-slate-300 dark:bg-slate-900 bg-white text-slate-800 dark:text-white rounded-md max-sm:text-[12px] appearance-none'
+                  onChange={handleInstanceChange}
+                >
+                  {instances.map((instance: any, id: number) => (
+                    <option key={id} value={instance.file}>
+                      {instance.name}
+                    </option>
+                  ))}
+                </select>
+
+                <ChevronDown className='w-4 h-4 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none' />
+              </div>
             </div>
           </div>
+
           <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
             <Highlight
               wrapLines={true}
@@ -263,9 +274,11 @@ const GettingStarted = () => {
               {JSON.stringify(fetchedInstance, null, 2)}
             </Highlight>
           </div>
+
           <h2 className='text-h6 font-semibold text-slate-900 dark:text-white'>
             Validation Result
           </h2>
+
           <div className='flex dark:bg-[#1e293b] bg-slate-100 justify-between items-center text-slate-800 dark:text-white font-medium flex-row border dark:border-slate-700 border-slate-300 p-5 rounded-xl'>
             <p className='text-slate-700 dark:text-slate-300'>{details[0]}</p>
 
