@@ -171,8 +171,8 @@ const GettingStarted = () => {
 
           <div className='overflow-x-auto flex-basis-0 max-w-full min-w-0 shrink lg:max-w-[800px] xl:max-w-[900px]'>
             <Highlight
-              wrapLines
-              wrapLongLines
+              wrapLines={true}
+              wrapLongLines={true}
               customStyle={{
                 borderRadius: 10,
                 paddingTop: 15,
@@ -193,6 +193,16 @@ const GettingStarted = () => {
               }}
               style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
               showLineNumbers
+              startingLineNumber={1}
+              lineProps={() => {
+                const isHighlighted = false;
+                return {
+                  className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
+                };
+              }}
+              codeTagProps={{
+                className: 'mr-8',
+              }}
             >
               {JSON.stringify(fetchedSchema, null, 2)}
             </Highlight>
@@ -251,6 +261,16 @@ const GettingStarted = () => {
               style={resolvedTheme === 'dark' ? atomOneDark : atomOneLight}
               showLineNumbers
               startingLineNumber={1}
+              lineProps={() => {
+                const isHighlighted = false;
+                return {
+                  className: `${isHighlighted ? 'bg-code-editor-dark-highlight block ml-10 w-full' : ''} pr-8`,
+                };
+              }}
+              codeTagProps={{
+                className: 'mr-8',
+              }
+              }
             >
               {JSON.stringify(fetchedInstance, null, 2)}
             </Highlight>
@@ -261,21 +281,23 @@ const GettingStarted = () => {
           </h2>
 
           <div className='flex dark:bg-[#1e293b] bg-slate-100 justify-between items-center text-slate-800 dark:text-white font-medium flex-row border dark:border-slate-700 border-slate-300 p-5 rounded-xl'>
-            <p>{details[0]}</p>
+            <p className='text-slate-700 dark:text-slate-300'>{details[0]}</p>
 
             {details[1] ? (
               <Image
                 src='/icons/green-tick.svg'
-                alt='ok'
+                alt='green tick'
                 width={24}
                 height={24}
+                className='dark:brightness-100 brightness-90'
               />
             ) : (
               <Image
                 src='/icons/red-cross.svg'
-                alt='no'
+                alt='red cross'
                 width={24}
                 height={24}
+                className='dark:brightness-100 brightness-90'
               />
             )}
           </div>
