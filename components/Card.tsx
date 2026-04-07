@@ -40,21 +40,21 @@ const CardBody = ({
   };
 
   return (
-    <ShadcnCard className='group relative h-full w-full rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl dark:shadow-2xl dark:shadow-slate-900 transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30'>
+    <ShadcnCard className='group relative h-full w-full rounded-lg border border-gray-200 bg-white p-6 px-12 shadow-3xl transition-colors ease-in-out hover:bg-slate-100 dark:bg-slate-800 dark:shadow-2xl dark:shadow-slate-900 hover:dark:bg-slate-900/30'>
       {image && (
-        <div className='flex justify-center '>
+        <div className='flex justify-center'>
           <Image
             src={image}
             alt={title}
             width={384}
             height={128}
-            className='h-32 p-2 object-contain'
+            className='h-32 object-contain p-2'
             data-test='card-image'
           />
         </div>
       )}
 
-      <div className='flex flex-row items-start '>
+      <div className='flex flex-row items-start'>
         {icon && (
           <span className='mr-6 flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-lg border bg-blue-200 px-3 text-gray-900 dark:text-white'>
             <Image
@@ -82,7 +82,7 @@ const CardBody = ({
 
       <p
         className={cn(
-          'mb-8 text-black mt-5 dark:text-white ',
+          'mb-8 mt-5 text-black dark:text-white',
           bodyTextSizeClasses[bodyTextSize],
         )}
         data-test='card-body'
@@ -108,7 +108,12 @@ const CardBody = ({
 
 const Card: React.FC<CardProps> = ({ link, ...props }) => {
   return link ? (
-    <Link href={link} data-test='card-link'>
+    <Link
+      href={link}
+      target='_blank'
+      rel='noopener noreferrer'
+      data-test='card-link'
+    >
       <CardBody link={link} {...props} />
     </Link>
   ) : (
