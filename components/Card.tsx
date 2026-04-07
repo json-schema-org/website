@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { Card as ShadcnCard } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 import { cn } from '@/lib/utils';
+import sanitizeHtml from 'sanitize-html';
 
 export interface CardProps {
   title: string;
@@ -88,7 +89,53 @@ const CardBody = ({
         data-test='card-body'
       >
         {extended ? (
-          <span dangerouslySetInnerHTML={{ __html: body }} />
+          <span
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHtml(body, {
+                allowedTags: [
+                  'p',
+                  'br',
+                  'strong',
+                  'em',
+                  'u',
+                  'i',
+                  'b',
+                  'a',
+                  'ul',
+                  'ol',
+                  'li',
+                  'code',
+                  'pre',
+                ],
+                allowedAttributes: {
+                  a: ['href', 'title', 'target', 'rel'],
+                  code: ['class'],
+                  pre: ['class'],
+                },
+                allowedSchemes: ['http', 'https', 'mailto'],
+                allowedSchemesAppliedToAttributes: ['href'],
+                transformTags: {
+                  a: (tagName, attribs) => {
+                    if (
+                      attribs.href &&
+                      (attribs.href.startsWith('http') ||
+                        attribs.href.startsWith('https'))
+                    ) {
+                      return {
+                        tagName: 'a',
+                        attribs: {
+                          ...attribs,
+                          target: '_blank',
+                          rel: 'noopener noreferrer',
+                        },
+                      };
+                    }
+                    return { tagName, attribs };
+                  },
+                },
+              }),
+            }}
+          />
         ) : (
           <TextTruncate element='span' line={3} text={body} />
         )}
