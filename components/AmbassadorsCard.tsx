@@ -10,6 +10,22 @@ import {
 } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 
+const parseBio = (text: string): string => {
+  return text
+    .replace(
+      /\bRedocly\b/g,
+      '<a href="https://github.com/redocly" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline transition-colors duration-200">Redocly</a>',
+    )
+    .replace(
+      /\bOpenAPI Initiative\b/g,
+      '<a href="https://github.com/OAI" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline transition-colors duration-200">OpenAPI Initiative</a>',
+    )
+    .replace(
+      /\bAPI Design Matters\b/g,
+      '<a href="https://apidesignmatters.substack.com" target="_blank" rel="noopener noreferrer" class="text-blue-600 dark:text-blue-400 hover:underline transition-colors duration-200">API Design Matters</a>',
+    );
+};
+
 interface Contribution {
   title: string;
   date?: {
@@ -171,9 +187,10 @@ const AmbassadorCard = ({ ambassador }: { ambassador: Ambassador }) => {
         </CardHeader>
 
         {bio && (
-          <p className='text-gray-700 dark:text-slate-100 text-sm mb-4'>
-            {bio}
-          </p>
+          <p
+            className='text-gray-700 dark:text-slate-100 text-sm mb-4'
+            dangerouslySetInnerHTML={{ __html: parseBio(bio as string) }}
+          />
         )}
 
         {(company || country) && (
