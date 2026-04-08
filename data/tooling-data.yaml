@@ -2393,6 +2393,21 @@
   source: 'https://github.com/schemastore/schemastore/'
   homepage: 'https://schemastore.org/json/'
 
+- name: Sourcemeta One
+  description: 'A high-performance self-hosted JSON Schema registry that transforms existing Git repositories of schemas into searchable, discoverable schema catalogs with enterprise-grade governance capabilities'
+  toolingTypes: ['registry']
+  languages: ['C++']
+  maintainers:
+    - name: 'Juan Cruz Viotti'
+      username: 'jviotti'
+      platform: 'github'
+  license: 'BUSL-1.1 and Commercial'
+  source: 'https://github.com/sourcemeta/one'
+  homepage: 'https://one.sourcemeta.com'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  lastUpdated: '2026-04-08'
+
 - name: json-schema-linter
   description: 'Lint/validate/parse json-schema itself, and find typos, missing properties, missing required keys, etc.'
   toolingTypes: ['linter']
