@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => {
       console.error('Error:', error);
-      return null;
+      return null; 
     });
   return {
     props: {
