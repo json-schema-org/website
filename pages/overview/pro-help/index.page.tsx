@@ -72,19 +72,39 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
             Hiring our top contributors also helps funding the JSON Schema
             open-source organization, and as a consequence, the specifications
             that build on top of it, such as{' '}
-            <a href='https://www.openapis.org' className='underline'>
+            <a
+              href='https://www.openapis.org'
+              className='underline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               OpenAPI
             </a>
             ,
-            <a href='https://www.asyncapi.com' className='underline'>
+            <a
+              href='https://www.asyncapi.com'
+              className='underline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               AsyncAPI
             </a>
             ,
-            <a href='https://raml.org' className='underline'>
+            <a
+              href='https://raml.org'
+              className='underline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               RAML
             </a>
             ,
-            <a href='https://www.w3.org/WoT/' className='underline'>
+            <a
+              href='https://www.w3.org/WoT/'
+              className='underline'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               W3C WoT
             </a>
             , and many more.
