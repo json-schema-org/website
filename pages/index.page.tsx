@@ -49,7 +49,7 @@ export const getStaticProps: GetStaticProps = async () => {
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => {
       console.error('Error:', error);
-      return null; 
+      return null;
     });
   return {
     props: {
@@ -58,8 +58,6 @@ export const getStaticProps: GetStaticProps = async () => {
       fallback: false,
     },
   };
-    .catch((error) => console.error('Error:', error));
-  return { props: { blogPosts, datesInfo, fallback: false } };
 };
 
 export function AlgoliaSearch() {
