@@ -27,7 +27,7 @@ const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH);
   const blogPosts = files
-    .filter((file) => file.substr(-3) === '.md')
+    .filter((file) => file.slice(-3) === '.md')
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
       const fullFileName = fs.readFileSync(
