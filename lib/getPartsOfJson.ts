@@ -9,8 +9,20 @@ const regexNumber = /^\s*(?<number>-?\d+(\.\d+)?([Ee][+-]?\d+)?)\s*$/g;
 const regexString = /^\s*(?<string>"(\\"|[^"])*")\s*$/g;
 const regexBoolean = /^\s*(?<boolean>true|false)\s*$/g;
 const regexNull = /^\s*(?<null>null)\s*$/g;
-const regexDoubleQuote = /(?<!\\)"/g;
+// const regexDoubleQuote = /(?<!\\)"/g;
 const regexCommaOrEndOfLine = /,/g;
+
+const isEscapedQuote = (str: string, quoteIndex: number) => {
+  let backslashCount = 0;
+  let i = quoteIndex - 1;
+
+  while (i >= 0 && str[i] === '\\') {
+    backslashCount++;
+    i--;
+  }
+
+  return backslashCount % 2 === 1;
+};
 
 export type SyntaxPart = {
   type: string;
@@ -188,10 +200,17 @@ const getPartsOfJsonObjectContent = (
   offset = 0,
   jsonPath: string,
 ): SyntaxPart[] => {
-  const doubleQuoteMatches = getFindResultsByGlobalRegExp(
-    serializedJson,
-    regexDoubleQuote,
-  );
+  const doubleQuoteMatches: RegExpResult[] = [];
+
+  for (let i = 0; i < serializedJson.length; i++) {
+    if (serializedJson[i] === '"' && !isEscapedQuote(serializedJson, i)) {
+      doubleQuoteMatches.push({
+        index: i,
+        match: '"',
+        groups: [],
+      });
+    }
+  }
   let keywordStartIndex = 0;
   let stringsWithPayload: StringWithPayload[] = [];
   doubleQuoteMatches.forEach((doubleQuoteMatch, index) => {
