@@ -8,7 +8,6 @@ cover: /img/posts/2025/gsoc24/gsoc24-banner-main.png
 authors:
   - name: Onyedikachi Hope Amaechi-Okorie
     photo: /img/avatars/onyedikachi.jpg
-    link: https://www.linkedin.com/in/amaechihope/
     byline: Technical Community Manager 
 excerpt: "Discover the projects, mentors, and contributors that shaped Google Summer of Code (GSoC) 2024!"
 ---
