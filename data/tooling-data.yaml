@@ -1643,6 +1643,14 @@
   supportedDialects:
     draft: ['2020-12']
 
+- name: jsonschema-go
+  description: 'A Go implementation of JSON Schema by Google.'
+  toolingTypes: ['validator']
+  languages: ['Go']
+  license: 'MIT'
+  source: 'https://github.com/google/jsonschema-go'
+  lastUpdated: '2025-12-19'
+
 - name: protoc-gen-jsonschema
   description: 'Generates JSON schemas from protobuf proto v2 and v3 files.'
   toolingTypes: ['schema-to-code']
