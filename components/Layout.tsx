@@ -72,6 +72,7 @@ export default function Layout({
   }, [mobileNavRef]);
 
   const newTitle = `JSON Schema${metaTitle ? ` - ${metaTitle}` : ''}`;
+
   return (
     <div className='min-h-screen relative flex flex-col justify-between '>
       <FaviconHead />
@@ -92,8 +93,11 @@ export default function Layout({
         <main
           className={classnames(
             mainClassName,
-            'z-10 h-screen xl:rounded-xl pt-4 mx-auto',
-            // 'z-10 h-screen  xl:rounded-xl pt-4 mx-auto',
+            'z-10 h-screen xl:rounded-xl mx-auto transition-all duration-500 ease-in-out',
+            {
+              'pt-48': showMobileNav,
+              'pt-4': !showMobileNav,
+            },
           )}
         >
           <header
