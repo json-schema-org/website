@@ -8,7 +8,6 @@ cover: /img/posts/2026/gsoc25/gsoc25-banner.jpg
 authors:
   - name: Onyedikachi Hope Amaechi-Okorie
     photo: /img/avatars/onyedikachi.jpg
-    link: https://www.linkedin.com/in/amaechihope/
     byline: Technical Community Advocate 
 excerpt: "GSoC 2025 empowered JSON Schema contributors to improve developer experience, tooling, and learning through projects like schema visualization, clearer errors, and a Java wrapper for Blaze."
 ---
