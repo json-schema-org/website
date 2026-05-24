@@ -13,6 +13,7 @@ import DarkModeToggle from './DarkModeToggle';
 import ScrollButton from './ScrollButton';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import AnnouncementBanner from './AnnouncementBanner';
 
 type Props = {
   children: React.ReactNode;
@@ -101,6 +102,7 @@ export default function Layout({
               'w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg',
             )}
           >
+            <AnnouncementBanner />
             <div className='flex w-full md:justify-between items-center ml-8 2xl:px-12 py-4'>
               <Logo />
               <MainNavigation />
