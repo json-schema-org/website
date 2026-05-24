@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function AnnouncementBanner() {
   const [visible, setVisible] = useState(false);
@@ -24,7 +24,7 @@ export default function AnnouncementBanner() {
         }`}
       >
         The JSON Schema Office Hours Now Runs Weekly!{' '}
-        
+        <a
           href='https://github.com/orgs/json-schema-org/discussions/34'
           className='underline'
         >
