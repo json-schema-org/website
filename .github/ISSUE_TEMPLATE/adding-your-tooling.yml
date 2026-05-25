@@ -58,6 +58,7 @@ body:
         - label: "editor"
         - label: "editor-plugins"
         - label: "schema-repository"
+        - label: "registry"
         - label: "linter"
         - label: "linter-plugins"
     validations:

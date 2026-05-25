@@ -309,6 +309,7 @@ const groupTools = (
     'editor',
     'editor-plugins',
     'schema-repository',
+    'registry',
     'linter',
     'linter-plugins',
   ];
