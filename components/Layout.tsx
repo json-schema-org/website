@@ -1,6 +1,12 @@
 /* eslint-disable linebreak-style */
 /* istanbul ignore file */
-import React, { useCallback, useContext, useEffect, useState, useRef } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  useRef
+} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -113,8 +119,7 @@ export default function Layout({
             'z-10 h-screen xl:rounded-xl pt-4 mx-auto',
             // 'z-10 h-screen  xl:rounded-xl pt-4 mx-auto',
           )}
-        >
-          
+        > 
           <header
             className={classnames(
               'w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg',
