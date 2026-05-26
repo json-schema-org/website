@@ -45,17 +45,17 @@ export default function AnnouncementBanner({
       >
         The JSON Schema Office Hours Now Runs Weekly!{' '}
         <a 
-        href='https://github.com/orgs/json-schema-org/discussions/34' 
-        className='underline'
+          href='https://github.com/orgs/json-schema-org/discussions/34'
+          className='underline'
         >
-        Join Us!
+          Join Us!
         </a>
       </span>
 
       <button
         onClick={() => {
           setVisible(false);
-          setTimeout(() => setDismissed(true), 500); 
+          setTimeout(() => setDismissed(true), 500);
         }}
         aria-label='Dismiss banner'
         className='absolute right-3 top-1/2 -translate-y-1/2 text-white text-lg leading-none hover:text-violet-300 transition-colors'
