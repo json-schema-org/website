@@ -44,7 +44,7 @@ export default function AnnouncementBanner({
         }`}
       >
         The JSON Schema Office Hours Now Runs Weekly!{' '}
-        <a 
+        <a
           href='https://github.com/orgs/json-schema-org/discussions/34'
           className='underline'
         >
