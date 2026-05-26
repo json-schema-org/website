@@ -263,7 +263,7 @@ const MainNavigation = () => {
             style={{
               backgroundImage: closeMenu,
             }}
-            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300'
+            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300 z-[200]'
             onClick={() => useStore.setState({ overlayNavigation: null })}
           />
         )}
