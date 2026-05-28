@@ -34,6 +34,7 @@ export default function AnnouncementBanner({
   return (
     <div
       ref={bannerRef}
+      data-testid="announcement-banner"
       className={`sticky top-0 z-50 bg-blue-700 text-white px-4 py-3 text-center transition-all duration-500 ease-in-out ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
