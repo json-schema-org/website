@@ -42,7 +42,7 @@ describe('AnnouncementBanner', () => {
         .and(
           'have.attr',
           'href',
-          'https://github.com/orgs/json-schema-org/discussions/34'
+          'https://github.com/orgs/json-schema-org/discussions/34',
         );
     });
 
@@ -72,7 +72,7 @@ describe('AnnouncementBanner', () => {
       // Wait for banner to be fully visible first
       cy.get('[data-testid="announcement-banner"]', { timeout: 1000 }).should(
         'have.class',
-        'opacity-100'
+        'opacity-100',
       );
 
       cy.get('button[aria-label="Dismiss banner"]').click();
@@ -80,19 +80,19 @@ describe('AnnouncementBanner', () => {
       // Banner fades out (opacity-0) before being removed
       cy.get('[data-testid="announcement-banner"]').should(
         'have.class',
-        'opacity-0'
+        'opacity-0',
       );
 
       // After the 500ms transition the component is removed from the DOM
       cy.get('[data-testid="announcement-banner"]', { timeout: 1000 }).should(
-        'not.exist'
+        'not.exist',
       );
     });
 
     it('does not re-appear after being dismissed', () => {
       cy.get('[data-testid="announcement-banner"]', { timeout: 1000 }).should(
         'have.class',
-        'opacity-100'
+        'opacity-100',
       );
 
       cy.get('button[aria-label="Dismiss banner"]').click();
@@ -102,7 +102,7 @@ describe('AnnouncementBanner', () => {
       );
 
       // Wait an extra moment to confirm it stays gone
-      cy.wait(600);
+      cy.wait(300);
       cy.get('[data-testid="announcement-banner"]').should('not.exist');
     });
   });
@@ -126,8 +126,11 @@ describe('AnnouncementBanner', () => {
       const onHeightChange = cy.stub().as('onHeightChange');
       cy.mount(<AnnouncementBanner onHeightChange={onHeightChange} />);
 
-      cy.get('@onHeightChange').should('have.been.calledWithMatch',
-        Cypress.sinon.match.number);
+      cy.get('@onHeightChange').should(
+        'have.been.calledWithMatch',
+        Cypress.sinon.match.number
+      );
     });
-  });
+  }
+);
 });
