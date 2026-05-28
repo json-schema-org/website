@@ -1,5 +1,5 @@
 import React from 'react';
-import AnnouncementBanner from './AnnouncementBanner';
+import AnnouncementBanner from '~/components/AnnouncementBanner';
 
 describe('AnnouncementBanner', () => {
   beforeEach(() => {
