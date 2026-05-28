@@ -23,13 +23,15 @@ describe('AnnouncementBanner', () => {
         .and('have.class', 'opacity-0');
 
       // After the 100ms delay it becomes visible
-      cy.get('[data-testid="announcement-banner"]', { timeout: 1000 })
-        .should('have.class', 'opacity-100');
+      cy.get('[data-testid="announcement-banner"]', { timeout: 1000 }).should(
+        'have.class',
+        'opacity-100',
+      );
     });
 
     it('displays the announcement text', () => {
       cy.contains('The JSON Schema Office Hours Now Runs Weekly!').should(
-        'be.visible'
+        'be.visible',
       );
     });
 
@@ -96,7 +98,7 @@ describe('AnnouncementBanner', () => {
       cy.get('button[aria-label="Dismiss banner"]').click();
 
       cy.get('[data-testid="announcement-banner"]', { timeout: 1000 }).should(
-        'not.exist'
+        'not.exist',
       );
 
       // Wait an extra moment to confirm it stays gone
@@ -124,7 +126,8 @@ describe('AnnouncementBanner', () => {
       const onHeightChange = cy.stub().as('onHeightChange');
       cy.mount(<AnnouncementBanner onHeightChange={onHeightChange} />);
 
-      cy.get('@onHeightChange').should('have.been.calledWithMatch', Cypress.sinon.match.number);
+      cy.get('@onHeightChange').should('have.been.calledWithMatch',
+        Cypress.sinon.match.number);
     });
   });
 });
