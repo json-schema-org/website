@@ -102,7 +102,9 @@ describe('AnnouncementBanner', () => {
       );
 
       // Wait an extra moment to confirm it stays gone
-      cy.get('[data-testid="announcement-banner"]', { timeout: 1000 }).should('not.exist');
+      cy.get('[data-testid="announcement-banner"]', { timeout: 1000 }).should(
+        'not.exist',
+      );
     });
   });
 
