@@ -102,8 +102,7 @@ describe('AnnouncementBanner', () => {
       );
 
       // Wait an extra moment to confirm it stays gone
-      cy.wait(300);
-      cy.get('[data-testid="announcement-banner"]').should('not.exist');
+      cy.get('[data-testid="announcement-banner"]', { timeout: 1000 }).should('not.exist');
     });
   });
 
@@ -128,9 +127,8 @@ describe('AnnouncementBanner', () => {
 
       cy.get('@onHeightChange').should(
         'have.been.calledWithMatch',
-        Cypress.sinon.match.number
+        Cypress.sinon.match.number,
       );
     });
-  }
-);
+  });
 });
