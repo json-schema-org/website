@@ -46,6 +46,18 @@ export default function Layout({
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const announcementRef = useRef<HTMLDivElement>(null);
   const [announcementHeight, setAnnouncementHeight] = useState(0);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      setHeaderHeight(headerRef.current?.getBoundingClientRect().height ?? 0);
+    };
+
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => window.removeEventListener('resize', updateHeaderHeight);
+  }, [announcementHeight]);
 
   const updateAnnouncementHeight = useCallback(() => {
     setAnnouncementHeight(
@@ -116,11 +128,12 @@ export default function Layout({
         <main
           className={classnames(
             mainClassName,
-            'z-10 h-screen xl:rounded-xl pt-4 mx-auto',
+            'z-10 h-screen xl:rounded-xl mx-auto',
             // 'z-10 h-screen  xl:rounded-xl pt-4 mx-auto',
           )}
         >
           <header
+            ref={headerRef}
             className={classnames(
               'w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg',
             )}
@@ -134,8 +147,8 @@ export default function Layout({
               <MainNavigation />
             </div>
           </header>
-          <div ref={mobileNavRef}>
-            {showMobileNav && <MobileNav topOffset={64 + announcementHeight} />}
+          <div ref={mobileNavRef} style={{ paddingTop: headerHeight }}>
+            {showMobileNav && <MobileNav topOffset={headerHeight} />}
             {children}
           </div>
           <ScrollButton />
