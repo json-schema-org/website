@@ -35,14 +35,13 @@ export default function AnnouncementBanner({
     <div
       ref={bannerRef}
       data-testid='announcement-banner'
-      className={`sticky top-0 z-50 bg-blue-700 text-white px-4 py-3 text-center transition-all duration-500 ease-in-out ${
-        visible ? 'opacity-100' : 'opacity-0'
-      }`}
+      className={`sticky top-0 z-50 bg-blue-700 text-white px-4 py-3 text-center transition-all duration-500 ease-in-out ${visible ? 'opacity-100' : 'opacity-0'
+        }`}
     >
       <span
-        className={`inline-block transition-all duration-500 ease-out ${
-          textVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
-        }`}
+        data-testid='announcement-text'
+        className={`inline-block transition-all duration-500 ease-out ${textVisible ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'
+          }`}
       >
         The JSON Schema Office Hours Now Runs Weekly!{' '}
         <a
