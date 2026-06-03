@@ -2,10 +2,10 @@
 title: "Making JSON Strings Work for Every Language"
 date: "2026-06-08"
 type: Engineering
-cover: @@ TBD: NOT SURE WHERE TO ADD THE IMAGE @@
+cover: /img/posts/2026/making-json-strings-work-for-every-language/cover.svg
 authors:
   - name: Fuqiao Xue
-    photo: @@ TBD: NOT SURE WHERE TO ADD THE IMAGE @@
+    photo: /img/posts/2026/making-json-strings-work-for-every-language/fuqiaoxue.jpg
     twitter: XueFuqiao
 excerpt: "How JSON Schema authors preserve language and text direction metadata for the web."
 language: en
