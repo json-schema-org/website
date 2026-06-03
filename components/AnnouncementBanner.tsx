@@ -25,8 +25,13 @@ export default function AnnouncementBanner({
   }, [bannerRef, onHeightChange, visible, dismissed]);
 
   useEffect(() => {
-    setTimeout(() => setVisible(true), 100);
-    setTimeout(() => setTextVisible(true), 400);
+    const visibleTimer = window.setTimeout(() => setVisible(true), 100);
+    const textTimer = window.setTimeout(() => setTextVisible(true), 400);
+
+    return () => {
+      window.clearTimeout(visibleTimer);
+      window.clearTimeout(textTimer);
+    };
   }, []);
 
   if (dismissed) return null;
