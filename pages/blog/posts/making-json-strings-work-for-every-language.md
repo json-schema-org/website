@@ -1,6 +1,6 @@
 ---
 title: "Making JSON Strings Work for Every Language"
-date: "2026-06-08"
+date: "2026-06-16"
 type: Engineering
 cover: /img/posts/2026/making-json-strings-work-for-every-language/cover.svg
 authors:
@@ -41,28 +41,37 @@ a format can define a localizable text object:
 
 This gives producers and consumers a shared agreement. The producer can preserve the intended language and direction. The consumer can display the string correctly, apply the right `lang` and `dir` attributes in HTML, choose better fonts, select an appropriate text-to-speech voice, improve search and indexing, and avoid bidirectional text spillover.
 
-A schema can make the expected structure explicit:
+A schema can make the expected structure explicit. The examples below define the three common patterns as reusable schema resources. The `$id` values use `example.com`; schema authors should replace them with stable identifiers for their own formats.
+
+For the localizable text object pattern, the reusable schema keeps the string and its metadata together:
 
 ```json
 {
-  "$defs": {
-    "textDirection": {
-      "enum": ["ltr", "rtl", "auto"]
-    },
-    "localizableText": {
-      "type": "object",
-      "required": ["value"],
-      "properties": {
-        "value": { "type": "string" },
-        "lang": { "type": "string" },
-        "dir": { "$ref": "#/$defs/textDirection" }
-      },
-      "additionalProperties": false
-    }
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/localizable-text",
+
+  "type": "object",
+  "required": ["value"],
+  "properties": {
+    "value": { "type": "string" },
+    "lang": { "type": "string" },
+    "dir": { "enum": ["ltr", "rtl", "auto"] }
   },
+  "additionalProperties": false
+}
+```
+
+A data structure schema can reference it for any field that needs per-string language or direction metadata:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/book",
+
   "type": "object",
   "properties": {
-    "bookName": { "$ref": "#/$defs/localizableText" }
+    "bookName": { "$ref": "https://example.com/schemas/localizable-text" },
+    "subtitle": { "$ref": "https://example.com/schemas/localizable-text" }
   }
 }
 ```
@@ -87,6 +96,39 @@ For resources that contain many strings in the same language, a format can defin
 }
 ```
 
+The resource-wide defaults can be described as their own schema:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/global-lang-dir",
+
+  "type": "object",
+  "properties": {
+    "language": { "type": "string" },
+    "direction": { "enum": ["ltr", "rtl", "auto"] }
+  }
+}
+```
+
+A data structure schema can then combine those global settings with its own fields:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/university",
+
+  "$ref": "https://example.com/schemas/global-lang-dir",
+  "type": "object",
+  "required": ["name", "summary"],
+  "properties": {
+    "name": { "type": "string" },
+    "summary": { "type": "string" },
+    "alternateName": { "$ref": "https://example.com/schemas/localizable-text" }
+  }
+}
+```
+
 The document recommends `language` for a resource-wide default language field and `direction` for a resource-wide default direction field. For localizable text objects, the examples use `lang` and `dir`, which align naturally with HTML attributes when the value is eventually displayed.
 
 For multilingual values, the document recommends language maps, where language tags help consumers find the best localized value:
@@ -100,6 +142,39 @@ For multilingual values, the document recommends language maps, where language t
   }
 }
 ```
+
+A reusable language map schema can describe this pattern by treating the object property names as language tags and the property values as localizable text objects:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/language-map",
+
+  "type": "object",
+  "patternProperties": {
+    "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$": {
+      "$ref": "https://example.com/schemas/localizable-text"
+    }
+  },
+  "additionalProperties": false
+}
+```
+
+A data structure schema can use that language map where a multilingual value is expected:
+
+```json
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/book-with-translations",
+
+  "type": "object",
+  "properties": {
+    "bookName": { "$ref": "https://example.com/schemas/language-map" }
+  }
+}
+```
+
+Note that the language tag regular expression above is loose. It applies the value schema to properties whose names look like non-empty, hyphen-separated language tag tokens, but it does not validate the full BCP 47 grammar. Applications that require full BCP 47 validation should use or implement a dedicated validator.
 
 Producers should preserve language and direction metadata when they have it. They should avoid redundant per-string metadata when a resource-wide default already applies, but they should include string-specific metadata when a value uses a different language, a more specific language tag, or a direction opposite to the default.
 
