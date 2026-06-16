@@ -13,7 +13,7 @@ language: en
 
 JSON is one of the most successful data formats, but its `string` type is too simple. That simplicity becomes a problem when a string contains natural language text.
 
-Titles, names, error message etc. often needs more than Unicode characters. Consumers may also need to know the language of the text and its direction, especially when displaying right-to-left scripts such as Arabic or Hebrew. Without that metadata, applications fall back to guessing, and guessing fails.
+Titles, names, error messages, etc. often need more than Unicode characters. Consumers may also need to know the language of the text and its direction, especially when displaying right-to-left scripts such as Arabic or Hebrew. Without that metadata, applications fall back to guessing, and guessing fails.
 
 The W3C Internationalization Working Group is developing [Strings on the Web: Language and Direction Metadata](https://www.w3.org/TR/string-meta/). Its recommendations are directly useful when schemas define fields that contain human-readable text.
 
@@ -23,7 +23,7 @@ For example, instead of treating every human-readable value as a plain string:
 
 ```json
 {
-  "title": "HTML و CSS: تصميم و إنشاء مواقع الويب"
+  "bookName": "HTML و CSS: تصميم و إنشاء مواقع الويب"
 }
 ```
 
@@ -31,7 +31,7 @@ a format can define a localizable text object:
 
 ```json
 {
-  "title": {
+  "bookName": {
     "value": "HTML و CSS: تصميم و إنشاء مواقع الويب",
     "lang": "ar",
     "dir": "rtl"
@@ -62,7 +62,7 @@ A schema can make the expected structure explicit:
   },
   "type": "object",
   "properties": {
-    "title": { "$ref": "#/$defs/localizableText" }
+    "bookName": { "$ref": "#/$defs/localizableText" }
   }
 }
 ```
@@ -78,8 +78,8 @@ For resources that contain many strings in the same language, a format can defin
   "language": "en-US",
   "direction": "ltr",
   "name": "Example University",
-  "description": "A short description.",
-  "alternateTitle": {
+  "summary": "A short description.",
+  "alternateName": {
     "value": "جامعة المثال",
     "lang": "ar",
     "dir": "rtl"
@@ -93,7 +93,7 @@ For multilingual values, the document recommends language maps, where language t
 
 ```json
 {
-  "title": {
+  "bookName": {
     "en": { "value": "Learning Web Design" },
     "fr": { "value": "Apprendre le design web" },
     "ar": { "value": "تعلم تصميم الويب", "dir": "rtl" }
