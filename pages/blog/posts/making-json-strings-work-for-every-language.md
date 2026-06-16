@@ -41,7 +41,7 @@ a format can define a localizable text object:
 
 This gives producers and consumers a shared agreement. The producer can preserve the intended language and direction. The consumer can display the string correctly, apply the right `lang` and `dir` attributes in HTML, choose better fonts, select an appropriate text-to-speech voice, improve search and indexing, and avoid bidirectional text spillover.
 
-A schema can instead make the expected structure explicit:
+A schema can make the expected structure explicit:
 
 ```json
 {
