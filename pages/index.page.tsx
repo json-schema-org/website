@@ -877,150 +877,206 @@ const Home = (props: any) => {
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.octue}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.octue}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='octue'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://www.apideck.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
-                  src={logos.apideck}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The Realtime Unified API
-for Accounting integrations'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.apideck}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='The Realtime Unified API for Accounting integrations'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.rxdb}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The local Database for JavaScript Applications'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.rxdb}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='The local Database for JavaScript Applications'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://topagency.webflow.io'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.wda}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='best website design agencies'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.wda}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='best website design agencies'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://anonstories.com'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.anon}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='Instagram Story Viewer'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.anon}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='Instagram Story Viewer'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://supadata.ai/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.supadata}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='supadata logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.supadata}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='supadata logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://dottxt.ai/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.dottxt}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='dottxt logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.dottxt}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='dottxt logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://www.sourcemeta.com/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.sourcemeta}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='dottxt logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.sourcemeta}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='sourcemeta logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://www.n-ix.com/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.nix}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='n-iX logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.nix}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='n-iX logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://www.oracle.com/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.oracle}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='Oracle logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.oracle}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='Oracle logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://spinthewheel.io/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.spinthewheel}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='Spin the wheel logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.spinthewheel}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='Spin the wheel logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://litslink.com/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
-                <img
-                  src={logos.litslink}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='Litslink logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.litslink}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='Litslink logo'
+                    />
+                  </>
+                )}
               </a>
               <a href='https://time.now/' target='_blank' rel='noreferrer'>
-                <img
-                  src={logos.timenow}
-                  className='w-24 transition-transform duration-300 hover:scale-105'
-                  alt='Time Now logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.timenow}
+                      className='w-24 transition-transform duration-300 hover:scale-105'
+                      alt='Time Now logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://www.legasset.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <img
-                  src={logos.legasset}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='legasset logo'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.legasset}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='legasset logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
