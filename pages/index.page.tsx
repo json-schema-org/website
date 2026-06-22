@@ -721,6 +721,23 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
+               <a
+                href='https://www.airbnb.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {isClient && (
+                  <>
+                    <Image
+                      src={logos.airbnb}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      width={176}
+                      height={100}
+                      alt='llc'
+                    />
+                  </>
+                )}
+              </a>
               <a
                 href='https://www.llc.org/'
                 target='_blank'
