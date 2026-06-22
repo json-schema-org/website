@@ -721,7 +721,7 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-               <a
+              <a
                 href='https://www.airbnb.com/'
                 target='_blank'
                 rel='noopener noreferrer'
