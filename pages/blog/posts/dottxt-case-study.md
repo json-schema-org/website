@@ -2,10 +2,10 @@
 title: "How JSON Schema makes LLM output reliable"
 date: "2025-12-16"
 type: Case Study
-cover: /img/posts/2025/dottxt-case-study/banner.webp
+cover: /img/posts/2025/dottxt-case-study/json-schema-txt-banner.png
 authors:
   - name: Remi Louf
-    photo: /img/avatars/remilouf.webp
+    photo: /img/avatars/remi-louf.jpg
     link: https://www.dottxt.ai
     byline: CEO and cofounder at .txt
 excerpt: "How JSON Schema became the contract that turns probabilistic LLMs into deterministic engines"
