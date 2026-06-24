@@ -118,6 +118,7 @@ const Home = (props: any) => {
       spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
       timenow: '/img/logos/sponsors/time_now_dark.svg',
       legasset: '/img/logos/sponsors/legasset-logo.svg',
+      bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-light.svg',
     },
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
@@ -147,6 +148,7 @@ const Home = (props: any) => {
       litslink: '/img/logos/sponsors/litslink_white.svg',
       timenow: '/img/logos/sponsors/time_now_white.svg',
       legasset: '/img/logos/sponsors/legasset-logo-dark.svg',
+      bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-dark.svg',
     },
   };
 
@@ -731,41 +733,7 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='airbnb'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.postman.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.postman}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='postman'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://endjin.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.endjin}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='endjin'
+                      alt='llc'
                     />
                   </>
                 )}
@@ -805,23 +773,6 @@ const Home = (props: any) => {
                 )}
               </a>
               <a
-                href='https://www.itflashcards.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.itflashcards}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='itflashcards'
-                    />
-                  </>
-                )}
-              </a>
-              <a
                 href='https://www.route4me.com/'
                 target='_blank'
                 rel='noopener noreferrer'
@@ -856,38 +807,6 @@ const Home = (props: any) => {
                 )}
               </a>
               <a
-                href='https://copycopter.ai/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.ccopter}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='ccopter'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.octue.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.octue}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='octue'
-                    />
-                  </>
-                )}
-              </a>
-              <a
                 href='https://www.apideck.com/'
                 target='_blank'
                 rel='noreferrer'
@@ -913,21 +832,6 @@ const Home = (props: any) => {
                       src={logos.rxdb}
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       alt='The local Database for JavaScript Applications'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://topagency.webflow.io'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.wda}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='best website design agencies'
                     />
                   </>
                 )}
@@ -1037,21 +941,6 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a
-                href='https://litslink.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.litslink}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='Litslink logo'
-                    />
-                  </>
-                )}
-              </a>
               <a href='https://time.now/' target='_blank' rel='noreferrer'>
                 {isClient && (
                   <>
@@ -1064,14 +953,14 @@ const Home = (props: any) => {
                 )}
               </a>
               <a
-                href='https://www.legasset.com/'
+                href='https://www.bairesdev.com/'
                 target='_blank'
                 rel='noreferrer'
               >
                 {isClient && (
                   <>
                     <img
-                      src={logos.legasset}
+                      src={logos.bairesdev}
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       alt='legasset logo'
                     />
@@ -1102,41 +991,6 @@ const Home = (props: any) => {
               </a>
             </div>
           </div>
-        </section>
-
-        {/* Media Partner for JSON Schema conference */}
-        <section className='my-16'>
-          <div className='text-center mb-12'>
-            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
-              Media Partner
-            </h2>
-            <p className='px-12 mx-auto md:w-3/4 md:mx-auto dark:text-slate-300'>
-              The JSON Schema Conference is proudly featured on a global
-              platform connecting tech communities with over 250k monthly
-              visitors, helping speakers, organizers, and attendees discover and
-              engage with leading conferences worldwide.
-              <br />
-            </p>
-          </div>
-          <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4 mb-12'>
-            <a
-              href='https://dev.events/'
-              target='_blank'
-              rel='noopener noreferrer'
-            >
-              {isClient && (
-                <>
-                  <Image
-                    src={logos.devevents}
-                    className='w-48 md:w-56 transition-transform duration-300 hover:scale-105'
-                    width={192}
-                    height={224}
-                    alt='dev events'
-                  />
-                </>
-              )}
-            </a>
-          </div>{' '}
         </section>
 
         {/* Supported */}
