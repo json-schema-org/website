@@ -11,19 +11,19 @@ next:
 
 The `type` [keyword](../../learn/glossary#keyword) is fundamental to JSON Schema because it specifies the data type that a schema should expect.
 
-At its core, JSON Schema defines the following basic types:
+The `type` keyword defines the following types:
 
 - [array](../../understanding-json-schema/reference/array)
 - [boolean](../../understanding-json-schema/reference/boolean)
 - [null](../../understanding-json-schema/reference/null)
-- [numeric types](../../understanding-json-schema/reference/numeric)
+- [integer](../../understanding-json-schema/reference/numeric)
+- [number](../../understanding-json-schema/reference/numeric)
 - [object](../../understanding-json-schema/reference/object)
-- [regular expressions](../../understanding-json-schema/reference/regular_expressions)
 - [string](../../understanding-json-schema/reference/string)
 
+> Note: JSON does not define an `integer` type. In JSON Schema, `"type": "integer"` is shorthand for `"type": "number", "multipleOf": 1`, and is used to represent whole-number numeric values.
 
-These types have analogs in most programming languages, though they may
-go by different names.
+These types have analogs in most programming languages, though they may go by different names.
 
 [tabs-start "Language-specific info"]
 
@@ -85,7 +85,7 @@ their analogous types in Perl:
 
 [tab "Objective-C"]
 
-The following table maps from the names of JavaScript types to
+The following table maps from the names of JSON types to
 their analogous types in Objective-C:
 
 | JSON    | Objective-C  |
@@ -105,7 +105,7 @@ value for identity (pointer equality) to `@YES` and `@NO` constants.
 
 [tab "Swift"]
 
-The following table maps from the names of JavaScript types to
+The following table maps from the names of JSON types to
 their analogous types in Swift:
 
 | JSON    | Swift      |
@@ -127,9 +127,9 @@ to decode ``Int`` from a non-integer number in JSON.
 
 The `type` keyword can take two forms:
 
-1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean`, `integer`, `number`, `null`, `object`, `regular expressions`, or `string`). This specifies that the instance data is only valid when it matches that specific type. 
+1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean`, `number`, `null`, `object` or `string`). This specifies that the instance data is only valid when it matches that specific type. 
 
-Here is an example of using the `string` keyword as a single string:
+Here is an example of using `"number"` as a single string value:
 
 ```json
 // props { "isSchema": true }
@@ -176,7 +176,7 @@ JSON Schema offers a variety of keywords to validate data against specific types
 | Type Keyword | Specific Keywords | Description |
 |---|---|---|
 | [array](../../understanding-json-schema/reference/array)        | `items`, `additionalItems`, `minItems`, `maxItems`, `uniqueItems` | Define item schemas, additional item handling, item count constraints, and uniqueness. |
-| [number](../../understanding-json-schema/reference/numeric)       | `minimum`, `maximum`, `exclusiveMinimum`, `exclusiveMaximum`, `multipleOf` | Define numeric ranges, including exclusive bounds and divisibility. |
+| [number](../../understanding-json-schema/reference/numeric) | `minimum`, `maximum`, `exclusiveMinimum`, `exclusiveMaximum`, `multipleOf` | Define numeric ranges and allowed increments. |
 | [object](../../understanding-json-schema/reference/object)      | `required`, `properties`, `additionalProperties`, `patternProperties`, `minProperties`, `maxProperties`, `dependencies` | Define required properties, property schemas, additional property handling, pattern-based property matching, and property count constraints. |
 | [string](../../understanding-json-schema/reference/string)       | `minLength`, `maxLength`, `pattern`, `format`| Restrict string length, pattern matching, and format validation (e.g., email, date). |
 
@@ -206,7 +206,7 @@ The JSON Schema specification has a bias toward networking-related formats due t
 
 ### Built-in Formats
 
-It should be noted that `format` is not limited to a specific set of valid values or types. Users may define their own custom keywords including ones that work with JSON data types other than `string`, such as `number`. Below, we cover the formats specified in the JSON Schema specification.
+It should be noted that `format` is not limited to a specific set of valid values or types. Users may define their own custom formats including ones that work with JSON data types other than `string`, such as `number`. Below, we cover the formats specified in the JSON Schema specification.
 
 #### Dates and Times
 
