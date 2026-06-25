@@ -38,7 +38,7 @@ const getCategories = (frontmatter: any): blogCategories[] => {
 export async function getStaticProps({ query }: { query: any }) {
   const files = fs.readdirSync(PATH);
   const blogPosts = files
-    .filter((file) => file.substr(-3) === '.md')
+    .filter((file) => file.slice(-3) === '.md')
     .map((fileName) => {
       const slug = fileName.replace('.md', '');
       const fullFileName = fs.readFileSync(

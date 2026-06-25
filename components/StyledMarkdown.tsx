@@ -30,7 +30,7 @@ export default function StyledMarkdown({ markdown }: { markdown?: string }) {
   do {
     const endIndex = textCuts[0]?.index || Infinity;
     const length = endIndex - startIndex;
-    const slicedMarkdown = markdown.substr(startIndex, length);
+    const slicedMarkdown = markdown.slice(startIndex, startIndex + length);
     if (slicedMarkdown.length > 0) {
       const markdownElement: Element = {
         type: 'markdown',
@@ -42,7 +42,10 @@ export default function StyledMarkdown({ markdown }: { markdown?: string }) {
     if (textCuts[0]) {
       const tabsGroupElement: Element = {
         type: 'tabs-group',
-        markdown: markdown.substr(textCuts[0].index, textCuts[0].length),
+        markdown: markdown.slice(
+          textCuts[0].index,
+          textCuts[0].index + textCuts[0].length,
+        ),
       };
       elements = [...elements, tabsGroupElement];
       startIndex = textCuts[0].index + textCuts[0].length;

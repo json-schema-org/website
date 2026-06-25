@@ -4,8 +4,8 @@ export default async function getStaticMarkdownPaths(path: string) {
   const files = fs.readdirSync(path);
   const paths = files
     .filter((file) => {
-      const isMarkdownFile = file.substr(-3) === '.md';
-      const isProtected = ['_'].includes(file.substr(0, 1));
+      const isMarkdownFile = file.slice(-3) === '.md';
+      const isProtected = ['_'].includes(file.slice(0, 1));
       return isMarkdownFile && !isProtected;
     })
     .map((fileName) => ({
