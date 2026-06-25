@@ -53,7 +53,6 @@ Below is a sample RxDB schema that demonstrates how standard JSON Schema vocabul
 
 ```ts
 const mySchema = {
-    primaryKey: 'id',
     type: 'object',
     properties: {
         id: {
