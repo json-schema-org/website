@@ -127,6 +127,7 @@ const getDocsPath = [
   '/overview/similar-technologies',
   '/overview/use-cases',
   '/overview/code-of-conduct',
+  '/overview/trademark-policy',
   '/overview/faq',
   '/overview/roadmap',
   '/overview/pro-help',
@@ -458,6 +459,11 @@ export const DocsNav = ({
             <DocLink
               uri='/overview/code-of-conduct'
               label='Code of conduct'
+              setOpen={setOpen}
+            />
+            <DocLink
+              uri='/overview/trademark-policy'
+              label='Trademark policy'
               setOpen={setOpen}
             />
           </div>

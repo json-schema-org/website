@@ -506,6 +506,9 @@ const Footer = () => (
         Copyright &copy; {new Date().getFullYear()} JSON Schema.&nbsp;
         <span className='block sm:inline sm:mb-0'>All rights reserved.</span>
       </p>
+      <p className='text-xs mt-1'>
+        JSON Schema&trade; is a trademark of the JSON Schema project.
+      </p>
     </div>
   </footer>
 );
