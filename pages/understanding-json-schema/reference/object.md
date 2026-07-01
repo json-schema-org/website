@@ -124,7 +124,7 @@ made up of a number, street name and street type:
 // props { "indent": true, "valid": true }
 { "number": 1600, "street_name": "Pennsylvania", "street_type": "Avenue" }
 ```
-// If we provide the number in the wrong type, it is invalid:
+If we provide the number in the wrong type, it is invalid:
 
 ```json
 // props { "indent": true, "valid": false }
