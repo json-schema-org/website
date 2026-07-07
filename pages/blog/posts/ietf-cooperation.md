@@ -24,7 +24,7 @@ After 2020-12 was released, the team began looking toward other publication opti
 
 ## IETF Again
 
-An unintended result of not progressing to RFC is that other RFCs and specifications from other organizations can't reference it (officially).  That's not to say JSON Schema can't be used at all.  To the contrary, we've maintained that the I-Ds are ready as-is and can be used in production systems.  However other RFC-level (by IETF, ISO, etc.) cannot build on the technology.
+An unintended result of not progressing to RFC is that other RFCs and specifications from other organizations can't reference it (officially).  That's not to say JSON Schema can't be used at all.  To the contrary, we've maintained that the I-Ds are ready as-is and can be used in production systems.  However not all RFC-level specifications (by IETF, ISO, etc.) can build on the technology in the "draft" state.
 
 A few months ago, I was contacted by Henry Andrews, a former JSON Schema TSC member and one of the primary co-authors of the latest set of published specifications.  Apparently someone had reached out to him about starting an effort with IETF to push for creating a Working Group or restarting the JSON Working Group, and they wanted to make it an inclusive effort with the TSC here.
 
