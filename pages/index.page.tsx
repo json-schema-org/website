@@ -530,7 +530,7 @@ const Home = (props: any) => {
                     href='https://github.com/orgs/json-schema-org/discussions/35'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='max-w-[300px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] mb-4 flex items-center justify-center mx-auto dark:border-none'
+                    className='w-fit max-w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[40px] px-4 py-2 mb-4 flex items-center justify-center mx-auto dark:border-none'
                   >
                     Open Community Working Meetings
                   </a>
