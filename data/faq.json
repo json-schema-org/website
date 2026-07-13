@@ -32,7 +32,7 @@
   {
     "id": 6,
     "question": "How can I validate a JSON document against a JSON Schema?",
-    "answer": "You can use various tools and libraries, such as AJV (Another JSON Schema Validator), to validate a JSON document against a JSON Schema. It ensures the JSON data adheres to the expected format and constraints defined in the schema.",
+    "answer": "You can use various tools and libraries <a href='https://json-schema.org/tools#validator' style='text-decoration: underline; font-weight: bold;'>JSON Schema Tooling</a>, to validate a JSON document against a JSON Schema. It ensures the JSON data adheres to the expected format and constraints defined in the schema.",
     "category": "general"
   },
   {
