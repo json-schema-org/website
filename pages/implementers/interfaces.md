@@ -27,22 +27,22 @@ Contributions and corrections from implementers are particularly welcome, as are
 For purposes of making some sections of this page more precise, we assume the existence of a set of *abstract types* all of which may be referenced below, and which will have specific concrete types within a given programming language or implementation.
 In addition to placeholder types like `String`, `Number`, `Boolean`, `Mapping`, `Callable` and the like, the JSON Schema-related types include:
 
-#### `Schema`
+#### Schema
 
 The type of JSON Schemas, which may also differ across dialects of JSON Schema.
 For common or modern versions of JSON Schema this type must essentially be able to represent both arbitrary JSON objects as well as booleans.
 
-#### `Instance`
+#### Instance
 
 The type of JSON instances.
 This type should essentially be `Any` or a type capable of representing all JSON values, given JSON Schema's applicability to any representable JSON.
 
-#### `Dialect`
+#### Dialect
 
 The type of JSON dialects or dialect identifiers.
 This type may simply be `String` if the dialect is represented within the implementation by its URI or by some short name.
 
-#### `EvaluationOptions`
+#### EvaluationOptions
 
 The type of "fully ready" schemas and instances *along* with any additional implementation-specific customizable behavior.
 At minimum, this type is either `Schema → Instance` or `Schema × Instance` (depending on whether the implementation takes both schema and instance together or compiles schemas and then produces a separate function taking the instance to validate).
@@ -53,7 +53,7 @@ It is highly likely to be richer in at least some of the following ways:
   *   Similarly, if there is a specific API for [format assertion enablement](#format-assertion-enablement), some representation of the `format` keyword's behavior is present in the context
   *   If the implementation supports the [creation or customization of dialects](#dialect-creation), and especially if schemas can contain subschemas across different dialects, then the context will contain some representation of dialects, e.g. `Dialect → Schema → ...`
 
-#### `Result`
+#### Result
 
 The type of JSON Schema validation results, i.e. an object which encapsulates the validity of a given `Instance` under a `Schema`.
 This type may simply be `Boolean` in some implementations or languages.
@@ -62,7 +62,7 @@ This type may simply be `Boolean` in some implementations or languages.
 
 > The type of JSON Schema validation results that *include* JSON Schema annotations collected during validation.
 
-#### `URI`
+#### URI
 
 The type of RFC 3986 compliant URIs.
 This type should not generally be the same as `String`, as URIs have multiple possible string representations and require normalization to
