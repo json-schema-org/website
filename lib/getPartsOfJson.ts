@@ -201,16 +201,16 @@ const getPartsOfJsonObjectContent = (
       return;
     }
     const keywordLength = doubleQuoteMatch.index - keywordStartIndex;
-    const string = serializedJson.substr(keywordStartIndex, keywordLength);
+    const string = serializedJson.slice(
+      keywordStartIndex,
+      keywordStartIndex + keywordLength,
+    );
     const nextStartIndex = doubleQuoteMatches[index + 1]?.index || Infinity;
-    const payload = serializedJson.substr(
+    const payload = serializedJson.slice(
       doubleQuoteMatch.index + 1,
-      nextStartIndex - doubleQuoteMatch.index - 1,
+      nextStartIndex,
     );
-    const match = serializedJson.substr(
-      keywordStartIndex - 1,
-      nextStartIndex - (keywordStartIndex - 1),
-    );
+    const match = serializedJson.slice(keywordStartIndex - 1, nextStartIndex);
     const stringWithPayload: StringWithPayload = {
       index: keywordStartIndex,
       string,
@@ -287,9 +287,9 @@ const getPartsOfJsonObjectContent = (
             stringWithPayload.match.length -
             stringWithPayload.payload.length
           : stringWithPayload.match.length);
-      const payload = serializedJson.substr(
+      const payload = serializedJson.slice(
         payloadStartIndex,
-        payloadEndIndex - payloadStartIndex - 1,
+        payloadEndIndex - 1,
       );
       keywordAndValue = {
         ...keywordAndValue,
@@ -364,7 +364,10 @@ const getPartsOfArrayContent = (
 
   commaOrEndOfLineMatches.forEach((match: RegExpResult) => {
     const length = match.index - arrayPayloadIndex;
-    const payload = serializedJson.substr(arrayPayloadIndex, length);
+    const payload = serializedJson.slice(
+      arrayPayloadIndex,
+      arrayPayloadIndex + length,
+    );
 
     const stringMatches = getFindResultsByGlobalRegExp(payload, regexString);
     let filteredPayload = payload;
@@ -415,7 +418,10 @@ const getPartsOfArrayContent = (
   const partsFromArrayValues: SyntaxPart[] = arrayValues.reduce(
     (acc: SyntaxPart[], arrayValue, index) => {
       const indexJsonPath = `${jsonPath}[${index}]`;
-      const value = serializedJson.substr(arrayValue.index, arrayValue.length);
+      const value = serializedJson.slice(
+        arrayValue.index,
+        arrayValue.index + arrayValue.length,
+      );
       const parts: SyntaxPart[] = getPartsOfJson(
         value,
         offset + arrayValue.index,
