@@ -168,7 +168,7 @@ const Home = (props: any) => {
               Build more. Break less. Empower others.
             </h1>
 
-            <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 dark:text-slate-300'>
+            <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 px-4 md:px-0 dark:text-slate-300'>
               JSON Schema enables the confident and reliable use of the JSON
               data format.
             </h2>
