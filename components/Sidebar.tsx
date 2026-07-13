@@ -17,6 +17,7 @@ import {
   CollapsibleTrigger,
 } from './ui/collapsible';
 import { Button } from './ui/button';
+import TableOfContents from './TableOfContents';
 
 const DocLink = ({
   uri,
@@ -272,9 +273,9 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             <DocsNav open={open} setOpen={setOpen} />
           </div>
         </div>
-        <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-4 mx-4 md:mx-12'>
+        <div className='dark:bg-slate-800 max-w-[1400px] grid grid-cols-1 lg:grid-cols-12 mx-4 md:mx-12 gap-4'>
           {!shouldHideSidebar && (
-            <div className='hidden lg:block mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
+            <div className='hidden lg:block lg:col-span-3 mt-24 sticky top-24 h-[calc(100vh-6rem)] overflow-hidden'>
               <div className='h-full overflow-y-auto scrollbar-hidden'>
                 <DocsNav open={open} setOpen={setOpen} />
                 <CarbonAds
@@ -285,10 +286,19 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
             </div>
           )}
           <div
-            className={`lg:mt-20 mx-4 md:mx-0 ${shouldHideSidebar ? 'col-span-4 w-full' : 'col-span-4 md:col-span-3 lg:w-5/6'}`}
+            className={`lg:mt-20 mx-4 md:mx-0 ${
+              shouldHideSidebar
+                ? 'col-span-12 w-full'
+                : 'col-span-12 lg:col-span-6 xl:col-span-6'
+            }`}
           >
             {children}
           </div>
+          {!shouldHideSidebar && (
+            <div className='hidden xl:block xl:col-span-3 mt-20'>
+              <TableOfContents />
+            </div>
+          )}
         </div>
       </section>
     </div>

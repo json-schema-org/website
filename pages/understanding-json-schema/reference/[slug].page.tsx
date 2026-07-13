@@ -1,5 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { getLayout } from '~/components/Sidebar';
 import { Headline1 } from '~/components/Headlines';
 import StyledMarkdown from '~/components/StyledMarkdown';
@@ -26,6 +27,7 @@ export default function StaticMarkdownPage({
   frontmatter: any;
   content: any;
 }) {
+  const router = useRouter();
   const newTitle = 'JSON Schema - ' + frontmatter.title;
   const fileRenderType = '_md';
   return (
@@ -34,7 +36,7 @@ export default function StaticMarkdownPage({
         <title>{newTitle}</title>
       </Head>
       <Headline1>{frontmatter.title || 'NO TITLE!'}</Headline1>
-      <StyledMarkdown markdown={content} />
+      <StyledMarkdown key={router.asPath} markdown={content} />
       <NextPrevButton
         prevLabel={frontmatter?.prev?.label}
         prevURL={frontmatter?.prev?.url}
