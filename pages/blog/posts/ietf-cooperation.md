@@ -26,7 +26,7 @@ After 2020-12 was released, the team began looking toward other publication opti
 
 An unintended result of not progressing to RFC is that other RFCs and specifications from other organizations don't have an official identifier to use as a reference.  That's not to say JSON Schema can't be used at all.  To the contrary, despite being published as I-Ds, our specifications are intended to be production ready and specifications are encouraged to reference them.  Although organizations like W3C already reference JSON Schema specifications as I-Ds, getting an official RFC number makes it a lot easier.
 
-A few months ago, I was contacted by Henry Andrews, on of the co-authors of various published JSON Schema iterations.  Apparently Lisa Dusseault, who has an interest in seeing JSON Schema as an RFC, had reached out to him about working through IETF to push for restarting the JSON Working Group or creating a new one for JSON Schema, and she wanted to make it an inclusive effort with the TSC here.
+A few months ago, I was contacted by Henry Andrews, one of the co-authors of various published JSON Schema iterations.  Lisa Dusseault, who has an interest in seeing JSON Schema as an RFC, had reached out to him about working through IETF to push for restarting the JSON Working Group or creating a new one for JSON Schema, and she wanted to make it an inclusive effort with the TSC here.
 
 I introduced her to the rest of the team, and we've been in periodic discussions since.
 
