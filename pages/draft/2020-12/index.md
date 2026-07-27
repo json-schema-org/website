@@ -15,8 +15,7 @@ next:
 
 ### Introduction
 
-The JSON Schema Draft 2020-12 is a comprehensive update to the previous [draft 2019-09](draft/2019-09), addressing feedback and implementation experiences. This draft introduces features to simplify creating and validating JSON schemas.
-
+The JSON Schema Draft 2020-12 is a comprehensive update to the previous [draft 2019-09](/draft/2019-09), addressing feedback and implementation experiences. This draft introduces features to simplify creating and validating JSON schemas.
 Here's an overview of updates to Draft 2020-12;
 
 - **Redesigned Array and Tuple Keywords**: The `items` and `additionalItems` keywords have been replaced by `prefixItems` and `items`.
@@ -61,4 +60,4 @@ _These were updated without changing functionality or meta-schemas due to a few 
 
 ### Release Notes
 
-- [Draft 2020-12 Release Notes](../draft/2020-12/release-notes)
+- [Draft 2020-12 Release Notes](/draft/2020-12/release-notes)
