@@ -19,6 +19,8 @@ While we think that JSON Schema has a unique value proposition, we'd like to pro
 
 * **CBOR Data Definition Language (Cddl):** While not strictly focused on constraints, Cddl allows defining the structure of CBOR data. Check out the Cddl IETF draft: [https://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl-08](https://tools.ietf.org/html/draft-greevenbosch-appsawg-cbor-cddl-08) for more information.
 
+* * **Okyline:** a declarative, example-driven language that expresses both the structure and the cross-field business invariants of JSON data in a single contract, with built-in versioning and cross-schema composition. Open specification, CC BY-SA 4.0: [https://github.com/Okyline/okyline-spec](https://github.com/Okyline/okyline-spec).
+
 ## Contributing to the Community
 
 Do you know of any other relevant technologies that we should add to this list? Please submit a pull request. We encourage contributions! 
