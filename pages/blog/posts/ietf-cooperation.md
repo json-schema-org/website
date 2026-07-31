@@ -20,7 +20,7 @@ All of the published JSON Schema were done as IETF Internet Drafts (I-Ds).  IETF
 
 JSON Schema used this process as an unofficial publication avenue, but neither IETF nor we progressed the proposals to become an actual RFC.  The RFC process didn't fit the rapid (relative to other specifications) iterative approach that was being used by the team, releasing multiple, versioned specifications.  Thus, the team preferred to continue creating I-Ds.
 
-After 2020-12 was released, the team began looking toward other publication options.  In recent years, we had considered joining the OpenJS Foundation, part of the Linux Foundation, and even ECMA International.  However those efforts never proved fruitful for various reasons that I won't get into here.
+After 2020-12 was released, the team began looking toward other publication options.  In recent years, we had considered joining the OpenJS Foundation, part of the Linux Foundation, and even Ecma International.  However those efforts never proved fruitful for various reasons that I won't get into here.
 
 ## IETF Again
 
