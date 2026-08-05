@@ -86,14 +86,28 @@ export default function StaticMarkdownPage({
                             <div className='text-sm font-semibold pl-2'>
                               {author.name}
                             </div>
-                            {author.twitter && (
+                            {author.twitter ? (
                               <a
-                                className='block text-sm text-blue-500 font-medium'
+                                className='block text-sm pl-2 text-blue-500 font-medium'
                                 href={`https://x.com/${author.twitter}`}
                               >
                                 @{author.twitter}
                               </a>
-                            )}
+                            ) : author.link ? (
+                              <a
+                                className='block text-sm pl-2 text-blue-500 font-medium'
+                                href={author.link}
+                                target='_blank'
+                                rel='noopener noreferrer'
+                              >
+                                {author.link
+                                  .replace(
+                                    /https?:\/\/(www\.)?linkedin\.com\/in\//,
+                                    '',
+                                  )
+                                  .replace(/\/$/, '')}
+                              </a>
+                            ) : null}
                           </div>
                         </div>
                       );
