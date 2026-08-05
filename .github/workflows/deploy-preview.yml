@@ -19,7 +19,7 @@ jobs:
     steps:
       # Downloads the build directory from the previous workflow
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         id: preview-build-artifact
         with:
           name: preview-build
