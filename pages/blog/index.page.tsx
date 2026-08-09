@@ -1,5 +1,5 @@
 /* eslint-disable linebreak-style */
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import fs from 'fs';
@@ -85,7 +85,10 @@ export default function StaticMarkdownPage({
   filterTag: any;
 }) {
   const router = useRouter();
-  // Initialize the filter as an array. If "All" or not specified, we show all posts.
+  const [searchQuery, setSearchQuery] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const POSTS_PER_PAGE = 10;
+
   const initialFilters =
     filterTag && filterTag !== 'All'
       ? filterTag.split(',').filter(isValidCategory)
@@ -94,7 +97,6 @@ export default function StaticMarkdownPage({
   const [currentFilterTags, setCurrentFilterTags] =
     useState<blogCategories[]>(initialFilters);
 
-  // When the router query changes, update the filters.
   useEffect(() => {
     const { query } = router;
     if (query.type) {
@@ -105,14 +107,6 @@ export default function StaticMarkdownPage({
       setCurrentPage(1);
     }
   }, [router.query]);
-
-  useEffect(() => {
-    const tags =
-      filterTag && filterTag !== 'All'
-        ? filterTag.split(',').filter(isValidCategory)
-        : ['All'];
-    setCurrentFilterTags(tags);
-  }, [filterTag]);
 
   const toggleCategory = (tag: blogCategories) => {
     let newTags: blogCategories[] = [];
@@ -133,6 +127,7 @@ export default function StaticMarkdownPage({
       }
     }
     setCurrentFilterTags(newTags);
+    setCurrentPage(1);
     if (newTags.includes('All')) {
       history.replaceState(null, '', '/blog');
     } else {
@@ -140,81 +135,55 @@ export default function StaticMarkdownPage({
     }
   };
 
-  // First, sort all posts by date descending (for fallback sorting)
-  const postsSortedByDate = [...blogPosts].sort((a, b) => {
-    const dateA = new Date(a.frontmatter.date).getTime();
-    const dateB = new Date(b.frontmatter.date).getTime();
-    return dateB - dateA;
-  });
+  const filteredAndSortedPosts = useMemo(() => {
+    return blogPosts
+      .filter((post) => {
+        const postCategories = getCategories(post.frontmatter);
+        const matchesCategory =
+          currentFilterTags.includes('All') ||
+          postCategories.some((cat) =>
+            currentFilterTags.some(
+              (filter) => filter.toLowerCase() === cat.toLowerCase(),
+            ),
+          );
 
-  // Filter posts based on selected categories.
-  // If "All" is selected, all posts are returned.
-  const filteredPosts = postsSortedByDate.filter((post) => {
-    if (currentFilterTags.includes('All') || currentFilterTags.length === 0)
-      return true;
-    const postCategories = getCategories(post.frontmatter);
-    return postCategories.some((cat) =>
-      currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
-      ),
-    );
-  });
+        const searchContent = searchQuery.toLowerCase();
+        const matchesSearch =
+          searchQuery === '' ||
+          post.frontmatter.title.toLowerCase().includes(searchContent) ||
+          post.frontmatter.excerpt?.toLowerCase().includes(searchContent) ||
+          post.frontmatter.authors?.some((author: Author) =>
+            author.name.toLowerCase().includes(searchContent),
+          );
 
-  const sortedFilteredPosts = filteredPosts.sort((a, b) => {
-    const aMatches = getCategories(a.frontmatter).filter((cat) =>
-      currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
-      ),
-    ).length;
-    const bMatches = getCategories(b.frontmatter).filter((cat) =>
-      currentFilterTags.some(
-        (filter) => filter.toLowerCase() === cat.toLowerCase(),
-      ),
-    ).length;
-    if (aMatches !== bMatches) {
-      return bMatches - aMatches;
-    }
-    const dateA = new Date(a.frontmatter.date).getTime();
-    const dateB = new Date(b.frontmatter.date).getTime();
-    return dateB - dateA;
-  });
+        return matchesCategory && matchesSearch;
+      })
+      .sort((a, b) => {
+        const dateA = new Date(a.frontmatter.date).getTime();
+        const dateB = new Date(b.frontmatter.date).getTime();
+        return dateB - dateA;
+      });
+  }, [blogPosts, currentFilterTags, searchQuery]);
 
-  const recentBlog = postsSortedByDate;
-  const timeToRead = Math.ceil(
-    readingTime(recentBlog[0]?.content || '').minutes,
+  const totalPages = Math.ceil(filteredAndSortedPosts.length / POSTS_PER_PAGE);
+  const currentPagePosts = filteredAndSortedPosts.slice(
+    (currentPage - 1) * POSTS_PER_PAGE,
+    currentPage * POSTS_PER_PAGE,
   );
 
-  // Collect all unique categories across posts.
+  const blogPostsContainerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(1);
+    }
+  }, [totalPages, currentPage]);
+
   const allTagsSet = new Set<string>();
   blogPosts.forEach((post) => {
     getCategories(post.frontmatter).forEach((cat) => allTagsSet.add(cat));
   });
   const allTags = ['All', ...Array.from(allTagsSet)];
-
-  // pagination implement
-  const POSTS_PER_PAGE = 10;
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const totalPages = Math.ceil(sortedFilteredPosts.length / POSTS_PER_PAGE);
-
-  const blogPostsContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(1);
-    }
-  }, [totalPages]);
-
-  useEffect(() => {
-    if (blogPostsContainerRef.current) {
-      blogPostsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, [currentPage]);
-
-  const currentPagePosts = sortedFilteredPosts.slice(
-    (currentPage - 1) * POSTS_PER_PAGE,
-    currentPage * POSTS_PER_PAGE,
-  );
 
   return (
     // @ts-ignore
@@ -223,55 +192,74 @@ export default function StaticMarkdownPage({
         <title>JSON Schema Blog</title>
       </Head>
       <div className='max-w-[1400px] mx-auto overflow-x-hidden flex flex-col items-center mt-0 sm:mt-10'>
-        {recentBlog[0] && (
+        {/* Featured Post Hero */}
+        {blogPosts[0] && searchQuery === '' && currentPage === 1 && (
           <div className='relative w-full h-[500px] sm:h-[400px] bg-black clip-bottom mt-1.5 flex flex-col items-center justify-start dark:bg-slate-700'>
             <div className='absolute w-full h-full dark:bg-[#282d6a]' />
             <Image
-              src={recentBlog[0].frontmatter.cover}
-              alt={recentBlog[0].frontmatter.title}
+              src={blogPosts[0].frontmatter.cover}
+              alt={blogPosts[0].frontmatter.title}
               fill
               className='object-cover w-full h-full opacity-70 blur-[5px]'
               priority
               quality={75}
             />
             <div className='absolute text-white w-full h-full mt-custom ml-14'>
-              {/* Display all categories (joined by comma) */}
               <div className='bg-blue-100 hover:bg-blue-200 font-semibold text-blue-800 inline-block px-3 py-1 rounded-full my-3 text-sm '>
-                {getCategories(recentBlog[0].frontmatter).join(', ')}
+                {getCategories(blogPosts[0].frontmatter).join(', ')}
               </div>
-              <Link href={`/blog/posts/${recentBlog[0].slug}`}>
-                <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300 sm:leading-tight'>
-                  {recentBlog[0].frontmatter.title}
+              <Link href={`/blog/posts/${blogPosts[0].slug}`}>
+                <h1 className='text-h1mobile ab1:text-h1 sm:text-h2 font-semibold text-stroke-1 mr-6 dark:slate-300 sm:leading-tight cursor-pointer'>
+                  {blogPosts[0].frontmatter.title}
                 </h1>
-                <div className='flex ml-2 mb-2 gap-2'>
-                  <div
-                    className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                    style={{
-                      backgroundImage: `url(${recentBlog[0].frontmatter.authors[0].photo})`,
-                    }}
-                  />
-                  <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
-                    <p className='text-sm font-semibold text-stroke-1'>
-                      {recentBlog[0].frontmatter.authors[0].name}
-                    </p>
-                    <div className='mb-6 text-sm  text-stroke-1'>
-                      <span>
-                        {recentBlog[0].frontmatter.date} &middot; {timeToRead}{' '}
-                        min read
-                      </span>
-                    </div>
+              </Link>
+              <div className='flex ml-2 mb-2 gap-2 mt-4'>
+                <div
+                  className='bg-slate-50 h-10 w-10 lg:h-[44px] lg:w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                  style={{
+                    backgroundImage: `url(${blogPosts[0].frontmatter.authors[0].photo})`,
+                  }}
+                />
+                <div className='max-w-full lg:max-w-[calc(100% - 64px)] mx-auto lg:mx-0 flex-col ml-2'>
+                  <p className='text-sm font-semibold text-stroke-1'>
+                    {blogPosts[0].frontmatter.authors[0].name}
+                  </p>
+                  <div className='mb-6 text-sm text-stroke-1'>
+                    <span>
+                      {blogPosts[0].frontmatter.date} &middot;{' '}
+                      {Math.ceil(readingTime(blogPosts[0].content).minutes)} min
+                      read
+                    </span>
                   </div>
                 </div>
-              </Link>
+              </div>
             </div>
           </div>
         )}
-        <div ref={blogPostsContainerRef} className='w-full mx-auto my-5'>
+
+        <div ref={blogPostsContainerRef} className='w-full mx-auto my-5 px-4'>
           <div className='flex h-full flex-col justify-center items-center mb-3 my-2'>
             <h2 className='text-h3mobile md:text-h3 font-bold px-4 items-center text-center'>
               Welcome to the JSON Schema Blog!
             </h2>
           </div>
+
+          {/* SEARCH BAR */}
+          <div className='flex justify-center w-full mb-6'>
+            <div className='relative w-full max-w-xl'>
+              <input
+                type='text'
+                placeholder='Search blog posts...'
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className='w-full px-10 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-white'
+              />
+              <span className='absolute left-4 top-1/2 -translate-y-1/2 text-gray-400'>
+                🔍
+              </span>
+            </div>
+          </div>
+
           <div className='flex h-full flex-col justify-center items-center text-center text-sm sm:text-base px-4 my-2'>
             <p>
               Want to publish a blog post? Check out the&nbsp;
@@ -308,7 +296,6 @@ export default function StaticMarkdownPage({
           {allTags.map((tag) => (
             <button
               key={tag}
-              value={tag}
               onClick={() => toggleCategory(tag as blogCategories)}
               className={`cursor-pointer font-semibold inline-block px-3 py-1 rounded-full mb-4 mr-4 text-sm ${
                 currentFilterTags.includes(tag as blogCategories)
@@ -324,7 +311,7 @@ export default function StaticMarkdownPage({
           </span>
         </div>
 
-        {/* Blog Posts Grid */}
+        {/* Blog Posts Grid - RESTORED ORIGINAL STYLES */}
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
           {currentPagePosts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
@@ -351,7 +338,6 @@ export default function StaticMarkdownPage({
                   </div>
                   <div className='p-4 flex flex-col flex-1 justify-between min-h-0 pt-2'>
                     <div>
-                      {/* Display each category as a clickable badge */}
                       <div className='flex flex-wrap gap-2 mb-4'>
                         {getCategories(frontmatter).map((cat, index) => (
                           <div
@@ -370,7 +356,7 @@ export default function StaticMarkdownPage({
                       <div className='text-lg h-[95px] font-semibold overflow-hidden transition-transform duration-300 group-hover:scale-105'>
                         {frontmatter.title}
                       </div>
-                      <div className='mt-3   text-slate-500 dark:text-slate-300 flex-1 min-h-0'>
+                      <div className='mt-3 text-slate-500 dark:text-slate-300 flex-1 min-h-0'>
                         <TextTruncate
                           element='span'
                           line={4}
@@ -432,14 +418,12 @@ export default function StaticMarkdownPage({
                                 day: 'numeric',
                               })}
                             </span>
-                          )}{' '}
+                          )}
                         </div>
                       </div>
                     </div>
                   </div>
-                  {/* Separator Line */}
                   <div className='border-t border-gray-200 dark:border-slate-600 mx-4'></div>
-                  {/* Read More Section */}
                   <div className='flex w-full px-4 py-2 justify-between items-center'>
                     <span className='text-blue-600 hover:text-blue-800 font-medium text-sm flex items-center gap-1 group/readmore'>
                       Read More
@@ -456,7 +440,8 @@ export default function StaticMarkdownPage({
             );
           })}
         </div>
-        {/* pagination control */}
+
+        {/* Pagination Control */}
         <div className='flex justify-center items-center gap-4'>
           <button
             className={`px-4 py-2 rounded-md font-semibold ${
@@ -470,15 +455,15 @@ export default function StaticMarkdownPage({
             Previous
           </button>
           <span className='text-lg font-medium dark:text-white'>
-            Page {currentPage} of {totalPages}
+            Page {currentPage} of {totalPages || 1}
           </span>
           <button
             className={`px-4 py-2 rounded-md font-semibold ${
-              currentPage === totalPages
+              currentPage === totalPages || totalPages === 0
                 ? 'bg-gray-300 dark:bg-slate-600 cursor-not-allowed'
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
-            disabled={currentPage === totalPages}
+            disabled={currentPage === totalPages || totalPages === 0}
             onClick={() => setCurrentPage((p) => p + 1)}
           >
             Next
