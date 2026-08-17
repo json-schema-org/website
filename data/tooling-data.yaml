@@ -3484,23 +3484,18 @@
   toolingListingNotes: 'Project built under GSoC "25. High-performance Java wrapper for Blaze JSON Schema validator using Java FFM API.'
 
 - name: 'SJF4J'
-  description: 'SJF4J (Simple JSON Facade for Java) is a Java library that provides full support for JSON Schema Draft 2020-12 and focuses on validating native Java object models in addition to JSON data. SJF4J can validate POJOs, JOJOs, Maps, Lists, and other native Java objects directly, without requiring prior serialization to JSON.'
+  description: 'SJF4J is a pure Java JSON Schema validation library designed for fast, low-overhead validation and supports multiple schema drafts. It can validate both JSON text (via Jackson, Gson, or compatible JSON libraries) and native Java object graphs, including POJOs, Maps, Lists, and JSON-like object models, without requiring prior serialization to JSON.'
   toolingTypes: ['validator']
   languages: ['Java']
   creators:
-    - name: 'hannyu'
-      username: 'hannyu'
-      platform: 'github'
-  maintainers:
-    - name: 'hannyu'
+    - name: 'Yu Han'
       username: 'hannyu'
       platform: 'github'
   license: 'MIT'
   source: 'https://github.com/sjf4j-projects/sjf4j'
   homepage: 'https://sjf4j.org'
   supportedDialects:
-    draft: ['2020-12']
-  toolingListingNotes: 'SJF4J has passed Bowtie evaluation and provides full Draft 2020-12 support. Validates native Java objects directly without JSON serialization.'
+    draft: ['7', '2019-09', '2020-12']
 
 - name: 'json-schema-utils'
   description: 'Random utilities to analyze and manipulate JSON Schema'
