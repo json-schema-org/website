@@ -54,7 +54,7 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
         Below is a list of JSON Schema keywords with links to their respective
         documentation.
       </p>
-      <div className='mt-4'>
+      <div className='mt-4 mb-4'>
         {datas
           .sort((a: DataObject, b: DataObject) => a.name.localeCompare(b.name))
           .map(
