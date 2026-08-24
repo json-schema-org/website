@@ -4,7 +4,7 @@ date: "2026-08-24"
 tags:
   - News
 type: Community
-cover: /img/posts/2026/gsoc26-tushar/contributor-spotlight.png
+cover: /img/posts/2026/gsoc26-tushar/gsoc26-banner.png
 authors:
   - name: Tushar Verma
     photo: /img/avatars/vtushar06.jpg
@@ -49,7 +49,7 @@ Four months of website tickets is not a glamorous way to spend the run-up to GSo
 
 ## 6 January
 
-On 6 January - which happens to be my birthday - the organization reached out and made me a triage member.
+On 6 January - which happens to be my birthday - [Jason Desrosiers](https://github.com/jdesrosiers) invited me to join the triage team.
 
 That changed the job. I was not asking for issues anymore, I was labelling them. I was reading other people's pull requests and deciding whether they were ready. I started seeing the project from the side that has to live with the decisions, which is a completely different view from the one you get as a contributor pushing a patch.
 
@@ -74,6 +74,8 @@ My proposal was not a research document. It was a description of work I had alre
 I knew the codebase. I knew which parts of the test suite were thin and why. I could name the specific gap - `format` validation had almost no systematic test coverage against the RFCs the specification points at - because I had gone looking and found the hole myself.
 
 That is the whole trick. A proposal written from outside a project reads like a plan. A proposal written from inside it reads like a continuation. Reviewers can tell the difference immediately.
+
+The full proposal is here if it is useful to anyone applying next year: [Comprehensive Test Suite for Format Validation (PDF)](https://github.com/vtushar06/JSON-Schema-format-test-Evidence/blob/main/assets/gsoc-2026-proposal.pdf).
 
 ## The call
 
@@ -188,6 +190,7 @@ All glory to God. See you in the next pull request.
 
 **Project**
 - [Issue #965 - Comprehensive Test Suite for Format Validation](https://github.com/json-schema-org/community/issues/965)
+- [My GSoC 2026 proposal (PDF)](https://github.com/vtushar06/JSON-Schema-format-test-Evidence/blob/main/assets/gsoc-2026-proposal.pdf)
 
 **Specifications**
 - [RFC 1123 - Requirements for Internet Hosts](https://www.rfc-editor.org/rfc/rfc1123) (`hostname`)
