@@ -1,212 +1,78 @@
 ---
-title: "Nine Months, One Format at a Time: My Google Summer of Code with JSON Schema"
+title: "Testing JSON Schema's format Keyword Against the RFCs"
 date: "2026-08-24"
 tags:
   - News
-type: Community
+type: Engineering
 cover: /img/posts/2026/gsoc26-tushar/gsoc26-banner.png
 authors:
   - name: Tushar Verma
     photo: /img/avatars/vtushar06.jpg
     link: https://github.com/vtushar06
     byline: GSoC 2026 Contributor @ JSON Schema
-excerpt: "How a LinkedIn post in July 2025 turned into 121 merged pull requests across the JSON Schema Test Suite and sourcemeta/core, and everything that happened in between."
+excerpt: "A GSoC 2026 project put every format keyword value against the RFC it's supposed to follow. 126 merged pull requests later, here is what was actually wrong, in how many real validators, and what it means for anyone relying on format."
 ---
 
-Before anything else, I want to start where this actually started, which is with gratitude. All glory to God, who never left me in any phase of my life. I worked hard this year. I have never once thought that hard work by itself is what opens a door.
+JSON Schema's `format` keyword asserts that a string looks like an email address, an IPv6 address, a date, a URI, and so on. This year, [Google Summer of Code](https://summerofcode.withgoogle.com/) funded a project at JSON Schema to check whether that assertion is actually true - not against what implementations happen to do, but against the RFC each format value points at.
 
-Now the rest of it.
+This is a report on what that testing found.
 
-## A LinkedIn post in July
+## Why format is hard to get right
 
-I found out what Google Summer of Code was from a LinkedIn post in July 2025. That is the whole origin story. I was in my first year at [NST ADYPU](https://nst.adypu.edu.in/), mostly heads-down on academics, poking at competitive programming and web development on the side without much direction.
+The specification does not define what an email address or a URI looks like. It delegates to an RFC per format: `email` to [RFC 5321](https://www.rfc-editor.org/rfc/rfc5321), `ipv6` to [RFC 4291](https://www.rfc-editor.org/rfc/rfc4291), `duration` to the ABNF in [RFC 3339 Appendix A](https://www.rfc-editor.org/rfc/rfc3339), and so on across 18 formats. So `format` is really eighteen separate grammars sitting behind one keyword, each with its own edge cases, and none of them defined by JSON Schema itself.
 
-A friend told me I should stop spreading myself thin and point everything at GSoC. So I did.
+The [JSON Schema Test Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite) is the shared conformance baseline every implementation runs against. Before this project, its format coverage was thin relative to the other keywords - a handful of representative cases per format rather than a systematic pass over each grammar's boundaries. That gap matters beyond the suite itself: [sourcemeta/blaze](https://github.com/sourcemeta/blaze) defers `format` assertion by design, in part because there was no test corpus solid enough to implement against with confidence.
 
-The thing nobody tells you is that July is the right time to start, and almost nobody does. Applications do not open until March. Most people begin thinking about it in February, which means they are trying to build a relationship with an organization in four weeks. I had eight months.
+## Method
 
-## Ten organizations, and one that did not work out
+For each format:
 
-I did not pick an org by vibes. I shortlisted around ten, opened their repositories, and read them.
+1. Read the governing RFC and list every grammar production and boundary in it.
+2. Build an input set that exercises those boundaries, including the places where two rules meet.
+3. Run every input through real validators across languages - Python, JavaScript, C++, Ruby, PHP, Go, Rust, Java, and others depending on the format - and record every case where implementations disagree with each other or with the RFC.
+4. For anything that survives, read the implementation's source to identify the actual mechanism causing the divergence, not just the symptom.
 
-What I was actually looking for was not the tech stack. It was whether the community was alive. Were people talking? Did maintainers reply to issues, or did threads die? Could someone new walk in and find something to do? A repository with 20k stars and a dead Discord is a worse bet than a smaller project where a maintainer answers you the same day.
+Step 4 is the one that matters. Two libraries disagreeing is easy to find. A test case only earns a place in the suite once you can point at the specific line in the RFC that settles the disagreement, and the specific line of code that gets it wrong.
 
-My first attempt was [Learning Equality](https://learningequality.org/). The org selected me. Google did not give final approval, so the slot did not happen. That was a bad week.
+## What the testing found
 
-I moved to [JSON Schema](https://json-schema.org/). Part of that was strategy - activity was lower in July, which meant fewer people competing for maintainer attention. But the honest reason I stayed was the community channel. People were solving real problems in it, in public, and when I showed up and said I wanted to help, someone gave me an issue instead of a link to CONTRIBUTING.md.
+Across the 13 formats with published evidence, this method surfaced **87 distinct cross-implementation findings** - documented cases where at least one real, in-use validator diverges from its governing RFC. At least **19 different implementations and libraries** across the matrix were shown wrong in at least one case, including validators that pass the entire existing published suite: [ajv-formats](https://github.com/ajv-validator/ajv-formats), [python-jsonschema](https://github.com/python-jsonschema/jsonschema), Ruby's `IPAddr`, Java's Guava, the WHATWG URL parser, [json-everything](https://github.com/gregsdennis/json-everything), and more than a dozen others.
 
-I fixed it. Then I asked for another one.
+Nine of those findings were serious enough to file upstream directly, rather than only as suite test cases:
 
-## The Paris conference website
+- **sourcemeta/core**: [`is_regex_ecma` over-rejections](https://github.com/sourcemeta/core/issues/2757) on valid Unicode property escapes and large quantifier counts, [malformed IPv6 literals accepted](https://github.com/sourcemeta/core/issues/2742) through a fallthrough branch, [uppercase-Punycode A-labels wrongly rejected](https://github.com/sourcemeta/core/issues/2741), a [valid RFC 1123 hostname rejected](https://github.com/sourcemeta/core/issues/2520), and four RFC 3986 URI defects ([#2331](https://github.com/sourcemeta/core/issues/2331), [#2319](https://github.com/sourcemeta/core/issues/2319), [#2318](https://github.com/sourcemeta/core/issues/2318), [#2317](https://github.com/sourcemeta/core/issues/2317))
+- **python-jsonschema**: an [uncaught `ValueError` crash](https://github.com/python-jsonschema/jsonschema/issues/1558) on conflicting regex inline flags, and an [uncaught `decimal.Overflow` crash](https://github.com/python-jsonschema/jsonschema/issues/1511) on a duration with a large exponent
 
-The first real work I did for JSON Schema had nothing to do with schemas. It was UI and UX issues on the website for the [JSON Schema Conference in Paris](https://conference.json-schema.org/). I worked on it from September to December 2025 - mostly frontend, some backend.
+All nine were merged or accepted by their respective maintainers.
 
-The reviewer on most of that work had done GSoC with the same organization the year before, and he did not treat me like a stranger passing through. He explained why a change was wrong instead of just closing it.
+### One example, worked through
 
-Four months of website tickets is not a glamorous way to spend the run-up to GSoC. It is, as far as I can tell, the entire reason the rest of this worked. Somewhere in there the organization put me in a contributor spotlight, which was the first sign that anyone had noticed.
+`Kelvin.example.com` is a hostname. Its first character is not the letter K - it's U+212A, the KELVIN SIGN, the unit symbol for temperature, which Unicode encodes separately from the letter it resembles.
 
-![JSON Schema contributor spotlight](/img/posts/2026/gsoc26-tushar/contributor-spotlight.png)
+RFC 1123 hostnames are ASCII, so this string is invalid. `ajv` and `sourcemeta/core` both reject it correctly. `python-jsonschema` accepts it, because its hostname checker calls `.lower()` on the string before running the hostname regex, and Python's `.lower()` maps U+212A to a plain ASCII `k`. The regex is correct; by the time it runs, the non-ASCII character is already gone.
 
-## 6 January
+That single mechanism - case-folding before validation instead of after - turned out to open the door for 643 distinct non-ASCII codepoints through this one checker, via three separate paths. The Kelvin sign is now a published test case: [suite#1024](https://github.com/json-schema-org/JSON-Schema-Test-Suite/pull/1024).
 
-On 6 January - which happens to be my birthday - [Jason Desrosiers](https://github.com/jdesrosiers) invited me to join the triage team.
+## What it means for the suite, in numbers
 
-That changed the job. I was not asking for issues anymore, I was labelling them. I was reading other people's pull requests and deciding whether they were ready. I started seeing the project from the side that has to live with the decisions, which is a completely different view from the one you get as a contributor pushing a patch.
+The clearest single measure is the published test suite itself. Comparing the `format` test files at the start of the coding period against their state now:
 
-It also meant my GitHub profile stopped growing the way it had been. Reviewing someone else's PR does not show up as a green square.
+![Published format tests, before and after GSoC 2026 - a bar chart per format showing the test count before the project against the test count after](/img/posts/2026/gsoc26-tushar/format-growth-chart.png)
 
-## The doubt, and the person who cleared it
+Published `format` tests across the 19 formats tracked grew from **618 to 838** over the project - a net addition of 220 tests, essentially all of it landing through this project's pull requests. `duration`, `idn-email`, and the `regex` dialect tests had close to no dedicated coverage before this and now have a real baseline. `email` alone more than doubled, from 27 to 71. One format, `json-pointer`, needed no additions at all - its existing coverage held up against the same testing everything else went through.
 
-By the time applications opened I had somewhere around fifteen pull requests to my name. Fifteen. I had seen people talk about hundreds.
+Total delivered across both repositories:
 
-I took it to [Onyedikachi Hope Amaechi-Okorie](https://github.com/Honyii), the organization's Technical Community Advocate, and asked her directly whether a low PR count would hurt me.
+| | merged | in review |
+|---|---:|---:|
+| [JSON-Schema-Test-Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite) | **103** | 7 |
+| [sourcemeta/core](https://github.com/sourcemeta/core) | **23** | 0 |
+| **total** | **126** | **7** |
 
-Her answer was that maintainers are contributors too, and that selection has never been a counting exercise. Organizations are looking at whether you understand the project and whether they want to work with you for three months. A person who has reviewed forty PRs knows the codebase better than a person who has merged forty typo fixes.
+`regex` (ECMA-262 dialect validity) was added to the project's scope partway through, alongside the 18 formats already in the specification - which is why it appears in the totals despite starting from close to nothing.
 
-She was right, and I would not have believed it from anyone who was not inside the org. That conversation is the reason I applied with what I actually had instead of padding it.
+## What is still open
 
-Honyii checked in on me repeatedly over those months without ever being asked to. If you are reading this and you are new somewhere, find the person in the community whose job is people. They are usually the most useful person in the room and the least likely to be thanked.
+Two format questions remain unresolved and are waiting on maintainer rulings rather than more testing: whether the ECMA-262 regex dialect tests should include the Annex B / Unicode-mode-dependent cases, and how the `idn-hostname` / `idn-email` tests should target IDNA profile differences per dialect ([suite#1132](https://github.com/json-schema-org/JSON-Schema-Test-Suite/issues/1132)). Seven pull requests are still in review, mostly `time` coverage.
 
-## The proposal
-
-My proposal was not a research document. It was a description of work I had already started.
-
-I knew the codebase. I knew which parts of the test suite were thin and why. I could name the specific gap - `format` validation had almost no systematic test coverage against the RFCs the specification points at - because I had gone looking and found the hole myself.
-
-That is the whole trick. A proposal written from outside a project reads like a plan. A proposal written from inside it reads like a continuation. Reviewers can tell the difference immediately.
-
-The full proposal is here if it is useful to anyone applying next year: [Comprehensive Test Suite for Format Validation (PDF)](https://github.com/vtushar06/JSON-Schema-format-test-Evidence/blob/main/assets/gsoc-2026-proposal.pdf).
-
-## The call
-
-I did not check the results. I was asleep.
-
-A friend called and woke me up to tell me I had gotten in. My father's reaction was completely neutral - he told me not to talk about it until it was properly confirmed, which is very much my father. My mother was thrilled.
-
-![GSoC 2026 acceptance email](/img/posts/2026/gsoc26-tushar/acceptance-email.png)
-
-The letter put the dates in writing: 25 May to 24 August 2026, roughly 350 hours, JSON Schema.
-
-## What the project actually was
-
-Here is the problem in plain terms.
-
-JSON Schema has a keyword called `format`. It says a string should look like an email address, or an IPv6 address, or a date, or a URI. The specification does not define what those look like - it points at an RFC for each one. `ipv4` points at RFC 2673. `hostname` points at RFC 1123. `duration` points at the ABNF in RFC 3339 Appendix A.
-
-So `format` is really eighteen separate specifications wearing one keyword.
-
-The [JSON Schema Test Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite) is the shared conformance baseline. Every implementation in every language runs against it to prove it behaves correctly. For most keywords that suite is thorough. For `format` it was thin - a handful of obvious cases per format, and almost nothing testing the actual edges of the grammars the RFCs define.
-
-That gap has a real cost. [Blaze](https://github.com/sourcemeta/blaze) defers `format` assertion by design, and one reason is that there was no trustworthy test corpus to implement against. Validators could not agree because nothing was checking whether they agreed.
-
-My job was to close that.
-
-## How I actually found things
-
-The method was the same for every format, and it was not clever:
-
-1. Read the governing RFC. Not a summary of it, the actual text. List every production in the grammar and every boundary in it.
-2. Build an input set that hits every one of those boundaries, plus the places where two rules meet.
-3. Run all of it through real validators in several languages at once - Python, JavaScript, C++, Ruby, PHP, Go, Rust - and record every input where they disagree with each other or with the RFC.
-4. For anything that survives, go read the implementation's source and work out *why* it diverges. A test case is only worth adding if you can explain the mechanism behind it.
-
-Step four is what separates a useful test from noise. Anyone can find two libraries that disagree. The test only earns its place in the suite if you can say which one is wrong and point at the sentence in the RFC that settles it.
-
-I learned that the hard way. Early on I filed a bug against a library claiming it should reject an uppercase letter in an IPvFuture address. I had quoted the RFC from memory. RFC 3986 section 3.2.2 says the host component is case-insensitive, and RFC 5234 section 2.3 says ABNF string literals are case-insensitive to begin with. The bug was wrong, publicly, on someone else's repository.
-
-After that I made a rule: fetch the RFC and read the sentence before making any claim. It cost me time on every single finding. It also meant that for the rest of the summer, when I said something was a bug, it was a bug.
-
-## One example: the Kelvin sign
-
-My favourite finding is a hostname.
-
-```
-Kelvin.example.com
-```
-
-That looks like an ordinary hostname. The first character is not a capital K. It is U+212A, the KELVIN SIGN - the unit symbol for temperature, which Unicode encodes separately from the letter K.
-
-RFC 1123 hostnames are ASCII. So this string is invalid, and [ajv](https://ajv.js.org/) and [sourcemeta/core](https://github.com/sourcemeta/core) both reject it correctly.
-
-[python-jsonschema](https://github.com/python-jsonschema/jsonschema) accepts it.
-
-The reason is a single line of ordering. The checker calls `.lower()` on the string before running it through the hostname regex - and Python's `.lower()` maps U+212A to a plain ASCII `k`. By the time the regex sees the string, the non-ASCII character is gone. The regex is correct. It is just being handed already-laundered input.
-
-Once I understood that mechanism I went looking for the rest of it, and found 643 non-ASCII codepoints that get through the same checker by three separate routes. Setting the regex to ASCII mode fixes 642 of them and leaves Kelvin standing, which is exactly why Kelvin is the one that became the test case.
-
-It is now in the suite as [#1024](https://github.com/json-schema-org/JSON-Schema-Test-Suite/pull/1024).
-
-![GSoC 2026 midterm evaluation passed](/img/posts/2026/gsoc26-tushar/midterm-evaluation.png)
-
-## The numbers
-
-By the end of the coding period:
-
-- **98 pull requests merged** into the [JSON Schema Test Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite), with 12 still in review
-- **23 pull requests merged** into [sourcemeta/core](https://github.com/sourcemeta/core), the C++ library behind Blaze
-- **121 merged pull requests** in total
-- **18 formats** worked through against their governing RFCs
-- bug reports filed upstream against [python-jsonschema](https://github.com/python-jsonschema/jsonschema), [ajv-formats](https://github.com/ajv-validator/ajv-formats), sourcemeta/core and several others
-
-The per-format evidence - every input, the RFC verdict, which implementations diverge and why, with reproduction commands - is published at [JSON-Schema-format-test-Evidence](https://github.com/vtushar06/JSON-Schema-format-test-Evidence).
-
-None of that is the number I care about most, though.
-
-## The last pull request
-
-Two weeks ago [Karen Etheridge](https://github.com/karenetheridge) opened [an issue](https://github.com/json-schema-org/JSON-Schema-Test-Suite/issues/1130) about whitespace inconsistencies across the test files. My mentor [Juan Cruz Viotti](https://github.com/jviotti) tagged me on it and asked if I would take a pass over the repository.
-
-That is a small thing. It is also the entire point. In July 2025 I was a person asking for an issue to work on. In August 2026 a maintainer looked at a problem and routed it to me without being asked to.
-
-I surveyed all 130 format files, found the actual violation was narrow - two files using two-space indentation where the repository standard is four - fixed those and left the rest alone, because the pattern that looked wrong everywhere else turned out to be deliberate house style. That PR, [#1146](https://github.com/json-schema-org/JSON-Schema-Test-Suite/pull/1146), merged this morning.
-
-I would rather have that than another fifty test cases.
-
-## What I would tell you
-
-Two things, and neither is about code.
-
-**Start before it makes sense to start.** Everything good that happened here traces back to four months of website tickets in late 2025 that had nothing to do with my eventual project. I was not building a portfolio. I was becoming a person the maintainers recognised.
-
-**Read the actual specification.** Not the blog post about it, not the Stack Overflow answer, not your memory of it. The RFC. Almost every interesting bug I found this summer was hiding in a sentence that everybody skims.
-
-And then just keep going. Nine months, mostly unglamorous, mostly small. No week of this was heroic. Consistency turned out to be the whole strategy - not because I was disciplined, but because I stayed somewhere long enough for the work to compound.
-
-The program officially ends today, on the exact date the acceptance letter said it would. The work does not. There are twelve pull requests still in review, a format question still waiting on a maintainer ruling, and a repository I now have write access to.
-
-I opened this by saying God never left me in any phase. I meant the specific ones. The org that selected me and then fell through. The bug I filed that was wrong, in public, on someone else's repository. The stretch of weeks where nothing merged and I could not tell whether I was making progress or quietly wasting a summer. Those were the phases, and I was not carrying any of them by myself.
-
-All glory to God. See you in the next pull request.
-
----
-
-## References
-
-**Repositories**
-- [json-schema-org/JSON-Schema-Test-Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite)
-- [sourcemeta/core](https://github.com/sourcemeta/core)
-- [sourcemeta/blaze](https://github.com/sourcemeta/blaze)
-- [Format evidence repository](https://github.com/vtushar06/JSON-Schema-format-test-Evidence)
-
-**Project**
-- [Issue #965 - Comprehensive Test Suite for Format Validation](https://github.com/json-schema-org/community/issues/965)
-- [My GSoC 2026 proposal (PDF)](https://github.com/vtushar06/JSON-Schema-format-test-Evidence/blob/main/assets/gsoc-2026-proposal.pdf)
-
-**Specifications**
-- [RFC 1123 - Requirements for Internet Hosts](https://www.rfc-editor.org/rfc/rfc1123) (`hostname`)
-- [RFC 3339 - Date and Time on the Internet](https://www.rfc-editor.org/rfc/rfc3339) (`date`, `time`, `date-time`, `duration`)
-- [RFC 3986 - Uniform Resource Identifier](https://www.rfc-editor.org/rfc/rfc3986) (`uri`, `uri-reference`)
-- [RFC 3987 - Internationalized Resource Identifiers](https://www.rfc-editor.org/rfc/rfc3987) (`iri`, `iri-reference`)
-- [RFC 4291 - IPv6 Addressing Architecture](https://www.rfc-editor.org/rfc/rfc4291) (`ipv6`)
-- [RFC 5234 - ABNF](https://www.rfc-editor.org/rfc/rfc5234)
-- [RFC 5321 - Simple Mail Transfer Protocol](https://www.rfc-editor.org/rfc/rfc5321) (`email`)
-- [RFC 6531 - SMTP Extension for Internationalized Email](https://www.rfc-editor.org/rfc/rfc6531) (`idn-email`)
-- [RFC 6570 - URI Template](https://www.rfc-editor.org/rfc/rfc6570) (`uri-template`)
-- [RFC 6901 - JavaScript Object Notation Pointer](https://www.rfc-editor.org/rfc/rfc6901) (`json-pointer`)
-- [RFC 9562 - Universally Unique IDentifiers](https://www.rfc-editor.org/rfc/rfc9562) (`uuid`)
-
-**People**
-- [Juan Cruz Viotti](https://github.com/jviotti) - mentor
-- [Jason Desrosiers](https://github.com/jdesrosiers) - co-mentor
-- [Onyedikachi Hope Amaechi-Okorie](https://github.com/Honyii) - Technical Community Advocate
-- [Jagpreet Singh Rahi](https://github.com/jagpreetrahi) - GSoC 2025, JSON Schema
+The larger point the numbers support: `format` was under-tested primarily because nobody had gone through the exercise of treating each format as its own specification and checking real implementations against it end to end. Once that exercise happened, every format examined turned up at least one real, shipping validator getting something wrong. The [evidence repository](https://github.com/vtushar06/JSON-Schema-format-test-Evidence) has the full input-by-input detail, with reproduction commands, for anyone who wants to check a specific case or extend the method to a format not covered here.
