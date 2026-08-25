@@ -36,7 +36,7 @@ The main goal of JSON Schema's [documentation project](https://github.com/orgs/j
 Since May, the team ([Valeria Hernandez](https://www.linkedin.com/in/valeriahhdez/), [Blessing Ene Anyebe](https://www.linkedin.com/in/anyebe-blessing-ene-kwennb/), [Dhairya Amrish Majmudar](https://www.linkedin.com/in/dhairya-majmudar/), and [Benjamin Granados](https://www.linkedin.com/in/benjagranados/)) has been working hard to achieve these goals. On the part of documentation, we have completed the following: 
 
 - Conducted a thorough content audit
-- Mapped out the [developer experience journey](<(https://www.figma.com/board/TRjQUw33K93y8RlJMSRkJs/JSON-dev-journey?node-id=0-1&t=gYkdGtHk2sKrCQM0-0)>)
+- Mapped out the [developer experience journey](https://www.figma.com/board/TRjQUw33K93y8RlJMSRkJs/JSON-dev-journey?node-id=0-1&t=gYkdGtHk2sKrCQM0-0)
 - Implemented the [keywords page](https://json-schema.org/understanding-json-schema/keywords)
 - Restructured the [specification docs](https://github.com/json-schema-org/website/pull/823)
 
