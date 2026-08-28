@@ -136,7 +136,7 @@ Luckily, picking this up with our Schema is simple. The `additionalProperties` k
 The value of `additionalProperties` is not just a Boolean, but a Schema. This subschema value is applied to all values of the instance object that are not defined in the `properties` object in our example. You could use `additionalProperties` to allow additional properties, but constrain their values to be a String.
 
 <specialBox>
-  <p>There is a little simplification here to help us understand the concept we're looking to learn. If you want to dig a little deeper, check out our <a href="https://json-schema.org/understanding-json-schema/reference/object.html#additional-properties" target="_blank">learning resources on `additionalProperties`</a>.</p>
+  <p>There is a little simplification here to help us understand the concept we're looking to learn. If you want to dig a little deeper, check out our <a href="https://json-schema.org/understanding-json-schema/reference/object.html#additional-properties" target="_blank" rel="noopener noreferrer">learning resources on `additionalProperties`</a>.</p>
 </specialBox>
 
 Finally, what if we expect an Object, but are given an Array or another non-object type?
@@ -180,7 +180,7 @@ Note, `type` takes an Array of types. It may be that your instance is allowed to
 ## Validating Arrays
 
 <specialBox>
-  <p>In this introduction, we're only going to be covering how things work for JSON Schema 2020-12. If you're using a previous version, including "draft-7" or prior, you will likely benefit from digging a little deeper into the <a href="https://json-schema.org/understanding-json-schema/reference/array.html" target="_blank">learning resources for Array validation.</a></p>
+  <p>In this introduction, we're only going to be covering how things work for JSON Schema 2020-12. If you're using a previous version, including "draft-7" or prior, you will likely benefit from digging a little deeper into the <a href="https://json-schema.org/understanding-json-schema/reference/array.html" target="_blank" rel="noopener noreferrer">learning resources for Array validation.</a></p>
 </specialBox>
 
 Let's step back to our previous example data, where we were provided with an Array as opposed to an Object. Let's say our data is now only allowed to be an Array.
@@ -311,7 +311,7 @@ It looks MOSTLY correct, but notice, if all the assertions are `true`, the resul
 <div className="flex flex-wrap justify-center gap-4">
   <figure>
     <img className="max-w-xs" src="/img/posts/2022/fundamentals-part-1/tt/oneOf.webp" />
-    <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for "oneOf" - <a href="https://www.wolframalpha.com/input?i=%28a+xor+b+xor+c%29+%26+%21+%28a+%26%26+b+%26%26+c%29" target="_blank">(a xor b xor c) & ! (a && b && c)</a></figcaption>
+    <figcaption className="text-center text-xs text-gray-500 mt-2">Truth Table for "oneOf" - <a href="https://www.wolframalpha.com/input?i=%28a+xor+b+xor+c%29+%26+%21+%28a+%26%26+b+%26%26+c%29" target="_blank" rel="noopener noreferrer">(a xor b xor c) & ! (a && b && c)</a></figcaption>
   </figure>
 </div>
 
@@ -395,9 +395,9 @@ When you apply the second subschema in `oneOf` to the instance, there are no con
 
 # Now you try
 
-We can use the same approach as before to make sure our subschemas have sufficient constraints. <a href="https://jsonschema.dev/s/Cbcss" target="_blank">Give it a try</a>, and see if you can manage to make the validation work as expected.
+We can use the same approach as before to make sure our subschemas have sufficient constraints. <a href="https://jsonschema.dev/s/Cbcss" target="_blank" rel="noopener noreferrer">Give it a try</a>, and see if you can manage to make the validation work as expected.
 
-The link is pre-loaded with your starting Schema and instance. Let me know if you get stuck via <a href="/slack" target="_blank">Slack</a> or <a href="https://www.x.com/relequestual" target="_blank">X</a>.
+The link is pre-loaded with your starting Schema and instance. Let me know if you get stuck via <a href="/slack" target="_blank" rel="noopener noreferrer">Slack</a> or <a href="https://www.x.com/relequestual" target="_blank" rel="noopener noreferrer">X</a>.
 
 # In summary
 
@@ -413,9 +413,9 @@ Applicator keywords can not only relay the assertion results from subschemas but
 
 I've really enjoyed being able to share the first of our fundamentals series with you, and I hope you find it valuable enough to come back for the next article in the series.
 
-You can find all of the example instances and schemas in the <a href="https://github.com/Relequestual/json-schema-fundamentals" target="_blank">JSON Schema Fundamentals repo</a>.
+You can find all of the example instances and schemas in the <a href="https://github.com/Relequestual/json-schema-fundamentals" target="_blank" rel="noopener noreferrer">JSON Schema Fundamentals repo</a>.
 
-All feedback is welcome. If you have questions or comments, you can find me on the <a href="/slack" target="_blank">JSON Schema Slack</a> or reach out to me on X<a href="https://www.x.com/relequestual" target="_blank">@relequestual</a>.
+All feedback is welcome. If you have questions or comments, you can find me on the <a href="/slack" target="_blank" rel="noopener noreferrer">JSON Schema Slack</a> or reach out to me on X<a href="https://www.x.com/relequestual" target="_blank" rel="noopener noreferrer">@relequestual</a>.
 
 # Useful links and further reading
 

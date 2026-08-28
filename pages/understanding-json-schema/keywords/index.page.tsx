@@ -63,7 +63,11 @@ export default function StaticMarkdownPage({ datas }: { datas: DataObject[] }) {
                 <div key={index} className='mt-4'>
                   <div className='flex flex-row items-center gap-2'>
                     <Headline4>{data.name}</Headline4>
-                    <Link href={data.learnjsonschemalink} target='_blank'>
+                    <Link
+                      href={data.learnjsonschemalink}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
                       <Image
                         src={'/icons/external-link.svg'}
                         height={20}
