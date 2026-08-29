@@ -24,6 +24,15 @@ const algoliaAppId: string = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
 const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
 
 /* eslint-enable */
+
+type CalendarEvent = {
+  title: string;
+  time: string;
+  day: string;
+  timezone: string;
+  parsedStartDate: string;
+};
+
 export const getStaticProps: GetStaticProps = async () => {
   const files = fs.readdirSync(PATH);
   const blogPosts = files
@@ -45,9 +54,19 @@ export const getStaticProps: GetStaticProps = async () => {
     .slice(0, 5);
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
-  const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
-    .catch((error) => console.error('Error:', error));
+  let datesInfo: CalendarEvent[] = [];
+  try {
+    const icalData = await fetchRemoteICalFile(remoteICalUrl);
+    if (icalData) {
+      const parsed = ical.parseICS(icalData) as Record<string, unknown>;
+      const events = printEventsForNextWeeks(parsed) as
+        | CalendarEvent[]
+        | undefined;
+      datesInfo = events ?? [];
+    }
+  } catch (error) {
+    console.error('Error fetching iCal data:', error);
+  }
   return { props: { blogPosts, datesInfo, fallback: false } };
 };
 
@@ -78,6 +97,289 @@ export function AlgoliaSearch() {
     </div>
   );
 }
+
+const UPCOMING_EVENTS_PREVIEW = 2;
+
+function UpcomingEventsList({ events }: { events: CalendarEvent[] }) {
+  const [expanded, setExpanded] = React.useState(false);
+  if (!events || events.length === 0) {
+    return (
+      <p className='text-sm text-slate-500 dark:text-slate-400'>
+        No upcoming events scheduled.
+      </p>
+    );
+  }
+  const visible = expanded ? events : events.slice(0, UPCOMING_EVENTS_PREVIEW);
+  const hasMore = events.length > UPCOMING_EVENTS_PREVIEW;
+  return (
+    <>
+      <ul className='space-y-2'>
+        {visible.map((event, index) => (
+          <li key={index}>
+            <div className='flex items-start'>
+              <p className='bg-btnOrange rounded-full w-10 h-10 flex items-center justify-center text-white mr-3 text-sm font-semibold shrink-0'>
+                {event.day}
+              </p>
+              <div className='text-sm leading-snug'>
+                <p className='font-medium text-slate-800 dark:text-slate-100'>
+                  {event.title}
+                </p>
+                <p className='text-slate-500 dark:text-slate-400'>
+                  <b>{event.time}</b> ({event.timezone})
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+      {hasMore && (
+        <button
+          type='button'
+          onClick={() => setExpanded((v) => !v)}
+          aria-expanded={expanded}
+          className='mt-2 text-sm font-semibold text-primary hover:text-blue-700 dark:text-linkBlue dark:hover:text-blue-400 transition-colors'
+        >
+          {expanded
+            ? 'Show less'
+            : `Read more (${events.length - UPCOMING_EVENTS_PREVIEW} more)`}
+        </button>
+      )}
+    </>
+  );
+}
+
+type SponsorEntry = {
+  name: string;
+  href: string;
+  logoKey: keyof LogosMap;
+  width?: number;
+  className?: string;
+};
+
+type LogosMap = Record<string, string>;
+
+const MARQUEE_BASE_DURATION_S = 25;
+const SECONDS_PER_LOGO = 1.5;
+
+function SponsorMarquee({
+  sponsors,
+  logos,
+}: {
+  sponsors: SponsorEntry[];
+  logos: LogosMap;
+}) {
+  const duration = Math.max(
+    MARQUEE_BASE_DURATION_S,
+    sponsors.length * SECONDS_PER_LOGO,
+  );
+  const renderGroup = (isDuplicate: boolean) => (
+    <div
+      className='flex shrink-0 items-center gap-16 animate-marquee group-hover:[animation-play-state:paused] will-change-transform'
+      aria-hidden={isDuplicate ? true : undefined}
+    >
+      {sponsors.map((s) => {
+        const src = logos[s.logoKey] ?? logos.asyncapi ?? '';
+        if (!logos[s.logoKey] && process.env.NODE_ENV !== 'production') {
+          console.warn(
+            `[SponsorMarquee] Missing logo for key "${s.logoKey}" (sponsor: ${s.name})`,
+          );
+        }
+        const img = (
+          <Image
+            src={src}
+            alt={isDuplicate ? '' : `${s.name} logo`}
+            width={150}
+            height={48}
+            className={
+              s.className ?? 'h-12 w-auto max-w-[150px] object-contain'
+            }
+          />
+        );
+        return (
+          <div
+            key={`${isDuplicate ? 'b-' : 'a-'}${s.name}`}
+            className='marquee-item flex h-20 w-48 items-center justify-center shrink-0'
+          >
+            {isDuplicate ? (
+              img
+            ) : (
+              <a
+                href={s.href}
+                target='_blank'
+                rel='noopener noreferrer'
+                aria-label={s.name}
+                className='flex items-center justify-center w-full h-full'
+              >
+                {img}
+              </a>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
+
+  return (
+    <div
+      className='relative w-full flex overflow-hidden py-8 group gap-16'
+      style={{
+        ['--gap' as any]: '4rem',
+        ['--duration' as any]: `${duration}s`,
+        maskImage:
+          'linear-gradient(to right, transparent 0, black 60px, black calc(100% - 60px), transparent 100%)',
+        WebkitMaskImage:
+          'linear-gradient(to right, transparent 0, black 60px, black calc(100% - 60px), transparent 100%)',
+      }}
+    >
+      {renderGroup(false)}
+      {renderGroup(true)}
+    </div>
+  );
+}
+
+const BRONZE_SPONSORS: SponsorEntry[] = [
+  { name: 'AsyncAPI', href: 'https://www.asyncapi.com/', logoKey: 'asyncapi' },
+  { name: 'Airbnb', href: 'https://www.airbnb.com/', logoKey: 'airbnb' },
+  { name: 'LLC', href: 'https://www.llc.org/', logoKey: 'llc' },
+  {
+    name: 'VPS Server',
+    href: 'https://www.vpsserver.com/en-us/',
+    logoKey: 'vpsserver',
+  },
+  {
+    name: 'Route4Me',
+    href: 'https://www.route4me.com/',
+    logoKey: 'route4me',
+  },
+  { name: 'n8n', href: 'https://n8n.io/', logoKey: 'n8n' },
+  {
+    name: 'Apideck',
+    href: 'https://www.apideck.com/',
+    logoKey: 'apideck',
+  },
+  {
+    name: 'RxDB',
+    href: 'https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema',
+    logoKey: 'rxdb',
+  },
+  { name: 'Anon Stories', href: 'https://anonstories.com', logoKey: 'anon' },
+  { name: 'Supadata', href: 'https://supadata.ai/', logoKey: 'supadata' },
+  { name: 'dottxt', href: 'https://dottxt.ai/', logoKey: 'dottxt' },
+  {
+    name: 'Sourcemeta',
+    href: 'https://www.sourcemeta.com/',
+    logoKey: 'sourcemeta',
+  },
+  { name: 'N-iX', href: 'https://www.n-ix.com/', logoKey: 'nix' },
+  { name: 'Oracle', href: 'https://www.oracle.com/', logoKey: 'oracle' },
+  {
+    name: 'Spin the wheel',
+    href: 'https://spinthewheel.io/',
+    logoKey: 'spinthewheel',
+  },
+  {
+    name: 'Time Now',
+    href: 'https://time.now/',
+    logoKey: 'timenow',
+    className: 'w-44 h-auto max-h-20 object-contain',
+  },
+  {
+    name: 'BairesDev',
+    href: 'https://www.bairesdev.com/',
+    logoKey: 'bairesdev',
+  },
+];
+
+if (process.env.NODE_ENV !== 'production') {
+  const missing = BRONZE_SPONSORS.filter((s) => s.logoKey === undefined);
+  if (missing.length) {
+    console.warn(
+      '[SponsorMarquee] Bronze sponsors missing logoKey:',
+      missing.map((s) => s.name),
+    );
+  }
+}
+
+const LOGOS_PATHS: { darkLogos: LogosMap; lightLogos: LogosMap } = {
+  darkLogos: {
+    asyncapi: '/img/logos/dark-mode/asyncapi_white.svg',
+    airbnb: '/img/logos/dark-mode/airbnb_white.png',
+    postman: '/img/logos/usedby/postman-white.png',
+    endjin: '/img/logos/sponsors/endjin-logo.svg',
+    llc: '/img/logos/dark-mode/llc_white.svg',
+    common_room: '/img/logos/dark-mode/common-room_white.svg',
+    slack: '/img/logos/dark-mode/slack_white.svg',
+    vpsserver: '/img/logos/sponsors/vps-server-logo.svg',
+    itflashcards: '/img/logos/sponsors/it_flashcards-white.svg',
+    route4me: '/img/logos/sponsors/route4me-logo-dark.svg',
+    n8n: '/img/logos/sponsors/n8n-logo-dark.svg',
+    ccopter: '/img/logos/sponsors/copycopter-white.png',
+    octue: '/img/logos/sponsors/octue-white.svg',
+    apideck: '/img/logos/sponsors/apideck-white.svg',
+    rxdb: '/img/logos/sponsors/rxdb.svg',
+    wda: '/img/logos/sponsors/wda-dark.svg',
+    anon: '/img/logos/sponsors/anon-white.png',
+    sourcemeta: '/img/logos/sponsors/sourcemeta-logo-light.svg',
+    dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
+    supadata: '/img/logos/sponsors/supadata-logo-light.svg',
+    devevents: '/img/logos/dark-mode/dev_events_logo.png',
+    nix: '/img/logos/sponsors/n-ix-logo.png',
+    oracle: '/img/logos/sponsors/Oracle.png',
+    litslink: '/img/logos/sponsors/litslink_dark.svg',
+    spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+    timenow: '/img/logos/sponsors/time_now_dark.svg',
+    legasset: '/img/logos/sponsors/legasset-logo.svg',
+    bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-light.svg',
+  },
+  lightLogos: {
+    asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
+    airbnb: '/img/logos/sponsors/airbnb-logo.png',
+    postman: '/img/logos/sponsors/postman_logo-orange.svg',
+    endjin: '/img/logos/sponsors/endjin-logo.svg',
+    llc: '/img/logos/sponsors/llc-logo.svg',
+    common_room: '/img/logos/supported/common-room.svg',
+    slack: '/img/logos/supported/slack-logo.svg',
+    vpsserver: '/img/logos/sponsors/vps-server-logo.svg',
+    itflashcards: '/img/logos/sponsors/it_flashcards.svg',
+    route4me: '/img/logos/sponsors/route4me-logo-white.svg',
+    n8n: '/img/logos/sponsors/n8n-logo-white.svg',
+    ccopter: '/img/logos/sponsors/copycopter.png',
+    octue: '/img/logos/sponsors/octue-black.svg',
+    apideck: '/img/logos/sponsors/apideck.svg',
+    rxdb: '/img/logos/sponsors/rxdb.svg',
+    wda: '/img/logos/sponsors/wda.svg',
+    anon: '/img/logos/sponsors/anon-black.png',
+    sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
+    supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
+    dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
+    devevents: '/img/logos/dark-mode/dev_events_logo.png',
+    nix: '/img/logos/sponsors/n-ix-logo.png',
+    oracle: '/img/logos/sponsors/Oracle.png',
+    spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+    litslink: '/img/logos/sponsors/litslink_white.svg',
+    timenow: '/img/logos/sponsors/time_now_white.svg',
+    legasset: '/img/logos/sponsors/legasset-logo-dark.svg',
+    bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-dark.svg',
+  },
+};
+
+if (process.env.NODE_ENV !== 'production') {
+  const bronzeKeys = new Set(BRONZE_SPONSORS.map((s) => s.logoKey));
+  const lightKeys = new Set(Object.keys(LOGOS_PATHS.lightLogos));
+  const darkKeys = new Set(Object.keys(LOGOS_PATHS.darkLogos));
+  const missingInLight = [...bronzeKeys].filter(
+    (k) => !lightKeys.has(k as string),
+  );
+  const missingInDark = [...bronzeKeys].filter(
+    (k) => !darkKeys.has(k as string),
+  );
+  if (missingInLight.length || missingInDark.length) {
+    console.warn(
+      `[SponsorMarquee] Bronze logoKey(s) not present in LOGOS_PATHS — light: ${JSON.stringify(missingInLight)}, dark: ${JSON.stringify(missingInDark)}`,
+    );
+  }
+}
+
 const Home = (props: any) => {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
@@ -89,75 +391,15 @@ const Home = (props: any) => {
     // Ensure the component is only rendered client-side
     setIsClient(true);
   }, []);
-  const LOGOS_PATHS = {
-    darkLogos: {
-      asyncapi: '/img/logos/dark-mode/asyncapi_white.svg',
-      airbnb: '/img/logos/dark-mode/airbnb_white.png',
-      postman: '/img/logos/usedby/postman-white.png',
-      endjin: '/img/logos/sponsors/endjin-logo.svg',
-      llc: '/img/logos/dark-mode/llc_white.svg',
-      common_room: '/img/logos/dark-mode/common-room_white.svg',
-      slack: '/img/logos/dark-mode/slack_white.svg',
-      vpsserver: '/img/logos/sponsors/vps-server-logo.svg',
-      itflashcards: '/img/logos/sponsors/it_flashcards-white.svg',
-      route4me: '/img/logos/sponsors/route4me-logo-dark.svg',
-      n8n: '/img/logos/sponsors/n8n-logo-dark.svg',
-      ccopter: '/img/logos/sponsors/copycopter-white.png',
-      octue: '/img/logos/sponsors/octue-white.svg',
-      apideck: '/img/logos/sponsors/apideck-white.svg',
-      rxdb: '/img/logos/sponsors/rxdb.svg',
-      wda: '/img/logos/sponsors/wda-dark.svg',
-      anon: '/img/logos/sponsors/anon-white.png',
-      sourcemeta: '/img/logos/sponsors/sourcemeta-logo-light.svg',
-      dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
-      supadata: '/img/logos/sponsors/supadata-logo-light.svg',
-      devevents: '/img/logos/dark-mode/dev_events_logo.png',
-      nix: '/img/logos/sponsors/n-ix-logo.png',
-      oracle: '/img/logos/sponsors/Oracle.png',
-      litslink: '/img/logos/sponsors/litslink_dark.svg',
-      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
-      timenow: '/img/logos/sponsors/time_now_dark.svg',
-      legasset: '/img/logos/sponsors/legasset-logo.svg',
-      bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-light.svg',
-    },
-    lightLogos: {
-      asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
-      airbnb: '/img/logos/sponsors/airbnb-logo.png',
-      postman: '/img/logos/sponsors/postman_logo-orange.svg',
-      endjin: '/img/logos/sponsors/endjin-logo.svg',
-      llc: '/img/logos/sponsors/llc-logo.svg',
-      common_room: '/img/logos/supported/common-room.svg',
-      slack: '/img/logos/supported/slack-logo.svg',
-      vpsserver: '/img/logos/sponsors/vps-server-logo.svg',
-      itflashcards: '/img/logos/sponsors/it_flashcards.svg',
-      route4me: '/img/logos/sponsors/route4me-logo-white.svg',
-      n8n: '/img/logos/sponsors/n8n-logo-white.svg',
-      ccopter: '/img/logos/sponsors/copycopter.png',
-      octue: '/img/logos/sponsors/octue-black.svg',
-      apideck: '/img/logos/sponsors/apideck.svg',
-      rxdb: '/img/logos/sponsors/rxdb.svg',
-      wda: '/img/logos/sponsors/wda.svg',
-      anon: '/img/logos/sponsors/anon-black.png',
-      sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
-      supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
-      dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
-      devevents: '/img/logos/dark-mode/dev_events_logo.png',
-      nix: '/img/logos/sponsors/n-ix-logo.png',
-      oracle: '/img/logos/sponsors/Oracle.png',
-      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
-      litslink: '/img/logos/sponsors/litslink_white.svg',
-      timenow: '/img/logos/sponsors/time_now_white.svg',
-      legasset: '/img/logos/sponsors/legasset-logo-dark.svg',
-      bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-dark.svg',
-    },
-  };
 
   const logos = useMemo(
     () =>
-      LOGOS_PATHS[resolvedTheme == 'dark' ? 'darkLogos' : 'lightLogos'] ||
-      LOGOS_PATHS.lightLogos,
+      (resolvedTheme === 'dark'
+        ? LOGOS_PATHS.darkLogos
+        : LOGOS_PATHS.lightLogos) ?? LOGOS_PATHS.lightLogos,
     [resolvedTheme],
   );
+  const mounted = isClient && resolvedTheme !== undefined;
   return (
     <div>
       <div className='flex flex-col items-center'>
@@ -370,102 +612,96 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
+            <div className='p-5 w-full dark:shadow-2xl rounded-lg border border-slate-200 dark:border-slate-700 flex flex-col'>
               <Link
                 href='https://json-schema.org/slack'
                 target='_blank'
                 rel='noopener noreferrer'
+                className='flex-1'
               >
-                <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
+                <h3 className='mb-3 font-semibold flex items-center gap-2 dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
                   {isClient && (
-                    <>
-                      <Image
-                        src='/img/logos/Slack-mark.svg'
-                        className='size-12'
-                        alt='slack'
-                        height={32}
-                        width={32}
-                      />
-                    </>
+                    <Image
+                      src='/img/logos/Slack-mark.svg'
+                      className='size-5'
+                      alt='slack'
+                      height={20}
+                      width={20}
+                    />
                   )}
                 </h3>
-                {isClient && (
-                  <>
-                    <Image
-                      src='/img/home-page/slack-json-schema.png'
-                      className='w-full mb-4'
-                      alt='slack-json-schema'
-                      height={500}
-                      width={300}
-                    />
-                  </>
-                )}
 
-                {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-                <p className='mb-4 dark:text-slate-300 text-balance'>
+                <div className='relative mb-3 overflow-hidden rounded-md border border-slate-200 dark:border-slate-700'>
+                  <Image
+                    src='/img/home-page/slack-json-schema.png'
+                    className='w-full h-auto'
+                    alt='JSON Schema Slack workspace'
+                    width={480}
+                    height={240}
+                    sizes='(max-width: 768px) 100vw, 33vw'
+                  />
+                </div>
+
+                <p className='mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300 text-balance'>
                   Join our Slack to ask questions, get feedback on your
                   projects, and connect with +5000 practitioners and experts.
                 </p>
               </Link>
-              <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'>
-                <a
-                  href='https://json-schema.org/slack'
-                  className='flex items-center'
-                  target='_blank'
-                  rel='noreferrer'
-                >
-                  {isClient && (
-                    <>
-                      <Image
-                        src='/img/logos/slack_logo_small-white.svg'
-                        className='w-4 h-4 mr-2'
-                        width={16}
-                        height={16}
-                        alt='slack'
-                      />
-                    </>
-                  )}
-                  Join Slack
-                </a>
-              </button>
+              <Link
+                href='https://json-schema.org/slack'
+                target='_blank'
+                rel='noreferrer'
+                className='w-full rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center dark:border-none text-sm font-semibold'
+              >
+                {isClient && (
+                  <Image
+                    src='/img/logos/slack_logo_small-white.svg'
+                    className='w-4 h-4 mr-2'
+                    width={16}
+                    height={16}
+                    alt='slack'
+                  />
+                )}
+                Join Slack
+              </Link>
             </div>
             {/* BlogPost Data */}
-            <div className='p-4 w-full mb-6 dark:shadow-2xl'>
-              <Link href={`/blog/posts/${blogPosts[0].slug}`}>
-                <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
+            <div className='p-5 w-full dark:shadow-2xl rounded-lg border border-slate-200 dark:border-slate-700 flex flex-col'>
+              <Link
+                href={`/blog/posts/${blogPosts[0].slug}`}
+                className='flex-1'
+              >
+                <h3 className='mb-3 font-semibold pt-1 dark:text-slate-200'>
                   The JSON Schema Blog
                 </h3>
                 {isClient && (
-                  <>
-                    <Image
-                      src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px] object-contain mb-4'
-                      width={600}
-                      height={232}
-                      alt='blog'
-                    />
-                  </>
+                  <Image
+                    src={blogPosts[0].frontmatter.cover}
+                    className='w-full h-[180px] object-cover rounded mb-3'
+                    width={600}
+                    height={180}
+                    alt='blog'
+                  />
                 )}
-                <h3 className='mb-4 font-semibold dark:text-slate-300'>
-                  {' '}
+                <h3 className='mb-2 font-semibold text-base dark:text-slate-200'>
                   {blogPosts[0].frontmatter.title}
                 </h3>
-                <div className='mb-4'>
+                <div className='mb-3 text-sm leading-relaxed text-slate-600 dark:text-slate-300'>
                   <TextTruncate
                     element='span'
-                    line={4}
+                    line={3}
                     text={blogPosts[0].frontmatter.excerpt}
                   />
                 </div>
 
-                <div className='flex ml-2 mb-2'>
+                <div className='flex items-center ml-1 mb-2'>
                   {(blogPosts[0].frontmatter.authors || []).map(
                     (author: any, index: number) => {
                       return (
                         <div
                           key={index}
-                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
+                          className='bg-slate-50 h-[32px] w-[32px] rounded-full -ml-2 bg-cover bg-center border-2 border-white'
                           style={{
                             backgroundImage: `url(${author.photo})`,
                             zIndex: 10 - index,
@@ -474,8 +710,8 @@ const Home = (props: any) => {
                       );
                     },
                   )}
-                  <div className='flex flex-col ml-2'>
-                    <p className='text-sm font-semibold dark:text-slate-300'>
+                  <div className='flex flex-col ml-3 text-sm'>
+                    <p className='font-semibold dark:text-slate-200'>
                       {blogPosts[0].frontmatter.authors.length > 2 ? (
                         <>
                           {blogPosts[0].frontmatter.authors
@@ -495,7 +731,7 @@ const Home = (props: any) => {
                       )}
                     </p>
 
-                    <div className='text-slate-500 text-sm dark:text-slate-300'>
+                    <div className='text-slate-500 dark:text-slate-400'>
                       <span>
                         {blogPosts[0].frontmatter.date} &middot; {timeToRead}{' '}
                         min read
@@ -505,32 +741,30 @@ const Home = (props: any) => {
                 </div>
               </Link>
 
-              <div>
-                <Link
-                  href={`/blog/posts/${blogPosts[0].slug}`}
-                  className=' w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center pt-1 semi-bold flex items-center justify-center mx-auto dark:border-none'
-                >
-                  Read more{' '}
-                </Link>
-              </div>
+              <Link
+                href={`/blog/posts/${blogPosts[0].slug}`}
+                className='w-full rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] flex items-center justify-center dark:border-none text-sm font-semibold'
+              >
+                Read more
+              </Link>
             </div>
-            <div>
-              <div className='p-4 md:w-full mb-6 mr-4 dark:shadow-2xl'>
+            <div className='lg:col-span-1 flex flex-col gap-4'>
+              <div className='p-5 w-full dark:shadow-2xl rounded-lg border border-slate-200 dark:border-slate-700 flex flex-col'>
                 <h3 className='mb-2 font-semibold dark:text-slate-200'>
-                  JSON Schema Community Meetings & Events
+                  JSON Schema Community Meetings &amp; Events
                 </h3>
-                <p className='mb-4 dark:text-slate-300'>
+                <p className='mb-4 text-sm leading-relaxed text-slate-600 dark:text-slate-300'>
                   We hold monthly Office Hours and Open Community Working
                   Meetings. Office Hours are every first Tuesday of the month
                   and by appointment. Open Community Working Meetings are every
                   third Monday of the month at 12:00 PT.
                 </p>
-                <div className='flex flex-col'>
+                <div className='flex flex-col gap-2 mt-auto'>
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/35'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='w-fit max-w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[40px] px-4 py-2 mb-4 flex items-center justify-center mx-auto dark:border-none'
+                    className='w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[40px] px-4 py-2 flex items-center justify-center dark:border-none text-sm font-semibold'
                   >
                     Open Community Working Meetings
                   </a>
@@ -539,39 +773,21 @@ const Home = (props: any) => {
                     href='https://github.com/orgs/json-schema-org/discussions/34/'
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
+                    className='w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center dark:border-none text-sm font-semibold'
                   >
                     Office Hours
                   </a>
                 </div>
               </div>
-              <div className='p-2'>
-                <div>
-                  <Headline4>Upcoming events</Headline4>
-                  <div>
-                    <ul>
-                      {props.datesInfo.map((event: any, index: any) => (
-                        <li key={index}>
-                          <div className='flex mb-4'>
-                            <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
-                              {event.day}
-                            </p>
-                            <div className='text-sm'>
-                              <p>{event.title}</p>
-                              <p>
-                                <b>{event.time}</b> ({event.timezone})
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
+              <div className='p-5 w-full dark:shadow-2xl rounded-lg border border-slate-200 dark:border-slate-700 flex flex-col'>
+                <Headline4>Upcoming events</Headline4>
+                <div className='mt-2 mb-4 flex-1'>
+                  <UpcomingEventsList events={props.datesInfo} />
                 </div>
 
                 <a
                   href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org'
-                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
+                  className='w-full rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] flex items-center justify-center dark:border-none text-sm font-semibold'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -703,275 +919,23 @@ const Home = (props: any) => {
             >
               Bronze Sponsors
             </h3>
-            <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
-              <a
-                href=' https://www.asyncapi.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.asyncapi}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='asyncapi'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.airbnb.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.airbnb}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='llc'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.llc.org/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.llc}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='llc'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.vpsserver.com/en-us/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.vpsserver}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='vpsserver'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.route4me.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.route4me}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='route4me'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://n8n.io/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.n8n}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='n8n'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.apideck.com/'
-                target='_blank'
-                rel='noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.apideck}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='The Realtime Unified API for Accounting integrations'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.rxdb}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='The local Database for JavaScript Applications'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://anonstories.com'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.anon}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='Instagram Story Viewer'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://supadata.ai/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.supadata}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='supadata logo'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://dottxt.ai/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.dottxt}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='dottxt logo'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.sourcemeta.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.sourcemeta}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='sourcemeta logo'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.n-ix.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.nix}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='n-iX logo'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.oracle.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.oracle}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='Oracle logo'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://spinthewheel.io/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.spinthewheel}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='Spin the wheel logo'
-                    />
-                  </>
-                )}
-              </a>
-              <a href='https://time.now/' target='_blank' rel='noreferrer'>
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.timenow}
-                      className='w-24 transition-transform duration-300 hover:scale-105'
-                      alt='Time Now logo'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.bairesdev.com/'
-                target='_blank'
-                rel='noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.bairesdev}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='legasset logo'
-                    />
-                  </>
-                )}
-              </a>
+            <div className='w-full'>
+              {mounted ? (
+                <SponsorMarquee sponsors={BRONZE_SPONSORS} logos={logos} />
+              ) : (
+                <div
+                  className='relative w-full flex overflow-hidden py-8 gap-16'
+                  aria-hidden='true'
+                  style={{ minHeight: '160px' }}
+                />
+              )}
+            </div>
+            <div className='flex justify-center mt-8'>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
                 rel='noopener noreferrer'
-                className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
+                className='w-[155px] md:w-[176px] h-[44px] rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
               >
                 <svg
                   xmlns='http://www.w3.org/2000/svg'

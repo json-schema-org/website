@@ -24,24 +24,24 @@ module.exports = {
       ab1: '890px',
     },
     fontFamily: {
-      sans: ['Inter', 'ui-sans-serif', 'system-ui'],
-      serif: ['ui-serif', 'Georgia'],
-      mono: ['JetBrains Mono', 'monospace'],
+      sans: ['var(--font-sans)', 'Inter', 'ui-sans-serif', 'system-ui'],
+      serif: ['var(--font-serif)', 'ui-serif', 'Georgia'],
+      mono: ['var(--font-mono)', 'JetBrains Mono', 'ui-monospace', 'monospace'],
     },
     fontSize: {
       sm: '0.8rem',
-      base: '16px',
-      xl: '20px',
-      h5: '20px',
-      h4: '25px',
-      h3: '35px',
-      h2: '45px',
-      h1: '60px',
-      h1mobile: '35px',
-      h2mobile: '28px',
-      h3mobile: '25px',
-      h4mobile: '22px',
-      h5mobile: '20px',
+      base: ['1rem', { lineHeight: '1.75' }],
+      xl: ['1.25rem', { lineHeight: '1.75' }],
+      h5: ['1.25rem', { lineHeight: '1.6', letterSpacing: '-0.005em' }],
+      h4: ['1.5rem', { lineHeight: '1.3', letterSpacing: '-0.015em' }],
+      h3: ['2rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+      h2: ['2.625rem', { lineHeight: '1.15', letterSpacing: '-0.025em' }],
+      h1: ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.03em' }],
+      h1mobile: ['2.25rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
+      h2mobile: ['1.75rem', { lineHeight: '1.2', letterSpacing: '-0.018em' }],
+      h3mobile: ['1.5rem', { lineHeight: '1.25', letterSpacing: '-0.015em' }],
+      h4mobile: ['1.375rem', { lineHeight: '1.3', letterSpacing: '-0.01em' }],
+      h5mobile: ['1.25rem', { lineHeight: '1.5', letterSpacing: '-0.005em' }],
     },
 
     extend: {
@@ -54,10 +54,17 @@ module.exports = {
           from: { height: 'var(--radix-collapsible-content-height)' },
           to: { height: '0' },
         },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
+        },
       },
       animation: {
         'collapsible-down': 'collapsible-down 0.5s ease-in-out',
         'collapsible-up': 'collapsible-up 0.5s ease-in-out',
+        marquee: 'marquee var(--duration, 25s) linear infinite',
+        'marquee-fast': 'marquee 15s linear infinite',
+        'marquee-slow': 'marquee 30s linear infinite',
       },
       backgroundImage: {
         'gradient-radial':
@@ -79,6 +86,20 @@ module.exports = {
       lineHeight: {
         base: '24px',
         header: '74px',
+        tight: '1.15',
+        snug: '1.3',
+        relaxed: '1.7',
+      },
+      letterSpacing: {
+        tightest: '-0.04em',
+        tighter: '-0.025em',
+        tight: '-0.015em',
+        normal: '0',
+        wide: '0.025em',
+        wider: '0.05em',
+      },
+      maxWidth: {
+        prose: '68ch',
       },
       boxShadow: {
         '3xl': ' 0px 0px 20px 5px rgba(0, 0, 0, 0.05)',
