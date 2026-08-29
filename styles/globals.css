@@ -35,7 +35,13 @@
   }
 
   ::selection {
-    @apply bg-primary/15 text-slate-900 dark:bg-primary/30 dark:text-white;
+    background-color: rgb(0 44 196 / 0.15);
+    color: rgb(15 23 42);
+  }
+
+  .dark ::selection {
+    background-color: rgb(0 44 196 / 0.3);
+    color: white;
   }
 
   h1,
