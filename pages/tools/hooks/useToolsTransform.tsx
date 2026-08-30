@@ -46,24 +46,9 @@ const buildQueryString = (transform: Transform) => {
 export default function useToolsTransform(tools: JSONSchemaTool[]) {
   const router = useRouter();
   const { query } = router;
+  const [isReady, setIsReady] = useState(false);
 
-  const [transform, setTransform] = useState<Transform>({
-    query: '',
-    sortBy: 'name',
-    sortOrder: 'ascending',
-    groupBy: 'toolingTypes',
-    languages: [],
-    licenses: [],
-    drafts: [],
-    toolingTypes: [],
-    environments: [],
-    showObsolete: 'false',
-    supportsBowtie: 'false',
-  });
-
-  useEffect(() => {
-    if (!router.isReady) return;
-
+  const getInitialTransform = (): Transform => {
     const parseArrayParam = (
       param: string | string[] | undefined,
     ): string[] => {
@@ -76,7 +61,24 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       return [];
     };
 
-    const updatedTransform = {
+    // If router is not ready, return empty transform (will be updated)
+    if (!router.isReady) {
+      return {
+        query: '',
+        sortBy: 'name',
+        sortOrder: 'ascending',
+        groupBy: 'none',
+        languages: [],
+        licenses: [],
+        drafts: [],
+        toolingTypes: [],
+        environments: [],
+        showObsolete: 'false',
+        supportsBowtie: 'false',
+      };
+    }
+
+    return {
       query: (query.query as Transform['query']) || '',
       sortBy: (query.sortBy as Transform['sortBy']) || 'name',
       sortOrder: (query.sortOrder as Transform['sortOrder']) || 'ascending',
@@ -92,7 +94,15 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
       ) as Transform['environments'],
       showObsolete: query.showObsolete === 'true' ? 'true' : 'false',
       supportsBowtie: query.supportsBowtie === 'true' ? 'true' : 'false',
-    } satisfies Transform;
+    };
+  };
+
+  const [transform, setTransform] = useState<Transform>(getInitialTransform);
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const updatedTransform = getInitialTransform();
 
     const queryString = buildQueryString(updatedTransform);
     const hash = window.location.hash;
@@ -102,7 +112,8 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
     });
 
     setTransform(updatedTransform);
-  }, [router.isReady]);
+    setIsReady(true);
+  }, [router.isReady, query]);
 
   useEffect(() => {
     if (!router.isReady) return;
@@ -187,6 +198,7 @@ export default function useToolsTransform(tools: JSONSchemaTool[]) {
     transform,
     setTransform: updateTransform,
     resetTransform,
+    isReady,
   };
 }
 
