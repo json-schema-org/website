@@ -8,7 +8,7 @@ type: Update
 cover: /img/posts/2026/ietf-cooperation/cover.webp
 authors:
   - name: Greg Dennis
-    photo: /img/avatars/gregsdennis.jpg
+    photo: /img/avatars/gregsdennis.webp
     byline: JSON Schema Specification Editor, JSON Tooling Implementer
 ---
 
