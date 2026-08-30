@@ -183,6 +183,14 @@ JSON Schema offers a variety of keywords to validate data against specific types
 
 Understanding these basic data types gives you a strong foundation for building more complex JSON Schemas.
 
+<!--Remove the text below from this document and add it to the overview of the reference docs-->
+Dive deeper into our reference and explore JSON Schema's flexibility for creating complex data structures:
+
+- [Value restrictions](/understanding-json-schema/reference/generic). Define precise limitations for data, ensuring accuracy and consistency. 
+- [Conditional schema validation](/understanding-json-schema/reference/conditionals). Validate schemas dynamically based on specific conditions.
+- [Schema composition](/understanding-json-schema/reference/generic). Build modular and reusable schemas, making your validation process more efficient and maintainable.
+
+By utilizing these advanced features, you can create robust and flexible JSON Schemas that meet your exact needs.
 
 ## Format[#format]
 
