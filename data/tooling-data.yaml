@@ -3531,3 +3531,17 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'schema-parity'
+  description: 'Checks whether a JSON Schema accepts exactly the same set of values as the runtime validator it was generated from (Zod, ArkType, Valibot, TypeBox, or any other schema-to-JSON-Schema generator), and reports every value where the two disagree. Not a linter against the JSON Schema spec — a differential check between a schema and the tool that produced it.'
+  toolingTypes: ['validator', 'util-testing']
+  languages: ['JavaScript', 'TypeScript']
+  maintainers:
+    - username: 'tamerkalla'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/tamerkalla/schema-parity'
+  homepage: 'https://www.npmjs.com/package/schema-parity'
+  supportedDialects:
+    draft: ['2020-12']
+  toolingListingNotes: 'Library, not a CLI: install it and point it at your own schema/validator pairs. Published with npm provenance attestation.'
