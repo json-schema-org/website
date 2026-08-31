@@ -48,7 +48,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             p: {
               component: ({ children }) => (
-                <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
+                <p className='text-[1.0625rem] leading-relaxed text-slate-700 dark:text-slate-300 block pb-5 max-w-prose'>
                   {children}
                 </p>
               ),
@@ -109,21 +109,21 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             ol: {
               component: ({ children }) => (
-                <ol className='list-decimal mt-2 mb-4 ml-5'>{children}</ol>
+                <ol className='list-decimal mt-3 mb-5 ml-6 space-y-1.5 max-w-prose text-[1.0625rem] text-slate-700 dark:text-slate-300'>
+                  {children}
+                </ol>
               ),
             },
             ul: {
               component: ({ children }) => (
-                <ul className='mt-2 mb-4 list-disc list-outside ml-5'>
+                <ul className='mt-3 mb-5 list-disc list-outside ml-6 space-y-1.5 max-w-prose text-[1.0625rem] text-slate-700 dark:text-slate-300'>
                   {children}
                 </ul>
               ),
             },
             li: {
               component: ({ children }) => (
-                <li className='mt-1 leading-7 text-slate-600 dark:text-slate-300'>
-                  {children}
-                </li>
+                <li className='leading-relaxed'>{children}</li>
               ),
             },
             table: {
@@ -151,7 +151,10 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             td: {
               component: ({ children, rowSpan }) => (
-                <td className='border border-slate-200 p-4' rowSpan={rowSpan}>
+                <td
+                  className='border border-slate-200 dark:border-slate-700 p-4 text-slate-700 dark:text-slate-300'
+                  rowSpan={rowSpan}
+                >
                   {children}
                 </td>
               ),
@@ -196,7 +199,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             },
             blockquote: {
               component: ({ children }) => (
-                <div className='bg-slate-50/50 dark:bg-slate-700 px-4 pt-4 mt-2 mb-4 border-l-2 border-slate-300'>
+                <div className='bg-slate-50/50 dark:bg-slate-700/50 px-5 pt-4 mt-3 mb-5 border-l-2 border-slate-300 dark:border-slate-500 rounded-r-md'>
                   {children}
                 </div>
               ),
@@ -366,8 +369,8 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             Bigquote: {
               component: ({ children }) => {
                 return (
-                  <div className='text-h2mobile md:text-h2 text-center p-10 py-16 font-semibold text-slate-500 dark:text-slate-300 bg-slate-50 dark:bg-slate-700 mb-4 rounded-xl'>
-                    "{children}"
+                  <div className='font-serif text-h2mobile md:text-h3 italic text-center px-6 py-12 md:py-16 font-medium text-slate-600 dark:text-slate-200 bg-slate-50/70 dark:bg-slate-700/40 mb-6 mt-2 rounded-2xl border-y border-slate-200/60 dark:border-slate-600/40 tracking-tight'>
+                    &ldquo;{children}&rdquo;
                   </div>
                 );
               },
@@ -375,7 +378,7 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
             Regularquote: {
               component: ({ children }) => {
                 return (
-                  <div className='text-2xl my-5 mx-8 border-gray-300 bg-gray-300 dark:bg-gray-300 p-4 p-t-6 text-center dark:text-slate-800 rounded-xl'>
+                  <div className='font-serif text-xl md:text-2xl italic my-6 mx-4 md:mx-10 border-l-4 border-slate-300 dark:border-slate-500 bg-slate-50 dark:bg-slate-800/60 p-5 text-slate-700 dark:text-slate-200 rounded-r-xl leading-snug'>
                     {children}
                   </div>
                 );
