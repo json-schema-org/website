@@ -38,7 +38,13 @@ Step 4 is the one that matters. Two libraries disagreeing is easy to find. A tes
 
 Across the 13 formats with published evidence, this method surfaced **87 distinct cross-implementation findings** - documented cases where at least one real, in-use validator diverges from its governing RFC. At least **19 different implementations and libraries** across the matrix were shown wrong in at least one case, including validators that pass the entire existing published suite: [ajv-formats](https://github.com/ajv-validator/ajv-formats), [python-jsonschema](https://github.com/python-jsonschema/jsonschema), Ruby's `IPAddr`, Java's Guava, the WHATWG URL parser, [json-everything](https://github.com/gregsdennis/json-everything), and more than a dozen others.
 
-Nine of those findings were serious enough to file upstream directly, rather than only as suite test cases:
+The findings are not spread evenly, and the reason is more interesting than the count. python-jsonschema accounts for the largest single share, because its `format` checkers delegate to third-party libraries - `isoduration`, `rfc3339-validator`, `rfc3987`, `jsonpointer` - each of which implements a grammar slightly different from the RFC the JSON Schema specification actually points at. One delegation choice then produces divergences across several formats at once.
+
+A second recurring mechanism is anchoring. A regex that is correct in shape but ends in `$`, or omits the end anchor entirely, will accept a trailing newline or trailing junk: `jsonschemafriend` (Java `$` matching before a final line terminator), `opis/json-schema` (missing end anchor) and `tdegrunt/jsonschema` (no anchors at all, so any string *containing* a valid value passes) all fail this way, in three different languages, for the same underlying reason.
+
+After those, it is a long tail - roughly twenty validators with one or two findings each.
+
+Most findings belong in the test suite rather than in a bug tracker: a shared conformance test is the right way to communicate "this input has this verdict" to every implementation at once, and many cases are places where the RFC is ambiguous rather than where a library is broken. Nine were different - reproducible defects with an identifiable cause, worth reporting directly:
 
 - **sourcemeta/core**: [`is_regex_ecma` over-rejections](https://github.com/sourcemeta/core/issues/2757) on valid Unicode property escapes and large quantifier counts, [malformed IPv6 literals accepted](https://github.com/sourcemeta/core/issues/2742) through a fallthrough branch, [uppercase-Punycode A-labels wrongly rejected](https://github.com/sourcemeta/core/issues/2741), a [valid RFC 1123 hostname rejected](https://github.com/sourcemeta/core/issues/2520), and four RFC 3986 URI defects ([#2331](https://github.com/sourcemeta/core/issues/2331), [#2319](https://github.com/sourcemeta/core/issues/2319), [#2318](https://github.com/sourcemeta/core/issues/2318), [#2317](https://github.com/sourcemeta/core/issues/2317))
 - **python-jsonschema**: an [uncaught `ValueError` crash](https://github.com/python-jsonschema/jsonschema/issues/1558) on conflicting regex inline flags, and an [uncaught `decimal.Overflow` crash](https://github.com/python-jsonschema/jsonschema/issues/1511) on a duration with a large exponent
@@ -60,6 +66,8 @@ The clearest single measure is the published test suite itself. Comparing the `f
 ![Published format tests, before and after GSoC 2026 - a bar chart per format showing the test count before the project against the test count after](/img/posts/2026/gsoc26-tushar/format-growth-chart.png)
 
 Published `format` tests across the 19 formats tracked grew from **618 to 838** over the project - a net addition of 220 tests, essentially all of it landing through this project's pull requests. `duration`, `idn-email`, and the `regex` dialect tests had close to no dedicated coverage before this and now have a real baseline. `email` alone more than doubled, from 27 to 71. One format, `json-pointer`, needed no additions at all - its existing coverage held up against the same testing everything else went through.
+
+The work also landed in a second repository. The project was mentored by [Juan Cruz Viotti](https://github.com/jviotti), who maintains [sourcemeta/core](https://github.com/sourcemeta/core) - the C++ library behind [Blaze](https://github.com/sourcemeta/blaze) - so a large part of the effort went into building out its `format` support and test coverage alongside the suite itself. That pairing was useful in both directions: the suite defined what correct behaviour is, and implementing it against a real validator immediately exposed the cases where the definition was underspecified.
 
 Total delivered across both repositories:
 
