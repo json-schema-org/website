@@ -36,13 +36,49 @@ Step 4 is the one that matters. Two libraries disagreeing is easy to find. A tes
 
 ## What the testing found
 
-Across the 13 formats with published evidence, this method surfaced **87 distinct cross-implementation findings** - documented cases where at least one real, in-use validator diverges from its governing RFC. At least **19 different implementations and libraries** across the matrix were shown wrong in at least one case, including validators that pass the entire existing published suite: [ajv-formats](https://github.com/ajv-validator/ajv-formats), [python-jsonschema](https://github.com/python-jsonschema/jsonschema), Ruby's `IPAddr`, Java's Guava, the WHATWG URL parser, [json-everything](https://github.com/gregsdennis/json-everything), and more than a dozen others.
+Across the 13 formats with published evidence, this method produced **270 documented findings against 29 JSON Schema validators** - cases where a real, in-use implementation gives a different verdict than its governing RFC. Most of these validators pass the entire existing published suite.
+
+| validator | findings | formats affected |
+|---|---:|---|
+| [python-jsonschema](https://github.com/python-jsonschema/jsonschema) | 56 | email 25, relative-json-pointer 8, duration 7, uuid 6, idn-email 5, uri-reference 3, date-time 1, uri 1 |
+| ata-validator | 27 | email 23, uri-reference 2, duration 1, uri 1 |
+| [ajv-formats](https://github.com/ajv-validator/ajv-formats) | 24 | uri-reference 8, email 5, idn-email 4, date-time 3, uri 2, uuid 2 |
+| tdegrunt/jsonschema | 16 | json-pointer 6, duration 4, email 4, uri 1, relative-json-pointer 1 |
+| fastjsonschema | 13 | email 8, uri-reference 5 |
+| @exodus/schemasafe | 12 | email 4, uri-reference 4, duration 2, uri 2 |
+| [json-everything](https://github.com/gregsdennis/json-everything) | 11 | relative-json-pointer 11 |
+| @cfworker/json-schema | 10 | email 4, duration 2, uri 2, uri-reference 1, uuid 1 |
+| networknt | 10 | date-time 4, email 3, uri-reference 2, duration 1 |
+| gojsonschema | 10 | email 5, uri-reference 3, ipv4 1, uuid 1 |
+| Newtonsoft.Json.Schema | 9 | json-pointer 5, email 2, uuid 2 |
+| justinrainbow/json-schema | 9 | uri-reference 6, email 3 |
+| api7/jsonschema | 8 | email 6, ipv4 1, uuid 1 |
+| opis/json-schema | 8 | relative-json-pointer 3, duration 2, email 2, uuid 1 |
+| js-json-schema | 7 | uri-reference 5, email 2 |
+| jsonschemafriend | 7 | email 4, relative-json-pointer 2, duration 1 |
+| @swagger-api/apidom | 4 | relative-json-pointer 4 |
+| clojure-json-schema | 4 | email 2, ipv4 1, json-pointer 1 |
+| com.github.java-json-tools | 4 | ipv4 3, uuid 1 |
+| santhosh-tekuri/jsonschema | 4 | uri-reference 3, email 1 |
+| vscode-json-language-service | 4 | email 4 |
+| Corvus.JsonSchema | 3 | email 2, relative-json-pointer 1 |
+| @hyperjump/json-schema | 2 | relative-json-pointer 2 |
+| JSON::Schema::Modern | 2 | uri-reference 2 |
+| z-schema | 2 | uri-reference 2 |
+| json-schema-library | 1 | uri-reference 1 |
+| jsonschema-rs | 1 | duration 1 |
+| openapiprocessor | 1 | uuid 1 |
+| rust-boon | 1 | email 1 |
+
+A note on what those numbers are: they count documented findings in the [evidence repository](https://github.com/vtushar06/JSON-Schema-format-test-Evidence), not failing suite tests. Several findings collapse into a single test case, and inputs where the RFC is ambiguous - leading zeros in `ipv4`, the leap-second month-end - are excluded entirely rather than counted against anyone. `sourcemeta/core` does not appear because across all 13 formats it was the faithful reference, with its only two non-conforming readings both being open specification questions rather than defects.
+
+A separate group sits underneath this table: another 28 libraries that are not JSON Schema validators but that validators delegate to - C's `inet_aton`, Java's Guava, the WHATWG URL parser, ICU4J, GNU libidn2, Python's `email.utils.parseaddr`, Go's `net/mail`, the Rust and Python `idna` crates. Several of the rows above are inherited from these rather than written by the validator authors.
 
 The findings are not spread evenly, and the reason is more interesting than the count. python-jsonschema accounts for the largest single share, because its `format` checkers delegate to third-party libraries - `isoduration`, `rfc3339-validator`, `rfc3987`, `jsonpointer` - each of which implements a grammar slightly different from the RFC the JSON Schema specification actually points at. One delegation choice then produces divergences across several formats at once.
 
 A second recurring mechanism is anchoring. A regex that is correct in shape but ends in `$`, or omits the end anchor entirely, will accept a trailing newline or trailing junk: `jsonschemafriend` (Java `$` matching before a final line terminator), `opis/json-schema` (missing end anchor) and `tdegrunt/jsonschema` (no anchors at all, so any string *containing* a valid value passes) all fail this way, in three different languages, for the same underlying reason.
 
-After those, it is a long tail - roughly twenty validators with one or two findings each.
+What the table shows overall is that this is not a story about one bad library. Twenty-nine validators, in ten languages, each got something wrong - and the two mechanisms above account for a large share of it. `email` and `uri-reference` are the worst affected, which makes sense: they have the largest grammars and the most places to go wrong.
 
 Most findings belong in the test suite rather than in a bug tracker: a shared conformance test is the right way to communicate "this input has this verdict" to every implementation at once, and many cases are places where the RFC is ambiguous rather than where a library is broken. Nine were different - reproducible defects with an identifiable cause, worth reporting directly:
 
