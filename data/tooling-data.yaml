@@ -3531,3 +3531,17 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'schema-mock-gen'
+  description: 'Local offline JSON Schema to mock data generator. Single-file HTML, zero dependency, data stays on your machine, Chinese-friendly, outputs JSON/CSV/SQL.'
+  toolingTypes: ['schema-to-data']
+  languages: ['JavaScript']
+  maintainers:
+    - name: 'aks-666888'
+      username: 'aks-666888'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/aks-666888/schema-mock-gen'
+  homepage: 'https://github.com/aks-666888/schema-mock-gen'
+  supportedDialects:
+    draft: ['2020-12']
