@@ -69,5 +69,5 @@ In their own words:
 <p>We don't move boxes, we don't move resources. We <del>move</del> help people.”</p>
 
 <div className='flex flex-wrap justify-center items-center gap-4 w-full'>
-    <img className='w-full md:w-full lg:w-3/5 xl:w-3/5 2xl:w-3/5 px-20 pt-10 pb-20' src='/img/posts/2024/manfred-case-study/manfred_team.webp' alt='image'/>
+    <img className='w-full md:w-full lg:w-3/5 xl:w-3/5 2xl:w-3/5 px-20 pt-10 pb-20' src='/img/posts/2024/manfred-case-study/manfred_team.webp' alt='Manfred team members working together'/>
 </div>

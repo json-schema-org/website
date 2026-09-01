@@ -65,7 +65,7 @@ export default function ToolingDetailModal({
                 className='h-[48px] w-[48px]'
                 height={48}
                 width={48}
-                alt='landscape logos'
+                alt={`${tool.name} logo`}
               />
             </div>
           )}
