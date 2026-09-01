@@ -26,7 +26,7 @@ export async function getStaticProps() {
 export default function ambassadorPages({
   ambassadorData,
 }: {
-  ambassadorData: any;
+  ambassadorData: string;
 }) {
   return (
     <SectionContext.Provider value='ambassador'>

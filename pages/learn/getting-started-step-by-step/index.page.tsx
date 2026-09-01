@@ -29,13 +29,7 @@ export async function getStaticProps() {
   };
 }
 
-export default function StyledValidator({
-  blocks,
-}: {
-  blocks: any[];
-  frontmatter: any;
-  content: any;
-}) {
+export default function StyledValidator({ blocks }: { blocks: string[] }) {
   const newTitle = 'Creating your first schema';
   const fileRenderType = 'tsx';
   return (
