@@ -308,33 +308,23 @@ border-radius: 4px; */
   display: none;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 2px;
-}
 
-.custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent;
-  margin-block: 4px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
-  /* slate-300 */
-  border-radius: 9999px;
-  cursor: pointer;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #94a3b8;
-  /* slate-400 */
-}
-
-.dark .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #475569;
-  /* slate-600 */
-}
-
-.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #64748b;
-  /* slate-500 */
+@layer components {
+  @media (max-width:767px){
+    .table-container{
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin:0 -1rem;
+    }
+    table{
+      width:100%;
+      table-layout:fixed;
+    }
+    td,th{
+      white-space:normal;
+      word-break:break-word;
+      overflow-wrap:anywhere;
+      padding:0.5rem;
+    }
+  }
 }
