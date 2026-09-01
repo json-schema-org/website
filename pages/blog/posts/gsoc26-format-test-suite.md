@@ -10,7 +10,7 @@ authors:
     photo: /img/avatars/vtushar06.jpg
     link: https://github.com/vtushar06
     byline: GSoC 2026 Contributor @ JSON Schema
-excerpt: "A GSoC 2026 project put every format keyword value against the RFC it's supposed to follow. 126 merged pull requests later, here is what was actually wrong, in how many real validators, and what it means for anyone relying on format."
+excerpt: "A GSoC 2026 project put every format keyword value against the RFC it's supposed to follow. 130 merged pull requests later, here is what was actually wrong, in how many real validators, and what it means for anyone relying on format."
 ---
 
 JSON Schema's `format` keyword asserts that a string looks like an email address, an IPv6 address, a date, a URI, and so on. This year, [Google Summer of Code](https://summerofcode.withgoogle.com/) funded a project at JSON Schema to check whether that assertion is actually true - not against what implementations happen to do, but against the RFC each format value points at.
@@ -101,7 +101,7 @@ The clearest single measure is the published test suite itself. Comparing the `f
 
 ![Published format tests, before and after GSoC 2026 - a bar chart per format showing the test count before the project against the test count after](/img/posts/2026/gsoc26-tushar/format-growth-chart.png)
 
-Published `format` tests across the 19 formats tracked grew from **618 to 838** over the project - a net addition of 220 tests, essentially all of it landing through this project's pull requests. `duration`, `idn-email`, and the `regex` dialect tests had close to no dedicated coverage before this and now have a real baseline. `email` alone more than doubled, from 27 to 71. One format, `json-pointer`, needed no additions at all - its existing coverage held up against the same testing everything else went through.
+Published `format` tests across the 19 formats tracked grew from **618 to 843** over the project - a net addition of 225 tests, essentially all of it landing through this project's pull requests. `duration`, `idn-email`, and the `regex` dialect tests had close to no dedicated coverage before this and now have a real baseline. `email` alone more than doubled, from 27 to 71. One format, `json-pointer`, needed no additions at all - its existing coverage held up against the same testing everything else went through.
 
 The work also landed in a second repository. The project was mentored by [Juan Cruz Viotti](https://github.com/jviotti), who maintains [sourcemeta/core](https://github.com/sourcemeta/core) - the C++ library behind [Blaze](https://github.com/sourcemeta/blaze) - so a large part of the effort went into building out its `format` support and test coverage alongside the suite itself. That pairing was useful in both directions: the suite defined what correct behaviour is, and implementing it against a real validator immediately exposed the cases where the definition was underspecified.
 
@@ -109,14 +109,14 @@ Total delivered across both repositories:
 
 | | merged | in review |
 |---|---:|---:|
-| [JSON-Schema-Test-Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite) | **103** | 7 |
+| [JSON-Schema-Test-Suite](https://github.com/json-schema-org/JSON-Schema-Test-Suite) | **107** | 3 |
 | [sourcemeta/core](https://github.com/sourcemeta/core) | **23** | 0 |
-| **total** | **126** | **7** |
+| **total** | **130** | **3** |
 
 `regex` (ECMA-262 dialect validity) was added to the project's scope partway through, alongside the 18 formats already in the specification - which is why it appears in the totals despite starting from close to nothing.
 
 ## What is still open
 
-Two format questions remain unresolved and are waiting on maintainer rulings rather than more testing: whether the ECMA-262 regex dialect tests should include the Annex B / Unicode-mode-dependent cases, and how the `idn-hostname` / `idn-email` tests should target IDNA profile differences per dialect ([suite#1132](https://github.com/json-schema-org/JSON-Schema-Test-Suite/issues/1132)). Seven pull requests are still in review, mostly `time` coverage.
+Two format questions remain unresolved and are waiting on maintainer rulings rather than more testing: whether the ECMA-262 regex dialect tests should include the Annex B / Unicode-mode-dependent cases, and how the `idn-hostname` / `idn-email` tests should target IDNA profile differences per dialect ([suite#1132](https://github.com/json-schema-org/JSON-Schema-Test-Suite/issues/1132)). Three pull requests are still in review.
 
 The larger point the numbers support: `format` was under-tested primarily because nobody had gone through the exercise of treating each format as its own specification and checking real implementations against it end to end. Once that exercise happened, every format examined turned up at least one real, shipping validator getting something wrong. The [evidence repository](https://github.com/vtushar06/JSON-Schema-format-test-Evidence) has the full input-by-input detail, with reproduction commands, for anyone who wants to check a specific case or extend the method to a format not covered here.
