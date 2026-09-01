@@ -127,9 +127,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
               className='overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down'
               data-test={`accordion-answer-${item.id}`}
             >
-              <div
-                className='px-4 pb-4 text-muted-foreground leading-relaxed'
-              >
+              <div className='px-4 pb-4 text-muted-foreground leading-relaxed'>
                 {item.answer}
               </div>
             </CollapsibleContent>
