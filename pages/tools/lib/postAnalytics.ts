@@ -52,8 +52,6 @@ export async function postAnalytics({
 
     if (!response.ok) {
       console.error('Error posting analytics event:', response.statusText);
-    } else {
-      console.log('Event posted successfully');
     }
   } catch (error) {
     console.error('Error posting event:', error);
