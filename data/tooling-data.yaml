@@ -45,7 +45,7 @@
 
 - name: LateApexEarlySpeed.Json.Schema
   description: 'Simple and high performance json schema implementation for .Net and related json validation in .Net'
-  toolingTypes: ['validator', 'code-to-schema']
+  toolingTypes: ['validator', 'code-to-schema', 'annotations']
   languages: ['.NET']
   maintainers:
     - name: 'LateApexEarlySpeed'
@@ -56,7 +56,7 @@
   homepage: 'https://www.nuget.org/packages/Lateapexearlyspeed.Json.Schema'
   supportedDialects:
     draft: ['7', '2019-09', '2020-12']
-  lastUpdated: '2026-02-10'
+  lastUpdated: '2026-09-02'
 
 - name: f5-json-schema
   description: 'JSON schema validation'
