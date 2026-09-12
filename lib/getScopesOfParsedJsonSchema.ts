@@ -47,6 +47,22 @@ export default function getScopesOfParsedJsonSchema(
     ];
   }
   if (parsedJsonSchema.type === 'array') {
+    if (Array.isArray(parsedJsonSchema.items)) {
+      const tupleItems: any[] = parsedJsonSchema.items;
+      const scopesOfTupleItems = tupleItems.reduce<JsonSchemaPathWithScope[]>(
+        (acc, item, index) => {
+          return [
+            ...acc,
+            ...getScopesOfParsedJsonSchema(
+              item,
+              `${jsonPath}['items'][${index}]`,
+            ),
+          ];
+        },
+        [],
+      );
+      return [typeDefinitionScope, ...scopesOfTupleItems];
+    }
     return [
       typeDefinitionScope,
       ...getScopesOfParsedJsonSchema(
