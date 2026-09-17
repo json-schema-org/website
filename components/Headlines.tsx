@@ -66,7 +66,7 @@ const Headline = ({
     ...propAttributes,
     id: propAttributes?.slug || slug,
     className: cn(
-      'group cursor-pointer hover:underline',
+      'group cursor-pointer hover:underline scroll-mt-28',
       isActive && 'text-startBlue dark:text-startBlue',
       propAttributes?.className,
     ),
@@ -97,7 +97,7 @@ const Headline1Tag = ({ children, attributes }: TagProps) => (
   <h1
     {...attributes}
     className={cn(
-      'text-h1mobile md:text-h1 dark:text-slate-200  font-bold pt-10 mb-6',
+      'text-h1mobile md:text-h1 font-bold tracking-tighter pt-10 mb-6 text-slate-900 dark:text-slate-100',
       attributes?.className,
     )}
   >
@@ -108,7 +108,7 @@ const Headline2Tag = ({ children, attributes }: TagProps) => (
   <h2
     {...attributes}
     className={cn(
-      'text-h2mobile md:text-h2 dark:text-slate-200 font-semibold mt-10 mb-4',
+      'text-h2mobile md:text-h2 font-semibold tracking-tighter mt-12 mb-4 text-slate-900 dark:text-slate-100',
       attributes?.className,
     )}
   >
@@ -119,7 +119,7 @@ const Headline3Tag = ({ children, attributes }: TagProps) => (
   <h3
     {...attributes}
     className={cn(
-      'text-h3mobile dark:text-slate-200 md:text-h3 font-semibold mt-6 mb-3',
+      'text-h3mobile md:text-h3 font-semibold tracking-tight mt-8 mb-3 text-slate-800 dark:text-slate-200',
       attributes?.className,
     )}
   >
@@ -130,7 +130,7 @@ const Headline4Tag = ({ children, attributes }: TagProps) => (
   <h4
     {...attributes}
     className={cn(
-      'text-h4mobile dark:text-slate-200 md:text-h4 font-semibold mt-4 mb-2',
+      'text-h4mobile md:text-h4 font-semibold tracking-tight mt-6 mb-2 text-slate-800 dark:text-slate-200',
       attributes?.className,
     )}
   >

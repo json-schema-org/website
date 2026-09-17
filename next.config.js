@@ -10,7 +10,7 @@ const nextConfig = {
     if (dev && !isServer) {
       config.module.rules.push({
         test: /\.(js|jsx|ts|tsx)$/,
-        exclude: /node_modules/,
+        exclude: [/node_modules/, /lib\/fonts/],
         use: [
           {
             loader: 'babel-loader',

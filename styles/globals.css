@@ -2,6 +2,83 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --font-sans-feature-settings: 'cv11', 'ss01', 'ss03';
+    --font-mono-feature-settings: 'calt', 'liga', 'ss02';
+  }
+
+  html {
+    font-family: var(--font-sans), 'Inter', ui-sans-serif, system-ui,
+      -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: var(--font-sans-feature-settings);
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-padding-top: 100px;
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    @apply bg-white text-[1rem] leading-relaxed text-slate-700 dark:bg-slate-800 dark:text-slate-300;
+    font-feature-settings: var(--font-sans-feature-settings);
+  }
+
+  code,
+  kbd,
+  pre,
+  samp,
+  .font-mono {
+    font-feature-settings: var(--font-mono-feature-settings);
+  }
+
+  ::selection {
+    background-color: rgb(0 44 196 / 0.15);
+    color: rgb(15 23 42);
+  }
+
+  .dark ::selection {
+    background-color: rgb(0 44 196 / 0.3);
+    color: white;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    text-wrap: balance;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+
+  p,
+  li,
+  blockquote {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee,
+  .animate-collapsible-down,
+  .animate-collapsible-up {
+    animation: none !important;
+  }
+}
+
+@layer utilities {
+  .marquee-item img {
+    transition: transform 0.3s ease;
+  }
+
+  .marquee-item:hover img {
+    transform: scale(1.1);
+  }
+}
+
 @layer utilities {
   .clip-bottom {
     clip-path: polygon(0 0, 0 100%, 0% 100%, 100% 85%, 100% 0);
@@ -32,12 +109,6 @@
 
 .text-stroke-1 {
   text-shadow: black 0 0 1em;
-}
-
-html {
-  font-family: 'Inter', sans-serif;
-  scroll-padding-top: 100px;
-  scroll-behavior: smooth;
 }
 
 .DocSearch-Button-Keys {
@@ -273,12 +344,6 @@ border-radius: 4px; */
 
 .bg-index-5 {
   background-color: #773cff84;
-}
-
-@layer base {
-  body {
-    @apply dark:bg-slate-800 bg-white;
-  }
 }
 
 .no-scroll {
