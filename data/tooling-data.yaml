@@ -3531,3 +3531,17 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+- name: json-schema-generator
+  description: 'Natural language to JSON Schema 2020-12 generator. Zero-dependency, runs offline, ships with example data and validation notes.'
+  toolingTypes: ['model-to-schema']
+  languages: ['Python']
+  maintainers:
+    - name: 'XiaoqiangDev'
+      username: 'aks-666888'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/aks-666888/json-schema-generator'
+  supportedDialects:
+    draft: ['2020-12']
+  lastUpdated: '2026-08-10'
+  status: 'active'
