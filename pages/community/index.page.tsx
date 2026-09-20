@@ -166,6 +166,18 @@ export default function CommunityPages(props: any) {
               link='https://github.com/json-schema-org/.github/blob/main/CONTRIBUTING.md'
             />
           </div>
+          <div className='mt-8 md:w-11/12 lg:w-10/12 xl:w-10/12 m-auto'>
+            <Card
+              key='resource-hub'
+              icon='/icons/book.svg'
+              title='Resource Hub'
+              body='Explore community-authored tutorials, articles, talks, tools, and other resources for learning and working with JSON Schema.'
+              headerSize='large'
+              bodyTextSize='medium'
+              link='https://github.com/sourcemeta/awesome-jsonschema'
+              linkText='Explore Resources →'
+            />
+          </div>
         </section>
         <div className='m-auto w-12/12 md:w-11/12 lg:w-10/12 xl:w-10/12'>
           <div className='z-40 mt-20 mx-auto w-full md:h-[520px] md:flex grid grid-cols-1 lg:grid-cols-2 md:justify-between rounded-lg border border-gray-200 bg-white transition-colors hover:bg-slate-100 dark:bg-slate-800 hover:dark:bg-slate-900/30 shadow-3xl dark:shadow-2xl dark:shadow-slate-900'>
