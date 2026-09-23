@@ -45,9 +45,15 @@ export const getStaticProps: GetStaticProps = async () => {
     .slice(0, 5);
   const remoteICalUrl =
     'https://calendar.google.com/calendar/ical/info%40json-schema.org/public/basic.ics';
-  const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
-    .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
-    .catch((error) => console.error('Error:', error));
+  const datesInfo =
+    (await fetchRemoteICalFile(remoteICalUrl)
+      .then((icalData: any) =>
+        icalData ? printEventsForNextWeeks(ical.parseICS(icalData)) : [],
+      )
+      .catch((error) => {
+        console.error('Error:', error);
+        return [];
+      })) || [];
   return { props: { blogPosts, datesInfo, fallback: false } };
 };
 

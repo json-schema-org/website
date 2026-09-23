@@ -3531,3 +3531,21 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'schema-envoy'
+  description: "Converts a JSON Schema into an LLM provider's accepted schema subset (OpenAI strict mode, Gemini's two schema surfaces) and returns a machine-checked report of every value whose accept/reject status changed as a result, with a concrete witness value for each. Also returns a residual validator covering exactly the constraints the provider drops, so those constraints can still be enforced on the response."
+  toolingTypes: ['util-schema-to-schema']
+  languages: ['JavaScript', 'TypeScript']
+  environments: ['Node.js']
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv']
+  maintainers:
+    - name: 'Tamer Kalla'
+      username: 'tamerkalla'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/tamerkalla/schema-envoy'
+  homepage: 'https://www.npmjs.com/package/schema-envoy'
+  supportedDialects:
+    draft: ['7', '2020-12']
+  lastUpdated: '2026-09-09'
+
