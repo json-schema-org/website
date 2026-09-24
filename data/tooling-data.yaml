@@ -3531,3 +3531,18 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'json-schema-diff'
+  description: 'Zero-dependency JSON Schema breaking-change detector for API versioning. Compares two schemas and classifies every difference as BREAKING, compatible, or info, so teams catch accidental breaking contract changes in CI before they ship.'
+  toolingTypes: ['util-schema-to-schema', 'util-testing']
+  languages: ['Python']
+  maintainers:
+    - name: 'Ron Farrer'
+      username: 'errantsolutions'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/errantsolutions/json-schema-diff'
+  homepage: 'https://github.com/errantsolutions/json-schema-diff'
+  supportedDialects:
+    draft: ['7', '2020-12']
+  lastUpdated: '2026-09-24'
