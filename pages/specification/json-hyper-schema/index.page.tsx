@@ -7,6 +7,7 @@ import { SectionContext } from '~/context';
 import { Headline1 } from '~/components/Headlines';
 import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
+import { Frontmatter, BlocksData } from '~/types/common';
 
 export async function getStaticProps() {
   const index = fs.readFileSync(
@@ -29,22 +30,32 @@ export async function getStaticProps() {
   };
 }
 
+interface SpecificationFrontmatter extends Frontmatter {
+  Specification?: string;
+}
+
 export default function ImplementationsPages({
   blocks,
   frontmatter,
 }: {
-  blocks: any;
-  frontmatter: any;
+  blocks: BlocksData;
+  frontmatter: SpecificationFrontmatter;
 }) {
   const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value={null}>
       <Headline1>{frontmatter.title}</Headline1>
-      <h1>{frontmatter.type}</h1>
-      <h2>{frontmatter.Specification}</h2>
+      {frontmatter.type && (
+        <h1>
+          {Array.isArray(frontmatter.type)
+            ? frontmatter.type.join(', ')
+            : frontmatter.type}
+        </h1>
+      )}
+      {frontmatter.Specification && <h2>{frontmatter.Specification}</h2>}
 
       <StyledMarkdown markdown={blocks.index} />
-      <StyledMarkdown markdown={blocks.body} />
+      {blocks.body && <StyledMarkdown markdown={blocks.body} />}
       <NextPrevButton
         prevLabel={frontmatter?.prev?.label}
         prevURL={frontmatter?.prev?.url}
