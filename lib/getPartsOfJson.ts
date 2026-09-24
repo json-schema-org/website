@@ -6,10 +6,10 @@ const regexObject =
 const regexArray =
   /^\s*(?<arrayStartBracket>\[)(?<arrayContent>.*)(?<arrayEndBracket>\])\s*$/g;
 const regexNumber = /^\s*(?<number>-?\d+(\.\d+)?([Ee][+-]?\d+)?)\s*$/g;
-const regexString = /^\s*(?<string>"(\\"|[^"])*")\s*$/g;
+const regexString = /^\s*(?<string>"(?:[^"\\]|\\.)*")\s*$/g;
 const regexBoolean = /^\s*(?<boolean>true|false)\s*$/g;
 const regexNull = /^\s*(?<null>null)\s*$/g;
-const regexDoubleQuote = /(?<!\\)"/g;
+const regexDoubleQuote = /(?<=(?:^|[^\\])(?:\\\\)*)"/g;
 const regexCommaOrEndOfLine = /,/g;
 
 export type SyntaxPart = {
