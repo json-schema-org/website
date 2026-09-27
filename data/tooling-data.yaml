@@ -268,7 +268,7 @@
       platform: 'github'
   license: 'Apache-2.0'
   source: 'https://github.com/Yakwilik/go-yamlvalidator'
-  documentation: 'https://pkg.go.dev/github.com/Yakwilik/go-yamlvalidator'
+  homepage: 'https://pkg.go.dev/github.com/Yakwilik/go-yamlvalidator'
   supportedDialects:
     draft: ['4', '6', '7', '2019-09', '2020-12']
   toolingListingNotes: 'Validates YAML through the JSON data model and maps JSON Schema diagnostics back to YAML source locations; also supports custom formats, keywords, vocabularies, and explicit resource resolvers.'
