@@ -15,6 +15,7 @@ import {
   fetchRemoteICalFile,
   printEventsForNextWeeks,
 } from '../../lib/calendarUtils';
+import LocalizedTime from '~/components/LocalizedTime';
 
 export const getStaticProps: GetStaticProps = async () => {
   const PATH = 'pages/blog/posts';
@@ -46,7 +47,7 @@ export const getStaticProps: GetStaticProps = async () => {
   return {
     props: {
       blogPosts,
-      datesInfo,
+      datesInfo: datesInfo ?? [],
       fallback: false,
     },
   };
@@ -286,7 +287,10 @@ export default function CommunityPages(props: any) {
                         <b className='text-blue-700'>{event.title}</b>
                         <br />
                         <span>
-                          {event.time}({event.timezone})
+                          <LocalizedTime
+                            utcTime={event.time}
+                            utcDate={event.parsedStartDate}
+                          />
                         </span>
                       </p>
                     </div>
