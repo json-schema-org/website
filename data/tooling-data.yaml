@@ -3531,3 +3531,20 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+- name: 'DriftWire'
+  description: 'API contract drift detector CLI. `driftwire check` validates live API responses against an OpenAPI 3.x schema; `driftwire diff` detects breaking changes between two spec versions. Runs locally or as a CI gate (GitHub Action).'
+  toolingTypes: ['validator', 'util-testing']
+  languages: ['Python']
+  maintainers:
+    - name: 'Meridian Digital'
+      username: 'haswell119'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/Haswell119/driftwire'
+  homepage: 'https://haswell119.github.io/driftwire/'
+  supportedDialects:
+    draft: ['2020-12']
+  environments: ['Command Line', 'GitHub Actions']
+  lastUpdated: '2026-09-22'
+  status: 'active'
+
