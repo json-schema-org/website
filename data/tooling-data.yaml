@@ -622,6 +622,34 @@
     draft: ['2020-12']
   lastUpdated: '2023-03-28'
 
+- name: ata-validator
+  description: 'JSON Schema validator that compiles to plain JavaScript, runs where code generation is blocked, and can be compiled away at build time.'
+  toolingTypes: ['validator', 'schema-to-code', 'schema-to-types']
+  languages: ['JavaScript', 'TypeScript']
+  environments: ['Node.js', 'Bun', 'Deno', 'Browser', 'Cloudflare Workers']
+  creators:
+    - name: 'Mert Can Altin'
+      username: 'mertcanaltin'
+      platform: 'github'
+  maintainers:
+    - name: 'Mert Can Altin'
+      username: 'mertcanaltin'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/ata-core/ata-validator'
+  homepage: 'https://ata-validator.com'
+  supportedDialects:
+    draft: ['7', '2020-12']
+    additional:
+      - name: 'JSON Schema v1'
+        source: 'https://json-schema.org/v1'
+  toolingListingNotes: 'Compiles schemas to JavaScript functions, and falls back to an interpreter with the same results where code generation is blocked (Cloudflare Workers, strict Content-Security-Policy). Schemas can also be compiled ahead of time into standalone modules that import nothing. Passes the full official test suite for Draft 2020-12 and Draft 7.'
+  compliance:
+    config:
+      docs: 'https://github.com/ata-core/ata-validator#readme'
+      instructions: 'set `useDefaults: false` and `assertFormat: false`, and declare `$schema` for Draft 7 schemas'
+  lastUpdated: '2026-09-29'
+
 - name: Medeia-validator
   description: 'Medeia JSON-Schema Validator'
   toolingTypes: ['validator']
