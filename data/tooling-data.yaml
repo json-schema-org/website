@@ -1015,21 +1015,24 @@
   lastUpdated: '2022-08-31'
 
 - name: JSON Schema Lint
-  description: 'JSON Schema Lint'
+  description: 'An in-browser JSON schema linter'
   toolingTypes: ['validator']
   environments: ['Web (Online)']
   dependsOnValidators: ['https://github.com/ajv-validator/ajv']
+  creators:
+    - name: 'Nick Maynard'
+      username: 'nickcmaynard'
+      platform: 'github'
   maintainers:
     - name: 'Nick Maynard'
       username: 'nickcmaynard'
       platform: 'github'
   license: 'MIT'
   source: 'https://github.com/nickcmaynard/jsonschemalint'
-  homepage: 'http://jsonschemalint.com/'
+  homepage: 'https://jsonschemalint.com'
   supportedDialects:
-    draft: ['1', '2', '3', '4', '6', '7']
-  toolingListingNotes: 'Uses JSV for draft-03 and earlier'
-  lastUpdated: '2022-08-31'
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  lastUpdated: '2026-09-08'
 
 - name: ExtendsClass's JSON Schema Validator
   description: 'JSON Schema Validator and Generator'
