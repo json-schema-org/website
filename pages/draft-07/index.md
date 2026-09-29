@@ -3,7 +3,7 @@ title: 'Draft-07'
 Published: '19 March 2018'
 type: docs
 authors: ['Austin Wright', 'Henry Andrews']
-Metaschema: 'https://json-schema.org/draft-07/schema'
+Metaschema: 'http://json-schema.org/draft-07/schema'
 Specification: 'https://json-schema.org/draft-07/draft-handrews-json-schema-01.html'
 prev:
   label: Draft 2019-09
@@ -22,7 +22,7 @@ The JSON Schema Draft-07 introduces various updates to enhance the functionality
 - Core: [draft-handrews-json-schema-01](https://json-schema.org/draft-07/draft-handrews-json-schema-01.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-01.html#rfc.appendix.B))
 - Validation: [draft-handrews-json-schema-validation-01](https://json-schema.org/draft-07/draft-handrews-json-schema-validation-01.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-validation-01.html#rfc.appendix.B))
 - Hyper-Schema: [draft-handrews-json-schema-hyperschema-01](https://json-schema.org/draft-07/draft-handrews-json-schema-hyperschema-01.html) ([changes](https://json-schema.org/draft-07/draft-handrews-json-schema-hyperschema-01.html#rfc.appendix.B))
-- [JSON Schema meta-schema](https://json-schema.org/draft-07/schema)
+- [JSON Schema meta-schema](http://json-schema.org/draft-07/schema)
 - [JSON Hyper-Schema meta-schema](https://json-schema.org/draft-07/hyper-schema)
 - [JSON Hyper-Schema Link Description Object meta-schema](https://json-schema.org/draft-07/links)
 - [JSON Hyper-Schema recommended output schema](https://json-schema.org/draft-07/hyper-schema-output)
