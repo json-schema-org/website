@@ -3531,3 +3531,26 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'Schemagic'
+  description: 'Schemagic is a visual JSON Schema editor with built-in payload validation and easy schema sharing.'
+  toolingTypes:
+    [
+      'editor',
+      'validator',
+      'schema-to-web-UI',
+      'documentation',
+    ]
+  languages: ['JSON', 'YAML', 'CSV']
+  creators:
+    - name: 'Vladimir Ivakin'
+      username: 'Minhir'
+      platform: 'github'
+    - name: 'Ekaterina Mozheiko'
+      username: 'EkaterinaMozheiko'
+      platform: 'github'
+  license: 'Proprietary'
+  homepage: 'https://schemagic.app/'
+  supportedDialects:
+    draft: ['2020-12']
+  toolingListingNotes: 'Editor, Validator, Schema To Web UI, Documentation'
