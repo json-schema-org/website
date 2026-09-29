@@ -241,7 +241,7 @@ export default function CommunityPages(props: any) {
                     We hold monthly Office Hours and weekly Open Community
                     Working Meetings. Office Hours are every first Tuesday of
                     the month at 15:00 BST, and by appointment. Open Community
-                    Working Meetings are every Monday at 14:00 PT.
+                    Working Meetings are every Monday at 12:00 PT.
                   </h2>
                   <div className='mt-10 flex justify-center'>
                     <a
