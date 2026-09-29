@@ -3531,3 +3531,23 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'vacuum'
+  description: 'An ultra-super-fast, lightweight OpenAPI, AsyncAPI and JSON Schema linter and quality checking tool inspired by Spectral. It is fully compatible with existing Spectral rulesets and allows for the creation of custom rulesets.'
+  toolingTypes: ['linter']
+  languages: ['Go', 'JavaScript']
+  environments: ['MacOS', 'Linux', 'Windows']
+  dependsOnValidators: ['https://github.com/santhosh-tekuri/jsonschema']
+  creators:
+    - name: 'Dave Shanley'
+      username: 'daveshanley'
+      platform: 'github'
+  maintainers:
+    - name: 'Dave Shanley'
+      username: 'daveshanley'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/daveshanley/vacuum'
+  homepage: 'https://quobix.com/vacuum/'
+  supportedDialects:
+    draft: ['1', '2', '3', '4', '6', '7', '2019-09', '2020-12']
