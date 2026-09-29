@@ -63,9 +63,11 @@ export function DocsHelp({
     if (selectedVote == value) {
       setIsFormOpen(false);
       setSelectedVote(null);
+      setError('');
     } else {
       setIsFormOpen(true);
       setSelectedVote(value);
+      setError('');
     }
   };
   // Generate GitHub redirect URL
@@ -275,6 +277,7 @@ export function DocsHelp({
                         name='feedback-comment'
                         id='feedback-comment'
                         data-test='feedback-form-input'
+                        onChange={() => setError('')}
                       />
                     </div>
 
