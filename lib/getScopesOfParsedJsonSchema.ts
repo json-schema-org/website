@@ -10,7 +10,7 @@ export type JsonSchemaPathWithScope = {
  * Recursively parses a JSON Schema to map JSON paths to their corresponding scope types.
  * This is primarily used to bind interactive UI elements to specific schema definitions
  * in the schema editor.
- * 
+ *
  * @param parsedJsonSchema - The parsed JSON Schema object or sub-schema.
  * @param jsonPath - The current JSON path prefix (defaults to the root '$').
  * @returns An array of objects mapping the calculated JSON paths to their scopes.
