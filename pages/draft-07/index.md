@@ -29,7 +29,7 @@ The JSON Schema Draft-07 introduces various updates to enhance the functionality
 - Relative JSON Pointer: [draft-handrews-relative-json-pointer-01](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01) ([changes](https://tools.ietf.org/html/draft-handrews-relative-json-pointer-01#appendix-B))
 - Published: 19-March-2018
 
-#### Obsolete Draft 7 Documents
+#### Obsolete Draft 7 Documents[#obsolete-draft-7-documents]
 
 _These were updated without changing functionality or meta-schemas due to a few errors and unclear sections._
 

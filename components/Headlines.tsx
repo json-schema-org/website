@@ -87,7 +87,11 @@ const Headline = ({
   const attributes = {
     ...propAttributes,
     id: propAttributes?.slug || slug,
-    className: cn('group cursor-pointer', propAttributes?.className),
+    className: cn(
+      'group cursor-pointer hover:underline scroll-mt-24',
+      isActive && 'text-startBlue dark:text-startBlue',
+      propAttributes?.className,
+    ),
     onClick: handleHeadingClick,
     'data-test': 'headline',
   };
