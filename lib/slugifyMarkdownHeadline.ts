@@ -5,8 +5,11 @@ export default function slugifyMarkdownHeadline(
 ): string {
   const FRAGMENT_REGEX = /\[#(?<slug>(\w|-|_)*)\]/g;
   if (!markdownChildren) return '';
-  if (typeof markdownChildren === 'string')
+  if (typeof markdownChildren === 'string') {
+    const fragment = /\[#(?<slug>(\w|-|_)*)\]/.exec(markdownChildren);
+    if (fragment?.groups?.slug) return fragment.groups.slug;
     return slugify(markdownChildren, { lower: true, trim: true });
+  }
   const metaSlug = markdownChildren.reduce((acc, child) => {
     if (acc) return acc;
     if (typeof child !== 'string') return null;
