@@ -3,10 +3,10 @@ import slugify from 'slugify';
 export default function slugifyMarkdownHeadline(
   markdownChildren: string | any[],
 ): string {
-  const FRAGMENT_REGEX = /\[#(?<slug>(\w|-|_)*)\]/g;
+  const FRAGMENT_REGEX = /\[#(?<slug>[\w-]*)\]/g;
   if (!markdownChildren) return '';
   if (typeof markdownChildren === 'string') {
-    const fragment = /\[#(?<slug>(\w|-|_)*)\]/.exec(markdownChildren);
+    const fragment = /\[#(?<slug>[\w-]*)\]/.exec(markdownChildren);
     if (fragment?.groups?.slug) return fragment.groups.slug;
     return slugify(markdownChildren, { lower: true, trim: true });
   }
