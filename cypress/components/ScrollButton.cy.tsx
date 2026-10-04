@@ -2,43 +2,81 @@
 import React from 'react';
 import ScrollButton from '~/components/ScrollButton';
 
+const LONG_PAGE_HEIGHT = 4000;
+const MAX_SCROLL_Y = LONG_PAGE_HEIGHT - 720;
+
 describe('ScrollButton Component', () => {
   beforeEach(() => {
-    // Mount the ScrollButton component with a tall container
+    cy.viewport(1280, 720);
+    // Mount the ScrollButton component with a tall (long page) container
     cy.mount(
-      <div style={{ height: '1000px' }}>
+      <div style={{ height: `${LONG_PAGE_HEIGHT}px` }}>
         <ScrollButton />
       </div>,
     );
   });
 
-  it('should render and function correctly', () => {
-    // Initially, the button should not exist
-    cy.get('[data-test="scroll-button"]').should('not.exist');
-
-    // Scroll to trigger button appearance (use a value well above the 150px threshold)
-    cy.window().scrollTo(0, 200);
-
-    // Wait a bit for the scroll event to be processed
+  it('should show a scroll-to-bottom arrow at the top of long pages', () => {
+    // At the very top the down arrow should be available
+    cy.window().scrollTo(0, 0);
     cy.wait(100);
 
-    // Check if the button exists
-    cy.get('[data-test="scroll-button"]').should('exist');
+    cy.get('[data-test="scroll-button"]')
+      .should('exist')
+      .and('have.attr', 'aria-label', 'Scroll to bottom');
 
-    // Click the button
+    // Clicking it smooth-scrolls to the bottom of the page
     cy.get('[data-test="scroll-button"]').click();
+    cy.wait(1000);
 
-    // Wait for smooth scroll to complete
-    cy.wait(500);
+    cy.window().its('scrollY').should('be.closeTo', MAX_SCROLL_Y, 20);
 
-    // Check if the window scroll to top (allow for small variations due to browser rounding)
+    // Near the bottom the button now lets you scroll back to top
+    cy.get('[data-test="scroll-button"]').should(
+      'have.attr',
+      'aria-label',
+      'Scroll to top',
+    );
+  });
+
+  it('should switch to scroll-to-top and hide in the scroll gap', () => {
+    // Scroll past the threshold to trigger the scroll-to-top button
+    cy.window().scrollTo(0, 200);
+    cy.wait(100);
+
+    cy.get('[data-test="scroll-button"]')
+      .should('exist')
+      .and('have.attr', 'aria-label', 'Scroll to top');
+
+    // Click the button and wait for the smooth scroll to complete
+    cy.get('[data-test="scroll-button"]').click();
+    cy.wait(1000);
+
     cy.window().its('scrollY').should('be.closeTo', 0, 1);
 
-    // check again if the button is not exist
+    // Between the down-arrow zone and the up-arrow threshold no button shows
+    cy.window().scrollTo(0, 149);
+    cy.wait(100);
     cy.get('[data-test="scroll-button"]').should('not.exist');
 
-    // when window scrollY is <150 the button should not exist
-    cy.window().scrollTo(0, 149);
+    cy.window().scrollTo(0, 100);
+    cy.wait(100);
+    cy.get('[data-test="scroll-button"]').should('not.exist');
+  });
+
+  it('should not appear on short pages', () => {
+    // Remount inside a short container (below the long-page threshold)
+    cy.mount(
+      <div style={{ height: '1000px' }}>
+        <ScrollButton />
+      </div>,
+    );
+
+    cy.window().scrollTo(0, 200);
+    cy.wait(100);
+    cy.get('[data-test="scroll-button"]').should('not.exist');
+
+    cy.window().scrollTo('bottom');
     cy.wait(100);
     cy.get('[data-test="scroll-button"]').should('not.exist');
   });
