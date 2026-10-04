@@ -30,9 +30,9 @@
   lastUpdated: '2024-06-08'
 
 - name: Corvus.JsonSchema
-  description: 'Support for Json Schema validation and entity generation'
+  description: 'Support for Json Schema validation and entity generation. The runtime evaluator is available for .NET (Corvus.Text.Json), TypeScript and JavaScript (@corvus-dotnet/json-schema on npm) and Rust (corvus-json-schema on crates.io).'
   toolingTypes: ['validator']
-  languages: ['.NET']
+  languages: ['.NET', 'TypeScript', 'Rust']
   maintainers:
     - name: 'Matthew Adams'
       username: 'mwadams'
@@ -40,8 +40,8 @@
   license: 'Apache-2.0'
   source: 'https://github.com/corvus-dotnet/corvus.jsonschema'
   supportedDialects:
-    draft: ['6', '7', '2019-09', '2020-12']
-  lastUpdated: '2023-02-14'
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  lastUpdated: '2026-10-01'
 
 - name: LateApexEarlySpeed.Json.Schema
   description: 'Simple and high performance json schema implementation for .Net and related json validation in .Net'
@@ -1607,7 +1607,7 @@
   license: 'Apache-2.0'
   homepage: 'https://www.nuget.org/packages/Corvus.Json.JsonSchema.TypeGeneratorTool/'
   supportedDialects:
-    draft: ['6', '7', '2019-09', '2020-12']
+    draft: ['4', '6', '7', '2019-09', '2020-12']
 
 - name: json-schema-to-elm
   description: 'Generates Elm types, JSON decoders+encoders, and fuzz tests from one or more JSON Schema files.'
