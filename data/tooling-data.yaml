@@ -886,6 +886,29 @@
     draft: ['4', '6', '7', '2019-09', '2020-12']
   lastUpdated: '2023-02-22'
 
+- name: rsonschema
+  description: 'A high-performance JSON Schema validator for Rust and Python, designed for low-overhead and memory-efficient validation.'
+  toolingTypes: ['validator']
+  languages: ['Rust', 'Python']
+  creators:
+    - name: 'Dario Curreri'
+      username: 'dariocurr'
+      platform: 'github'
+  maintainers:
+    - name: 'Dario Curreri'
+      username: 'dariocurr'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/hiop-oss/rsonschema'
+  homepage: 'https://docs.rs/rsonschema'
+  supportedDialects:
+    draft: ['2020-12']
+  compliance:
+    config:
+      docs: 'https://github.com/hiop-oss/rsonschema'
+      instructions: 'tested against the JSON-Schema-Test-Suite'
+  lastUpdated: '2026-04-17'
+
 - name: Reactive Core Circe JSON Validator
   description: 'This is a Scala implementation of a JSON Schema validator based upon the great io.circe Library.'
   toolingTypes: ['validator']
