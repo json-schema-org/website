@@ -7,16 +7,96 @@ import Image from 'next/image';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import { hiddenElements } from '~/lib/markdownUtils';
 import { FullMarkdownContext } from '~/context';
+import { cn } from '~/lib/utils';
 
 interface TableOfContentMarkdownProps {
   markdown: string;
   depth?: number;
 }
 
+const useScrollSpy = (markdown: string) => {
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getSlugs = () =>
+      Array.from(
+        document.querySelectorAll<HTMLAnchorElement>('[data-toc-link]'),
+      )
+        .map((element) => element.getAttribute('href')?.replace('#', ''))
+        .filter((slug): slug is string => Boolean(slug));
+
+    const getSections = () => {
+      const slugSet = new Set(getSlugs());
+      return Array.from(
+        document.querySelectorAll<HTMLElement>(
+          'h1[id], h2[id], h3[id], h4[id]',
+        ),
+      ).filter((element) => slugSet.has(element.id));
+    };
+
+    let sections = getSections();
+    let ticking = false;
+
+    const update = () => {
+      const header = document.querySelector('header');
+      const scrollOffset = (header?.getBoundingClientRect().height ?? 84) + 24;
+
+      let current: string | null = null;
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top <= scrollOffset) {
+          current = section.id;
+        } else {
+          break;
+        }
+      }
+
+      const hash = window.location.hash.replace('#', '');
+      if (!current && hash && getSlugs().includes(hash)) {
+        current = hash;
+      }
+
+      setActiveSection((previous) =>
+        previous === current ? previous : current,
+      );
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(() => {
+        update();
+        ticking = false;
+      });
+    };
+
+    sections = getSections();
+    update();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+    };
+  }, [markdown]);
+
+  return activeSection;
+};
+
 export function TableOfContentMarkdown({
   markdown,
   depth = 2,
 }: TableOfContentMarkdownProps) {
+  const activeSection = useScrollSpy(markdown);
+
+  const headingClassName = (baseClass: string, slug: string) =>
+    cn(
+      baseClass,
+      activeSection === slug &&
+        'text-blue-600 dark:text-blue-400 font-semibold',
+    );
+
   return (
     <Markdown
       options={{
@@ -24,10 +104,16 @@ export function TableOfContentMarkdown({
           h1: {
             component: ({ children }) => {
               const slug = slugifyMarkdownHeadline(children);
+              const isActive = activeSection === slug;
               return (
                 <a
                   href={`#${slug}`}
-                  className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
+                  data-toc-link
+                  aria-current={isActive ? 'true' : undefined}
+                  className={headingClassName(
+                    'flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6 font-medium',
+                    slug,
+                  )}
                 >
                   {children}
                 </a>
@@ -41,10 +127,16 @@ export function TableOfContentMarkdown({
               ? {
                   component: ({ children }) => {
                     const slug = slugifyMarkdownHeadline(children);
+                    const isActive = activeSection === slug;
                     return (
                       <a
                         href={`#${slug}`}
-                        className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
+                        data-toc-link
+                        aria-current={isActive ? 'true' : undefined}
+                        className={headingClassName(
+                          'block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4',
+                          slug,
+                        )}
                       >
                         {children}
                       </a>
@@ -55,6 +147,7 @@ export function TableOfContentMarkdown({
                 ? {
                     component: ({ children }) => {
                       const slug = slugifyMarkdownHeadline(children);
+                      const isActive = activeSection === slug;
                       const [isChrome, setIsChrome] = useState(false);
 
                       useEffect(() => {
@@ -65,10 +158,14 @@ export function TableOfContentMarkdown({
                       }, []);
 
                       return (
-                        // chromeClass
                         <a
                           href={`#${slug}`}
-                          className={`block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ] max-sm:-ml-[6px] font-medium ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`}
+                          data-toc-link
+                          aria-current={isActive ? 'true' : undefined}
+                          className={headingClassName(
+                            `block cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 max-sm:-ml-[6px] font-medium ${isChrome ? '-ml-[4.8px]' : '-ml-[6.5px]'}`,
+                            slug,
+                          )}
                         >
                           <span className='mr-1 text-blue-400 text-[0.7em]'>
                             &#9679;
@@ -84,10 +181,16 @@ export function TableOfContentMarkdown({
               ? {
                   component: ({ children }) => {
                     const slug = slugifyMarkdownHeadline(children);
+                    const isActive = activeSection === slug;
                     return (
                       <a
                         href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]'
+                        data-toc-link
+                        aria-current={isActive ? 'true' : undefined}
+                        className={headingClassName(
+                          'flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem]',
+                          slug,
+                        )}
                       >
                         <span className='text-blue-400/40 font-extrabold text-[0.8em] max-sm:text-[1.2em] ml-1'>
                           &mdash;&mdash;
@@ -107,10 +210,16 @@ export function TableOfContentMarkdown({
               ? {
                   component: ({ children }) => {
                     const slug = slugifyMarkdownHeadline(children);
+                    const isActive = activeSection === slug;
                     return (
                       <a
                         href={`#${slug}`}
-                        className='flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem] '
+                        data-toc-link
+                        aria-current={isActive ? 'true' : undefined}
+                        className={headingClassName(
+                          'flex flex-row items-center cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-4 ml-[-0.25rem] ',
+                          slug,
+                        )}
                       >
                         <span className='text-blue-400/40 font-extrabold text-[0.8em] ml-1 max-sm:text-[1.2em]'>
                           &mdash;&mdash;&mdash;&mdash;
