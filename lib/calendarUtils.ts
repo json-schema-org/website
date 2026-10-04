@@ -14,6 +14,15 @@ export async function fetchRemoteICalFile(url: string): Promise<string | null> {
 }
 
 export function printEventsForNextWeeks(icalData: { [x: string]: any }) {
+  function formatEvent(title: string, utcDate: moment.Moment) {
+  return {
+    title,
+    time: utcDate.format('MMMM Do YYYY, HH:mm'),
+    day: utcDate.format('D'),
+    timezone: 'UTC',
+    parsedStartDate: utcDate.format('YYYY-MM-DD HH:mm:ss'),
+  };
+}
   const arrayDates = [];
   if (!icalData) {
     console.error('iCal data is empty or invalid.');
@@ -62,35 +71,13 @@ export function printEventsForNextWeeks(icalData: { [x: string]: any }) {
             const newDate = moment(date).subtract(offset, 'minutes').toDate();
 
             const start = moment(newDate);
-            const utcDate = start.utc();
-
-            const time = utcDate.format('MMMM Do YYYY, HH:mm');
-            const day = utcDate.format('D');
-            const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
-            arrayDates.push({
-              title,
-              time,
-              day,
-              timezone: 'UTC',
-              parsedStartDate,
-            });
+            arrayDates.push(formatEvent(title, start.utc()));
           }
         }
-      } else {
+            } else {
         // Simple case - no recurrences, just print out the calendar event.
         if (startDate.isBetween(today, nextTwelveWeeksEnd, undefined, '[]')) {
-          const utcDate = startDate.utc();
-
-          const time = utcDate.format('MMMM Do YYYY, HH:mm');
-          const day = utcDate.format('D');
-          const parsedStartDate = utcDate.format('YYYY-MM-DD HH:mm:ss');
-          arrayDates.push({
-            title,
-            time,
-            day,
-            timezone: 'UTC',
-            parsedStartDate,
-          });
+          arrayDates.push(formatEvent(title, startDate.utc()));
         }
       }
     }
