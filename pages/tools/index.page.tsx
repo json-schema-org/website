@@ -112,7 +112,22 @@ export default function ToolingPage({
     transform,
     setTransform,
     resetTransform,
+    isReady,
   } = useToolsTransform(toolingData);
+
+  // Don't render until router is ready to prevent flicker
+  if (!isReady) {
+    return (
+      <SectionContext.Provider value={'tools'}>
+        <Head>
+          <title>JSON Schema - Tools</title>
+        </Head>
+        <div className='mx-auto w-full max-w-[1400px] min-h-screen flex items-center justify-center'>
+          <div className='text-slate-600 dark:text-slate-300'>Loading...</div>
+        </div>
+      </SectionContext.Provider>
+    );
+  }
 
   return (
     <SectionContext.Provider value={'tools'}>
