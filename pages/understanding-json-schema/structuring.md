@@ -206,7 +206,7 @@ The URI `https://example.com/schemas/address#/properties/street_address`
 identifies the highlighted subschema in the following schema.
 
 ```json
-// props { "isSchema": true }
+// props { "isSchema": true, "highlightLines": "5" }
 {
   "$id": "https://example.com/schemas/address",
   "type": "object",
@@ -253,7 +253,7 @@ The URI `https://example.com/schemas/address#street_address` identifies
 the subschema on the highlighted part of the following schema.
 
 ```json
-// props { "isSchema": true }
+// props { "isSchema": true, "highlightLines": "5" }
 {
   "$id": "https://example.com/schemas/address",
   "type": "object",
