@@ -3534,3 +3534,22 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: JsonSchema Delphi
+  description: 'A high-performance JSON Schema validation library for native Object Pascal (Delphi), built around a compiled-schema execution model with a draft-aware parser and central schema registry.'
+  toolingTypes:
+    ['validator', 'documentation', 'code-to-schema', 'data-to-schema', 'schema-to-code', 'schema-to-data', 'util-general-processing', 'util-draft-migration', 'util-testing', 'editor-plugins', 'linter']
+  languages: ['Delphi/Object Pascal']
+  environments: ['Windows', 'macOS', 'Linux', 'iOS', 'Android']
+  creators:
+    - username: 'weslleycapelari'
+      platform: 'github'
+  maintainers:
+    - username: 'weslleycapelari'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/weslleycapelari/JsonSchema'
+  homepage: 'https://github.com/weslleycapelari/JsonSchema'
+  supportedDialects:
+    draft: ['6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'This project includes both the core validator library and a suite of command-line tools and IDE integrations (linter, generator, optimizer, mock data generator) bundled together in the mono-repository.'
