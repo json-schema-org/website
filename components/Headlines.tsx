@@ -47,10 +47,15 @@ const Headline = ({
 
   useEffect(() => {
     const hashIndex = asPath.indexOf('#');
-    const slugFromPath = hashIndex !== -1 ? asPath.slice(hashIndex + 1) : null;
+    const slugFromPath =
+      hashIndex !== -1 ? decodeURIComponent(asPath.slice(hashIndex + 1)) : null;
+    const isHashMatch = Boolean(slug) && slug === slugFromPath;
 
-    setIsActive(slug === slugFromPath);
-  }, [router.asPath]);
+    setIsActive(isHashMatch);
+
+    if (!isHashMatch) return;
+    document.getElementById(slug)?.scrollIntoView({ block: 'start' });
+  }, [asPath, slug]);
 
   const handleHeadingClick = () => {
     const url = new URL(asPath, HOST);
@@ -66,7 +71,7 @@ const Headline = ({
     ...propAttributes,
     id: propAttributes?.slug || slug,
     className: cn(
-      'group cursor-pointer hover:underline',
+      'group cursor-pointer hover:underline scroll-mt-24',
       isActive && 'text-startBlue dark:text-startBlue',
       propAttributes?.className,
     ),

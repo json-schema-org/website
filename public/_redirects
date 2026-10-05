@@ -21,6 +21,8 @@
 /latest/release-notes /draft/2020-12/release-notes
 /implementations /tools 301
 /obsolete-implementations /tools?showObsolete=true 301
+/obsolete /draft-07#obsolete-draft-7-documents 301
+/obsolete/ /draft-07#obsolete-draft-7-documents 301
 # Slack redirect to invite URL is handled by Cloudflare via UI. Not sure why. Maybe to avoid having to wait for a build and deploy.
 # /slack https://join.slack.com/t/json-schema/shared_invite/zt-3ktcs18gk-ElYFaGDSOv68OJMf3H4vXg 301
 /slack-redirect /slack 301
