@@ -339,4 +339,10 @@ describe('DocsHelp Component', () => {
     cy.get('[data-test="feedback-form-input"]').should('not.exist');
     cy.get('input[name="feedback-vote"]').should('not.be.checked');
   });
+  // The "Still Need Help?" description should end with a single punctuation mark
+  it('should end the additional help description with a single punctuation mark', () => {
+    cy.get('[data-test="additional-help-description"]')
+      .should('contain.text', 'we are here to help!')
+      .and('not.contain.text', '!.');
+  });
 });
