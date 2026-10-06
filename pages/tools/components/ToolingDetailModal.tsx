@@ -38,7 +38,7 @@ export default function ToolingDetailModal({
   }, [onClose]);
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center z-50 overflow-x-hidden'>
+    <div className='fixed inset-0 flex items-center justify-center z-[200] overflow-x-hidden'>
       <div
         className='fixed inset-0 bg-black opacity-50'
         onClick={onClose}
