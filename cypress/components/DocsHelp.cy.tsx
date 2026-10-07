@@ -188,6 +188,54 @@ describe('DocsHelp Component', () => {
       .and('contains', /An error occurred. Please try again later./i);
   });
 
+  // test feedback form shows error when submitting empty comment
+  it('should show error when submitting empty feedback comment', () => {
+    // click on yes button to open feedback form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // leave feedback input empty and click submit
+    cy.get(FEEDBACK_FORM_INPUT).should('be.visible').and('have.value', '');
+    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+  });
+
+  // test feedback form shows error when submitting whitespace-only comment
+  it('should show error when submitting whitespace-only feedback comment', () => {
+    // click on yes button to open feedback form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // type only whitespace and click submit
+    cy.get(FEEDBACK_FORM_INPUT).type('   ');
+    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+  });
+
+  // test create github issue shows error when comment is empty
+  it('should show error when creating github issue with empty comment', () => {
+    // click on yes button to open feedback form
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+
+    // leave feedback input empty and click create issue
+    cy.get(FEEDBACK_FORM_INPUT).should('be.visible').and('have.value', '');
+    cy.get(CREATE_GITHUB_ISSUE_BUTTON).click();
+
+    // check if error message is displayed
+    cy.get(FEEDBACK_ERROR_MESSAGE)
+      .should('have.prop', 'tagName', 'P')
+      .and('contain.text', 'Feedback comment cannot be empty.');
+  });
+
   // test create github issue functionality when submitting feedback
   it('should open github issue page', () => {
     // mock window.open function
@@ -279,5 +327,16 @@ describe('DocsHelp Component', () => {
   it('should not render the "Edit on GitHub" link when showEditOption is false', () => {
     cy.mount(<DocsHelp fileRenderType='indexmd' showEditOption={false} />);
     cy.get('[data-test="edit-on-github-link"]').should('not.exist');
+  });
+  //Check that clicking the same feedback button twice toggles the form open and closed
+  it('should toggle the feedback form visibility and reset selection when the same button is clicked twice', () => {
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    // Wait for the conditional content to appear
+    cy.get('[data-test="feedback-form-input"]').should('be.visible');
+    cy.get('input[name="feedback-vote"]').should('be.checked');
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    // After toggle, the conditional content should not exist
+    cy.get('[data-test="feedback-form-input"]').should('not.exist');
+    cy.get('input[name="feedback-vote"]').should('not.be.checked');
   });
 });

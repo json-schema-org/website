@@ -1,6 +1,12 @@
 /* eslint-disable linebreak-style */
 /* istanbul ignore file */
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+  useRef,
+} from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import classnames from 'classnames';
@@ -13,6 +19,7 @@ import DarkModeToggle from './DarkModeToggle';
 import ScrollButton from './ScrollButton';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
+import AnnouncementBanner from './AnnouncementBanner';
 
 type Props = {
   children: React.ReactNode;
@@ -37,11 +44,40 @@ export default function Layout({
   const router = useRouter();
 
   const mobileNavRef = useRef<HTMLDivElement>(null);
+  const announcementRef = useRef<HTMLDivElement>(null);
+  const [announcementHeight, setAnnouncementHeight] = useState(0);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const [headerHeight, setHeaderHeight] = useState(0);
+
+  useEffect(() => {
+    const updateHeaderHeight = () => {
+      setHeaderHeight(headerRef.current?.getBoundingClientRect().height ?? 0);
+    };
+
+    updateHeaderHeight();
+    window.addEventListener('resize', updateHeaderHeight);
+    return () => window.removeEventListener('resize', updateHeaderHeight);
+  }, [announcementHeight]);
+
+  const updateAnnouncementHeight = useCallback(() => {
+    setAnnouncementHeight(
+      announcementRef.current?.getBoundingClientRect().height ?? 0,
+    );
+  }, []);
 
   React.useEffect(
     () => useStore.setState({ overlayNavigation: null }),
     [router.asPath],
   );
+
+  useEffect(() => {
+    updateAnnouncementHeight();
+    window.addEventListener('resize', updateAnnouncementHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateAnnouncementHeight);
+    };
+  }, [updateAnnouncementHeight]);
 
   useEffect(() => {
     // Check if the URL contains "community"
@@ -92,22 +128,27 @@ export default function Layout({
         <main
           className={classnames(
             mainClassName,
-            'z-10 h-screen xl:rounded-xl pt-4 mx-auto',
+            'z-10 h-screen xl:rounded-xl mx-auto',
             // 'z-10 h-screen  xl:rounded-xl pt-4 mx-auto',
           )}
         >
           <header
+            ref={headerRef}
             className={classnames(
               'w-full bg-white dark:bg-slate-800 fixed top-0 z-[170] shadow-xl drop-shadow-lg',
             )}
           >
+            <AnnouncementBanner
+              bannerRef={announcementRef}
+              onHeightChange={setAnnouncementHeight}
+            />
             <div className='flex w-full md:justify-between items-center ml-8 2xl:px-12 py-4'>
               <Logo />
               <MainNavigation />
             </div>
           </header>
-          <div ref={mobileNavRef}>
-            {showMobileNav && <MobileNav />}
+          <div ref={mobileNavRef} style={{ paddingTop: headerHeight }}>
+            {showMobileNav && <MobileNav topOffset={headerHeight} />}
             {children}
           </div>
           <ScrollButton />
@@ -258,7 +299,10 @@ const MainNavigation = () => {
           </div>
         ) : (
           <div
-            className='relative h-8 w-8 lg:hidden cursor-pointer transition-all'
+            style={{
+              backgroundImage: closeMenu,
+            }}
+            className='h-6 w-6 lg:hidden bg-center bg-[length:22px_22px] bg-no-repeat  transition-all cursor-pointer dark:text-slate-300 z-2[200]'
             onClick={() => useStore.setState({ overlayNavigation: null })}
           >
             <Image
@@ -307,11 +351,14 @@ const MainNavigation = () => {
   );
 };
 
-const MobileNav = () => {
+const MobileNav = ({ topOffset }: { topOffset: number }) => {
   const section = useContext(SectionContext);
 
   return (
-    <div className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full  z-[190] top-16 left-0 pl-8 dark:bg-slate-800'>
+    <div
+      style={{ top: `${topOffset}px` }}
+      className='flex flex-col lg:hidden shadow-xl justify-end fixed bg-white w-full z-[190] left-0 pl-8 dark:bg-slate-800'
+    >
       <MainNavLink
         uri='/specification'
         label='Specification'
@@ -362,6 +409,8 @@ const Footer = () => (
         <div className='flex flex-col text-center sm:text-left'>
           <a
             href='https://opencollective.com/json-schema'
+            target='_blank'
+            rel='noopener noreferrer'
             className='text-white mb-2 transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             Open Collective
@@ -380,6 +429,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://json-schema.org/slack'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -395,6 +446,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://x.com/jsonschema'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -410,6 +463,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://linkedin.com/company/jsonschema/'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -425,6 +480,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://www.youtube.com/@JSONSchemaOrgOfficial'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -440,6 +497,8 @@ const Footer = () => (
         <div className=''>
           <a
             href='https://github.com/json-schema-org'
+            target='_blank'
+            rel='noopener noreferrer'
             className='flex items-center text-white group transition-transform duration-300 ease-out hover:scale-105 hover:-translate-y-[2px]'
           >
             <Image
@@ -500,9 +559,16 @@ const FaviconHead = () => {
     const matcher: MediaQueryList = window.matchMedia(
       '(prefers-color-scheme: dark)',
     );
-    matcher.addEventListener('change', () => onUpdate(matcher));
+
+    const handleChange = () => onUpdate(matcher);
+
+    matcher.addEventListener('change', handleChange);
     onUpdate(matcher);
-  }, []);
+
+    return () => {
+      matcher.removeEventListener('change', handleChange);
+    };
+  }, [onUpdate]);
 
   if (isDarkMode) {
     return (

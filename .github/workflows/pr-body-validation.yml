@@ -20,6 +20,10 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const pr = context.payload.pull_request;
+            const isBot = pr.user.login === 'dependabot[bot]';
+            if (isBot) {
+              return;
+            }
             const prBody = pr.body || '';
             
             let missingItems = [];

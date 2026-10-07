@@ -225,7 +225,7 @@ $defs:
 
 Note that the `allRequired` is a custom keyword made available by
 `ajv-keywords`, and to use it we have to amend our call to
-`ajv validate` in the the taskfile:
+`ajv validate` in the taskfile:
 
 ```yaml
 # file: Taskfile.yml

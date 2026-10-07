@@ -26,7 +26,7 @@ To stay updated with news about the JSON Schema project and its documentation, e
 
 - `#community-announcements`: Events and updates related to the JSON Schema project.
 
-- `#anouncements`: Important announcement from the JSON Schema organization.
+- `#announcements`: Important announcements from the JSON Schema organization.
 
 - `#stack-overflow`: Stack overflow questions tagged with JSON Schema.
   

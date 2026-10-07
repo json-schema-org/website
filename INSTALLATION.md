@@ -220,13 +220,13 @@ We use ESLint for linting and Prettier for code formatting. This section will gu
 
 ### Formatting
 
-you can check code formatting using the following command:
+You can check code formatting using the following command:
 
 ```
 yarn run format:check
 ```
 
-you can format the code using the following command:
+You can format the code using the following command:
 
 ```
 yarn run format:fix
@@ -234,13 +234,13 @@ yarn run format:fix
 
 ### Linting
 
-you can check linting issues using the following command:
+You can check linting issues using the following command:
 
 ```
 yarn run lint
 ```
 
-you can fix linting issues using the following command:
+You can fix linting issues using the following command:
 
 ```
 yarn run lint:fix
@@ -285,4 +285,4 @@ After cloning repository to your local, perform the following steps from the roo
       make run
     ```
 
-Now you're running JSON Schema website in a development mode. Container is mapped with your local copy of the website. Whenever you make changes to the code, the website will refresh and changes visible in `http://localhost:3000`.
+Now you're running JSON Schema website in a development mode. Container is mapped with your local copy of the website. Whenever you make changes to the code, the website will refresh and changes will be visible in `http://localhost:3000`.

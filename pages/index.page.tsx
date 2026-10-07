@@ -35,11 +35,7 @@ export const getStaticProps: GetStaticProps = async () => {
         'utf-8',
       );
       const { data: frontmatter, content } = matter(fullFileName);
-      return {
-        slug,
-        frontmatter,
-        content,
-      };
+      return { slug, frontmatter, content };
     })
     .sort(
       (a, b) =>
@@ -52,13 +48,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const datesInfo = await fetchRemoteICalFile(remoteICalUrl)
     .then((icalData: any) => printEventsForNextWeeks(ical.parseICS(icalData)))
     .catch((error) => console.error('Error:', error));
-  return {
-    props: {
-      blogPosts,
-      datesInfo,
-      fallback: false,
-    },
-  };
+  return { props: { blogPosts, datesInfo, fallback: false } };
 };
 
 export function AlgoliaSearch() {
@@ -117,13 +107,18 @@ const Home = (props: any) => {
       apideck: '/img/logos/sponsors/apideck-white.svg',
       rxdb: '/img/logos/sponsors/rxdb.svg',
       wda: '/img/logos/sponsors/wda-dark.svg',
-      anon: '/img/logos/sponsors/anon-white.png',
+      transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-white.png',
       sourcemeta: '/img/logos/sponsors/sourcemeta-logo-light.svg',
       dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
       supadata: '/img/logos/sponsors/supadata-logo-light.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
+      litslink: '/img/logos/sponsors/litslink_dark.svg',
+      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+      timenow: '/img/logos/sponsors/time_now_dark.svg',
+      legasset: '/img/logos/sponsors/legasset-logo.svg',
+      bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-light.svg',
     },
     lightLogos: {
       asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
@@ -142,13 +137,18 @@ const Home = (props: any) => {
       apideck: '/img/logos/sponsors/apideck.svg',
       rxdb: '/img/logos/sponsors/rxdb.svg',
       wda: '/img/logos/sponsors/wda.svg',
-      anon: '/img/logos/sponsors/anon-black.png',
+      transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-dark.png',
       sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
       supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
       dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
+      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+      litslink: '/img/logos/sponsors/litslink_white.svg',
+      timenow: '/img/logos/sponsors/time_now_white.svg',
+      legasset: '/img/logos/sponsors/legasset-logo-dark.svg',
+      bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-dark.svg',
     },
   };
 
@@ -168,7 +168,7 @@ const Home = (props: any) => {
               Build more. Break less. Empower others.
             </h1>
 
-            <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 dark:text-slate-300'>
+            <h2 className='lg:leading-6 text-center text-h5mobile md:text-h5  text-white mt-4 px-4 md:px-0 dark:text-slate-300'>
               JSON Schema enables the confident and reliable use of the JSON
               data format.
             </h2>
@@ -182,6 +182,8 @@ const Home = (props: any) => {
               </Link>
               <Link
                 href='/slack'
+                target='_blank'
+                rel='noopener noreferrer'
                 className='flex items-center justify-center rounded border-2 border-white dark:border-none hover:bg-blue-700 transition-all duration-300 ease-in-out text-white  w-[194px] h-[40px] font-semibold bg-primary dark:shadow-2xl'
               >
                 Join Slack
@@ -232,6 +234,8 @@ const Home = (props: any) => {
                 <a
                   className='underline'
                   href='https://landscape.json-schema.org/'
+                  target='_blank'
+                  rel='noopener noreferrer'
                 >
                   Landscape
                 </a>{' '}
@@ -367,14 +371,18 @@ const Home = (props: any) => {
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
             <div className='p-4 w-full mb-6 dark:shadow-2xl'>
-              <Link href='https://json-schema.org/slack'>
+              <Link
+                href='https://json-schema.org/slack'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 <h3 className='mb-4 font-semibold flex items-center dark:text-slate-200'>
                   Join the JSON Schema Slack Workspace!
                   {isClient && (
                     <>
                       <Image
                         src='/img/logos/Slack-mark.svg'
-                        className='w-8 h-8'
+                        className='size-12'
                         alt='slack'
                         height={32}
                         width={32}
@@ -395,7 +403,7 @@ const Home = (props: any) => {
                 )}
 
                 {/* <h3 className='mb-4 font-semibold' >Event</h3> */}
-                <p className='mb-4 dark:text-slate-300'>
+                <p className='mb-4 dark:text-slate-300 text-balance'>
                   Join our Slack to ask questions, get feedback on your
                   projects, and connect with +5000 practitioners and experts.
                 </p>
@@ -403,13 +411,15 @@ const Home = (props: any) => {
               <button className='w-full lg:w-1/2 rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'>
                 <a
                   href='https://json-schema.org/slack'
-                  className='flex items-center '
+                  className='flex items-center'
+                  target='_blank'
+                  rel='noreferrer'
                 >
                   {isClient && (
                     <>
                       <Image
                         src='/img/logos/slack_logo_small-white.svg'
-                        className='w-4 h-4 mr-2 '
+                        className='w-4 h-4 mr-2'
                         width={16}
                         height={16}
                         alt='slack'
@@ -430,7 +440,7 @@ const Home = (props: any) => {
                   <>
                     <Image
                       src={blogPosts[0].frontmatter.cover}
-                      className='w-full h-[232px]  mb-4'
+                      className='w-full h-[232px] object-contain mb-4'
                       width={600}
                       height={232}
                       alt='blog'
@@ -449,7 +459,7 @@ const Home = (props: any) => {
                   />
                 </div>
 
-                <div className='flex ml-2 mb-2 '>
+                <div className='flex ml-2 mb-2'>
                   {(blogPosts[0].frontmatter.authors || []).map(
                     (author: any, index: number) => {
                       return (
@@ -523,16 +533,18 @@ const Home = (props: any) => {
                 <div className='flex flex-col'>
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/35'
+                    target='_blank'
                     rel='noopener noreferrer'
-                    className='w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[44px] py-2 px-4 mb-4 flex items-center justify-center dark:border-none'
+                    className='w-fit max-w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[40px] px-4 py-2 mb-4 flex items-center justify-center mx-auto dark:border-none'
                   >
                     Open Community Working Meetings
                   </a>
 
                   <a
                     href='https://github.com/orgs/json-schema-org/discussions/34/'
+                    target='_blank'
                     rel='noopener noreferrer'
-                    className='w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[44px] py-2 px-4 flex items-center justify-center dark:border-none'
+                    className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
                   >
                     Office Hours
                   </a>
@@ -585,6 +597,7 @@ const Home = (props: any) => {
             <Link
               href='https://github.com/json-schema-org#-contributing-to-json-schema'
               rel='noopener noreferrer'
+              target='_blank'
               className='w-[170px] h-[45px] mx-auto rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white font-semibold dark:border-none flex items-center justify-center'
             >
               Contribute
@@ -604,6 +617,8 @@ const Home = (props: any) => {
               <a
                 href='https://json-schema.org/overview/sponsors'
                 className='border-b border-black dark:border-white'
+                target='_blank'
+                rel='noopener noreferrer'
               >
                 sponsor
               </a>{' '}
@@ -611,6 +626,8 @@ const Home = (props: any) => {
               <a
                 href='https://json-schema.org/overview/sponsors#benefits-of-being-an-individual-backer'
                 className='border-b border-black dark:border-white'
+                target='_blank'
+                rel='noopener noreferrer'
               >
                 backer
               </a>{' '}
@@ -621,19 +638,24 @@ const Home = (props: any) => {
               <a
                 href='https://opencollective.com/json-schema'
                 className='border-b border-black dark:border-white'
+                target='_blank'
+                rel='noopener noreferrer'
               >
                 Support us!
               </a>
             </p>
           </div>
           <div className=' text-center mb-12 '>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='gold-sponsors'
+            >
               Gold Sponsors
             </h3>
             <Link
               href='https://opencollective.com/json-schema/contribute/golden-sponsor-68354/checkout?interval=month&amount=1000&name=&legalName=&email='
               target='_blank'
-              rel='noreferrer'
+              rel='noopener noreferrer'
               className='w-[310px] h-[180px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
@@ -652,13 +674,16 @@ const Home = (props: any) => {
               </svg>
               <p className='block'>Your logo here</p>
             </Link>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='silver-sponsors'
+            >
               Silver Sponsors
             </h3>
             <Link
               href='https://opencollective.com/json-schema/contribute/silver-sponsor-68353/checkout?interval=month&amount=500&name=&legalName=&email='
               target='_blank'
-              rel='noreferrer'
+              rel='noopener noreferrer'
               className='w-[200px] h-[120px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
             >
               <svg
@@ -677,14 +702,17 @@ const Home = (props: any) => {
               </svg>
               <p>Your logo here</p>
             </Link>
-            <h3 className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'>
+            <h3
+              className='p-4 text-h4mobile md:text-h4 font-semibold my-4 dark:text-slate-200'
+              id='bronze-sponsors'
+            >
               Bronze Sponsors
             </h3>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-12 items-center mx-auto  md:mx-0 px-4 '>
               <a
                 href=' https://www.asyncapi.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -701,7 +729,7 @@ const Home = (props: any) => {
               <a
                 href='https://www.airbnb.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -710,42 +738,16 @@ const Home = (props: any) => {
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       width={176}
                       height={100}
-                      alt='airbnb'
+                      alt='llc'
                     />
                   </>
                 )}
               </a>
               <a
-                href='https://www.postman.com/'
+                href='https://www.llc.org/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.postman}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='postman'
-                    />
-                  </>
-                )}
-              </a>
-              <a href='https://endjin.com/' target='_blank' rel='noreferrer'>
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.endjin}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='endjin'
-                    />
-                  </>
-                )}
-              </a>
-              <a href='https://www.llc.org/' target='_blank' rel='noreferrer'>
                 {isClient && (
                   <>
                     <Image
@@ -761,7 +763,7 @@ const Home = (props: any) => {
               <a
                 href='https://www.vpsserver.com/en-us/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -776,26 +778,9 @@ const Home = (props: any) => {
                 )}
               </a>
               <a
-                href='https://www.itflashcards.com/'
-                target='_blank'
-                rel='noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.itflashcards}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='itflashcards'
-                    />
-                  </>
-                )}
-              </a>
-              <a
                 href='https://www.route4me.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
@@ -809,7 +794,11 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://n8n.io/' target='_blank' rel='noreferrer'>
+              <a
+                href='https://n8n.io/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
                 {isClient && (
                   <>
                     <Image
@@ -822,137 +811,171 @@ const Home = (props: any) => {
                   </>
                 )}
               </a>
-              <a href='https://copycopter.ai/' target='_blank' rel='noreferrer'>
-                {isClient && (
-                  <>
-                    <Image
-                      src={logos.ccopter}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      width={176}
-                      height={100}
-                      alt='ccopter'
-                    />
-                  </>
-                )}
-              </a>
-              <a href='https://www.octue.com/' target='_blank' rel='noreferrer'>
-                <Image
-                  alt='octue'
-                  width={176}
-                  height={100}
-                  src={logos.octue}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                />
-              </a>
               <a
                 href='https://www.apideck.com/'
                 target='_blank'
                 rel='noreferrer'
               >
-                <Image
-                  width={176}
-                  height={100}
-                  src={logos.apideck}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The Realtime Unified API for Accounting integrations'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.apideck}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='The Realtime Unified API for Accounting integrations'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://rxdb.info/?utm_source=sponsor&utm_medium=json-schema&utm_campaign=json-schema'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
-                <Image
-                  width={176}
-                  height={100}
-                  src={logos.rxdb}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='The local Database for JavaScript Applications'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.rxdb}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='The local Database for JavaScript Applications'
+                    />
+                  </>
+                )}
               </a>
               <a
-                href='https://topagency.webflow.io'
+                href='https://transcriptfetch.com'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
-                <Image
-                  width={176}
-                  height={100}
-                  src={logos.wda}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='best website design agencies'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.transcriptfetch}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='transcriptfetch logo'
+                    />
+                  </>
+                )}
               </a>
               <a
-                href='https://anonstories.com'
+                href='https://supadata.ai/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
-                <Image
-                  width={176}
-                  height={100}
-                  src={logos.anon}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='Instagram Story Viewer'
-                />
+                {isClient && (
+                  <>
+                    <img
+                      src={logos.supadata}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='supadata logo'
+                    />
+                  </>
+                )}
               </a>
-              <a href='https://supadata.ai/' target='_blank' rel='noreferrer'>
-                <Image
-                  width={176}
-                  height={100}
-                  src={logos.supadata}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='supadata logo'
-                />
-              </a>
-              <a href='https://dottxt.ai/' target='_blank' rel='noreferrer'>
-                <Image
-                  width={176}
-                  height={100}
-                  src={logos.dottxt}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='dottxt logo'
-                />
+              <a
+                href='https://dottxt.ai/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {isClient && (
+                  <>
+                    <Image
+                      src={logos.dottxt}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='dottxt logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://www.sourcemeta.com/'
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
               >
-                <Image
-                  width={176}
-                  height={100}
-                  src={logos.sourcemeta}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='dottxt logo'
-                />
+                {isClient && (
+                  <>
+                    <Image
+                      src={logos.sourcemeta}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='sourcemeta logo'
+                    />
+                  </>
+                )}
               </a>
-              <a href='https://www.n-ix.com/' target='_blank' rel='noreferrer'>
-                <Image
-                  src={logos.nix}
-                  width={176}
-                  height={100}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='n-iX logo'
-                />
+              <a
+                href='https://www.n-ix.com/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {isClient && (
+                  <>
+                    <Image
+                      src={logos.nix}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='n-iX logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://www.oracle.com/'
                 target='_blank'
+                rel='noopener noreferrer'
+              >
+                {isClient && (
+                  <>
+                    <Image
+                      src={logos.oracle}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='Oracle logo'
+                    />
+                  </>
+                )}
+              </a>
+              <a
+                href='https://spinthewheel.io/'
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {isClient && (
+                  <>
+                    <Image
+                      src={logos.spinthewheel}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='Spin the wheel logo'
+                    />
+                  </>
+                )}
+              </a>
+              <a href='https://time.now/' target='_blank' rel='noreferrer'>
+                {isClient && (
+                  <>
+                    <Image
+                      src={logos.timenow}
+                      className='w-24 transition-transform duration-300 hover:scale-105'
+                      alt='Time Now logo'
+                    />
+                  </>
+                )}
+              </a>
+              <a
+                href='https://www.bairesdev.com/'
+                target='_blank'
                 rel='noreferrer'
               >
-                <Image
-                  src={logos.oracle}
-                  width={176}
-                  height={100}
-                  className='w-44 transition-transform duration-300 hover:scale-105'
-                  alt='Oracle logo'
-                />
+                {isClient && (
+                  <>
+                    <Image
+                      src={logos.bairesdev}
+                      className='w-44 transition-transform duration-300 hover:scale-105'
+                      alt='legasset logo'
+                    />
+                  </>
+                )}
               </a>
               <a
                 href='https://opencollective.com/json-schema/contribute/sponsor-10816/checkout?interval=month&amount=100&name=&legalName=&email='
                 target='_blank'
-                rel='noreferrer'
+                rel='noopener noreferrer'
                 className='w-[155px] md:w-[176px] h-[44px] mx-auto rounded-lg bg-primary text-white font-semibold flex items-center justify-center space-x-2 cursor-pointer px-3 transition-transform duration-300 hover:scale-105'
               >
                 <svg
@@ -973,37 +996,6 @@ const Home = (props: any) => {
               </a>
             </div>
           </div>
-        </section>
-
-        {/* Media Partner for JSON Schema conference */}
-        <section className='my-16'>
-          <div className='text-center mb-12'>
-            <h2 className='text-h3mobile md:text-h3 font-semibold mb-2 dark:text-slate-200'>
-              Media Partner
-            </h2>
-            <p className='px-12 mx-auto md:w-3/4 md:mx-auto dark:text-slate-300'>
-              The JSON Schema Conference is proudly featured on a global
-              platform connecting tech communities with over 250k monthly
-              visitors, helping speakers, organizers, and attendees discover and
-              engage with leading conferences worldwide.
-              <br />
-            </p>
-          </div>
-          <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4 mb-12'>
-            <a href='https://dev.events/'>
-              {isClient && (
-                <>
-                  <Image
-                    src={logos.devevents}
-                    className='w-48 md:w-56 transition-transform duration-300 hover:scale-105'
-                    width={192}
-                    height={224}
-                    alt='dev events'
-                  />
-                </>
-              )}
-            </a>
-          </div>{' '}
         </section>
 
         {/* Supported */}
@@ -1027,7 +1019,11 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='flex flex-col items-center md:flex-row justify-center text-center gap-x-14 gap-y-4'>
-            <a href='https://www.commonroom.io'>
+            <a
+              href='https://www.commonroom.io'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image
@@ -1040,7 +1036,11 @@ const Home = (props: any) => {
                 </>
               )}
             </a>
-            <a href='https://json-schema.org/slack'>
+            <a
+              href='https://json-schema.org/slack'
+              target='_blank'
+              rel='noopener noreferrer'
+            >
               {isClient && (
                 <>
                   <Image

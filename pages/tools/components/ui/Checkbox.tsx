@@ -21,7 +21,7 @@ export default function Checkbox({
       <ShadcnCheckbox
         value={value}
         name={name}
-        defaultChecked={checked}
+        checked={checked}
         disabled={disabled}
         onCheckedChange={onChange}
         className='h-5 w-5 border data-[state=checked]:bg-blue-500 data-[state=checked]:border-blue-500 data-[state=checked]:text-white dark:data-[state=checked]:bg-[#bfdbfe] dark:data-[state=checked]:border-[#bfdbfe] dark:data-[state=checked]:text-black border-gray-500 dark:border-slate-600'

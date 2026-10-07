@@ -577,7 +577,7 @@ describe('JSON Editor Component', () => {
     cy.get('button').should('be.visible');
 
     // Should show the language badge
-    cy.get('.bg-white\\/20').contains('javascript');
+    cy.get('[data-test="language-badge"]').contains('javascript');
   });
 
   // Test regular code block copy functionality
@@ -613,15 +613,15 @@ describe('JSON Editor Component', () => {
 
     // Test JavaScript
     cy.mount(<JsonEditor language='lang-javascript' code={testCode} />);
-    cy.get('.bg-white\\/20').contains('javascript');
+    cy.get('[data-test="language-badge"]').contains('javascript');
 
     // Test Python
     cy.mount(<JsonEditor language='lang-python' code={testCode} />);
-    cy.get('.bg-white\\/20').contains('python');
+    cy.get('[data-test="language-badge"]').contains('python');
 
     // Test TypeScript
     cy.mount(<JsonEditor language='lang-typescript' code={testCode} />);
-    cy.get('.bg-white\\/20').contains('typescript');
+    cy.get('[data-test="language-badge"]').contains('typescript');
   });
 
   // Test regular code block without language
@@ -631,7 +631,7 @@ describe('JSON Editor Component', () => {
     cy.mount(<JsonEditor code={testCode} />);
 
     // Should show "code" as the badge text
-    cy.get('.bg-white\\/20').contains('code');
+    cy.get('[data-test="language-badge"]').contains('code');
   });
 
   // Test regular code block with empty code
@@ -640,7 +640,7 @@ describe('JSON Editor Component', () => {
 
     // Should still render without crashing
     cy.get('button').should('be.visible');
-    cy.get('.bg-white\\/20').contains('javascript');
+    cy.get('[data-test="language-badge"]').contains('javascript');
   });
 
   // Test regular code block with whitespace-only code
@@ -649,7 +649,7 @@ describe('JSON Editor Component', () => {
 
     // Should still render without crashing
     cy.get('button').should('be.visible');
-    cy.get('.bg-white\\/20').contains('javascript');
+    cy.get('[data-test="language-badge"]').contains('javascript');
   });
 
   // Test regular code block syntax highlighting
@@ -667,7 +667,7 @@ describe('JSON Editor Component', () => {
 
     // Should show the copy button and badge
     cy.get('button').should('be.visible');
-    cy.get('.bg-white\\/20').contains('javascript');
+    cy.get('[data-test="language-badge"]').contains('javascript');
   });
 
   // Test regular code block with complex code
@@ -703,7 +703,7 @@ export default Component;`;
 
     // Should render the complex code without crashing
     cy.get('button').should('be.visible');
-    cy.get('.bg-white\\/20').contains('typescript');
+    cy.get('[data-test="language-badge"]').contains('typescript');
   });
 
   // Test that JSON mode and regular code mode are mutually exclusive
@@ -733,7 +733,7 @@ export default Component;`;
 
     // Should render without crashing
     cy.get('button').should('be.visible');
-    cy.get('.bg-white\\/20').contains('javascript');
+    cy.get('[data-test="language-badge"]').contains('javascript');
   });
 
   // Test regular code block copy functionality with special characters

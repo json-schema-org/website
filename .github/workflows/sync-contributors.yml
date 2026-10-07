@@ -43,14 +43,14 @@ jobs:
                 ({ login, id, avatar_url, html_url }));
               
               // Store the data in a file
-              fs.writeFileSync('data/roadmap.json', JSON.stringify(data, null, 2));
+              fs.writeFileSync('data/community-users.json', JSON.stringify(data, null, 2));
             
         - name: Commit changes
           run: |
             git config user.name "the-json-schema-bot[bot]"
             git config user.email "the-json-schema-bot[bot]@users.noreply.github.com"
             git add data/community-users.json
-            git diff --quiet && git diff --staged --quiet || (git commit -m "chore(community-users): update communit-users.json")
+            git diff --quiet && git diff --staged --quiet || (git commit -m "chore(community-users): update community-users.json")
         
         - name: Create Pull Request
           id: cpr

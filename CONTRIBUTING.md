@@ -6,7 +6,7 @@ All types of contributions are encouraged and valued. See the [Table of Contents
 
 If you don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation:
 - Star the project on Github
-- Post on X or Linkedin about JSON Schema `#jsonschema
+- Post on X or Linkedin about JSON Schema `#jsonschema`
 
 ## Table of Contents
 
@@ -47,13 +47,13 @@ Please use our issues templates that provide hints on what information we need t
 
 ### 🛠️ Add a new Implementation
 
-To add a new implementation, please open a PR, adding the details of your implementation to `\pages\implementations\main.md` file. We also invite you to join the discussion in `#implementers` channel in our  [Slack workspace](https://json-schema.org/slack).
+To add a new implementation, please open a PR, adding the details of your implementation to `pages/implementations/main.md` file. We also invite you to join the discussion in `#implementers` channel in our  [Slack workspace](https://json-schema.org/slack).
 
 ### ✍️ Publish a blog post
 
 Before publishing your first blog post, please ensure you are familiar with our [blog guidelines](https://github.com/json-schema-org/community/blob/main/docs/blog-guidelines.md).
 
-To publish a blog post, please open a PR, adding your post in Markdown format into the `\pages\blog\posts` folder using any existing posts as reference e.g.: [json-schema-in-5-minutes.md](https://github.com/json-schema-org/website/blob/main/pages/blog/posts/json-schema-in-5-minutes.md?plain=1). Remember to add all the images into the `\public\img` folder.
+To publish a blog post, please open a PR, adding your post in Markdown format into the `pages/blog/posts` folder using any existing posts as reference e.g.: [json-schema-in-5-minutes.md](https://github.com/json-schema-org/website/blob/main/pages/blog/posts/json-schema-in-5-minutes.md?plain=1). Remember to add all the images into the `public/img` folder.
 
 ### 📈 Publish a Case Study
 
@@ -119,7 +119,7 @@ Contributors to our Docs or our Blog can have a look at the [custom markdown sty
 
 ## Triage
 
-Please check the [triage process](https://github.com/json-schema-org/.github/blob/main/TRIAGE.md) to learn how we review and label incoming issues . 
+Please check the [triage process](https://github.com/json-schema-org/.github/blob/main/TRIAGE.md) to learn how we review and label incoming issues. 
 
 ## Feedback
 

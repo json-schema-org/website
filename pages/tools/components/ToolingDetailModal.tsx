@@ -90,7 +90,8 @@ export default function ToolingDetailModal({
                 <h3 className='text-lg font-semibold'>Source</h3>
                 <a
                   href={tool.source}
-                  target='blank'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='text-blue-500 hover:underline'
                 >
                   {tool.source}
@@ -103,7 +104,8 @@ export default function ToolingDetailModal({
                 <h3 className='text-lg font-semibold'>Homepage</h3>
                 <a
                   href={tool.homepage}
-                  target='blank'
+                  target='_blank'
+                  rel='noopener noreferrer'
                   className='text-blue-500 hover:underline'
                 >
                   {tool.homepage}
@@ -128,7 +130,8 @@ export default function ToolingDetailModal({
                         <h4 className='font-semibold'>Docs:</h4>
                         <a
                           href={tool.compliance.config.docs}
-                          target='blank'
+                          target='_blank'
+                          rel='noopener noreferrer'
                           className='text-blue-500 hover:underline'
                         >
                           {tool.compliance.config.docs}
@@ -165,7 +168,8 @@ export default function ToolingDetailModal({
                         {creator.username && creator.platform && (
                           <a
                             href={`https://${creator.platform}.com/${creator.username}`}
-                            target='blank'
+                            target='_blank'
+                            rel='noopener noreferrer'
                             className='text-blue-500 hover:underline'
                           >
                             @{creator.username}
@@ -191,7 +195,8 @@ export default function ToolingDetailModal({
                         {maintainer.username && maintainer.platform && (
                           <a
                             href={`https://${maintainer.platform}.com/${maintainer.username}`}
-                            target='blank'
+                            target='_blank'
+                            rel='noopener noreferrer'
                             className='text-blue-500 hover:underline'
                           >
                             @{maintainer.username}
@@ -227,7 +232,8 @@ export default function ToolingDetailModal({
                             {additional.name} (
                             <a
                               href={additional.source}
-                              target='blank'
+                              target='_blank'
+                              rel='noopener noreferrer'
                               className='text-blue-500 hover:underline'
                             >
                               Source
@@ -269,6 +275,7 @@ export default function ToolingDetailModal({
                   className='text-[14px] underline italic'
                   href={`https://bowtie.report/#/implementations/${tool.bowtie.id}`}
                   target='_blank'
+                  rel='noopener noreferrer'
                 >
                   View detailed report
                 </Link>
@@ -323,7 +330,8 @@ export default function ToolingDetailModal({
                     <li key={index}>
                       <a
                         href={validator}
-                        target='blank'
+                        target='_blank'
+                        rel='noopener noreferrer'
                         className='text-blue-500 hover:underline'
                       >
                         {validator}

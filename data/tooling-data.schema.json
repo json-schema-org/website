@@ -80,6 +80,7 @@
             "editor",
             "editor-plugins",
             "schema-repository",
+            "registry",
             "linter",
             "linter-plugins"
           ]
@@ -111,7 +112,7 @@
                   "RAML",
                   "Erlang",
                   "Java",
-                  "Lua/LuaJIT",
+                  "Lua",
                   "OpenAPI",
                   "Perl",
                   "TypeScript",

@@ -8,7 +8,7 @@ export default async function generateRssFeed(blogPosts: any) {
   const feed = new Feed({
     title: 'JSON Schema Blog RSS Feed',
     description: 'JSON Schema Blog',
-    id: SITE_URL,
+    id: `${SITE_URL}/`,
     link: `${SITE_URL}/blog`,
     image: `${SITE_URL}/logo-blue.svg`,
     favicon: `${SITE_URL}/favicon.png`,

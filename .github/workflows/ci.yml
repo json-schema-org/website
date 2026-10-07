@@ -64,7 +64,7 @@ jobs:
         run: yarn run test:coverage:all
 
       - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v5.4.3
+        uses: codecov/codecov-action@v7.0.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           name: ${{ env.CODECOV_UNIQUE_NAME }}
@@ -80,7 +80,7 @@ jobs:
   #   steps: 
   #     - name: Checkout code
   #       uses: actions/checkout@v4
-      
+        
   #     - name: Get Changed Unauthorized files
   #       id: changed-unauth-files
   #       uses: tj-actions/changed-files@v46
@@ -110,7 +110,7 @@ jobs:
   #           .prettierignore
   #           .dockerignore
   #           makefile
-            
+              
   #     - name: List all changed unauthorized files
   #       if: steps.changed-unauth-files.outputs.any_changed == 'true' || steps.changed-unauth-files.outputs.any_deleted == 'true'
   #       env: 
