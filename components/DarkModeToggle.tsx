@@ -66,31 +66,75 @@ export default function DarkModeToggle() {
     };
   }, []);
 
+  const flipTheme = () => {
+    if (resolvedTheme !== 'light' && resolvedTheme !== 'dark') {
+      return;
+    }
+
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
+    setShowSelect(false);
+  };
+
   return (
     <div
       ref={dropdownRef}
-      className='relative w-10 h-10 dark-mode-toggle-container'
+      className='relative flex h-10 items-center dark-mode-toggle-container'
+      data-resolved-theme={resolvedTheme ?? ''}
     >
-      <button
-        onClick={() => setShowSelect(!showSelect)}
-        className='dark-mode-toggle rounded-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150 '
-        data-test='dark-mode-toggle'
-      >
-        <Image
-          src={activeThemeIcon}
-          alt='Dark Mode'
-          width={25}
-          height={25}
-          style={{
-            // Invert the icon color based on the theme, theme of the light mode is dark
-            filter: isDarkMode ? 'invert(1)' : 'invert(0)',
-          }}
-          data-test='theme-icon'
-        />
-      </button>
+      <div className='flex items-center'>
+        <button
+          type='button'
+          onClick={flipTheme}
+          className='dark-mode-toggle rounded-l-md dark:hover:bg-gray-700 p-1.5 hover:bg-gray-100 transition duration-150'
+          data-test='dark-mode-toggle'
+          aria-label={
+            resolvedTheme === 'dark'
+              ? 'Switch to light theme'
+              : 'Switch to dark theme'
+          }
+        >
+          <Image
+            src={activeThemeIcon}
+            alt='Dark Mode'
+            width={25}
+            height={25}
+            style={{
+              // Invert the icon color based on the theme, theme of the light mode is dark
+              filter: isDarkMode ? 'invert(1)' : 'invert(0)',
+            }}
+            data-test='theme-icon'
+          />
+        </button>
+        <button
+          type='button'
+          onClick={() => setShowSelect((open) => !open)}
+          className='rounded-r-md dark:hover:bg-gray-700 px-1.5 py-1.5 hover:bg-gray-100 transition duration-150'
+          data-test='theme-menu-button'
+          aria-label='Choose theme'
+          aria-expanded={showSelect}
+          aria-haspopup='menu'
+        >
+          <svg
+            width='12'
+            height='12'
+            viewBox='0 0 12 12'
+            aria-hidden='true'
+            style={{ filter: isDarkMode ? 'invert(1)' : 'invert(0)' }}
+          >
+            <path
+              d='M2.2 4.3 L6 8 L9.8 4.3'
+              fill='none'
+              stroke='#212121'
+              strokeWidth='1.4'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </button>
+      </div>
       <div
         onMouseLeave={() => setShowSelect(false)}
-        className={`absolute right-0 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max ${
+        className={`absolute right-0 top-10 p-2 bg-white dark:bg-gray-800 rounded-lg border dark:border-gray-700 z-10 w-max ${
           showSelect ? 'block' : 'hidden'
         }`}
         tabIndex={0}
