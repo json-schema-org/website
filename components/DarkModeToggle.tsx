@@ -67,12 +67,13 @@ export default function DarkModeToggle() {
   }, []);
 
   const flipTheme = () => {
-    if (resolvedTheme !== 'light' && resolvedTheme !== 'dark') {
-      return;
-    }
-
-    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark');
     setShowSelect(false);
+
+    if (resolvedTheme === 'dark') {
+      setTheme('light');
+    } else if (resolvedTheme === 'light') {
+      setTheme('dark');
+    }
   };
 
   return (

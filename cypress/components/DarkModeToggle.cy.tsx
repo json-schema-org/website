@@ -85,6 +85,16 @@ describe('DarkModeToggle Component', () => {
       cy.get(THEME_DROPDOWN).should('not.be.visible');
     });
 
+    it('should close the menu when the main button flips the theme', () => {
+      cy.get(MENU_BUTTON).click();
+      cy.get(THEME_DROPDOWN).should('be.visible');
+
+      cy.get(TOGGLE_BUTTON).click();
+
+      cy.get(THEME_DROPDOWN).should('not.be.visible');
+      cy.get(THEME_ICON).should('have.attr', 'src', '/icons/moon.svg');
+    });
+
     // Should close the menu on mouse leave
     it('should close the menu on mouse leave', () => {
       cy.get(MENU_BUTTON).click();
