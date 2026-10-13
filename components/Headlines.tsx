@@ -46,11 +46,19 @@ const Headline = ({
   const slug = slugifyMarkdownHeadline(children as any[]);
 
   useEffect(() => {
-    const hashIndex = asPath.indexOf('#');
-    const slugFromPath = hashIndex !== -1 ? asPath.slice(hashIndex + 1) : null;
+    const updateActiveHeading = () => {
+      const hash = window.location.hash.slice(1);
+      setIsActive(slug === hash);
+    };
 
-    setIsActive(slug === slugFromPath);
-  }, [router.asPath]);
+    updateActiveHeading();
+
+    window.addEventListener('hashchange', updateActiveHeading);
+
+    return () => {
+      window.removeEventListener('hashchange', updateActiveHeading);
+    };
+  }, [slug, router.asPath]);
 
   const handleHeadingClick = () => {
     const url = new URL(asPath, HOST);
