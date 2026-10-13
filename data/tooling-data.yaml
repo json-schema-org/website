@@ -455,6 +455,37 @@
   toolingListingNotes: 'Allows auto-generation of API client libraries (SDK generation) given an OpenAPI document. JSON schema validation run when validating schemas.'
   lastUpdated: '2024-05-20'
 
+- name: spring-boot-config-json-schema
+  description: 'Spring Boot starter that generates JSON Schema from @ConfigurationProperties classes for IDE autocomplete and CI validation of application.yml and .properties files.'
+  toolingTypes: ['code-to-schema']
+  languages: ['Java']
+  maintainers:
+    - name: 'Alexander Mondshain'
+      username: 'alexmond'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/alexmond/spring-boot-config-json-schema'
+  homepage: 'https://www.alexmond.org/spring-boot-config-json-schema-starter/current/'
+  supportedDialects:
+    draft: ['2020-12']
+  lastUpdated: '2026-07-06'
+
+- name: yj-schema-validator
+  description: 'CLI to validate YAML and JSON files against a JSON Schema, with colored, JSON, and JUnit report output. Built on the networknt json-schema-validator.'
+  toolingTypes: ['validator']
+  languages: ['Java']
+  environments: ['Command Line']
+  maintainers:
+    - name: 'Alexander Mondshain'
+      username: 'alexmond'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/alexmond/yj-schema-validator'
+  homepage: 'https://www.alexmond.org/yj-schema-validator/current/'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  lastUpdated: '2026-07-06'
+
 - name: '@hyperjump/json-schema'
   description: 'JSON Schema Validation, Annotation, and Bundling. Supports Draft 04, 06, 07, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1'
   toolingTypes:
