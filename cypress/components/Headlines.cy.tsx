@@ -9,8 +9,21 @@ import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
 
 describe('Headlines Component', () => {
   let mockRouter: MockRouter;
+
+  // Reset the real URL hash so it never leaks between tests
+  const resetHash = () => {
+    cy.window().then((win) => {
+      win.location.hash = '';
+    });
+  };
+
   beforeEach(() => {
     mockRouter = mockNextRouter();
+    resetHash();
+  });
+
+  afterEach(() => {
+    resetHash();
   });
 
   // Should render all types of headlines correctly with attributes and children
@@ -82,6 +95,12 @@ describe('Headlines Component', () => {
     // Push router to the URL with the hash
     mockRouter.push('/#what-is-json-schema');
 
+    // The mocked router does not change the real URL, so set the real hash.
+    // This fires a "hashchange" event, which the component listens for.
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
+
     // Check if the headline is active
     cy.get('span').should('have.class', 'text-startBlue inline-block ml-2');
     cy.get('span').should('have.text', '¶');
@@ -91,8 +110,10 @@ describe('Headlines Component', () => {
   it('should be active if the URL has the hash', () => {
     /* Testing the active headline with Headline1 */
 
-    // Set the URL with the hash
-    mockRouter.asPath = '/#what-is-json-schema';
+    // Set the real URL hash BEFORE mounting the component
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
 
     // Check if Correct headline is active
     cy.mount(<Headline1>What is JSON Schema?</Headline1>);
