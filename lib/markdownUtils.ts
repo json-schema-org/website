@@ -25,13 +25,14 @@ export function transformMarkdownLinks(markdown: string): string {
 
   // Replace reference-style links with inline links
   return markdown.replace(
-    /\[([^\]]+)\]\[([^\]]*)\]/g,
-    (_, text: string, id: string) => {
-      const link = linkDefinitions[id.toLowerCase()];
+    /!?\[([^\]]+)\](?:\s?\[([^\]]*)\])?(?!\()/g,
+    (match: string, text: string, id: string | undefined) => {
+      const linkId = (id !== undefined && id !== '' ? id : text).toLowerCase();
+      const link = linkDefinitions[linkId];
       if (link) {
-        return `[${text}](${link})`;
+        return (match.startsWith('!') ? '!' : '') + `[${text}](${link})`;
       }
-      return _; // Return the original string if no link is found
+      return match; // Return the original string if no link is found
     },
   );
 }
