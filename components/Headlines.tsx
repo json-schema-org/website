@@ -46,11 +46,33 @@ const Headline = ({
   const slug = slugifyMarkdownHeadline(children as any[]);
 
   useEffect(() => {
-    const hashIndex = asPath.indexOf('#');
-    const slugFromPath = hashIndex !== -1 ? asPath.slice(hashIndex + 1) : null;
+    // Blog TOC uses native `#` links. Those update window.location.hash and
+    // fire hashchange, but Next.js often leaves router.asPath alone — so the
+    // heading highlight must follow the browser hash, not only asPath.
+    const slugFromAsPath = () => {
+      const hashIndex = asPath.indexOf('#');
+      return hashIndex !== -1 ? asPath.slice(hashIndex + 1) : null;
+    };
 
-    setIsActive(slug === slugFromPath);
-  }, [router.asPath]);
+    const syncFromRouterOrLocation = () => {
+      if (typeof window !== 'undefined' && window.location.hash) {
+        setIsActive(slug === window.location.hash.slice(1));
+        return;
+      }
+      setIsActive(slug === slugFromAsPath());
+    };
+
+    const syncFromHashChange = () => {
+      const currentSlug = window.location.hash
+        ? window.location.hash.slice(1)
+        : null;
+      setIsActive(slug === currentSlug);
+    };
+
+    syncFromRouterOrLocation();
+    window.addEventListener('hashchange', syncFromHashChange);
+    return () => window.removeEventListener('hashchange', syncFromHashChange);
+  }, [asPath, slug]);
 
   const handleHeadingClick = () => {
     const url = new URL(asPath, HOST);
