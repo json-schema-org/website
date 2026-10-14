@@ -153,6 +153,15 @@
     draft: ['7']
   lastUpdated: '2022-08-31'
 
+- name: Tool Kumar
+  description: 'Free browser-based JSON viewer, formatter, validator, repair tool, comparison tool, and JSON Schema generator'
+  toolingTypes: ['data-to-schema', 'validator']
+  environments: ['Browser']
+  license: 'Proprietary'
+  homepage: 'https://tools.vikasmaur.com/'
+  toolingListingNotes: 'Generates JSON Schema from a JSON document in the browser; processing is client-side'
+  lastUpdated: '2026-10-14'
+
 - name: luposlip/json-schema
   description: 'Clojure library JSON Schema validation and generation - Draft-07 compatible'
   toolingTypes: ['validator', 'data-to-schema']
