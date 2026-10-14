@@ -154,11 +154,13 @@
   lastUpdated: '2022-08-31'
 
 - name: Tool Kumar
-  description: 'Free browser-based JSON viewer, formatter, validator, repair tool, comparison tool, and JSON Schema generator'
-  toolingTypes: ['data-to-schema', 'validator']
+  description: 'Free browser-based JSON viewer, formatter, JSON syntax checker, repair tool, comparison tool, and JSON Schema generator'
+  toolingTypes: ['data-to-schema']
   environments: ['Browser']
   license: 'Proprietary'
-  homepage: 'https://tools.vikasmaur.com/'
+  homepage: 'https://tools.vikasmaur.com/tools/json-schema-generator'
+  supportedDialects:
+    draft: ['2020-12']
   toolingListingNotes: 'Generates JSON Schema from a JSON document in the browser; processing is client-side'
   lastUpdated: '2026-10-14'
 
