@@ -131,4 +131,21 @@ describe('Headlines Component', () => {
     cy.get('h1').find('span').should('not.exist');
     cy.get('h2').find('span').should('have.text', '¶');
   });
+
+  // Clearing the hash should deactivate the previously active headline
+  it('should clear the active state when the hash is removed', () => {
+    mockRouter.asPath = '/blog/some-post#what-is-json-schema';
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
+
+    cy.mount(<Headline1>What is JSON Schema?</Headline1>);
+    cy.get('h1').find('span').should('have.text', '¶');
+
+    cy.window().then((win) => {
+      win.location.hash = '';
+    });
+
+    cy.get('h1').find('span').should('not.exist');
+  });
 });
