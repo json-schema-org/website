@@ -60,6 +60,7 @@ export function DocsHelp({
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
   const handleVoteClick = (value: string) => {
+    setError('');
     if (selectedVote == value) {
       setIsFormOpen(false);
       setSelectedVote(null);
