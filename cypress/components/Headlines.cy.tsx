@@ -11,6 +11,9 @@ describe('Headlines Component', () => {
   let mockRouter: MockRouter;
   beforeEach(() => {
     mockRouter = mockNextRouter();
+    cy.window().then((win) => {
+      win.history.replaceState(null, '', win.location.pathname);
+    });
   });
 
   // Should render all types of headlines correctly with attributes and children
@@ -93,10 +96,56 @@ describe('Headlines Component', () => {
 
     // Set the URL with the hash
     mockRouter.asPath = '/#what-is-json-schema';
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
 
     // Check if Correct headline is active
     cy.mount(<Headline1>What is JSON Schema?</Headline1>);
     cy.get('span').should('have.class', 'text-startBlue inline-block ml-2');
     cy.get('span').should('have.text', '¶');
+  });
+
+  // Sidebar / TOC uses native `#` links which fire hashchange without updating
+  // Next.js asPath — heading highlight must follow the hash.
+  it('should sync active state when the hash changes without asPath updating', () => {
+    mockRouter.asPath = '/blog/some-post#what-is-json-schema';
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
+
+    cy.mount(
+      <>
+        <Headline1>What is JSON Schema?</Headline1>
+        <Headline2>Performance Improvement</Headline2>
+      </>,
+    );
+
+    cy.get('h1').find('span').should('have.text', '¶');
+    cy.get('h2').find('span').should('not.exist');
+
+    cy.window().then((win) => {
+      win.location.hash = '#performance-improvement';
+    });
+
+    cy.get('h1').find('span').should('not.exist');
+    cy.get('h2').find('span').should('have.text', '¶');
+  });
+
+  // Clearing the hash should deactivate the previously active headline
+  it('should clear the active state when the hash is removed', () => {
+    mockRouter.asPath = '/blog/some-post#what-is-json-schema';
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
+
+    cy.mount(<Headline1>What is JSON Schema?</Headline1>);
+    cy.get('h1').find('span').should('have.text', '¶');
+
+    cy.window().then((win) => {
+      win.location.hash = '';
+    });
+
+    cy.get('h1').find('span').should('not.exist');
   });
 });
