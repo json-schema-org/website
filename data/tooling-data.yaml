@@ -3463,6 +3463,27 @@
   supportedDialects:
     draft: ['2020-12']
 
+- name: 'xemantic-ai-tool-schema'
+  description: 'Kotlin multiplatform library generating JSON Schema from @Serializable classes, designed for AI/LLM tool use (function calling).'
+  toolingTypes: ['code-to-schema']
+  languages: ['Kotlin']
+  environments: ['JVM', 'JavaScript', 'WebAssembly', 'Native']
+  creators:
+    - name: 'Xemantic'
+      username: 'xemantic'
+      platform: 'github'
+  maintainers:
+    - name: 'Kazik Pogoda'
+      username: 'morisil'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/xemantic/xemantic-ai-tool-schema'
+  homepage: 'https://github.com/xemantic/xemantic-ai-tool-schema'
+  supportedDialects:
+    draft: ['7', '2020-12']
+  toolingListingNotes: 'Generates JSON Schema from Kotlin @Serializable classes using kotlinx.serialization metadata. Supports constraints via annotations (@Description, @Title, @MinLength, @MaxLength, @Pattern, @Format, etc.). Output is compatible with OpenAI and Anthropic API tool use schemas.'
+  lastUpdated: '2026-10-11'
+
 - name: 'Blaze4J'
   description: 'Blaze4J is a high-performance Java wrapper for the Blaze JSON Schema validator,'
   toolingTypes: ['validator']
