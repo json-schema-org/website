@@ -255,7 +255,7 @@ describe('Layout Component', () => {
       cy.get('header').find('.block.lg\\:hidden').click();
 
       // Click close button
-      cy.get('header').find('.h-6.w-6.lg\\:hidden').click();
+      cy.get('header').find('.relative.h-8.w-8.lg\\:hidden').click();
 
       // Check if mobile nav is hidden - it should not exist in DOM when hidden
       cy.get('.flex.flex-col.lg\\:hidden').should('not.exist');

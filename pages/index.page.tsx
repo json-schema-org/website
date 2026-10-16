@@ -465,12 +465,17 @@ const Home = (props: any) => {
                       return (
                         <div
                           key={index}
-                          className='bg-slate-50 h-[44px] w-[44px] rounded-full -ml-3 bg-cover bg-center border-2 border-white'
-                          style={{
-                            backgroundImage: `url(${author.photo})`,
-                            zIndex: 10 - index,
-                          }}
-                        />
+                          className='relative h-[44px] w-[44px] rounded-full -ml-3 overflow-hidden border-2 border-white bg-slate-200'
+                          style={{ zIndex: 10 - index }}
+                        >
+                          <Image
+                            src={author.photo}
+                            alt={author.name}
+                            fill
+                            className='object-cover'
+                            sizes='44px'
+                          />
+                        </div>
                       );
                     },
                   )}
@@ -873,7 +878,7 @@ const Home = (props: any) => {
               >
                 {isClient && (
                   <>
-                    <img
+                    <Image
                       src={logos.dottxt}
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       alt='dottxt logo'
@@ -888,7 +893,7 @@ const Home = (props: any) => {
               >
                 {isClient && (
                   <>
-                    <img
+                    <Image
                       src={logos.sourcemeta}
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       alt='sourcemeta logo'
@@ -903,7 +908,7 @@ const Home = (props: any) => {
               >
                 {isClient && (
                   <>
-                    <img
+                    <Image
                       src={logos.nix}
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       alt='n-iX logo'
@@ -918,7 +923,7 @@ const Home = (props: any) => {
               >
                 {isClient && (
                   <>
-                    <img
+                    <Image
                       src={logos.oracle}
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       alt='Oracle logo'
@@ -933,7 +938,7 @@ const Home = (props: any) => {
               >
                 {isClient && (
                   <>
-                    <img
+                    <Image
                       src={logos.spinthewheel}
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       alt='Spin the wheel logo'
@@ -944,7 +949,7 @@ const Home = (props: any) => {
               <a href='https://time.now/' target='_blank' rel='noreferrer'>
                 {isClient && (
                   <>
-                    <img
+                    <Image
                       src={logos.timenow}
                       className='w-24 transition-transform duration-300 hover:scale-105'
                       alt='Time Now logo'
@@ -959,7 +964,7 @@ const Home = (props: any) => {
               >
                 {isClient && (
                   <>
-                    <img
+                    <Image
                       src={logos.bairesdev}
                       className='w-44 transition-transform duration-300 hover:scale-105'
                       alt='legasset logo'
