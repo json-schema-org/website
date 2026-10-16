@@ -15,6 +15,7 @@ export interface CardProps {
   extended?: boolean;
   headerSize?: 'small' | 'medium' | 'large';
   bodyTextSize?: 'small' | 'medium' | 'large';
+  linkText?: string;
 }
 
 const CardBody = ({
@@ -26,6 +27,7 @@ const CardBody = ({
   extended,
   headerSize = 'medium',
   bodyTextSize = 'medium',
+  linkText = 'Read More',
 }: CardProps) => {
   const headerSizeClasses = {
     small: 'text-[0.9rem]',
@@ -99,7 +101,7 @@ const CardBody = ({
           className='absolute bottom-3 right-5 font-medium opacity-0 transition-opacity delay-150 ease-in-out group-hover:opacity-100 text-black dark:text-white'
           data-test='card-read-more'
         >
-          Read More
+          {linkText}
         </p>
       )}
     </ShadcnCard>
