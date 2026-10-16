@@ -148,4 +148,20 @@ describe('Headlines Component', () => {
 
     cy.get('h1').find('span').should('not.exist');
   });
+
+  // Active heading should keep its normal style; only the pilcrow is highlighted
+  it('should keep heading style after click and only highlight the pilcrow', () => {
+    cy.mount(<Headline1>What is JSON Schema?</Headline1>);
+    cy.get('[data-test="headline"]').click();
+
+    cy.get('[data-test="headline"]').should('not.have.class', 'text-startBlue');
+    cy.get('[data-test="headline"]').should(
+      'not.have.class',
+      'hover:underline',
+    );
+    cy.get('[data-test="headline-anchor"]')
+      .should('have.class', 'text-startBlue')
+      .and('have.class', 'group-hover:underline')
+      .and('have.text', '¶');
+  });
 });
