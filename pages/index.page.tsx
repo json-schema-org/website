@@ -370,7 +370,7 @@ const Home = (props: any) => {
             </p>
           </div>
           <div className='grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
-            <div className='p-4 w-full mb-6 shadow-3xl rounded-[10px] dark:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+            <div className='p-4 w-full mb-6 border border-gray-200 dark:border-none shadow-3xl rounded-[10px] dark:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <Link
                 href='https://json-schema.org/slack'
                 target='_blank'
@@ -431,7 +431,7 @@ const Home = (props: any) => {
               </button>
             </div>
             {/* BlogPost Data */}
-            <div className='p-4 w-full mb-6 shadow-3xl rounded-[10px] dark:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+            <div className='p-4 w-full mb-6 border border-gray-200 dark:border-none shadow-3xl rounded-[10px] dark:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
               <Link href={`/blog/posts/${blogPosts[0].slug}`}>
                 <h3 className='mb-5 font-semibold pt-1 dark:text-slate-200'>
                   The JSON Schema Blog
@@ -515,7 +515,7 @@ const Home = (props: any) => {
               </div>
             </div>
             <div>
-              <div className='p-4 md:w-full mb-6 mr-4 shadow-3xl rounded-[10px] dark:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
+              <div className='p-4 md:w-full mb-6 mr-4 border border-gray-200 dark:border-none shadow-3xl rounded-[10px] dark:shadow-2xl transition-all duration-300 ease-in-out hover:scale-[1.03] hover:shadow-[0_10px_40px_rgba(0,44,196,0.15)] dark:hover:shadow-[0_10px_40px_rgba(84,104,255,0.2)]'>
                 <h3 className='mb-2 font-semibold dark:text-slate-200'>
                   JSON Schema Community Meetings & Events
                 </h3>
