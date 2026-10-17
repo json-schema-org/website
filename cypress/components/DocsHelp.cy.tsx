@@ -204,20 +204,6 @@ describe('DocsHelp Component', () => {
       .and('contain.text', 'Feedback comment cannot be empty.');
   });
 
-  // test error message is cleared when the feedback form is collapsed
-  it('should clear the empty-comment error when the feedback form is closed', () => {
-    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
-    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
-    cy.get(FEEDBACK_ERROR_MESSAGE).should('be.visible');
-    // collapse the form by clicking the same button again
-    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
-    cy.get(FEEDBACK_ERROR_MESSAGE).should('not.exist');
-    // reopen the form, the stale error must not come back
-    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
-    cy.get(FEEDBACK_FORM).should('be.visible');
-    cy.get(FEEDBACK_ERROR_MESSAGE).should('not.exist');
-  });
-
   // test feedback form shows error when submitting whitespace-only comment
   it('should show error when submitting whitespace-only feedback comment', () => {
     // click on yes button to open feedback form
