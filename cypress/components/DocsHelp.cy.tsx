@@ -159,7 +159,8 @@ describe('DocsHelp Component', () => {
     // check if clicking on submit button should show error message
     cy.get(FEEDBACK_ERROR_MESSAGE)
       .should('have.prop', 'tagName', 'P')
-      .and('contains', /An error occurred. Please try again later./i);
+      .and('contain.text', 'submit your feedback right now')
+      .and('contain.text', 'Create an issue');
   });
 
   /* test feedback form functionality when network error occurs
@@ -185,7 +186,8 @@ describe('DocsHelp Component', () => {
     // check if clicking on submit button should show error message
     cy.get(FEEDBACK_ERROR_MESSAGE)
       .should('have.prop', 'tagName', 'P')
-      .and('contains', /An error occurred. Please try again later./i);
+      .and('contain.text', 'submit your feedback right now')
+      .and('contain.text', 'Create an issue');
   });
 
   // test feedback form shows error when submitting empty comment
