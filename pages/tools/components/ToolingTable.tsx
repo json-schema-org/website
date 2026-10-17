@@ -5,6 +5,8 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import { useRouter } from 'next/router';
+import slugify from 'slugify';
 
 import { Headline2 } from '~/components/Headlines';
 import InfoIcon from '~/public/icons/icons8-info.svg';
@@ -22,6 +24,14 @@ import classnames from 'classnames';
 import { postAnalytics } from '../lib/postAnalytics';
 import Tag from './ui/Tag';
 
+export const getToolSlug = (tool: JSONSchemaTool): string => {
+  return slugify(tool.name.replace(/[/._]/g, '-'), {
+    lower: true,
+    strict: true,
+    trim: true,
+  });
+};
+
 interface ToolingTableProps {
   toolsByGroup: GroupedTools;
   transform: Transform;
@@ -38,11 +48,49 @@ const ToolingTable = ({
   setTransform,
   onVisibleToolCountChange,
 }: ToolingTableProps) => {
+  const router = useRouter();
   const [selectedTool, setSelectedTool] = useState<JSONSchemaTool | null>(null);
   const [bowtieReport, setBowtieReport] = useState<BowtieReport | null>(null);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(
     {},
   );
+
+  useEffect(() => {
+    if (!router.isReady) return;
+
+    const syncModalWithHash = () => {
+      const hash = window.location.hash;
+      if (hash.startsWith('#tool-')) {
+        const targetSlug = hash.replace('#tool-', '').toLowerCase();
+        const allTools = Object.values(toolsByGroup).flat();
+        const matchedTool = allTools.find((t) => {
+          const baseSlug = getToolSlug(t);
+          if (baseSlug === targetSlug) return true;
+          if (t.languages && t.languages.length > 0) {
+            const langSlug = slugify(t.languages[0], {
+              lower: true,
+              strict: true,
+            });
+            if (`${baseSlug}-${langSlug}` === targetSlug) return true;
+          }
+          return false;
+        });
+
+        if (matchedTool) {
+          setSelectedTool(matchedTool);
+        }
+      } else if (!hash) {
+        setSelectedTool(null);
+      }
+    };
+
+    syncModalWithHash();
+
+    window.addEventListener('hashchange', syncModalWithHash);
+    return () => {
+      window.removeEventListener('hashchange', syncModalWithHash);
+    };
+  }, [router.isReady, toolsByGroup]);
 
   useEffect(() => {
     const fetchBowtieReport = async () => {
@@ -101,6 +149,16 @@ const ToolingTable = ({
 
   const openModal = (tool: JSONSchemaTool) => {
     setSelectedTool(tool);
+    const slug = getToolSlug(tool);
+    router.replace(
+      {
+        pathname: router.pathname,
+        query: router.query,
+        hash: `tool-${slug}`,
+      },
+      undefined,
+      { shallow: true },
+    );
     postAnalytics({
       eventType: 'about',
       eventPayload: {
@@ -116,6 +174,16 @@ const ToolingTable = ({
 
   const closeModal = () => {
     setSelectedTool(null);
+    if (window.location.hash.startsWith('#tool-')) {
+      router.replace(
+        {
+          pathname: router.pathname,
+          query: router.query,
+        },
+        undefined,
+        { shallow: true },
+      );
+    }
   };
 
   const visibleToolCount = Object.values(filteredToolsByGroup).reduce(
