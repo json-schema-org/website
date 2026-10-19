@@ -1,4 +1,7 @@
-import type { getStaticProps } from '~/pages/blog/posts/[slug].page';
+import type {
+  getStaticPaths,
+  getStaticProps,
+} from '~/pages/blog/posts/[slug].page';
 
 describe('Blog Metadata and Client Navigation Tests', () => {
   const PRODUCTION_ORIGIN = 'https://json-schema.org';
@@ -41,9 +44,12 @@ describe('Blog Metadata and Client Navigation Tests', () => {
       it(`prepares article props and metadata for ${slug}`, () => {
         cy.request(`${BASE_URL}/blog/posts/${slug}`);
         cy.task<{
+          paths: Awaited<ReturnType<typeof getStaticPaths>>;
           result: Awaited<ReturnType<typeof getStaticProps>>;
           coverage: Record<string, unknown>;
-        }>('blogStaticProps', slug).then(({ result, coverage }) => {
+        }>('blogStaticProps', slug).then(({ paths, result, coverage }) => {
+          expect(paths.fallback).to.eq(false);
+          expect(paths.paths).to.deep.include({ params: { slug } });
           expect(result.props.hasCustomSeo).to.eq(true);
           expect(result.props.frontmatter.title).to.eq(title);
           expect(result.props.content).to.be.a('string').and.not.be.empty;

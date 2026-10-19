@@ -23,8 +23,9 @@ export default defineConfig({
         async blogStaticProps(slug: string) {
           // The preceding article request compiles the real server module.
           // eslint-disable-next-line @typescript-eslint/no-var-requires
-          const { getStaticProps } =
+          const { getStaticPaths, getStaticProps } =
             await require('./.next/server/pages/blog/posts/[slug].js');
+          const paths = await getStaticPaths();
           const result = await getStaticProps({ params: { slug } });
           const coverage = (
             globalThis as typeof globalThis & {
@@ -37,7 +38,11 @@ export default defineConfig({
             throw new Error('Server article coverage was not collected.');
           }
 
-          return { result, coverage: { [articlePath]: coverage[articlePath] } };
+          return {
+            paths,
+            result,
+            coverage: { [articlePath]: coverage[articlePath] },
+          };
         },
       });
       return config;
