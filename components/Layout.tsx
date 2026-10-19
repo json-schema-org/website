@@ -25,6 +25,8 @@ type Props = {
   children: React.ReactNode;
   mainClassName?: string;
   metaTitle?: string;
+  metaDescription?: string;
+  hasCustomSeo?: boolean;
   whiteBg?: boolean;
 };
 // apiKey and appId are set in the .env.local file
@@ -37,6 +39,8 @@ export default function Layout({
   children,
   mainClassName,
   metaTitle,
+  metaDescription,
+  hasCustomSeo,
   whiteBg,
 }: Props) {
   const showMobileNav = useStore((s: any) => s.overlayNavigation === 'docs');
@@ -117,8 +121,14 @@ export default function Layout({
         src='https://plausible.io/js/script.tagged-events.js'
       ></script>
       <Head>
-        <title>{newTitle}</title>
-        <meta name='description' content='JSON Schema' />
+        {!hasCustomSeo && <title key='title'>{newTitle}</title>}
+        {!hasCustomSeo && (
+          <meta
+            name='description'
+            content={metaDescription || 'JSON Schema'}
+            key='description'
+          />
+        )}
         <meta
           name='viewport'
           content='width=device-width, initial-scale=1, maximum-scale=1'
