@@ -75,10 +75,31 @@ jobs:
             
             const hasNeedsInfoLabel = currentLabels.some(label => label.name === 'needs-info');
             
+            // Hidden marker to identify bot comments
+            const botMarker = '<!-- pr-body-validation-bot -->';
+            
+            // Find existing bot comment
+            let existingComment = null;
+            for await (const { data: comments } of github.paginate.iterator(
+              github.rest.issues.listComments,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+              }
+            )) {
+              existingComment = comments.find(comment => 
+                comment.user.login === 'github-actions[bot]' && 
+                comment.body.includes(botMarker)
+              );
+              if (existingComment) break;
+            }
+            
             if (missingItems.length > 0) {
-              // If there are missing items, add comment and label
+              // If there are missing items, create or update comment and add label
               const missingItemsList = missingItems.join(', ');
-              const comment = `Hi @${pr.user.login}! Thanks a lot for your contribution! 
+              const comment = `${botMarker}
+              Hi @${pr.user.login}! Thanks a lot for your contribution! 
               
               I noticed that the following required information is missing or incomplete: ${missingItemsList}
 
@@ -86,12 +107,21 @@ jobs:
 
               Thanks a lot!`;
               
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                body: comment
-              });
+              if (existingComment) {
+                await github.rest.issues.updateComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: existingComment.id,
+                  body: comment
+                });
+              } else {
+                await github.rest.issues.createComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  body: comment
+                });
+              }
               
               // Add needs-info label if not already present
               if (!hasNeedsInfoLabel) {
@@ -103,12 +133,23 @@ jobs:
                 });
               }
               core.setFailed(`The following required information is missing or incomplete: ${missingItemsList}`);
-            } else if (hasNeedsInfoLabel) {
-              // If all requirements are met and the needs-info label exists, remove it
-              await github.rest.issues.removeLabel({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: context.issue.number,
-                name: 'needs-info'
-              });
+            } else {
+              // If all requirements are met, delete the bot comment if it exists
+              if (existingComment) {
+                await github.rest.issues.deleteComment({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  comment_id: existingComment.id
+                });
+              }
+              
+              // Remove needs-info label if present
+              if (hasNeedsInfoLabel) {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: 'needs-info'
+                });
+              }
             }
