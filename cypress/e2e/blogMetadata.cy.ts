@@ -111,8 +111,8 @@ describe('Blog Metadata and Client Navigation Tests', () => {
         expect(response.status).to.eq(200);
         const html = response.body;
 
-        const expectedDesc =
-          "An update on JSON Schema's discussions with the IETF, specification publication plans, and the community's next steps.";
+        const apostrophe = String.fromCharCode(39);
+        const expectedDesc = `An update on JSON Schema${apostrophe}s discussions with the IETF, specification publication plans, and the community${apostrophe}s next steps.`;
         const descMatches =
           html.match(/<meta\s+name=["']description["'][^>]*>/gi) || [];
         expect(descMatches.length).to.eq(1);

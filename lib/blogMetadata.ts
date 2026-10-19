@@ -76,8 +76,8 @@ export function sanitizePlainText(input: string): string {
     '&lt;': '<',
     '&gt;': '>',
     '&quot;': '"',
-    '&#39;': "'",
-    '&apos;': "'",
+    '&#39;': String.fromCharCode(39),
+    '&apos;': String.fromCharCode(39),
     '&nbsp;': ' ',
     '&amp;': '&',
   };
