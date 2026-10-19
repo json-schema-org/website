@@ -1,3 +1,5 @@
+import type { getStaticProps } from '~/pages/blog/posts/[slug].page';
+
 describe('Blog Metadata and Client Navigation Tests', () => {
   const PRODUCTION_ORIGIN = 'https://json-schema.org';
   const BASE_URL = Cypress.config('baseUrl') || 'http://localhost:3000';
@@ -7,6 +9,53 @@ describe('Blog Metadata and Client Navigation Tests', () => {
     cy.visit(`${BASE_URL}/`, {
       retryOnStatusCodeFailure: true,
       timeout: 60000,
+    });
+  });
+
+  describe('Server-Side Article Metadata', () => {
+    const apostrophe = String.fromCharCode(39);
+    const cases = [
+      {
+        slug: 'json-schema-in-5-minutes',
+        title: 'JSON Schema in 5 minutes',
+        description:
+          'Everyone needs good fundamentals, and understanding the basics of JSON Schema changes how you read, reason, and develop Schemas.',
+        canonicalUrl: `${PRODUCTION_ORIGIN}/blog/posts/json-schema-in-5-minutes`,
+      },
+      {
+        slug: 'hyperborea',
+        title: 'Astonishing Serializations & Schemas of Hyperborea',
+        description:
+          'Using JSON Schema for validating role-playing character sheets.',
+        canonicalUrl: 'https://techblog.babyl.ca/entry/hyperborea-character',
+      },
+      {
+        slug: 'ietf-cooperation',
+        title: 'JSON Schema and IETF',
+        description: `An update on JSON Schema${apostrophe}s discussions with the IETF, specification publication plans, and the community${apostrophe}s next steps.`,
+        canonicalUrl: `${PRODUCTION_ORIGIN}/blog/posts/ietf-cooperation`,
+      },
+    ];
+
+    cases.forEach(({ slug, title, description, canonicalUrl }) => {
+      it(`prepares article props and metadata for ${slug}`, () => {
+        cy.request(`${BASE_URL}/blog/posts/${slug}`);
+        cy.task<{
+          result: Awaited<ReturnType<typeof getStaticProps>>;
+          coverage: Record<string, unknown>;
+        }>('blogStaticProps', slug).then(({ result, coverage }) => {
+          expect(result.props.hasCustomSeo).to.eq(true);
+          expect(result.props.frontmatter.title).to.eq(title);
+          expect(result.props.content).to.be.a('string').and.not.be.empty;
+          expect(result.props.metadata.title).to.eq(title);
+          expect(result.props.metadata.pageUrl).to.eq(
+            `${PRODUCTION_ORIGIN}/blog/posts/${slug}`,
+          );
+          expect(result.props.metadata.canonicalUrl).to.eq(canonicalUrl);
+          expect(result.props.metadata.description).to.eq(description);
+          cy.task('combineCoverage', JSON.stringify(coverage), { log: false });
+        });
+      });
     });
   });
 

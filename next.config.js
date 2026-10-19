@@ -7,9 +7,12 @@ const nextConfig = {
     unoptimized: true,
   },
   webpack: (config, { dev, isServer }) => {
-    if (dev && !isServer) {
+    if (dev) {
       config.module.rules.push({
-        test: /\.(js|jsx|ts|tsx)$/,
+        // Also collect coverage for the article route's server-only static props.
+        test: isServer
+          ? /[\\/]pages[\\/]blog[\\/]posts[\\/]\[slug\]\.page\.tsx$/
+          : /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -48,4 +51,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-
