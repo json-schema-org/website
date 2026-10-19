@@ -48,13 +48,13 @@ describe('Blog Metadata Normalization and BlogSeo Component', () => {
 
     it('rejects malformed URLs or unsafe schemes', () => {
       expect(() => normalizeCanonicalUrl('javascript:alert(1)')).to.throw(
-        /Unsupported protocol/,
+        'Unsupported protocol',
       );
       expect(() =>
         normalizeCanonicalUrl('data:text/html;base64,PHNjcmlwdD4='),
-      ).to.throw(/Unsupported protocol/);
+      ).to.throw('Unsupported protocol');
       expect(() => normalizeCanonicalUrl('not-a-valid-url')).to.throw(
-        /Malformed canonicalLink/,
+        'Malformed canonicalLink',
       );
     });
   });
@@ -111,9 +111,12 @@ describe('Blog Metadata Normalization and BlogSeo Component', () => {
         normalizeBlogMetadata('missing-desc-post', {
           title: 'Article Without Description',
         }),
-      ).to.throw(
-        /Missing description for blog post "missing-desc-post": provide either 'seoDescription' or 'excerpt' in frontmatter\./,
-      );
+      )
+        .to.throw()
+        .with.property('message')
+        .that.matches(
+          /Missing description for blog post "missing-desc-post": provide either 'seoDescription' or 'excerpt' in frontmatter\./,
+        );
     });
 
     it('throws an actionable build-time diagnostic when title is missing', () => {
@@ -121,9 +124,12 @@ describe('Blog Metadata Normalization and BlogSeo Component', () => {
         normalizeBlogMetadata('missing-title-post', {
           excerpt: 'Some excerpt',
         }),
-      ).to.throw(
-        /Missing title for blog post "missing-title-post": provide 'title' in frontmatter\./,
-      );
+      )
+        .to.throw()
+        .with.property('message')
+        .that.matches(
+          /Missing title for blog post "missing-title-post": provide 'title' in frontmatter\./,
+        );
     });
   });
 
