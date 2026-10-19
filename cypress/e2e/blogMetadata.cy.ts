@@ -34,11 +34,11 @@ describe('Blog Metadata and Client Navigation Tests', () => {
         expect(html).to.match(
           /<meta\s+property=["']og:title["']\s+content=["']JSON Schema in 5 Minutes["']/i,
         );
-        expect(html).to.match(
-          new RegExp(
-            `<meta\\s+property=["']og:url["']\\s+content=["']${PRODUCTION_ORIGIN}/blog/posts/json-schema-in-5-minutes["']`,
-            'i',
-          ),
+        const ogUrlMatches =
+          html.match(/<meta\s+property=["']og:url["'][^>]*>/gi) || [];
+        expect(ogUrlMatches.length).to.eq(1);
+        expect(ogUrlMatches[0]).to.contain(
+          `content="${PRODUCTION_ORIGIN}/blog/posts/json-schema-in-5-minutes"`,
         );
         expect(html).to.match(
           /<meta\s+name=["']twitter:card["']\s+content=["'](summary_large_image|summary)["']/i,
@@ -59,12 +59,10 @@ describe('Blog Metadata and Client Navigation Tests', () => {
         expect(canonicalMatches[0]).to.contain(`href="${expectedCanonical}"`);
 
         // og:url must match the canonical URL
-        expect(html).to.match(
-          new RegExp(
-            `<meta\\s+property=["']og:url["']\\s+content=["']${expectedCanonical}["']`,
-            'i',
-          ),
-        );
+        const ogUrlMatches =
+          html.match(/<meta\s+property=["']og:url["'][^>]*>/gi) || [];
+        expect(ogUrlMatches.length).to.eq(1);
+        expect(ogUrlMatches[0]).to.contain(`content="${expectedCanonical}"`);
       });
     });
 
@@ -81,12 +79,10 @@ describe('Blog Metadata and Client Navigation Tests', () => {
           expect(canonicalMatches.length).to.eq(1);
           expect(canonicalMatches[0]).to.contain(`href="${expectedCanonical}"`);
 
-          expect(html).to.match(
-            new RegExp(
-              `<meta\\s+property=["']og:url["']\\s+content=["']${expectedCanonical}["']`,
-              'i',
-            ),
-          );
+          const ogUrlMatches =
+            html.match(/<meta\s+property=["']og:url["'][^>]*>/gi) || [];
+          expect(ogUrlMatches.length).to.eq(1);
+          expect(ogUrlMatches[0]).to.contain(`content="${expectedCanonical}"`);
         },
       );
     });
@@ -103,12 +99,10 @@ describe('Blog Metadata and Client Navigation Tests', () => {
         expect(canonicalMatches.length).to.eq(1);
         expect(canonicalMatches[0]).to.contain(`href="${expectedCanonical}"`);
 
-        expect(html).to.match(
-          new RegExp(
-            `<meta\\s+property=["']og:url["']\\s+content=["']${expectedCanonical}["']`,
-            'i',
-          ),
-        );
+        const ogUrlMatches =
+          html.match(/<meta\s+property=["']og:url["'][^>]*>/gi) || [];
+        expect(ogUrlMatches.length).to.eq(1);
+        expect(ogUrlMatches[0]).to.contain(`content="${expectedCanonical}"`);
       });
     });
 

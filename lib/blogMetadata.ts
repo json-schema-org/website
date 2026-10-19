@@ -47,8 +47,13 @@ export function sanitizePlainText(input: string): string {
 
   let text = input;
 
-  // 1. Remove HTML tags
-  text = text.replace(/<[^>]*>/g, '');
+  // 1. Remove HTML tags iteratively to prevent nested tag bypass
+  let prevText = '';
+  while (prevText !== text) {
+    prevText = text;
+    text = text.replace(/<[^>]*>/g, '');
+  }
+  text = text.replace(/[<>]/g, '');
 
   // 2. Remove Markdown images: ![alt](url) -> alt
   text = text.replace(/!\[([^\]]*)\]\([^)]*\)/g, '$1');
@@ -66,15 +71,20 @@ export function sanitizePlainText(input: string): string {
   // 6. Remove inline code backticks: `code` -> code
   text = text.replace(/`([^`]+)`/g, '$1');
 
-  // 7. Decode common HTML entities
-  text = text
-    .replace(/&amp;/g, '&')
-    .replace(/&lt;/g, '<')
-    .replace(/&gt;/g, '>')
-    .replace(/&quot;/g, '"')
-    .replace(/&#39;/g, "'")
-    .replace(/&apos;/g, "'")
-    .replace(/&nbsp;/g, ' ');
+  // 7. Decode common HTML entities in a single pass to prevent double-unescaping
+  const entities: Record<string, string> = {
+    '&lt;': '<',
+    '&gt;': '>',
+    '&quot;': '"',
+    '&#39;': "'",
+    '&apos;': "'",
+    '&nbsp;': ' ',
+    '&amp;': '&',
+  };
+  text = text.replace(
+    /&(?:lt|gt|quot|#39|apos|nbsp|amp);/g,
+    (match) => entities[match] || match,
+  );
 
   // 8. Collapse whitespace and trim
   text = text.replace(/\s+/g, ' ').trim();
