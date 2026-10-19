@@ -9,9 +9,9 @@ const nextConfig = {
   webpack: (config, { dev, isServer }) => {
     if (dev) {
       config.module.rules.push({
-        // Also collect coverage for the article route's server-only static props.
+        // Include server-only exports of the three pages exercised by the blog tests.
         test: isServer
-          ? /[\\/]pages[\\/]blog[\\/]posts[\\/]\[slug\]\.page\.tsx$/
+          ? /[\\/]pages[\\/](?:index\.page\.tsx|blog[\\/]index\.page\.tsx|blog[\\/]posts[\\/]\[slug\]\.page\.tsx)$/
           : /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: [

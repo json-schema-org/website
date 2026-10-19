@@ -65,6 +65,47 @@ describe('Blog Metadata and Client Navigation Tests', () => {
     });
   });
 
+  describe('Listing static generation', () => {
+    [null, 'Engineering'].forEach((type) => {
+      it(`loads the real blog corpus with ${type || 'default'} filtering`, () => {
+        cy.request(`${BASE_URL}/blog`);
+        cy.task<any>('blogIndexStaticProps', type).then(
+          ({ result, coverage }) => {
+            expect(result.props.filterTag).to.eq(type || 'All');
+            expect(result.props.blogPosts).to.have.length.greaterThan(10);
+            expect(result.props.blogPosts[0].content).to.be.a('string').and.not
+              .be.empty;
+            cy.task('combineCoverage', JSON.stringify(coverage), {
+              log: false,
+            });
+          },
+        );
+      });
+    });
+
+    [false, true].forEach((failCalendar) => {
+      it(`prepares the latest home articles with calendar failure=${failCalendar}`, () => {
+        cy.request(`${BASE_URL}/`);
+        cy.task<any>('homeStaticProps', failCalendar).then(
+          ({ result, errors, coverage }) => {
+            expect(result.props.blogPosts).to.have.length(5);
+            const dates = result.props.blogPosts.map((post: any) =>
+              new Date(post.frontmatter.date).getTime(),
+            );
+            expect(dates).to.deep.eq(
+              [...dates].sort((a: number, b: number) => b - a),
+            );
+            expect(result.props.fallback).to.eq(false);
+            expect(errors.length > 0).to.eq(failCalendar);
+            cy.task('combineCoverage', JSON.stringify(coverage), {
+              log: false,
+            });
+          },
+        );
+      });
+    });
+  });
+
   describe('Raw HTML and Direct Navigation Verification', () => {
     it('serves normal article with exactly one title, description, and self-canonical', () => {
       cy.request(`${BASE_URL}/blog/posts/json-schema-in-5-minutes`).then(

@@ -1,5 +1,5 @@
 import { defineConfig } from 'cypress';
-import { resolve } from 'node:path';
+import { blogMetadataTasks } from './cypress/plugins/blogMetadataTasks';
 
 export default defineConfig({
   component: {
@@ -11,6 +11,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       require('@cypress/code-coverage/task')(on, config);
+      on('task', blogMetadataTasks);
       return config;
     },
   },
@@ -19,32 +20,7 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       require('@cypress/code-coverage/task')(on, config);
-      on('task', {
-        async blogStaticProps(slug: string) {
-          // The preceding article request compiles the real server module.
-          // eslint-disable-next-line @typescript-eslint/no-var-requires
-          const { getStaticPaths, getStaticProps } =
-            await require('./.next/server/pages/blog/posts/[slug].js');
-          const paths = await getStaticPaths();
-          const result = await getStaticProps({ params: { slug } });
-          const coverage = (
-            globalThis as typeof globalThis & {
-              __coverage__?: Record<string, unknown>;
-            }
-          ).__coverage__;
-          const articlePath = resolve('pages/blog/posts/[slug].page.tsx');
-
-          if (!coverage?.[articlePath]) {
-            throw new Error('Server article coverage was not collected.');
-          }
-
-          return {
-            paths,
-            result,
-            coverage: { [articlePath]: coverage[articlePath] },
-          };
-        },
-      });
+      on('task', blogMetadataTasks);
       return config;
     },
   },
