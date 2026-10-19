@@ -1,53 +1,65 @@
 describe('Blog Metadata and Client Navigation Tests', () => {
   const PRODUCTION_ORIGIN = 'https://json-schema.org';
+  const BASE_URL = Cypress.config('baseUrl') || 'http://localhost:3000';
+
+  before(() => {
+    // Warm up the local dev server so that cy.request calls succeed
+    cy.visit(`${BASE_URL}/`, {
+      retryOnStatusCodeFailure: true,
+      timeout: 60000,
+    });
+  });
 
   describe('Raw HTML and Direct Navigation Verification', () => {
     it('serves normal article with exactly one title, description, and self-canonical', () => {
-      cy.request('/blog/posts/json-schema-in-5-minutes').then((response) => {
-        expect(response.status).to.eq(200);
-        const html = response.body;
+      cy.request(`${BASE_URL}/blog/posts/json-schema-in-5-minutes`).then(
+        (response) => {
+          expect(response.status).to.eq(200);
+          const html = response.body;
 
-        // Exactly one title matching article
-        const titleMatches = html.match(/<title[^>]*>([^<]+)<\/title>/g) || [];
-        expect(titleMatches.length).to.eq(1);
-        expect(titleMatches[0]).to.contain('JSON Schema in 5 Minutes');
+          // Exactly one title matching article
+          const titleMatches =
+            html.match(/<title[^>]*>([^<]+)<\/title>/g) || [];
+          expect(titleMatches.length).to.eq(1);
+          expect(titleMatches[0]).to.contain('JSON Schema in 5 Minutes');
 
-        // Exactly one meta description matching excerpt, not generic
-        const descMatches =
-          html.match(/<meta\s+name=["']description["'][^>]*>/gi) || [];
-        expect(descMatches.length).to.eq(1);
-        expect(descMatches[0]).to.not.contain('content="JSON Schema"');
-        expect(descMatches[0]).to.contain('content=');
+          // Exactly one meta description matching excerpt, not generic
+          const descMatches =
+            html.match(/<meta\s+name=["']description["'][^>]*>/gi) || [];
+          expect(descMatches.length).to.eq(1);
+          expect(descMatches[0]).to.not.contain('content="JSON Schema"');
+          expect(descMatches[0]).to.contain('content=');
 
-        // Exactly one canonical tag pointing to production self-canonical
-        const canonicalMatches =
-          html.match(/<link\s+rel=["']canonical["'][^>]*>/gi) || [];
-        expect(canonicalMatches.length).to.eq(1);
-        expect(canonicalMatches[0]).to.contain(
-          `href="${PRODUCTION_ORIGIN}/blog/posts/json-schema-in-5-minutes"`,
-        );
+          // Exactly one canonical tag pointing to production self-canonical
+          const canonicalMatches =
+            html.match(/<link\s+rel=["']canonical["'][^>]*>/gi) || [];
+          expect(canonicalMatches.length).to.eq(1);
+          expect(canonicalMatches[0]).to.contain(
+            `href="${PRODUCTION_ORIGIN}/blog/posts/json-schema-in-5-minutes"`,
+          );
 
-        // Open Graph and Twitter tags
-        expect(html).to.match(
-          /<meta\s+property=["']og:type["']\s+content=["']article["']/i,
-        );
-        expect(html).to.match(
-          /<meta\s+property=["']og:title["']\s+content=["']JSON Schema in 5 Minutes["']/i,
-        );
-        const ogUrlMatches =
-          html.match(/<meta\s+property=["']og:url["'][^>]*>/gi) || [];
-        expect(ogUrlMatches.length).to.eq(1);
-        expect(ogUrlMatches[0]).to.contain(
-          `content="${PRODUCTION_ORIGIN}/blog/posts/json-schema-in-5-minutes"`,
-        );
-        expect(html).to.match(
-          /<meta\s+name=["']twitter:card["']\s+content=["'](summary_large_image|summary)["']/i,
-        );
-      });
+          // Open Graph and Twitter tags
+          expect(html).to.match(
+            /<meta\s+property=["']og:type["']\s+content=["']article["']/i,
+          );
+          expect(html).to.match(
+            /<meta\s+property=["']og:title["']\s+content=["']JSON Schema in 5 Minutes["']/i,
+          );
+          const ogUrlMatches =
+            html.match(/<meta\s+property=["']og:url["'][^>]*>/gi) || [];
+          expect(ogUrlMatches.length).to.eq(1);
+          expect(ogUrlMatches[0]).to.contain(
+            `content="${PRODUCTION_ORIGIN}/blog/posts/json-schema-in-5-minutes"`,
+          );
+          expect(html).to.match(
+            /<meta\s+name=["']twitter:card["']\s+content=["'](summary_large_image|summary)["']/i,
+          );
+        },
+      );
     });
 
     it('preserves external canonicalLink override for hyperborea', () => {
-      cy.request('/blog/posts/hyperborea').then((response) => {
+      cy.request(`${BASE_URL}/blog/posts/hyperborea`).then((response) => {
         expect(response.status).to.eq(200);
         const html = response.body;
 
@@ -67,13 +79,34 @@ describe('Blog Metadata and Client Navigation Tests', () => {
     });
 
     it('preserves external canonicalLink override for get-started-with-json-schema-in-node-js', () => {
-      cy.request('/blog/posts/get-started-with-json-schema-in-node-js').then(
+      cy.request(
+        `${BASE_URL}/blog/posts/get-started-with-json-schema-in-node-js`,
+      ).then((response) => {
+        expect(response.status).to.eq(200);
+        const html = response.body;
+
+        const expectedCanonical =
+          'https://simonplend.com/get-started-with-validation-in-node-js/';
+        const canonicalMatches =
+          html.match(/<link\s+rel=["']canonical["'][^>]*>/gi) || [];
+        expect(canonicalMatches.length).to.eq(1);
+        expect(canonicalMatches[0]).to.contain(`href="${expectedCanonical}"`);
+
+        const ogUrlMatches =
+          html.match(/<meta\s+property=["']og:url["'][^>]*>/gi) || [];
+        expect(ogUrlMatches.length).to.eq(1);
+        expect(ogUrlMatches[0]).to.contain(`content="${expectedCanonical}"`);
+      });
+    });
+
+    it('preserves external canonicalLink override for postman-case-study', () => {
+      cy.request(`${BASE_URL}/blog/posts/postman-case-study`).then(
         (response) => {
           expect(response.status).to.eq(200);
           const html = response.body;
 
           const expectedCanonical =
-            'https://simonplend.com/get-started-with-validation-in-node-js/';
+            'https://blog.postman.com/how-postman-uses-json-schema/';
           const canonicalMatches =
             html.match(/<link\s+rel=["']canonical["'][^>]*>/gi) || [];
           expect(canonicalMatches.length).to.eq(1);
@@ -87,27 +120,8 @@ describe('Blog Metadata and Client Navigation Tests', () => {
       );
     });
 
-    it('preserves external canonicalLink override for postman-case-study', () => {
-      cy.request('/blog/posts/postman-case-study').then((response) => {
-        expect(response.status).to.eq(200);
-        const html = response.body;
-
-        const expectedCanonical =
-          'https://blog.postman.com/how-postman-uses-json-schema/';
-        const canonicalMatches =
-          html.match(/<link\s+rel=["']canonical["'][^>]*>/gi) || [];
-        expect(canonicalMatches.length).to.eq(1);
-        expect(canonicalMatches[0]).to.contain(`href="${expectedCanonical}"`);
-
-        const ogUrlMatches =
-          html.match(/<meta\s+property=["']og:url["'][^>]*>/gi) || [];
-        expect(ogUrlMatches.length).to.eq(1);
-        expect(ogUrlMatches[0]).to.contain(`content="${expectedCanonical}"`);
-      });
-    });
-
     it('uses content-derived seoDescription for ietf-cooperation', () => {
-      cy.request('/blog/posts/ietf-cooperation').then((response) => {
+      cy.request(`${BASE_URL}/blog/posts/ietf-cooperation`).then((response) => {
         expect(response.status).to.eq(200);
         const html = response.body;
 
@@ -128,7 +142,7 @@ describe('Blog Metadata and Client Navigation Tests', () => {
     });
 
     it('retains default generic title and description on non-blog pages', () => {
-      cy.request('/docs').then((response) => {
+      cy.request(`${BASE_URL}/docs`).then((response) => {
         expect(response.status).to.eq(200);
         const html = response.body;
 
@@ -150,7 +164,7 @@ describe('Blog Metadata and Client Navigation Tests', () => {
   describe('Client-Side Navigation and Metadata Cleanup', () => {
     it('updates metadata upon entering an article and cleans up stale tags when navigating away', () => {
       // 1. Visit the blog index
-      cy.visit('/blog');
+      cy.visit(`${BASE_URL}/blog`);
 
       // 2. Set sentinel on window object to prove client-side transition without full page reload
       cy.window().then((win: any) => {
@@ -281,7 +295,7 @@ describe('Blog Metadata and Client Navigation Tests', () => {
 
     it(`verifies all ${articles.length} articles have exactly 1 title, 1 description, 1 canonical and og tags`, () => {
       articles.forEach((slug) => {
-        cy.request(`/blog/posts/${slug}`).then((res) => {
+        cy.request(`${BASE_URL}/blog/posts/${slug}`).then((res) => {
           expect(res.status).to.eq(200);
           const body = res.body;
 
