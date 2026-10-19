@@ -123,11 +123,7 @@ export default function Layout({
       <Head>
         {!hasCustomSeo && <title key='title'>{newTitle}</title>}
         {!hasCustomSeo && (
-          <meta
-            name='description'
-            content={metaDescription || 'JSON Schema'}
-            key='description'
-          />
+          <meta name='description' content={metaDescription || 'JSON Schema'} />
         )}
         <meta
           name='viewport'
