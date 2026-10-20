@@ -47,6 +47,9 @@ const Icon = ({ children }: { children: React.ReactNode }) => (
   </svg>
 );
 
+const FEEDBACK_SUBMIT_ERROR =
+  'We couldn\'t submit your feedback right now. Please use the "Create an issue" button to share it on GitHub instead.';
+
 export function DocsHelp({
   fileRenderType,
   showEditOption = true,
@@ -126,10 +129,10 @@ export function DocsHelp({
       if (response.ok) {
         submitFeedbackHandler('feedback');
       } else {
-        setError('An error occurred. Please try again later.');
+        setError(FEEDBACK_SUBMIT_ERROR);
       }
     } catch (error) {
-      setError('An error occurred. Please try again later.');
+      setError(FEEDBACK_SUBMIT_ERROR);
     } finally {
       setIsSubmitting(false);
     }
