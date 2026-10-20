@@ -23,28 +23,12 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            const author = context.payload.pull_request.user.login;
-            const currentNumber = context.payload.pull_request.number;
+            const pullRequest = context.payload.pull_request;
+            const firstTimeAssociations = ['FIRST_TIME_CONTRIBUTOR', 'FIRST_TIMER', 'NONE'];
 
-            let hasPreviousPR = false;
-            for await (const { data: pullRequests } of github.paginate.iterator(
-              github.rest.pulls.list,
-              {
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                state: 'all',
-                per_page: 100,
-              },
-            )) {
-              if (pullRequests.some(pr => pr.user?.login === author && pr.number !== currentNumber)) {
-                hasPreviousPR = true;
-                break;
-              }
-            }
-
-            if (!hasPreviousPR) {
+            if (firstTimeAssociations.includes(pullRequest?.author_association)) {
               await github.rest.issues.createComment({
-                issue_number: currentNumber,
+                issue_number: pullRequest.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 body: process.env.NEW_TOOL_MESSAGE,
