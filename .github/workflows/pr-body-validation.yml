@@ -102,13 +102,15 @@ jobs:
             if (missingItems.length > 0) {
               // If there are missing items, create or update comment and add label
               const missingItemsList = missingItems.join(', ');
-              const comment = `${botMarker}Hi @${pr.user.login}! Thanks a lot for your contribution! 
-              
-              I noticed that the following required information is missing or incomplete: ${missingItemsList}
-
-              Please update the PR description to include this information. You can find placeholders in the PR template for these items.
-
-              Thanks a lot!`;
+              const comment = [
+                `${botMarker}Hi @${pr.user.login}! Thanks a lot for your contribution!`,
+                '',
+                `I noticed that the following required information is missing or incomplete: ${missingItemsList}`,
+                '',
+                'Please update the PR description to include this information. You can find placeholders in the PR template for these items.',
+                '',
+                'Thanks a lot!'
+              ].join('\n');
               
               if (existingComment) {
                 await github.rest.issues.updateComment({
