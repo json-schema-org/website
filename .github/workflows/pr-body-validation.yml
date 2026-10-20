@@ -4,6 +4,10 @@ on:
   pull_request_target:
     types: [opened, edited, synchronize, reopened]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
 jobs:
   check-pr-content:
     runs-on: ubuntu-latest
@@ -98,8 +102,7 @@ jobs:
             if (missingItems.length > 0) {
               // If there are missing items, create or update comment and add label
               const missingItemsList = missingItems.join(', ');
-              const comment = `${botMarker}
-              Hi @${pr.user.login}! Thanks a lot for your contribution! 
+              const comment = `${botMarker}Hi @${pr.user.login}! Thanks a lot for your contribution! 
               
               I noticed that the following required information is missing or incomplete: ${missingItemsList}
 
