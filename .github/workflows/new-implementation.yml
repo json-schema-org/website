@@ -23,21 +23,16 @@ jobs:
       - uses: actions/github-script@v7
         with:
           script: |
-            const { data: pullRequests } = await github.rest.pulls.list({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              state: 'all'
-            });
+            const pullRequest = context.payload.pull_request;
+            const firstTimeAssociations = ['FIRST_TIME_CONTRIBUTOR', 'FIRST_TIMER', 'NONE'];
 
-            const userPRs = pullRequests.filter(pr => pr.user.login === context.actor);
-
-            if (userPRs.length === 0) {
-              github.rest.issues.createComment({
-                issue_number: context.issue.number,
+            if (firstTimeAssociations.includes(pullRequest?.author_association)) {
+              await github.rest.issues.createComment({
+                issue_number: pullRequest.number,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 body: process.env.NEW_TOOL_MESSAGE,
-              })
+              });
             }
         env:
           NEW_TOOL_MESSAGE: |
