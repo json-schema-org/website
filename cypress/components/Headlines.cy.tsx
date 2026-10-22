@@ -165,3 +165,23 @@ describe('Headlines Component', () => {
       .and('have.text', '¶');
   });
 });
+
+describe('Headlines with formatted children', () => {
+  beforeEach(() => {
+    mockNextRouter();
+  });
+
+  it('should include inline code in the heading id', () => {
+    cy.mount(
+      <Headline3>
+        {[
+          'Formats: ',
+          <code key='0'>&quot;uri&quot;</code>,
+          ' vs ',
+          <code key='1'>&quot;uri-reference&quot;</code>,
+        ]}
+      </Headline3>,
+    );
+    cy.get('h3').should('have.attr', 'id', 'formats:-"uri"-vs-"uri-reference"');
+  });
+});
