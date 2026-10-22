@@ -426,7 +426,11 @@ const ToolingTable = ({
         );
       })}
       {selectedTool && (
-        <ToolingDetailModal tool={selectedTool} onClose={closeModal} />
+        <ToolingDetailModal
+          tool={selectedTool}
+          bowtieData={getBowtieData(selectedTool)}
+          onClose={closeModal}
+        />
       )}
     </>
   );
