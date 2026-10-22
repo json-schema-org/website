@@ -87,11 +87,7 @@ const Headline = ({
   const attributes = {
     ...propAttributes,
     id: propAttributes?.slug || slug,
-    className: cn(
-      'group cursor-pointer hover:underline',
-      isActive && 'text-startBlue dark:text-startBlue',
-      propAttributes?.className,
-    ),
+    className: cn('group cursor-pointer', propAttributes?.className),
     onClick: handleHeadingClick,
     'data-test': 'headline',
   };
@@ -100,7 +96,12 @@ const Headline = ({
     <Tag attributes={attributes}>
       {childredWithoutFragment}
       {isActive && (
-        <span className={'text-startBlue inline-block ml-2'}>¶</span>
+        <span
+          className={'text-startBlue inline-block ml-2 group-hover:underline'}
+          data-test='headline-anchor'
+        >
+          ¶
+        </span>
       )}
     </Tag>
   );
