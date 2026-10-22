@@ -23,7 +23,13 @@ export default async function generateRssFeed(blogPosts: any) {
     language: 'en-gb',
   });
 
-  blogPosts.forEach((post: any) => {
+  const sortedPosts = [...blogPosts].sort(
+    (a: any, b: any) =>
+      new Date(b.frontmatter.date).getTime() -
+      new Date(a.frontmatter.date).getTime(),
+  );
+
+  sortedPosts.forEach((post: any) => {
     const authors: Author[] = post.frontmatter.authors.map(
       (author: any): Author => {
         const link = author.twitter
