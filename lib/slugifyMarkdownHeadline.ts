@@ -1,8 +1,8 @@
 import { isValidElement } from 'react';
 import slugify from 'slugify';
 
-const FRAGMENT_REGEX = /\[#(?<slug>(\w|-|_)*)\]/;
-const FRAGMENT_REGEX_GLOBAL = /\[#(?<slug>(\w|-|_)*)\]/g;
+const FRAGMENT_REGEX = /\[#(?<slug>[\w-]*)\]/;
+const FRAGMENT_REGEX_GLOBAL = /\[#(?<slug>[\w-]*)\]/g;
 
 // Pulls the plain text out of headline children. Markdown headings can contain
 // inline code, emphasis, links etc, which show up as React elements (or
