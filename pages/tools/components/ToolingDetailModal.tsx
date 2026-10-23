@@ -40,7 +40,12 @@ export default function ToolingDetailModal({
   }, [onClose]);
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center z-[200] overflow-x-hidden'>
+    <div
+      className='fixed inset-0 flex items-center justify-center z-[200] overflow-x-hidden'
+      role='dialog'
+      aria-modal='true'
+      aria-labelledby='tool-modal-title'
+    >
       <div
         className='fixed inset-0 bg-black opacity-50'
         onClick={onClose}
@@ -55,6 +60,7 @@ export default function ToolingDetailModal({
             variant='ghost'
             size='icon'
             className='text-gray-500 hover:text-gray-300'
+            aria-label='Close modal'
           >
             <CancelIcon className='fill-current stroke-current w-4 h-4' />
           </Button>
@@ -63,16 +69,19 @@ export default function ToolingDetailModal({
           {tool.landscape?.logo && (
             <div className='p-2 flex flex-row items-center dark:bg-white rounded-md flex-none'>
               <Image
-                src={`img/tools/logos/${tool.landscape?.logo}`}
+                src={`/img/tools/logos/${tool.landscape?.logo}`}
                 className='h-[48px] w-[48px]'
                 height={48}
                 width={48}
-                alt='landscape logos'
+                alt={`${tool.name} logo`}
               />
             </div>
           )}
           <div>
-            <h2 className='text-h4 font-bold flex items-center gap-x-2'>
+            <h2
+              id='tool-modal-title'
+              className='text-h4 font-bold flex items-center gap-x-2'
+            >
               {tool.name}
               {tool.status === 'obsolete' && (
                 <Tag intent='error'>{tool.status}</Tag>
