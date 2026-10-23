@@ -205,10 +205,18 @@ export default function StaticMarkdownPage({
     }
   }, [totalPages]);
 
+  // Scroll only on user-initiated page changes, not on initial page load
+  const shouldScrollToPostsRef = useRef(false);
+
+  const goToPage = (page: number) => {
+    shouldScrollToPostsRef.current = true;
+    setCurrentPage(page);
+  };
+
   useEffect(() => {
-    if (blogPostsContainerRef.current) {
-      blogPostsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (!shouldScrollToPostsRef.current) return;
+    shouldScrollToPostsRef.current = false;
+    blogPostsContainerRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [currentPage]);
 
   const currentPagePosts = sortedFilteredPosts.slice(
@@ -465,7 +473,7 @@ export default function StaticMarkdownPage({
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
             disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => p - 1)}
+            onClick={() => goToPage(currentPage - 1)}
           >
             Previous
           </button>
@@ -479,7 +487,7 @@ export default function StaticMarkdownPage({
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
             disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => p + 1)}
+            onClick={() => goToPage(currentPage + 1)}
           >
             Next
           </button>
