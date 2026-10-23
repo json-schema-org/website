@@ -438,6 +438,7 @@ export default function StaticMarkdownPage({
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric',
+                                timeZone: 'UTC',
                               })}
                             </span>
                           )}{' '}

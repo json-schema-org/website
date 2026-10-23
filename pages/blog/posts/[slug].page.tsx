@@ -45,6 +45,7 @@ export default function StaticMarkdownPage({
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric',
+                timeZone: 'UTC',
               })}{' '}
               &middot; {timeToRead} min read
             </div>
