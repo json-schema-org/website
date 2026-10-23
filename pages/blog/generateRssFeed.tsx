@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { Feed, Author, Item } from 'feed';
+import { Feed, Author, Category, Item } from 'feed';
 
 const SITE_URL = 'https://json-schema.org';
 
@@ -42,6 +42,13 @@ export default async function generateRssFeed(blogPosts: any) {
       },
     );
 
+    // `feed` only accepts categories as an array of objects; Atom requires `term`
+    const postCategories =
+      post.frontmatter.categories || post.frontmatter.type || [];
+    const categories: Category[] = (
+      Array.isArray(postCategories) ? postCategories : [postCategories]
+    ).map((name: string) => ({ name, term: name }));
+
     const url = `${SITE_URL}/blog/posts/${post.slug}`;
     const item: Item = {
       title: post.frontmatter.title,
@@ -53,7 +60,7 @@ export default async function generateRssFeed(blogPosts: any) {
       image: {
         url: `${SITE_URL}${post.frontmatter.cover}`,
       },
-      category: post.frontmatter.type,
+      category: categories,
       enclosure: {
         url: `${SITE_URL}${post.frontmatter.cover}`,
         type: 'image',
