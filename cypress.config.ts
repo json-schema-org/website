@@ -1,4 +1,5 @@
 import { defineConfig } from 'cypress';
+import { blogMetadataTasks } from './cypress/plugins/blogMetadataTasks';
 
 export default defineConfig({
   component: {
@@ -10,13 +11,16 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       require('@cypress/code-coverage/task')(on, config);
+      on('task', blogMetadataTasks);
       return config;
     },
   },
   e2e: {
+    baseUrl: 'http://localhost:3000',
     setupNodeEvents(on, config) {
       // eslint-disable-next-line @typescript-eslint/no-var-requires
       require('@cypress/code-coverage/task')(on, config);
+      on('task', blogMetadataTasks);
       return config;
     },
   },
