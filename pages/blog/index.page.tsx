@@ -205,11 +205,12 @@ export default function StaticMarkdownPage({
     }
   }, [totalPages]);
 
-  useEffect(() => {
+  const handlePageChange = (newPage: number) => {
+    setCurrentPage(newPage);
     if (blogPostsContainerRef.current) {
       blogPostsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [currentPage]);
+  };
 
   const currentPagePosts = sortedFilteredPosts.slice(
     (currentPage - 1) * POSTS_PER_PAGE,
@@ -465,7 +466,7 @@ export default function StaticMarkdownPage({
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
             disabled={currentPage === 1}
-            onClick={() => setCurrentPage((p) => p - 1)}
+            onClick={() => handlePageChange(currentPage - 1)}
           >
             Previous
           </button>
@@ -479,7 +480,7 @@ export default function StaticMarkdownPage({
                 : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
             disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((p) => p + 1)}
+            onClick={() => handlePageChange(currentPage + 1)}
           >
             Next
           </button>
