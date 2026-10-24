@@ -17,6 +17,17 @@ export default function getScopesOfParsedJsonSchema(
     jsonPath,
     scope: JsonSchemaScope.TypeDefinition,
   };
+  if (Array.isArray(parsedJsonSchema)) {
+    return parsedJsonSchema.reduce<JsonSchemaPathWithScope[]>(
+      (acc, item, index) => {
+        return [
+          ...acc,
+          ...getScopesOfParsedJsonSchema(item, `${jsonPath}[${index}]`),
+        ];
+      },
+      [],
+    );
+  }
   if (parsedJsonSchema.type === 'object') {
     const scopesOfProperties = Object.keys(
       parsedJsonSchema?.properties || {},
