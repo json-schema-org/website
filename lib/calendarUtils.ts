@@ -17,7 +17,7 @@ export function printEventsForNextWeeks(icalData: { [x: string]: any }) {
   const arrayDates = [];
   if (!icalData) {
     console.error('iCal data is empty or invalid.');
-    return;
+    return [];
   }
 
   // Calculate the range of dates for the next 12 weeks from today
