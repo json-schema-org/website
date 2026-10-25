@@ -514,8 +514,9 @@ const Home = (props: any) => {
                 </Link>
               </div>
             </div>
-            <div>
-              <div className='p-4 md:w-full mb-6 mr-4 dark:shadow-2xl'>
+            {/* Card 3: Community Meetings */}
+            <div className='p-4 w-full mb-6 dark:shadow-2xl flex flex-col justify-between'>
+              <div>
                 <h3 className='mb-2 font-semibold dark:text-slate-200'>
                   JSON Schema Community Meetings & Events
                 </h3>
@@ -525,61 +526,69 @@ const Home = (props: any) => {
                   and by appointment. Open Community Working Meetings are every
                   third Monday of the month at 12:00 PT.
                 </p>
-                <div className='flex flex-col'>
-                  <a
-                    href='https://github.com/orgs/json-schema-org/discussions/35'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='w-fit max-w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[40px] px-4 py-2 mb-4 flex items-center justify-center mx-auto dark:border-none'
-                  >
-                    Open Community Working Meetings
-                  </a>
-
-                  <a
-                    href='https://github.com/orgs/json-schema-org/discussions/34/'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
-                  >
-                    Office Hours
-                  </a>
-                </div>
               </div>
-              <div className='p-2'>
-                <div>
-                  <Headline4>Upcoming events</Headline4>
-                  <div>
-                    <ul>
-                      {props.datesInfo.map((event: any, index: any) => (
-                        <li key={index}>
-                          <div className='flex mb-4'>
-                            <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white mr-2'>
-                              {event.day}
-                            </p>
-                            <div className='text-sm'>
-                              <p>{event.title}</p>
-                              <p>
-                                <b>{event.time}</b> ({event.timezone})
-                              </p>
-                            </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+              <div className='flex flex-col gap-2 mt-4'>
+                <a
+                  href='https://github.com/orgs/json-schema-org/discussions/35'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='w-fit max-w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white min-h-[40px] px-4 py-2 flex items-center justify-center mx-auto dark:border-none'
+                >
+                  Open Community Working Meetings
+                </a>
 
                 <a
+                  href='https://github.com/orgs/json-schema-org/discussions/34/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='max-w-[200px] w-full text-center rounded border-2 bg-primary hover:bg-blue-700 transition-all duration-300 ease-in-out text-white h-[40px] flex items-center justify-center mx-auto dark:border-none'
+                >
+                  Office Hours
+                </a>
+              </div>
+            </div>
+          </div>
+
+          {/* Upcoming Events Horizontal Section */}
+          {props.datesInfo && props.datesInfo.length > 0 && (
+            <div className='mb-12 mx-auto w-5/6 md:w-3/5 lg:w-5/6'>
+              <div className='flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4'>
+                <Headline4>Upcoming events</Headline4>
+                <a
                   href='https://calendar.google.com/calendar/embed?src=info%40json-schema.org'
-                  className='w-full lg:w-1/2 rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out h-[40px] text-center flex items-center justify-center mx-auto dark:border-none'
+                  className='rounded border-2 bg-primary text-white hover:bg-blue-700 transition-all duration-300 ease-in-out px-4 h-[40px] flex items-center justify-center dark:border-none text-sm font-semibold'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
                   View Calendar
                 </a>
               </div>
+
+              <div className='flex gap-4 overflow-x-auto pb-4 pt-1 snap-x snap-mandatory scrollbar-thin'>
+                {props.datesInfo.map((event: any, index: any) => (
+                  <div
+                    key={index}
+                    className='flex-none w-[280px] sm:w-[320px] p-4 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 shadow-sm dark:shadow-2xl snap-start flex items-start'
+                  >
+                    <p className='bg-btnOrange rounded-full w-10 h-10 p-2 text-center text-white font-bold mr-3 flex-shrink-0 flex items-center justify-center'>
+                      {event.day}
+                    </p>
+                    <div className='text-sm overflow-hidden'>
+                      <p
+                        className='font-semibold text-slate-800 dark:text-slate-200 mb-1 truncate'
+                        title={event.title}
+                      >
+                        {event.title}
+                      </p>
+                      <p className='text-xs text-slate-600 dark:text-slate-400'>
+                        <b>{event.time}</b> ({event.timezone})
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </section>
 
         {/* News & Blogs */}
