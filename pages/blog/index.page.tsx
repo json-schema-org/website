@@ -205,7 +205,13 @@ export default function StaticMarkdownPage({
     }
   }, [totalPages]);
 
+  const isFirstRender = useRef(true);
+
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      return;
+    }
     if (blogPostsContainerRef.current) {
       blogPostsContainerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
