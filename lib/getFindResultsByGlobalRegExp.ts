@@ -26,7 +26,7 @@ export default function getFindResultsByGlobalRegExp(
     while (typeof regexResult[groupIndex] === 'string') {
       const match: string = regexResult[groupIndex];
       const name = groupsReverseMap[match] || null;
-      const inMatchGroupOffset = text.substr(groupOffset).indexOf(match);
+      const inMatchGroupOffset = text.slice(groupOffset).indexOf(match);
       if (inMatchGroupOffset >= 0) {
         groupOffset += inMatchGroupOffset;
         const group: RegExpGroupResult = {
