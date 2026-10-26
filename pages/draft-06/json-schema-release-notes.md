@@ -13,9 +13,9 @@ For more information, see that draft's [migration notes](../../draft-07/json-sch
 * [Q: What are the changes between draft-04 and draft-06?](#q:-what-are-the-changes-between-draft-04-and-draft-06)
     * [Backwards-incompatible changes](#backwards-incompatible-changes)
     * [Additions and backwards-compatible changes](#additions-and-backwards-compatible-changes)
-    * [Formats: "uri" vs "uri-reference"](#formats:-vs)
+    * [Formats: "uri" vs "uri-reference"](#formats:-%22uri%22-vs-%22uri-reference%22)
 * [Q: What happened to draft-05?](#q:-what-happened-to-draft-05)
-* [Q: What happened to all the discussions around re-using schemas with "additionalProperties"?](#q:-what-happened-to-all-the-discussions-around-re-using-schemas-with-additionalproperties)
+* [Q: What happened to all the discussions around re-using schemas with "additionalProperties"?](#q:-what-happened-to-all-the-discussions-around-re-using-schemas-with-%22additionalproperties%22)
 
 ### Q: What are the changes between draft-04 and draft-06?
 
