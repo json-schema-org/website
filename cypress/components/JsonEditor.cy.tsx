@@ -522,6 +522,26 @@ describe('JSON Editor Component', () => {
     cy.get('[data-test="check-json-schema"]').contains('schema');
   });
 
+  // escaped backslash at the end of a string should not break the rest of the block (#2237)
+  it('should highlight keys after a string ending with an escaped backslash', () => {
+    const code = `{
+  "bad_string": "backslash: \\\\",
+  "next_key": "this will be broken",
+  "type": "string"
+}`;
+
+    cy.mount(<JsonEditor initialCode={code} />);
+
+    cy.get('span[title="stringValue"]')
+      .contains('"backslash: \\\\"')
+      .should('exist');
+    cy.get('span[title="objectProperty"]').contains('next_key').should('exist');
+    cy.get('span[title="stringValue"]')
+      .contains('"this will be broken"')
+      .should('exist');
+    cy.get('span[title="objectProperty"]').contains('type').should('exist');
+  });
+
   // Test meta props with invalid JSON
   it('should handle invalid meta props JSON', () => {
     const invalidMetaProps =
