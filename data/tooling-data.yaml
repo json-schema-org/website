@@ -214,6 +214,27 @@
     draft: ['4', '6', '7']
   lastUpdated: '2023-04-04'
 
+- name: rock_solid
+  description: 'Elixir library to generate test data from JSON schema'
+  toolingTypes: ['schema-to-data']
+  languages: ['Elixir', 'Erlang']
+  environments: ['Any platform that supports Elixir']
+  dependsOnValidators: ['https://github.com/lud/jsv']
+  maintainers:
+    - name: 'Ignacio Goldchluk'
+      username: 'IgnacioGoldchluk'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/IgnacioGoldchluk/rock_solid'
+  homepage: 'https://hex.pm/packages/rock_solid'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Supports draft-04 to 2020-12 and can generate data for recursive schemas, schemas with dependentSchemas, if/then/else, references to remote schemas, etc.'
+  compliance:
+    config:
+      instructions: 'Some keywords are not supported due to their dynamic nature ($dynamicAnchor, unevaluatedProperties, etc.), and a long chain of if/then/else and/or dependentSchemas can cause a branch explosion and crash the library.'
+  lastUpdated: '2026-09-03'
+
 - name: JsonXema
   description: 'A JSON Schema validator.'
   toolingTypes: ['validator']
