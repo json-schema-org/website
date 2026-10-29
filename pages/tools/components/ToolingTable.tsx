@@ -126,6 +126,16 @@ const ToolingTable = ({
     onVisibleToolCountChange?.(visibleToolCount);
   }, [visibleToolCount, onVisibleToolCountChange]);
 
+  const sortBowtieTools = (tools: JSONSchemaTool[]) =>
+    tools.slice().sort((a, b) => {
+      const aHasBowtieData = Boolean(getBowtieData(a));
+      const bHasBowtieData = Boolean(getBowtieData(b));
+
+      return transform.sortOrder === 'ascending'
+        ? Number(bHasBowtieData) - Number(aHasBowtieData)
+        : Number(aHasBowtieData) - Number(bHasBowtieData);
+    });
+
   useEffect(() => {
     setExpandedGroups({});
   }, [toolsByGroup]);
@@ -160,10 +170,12 @@ const ToolingTable = ({
     <>
       {groups.map((group) => {
         const tools = filteredToolsByGroup[group] ?? [];
+        const sortedTools =
+          transform.sortBy === 'bowtie' ? sortBowtieTools(tools) : tools;
         const isExpanded = expandedGroups[group];
         const visibleTools = isExpanded
-          ? tools
-          : tools.slice(0, INITIAL_VISIBLE_ROWS);
+          ? sortedTools
+          : sortedTools.slice(0, INITIAL_VISIBLE_ROWS);
         const hasMore = tools.length > INITIAL_VISIBLE_ROWS;
 
         return (
@@ -493,7 +505,8 @@ const TableSortableColumnHeader = ({
     setIsSortedBy(true);
   };
 
-  const rotateClass = transform.sortOrder === 'ascending' ? 'rotate-180' : '';
+  const SortIcon =
+    transform.sortOrder === 'ascending' ? ChevronDown : ChevronUp;
 
   return (
     <TableColumnHeader attributes={propAttributes}>
@@ -503,22 +516,7 @@ const TableSortableColumnHeader = ({
         onClick={sortByColumn}
       >
         {children}
-        {isSortedBy && (
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            className={`w-4 h-4 ml-1 transform ${rotateClass}`}
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='M5 15l7-7 7 7'
-            />
-          </svg>
-        )}
+        {isSortedBy && <SortIcon className='w-4 h-4 ml-1' />}
       </Button>
     </TableColumnHeader>
   );
