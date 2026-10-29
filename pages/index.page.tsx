@@ -78,6 +78,70 @@ export function AlgoliaSearch() {
     </div>
   );
 }
+
+const LOGOS_PATHS = Object.freeze({
+  darkLogos: {
+    asyncapi: '/img/logos/dark-mode/asyncapi_white.svg',
+    airbnb: '/img/logos/dark-mode/airbnb_white.png',
+    postman: '/img/logos/usedby/postman-white.png',
+    endjin: '/img/logos/sponsors/endjin-logo.svg',
+    llc: '/img/logos/dark-mode/llc_white.svg',
+    common_room: '/img/logos/dark-mode/common-room_white.svg',
+    slack: '/img/logos/dark-mode/slack_white.svg',
+    vpsserver: '/img/logos/sponsors/vps-server-logo.svg',
+    itflashcards: '/img/logos/sponsors/it_flashcards-white.svg',
+    route4me: '/img/logos/sponsors/route4me-logo-dark.svg',
+    n8n: '/img/logos/sponsors/n8n-logo-dark.svg',
+    ccopter: '/img/logos/sponsors/copycopter-white.png',
+    octue: '/img/logos/sponsors/octue-white.svg',
+    apideck: '/img/logos/sponsors/apideck-white.svg',
+    rxdb: '/img/logos/sponsors/rxdb.svg',
+    wda: '/img/logos/sponsors/wda-dark.svg',
+    transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-white.png',
+    sourcemeta: '/img/logos/sponsors/sourcemeta-logo-light.svg',
+    dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
+    supadata: '/img/logos/sponsors/supadata-logo-light.svg',
+    devevents: '/img/logos/dark-mode/dev_events_logo.png',
+    nix: '/img/logos/sponsors/n-ix-logo.png',
+    oracle: '/img/logos/sponsors/Oracle.png',
+    litslink: '/img/logos/sponsors/litslink_dark.svg',
+    spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+    timenow: '/img/logos/sponsors/time_now_dark.svg',
+    legasset: '/img/logos/sponsors/legasset-logo.svg',
+    bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-light.svg',
+  },
+  lightLogos: {
+    asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
+    airbnb: '/img/logos/sponsors/airbnb-logo.png',
+    postman: '/img/logos/sponsors/postman_logo-orange.svg',
+    endjin: '/img/logos/sponsors/endjin-logo.svg',
+    llc: '/img/logos/sponsors/llc-logo.svg',
+    common_room: '/img/logos/supported/common-room.svg',
+    slack: '/img/logos/supported/slack-logo.svg',
+    vpsserver: '/img/logos/sponsors/vps-server-logo.svg',
+    itflashcards: '/img/logos/sponsors/it_flashcards.svg',
+    route4me: '/img/logos/sponsors/route4me-logo-white.svg',
+    n8n: '/img/logos/sponsors/n8n-logo-white.svg',
+    ccopter: '/img/logos/sponsors/copycopter.png',
+    octue: '/img/logos/sponsors/octue-black.svg',
+    apideck: '/img/logos/sponsors/apideck.svg',
+    rxdb: '/img/logos/sponsors/rxdb.svg',
+    wda: '/img/logos/sponsors/wda.svg',
+    transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-dark.png',
+    sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
+    supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
+    dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
+    devevents: '/img/logos/dark-mode/dev_events_logo.png',
+    nix: '/img/logos/sponsors/n-ix-logo.png',
+    oracle: '/img/logos/sponsors/Oracle.png',
+    spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
+    litslink: '/img/logos/sponsors/litslink_white.svg',
+    timenow: '/img/logos/sponsors/time_now_white.svg',
+    legasset: '/img/logos/sponsors/legasset-logo-dark.svg',
+    bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-dark.svg',
+  },
+} as const);
+
 const Home = (props: any) => {
   const blogPosts = props.blogPosts;
   const timeToRead = Math.ceil(readingTime(blogPosts[0].content).minutes);
@@ -89,68 +153,6 @@ const Home = (props: any) => {
     // Ensure the component is only rendered client-side
     setIsClient(true);
   }, []);
-  const LOGOS_PATHS = {
-    darkLogos: {
-      asyncapi: '/img/logos/dark-mode/asyncapi_white.svg',
-      airbnb: '/img/logos/dark-mode/airbnb_white.png',
-      postman: '/img/logos/usedby/postman-white.png',
-      endjin: '/img/logos/sponsors/endjin-logo.svg',
-      llc: '/img/logos/dark-mode/llc_white.svg',
-      common_room: '/img/logos/dark-mode/common-room_white.svg',
-      slack: '/img/logos/dark-mode/slack_white.svg',
-      vpsserver: '/img/logos/sponsors/vps-server-logo.svg',
-      itflashcards: '/img/logos/sponsors/it_flashcards-white.svg',
-      route4me: '/img/logos/sponsors/route4me-logo-dark.svg',
-      n8n: '/img/logos/sponsors/n8n-logo-dark.svg',
-      ccopter: '/img/logos/sponsors/copycopter-white.png',
-      octue: '/img/logos/sponsors/octue-white.svg',
-      apideck: '/img/logos/sponsors/apideck-white.svg',
-      rxdb: '/img/logos/sponsors/rxdb.svg',
-      wda: '/img/logos/sponsors/wda-dark.svg',
-      transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-white.png',
-      sourcemeta: '/img/logos/sponsors/sourcemeta-logo-light.svg',
-      dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
-      supadata: '/img/logos/sponsors/supadata-logo-light.svg',
-      devevents: '/img/logos/dark-mode/dev_events_logo.png',
-      nix: '/img/logos/sponsors/n-ix-logo.png',
-      oracle: '/img/logos/sponsors/Oracle.png',
-      litslink: '/img/logos/sponsors/litslink_dark.svg',
-      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
-      timenow: '/img/logos/sponsors/time_now_dark.svg',
-      legasset: '/img/logos/sponsors/legasset-logo.svg',
-      bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-light.svg',
-    },
-    lightLogos: {
-      asyncapi: '/img/logos/sponsors/asyncapi-logo-dark.svg',
-      airbnb: '/img/logos/sponsors/airbnb-logo.png',
-      postman: '/img/logos/sponsors/postman_logo-orange.svg',
-      endjin: '/img/logos/sponsors/endjin-logo.svg',
-      llc: '/img/logos/sponsors/llc-logo.svg',
-      common_room: '/img/logos/supported/common-room.svg',
-      slack: '/img/logos/supported/slack-logo.svg',
-      vpsserver: '/img/logos/sponsors/vps-server-logo.svg',
-      itflashcards: '/img/logos/sponsors/it_flashcards.svg',
-      route4me: '/img/logos/sponsors/route4me-logo-white.svg',
-      n8n: '/img/logos/sponsors/n8n-logo-white.svg',
-      ccopter: '/img/logos/sponsors/copycopter.png',
-      octue: '/img/logos/sponsors/octue-black.svg',
-      apideck: '/img/logos/sponsors/apideck.svg',
-      rxdb: '/img/logos/sponsors/rxdb.svg',
-      wda: '/img/logos/sponsors/wda.svg',
-      transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-dark.png',
-      sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
-      supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
-      dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
-      devevents: '/img/logos/dark-mode/dev_events_logo.png',
-      nix: '/img/logos/sponsors/n-ix-logo.png',
-      oracle: '/img/logos/sponsors/Oracle.png',
-      spinthewheel: '/img/logos/sponsors/spinthewheel.svg',
-      litslink: '/img/logos/sponsors/litslink_white.svg',
-      timenow: '/img/logos/sponsors/time_now_white.svg',
-      legasset: '/img/logos/sponsors/legasset-logo-dark.svg',
-      bairesdev: '/img/logos/sponsors/bairesdev-logo-orange-dark.svg',
-    },
-  };
 
   const logos = useMemo(
     () =>
@@ -195,38 +197,34 @@ const Home = (props: any) => {
               <h3 className='text-white text-xl mb-4'>Used by</h3>
 
               <div className='grid md:grid-cols-2 lg:grid-cols-4 gap-6 mx-auto items-center w-1/3 md:w-100 text-center'>
-                {isClient && (
-                  <>
-                    <Image
-                      src='/img/logos/usedby/zapier-logo_white.png'
-                      className='w-40 mx-auto'
-                      alt='zapier'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/microsoft-white.png'
-                      className='w-40 mx-auto'
-                      alt='microsoft'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/postman-white.png'
-                      className='w-40 mx-auto'
-                      alt='postman'
-                      height={40}
-                      width={160}
-                    />
-                    <Image
-                      src='/img/logos/usedby/github-white.png'
-                      className='w-40 mx-auto'
-                      alt='github'
-                      height={40}
-                      width={160}
-                    />
-                  </>
-                )}
+                <Image
+                  src='/img/logos/usedby/zapier-logo_white.png'
+                  className='w-40 mx-auto'
+                  alt='zapier'
+                  height={40}
+                  width={160}
+                />
+                <Image
+                  src='/img/logos/usedby/microsoft-white.png'
+                  className='w-40 mx-auto'
+                  alt='microsoft'
+                  height={40}
+                  width={160}
+                />
+                <Image
+                  src='/img/logos/usedby/postman-white.png'
+                  className='w-40 mx-auto'
+                  alt='postman'
+                  height={40}
+                  width={160}
+                />
+                <Image
+                  src='/img/logos/usedby/github-white.png'
+                  className='w-40 mx-auto'
+                  alt='github'
+                  height={40}
+                  width={160}
+                />
               </div>
 
               <p className='text-white mx-4 my-5 dark:text-slate-400'>
