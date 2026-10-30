@@ -7,10 +7,8 @@ import React, {
 } from 'react';
 
 import { Headline2 } from '~/components/Headlines';
-import InfoIcon from '~/public/icons/icons8-info.svg';
-import OutLinkIcon from '~/public/icons/outlink.svg';
 import { Button } from '~/components/ui/button';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, ExternalLink, Info } from 'lucide-react';
 
 import toTitleCase from '../lib/toTitleCase';
 import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
@@ -131,9 +129,19 @@ const ToolingTable = ({
       const aHasBowtieData = Boolean(getBowtieData(a));
       const bHasBowtieData = Boolean(getBowtieData(b));
 
+      const bowtieComparison =
+        transform.sortOrder === 'ascending'
+          ? Number(bHasBowtieData) - Number(aHasBowtieData)
+          : Number(aHasBowtieData) - Number(bHasBowtieData);
+
+      if (bowtieComparison !== 0) {
+        return bowtieComparison;
+      }
+
+      const nameComparison = a.name.localeCompare(b.name);
       return transform.sortOrder === 'ascending'
-        ? Number(bHasBowtieData) - Number(aHasBowtieData)
-        : Number(aHasBowtieData) - Number(bHasBowtieData);
+        ? nameComparison
+        : -nameComparison;
     });
 
   useEffect(() => {
@@ -340,10 +348,10 @@ const ToolingTable = ({
                                   onClick={(event) => event.stopPropagation()}
                                   title='See at Bowtie'
                                 >
-                                  <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                  <ExternalLink className='fill-none stroke-current w-5 h-5 stroke-2' />
                                 </a>
                               ) : (
-                                <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                <Info className='fill-none stroke-current w-5 h-5 stroke-2' />
                               )}
                             </div>
                           )}
@@ -378,10 +386,10 @@ const ToolingTable = ({
                                   title='See at Bowtie'
                                   className='ml-1'
                                 >
-                                  <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                  <ExternalLink className='fill-none stroke-current w-5 h-5 stroke-2' />
                                 </a>
                               ) : (
-                                <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                <Info className='fill-none stroke-current w-5 h-5 stroke-2' />
                               )}
                             </div>
                           )}
@@ -506,7 +514,7 @@ const TableSortableColumnHeader = ({
   };
 
   const SortIcon =
-    transform.sortOrder === 'ascending' ? ChevronDown : ChevronUp;
+    transform.sortOrder === 'ascending' ? ChevronUp : ChevronDown;
 
   return (
     <TableColumnHeader attributes={propAttributes}>
