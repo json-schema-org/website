@@ -1,8 +1,6 @@
 /* eslint-disable linebreak-style */
 import React from 'react';
 import Head from 'next/head';
-import fs from 'fs';
-import path from 'path';
 import { getLayout } from '~/components/Sidebar';
 import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
@@ -10,18 +8,15 @@ import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
 import VideoCard from '~/components/VideoCard';
 import { VideoResource, validateVideoResources } from '~/lib/videoResources';
+import rawVideos from '~/data/videos.json';
 
 interface VideosPageProps {
   videos: VideoResource[];
 }
 
 export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), 'data', 'videos.json');
-  const fileContents = fs.readFileSync(filePath, 'utf-8');
-  const rawData = JSON.parse(fileContents);
-
   // Runtime validation during static generation ensures invalid submissions fail build
-  const validatedVideos = validateVideoResources(rawData);
+  const validatedVideos = validateVideoResources(rawVideos);
 
   return {
     props: {
