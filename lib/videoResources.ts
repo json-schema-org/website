@@ -28,6 +28,7 @@ export class VideoValidationError extends Error {
     this.name = 'VideoValidationError';
     this.entryIndex = entryIndex;
     this.field = field;
+    Object.setPrototypeOf(this, VideoValidationError.prototype);
   }
 }
 

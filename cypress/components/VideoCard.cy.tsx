@@ -5,7 +5,6 @@ import {
   VideoResource,
   validateVideoResources,
   canonicalizeUrl,
-  VideoValidationError,
 } from '~/lib/videoResources';
 
 describe('VideoCard Component', () => {
@@ -93,6 +92,26 @@ describe('VideoCard Component', () => {
 });
 
 describe('Video Resources Validation', () => {
+  const expectValidationError = (
+    fn: () => void,
+    expectedMessage?: string | RegExp,
+  ) => {
+    let thrownError: any = null;
+    try {
+      fn();
+    } catch (err) {
+      thrownError = err;
+    }
+    expect(thrownError, 'Expected an error to be thrown').to.not.be.null;
+    if (expectedMessage) {
+      if (typeof expectedMessage === 'string') {
+        expect(thrownError.message).to.include(expectedMessage);
+      } else {
+        expect(thrownError.message).to.match(expectedMessage);
+      }
+    }
+  };
+
   it('should accept a valid empty collection', () => {
     const result = validateVideoResources([]);
     expect(result).to.deep.equal([]);
@@ -129,178 +148,219 @@ describe('Video Resources Validation', () => {
   });
 
   it('should reject non-array root data', () => {
-    expect(() => validateVideoResources(null)).to.throw('must be an array');
-    expect(() => validateVideoResources({})).to.throw('must be an array');
-    expect(() => validateVideoResources('string')).to.throw('must be an array');
+    expectValidationError(
+      () => validateVideoResources(null),
+      'must be an array',
+    );
+    expectValidationError(() => validateVideoResources({}), 'must be an array');
+    expectValidationError(
+      () => validateVideoResources('string'),
+      'must be an array',
+    );
   });
 
   it('should reject non-object items in array', () => {
-    expect(() => validateVideoResources([null])).to.throw(VideoValidationError);
-    expect(() => validateVideoResources(['some string'])).to.throw(
-      VideoValidationError,
+    expectValidationError(
+      () => validateVideoResources([null]),
+      'Entry must be a valid object',
     );
-    expect(() => validateVideoResources([[1, 2, 3]])).to.throw(
-      VideoValidationError,
+    expectValidationError(
+      () => validateVideoResources(['some string']),
+      'Entry must be a valid object',
+    );
+    expectValidationError(
+      () => validateVideoResources([[1, 2, 3]]),
+      'Entry must be a valid object',
     );
   });
 
   it('should reject missing required fields', () => {
-    expect(() =>
-      validateVideoResources([
-        {
-          description: 'Desc',
-          url: 'https://example.com/video',
-        },
-      ]),
-    ).to.throw(/field 'title'/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            description: 'Desc',
+            url: 'https://example.com/video',
+          },
+        ]),
+      /field 'title'/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Title',
-          url: 'https://example.com/video',
-        },
-      ]),
-    ).to.throw(/field 'description'/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Title',
+            url: 'https://example.com/video',
+          },
+        ]),
+      /field 'description'/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Title',
-          description: 'Desc',
-        },
-      ]),
-    ).to.throw(/field 'url'/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Title',
+            description: 'Desc',
+          },
+        ]),
+      /field 'url'/,
+    );
   });
 
   it('should reject non-string fields', () => {
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 123,
-          description: 'Desc',
-          url: 'https://example.com/video',
-        },
-      ]),
-    ).to.throw(/Title must be a string/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 123,
+            description: 'Desc',
+            url: 'https://example.com/video',
+          },
+        ]),
+      /Title must be a string/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Title',
-          description: true,
-          url: 'https://example.com/video',
-        },
-      ]),
-    ).to.throw(/Description must be a string/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Title',
+            description: true,
+            url: 'https://example.com/video',
+          },
+        ]),
+      /Description must be a string/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Title',
-          description: 'Desc',
-          url: {},
-        },
-      ]),
-    ).to.throw(/URL must be a string/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Title',
+            description: 'Desc',
+            url: {},
+          },
+        ]),
+      /URL must be a string/,
+    );
   });
 
   it('should reject whitespace-only or empty fields', () => {
-    expect(() =>
-      validateVideoResources([
-        {
-          title: '   ',
-          description: 'Valid description',
-          url: 'https://example.com/video',
-        },
-      ]),
-    ).to.throw(/Title cannot be empty/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: '   ',
+            description: 'Valid description',
+            url: 'https://example.com/video',
+          },
+        ]),
+      /Title cannot be empty/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Valid title',
-          description: '  \n  ',
-          url: 'https://example.com/video',
-        },
-      ]),
-    ).to.throw(/Description cannot be empty/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Valid title',
+            description: '  \n  ',
+            url: 'https://example.com/video',
+          },
+        ]),
+      /Description cannot be empty/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Valid title',
-          description: 'Valid description',
-          url: '   ',
-        },
-      ]),
-    ).to.throw(/URL cannot be empty/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Valid title',
+            description: 'Valid description',
+            url: '   ',
+          },
+        ]),
+      /URL cannot be empty/,
+    );
   });
 
   it('should reject malformed and relative URLs', () => {
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Title',
-          description: 'Desc',
-          url: 'not-a-valid-url',
-        },
-      ]),
-    ).to.throw(/Malformed or relative URL/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Title',
+            description: 'Desc',
+            url: 'not-a-valid-url',
+          },
+        ]),
+      /Malformed or relative URL/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Title',
-          description: 'Desc',
-          url: '/relative/path/to/video',
-        },
-      ]),
-    ).to.throw(/Malformed or relative URL/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Title',
+            description: 'Desc',
+            url: '/relative/path/to/video',
+          },
+        ]),
+      /Malformed or relative URL/,
+    );
   });
 
   it('should reject non-HTTPS protocols including http, javascript, and data', () => {
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'HTTP Video',
-          description: 'Desc',
-          url: 'http://example.com/video',
-        },
-      ]),
-    ).to.throw(/URL protocol must be "https:"/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'HTTP Video',
+            description: 'Desc',
+            url: 'http://example.com/video',
+          },
+        ]),
+      /URL protocol must be "https:"/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Javascript Video',
-          description: 'Desc',
-          url: 'javascript:alert(1)',
-        },
-      ]),
-    ).to.throw(/URL protocol must be "https:"/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Javascript Video',
+            description: 'Desc',
+            url: 'javascript:alert(1)',
+          },
+        ]),
+      /URL protocol must be "https:"/,
+    );
 
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Data URL Video',
-          description: 'Desc',
-          url: 'data:text/html,<script>alert(1)</script>',
-        },
-      ]),
-    ).to.throw(/URL protocol must be "https:"/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Data URL Video',
+            description: 'Desc',
+            url: 'data:text/html,<script>alert(1)</script>',
+          },
+        ]),
+      /URL protocol must be "https:"/,
+    );
   });
 
   it('should reject credential-bearing URLs', () => {
-    expect(() =>
-      validateVideoResources([
-        {
-          title: 'Credential Video',
-          description: 'Desc',
-          url: 'https://user:password@example.com/video',
-        },
-      ]),
-    ).to.throw(/embedded user credentials/);
+    expectValidationError(
+      () =>
+        validateVideoResources([
+          {
+            title: 'Credential Video',
+            description: 'Desc',
+            url: 'https://user:password@example.com/video',
+          },
+        ]),
+      /embedded user credentials/,
+    );
   });
 
   it('should reject duplicate URLs', () => {
@@ -317,7 +377,8 @@ describe('Video Resources Validation', () => {
       },
     ];
 
-    expect(() => validateVideoResources(duplicateData)).to.throw(
+    expectValidationError(
+      () => validateVideoResources(duplicateData),
       /Duplicate video URL detected: "https:\/\/example.com\/video1"/,
     );
   });
@@ -336,7 +397,8 @@ describe('Video Resources Validation', () => {
       },
     ];
 
-    expect(() => validateVideoResources(canonicalDupData)).to.throw(
+    expectValidationError(
+      () => validateVideoResources(canonicalDupData),
       /Duplicate video URL detected/,
     );
   });
