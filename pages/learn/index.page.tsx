@@ -65,6 +65,14 @@ export default function Welcome() {
           link='/learn/glossary'
         />
         <Card
+          title='JSON Schema videos'
+          body='Explore community-contributed educational videos, talks, and tutorials about JSON Schema'
+          headerSize='medium'
+          bodyTextSize='small'
+          extended={true}
+          link='/learn/videos'
+        />
+        <Card
           title='JSON Schema examples'
           body='Browse real-world JSON Schema examples across different domains, with detailed annotations.'
           headerSize='medium'
