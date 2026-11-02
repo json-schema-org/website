@@ -113,6 +113,18 @@ describe('Sidebar Component', () => {
       cy.get('.lg\\:hidden h3').should('contain', 'Reference');
     });
 
+    it('should fall back to Docs for an unlisted documentation route', () => {
+      mockRouter.asPath = '/work-in-progress';
+      cy.mount(
+        <SidebarLayout>
+          <div data-testid='content'>Test Content</div>
+        </SidebarLayout>,
+      );
+      cy.viewport(768, 1024);
+
+      cy.get('.lg\\:hidden h3').should('contain', 'Docs');
+    });
+
     it('should close mobile menu on window resize', () => {
       cy.mount(
         <SidebarLayout>
