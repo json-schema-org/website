@@ -421,4 +421,50 @@ describe('Layout Component', () => {
       });
     });
   });
+
+  describe('Hash scroll on load', () => {
+    const mountWithHash = (hash: string, withTarget = true) => {
+      cy.window().then((win) => {
+        win.history.replaceState(null, '', `${win.location.pathname}${hash}`);
+        cy.stub(win.Element.prototype, 'scrollIntoView').as('scroll');
+      });
+      cy.mount(
+        <ThemeProvider>
+          <SectionContext.Provider value={null}>
+            <Layout>{withTarget && <span id='community' />}</Layout>
+          </SectionContext.Provider>
+        </ThemeProvider>,
+      );
+    };
+
+    afterEach(() => {
+      cy.window().then((win) =>
+        win.history.replaceState(null, '', win.location.pathname),
+      );
+    });
+
+    it('scrolls to #community when the page loads with that hash', () => {
+      mountWithHash('#community');
+      cy.get('@scroll').should('have.been.calledWith', { behavior: 'smooth' });
+      cy.get('@scroll')
+        .its('firstCall.thisValue')
+        .should('have.attr', 'id', 'community');
+    });
+
+    it('does not scroll for other hashes', () => {
+      mountWithHash('#community-guidelines');
+      cy.get('@scroll').should('not.have.been.called');
+    });
+
+    it('does not scroll without a hash', () => {
+      mountWithHash('');
+      cy.get('@scroll').should('not.have.been.called');
+    });
+
+    it('does not throw when #community has no matching element', () => {
+      mountWithHash('#community', false);
+      cy.get('main').should('exist');
+      cy.get('@scroll').should('not.have.been.called');
+    });
+  });
 });
