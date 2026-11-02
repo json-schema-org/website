@@ -7,6 +7,13 @@ import Image from 'next/image';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import { hiddenElements } from '~/lib/markdownUtils';
 import { FullMarkdownContext } from '~/context';
+import dedupeHeadingIds from '~/lib/dedupeHeadingIds';
+
+// `[#custom-id]` fragments only set the heading id, don't show them in the TOC
+const withoutFragment = (children: React.ReactNode) =>
+  React.Children.map(children, (child) =>
+    typeof child === 'string' ? child.replace(/\[#[\w-]*\]/g, '') : child,
+  );
 
 interface TableOfContentMarkdownProps {
   markdown: string;
@@ -29,7 +36,7 @@ export function TableOfContentMarkdown({
                   href={`#${slug}`}
                   className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
                 >
-                  {children}
+                  {withoutFragment(children)}
                 </a>
               );
             },
@@ -46,7 +53,7 @@ export function TableOfContentMarkdown({
                         href={`#${slug}`}
                         className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
                       >
-                        {children}
+                        {withoutFragment(children)}
                       </a>
                     );
                   },
@@ -73,7 +80,7 @@ export function TableOfContentMarkdown({
                           <span className='mr-1 text-blue-400 text-[0.7em]'>
                             &#9679;
                           </span>
-                          {children}
+                          {withoutFragment(children)}
                         </a>
                       );
                     },
@@ -96,7 +103,7 @@ export function TableOfContentMarkdown({
                           &#9679;
                         </span>
 
-                        {children}
+                        {withoutFragment(children)}
                       </a>
                     );
                   },
@@ -119,7 +126,7 @@ export function TableOfContentMarkdown({
                           &#9679;
                         </span>
 
-                        {children}
+                        {withoutFragment(children)}
                       </a>
                     );
                   },
@@ -149,7 +156,7 @@ export function TableOfContentMarkdown({
         },
       }}
     >
-      {markdown}
+      {dedupeHeadingIds(markdown)}
     </Markdown>
   );
 }
