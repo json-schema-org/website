@@ -30,9 +30,9 @@
   lastUpdated: '2024-06-08'
 
 - name: Corvus.JsonSchema
-  description: 'Support for Json Schema validation and entity generation'
+  description: 'Support for Json Schema validation and entity generation. The runtime evaluator is available for .NET (Corvus.Text.Json on NuGet), TypeScript and JavaScript (@corvus-dotnet/json-schema on npm), Rust (corvus-json-schema on crates.io), Python (corvus-json-schema and corvus-json-schema-rs on PyPI), Java and Kotlin (io.github.corvus-dotnet:corvus-json-schema on Maven Central), Go, C and C++ (the corvus-json-schema C library), Swift, Ruby (corvus_json_schema), PHP, Julia (CorvusJsonSchema in the General registry), R (corvusjsonschema on R-universe), Object Pascal (Free Pascal) and OCaml (corvus-json-schema for opam). Every one runs the JSON-Schema-Test-Suite for draft 4, 6, 7, 2019-09 and 2020-12, and supports draft 4 as fully as the later drafts.'
   toolingTypes: ['validator']
-  languages: ['.NET']
+  languages: ['.NET', 'TypeScript', 'JavaScript', 'Rust', 'Python', 'Java', 'Kotlin', 'Go', 'C', 'C++', 'Swift', 'Ruby', 'PHP', 'Julia', 'R', 'Object Pascal', 'OCaml']
   maintainers:
     - name: 'Matthew Adams'
       username: 'mwadams'
@@ -40,8 +40,8 @@
   license: 'Apache-2.0'
   source: 'https://github.com/corvus-dotnet/corvus.jsonschema'
   supportedDialects:
-    draft: ['6', '7', '2019-09', '2020-12']
-  lastUpdated: '2023-02-14'
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  lastUpdated: '2026-10-17'
 
 - name: LateApexEarlySpeed.Json.Schema
   description: 'Simple and high performance json schema implementation for .Net and related json validation in .Net'
@@ -1607,7 +1607,7 @@
   license: 'Apache-2.0'
   homepage: 'https://www.nuget.org/packages/Corvus.Json.JsonSchema.TypeGeneratorTool/'
   supportedDialects:
-    draft: ['6', '7', '2019-09', '2020-12']
+    draft: ['4', '6', '7', '2019-09', '2020-12']
 
 - name: json-schema-to-elm
   description: 'Generates Elm types, JSON decoders+encoders, and fuzz tests from one or more JSON Schema files.'
