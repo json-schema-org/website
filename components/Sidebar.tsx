@@ -140,6 +140,7 @@ const getStartedPath = [
   '/understanding-json-schema/about',
   '/understanding-json-schema/basics',
   '/learn/glossary',
+  '/learn/videos',
 ];
 const getGuidesPath = [
   '/learn/guides',
@@ -546,6 +547,7 @@ export const DocsNav = ({
               label='JSON Schema glossary'
               setOpen={setOpen}
             />
+            <DocLink uri='/learn/videos' label='Videos' setOpen={setOpen} />
             <SegmentSubtitle label='Examples' />
             <div className='pl-4 pb-1 pt-1'>
               <DocLink
