@@ -13,29 +13,47 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import CarbonAds from '~/components/CarbonsAds';
 import Image from 'next/image';
+import BlogSeo from '~/components/BlogSeo';
+import { normalizeBlogMetadata, type BlogMetadata } from '~/lib/blogMetadata';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
 }
 export async function getStaticProps(args: any) {
-  return getStaticMarkdownProps(args, 'pages/blog/posts');
+  const baseProps = await getStaticMarkdownProps(args, 'pages/blog/posts');
+  const slug = args.params?.slug || '_index';
+  const metadata = normalizeBlogMetadata(slug, baseProps.props.frontmatter);
+
+  return {
+    props: {
+      ...baseProps.props,
+      metadata,
+      hasCustomSeo: true,
+    },
+  };
 }
 
 export default function StaticMarkdownPage({
   frontmatter,
   content,
+  metadata,
 }: {
   frontmatter: any;
   content: any;
+  metadata?: BlogMetadata;
 }) {
   const date = new Date(frontmatter.date);
   const timeToRead = Math.ceil(readingTime(content).minutes);
 
   return (
     <SectionContext.Provider value='blog'>
-      <Head>
-        <title>{frontmatter.title}</title>
-      </Head>
+      {metadata ? (
+        <BlogSeo metadata={metadata} />
+      ) : (
+        <Head>
+          <title>{frontmatter.title}</title>
+        </Head>
+      )}
       <div className='max-w-[1400px] mx-auto flex flex-col items-center mt-16 dark:bg-slate-800 dark:slate-700 px-4'>
         <div className='flex flex-col pt-6'>
           {frontmatter.date && (
