@@ -7,10 +7,8 @@ import React, {
 } from 'react';
 
 import { Headline2 } from '~/components/Headlines';
-import InfoIcon from '~/public/icons/icons8-info.svg';
-import OutLinkIcon from '~/public/icons/outlink.svg';
 import { Button } from '~/components/ui/button';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { ChevronDown, ChevronUp, ExternalLink, Info } from 'lucide-react';
 
 import toTitleCase from '../lib/toTitleCase';
 import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
@@ -126,6 +124,26 @@ const ToolingTable = ({
     onVisibleToolCountChange?.(visibleToolCount);
   }, [visibleToolCount, onVisibleToolCountChange]);
 
+  const sortBowtieTools = (tools: JSONSchemaTool[]) =>
+    tools.slice().sort((a, b) => {
+      const aHasBowtieData = Boolean(getBowtieData(a));
+      const bHasBowtieData = Boolean(getBowtieData(b));
+
+      const bowtieComparison =
+        transform.sortOrder === 'ascending'
+          ? Number(bHasBowtieData) - Number(aHasBowtieData)
+          : Number(aHasBowtieData) - Number(bHasBowtieData);
+
+      if (bowtieComparison !== 0) {
+        return bowtieComparison;
+      }
+
+      const nameComparison = a.name.localeCompare(b.name);
+      return transform.sortOrder === 'ascending'
+        ? nameComparison
+        : -nameComparison;
+    });
+
   useEffect(() => {
     setExpandedGroups({});
   }, [toolsByGroup]);
@@ -160,10 +178,12 @@ const ToolingTable = ({
     <>
       {groups.map((group) => {
         const tools = filteredToolsByGroup[group] ?? [];
+        const sortedTools =
+          transform.sortBy === 'bowtie' ? sortBowtieTools(tools) : tools;
         const isExpanded = expandedGroups[group];
         const visibleTools = isExpanded
-          ? tools
-          : tools.slice(0, INITIAL_VISIBLE_ROWS);
+          ? sortedTools
+          : sortedTools.slice(0, INITIAL_VISIBLE_ROWS);
         const hasMore = tools.length > INITIAL_VISIBLE_ROWS;
 
         return (
@@ -328,10 +348,10 @@ const ToolingTable = ({
                                   onClick={(event) => event.stopPropagation()}
                                   title='See at Bowtie'
                                 >
-                                  <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                  <ExternalLink className='fill-none stroke-current w-5 h-5 stroke-2' />
                                 </a>
                               ) : (
-                                <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                <Info className='fill-none stroke-current w-5 h-5 stroke-2' />
                               )}
                             </div>
                           )}
@@ -366,10 +386,10 @@ const ToolingTable = ({
                                   title='See at Bowtie'
                                   className='ml-1'
                                 >
-                                  <OutLinkIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                  <ExternalLink className='fill-none stroke-current w-5 h-5 stroke-2' />
                                 </a>
                               ) : (
-                                <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
+                                <Info className='fill-none stroke-current w-5 h-5 stroke-2' />
                               )}
                             </div>
                           )}
@@ -493,7 +513,8 @@ const TableSortableColumnHeader = ({
     setIsSortedBy(true);
   };
 
-  const rotateClass = transform.sortOrder === 'ascending' ? 'rotate-180' : '';
+  const SortIcon =
+    transform.sortOrder === 'ascending' ? ChevronUp : ChevronDown;
 
   return (
     <TableColumnHeader attributes={propAttributes}>
@@ -503,22 +524,7 @@ const TableSortableColumnHeader = ({
         onClick={sortByColumn}
       >
         {children}
-        {isSortedBy && (
-          <svg
-            xmlns='http://www.w3.org/2000/svg'
-            fill='none'
-            viewBox='0 0 24 24'
-            stroke='currentColor'
-            className={`w-4 h-4 ml-1 transform ${rotateClass}`}
-          >
-            <path
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth='2'
-              d='M5 15l7-7 7 7'
-            />
-          </svg>
-        )}
+        {isSortedBy && <SortIcon className='w-4 h-4 ml-1' />}
       </Button>
     </TableColumnHeader>
   );
