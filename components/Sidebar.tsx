@@ -198,10 +198,21 @@ const getSpecificationPath = [
   '/draft-06/json-schema-release-notes',
 ];
 
+export const getMobileSectionTitle = (path: string) => {
+  if (getDocsPath.includes(path)) return 'Introduction';
+  if (getStartedPath.includes(path)) return 'Get started';
+  if (getGuidesPath.includes(path)) return 'Guides';
+  if (getReferencePath.includes(path)) return 'Reference';
+  if (getSpecificationPath.includes(path)) return 'Specification';
+
+  return 'Docs';
+};
+
 export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const pathWtihoutFragment = extractPathWithoutFragment(router.asPath);
+  const mobileSectionTitle = getMobileSectionTitle(pathWtihoutFragment);
   const shouldHideSidebar = pathWtihoutFragment === '/md-style-guide';
 
   useEffect(() => {
@@ -225,24 +236,7 @@ export const SidebarLayout = ({ children }: { children: React.ReactNode }) => {
               setOpen(!open);
             }}
           >
-            {getDocsPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Introduction</h3>
-            )}
-            {getStartedPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Get started</h3>
-            )}
-            {getGuidesPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Guides</h3>
-            )}
-            {getReferencePath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Reference</h3>
-            )}
-            {getSpecificationPath.includes(pathWtihoutFragment) && (
-              <h3 className='text-white ml-12'>Specification</h3>
-            )}
-            {router.pathname === null && (
-              <h3 className='text-white ml-12'>Docs</h3>
-            )}
+            <h3 className='text-white ml-12'>{mobileSectionTitle}</h3>
             <svg
               style={{
                 marginRight: '50px',
