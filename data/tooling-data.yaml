@@ -257,6 +257,23 @@
   toolingListingNotes: 'Includes custom keywords, output formats'
   lastUpdated: '2022-08-31'
 
+- name: go-yamlvalidator
+  description: 'Source-aware YAML validation for Go using JSON Schema while preserving YAML paths, lines, and columns.'
+  toolingTypes: ['validator']
+  languages: ['Go']
+  dependsOnValidators: ['https://github.com/santhosh-tekuri/jsonschema']
+  maintainers:
+    - name: 'Khasbulat Abdullin'
+      username: 'Yakwilik'
+      platform: 'github'
+  license: 'Apache-2.0'
+  source: 'https://github.com/Yakwilik/go-yamlvalidator'
+  homepage: 'https://pkg.go.dev/github.com/Yakwilik/go-yamlvalidator'
+  supportedDialects:
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Validates YAML through the JSON data model and maps JSON Schema diagnostics back to YAML source locations; also supports custom formats, keywords, vocabularies, and explicit resource resolvers.'
+  lastUpdated: '2026-09-27'
+
 - name: jsonschema
   description: 'A powerful Go JSON Schema validator library aligned with the JSON Schema Draft 2020-12.'
   toolingTypes: ['validator']
