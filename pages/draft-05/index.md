@@ -3,7 +3,7 @@ title: 'Draft-05'
 Published: '13 October 2016'
 type: docs
 authors: ['Austin Wright']
-Metaschema: 'https://json-schema.org/draft-04/schema'
+Metaschema: 'http://json-schema.org/draft-04/schema'
 Specification: 'https://json-schema.org/draft-05/draft-wright-json-schema-00.pdf'
 prev:
   label: Draft 06
