@@ -563,7 +563,7 @@ const FaviconHead = () => {
       <Head>
         <link
           rel='icon'
-          type='image/svg'
+          type='image/x-icon'
           href='/favicon-white.ico'
           id='dark-scheme-icon'
         />
@@ -574,7 +574,7 @@ const FaviconHead = () => {
     <Head>
       <link
         rel='icon'
-        type='image/svg+xml'
+        type='image/x-icon'
         href='/favicon.ico'
         id='light-scheme-icon'
       />
