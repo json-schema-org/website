@@ -27,6 +27,10 @@ export interface GroupedTools {
   [group: string]: JSONSchemaTool[];
 }
 
+// Group for tools that have no value for the attribute they are grouped by
+// (e.g. tools without `languages`), so that they are still listed.
+export const OTHER_GROUP = 'Other';
+
 const buildQueryString = (transform: Transform) => {
   return new URLSearchParams({
     query: transform.query,
@@ -279,7 +283,7 @@ const sortTools = (
   });
 };
 
-const groupTools = (
+export const groupTools = (
   tools: JSONSchemaTool[],
   transform: Transform,
 ): {
@@ -314,20 +318,18 @@ const groupTools = (
     'linter-plugins',
   ];
 
-  let numberOfTools = 0;
   const groupedTools: GroupedTools = {};
   const groupBy = transform.groupBy;
 
   if (groupBy === 'languages' || groupBy === 'toolingTypes') {
     tools.forEach((tool) => {
-      const groups = tool[groupBy] || [];
-      if (groups.length > 0) {
-        groups.forEach((group) => {
-          if (!groupedTools[group]) groupedTools[group] = [];
-          groupedTools[group].push(tool);
-        });
-        numberOfTools++;
-      }
+      const toolGroups = tool[groupBy];
+      const groups =
+        toolGroups && toolGroups.length > 0 ? toolGroups : [OTHER_GROUP];
+      groups.forEach((group) => {
+        if (!groupedTools[group]) groupedTools[group] = [];
+        groupedTools[group].push(tool);
+      });
     });
   } else {
     groupedTools['none'] = tools;
@@ -339,6 +341,9 @@ const groupTools = (
 
   const sortedGroupedTools = Object.keys(groupedTools)
     .sort((a, b) => {
+      // Always list the Other group last.
+      if (a === OTHER_GROUP) return 1;
+      if (b === OTHER_GROUP) return -1;
       if (groupBy === 'toolingTypes') {
         const indexA = toolingTypesOrder.indexOf(a);
         const indexB = toolingTypesOrder.indexOf(b);
@@ -355,7 +360,7 @@ const groupTools = (
     }, {} as GroupedTools);
 
   return {
-    numberOfTools,
+    numberOfTools: tools.length,
     toolsByGroup: sortedGroupedTools,
   };
 };

@@ -118,10 +118,10 @@ const ToolingTable = ({
     setSelectedTool(null);
   };
 
-  const visibleToolCount = Object.values(filteredToolsByGroup).reduce(
-    (sum, tools) => sum + tools.length,
-    0,
-  );
+  // A tool can be listed in several groups (e.g. one per language), so count
+  // each tool only once.
+  const visibleToolCount = new Set(Object.values(filteredToolsByGroup).flat())
+    .size;
   useEffect(() => {
     onVisibleToolCountChange?.(visibleToolCount);
   }, [visibleToolCount, onVisibleToolCountChange]);
