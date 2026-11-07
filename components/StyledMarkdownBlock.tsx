@@ -80,14 +80,14 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                 const combinedClassName =
                   `${baseClassName} ${additionalClass}`.trim();
 
+                const isAnchor = href.charAt(0) === '#';
+
                 const link =
                   href.charAt(0) === '/' ? (
                     <Link
                       as={href}
                       href='/'
                       title={title}
-                      target='_blank'
-                      rel='noopener noreferrer'
                       className={combinedClassName} // Use the combined className
                     >
                       {children}
@@ -95,8 +95,10 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                   ) : (
                     <a
                       href={href}
-                      target='_blank'
-                      rel='noopener noreferrer'
+                      {...(!isAnchor && {
+                        target: '_blank',
+                        rel: 'noopener noreferrer',
+                      })}
                       title={title}
                       className={combinedClassName} // Use the combined className
                     >
