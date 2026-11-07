@@ -76,6 +76,11 @@ export default function DarkModeToggle() {
     }
   };
 
+  const selectTheme = (newTheme: 'system' | 'light' | 'dark') => {
+    setTheme(newTheme);
+    setShowSelect(false);
+  };
+
   return (
     <div
       ref={dropdownRef}
@@ -142,7 +147,7 @@ export default function DarkModeToggle() {
         data-test='theme-dropdown'
       >
         <ListItem
-          onClick={() => setTheme('system')}
+          onClick={() => selectTheme('system')}
           data-test='select-system-theme'
         >
           <Image
@@ -155,7 +160,7 @@ export default function DarkModeToggle() {
           System
         </ListItem>
         <ListItem
-          onClick={() => setTheme('light')}
+          onClick={() => selectTheme('light')}
           data-test='select-light-theme'
         >
           <Image
