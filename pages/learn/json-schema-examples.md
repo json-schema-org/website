@@ -436,7 +436,7 @@ A schema representing a health record, including `patientName`, `dateOfBirth`, `
 
 ## Job posting
 
-A schema representing a job posting, including properties like `title`, `company`, `location`, `description`, `employmentType`, `salary`, and `applicationDeadline`. It also uses the `$anchor` keyword for defining an anchor.
+A schema representing a job posting, including properties like `title`, `company`, `location`, `description`, `employmentType`, `salary`, and `applicationDeadline`.
 
 ```json
 {
