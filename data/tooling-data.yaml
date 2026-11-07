@@ -3534,3 +3534,13 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'JsonForms (MediaWiki)'
+  description: 'A JSON-Schema compliant form and page form management system for MediaWiki that generates interactive forms from schemas and includes a schema builder.'
+  toolingTypes: ['schema-to-web-UI', 'editor', 'schema-to-data']
+  languages: ['PHP', 'JavaScript']
+  environments: ['MediaWiki']
+  source: 'https://gerrit.wikimedia.org/r/q/project:mediawiki/extensions/JsonForms'
+  homepage: 'https://www.mediawiki.org/wiki/Extension:JsonForms'
+  supportedDialects:
+    draft: ['7', '2019-09']
