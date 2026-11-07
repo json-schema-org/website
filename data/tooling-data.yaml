@@ -3453,7 +3453,7 @@
 - name: 'jsonschema-models'
   description: 'Pydantic models for representing JSON Schema objects.'
   toolingTypes: ['code-to-schema']
-  languages: ['Python 3']
+  languages: ['Python']
   maintainers:
     - name: 'Gavin M. Roy'
       username: 'gmr'
