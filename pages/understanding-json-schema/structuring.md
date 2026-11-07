@@ -450,12 +450,127 @@ infinite loop in the resolver, and is explicitly disallowed.
 }
 ```  
 
-<Keywords label="single: Extending Recursive Schemas single: \$recursiveRef single: \$recursiveAnchor single: structuring; Extending Recursive Schemas" />
+<Keywords label="single: Extending Recursive Schemas single: \$dynamicRef single: \$dynamicAnchor single: \$recursiveRef single: \$recursiveAnchor single: structuring; Extending Recursive Schemas" />
 
-## Extending Recursive Schemas
+## Extending Recursive Schemas[#extending-recursive-schemas]
 <Star label="New in draft 2019-09" />
 
-Documentation Coming Soon
+In the [Recursion](#recursion) section above, we saw how a schema can reference itself using `$ref: "#"`. This works well when recursive child nodes always share the exact same shape as the parent.
+
+However, suppose you have a generic recursive schema—such as a generic `tree` node—and you want to **extend** it in another schema (for example, requiring an additional `label` property on every node). If the base `tree` schema references itself using a static `$ref`, that reference always resolves back to the base `tree`. As a result, children would only validate against the base schema, and the extra `label` requirement would be ignored on nested nodes!
+
+To enable recursive extension—analogous to polymorphic recursion or subclassing in programming languages—JSON Schema provides **dynamic referencing** using `$dynamicAnchor` and `$dynamicRef`.
+
+### The Base Schema
+
+In the base schema, we mark the recursive point with a `$dynamicAnchor` instead of a static anchor, and reference it using `$dynamicRef`:
+
+```json
+// props { "isSchema": true }
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/tree",
+  "$dynamicAnchor": "node",
+
+  "type": "object",
+  "properties": {
+    "data": true,
+    "children": {
+      "type": "array",
+      "items": {
+        "$dynamicRef": "#node"
+      }
+    }
+  },
+  "required": ["data"]
+}
+```
+
+When evaluated on its own, `$dynamicRef: "#node"` resolves locally to the `$dynamicAnchor: "node"` inside the `tree` schema, behaving just like a standard recursive `$ref`.
+
+### The Extended Schema
+
+To extend this recursive schema, the outer schema defines a matching `$dynamicAnchor` with the same name (`node`). It then references the base schema using `allOf` and adds its own property constraints:
+
+```json
+// props { "isSchema": true }
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/labeled-tree",
+  "$dynamicAnchor": "node",
+
+  "allOf": [
+    { "$ref": "https://example.com/tree" },
+    {
+      "properties": {
+        "label": { "type": "string" }
+      },
+      "required": ["label"]
+    }
+  ]
+}
+```
+
+Because `labeled-tree` declares `$dynamicAnchor: "node"`, any recursive evaluation originating from within `labeled-tree` causes `$dynamicRef: "#node"` in the base schema to dynamically resolve to the outer `labeled-tree` definition rather than the local base definition. Consequently, every recursive child node is required to have both `data` and `label`!
+
+### Valid and Invalid Examples
+
+The following tree is valid because both the root and its children contain the required `data` and `label` properties:
+
+```json
+// props { "indent": true, "valid": true }
+{
+  "data": 1,
+  "label": "root",
+  "children": [
+    {
+      "data": 2,
+      "label": "leaf-1"
+    },
+    {
+      "data": 3,
+      "label": "branch-1",
+      "children": [
+        {
+          "data": 4,
+          "label": "leaf-2"
+        }
+      ]
+    }
+  ]
+}
+```
+
+The following tree is **invalid** when validated against `labeled-tree`. Although the child node satisfies the base `tree` schema (it has `data`), it fails the extended schema because it is missing `label`:
+
+```json
+// props { "indent": true, "valid": false }
+{
+  "data": 1,
+  "label": "root",
+  "children": [
+    {
+      "data": 2
+    }
+  ]
+}
+```
+
+[tabs-start "Draft-specific info"]
+
+[tab "Draft 2020-12"]
+Draft 2020-12 generalized dynamic recursion into ``$dynamicAnchor`` and ``$dynamicRef``. For dynamic resolution to occur, **both** the extending schema and the base schema MUST declare a matching ``$dynamicAnchor`` (known as "bookending"). If the outer schema does not declare the anchor, the reference falls back to static resolution.
+
+[tab "Draft 2019-09"]
+Draft 2019-09 introduced this capability with ``$recursiveAnchor`` and ``$recursiveRef``. In 2019-09, anchors were not named; instead, schemas set ``"$recursiveAnchor": true`` at the root and used ``"$recursiveRef": "#"`` for self-references.
+
+[tab "Draft 4-7"]
+Dynamic referencing is not supported in Draft 7 and earlier. In these drafts, extending a recursive schema requires duplicating the entire recursive definition with the additional properties.
+
+[tabs-end]
+
+> [!TIP]
+> Use dynamic references when authoring reusable, foundational data structures (such as expression trees, ASTs, or organizational hierarchies) that other schemas in your organization need to extend. If your schema does not need to be extended by third parties, a simple static `$ref` is simpler and more widely supported.
 
 <Keywords label="single: bundling single: \$id single: structuring; bundling; \$id" />
 
