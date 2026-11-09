@@ -827,6 +827,34 @@
   toolingListingNotes: "Python bindings to Rust's jsonschema crate"
   lastUpdated: '2022-08-31'
 
+- name: Specwise
+  description: 'A hosted HTTP API that checks a JSON Schema against its meta-schema and validates JSON or YAML instances against it. Returns all errors (not just the first) with instance path, schema path, failing keyword, and line/column for text input. Also validates and diffs OpenAPI documents.'
+  toolingTypes: ['validator']
+  languages: ['Python']
+  environments: ['Web (Online)']
+  dependsOnValidators:
+    - 'https://github.com/python-jsonschema/jsonschema'
+  creators:
+    - name: 'Hybrid Forge Lab'
+      username: 'hybridforgelab'
+      platform: 'github'
+  maintainers:
+    - name: 'Hybrid Forge Lab'
+      username: 'hybridforgelab'
+      platform: 'github'
+  license: 'Proprietary'
+  homepage: 'https://specwise.hybridforgelab.com'
+  supportedDialects:
+    draft: ['1', '2', '3', '4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Paid API with a free plan (RapidAPI: 15 requests/month; api.market: 7-day free trial). Remote $refs are never fetched. The draft is taken from $schema or can be forced per request (default: 2020-12). "format" is asserted by default and can be disabled per request. Docs: https://specwise.hybridforgelab.com/api.html'
+  compliance:
+    config:
+      docs: 'https://specwise.hybridforgelab.com/api.html'
+      instructions: 'Remote $refs are not fetched; they are reported in "unresolved_refs" and treated as accepting anything. "format" assertion can be turned off per request.'
+  landscape:
+    optOut: true
+  lastUpdated: '2026-11-03'
+
 - name: jsonschema-rs
   description: 'JSON Schema validation library'
   toolingTypes: ['validator']
