@@ -2,6 +2,7 @@
 import JsonEditor from '~/components/JsonEditor';
 import React from 'react';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
+import { FullMarkdownContext } from '~/context';
 
 /*
  * Testing the JSON Editor Component involves testing some basic functionality,
@@ -74,6 +75,19 @@ const initialCode = {
 describe('JSON Editor Component', () => {
   // eslint-disable-next-line
   let mockRouter: MockRouter;
+
+  it('should not add bottom margin when the code block starts at index 0', () => {
+    const code = '{"test": "value"}';
+    const fullMarkdown = [code, '```', '```', ''].join('\n');
+
+    cy.mount(
+      <FullMarkdownContext.Provider value={fullMarkdown}>
+        <JsonEditor initialCode={code} />
+      </FullMarkdownContext.Provider>,
+    );
+
+    cy.get('[data-test="code-caption"]').should('not.have.class', 'mb-10');
+  });
 
   beforeEach(() => {
     // Create mock router object
