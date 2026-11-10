@@ -153,10 +153,7 @@ describe('DarkModeToggle Component', () => {
         cy.get(theme.selector).click();
 
         cy.get(THEME_ICON).should('have.attr', 'src', theme.icon);
-
-        cy.get(THEME_DROPDOWN).trigger('mouseout');
-
-        cy.get(THEME_DROPDOWN).should('have.css', 'display', 'none');
+        cy.get(THEME_DROPDOWN).should('not.be.visible');
       });
     });
 

@@ -36,6 +36,11 @@ export default function DarkModeToggle() {
     '/icons/theme-switch.svg',
   );
 
+  const selectTheme = (selectedTheme: string) => {
+    setTheme(selectedTheme);
+    setShowSelect(false);
+  };
+
   useEffect(() => {
     switch (theme) {
       case 'system':
@@ -142,7 +147,7 @@ export default function DarkModeToggle() {
         data-test='theme-dropdown'
       >
         <ListItem
-          onClick={() => setTheme('system')}
+          onClick={() => selectTheme('system')}
           data-test='select-system-theme'
         >
           <Image
@@ -155,7 +160,7 @@ export default function DarkModeToggle() {
           System
         </ListItem>
         <ListItem
-          onClick={() => setTheme('light')}
+          onClick={() => selectTheme('light')}
           data-test='select-light-theme'
         >
           <Image
@@ -168,7 +173,7 @@ export default function DarkModeToggle() {
           Light
         </ListItem>
         <ListItem
-          onClick={() => setTheme('dark')}
+          onClick={() => selectTheme('dark')}
           data-test='select-dark-theme'
         >
           <Image
