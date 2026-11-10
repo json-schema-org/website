@@ -107,11 +107,14 @@ const CardBody = ({
 };
 
 const Card: React.FC<CardProps> = ({ link, ...props }) => {
+  const isExternalLink =
+    link !== undefined && /^(?:[a-z][a-z\d+.-]*:|\/\/)/i.test(link);
+
   return link ? (
     <Link
       href={link}
-      target='_blank'
-      rel='noopener noreferrer'
+      target={isExternalLink ? '_blank' : undefined}
+      rel={isExternalLink ? 'noopener noreferrer' : undefined}
       data-test='card-link'
     >
       <CardBody link={link} {...props} />

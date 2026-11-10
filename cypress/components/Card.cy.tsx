@@ -25,13 +25,27 @@ describe('Card Component', () => {
     cy.get('[data-test="card-title"]').should('have.text', RoadmapProps.title);
     cy.get('[data-test="card-body"]').should('have.text', RoadmapProps.body);
     cy.get('[data-test="card-read-more"]').should('have.text', 'Read More');
-    cy.get('[data-test="card-link"]').should(
-      'have.attr',
-      'href',
-      RoadmapProps.link,
-    );
+    cy.get('[data-test="card-link"]')
+      .should('have.attr', 'href', RoadmapProps.link)
+      .and('have.attr', 'target', '_blank');
     cy.get('[data-test="card-title"]').should('have.class', 'text-[2rem]');
     cy.get('[data-test="card-body"]').should('have.class', 'text-[1rem]');
+  });
+
+  it('should keep internal links in the current tab', () => {
+    cy.mount(
+      <Card
+        icon='/icons/eye.svg'
+        title='Introduction'
+        body='Discover JSON Schema.'
+        link='/overview/what-is-jsonschema'
+      />,
+    );
+
+    cy.get('[data-test="card-link"]')
+      .should('have.attr', 'href', '/overview/what-is-jsonschema')
+      .and('not.have.attr', 'target')
+      .and('not.have.attr', 'rel');
   });
 
   // Render the Roadmap card with default header and body sizes
