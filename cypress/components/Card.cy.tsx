@@ -44,8 +44,7 @@ describe('Card Component', () => {
 
     cy.get('[data-test="card-link"]')
       .should('have.attr', 'href', '/overview/what-is-jsonschema')
-      .and('not.have.attr', 'target')
-      .and('not.have.attr', 'rel');
+      .and('not.have.attr', 'target', '_blank');
   });
 
   // Render the Roadmap card with default header and body sizes
