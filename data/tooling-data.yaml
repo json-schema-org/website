@@ -3534,3 +3534,20 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'json-schema-content-mapper'
+  description: 'A TypeScript content mapper allowing to import JSON Schemas as typed ES6 modules.'
+  toolingTypes: ['schema-to-types']
+  languages: ['TypeScript']
+  creators:
+    - name: 'Nicolas Froidure'
+      username: 'nfroidure'
+      platform: 'github'
+  maintainers:
+    - name: 'Nicolas Froidure'
+      username: 'nfroidure'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/nfroidure/json-schema-content-mapper'
+  supportedDialects:
+    draft: ['2020-12']
