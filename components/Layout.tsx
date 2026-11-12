@@ -20,6 +20,7 @@ import ScrollButton from './ScrollButton';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import AnnouncementBanner from './AnnouncementBanner';
+import scrollToHashTarget from '~/lib/scrollToHashTarget';
 
 type Props = {
   children: React.ReactNode;
@@ -80,16 +81,7 @@ export default function Layout({
   }, [updateAnnouncementHeight]);
 
   useEffect(() => {
-    // Check if the URL contains "community"
-    if (window.location.hash === 'community') {
-      // Find the anchor element by its ID
-      const target = document.getElementById('community');
-
-      // Scroll to the anchor element if it exists
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
+    scrollToHashTarget(window.location.hash, 'community');
   }, []);
 
   useEffect(() => {
