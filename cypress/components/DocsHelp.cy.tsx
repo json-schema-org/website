@@ -159,7 +159,8 @@ describe('DocsHelp Component', () => {
     // check if clicking on submit button should show error message
     cy.get(FEEDBACK_ERROR_MESSAGE)
       .should('have.prop', 'tagName', 'P')
-      .and('contains', /An error occurred. Please try again later./i);
+      .and('contain.text', 'submit your feedback right now')
+      .and('contain.text', 'Create an issue');
   });
 
   /* test feedback form functionality when network error occurs
@@ -185,7 +186,8 @@ describe('DocsHelp Component', () => {
     // check if clicking on submit button should show error message
     cy.get(FEEDBACK_ERROR_MESSAGE)
       .should('have.prop', 'tagName', 'P')
-      .and('contains', /An error occurred. Please try again later./i);
+      .and('contain.text', 'submit your feedback right now')
+      .and('contain.text', 'Create an issue');
   });
 
   // test feedback form shows error when submitting empty comment
@@ -202,6 +204,20 @@ describe('DocsHelp Component', () => {
     cy.get(FEEDBACK_ERROR_MESSAGE)
       .should('have.prop', 'tagName', 'P')
       .and('contain.text', 'Feedback comment cannot be empty.');
+  });
+
+  // test error message is cleared when the feedback form is collapsed
+  it('should clear the empty-comment error when the feedback form is closed', () => {
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM_SUBMIT_BUTTON).click();
+    cy.get(FEEDBACK_ERROR_MESSAGE).should('be.visible');
+    // collapse the form by clicking the same button again
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_ERROR_MESSAGE).should('not.exist');
+    // reopen the form, the stale error must not come back
+    cy.get(FEEDBACK_FORM_YES_BUTTON).click();
+    cy.get(FEEDBACK_FORM).should('be.visible');
+    cy.get(FEEDBACK_ERROR_MESSAGE).should('not.exist');
   });
 
   // test feedback form shows error when submitting whitespace-only comment
@@ -338,5 +354,11 @@ describe('DocsHelp Component', () => {
     // After toggle, the conditional content should not exist
     cy.get('[data-test="feedback-form-input"]').should('not.exist');
     cy.get('input[name="feedback-vote"]').should('not.be.checked');
+  });
+  // The "Still Need Help?" description should end with a single punctuation mark
+  it('should end the additional help description with a single punctuation mark', () => {
+    cy.get('[data-test="additional-help-description"]')
+      .should('contain.text', 'we are here to help!')
+      .and('not.contain.text', '!.');
   });
 });

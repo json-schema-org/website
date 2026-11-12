@@ -47,6 +47,9 @@ const Icon = ({ children }: { children: React.ReactNode }) => (
   </svg>
 );
 
+const FEEDBACK_SUBMIT_ERROR =
+  'We couldn\'t submit your feedback right now. Please use the "Create an issue" button to share it on GitHub instead.';
+
 export function DocsHelp({
   fileRenderType,
   showEditOption = true,
@@ -60,6 +63,7 @@ export function DocsHelp({
   const feedbackFormRef = useRef<HTMLFormElement>(null);
 
   const handleVoteClick = (value: string) => {
+    setError('');
     if (selectedVote == value) {
       setIsFormOpen(false);
       setSelectedVote(null);
@@ -125,10 +129,10 @@ export function DocsHelp({
       if (response.ok) {
         submitFeedbackHandler('feedback');
       } else {
-        setError('An error occurred. Please try again later.');
+        setError(FEEDBACK_SUBMIT_ERROR);
       }
     } catch (error) {
-      setError('An error occurred. Please try again later.');
+      setError(FEEDBACK_SUBMIT_ERROR);
     } finally {
       setIsSubmitting(false);
     }
@@ -424,7 +428,7 @@ export function DocsHelp({
           <div className='my-6 text-[14px]'>
             <p data-test='additional-help-description'>
               Learning JSON Schema is often confusing, but don't worry, we are
-              here to help!.
+              here to help!
             </p>
           </div>
 

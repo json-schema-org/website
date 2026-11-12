@@ -107,7 +107,7 @@ const Home = (props: any) => {
       apideck: '/img/logos/sponsors/apideck-white.svg',
       rxdb: '/img/logos/sponsors/rxdb.svg',
       wda: '/img/logos/sponsors/wda-dark.svg',
-      anon: '/img/logos/sponsors/anon-white.png',
+      transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-white.png',
       sourcemeta: '/img/logos/sponsors/sourcemeta-logo-light.svg',
       dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
       supadata: '/img/logos/sponsors/supadata-logo-light.svg',
@@ -137,7 +137,7 @@ const Home = (props: any) => {
       apideck: '/img/logos/sponsors/apideck.svg',
       rxdb: '/img/logos/sponsors/rxdb.svg',
       wda: '/img/logos/sponsors/wda.svg',
-      anon: '/img/logos/sponsors/anon-black.png',
+      transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-dark.png',
       sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
       supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
       dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
@@ -837,16 +837,16 @@ const Home = (props: any) => {
                 )}
               </a>
               <a
-                href='https://anonstories.com'
+                href='https://transcriptfetch.com'
                 target='_blank'
                 rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
                     <img
-                      src={logos.anon}
+                      src={logos.transcriptfetch}
                       className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='Instagram Story Viewer'
+                      alt='transcriptfetch logo'
                     />
                   </>
                 )}

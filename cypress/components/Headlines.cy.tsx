@@ -11,6 +11,9 @@ describe('Headlines Component', () => {
   let mockRouter: MockRouter;
   beforeEach(() => {
     mockRouter = mockNextRouter();
+    cy.window().then((win) => {
+      win.history.replaceState(null, '', win.location.pathname);
+    });
   });
 
   // Should render all types of headlines correctly with attributes and children
@@ -93,10 +96,92 @@ describe('Headlines Component', () => {
 
     // Set the URL with the hash
     mockRouter.asPath = '/#what-is-json-schema';
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
 
     // Check if Correct headline is active
     cy.mount(<Headline1>What is JSON Schema?</Headline1>);
     cy.get('span').should('have.class', 'text-startBlue inline-block ml-2');
     cy.get('span').should('have.text', '¶');
+  });
+
+  // Sidebar / TOC uses native `#` links which fire hashchange without updating
+  // Next.js asPath — heading highlight must follow the hash.
+  it('should sync active state when the hash changes without asPath updating', () => {
+    mockRouter.asPath = '/blog/some-post#what-is-json-schema';
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
+
+    cy.mount(
+      <>
+        <Headline1>What is JSON Schema?</Headline1>
+        <Headline2>Performance Improvement</Headline2>
+      </>,
+    );
+
+    cy.get('h1').find('span').should('have.text', '¶');
+    cy.get('h2').find('span').should('not.exist');
+
+    cy.window().then((win) => {
+      win.location.hash = '#performance-improvement';
+    });
+
+    cy.get('h1').find('span').should('not.exist');
+    cy.get('h2').find('span').should('have.text', '¶');
+  });
+
+  // Clearing the hash should deactivate the previously active headline
+  it('should clear the active state when the hash is removed', () => {
+    mockRouter.asPath = '/blog/some-post#what-is-json-schema';
+    cy.window().then((win) => {
+      win.location.hash = '#what-is-json-schema';
+    });
+
+    cy.mount(<Headline1>What is JSON Schema?</Headline1>);
+    cy.get('h1').find('span').should('have.text', '¶');
+
+    cy.window().then((win) => {
+      win.location.hash = '';
+    });
+
+    cy.get('h1').find('span').should('not.exist');
+  });
+
+  // Active heading should keep its normal style; only the pilcrow is highlighted
+  it('should keep heading style after click and only highlight the pilcrow', () => {
+    cy.mount(<Headline1>What is JSON Schema?</Headline1>);
+    cy.get('[data-test="headline"]').click();
+
+    cy.get('[data-test="headline"]').should('not.have.class', 'text-startBlue');
+    cy.get('[data-test="headline"]').should(
+      'not.have.class',
+      'hover:underline',
+    );
+    cy.get('[data-test="headline-anchor"]')
+      .should('have.class', 'text-startBlue')
+      .and('have.class', 'group-hover:underline')
+      .and('have.text', '¶');
+  });
+});
+
+describe('Headlines with formatted children', () => {
+  beforeEach(() => {
+    mockNextRouter();
+  });
+
+  it('should include inline code in the heading id', () => {
+    cy.mount(
+      <Headline3>
+        {[
+          'Formats: ',
+          <code key='0'>&quot;uri&quot;</code>,
+          ' vs ',
+          <code key='1'>&quot;uri-reference&quot;</code>,
+        ]}
+      </Headline3>,
+    );
+    cy.get('h3').should('have.attr', 'id', 'formats:-"uri"-vs-"uri-reference"');
   });
 });
