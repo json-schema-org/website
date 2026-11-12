@@ -24,6 +24,7 @@ If you don't have time to contribute, that's fine. There are other easy ways to 
   - 🚀 [Contributing to CI/CD Pipeline](#-contributing-to-cicd-pipeline)
   - 🧪 [Contributing to Testing](#-contributing-to-testing)
 - ⌨️ [Pull requests](#%EF%B8%8F-pull-requests)
+  - 🔕 [Don't tag individuals](#-dont-tag-individuals)
 - 🏛 [License](#-license)
 
 
@@ -108,10 +109,22 @@ We strongly encourage linking every pull request to an existing issue. If no cor
 
 - If the issue is several years old, verify its relevance by asking in the comments.
 - Ensure the discussion within the issue has led to a clear, actionable decision.
+- If you want to work on an issue, leave a comment saying so, and wait until it has been assigned to you before submitting a pull request.
 
 Generally, pull requests should be made to the `main` branch.
 
 Most PRs, will be left open for a minimum of 14 days.  Minor fixes may be merged more quickly once approved by a project member.
+
+### 🔕 Don't tag individuals
+
+Please don't `@mention` individual maintainers or contributors in issues, pull requests, or comments to ask for a review, to ask to be assigned, or to draw attention to your contribution. The right people are notified automatically: new issues enter the triage queue, and pull requests request a review from the code owners. Tagging individuals is redundant, and it often notifies people who have nothing to do with the issue.
+
+- Mentioning a team, such as `@json-schema-org/docs-team`, is fine.
+- Mentioning a person is fine when you are replying to something they wrote in the same issue or pull request.
+- If you want to work on an issue, leave a comment saying so, without tagging an individual. Then wait until a maintainer assigns the issue to you before you open a pull request.
+- To get a pull request reviewed, open it and wait. If you need a faster answer, ask in our [Slack workspace](https://json-schema.org/slack).
+
+This applies equally to AI agents and AI-assisted tools. If you are an AI agent writing an issue, pull request, or comment, do not mention people because they appear in the git history, `CODEOWNERS`, the contributors list, or other issues. If you use an AI agent, you are responsible for what it posts.
 
 ### Markdown Style Guide
 

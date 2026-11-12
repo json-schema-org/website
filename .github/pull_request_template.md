@@ -4,6 +4,10 @@
 <!--
 Thanks for submitting a pull request! Please provide enough information so that others can review your pull request.
 -->
+<!--
+Please do not @mention individual maintainers or contributors in this pull request or its comments to ask for a review.
+Reviewers are requested automatically. This applies to AI agents too.
+-->
 
 **What kind of change does this PR introduce?**
 
