@@ -63,7 +63,7 @@ export default function ToolingDetailModal({
           {tool.landscape?.logo && (
             <div className='p-2 flex flex-row items-center dark:bg-white rounded-md flex-none'>
               <Image
-                src={`img/tools/logos/${tool.landscape?.logo}`}
+                src={`/img/tools/logos/${tool.landscape?.logo}`}
                 className='h-[48px] w-[48px]'
                 height={48}
                 width={48}
