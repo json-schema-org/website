@@ -3534,3 +3534,26 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'JSONViewerTool — browser JSON Schema validator'
+  description: 'A web interface for entering JSON and a JSON Schema and inspecting validation errors by path. This is an interface to Ajv, not an independent validator implementation.'
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  environments: ['Web (Online)']
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv']
+  creators:
+    - name: 'Avinash Verma'
+      username: 'coderaviverma'
+      platform: 'github'
+  maintainers:
+    - name: 'Avinash Verma'
+      username: 'coderaviverma'
+      platform: 'github'
+  license: 'Proprietary'
+  homepage: 'https://jsonviewertool.com/json-schema-validator'
+  supportedDialects:
+    draft: ['7']
+  toolingListingNotes: 'Browser interface to Ajv for common Draft-07 structural validation, with errors by path. Format assertions are not enabled. The live tool''s draft-support FAQ and format-limitation notice document these limits.'
+  landscape:
+    optOut: true
+  lastUpdated: '2026-10-10'
