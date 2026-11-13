@@ -230,6 +230,7 @@ describe('Sidebar Component', () => {
       cy.contains('Create your first schema').should('exist');
       cy.contains('Tour of JSON Schema').should('exist');
       cy.contains('JSON Schema glossary').should('exist');
+      cy.contains('Videos').should('exist');
 
       // Check Reference links
       cy.contains('JSON Schema keywords').should('exist');
