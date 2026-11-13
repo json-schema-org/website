@@ -3534,3 +3534,22 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'json-schema-for-llms'
+  description: 'Infers a JSON Schema 2020-12 from one or more JSON documents and annotates it with counts, value frequencies, numeric ranges and example records (x-count, x-frequency, x-distinct), sized to fit a language model prompt. describe() reads one document, merge() combines schemas inferred from different documents, fits() reports field paths a new document has that the schema lacks, and compact() returns whichever of the document and its schema is smaller. No dependencies.'
+  toolingTypes: ['data-to-schema']
+  languages: ['TypeScript']
+  environments: ['Node.js', 'Bun', 'Deno']
+  creators:
+    - name: 'Carmena Research'
+      username: 'carmenaresearch'
+      platform: 'github'
+  maintainers:
+    - name: 'Carmena Research'
+      username: 'carmenaresearch'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/carmenaresearch/json-schema-for-llms'
+  homepage: 'https://carmenaresearch.com/blog/json-schema-for-llms/'
+  supportedDialects:
+    draft: ['2020-12']
