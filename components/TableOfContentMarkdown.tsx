@@ -7,6 +7,9 @@ import Image from 'next/image';
 import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 import { hiddenElements } from '~/lib/markdownUtils';
 import { FullMarkdownContext } from '~/context';
+import dedupeHeadingIds, {
+  stripHeadingFragments,
+} from '~/lib/dedupeHeadingIds';
 
 interface TableOfContentMarkdownProps {
   markdown: string;
@@ -29,7 +32,7 @@ export function TableOfContentMarkdown({
                   href={`#${slug}`}
                   className='flex cursor-pointer mb-3 max-sm:text-sm text-slate-600 dark:text-slate-300 leading-6  font-medium'
                 >
-                  {children}
+                  {stripHeadingFragments(children)}
                 </a>
               );
             },
@@ -46,7 +49,7 @@ export function TableOfContentMarkdown({
                         href={`#${slug}`}
                         className='block cursor-pointer mb-3 text-slate-600  dark:text-slate-300 leading-5 font-medium ml-4'
                       >
-                        {children}
+                        {stripHeadingFragments(children)}
                       </a>
                     );
                   },
@@ -73,7 +76,7 @@ export function TableOfContentMarkdown({
                           <span className='mr-1 text-blue-400 text-[0.7em]'>
                             &#9679;
                           </span>
-                          {children}
+                          {stripHeadingFragments(children)}
                         </a>
                       );
                     },
@@ -96,7 +99,7 @@ export function TableOfContentMarkdown({
                           &#9679;
                         </span>
 
-                        {children}
+                        {stripHeadingFragments(children)}
                       </a>
                     );
                   },
@@ -119,7 +122,7 @@ export function TableOfContentMarkdown({
                           &#9679;
                         </span>
 
-                        {children}
+                        {stripHeadingFragments(children)}
                       </a>
                     );
                   },
@@ -149,7 +152,7 @@ export function TableOfContentMarkdown({
         },
       }}
     >
-      {markdown}
+      {dedupeHeadingIds(markdown)}
     </Markdown>
   );
 }

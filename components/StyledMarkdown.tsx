@@ -9,11 +9,12 @@ import {
 } from '~/lib/markdownUtils';
 import { TabsGroup } from '~/components/TabsGroup';
 import { StyledMarkdownBlock } from '~/components/StyledMarkdownBlock';
+import dedupeHeadingIds from '~/lib/dedupeHeadingIds';
 
 export default function StyledMarkdown({ markdown }: { markdown?: string }) {
   if (!markdown) return null;
 
-  markdown = transformMarkdownLinks(markdown);
+  markdown = dedupeHeadingIds(transformMarkdownLinks(markdown));
 
   const sortedTabGroups = (
     getFindResultsByGlobalRegExp(markdown, REGEX_TAB_GROUPS) || []
