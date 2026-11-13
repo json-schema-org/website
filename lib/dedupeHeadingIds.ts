@@ -6,6 +6,7 @@ import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
 const HEADING_REGEX = /^( {0,3})(#{1,4})[ \t]+(.*?)(?:[ \t]+#+)?[ \t]*(\r?)$/;
 const FENCE_REGEX = /^ {0,3}(`{3,}|~{3,})/;
 const FRAGMENT_REGEX = /\[#[\w-]*\]/;
+const FRAGMENT_REGEX_GLOBAL = /\[#[\w-]*\]/g;
 // has to match what slugifyMarkdownHeadline / Headlines accept as a fragment
 const SAFE_SLUG_REGEX = /^[\w-]+$/;
 
@@ -86,6 +87,17 @@ const getHeadings = (lines: string[]): Heading[] => {
 
   return headings;
 };
+
+/**
+ * `[#custom-id]` fragments only set a heading's id. This removes them from a
+ * heading's rendered children, e.g. for the table of contents.
+ */
+export const stripHeadingFragments = (children: React.ReactNode) =>
+  React.Children.map(children, (child) =>
+    typeof child === 'string'
+      ? child.replace(FRAGMENT_REGEX_GLOBAL, '')
+      : child,
+  );
 
 /**
  * Gives repeated headings on a page unique ids, the same way GitHub does:

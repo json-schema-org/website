@@ -1,8 +1,56 @@
 import React from 'react';
-import dedupeHeadingIds from '~/lib/dedupeHeadingIds';
-import StyledMarkdown from '~/components/StyledMarkdown';
-import { TableOfContentMarkdown } from '~/components/TableOfContentMarkdown';
+import Markdown from 'markdown-to-jsx';
+import dedupeHeadingIds, {
+  stripHeadingFragments,
+} from '~/lib/dedupeHeadingIds';
+import slugifyMarkdownHeadline from '~/lib/slugifyMarkdownHeadline';
+import {
+  Headline1,
+  Headline2,
+  Headline3,
+  Headline4,
+} from '~/components/Headlines';
 import mockNextRouter, { MockRouter } from '../plugins/mockNextRouterUtils';
+
+// Renders headings the way StyledMarkdownBlock does (markdown-to-jsx with the
+// Headline components), after dedupeHeadingIds like StyledMarkdown. Mounting
+// StyledMarkdown itself would pull its untested dependencies into coverage.
+const MarkdownPage = ({ markdown }: { markdown: string }) => (
+  <Markdown
+    options={{
+      forceBlock: true,
+      overrides: {
+        h1: { component: Headline1 },
+        h2: { component: Headline2 },
+        h3: { component: Headline3 },
+        h4: { component: Headline4 },
+      },
+    }}
+  >
+    {dedupeHeadingIds(markdown)}
+  </Markdown>
+);
+
+// Builds links the way TableOfContentMarkdown does: the href is the slug of
+// the heading's children and the [#id] fragment is stripped from the text.
+const TocLink = ({ children }: { children: React.ReactNode }) => (
+  <a href={`#${slugifyMarkdownHeadline(children as string | any[])}`}>
+    {stripHeadingFragments(children)}
+  </a>
+);
+const TableOfContents = ({ markdown }: { markdown: string }) => (
+  <Markdown
+    options={{
+      overrides: {
+        h2: { component: TocLink },
+        h3: { component: TocLink },
+        p: { component: () => null },
+      },
+    }}
+  >
+    {dedupeHeadingIds(markdown)}
+  </Markdown>
+);
 
 const nonJsonData = [
   '## contentMediaType and contentEncoding',
@@ -122,6 +170,24 @@ describe('dedupeHeadingIds', () => {
     const once = dedupeHeadingIds(nonJsonData);
     expect(dedupeHeadingIds(once)).to.equal(once);
   });
+
+  it('should keep ids unique across tab groups', () => {
+    // StyledMarkdown dedupes the whole page before splitting out tab groups
+    const markdown = [
+      '## Example',
+      '',
+      '[tabs-start "Language"]',
+      '',
+      '[tab "One"]',
+      '',
+      '## Example',
+      '',
+      '[tabs-end]',
+    ].join('\n');
+    expect(dedupeHeadingIds(markdown)).to.equal(
+      markdown.replace('\n## Example\n', '\n## Example[#example-1]\n'),
+    );
+  });
 });
 
 describe('Repeated headings on a page', () => {
@@ -134,7 +200,7 @@ describe('Repeated headings on a page', () => {
   });
 
   it('should render a unique id for each Example heading', () => {
-    cy.mount(<StyledMarkdown markdown={nonJsonData} />);
+    cy.mount(<MarkdownPage markdown={nonJsonData} />);
     cy.get('h3').should('have.length', 2);
     cy.get('h3').eq(0).should('have.attr', 'id', 'example');
     cy.get('h3').eq(1).should('have.attr', 'id', 'example-1');
@@ -143,7 +209,7 @@ describe('Repeated headings on a page', () => {
   });
 
   it('should go to the clicked Example and only highlight that one', () => {
-    cy.mount(<StyledMarkdown markdown={nonJsonData} />);
+    cy.mount(<MarkdownPage markdown={nonJsonData} />);
     cy.get('h3').eq(1).click();
     cy.get('@routerPush').should('have.been.calledWith', '/#example-1');
 
@@ -163,31 +229,14 @@ describe('Repeated headings on a page', () => {
     cy.window().then((win) => {
       win.location.hash = '#example';
     });
-    cy.mount(<StyledMarkdown markdown={nonJsonData} />);
+    cy.mount(<MarkdownPage markdown={nonJsonData} />);
     cy.get('[data-test="headline-anchor"]').should('have.length', 1);
     cy.get('h3').eq(0).find('[data-test="headline-anchor"]').should('exist');
   });
 
-  it('should keep ids unique across tab groups', () => {
-    const markdown = [
-      '## Example',
-      '',
-      '[tabs-start "Language"]',
-      '',
-      '[tab "One"]',
-      '',
-      '## Example',
-      '',
-      '[tabs-end]',
-    ].join('\n');
-    cy.mount(<StyledMarkdown markdown={markdown} />);
-    cy.get('h2#example').should('have.length', 1);
-    cy.get('h2#example-1').should('have.length', 1);
-  });
-
   it('should render repeated headings with brackets and inline code', () => {
     cy.mount(
-      <StyledMarkdown
+      <MarkdownPage
         markdown={
           '## Items []\n\n## Items []\n\n## The `$ref` keyword\n\n## The `$ref` keyword'
         }
@@ -212,14 +261,21 @@ describe('Repeated headings on a page', () => {
   });
 
   it('should point the table of contents at the same ids', () => {
+    const markdown =
+      '## Intro\n\n### Example\n\n### Example\n\n### The `$ref` keyword\n\n### The `$ref` keyword';
     cy.mount(
-      <TableOfContentMarkdown
-        markdown={'## Intro\n\n### Example\n\n### Example'}
-        depth={3}
-      />,
+      <>
+        <TableOfContents markdown={markdown} />
+        <MarkdownPage markdown={markdown} />
+      </>,
     );
     cy.get('a').eq(1).should('have.attr', 'href', '#example');
     cy.get('a').eq(2).should('have.attr', 'href', '#example-1');
-    cy.get('a').eq(2).should('not.contain.text', '[#');
+    cy.get('a').eq(2).should('have.text', 'Example');
+    cy.get('a').eq(4).should('not.contain.text', '[#');
+    cy.get('a').eq(4).find('code').should('have.text', '$ref');
+    cy.get('a').each((link) => {
+      cy.get(link.attr('href')!).should('have.length', 1);
+    });
   });
 });
