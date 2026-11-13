@@ -13,6 +13,7 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import CarbonAds from '~/components/CarbonsAds';
 import Image from 'next/image';
+import formatBlogDate from '~/lib/formatBlogDate';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/blog/posts');
@@ -28,7 +29,6 @@ export default function StaticMarkdownPage({
   frontmatter: any;
   content: any;
 }) {
-  const date = new Date(frontmatter.date);
   const timeToRead = Math.ceil(readingTime(content).minutes);
 
   return (
@@ -40,7 +40,7 @@ export default function StaticMarkdownPage({
         <div className='flex flex-col pt-6'>
           {frontmatter.date && (
             <div className='text-center text-sm text-slate-500 mt-16'>
-              {date.toLocaleDateString('en-us', {
+              {formatBlogDate(frontmatter.date, {
                 weekday: 'long',
                 year: 'numeric',
                 month: 'long',
