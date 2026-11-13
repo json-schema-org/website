@@ -1,0 +1,18 @@
+# Codecov config: https://docs.codecov.com/docs/codecov-yaml
+#
+# Added with #2611: until that PR, CI's e2e stage ran zero tests
+# (cypress/e2e/homepage.cy.ts was commented out), so project coverage
+# never contained page-level code and read 100.00%. Now that e2e tests
+# execute, every run uploads the full client-bundle instrumentation from
+# next.config.js, including pages no e2e test visits yet — the project
+# number legitimately drops until the suite grows.
+#
+# target: auto compares against the base commit; threshold tolerates up
+# to 10% movement while e2e coverage matures (the gap introduced by the
+# first e2e run was 5.82%). Tighten it as the e2e suite covers more routes.
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 10%
