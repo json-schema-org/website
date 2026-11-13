@@ -122,7 +122,7 @@ This has a ``billing_address``, but is missing a ``credit_card``.
 ```
 
 <Infobox label="Draft-specific info">
-Previously to Draft 2019-09, ``dependentRequired`` and
+Prior to Draft 2019-09, ``dependentRequired`` and
    ``dependentSchemas`` were one keyword called ``dependencies``. If
    the dependency value was an array, it would behave like
    ``dependentRequired`` and if the dependency value was a schema, it
@@ -188,7 +188,7 @@ This has a ``billing_address``, but is missing a ``credit_card``.  This passes, 
 ```
 
 <Infobox label="Draft-specific info">
-Previously to Draft 2019-09, ``dependentRequired`` and
+Prior to Draft 2019-09, ``dependentRequired`` and
    ``dependentSchemas`` were one keyword called ``dependencies``. If
    the dependency value was an array, it would behave like
    ``dependentRequired`` and if the dependency value was a schema, it

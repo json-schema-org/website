@@ -190,7 +190,7 @@ value of the `items` keyword is a schema that all additional items must
 pass in order for the keyword to validate.
 
 <Infobox label="Draft 4 - 2019-09">
-Before to Draft 2020-12, you would use the `additionalItems`
+Before Draft 2020-12, you would use the `additionalItems`
 keyword to constrain additional items on a tuple. It works the same
 as `items`, only the name has changed.
 </Infobox>
