@@ -26,4 +26,5 @@ jobs:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           issue-message: |
             Welcome to the [JSON Schema](https://json-schema.org/) Community. We are so excited you are here! Thanks a lot for reporting your first issue!! 🎉🎉 Please make sure to take a look at our [contributors guide](https://github.com/json-schema-org/website/blob/main/CONTRIBUTING.md) if you plan on opening a pull request. 
+            There is no need to tag individual maintainers or contributors to ask for a review or to be assigned. The right people are notified automatically.
             For more details, check out the [README.md](https://github.com/json-schema-org/website?tab=readme-ov-file#-welcome-to-the-json-schema-website) file.
