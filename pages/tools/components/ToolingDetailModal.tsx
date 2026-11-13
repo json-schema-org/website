@@ -63,7 +63,7 @@ export default function ToolingDetailModal({
           {tool.landscape?.logo && (
             <div className='p-2 flex flex-row items-center dark:bg-white rounded-md flex-none'>
               <Image
-                src={`img/tools/logos/${tool.landscape?.logo}`}
+                src={`/img/tools/logos/${tool.landscape?.logo}`}
                 className='h-[48px] w-[48px]'
                 height={48}
                 width={48}
@@ -165,9 +165,9 @@ export default function ToolingDetailModal({
                   {tool.creators.map((creator, index) => (
                     <li key={index}>
                       <span>{creator.name ? creator.name : 'N.A.'}</span>
-                      <span className='ml-1'>
-                        (
-                        {creator.username && creator.platform && (
+                      {creator.username && creator.platform && (
+                        <span className='ml-1'>
+                          {'('}
                           <a
                             href={`https://${creator.platform}.com/${creator.username}`}
                             target='_blank'
@@ -176,9 +176,9 @@ export default function ToolingDetailModal({
                           >
                             @{creator.username}
                           </a>
-                        )}
-                        )
-                      </span>
+                          {')'}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -192,9 +192,9 @@ export default function ToolingDetailModal({
                   {tool.maintainers.map((maintainer, index) => (
                     <li key={index}>
                       <span>{maintainer.name ? maintainer.name : 'N.A.'}</span>
-                      <span className='ml-1'>
-                        (
-                        {maintainer.username && maintainer.platform && (
+                      {maintainer.username && maintainer.platform && (
+                        <span className='ml-1'>
+                          {'('}
                           <a
                             href={`https://${maintainer.platform}.com/${maintainer.username}`}
                             target='_blank'
@@ -203,9 +203,9 @@ export default function ToolingDetailModal({
                           >
                             @{maintainer.username}
                           </a>
-                        )}
-                        )
-                      </span>
+                          {')'}
+                        </span>
+                      )}
                     </li>
                   ))}
                 </ul>
