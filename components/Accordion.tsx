@@ -56,6 +56,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
           data-test={`accordion-item-${item.id}`}
         >
           <div
+            id={`${item.id}`}
             className={cn(
               'border border-border dark:border-[#bfdbfe] rounded-lg transition-colors',
               openItems.has(item.id) &&
@@ -126,10 +127,7 @@ const Accordion: React.FC<AccordionProps> = ({ items }) => {
               className='overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down'
               data-test={`accordion-answer-${item.id}`}
             >
-              <div
-                id={`${item.id}`}
-                className='px-4 pb-4 text-muted-foreground leading-relaxed'
-              >
+              <div className='px-4 pb-4 text-muted-foreground leading-relaxed'>
                 {item.answer}
               </div>
             </CollapsibleContent>
