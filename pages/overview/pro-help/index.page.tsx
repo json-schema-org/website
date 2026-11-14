@@ -394,7 +394,7 @@ export default function ProHelp({ contractorData }: ProHelpPageProps) {
           nextLabel='Similar Technologies'
           nextURL='/overview/similar-technologies'
         />
-        <DocsHelp />
+        <DocsHelp fileRenderType='tsx' />
       </div>
     </SectionContext.Provider>
   );
