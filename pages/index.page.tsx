@@ -153,9 +153,7 @@ const Home = (props: any) => {
   };
 
   const logos = useMemo(
-    () =>
-      LOGOS_PATHS[resolvedTheme == 'dark' ? 'darkLogos' : 'lightLogos'] ||
-      LOGOS_PATHS.lightLogos,
+    () => LOGOS_PATHS[resolvedTheme == 'dark' ? 'darkLogos' : 'lightLogos'],
     [resolvedTheme],
   );
   return (

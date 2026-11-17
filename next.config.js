@@ -7,9 +7,12 @@ const nextConfig = {
     unoptimized: true,
   },
   webpack: (config, { dev, isServer }) => {
-    if (dev && !isServer) {
+    if (dev) {
       config.module.rules.push({
-        test: /\.(js|jsx|ts|tsx)$/,
+        // Include server-only exports of the three pages exercised by the blog tests.
+        test: isServer
+          ? /[\\/]pages[\\/](?:index\.page\.tsx|blog[\\/]index\.page\.tsx|blog[\\/]posts[\\/]\[slug\]\.page\.tsx)$/
+          : /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: [
           {
@@ -48,4 +51,3 @@ const nextConfig = {
 };
 
 module.exports = nextConfig;
-

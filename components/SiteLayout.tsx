@@ -4,12 +4,16 @@ import Layout from '../components/Layout';
 type SiteLayoutProps = {
   children?: React.ReactNode;
   isDropdown?: boolean;
+  metaTitle?: string;
+  metaDescription?: string;
+  hasCustomSeo?: boolean;
 };
 
 export const SiteLayout: React.FC<SiteLayoutProps> = ({
   children,
+  ...rest
 }): JSX.Element => {
-  return <Layout>{children}</Layout>;
+  return <Layout {...rest}>{children}</Layout>;
 };
 
 export const getLayout = (

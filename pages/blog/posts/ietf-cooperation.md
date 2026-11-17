@@ -10,6 +10,7 @@ authors:
   - name: Greg Dennis
     photo: /img/avatars/gregsdennis.webp
     byline: JSON Schema Specification Editor, JSON Tooling Implementer
+seoDescription: "An update on JSON Schema's discussions with the IETF, specification publication plans, and the community's next steps."
 ---
 
 Some of you may have heard rumblings about the IETF starting up a JSON Schema working group, and you may be wondering where that effort might stand with this community.  Hopefully this post answers some of those questions for you.
