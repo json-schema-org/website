@@ -7962,6 +7962,7 @@ __metadata:
     lucide-react: "npm:^0.510.0"
     markdown-to-jsx: "npm:^7.7.3"
     moment: "npm:2.30.1"
+    moment-timezone: "npm:^0.5.45"
     next: "npm:14.2.35"
     next-sitemap: "npm:^4.2.3"
     next-themes: "npm:^0.4.4"
