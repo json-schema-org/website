@@ -4,11 +4,13 @@ on:
   push:
     paths:
       - data/tooling-data.yaml
+      - data/tooling-data.schema.json
     branches:
       - main
   pull_request:
     paths:
       - data/tooling-data.yaml
+      - data/tooling-data.schema.json
   workflow_dispatch:
 
 jobs:
@@ -52,9 +54,17 @@ jobs:
             if (!valid) {
               console.error('Validation failed:', validate.errors);
               process.exit(1);
-            } else {
-              console.log('tooling-data.yaml is valid.');
             }
+            // An entry is for one Bowtie implementation, so no two entries share one.
+            const seen = new Set();
+            const duplicates = data
+              .map((tool) => tool.bowtie && tool.bowtie.identifier)
+              .filter((id) => id && (seen.has(id) || !seen.add(id)));
+            if (duplicates.length > 0) {
+              console.error('Bowtie identifiers used by more than one entry:', duplicates);
+              process.exit(1);
+            }
+            console.log('tooling-data.yaml is valid.');
           } catch (error) {
             console.error('Error validating tooling-data.yaml:', error);
             process.exit(1);

@@ -28,7 +28,7 @@ const fetchBadge = (url: string): Promise<BowtieBadgeData | null> => {
 };
 
 /**
- * The implementations Bowtie tests, indexed by their source repository. The
+ * The implementations Bowtie tests, indexed by their identifiers. The
  * index is `null` until they have loaded, and if they cannot be loaded.
  */
 export interface BowtieIndexState {

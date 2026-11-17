@@ -26,11 +26,11 @@ const result = (
   compliance: null,
 });
 
-const tested = (...results: BowtieResult[]): ToolBowtieInfo => ({
+const tested = (result: BowtieResult): ToolBowtieInfo => ({
   kind: 'tested',
-  implementations: results.map((each) => each.implementation),
+  implementation: result.implementation,
   draft: '2020-12',
-  results,
+  result,
 });
 
 const passing: BowtieBadgeData = {
@@ -57,7 +57,6 @@ describe('BowtieBadge Component', () => {
       'background-color',
       'rgb(1, 99, 0)',
     );
-    cy.get('[data-test="bowtie-badge-more"]').should('not.exist');
   });
 
   it('does not open the row it is in when followed', () => {
@@ -74,23 +73,6 @@ describe('BowtieBadge Component', () => {
     });
     cy.get('[data-test="bowtie-badge-result"]').click();
     cy.get('@rowClick').should('not.have.been.called');
-  });
-
-  it('says how many other implementations Bowtie tests', () => {
-    cy.mount(
-      <BowtieBadge
-        info={tested(
-          result('dotnet-v5', passing),
-          result('dotnet-v4', passing),
-          result('rust-port', passing),
-        )}
-      />,
-    );
-
-    cy.get('[data-test="bowtie-badge-result"]').should('have.length', 1);
-    cy.get('[data-test="bowtie-badge-more"]')
-      .should('have.text', '+2')
-      .and('have.attr', 'title', 'Bowtie also tests: dotnet-v4, rust-port');
   });
 
   it('still links to the report while a badge is loading or unavailable', () => {
@@ -116,9 +98,8 @@ describe('BowtieBadge Component', () => {
       <BowtieBadge
         info={{
           kind: 'untested',
-          implementations: [implementation('js-ajv')],
+          implementation: implementation('js-ajv'),
           draft: '3',
-          results: [],
         }}
       />,
     );
@@ -134,11 +115,7 @@ describe('BowtieBadge Component', () => {
   });
 
   it('shows a "not on Bowtie" badge for validators Bowtie does not test', () => {
-    cy.mount(
-      <BowtieBadge
-        info={{ kind: 'not-on-bowtie', implementations: [], results: [] }}
-      />,
-    );
+    cy.mount(<BowtieBadge info={{ kind: 'not-on-bowtie' }} />);
 
     cy.get('[data-test="bowtie-badge-not-on-bowtie"]')
       .should('have.text', 'not on Bowtie')
@@ -147,11 +124,7 @@ describe('BowtieBadge Component', () => {
   });
 
   it('shows no badge for tools Bowtie cannot test', () => {
-    cy.mount(
-      <BowtieBadge
-        info={{ kind: 'not-applicable', implementations: [], results: [] }}
-      />,
-    );
+    cy.mount(<BowtieBadge info={{ kind: 'not-applicable' }} />);
 
     cy.get('[data-test="bowtie-badge-not-applicable"]').should(
       'contain.text',
@@ -161,11 +134,7 @@ describe('BowtieBadge Component', () => {
   });
 
   it('shows no badge when Bowtie cannot be reached', () => {
-    cy.mount(
-      <BowtieBadge
-        info={{ kind: 'unknown', implementations: [], results: [] }}
-      />,
-    );
+    cy.mount(<BowtieBadge info={{ kind: 'unknown' }} />);
 
     cy.get('[data-test="bowtie-badge-unknown"]').should(
       'contain.text',
@@ -174,12 +143,7 @@ describe('BowtieBadge Component', () => {
   });
 
   it('shows a placeholder while finding out what is on Bowtie', () => {
-    cy.mount(
-      <BowtieBadge
-        info={{ kind: 'unknown', implementations: [], results: [] }}
-        isLoading
-      />,
-    );
+    cy.mount(<BowtieBadge info={{ kind: 'unknown' }} isLoading />);
 
     cy.get('[data-test="bowtie-badge-skeleton"]').should('exist');
   });

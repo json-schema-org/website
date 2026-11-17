@@ -31,38 +31,41 @@ export default function ToolingDetailModal({
   bowtieInfo?: ToolBowtieInfo | null;
   onClose: () => void;
 }) {
-  // Every dialect Bowtie tests each of the tool's implementations against,
-  // rather than only the one the list is showing.
-  const implementations = bowtieInfo?.implementations ?? [];
+  // Every dialect Bowtie tests the tool against, rather than only the one
+  // the list is showing.
+  const implementation = bowtieInfo?.implementation;
+  const bowtieDrafts = useMemo(
+    () =>
+      DRAFT_ORDER.filter((draft) => {
+        const uri = BOWTIE_DIALECT_URIS[draft];
+        return uri !== undefined && implementation?.dialects.includes(uri);
+      }),
+    [implementation],
+  );
   const badgeUrls = useMemo(
     () =>
-      implementations.flatMap((implementation) =>
-        DRAFT_ORDER.filter((draft) => {
-          const uri = BOWTIE_DIALECT_URIS[draft];
-          return uri !== undefined && implementation.dialects.includes(uri);
-        }).map((draft) => getBowtieBadgeUrl(implementation, draft)),
-      ),
-    [implementations.map(({ id }) => id).join('\n')],
+      implementation
+        ? bowtieDrafts.map((draft) => getBowtieBadgeUrl(implementation, draft))
+        : [],
+    [implementation, bowtieDrafts],
   );
   const badges = useBowtieBadges(badgeUrls);
-  const bowtieReports = implementations.map((implementation) => ({
-    implementation,
-    results: DRAFT_ORDER.flatMap((draft): BowtieResult[] => {
-      const badgeUrl = getBowtieBadgeUrl(implementation, draft);
-      if (!badgeUrls.includes(badgeUrl)) return [];
+  const bowtieResults = bowtieDrafts.flatMap((draft): BowtieResult[] => {
+    if (!implementation) return [];
 
-      const badge = badges[badgeUrl];
-      return [
-        {
-          implementation,
-          draft,
-          badgeUrl,
-          badge,
-          compliance: parseCompliance(badge),
-        },
-      ];
-    }),
-  }));
+    const badgeUrl = getBowtieBadgeUrl(implementation, draft);
+    const badge = badges[badgeUrl];
+
+    return [
+      {
+        implementation,
+        draft,
+        badgeUrl,
+        badge,
+        compliance: parseCompliance(badge),
+      },
+    ];
+  });
 
   useEffect(() => {
     document.body.classList.add('no-scroll');
@@ -294,37 +297,30 @@ export default function ToolingDetailModal({
               </div>
             )}
 
-            {bowtieReports.length > 0 && (
+            {implementation && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Report</h3>
-                {bowtieReports.map(({ implementation, results }) => (
-                  <div key={implementation.id} className='mb-2'>
-                    <h4 className='text-[14px] font-semibold'>
-                      {implementation.id}
-                      {implementation.version && (
-                        <span className='font-normal'>
-                          {' '}
-                          (version {implementation.version})
-                        </span>
-                      )}
-                    </h4>
-                    <ul className='list-none flex flex-wrap gap-1 my-1'>
-                      {results.map((result) => (
-                        <li key={result.badgeUrl} className='flex'>
-                          <BowtieResultBadge result={result} />
-                        </li>
-                      ))}
-                    </ul>
-                    <Link
-                      className='text-[14px] underline italic'
-                      href={getBowtieImplementationUrl(implementation)}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                    >
-                      View detailed report
-                    </Link>
-                  </div>
-                ))}
+                <p className='text-[14px]'>
+                  <span className='font-semibold'>{implementation.id}</span>
+                  {implementation.version && (
+                    <span> (version {implementation.version})</span>
+                  )}
+                </p>
+                <ul className='list-none flex flex-wrap gap-1 my-1'>
+                  {bowtieResults.map((result) => (
+                    <li key={result.badgeUrl} className='flex'>
+                      <BowtieResultBadge result={result} />
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  className='text-[14px] underline italic'
+                  href={getBowtieImplementationUrl(implementation)}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  View detailed report
+                </Link>
               </div>
             )}
 

@@ -1,10 +1,6 @@
 import { DRAFT_ORDER, type JSONSchemaDraft } from '~/lib/config';
 import type { JSONSchemaTool } from '../JSONSchemaTool';
-import {
-  compareBowtieResults,
-  type BowtieResult,
-  type ToolBowtieInfo,
-} from './bowtie';
+import { compareBowtieResults, type ToolBowtieInfo } from './bowtie';
 
 export interface Transform {
   query: string;
@@ -153,7 +149,7 @@ export const filterTools = (
     }
 
     if (transform.supportsBowtie === 'true') {
-      if (getBowtieInfo(tool).implementations.length === 0) return false;
+      if (!getBowtieInfo(tool).implementation) return false;
     }
 
     return (
@@ -174,8 +170,7 @@ const compareNames = (a: JSONSchemaTool, b: JSONSchemaTool) =>
  * against the dialect in question, then everything else.
  */
 const bowtieTier = (info: ToolBowtieInfo): number => {
-  if (info.kind === 'tested')
-    return info.results[0].compliance === null ? 1 : 0;
+  if (info.result) return info.result.compliance === null ? 1 : 0;
   if (info.kind === 'untested') return 2;
   return 3;
 };
@@ -186,18 +181,12 @@ const compareBowtie = (
   sortOrder: Transform['sortOrder'],
 ): number => {
   const tierDifference = bowtieTier(a) - bowtieTier(b);
-  if (tierDifference !== 0) return tierDifference;
+  if (tierDifference !== 0 || !a.result || !b.result) return tierDifference;
 
-  // A tool is ranked on the best of its results. Those for a newer dialect
-  // outrank those for an older one, which only has an effect when no dialect
-  // has been selected: otherwise every tool is compared on the same one.
-  const [bestOfA, bestOfB]: (BowtieResult | undefined)[] = [
-    a.results[0],
-    b.results[0],
-  ];
-  if (!bestOfA || !bestOfB) return 0;
-
-  const difference = compareBowtieResults(bestOfA, bestOfB);
+  // Results for a newer dialect outrank those for an older one, which only
+  // has an effect when no dialect has been selected: otherwise every tool is
+  // compared on the same one.
+  const difference = compareBowtieResults(a.result, b.result);
   return sortOrder === 'descending' ? difference : -difference;
 };
 

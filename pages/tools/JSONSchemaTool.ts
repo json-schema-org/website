@@ -21,6 +21,10 @@ export interface JSONSchemaTool {
       source: string;
     }[];
   };
+  bowtie?: {
+    /** The identifier Bowtie gives the implementation, e.g. `js-ajv`. */
+    identifier: string;
+  };
   toolingListingNotes?: string;
   compliance?: {
     config?: {

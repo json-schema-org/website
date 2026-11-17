@@ -34,24 +34,12 @@ const tested = (
     compliance,
   };
 
-  return {
-    kind: 'tested',
-    implementations: [implementation],
-    results: [result],
-  };
+  return { kind: 'tested', implementation, result };
 };
 
-const untested: ToolBowtieInfo = {
-  kind: 'untested',
-  implementations: [implementation],
-  results: [],
-};
+const untested: ToolBowtieInfo = { kind: 'untested', implementation };
 
-const notOnBowtie: ToolBowtieInfo = {
-  kind: 'not-on-bowtie',
-  implementations: [],
-  results: [],
-};
+const notOnBowtie: ToolBowtieInfo = { kind: 'not-on-bowtie' };
 
 const tool = (
   name: string,

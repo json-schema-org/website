@@ -140,7 +140,7 @@ export default function BowtieBadge({
     );
   }
 
-  if (info.kind === 'not-on-bowtie') {
+  if (!info.implementation) {
     return (
       <span className={wrapperClassName}>
         <Pill
@@ -153,38 +153,23 @@ export default function BowtieBadge({
     );
   }
 
-  if (info.kind === 'untested') {
-    const [implementation] = info.implementations;
-
+  if (!info.result) {
     return (
       <span className={wrapperClassName}>
         <Pill
-          href={getBowtieImplementationUrl(implementation)}
+          href={getBowtieImplementationUrl(info.implementation)}
           label={info.draft && draftLabel(info.draft)}
           message='not tested'
-          title={`${implementation.id}: Bowtie does not test this implementation against this dialect. See the report on Bowtie.`}
+          title={`${info.implementation.id}: Bowtie does not test this implementation against this dialect. See the report on Bowtie.`}
           testId='bowtie-badge-untested'
         />
       </span>
     );
   }
 
-  const [best, ...others] = info.results;
-
   return (
-    <span className={classnames(wrapperClassName, 'gap-1')}>
-      <BowtieResultBadge result={best} />
-      {others.length > 0 && (
-        <span
-          className='text-[12px] text-slate-500 dark:text-slate-400'
-          title={`Bowtie also tests: ${others
-            .map(({ implementation }) => implementation.id)
-            .join(', ')}`}
-          data-test='bowtie-badge-more'
-        >
-          +{others.length}
-        </span>
-      )}
+    <span className={wrapperClassName}>
+      <BowtieResultBadge result={info.result} />
     </span>
   );
 }

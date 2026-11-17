@@ -111,24 +111,18 @@ export default function ToolingPage({
   const { transform, setTransform, resetTransform } = useToolsTransform();
   const { index: bowtieIndex, isLoading: isBowtieLoading } = useBowtieIndex();
 
-  // Bowtie results are shown for the selected dialect (the newest of them, if
-  // several are selected in the drawer), and for implementations in the
-  // selected languages where a tool has implementations in several.
+  // Bowtie results are shown for the selected dialect: the newest of them, if
+  // several are selected in the drawer.
   const selectedDraft = newestDraft(transform.drafts);
-  const selectedLanguages = transform.languages.join(',');
-  const bowtieSelection = useMemo(
-    () => ({ draft: selectedDraft, languages: transform.languages }),
-    [selectedDraft, selectedLanguages],
-  );
 
   const badgeUrls = useMemo(
     () =>
-      toolingData.flatMap((tool) =>
-        getToolBowtieInfo(tool, bowtieIndex, bowtieSelection).results.map(
-          ({ badgeUrl }) => badgeUrl,
-        ),
+      toolingData.flatMap(
+        (tool) =>
+          getToolBowtieInfo(tool, bowtieIndex, selectedDraft).result
+            ?.badgeUrl ?? [],
       ),
-    [toolingData, bowtieIndex, bowtieSelection],
+    [toolingData, bowtieIndex, selectedDraft],
   );
   const badges = useBowtieBadges(badgeUrls);
 
@@ -137,15 +131,15 @@ export default function ToolingPage({
       new Map(
         toolingData.map((tool) => [
           tool,
-          getToolBowtieInfo(tool, bowtieIndex, bowtieSelection, badges),
+          getToolBowtieInfo(tool, bowtieIndex, selectedDraft, badges),
         ]),
       ),
-    [toolingData, bowtieIndex, bowtieSelection, badges],
+    [toolingData, bowtieIndex, selectedDraft, badges],
   );
   const getBowtieInfo = useCallback(
     (tool: JSONSchemaTool) =>
       bowtieInfo.get(tool) ??
-      getToolBowtieInfo(tool, bowtieIndex, bowtieSelection, badges),
+      getToolBowtieInfo(tool, bowtieIndex, selectedDraft, badges),
     [bowtieInfo],
   );
 

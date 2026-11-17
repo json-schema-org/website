@@ -20,29 +20,23 @@ const implementation: BowtieImplementation = {
 
 const onBowtie: ToolBowtieInfo = {
   kind: 'tested',
-  implementations: [implementation],
+  implementation,
   draft: '2020-12',
-  results: [
-    {
-      implementation,
-      draft: '2020-12',
-      badgeUrl:
-        'https://bowtie.report/badges/js-on-bowtie/compliance/draft2020-12.json',
-      badge: {
-        label: 'Draft 2020-12',
-        message: '100% Passing',
-        color: '006400',
-      },
-      compliance: 100,
+  result: {
+    implementation,
+    draft: '2020-12',
+    badgeUrl:
+      'https://bowtie.report/badges/js-on-bowtie/compliance/draft2020-12.json',
+    badge: {
+      label: 'Draft 2020-12',
+      message: '100% Passing',
+      color: '006400',
     },
-  ],
+    compliance: 100,
+  },
 };
 
-const notOnBowtie: ToolBowtieInfo = {
-  kind: 'not-on-bowtie',
-  implementations: [],
-  results: [],
-};
+const notOnBowtie: ToolBowtieInfo = { kind: 'not-on-bowtie' };
 
 // More tools than the page used to show before asking to "Load More".
 const tools: JSONSchemaTool[] = [
@@ -52,6 +46,7 @@ const tools: JSONSchemaTool[] = [
     languages: ['JavaScript', 'TypeScript'],
     license: 'MIT',
     source: implementation.source,
+    bowtie: { identifier: implementation.id },
     supportedDialects: { draft: ['2020-12', '7'] },
   },
   ...Array.from({ length: 7 }, (_, index) => ({
