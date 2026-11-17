@@ -81,7 +81,8 @@ export function DocsHelp({
       return fileRenderType;
     }
 
-    const basePath = `https://github.com/json-schema-org/website/blob/main/pages${extractPathWithoutFragment(router.asPath)}`;
+    const cleanPath = extractPathWithoutFragment(router.asPath).split('?')[0];
+    const basePath = `https://github.com/json-schema-org/website/blob/main/pages${cleanPath}`;
 
     switch (fileRenderType) {
       case 'tsx':

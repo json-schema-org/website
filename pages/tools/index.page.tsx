@@ -242,7 +242,7 @@ export default function ToolingPage({
             onVisibleToolCountChange={setVisibleToolCount}
           />
 
-          <DocsHelp />
+          <DocsHelp fileRenderType='tsx' />
         </main>
       </div>
     </SectionContext.Provider>
