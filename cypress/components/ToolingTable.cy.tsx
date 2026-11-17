@@ -197,6 +197,21 @@ describe('ToolingTable Component', () => {
     cy.get('h2').should('not.exist');
   });
 
+  it('opens the details from anywhere in a row', () => {
+    mountTable();
+
+    cy.get('[data-test="tools-row"]').eq(3).find('td').eq(2).click();
+    cy.get('h2').should('contain.text', 'validator-2');
+  });
+
+  it('opens the details from a card on small screens', () => {
+    cy.viewport(390, 800);
+    mountTable();
+
+    cy.get('[data-test="tools-list"] > li').eq(3).click('bottomLeft');
+    cy.get('h2').should('contain.text', 'validator-2');
+  });
+
   it('lists the tools as cards on small screens', () => {
     cy.viewport(390, 800);
     mountTable();

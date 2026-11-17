@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { type ComponentType, useEffect, useMemo } from 'react';
 
 import CancelIcon from '~/public/icons/cancel.svg';
 import { Button } from '~/components/ui/button';
@@ -20,16 +20,22 @@ import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 import Image from 'next/image';
 import Tag from './ui/Tag';
-import StyledMarkdown from '~/components/StyledMarkdown';
+import dynamic from 'next/dynamic';
+
+// The markdown renderer is sizeable, and only the few tools with notes need it
+const StyledMarkdown = dynamic(() => import('~/components/StyledMarkdown'));
 
 export default function ToolingDetailModal({
   tool,
   bowtieInfo,
   onClose,
+  Markdown = StyledMarkdown,
 }: {
   tool: JSONSchemaTool;
   bowtieInfo?: ToolBowtieInfo | null;
   onClose: () => void;
+  /** What renders the tool's notes, which are markdown. */
+  Markdown?: ComponentType<{ markdown?: string }>;
 }) {
   // Every dialect Bowtie tests the tool against, rather than only the one
   // the list is showing.
@@ -201,7 +207,7 @@ export default function ToolingDetailModal({
             {tool.toolingListingNotes && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Tooling Listing Notes</h3>
-                <StyledMarkdown markdown={tool.toolingListingNotes} />
+                <Markdown markdown={tool.toolingListingNotes} />
               </div>
             )}
 
