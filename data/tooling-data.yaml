@@ -35,7 +35,7 @@
 
 - name: 'Corvus.JsonSchema'
   description: 'JSON Schema validation and code generation for .NET: a runtime evaluator (Corvus.Text.Json.Validator), and idiomatic strongly-typed models generated from JSON Schema over low-level System.Text.Json types.'
-  toolingTypes: ['validator', 'annotations', 'schema-to-code']
+  toolingTypes: ['validator', 'annotations', 'schema-to-types', 'schema-to-code']
   languages: ['.NET']
   maintainers:
     - name: 'Matthew Adams'
@@ -52,7 +52,7 @@
 
 - name: 'Corvus.JsonSchema (V4 engine)'
   description: 'The V4 generation of Corvus.JsonSchema for .NET (Corvus.Json.ExtendedTypes): JSON Schema validation and immutable strongly-typed models generated from JSON Schema.'
-  toolingTypes: ['validator', 'annotations', 'schema-to-code']
+  toolingTypes: ['validator', 'annotations', 'schema-to-types', 'schema-to-code']
   languages: ['.NET']
   maintainers:
     - name: 'Matthew Adams'
