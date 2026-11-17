@@ -1963,9 +1963,10 @@
   lastUpdated: '2023-08-17'
 
 - name: Jedison
-  description: 'A JavaScript library that generates forms from JSON Schemas for editing and validating JSON.'
+  description: 'A zero-dependency JavaScript library that generates forms from JSON Schemas and validates JSON in the browser or Node.js. Supports drafts 4, 6, 7, 2019-09 and 2020-12, with themes for Bootstrap and Tailwind.'
   toolingTypes: ['validator', 'schema-to-web-UI']
   languages: ['JavaScript']
+  environments: ['Web', 'Node.js']
   maintainers:
     - name: 'German Bisurgi'
       username: 'germanbisurgi'
@@ -1974,8 +1975,9 @@
   source: 'https://github.com/germanbisurgi/jedison'
   homepage: 'https://germanbisurgi.github.io/jedison-docs/'
   supportedDialects:
-    draft: ['2020-12']
-  lastUpdated: '2026-03-02'
+    draft: ['4', '6', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'No dependencies. Themes for Bootstrap 3, 4 and 5 and Tailwind 4. Also runs headless in Node.js for validation.'
+  lastUpdated: '2026-10-21'
 
 - name: React Schema Form (networknt)
   description: 'React form based on json schema for form generation and validation'
