@@ -35,7 +35,7 @@
 
 - name: 'Corvus.JsonSchema'
   description: 'JSON Schema validation and code generation for .NET: a runtime evaluator (Corvus.Text.Json.Validator), and idiomatic strongly-typed models generated from JSON Schema over low-level System.Text.Json types.'
-  toolingTypes: ['validator', 'schema-to-code']
+  toolingTypes: ['validator', 'annotations', 'schema-to-code']
   languages: ['.NET']
   maintainers:
     - name: 'Matthew Adams'
@@ -52,7 +52,7 @@
 
 - name: 'Corvus.JsonSchema (V4 engine)'
   description: 'The V4 generation of Corvus.JsonSchema for .NET (Corvus.Json.ExtendedTypes): JSON Schema validation and immutable strongly-typed models generated from JSON Schema.'
-  toolingTypes: ['validator', 'schema-to-code']
+  toolingTypes: ['validator', 'annotations', 'schema-to-code']
   languages: ['.NET']
   maintainers:
     - name: 'Matthew Adams'
@@ -69,7 +69,7 @@
 
 - name: 'corvus-json-schema (Rust)'
   description: 'A high-performance JSON Schema evaluator for Rust, with results collection and annotations, ported from the Corvus.JsonSchema runtime evaluator.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Rust']
   maintainers:
     - name: 'Matthew Adams'
@@ -86,7 +86,7 @@
 
 - name: 'corvus-json-schema (C)'
   description: 'A high-performance JSON Schema evaluator for C, with results collection and annotations: the C library of the corvus-json-schema Rust crate.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['C']
   maintainers:
     - name: 'Matthew Adams'
@@ -103,7 +103,7 @@
 
 - name: 'corvus-json-schema (C++)'
   description: 'A high-performance JSON Schema evaluator for C++, with results collection and annotations: a header over the C library of the corvus-json-schema Rust crate.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['C++']
   maintainers:
     - name: 'Matthew Adams'
@@ -120,7 +120,7 @@
 
 - name: 'corvus-json-schema (Go)'
   description: 'A high-performance JSON Schema evaluator for Go, with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Go']
   maintainers:
     - name: 'Matthew Adams'
@@ -137,7 +137,7 @@
 
 - name: 'corvus-json-schema (Java)'
   description: 'A high-performance JSON Schema evaluator for Java and Kotlin, with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Java', 'Kotlin']
   maintainers:
     - name: 'Matthew Adams'
@@ -154,7 +154,7 @@
 
 - name: '@corvus-dotnet/json-schema'
   description: 'A high-performance JSON Schema evaluator for JavaScript and TypeScript that compiles schemas to specialised JavaScript, with results collection and annotations.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['JavaScript']
   maintainers:
     - name: 'Matthew Adams'
@@ -171,7 +171,7 @@
 
 - name: 'corvus-json-schema (Python)'
   description: 'A high-performance JSON Schema evaluator for Python that compiles schemas to specialised Python, with results collection and annotations.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Python']
   maintainers:
     - name: 'Matthew Adams'
@@ -188,7 +188,7 @@
 
 - name: 'corvus-json-schema-rs (Python)'
   description: 'A high-performance JSON Schema evaluator for Python, with results collection and annotations, backed by the corvus-json-schema Rust crate.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Python']
   maintainers:
     - name: 'Matthew Adams'
@@ -205,7 +205,7 @@
 
 - name: 'corvus_json_schema (Ruby)'
   description: 'A high-performance JSON Schema evaluator for Ruby, with results collection and annotations, backed by the corvus-json-schema Rust crate.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Ruby']
   maintainers:
     - name: 'Matthew Adams'
@@ -222,7 +222,7 @@
 
 - name: 'corvus-json-schema (PHP)'
   description: 'A high-performance JSON Schema evaluator for PHP, with results collection and annotations: a PHP extension backed by the corvus-json-schema Rust crate.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['PHP']
   maintainers:
     - name: 'Matthew Adams'
@@ -239,7 +239,7 @@
 
 - name: 'CorvusJsonSchema (Julia)'
   description: 'A high-performance JSON Schema evaluator for Julia, with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Julia']
   maintainers:
     - name: 'Matthew Adams'
@@ -256,7 +256,7 @@
 
 - name: 'corvusjsonschema (R)'
   description: 'A high-performance JSON Schema evaluator for R, with results collection and annotations, backed by the corvus-json-schema Rust crate.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['R']
   maintainers:
     - name: 'Matthew Adams'
@@ -273,7 +273,7 @@
 
 - name: 'corvus-json-schema (Object Pascal)'
   description: 'A high-performance JSON Schema evaluator for Object Pascal (Free Pascal), with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Object Pascal']
   maintainers:
     - name: 'Matthew Adams'
@@ -290,7 +290,7 @@
 
 - name: 'corvus-json-schema (Fortran)'
   description: 'A high-performance JSON Schema evaluator for Fortran, with results collection and annotations, over the C library of the corvus-json-schema Rust crate.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Fortran']
   maintainers:
     - name: 'Matthew Adams'
@@ -307,7 +307,7 @@
 
 - name: 'corvus-json-schema (Swift)'
   description: 'A high-performance JSON Schema evaluator for Swift, with results collection and annotations, over the C library of the corvus-json-schema Rust crate.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Swift']
   maintainers:
     - name: 'Matthew Adams'
@@ -324,7 +324,7 @@
 
 - name: 'corvus-json-schema (OCaml)'
   description: 'A high-performance JSON Schema evaluator for OCaml, with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['OCaml']
   maintainers:
     - name: 'Matthew Adams'
@@ -1901,7 +1901,7 @@
 
 - name: Blaze
   description: 'Blaze is an ultra high-performance JSON Schema validator'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['C++']
   maintainers:
     - name: 'Juan Cruz Viotti'
@@ -3756,7 +3756,7 @@
 
 - name: 'Blaze4J'
   description: 'Blaze4J is a high-performance Java wrapper for the Blaze JSON Schema validator,'
-  toolingTypes: ['validator']
+  toolingTypes: ['validator', 'annotations']
   languages: ['Java']
   environments: ['Windows', 'Linux', 'macOS']
   creators:
