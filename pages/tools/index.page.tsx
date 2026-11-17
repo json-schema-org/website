@@ -19,6 +19,7 @@ import FilterBar from './components/FilterBar';
 import Sidebar from './components/Sidebar';
 import ToolingTable from './components/ToolingTable';
 import { useBowtieBadges, useBowtieIndex } from './hooks/useBowtie';
+import usePinnedOffsets from './hooks/usePinnedOffsets';
 import useToolsTransform from './hooks/useToolsTransform';
 import {
   findBowtieEngines,
@@ -120,6 +121,7 @@ export default function ToolingPage({
   filterCriteria,
 }: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const { pinnedRef, top, covered } = usePinnedOffsets<HTMLDivElement>();
   const { transform, setTransform, resetTransform } = useToolsTransform();
   const { index: bowtieIndex, isLoading: isBowtieLoading } = useBowtieIndex();
 
@@ -304,72 +306,80 @@ export default function ToolingPage({
             </div>
           </div>
 
-          <div className='mt-6'>
-            <FilterBar
-              filterCriteria={filterCriteria}
-              transform={transform}
-              setTransform={setTransform}
-              resetTransform={resetTransform}
-              onMoreFilters={() => setIsSidebarOpen(true)}
-            />
-          </div>
-
-          <div className='mb-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2'>
-            <p
-              className='text-sm text-slate-600 dark:text-slate-300'
-              aria-live='polite'
-              data-test='tools-summary'
-            >
-              <strong>
-                {tools.length} {tools.length === 1 ? 'tool' : 'tools'}
-              </strong>
-              . {sortedBy}
-            </p>
-            <div className='flex items-center gap-2'>
-              <label
-                htmlFor='tools-group-by'
-                className='text-sm font-semibold text-slate-700 dark:text-slate-300'
-              >
-                Group by
-              </label>
-              <select
-                id='tools-group-by'
-                name='groupBy'
-                value={transform.groupBy}
-                onChange={(event) =>
-                  setTransform({
-                    groupBy: event.target.value as Transform['groupBy'],
-                  })
-                }
-                className='h-9 rounded-md border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400'
-              >
-                <option value='toolingTypes'>Tool type</option>
-                <option value='languages'>Language</option>
-                <option value='none'>None</option>
-              </select>
+          {/* Stays in view on larger screens while the list scrolls under it */}
+          <div
+            ref={pinnedRef}
+            style={{ top }}
+            className='mt-6 mb-6 lg:sticky z-[100] lg:pt-3 lg:pb-3 bg-white dark:bg-slate-800 lg:border-b border-gray-200 dark:border-slate-700'
+            data-test='tools-pinned'
+          >
+            <div>
+              <FilterBar
+                filterCriteria={filterCriteria}
+                transform={transform}
+                setTransform={setTransform}
+                resetTransform={resetTransform}
+                onMoreFilters={() => setIsSidebarOpen(true)}
+              />
             </div>
-          </div>
 
-          {groups.length > 1 && (
-            <nav
-              aria-label='Groups of tools'
-              className='mb-6 flex flex-wrap gap-2'
-              data-test='tools-groups-nav'
-            >
-              {groups.map(({ group, tools: groupedTools }) => (
-                <a
-                  key={group}
-                  href={`#${groupId(group ?? '')}`}
-                  className='rounded-full border border-gray-300 dark:border-slate-600 px-3 py-0.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-700'
+            <div className='mb-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2'>
+              <p
+                className='text-sm text-slate-600 dark:text-slate-300'
+                aria-live='polite'
+                data-test='tools-summary'
+              >
+                <strong>
+                  {tools.length} {tools.length === 1 ? 'tool' : 'tools'}
+                </strong>
+                . {sortedBy}
+              </p>
+              <div className='flex items-center gap-2'>
+                <label
+                  htmlFor='tools-group-by'
+                  className='text-sm font-semibold text-slate-700 dark:text-slate-300'
                 >
-                  {groupLabel(group ?? '')}{' '}
-                  <span className='text-slate-500 dark:text-slate-400'>
-                    {groupedTools.length}
-                  </span>
-                </a>
-              ))}
-            </nav>
-          )}
+                  Group by
+                </label>
+                <select
+                  id='tools-group-by'
+                  name='groupBy'
+                  value={transform.groupBy}
+                  onChange={(event) =>
+                    setTransform({
+                      groupBy: event.target.value as Transform['groupBy'],
+                    })
+                  }
+                  className='h-9 rounded-md border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400'
+                >
+                  <option value='toolingTypes'>Tool type</option>
+                  <option value='languages'>Language</option>
+                  <option value='none'>None</option>
+                </select>
+              </div>
+            </div>
+
+            {groups.length > 1 && (
+              <nav
+                aria-label='Groups of tools'
+                className='flex flex-wrap gap-2'
+                data-test='tools-groups-nav'
+              >
+                {groups.map(({ group, tools: groupedTools }) => (
+                  <a
+                    key={group}
+                    href={`#${groupId(group ?? '')}`}
+                    className='rounded-full border border-gray-300 dark:border-slate-600 px-3 py-0.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-700'
+                  >
+                    {groupLabel(group ?? '')}{' '}
+                    <span className='text-slate-500 dark:text-slate-400'>
+                      {groupedTools.length}
+                    </span>
+                  </a>
+                ))}
+              </nav>
+            )}
+          </div>
 
           {groups.length === 0 && (
             <ToolingTable
@@ -384,7 +394,8 @@ export default function ToolingPage({
             <section
               key={group ?? 'all'}
               id={group === null ? undefined : groupId(group)}
-              className='mb-10 scroll-mt-28'
+              className='mb-10'
+              style={{ scrollMarginTop: covered + 8 }}
               data-test='tools-group'
             >
               {group !== null && (
