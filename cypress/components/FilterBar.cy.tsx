@@ -110,6 +110,15 @@ describe('FilterBar Component', () => {
     );
   });
 
+  it('shows a value from a link which is not one of the options', () => {
+    mountFilterBar({ languages: ['Zig'] });
+
+    cy.get('select[name="languages"] option:selected').should(
+      'have.text',
+      'Zig',
+    );
+  });
+
   it('searches as you type, without filling up the history', () => {
     mountFilterBar();
 
