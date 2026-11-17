@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 import CancelIcon from '~/public/icons/cancel.svg';
 import { Button } from '~/components/ui/button';
 
 import Badge from './ui/Badge';
-import type { BowtieData, JSONSchemaTool } from '../JSONSchemaTool';
+import type { JSONSchemaTool } from '../JSONSchemaTool';
+import { DRAFT_ORDER } from '~/lib/config';
+import { useBowtieBadges } from '../hooks/useBowtie';
+import {
+  BOWTIE_DIALECT_URIS,
+  getBowtieBadgeUrl,
+  getBowtieImplementationUrl,
+  parseCompliance,
+  type BowtieResult,
+  type ToolBowtieInfo,
+} from '../lib/bowtie';
+import { BowtieResultBadge } from './BowtieBadge';
 import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,13 +24,46 @@ import StyledMarkdown from '~/components/StyledMarkdown';
 
 export default function ToolingDetailModal({
   tool,
-  bowtieData,
+  bowtieInfo,
   onClose,
 }: {
   tool: JSONSchemaTool;
-  bowtieData?: BowtieData | null;
+  bowtieInfo?: ToolBowtieInfo | null;
   onClose: () => void;
 }) {
+  // Every dialect Bowtie tests each of the tool's implementations against,
+  // rather than only the one the list is showing.
+  const implementations = bowtieInfo?.implementations ?? [];
+  const badgeUrls = useMemo(
+    () =>
+      implementations.flatMap((implementation) =>
+        DRAFT_ORDER.filter((draft) => {
+          const uri = BOWTIE_DIALECT_URIS[draft];
+          return uri !== undefined && implementation.dialects.includes(uri);
+        }).map((draft) => getBowtieBadgeUrl(implementation, draft)),
+      ),
+    [implementations.map(({ id }) => id).join('\n')],
+  );
+  const badges = useBowtieBadges(badgeUrls);
+  const bowtieReports = implementations.map((implementation) => ({
+    implementation,
+    results: DRAFT_ORDER.flatMap((draft): BowtieResult[] => {
+      const badgeUrl = getBowtieBadgeUrl(implementation, draft);
+      if (!badgeUrls.includes(badgeUrl)) return [];
+
+      const badge = badges[badgeUrl];
+      return [
+        {
+          implementation,
+          draft,
+          badgeUrl,
+          badge,
+          compliance: parseCompliance(badge),
+        },
+      ];
+    }),
+  }));
+
   useEffect(() => {
     document.body.classList.add('no-scroll');
     return () => {
@@ -250,37 +294,37 @@ export default function ToolingDetailModal({
               </div>
             )}
 
-            {bowtieData && (
+            {bowtieReports.length > 0 && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Report</h3>
-                {bowtieData.badges_urls?.supported_versions && (
-                  <div>
+                {bowtieReports.map(({ implementation, results }) => (
+                  <div key={implementation.id} className='mb-2'>
                     <h4 className='text-[14px] font-semibold'>
-                      Supported Versions:
+                      {implementation.id}
+                      {implementation.version && (
+                        <span className='font-normal'>
+                          {' '}
+                          (version {implementation.version})
+                        </span>
+                      )}
                     </h4>
-                    <BowtieReportBadge
-                      uri={bowtieData.badges_urls.supported_versions}
-                    />
+                    <ul className='list-none flex flex-wrap gap-1 my-1'>
+                      {results.map((result) => (
+                        <li key={result.badgeUrl} className='flex'>
+                          <BowtieResultBadge result={result} />
+                        </li>
+                      ))}
+                    </ul>
+                    <Link
+                      className='text-[14px] underline italic'
+                      href={getBowtieImplementationUrl(implementation)}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      View detailed report
+                    </Link>
                   </div>
-                )}
-                {bowtieData.badges_urls?.compliance && (
-                  <div>
-                    <h4 className='text-[14px] font-semibold'>Compliance:</h4>
-                    {Object.values(bowtieData.badges_urls.compliance).map(
-                      (badgeURI) => (
-                        <BowtieReportBadge key={badgeURI} uri={badgeURI} />
-                      ),
-                    )}
-                  </div>
-                )}
-                <Link
-                  className='text-[14px] underline italic'
-                  href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                >
-                  View detailed report
-                </Link>
+                ))}
               </div>
             )}
 
@@ -314,13 +358,6 @@ export default function ToolingDetailModal({
                     <Badge key={environment}>{environment}</Badge>
                   ))}
                 </ul>
-              </div>
-            )}
-
-            {bowtieData && (
-              <div className='break-inside-avoid mb-4'>
-                <h3 className='text-lg font-semibold'>Bowtie Identifier</h3>
-                <p>{bowtieData.id}</p>
               </div>
             )}
 
@@ -361,48 +398,3 @@ export default function ToolingDetailModal({
     </div>
   );
 }
-
-const BowtieReportBadge = ({ uri }: { uri: string }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const checkImage = async () => {
-      try {
-        const response = await fetch(
-          `https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`,
-        );
-        if (response.ok) {
-          setLoading(false);
-        } else {
-          setLoading(false);
-          setError(true);
-        }
-      } catch (err) {
-        setLoading(false);
-        setError(true);
-      }
-    };
-    checkImage();
-  }, [uri]);
-
-  return (
-    <div className='my-1'>
-      {loading && !error && (
-        <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-[176px] rounded-md'></div>
-      )}
-      {!loading && !error && (
-        <Image
-          src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
-          alt='Bowtie Badge'
-          className='my-1 h-[20px] w-auto'
-          width={100}
-          height={20}
-        />
-      )}
-      {error && (
-        <div className='text-red-500 text-sm mt-1'>Failed to load badge</div>
-      )}
-    </div>
-  );
-};

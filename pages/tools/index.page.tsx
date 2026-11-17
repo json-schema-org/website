@@ -1,25 +1,29 @@
 /* eslint-disable linebreak-style */
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import fs from 'fs';
 import Link from 'next/link';
 import Head from 'next/head';
+import Image from 'next/image';
 import yaml from 'js-yaml';
+import Fuse from 'fuse.js';
+import { X } from 'lucide-react';
 
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import { Headline1 } from '~/components/Headlines';
 import { getLayout } from '~/components/SiteLayout';
+import { Button } from '~/components/ui/button';
 import { DRAFT_ORDER, JSONSchemaDraft } from '~/lib/config';
 
-import GroupByMenu from './components/GroupByMenu';
+import FilterBar from './components/FilterBar';
 import Sidebar from './components/Sidebar';
 import ToolingTable from './components/ToolingTable';
+import { useBowtieBadges, useBowtieIndex } from './hooks/useBowtie';
 import useToolsTransform from './hooks/useToolsTransform';
+import { getToolBowtieInfo, newestDraft } from './lib/bowtie';
 import getDistinctEntries from './lib/getDistinctEntries';
+import { filterTools, sortTools } from './lib/transformTools';
 import type { JSONSchemaTool } from './JSONSchemaTool';
-import Image from 'next/image';
-import { Button } from '~/components/ui/button';
-import { Filter, X } from 'lucide-react';
 
 export type FilterCriteriaFields =
   | 'languages'
@@ -104,15 +108,76 @@ export default function ToolingPage({
   filterCriteria,
 }: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [visibleToolCount, setVisibleToolCount] = useState<number>(0);
+  const { transform, setTransform, resetTransform } = useToolsTransform();
+  const { index: bowtieIndex, isLoading: isBowtieLoading } = useBowtieIndex();
 
-  const {
-    numberOfTools,
-    toolsByGroup,
-    transform,
-    setTransform,
-    resetTransform,
-  } = useToolsTransform(toolingData);
+  // Bowtie results are shown for the selected dialect (the newest of them, if
+  // several are selected in the drawer), and for implementations in the
+  // selected languages where a tool has implementations in several.
+  const selectedDraft = newestDraft(transform.drafts);
+  const selectedLanguages = transform.languages.join(',');
+  const bowtieSelection = useMemo(
+    () => ({ draft: selectedDraft, languages: transform.languages }),
+    [selectedDraft, selectedLanguages],
+  );
+
+  const badgeUrls = useMemo(
+    () =>
+      toolingData.flatMap((tool) =>
+        getToolBowtieInfo(tool, bowtieIndex, bowtieSelection).results.map(
+          ({ badgeUrl }) => badgeUrl,
+        ),
+      ),
+    [toolingData, bowtieIndex, bowtieSelection],
+  );
+  const badges = useBowtieBadges(badgeUrls);
+
+  const bowtieInfo = useMemo(
+    () =>
+      new Map(
+        toolingData.map((tool) => [
+          tool,
+          getToolBowtieInfo(tool, bowtieIndex, bowtieSelection, badges),
+        ]),
+      ),
+    [toolingData, bowtieIndex, bowtieSelection, badges],
+  );
+  const getBowtieInfo = useCallback(
+    (tool: JSONSchemaTool) =>
+      bowtieInfo.get(tool) ??
+      getToolBowtieInfo(tool, bowtieIndex, bowtieSelection, badges),
+    [bowtieInfo],
+  );
+
+  const fuse = useMemo(
+    () =>
+      new Fuse(toolingData, {
+        keys: ['name'],
+        includeScore: true,
+        threshold: 0.3,
+      }),
+    [toolingData],
+  );
+
+  const tools = useMemo(() => {
+    const hits =
+      transform.query.trim() === ''
+        ? toolingData
+        : fuse.search(transform.query).map((result) => result.item);
+
+    return sortTools(
+      filterTools(hits, transform, getBowtieInfo),
+      transform,
+      getBowtieInfo,
+    );
+  }, [toolingData, fuse, transform, getBowtieInfo]);
+
+  const sortedBy =
+    transform.sortBy !== 'bowtie'
+      ? `Sorted by ${transform.sortBy}.`
+      : selectedDraft
+        ? `Sorted by Bowtie compliance for Draft ${selectedDraft}, then by name.`
+        : 'Sorted by Bowtie compliance for the newest dialect each tool is tested against, then by name.';
 
   return (
     <SectionContext.Provider value={'tools'}>
@@ -136,7 +201,7 @@ export default function ToolingPage({
             className={`absolute right-0 w-full max-w-sm bg-white dark:bg-slate-900 h-full shadow-lg transform transition-transform duration-300 flex flex-col ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
             <div className='p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700'>
-              <h2 className='text-xl font-bold'>Filters</h2>
+              <h2 className='text-xl font-bold'>More filters</h2>
               <Button
                 variant='ghost'
                 size='icon'
@@ -155,7 +220,7 @@ export default function ToolingPage({
               />
             </div>
             <div className='p-4 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500'>
-              {visibleToolCount} Tools Found
+              {tools.length} {tools.length === 1 ? 'tool' : 'tools'} found
             </div>
           </div>
         </div>
@@ -163,12 +228,24 @@ export default function ToolingPage({
         <main className='w-full mt-8'>
           <Headline1>JSON Schema Tooling</Headline1>
           <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
-            Toolings below are written in different languages, and support part,
-            or all, of at least one recent version of the specification.
+            The tools below are written in different languages, and support
+            part, or all, of at least one recent version of the specification.
+            Choose your language, the dialect of JSON Schema you use and the
+            type of tool you are after to narrow down the list.
           </p>
           <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
             Listing does not signify a recommendation or endorsement of any
-            kind.
+            kind. Validators are ordered by how much of the official test suite
+            they pass according to{' '}
+            <Link
+              className='underline'
+              href='https://bowtie.report'
+              target='_blank'
+              rel='noreferrer'
+            >
+              Bowtie
+            </Link>
+            , and each one's badge links to its report there.
           </p>
 
           <div className='flex flex-row items-center gap-2 w-full'>
@@ -215,31 +292,33 @@ export default function ToolingPage({
             </div>
           </div>
 
-          <div className='flex flex-wrap items-center justify-between gap-4 mb-6'>
-            <div className='flex items-center gap-4'>
-              <GroupByMenu transform={transform} setTransform={setTransform} />
-            </div>
-            <div className='flex items-center gap-4'>
-              <div className='text-sm text-gray-500 hidden sm:block'>
-                {visibleToolCount} Tools
-              </div>
-              <Button
-                variant='default'
-                onClick={() => setIsSidebarOpen(true)}
-                className='flex items-center gap-2 text-white'
-              >
-                <Filter className='h-4 w-4' />
-                Filters
-              </Button>
-            </div>
+          <div className='mt-6'>
+            <FilterBar
+              filterCriteria={filterCriteria}
+              transform={transform}
+              setTransform={setTransform}
+              resetTransform={resetTransform}
+              onMoreFilters={() => setIsSidebarOpen(true)}
+            />
           </div>
 
+          <p
+            className='mb-3 text-sm text-slate-600 dark:text-slate-300'
+            aria-live='polite'
+            data-test='tools-summary'
+          >
+            <strong>
+              {tools.length} {tools.length === 1 ? 'tool' : 'tools'}
+            </strong>
+            . {sortedBy}
+          </p>
+
           <ToolingTable
-            toolsByGroup={toolsByGroup}
+            tools={tools}
             transform={transform}
             setTransform={setTransform}
-            numberOfTools={numberOfTools}
-            onVisibleToolCountChange={setVisibleToolCount}
+            getBowtieInfo={getBowtieInfo}
+            isBowtieLoading={isBowtieLoading}
           />
 
           <DocsHelp fileRenderType='tsx' />

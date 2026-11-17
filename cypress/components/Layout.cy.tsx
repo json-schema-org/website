@@ -86,7 +86,7 @@ describe('Layout Component', () => {
       { label: 'Docs', uri: '/docs' },
       {
         label: 'Tools',
-        uri: '/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments=',
+        uri: '/tools',
       },
       { label: 'Blog', uri: '/blog' },
       { label: 'Community', uri: '/community' },
