@@ -87,7 +87,7 @@
         }
       },
       "languages": {
-        "description": "The programming languages the tool is for. For a library, the language it is used from: a library for a JavaScript runtime is listed as JavaScript whatever it is written in, and as TypeScript too only if it works with TypeScript types themselves. For a code generator, the languages it generates. A tool with a separate library for each of several languages has an entry for each library, rather than one entry listing every language. Applications, and the formats a tool converts from or to, are not languages.",
+        "description": "The programming languages the tool is for. For a library, the language it is used from: a library for a JavaScript runtime is listed as JavaScript whatever it is written in, and as TypeScript too if it is written in TypeScript or its package includes its own type declarations. A tool which only works with TypeScript types themselves is listed as TypeScript alone. For a code generator, the languages it generates. A tool with a separate library for each of several languages has an entry for each library, rather than one entry listing every language. Applications, and the formats a tool converts from or to, are not languages.",
         "type": "array",
         "uniqueItems": true,
         "items": {

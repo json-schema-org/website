@@ -155,7 +155,7 @@
 - name: '@corvus-dotnet/json-schema'
   description: 'A high-performance JSON Schema evaluator for JavaScript and TypeScript that compiles schemas to specialised JavaScript, with results collection and annotations.'
   toolingTypes: ['validator', 'annotations']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Matthew Adams'
       username: 'mwadams'
@@ -440,7 +440,7 @@
 - name: 'm3-json-schema'
   description: 'Passes every test in the official JSON Schema Test Suite across all drafts from draft-03 through draft-next. The JavaScript build of M3, for Node.js and the browser.'
   toolingTypes: ['validator']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   creators:
     - name: 'Julian Gosnell'
       username: 'JulesGosnell'
@@ -792,7 +792,7 @@
   description: 'JSON Schema Validation, Annotation, and Bundling. Supports Draft 04, 06, 07, 2019-09, 2020-12, OpenAPI 3.0, and OpenAPI 3.1'
   toolingTypes:
     ['validator', 'annotations', 'bundler', 'util-general-processing']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Jason Desrosiers'
       username: 'jdesrosiers'
@@ -828,7 +828,7 @@
     Generate test coverage reports for the JSON Schemas in your codebase.
     Supports JSON and YAML. Integrates with Vitest.
   toolingTypes: ['util-testing']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Jason Desrosiers'
       username: 'jdesrosiers'
@@ -846,7 +846,7 @@
 - name: '@exodus/schemasafe'
   description: 'A reasonably safe JSON Schema validator with draft-04/06/07/2019-09/2020-12 support.'
   toolingTypes: ['validator']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Nikita Skovoroda'
       username: 'ChALkeR'
@@ -867,7 +867,7 @@
 - name: ajv
   description: 'The fastest JSON schema Validator.'
   toolingTypes: ['validator']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Evgeny Poberezkin'
       username: 'epoberezkin'
@@ -889,7 +889,7 @@
 - name: '@cfworker/json-schema'
   description: 'A JSON schema validator that will run on Cloudflare workers. Supports drafts 4, 7, 2019-09, and 2020-12.'
   toolingTypes: ['validator']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Jeremy Danyow'
       username: 'jdanyow'
@@ -907,7 +907,7 @@
 - name: json-schema-library
   description: 'Customizable and hackable json-validator and json-schema utilities for traversal, data generation and validation'
   toolingTypes: ['validator', 'util-general-processing', 'schema-to-data']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Sascha Goldhofer'
       username: 'sagold'
@@ -1583,7 +1583,7 @@
 - name: '@adobe/jsonschema2md'
   description: '@adobe/jsonschema2md provides scripts to turn JSON Schema files into readable Markdown documentation, ready for consumption on GitHub or processed using Jekyll or other static site generators. Supports JSON Schema 2019-09 (partial).'
   toolingTypes: ['documentation']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Tobias Bocanegra'
       username: 'tripodsan'
@@ -1918,7 +1918,7 @@
 - name: cypress-ajv-schema-validator
   description: 'Cypress plugin that validates API responses against Plain JSON schemas, and whole Swagger and OpenAPI documents using the Ajv JSON Schema validator. It provides a user-friendly view of validated data, highlighting each validation error and the exact reason for the mismatch. Seamless integration, fast and lightweight.'
   toolingTypes: ['validator', 'util-testing']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Sebastian Clavijo Suero'
       username: 'sclavijosuero'
@@ -2142,7 +2142,7 @@
 - name: Ngx Schema Form
   description: 'HTML form generation based on JSON Schema'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Eric BREHAULT'
       username: 'ebrehault'
@@ -2154,7 +2154,7 @@
 - name: AJSF (Angular JSON Schema Form)
   description: 'Angular JSON Schema Form'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Hamza Hamidi'
       username: 'hamzahamidi'
@@ -2166,7 +2166,7 @@
 
 - name: Stoplight JSON Schema Tree
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Stoplight'
       username: 'stoplightio'
@@ -2180,7 +2180,7 @@
 - name: Stoplight JSON Schema Viewer
   description: 'A JSON Schema viewer React component'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Stoplight'
       username: 'stoplightio'
@@ -2194,7 +2194,7 @@
 - name: Dashjoin JSON Schema Form
   description: 'Angular JSON Schema Form Library'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Andreas Eberhart'
       username: 'aeberhart'
@@ -2209,7 +2209,7 @@
 - name: JSON Editor
   description: 'JSON Schema Based Editor'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'gbisurgi'
       username: 'gbisurgi'
@@ -2247,7 +2247,7 @@
 - name: 'json-schema-form (@remoteoss)'
   description: 'Headless UI form library powered by JSON Schemas. With validations included. Works with any stack.'
   toolingTypes: ['schema-to-web-UI', 'editor']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Remote.com'
       username: 'remoteoss'
@@ -2260,7 +2260,7 @@
 - name: JSON Schema Form Element
   description: 'A Custom Element that auto-generates forms, declaratively. Works with Lit, Solid, Vue, Svelte, React, Astro, vanilla…'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Julian Cataldo'
       username: 'JulianCataldo'
@@ -2273,7 +2273,7 @@
 - name: JSONForms (jsonforms.io)
   description: 'Customizable JSON Schema-based forms with React, Angular and Vue support out of the box.'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Lucas Koehler'
       username: 'lucas-koehler'
@@ -2299,7 +2299,7 @@
 - name: React JSON Schema Form (RJSF-Team)
   description: 'A React component for building Web forms from JSON Schema.'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Heath C'
       username: 'heath-freenome'
@@ -2312,7 +2312,7 @@
 - name: React Json Schema Form (Mui)
   description: 'Universal JSON Schema Form - Currently Support for React - Material UI components for building Web forms from JSON Schema.'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Vipin Tanna'
       username: 'vip-git'
@@ -2352,7 +2352,7 @@
 - name: Restspace Schema Form
   description: 'A React component package for generating forms based on (almost) the full power of JSON Schema.'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'jamesej'
       username: 'jamesej'
@@ -2365,7 +2365,7 @@
 - name: vazco/uniforms
   description: 'A React library for building forms from any schema.'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Piotr Pośpiech'
       username: 'piotrpospiech'
@@ -2378,7 +2378,7 @@
 - name: UI Schema for React
   description: 'Use JSON-Schema with React, generate Forms + UIs with any design system, easy creation of complex custom widgets.'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Michael Becker'
       username: 'elbakerino'
@@ -2422,7 +2422,7 @@
 - name: json-schema-ref-parser
   description: 'Tools for dereferencing non-cyclic schemas, bundling referenced schemas into a single file, and other `$ref` processing.'
   toolingTypes: ['util-general-processing']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - username: 'BigstickCarpet'
       platform: 'github'
@@ -2468,7 +2468,7 @@
 - name: json-schema-resolve-allof
   description: 'Resolve `allOf` in JSON Schema.'
   toolingTypes: ['util-schema-to-schema']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Logan Volkers'
       username: 'loganvolkers'
@@ -2478,7 +2478,7 @@
 - name: JSON-Schema-Instantiator
   description: 'Create an instance from a JSON Schema.'
   toolingTypes: ['util-schema-to-schema']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Tom Arad'
       username: 'tomarad'
@@ -2869,7 +2869,7 @@
 - name: Svelte JSON Schema Form
   description: 'Svelte 5 library for creating forms based on JSON Schema.'
   toolingTypes: ['schema-to-web-UI']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Roman Krasilnikov'
       username: 'x0k'
@@ -3575,7 +3575,7 @@
   description: "Support converting different version's joi schema to JSON Schema using describe api"
   toolingTypes:
     ['code-to-schema', 'util-general-processing', 'util-format-conversion']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'kenspirit'
       username: 'kenspirit'
@@ -3625,7 +3625,7 @@
 - name: 'core-ajv-schema-validator'
   description: 'Package for API testing to validate API responses against plain JSON schemas, Swagger documents, or OpenAPI documents using the Ajv JSON Schema validator. It can be used directly in any node.js project. Function validateSchema() to report JSON Schema validation errors in the response obtained from any network request. Serves as the core engine for schema validation in the cypress-ajv-schema-validator and playwright-ajv-schema-validator.'
   toolingTypes: ['util-testing']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   dependsOnValidators: ['https://github.com/ajv-validator/ajv']
   creators:
     - name: 'Sebastian Clavijo Suero'
@@ -3645,7 +3645,7 @@
 - name: 'json-schema-describes-subset'
   description: 'Tools for static JSON schema analysis and processing, including a function which determines whether one schema describes a subset of another, a function which determines whether a schema describes the empty set and a function that converts a schema to its disjunctive normal form (DNF)'
   toolingTypes: ['util-general-processing', 'util-schema-to-schema']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   dependsOnValidators: ['https://github.com/ajv-validator/ajv']
   creators:
     - name: 'Johannes Bohner'
@@ -3702,7 +3702,7 @@
 - name: 'playwright-ajv-schema-validator'
   description: 'A Playwright plugin for API schema validation against plain JSON schemas, Swagger schema documents. Built on the robust core-ajv-schema-validator plugin and powered by the Ajv JSON Schema Validator, it delivers results in a clear, user-friendly format, simplifying the process of identifying and addressing schema issues.'
   toolingTypes: ['validator', 'util-testing']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   dependsOnValidators:
     [
       'https://github.com/sclavijosuero/core-ajv-schema-validator',
@@ -3967,7 +3967,7 @@
 - name: 'ajv-plus'
   description: 'A maintained and JSON Schema specification-compliant fork of ajv.'
   toolingTypes: ['validator']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - username: 'theflashlabs'
       platform: 'github'
@@ -3982,7 +3982,7 @@
 - name: 'ata-validator'
   description: 'A JSON Schema validator that compiles to plain JavaScript, still runs where code generation is blocked, and can be compiled away at build time.'
   toolingTypes: ['validator']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - username: 'ata-core'
       platform: 'github'
@@ -3997,7 +3997,7 @@
 - name: 'vscode-json-languageservice'
   description: 'The JSON language service of Visual Studio Code, which validates JSON against JSON Schema, extracted to be reused, for example in the Monaco editor.'
   toolingTypes: ['validator']
-  languages: ['JavaScript']
+  languages: ['JavaScript', 'TypeScript']
   maintainers:
     - name: 'Microsoft'
       username: 'microsoft'
