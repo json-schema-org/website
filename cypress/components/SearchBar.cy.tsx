@@ -8,6 +8,7 @@ describe('SearchBar Component', () => {
     query: '',
     sortBy: 'name',
     sortOrder: 'ascending',
+    groupBy: 'toolingTypes',
     licenses: [],
     languages: [],
     drafts: [],

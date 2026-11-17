@@ -26,7 +26,15 @@ import {
   newestDraft,
 } from './lib/bowtie';
 import getDistinctEntries from './lib/getDistinctEntries';
-import { filterTools, sortTools } from './lib/transformTools';
+import {
+  filterTools,
+  groupTools,
+  sortTools,
+  UNGROUPED,
+  type Transform,
+} from './lib/transformTools';
+import toTitleCase from './lib/toTitleCase';
+import { Headline2 } from '~/components/Headlines';
 import type { JSONSchemaTool } from './JSONSchemaTool';
 
 export type FilterCriteriaFields =
@@ -161,6 +169,21 @@ export default function ToolingPage({
     );
   }, [toolingData, fuse, transform, getBowtieInfo]);
 
+  const groups = useMemo(
+    () => groupTools(tools, transform),
+    [tools, transform],
+  );
+  const groupLabel = (group: string) =>
+    group === UNGROUPED
+      ? transform.groupBy === 'languages'
+        ? 'Not specific to a language'
+        : 'Other'
+      : transform.groupBy === 'toolingTypes'
+        ? toTitleCase(group, '-')
+        : group;
+  const groupId = (group: string) =>
+    `group-${(group || 'other').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
   const sortedBy =
     transform.sortBy !== 'bowtie'
       ? `Sorted by ${transform.sortBy}.`
@@ -291,24 +314,97 @@ export default function ToolingPage({
             />
           </div>
 
-          <p
-            className='mb-3 text-sm text-slate-600 dark:text-slate-300'
-            aria-live='polite'
-            data-test='tools-summary'
-          >
-            <strong>
-              {tools.length} {tools.length === 1 ? 'tool' : 'tools'}
-            </strong>
-            . {sortedBy}
-          </p>
+          <div className='mb-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2'>
+            <p
+              className='text-sm text-slate-600 dark:text-slate-300'
+              aria-live='polite'
+              data-test='tools-summary'
+            >
+              <strong>
+                {tools.length} {tools.length === 1 ? 'tool' : 'tools'}
+              </strong>
+              . {sortedBy}
+            </p>
+            <div className='flex items-center gap-2'>
+              <label
+                htmlFor='tools-group-by'
+                className='text-sm font-semibold text-slate-700 dark:text-slate-300'
+              >
+                Group by
+              </label>
+              <select
+                id='tools-group-by'
+                name='groupBy'
+                value={transform.groupBy}
+                onChange={(event) =>
+                  setTransform({
+                    groupBy: event.target.value as Transform['groupBy'],
+                  })
+                }
+                className='h-9 rounded-md border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400'
+              >
+                <option value='toolingTypes'>Tool type</option>
+                <option value='languages'>Language</option>
+                <option value='none'>None</option>
+              </select>
+            </div>
+          </div>
 
-          <ToolingTable
-            tools={tools}
-            transform={transform}
-            setTransform={setTransform}
-            getBowtieInfo={getBowtieInfo}
-            isBowtieLoading={isBowtieLoading}
-          />
+          {groups.length > 1 && (
+            <nav
+              aria-label='Groups of tools'
+              className='mb-6 flex flex-wrap gap-2'
+              data-test='tools-groups-nav'
+            >
+              {groups.map(({ group, tools: groupedTools }) => (
+                <a
+                  key={group}
+                  href={`#${groupId(group ?? '')}`}
+                  className='rounded-full border border-gray-300 dark:border-slate-600 px-3 py-0.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-700'
+                >
+                  {groupLabel(group ?? '')}{' '}
+                  <span className='text-slate-500 dark:text-slate-400'>
+                    {groupedTools.length}
+                  </span>
+                </a>
+              ))}
+            </nav>
+          )}
+
+          {groups.length === 0 && (
+            <ToolingTable
+              tools={tools}
+              transform={transform}
+              setTransform={setTransform}
+              getBowtieInfo={getBowtieInfo}
+            />
+          )}
+
+          {groups.map(({ group, tools: groupedTools }) => (
+            <section
+              key={group ?? 'all'}
+              id={group === null ? undefined : groupId(group)}
+              className='mb-10 scroll-mt-28'
+              data-test='tools-group'
+            >
+              {group !== null && (
+                <div className='mb-4 px-4 w-full bg-gray-100 dark:bg-slate-900 flex items-baseline gap-3'>
+                  <Headline2>{groupLabel(group)}</Headline2>
+                  <span className='text-sm text-slate-500 dark:text-slate-400'>
+                    {groupedTools.length}{' '}
+                    {groupedTools.length === 1 ? 'tool' : 'tools'}
+                  </span>
+                </div>
+              )}
+              <ToolingTable
+                tools={groupedTools}
+                transform={transform}
+                setTransform={setTransform}
+                getBowtieInfo={getBowtieInfo}
+                isBowtieLoading={isBowtieLoading}
+              />
+            </section>
+          ))}
 
           <DocsHelp fileRenderType='tsx' />
         </main>

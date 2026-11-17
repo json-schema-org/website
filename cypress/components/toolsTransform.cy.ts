@@ -7,9 +7,11 @@ import {
   countActiveFilters,
   DEFAULT_TRANSFORM,
   filterTools,
+  groupTools,
   parseTransform,
   serializeTransform,
   sortTools,
+  UNGROUPED,
   type Transform,
 } from '~/pages/tools/lib/transformTools';
 import type { JSONSchemaDraft } from '~/lib/config';
@@ -55,8 +57,9 @@ const transform = (overrides: Partial<Transform> = {}): Transform => ({
 
 describe('Transforming the list of tools', () => {
   describe('parseTransform', () => {
-    it('defaults to every tool, sorted by Bowtie compliance', () => {
+    it('defaults to every tool, by tool type, sorted by Bowtie compliance', () => {
       expect(parseTransform({})).to.deep.equal(DEFAULT_TRANSFORM);
+      expect(DEFAULT_TRANSFORM.groupBy).to.equal('toolingTypes');
       expect(DEFAULT_TRANSFORM.sortBy).to.equal('bowtie');
     });
 
@@ -80,6 +83,19 @@ describe('Transforming the list of tools', () => {
         supportsBowtie: 'false',
         sortBy: 'license',
         sortOrder: 'descending',
+      });
+    });
+
+    it('reads how to group the tools', () => {
+      expect(parseTransform({ groupBy: 'languages' }).groupBy).to.equal(
+        'languages',
+      );
+      expect(parseTransform({ groupBy: 'none' }).groupBy).to.equal('none');
+      expect(parseTransform({ groupBy: 'nonsense' }).groupBy).to.equal(
+        'toolingTypes',
+      );
+      expect(serializeTransform(transform({ groupBy: 'none' }))).to.deep.equal({
+        groupBy: 'none',
       });
     });
 
@@ -203,6 +219,54 @@ describe('Transforming the list of tools', () => {
       expect(filter({ supportsBowtie: 'true' })).to.deep.equal([
         'js-validator',
       ]);
+    });
+  });
+
+  describe('groupTools', () => {
+    const tools = [
+      tool('both', {
+        toolingTypes: ['annotations', 'validator'],
+        languages: ['Go'],
+      }),
+      tool('editor', { toolingTypes: ['editor'] }),
+      tool('validator', { languages: ['.NET', 'C++'] }),
+    ];
+    const group = (overrides: Partial<Transform>) =>
+      groupTools(tools, transform(overrides)).map(
+        ({ group: name, tools: grouped }) => [name, names(grouped)],
+      );
+
+    it('puts every tool in each of its tool types, in a set order', () => {
+      expect(group({ groupBy: 'toolingTypes' })).to.deep.equal([
+        ['validator', ['both', 'validator']],
+        ['annotations', ['both']],
+        ['editor', ['editor']],
+      ]);
+    });
+
+    it('groups by language, with tools for no language last', () => {
+      expect(group({ groupBy: 'languages' })).to.deep.equal([
+        ['.NET', ['validator']],
+        ['C++', ['validator']],
+        ['Go', ['both']],
+        [UNGROUPED, ['editor']],
+      ]);
+    });
+
+    it('only gives the groups being filtered to', () => {
+      expect(
+        group({ groupBy: 'toolingTypes', toolingTypes: ['Validator'] }),
+      ).to.deep.equal([['validator', ['both', 'validator']]]);
+    });
+
+    it('gives a single unnamed group when not grouping', () => {
+      expect(group({ groupBy: 'none' })).to.deep.equal([
+        [null, ['both', 'editor', 'validator']],
+      ]);
+    });
+
+    it('gives no groups when there are no tools to group', () => {
+      expect(groupTools([], transform({}))).to.deep.equal([]);
     });
   });
 
