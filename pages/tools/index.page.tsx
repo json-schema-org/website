@@ -20,7 +20,11 @@ import Sidebar from './components/Sidebar';
 import ToolingTable from './components/ToolingTable';
 import { useBowtieBadges, useBowtieIndex } from './hooks/useBowtie';
 import useToolsTransform from './hooks/useToolsTransform';
-import { getToolBowtieInfo, newestDraft } from './lib/bowtie';
+import {
+  findBowtieEngines,
+  getToolBowtieInfo,
+  newestDraft,
+} from './lib/bowtie';
 import getDistinctEntries from './lib/getDistinctEntries';
 import { filterTools, sortTools } from './lib/transformTools';
 import type { JSONSchemaTool } from './JSONSchemaTool';
@@ -115,31 +119,22 @@ export default function ToolingPage({
   // several are selected in the drawer.
   const selectedDraft = newestDraft(transform.drafts);
 
+  const engines = useMemo(() => findBowtieEngines(toolingData), [toolingData]);
+  const getInfo = (tool: JSONSchemaTool, loadedBadges = {}) =>
+    getToolBowtieInfo(tool, bowtieIndex, selectedDraft, loadedBadges, engines);
+
   const badgeUrls = useMemo(
-    () =>
-      toolingData.flatMap(
-        (tool) =>
-          getToolBowtieInfo(tool, bowtieIndex, selectedDraft).result
-            ?.badgeUrl ?? [],
-      ),
-    [toolingData, bowtieIndex, selectedDraft],
+    () => toolingData.flatMap((tool) => getInfo(tool).result?.badgeUrl ?? []),
+    [toolingData, bowtieIndex, selectedDraft, engines],
   );
   const badges = useBowtieBadges(badgeUrls);
 
   const bowtieInfo = useMemo(
-    () =>
-      new Map(
-        toolingData.map((tool) => [
-          tool,
-          getToolBowtieInfo(tool, bowtieIndex, selectedDraft, badges),
-        ]),
-      ),
-    [toolingData, bowtieIndex, selectedDraft, badges],
+    () => new Map(toolingData.map((tool) => [tool, getInfo(tool, badges)])),
+    [toolingData, bowtieIndex, selectedDraft, engines, badges],
   );
   const getBowtieInfo = useCallback(
-    (tool: JSONSchemaTool) =>
-      bowtieInfo.get(tool) ??
-      getToolBowtieInfo(tool, bowtieIndex, selectedDraft, badges),
+    (tool: JSONSchemaTool) => bowtieInfo.get(tool) ?? getInfo(tool, badges),
     [bowtieInfo],
   );
 

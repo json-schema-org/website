@@ -75,6 +75,30 @@ describe('BowtieBadge Component', () => {
     cy.get('@rowClick').should('not.have.been.called');
   });
 
+  it('says which validator the results are for, for a tool built on one', () => {
+    cy.mount(
+      <BowtieBadge
+        info={{
+          ...tested(result('js-ajv', passing)),
+          engine: { name: 'ajv', toolingTypes: ['validator'] },
+        }}
+      />,
+    );
+
+    cy.get('[data-test="bowtie-badge-result"]').should(
+      'have.attr',
+      'href',
+      'https://bowtie.report/#/implementations/js-ajv',
+    );
+    cy.get('[data-test="bowtie-badge-engine"]').should('have.text', 'via ajv');
+  });
+
+  it('names no engine for a tool Bowtie tests itself', () => {
+    cy.mount(<BowtieBadge info={tested(result('js-ajv', passing))} />);
+
+    cy.get('[data-test="bowtie-badge-engine"]').should('not.exist');
+  });
+
   it('still links to the report while a badge is loading or unavailable', () => {
     cy.mount(<BowtieBadge info={tested(result('js-ajv', undefined))} />);
     cy.get('[data-test="bowtie-badge-loading"]').should(

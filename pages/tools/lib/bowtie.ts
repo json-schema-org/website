@@ -63,6 +63,11 @@ export interface BowtieResult {
 export interface ToolBowtieInfo {
   kind: 'unknown' | 'not-applicable' | 'not-on-bowtie' | 'untested' | 'tested';
   implementation?: BowtieImplementation;
+  /**
+   * The validator the implementation belongs to, when that is not the tool
+   * itself but one the tool is built on.
+   */
+  engine?: JSONSchemaTool;
   /** The dialect which was asked for, if one was. */
   draft?: JSONSchemaDraft;
   result?: BowtieResult;
@@ -87,6 +92,46 @@ export const findBowtieImplementation = (
   index: BowtieIndex | null,
 ): BowtieImplementation | null =>
   (tool.bowtie?.identifier && index?.get(tool.bowtie.identifier)) || null;
+
+/** The validators which tools are built on, for the tools built on one. */
+export type BowtieEngines = Map<JSONSchemaTool, JSONSchemaTool>;
+
+const normalizeUrl = (url: string): string =>
+  url
+    .trim()
+    .toLowerCase()
+    .replace(/\/+$/, '')
+    .replace(/\.git$/, '');
+
+/**
+ * Find the validator each tool wraps, among those Bowtie tests.
+ *
+ * An online validator or a command line tool built on a validator behaves as
+ * that validator does, so what Bowtie reports for the validator is the
+ * accurate view of what the tool supports. Tools say which validators they
+ * depend on by their source repositories.
+ */
+export const findBowtieEngines = (tools: JSONSchemaTool[]): BowtieEngines => {
+  const testedBySource = new Map<string, JSONSchemaTool>();
+  tools.forEach((tool) => {
+    if (tool.bowtie?.identifier && tool.source) {
+      const source = normalizeUrl(tool.source);
+      if (!testedBySource.has(source)) testedBySource.set(source, tool);
+    }
+  });
+
+  const engines: BowtieEngines = new Map();
+  tools.forEach((tool) => {
+    if (tool.bowtie?.identifier) return;
+
+    const engine = (tool.dependsOnValidators ?? [])
+      .map((validator) => testedBySource.get(normalizeUrl(validator)))
+      .find((candidate) => candidate && candidate !== tool);
+    if (engine) engines.set(tool, engine);
+  });
+
+  return engines;
+};
 
 /** The newest of the given drafts, or `undefined` if there are none. */
 export const newestDraft = (
@@ -140,15 +185,18 @@ export const compareBowtieResults = (
  * Work out what Bowtie reports for a tool.
  *
  * When a draft has been selected the result is for that draft. Otherwise it
- * is for the newest draft Bowtie tests the implementation against.
+ * is for the newest draft Bowtie tests the implementation against. A tool
+ * built on a validator Bowtie tests gets that validator's results.
  */
 export const getToolBowtieInfo = (
   tool: JSONSchemaTool,
   index: BowtieIndex | null,
   selectedDraft?: JSONSchemaDraft,
   badges: BowtieBadges = {},
+  engines?: BowtieEngines,
 ): ToolBowtieInfo => {
-  const implementation = findBowtieImplementation(tool, index);
+  const engine = engines?.get(tool);
+  const implementation = findBowtieImplementation(engine ?? tool, index);
 
   if (!implementation) {
     return {
@@ -165,7 +213,7 @@ export const getToolBowtieInfo = (
   const dialectUri = draft && BOWTIE_DIALECT_URIS[draft];
 
   if (!dialectUri || !implementation.dialects.includes(dialectUri)) {
-    return { kind: 'untested', implementation, draft: selectedDraft };
+    return { kind: 'untested', implementation, engine, draft: selectedDraft };
   }
 
   const badgeUrl = getBowtieBadgeUrl(implementation, draft);
@@ -174,6 +222,7 @@ export const getToolBowtieInfo = (
   return {
     kind: 'tested',
     implementation,
+    engine,
     draft: selectedDraft,
     result: {
       implementation,

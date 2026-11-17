@@ -4,6 +4,7 @@ import type {
 } from '~/pages/tools/JSONSchemaTool';
 import {
   buildBowtieIndex,
+  findBowtieEngines,
   findBowtieImplementation,
   getBowtieBadgeUrl,
   getBowtieImplementationUrl,
@@ -153,6 +154,58 @@ describe('Bowtie helpers for the tooling page', () => {
           .kind,
       ).to.equal('not-applicable');
       expect(getToolBowtieInfo(tool('js-ajv'), null).kind).to.equal('unknown');
+    });
+  });
+
+  describe('findBowtieEngines', () => {
+    const ajv = tool('js-ajv', {
+      name: 'ajv',
+      source: 'https://github.com/ajv-validator/ajv',
+    });
+    const cli = tool(undefined, {
+      name: 'ajv-cli',
+      source: 'https://github.com/ajv-validator/ajv-cli',
+      dependsOnValidators: ['https://github.com/ajv-validator/AJV/'],
+    });
+    const untestedEngine = tool(undefined, {
+      name: 'untested',
+      source: 'https://github.com/example/untested',
+    });
+    const onUntested = tool(undefined, {
+      name: 'on-untested',
+      dependsOnValidators: ['https://github.com/example/untested'],
+    });
+    const tools = [ajv, cli, untestedEngine, onUntested];
+    const engines = findBowtieEngines(tools);
+
+    it('finds the validator a tool is built on, if Bowtie tests it', () => {
+      expect(engines.get(cli)).to.equal(ajv);
+      expect(engines.has(onUntested)).to.equal(false);
+      expect(engines.has(ajv)).to.equal(false);
+    });
+
+    it('gives a tool the results of the validator it is built on', () => {
+      const info = getToolBowtieInfo(cli, index, '2020-12', {}, engines);
+
+      expect(info.kind).to.equal('tested');
+      expect(info.implementation?.id).to.equal('js-ajv');
+      expect(info.engine).to.equal(ajv);
+      expect(info.result?.badgeUrl).to.equal(
+        'https://bowtie.report/badges/js-ajv/compliance/draft2020-12.json',
+      );
+    });
+
+    it('does not name an engine for a tool Bowtie tests itself', () => {
+      const info = getToolBowtieInfo(ajv, index, '2020-12', {}, engines);
+
+      expect(info.implementation?.id).to.equal('js-ajv');
+      expect(info.engine).to.equal(undefined);
+    });
+
+    it('leaves a tool built on an untested validator off Bowtie', () => {
+      expect(
+        getToolBowtieInfo(onUntested, index, undefined, {}, engines).kind,
+      ).to.equal('not-on-bowtie');
     });
   });
 

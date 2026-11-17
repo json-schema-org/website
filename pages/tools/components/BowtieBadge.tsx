@@ -153,9 +153,24 @@ export default function BowtieBadge({
     );
   }
 
+  // A tool built on a validator Bowtie tests shows that validator's results
+  const engine = info.engine && (
+    <span
+      className='text-[11px] leading-4 text-slate-500 dark:text-slate-400'
+      title={`This tool is built on ${info.engine.name}, which is what Bowtie tests`}
+      data-test='bowtie-badge-engine'
+    >
+      via {info.engine.name}
+    </span>
+  );
+  const stackedClassName = classnames(
+    wrapperClassName,
+    'flex-col !items-start gap-0.5',
+  );
+
   if (!info.result) {
     return (
-      <span className={wrapperClassName}>
+      <span className={stackedClassName}>
         <Pill
           href={getBowtieImplementationUrl(info.implementation)}
           label={info.draft && draftLabel(info.draft)}
@@ -163,13 +178,15 @@ export default function BowtieBadge({
           title={`${info.implementation.id}: Bowtie does not test this implementation against this dialect. See the report on Bowtie.`}
           testId='bowtie-badge-untested'
         />
+        {engine}
       </span>
     );
   }
 
   return (
-    <span className={wrapperClassName}>
+    <span className={stackedClassName}>
       <BowtieResultBadge result={info.result} />
+      {engine}
     </span>
   );
 }

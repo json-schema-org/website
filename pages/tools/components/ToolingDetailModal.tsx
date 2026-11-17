@@ -300,6 +300,12 @@ export default function ToolingDetailModal({
             {implementation && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Report</h3>
+                {bowtieInfo?.engine && (
+                  <p className='text-[14px]'>
+                    Built on {bowtieInfo.engine.name}, which is what Bowtie
+                    tests.
+                  </p>
+                )}
                 <p className='text-[14px]'>
                   <span className='font-semibold'>{implementation.id}</span>
                   {implementation.version && (
