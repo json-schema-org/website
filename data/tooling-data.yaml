@@ -3759,6 +3759,7 @@
   toolingTypes: ['validator', 'annotations']
   languages: ['Java']
   environments: ['Windows', 'Linux', 'macOS']
+  dependsOnValidators: ['https://github.com/sourcemeta/blaze']
   creators:
     - name: 'Madhav Dhatrak (Contributor)'
       username: 'MadhavDhatrak'
