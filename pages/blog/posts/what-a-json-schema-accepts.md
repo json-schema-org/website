@@ -21,13 +21,13 @@ The question matters more than it used to. The same schema that filters a docume
 
 So I started testing the second situation on purpose. The tool is [greencheck](https://github.com/simin-yuan/greencheck). It takes an input that passes, breaks it in ways an editor might: deletes a line, blanks a value, shifts one character in a string. Then it runs the broken version through the same gate the schema owner ships. If the broken version passes too, the schema had nothing to say about that position.
 
-The operators are deliberately dumb. A tool that only knows how to delete a line and blank a value cannot argue with the author, and if one of those edits slips through, someone typing in a hurry will produce the same thing eventually.
+The edits are deliberately simple. If one of them slips through, someone typing in a hurry will eventually produce the same thing.
 
 ## Starting with the schemas people already ship
 
 38 schemas from SchemaStore, each with a real instance file beside it. 1,791 mutants could be judged, and 1,382 of them came back through the gate with no complaint. That is 77%.
 
-My first guess was that the escapes would cluster around validators I could name: one engine missing a keyword, another reading a format differently. They turned out duller than that. Most of them passed because there was nothing there to fail. A key sitting under `properties` and left out of `required` is optional as written, and nothing in the text separates an optional key from a forgotten one. Nothing was broken in the validator.
+My first guess was that the escapes would cluster around validators I could name: one engine missing a keyword, another reading a format differently. They turned out duller than that. Most of them landed on positions the schema never asked about. A string property with no length or pattern takes an empty string, and an object that never mentions extra keys takes any key you add. Nothing was broken in the validator.
 
 To check that this was more than a schema-level effect, I took 85 deletion mutants from the config files of five real tools, eslint and jshint among them, and fed them to those tools directly. The schema let 83 of them through, and the tools accepted all 83.
 
@@ -41,7 +41,7 @@ That one is repaired. SchemaStore's package.json schema now rejects an empty ver
 
 ## The second sample, where silence costs more
 
-The first sample is all draft-07 and all hand-written, one instance per schema. It says nothing about descriptions generated from code, so I went looking there.
+The first sample is all draft-07 and mostly hand-written, one instance per schema. It says nothing about descriptions generated from code, so I went looking there.
 
 20 OpenAPI 3.0 descriptions drawn from the APIs.guru directory, up to five examples each, with the descriptions' own example values as seeds. Keeping the seeds inside the document matters: every mutant is an edit to something the author already put in front of a reader. Every mutant went through sourcemeta/jsonschema's `validate --entrypoint`. Of the 545 mutants that could be judged, 304 passed. A little over half of the things I broke came back clean.
 
@@ -61,11 +61,11 @@ A reader who meets an object validated against one of those bases cannot tell wh
 
 If you maintain a schema, three cheap moves.
 
-Say it when you mean it. Where a position is meant to be open, write that down, and write `additionalProperties` explicitly wherever the dialect allows it. `additionalProperties` defaults to true, and a default is nobody's decision.
+Say it when you mean it. Where a position is meant to be open, write that down, and write `additionalProperties` explicitly wherever the dialect allows it. Leaving `additionalProperties` out behaves like `true`, and nothing in the text says whether anyone chose that. For a base schema that others extend, leave it open and close the object where it is composed; from 2019-09 on, `unevaluatedProperties` does that job.
 
 Keep a few examples that must fail. A check that has never failed tells you nothing about what it is checking, and two or three negative tests per schema show whether a constraint can fire at all.
 
-Run `valid_example` over your examples. Readers treat examples as documentation, and four of the ones I looked at could not pass their own schema.
+Validate your examples against their own schemas. Readers treat examples as documentation, and four of the ones I looked at could not pass. Any validator can run this check, and the sourcemeta/jsonschema linter now has a rule for it, `valid_example`.
 
 ## What I am trying
 
