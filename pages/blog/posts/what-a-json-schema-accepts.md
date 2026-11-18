@@ -61,7 +61,7 @@ A reader who meets an object validated against one of those bases cannot tell wh
 
 If you maintain a schema, three cheap moves.
 
-Say it when you mean it. Where a position is meant to be open, write that down, and write `additionalProperties` explicitly wherever the dialect allows it. Leaving `additionalProperties` out behaves like `true`, and nothing in the text says whether anyone chose that. For a base schema that others extend, leave it open and close the object where it is composed; from 2019-09 on, `unevaluatedProperties` does that job.
+Say it when you mean it. Where a position is meant to be open, write that down, and write `additionalProperties` explicitly wherever the dialect allows it. Leaving `additionalProperties` out behaves like `true`, and nothing in the text says whether anyone chose that. A base schema that others extend is the hard case: from 2019-09 on, an explicit `additionalProperties: true` on the base gets in the way of `unevaluatedProperties` in the schema that composes it, so the place that should state the intent is the one place that cannot.
 
 Keep a few examples that must fail. A check that has never failed tells you nothing about what it is checking, and two or three negative tests per schema show whether a constraint can fire at all.
 
@@ -80,6 +80,6 @@ git clone https://github.com/simin-yuan/greencheck
 cd greencheck && ./studies/reproduce.sh
 ```
 
-Here is the question I cannot answer alone. In your schemas, which positions are open on purpose, and how do you tell a reader that? I would like to hear how other people handle it, in the JSON Schema Slack or as an issue on the repository.
+Here is the question I cannot answer alone. In your schemas, which positions are open on purpose, and how do you tell a reader that? I would like to hear how other people handle it, in the JSON Schema Slack or as an issue on the greencheck repository.
 
 *Simin Yuan is an independent researcher. More at [github.com/simin-yuan](https://github.com/simin-yuan).*
