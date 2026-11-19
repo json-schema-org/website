@@ -6,14 +6,20 @@ const DESKTOP = '(min-width: 1024px)';
  * Where to pin something below the site's header, which is fixed to the top
  * of the window and changes height (the announcement banner can be closed).
  *
- * Gives a ref for the element being pinned, the offset to pin it at, and how
- * far from the top of the window content is hidden by the two of them, which
- * is how much room a link into the page has to leave above its target. The
- * pinned element only counts towards that at the sizes at which it is pinned.
+ * Gives a ref for the element being pinned, the offset to pin it at, how far
+ * from the top of the window content is hidden by the two of them, and the
+ * `scroll-margin-top` which makes a link into the page leave that much room
+ * above its target. The site already has every page leave some room for its
+ * header (a `scroll-padding-top`), which the margin is on top of. The pinned
+ * element only counts at the sizes at which it is pinned.
  */
 export default function usePinnedOffsets<T extends HTMLElement>() {
   const pinnedRef = useRef<T>(null);
-  const [offsets, setOffsets] = useState({ top: 0, covered: 0 });
+  const [offsets, setOffsets] = useState({
+    top: 0,
+    covered: 0,
+    scrollMargin: 0,
+  });
 
   useEffect(() => {
     const header = document.querySelector('header');
@@ -25,10 +31,19 @@ export default function usePinnedOffsets<T extends HTMLElement>() {
         ? (pinnedRef.current?.getBoundingClientRect().height ?? 0)
         : 0;
 
+      const covered = top + pinned;
+      const padding =
+        parseFloat(
+          window.getComputedStyle(document.documentElement).scrollPaddingTop,
+        ) || 0;
+      const scrollMargin = covered - padding;
+
       setOffsets((previous) =>
-        previous.top === top && previous.covered === top + pinned
+        previous.top === top &&
+        previous.covered === covered &&
+        previous.scrollMargin === scrollMargin
           ? previous
-          : { top, covered: top + pinned },
+          : { top, covered, scrollMargin },
       );
     };
 

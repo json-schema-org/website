@@ -20,6 +20,7 @@ import Sidebar from './components/Sidebar';
 import ToolingTable from './components/ToolingTable';
 import { useBowtieBadges, useBowtieIndex } from './hooks/useBowtie';
 import usePinnedOffsets from './hooks/usePinnedOffsets';
+import useScrollToHash from './hooks/useScrollToHash';
 import useToolsTransform from './hooks/useToolsTransform';
 import {
   findBowtieEngines,
@@ -121,7 +122,9 @@ export default function ToolingPage({
   filterCriteria,
 }: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const { pinnedRef, top, covered } = usePinnedOffsets<HTMLDivElement>();
+  const { pinnedRef, top, covered, scrollMargin } =
+    usePinnedOffsets<HTMLDivElement>();
+  useScrollToHash(covered);
   const { transform, setTransform, resetTransform } = useToolsTransform();
   const { index: bowtieIndex, isLoading: isBowtieLoading } = useBowtieIndex();
 
@@ -395,7 +398,7 @@ export default function ToolingPage({
               key={group ?? 'all'}
               id={group === null ? undefined : groupId(group)}
               className='mb-10'
-              style={{ scrollMarginTop: covered + 8 }}
+              style={{ scrollMarginTop: scrollMargin + 8 }}
               data-test='tools-group'
             >
               {group !== null && (
