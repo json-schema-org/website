@@ -139,7 +139,7 @@ A schema representing an event in a calendar, including properties like `startDa
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "description": "A representation of an event",
   "type": "object",
-  "required": [ "dtstart", "summary" ],
+  "required": [ "startDate", "summary" ],
   "properties": {
     "startDate": {
       "type": "string",
@@ -166,7 +166,7 @@ A schema representing an event in a calendar, including properties like `startDa
       "type": "string",
       "description": "Recurrence date"
     },
-    "recurrenceDule": {
+    "recurrenceRule": {
       "type": "string",
       "description": "Recurrence rule"
     },
@@ -191,7 +191,7 @@ A schema representing an event in a calendar, including properties like `startDa
   "endDate": "2023-08-25T12:00:00Z",
   "summary": "Conference Presentation",
   "location": "Conference Center",
-  "recurrenceDule": "FREQ=DAILY;COUNT=5"
+  "recurrenceRule": "FREQ=DAILY;COUNT=5"
 }
 ```
 
@@ -436,7 +436,7 @@ A schema representing a health record, including `patientName`, `dateOfBirth`, `
 
 ## Job posting
 
-A schema representing a job posting, including properties like `title`, `company`, `location`, `description`, `employmentType`, `salary`, and `applicationDeadline`. It also uses the `$anchor` keyword for defining an anchor.
+A schema representing a job posting, including properties like `title`, `company`, `location`, `description`, `employmentType`, `salary`, and `applicationDeadline`.
 
 ```json
 {
@@ -521,8 +521,7 @@ A schema representing a movie, including properties such as `title`, `director`,
       "type": "array",
       "items": {
         "type": "string"
-      },
-      "additionalItems": false
+      }
     }
   }
 }
