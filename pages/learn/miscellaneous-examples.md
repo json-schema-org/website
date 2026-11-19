@@ -327,7 +327,7 @@ Since both `foo` and `bar` are missing, the instance is still valid and in compl
 }
 ```
 
-The above schema is invalid, since the `foo` property is present, but `bar` is not, which invalidates the condition of the `dependentRequired` keyword. 
+The above instance is invalid, since the `foo` property is present, but `bar` is not, which invalidates the condition of the `dependentRequired` keyword. 
 
 
 ## Conditional validation with dependentSchemas
@@ -396,7 +396,7 @@ In this, we have `foo` as true, but `propertiesCount` is 5, and in the schema, `
 
 ## Conditional validation with if-else
 
-In this schema, we have two properties: `isMember` and `membershipNumber`. The conditional validation is based on the value of the `isMember` property. The validation keywords [if](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.2.2.1), [then](https://json-schema.org/draft/2020-12/json-schema-core.html#name-then), and [else](https://json-schema.org/draft/2020-12/json-schema-core.html#name-else).
+In this schema, we have two properties: `isMember` and `membershipNumber`. The conditional validation is based on the value of the `isMember` property. This example demonstrates the validation keywords [if](https://json-schema.org/draft/2020-12/json-schema-core.html#section-10.2.2.1), [then](https://json-schema.org/draft/2020-12/json-schema-core.html#name-then), and [else](https://json-schema.org/draft/2020-12/json-schema-core.html#name-else).
 
 Here's how the validation works in this example:
 

@@ -25,8 +25,8 @@ AND, OR, XOR, and NOT. The keywords used to combine schemas are the following:
     subschemas
 - `not`: (NOT) Must *not* be valid against the given schema
 
-All of these keywords must be set to an array, where each item is a
-schema. Be careful with recursive schemas as they can exponentially increase processing times.
+The `allOf`, `anyOf`, and `oneOf` keywords must be set to an array, where each item is a
+schema. The `not` keyword must be set to a single schema. Be careful with recursive schemas as they can exponentially increase processing times.
 
 In the following sections you will learn to use these keywords to express
 complex constraints that can\'t otherwise be expressed with standard
