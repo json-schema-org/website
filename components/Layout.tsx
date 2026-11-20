@@ -28,8 +28,10 @@ type Props = {
   whiteBg?: boolean;
 };
 // apiKey and appId are set in the .env.local file
-const algoliaAppId: string = process.env.NEXT_PUBLIC_ALGOLIA_APP_ID as string;
-const algoliaApiKey: string = process.env.NEXT_PUBLIC_ALGOLIA_API_KEY as string;
+const algoliaAppId: string =
+  process.env.NEXT_PUBLIC_ALGOLIA_APP_ID || '6ZT4KX2OUI';
+const algoliaApiKey: string =
+  process.env.NEXT_PUBLIC_ALGOLIA_API_KEY || '69f76fba13585144f6686622e9c8f2a8';
 
 // const responsiveClasses = 'w-screen'
 
@@ -160,6 +162,10 @@ export default function Layout({
 }
 
 export const Search = () => {
+  if (!algoliaAppId || !algoliaApiKey) {
+    return null;
+  }
+
   return (
     <DocSearch
       appId={algoliaAppId}
