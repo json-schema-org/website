@@ -15,9 +15,9 @@ excerpt: "A validation run that comes back clean says less than it looks like. M
 language: en
 ---
 
-A validation run comes back clean, and I want to know what the clean meant. Two very different situations produce the same empty error list: the document was written the way its author intended, or the schema never asked about the part that went wrong.
+A validation run comes back clean, and I want to know what a clean result meant. Two very different situations produce the same empty error list: the document was written the way its author intended, or the schema never asked about the part that went wrong.
 
-The question matters more than it used to. The same schema that filters a document is now handed to code generators and structured-output tools as a description of what to produce, and whatever it leaves open, a generator can fill and still pass.
+The question matters more than it used to. The same schema that filters a document is now handed to code generators and LLM structured-output features as a description of what to produce, and whatever it leaves open, a generator can fill and still pass.
 
 So I started testing the second situation on purpose. The tool is [greencheck](https://github.com/simin-yuan/greencheck). It takes an input that passes, breaks it in ways an editor might: deletes a line, blanks a value, shifts one character in a string. Then it runs the broken version through the same gate the schema owner ships. If the broken version passes too, the schema had nothing to say about that position.
 
@@ -25,11 +25,11 @@ The edits are deliberately simple. If one of them slips through, someone typing 
 
 ## Starting with the schemas people already ship
 
-38 schemas from SchemaStore, each with a real instance file beside it. 1,791 mutants could be judged, and 1,382 of them came back through the gate with no complaint. That is 77%.
+38 schemas from [SchemaStore](https://www.schemastore.org), each with a real instance file beside it. 1,791 mutants could be judged, and 1,382 of them came back through the gate with no complaint. That is 77%.
 
 My first guess was that the escapes would cluster around validators I could name: one engine missing a keyword, another reading a format differently. They turned out duller than that. Most of them landed on positions the schema never asked about. A string property with no length or pattern takes an empty string, and an object that never mentions extra keys takes any key you add. Nothing was broken in the validator.
 
-To check that this was more than a schema-level effect, I took 85 deletion mutants from the config files of five real tools, eslint and jshint among them, and fed them to those tools directly. The schema let 83 of them through, and the tools accepted all 83.
+To check that this was more than a schema-level effect, I took 85 deletion mutants from the config files of five real tools, [eslint](https://eslint.org) and [jshint](https://jshint.com) among them, and fed them to those tools directly. The schema let 83 of them through, and the tools accepted all 83.
 
 One escaped mutant blanked the version string in a package.json. The schema accepted the empty string; npm would not pack it:
 
@@ -41,15 +41,15 @@ That one is repaired. SchemaStore's package.json schema now rejects an empty ver
 
 ## The second sample, where silence costs more
 
-The first sample is all draft-07 and mostly hand-written, one instance per schema. It says nothing about descriptions generated from code, so I went looking there.
+The first sample is all Draft 7 and mostly hand-written, one instance per schema. It says nothing about descriptions generated from code, so I went looking there.
 
-20 OpenAPI 3.0 descriptions drawn from the APIs.guru directory, up to five examples each, with the descriptions' own example values as seeds. Keeping the seeds inside the document matters: every mutant is an edit to something the author already put in front of a reader. Every mutant went through sourcemeta/jsonschema's `validate --entrypoint`. Of the 545 mutants that could be judged, 304 passed. A little over half of the things I broke came back clean.
+20 OpenAPI 3.0 descriptions drawn from the [APIs.guru](https://apis.guru) directory, up to five examples each, with the descriptions' own example values as seeds. Keeping the seeds inside the document matters: every mutant is an edit to something the author already put in front of a reader. Every mutant went through [sourcemeta/jsonschema](https://github.com/sourcemeta/jsonschema)'s `validate --entrypoint`. Of the 545 mutants that could be judged, 304 passed. A little over half of the things I broke came back clean.
 
 Two results I did not expect.
 
-Four of the examples do not validate against the schema shipped beside them. They are plain type mismatches: a string where an array was wanted, an object where a string was wanted, and two nulls where a string was wanted. The rule built for this case, `valid_example` ([sourcemeta/jsonschema#926](https://github.com/sourcemeta/jsonschema/pull/926)), shipped in 17.3.3, and it reports all four. In that same vtex settings schema it also reports two property-level examples I had not counted, so the run reports six, and all six are real mismatches.
+Four of the examples do not validate against the schema shipped beside them. They are plain type mismatches: a string where an array was wanted, an object where a string was wanted, and two nulls where a string was wanted. The rule built for this case, `valid_example` ([sourcemeta/jsonschema#926](https://github.com/sourcemeta/jsonschema/pull/926)), shipped in 17.3.3, and it reports all four. In that same settings schema from [VTEX](https://vtex.com), an e-commerce platform, it also reports two property-level examples I had not counted, so the run reports six, and all six are real mismatches.
 
-And two of the 20 documents were never judged at all. The CLI refused to read them: each repeats a templated path in its Paths Object, which OAS 3.0 forbids. A tool that only reads `components.schemas` never reaches that layer, so both documents would look fine to it.
+And two of the 20 documents were never judged at all. The CLI refused to read them: each repeats a templated path in its Paths Object, which OAS 3.0 forbids. A tool that only reads `/components/schemas` never reaches that layer, so both documents would look fine to it.
 
 ## Where the silence is
 
