@@ -260,7 +260,7 @@ const MainNavigation = () => {
 
       <MainNavLink
         className='hidden lg:block hover:underline'
-        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
+        uri='/tools'
         label='Tools'
         isActive={section === 'tools'}
       />
@@ -358,11 +358,7 @@ const MobileNav = ({ topOffset }: { topOffset: number }) => {
         isActive={section === 'docs'}
       />
 
-      <MainNavLink
-        uri='/tools?query=&sortBy=name&sortOrder=ascending&groupBy=toolingTypes&licenses=&languages=&drafts=&toolingTypes=&environments='
-        label='Tools'
-        isActive={section === 'tools'}
-      />
+      <MainNavLink uri='/tools' label='Tools' isActive={section === 'tools'} />
       <MainNavLink uri='/blog' label='Blog' isActive={section === 'blog'} />
       <MainNavLink
         uri='/community'

@@ -87,49 +87,45 @@
         }
       },
       "languages": {
-        "description": "The language or languages a tool is built in. In the case of a validator, this will likely be the language it is written in. In the case of a conversion or transformation tool, these are the languages that are supported in some capacity.",
+        "description": "The programming languages the tool is for. For a library, the language it is used from: a library for a JavaScript runtime is listed as JavaScript whatever it is written in, and as TypeScript too if it is written in TypeScript or its package includes its own type declarations. A tool which only works with TypeScript types themselves is listed as TypeScript alone. For a code generator, the languages it generates. A tool with a separate library for each of several languages has an entry for each library, rather than one entry listing every language. Applications, and the formats a tool converts from or to, are not languages.",
         "type": "array",
+        "uniqueItems": true,
         "items": {
-          "description": "Individual language name, from the list unless not included.",
-          "type": "string",
-          "anyOf": [
-            {
-              "enum": [
-                [
-                  "Common Lisp",
-                  "Rust",
-                  "Elm",
-                  ".NET",
-                  "PHP",
-                  "Clojure",
-                  "Helm",
-                  "Python",
-                  "XSD",
-                  "Scala",
-                  "Orderly",
-                  "Kotlin",
-                  "Elixir",
-                  "RAML",
-                  "Erlang",
-                  "Java",
-                  "Lua",
-                  "OpenAPI",
-                  "Perl",
-                  "TypeScript",
-                  "Ruby",
-                  "Objective-C",
-                  "Swift",
-                  "C#",
-                  "Go",
-                  "C++",
-                  "JavaScript",
-                  "Julia"
-                ]
-              ]
-            },
-            {
-              "description": "A string value not yet included in the list of languages"
-            }
+          "description": "The name of a programming language. A language which is not in the list yet is added to it along with the first tool to use it, so that each language is only ever spelled one way.",
+          "enum": [
+            ".NET",
+            "C",
+            "C++",
+            "Clojure",
+            "CoffeeScript",
+            "Common Lisp",
+            "Dart",
+            "Elixir",
+            "Elm",
+            "Erlang",
+            "Fortran",
+            "Go",
+            "Groovy",
+            "Haskell",
+            "Java",
+            "JavaScript",
+            "Julia",
+            "Kotlin",
+            "Lua",
+            "Object Pascal",
+            "Objective-C",
+            "OCaml",
+            "Perl",
+            "PHP",
+            "PL/pgSQL",
+            "Python",
+            "R",
+            "Ruby",
+            "Rust",
+            "Scala",
+            "Swift",
+            "TypeScript",
+            "Unison"
           ]
         }
       },
@@ -236,6 +232,19 @@
             }
           }
         },
+        "additionalProperties": false
+      },
+      "bowtie": {
+        "description": "How the tool is known to Bowtie (https://bowtie.report), for tools whose compliance with the specification Bowtie reports on.",
+        "type": "object",
+        "properties": {
+          "identifier": {
+            "description": "The identifier Bowtie gives the implementation, as found in https://bowtie.report/implementations.json and in the address of its report (js-ajv, for example). An entry is for one implementation, so two entries never have the same identifier.",
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+          }
+        },
+        "required": ["identifier"],
         "additionalProperties": false
       },
       "toolingListingNotes": {

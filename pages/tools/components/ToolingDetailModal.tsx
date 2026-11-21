@@ -1,25 +1,78 @@
-import React, { useEffect, useState } from 'react';
+import React, { type ComponentType, useEffect, useMemo } from 'react';
 
 import CancelIcon from '~/public/icons/cancel.svg';
 import { Button } from '~/components/ui/button';
 
 import Badge from './ui/Badge';
-import type { BowtieData, JSONSchemaTool } from '../JSONSchemaTool';
+import type { JSONSchemaTool } from '../JSONSchemaTool';
+import { DRAFT_ORDER } from '~/lib/config';
+import { useBowtieBadges } from '../hooks/useBowtie';
+import {
+  BOWTIE_DIALECT_URIS,
+  getBowtieBadgeUrl,
+  getBowtieImplementationUrl,
+  parseCompliance,
+  type BowtieResult,
+  type ToolBowtieInfo,
+} from '../lib/bowtie';
+import { BowtieResultBadge } from './BowtieBadge';
 import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 import Image from 'next/image';
 import Tag from './ui/Tag';
-import StyledMarkdown from '~/components/StyledMarkdown';
+import dynamic from 'next/dynamic';
+
+// The markdown renderer is sizeable, and only the few tools with notes need it
+const StyledMarkdown = dynamic(() => import('~/components/StyledMarkdown'));
 
 export default function ToolingDetailModal({
   tool,
-  bowtieData,
+  bowtieInfo,
   onClose,
+  Markdown = StyledMarkdown,
 }: {
   tool: JSONSchemaTool;
-  bowtieData?: BowtieData | null;
+  bowtieInfo?: ToolBowtieInfo | null;
   onClose: () => void;
+  /** What renders the tool's notes, which are markdown. */
+  Markdown?: ComponentType<{ markdown?: string }>;
 }) {
+  // Every dialect Bowtie tests the tool against, rather than only the one
+  // the list is showing.
+  const implementation = bowtieInfo?.implementation;
+  const bowtieDrafts = useMemo(
+    () =>
+      DRAFT_ORDER.filter((draft) => {
+        const uri = BOWTIE_DIALECT_URIS[draft];
+        return uri !== undefined && implementation?.dialects.includes(uri);
+      }),
+    [implementation],
+  );
+  const badgeUrls = useMemo(
+    () =>
+      implementation
+        ? bowtieDrafts.map((draft) => getBowtieBadgeUrl(implementation, draft))
+        : [],
+    [implementation, bowtieDrafts],
+  );
+  const badges = useBowtieBadges(badgeUrls);
+  const bowtieResults = bowtieDrafts.flatMap((draft): BowtieResult[] => {
+    if (!implementation) return [];
+
+    const badgeUrl = getBowtieBadgeUrl(implementation, draft);
+    const badge = badges[badgeUrl];
+
+    return [
+      {
+        implementation,
+        draft,
+        badgeUrl,
+        badge,
+        compliance: parseCompliance(badge),
+      },
+    ];
+  });
+
   useEffect(() => {
     document.body.classList.add('no-scroll');
     return () => {
@@ -154,7 +207,7 @@ export default function ToolingDetailModal({
             {tool.toolingListingNotes && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Tooling Listing Notes</h3>
-                <StyledMarkdown markdown={tool.toolingListingNotes} />
+                <Markdown markdown={tool.toolingListingNotes} />
               </div>
             )}
 
@@ -250,32 +303,31 @@ export default function ToolingDetailModal({
               </div>
             )}
 
-            {bowtieData && (
+            {implementation && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Bowtie Report</h3>
-                {bowtieData.badges_urls?.supported_versions && (
-                  <div>
-                    <h4 className='text-[14px] font-semibold'>
-                      Supported Versions:
-                    </h4>
-                    <BowtieReportBadge
-                      uri={bowtieData.badges_urls.supported_versions}
-                    />
-                  </div>
+                {bowtieInfo?.engine && (
+                  <p className='text-[14px]'>
+                    Built on {bowtieInfo.engine.name}, which is what Bowtie
+                    tests.
+                  </p>
                 )}
-                {bowtieData.badges_urls?.compliance && (
-                  <div>
-                    <h4 className='text-[14px] font-semibold'>Compliance:</h4>
-                    {Object.values(bowtieData.badges_urls.compliance).map(
-                      (badgeURI) => (
-                        <BowtieReportBadge key={badgeURI} uri={badgeURI} />
-                      ),
-                    )}
-                  </div>
-                )}
+                <p className='text-[14px]'>
+                  <span className='font-semibold'>{implementation.id}</span>
+                  {implementation.version && (
+                    <span> (version {implementation.version})</span>
+                  )}
+                </p>
+                <ul className='list-none flex flex-wrap gap-1 my-1'>
+                  {bowtieResults.map((result) => (
+                    <li key={result.badgeUrl} className='flex'>
+                      <BowtieResultBadge result={result} />
+                    </li>
+                  ))}
+                </ul>
                 <Link
                   className='text-[14px] underline italic'
-                  href={`https://bowtie.report/#/implementations/${bowtieData.id}`}
+                  href={getBowtieImplementationUrl(implementation)}
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -317,13 +369,6 @@ export default function ToolingDetailModal({
               </div>
             )}
 
-            {bowtieData && (
-              <div className='break-inside-avoid mb-4'>
-                <h3 className='text-lg font-semibold'>Bowtie Identifier</h3>
-                <p>{bowtieData.id}</p>
-              </div>
-            )}
-
             {tool.dependsOnValidators && (
               <div className='break-inside-avoid mb-4'>
                 <h3 className='text-lg font-semibold'>Depends On Validators</h3>
@@ -361,48 +406,3 @@ export default function ToolingDetailModal({
     </div>
   );
 }
-
-const BowtieReportBadge = ({ uri }: { uri: string }) => {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    const checkImage = async () => {
-      try {
-        const response = await fetch(
-          `https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`,
-        );
-        if (response.ok) {
-          setLoading(false);
-        } else {
-          setLoading(false);
-          setError(true);
-        }
-      } catch (err) {
-        setLoading(false);
-        setError(true);
-      }
-    };
-    checkImage();
-  }, [uri]);
-
-  return (
-    <div className='my-1'>
-      {loading && !error && (
-        <div className='animate-pulse bg-gray-300 dark:bg-slate-600 h-6 w-[176px] rounded-md'></div>
-      )}
-      {!loading && !error && (
-        <Image
-          src={`https://img.shields.io/endpoint?url=${encodeURIComponent(uri)}`}
-          alt='Bowtie Badge'
-          className='my-1 h-[20px] w-auto'
-          width={100}
-          height={20}
-        />
-      )}
-      {error && (
-        <div className='text-red-500 text-sm mt-1'>Failed to load badge</div>
-      )}
-    </div>
-  );
-};
