@@ -76,7 +76,7 @@ export default function DarkModeToggle() {
     }
   };
 
-  const handleSelectTheme = (selectedTheme: string) => {
+  const handleSelectTheme = (selectedTheme: 'system' | 'light' | 'dark') => {
     setTheme(selectedTheme);
     setShowSelect(false);
   };
