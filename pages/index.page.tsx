@@ -108,8 +108,7 @@ const Home = (props: any) => {
       rxdb: '/img/logos/sponsors/rxdb.svg',
       wda: '/img/logos/sponsors/wda-dark.svg',
       transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-white.png',
-      sourcemeta: '/img/logos/sponsors/sourcemeta-logo-light.svg',
-      dottxt: '/img/logos/sponsors/dottxt-logo-white.svg',
+      zeil: '/img/logos/sponsors/zeil-logo-dark.png',
       supadata: '/img/logos/sponsors/supadata-logo-light.svg',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
@@ -138,9 +137,8 @@ const Home = (props: any) => {
       rxdb: '/img/logos/sponsors/rxdb.svg',
       wda: '/img/logos/sponsors/wda.svg',
       transcriptfetch: '/img/logos/sponsors/transcriptfetch-logo-dark.png',
-      sourcemeta: '/img/logos/sponsors/sourcemeta-logo-dark.svg',
       supadata: '/img/logos/sponsors/supadata-logo-dark.svg',
-      dottxt: '/img/logos/sponsors/dottxt-logo-dark.svg',
+      zeil: '/img/logos/sponsors/zeil-logo-light.png',
       devevents: '/img/logos/dark-mode/dev_events_logo.png',
       nix: '/img/logos/sponsors/n-ix-logo.png',
       oracle: '/img/logos/sponsors/Oracle.png',
@@ -867,31 +865,16 @@ const Home = (props: any) => {
                 )}
               </a>
               <a
-                href='https://dottxt.ai/'
+                href='https://www.zeil.com/'
                 target='_blank'
                 rel='noopener noreferrer'
               >
                 {isClient && (
                   <>
                     <img
-                      src={logos.dottxt}
+                      src={logos.zeil}
                       className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='dottxt logo'
-                    />
-                  </>
-                )}
-              </a>
-              <a
-                href='https://www.sourcemeta.com/'
-                target='_blank'
-                rel='noopener noreferrer'
-              >
-                {isClient && (
-                  <>
-                    <img
-                      src={logos.sourcemeta}
-                      className='w-44 transition-transform duration-300 hover:scale-105'
-                      alt='sourcemeta logo'
+                      alt='ZEIL'
                     />
                   </>
                 )}
