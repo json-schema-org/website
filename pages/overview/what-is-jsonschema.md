@@ -13,6 +13,14 @@ next:
 
 When it comes to data exchange, JSON Schema stands out as a powerful standard for defining the structure and rules of JSON data. It uses a set of [keywords](https://json-schema.org/learn/glossary#keyword) to define the properties of your data.
 
+### The Structural Blueprint and Pure Function Engine
+Think of JSON Schema as an **architectural blueprint** written in plain, declarative JSON (not executable code) that acts as a strict contract for incoming data.
+
+A JSON Schema validator functions as a **pure function engine**:
+$$\text{Validator}(\text{Schema}, \text{Instance}) \longrightarrow \text{Result}$$
+
+Instead of scattering manual type checks and validation rules throughout your business logic, the engine evaluates raw JSON (Instance) against the contract (Schema) at your application's perimeter, rejecting invalid data shapes instantly before they can trigger unexpected errors or backend crashes.
+
 While JSON Schema provides the language, validating a JSON [instance](https://json-schema.org/learn/glossary#instance) against a [schema](https://json-schema.org/learn/glossary#schema) requires a JSON Schema [validator](https://json-schema.org/tools#validators). The JSON validator checks if the JSON documents conform to the schema.
 
 JSON Schema Validators are tools that implement the JSON Schema specification. Such tooling enables easy integration of JSON Schema into projects of any size.
