@@ -35,6 +35,7 @@ const getCategories = (frontmatter: any): blogCategories[] => {
   return Array.isArray(cat) ? cat : [cat];
 };
 
+/* istanbul ignore next: getStaticProps runs only at build-time on server */
 export async function getStaticProps() {
   const files = fs.readdirSync(PATH);
   const blogPosts = files
