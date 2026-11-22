@@ -18,7 +18,7 @@ It is meant to aid the understanding of those less familiar with formal language
 
 If you encounter a term you wish were defined here, please feel free to [file an issue requesting it](https://github.com/json-schema-org/website/issues/new?title=Add%20a%20glossary%20entry%20for%20).
 
-The entries on this page can be linked to via anchor links (e.g. `https://json-schema.org/learn/glossary.html#vocabulary`) when sharing a definition with others.
+The entries on this page can be linked to via anchor links (e.g. `https://json-schema.org/learn/glossary#vocabulary`) when sharing a definition with others.
 
 ### dialect
 
@@ -86,12 +86,22 @@ In particular it does not reserve any properties within a JSON object for its ow
 
 ### meta-schema
 
-A [schema](#schema) which is itself intended to describe other *schemas*.
+A [schema](#schema) which is itself intended to describe and validate other *schemas*.
 
 JSON Schema defines a language for describing any [instance](#instance) using a schema written in JSON.
-Since schemas are themselves JSON values, they may be also be treated as *instances*, and therefore described by other schemas.
+Since schemas are themselves JSON values, they can also be treated as *instances*, and therefore described and validated by other schemas. We refer to the schema-of-a-schema as a "meta-schema" to express this use.
 
-We refer to the schema-of-a-schema as a "meta-schema" to express this use.
+#### The Hierarchy (Russian Nesting Dolls)
+Think of the validation chain like a set of nested Russian dolls:
+$$\text{Data (Instance)} \longrightarrow \text{Schema} \longrightarrow \text{Meta-Schema}$$
+Every layer must conform to the expected shape dictated by the layer above it:
+1. **Raw Data (Instance)**: Evaluated against your application schema.
+2. **Application Schema**: Evaluated against the dialect's official meta-schema.
+
+#### The Bootstrap Paradox and The Ouroboros Axiom
+If every schema requires a rulebook to validate it, *what validates the highest rulebook?*
+
+JSON Schema terminates this potential infinite regress with the **Ouroboros Axiom**: the core meta-schema **self-validates**. Acting as a foundational mathematical axiom, the root meta-schema conforms to its own rules, terminating the infinite rule-checking loop and anchoring the entire validation chain.
 
 ### normative
 
@@ -100,7 +110,7 @@ This is as distinct from *non*-normative or informational documents, meant to ex
 
 Distinguishing between whether a document is normative or not is intended to clarify to those using the document whether its contents are allowed to contradict or augment behavior described in other normative documents.
 JSON Schema's normative documents notably include its [specification](../specification).
-This page for instance, not being a normative document, is not able to proscribe new JSON Schema behavior not already covered by the specification.
+This page for instance, not being a normative document, is not able to prescribe new JSON Schema behavior not already covered by the specification.
 
 #### See also
 
@@ -108,7 +118,7 @@ This page for instance, not being a normative document, is not able to proscribe
 
 ### schema
 
-A document, written according to the proscribed structure of the JSON Schema specification, which can be used to describe [instances](#instance).
+A document, written according to the prescribed structure of the JSON Schema specification, which can be used to describe [instances](#instance).
 
 The rules constituting which schemas are conformant, as well as the rules governing their behavior when validating instances, are defined by the [JSON Schema specification](../specification).
 

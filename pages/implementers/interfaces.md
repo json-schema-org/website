@@ -127,6 +127,10 @@ In some sense, two argument validation is the simplest possible API for JSON Sch
 An API which attempts to prepare a schema for repeated use.
 It may (and likely will) perform some form of preoptimization, performing some set of work ahead of time such that it will not be necessary to repeat when validating many instances.
 
+High-performance engines typically implement this through an **Abstract Syntax Tree (AST)** and memory optimization:
+* **Text-to-Tree**: Upon initialization, the engine reads and parses the JSON schema once, stripping formatting and syntax fluff, and compiling it into an in-memory AST.
+* **Runtime Speed via Direct Pointers**: By eliminating on-the-fly string parsing during request validation, the engine evaluates incoming data through direct memory pointers, traversing AST nodes at lightning-fast binary speeds.
+
 ### Subschema Validation
 
 **Type**: `Schema` × `String` × `Instance` → `Result`

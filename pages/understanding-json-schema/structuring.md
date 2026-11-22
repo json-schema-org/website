@@ -65,7 +65,7 @@ necessarily network-addressable. They are just identifiers. Generally,
 [implementations](../learn/glossary#implementation) don\'t make HTTP requests (`https://`) or read from the
 file system (`file://`) to fetch schemas. Instead, they provide a way to
 load schemas into an internal schema database. When a schema is
-referenced by it\'s URI identifier, the schema is retrieved from the
+referenced by its URI identifier, the schema is retrieved from the
 internal schema database.
 
 <Keywords label="single: base URI single: structuring; base URI" />
@@ -446,6 +446,52 @@ infinite loop in the resolver, and is explicitly disallowed.
   "$defs": {
     "alice": { "$ref": "#/$defs/bob" },
     "bob": { "$ref": "#/$defs/alice" }
+  }
+}
+```  
+
+### Resolving Recursion: Cyclic Graphs and Memory Anchors
+
+When modeling hierarchical or self-referential data (such as nested folder trees, organization charts, or comment threads), schemas must reference themselves.
+
+#### The Infinite Expansion Trap vs. The Cyclic Graph Solution
+If an engine attempted to resolve recursive schemas by naively expanding text inline, it would create an infinite tree, quickly resulting in call-stack overflows.
+
+Modern JSON Schema compilers resolve this by treating the schema as a **cyclic directed graph**: a tree with intentional memory loops:
+* **Memory Anchors (`$defs`)**: Reusable subschemas are allocated a single, specific address in memory.
+* **Direct Pointers (`$ref`)**: References do not clone or duplicate schema nodes. Instead, they wire a direct pointer back to the existing anchor in memory.
+* **Lazy Evaluation**: The engine does not pre-evaluate infinite depths. At runtime, it only traverses the recursive loop as deep as the actual incoming data payload requires.
+
+#### Recursive Implementation Example (`FolderTree`)
+Instead of expanding text endlessly, the engine resolves `"$ref": "#/$defs/FolderNode"` by wiring a direct pointer back to the `$defs` container:
+
+```json
+// props { "isSchema": true }
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/folder.schema.json",
+  "title": "FolderTree",
+  "type": "object",
+  "required": ["name", "subFolders"],
+  "properties": {
+    "name": { "type": "string" },
+    "subFolders": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/FolderNode" }
+    }
+  },
+  "$defs": {
+    "FolderNode": {
+      "type": "object",
+      "required": ["name", "subFolders"],
+      "properties": {
+        "name": { "type": "string" },
+        "subFolders": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/FolderNode" }
+        }
+      }
+    }
   }
 }
 ```  
