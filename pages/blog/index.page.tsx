@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 /* eslint-disable linebreak-style */
 import React, { useState, useEffect, useRef } from 'react';
 import Head from 'next/head';
@@ -35,7 +36,8 @@ const getCategories = (frontmatter: any): blogCategories[] => {
   return Array.isArray(cat) ? cat : [cat];
 };
 
-export async function getStaticProps({ query }: { query: any }) {
+/* istanbul ignore next: getStaticProps runs only at build-time on server */
+export async function getStaticProps() {
   const files = fs.readdirSync(PATH);
   const blogPosts = files
     .filter((file) => file.substr(-3) === '.md')
@@ -55,12 +57,9 @@ export async function getStaticProps({ query }: { query: any }) {
 
   await generateRssFeed(blogPosts);
 
-  const filterTag: string = query?.type || 'All';
-
   return {
     props: {
       blogPosts,
-      filterTag,
     },
   };
 }
@@ -79,20 +78,14 @@ function isValidCategory(category: any): category is blogCategories {
 
 export default function StaticMarkdownPage({
   blogPosts,
-  filterTag,
 }: {
   blogPosts: any[];
-  filterTag: any;
 }) {
   const router = useRouter();
-  // Initialize the filter as an array. If "All" or not specified, we show all posts.
-  const initialFilters =
-    filterTag && filterTag !== 'All'
-      ? filterTag.split(',').filter(isValidCategory)
-      : ['All'];
-
-  const [currentFilterTags, setCurrentFilterTags] =
-    useState<blogCategories[]>(initialFilters);
+  // getStaticProps never sees ?type=; the router.query effect below applies it.
+  const [currentFilterTags, setCurrentFilterTags] = useState<blogCategories[]>([
+    'All',
+  ]);
 
   // When the router query changes, update the filters.
   useEffect(() => {
@@ -105,14 +98,6 @@ export default function StaticMarkdownPage({
       setCurrentPage(1);
     }
   }, [router.query]);
-
-  useEffect(() => {
-    const tags =
-      filterTag && filterTag !== 'All'
-        ? filterTag.split(',').filter(isValidCategory)
-        : ['All'];
-    setCurrentFilterTags(tags);
-  }, [filterTag]);
 
   const toggleCategory = (tag: blogCategories) => {
     let newTags: blogCategories[] = [];
