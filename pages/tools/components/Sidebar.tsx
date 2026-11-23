@@ -13,11 +13,11 @@ import LicenseIcon from '~/public/icons/license.svg';
 import { Button } from '~/components/ui/button';
 import DropdownMenu from './ui/DropdownMenu';
 import Checkbox from './ui/Checkbox';
-import SearchBar from './SearchBar';
 import toTitleCase from '../lib/toTitleCase';
-import type { Transform } from '../hooks/useToolsTransform';
+import type { SetTransform, Transform } from '../hooks/useToolsTransform';
 import type { FilterCriteriaFields } from '../index.page';
 import { postAnalytics } from '../lib/postAnalytics';
+import { DEFAULT_TRANSFORM } from '../lib/transformTools';
 
 const filterIcons = {
   languages: LanguageIcon,
@@ -30,7 +30,7 @@ const filterIcons = {
 interface SidebarProps {
   filterCriteria: Record<FilterCriteriaFields, string[]>;
   transform: Transform;
-  setTransform: Dispatch<SetStateAction<Transform>>;
+  setTransform: SetTransform;
   resetTransform: () => void;
   setIsSidebarOpen: Dispatch<SetStateAction<boolean>>;
 }
@@ -82,7 +82,7 @@ export default function Sidebar({
     e.preventDefault();
     setTransform(pendingSelections);
     postAnalytics({ eventType: 'query', eventPayload: pendingSelections });
-    setIsSidebarOpen((prev) => !prev);
+    setIsSidebarOpen(false);
   };
 
   const clearFilters = () => {
@@ -90,24 +90,9 @@ export default function Sidebar({
       filterFormRef.current.reset();
     }
 
-    // Reset pending selections to initial empty state
-    const initialTransform: Transform = {
-      query: '',
-      sortBy: 'name',
-      sortOrder: 'ascending',
-      groupBy: 'toolingTypes',
-      languages: [],
-      licenses: [],
-      drafts: [],
-      toolingTypes: [],
-      environments: [],
-      showObsolete: 'false',
-      supportsBowtie: 'false',
-    };
-
-    setPendingSelections(initialTransform);
+    setPendingSelections(DEFAULT_TRANSFORM);
     resetTransform();
-    setIsSidebarOpen((prev) => !prev);
+    setIsSidebarOpen(false);
   };
 
   const [openDropdown, setOpenDropdown] = useState<string | null>('languages');
@@ -119,12 +104,6 @@ export default function Sidebar({
   return (
     <div className='pb-4 top-12 mx-auto lg:ml-4 lg:mt-8 w-4/5 h-fit'>
       <form onSubmit={applyFilters} ref={filterFormRef} className='w-full'>
-        <SearchBar
-          transform={pendingSelections}
-          onQueryChange={(query) =>
-            setPendingSelections((prev) => ({ ...prev, query }))
-          }
-        />
         {filters.map(({ label, accessorKey }) => {
           const checkedValues =
             pendingSelections[accessorKey as keyof Transform] || [];
@@ -174,7 +153,7 @@ export default function Sidebar({
         />
 
         <Checkbox
-          label='Support Bowtie'
+          label='On Bowtie only'
           value='supportsBowtie'
           name='supportsBowtie'
           checked={pendingSelections.supportsBowtie === 'true'}

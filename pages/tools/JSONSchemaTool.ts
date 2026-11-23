@@ -2,6 +2,16 @@ import type { JSONSchemaDraft } from '~/lib/config';
 
 export interface JSONSchemaTool {
   name: string;
+  /**
+   * The project the tool is part of, for a project with a separate tool for
+   * each of several languages.
+   */
+  project?: string;
+  /**
+   * The tools this entry stands for, when it is not in the tooling data
+   * itself but is the single entry for a project's tools.
+   */
+  members?: JSONSchemaTool[];
   description?: string;
   toolingTypes: string[];
   languages?: string[];
@@ -21,7 +31,10 @@ export interface JSONSchemaTool {
       source: string;
     }[];
   };
-  bowtie?: BowtieData;
+  bowtie?: {
+    /** The identifier Bowtie gives the implementation, e.g. `js-ajv`. */
+    identifier: string;
+  };
   toolingListingNotes?: string;
   compliance?: {
     config?: {
@@ -44,17 +57,23 @@ export interface Person {
   platform?: 'github' | 'gitlab' | 'bitbucket' | string;
 }
 
-export interface BowtieData {
-  id: string;
-  dialects: Array<string>;
-  badges_urls: {
-    supported_versions: string;
-    compliance: {
-      [dialectURI: string]: string;
-    };
-  };
+/** An implementation's metadata, as published by Bowtie. */
+export interface BowtieImplementationMetadata {
+  name: string;
+  language: string;
+  source: string;
+  homepage?: string;
+  dialects?: string[];
+  version?: string;
 }
 
-export interface BowtieReport {
-  [source: string]: BowtieData;
+/** The content of https://bowtie.report/implementations.json */
+export interface BowtieImplementations {
+  [id: string]: BowtieImplementationMetadata;
+}
+
+export interface BowtieImplementation extends BowtieImplementationMetadata {
+  /** Bowtie's identifier for the implementation, e.g. `js-ajv`. */
+  id: string;
+  dialects: string[];
 }

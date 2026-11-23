@@ -1,25 +1,46 @@
 /* eslint-disable linebreak-style */
-import React, { useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import fs from 'fs';
 import Link from 'next/link';
 import Head from 'next/head';
+import Image from 'next/image';
 import yaml from 'js-yaml';
+import Fuse from 'fuse.js';
+import { X } from 'lucide-react';
 
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import { Headline1 } from '~/components/Headlines';
 import { getLayout } from '~/components/SiteLayout';
+import { Button } from '~/components/ui/button';
 import { DRAFT_ORDER, JSONSchemaDraft } from '~/lib/config';
 
-import GroupByMenu from './components/GroupByMenu';
+import FilterBar from './components/FilterBar';
 import Sidebar from './components/Sidebar';
 import ToolingTable from './components/ToolingTable';
+import { useBowtieBadges, useBowtieIndex } from './hooks/useBowtie';
+import usePinnedOffsets from './hooks/usePinnedOffsets';
+import useScrollToHash from './hooks/useScrollToHash';
 import useToolsTransform from './hooks/useToolsTransform';
+import {
+  findBowtieEngines,
+  getToolBowtieInfo,
+  newestDraft,
+} from './lib/bowtie';
 import getDistinctEntries from './lib/getDistinctEntries';
+import {
+  filterTools,
+  groupTools,
+  rollsUpProjects,
+  rollUpBowtieInfo,
+  rollUpProjects,
+  sortTools,
+  UNGROUPED,
+  type Transform,
+} from './lib/transformTools';
+import toTitleCase from './lib/toTitleCase';
+import { Headline2 } from '~/components/Headlines';
 import type { JSONSchemaTool } from './JSONSchemaTool';
-import Image from 'next/image';
-import { Button } from '~/components/ui/button';
-import { Filter, X } from 'lucide-react';
 
 export type FilterCriteriaFields =
   | 'languages'
@@ -104,15 +125,100 @@ export default function ToolingPage({
   filterCriteria,
 }: ToolingPageProps) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [visibleToolCount, setVisibleToolCount] = useState<number>(0);
+  const { pinnedRef, top, covered, scrollMargin } =
+    usePinnedOffsets<HTMLDivElement>();
+  useScrollToHash(covered);
+  const { transform, setTransform, resetTransform } = useToolsTransform();
+  const { index: bowtieIndex, isLoading: isBowtieLoading } = useBowtieIndex();
 
-  const {
-    numberOfTools,
-    toolsByGroup,
-    transform,
-    setTransform,
-    resetTransform,
-  } = useToolsTransform(toolingData);
+  // Bowtie results are shown for the selected dialect: the newest of them, if
+  // several are selected in the drawer.
+  const selectedDraft = newestDraft(transform.drafts);
+
+  const engines = useMemo(() => findBowtieEngines(toolingData), [toolingData]);
+  const getInfo = (tool: JSONSchemaTool, loadedBadges = {}) =>
+    getToolBowtieInfo(tool, bowtieIndex, selectedDraft, loadedBadges, engines);
+
+  const badgeUrls = useMemo(
+    () => toolingData.flatMap((tool) => getInfo(tool).result?.badgeUrl ?? []),
+    [toolingData, bowtieIndex, selectedDraft, engines],
+  );
+  const badges = useBowtieBadges(badgeUrls);
+
+  const bowtieInfo = useMemo(
+    () => new Map(toolingData.map((tool) => [tool, getInfo(tool, badges)])),
+    [toolingData, bowtieIndex, selectedDraft, engines, badges],
+  );
+  const getBowtieInfo = useCallback(
+    (tool: JSONSchemaTool) => bowtieInfo.get(tool) ?? getInfo(tool, badges),
+    [bowtieInfo],
+  );
+
+  const fuse = useMemo(
+    () =>
+      new Fuse(toolingData, {
+        keys: ['name'],
+        includeScore: true,
+        threshold: 0.3,
+      }),
+    [toolingData],
+  );
+
+  const tools = useMemo(() => {
+    const hits =
+      transform.query.trim() === ''
+        ? toolingData
+        : fuse.search(transform.query).map((result) => result.item);
+
+    return sortTools(
+      filterTools(hits, transform, getBowtieInfo),
+      transform,
+      getBowtieInfo,
+    );
+  }, [toolingData, fuse, transform, getBowtieInfo]);
+
+  // Until a language is chosen, a project with a tool for each of several
+  // languages is listed once, in each group, for its tools in that group.
+  const rollsUp = rollsUpProjects(transform);
+  const getListedBowtieInfo = useMemo(
+    () => rollUpBowtieInfo(getBowtieInfo),
+    [getBowtieInfo],
+  );
+  const listed = useCallback(
+    (unlisted: JSONSchemaTool[]) =>
+      rollsUp
+        ? sortTools(rollUpProjects(unlisted), transform, getListedBowtieInfo)
+        : unlisted,
+    [rollsUp, transform, getListedBowtieInfo],
+  );
+
+  const listedCount = useMemo(() => listed(tools).length, [listed, tools]);
+
+  const groups = useMemo(
+    () =>
+      groupTools(tools, transform).map((group) => ({
+        ...group,
+        tools: listed(group.tools),
+      })),
+    [tools, transform, listed],
+  );
+  const groupLabel = (group: string) =>
+    group === UNGROUPED
+      ? transform.groupBy === 'languages'
+        ? 'Not specific to a language'
+        : 'Other'
+      : transform.groupBy === 'toolingTypes'
+        ? toTitleCase(group, '-')
+        : group;
+  const groupId = (group: string) =>
+    `group-${(group || 'other').toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+
+  const sortedBy =
+    transform.sortBy !== 'bowtie'
+      ? `Sorted by ${transform.sortBy}.`
+      : selectedDraft
+        ? `Sorted by Bowtie compliance for Draft ${selectedDraft}, then by name.`
+        : 'Sorted by Bowtie compliance for the newest dialect each tool is tested against, then by name.';
 
   return (
     <SectionContext.Provider value={'tools'}>
@@ -136,7 +242,7 @@ export default function ToolingPage({
             className={`absolute right-0 w-full max-w-sm bg-white dark:bg-slate-900 h-full shadow-lg transform transition-transform duration-300 flex flex-col ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'}`}
           >
             <div className='p-4 flex justify-between items-center border-b border-gray-200 dark:border-gray-700'>
-              <h2 className='text-xl font-bold'>Filters</h2>
+              <h2 className='text-xl font-bold'>More filters</h2>
               <Button
                 variant='ghost'
                 size='icon'
@@ -155,7 +261,7 @@ export default function ToolingPage({
               />
             </div>
             <div className='p-4 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500'>
-              {visibleToolCount} Tools Found
+              {listedCount} {listedCount === 1 ? 'tool' : 'tools'} found
             </div>
           </div>
         </div>
@@ -163,12 +269,26 @@ export default function ToolingPage({
         <main className='w-full mt-8'>
           <Headline1>JSON Schema Tooling</Headline1>
           <p className='text-slate-600 block leading-7 pb-1 dark:text-slate-300'>
-            Toolings below are written in different languages, and support part,
-            or all, of at least one recent version of the specification.
+            The tools below are written in different languages, and support
+            part, or all, of at least one recent version of the specification.
+            Choose your language, the dialect of JSON Schema you use and the
+            type of tool you are after to narrow down the list. A project with a
+            separate tool for each of several languages is listed once until you
+            choose a language.
           </p>
           <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
             Listing does not signify a recommendation or endorsement of any
-            kind.
+            kind. Validators are ordered by how much of the official test suite
+            they pass according to{' '}
+            <Link
+              className='underline'
+              href='https://bowtie.report'
+              target='_blank'
+              rel='noreferrer'
+            >
+              Bowtie
+            </Link>
+            , and each one's badge links to its report there.
           </p>
 
           <div className='flex flex-row items-center gap-2 w-full'>
@@ -215,32 +335,116 @@ export default function ToolingPage({
             </div>
           </div>
 
-          <div className='flex flex-wrap items-center justify-between gap-4 mb-6'>
-            <div className='flex items-center gap-4'>
-              <GroupByMenu transform={transform} setTransform={setTransform} />
+          {/* Stays in view on larger screens while the list scrolls under it */}
+          <div
+            ref={pinnedRef}
+            style={{ top }}
+            className='mt-6 mb-6 lg:sticky z-[100] lg:pt-3 lg:pb-3 bg-white dark:bg-slate-800 lg:border-b border-gray-200 dark:border-slate-700'
+            data-test='tools-pinned'
+          >
+            <div>
+              <FilterBar
+                filterCriteria={filterCriteria}
+                transform={transform}
+                setTransform={setTransform}
+                resetTransform={resetTransform}
+                onMoreFilters={() => setIsSidebarOpen(true)}
+              />
             </div>
-            <div className='flex items-center gap-4'>
-              <div className='text-sm text-gray-500 hidden sm:block'>
-                {visibleToolCount} Tools
-              </div>
-              <Button
-                variant='default'
-                onClick={() => setIsSidebarOpen(true)}
-                className='flex items-center gap-2 text-white'
+
+            <div className='mb-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-2'>
+              <p
+                className='text-sm text-slate-600 dark:text-slate-300'
+                aria-live='polite'
+                data-test='tools-summary'
               >
-                <Filter className='h-4 w-4' />
-                Filters
-              </Button>
+                <strong>
+                  {listedCount} {listedCount === 1 ? 'tool' : 'tools'}
+                </strong>
+                . {sortedBy}
+              </p>
+              <div className='flex items-center gap-2'>
+                <label
+                  htmlFor='tools-group-by'
+                  className='text-sm font-semibold text-slate-700 dark:text-slate-300'
+                >
+                  Group by
+                </label>
+                <select
+                  id='tools-group-by'
+                  name='groupBy'
+                  value={transform.groupBy}
+                  onChange={(event) =>
+                    setTransform({
+                      groupBy: event.target.value as Transform['groupBy'],
+                    })
+                  }
+                  className='h-9 rounded-md border border-gray-300 dark:border-slate-700 bg-white dark:bg-slate-800 px-2 text-sm text-slate-900 dark:text-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400'
+                >
+                  <option value='toolingTypes'>Tool type</option>
+                  <option value='languages'>Language</option>
+                  <option value='none'>None</option>
+                </select>
+              </div>
             </div>
+
+            {groups.length > 1 && (
+              <nav
+                aria-label='Groups of tools'
+                className='flex flex-wrap gap-2'
+                data-test='tools-groups-nav'
+              >
+                {groups.map(({ group, tools: groupedTools }) => (
+                  <a
+                    key={group}
+                    href={`#${groupId(group ?? '')}`}
+                    className='rounded-full border border-gray-300 dark:border-slate-600 px-3 py-0.5 text-sm text-slate-700 dark:text-slate-200 hover:bg-gray-100 dark:hover:bg-slate-700'
+                  >
+                    {groupLabel(group ?? '')}{' '}
+                    <span className='text-slate-500 dark:text-slate-400'>
+                      {groupedTools.length}
+                    </span>
+                  </a>
+                ))}
+              </nav>
+            )}
           </div>
 
-          <ToolingTable
-            toolsByGroup={toolsByGroup}
-            transform={transform}
-            setTransform={setTransform}
-            numberOfTools={numberOfTools}
-            onVisibleToolCountChange={setVisibleToolCount}
-          />
+          {groups.length === 0 && (
+            <ToolingTable
+              tools={tools}
+              transform={transform}
+              setTransform={setTransform}
+              getBowtieInfo={getListedBowtieInfo}
+            />
+          )}
+
+          {groups.map(({ group, tools: groupedTools }) => (
+            <section
+              key={group ?? 'all'}
+              id={group === null ? undefined : groupId(group)}
+              className='mb-10'
+              style={{ scrollMarginTop: scrollMargin + 8 }}
+              data-test='tools-group'
+            >
+              {group !== null && (
+                <div className='mb-4 px-4 w-full bg-gray-100 dark:bg-slate-900 flex items-baseline gap-3'>
+                  <Headline2>{groupLabel(group)}</Headline2>
+                  <span className='text-sm text-slate-500 dark:text-slate-400'>
+                    {groupedTools.length}{' '}
+                    {groupedTools.length === 1 ? 'tool' : 'tools'}
+                  </span>
+                </div>
+              )}
+              <ToolingTable
+                tools={groupedTools}
+                transform={transform}
+                setTransform={setTransform}
+                getBowtieInfo={getListedBowtieInfo}
+                isBowtieLoading={isBowtieLoading}
+              />
+            </section>
+          ))}
 
           <DocsHelp fileRenderType='tsx' />
         </main>
