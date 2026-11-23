@@ -3534,3 +3534,23 @@
   homepage: 'https://github.com/clairey-zx81/json-model'
   supportedDialects:
     draft: ['2020-12']
+
+- name: 'jsonsui'
+  description: 'jsonsui is a schema-aware JSON editor for Windows and Linux. It generates a guided UI from JSON Schema, providing structured navigation, type-safe controls, enums, defaults, and live validation. Nested objects and arrays can be edited through an intuitive tree and card-based views, and a diff highlights all changes before saving. A raw JSON editor is included, and the Avalonia-based architecture enables a smooth cross-platform experience.'
+  toolingTypes: ['editor']
+  languages: ['.NET', 'C#']
+  environments: ['Windows', 'Linux']
+  creators:
+    - name: 'Bytehunter'
+      username: 'homeIoTDev'
+      platform: 'github'
+  maintainers:
+    - name: 'Bytehunter'
+      username: 'homeIoTDev'
+      platform: 'github'
+  license: 'MIT'
+  source: 'https://github.com/homeIoTDev/jsonsui'
+  supportedDialects:
+    draft: ['2019-09', '2020-12']
+  toolingListingNotes: 'jsonsui provides a cross-platform, schema-driven UI for editing complex JSON configurations.'
+  lastUpdated: '2026-09-28'
