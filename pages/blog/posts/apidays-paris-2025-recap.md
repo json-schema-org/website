@@ -1,6 +1,6 @@
 ---
 title: 'JSON Schema Conference 2025 Wrap-Up: The Language Beneath Modern Systems'
-date: '2026-5-16'
+date: '2026-05-16'
 tags:
   - News
 type: Community

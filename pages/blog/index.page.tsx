@@ -12,6 +12,7 @@ import generateRssFeed from './generateRssFeed';
 import { useRouter } from 'next/router';
 import { SectionContext } from '../../context';
 import Image from 'next/image';
+import formatBlogDate from '~/lib/formatBlogDate';
 
 type Author = {
   name: string;
@@ -329,7 +330,6 @@ export default function StaticMarkdownPage({
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6 grid-flow-row mb-16 bg-white dark:bg-slate-800 mx-auto p-4'>
           {currentPagePosts.map((blogPost: any, idx: number) => {
             const { frontmatter, content } = blogPost;
-            const date = new Date(frontmatter.date);
             const postTimeToRead = Math.ceil(readingTime(content).minutes);
 
             return (
@@ -427,7 +427,7 @@ export default function StaticMarkdownPage({
                         <div className='text-slate-500 text-sm dark:text-slate-300'>
                           {frontmatter.date && (
                             <span>
-                              {date.toLocaleDateString('en-us', {
+                              {formatBlogDate(frontmatter.date, {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric',
