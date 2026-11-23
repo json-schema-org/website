@@ -103,6 +103,9 @@ export default function StaticMarkdownPage({
         .filter(isValidCategory);
       setCurrentFilterTags(tags.length ? tags : ['All']);
       setCurrentPage(1);
+    } else {
+      setCurrentFilterTags(['All']);
+      setCurrentPage(1);
     }
   }, [router.query]);
 
@@ -133,10 +136,18 @@ export default function StaticMarkdownPage({
       }
     }
     setCurrentFilterTags(newTags);
+    setCurrentPage(1);
     if (newTags.includes('All')) {
-      history.replaceState(null, '', '/blog');
+      router.push('/blog', undefined, { shallow: true });
     } else {
-      history.replaceState(null, '', `/blog?type=${newTags.join(',')}`);
+      router.push(
+        {
+          pathname: '/blog',
+          query: { type: newTags.join(',') },
+        },
+        undefined,
+        { shallow: true },
+      );
     }
   };
 
