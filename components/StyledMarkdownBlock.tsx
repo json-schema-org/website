@@ -80,31 +80,37 @@ export const StyledMarkdownBlock = ({ markdown }: StyledMarkdownBlockProps) => {
                 const combinedClassName =
                   `${baseClassName} ${additionalClass}`.trim();
 
-                const link =
-                  href.charAt(0) === '/' ? (
-                    <Link
-                      as={href}
-                      href='/'
-                      title={title}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      className={combinedClassName} // Use the combined className
-                    >
-                      {children}
-                    </Link>
-                  ) : (
-                    <a
-                      href={href}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                      title={title}
-                      className={combinedClassName} // Use the combined className
-                    >
+                if (href.startsWith('#')) {
+                  return (
+                    <a href={href} title={title} className={combinedClassName}>
                       {children}
                     </a>
                   );
+                }
 
-                return <>{link}</>;
+                if (href.startsWith('/')) {
+                  return (
+                    <Link
+                      href={href}
+                      title={title}
+                      className={combinedClassName}
+                    >
+                      {children}
+                    </Link>
+                  );
+                }
+
+                return (
+                  <a
+                    href={href}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    title={title}
+                    className={combinedClassName}
+                  >
+                    {children}
+                  </a>
+                );
               },
             },
             ol: {
