@@ -36,7 +36,7 @@
 
 html {
   font-family: 'Inter', sans-serif;
-  scroll-padding-top: 100px;
+  scroll-padding-top: var(--header-height, 120px);
   scroll-behavior: smooth;
 }
 

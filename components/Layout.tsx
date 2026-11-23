@@ -51,7 +51,14 @@ export default function Layout({
 
   useEffect(() => {
     const updateHeaderHeight = () => {
-      setHeaderHeight(headerRef.current?.getBoundingClientRect().height ?? 0);
+      const height = headerRef.current?.getBoundingClientRect().height ?? 0;
+      setHeaderHeight(height);
+      if (height > 0) {
+        document.documentElement.style.setProperty(
+          '--header-height',
+          `${height}px`,
+        );
+      }
     };
 
     updateHeaderHeight();
