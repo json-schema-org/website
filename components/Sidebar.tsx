@@ -35,7 +35,7 @@ const DocLink = ({
   const url = new URL(`${router.asPath}`, HOST);
   url.search = '';
   url.hash = '';
-  const stringUrl = url.toString().substr(HOST.length, Infinity);
+  const stringUrl = url.toString().slice(HOST.length);
   const path = extractPathWithoutFragment(stringUrl);
   const isActive = matchPaths ? matchPaths.includes(path) : uri === path;
   return (
@@ -74,7 +74,7 @@ const DocLinkBlank = ({
   const url = new URL(`${router.asPath}`, HOST);
   url.search = '';
   url.hash = '';
-  const stringUrl = url.toString().substr(HOST.length, Infinity);
+  const stringUrl = url.toString().slice(HOST.length);
   const isActive = uri === extractPathWithoutFragment(stringUrl);
   return (
     <Link
