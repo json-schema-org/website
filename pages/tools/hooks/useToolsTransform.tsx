@@ -243,6 +243,10 @@ const sortTools = (
   tools: JSONSchemaTool[],
   transform: Transform,
 ): JSONSchemaTool[] => {
+  if (transform.sortBy === 'bowtie') {
+    return tools.slice();
+  }
+
   return tools.slice().sort((a, b) => {
     let aValue: string | undefined;
     let bValue: string | undefined;
@@ -253,20 +257,6 @@ const sortTools = (
     } else if (transform.sortBy === 'license') {
       aValue = (a.license || '').toLowerCase();
       bValue = (b.license || '').toLowerCase();
-    } else if (transform.sortBy === 'bowtie') {
-      const aHasIdentifier = Boolean(a.bowtie?.id);
-      const bHasIdentifier = Boolean(b.bowtie?.id);
-
-      if (transform.sortOrder === 'ascending') {
-        if (aHasIdentifier && !bHasIdentifier) return -1;
-        if (!aHasIdentifier && bHasIdentifier) return 1;
-      } else {
-        if (aHasIdentifier && !bHasIdentifier) return 1;
-        if (!aHasIdentifier && bHasIdentifier) return -1;
-      }
-
-      aValue = (a.bowtie?.id || '').toLowerCase();
-      bValue = (b.bowtie?.id || '').toLowerCase();
     }
 
     if (aValue === undefined || bValue === undefined) {
