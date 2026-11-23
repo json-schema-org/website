@@ -19,13 +19,8 @@ export async function getStaticProps() {
     },
   };
 }
-export default function ContentExample({
-  blocks,
-}: {
-  blocks: any[];
-  frontmatter: any;
-  content: any;
-}) {
+
+export default function ContentExample({ blocks }: { blocks: string[] }) {
   const fileRenderType = '_indexmd';
   return (
     <SectionContext.Provider value='docs'>

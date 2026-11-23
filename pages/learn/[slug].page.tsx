@@ -8,11 +8,12 @@ import { Headline1 } from '~/components/Headlines';
 import { SectionContext } from '~/context';
 import { DocsHelp } from '~/components/DocsHelp';
 import NextPrevButton from '~/components/NavigationButtons';
+import { Frontmatter } from '~/types/common';
 
 export async function getStaticPaths() {
   return getStaticMarkdownPaths('pages/learn');
 }
-export async function getStaticProps(args: any) {
+export async function getStaticProps(args: { params?: { slug: string } }) {
   return getStaticMarkdownProps(args, 'pages/learn');
 }
 
@@ -20,13 +21,13 @@ export default function StaticMarkdownPage({
   frontmatter,
   content,
 }: {
-  frontmatter: any;
-  content: any;
+  frontmatter: Frontmatter;
+  content: string;
 }) {
   const fileRenderType = '_md';
   const newTitle = 'JSON Schema - ' + frontmatter.title;
   return (
-    <SectionContext.Provider value={frontmatter.section || null}>
+    <SectionContext.Provider value={frontmatter.section ?? null}>
       <Head>
         <title>{newTitle}</title>
       </Head>
