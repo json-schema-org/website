@@ -129,7 +129,7 @@ The `type` keyword can take two forms:
 
 1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean`, `integer`, `number`, `null`, `object`, `regular expressions`, or `string`). This specifies that the instance data is only valid when it matches that specific type. 
 
-Here is an example of using the `string` keyword as a single string:
+Here is an example of using the `number` keyword as a single number:
 
 ```json
 // props { "isSchema": true }
