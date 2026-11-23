@@ -9,6 +9,9 @@ import {
   filterTools,
   groupTools,
   parseTransform,
+  rollsUpProjects,
+  rollUpBowtieInfo,
+  rollUpProjects,
   serializeTransform,
   sortTools,
   UNGROUPED,
@@ -352,6 +355,122 @@ describe('Transforming the list of tools', () => {
         'c',
         'unlicensed',
       ]);
+    });
+  });
+
+  describe('rollsUpProjects', () => {
+    it('lists a project once until a language is chosen', () => {
+      expect(rollsUpProjects(transform())).to.equal(true);
+      expect(rollsUpProjects(transform({ groupBy: 'none' }))).to.equal(true);
+      expect(rollsUpProjects(transform({ languages: ['Go'] }))).to.equal(false);
+      expect(rollsUpProjects(transform({ groupBy: 'languages' }))).to.equal(
+        false,
+      );
+    });
+  });
+
+  describe('rollUpProjects', () => {
+    const tools = [
+      tool('alone'),
+      tool('polyglot (Go)', {
+        project: 'polyglot',
+        languages: ['Go'],
+        license: 'MIT',
+        source: 'https://example.com/polyglot/go',
+        supportedDialects: { draft: ['7'] },
+      }),
+      tool('single', { project: 'single', languages: ['Go'] }),
+      tool('polyglot', {
+        project: 'polyglot',
+        toolingTypes: ['schema-to-code', 'validator'],
+        languages: ['.NET'],
+        license: 'MIT',
+        source: 'https://example.com/polyglot',
+        supportedDialects: { draft: ['2020-12', '7'] },
+      }),
+      tool('polyglot (C)', {
+        project: 'polyglot',
+        languages: ['C'],
+        license: 'Apache-2.0',
+        status: 'obsolete',
+      }),
+    ];
+
+    it('lists the tools of a project as one entry, in place of the first', () => {
+      const rolledUp = rollUpProjects(tools);
+
+      expect(names(rolledUp)).to.deep.equal(['alone', 'polyglot', 'single']);
+      expect(names(rolledUp[1].members!)).to.deep.equal([
+        'polyglot (Go)',
+        'polyglot',
+        'polyglot (C)',
+      ]);
+    });
+
+    it('describes the project by all of its tools', () => {
+      const [, project] = rollUpProjects(tools);
+
+      expect(project.languages).to.deep.equal(['.NET', 'C', 'Go']);
+      expect(project.toolingTypes).to.deep.equal([
+        'validator',
+        'schema-to-code',
+      ]);
+      // In the order the page lists the dialects of every tool
+      expect(project.supportedDialects).to.deep.equal({
+        draft: ['7', '2020-12'],
+      });
+      expect(project.license).to.equal('MIT, Apache-2.0');
+      expect(project.source).to.equal('https://example.com/polyglot');
+      expect(project.status).to.equal(undefined);
+      expect(project.bowtie).to.equal(undefined);
+    });
+
+    it('leaves a project with a single tool as that tool', () => {
+      const rolledUp = rollUpProjects(tools.slice(0, 3));
+
+      expect(rolledUp).to.deep.equal(tools.slice(0, 3));
+    });
+
+    it('is obsolete only when every one of its tools is', () => {
+      const [project] = rollUpProjects([
+        tool('a', { project: 'old', status: 'obsolete' }),
+        tool('b', { project: 'old', status: 'obsolete' }),
+      ]);
+
+      expect(project.status).to.equal('obsolete');
+    });
+  });
+
+  describe('rollUpBowtieInfo', () => {
+    const info: Record<string, ToolBowtieInfo> = {
+      best: tested(100),
+      worst: tested(90),
+      loading: tested(null),
+      elsewhere: untested,
+      absent: notOnBowtie,
+    };
+    const getBowtieInfo = rollUpBowtieInfo(({ name }) => info[name]);
+    const project = (...members: string[]) =>
+      tool('project', { members: members.map((name) => tool(name)) });
+
+    it('leaves a tool with what Bowtie reports for it', () => {
+      expect(getBowtieInfo(tool('best'))).to.equal(info.best);
+    });
+
+    it('gives a project the lowest of the results of its tools', () => {
+      expect(getBowtieInfo(project('best', 'worst', 'best'))).to.equal(
+        info.worst,
+      );
+    });
+
+    it('goes by the tools which have results', () => {
+      expect(
+        getBowtieInfo(project('absent', 'elsewhere', 'loading', 'best')),
+      ).to.equal(info.best);
+      expect(getBowtieInfo(project('absent', 'elsewhere'))).to.equal(
+        info.elsewhere,
+      );
+      expect(getBowtieInfo(project('absent', 'absent'))).to.equal(info.absent);
     });
   });
 });

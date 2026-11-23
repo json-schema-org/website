@@ -45,6 +45,11 @@
         "description": "The name of the project",
         "type": "string"
       },
+      "project": {
+        "description": "The name of the project the tool is part of, for a project with a separate tool for each of several languages. Each of those tools has its own entry, and they all give the same project. The website lists them as a single entry under this name until a language is chosen, so that a project takes up one row however many languages it supports.",
+        "type": "string",
+        "minLength": 1
+      },
       "description": {
         "description": "A brief description of the project",
         "$comment": "If this is omitted and description is already defined on GitHub or GitLab for the repository, we will use that information.",
@@ -87,7 +92,7 @@
         }
       },
       "languages": {
-        "description": "The programming languages the tool is for. For a library, the language it is used from: a library for a JavaScript runtime is listed as JavaScript whatever it is written in, and as TypeScript too if it is written in TypeScript or its package includes its own type declarations. A tool which only works with TypeScript types themselves is listed as TypeScript alone. For a code generator, the languages it generates. A tool with a separate library for each of several languages has an entry for each library, rather than one entry listing every language. Applications, and the formats a tool converts from or to, are not languages.",
+        "description": "The programming languages the tool is for. For a library, the language it is used from: a library for a JavaScript runtime is listed as JavaScript whatever it is written in, and as TypeScript too if it is written in TypeScript or its package includes its own type declarations. A tool which only works with TypeScript types themselves is listed as TypeScript alone. For a code generator, the languages it generates. A tool with a separate library for each of several languages has an entry for each library, rather than one entry listing every language, and those entries name the project they share. Applications, and the formats a tool converts from or to, are not languages.",
         "type": "array",
         "uniqueItems": true,
         "items": {

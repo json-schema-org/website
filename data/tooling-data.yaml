@@ -34,6 +34,7 @@
   lastUpdated: '2024-06-08'
 
 - name: 'Corvus.JsonSchema'
+  project: 'Corvus.JsonSchema'
   description: 'JSON Schema validation and code generation for .NET: a runtime evaluator (Corvus.Text.Json.Validator), and idiomatic strongly-typed models generated from JSON Schema over low-level System.Text.Json types.'
   toolingTypes: ['validator', 'annotations', 'schema-to-types', 'schema-to-code']
   languages: ['.NET']
@@ -51,6 +52,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'Corvus.JsonSchema (V4 engine)'
+  project: 'Corvus.JsonSchema'
   description: 'The V4 generation of Corvus.JsonSchema for .NET (Corvus.Json.ExtendedTypes): JSON Schema validation and immutable strongly-typed models generated from JSON Schema.'
   toolingTypes: ['validator', 'annotations', 'schema-to-types', 'schema-to-code']
   languages: ['.NET']
@@ -68,6 +70,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (Rust)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Rust, with results collection and annotations, ported from the Corvus.JsonSchema runtime evaluator.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Rust']
@@ -85,6 +88,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (C)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for C, with results collection and annotations: the C library of the corvus-json-schema Rust crate.'
   toolingTypes: ['validator', 'annotations']
   languages: ['C']
@@ -102,6 +106,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (C++)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for C++, with results collection and annotations: a header over the C library of the corvus-json-schema Rust crate.'
   toolingTypes: ['validator', 'annotations']
   languages: ['C++']
@@ -119,6 +124,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (Go)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Go, with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Go']
@@ -136,6 +142,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (Java)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Java and Kotlin, with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Java', 'Kotlin']
@@ -153,6 +160,7 @@
   lastUpdated: '2026-11-17'
 
 - name: '@corvus-dotnet/json-schema'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for JavaScript and TypeScript that compiles schemas to specialised JavaScript, with results collection and annotations.'
   toolingTypes: ['validator', 'annotations']
   languages: ['JavaScript', 'TypeScript']
@@ -170,6 +178,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (Python)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Python that compiles schemas to specialised Python, with results collection and annotations.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Python']
@@ -187,6 +196,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema-rs (Python)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Python, with results collection and annotations, backed by the corvus-json-schema Rust crate.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Python']
@@ -204,6 +214,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus_json_schema (Ruby)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Ruby, with results collection and annotations, backed by the corvus-json-schema Rust crate.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Ruby']
@@ -221,6 +232,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (PHP)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for PHP, with results collection and annotations: a PHP extension backed by the corvus-json-schema Rust crate.'
   toolingTypes: ['validator', 'annotations']
   languages: ['PHP']
@@ -238,6 +250,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'CorvusJsonSchema (Julia)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Julia, with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Julia']
@@ -255,6 +268,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvusjsonschema (R)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for R, with results collection and annotations, backed by the corvus-json-schema Rust crate.'
   toolingTypes: ['validator', 'annotations']
   languages: ['R']
@@ -272,6 +286,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (Object Pascal)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Object Pascal (Free Pascal), with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Object Pascal']
@@ -289,6 +304,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (Fortran)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Fortran, with results collection and annotations, over the C library of the corvus-json-schema Rust crate.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Fortran']
@@ -306,6 +322,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (Swift)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for Swift, with results collection and annotations, over the C library of the corvus-json-schema Rust crate.'
   toolingTypes: ['validator', 'annotations']
   languages: ['Swift']
@@ -323,6 +340,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'corvus-json-schema (OCaml)'
+  project: 'Corvus.JsonSchema'
   description: 'A high-performance JSON Schema evaluator for OCaml, with results collection and annotations, a native port of the Corvus.JsonSchema runtime evaluator.'
   toolingTypes: ['validator', 'annotations']
   languages: ['OCaml']
@@ -415,6 +433,7 @@
   lastUpdated: '2024-04-22'
 
 - name: M3
+  project: 'M3'
   description: 'Passes every test in the official JSON Schema Test Suite across all drafts from draft-03 through draft-next. For the JVM: usable from Clojure, Java, Kotlin and Scala.'
   toolingTypes: ['validator']
   languages: ['Clojure', 'Java']
@@ -438,6 +457,7 @@
   lastUpdated: '2026-02-11'
 
 - name: 'm3-json-schema'
+  project: 'M3'
   description: 'Passes every test in the official JSON Schema Test Suite across all drafts from draft-03 through draft-next. The JavaScript build of M3, for Node.js and the browser.'
   toolingTypes: ['validator']
   languages: ['JavaScript', 'TypeScript']
@@ -1167,6 +1187,7 @@
   lastUpdated: '2022-08-31'
 
 - name: jsonschema-rs (Python)
+  project: 'jsonschema-rs'
   description: 'JSON Schema validation library'
   toolingTypes: ['validator']
   languages: ['Python']
@@ -1183,6 +1204,7 @@
   lastUpdated: '2022-08-31'
 
 - name: jsonschema-rs
+  project: 'jsonschema-rs'
   description: 'JSON Schema validation library'
   toolingTypes: ['validator']
   languages: ['Rust']
@@ -3800,6 +3822,7 @@
   toolingListingNotes: 'SJF4J has passed Bowtie evaluation and provides full Draft 2020-12 support. Validates native Java objects directly without JSON serialization.'
 
 - name: 'json-schema-utils'
+  project: 'json-schema-utils'
   description: 'Random utilities to analyze and manipulate JSON Schema'
   toolingTypes: ['validator', 'linter', 'schema-to-types', 'util-general-processing']
   languages: ['Python']
@@ -3818,6 +3841,7 @@
     identifier: 'python-jsu'
 
 - name: 'json-schema-utils (C)'
+  project: 'json-schema-utils'
   description: 'Validators in C compiled from JSON Schema by the `jsu compile` command of JSON Schema Utils.'
   toolingTypes: ['validator', 'schema-to-code']
   languages: ['C']
@@ -3836,6 +3860,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'json-schema-utils (Java)'
+  project: 'json-schema-utils'
   description: 'Validators in Java compiled from JSON Schema by the `jsu compile` command of JSON Schema Utils.'
   toolingTypes: ['validator', 'schema-to-code']
   languages: ['Java']
@@ -3854,6 +3879,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'json-schema-utils (JavaScript)'
+  project: 'json-schema-utils'
   description: 'Validators in JavaScript compiled from JSON Schema by the `jsu compile` command of JSON Schema Utils.'
   toolingTypes: ['validator', 'schema-to-code']
   languages: ['JavaScript']
@@ -3872,6 +3898,7 @@
   lastUpdated: '2026-11-17'
 
 - name: 'json-schema-utils (Perl)'
+  project: 'json-schema-utils'
   description: 'Validators in Perl compiled from JSON Schema by the `jsu compile` command of JSON Schema Utils.'
   toolingTypes: ['validator', 'schema-to-code']
   languages: ['Perl']

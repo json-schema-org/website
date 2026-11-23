@@ -60,6 +60,15 @@ const tools: JSONSchemaTool[] = [
   { name: 'validator-1', toolingTypes: ['validator'] },
 ];
 
+// The single entry for a project with a tool for each of several languages
+const project: JSONSchemaTool = {
+  name: 'polyglot',
+  project: 'polyglot',
+  toolingTypes: ['validator'],
+  languages: ['Go', 'JavaScript', 'TypeScript'],
+  members: [tools[0], tools[2]],
+};
+
 const getBowtieInfo = (tool: JSONSchemaTool) =>
   tool.name === 'on-bowtie' ? onBowtie : notOnBowtie;
 
@@ -195,6 +204,46 @@ describe('ToolingTable Component', () => {
 
     cy.get('body').type('{esc}');
     cy.get('h2').should('not.exist');
+  });
+
+  it('says how many tools the entry for a project stands for', () => {
+    mountTable({}, [project, tools[1]]);
+
+    cy.get('[data-test="tools-row"]')
+      .first()
+      .find('[data-test="tools-members-count"]')
+      .should('have.text', '2 tools');
+    cy.get('[data-test="tools-row"]')
+      .eq(1)
+      .find('[data-test="tools-members-count"]')
+      .should('not.exist');
+  });
+
+  it('counts the languages of a project which is for a great many', () => {
+    const languages = ['C', 'C++', 'Go', 'Java', 'Rust'];
+    mountTable({}, [project, { ...project, name: 'polyglot-2', languages }]);
+
+    cy.get('[data-test="tools-row"]')
+      .first()
+      .should('contain.text', 'Go, JavaScript, TypeScript');
+    cy.get('[data-test="tools-row"]')
+      .eq(1)
+      .contains('5 languages')
+      .should('have.attr', 'title', languages.join(', '));
+  });
+
+  it('opens the details of a tool of a project from those of the project', () => {
+    mountTable({}, [project]);
+
+    cy.contains('button', 'polyglot').click();
+    cy.get('h2').should('contain.text', 'polyglot');
+    cy.get('[data-test="tool-members"]').within(() => {
+      cy.get('[data-test="bowtie-badge-result"]').should('have.length', 1);
+      cy.contains('button', 'validator-1').click();
+    });
+
+    cy.get('h2').should('contain.text', 'validator-1');
+    cy.get('[data-test="tool-members"]').should('not.exist');
   });
 
   it('opens the details from anywhere in a row', () => {

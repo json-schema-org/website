@@ -267,6 +267,116 @@ const TOOLING_TYPES_ORDER = [
   'linter-plugins',
 ];
 
+/**
+ * Whether the tools of a project are listed as a single entry.
+ *
+ * A project with a library for each of several languages would otherwise fill
+ * a row for each of them, and look as though it were being promoted. Somebody
+ * who has chosen a language, or is looking at the tools by language, is after
+ * the library for that language, so then every tool is listed on its own.
+ */
+export const rollsUpProjects = (
+  transform: Pick<Transform, 'languages' | 'groupBy'>,
+): boolean =>
+  transform.languages.length === 0 && transform.groupBy !== 'languages';
+
+const distinct = <T>(lists: (T[] | undefined)[]): T[] =>
+  Array.from(new Set(lists.flatMap((list) => list ?? [])));
+
+/** Compare by the place of each value in a list, then alphabetically. */
+const compareByOrder = (order: readonly string[], a: string, b: string) => {
+  const [indexOfA, indexOfB] = [a, b].map((value) => order.indexOf(value));
+  if (indexOfA !== -1 && indexOfB !== -1) return indexOfA - indexOfB;
+  if (indexOfA !== indexOfB) return indexOfA === -1 ? 1 : -1;
+  return a.toLowerCase().localeCompare(b.toLowerCase());
+};
+
+/** The single entry which stands for several tools of one project. */
+const rollUp = (project: string, members: JSONSchemaTool[]): JSONSchemaTool => {
+  // The tool the project is named after says the most about the project
+  const lead = members.find((member) => member.name === project) ?? members[0];
+  const languages = distinct(members.map((member) => member.languages)).sort(
+    (a, b) => compareByOrder([], a, b),
+  );
+  const environments = distinct(members.map((member) => member.environments));
+  const drafts = distinct(
+    members.map((member) => member.supportedDialects?.draft),
+  ).sort((a, b) => DRAFT_ORDER.indexOf(b) - DRAFT_ORDER.indexOf(a));
+  const licenses = distinct(
+    members.map((member) => (member.license ? [member.license] : [])),
+  );
+
+  return {
+    name: project,
+    project,
+    members,
+    description: `${project} has a separate tool for each of the languages it supports. Choose a language to list them on their own.`,
+    toolingTypes: distinct(members.map((member) => member.toolingTypes)).sort(
+      (a, b) => compareByOrder(TOOLING_TYPES_ORDER, a, b),
+    ),
+    ...(languages.length > 0 && { languages }),
+    ...(environments.length > 0 && { environments }),
+    ...(drafts.length > 0 && { supportedDialects: { draft: drafts } }),
+    ...(licenses.length > 0 && { license: licenses.join(', ') }),
+    ...(lead.source && { source: lead.source }),
+    ...(lead.creators && { creators: lead.creators }),
+    ...(lead.maintainers && { maintainers: lead.maintainers }),
+    ...(lead.landscape && { landscape: lead.landscape }),
+    ...(members.every((member) => member.status === 'obsolete') && {
+      status: 'obsolete' as const,
+    }),
+  };
+};
+
+/**
+ * List the tools of each project as a single entry, which takes the place of
+ * the first of them. A project with only one tool among those given is left
+ * as that tool, so roll up what is left after filtering.
+ */
+export const rollUpProjects = (tools: JSONSchemaTool[]): JSONSchemaTool[] => {
+  const projects = new Map<string, JSONSchemaTool[]>();
+  tools.forEach((tool) => {
+    if (tool.project) {
+      projects.set(tool.project, [...(projects.get(tool.project) ?? []), tool]);
+    }
+  });
+
+  const rolledUp = new Set<string>();
+
+  return tools.flatMap((tool) => {
+    const members = tool.project ? projects.get(tool.project)! : [];
+    if (members.length < 2) return [tool];
+    if (rolledUp.has(tool.project!)) return [];
+
+    rolledUp.add(tool.project!);
+    return [rollUp(tool.project!, members)];
+  });
+};
+
+/**
+ * What Bowtie reports for the single entry of a project is what it reports
+ * for the lowest ranked of the project's tools which have results, so that a
+ * project is never ranked above what any one of its tools earns.
+ */
+export const rollUpBowtieInfo = (
+  getBowtieInfo: GetBowtieInfo,
+): GetBowtieInfo => {
+  const getRolledUpBowtieInfo: GetBowtieInfo = (tool) => {
+    if (!tool.members?.length) return getBowtieInfo(tool);
+
+    const infos = tool.members.map(getBowtieInfo);
+    const bestTier = Math.min(...infos.map(bowtieTier));
+
+    return infos
+      .filter((info) => bowtieTier(info) === bestTier)
+      .reduce((lowest, info) =>
+        compareBowtie(info, lowest, 'descending') > 0 ? info : lowest,
+      );
+  };
+
+  return getRolledUpBowtieInfo;
+};
+
 /** The group for tools which have no value for what they are grouped by. */
 export const UNGROUPED = '';
 

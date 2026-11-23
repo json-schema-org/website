@@ -40,6 +40,21 @@ const withKeys = (tools: JSONSchemaTool[]) => {
 const formatToolingTypes = (tool: JSONSchemaTool) =>
   tool.toolingTypes?.map((type) => toTitleCase(type, '-')).join(', ');
 
+/**
+ * The entry for a project can be for a great many languages, which are
+ * counted rather than named so that it is no taller than any other entry.
+ */
+const MAX_PROJECT_LANGUAGES = 4;
+
+const formatLanguages = (tool: JSONSchemaTool) =>
+  tool.members && (tool.languages?.length ?? 0) > MAX_PROJECT_LANGUAGES ? (
+    <span title={tool.languages!.join(', ')}>
+      {tool.languages!.length} languages
+    </span>
+  ) : (
+    tool.languages?.join(', ')
+  );
+
 const ToolingTable = ({
   tools,
   transform,
@@ -92,6 +107,17 @@ const ToolingTable = ({
       {tool.name}
     </button>
   );
+
+  // The single entry for a project says how many tools it stands for
+  const memberCount = (tool: JSONSchemaTool) =>
+    tool.members && (
+      <span
+        className='text-sm text-slate-500 dark:text-slate-400'
+        data-test='tools-members-count'
+      >
+        {tool.members.length} tools
+      </span>
+    );
 
   const bowtieBadge = (tool: JSONSchemaTool) => (
     <BowtieBadge info={getBowtieInfo(tool)} isLoading={isBowtieLoading} />
@@ -151,15 +177,14 @@ const ToolingTable = ({
               <td className='px-3 py-2'>
                 <div className='flex flex-wrap items-center gap-x-2 gap-y-1'>
                   {name(tool)}
+                  {memberCount(tool)}
                   {tool.status === 'obsolete' && (
                     <Tag intent='error'>{tool.status}</Tag>
                   )}
                 </div>
               </td>
               <td className='px-3 py-2 text-sm'>{formatToolingTypes(tool)}</td>
-              <td className='px-3 py-2 text-sm'>
-                {tool.languages?.join(', ')}
-              </td>
+              <td className='px-3 py-2 text-sm'>{formatLanguages(tool)}</td>
               <td className='px-1 py-1'>
                 {tool.supportedDialects?.draft?.map((draft) => (
                   <Badge key={draft}>{draft}</Badge>
@@ -191,6 +216,7 @@ const ToolingTable = ({
             <div className='flex flex-wrap items-center justify-between gap-2'>
               <div className='flex flex-wrap items-center gap-x-2 gap-y-1'>
                 {name(tool)}
+                {memberCount(tool)}
                 {tool.status === 'obsolete' && (
                   <Tag intent='error'>{tool.status}</Tag>
                 )}
@@ -202,7 +228,7 @@ const ToolingTable = ({
                 {formatToolingTypes(tool)}
               </MobileField>
               <MobileField label='Languages'>
-                {tool.languages?.join(', ')}
+                {formatLanguages(tool)}
               </MobileField>
               <MobileField label='License'>{tool.license}</MobileField>
             </dl>
@@ -219,6 +245,9 @@ const ToolingTable = ({
         <ToolingDetailModal
           tool={selectedTool}
           bowtieInfo={getBowtieInfo(selectedTool)}
+          getBowtieInfo={getBowtieInfo}
+          isBowtieLoading={isBowtieLoading}
+          onSelectTool={openModal}
           onClose={() => setSelectedTool(null)}
         />
       )}

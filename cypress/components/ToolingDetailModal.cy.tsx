@@ -199,6 +199,41 @@ describe('ToolingDetailModal Component', () => {
       .and('not.contain.text', 'version');
   });
 
+  it('lists the tools of a project, each with its own Bowtie results', () => {
+    const onSelectTool = cy.stub().as('onSelectTool');
+    const member: JSONSchemaTool = { ...tool, name: 'Example for Go' };
+
+    mountModal({
+      tool: {
+        name: 'Example',
+        toolingTypes: ['validator'],
+        members: [tool, { ...member, languages: undefined }],
+      },
+      bowtieInfo,
+      getBowtieInfo: (listed) =>
+        listed === tool ? bowtieInfo : { kind: 'not-on-bowtie' },
+      onSelectTool,
+    });
+
+    // The project has no results of its own
+    cy.contains('h3', 'Bowtie Report').should('not.exist');
+
+    cy.get('[data-test="tool-members"] li').should('have.length', 2);
+    cy.get('[data-test="tool-members"] li')
+      .first()
+      .should('contain.text', 'Example Validator')
+      .and('contain.text', '(JavaScript, TypeScript)')
+      .find('[data-test="bowtie-badge-untested"]')
+      .should('exist');
+    cy.get('[data-test="tool-members"] li')
+      .eq(1)
+      .find('[data-test="bowtie-badge-not-on-bowtie"]')
+      .should('exist');
+
+    cy.contains('button', 'Example for Go').click();
+    cy.get('@onSelectTool').should('have.been.calledOnce');
+  });
+
   it('leaves out what is not known about a tool', () => {
     mountModal({ tool: { name: 'Bare', toolingTypes: [] } });
 

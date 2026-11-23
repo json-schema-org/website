@@ -15,7 +15,7 @@ import {
   type BowtieResult,
   type ToolBowtieInfo,
 } from '../lib/bowtie';
-import { BowtieResultBadge } from './BowtieBadge';
+import BowtieBadge, { BowtieResultBadge } from './BowtieBadge';
 import toTitleCase from '../lib/toTitleCase';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -28,18 +28,28 @@ const StyledMarkdown = dynamic(() => import('~/components/StyledMarkdown'));
 export default function ToolingDetailModal({
   tool,
   bowtieInfo,
+  getBowtieInfo,
+  isBowtieLoading = false,
+  onSelectTool,
   onClose,
   Markdown = StyledMarkdown,
 }: {
   tool: JSONSchemaTool;
   bowtieInfo?: ToolBowtieInfo | null;
+  /** What Bowtie reports for each of the tools of a project. */
+  getBowtieInfo?: (tool: JSONSchemaTool) => ToolBowtieInfo;
+  isBowtieLoading?: boolean;
+  /** Shows the details of one of the tools of a project instead. */
+  onSelectTool?: (tool: JSONSchemaTool) => void;
   onClose: () => void;
   /** What renders the tool's notes, which are markdown. */
   Markdown?: ComponentType<{ markdown?: string }>;
 }) {
   // Every dialect Bowtie tests the tool against, rather than only the one
   // the list is showing.
-  const implementation = bowtieInfo?.implementation;
+  // The entry for a project has no results of its own: each of its tools is
+  // listed with what Bowtie reports for it.
+  const implementation = tool.members ? undefined : bowtieInfo?.implementation;
   const bowtieDrafts = useMemo(
     () =>
       DRAFT_ORDER.filter((draft) => {
@@ -333,6 +343,38 @@ export default function ToolingDetailModal({
                 >
                   View detailed report
                 </Link>
+              </div>
+            )}
+
+            {tool.members && (
+              <div className='break-inside-avoid mb-4' data-test='tool-members'>
+                <h3 className='text-lg font-semibold'>Tools</h3>
+                <ul className='list-none text-[14px]'>
+                  {tool.members.map((member, index) => (
+                    <li
+                      key={index}
+                      className='my-1 flex flex-wrap items-center gap-x-2 gap-y-1'
+                    >
+                      <button
+                        type='button'
+                        className='text-left underline focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400'
+                        title='See details'
+                        onClick={() => onSelectTool?.(member)}
+                      >
+                        {member.name}
+                      </button>
+                      {member.languages && (
+                        <span>({member.languages.join(', ')})</span>
+                      )}
+                      {getBowtieInfo && (
+                        <BowtieBadge
+                          info={getBowtieInfo(member)}
+                          isLoading={isBowtieLoading}
+                        />
+                      )}
+                    </li>
+                  ))}
+                </ul>
               </div>
             )}
 

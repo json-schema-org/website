@@ -31,6 +31,9 @@ import getDistinctEntries from './lib/getDistinctEntries';
 import {
   filterTools,
   groupTools,
+  rollsUpProjects,
+  rollUpBowtieInfo,
+  rollUpProjects,
   sortTools,
   UNGROUPED,
   type Transform,
@@ -174,9 +177,30 @@ export default function ToolingPage({
     );
   }, [toolingData, fuse, transform, getBowtieInfo]);
 
+  // Until a language is chosen, a project with a tool for each of several
+  // languages is listed once, in each group, for its tools in that group.
+  const rollsUp = rollsUpProjects(transform);
+  const getListedBowtieInfo = useMemo(
+    () => rollUpBowtieInfo(getBowtieInfo),
+    [getBowtieInfo],
+  );
+  const listed = useCallback(
+    (unlisted: JSONSchemaTool[]) =>
+      rollsUp
+        ? sortTools(rollUpProjects(unlisted), transform, getListedBowtieInfo)
+        : unlisted,
+    [rollsUp, transform, getListedBowtieInfo],
+  );
+
+  const listedCount = useMemo(() => listed(tools).length, [listed, tools]);
+
   const groups = useMemo(
-    () => groupTools(tools, transform),
-    [tools, transform],
+    () =>
+      groupTools(tools, transform).map((group) => ({
+        ...group,
+        tools: listed(group.tools),
+      })),
+    [tools, transform, listed],
   );
   const groupLabel = (group: string) =>
     group === UNGROUPED
@@ -237,7 +261,7 @@ export default function ToolingPage({
               />
             </div>
             <div className='p-4 border-t border-gray-200 dark:border-gray-700 text-center text-sm text-gray-500'>
-              {tools.length} {tools.length === 1 ? 'tool' : 'tools'} found
+              {listedCount} {listedCount === 1 ? 'tool' : 'tools'} found
             </div>
           </div>
         </div>
@@ -248,7 +272,9 @@ export default function ToolingPage({
             The tools below are written in different languages, and support
             part, or all, of at least one recent version of the specification.
             Choose your language, the dialect of JSON Schema you use and the
-            type of tool you are after to narrow down the list.
+            type of tool you are after to narrow down the list. A project with a
+            separate tool for each of several languages is listed once until you
+            choose a language.
           </p>
           <p className='text-slate-600 block leading-7 pb-4 dark:text-slate-300'>
             Listing does not signify a recommendation or endorsement of any
@@ -333,7 +359,7 @@ export default function ToolingPage({
                 data-test='tools-summary'
               >
                 <strong>
-                  {tools.length} {tools.length === 1 ? 'tool' : 'tools'}
+                  {listedCount} {listedCount === 1 ? 'tool' : 'tools'}
                 </strong>
                 . {sortedBy}
               </p>
@@ -389,7 +415,7 @@ export default function ToolingPage({
               tools={tools}
               transform={transform}
               setTransform={setTransform}
-              getBowtieInfo={getBowtieInfo}
+              getBowtieInfo={getListedBowtieInfo}
             />
           )}
 
@@ -414,7 +440,7 @@ export default function ToolingPage({
                 tools={groupedTools}
                 transform={transform}
                 setTransform={setTransform}
-                getBowtieInfo={getBowtieInfo}
+                getBowtieInfo={getListedBowtieInfo}
                 isBowtieLoading={isBowtieLoading}
               />
             </section>
