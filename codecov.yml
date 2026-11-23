@@ -1,0 +1,18 @@
+coverage:
+  status:
+    project:
+      default:
+        # Allow project coverage to decrease, but require patch coverage
+        target: auto
+        threshold: 100%
+        if_ci_failed: error
+    patch:
+      default:
+        # Require all new code to be covered
+        target: 100%
+        threshold: 0%
+
+comment:
+  layout: "reach,diff,flags,tree"
+  behavior: default
+  require_changes: false
