@@ -964,6 +964,22 @@
     logo: 'json-everything.svg'
   lastUpdated: '2022-08-31'
 
+- name: Aarrange JSON Schema Validator
+  description: 'Validate JSON against a JSON Schema online, with each error shown on its line. Can also generate a schema or a sample document.'
+  toolingTypes: ['validator', 'data-to-schema', 'schema-to-data']
+  environments: ['Web (Online)']
+  dependsOnValidators: ['https://github.com/ajv-validator/ajv']
+  maintainers:
+    - name: 'Peter Valenta'
+      username: 'xoocode'
+      platform: 'github'
+  license: 'Proprietary'
+  homepage: 'https://aarrange.com/json-schema-validator'
+  supportedDialects:
+    draft: ['7', '2019-09', '2020-12']
+  toolingListingNotes: 'Free, no sign-up; runs Ajv in the browser, so no data leaves the page. External $ref URLs are not loaded.'
+  lastUpdated: '2026-10-31'
+
 - name: jschon.dev
   description: 'JSON Schema web validator built on jschon.'
   toolingTypes: ['validator']
