@@ -488,6 +488,23 @@
   toolingListingNotes: 'Supports multiple schemas and multiple instances; client-side validation'
   lastUpdated: '2022-08-31'
 
+- name: Devtoolry JSON Schema Validator
+  description: 'Free online JSON Schema validator. Paste a schema and JSON data; every error shows the failing path, line and rule. No sign-up, and validation runs entirely in the browser.'
+  toolingTypes: ['validator']
+  languages: ['JavaScript']
+  environments: ['Web (Online)']
+  dependsOnValidators: ['https://github.com/cfworker/cfworker/blob/master/packages/json-schema/README.md']
+  maintainers:
+    - name: 'Avinash Kori'
+      username: 'awinashkori'
+      platform: 'github'
+  license: 'Proprietary'
+  homepage: 'https://devtoolry.com/developer-tools/json-schema-validator'
+  supportedDialects:
+    draft: ['4', '7', '2019-09', '2020-12']
+  toolingListingNotes: 'Free online validator with no sign-up; validation runs client-side in the browser. Errors show the failing path, line and rule.'
+  lastUpdated: '2026-11-23'
+
 - name: '@hyperjump/json-schema-coverage'
   description: >
     Generate test coverage reports for the JSON Schemas in your codebase.
