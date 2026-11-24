@@ -18,7 +18,6 @@ At its core, JSON Schema defines the following basic types:
 - [null](../../understanding-json-schema/reference/null)
 - [numeric types](../../understanding-json-schema/reference/numeric)
 - [object](../../understanding-json-schema/reference/object)
-- [regular expressions](../../understanding-json-schema/reference/regular_expressions)
 - [string](../../understanding-json-schema/reference/string)
 
 
@@ -127,9 +126,9 @@ to decode ``Int`` from a non-integer number in JSON.
 
 The `type` keyword can take two forms:
 
-1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean`, `integer`, `number`, `null`, `object`, `regular expressions`, or `string`). This specifies that the instance data is only valid when it matches that specific type. 
+1. **A single string**. When it is a single string, it must be one of the types mentioned above (`array`, `boolean`, `integer`, `number`, `null`, `object`, or `string`). This specifies that the instance data is only valid when it matches that specific type. 
 
-Here is an example of using the `string` keyword as a single string:
+Here is an example of using the `type` keyword as a single string:
 
 ```json
 // props { "isSchema": true }
