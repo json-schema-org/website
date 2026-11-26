@@ -90,4 +90,16 @@ describe('Card Component', () => {
     cy.get('[data-test="card-title"]').should('have.class', 'text-[0.9rem]');
     cy.get('[data-test="card-body"]').should('have.class', 'text-[1.5rem]');
   });
+
+  it('should open external links in a new tab and internal links in the same tab', () => {
+    cy.mount(<Card {...RoadmapProps} />);
+    cy.get('[data-test="card-link"]')
+      .should('have.attr', 'target', '_blank')
+      .and('have.attr', 'rel', 'noopener noreferrer');
+
+    cy.mount(<Card {...RoadmapProps} link='/learn' />);
+    cy.get('[data-test="card-link"]')
+      .should('have.attr', 'href', '/learn')
+      .and('not.have.attr', 'target');
+  });
 });

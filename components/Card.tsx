@@ -107,17 +107,20 @@ const CardBody = ({
 };
 
 const Card: React.FC<CardProps> = ({ link, ...props }) => {
-  return link ? (
+  if (!link) {
+    return <CardBody {...props} />;
+  }
+
+  const isExternal = /^https?:\/\//i.test(link);
+
+  return (
     <Link
       href={link}
-      target='_blank'
-      rel='noopener noreferrer'
+      {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
       data-test='card-link'
     >
       <CardBody link={link} {...props} />
     </Link>
-  ) : (
-    <CardBody {...props} />
   );
 };
 
