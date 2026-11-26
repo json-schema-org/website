@@ -93,7 +93,9 @@ const GettingStarted = () => {
 
       const instResp = await fetch(selectedSchema.instances[0].file);
       const instData = await instResp.json();
+      const defualtInstance = instances[0] as InstanceOption;
       setFetchedInstance(instData);
+      setDetails([defualtInstance.details, defualtInstance.valid]);
     } else {
       setInstances([]);
       setFetchedSchema(null!);
