@@ -50,12 +50,20 @@ const ToolingTable = ({
   const [bowtieReport, setBowtieReport] = useState<BowtieReport | null>(null);
   const [isLoadingBowtie, setIsLoadingBowtie] = useState<boolean>(true);
   const [bowtieError, setBowtieError] = useState<string | null>(null);
+  const [isRetrying, setIsRetrying] = useState<boolean>(false);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(
     {},
   );
 
-  const fetchBowtieReport = useCallback(async () => {
+  const isFetchingRef = React.useRef(false);
+
+  const fetchBowtieReport = useCallback(async (isRetry = false) => {
+    if (isFetchingRef.current) return;
+    isFetchingRef.current = true;
     setIsLoadingBowtie(true);
+    if (isRetry) {
+      setIsRetrying(true);
+    }
     setBowtieError(null);
     try {
       const res = await fetch(
@@ -74,6 +82,8 @@ const ToolingTable = ({
       setBowtieReport(null);
     } finally {
       setIsLoadingBowtie(false);
+      setIsRetrying(false);
+      isFetchingRef.current = false;
     }
   }, []);
 
@@ -107,7 +117,7 @@ const ToolingTable = ({
   const filteredToolsByGroup = Object.fromEntries(
     Object.entries(toolsByGroup).map(([group, tools]) => [
       group,
-      transform.supportsBowtie === 'true'
+      transform.supportsBowtie === 'true' && !bowtieError
         ? tools.filter((tool) => Boolean(getBowtieData(tool)))
         : tools,
     ]),
@@ -168,7 +178,8 @@ const ToolingTable = ({
   };
 
   const renderBowtieErrorBanner = () => {
-    if (!bowtieError) return null;
+    if (!bowtieError && !isLoadingBowtie) return null;
+    if (!bowtieError && isLoadingBowtie && !isRetrying) return null;
 
     return (
       <Alert
@@ -183,14 +194,15 @@ const ToolingTable = ({
               Failed to load Bowtie compliance data
             </AlertTitle>
             <AlertDescription className='text-sm text-red-700 dark:text-red-300/80'>
-              {bowtieError}
+              {bowtieError ||
+                'Retrying Bowtie compliance data fetch, please wait...'}
             </AlertDescription>
           </div>
         </div>
         <Button
           variant='outline'
           size='sm'
-          onClick={() => fetchBowtieReport()}
+          onClick={() => fetchBowtieReport(true)}
           disabled={isLoadingBowtie}
           aria-label='Retry fetching Bowtie compliance data'
           className='flex-shrink-0 flex items-center gap-1.5 border-red-300 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/40 text-red-900 dark:text-red-100'

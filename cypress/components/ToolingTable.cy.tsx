@@ -223,6 +223,80 @@ describe('ToolingTable Bowtie UX', () => {
     cy.get('a[title="See at Bowtie"]').should('exist');
   });
 
+  it('disables Retry button and shows loading state while retry request is in progress', () => {
+    let attempt = 0;
+    cy.intercept(
+      'GET',
+      'https://bowtie.report/api/v1/json-schema-org/implementations',
+      (req) => {
+        attempt += 1;
+        if (attempt === 1) {
+          req.reply({ statusCode: 500, body: { error: 'Initial error' } });
+        } else {
+          req.on('response', (res) => {
+            res.setDelay(800);
+          });
+          req.reply({ statusCode: 200, body: mockBowtieSuccessData });
+        }
+      },
+    ).as('getBowtieDelayedRetry');
+
+    cy.mount(
+      <ToolingTable
+        toolsByGroup={mockToolsByGroup}
+        transform={defaultTransform}
+        setTransform={() => {}}
+        numberOfTools={2}
+      />,
+    );
+
+    cy.wait('@getBowtieDelayedRetry');
+    cy.get('[data-testid="bowtie-error-banner"]').should('exist');
+    cy.get('[data-testid="bowtie-retry-button"]').click();
+
+    // Assert that retry button is immediately disabled, displays Retrying..., and error banner disappears while loading
+    cy.get('[data-testid="bowtie-retry-button"]').should('be.disabled');
+    cy.get('[data-testid="bowtie-retry-button"]').should(
+      'contain.text',
+      'Retrying...',
+    );
+    cy.get('[data-testid="bowtie-loading-spinner"]').should('exist');
+
+    cy.wait('@getBowtieDelayedRetry');
+    cy.get('[data-testid="bowtie-error-banner"]').should('not.exist');
+    cy.get('a[title="See at Bowtie"]').should('exist');
+  });
+
+  it('keeps tools table visible even when supportsBowtie filter is on and Bowtie API fails', () => {
+    cy.intercept(
+      'GET',
+      'https://bowtie.report/api/v1/json-schema-org/implementations',
+      {
+        statusCode: 500,
+        body: { error: 'Server Error' },
+      },
+    ).as('getBowtieFailureFilter');
+
+    cy.mount(
+      <ToolingTable
+        toolsByGroup={mockToolsByGroup}
+        transform={{ ...defaultTransform, supportsBowtie: 'true' }}
+        setTransform={() => {}}
+        numberOfTools={2}
+      />,
+    );
+
+    cy.wait('@getBowtieFailureFilter');
+    // Error banner is present
+    cy.get('[data-testid="bowtie-error-banner"]').should('exist');
+    // Tools must remain visible and not disappear to "No Tools Found :("
+    cy.contains('Python jsonschema').should('exist');
+    cy.contains('Ajv').should('exist');
+    cy.contains('No Tools Found :(').should('not.exist');
+    // Bowtie cell indicates unavailable state
+    cy.get('[data-testid="bowtie-cell-error"]').should('exist');
+  });
+
   it('failed retry continues to display the error state and prevents duplicate clicks when disabled', () => {
     cy.intercept(
       'GET',
