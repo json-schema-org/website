@@ -2,6 +2,7 @@ import React, {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useCallback,
   useEffect,
   useState,
 } from 'react';
@@ -10,7 +11,14 @@ import { Headline2 } from '~/components/Headlines';
 import InfoIcon from '~/public/icons/icons8-info.svg';
 import OutLinkIcon from '~/public/icons/outlink.svg';
 import { Button } from '~/components/ui/button';
-import { ChevronDown, ChevronUp } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '~/components/ui/alert';
+import {
+  AlertCircle,
+  ChevronDown,
+  ChevronUp,
+  Loader2,
+  RefreshCw,
+} from 'lucide-react';
 
 import toTitleCase from '../lib/toTitleCase';
 import type { GroupedTools, Transform } from '../hooks/useToolsTransform';
@@ -40,26 +48,38 @@ const ToolingTable = ({
 }: ToolingTableProps) => {
   const [selectedTool, setSelectedTool] = useState<JSONSchemaTool | null>(null);
   const [bowtieReport, setBowtieReport] = useState<BowtieReport | null>(null);
+  const [isLoadingBowtie, setIsLoadingBowtie] = useState<boolean>(true);
+  const [bowtieError, setBowtieError] = useState<string | null>(null);
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>(
     {},
   );
 
-  useEffect(() => {
-    const fetchBowtieReport = async () => {
-      try {
-        const res = await fetch(
-          'https://bowtie.report/api/v1/json-schema-org/implementations',
-        );
-        const bowtieReport: BowtieReport = await res.json();
-        setBowtieReport(bowtieReport);
-      } catch (error) {
-        console.error('Error fetching Bowtie report:', error);
-        setBowtieReport(null);
+  const fetchBowtieReport = useCallback(async () => {
+    setIsLoadingBowtie(true);
+    setBowtieError(null);
+    try {
+      const res = await fetch(
+        'https://bowtie.report/api/v1/json-schema-org/implementations',
+      );
+      if (!res.ok) {
+        throw new Error(`Failed to fetch Bowtie data: ${res.status}`);
       }
-    };
-
-    fetchBowtieReport();
+      const data: BowtieReport = await res.json();
+      setBowtieReport(data);
+    } catch (error) {
+      console.error('Error fetching Bowtie report:', error);
+      setBowtieError(
+        'Unable to load Bowtie compliance data. Please check your connection and try again.',
+      );
+      setBowtieReport(null);
+    } finally {
+      setIsLoadingBowtie(false);
+    }
   }, []);
+
+  useEffect(() => {
+    fetchBowtieReport();
+  }, [fetchBowtieReport]);
 
   const getBowtieData = (tool: JSONSchemaTool) => {
     if (!bowtieReport || !tool.source) return null;
@@ -147,17 +167,61 @@ const ToolingTable = ({
     }
   };
 
+  const renderBowtieErrorBanner = () => {
+    if (!bowtieError) return null;
+
+    return (
+      <Alert
+        variant='destructive'
+        className='mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border border-red-200 dark:border-red-900/50 bg-red-50 dark:bg-red-950/20 text-red-900 dark:text-red-200'
+        data-testid='bowtie-error-banner'
+      >
+        <div className='flex items-start gap-3'>
+          <AlertCircle className='h-5 w-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0' />
+          <div>
+            <AlertTitle className='font-semibold text-red-800 dark:text-red-300'>
+              Failed to load Bowtie compliance data
+            </AlertTitle>
+            <AlertDescription className='text-sm text-red-700 dark:text-red-300/80'>
+              {bowtieError}
+            </AlertDescription>
+          </div>
+        </div>
+        <Button
+          variant='outline'
+          size='sm'
+          onClick={() => fetchBowtieReport()}
+          disabled={isLoadingBowtie}
+          aria-label='Retry fetching Bowtie compliance data'
+          className='flex-shrink-0 flex items-center gap-1.5 border-red-300 dark:border-red-800 hover:bg-red-100 dark:hover:bg-red-900/40 text-red-900 dark:text-red-100'
+          data-testid='bowtie-retry-button'
+        >
+          <RefreshCw
+            className={`h-4 w-4 ${isLoadingBowtie ? 'animate-spin' : ''}`}
+          />
+          {isLoadingBowtie ? 'Retrying...' : 'Retry'}
+        </Button>
+      </Alert>
+    );
+  };
+
   if (visibleToolCount === 0) {
     return (
-      <div className='text-center py-12 text-gray-500 dark:text-gray-400 border'>
-        <p className='text-lg'>No Tools Found :(</p>
-        <p className='text-sm'>Try Adjusting Your Filters to Find More Tools</p>
+      <div className='w-full'>
+        {renderBowtieErrorBanner()}
+        <div className='text-center py-12 text-gray-500 dark:text-gray-400 border'>
+          <p className='text-lg'>No Tools Found :(</p>
+          <p className='text-sm'>
+            Try Adjusting Your Filters to Find More Tools
+          </p>
+        </div>
       </div>
     );
   }
 
   return (
     <>
+      {renderBowtieErrorBanner()}
       {groups.map((group) => {
         const tools = filteredToolsByGroup[group] ?? [];
         const isExpanded = expandedGroups[group];
@@ -317,7 +381,19 @@ const ToolingTable = ({
                             },
                           }}
                         >
-                          {bowtieReport && (
+                          {isLoadingBowtie ? (
+                            <div
+                              className='flex justify-center items-center h-full m-auto text-gray-400'
+                              role='status'
+                              aria-label='Loading Bowtie compliance data'
+                              data-testid='bowtie-loading-spinner'
+                            >
+                              <Loader2 className='w-4 h-4 animate-spin' />
+                              <span className='sr-only'>
+                                Loading Bowtie compliance data...
+                              </span>
+                            </div>
+                          ) : bowtieReport ? (
                             <div className='flex justify-center items-center h-full m-auto'>
                               {bowtieData ? (
                                 <a
@@ -334,7 +410,16 @@ const ToolingTable = ({
                                 <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                               )}
                             </div>
-                          )}
+                          ) : bowtieError ? (
+                            <div
+                              className='flex justify-center items-center h-full m-auto text-red-500'
+                              title='Failed to load Bowtie data'
+                              aria-label='Bowtie compliance data unavailable'
+                              data-testid='bowtie-cell-error'
+                            >
+                              <AlertCircle className='w-4 h-4' />
+                            </div>
+                          ) : null}
                         </TableCell>
                       </tr>
                     );
@@ -354,7 +439,17 @@ const ToolingTable = ({
                         onClick={() => openModal(tool)}
                       >
                         <td className='p-2 relative'>
-                          {bowtieReport && (
+                          {isLoadingBowtie ? (
+                            <div
+                              className='absolute top-0 right-0 m-2 text-sm text-gray-500 dark:text-gray-400 flex items-center'
+                              role='status'
+                              aria-label='Loading Bowtie compliance data'
+                              data-testid='bowtie-mobile-loading'
+                            >
+                              <span className='mr-1'>Bowtie:</span>
+                              <Loader2 className='w-3.5 h-3.5 animate-spin' />
+                            </div>
+                          ) : bowtieReport ? (
                             <div className='absolute top-0 right-0 m-2 text-sm text-gray-600 dark:text-gray-300 flex items-center'>
                               <span>Bowtie:</span>
                               {bowtieData ? (
@@ -372,7 +467,19 @@ const ToolingTable = ({
                                 <InfoIcon className='fill-none stroke-current w-5 h-5 stroke-2' />
                               )}
                             </div>
-                          )}
+                          ) : bowtieError ? (
+                            <div
+                              className='absolute top-0 right-0 m-2 text-sm text-red-500 flex items-center'
+                              title='Failed to load Bowtie data'
+                              aria-label='Bowtie compliance data unavailable'
+                              data-testid='bowtie-mobile-error'
+                            >
+                              <span className='mr-1 text-gray-500 dark:text-gray-400'>
+                                Bowtie:
+                              </span>
+                              <AlertCircle className='w-3.5 h-3.5 text-red-500' />
+                            </div>
+                          ) : null}
                           <div className='flex justify-between items-center pr-24'>
                             <div className='font-medium'>
                               {tool.name}
