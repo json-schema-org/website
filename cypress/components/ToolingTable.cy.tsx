@@ -249,6 +249,56 @@ describe('ToolingTable Bowtie UX', () => {
     cy.wait('@getBowtieRetryFail');
     cy.get('[data-testid="bowtie-error-banner"]').should('exist');
     cy.contains('Failed to load Bowtie compliance data').should('exist');
+    cy.get('[data-testid="bowtie-cell-error"]').should('exist');
+  });
+
+  it('handles mobile view loading, success, and error states', () => {
+    cy.viewport('iphone-6');
+
+    cy.intercept(
+      'GET',
+      'https://bowtie.report/api/v1/json-schema-org/implementations',
+      {
+        statusCode: 500,
+        body: { error: 'Error' },
+      },
+    ).as('getBowtieMobileError');
+
+    cy.mount(
+      <ToolingTable
+        toolsByGroup={mockToolsByGroup}
+        transform={defaultTransform}
+        setTransform={() => {}}
+        numberOfTools={2}
+      />,
+    );
+
+    cy.wait('@getBowtieMobileError');
+    cy.get('[data-testid="bowtie-mobile-error"]').should('exist');
+  });
+
+  it('displays empty state with error banner when no tools match filter during error', () => {
+    cy.intercept(
+      'GET',
+      'https://bowtie.report/api/v1/json-schema-org/implementations',
+      {
+        statusCode: 500,
+        body: { error: 'Error' },
+      },
+    ).as('getBowtieEmptyError');
+
+    cy.mount(
+      <ToolingTable
+        toolsByGroup={{}}
+        transform={defaultTransform}
+        setTransform={() => {}}
+        numberOfTools={0}
+      />,
+    );
+
+    cy.wait('@getBowtieEmptyError');
+    cy.get('[data-testid="bowtie-error-banner"]').should('exist');
+    cy.contains('No Tools Found :(').should('exist');
   });
 
   it('retry button is accessible with proper ARIA attributes and keyboard accessible', () => {
